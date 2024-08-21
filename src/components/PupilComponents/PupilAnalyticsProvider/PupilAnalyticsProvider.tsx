@@ -6,9 +6,13 @@ import {
   AnalyticsUseCaseValueType,
   KeyStageTitleValueType,
   KeyStageTitle,
+  PhaseValueType,
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
-import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import {
+  LessonBrowseData,
+  LessonContent,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 /**
  * This file is used to wrap the track function from the analytics context
@@ -28,21 +32,69 @@ type NavigationEventProps =
   | "keyStageTitle"
   | "subjectTitle"
   | "subjectSlug"
+  | "yearGroupName"
+  | "yearGroupSlug"
+  | "phase"
+  | "tierName"
+  | "examBoard"
+  | "releaseGroup"
   | "analyticsUseCase";
+
+type DefaultVideoProps =
+  | "videoTitle"
+  | "numberOfVideos"
+  | "videoSlug"
+  | "isCaptioned"
+  | "videoPlaybackId"
+  | "signedAvailable";
+
+type DefaultAudioProps =
+  | "audioTitle"
+  | "numberOfAudios"
+  | "audioSlug"
+  | "audioPlaybackId"
+  | "isCaptioned";
 
 export const trackingEvents = [
   "lessonStarted",
   "lessonCompleted",
-  "lessonSectionStarted",
-  "lessonSectionCompleted",
-  "lessonSectionAbandoned",
+  "lessonActivityCompleted",
+  "lessonActivityCompletedIntroduction",
+  "lessonActivityCompletedStarterQuiz",
+  "lessonActivityCompletedLessonVideo",
+  "lessonActivityCompletedExitQuiz",
+  "lessonActivityCompletedLessonAudio",
+  "lessonActivityStarted",
+  "lessonActivityStartedIntroduction",
+  "lessonActivityStartedStarterQuiz",
+  "lessonActivityStartedLessonVideo",
+  "lessonActivityStartedExitQuiz",
+  "lessonActivityStartedLessonAudio",
+  "lessonActivityAbandoned",
+  "lessonActivityAbandonedStarterQuiz",
+  "lessonActivityAbandonedIntroduction",
+  "lessonActivityAbandonedLessonVideo",
+  "lessonActivityAbandonedExitQuiz",
+  "lessonActivityAbandonedLessonAudio",
+  "lessonActivityDownloaded",
+  "lessonActivityDownloadedWorksheet",
+  "contentGuidanceAccepted",
+  "contentGuidanceDeclined",
+  "activityResultsShared",
+  "activityResultsSharedStarterQuiz",
+  "activityResultsSharedExitQuiz",
+  "lessonSummaryReviewed",
+  "lessonAccessed",
 ] as const;
 
 export type PupilAnalyticsEvents = (typeof trackingEvents)[number];
 
-type PupilAnalyticsTrack = {
+export type PupilAnalyticsTrack = {
   [eventName in PupilAnalyticsEvents]: (
-    props: Omit<Parameters<TrackFns[eventName]>[0], NavigationEventProps>,
+    props: Omit<
+      Parameters<TrackFns[eventName]>[0],
+      NavigationEventProps | DefaultVideoProps | DefaultAudioProps
+    >,
   ) => void;
 };
 
@@ -59,22 +111,59 @@ export type PupilPathwayData = {
   keyStageTitle: KeyStageTitleValueType | null;
   subjectTitle: string;
   subjectSlug: string;
+  yearGroupName: string;
+  yearGroupSlug: string;
+  phase: PhaseValueType;
+  tierName: string | null | undefined;
+  examBoard: string | null | undefined;
+  releaseGroup: string;
+};
+
+export type PupilVideoData = {
+  videoTitle: string;
+  numberOfVideos: number;
+  videoSlug: string[];
+  isCaptioned: boolean;
+  videoPlaybackId: string[];
+  signedAvailable: boolean;
+};
+
+export type PupilAudioData = {
+  audioTitle: string;
+  numberOfAudios: string;
+  audioSlug: string[];
+  audioPlaybackId: string[];
+  isCaptioned: boolean;
+  signedAvailable: boolean;
+};
+
+export type AdditionalArgType = PupilPathwayData & {
+  analyticsUseCase: AnalyticsUseCaseValueType;
 };
 
 export const PupilAnalyticsProvider = ({
   children,
   pupilPathwayData,
+  pupilVideoData,
+  pupilAudioData,
 }: {
   children: React.ReactNode;
   pupilPathwayData: PupilPathwayData;
+  pupilVideoData: PupilVideoData;
+  pupilAudioData: PupilAudioData;
 }) => {
   const { track } = useAnalytics();
 
-  const additionalArgs: PupilPathwayData & {
-    analyticsUseCase: AnalyticsUseCaseValueType;
-  } = {
+  const additionalArgs: AdditionalArgType = {
     ...pupilPathwayData,
     analyticsUseCase: "Pupil",
+  };
+
+  const defaultVideoArgs: PupilVideoData = {
+    ...pupilVideoData,
+  };
+  const defaultAudioArgs: PupilAudioData = {
+    ...pupilAudioData,
   };
 
   const pupilTrack: PupilAnalyticsTrack = {
@@ -83,18 +172,148 @@ export const PupilAnalyticsProvider = ({
         ...args,
         ...additionalArgs,
       }),
-    lessonSectionCompleted: (args) =>
-      track.lessonSectionCompleted({
-        ...args,
-        ...additionalArgs,
-      }),
-    lessonSectionStarted: (args) =>
-      track.lessonSectionStarted({
+    lessonActivityCompleted: (args) =>
+      track.lessonActivityCompleted({
         ...additionalArgs,
         ...args,
       }),
-    lessonSectionAbandoned: (args) =>
-      track.lessonSectionStarted({
+    lessonActivityCompletedIntroduction: (args) =>
+      track.lessonActivityCompletedIntroduction({
+        ...args,
+        ...additionalArgs,
+      }),
+    lessonActivityCompletedStarterQuiz: (args) =>
+      track.lessonActivityCompletedStarterQuiz({
+        ...args,
+        ...additionalArgs,
+      }),
+    lessonActivityCompletedLessonVideo: (args) =>
+      track.lessonActivityCompletedLessonVideo({
+        ...args,
+        ...additionalArgs,
+        ...defaultVideoArgs,
+      }),
+    lessonActivityCompletedExitQuiz: (args) =>
+      track.lessonActivityCompletedExitQuiz({
+        ...args,
+        ...additionalArgs,
+      }),
+    lessonActivityCompletedLessonAudio: (args) =>
+      track.lessonActivityCompletedLessonAudio({
+        ...args,
+        ...additionalArgs,
+        ...defaultAudioArgs,
+      }),
+    lessonActivityStarted: (args) =>
+      track.lessonActivityStarted({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityStartedIntroduction: (args) =>
+      track.lessonActivityStartedIntroduction({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityStartedStarterQuiz: (args) =>
+      track.lessonActivityStartedStarterQuiz({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityStartedLessonVideo: (args) =>
+      track.lessonActivityStartedLessonVideo({
+        ...additionalArgs,
+        ...defaultVideoArgs,
+        ...args,
+      }),
+    lessonActivityStartedExitQuiz: (args) =>
+      track.lessonActivityStartedExitQuiz({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityStartedLessonAudio: (args) =>
+      track.lessonActivityStartedLessonAudio({
+        ...additionalArgs,
+        ...args,
+        ...defaultAudioArgs,
+      }),
+
+    lessonActivityAbandoned: (args) =>
+      track.lessonActivityAbandoned({
+        ...additionalArgs,
+        ...args,
+        ...defaultVideoArgs,
+      }),
+    lessonActivityAbandonedStarterQuiz: (args) =>
+      track.lessonActivityAbandonedStarterQuiz({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityAbandonedIntroduction: (args) =>
+      track.lessonActivityAbandonedIntroduction({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityAbandonedLessonVideo: (args) =>
+      track.lessonActivityAbandonedLessonVideo({
+        ...additionalArgs,
+        ...defaultVideoArgs,
+        ...args,
+      }),
+    lessonActivityAbandonedExitQuiz: (args) =>
+      track.lessonActivityAbandonedExitQuiz({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityAbandonedLessonAudio: (args) =>
+      track.lessonActivityAbandonedLessonAudio({
+        ...additionalArgs,
+        ...args,
+        ...defaultAudioArgs,
+      }),
+    lessonActivityDownloaded: (args) =>
+      track.lessonActivityDownloaded({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityDownloadedWorksheet: (args) =>
+      track.lessonActivityDownloadedWorksheet({
+        ...additionalArgs,
+        ...args,
+      }),
+    contentGuidanceAccepted: (args) =>
+      track.contentGuidanceAccepted({
+        ...additionalArgs,
+        ...args,
+      }),
+    contentGuidanceDeclined: (args) =>
+      track.contentGuidanceDeclined({
+        ...additionalArgs,
+        ...args,
+      }),
+    activityResultsShared: (args) =>
+      track.activityResultsShared({
+        ...additionalArgs,
+        ...args,
+      }),
+    activityResultsSharedStarterQuiz: (args) =>
+      track.activityResultsSharedStarterQuiz({
+        ...additionalArgs,
+        ...args,
+      }),
+    activityResultsSharedExitQuiz: (args) =>
+      track.activityResultsSharedExitQuiz({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonSummaryReviewed: (args) =>
+      track.lessonSummaryReviewed({
+        ...additionalArgs,
+        ...defaultVideoArgs,
+        ...defaultAudioArgs,
+        ...args,
+      }),
+    lessonAccessed: (args) =>
+      track.lessonAccessed({
         ...additionalArgs,
         ...args,
       }),
@@ -140,7 +359,9 @@ export const getPupilPathwayData = (
       keyStageTitle: k,
     });
   }
-
+  if (browseData.programmeFields.phase === "foundation") {
+    throw new Error("Foundation phase is not supported");
+  }
   return {
     unitName: browseData.unitData.description ?? "",
     unitSlug: browseData.unitData.slug,
@@ -150,5 +371,40 @@ export const getPupilPathwayData = (
     keyStageTitle,
     subjectTitle: browseData.programmeFields.subject,
     subjectSlug: browseData.programmeFields.subjectSlug,
+    yearGroupName: browseData.programmeFields.year,
+    yearGroupSlug: browseData.programmeFields.yearSlug,
+    phase: browseData.programmeFields.phase,
+    tierName: browseData.programmeFields.tier,
+    examBoard: browseData.programmeFields.examboard,
+    releaseGroup: browseData.isLegacy ? "legacy" : "2023",
+  };
+};
+
+export const getPupilVideoData = (
+  lessonContent: LessonContent,
+): PupilVideoData => {
+  return {
+    videoTitle: lessonContent.videoTitle ?? "",
+    numberOfVideos: 1,
+    videoSlug: [lessonContent.lessonSlug],
+    isCaptioned: lessonContent.transcriptSentences.length > 0,
+    videoPlaybackId: [
+      lessonContent.videoMuxPlaybackId || "",
+      lessonContent.videoWithSignLanguageMuxPlaybackId || "",
+    ],
+    signedAvailable: !!lessonContent.videoWithSignLanguageMuxPlaybackId,
+  };
+};
+
+export const getPupilAudioData = (
+  lessonContent: LessonContent,
+): PupilAudioData => {
+  return {
+    audioTitle: "",
+    numberOfAudios: "0",
+    audioSlug: [lessonContent.lessonSlug],
+    audioPlaybackId: [""],
+    isCaptioned: false,
+    signedAvailable: false,
   };
 };

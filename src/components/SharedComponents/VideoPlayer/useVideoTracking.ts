@@ -35,7 +35,7 @@ const getEventPropsOrWarn = (props: UseVideoTrackingProps) => {
     isMuted: muted,
     timeElapsedSeconds: timeElapsed,
     videoTitle: title,
-    videoPlaybackId: playbackId,
+    videoPlaybackId: [playbackId],
     videoLocation: location,
   };
 };
@@ -58,6 +58,7 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
 
   const onPlay = () => {
     const eventProps = getEventPropsOrWarn(props);
+    console.log("eventProps", eventProps);
     if (!eventProps) {
       return;
     }

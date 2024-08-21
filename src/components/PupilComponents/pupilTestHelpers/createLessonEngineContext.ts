@@ -12,7 +12,7 @@ export function createLessonEngineContext(
     currentSection: "starter-quiz",
     sectionResults: {},
     lessonReviewSections: allLessonReviewSections,
-    completeSection: jest.fn(),
+    completeActivity: jest.fn(),
     updateCurrentSection: jest.fn(),
     proceedToNextSection: jest.fn(),
     updateSectionResult: jest.fn(),

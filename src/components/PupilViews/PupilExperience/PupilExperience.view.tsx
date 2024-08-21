@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
+
 import {
   OakBox,
   OakThemeProvider,
   oakDefaultTheme,
   OakPupilJourneyContentGuidance,
 } from "@oaknational/oak-components";
-
 import {
   LessonEngineProvider,
   LessonSection,
@@ -25,12 +25,16 @@ import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayou
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   PupilAnalyticsProvider,
+  getPupilAudioData,
   getPupilPathwayData,
+  getPupilVideoData,
 } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
+import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -152,13 +156,43 @@ const CookieConsentStyles = createGlobalStyle`
 }
 `;
 
-export const PupilExperienceView = ({
+// const Contentguidance = ({
+//   lessonContent,
+//   backUrl,
+// }: Pick<PupilExperienceViewProps, "lessonContent" | "backUrl">) => {
+//   const router = useRouter();
+//   const [isOpen, setIsOpen] = useState<boolean>(
+//     !!lessonContent.contentGuidance,
+//   );
+//   return (
+//     <OakPupilJourneyContentGuidance
+//       isOpen={isOpen}
+//       onAccept={() => {
+//         setIsOpen(false);
+
+//         // track.contentGuidanceAccepted({
+//         //   supervisionLevel: lessonContent.supervisionLevel || "",
+//         //   contentGuidanceWarning:
+//         //     lessonContent.contentGuidance?.find((cg) => {
+//         //       return cg.contentguidanceLabel as ContentGuidanceWarningValueType;
+//         //     }) || "Language and discrimination",
+//         // });
+//       }}
+//       onDecline={() => (backUrl ? router.replace(backUrl) : router.back())}
+//       contentGuidance={lessonContent.contentGuidance}
+//       supervisionLevel={lessonContent.supervisionLevel}
+//     />
+//   );
+// };
+
+const PupilExperienceLayout = ({
   browseData,
   lessonContent,
   hasWorksheet,
   backUrl,
   initialSection,
 }: PupilExperienceViewProps) => {
+  const { track } = usePupilAnalytics();
   const [isOpen, setIsOpen] = useState<boolean>(
     !!lessonContent.contentGuidance,
   );
@@ -167,51 +201,80 @@ export const PupilExperienceView = ({
 
   const isSensitive = lessonContent.deprecatedFields?.isSensitive === true;
 
+  const handleContentGuidanceAccept = () => {
+    setIsOpen(false);
+    track.contentGuidanceAccepted({
+      supervisionLevel: lessonContent.supervisionLevel || "",
+      contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
+        return cg.contentguidanceArea;
+      })?.contentguidanceArea as ContentGuidanceWarningValueType,
+    });
+  };
+
+  const handleContentGuidanceDecline = () => {
+    backUrl ? router.replace(backUrl) : router.back();
+    track.contentGuidanceDeclined({
+      supervisionLevel: lessonContent.supervisionLevel || "",
+      contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
+        return cg.contentguidanceArea;
+      })?.contentguidanceArea as ContentGuidanceWarningValueType,
+    });
+  };
+
   return (
-    <PupilAnalyticsProvider pupilPathwayData={getPupilPathwayData(browseData)}>
-      <PupilLayout
-        seoProps={{
-          ...getSeoProps({
-            title: browseData.lessonData.title,
-            description: browseData.lessonData.pupilLessonOutcome,
-          }),
-          noIndex: isSensitive,
-          noFollow: isSensitive,
-        }}
-      >
-        <OakThemeProvider theme={oakDefaultTheme}>
+    <PupilLayout
+      seoProps={{
+        ...getSeoProps({
+          title: browseData.lessonData.title,
+          description: browseData.lessonData.pupilLessonOutcome,
+        }),
+        noIndex: isSensitive,
+        noFollow: isSensitive,
+      }}
+    >
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <CookieConsentStyles />
+        <LessonEngineProvider
+          initialLessonReviewSections={availableSections}
+          initialSection={initialSection}
+        >
           <OakPupilJourneyContentGuidance
             isOpen={isOpen}
-            onAccept={() => setIsOpen(false)}
-            onDecline={() =>
-              backUrl ? router.replace(backUrl) : router.back()
-            }
+            onAccept={handleContentGuidanceAccept}
+            onDecline={handleContentGuidanceDecline}
             contentGuidance={lessonContent.contentGuidance}
             supervisionLevel={lessonContent.supervisionLevel}
           />
 
-          <CookieConsentStyles />
-          <LessonEngineProvider
-            initialLessonReviewSections={availableSections}
-            initialSection={initialSection}
-          >
-            <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
-              <OakBox $height={"100vh"}>
-                {browseData.lessonData.deprecatedFields?.expired ? (
-                  <PupilExpiredView lessonTitle={browseData.lessonData.title} />
-                ) : (
-                  <PupilPageContent
-                    browseData={browseData}
-                    lessonContent={lessonContent}
-                    hasWorksheet={hasWorksheet}
-                    backUrl={backUrl}
-                  />
-                )}
-              </OakBox>
+          <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
+            <OakBox $height={"100vh"}>
+              {browseData.lessonData.deprecatedFields?.expired ? (
+                <PupilExpiredView lessonTitle={browseData.lessonData.title} />
+              ) : (
+                <PupilPageContent
+                  browseData={browseData}
+                  lessonContent={lessonContent}
+                  hasWorksheet={hasWorksheet}
+                  backUrl={backUrl}
+                />
+              )}
             </OakBox>
-          </LessonEngineProvider>
-        </OakThemeProvider>
-      </PupilLayout>
+          </OakBox>
+        </LessonEngineProvider>
+      </OakThemeProvider>
+    </PupilLayout>
+  );
+};
+
+export const PupilExperienceView = (props: PupilExperienceViewProps) => {
+  const { browseData, lessonContent } = props;
+  return (
+    <PupilAnalyticsProvider
+      pupilPathwayData={getPupilPathwayData(browseData)}
+      pupilVideoData={getPupilVideoData(lessonContent)}
+      pupilAudioData={getPupilAudioData(lessonContent)}
+    >
+      <PupilExperienceLayout {...props} />
     </PupilAnalyticsProvider>
   );
 };

@@ -1,3 +1,5 @@
+import { useWorksheetDownload } from "./useWorksheetDownload";
+
 import {
   OakBackLink,
   OakBox,
@@ -17,9 +19,6 @@ import {
   OakSpan,
   OakStaticMessageCard,
 } from "@oaknational/oak-components";
-
-import { useWorksheetDownload } from "./useWorksheetDownload";
-
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
@@ -39,8 +38,9 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     hasWorksheet,
   } = props;
   const {
-    completeSection,
+    completeActivity,
     updateCurrentSection,
+    updateWorksheetDownloaded,
     updateSectionResult,
     sectionResults,
   } = useLessonEngineContext();
@@ -51,7 +51,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   );
 
   const handleDownloadClicked = () => {
-    updateSectionResult({
+    updateWorksheetDownloaded({
       worksheetDownloaded: true,
       worksheetAvailable: true,
     });
@@ -87,7 +87,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     <OakLessonBottomNav>
       <OakPrimaryButton
         element="a"
-        {...getSectionLinkProps("overview", () => completeSection("intro"))}
+        {...getSectionLinkProps("overview", () => completeActivity("intro"))}
         width={["100%", "max-content"]}
         isTrailingIcon
         iconName="arrow-right"

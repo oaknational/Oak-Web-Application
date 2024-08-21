@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+
 import {
   OakBackLink,
   OakGrid,
@@ -11,7 +12,6 @@ import {
   OakPrimaryButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-
 import {
   VideoResult,
   useLessonEngineContext,
@@ -36,7 +36,7 @@ export const PupilViewsVideo = ({
   transcriptSentences,
   isLegacy,
 }: PupilViewsVideoProps) => {
-  const { completeSection, updateCurrentSection, updateSectionResult } =
+  const { completeActivity, updateCurrentSection, updateSectionResult } =
     useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
   const [signLanguageOn, setSignLanguageOn] = useState(false);
@@ -49,11 +49,16 @@ export const PupilViewsVideo = ({
     played: false,
     duration: 0,
     timeElapsed: 0,
+    muted: false,
+    signedOpened: false,
+    transcriptOpened: false,
   });
 
   const handleVideoEvent = (event: VideoEventCallbackArgs) => {
+    console.log("video event", event);
     videoResult.current.played = true;
     videoResult.current.duration = event.duration || 0;
+    videoResult.current.muted = event.muted || false;
     const t = event.timeElapsed || 0;
     // throttling updates to every 10 seconds to avoid overloading state updates
     // also prevents timeElapsed from being updated when the skips to an earlier moment
@@ -82,7 +87,9 @@ export const PupilViewsVideo = ({
         <OakLessonBottomNav>
           <OakPrimaryButton
             element="a"
-            {...getSectionLinkProps("overview", () => completeSection("video"))}
+            {...getSectionLinkProps("overview", () =>
+              completeActivity("video"),
+            )}
             width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon
@@ -118,11 +125,23 @@ export const PupilViewsVideo = ({
         <OakGridArea $colStart={[1, 1, 3]} $colSpan={[12, 12, 8]}>
           {transcriptSentences.length > 0 && (
             <OakLessonVideoTranscript
+              transcriptToggled={({ isOpen }: { isOpen: boolean }) => {
+                if (isOpen) {
+                  videoResult.current.transcriptOpened = true;
+                  updateSectionResult(videoResult.current);
+                }
+              }}
               id="video-transcript"
               signLanguageControl={
                 videoWithSignLanguageMuxPlaybackId && (
                   <OakTertiaryButton
-                    onClick={() => setSignLanguageOn(!signLanguageOn)}
+                    onClick={() => {
+                      setSignLanguageOn(!signLanguageOn);
+                      if (!signLanguageOn) {
+                        videoResult.current.signedOpened = !signLanguageOn;
+                        updateSectionResult(videoResult.current);
+                      }
+                    }}
                     iconName="sign-language"
                     isTrailingIcon
                   >

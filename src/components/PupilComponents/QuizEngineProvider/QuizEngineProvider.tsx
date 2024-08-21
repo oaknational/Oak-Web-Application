@@ -65,7 +65,7 @@ export const useQuizEngineContext = () => {
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
-  const { updateSectionResult, completeSection, currentSection } =
+  const { updateSectionResult, completeActivity, currentSection } =
     useLessonEngineContext();
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
@@ -282,11 +282,11 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         _currentQuestionIndex === numQuestions &&
         isLessonReviewSection(currentSection)
       ) {
-        completeSection(currentSection);
+        completeActivity(currentSection);
       }
       return _currentQuestionIndex;
     });
-  }, [numQuestions, setCurrentQuestionIndex, completeSection, currentSection]);
+  }, [numQuestions, setCurrentQuestionIndex, completeActivity, currentSection]);
 
   const currentQuestionDisplayIndex =
     currentQuestionIndex - (numQuestions - numInteractiveQuestions);

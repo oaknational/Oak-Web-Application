@@ -1,4 +1,6 @@
 import { isString } from "lodash";
+import { useEffect, useState } from "react";
+
 import {
   OakBox,
   OakBulletList,
@@ -18,8 +20,6 @@ import {
   OakSubjectIcon,
   isValidIconName,
 } from "@oaknational/oak-components";
-import { useEffect, useState } from "react";
-
 import {
   LessonReviewSection,
   useLessonEngineContext,
@@ -66,6 +66,7 @@ export const PupilViewsLessonOverview = ({
     updateCurrentSection,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+  console.log("linkprops", getSectionLinkProps("intro", updateCurrentSection));
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
