@@ -33,8 +33,6 @@ const unitListingQuery =
 
     const programmeFields = firstUnit.programme_fields;
 
-    console.log(programmeFields.subject_parent, "< Subject Parent");
-
     const isLegacy = firstUnit.is_legacy;
     const hasTiers = parsedRawUnits.some(
       (p) => p.programme_fields.tier_slug !== null,
