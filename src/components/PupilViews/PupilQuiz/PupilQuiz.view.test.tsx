@@ -26,6 +26,15 @@ import {
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import "@/__tests__/__helpers__/IntersectionObserverMock";
+import "@/__tests__/__helpers__/ResizeObserverMock";
+import * as QuizEngineProvider from "@/components/PupilComponents/QuizEngineProvider";
+
+// Mock the module and retain actual exports
+jest.mock("@/components/PupilComponents/QuizEngineProvider", () => ({
+  ...jest.requireActual("@/components/PupilComponents/QuizEngineProvider"),
+  useQuizEngineContext: jest.fn(),
+}));
 
 jest.mock("@oaknational/oak-components", () => {
   return {
@@ -41,7 +50,25 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: jest.fn(),
+}));
+
+// Mock the module and retain actual exports
+jest.mock("@/components/PupilComponents/QuizEngineProvider", () => ({
+  ...jest.requireActual("@/components/PupilComponents/QuizEngineProvider"),
+  useQuizEngineContext: jest.fn(),
+}));
+
 describe("PupilQuizView", () => {
+  beforeEach(() => {
+    // Restore the original implementation for all tests
+    (QuizEngineProvider.useQuizEngineContext as jest.Mock).mockImplementation(
+      jest.requireActual("@/components/PupilComponents/QuizEngineProvider")
+        .useQuizEngineContext,
+    );
+  });
+
   it("renders heading, mode and answer when there is currentQuestionData", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>

@@ -18,8 +18,10 @@ describe(PupilViewsLessonOverview, () => {
             lessonTitle="Introduction to The Canterbury Tales"
             subjectTitle="English"
             subjectSlug="english"
+            phase="secondary"
             starterQuizNumQuestions={4}
             exitQuizNumQuestions={5}
+            expirationDate={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -48,8 +50,10 @@ describe(PupilViewsLessonOverview, () => {
               lessonTitle="Introduction to The Canterbury Tales"
               subjectTitle="English"
               subjectSlug="english"
+              phase="primary"
               starterQuizNumQuestions={4}
               exitQuizNumQuestions={5}
+              expirationDate={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
@@ -76,6 +80,7 @@ describe(PupilViewsLessonOverview, () => {
             subjectSlug="english"
             starterQuizNumQuestions={4}
             exitQuizNumQuestions={5}
+            expirationDate={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -94,6 +99,7 @@ describe(PupilViewsLessonOverview, () => {
             subjectSlug="english"
             starterQuizNumQuestions={4}
             exitQuizNumQuestions={5}
+            expirationDate={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -153,6 +159,7 @@ describe(PupilViewsLessonOverview, () => {
               subjectSlug="english"
               starterQuizNumQuestions={4}
               exitQuizNumQuestions={5}
+              expirationDate={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>,

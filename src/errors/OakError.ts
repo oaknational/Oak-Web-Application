@@ -12,6 +12,7 @@ const ERROR_CODES = [
   "hubspot/invalid-email",
   "hubspot/unknown",
   "video/unknown",
+  "video/persistent-unknown",
   "video/fetch-signed-token",
   "hubspot/not-loaded",
   "hubspot/script-failed-to-load",
@@ -28,6 +29,7 @@ const ERROR_CODES = [
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
   "downloads/check-files-failed",
+  "onboarding/request-error",
 ] as const;
 export type ErrorCode = (typeof ERROR_CODES)[number];
 
@@ -96,6 +98,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Sorry this video couldn't play, please try again",
     shouldNotify: true,
   },
+  "video/persistent-unknown": {
+    message: "Sorry this video couldn't play persistently, please try again",
+    shouldNotify: true,
+  },
   "video/fetch-signed-token": {
     message: "Failed to fetch signed video token",
     shouldNotify: true,
@@ -149,6 +155,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "downloads/check-files-failed": {
     message: "Failed to check file existence",
+    shouldNotify: true,
+  },
+  "onboarding/request-error": {
+    message: "Onboarding request failed",
     shouldNotify: true,
   },
 };

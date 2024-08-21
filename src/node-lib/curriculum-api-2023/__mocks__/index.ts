@@ -31,6 +31,7 @@ const curriculumApi: Pick<
   | "programmeListingPage"
   | "teachersHomePage"
   | "pupilLessonQuery"
+  | "pupilPreviewLessonQuery"
   | "pupilLessonListingQuery"
   | "pupilUnitListingQuery"
   | "pupilSubjectListingQuery"
@@ -69,8 +70,17 @@ const curriculumApi: Pick<
       content: lessonContentFixture({}),
     };
   }),
+  pupilPreviewLessonQuery: jest.fn(async () => {
+    return {
+      browseData: lessonBrowseDataFixture({}),
+      content: lessonContentFixture({}),
+    };
+  }),
   pupilLessonListingQuery: jest.fn(async () => {
-    return [lessonBrowseDataFixture({})];
+    return {
+      browseData: [lessonBrowseDataFixture({})],
+      backLinkData: [{ programmeSlug: "programmeSlug", isLegacy: false }],
+    };
   }),
   pupilUnitListingQuery: jest.fn(async () => {
     return [unitBrowseDataFixture({})];

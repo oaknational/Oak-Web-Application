@@ -35,6 +35,8 @@ jest.mock("posthog-js", () => ({
   default: {
     init: jest.fn(),
     capture: jest.fn(),
+    onFeatureFlags: jest.fn(),
+    isFeatureEnabled: jest.fn(),
   },
 }));
 
@@ -53,3 +55,4 @@ jest.mock("./src/common-lib/error-reporter", () => ({
 }));
 
 jest.mock("@oaknational/oak-consent-client");
+jest.mock("@clerk/nextjs");

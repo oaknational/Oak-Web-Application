@@ -10,10 +10,10 @@ import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineCon
 import { QuizMCQSingleAnswer } from "./QuizMCQSingleAnswer";
 
 import {
-  QuestionFeedbackType,
   QuizEngineContext,
   QuizEngineContextType,
 } from "@/components/PupilComponents/QuizEngineProvider";
+import { QuestionFeedbackType } from "@/components/PupilComponents/QuizUtils/questionTypes";
 import {
   quizQuestions,
   mcqImageAnswers,

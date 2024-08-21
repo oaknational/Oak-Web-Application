@@ -122,6 +122,8 @@ const LessonListItem: FC<
       background={expired ? "grey20" : "white"}
       containerProps={containerProps}
       expired={expired}
+      key={`LessonList-LessonListItem-${lessonSlug}`}
+      data-testid={"lesson-list-item"}
     >
       <ListItemIndexDesktop
         index={index + 1}

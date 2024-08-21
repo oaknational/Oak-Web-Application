@@ -1,18 +1,12 @@
-import { GetStaticProps, GetStaticPropsResult } from "next";
+import { GetStaticProps } from "next";
 
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import {
-  PupilExperienceViewProps,
-  pickAvailableSectionsForLesson,
-} from "@/components/PupilViews/PupilExperience";
-import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
-import { resolveOakHref } from "@/common-lib/urls";
-import {
-  isLessonReviewSection,
-  isLessonSection,
-} from "@/components/PupilComponents/LessonEngineProvider";
+import { PupilExperienceViewProps } from "@/components/PupilViews/PupilExperience";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
+import {
+  getProps,
+  PupilLessonPageURLParams,
+} from "@/pages-helpers/pupil/lessons-pages/getProps";
 
 export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
@@ -30,77 +24,16 @@ export { PupilExperienceView as default } from "@/components/PupilViews/PupilExp
  *
  *
  */
-type PupilCanonicalPageURLParams = {
-  lessonSlug: string;
-  section: string;
-};
 
-export const getStaticPaths =
-  getStaticPathsTemplate<PupilCanonicalPageURLParams>;
+export const getStaticPaths = getStaticPathsTemplate<PupilLessonPageURLParams>;
 
 export const getStaticProps: GetStaticProps<
   PupilExperienceViewProps,
-  PupilCanonicalPageURLParams
+  PupilLessonPageURLParams
 > = async (context) => {
   return getPageProps({
     page: "pupils-lesson-experience-canonical::getStaticProps",
     context,
-    getProps: async () => {
-      if (!context.params) {
-        throw new Error("No context.params");
-      }
-      const { lessonSlug, section } = context.params;
-
-      // 404 if the section is not valid
-      if (!isLessonSection(section)) {
-        return {
-          notFound: true,
-        };
-      }
-
-      const res = await curriculumApi2023.pupilLessonQuery({
-        lessonSlug,
-      });
-
-      if (!res) {
-        return {
-          notFound: true,
-        };
-      }
-
-      const { browseData, content } = res;
-
-      // 404 if the lesson does not contain the given section
-      if (
-        isLessonReviewSection(section) &&
-        !pickAvailableSectionsForLesson(content).includes(section)
-      ) {
-        return {
-          notFound: true,
-        };
-      }
-
-      const backUrl = resolveOakHref({
-        page: "pupil-year-index",
-      });
-
-      const { transcriptSentences, hasWorksheet } =
-        await requestLessonResources({ lessonContent: content });
-
-      const results: GetStaticPropsResult<PupilExperienceViewProps> = {
-        props: {
-          lessonContent: {
-            ...content,
-            transcriptSentences: transcriptSentences ?? [],
-          },
-          browseData,
-          hasWorksheet,
-          backUrl,
-          initialSection: section,
-        },
-      };
-
-      return results;
-    },
+    getProps: getProps({ context, page: "canonical" }),
   });
 };

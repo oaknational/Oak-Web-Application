@@ -10,11 +10,10 @@ import {
 import CurriculumVisualiser, {
   Thread,
   Subject,
-  Domain,
-  Discipline,
   Tier,
   Unit,
   isVisibleUnit,
+  SubjectCategory,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
 import SkipLink from "../OakComponentsKitchen/SkipLink";
@@ -40,9 +39,8 @@ type UnitsTabProps = {
 
 export interface YearSelection {
   [key: string]: {
-    discipline?: Discipline | null;
+    subjectCategory?: SubjectCategory | null;
     subject?: Subject | null;
-    domain?: Domain | null;
     tier?: Tier | null;
   };
 }
@@ -108,21 +106,18 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
     setSelectedYear(year);
   }
 
-  function handleSelectDomain(year: string, domain: Domain) {
-    const selection = { ...yearSelection[year] };
-    selection.domain = domain;
-    setYearSelection({ ...yearSelection, [year]: selection });
-  }
-
   function handleSelectSubject(year: string, subject: Subject) {
     const selection = { ...yearSelection[year] };
     selection.subject = subject;
     setYearSelection({ ...yearSelection, [year]: selection });
   }
 
-  function handleSelectDiscipline(year: string, discipline: Discipline) {
+  function handleSelectSubjectCategory(
+    year: string,
+    subjectCategory: SubjectCategory,
+  ) {
     const selection = { ...yearSelection[year] };
-    selection.discipline = discipline;
+    selection.subjectCategory = subjectCategory;
     setYearSelection({ ...yearSelection, [year]: selection });
   }
 
@@ -335,10 +330,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
             selectedYear={selectedYear}
             examboardSlug={examboardSlug}
             yearData={yearData}
-            handleSelectDomain={handleSelectDomain}
+            handleSelectSubjectCategory={handleSelectSubjectCategory}
             handleSelectSubject={handleSelectSubject}
             handleSelectTier={handleSelectTier}
-            handleSelectDiscipline={handleSelectDiscipline}
             mobileHeaderScrollOffset={mobileHeaderScrollOffset}
             setUnitData={setUnitData}
             selectedThread={selectedThread}

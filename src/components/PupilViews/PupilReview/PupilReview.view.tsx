@@ -7,21 +7,37 @@ import {
   OakImage,
   OakLessonBottomNav,
   OakLessonLayout,
-  OakLessonReviewItem,
+  OakLessonReviewIntroVideo,
+  OakLessonReviewQuiz,
   OakPrimaryButton,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
+import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
+
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
-import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
+import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
+import { QuizResults } from "@/components/PupilComponents/QuizResults";
+
+// TODO: add question arrays for starter and exit quizzes so that the expand quiz results can be rendered
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
   backUrl?: string | null;
+  phase?: "primary" | "secondary";
+  starterQuizQuestionsArray: QuestionsArray;
+  exitQuizQuestionsArray: QuestionsArray;
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
-  const { lessonTitle, backUrl } = props;
+  const {
+    lessonTitle,
+    backUrl,
+    phase = "primary",
+    starterQuizQuestionsArray,
+    exitQuizQuestionsArray,
+  } = props;
   const {
     updateCurrentSection,
     sectionResults,
@@ -30,16 +46,21 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
 
+  const { finalFeedback } = useLessonReviewFeedback(
+    isLessonComplete,
+    sectionResults,
+  );
+
   const bottomNavSlot = (
     <OakLessonBottomNav>
       <OakPrimaryButton
         element="a"
-        {...getSectionLinkProps("overview", updateCurrentSection)}
+        href={backUrl || undefined}
         iconName="arrow-right"
         isTrailingIcon
         width={["100%", "max-content"]}
       >
-        Lesson overview
+        View all lessons
       </OakPrimaryButton>
     </OakLessonBottomNav>
   );
@@ -48,6 +69,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     <OakLessonLayout
       bottomNavSlot={bottomNavSlot}
       lessonSectionName={"review"}
+      phase={phase}
       topNavSlot={null}
     >
       <OakGrid
@@ -58,7 +80,13 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <ViewAllLessonsButton href={backUrl} />
+          <OakTertiaryButton
+            iconName="arrow-left"
+            element="a"
+            {...getSectionLinkProps("overview", updateCurrentSection)}
+          >
+            Lesson overview
+          </OakTertiaryButton>
 
           <OakFlex $mv="space-between-xl">
             <OakFlex
@@ -91,19 +119,44 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
             $mb="space-between-xl"
           >
             {lessonReviewSections.map((lessonSection) => {
-              return (
-                <OakLessonReviewItem
-                  key={lessonSection}
-                  lessonSectionName={lessonSection}
-                  completed={!!sectionResults[lessonSection]?.isComplete}
-                  grade={sectionResults[lessonSection]?.grade ?? 0}
-                  numQuestions={
-                    sectionResults[lessonSection]?.numQuestions ?? 0
-                  }
-                />
-              );
+              if (lessonSection === "intro" || lessonSection === "video") {
+                return (
+                  <OakLessonReviewIntroVideo
+                    key={lessonSection}
+                    lessonSectionName={lessonSection}
+                    completed={!!sectionResults[lessonSection]?.isComplete}
+                  />
+                );
+              } else if (
+                lessonSection === "exit-quiz" ||
+                lessonSection === "starter-quiz"
+              ) {
+                const quizArray =
+                  lessonSection === "exit-quiz"
+                    ? exitQuizQuestionsArray
+                    : starterQuizQuestionsArray;
+                return (
+                  <OakLessonReviewQuiz
+                    key={lessonSection}
+                    lessonSectionName={lessonSection}
+                    completed={!!sectionResults[lessonSection]?.isComplete}
+                    grade={sectionResults[lessonSection]?.grade ?? 0}
+                    numQuestions={
+                      sectionResults[lessonSection]?.numQuestions ?? 0
+                    }
+                    resultsSlot={
+                      <QuizResults
+                        sectionResults={sectionResults}
+                        quizArray={quizArray}
+                        lessonSection={lessonSection}
+                      />
+                    }
+                  />
+                );
+              }
             })}
           </OakFlex>
+
           <OakFlex
             $flexGrow={1}
             $flexDirection={["row", "column"]}
@@ -118,9 +171,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                 $font="heading-5"
                 $textAlign={["center", "left", "left"]}
               >
-                {isLessonComplete
-                  ? "Fantastic job, well done!"
-                  : "Well done, you're Oaking it!"}
+                {finalFeedback}
               </OakFlex>
             </OakHandDrawnCard>
           </OakFlex>

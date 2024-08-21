@@ -93,6 +93,7 @@ async function main() {
     NEXT_PUBLIC_HUBSPOT_PORTAL_ID: oakConfig.hubspot.portalId,
     NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID: oakConfig.hubspot.newsletterFormId,
     NEXT_PUBLIC_HUBSPOT_DOWNLOADS_FORM_ID: oakConfig.hubspot.downloadsFormId,
+    NEXT_PUBLIC_HUBSPOT_ONBOARDING_FORM_ID: oakConfig.hubspot.onboardingFormId,
     NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID: oakConfig.hubspot.fallbackFormId,
     NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN:
       process.env.NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN ||
@@ -228,6 +229,12 @@ async function main() {
     NEXT_PUBLIC_OAK_USER_LOG_URL:
       process.env.NEXT_PUBLIC_OAK_USER_LOG_URL ||
       oakConfig.oakConsent?.userLogUrl,
+
+    // Clerk
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
+      process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
+      oakConfig.clerk.publishableKey,
+    CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY || oakConfig.clerk.secretKey,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

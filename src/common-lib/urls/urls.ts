@@ -176,6 +176,8 @@ export type LessonDownloadsLinkProps = {
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
+  // @TODO remove this when auth is no longer behind a feature flag
+  downloads: "downloads" | "downloads-auth";
   query?: {
     preselected: PreselectedDownloadType | null;
   };
@@ -191,6 +193,8 @@ export type SpecialistLessonDownloadsLinkProps = Omit<
 export type LessonDownloadsCanonicalLinkProps = {
   page: "lesson-downloads-canonical";
   lessonSlug: string;
+  // @TODO remove this when auth is no longer behind a feature flag
+  downloads: "downloads" | "downloads-auth";
   query?: {
     preselected: PreselectedDownloadType | null;
   };
@@ -207,7 +211,7 @@ export type LessonShareLinkProps = {
 
 export type SpecialistLessonShareLinkProps = Omit<
   LessonDownloadsLinkProps,
-  "page" | "query"
+  "page" | "query" | "downloads"
 > & {
   page: "specialist-lesson-share";
   query?: {
@@ -285,8 +289,20 @@ type CurriculumPreviousDownloadsLinkProps = {
   page: "curriculum-previous-downloads";
   query?: {
     subject: string;
-    keystage: string;
+    keystage?: string;
   };
+};
+
+type OnboardingLinkProps = {
+  page: "onboarding";
+};
+
+type OnboardingSchoolSelectionLinkProps = {
+  page: "onboarding-school-selection";
+};
+
+type OnboardingRoleSelectionLinkProps = {
+  page: "onboarding-role-selection";
 };
 
 export type OakLinkProps =
@@ -342,7 +358,10 @@ export type OakLinkProps =
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
   | CurriculumDownloadsLinkProps
-  | CurriculumPreviousDownloadsLinkProps;
+  | CurriculumPreviousDownloadsLinkProps
+  | OnboardingLinkProps
+  | OnboardingSchoolSelectionLinkProps
+  | OnboardingRoleSelectionLinkProps;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -685,21 +704,24 @@ export const OAK_PAGES: {
     pageType: "lesson-overview-canonical",
   }),
   "lesson-downloads": createOakPageConfig({
+    // @TODO revert `:downloads` to `download` when auth is no longer behind a feature flag
     pathPattern:
-      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/:downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads",
   }),
   "specialist-lesson-downloads": createOakPageConfig({
+    // @TODO revert `:downloads` to `download` when auth is no longer behind a feature flag
     pathPattern:
-      "/teachers/specialist/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/downloads",
+      "/teachers/specialist/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/:downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "specialist-lesson-downloads",
   }),
   "lesson-downloads-canonical": createOakPageConfig({
-    pathPattern: "/teachers/lessons/:lessonSlug/downloads",
+    // @TODO revert `:downloads` to `download` when auth is no longer behind a feature flag
+    pathPattern: "/teachers/lessons/:lessonSlug/:downloads",
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads-canonical",
@@ -802,6 +824,24 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Previous Downloads",
     configType: "internal",
     pageType: "curriculum-previous-downloads",
+  }),
+  onboarding: createOakPageConfig({
+    pathPattern: "/onboarding",
+    analyticsPageName: "Onboarding: Work In School",
+    configType: "internal",
+    pageType: "onboarding",
+  }),
+  "onboarding-school-selection": createOakPageConfig({
+    pathPattern: "/onboarding/school-selection",
+    analyticsPageName: "Onboarding: School Selection",
+    configType: "internal",
+    pageType: "onboarding-school-selection",
+  }),
+  "onboarding-role-selection": createOakPageConfig({
+    pathPattern: "/onboarding/role-selection",
+    analyticsPageName: "Onboarding: Role Selection",
+    configType: "internal",
+    pageType: "onboarding-role-selection",
   }),
 };
 

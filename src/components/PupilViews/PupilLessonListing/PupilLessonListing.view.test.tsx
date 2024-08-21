@@ -74,6 +74,7 @@ describe("PupilViewsLessonListing", () => {
       },
       supplementaryData: { orderInUnit: 2, unitOrder: 4 },
     })["programmeSlug"],
+    backLink: "/back-link",
   };
 
   it("should render the subjectTitle, unitTitle, and yearDescription", () => {
@@ -90,6 +91,7 @@ describe("PupilViewsLessonListing", () => {
     expect(getByText("Core")).toBeInTheDocument();
     expect(getByText("Edexcel")).toBeInTheDocument();
   });
+
   it("should render the lesson titles as a tags", () => {
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -99,6 +101,7 @@ describe("PupilViewsLessonListing", () => {
     );
     expect(getByText("lesson-title-1")).toBeInTheDocument();
   });
+
   it("should only count none expired lessons in the lesson count", () => {
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -107,5 +110,30 @@ describe("PupilViewsLessonListing", () => {
       </OakThemeProvider>,
     );
     expect(getByText("(2)")).toBeInTheDocument();
+  });
+  it("should render the expired lessons banner", () => {
+    const { getByText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        {" "}
+        <PupilViewsLessonListing {...props} />
+      </OakThemeProvider>,
+    );
+    expect(
+      getByText("Some of these lessons will soon be taken down."),
+    ).toBeInTheDocument();
+  });
+
+  it("should remove banner when dismissed", () => {
+    const { getByText, getByTestId, getByLabelText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        {" "}
+        <PupilViewsLessonListing {...props} />
+      </OakThemeProvider>,
+    );
+    expect(
+      getByText("Some of these lessons will soon be taken down."),
+    ).toBeInTheDocument();
+    getByLabelText("Dismiss banner").click();
+    expect(getByTestId("oak-inline-banner")).toHaveStyle("display: none");
   });
 });

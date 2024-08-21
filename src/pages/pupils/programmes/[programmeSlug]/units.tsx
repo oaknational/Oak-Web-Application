@@ -1,5 +1,5 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
-import _ from "lodash";
+import { groupBy, uniq } from "lodash";
 import {
   OakIconProps,
   OakThemeProvider,
@@ -24,6 +24,7 @@ export type UnitsSectionData = {
   icon?: OakIconProps["iconName"];
   units: UnitListingBrowseData[number][][];
   breadcrumbs: string[];
+  labels?: { year: string; subject: string; tier?: string };
   counterText: string | null;
   counterLength: number | null;
 };
@@ -34,6 +35,7 @@ export type UnitListingPageProps = {
   backHrefSlugs: UseBackHrefProps;
   yearDescription: string;
   unitSections: UnitsSectionData[];
+  subjectCategories: string[];
 };
 
 type PupilUnitListingPageURLParams = {
@@ -46,6 +48,7 @@ const PupilUnitListingPage = ({
   backHrefSlugs,
   yearDescription,
   unitSections,
+  subjectCategories,
 }: UnitListingPageProps) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -61,6 +64,7 @@ const PupilUnitListingPage = ({
           unitSections={unitSections}
           phase={phase}
           backHrefSlugs={backHrefSlugs}
+          subjectCategories={subjectCategories}
         />
       </AppLayout>
     </OakThemeProvider>
@@ -136,13 +140,25 @@ export const getStaticProps: GetStaticProps<
         throw new Error("Foundation phase not supported");
       }
 
-      const unitsByProgramme = _.groupBy(curriculumData, "programmeSlug");
+      const unitsByProgramme = groupBy(curriculumData, "programmeSlug");
+
+      // a unique list of subject categories that appear in the unit listing
+
+      const allSubjectCategories = curriculumData
+        .map((unit) => unit.unitData.subjectcategories?.map((s) => String(s)))
+        .flat()
+        .filter((s) => s?.toLocaleLowerCase() !== subjectSlug)
+        .filter((s) => s !== undefined) // we do this seperately because TS doesn't recognise the filter below
+        .filter((s) => !!s);
+
+      // ts will not accept that the above removes the possibility of undefined
+      const subjectCategories = uniq(allSubjectCategories) as string[];
 
       const mainUnits: UnitListingBrowseData[number][] =
         unitsByProgramme[programmeSlug] || [];
 
       const optionalityUnits: UnitListingBrowseData[number][][] = Object.values(
-        _.groupBy(mainUnits, (unit) => unit?.unitData.title),
+        groupBy(mainUnits, (unit) => unit?.unitData.title),
       );
 
       const breadcrumbs: string[] = [yearDescription];
@@ -157,6 +173,8 @@ export const getStaticProps: GetStaticProps<
         programmeSlug,
         baseSlug,
         tierSlug,
+        subjectSlug,
+        yearSlug,
         phase,
         unitsByProgramme,
         breadcrumbs,
@@ -190,6 +208,7 @@ export const getStaticProps: GetStaticProps<
           phase,
           yearDescription,
           backHrefSlugs,
+          subjectCategories,
           unitSections: [firstUnitSection, secondUnitSection],
         },
       };

@@ -26,6 +26,7 @@ const ResourcePageSearchComboBox = <T extends School>(
     hasError?: boolean;
     required?: boolean;
     errorId?: string;
+    withHomeschool: boolean;
   },
 ) => {
   // Setup filter function and state.
@@ -100,7 +101,11 @@ const ResourcePageSearchComboBox = <T extends School>(
           id={id}
           aria-labelledby={labelId}
           data-testid={"search-combobox-input"}
-          placeholder={"Type school name, postcode, or ‘homeschool’"}
+          placeholder={
+            props.withHomeschool
+              ? "Type school name, postcode, or ‘homeschool’"
+              : "Type school name or postcode"
+          }
           aria-describedby={props.errorId ? props.errorId : undefined}
           required={required}
           aria-invalid={hasError}

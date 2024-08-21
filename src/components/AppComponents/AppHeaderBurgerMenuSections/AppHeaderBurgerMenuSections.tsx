@@ -1,9 +1,15 @@
 import { FC } from "react";
-import { OakHeading, OakLI, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakLI,
+  OakFlex,
+  OakSecondaryButton,
+} from "@oaknational/oak-components";
 
 import AppHeaderBurgerMenuLink, {
   BurgerMenuLink,
 } from "@/components/AppComponents/AppHeaderBurgerMenuLink";
+import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 /**
  * New menu sections to be used in the hamburger menu for the beta site
@@ -22,8 +28,15 @@ const AppHeaderBurgerburgerMenuSections: FC<
   AppHeaderBurgerburgerMenuSectionsProps
 > = (props) => {
   const { burgerMenuSections } = props;
+  const clerk = useFeatureFlaggedClerk();
+
   return (
     <OakFlex $flexDirection="column" $gap="all-spacing-7">
+      <clerk.SignedIn>
+        <clerk.SignOutButton>
+          <OakSecondaryButton>Sign out</OakSecondaryButton>
+        </clerk.SignOutButton>
+      </clerk.SignedIn>
       {burgerMenuSections.map((section, i) => (
         <OakFlex
           $flexDirection="column"

@@ -1,5 +1,9 @@
-query pupilLessonListing($programmeSlug: String!, $unitSlug: String!) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_year_6_0_0(
+query pupilLessonListing(
+  $programmeSlug: String!
+  $unitSlug: String!
+  $baseSlug: String!
+) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_year_10_0_0(
     where: {
       programme_slug: { _eq: $programmeSlug }
       unit_slug: { _eq: $unitSlug }
@@ -11,6 +15,12 @@ query pupilLessonListing($programmeSlug: String!, $unitSlug: String!) {
     programme_fields
     unit_slug
     unit_data
+    programme_slug
+    is_legacy
+  }
+  backLinkData: published_mv_synthetic_programmes_by_year_10_0_0(
+    where: { base_slug: { _eq: $baseSlug } }
+  ) {
     programme_slug
     is_legacy
   }

@@ -174,6 +174,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
+  hubspotOnboardingFormId: {
+    value: process.env.NEXT_PUBLIC_HUBSPOT_ONBOARDING_FORM_ID,
+    envName: "NEXT_PUBLIC_HUBSPOT_ONBOARDING_FORM_ID",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
   hubspotFallbackFormId: {
     value: process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID,
     envName: "NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID",

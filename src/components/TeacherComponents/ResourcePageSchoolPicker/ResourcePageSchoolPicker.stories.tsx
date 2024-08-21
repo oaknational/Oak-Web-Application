@@ -64,6 +64,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
         setSelectedSchool={function (): void {
           throw new Error("Function not implemented.");
         }}
+        withHomeschool={true}
       />
     </Box>
   );

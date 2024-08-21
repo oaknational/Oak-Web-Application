@@ -23,6 +23,7 @@ import OakError from "@/errors/OakError";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
+const RELOAD_ATTEMPTS = 5;
 
 export type VideoStyleConfig = {
   controls: {
@@ -63,6 +64,8 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const hasTrackedEndRef = useRef(false);
   const [envKey] = useState(INITIAL_ENV_KEY);
   const [debug] = useState(INITIAL_DEBUG);
+  const [videoIsPlaying, setVideoIsPlaying] = useState(false);
+  const [reloadOnErrors, setReloadOnErrors] = useState<number[]>([]);
 
   const getState: VideoTrackingGetState = () => {
     const captioned = Boolean(getSubtitleTrack(mediaElRef));
@@ -117,6 +120,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     // shadow DOM, useful for simple automated test tools
     // and site monitoring synthetics.
     mediaElRef.current?.classList.add(PLAYING_CLASSNAME);
+    setVideoIsPlaying(true);
     videoTracking.onPlay();
     userEventCallback({
       event: "play",
@@ -127,6 +131,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   const onPause = () => {
     mediaElRef.current?.classList.remove(PLAYING_CLASSNAME);
+    setVideoIsPlaying(false);
     videoTracking.onPause();
     userEventCallback({
       event: "pause",
@@ -153,27 +158,43 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     }
   };
   const onError = (evt: Event) => {
+    const networkError =
+      (evt as CustomEvent).detail?.data?.type === "networkError";
+    // Don't report network errors.
+    if (networkError) {
+      return;
+    }
+
+    const newReloadOnErrors = [...reloadOnErrors];
+    const prevReloadOnErrorsLength = reloadOnErrors.length;
+    if (newReloadOnErrors.length < RELOAD_ATTEMPTS) {
+      const timeElapsed = getTimeElapsed(mediaElRef) || 0;
+      newReloadOnErrors.push(timeElapsed || 0);
+      setReloadOnErrors(newReloadOnErrors);
+    }
+
+    const hasMaxAttempts = newReloadOnErrors.length === RELOAD_ATTEMPTS;
+    const isFirstAttempt = newReloadOnErrors.length === 1;
+    const willReload = prevReloadOnErrorsLength !== newReloadOnErrors.length;
+    // Only report the first and last error
+    const shouldReport =
+      hasMaxAttempts || (willReload && (isFirstAttempt || hasMaxAttempts));
+
+    if (!shouldReport) {
+      return;
+    }
     const originalError = evt instanceof CustomEvent ? evt.detail : evt;
     const error = new OakError({
-      code: "video/unknown",
+      code:
+        newReloadOnErrors.length < RELOAD_ATTEMPTS
+          ? "video/unknown"
+          : "video/persistent-unknown",
       originalError,
       meta: metadata,
     });
-
-    // Don't report network errors
-    const networkError =
-      (evt as CustomEvent).detail?.data?.type === "networkError";
-    if (!networkError) {
-      reportError(error, { ...getState() });
-    }
+    reportError(error, { ...getState() });
   };
 
-  if (process.env.NODE_ENV === "test") {
-    /**
-     * @todo add mocked video player or tests for video player
-     */
-    return null;
-  }
   if (videoToken.loading || thumbnailToken.loading || storyboardToken.loading) {
     return (
       <OakFlex
@@ -202,6 +223,13 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       : undefined,
   };
 
+  const reloadingDueToErrors = reloadOnErrors.length > 0;
+  let startTime = 0;
+
+  if (reloadingDueToErrors) {
+    startTime = reloadOnErrors[reloadOnErrors.length - 1] || 0;
+  }
+
   return (
     <OakFlex
       $flexDirection={"column"}
@@ -213,11 +241,13 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       }}
     >
       <MuxPlayer
+        key={reloadOnErrors.length}
         preload="metadata"
         ref={mediaElRef}
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
+        start-time={startTime}
         tokens={tokens}
         thumbnailTime={thumbTime || undefined}
         customDomain={"video.thenational.academy"}
@@ -230,6 +260,11 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         onPause={onPause}
         onError={onError}
         onTimeUpdate={onTimeUpdate}
+        onCanPlay={() => {
+          if (reloadingDueToErrors && videoIsPlaying) {
+            mediaElRef.current?.play();
+          }
+        }}
         style={{
           aspectRatio: "16/9",
           overflow: "hidden",

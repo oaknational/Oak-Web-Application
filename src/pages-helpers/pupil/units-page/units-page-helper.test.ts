@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { groupBy } from "lodash";
 
 import { getSecondUnitSection } from "./units-page-helper";
 
@@ -13,15 +13,14 @@ describe("units-page-helper", () => {
       programmeSlug: "maths-secondary-year-10-l",
       isLegacy: true,
     });
-    const unitsByProgramme = _.groupBy(
-      [cycle1Data, legacyData],
-      "programmeSlug",
-    );
+    const unitsByProgramme = groupBy([cycle1Data, legacyData], "programmeSlug");
 
     const result = getSecondUnitSection({
       programmeSlug: "maths-secondary-year-10-aqa-core",
       baseSlug: "maths-secondary-year-10",
       tierSlug: null,
+      yearSlug: "year-10",
+      subjectSlug: "maths",
       phase: "secondary",
       unitsByProgramme: unitsByProgramme,
       breadcrumbs: ["Maths", "Year 10"],
@@ -43,15 +42,14 @@ describe("units-page-helper", () => {
       isLegacy: true,
     });
 
-    const unitsByProgramme = _.groupBy(
-      [cycle1Data, legacyData],
-      "programmeSlug",
-    );
+    const unitsByProgramme = groupBy([cycle1Data, legacyData], "programmeSlug");
 
     const result = getSecondUnitSection({
       programmeSlug: "maths-secondary-year-10-l",
       baseSlug: "maths-secondary-year-10",
       tierSlug: null,
+      yearSlug: "year-10",
+      subjectSlug: "maths",
       phase: "secondary",
       unitsByProgramme: unitsByProgramme,
       breadcrumbs: ["Maths", "Year 10"],
@@ -73,15 +71,14 @@ describe("units-page-helper", () => {
       isLegacy: true,
     });
 
-    const unitsByProgramme = _.groupBy(
-      [cycle1Data, legacyData],
-      "programmeSlug",
-    );
+    const unitsByProgramme = groupBy([cycle1Data, legacyData], "programmeSlug");
 
     const result = getSecondUnitSection({
       programmeSlug: "combined-science-secondary-year-10-higher-aqa",
       baseSlug: "combined-science-secondary-year-10",
       tierSlug: "higher",
+      yearSlug: "year-10",
+      subjectSlug: "combined-science",
       phase: "secondary",
       unitsByProgramme: unitsByProgramme,
       breadcrumbs: ["Combined science", "Year 10"],
