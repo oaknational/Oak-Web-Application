@@ -232,7 +232,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     const schoolOption = schoolNotListed === true ? "Not listed" : schoolName;
 
     await onHubspotSubmit({
-      school: data.schoolId ?? "0",
+      school: data.schoolId ?? "notListed",
       schoolName: data.schoolName,
       email: data.email,
       terms: data.termsAndConditions,
@@ -240,7 +240,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       onSubmit: async () => {},
     });
 
-    // @ts-expect-error: ignored due to variant types
     track.curriculumResourcesDownloadedCurriculumDocument({
       subjectTitle: curriculumInfo.subjectTitle,
       subjectSlug: slugs.subjectSlug,
@@ -248,7 +247,8 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       analyticsUseCase: analyticsUseCase,
       emailSupplied: email != null,
       schoolOption: schoolOption,
-      schoolUrn: schoolId ? parseInt(schoolId) : 0,
+      schoolUrn:
+        !schoolId || schoolId === "homeschool" ? 0 : parseInt(schoolId),
       schoolName: dataSchoolName || "",
       resourceFileType: resourceFileType,
       tierName: tierSelected,
