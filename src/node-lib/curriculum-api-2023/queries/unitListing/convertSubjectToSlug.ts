@@ -1,57 +1,14 @@
-const subjectToSlugMap: { [key: string]: string } = {
-  English: "english",
-  Geography: "geography",
-  History: "history",
-  Maths: "maths",
-  Music: "music",
-  Science: "science",
-  Biology: "biology",
-  Physics: "physics",
-  Chemistry: "chemistry",
-  "Combined science": "combined-science",
-  "Art and design": "art",
-  Citizenship: "citizenship",
-  Computing: "computing",
-  "Computing (non-GCSE)": "computing-non-gcse",
-  "Design and technology": "design-technology",
-  Drama: "drama",
-  "English grammar": "english-grammar",
-  "English reading for pleasure": "english-reading-for-pleasure",
-  "English spelling": "english-spelling",
-  "Expressive arts and design": "expressive-arts-and-design",
-  French: "french",
-  German: "german",
-  Latin: "latin",
-  Literacy: "literacy",
-  "Physical education": "physical-education",
-  "Personal, social and emotional development":
-    "personal-social-and-emotional-development",
-  "Religious education": "religious-education",
-  "RSHE (PSHE)": "rshe-pshe",
-  Spanish: "spanish",
-  "Understanding the world": "understanding-the-world",
-  Therapies: "therapies",
-  "Occupational therapy": "occupational-therapy",
-  "Physical therapy": "physical-therapy",
-  "Sensory integration": "sensory-integration",
-  "Speech and language therapy": "speech-and-language-therapy",
-  Specialist: "specialist",
-  "Physical development": "physical-development",
-  "Communication and language": "communication-and-language",
-  "Creative arts": "creative-arts",
-  "Independent living": "independent-living",
-  Numeracy: "numeracy",
-  "GCSE citizenship": "gcse-citizenship",
-  "Core citizenship": "core-citizenship",
-  "Computer science": "computer-science",
-  "Core computing": "core-computing",
-  "GCSE physical education": "gcse-physical-education",
-  "Core physical education": "core-physical-education",
-  "GCSE religious education": "gcse-religious-education",
-  "Core religious education": "core-religious-education",
-  "Relationships, sex and health education": "rshe",
-};
-
 export function convertSubjectToSlug(subject: string): string {
-  return subjectToSlugMap[subject] || subject.toLowerCase();
+  if (subject === "Relationships, sex and health education") {
+    return "rshe";
+  }
+  if (subject === "Art and design") {
+    return "art";
+  }
+
+  return subject
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[\\()\\[\]\\{\\}]/g, "")
+    .replace(/-{2,}/g, "-");
 }
