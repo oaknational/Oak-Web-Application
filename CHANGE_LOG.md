@@ -1,3 +1,37 @@
+## [1.525.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.525.0...v1.525.1) (2024-08-21)
+
+# [1.525.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.524.0...v1.525.0) (2024-08-20)
+
+
+### Bug Fixes
+
+* enable scrolling when zoomed in on sign up screen ([ef4fc22](https://github.com/oaknational/Oak-Web-Application/commit/ef4fc22c91c10971eef1ec1f49f3455316ba23d2))
+* refactor registration layout so the page is scrollable at high zoom levels ([6439ba3](https://github.com/oaknational/Oak-Web-Application/commit/6439ba32f1df0b57e77f54ace79c355e740e1440))
+
+
+### Features
+
+* add shared layout with background image for registration pages ([efb2253](https://github.com/oaknational/Oak-Web-Application/commit/efb2253cbe2434154bf9e067ef907e0bde761163))
+* put sign up pages behind feature flag ([c94bdbd](https://github.com/oaknational/Oak-Web-Application/commit/c94bdbd7b0307c82b2e9245e6aca785570e51b26))
+* style registration components ([0c04000](https://github.com/oaknational/Oak-Web-Application/commit/0c04000dacd99c629aa498d0ca144a3edba520cb))
+* wrap registration pages with cookie provider ([bade60d](https://github.com/oaknational/Oak-Web-Application/commit/bade60d3037a230bec5a2755132cfd745dd56ba6))
+
+# [1.524.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.523.0...v1.524.0) (2024-08-20)
+
+
+### Bug Fixes
+
+* tests hitting the network ([e96a46a](https://github.com/oaknational/Oak-Web-Application/commit/e96a46af376470ee1edfdb110ac7db6843d0bd0c))
+
+
+### Features
+
+* **LESQ-977:** add a hook to send users through onboarding after signup ([c9e6976](https://github.com/oaknational/Oak-Web-Application/commit/c9e697639063a982c89c700f7791ebbc1a6a8090))
+* **LESQ-977:** add an endpoint to mark a user as onboarded ([4df0b87](https://github.com/oaknational/Oak-Web-Application/commit/4df0b87f2e2d7d54fd2da4f84c19485eb66a5ef6))
+* **LESQ-977:** mark the user as onboarded on submit ([535a744](https://github.com/oaknational/Oak-Web-Application/commit/535a744b26e9da95211b0808116b7306381759ac))
+* **LESQ-977:** require authentication to access the onboarding page ([050cc33](https://github.com/oaknational/Oak-Web-Application/commit/050cc33684d57493ed5b46ca72d73e1c96fbd037))
+* **LESQ-977:** return the user to the page they came from before onboarding ([a034020](https://github.com/oaknational/Oak-Web-Application/commit/a034020768711cb6f91d11cd199bd1ed2c323274))
+
 # [1.523.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.522.0...v1.523.0) (2024-08-19)
 
 

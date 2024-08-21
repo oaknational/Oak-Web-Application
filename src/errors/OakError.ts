@@ -30,6 +30,7 @@ const ERROR_CODES = [
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
   "downloads/check-files-failed",
+  "onboarding/request-error",
 ] as const;
 export type ErrorCode = (typeof ERROR_CODES)[number];
 
@@ -160,6 +161,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "downloads/check-files-failed": {
     message: "Failed to check file existence",
+    shouldNotify: true,
+  },
+  "onboarding/request-error": {
+    message: "Onboarding request failed",
     shouldNotify: true,
   },
 };
