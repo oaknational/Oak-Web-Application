@@ -137,6 +137,8 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   }));
 
   useLayoutEffect(() => {
+    setChildSubjectSelected(null);
+    setTierSelected(null);
     // Set the subject tier selector as visible when tiers & child_subjects are present
     if (
       (snake_tiers && snake_tiers.length > 0) ||
