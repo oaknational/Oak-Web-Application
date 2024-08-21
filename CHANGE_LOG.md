@@ -1,3 +1,17 @@
+# [1.526.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.525.2...v1.526.0) (2024-08-21)
+
+
+### Features
+
+* added curriculum downloads to visualiser ([ef84b2b](https://github.com/oaknational/Oak-Web-Application/commit/ef84b2ba0ec62d54d4e0021ce75f5ee1531e677a))
+
+## [1.525.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.525.1...v1.525.2) (2024-08-21)
+
+
+### Bug Fixes
+
+* add a not found page to catch 404s and redirect to 404 page ([cdb5cc4](https://github.com/oaknational/Oak-Web-Application/commit/cdb5cc473fa0d33d3148a78c44961949f06938e7))
+
 ## [1.525.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.525.0...v1.525.1) (2024-08-21)
 
 # [1.525.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.524.0...v1.525.0) (2024-08-20)

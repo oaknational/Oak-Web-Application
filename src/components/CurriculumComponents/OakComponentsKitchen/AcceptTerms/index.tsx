@@ -4,8 +4,6 @@ import {
   OakFlex,
 } from "@oaknational/oak-components";
 
-import Terms from "../Terms";
-
 import Box from "@/components/SharedComponents/Box";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 
@@ -49,8 +47,6 @@ export default function AcceptTerms({
           name={"accept-terms"}
         />
       </Box>
-
-      <Terms />
     </OakFlex>
   );
 }

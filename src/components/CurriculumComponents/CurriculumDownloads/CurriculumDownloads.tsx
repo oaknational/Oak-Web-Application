@@ -28,6 +28,8 @@ import createAndClickHiddenDownloadLink from "@/components/SharedComponents/help
 import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
+import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
+import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 
 export type CurriculumDownload = {
   label: string;
@@ -40,7 +42,7 @@ export type CurriculumDownloadsRef = {
 };
 
 type CurriculumDownloadsProps = {
-  category: string;
+  category: DownloadCategory;
   downloads: CurriculumDownload[];
 };
 
@@ -148,9 +150,24 @@ function CurriculumDownloads(
       selectedResources,
     });
 
+    const downloadCategoryAsKeyStageTitle = (input: DownloadCategory) => {
+      const obj: Record<DownloadCategory, KeyStageTitleValueType> = {
+        EYFS: "Early Years Foundation stage",
+        KS1: "Key stage 1",
+        KS2: "Key stage 2",
+        KS3: "Key stage 3",
+        KS4: "Key stage 4",
+        Therapies: "Therapies",
+        Specialist: "Specialist",
+      };
+      return obj[input];
+    };
+
     track.curriculumResourcesDownloaded({
-      category: category,
-      subject: selectedDownload ? selectedDownload.label : "None Specified",
+      keyStageTitle: downloadCategoryAsKeyStageTitle(category),
+      subjectTitle: selectedDownload
+        ? selectedDownload.label
+        : "None Specified",
       resourceType: selectedResourcesForTracking,
       analyticsUseCase,
       schoolUrn,
