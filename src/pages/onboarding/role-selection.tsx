@@ -3,6 +3,7 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import withFeatureFlag from "@/hocs/withFeatureFlag";
 import RoleSelectionView from "@/components/TeacherViews/Onboarding/RoleSelection/RoleSelection.view";
+import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
 
 const RoleSelectionComponent: NextPage = () => {
   return (
@@ -17,4 +18,4 @@ const RoleSelectionPage = withFeatureFlag(
   "use-auth-owa",
 );
 
-export default RoleSelectionPage;
+export default withPageAuthRequired(RoleSelectionPage);

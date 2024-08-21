@@ -1,6 +1,6 @@
 import {
   LessonOverviewQuery,
-  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
 } from "../../generated/sdk";
 import {
   LessonBrowseData,
@@ -226,7 +226,7 @@ const lessonOverviewQuery =
   }): Promise<LessonOverviewPageData> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
-    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_6_0_0_Bool_Exp> =
+    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
       { lesson_slug: { _eq: lessonSlug } };
 
     const canonicalLesson = !unitSlug && !programmeSlug;
