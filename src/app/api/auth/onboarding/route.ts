@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   try {
     const owaData = onboardingSchema.parse(await req.json());
     const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
-    const region = req.headers.get("x-country") || "FR";
+    const region = req.headers.get("x-country") || "XX";
 
     if (!region) {
       throw new Error(
