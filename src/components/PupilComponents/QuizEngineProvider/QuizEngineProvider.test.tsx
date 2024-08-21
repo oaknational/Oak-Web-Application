@@ -141,7 +141,7 @@ describe("QuizEngineContext", () => {
       });
       expect(result.current.currentQuestionIndex).toBe(i + 1); // act followed  by expect to ensure that state is updated
     }
-    expect(lessonEngineContext.completeSection).toHaveBeenCalledWith(
+    expect(lessonEngineContext.completeActivity).toHaveBeenCalledWith(
       "starter-quiz",
     );
   });

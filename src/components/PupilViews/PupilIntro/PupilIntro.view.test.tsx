@@ -185,9 +185,7 @@ describe("PupilIntro", () => {
       </OakThemeProvider>,
     );
     fireEvent.click(getByRole("link", { name: /I'm ready/i }));
-    expect(context.sectionResults.intro?.isComplete).toHaveBeenCalledWith(
-      "intro",
-    );
+    expect(context.completeActivity).toHaveBeenCalledWith("intro");
   });
 
   it("updates the section results when the worksheet is downloaded", async () => {

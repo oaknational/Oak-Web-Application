@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { act, renderHook, render } from "@testing-library/react";
-import { OakSpan } from "@oaknational/oak-components";
 
 import {
   LessonEngineProvider,
@@ -11,6 +10,7 @@ import {
   useLessonEngineContext,
 } from "./LessonEngineProvider";
 
+import { OakSpan } from "@oaknational/oak-components";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const usePupilAnalyticsMock = {
@@ -93,7 +93,7 @@ describe("LessonEngineProvider", () => {
     }
 
     act(() => {
-      result.current.completeSection("intro");
+      result.current.completeActivity("intro");
       result.current.proceedToNextSection();
     });
     expect(result.current.currentSection).toEqual("starter-quiz");
@@ -110,7 +110,7 @@ describe("LessonEngineProvider", () => {
 
     act(() => {
       allLessonReviewSections.forEach((section) => {
-        result.current.completeSection(section);
+        result.current.completeActivity(section);
       });
       result.current.proceedToNextSection();
     });
@@ -131,7 +131,7 @@ describe("LessonEngineProvider", () => {
       expect(result.current.currentSection).toEqual("overview");
 
       act(() => {
-        result.current.completeSection(s);
+        result.current.completeActivity(s);
       });
     });
 
@@ -146,7 +146,7 @@ describe("LessonEngineProvider", () => {
     allLessonReviewSections.forEach((section) => {
       expect(result.current.sectionResults[section]?.isComplete).toBeFalsy();
       act(() => {
-        result.current.completeSection("intro");
+        result.current.completeActivity("intro");
       });
       expect(result.current.sectionResults.intro?.isComplete).toEqual(true);
     });
@@ -161,7 +161,7 @@ describe("LessonEngineProvider", () => {
       expect(result.current.isLessonComplete).toEqual(false);
 
       act(() => {
-        result.current.completeSection(section);
+        result.current.completeActivity(section);
       });
     });
 
@@ -219,7 +219,7 @@ describe("LessonEngineProvider", () => {
     });
 
     act(() => {
-      result.current.completeSection("intro");
+      result.current.completeActivity("intro");
     });
     expect(lessonSectionCompleted).toHaveBeenCalled();
   });
@@ -272,7 +272,7 @@ describe("LessonEngineProvider", () => {
     });
 
     act(() => {
-      result.current.completeSection("starter-quiz");
+      result.current.completeActivity("starter-quiz");
     });
 
     expect(lessonSectionCompleted).toHaveBeenCalledWith({
