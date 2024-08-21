@@ -209,30 +209,7 @@ export const LessonEngineProvider = memo(
       lessonReviewSections: initialLessonReviewSections,
       currentSection: initialSection,
       lessonStarted: false,
-      sections: {
-        "starter-quiz": {
-          isComplete: false,
-          grade: 0,
-          numQuestions: 0,
-        },
-        "exit-quiz": {
-          isComplete: false,
-          grade: 0,
-          numQuestions: 0,
-        },
-        video: {
-          isComplete: false,
-          played: false,
-          duration: 0,
-          timeElapsed: 0,
-          muted: false,
-          signedOpened: false,
-          transcriptOpened: false,
-        },
-        intro: {
-          isComplete: false,
-        },
-      },
+      sections: {},
     });
     const navigateToSection = useNavigateToSection();
 

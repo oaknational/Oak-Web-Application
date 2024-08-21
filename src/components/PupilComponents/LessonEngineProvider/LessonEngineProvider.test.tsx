@@ -211,7 +211,7 @@ describe("LessonEngineProvider", () => {
     const lessonSectionCompleted = jest.fn();
 
     jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonSectionCompleted")
+      .spyOn(usePupilAnalyticsMock.track, "lessonActivityCompleted")
       .mockImplementation(lessonSectionCompleted);
 
     const { result } = renderHook(() => useLessonEngineContext(), {
@@ -245,7 +245,7 @@ describe("LessonEngineProvider", () => {
     const lessonSectionCompleted = jest.fn();
 
     jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonSectionCompleted")
+      .spyOn(usePupilAnalyticsMock.track, "lessonActivityCompleted")
       .mockImplementation(lessonSectionCompleted);
 
     const { result } = renderHook(() => useLessonEngineContext(), {
@@ -276,14 +276,7 @@ describe("LessonEngineProvider", () => {
     });
 
     expect(lessonSectionCompleted).toHaveBeenCalledWith({
-      pupilExperienceLessonSection: "starter-quiz",
-      pupilQuizGrade: 2,
-      pupilQuizNumQuestions: 4,
-      pupilVideoPlayed: undefined,
-      pupilVideoDurationSeconds: undefined,
-      pupilVideoTimeEllapsedSeconds: undefined,
-      pupilWorksheetAvailable: undefined,
-      pupilWorksheetDownloaded: undefined,
+      pupilExperienceLessonActivity: "starter-quiz",
     });
   });
 });

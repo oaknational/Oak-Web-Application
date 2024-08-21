@@ -178,6 +178,9 @@ describe(PupilViewsVideo, () => {
       played: true,
       duration: 0,
       timeElapsed: 0,
+      muted: false,
+      signedOpened: false,
+      transcriptOpened: false,
     });
   });
 });

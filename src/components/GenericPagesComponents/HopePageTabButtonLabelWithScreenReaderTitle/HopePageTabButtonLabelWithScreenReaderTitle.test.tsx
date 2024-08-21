@@ -10,9 +10,7 @@ describe("HopePageTabButtonLabelWithScreenReaderTitle", () => {
       </HopePageTabButtonLabelWithScreenReaderTitle>,
     );
     const span = getByText("Test");
-    expect(span).toHaveStyle(
-      "font-family: --var(google-font),Lexend,sans-serif",
-    );
+    expect(span).toHaveStyle("font-family: Lexend,sans-serif;");
     expect(span).toHaveStyle(`font-size: 1rem`);
   });
 });

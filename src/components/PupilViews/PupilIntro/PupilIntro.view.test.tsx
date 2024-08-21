@@ -199,7 +199,7 @@ describe("PupilIntro", () => {
     );
 
     await userEvent.click(getByRole("button", { name: /Download worksheet/i }));
-    expect(context.updateSectionResult).toHaveBeenCalledWith({
+    expect(context.updateWorksheetDownloaded).toHaveBeenCalledWith({
       worksheetDownloaded: true,
       worksheetAvailable: true,
     });
