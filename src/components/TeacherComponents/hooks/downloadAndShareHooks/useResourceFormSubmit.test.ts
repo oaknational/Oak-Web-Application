@@ -128,6 +128,7 @@ describe("useResourceFormSubmit", () => {
         "lesson",
         ["intro-quiz-questions"],
         true,
+        null,
       );
     });
   });

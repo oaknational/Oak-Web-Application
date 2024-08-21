@@ -26,6 +26,7 @@ const createDownloadResourcesLink = async (
   lessonSlug: string,
   selection: string,
   isLegacyDownload: boolean,
+  authToken?: string | null,
 ) => {
   const downloadEnpoint = `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/download?selection=${selection}`;
 
@@ -34,7 +35,16 @@ const createDownloadResourcesLink = async (
     selection,
     isLegacyDownload,
   };
-  const res = await fetch(downloadEnpoint);
+  const res = await fetch(
+    downloadEnpoint,
+    authToken
+      ? {
+          headers: {
+            authorization: `Bearer ${authToken}`,
+          },
+        }
+      : undefined,
+  );
 
   if (!res.ok) {
     throw new OakError({
