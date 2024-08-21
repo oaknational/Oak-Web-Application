@@ -58,7 +58,6 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
 
   const onPlay = () => {
     const eventProps = getEventPropsOrWarn(props);
-    console.log("eventProps", eventProps);
     if (!eventProps) {
       return;
     }

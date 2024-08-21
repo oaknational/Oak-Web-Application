@@ -55,7 +55,6 @@ export const PupilViewsVideo = ({
   });
 
   const handleVideoEvent = (event: VideoEventCallbackArgs) => {
-    console.log("video event", event);
     videoResult.current.played = true;
     videoResult.current.duration = event.duration || 0;
     videoResult.current.muted = event.muted || false;
