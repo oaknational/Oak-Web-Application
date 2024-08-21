@@ -34,6 +34,7 @@ describe("/api/auth/onboarding", () => {
       body: JSON.stringify({ isTeacher: true }),
       headers: {
         referer: "http://example.com/foo",
+        "x-country": "US",
       },
     });
 
@@ -76,6 +77,15 @@ describe("/api/auth/onboarding", () => {
     expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
       publicMetadata: expect.objectContaining({
         sourceApp: "http://example.com",
+      }),
+    });
+  });
+  it("sets the x-country header as region", async () => {
+    await POST(req);
+
+    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
+      publicMetadata: expect.objectContaining({
+        region: "US",
       }),
     });
   });
