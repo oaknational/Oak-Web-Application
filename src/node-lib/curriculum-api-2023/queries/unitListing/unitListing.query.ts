@@ -71,7 +71,7 @@ const unitListingQuery =
       units: units,
       phase: programmeFields.phase_slug,
       learningThemes: learningThemes,
-      subjectParent: subjectParent,
+      subjectParent: subjectParent ? subjectParent : null,
       hasNewContent,
     };
   };

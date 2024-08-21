@@ -101,7 +101,7 @@ const curriculumApi: Pick<
     return lessonDownloadsFixtures();
   }) as jest.Mocked<LessonDownloadsQuery>,
   unitListing: jest.fn(async () => {
-    return { ...unitListingFixture(), subjectParent: "subjectParent" };
+    return unitListingFixture();
   }),
   specialistSubjectListing: jest.fn(async () => {
     return {

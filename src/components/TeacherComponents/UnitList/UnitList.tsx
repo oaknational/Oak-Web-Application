@@ -25,6 +25,7 @@ import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitList
 import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
+import { convertSubjectToSlug } from "@/node-lib/curriculum-api-2023/queries/unitListing/convertSubjectToSlug";
 
 export type Tier = {
   title: string;
@@ -118,7 +119,9 @@ const UnitList: FC<UnitListProps> = (props) => {
     subjectParent,
   } = props;
 
-  const linkSubject = subjectParent ? subjectParent.toLowerCase() : subjectSlug;
+  const linkSubject = subjectParent
+    ? convertSubjectToSlug(subjectParent)
+    : subjectSlug;
 
   const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;

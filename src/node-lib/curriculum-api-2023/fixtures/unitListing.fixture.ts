@@ -11,6 +11,7 @@ export const unitListingFixture = (
     examBoardTitle: null,
     subjectSlug: "computing",
     subjectTitle: "Computing",
+    subjectParent: null,
     hasNewContent: false,
     tierSlug: null,
     phase: "secondary",
@@ -382,6 +383,7 @@ export const unitListingFixture = (
         themeSlug: "the-sonnet-through-time-24",
       },
     ],
+
     ...partial,
   };
 };
@@ -430,6 +432,7 @@ export const combinedUnitListingFixture = (
     programmeSlug: "maths-secondary-ks4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
+    subjectParent: null,
     units: [
       [
         {
