@@ -19,9 +19,6 @@ const unitListingQuery =
       return null;
     }
 
-    // For some reason the parse is parsing out subject parent
-    const subjectParent = unitsForProgramme[0]?.programme_fields.subject_parent;
-
     const parsedRawUnits = unitsForProgramme.map((p) => {
       return syntheticUnitvariantLessonsSchema.parse(p);
     });
@@ -35,6 +32,8 @@ const unitListingQuery =
     }
 
     const programmeFields = firstUnit.programme_fields;
+
+    console.log(programmeFields.subject_parent, "< Subject Parent");
 
     const isLegacy = firstUnit.is_legacy;
     const hasTiers = parsedRawUnits.some(
@@ -71,7 +70,7 @@ const unitListingQuery =
       units: units,
       phase: programmeFields.phase_slug,
       learningThemes: learningThemes,
-      subjectParent: subjectParent ? subjectParent : null,
+      subjectParent: programmeFields.subject_parent || null,
       hasNewContent,
     };
   };
