@@ -151,7 +151,6 @@ describe("unitListing()", () => {
             keyStageTitle: "Key Stage 1",
             subjectSlug: "maths",
             subjectTitle: "Maths",
-            subjectParent: "Maths",
             lessonCount: 2,
             unitStudyOrder: 1,
             expired: false,
