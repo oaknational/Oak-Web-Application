@@ -13,7 +13,15 @@ export async function POST(req: Request) {
   try {
     const data = onboardingSchema.parse(await req.json());
     const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
-    const region = req.headers.get("cf-ipcountry") || null;
+    const region = req.headers.get("cf-ipcountry") || "FR";
+
+    // const region = req.headers.get("cf-ipcountry") || DEVELOPMENT_USER_REGION;
+
+    if (!region) {
+      throw new Error(
+        `No request country provided. Ensure Cloudflare is sending cf-ipcountry header`,
+      );
+    }
     const publicMetadata = {
       ...data,
       sourceApp,
