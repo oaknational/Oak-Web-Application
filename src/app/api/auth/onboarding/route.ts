@@ -11,22 +11,22 @@ export async function POST(req: Request) {
   }
 
   try {
-    const data = onboardingSchema.parse(await req.json());
+    const owaData = onboardingSchema.parse(await req.json());
     const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
-    const region = req.headers.get("cf-ipcountry") || "FR";
-    console.log("Request Headers:", req.headers);
-
-    // const region = req.headers.get("cf-ipcountry") || DEVELOPMENT_USER_REGION;
+    const region = req.headers.get("x-country") || "FR";
 
     if (!region) {
       throw new Error(
-        `No request country provided. Ensure Cloudflare is sending cf-ipcountry header`,
+        `No request country provided. Ensure Netlify is sending "x-country" header`,
       );
     }
-    const publicMetadata = {
-      ...data,
+
+    const publicMetadata: UserPublicMetadata = {
       sourceApp,
-      "owa:onboarded": true,
+      owa: {
+        ...owaData,
+        isOnboarded: true,
+      },
       region: user.publicMetadata.region || region,
     };
 

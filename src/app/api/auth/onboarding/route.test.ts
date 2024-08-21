@@ -31,10 +31,9 @@ describe("/api/auth/onboarding", () => {
   beforeEach(() => {
     req = new Request("http://example.com", {
       method: "POST",
-      body: JSON.stringify({ "owa:isTeacher": true }),
+      body: JSON.stringify({ isTeacher: true }),
       headers: {
         referer: "http://example.com/foo",
-        "cf-ipcountry": "GB",
       },
     });
 
@@ -53,17 +52,20 @@ describe("/api/auth/onboarding", () => {
 
     expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
       publicMetadata: expect.objectContaining({
-        "owa:isTeacher": true,
-        "owa:onboarded": true,
-        region: "GB",
+        owa: {
+          isTeacher: true,
+          isOnboarded: true,
+        },
       }),
     });
     expect(response.status).toBe(200);
 
     await expect(response.json()).resolves.toEqual(
       expect.objectContaining({
-        "owa:isTeacher": true,
-        "owa:onboarded": true,
+        owa: {
+          isTeacher: true,
+          isOnboarded: true,
+        },
       }),
     );
   });

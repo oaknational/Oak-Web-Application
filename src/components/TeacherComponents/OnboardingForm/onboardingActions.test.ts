@@ -7,7 +7,9 @@ import OakError from "@/errors/OakError";
 describe(onboardUser, () => {
   beforeAll(() => {
     fetchMock.enableMocks();
-    fetchMock.doMock(JSON.stringify({ "owa:onboarded": true }));
+    fetchMock.doMock(
+      JSON.stringify({ owa: { isOnboarded: true, isTeacher: true } }),
+    );
   });
 
   afterAll(() => {
@@ -15,22 +17,25 @@ describe(onboardUser, () => {
   });
 
   it("makes a request to mark the user as onboarded", async () => {
-    await onboardUser({ "owa:isTeacher": true });
+    await onboardUser({ isTeacher: true });
 
     expect(fetchMock).toHaveBeenCalledWith(
       expect.stringMatching("/api/auth/onboarding"),
       expect.objectContaining({
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ "owa:isTeacher": true }),
+        body: JSON.stringify({ isTeacher: true }),
       }),
     );
   });
 
   describe("when successful", () => {
     it("returns the response JSON", async () => {
-      await expect(onboardUser({ "owa:isTeacher": true })).resolves.toEqual({
-        "owa:onboarded": true,
+      await expect(onboardUser({ isTeacher: true })).resolves.toEqual({
+        owa: {
+          isOnboarded: true,
+          isTeacher: true,
+        },
       });
     });
   });
@@ -44,7 +49,7 @@ describe(onboardUser, () => {
         };
       });
 
-      await expect(onboardUser({ "owa:isTeacher": true })).rejects.toEqual(
+      await expect(onboardUser({ isTeacher: true })).rejects.toEqual(
         expect.any(OakError),
       );
     });
