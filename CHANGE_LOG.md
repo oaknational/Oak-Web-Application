@@ -1,3 +1,10 @@
+# [1.526.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.525.2...v1.526.0) (2024-08-21)
+
+
+### Features
+
+* added curriculum downloads to visualiser ([ef84b2b](https://github.com/oaknational/Oak-Web-Application/commit/ef84b2ba0ec62d54d4e0021ce75f5ee1531e677a))
+
 ## [1.525.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.525.1...v1.525.2) (2024-08-21)
 
 
