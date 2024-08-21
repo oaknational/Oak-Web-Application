@@ -91,7 +91,7 @@ export type CurriculumVisualiserProps = {
     subjectCategory: SubjectCategory,
   ) => void;
   mobileHeaderScrollOffset?: number;
-  selectedUnit?: string;
+  selectedUnitSlug?: string;
   basePath: string;
   onChangeVisibleMobileYearRefID: (id: string) => void;
 };
@@ -180,7 +180,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   handleSelectSubjectCategory,
   mobileHeaderScrollOffset,
   selectedThreadSlug,
-  selectedUnit,
+  selectedUnitSlug,
   basePath,
   onChangeVisibleMobileYearRefID,
 }) => {
@@ -221,12 +221,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   }, [onChangeVisibleMobileYearRefID, yearData]);
 
   const units = Object.values(yearData).flatMap((obj) => obj.units);
-  const selectedUnitData = units.find((unit) => unit.slug === selectedUnit);
+  const selectedUnitData = units.find((unit) => unit.slug === selectedUnitSlug);
 
   const router = useRouter();
 
   const handleCloseModal = () => {
-    router.push(basePath, undefined, { scroll: false });
+    router.replace(basePath, undefined, { scroll: false, shallow: true });
   };
 
   return (
@@ -366,9 +366,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                       selectedThreadSlug,
                     );
 
+                    const searchParamsStr = searchParams?.toString() ?? "";
                     const unitUrl =
                       join(basePath, unit.slug) +
-                      `?${!searchParams ? "" : searchParams.toString()}`;
+                      `${!searchParamsStr ? "" : `?${searchParamsStr}`}`;
 
                     return (
                       <Card
@@ -391,7 +392,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                       >
                         <Link
                           href={unitUrl}
+                          shallow={true}
                           scroll={false}
+                          replace={true}
                           style={{ flex: 1, display: "inherit" }}
                         >
                           <OakFlex
@@ -453,13 +456,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                                     $height="all-spacing-7"
                                     $width="all-spacing-7"
                                     iconName="chevron-right"
+                                    $background="white"
                                   />
                                 ) : (
                                   <OakIcon
                                     $height="all-spacing-5"
                                     $width="all-spacing-5"
                                     iconName="chevron-right"
-                                    $background="white"
                                   />
                                 )}
                               </OakFlex>

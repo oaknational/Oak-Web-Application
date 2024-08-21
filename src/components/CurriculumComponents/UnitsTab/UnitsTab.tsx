@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent, useState } from "react";
+import React, { FC, ChangeEvent, useState, useEffect, useMemo } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -6,6 +6,7 @@ import {
   OakHeading,
   OakSpan,
 } from "@oaknational/oak-components";
+import { useRouter } from "next/router";
 
 import CurriculumVisualiser, {
   Thread,
@@ -36,7 +37,7 @@ import {
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
   formattedData: CurriculumUnitsFormattedData;
-  selectedUnit?: string;
+  selectedUnitSlug?: string;
   basePath: string;
 };
 
@@ -75,9 +76,10 @@ type GlobFilter = {
 const UnitsTab: FC<UnitsTabProps> = ({
   trackingData,
   formattedData,
-  selectedUnit,
+  selectedUnitSlug,
   basePath,
 }) => {
+  const router = useRouter();
   const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
     useState<number>(0);
   // Initialize constants
@@ -89,6 +91,19 @@ const UnitsTab: FC<UnitsTabProps> = ({
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const [filter, setFilter] = useState<Filter>(initialYearSelection as Filter);
+
+  // TODO: For testing...
+  // useLayoutEffect(() => {
+  //   setFilter({
+  //     ...initialYearSelection,
+  //     // TODO: Remove me!
+  //     ["7"]: {
+  //       ...initialYearSelection["7"],
+  //       subjectcategory_id: 2
+  //     }
+  //    });
+  // }, [initialYearSelection]);
+
   const [globFilter, setGlobFilter] = useState<GlobFilter>({
     thread_slug: null,
     year: null,
@@ -99,14 +114,57 @@ const UnitsTab: FC<UnitsTabProps> = ({
 
   const selectedYear = filter.year;
 
-  const unitData = Object.values(formattedData.yearData)
-    .flatMap((d) => d.units)
-    .find((unit) => unit.slug === selectedUnit);
+  const unitData = useMemo(() => {
+    if (!selectedUnitSlug) return;
+    return Object.values(formattedData.yearData)
+      .flatMap((d) => d.units)
+      .find((unit) => unit.slug === selectedUnitSlug);
+  }, [formattedData, selectedUnitSlug]);
+
+  useEffect(() => {
+    if (selectedUnitSlug && !unitData) {
+      console.log("no matching selector found");
+      router.replace(basePath, undefined, { scroll: false, shallow: true });
+    }
+  }, [basePath, router, selectedUnitSlug, unitData]);
+
   const selectedThread = !globFilter.thread_slug
     ? undefined
     : threadOptions.find(
         (thread) => (thread.slug as string) === globFilter.thread_slug,
       );
+
+  useEffect(() => {
+    if (unitData && !isVisibleUnit(unitData.year, filter, unitData)) {
+      console.log(
+        "warning: current unit not visible by default (attempt to find valid filter)",
+      );
+
+      const targetFilters: Filter[] = [];
+      const subjectcategoryIds = unitData.subjectcategories
+        ? unitData.subjectcategories.map((s) => s.id)
+        : [null];
+
+      for (const subjectcategoryId of subjectcategoryIds) {
+        targetFilters.push({
+          ...filter,
+          [unitData.year]: {
+            subject_slug: unitData.subject_slug,
+            subjectcategory_id: subjectcategoryId,
+            tier_slug: unitData.tier_slug,
+          },
+        });
+      }
+
+      const validFilter = targetFilters.find((newFilter) =>
+        isVisibleUnit(unitData.year, newFilter, unitData),
+      );
+      if (validFilter) {
+        console.log("info: found unit with target selector");
+        setFilter(validFilter);
+      }
+    }
+  }, [unitData, filter]);
 
   function pushYearState(year: string, partial: Partial<Filter[string]>) {
     setFilter({
@@ -355,7 +413,7 @@ const UnitsTab: FC<UnitsTabProps> = ({
           </OakGridArea>
           <CurriculumVisualiser
             basePath={basePath}
-            selectedUnit={selectedUnit}
+            selectedUnitSlug={selectedUnitSlug}
             unitData={unitData ?? null}
             filter={filter}
             selectedYear={globFilter.year}

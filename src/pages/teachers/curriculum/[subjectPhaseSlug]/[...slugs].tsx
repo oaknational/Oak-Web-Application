@@ -143,7 +143,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
       tabContent = (
         <UnitsTab
           basePath={basePath}
-          selectedUnit={slugs[0]}
+          selectedUnitSlug={slugs[0]}
           formattedData={curriculumUnitsFormattedData}
           trackingData={curriculumUnitsTrackingData}
         />
@@ -405,7 +405,7 @@ export const getStaticProps: GetStaticProps<
       if (!context.params) {
         throw new Error("Missing params");
       }
-      const [tab] = context.params.slugs;
+      const [tab, ...tagSlugs] = context.params.slugs;
 
       if (!(tab && VALID_TABS.includes(tab as (typeof VALID_TABS)[number]))) {
         throw new Error("Invalid tab");
@@ -444,6 +444,22 @@ export const getStaticProps: GetStaticProps<
         }
         return 1;
       });
+
+      // Could disable this also...
+      if (tab === "units") {
+        const [unitSlug] = tagSlugs;
+        if (unitSlug) {
+          const found = curriculumUnitsTabData.units.find((unit) => {
+            return unit.slug === unitSlug;
+          });
+
+          if (!found) {
+            return {
+              notFound: true,
+            };
+          }
+        }
+      }
 
       // Sort by unit order
       curriculumUnitsTabData.units.sort((a, b) => a.order - b.order);

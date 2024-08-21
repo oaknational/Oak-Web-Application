@@ -24,15 +24,9 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 const curriculumVisualiserFixture: CurriculumVisualiserProps = {
   basePath: "/teachers/curriculum/science-secondary-aqa/units",
-  updateMobileHeaderScroll: jest.fn(() => {}),
-  handleSelectThread: jest.fn(() => {}),
   handleSelectTier: jest.fn(() => {}),
   handleSelectSubjectCategory: jest.fn(() => {}),
   handleSelectSubject: jest.fn(() => {}),
-  isSelectedThread: jest.fn(() => true),
-  setUnitData: jest.fn(() => {}),
-  highlightedUnitCount: jest.fn(() => 1),
-  trackSelectYear: jest.fn(() => {}),
   selectedThreadSlug: null,
   unitData: null,
   filter: {
@@ -127,8 +121,14 @@ const curriculumVisualiserFixture: CurriculumVisualiserProps = {
     },
   },
   mobileHeaderScrollOffset: 148,
-  selectedThread: null,
-  setVisibleMobileYearRefID: jest.fn(() => {}),
+  // updateMobileHeaderScroll: jest.fn(() => {}),
+  // handleSelectThread: jest.fn(() => {}),
+  // isSelectedThread: jest.fn(() => true),
+  // setUnitData: jest.fn(() => {}),
+  // highlightedUnitCount: jest.fn(() => 1),
+  // trackSelectYear: jest.fn(() => {}),
+  // selectedThread: null,
+  onChangeVisibleMobileYearRefID: jest.fn(() => {}),
 };
 
 describe("components/pages/CurriculumInfo/tabs/UnitsTabMobile", () => {
