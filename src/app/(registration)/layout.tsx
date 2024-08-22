@@ -8,7 +8,7 @@ import { OakBox, OakFlex, OakLink, OakP } from "@/styles/oakThemeApp";
 
 const TermsAndConditions = () => {
   return (
-    <OakBox $maxWidth="all-spacing-20">
+    <OakBox>
       <OakP $font="body-2" color="text-primary" $textAlign="center">
         By continuing you are agreeing to Oak's{" "}
         <OakLink
@@ -56,6 +56,7 @@ function Layout({ children }: { children: React.ReactNode }) {
           $dropShadow="drop-shadow-standard"
           $borderRadius="border-radius-m2"
           $width="max-content"
+          $mb="space-between-m"
         >
           {children}
         </OakBox>
