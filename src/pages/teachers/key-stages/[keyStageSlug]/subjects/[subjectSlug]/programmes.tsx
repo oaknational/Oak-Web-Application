@@ -16,7 +16,6 @@ import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderLi
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { isKeyStageTitleValueType } from "@/components/TeacherViews/Search/helpers";
 import { keyStageToSentenceCase } from "@/context/Search/search.helpers";
 
@@ -35,22 +34,24 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const keyStageSentenceCase = keyStageToSentenceCase(keyStageTitle);
 
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const handleProgrammeClick = (
     programme: ProgrammeListingPageData["programmes"][number],
   ) => {
     "tierTitle" in programme &&
       keyStageSentenceCase &&
-      programme.tierTitle !== null &&
+      programme.tierSlug !== null &&
       isKeyStageTitleValueType(keyStageSentenceCase) &&
-      track.tierSelected({
-        subjectTitle,
-        subjectSlug,
-        keyStageTitle: keyStageSentenceCase,
-        keyStageSlug,
-        tierName: programme.tierTitle,
-        analyticsUseCase,
+      track.browseRefined({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "refine",
+        componentType: "programme_card",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        filterType: "Content type filter",
+        filterValue: programme.tierSlug,
+        activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
       });
   };
 
