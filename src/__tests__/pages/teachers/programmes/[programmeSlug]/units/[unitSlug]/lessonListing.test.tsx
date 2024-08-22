@@ -24,7 +24,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      lessonSelected: (...args: unknown[]) => lessonSelected(...args),
+      lessonAccessed: (...args: unknown[]) => lessonSelected(...args),
     },
   }),
 }));
@@ -146,15 +146,20 @@ describe("Lesson listing page", () => {
 
       expect(lessonSelected).toHaveBeenCalledTimes(1);
       expect(lessonSelected).toHaveBeenCalledWith({
-        analyticsUseCase: null,
-        keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "use",
+        componentType: "lesson_card",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
         lessonName: "Add two surds",
         lessonSlug: "add-two-surds-6wwk0c",
-        subjectSlug: "maths",
         unitName: "Adding surds",
         unitSlug: "adding-surds-a57d",
-        subjectTitle: "Maths",
+        keyStageSlug: "ks4",
+        keyStageTitle: "Key stage 4",
+        yearGroupName: "Year 10",
+        yearGroupSlug: "year-10",
       });
     });
   });

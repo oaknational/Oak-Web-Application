@@ -48,6 +48,7 @@ describe("lessonListing()", () => {
         examBoardSlug: null,
         examBoardTitle: null,
         yearTitle: "Year 1",
+        yearSlug: "year-1",
         lessons: [
           {
             lessonSlug: "lesson-slug",
@@ -165,6 +166,7 @@ describe("lessonListing()", () => {
         unitSlug: "unit-slug",
         unitTitle: "unit-title",
         yearTitle: "Year 1",
+        yearSlug: "year-1",
       });
     });
     test("getTransformedLessons returns the correct data", async () => {
