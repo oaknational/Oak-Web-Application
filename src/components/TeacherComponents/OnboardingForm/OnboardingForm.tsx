@@ -128,7 +128,7 @@ const OnboardingForm = ({
         $gap="all-spacing-8"
         $pa="inner-padding-xl3"
         $dropShadow={[null, "drop-shadow-standard"]}
-        $borderRadius="border-radius-s"
+        $borderRadius="border-radius-m2"
         $background={"white"}
         as="form"
         onSubmit={
@@ -139,6 +139,7 @@ const OnboardingForm = ({
         <OakFlex
           $gap="all-spacing-8"
           $flexDirection={"column"}
+          $width="100%"
           role={"fieldset"}
         >
           <OakSpan role="legend" id={"form-legend"} $font="heading-light-5">

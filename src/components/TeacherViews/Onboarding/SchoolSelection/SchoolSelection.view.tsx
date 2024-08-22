@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Control, UseFormTrigger, useForm } from "react-hook-form";
 import { OakBox, OakFlex, OakLink, OakP } from "@oaknational/oak-components";
 
-import { OnboardingLayout } from "../OnboardingLayout";
+import { OnboardingLayout } from "../../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";

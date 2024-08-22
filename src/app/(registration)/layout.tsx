@@ -1,15 +1,10 @@
 "use client";
 import { resolveOakHref } from "@/common-lib/urls";
 import CMSImage from "@/components/SharedComponents/CMSImage";
+import { RegistrationLayout } from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
 import withFeatureFlag from "@/hocs/withFeatureFlag";
 import { getIllustrationAsset } from "@/image-data";
-import {
-  OakBox,
-  OakFlex,
-  OakLink,
-  OakMaxWidth,
-  OakP,
-} from "@/styles/oakThemeApp";
+import { OakBox, OakFlex, OakLink, OakP } from "@/styles/oakThemeApp";
 
 const TermsAndConditions = () => {
   return (
@@ -43,55 +38,42 @@ const TermsAndConditions = () => {
   );
 };
 
-function RegistrationLayout({ children }: { children: React.ReactNode }) {
+function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <OakBox $background={["white", "bg-decorative1-main"]} $overflow="hidden">
-      <OakMaxWidth
-        $justifyContent="center"
-        $alignItems={["center", "initial"]}
-        $height="100vh"
+    <RegistrationLayout
+      asideSlot={
+        <OakBox $maxWidth="all-spacing-21">
+          <CMSImage
+            image={getIllustrationAsset("auth-acorn")}
+            $width="100%"
+            $objectFit="contain"
+          />
+        </OakBox>
+      }
+    >
+      <OakBox $display={["none", "block"]}>
+        <OakBox
+          $dropShadow="drop-shadow-standard"
+          $borderRadius="border-radius-m2"
+          $width="max-content"
+        >
+          {children}
+        </OakBox>
+        <TermsAndConditions />
+      </OakBox>
+      <OakFlex
+        $flexDirection="column"
+        $alignItems="center"
+        $display={["flex", "none"]}
+        $gap="space-between-m"
       >
-        <CMSImage
-          image={getIllustrationAsset("auth-acorn")}
-          $position="fixed"
-          $display={["none", "block"]}
-          $height="55%"
-          $width="auto"
-          $right={200}
-        />
-        <OakFlex $pl={["inner-padding-none", "inner-padding-xl8"]}>
-          <OakFlex
-            $flexDirection="column"
-            $display={["none", "flex"]}
-            $alignItems="center"
-          >
-            <OakBox
-              $dropShadow="drop-shadow-standard"
-              $borderRadius="border-radius-l"
-              $width="max-content"
-            >
-              {children}
-            </OakBox>
-            <TermsAndConditions />
-          </OakFlex>
-          <OakFlex
-            $flexDirection="column"
-            $alignItems="center"
-            $display={["flex", "none"]}
-            $gap="space-between-m"
-          >
-            {children}
-            <TermsAndConditions />
-          </OakFlex>
-        </OakFlex>
-      </OakMaxWidth>
-    </OakBox>
+        {children}
+        <TermsAndConditions />
+      </OakFlex>
+    </RegistrationLayout>
   );
 }
 
-const RegistrationLayoutWithFF = withFeatureFlag(
-  RegistrationLayout,
-  "use-auth-owa",
-);
+const LayoutWithFF = withFeatureFlag(Layout, "use-auth-owa");
 
-export default RegistrationLayoutWithFF;
+export default LayoutWithFF;

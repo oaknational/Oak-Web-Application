@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { OakRadioButton, OakRadioGroup } from "@oaknational/oak-components";
 import { Control, UseFormTrigger, useForm } from "react-hook-form";
 
-import { OnboardingLayout } from "../OnboardingLayout";
+import { OnboardingLayout } from "../../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
 import FieldError from "@/components/SharedComponents/FieldError";
 import Input from "@/components/SharedComponents/Input";

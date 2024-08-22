@@ -30,16 +30,18 @@ export default function RootLayout({
                   variables: {
                     colorPrimary: "#222222",
                     fontFamily: lexend.style.fontFamily,
-                    borderRadius: "8px",
+                    borderRadius: "4px",
                   },
                   elements: {
                     cardBox: {
                       boxShadow: "none",
-                      maxHeight: "100vh",
                       overflow: "auto",
+                      borderRadius: "8px",
                     },
                     card: {
+                      paddingBlock: "40px",
                       boxShadow: "none",
+                      borderRadius: "8px",
                     },
                     footer: {
                       background: "#ffffff",

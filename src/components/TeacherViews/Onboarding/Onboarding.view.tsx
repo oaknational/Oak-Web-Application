@@ -7,7 +7,7 @@ import {
   OakRadioGroup,
 } from "@oaknational/oak-components";
 
-import { OnboardingLayout } from "./OnboardingLayout";
+import { OnboardingLayout } from "../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
 import FieldError from "@/components/SharedComponents/FieldError";
 import {
