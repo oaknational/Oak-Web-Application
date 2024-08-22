@@ -1,3 +1,16 @@
+# [1.529.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.528.0...v1.529.0) (2024-08-22)
+
+
+### Bug Fixes
+
+* require authentication to access the onboarding page ([b29f595](https://github.com/oaknational/Oak-Web-Application/commit/b29f595876442b238d684bc6d81dc412e29fdadb))
+
+
+### Features
+
+* **LESQ-1007:** onboard users as a teacher or not ([713449f](https://github.com/oaknational/Oak-Web-Application/commit/713449fe1acdc67221d96676adbf3a2d76f26e62))
+* **LESQ-1007:** set `sourceApp` when onboarding a user ([d5c73ed](https://github.com/oaknational/Oak-Web-Application/commit/d5c73edc35d551d0fe38c0abc8e58a1f8aa00a94))
+
 # [1.528.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.527.0...v1.528.0) (2024-08-22)
 
 
