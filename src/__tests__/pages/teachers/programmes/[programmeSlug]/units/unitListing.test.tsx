@@ -26,7 +26,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      browseRefined: (...args: unknown[]) => unitSelected(...args),
+      unitAccessed: (...args: unknown[]) => unitSelected(...args),
     },
   }),
 }));
@@ -167,7 +167,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 });
 
 describe("tracking", () => {
-  test("It calls tracking.unitSelected with correct props when clicked", async () => {
+  test("It calls tracking.unitAccessed with correct props when clicked", async () => {
     const { getByText } = render(
       <UnitListingPage curriculumData={unitListingFixture()} />,
     );
@@ -185,12 +185,16 @@ describe("tracking", () => {
       componentType: "unit_card",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
-      filterType: "Content type filter",
-      filterValue: "data-representation-618b",
-      activeFilters: {
-        keyStage: ["ks4"],
-        subject: ["computing"],
-      },
+      unitName: "Data Representation",
+      unitSlug: "data-representation-618b",
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key Stage 4",
+      subjectTitle: "Computing",
+      subjectSlug: "computing",
+      yearGroupName: "Year 10",
+      yearGroupSlug: "year-10",
+      tierName: null,
+      examBoard: null,
     });
   });
 });

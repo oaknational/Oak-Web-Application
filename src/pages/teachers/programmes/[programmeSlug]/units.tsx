@@ -112,19 +112,23 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     };
 
     if (!isSpecialistUnit(props)) {
-      return track.browseRefined({
+      return track.unitAccessed({
         platform: "owa",
         product: "teacher lesson resources",
         engagementIntent: "refine",
         componentType: "unit_card",
         eventVersion: "2.0.0",
         analyticsUseCase: "Teacher",
-        filterType: "Content type filter",
-        filterValue: props.slug,
-        activeFilters: {
-          keyStage: [props.keyStageSlug],
-          subject: [props.subjectSlug],
-        },
+        unitName: props.title,
+        unitSlug: props.slug,
+        keyStageSlug: keyStageSlug,
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        subjectTitle: subjectTitle,
+        subjectSlug: subjectSlug,
+        yearGroupName: props.yearTitle,
+        yearGroupSlug: (props as UnitListItemProps).year,
+        tierName: null,
+        examBoard: null,
       });
     }
   };
