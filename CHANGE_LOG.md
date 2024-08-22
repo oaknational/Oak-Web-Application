@@ -1,3 +1,17 @@
+# [1.528.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.527.0...v1.528.0) (2024-08-22)
+
+
+### Bug Fixes
+
+* linting errors ([3b9d64d](https://github.com/oaknational/Oak-Web-Application/commit/3b9d64d8cdd7d27c748c924bfa88db8507dc5684))
+* set school name from manual input on hubspot form ([c4cc34b](https://github.com/oaknational/Oak-Web-Application/commit/c4cc34bd4de9876e965f32cf879b1230ae396b2a))
+
+
+### Features
+
+* add ts and cs to layout component ([2abe5a1](https://github.com/oaknational/Oak-Web-Application/commit/2abe5a19d86d20ec27b947101d02dac2e8864981))
+* style ts and cs on registration pages ([730da0c](https://github.com/oaknational/Oak-Web-Application/commit/730da0c2e996ad23bc6030d61713999b3aff5eae))
+
 # [1.527.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.526.0...v1.527.0) (2024-08-21)
 
 

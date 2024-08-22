@@ -65,8 +65,10 @@ const OnboardingForm = ({
         query: router.query,
       });
     } else {
+      const isTeacher = "school" in data || "manualSchoolName" in data;
+
       try {
-        await onboardUser();
+        await onboardUser({ isTeacher });
         await user?.reload();
       } catch (error) {
         setSubmitError("Something went wrong. Please try again.");

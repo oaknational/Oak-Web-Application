@@ -10,6 +10,7 @@ import * as onboardingActions from "./onboardingActions";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 
 jest.mock("@/browser-lib/hubspot/forms");
 jest.mock("./onboardingActions");
@@ -72,10 +73,15 @@ describe("Onboarding form", () => {
     },
   );
 
-  describe.each<[string, OnboardingFormState]>([
-    ["of school selection", { school: "Grange Hill" }],
-    ["of role selection", { role: "teacher-trainer" }],
-  ])("on submit %s", (__, formState) => {
+  describe.each<[string, OnboardingFormState, OnboardingSchema]>([
+    ["of school selection", { school: "Grange Hill" }, { isTeacher: true }],
+    [
+      "of manual school selection",
+      { manualSchoolName: "Grange Hill" },
+      { isTeacher: true },
+    ],
+    ["of role selection", { role: "teacher-trainer" }, { isTeacher: false }],
+  ])("on submit %s", (__, formState, onboardingPayload) => {
     beforeEach(() => {
       mockRouter.setCurrentUrl("/onboarding?returnTo=/downloads");
     });
@@ -85,13 +91,15 @@ describe("Onboarding form", () => {
 
       await submitForm(formState);
 
-      expect(onboardingActions.onboardUser).toHaveBeenCalled();
+      expect(onboardingActions.onboardUser).toHaveBeenCalledWith(
+        onboardingPayload,
+      );
     });
 
     it("redirects the user back to the page they came from", async () => {
       jest
         .spyOn(onboardingActions, "onboardUser")
-        .mockResolvedValue({ "owa:onboarded": true });
+        .mockResolvedValue({ owa: { isTeacher: true, isOnboarded: true } });
 
       await submitForm(formState);
 
