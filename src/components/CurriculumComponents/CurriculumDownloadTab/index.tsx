@@ -30,7 +30,6 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
-import { wrapPreRelease } from "@/hooks/usePrereleaseFlag";
 import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import {
@@ -340,4 +339,4 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
   );
 };
 
-export default wrapPreRelease(CurriculumDownloadTab, "curriculum.downloads");
+export default CurriculumDownloadTab;
