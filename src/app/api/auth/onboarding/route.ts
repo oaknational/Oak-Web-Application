@@ -2,6 +2,7 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { ZodError } from "zod";
 
 import { onboardingSchema } from "@/common-lib/schemas/onboarding";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export async function POST(req: Request) {
   const user = await currentUser();
@@ -13,7 +14,8 @@ export async function POST(req: Request) {
   try {
     const owaData = onboardingSchema.parse(await req.json());
     const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
-    const region = req.headers.get("x-country") || "XX";
+    const region =
+      req.headers.get("x-country") ?? getBrowserConfig("developmentUserRegion");
 
     if (!region) {
       throw new Error(
@@ -38,6 +40,10 @@ export async function POST(req: Request) {
   } catch (error) {
     if (error instanceof ZodError) {
       return Response.json(error.format(), { status: 400 });
+    }
+
+    if (error instanceof Error) {
+      return new Response(error.message, { status: 400 });
     }
 
     throw error;

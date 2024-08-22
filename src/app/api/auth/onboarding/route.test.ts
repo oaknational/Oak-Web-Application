@@ -89,6 +89,37 @@ describe("/api/auth/onboarding", () => {
       }),
     });
   });
+  it("400 status when no region in headers", async () => {
+    const response = await POST(
+      new Request("http://example.com", {
+        method: "POST",
+        body: JSON.stringify({ isTeacher: true }),
+        headers: {
+          referer: "http://example.com/foo",
+        },
+      }),
+    );
+
+    expect(response.status).toBe(400);
+  });
+  it("400 status when no x-country header or development user region", async () => {
+    process.env.DEVELOPMENT_USER_REGION = undefined;
+    const response = await POST(
+      new Request("http://example.com", {
+        method: "POST",
+        body: JSON.stringify({ isTeacher: true }),
+        headers: {
+          referer: "http://example.com/foo",
+        },
+      }),
+    );
+
+    expect(response.status).toBe(400);
+    const responseBody = await response.text(); // or response.json() if the error message is JSON
+    expect(responseBody).toMatch(
+      "getBrowserConfig('developmentUserRegion') failed because there is no env value DEVELOPMENT_USER_REGION",
+    );
+  });
 
   it("does not change sourceApp when the user already has one", async () => {
     user = Object.assign({}, mockCurrentUser, {
