@@ -16,8 +16,6 @@ import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderLi
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { isKeyStageTitleValueType } from "@/components/TeacherViews/Search/helpers";
-import { keyStageToSentenceCase } from "@/context/Search/search.helpers";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const {
@@ -31,17 +29,13 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   if (!programmes[0]) {
     throw new Error("No programmes");
   }
-  const keyStageSentenceCase = keyStageToSentenceCase(keyStageTitle);
-
   const { track } = useAnalytics();
 
   const handleProgrammeClick = (
     programme: ProgrammeListingPageData["programmes"][number],
   ) => {
-    "tierTitle" in programme &&
-      keyStageSentenceCase &&
+    "tierSlug" in programme &&
       programme.tierSlug !== null &&
-      isKeyStageTitleValueType(keyStageSentenceCase) &&
       track.browseRefined({
         platform: "owa",
         product: "teacher lesson resources",
