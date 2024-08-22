@@ -37,7 +37,6 @@ import filterLearningTheme from "@/utils/filterLearningTheme/filterLearningTheme
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
@@ -66,7 +65,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   } = curriculumData;
 
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const learningThemes = curriculumData.learningThemes ?? [];
 
@@ -114,14 +112,19 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     };
 
     if (!isSpecialistUnit(props)) {
-      return track.unitSelected({
-        keyStageTitle: props.keyStageTitle as KeyStageTitleValueType,
-        keyStageSlug,
-        subjectTitle,
-        subjectSlug,
-        unitName: props.title,
-        unitSlug: props.slug,
-        analyticsUseCase,
+      return track.browseRefined({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "refine",
+        componentType: "unit_card",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        filterType: "Content type filter",
+        filterValue: props.slug,
+        activeFilters: {
+          keyStage: [props.keyStageSlug],
+          subject: [props.subjectSlug],
+        },
       });
     }
   };

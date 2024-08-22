@@ -26,7 +26,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      unitSelected: (...args: unknown[]) => unitSelected(...args),
+      browseRefined: (...args: unknown[]) => unitSelected(...args),
     },
   }),
 }));
@@ -179,13 +179,18 @@ describe("tracking", () => {
     expect(unitSelected).toHaveBeenCalledTimes(1);
 
     expect(unitSelected).toHaveBeenCalledWith({
-      keyStageTitle: "Key Stage 4",
-      keyStageSlug: "ks4",
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "refine",
+      componentType: "unit_card",
+      eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
-      subjectTitle: "Computing",
-      subjectSlug: "computing",
-      unitName: "Data Representation",
-      unitSlug: "data-representation-618b",
+      filterType: "Content type filter",
+      filterValue: "data-representation-618b",
+      activeFilters: {
+        keyStage: ["ks4"],
+        subject: ["computing"],
+      },
     });
   });
 });
