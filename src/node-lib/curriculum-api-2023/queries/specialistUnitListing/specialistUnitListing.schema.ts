@@ -129,6 +129,7 @@ export const specialistUnitListingSchema = z.object({
   programmeSlug: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
+  subjectParent: z.string().nullish(),
   learningThemes: z.array(themeSchema),
   developmentStageSlug: z.string().nullable(),
 });

@@ -1,3 +1,60 @@
+## [1.529.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.529.1...v1.529.2) (2024-08-22)
+
+
+### Bug Fixes
+
+* update avo tracking branch ([c58f323](https://github.com/oaknational/Oak-Web-Application/commit/c58f323f8cbf6280dc86009fe705f9294e5724d8))
+
+## [1.529.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.529.0...v1.529.1) (2024-08-22)
+
+# [1.529.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.528.0...v1.529.0) (2024-08-22)
+
+
+### Bug Fixes
+
+* require authentication to access the onboarding page ([b29f595](https://github.com/oaknational/Oak-Web-Application/commit/b29f595876442b238d684bc6d81dc412e29fdadb))
+
+
+### Features
+
+* **LESQ-1007:** onboard users as a teacher or not ([713449f](https://github.com/oaknational/Oak-Web-Application/commit/713449fe1acdc67221d96676adbf3a2d76f26e62))
+* **LESQ-1007:** set `sourceApp` when onboarding a user ([d5c73ed](https://github.com/oaknational/Oak-Web-Application/commit/d5c73edc35d551d0fe38c0abc8e58a1f8aa00a94))
+
+# [1.528.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.527.0...v1.528.0) (2024-08-22)
+
+
+### Bug Fixes
+
+* linting errors ([3b9d64d](https://github.com/oaknational/Oak-Web-Application/commit/3b9d64d8cdd7d27c748c924bfa88db8507dc5684))
+* set school name from manual input on hubspot form ([c4cc34b](https://github.com/oaknational/Oak-Web-Application/commit/c4cc34bd4de9876e965f32cf879b1230ae396b2a))
+
+
+### Features
+
+* add ts and cs to layout component ([2abe5a1](https://github.com/oaknational/Oak-Web-Application/commit/2abe5a19d86d20ec27b947101d02dac2e8864981))
+* style ts and cs on registration pages ([730da0c](https://github.com/oaknational/Oak-Web-Application/commit/730da0c2e996ad23bc6030d61713999b3aff5eae))
+
+# [1.527.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.526.0...v1.527.0) (2024-08-21)
+
+
+### Features
+
+* remove prerelease from curriculum-downloads (docx) ([1d6b2cd](https://github.com/oaknational/Oak-Web-Application/commit/1d6b2cd20266fe5b7e7186da17d08ad8176cdf46))
+
+# [1.526.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.525.2...v1.526.0) (2024-08-21)
+
+
+### Features
+
+* added curriculum downloads to visualiser ([ef84b2b](https://github.com/oaknational/Oak-Web-Application/commit/ef84b2ba0ec62d54d4e0021ce75f5ee1531e677a))
+
+## [1.525.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.525.1...v1.525.2) (2024-08-21)
+
+
+### Bug Fixes
+
+* add a not found page to catch 404s and redirect to 404 page ([cdb5cc4](https://github.com/oaknational/Oak-Web-Application/commit/cdb5cc473fa0d33d3148a78c44961949f06938e7))
+
 ## [1.525.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.525.0...v1.525.1) (2024-08-21)
 
 # [1.525.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.524.0...v1.525.0) (2024-08-20)
