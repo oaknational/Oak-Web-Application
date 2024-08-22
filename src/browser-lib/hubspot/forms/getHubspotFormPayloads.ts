@@ -130,7 +130,7 @@ const isOnboardingUKTeacherProps = (
 
 const onboardingInternationalTeacherPropsSchema = z.object({
   schoolAddress: z.string(),
-  schoolName: z.string().optional(),
+  manualSchoolName: z.string().optional(),
 });
 type OnboardingInternationalTeacherProps = z.infer<
   typeof onboardingInternationalTeacherPropsSchema
@@ -179,8 +179,11 @@ export const getHubspotOnboardingFormPayload = (props: {
     email_consent_on_account_creation: data.newsletterSignUp ? "Yes" : "No",
     do_you_work_in_a_school:
       isUkTeacher || isInternationalTeacher ? "Yes" : "No",
-    contact_school_name:
-      isUkTeacher || isInternationalTeacher ? data.schoolName : undefined,
+    contact_school_name: isUkTeacher
+      ? data.schoolName
+      : isInternationalTeacher
+        ? data.manualSchoolName
+        : undefined,
     contact_school_urn: isUkTeacher ? data.school.split("-")[0] : undefined,
     manual_input_school_address: isInternationalTeacher
       ? data.schoolAddress

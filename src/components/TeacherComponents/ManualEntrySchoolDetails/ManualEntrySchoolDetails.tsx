@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction, FC, ChangeEvent } from "react";
-import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
 import {
   Control,
   Controller,
@@ -7,6 +6,7 @@ import {
   UseFormReset,
   UseFormSetValue,
 } from "react-hook-form";
+import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
 
 import { SchoolSelectFormProps } from "../OnboardingForm/OnboardingForm.schema";
 
