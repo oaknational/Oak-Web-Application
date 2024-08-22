@@ -6,8 +6,18 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { POST } from "./route";
 
 import { mockCurrentUser } from "@/__tests__/__helpers__/mockUser";
+import OakError from "@/errors/OakError";
 
 let user: Awaited<ReturnType<typeof currentUser>>;
+
+const reportError = jest.fn();
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      reportError(...args),
+}));
 
 jest.mock("@clerk/nextjs/server", () => {
   const updateUserMetadataSpy = jest.fn();
@@ -53,12 +63,15 @@ describe("/api/auth/onboarding", () => {
 
     expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
       publicMetadata: expect.objectContaining({
+        sourceApp: "http://example.com",
         owa: {
           isTeacher: true,
           isOnboarded: true,
         },
+        region: "GB",
       }),
     });
+
     expect(response.status).toBe(200);
 
     await expect(response.json()).resolves.toEqual(
@@ -67,6 +80,7 @@ describe("/api/auth/onboarding", () => {
           isTeacher: true,
           isOnboarded: true,
         },
+        region: "GB",
       }),
     );
   });
@@ -81,6 +95,8 @@ describe("/api/auth/onboarding", () => {
     });
   });
   it("sets the x-country header as region", async () => {
+    // @ts-expect-error - region is overwritten in development
+    process.env.NODE_ENV = "production";
     await POST(req);
 
     expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
@@ -89,8 +105,10 @@ describe("/api/auth/onboarding", () => {
       }),
     });
   });
-  it("400 status when no region in headers", async () => {
-    const response = await POST(
+  it("reports error when user has no region from x-country in header ", async () => {
+    // @ts-expect-error - region is overwritten in development
+    process.env.NODE_ENV = "production";
+    await POST(
       new Request("http://example.com", {
         method: "POST",
         body: JSON.stringify({ isTeacher: true }),
@@ -100,24 +118,15 @@ describe("/api/auth/onboarding", () => {
       }),
     );
 
-    expect(response.status).toBe(400);
-  });
-  it("400 status when no x-country header or development user region", async () => {
-    process.env.DEVELOPMENT_USER_REGION = undefined;
-    const response = await POST(
-      new Request("http://example.com", {
-        method: "POST",
-        body: JSON.stringify({ isTeacher: true }),
-        headers: {
-          referer: "http://example.com/foo",
+    expect(reportError).toHaveBeenCalledWith(
+      new OakError({
+        code: "onboarding/request-error",
+        meta: {
+          message:
+            "Region header not found in header: x-country or developmentUserRegion",
+          user: "123",
         },
       }),
-    );
-
-    expect(response.status).toBe(400);
-    const responseBody = await response.text(); // or response.json() if the error message is JSON
-    expect(responseBody).toMatch(
-      "getBrowserConfig('developmentUserRegion') failed because there is no env value DEVELOPMENT_USER_REGION",
     );
   });
 
