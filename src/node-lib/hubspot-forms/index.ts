@@ -21,3 +21,35 @@ export const getHubspotFormById = async (
 
   return transformHubspotForm(form);
 };
+
+export async function getContactByEmail(email: string): Promise<unknown> {
+  try {
+    const response = await hubspot.apiRequest({
+      method: "post",
+      path: `/crm/v3/objects/contacts/search`,
+      body: {
+        filterGroups: [
+          {
+            filters: [
+              {
+                propertyName: "email",
+                operator: "CONTAINS_TOKEN",
+                value: email,
+              },
+            ],
+          },
+        ],
+      },
+    });
+
+    if (!response) {
+      throw new Error("No response or data from the API.");
+    }
+
+    const contact = response;
+    return contact;
+  } catch (error) {
+    console.error("Error retrieving contact by email:", error);
+    throw error;
+  }
+}

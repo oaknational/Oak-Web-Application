@@ -31,6 +31,7 @@ import curriculumApi2023, {
 } from "@/node-lib/curriculum-api-2023";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
 import { getAndMergeWebinarsAndBlogs } from "@/utils/getAndMergeWebinarsAndBlogs";
+import { getContactByEmail } from "@/node-lib/hubspot-forms";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -68,6 +69,8 @@ const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const newsletterFormProps = useNewsletterForm({
     onSubmit: track.newsletterSignUpCompleted,
   });
+  const contact = getContactByEmail("joe.baker@thenational.academy");
+  console.log(contact);
 
   useEffect(() => {
     const tabHash = window.location.hash;
