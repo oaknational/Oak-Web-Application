@@ -23,6 +23,7 @@ describe("unit list helpers", () => {
         keyStageSlug: "ks4",
         keyStageTitle: "Key Stage 4",
         yearOrder: 1,
+        year: "year-1",
         yearTitle: "Year 1",
         learningThemes: [],
       },
