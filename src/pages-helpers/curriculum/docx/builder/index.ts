@@ -1,0 +1,12 @@
+export { default as frontCover } from "./1_frontCover";
+export { default as tableOfContents } from "./2_tableOfContents";
+export { default as ourCurriculum } from "./3_ourCurriculum";
+export { default as threadsExplainer } from "./4_threadsExplainer";
+export { default as subjectExplainer } from "./5_subjectExplainer";
+export { default as subjectPrincipals } from "./6_subjectPrincipals";
+export { default as ourPartner } from "./7_ourPartner";
+export { default as units } from "./8_units/8_units";
+export { default as threadsOverview } from "./9_threadsOverview";
+export { default as threadsDetail } from "./10_threadsDetail";
+export { default as backCover } from "./11_backCover";
+export { default as pageLayout } from "./12_pageLayout";

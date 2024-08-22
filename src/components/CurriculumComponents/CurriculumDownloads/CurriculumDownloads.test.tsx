@@ -9,6 +9,7 @@ import CurriculumDownloads, {
 
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
@@ -37,8 +38,8 @@ jest.mock("next/router", () => ({
   }),
 }));
 
-const testSubject = "test-subject";
-const testCategory = "test-category";
+const testSubject = "french";
+const testCategory = "EYFS";
 const frenchResource = {
   icon: "french",
   label: "French Subject",
@@ -54,7 +55,7 @@ beforeEach(() => {
 describe("Component - Curriculum Header", () => {
   const renderComponent = () => {
     const defaultProps = {
-      category: testCategory,
+      category: testCategory as DownloadCategory,
       downloads: downloads,
     };
     return render(<CurriculumDownloads {...defaultProps} />);
@@ -180,7 +181,7 @@ describe("Component - Curriculum Header", () => {
 
   test("selects subject when specified in URL", async () => {
     (useRouter as jest.Mock).mockReturnValue({
-      query: { subject: testSubject, keystage: testCategory },
+      query: { subject: testSubject, keystage: "eyfs" },
       asPath: "/some-path",
     });
     const { getByText } = renderComponent();
