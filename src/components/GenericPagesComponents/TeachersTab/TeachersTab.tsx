@@ -16,12 +16,15 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import TeachersTabResourceSelectorCard from "@/components/GenericPagesComponents/TeachersTabResourceSelectorCard";
 import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type TeacherTabProps = {
   keyStages: KeyStageKeypadProps["keyStages"];
 };
 const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
   const { setSearchTerm } = useSearch({});
+  const { track } = useAnalytics();
+
   return (
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
       <MaxWidth $ph={[16]}>
@@ -60,6 +63,22 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 <KeyStageKeypad
                   keyStages={keyStages}
                   title="View subjects by key stage"
+                  trackingOnClick={(
+                    filterValue: string,
+                    activeFilters: Record<string, string[]>,
+                  ) =>
+                    track.browseRefinedAccessed({
+                      platform: "owa",
+                      product: "teacher lesson resources",
+                      engagementIntent: "refine",
+                      componentType: "keystage_keypad_button",
+                      eventVersion: "2.0.0",
+                      analyticsUseCase: "Teacher",
+                      filterType: "Key stage filter",
+                      filterValue,
+                      activeFilters,
+                    })
+                  }
                 />
               </Box>
             </Flex>
