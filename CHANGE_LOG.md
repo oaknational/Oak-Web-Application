@@ -1,3 +1,10 @@
+## [1.529.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.529.1...v1.529.2) (2024-08-22)
+
+
+### Bug Fixes
+
+* update avo tracking branch ([c58f323](https://github.com/oaknational/Oak-Web-Application/commit/c58f323f8cbf6280dc86009fe705f9294e5724d8))
+
 ## [1.529.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.529.0...v1.529.1) (2024-08-22)
 
 # [1.529.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.528.0...v1.529.0) (2024-08-22)
