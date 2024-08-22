@@ -25,6 +25,7 @@ import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitList
 import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
+import { convertSubjectToSlug } from "@/node-lib/curriculum-api-2023/queries/unitListing/convertSubjectToSlug";
 
 export type Tier = {
   title: string;
@@ -109,8 +110,18 @@ const isUnitFirstItemRef = (
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
-  const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
-    props;
+  const {
+    units,
+    paginationProps,
+    currentPageItems,
+    onClick,
+    subjectSlug,
+    subjectParent,
+  } = props;
+
+  const linkSubject = subjectParent
+    ? convertSubjectToSlug(subjectParent)
+    : subjectSlug;
   const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;
   const router = useRouter();
@@ -216,7 +227,7 @@ const UnitList: FC<UnitListProps> = (props) => {
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
           page: "curriculum-units",
-          subjectPhaseSlug: `${subjectSlug}-${phaseSlug}${
+          subjectPhaseSlug: `${linkSubject}-${phaseSlug}${
             examBoardSlug ? `-${examBoardSlug}` : ""
           }`,
         })}
@@ -234,7 +245,7 @@ const UnitList: FC<UnitListProps> = (props) => {
         curriculumHref={resolveOakHref({
           page: "curriculum-previous-downloads",
           query: {
-            subject: subjectSlug,
+            subject: linkSubject,
             keystage: keyStageSlug,
           },
         })}
