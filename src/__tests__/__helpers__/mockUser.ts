@@ -1,7 +1,7 @@
-import { useUser } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 
-type UseUserReturn = ReturnType<typeof useUser>;
+import { UseUserReturn } from "./mockClerk";
+
 type UserResource = NonNullable<UseUserReturn["user"]>;
 type CurrentUser = NonNullable<Awaited<ReturnType<typeof currentUser>>>;
 
@@ -17,14 +17,18 @@ export const mockUser = {
 export const mockUserWithDownloadAccess: UserResource = {
   ...mockUser,
   publicMetadata: {
-    isRegionAuthorised: true,
+    owa: {
+      isRegionAuthorised: true,
+    },
   },
 };
 
 export const mockUserWithoutDownloadAccess: UserResource = {
   ...mockUser,
   publicMetadata: {
-    isRegionAuthorised: false,
+    owa: {
+      isRegionAuthorised: false,
+    },
   },
 };
 
