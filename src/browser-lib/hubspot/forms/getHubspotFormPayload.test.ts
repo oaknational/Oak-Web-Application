@@ -199,7 +199,7 @@ describe("getHubspotOnboardingFormPayload", () => {
         email: "email value",
         newsletterSignUp: true,
         schoolAddress: "123 plain lane",
-        schoolName: "Totally real school",
+        manualSchoolName: "Totally real school",
         oakUserId: "oak_user_id value",
         utm_campaign: "a campaign",
         utm_content: "some content",

@@ -70,7 +70,7 @@ describe(withOnboardingRequired, () => {
         ...mockLoggedIn,
         user: {
           ...mockLoggedIn.user,
-          publicMetadata: { "owa:onboarded": true },
+          publicMetadata: { owa: { isOnboarded: true } },
         },
       };
     });

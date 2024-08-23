@@ -14,8 +14,8 @@ const SchoolSelectionComponent: NextPage = () => {
 };
 
 const SchoolSelectionPage = withFeatureFlag(
-  SchoolSelectionComponent,
+  withPageAuthRequired(SchoolSelectionComponent),
   "use-auth-owa",
 );
 
-export default withPageAuthRequired(SchoolSelectionPage);
+export default SchoolSelectionPage;
