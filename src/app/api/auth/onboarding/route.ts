@@ -3,6 +3,10 @@ import { ZodError } from "zod";
 
 import { onboardingSchema } from "@/common-lib/schemas/onboarding";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import errorReporter from "@/common-lib/error-reporter";
+import OakError from "@/errors/OakError";
+
+const reportError = errorReporter("onboardingRoute");
 
 export async function POST(req: Request) {
   const user = await currentUser();
@@ -14,7 +18,7 @@ export async function POST(req: Request) {
   try {
     const owaData = onboardingSchema.parse(await req.json());
     const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
-    const region = user.publicMetadata.region ?? getRegion(req);
+    const region = user.publicMetadata.region ?? getRegion(req, user.id);
 
     const publicMetadata: UserPublicMetadata = {
       sourceApp,
@@ -47,13 +51,23 @@ function getReferrerOrigin(req: Request) {
   }
 }
 
-function getRegion(req: Request) {
+function getRegion(req: Request, userId: string) {
   let region = req.headers.get("x-country") || undefined;
   if (process.env.NODE_ENV !== "production") {
     region = getBrowserConfig("developmentUserRegion");
   }
 
-  // @todo report to bugsnag if region is undefined
+  if (!region) {
+    const error = new OakError({
+      code: "onboarding/request-error",
+      meta: {
+        message:
+          "Region header not found in header: x-country or developmentUserRegion",
+        user: userId,
+      },
+    });
 
+    reportError(error);
+  }
   return region;
 }

@@ -6,6 +6,7 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { POST } from "./route";
 
 import { mockCurrentUser } from "@/__tests__/__helpers__/mockUser";
+import OakError from "@/errors/OakError";
 
 let user: Awaited<ReturnType<typeof currentUser>>;
 
@@ -103,6 +104,30 @@ describe("/api/auth/onboarding", () => {
         region: "US",
       }),
     });
+  });
+  it("reports error when user has no region from x-country in header ", async () => {
+    // @ts-expect-error - region is overwritten in development
+    process.env.NODE_ENV = "production";
+    await POST(
+      new Request("http://example.com", {
+        method: "POST",
+        body: JSON.stringify({ isTeacher: true }),
+        headers: {
+          referer: "http://example.com/foo",
+        },
+      }),
+    );
+
+    expect(reportError).toHaveBeenCalledWith(
+      new OakError({
+        code: "onboarding/request-error",
+        meta: {
+          message:
+            "Region header not found in header: x-country or developmentUserRegion",
+          user: "123",
+        },
+      }),
+    );
   });
 
   it("does not change sourceApp when the user already has one", async () => {
