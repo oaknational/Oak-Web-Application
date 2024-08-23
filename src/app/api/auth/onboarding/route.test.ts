@@ -6,8 +6,18 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { POST } from "./route";
 
 import { mockCurrentUser } from "@/__tests__/__helpers__/mockUser";
+import OakError from "@/errors/OakError";
 
 let user: Awaited<ReturnType<typeof currentUser>>;
+
+const reportError = jest.fn();
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      reportError(...args),
+}));
 
 jest.mock("@clerk/nextjs/server", () => {
   const updateUserMetadataSpy = jest.fn();
@@ -34,6 +44,7 @@ describe("/api/auth/onboarding", () => {
       body: JSON.stringify({ isTeacher: true }),
       headers: {
         referer: "http://example.com/foo",
+        "x-country": "US",
       },
     });
 
@@ -52,12 +63,15 @@ describe("/api/auth/onboarding", () => {
 
     expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
       publicMetadata: expect.objectContaining({
+        sourceApp: "http://example.com",
         owa: {
           isTeacher: true,
           isOnboarded: true,
         },
+        region: "GB",
       }),
     });
+
     expect(response.status).toBe(200);
 
     await expect(response.json()).resolves.toEqual(
@@ -66,6 +80,7 @@ describe("/api/auth/onboarding", () => {
           isTeacher: true,
           isOnboarded: true,
         },
+        region: "GB",
       }),
     );
   });
@@ -78,6 +93,41 @@ describe("/api/auth/onboarding", () => {
         sourceApp: "http://example.com",
       }),
     });
+  });
+  it("sets the x-country header as region", async () => {
+    // @ts-expect-error - region is overwritten in development
+    process.env.NODE_ENV = "production";
+    await POST(req);
+
+    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
+      publicMetadata: expect.objectContaining({
+        region: "US",
+      }),
+    });
+  });
+  it("reports error when user has no region from x-country in header ", async () => {
+    // @ts-expect-error - region is overwritten in development
+    process.env.NODE_ENV = "production";
+    await POST(
+      new Request("http://example.com", {
+        method: "POST",
+        body: JSON.stringify({ isTeacher: true }),
+        headers: {
+          referer: "http://example.com/foo",
+        },
+      }),
+    );
+
+    expect(reportError).toHaveBeenCalledWith(
+      new OakError({
+        code: "onboarding/request-error",
+        meta: {
+          message:
+            "Region header not found in header: x-country or developmentUserRegion",
+          user: "123",
+        },
+      }),
+    );
   });
 
   it("does not change sourceApp when the user already has one", async () => {
