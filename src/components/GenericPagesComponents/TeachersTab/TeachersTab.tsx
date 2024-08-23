@@ -22,9 +22,9 @@ type TeacherTabProps = {
   keyStages: KeyStageKeypadProps["keyStages"];
 };
 const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
-  const { setSearchTerm } = useSearch({});
   const { track } = useAnalytics();
-
+  // data team to change event and results will be used
+  const { setSearchTerm, results } = useSearch({});
   return (
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
       <MaxWidth $ph={[16]}>
@@ -53,6 +53,10 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                   searchContext="homepage"
                   placeholderText="Search by keyword or topic"
                   searchTerm=""
+                  //Currently hardcoded as waiting for data team to change event
+                  searchTime={0}
+                  numberOfResults={results.length}
+                  componentType="search_button"
                   handleSubmit={(value) => {
                     setSearchTerm(value);
                   }}

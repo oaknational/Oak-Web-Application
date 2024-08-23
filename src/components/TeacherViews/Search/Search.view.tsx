@@ -40,11 +40,9 @@ const Search: FC<SearchProps> = (props) => {
     searchStartTime,
     setSearchStartTime,
   } = props;
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const router = useRouter();
-
   const hitCount = results.length;
 
   const shouldShowError = status === "fail";
@@ -64,17 +62,19 @@ const Search: FC<SearchProps> = (props) => {
       searchStartTime &&
       (status === "success" || status === "fail")
     ) {
-      const searchEndTime = performance.now();
+      // const searchEndTime = performance.now();
 
-      track.searchResultsDisplayed({
-        searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query,
-        ),
-        searchResultCount: hitCount,
-        analyticsUseCase: analyticsUseCase,
-        context: "search",
-        searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
-      });
+      // track.searchAccessed({
+      //   searchTerm: query.term,
+      //   platform: "owa",
+      //   product: "teacher lesson resources",
+      //   engagementIntent: "explore",
+      //   componentType: "search_button",
+      //   eventVersion: "2.0.0",
+      //   analyticsUseCase: "Teacher",
+      //   searchResultCount: hitCount,
+      //   searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
+      // });
       setSearchStartTime(null);
     }
   }, [
@@ -100,6 +100,12 @@ const Search: FC<SearchProps> = (props) => {
       isKeyStageTitleValueType(searchHit.keyStageTitle)
     ) {
       track.searchResultExpanded({
+        analyticsUseCase: analyticsUseCase,
+        componentType: "select_oak_lesson",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        platform: "owa",
+        product: "teacher lesson resources",
         context: "search",
         keyStageSlug: searchHit.keyStageSlug || "",
         keyStageTitle: searchHit.keyStageTitle,
@@ -165,10 +171,16 @@ const Search: FC<SearchProps> = (props) => {
     filterValue: string,
   ) => {
     track.searchRefined({
-      context: "search",
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "refine",
+      componentType: "keystage_keypad_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
       searchResultCount: hitCount,
       filterType: filterType,
       filterValue: filterValue,
+      activeFilters: getSortedSearchFiltersSelected(router.query),
     });
   };
 
@@ -194,6 +206,9 @@ const Search: FC<SearchProps> = (props) => {
               </OakHeading>
               <SearchForm
                 searchContext="search"
+                componentType="search_button"
+                searchTime={searchStartTime ?? 0}
+                numberOfResults={hitCount}
                 searchTerm={query.term}
                 placeholderText="Search by keyword or topic"
                 handleSubmit={(value) => {
