@@ -15,6 +15,7 @@ import {
   RoleSelectFormProps,
   roleSelectFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
+import FieldError from "@/components/SharedComponents/FieldError";
 
 const roleOptions: Record<string, string> = {
   "teacher-training": "Training to become a teacher",
@@ -69,12 +70,19 @@ const RoleSelectionView = () => {
               message: "Please tell us what your role is",
             });
           } else if (!getValues().role) {
-            setError("role", { message: "Please select your role" });
+            setError("role", {
+              message: "Please select what describes you best",
+            });
           }
         }}
         control={control as Control<OnboardingFormProps>}
         trigger={trigger as UseFormTrigger<OnboardingFormProps>}
       >
+        {formState.errors.role && (
+          <FieldError id="role-error">
+            {formState.errors.role.message}
+          </FieldError>
+        )}
         <OakRadioGroup
           name="role-selection"
           $flexDirection="column"
