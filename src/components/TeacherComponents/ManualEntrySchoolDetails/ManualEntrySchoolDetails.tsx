@@ -30,7 +30,14 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
   reset,
 }) => {
   return (
-    <OakFlex $flexDirection={"column"}>
+    <OakFlex
+      $flexDirection={"column"}
+      $mt={
+        "manualSchoolName" in hasErrors
+          ? "space-between-none"
+          : "space-between-m"
+      }
+    >
       <Controller
         name="manualSchoolName"
         control={control}
@@ -60,6 +67,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
                   ? "Enter school name"
                   : undefined
               }
+              $mb={"schoolAddress" in hasErrors ? 16 : 32}
             />
           );
         }}

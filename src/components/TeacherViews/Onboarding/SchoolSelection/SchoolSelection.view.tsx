@@ -100,23 +100,21 @@ export const SchoolSelectionView = () => {
         canSubmit={formState.isValid}
       >
         {!renderManualSchoolInput && (
-          <>
-            <OakBox $mt={"space-between-m"}>
-              <ResourcePageSchoolPicker
-                hasError={
-                  !renderManualSchoolInput &&
-                  "school" in formState.errors &&
-                  formState.errors?.school !== undefined
-                }
-                schoolPickerInputValue={schoolPickerInputValue}
-                setSchoolPickerInputValue={onSchoolPickerInputChange}
-                schools={schools}
-                label={"School"}
-                setSelectedSchool={setSelectedSchool}
-                required={true}
-                withHomeschool={false}
-              />
-            </OakBox>
+          <OakBox $mt="space-between-m">
+            <ResourcePageSchoolPicker
+              hasError={
+                !renderManualSchoolInput &&
+                "school" in formState.errors &&
+                formState.errors?.school !== undefined
+              }
+              schoolPickerInputValue={schoolPickerInputValue}
+              setSchoolPickerInputValue={onSchoolPickerInputChange}
+              schools={schools}
+              label={"School"}
+              setSelectedSchool={setSelectedSchool}
+              required={true}
+              withHomeschool={false}
+            />
             <OakFlex
               $mt={"space-between-s"}
               $alignItems={"center"}
@@ -135,20 +133,18 @@ export const SchoolSelectionView = () => {
                 Enter manually
               </OakLink>
             </OakFlex>
-          </>
+          </OakBox>
         )}
 
         {renderManualSchoolInput && (
-          <OakBox $mt="space-between-m">
-            <ManualEntrySchoolDetails
-              hasErrors={formState.errors}
-              onManualSchoolInputChange={setSchoolDetailsInManualForm}
-              setValue={setValue}
-              control={control}
-              setRenderManualSchoolInput={setRenderManualSchoolInput}
-              reset={reset}
-            />
-          </OakBox>
+          <ManualEntrySchoolDetails
+            hasErrors={formState.errors}
+            onManualSchoolInputChange={setSchoolDetailsInManualForm}
+            setValue={setValue}
+            control={control}
+            setRenderManualSchoolInput={setRenderManualSchoolInput}
+            reset={reset}
+          />
         )}
       </OnboardingForm>
     </OnboardingLayout>
