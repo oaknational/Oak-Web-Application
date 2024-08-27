@@ -10,7 +10,11 @@ export const RegistrationLayout = ({
   asideSlot,
 }: RegistrationLayoutProps) => {
   return (
-    <OakFlex $background={["white", "bg-decorative1-main"]} $overflow="auto">
+    <OakFlex
+      $background={["white", "bg-decorative1-main"]}
+      $overflow="auto"
+      $color="black"
+    >
       <OakMaxWidth
         $justifyContent={"center"}
         $minHeight={"100vh"}
