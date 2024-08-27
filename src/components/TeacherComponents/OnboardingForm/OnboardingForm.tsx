@@ -137,12 +137,12 @@ const OnboardingForm = ({
       >
         <Logo height={48} width={104} variant="with text" />
         <OakFlex
-          $gap="all-spacing-8"
+          $gap="space-between-m"
           $flexDirection={"column"}
           $width="100%"
           role={"fieldset"}
         >
-          <OakSpan role="legend" id={"form-legend"} $font="heading-light-5">
+          <OakSpan role="legend" id={"form-legend"} $font="heading-6">
             {props.heading}
           </OakSpan>
           <OakBox aria-live="polite" $display="contents">

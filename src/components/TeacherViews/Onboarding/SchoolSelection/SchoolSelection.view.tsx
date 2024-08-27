@@ -101,7 +101,7 @@ export const SchoolSelectionView = () => {
       >
         {!renderManualSchoolInput && (
           <>
-            <OakBox $mt={"space-between-s"}>
+            <OakBox $mt={"space-between-m"}>
               <ResourcePageSchoolPicker
                 hasError={
                   !renderManualSchoolInput &&
@@ -139,14 +139,16 @@ export const SchoolSelectionView = () => {
         )}
 
         {renderManualSchoolInput && (
-          <ManualEntrySchoolDetails
-            hasErrors={formState.errors}
-            onManualSchoolInputChange={setSchoolDetailsInManualForm}
-            setValue={setValue}
-            control={control}
-            setRenderManualSchoolInput={setRenderManualSchoolInput}
-            reset={reset}
-          />
+          <OakBox $mt="space-between-m">
+            <ManualEntrySchoolDetails
+              hasErrors={formState.errors}
+              onManualSchoolInputChange={setSchoolDetailsInManualForm}
+              setValue={setValue}
+              control={control}
+              setRenderManualSchoolInput={setRenderManualSchoolInput}
+              reset={reset}
+            />
+          </OakBox>
         )}
       </OnboardingForm>
     </OnboardingLayout>
