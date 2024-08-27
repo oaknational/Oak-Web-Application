@@ -15,6 +15,8 @@ import {
   RoleSelectFormProps,
   roleSelectFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
+import { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
 
 const roleOptions: Record<string, string> = {
   "teacher-training": "Training to become a teacher",
@@ -44,6 +46,38 @@ const RoleSelectionView = () => {
       newsletterSignUp: true,
     },
   });
+  const { user } = useUser();
+  const [hubspotEmail, setHubspotEmail] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async (email: string) => {
+      try {
+        const response = await fetch("/api/hubspot", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        setHubspotEmail(result);
+        console.log("hubspot email", result);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (user?.emailAddresses[0]) {
+      const email = String(user.emailAddresses[0].emailAddress);
+      fetchData(email);
+    }
+  }, [user]);
 
   const handleChange = (role: "other" | "role", value: string) => {
     setValue(role, value);
@@ -57,6 +91,7 @@ const RoleSelectionView = () => {
           heading="Which of the following best describes what you do?"
           formState={formState}
           handleSubmit={handleSubmit}
+          showNewsletterSignUp={Boolean(!hubspotEmail)}
           canSubmit={
             formState.errors.role === undefined &&
             formState.errors.other === undefined
