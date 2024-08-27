@@ -20,6 +20,7 @@ export const RegistrationLayout = ({
         $minHeight={"100vh"}
         $alignItems={["flex-start", "center"]}
         $flexDirection="row"
+        $pv={["inner-padding-none", "inner-padding-xl3"]}
       >
         <OakFlex
           $display={["none", "none", "flex"]}
