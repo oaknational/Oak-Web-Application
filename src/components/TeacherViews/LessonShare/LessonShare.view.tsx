@@ -28,8 +28,8 @@ import {
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
-  PupilActivityResourceTypesValueType,
   ShareMediumValueType,
+  ResourceTypesValueType,
 } from "@/browser-lib/avo/Avo";
 import {
   getSchoolName,
@@ -70,7 +70,7 @@ export type LessonShareProps =
     };
 
 const classroomActivityMap: Partial<
-  Record<ResourceType, PupilActivityResourceTypesValueType>
+  Record<ResourceType, ResourceTypesValueType>
 > = {
   "intro-quiz-questions": "starter-quiz",
   "exit-quiz-questions": "exit-quiz",
@@ -158,14 +158,19 @@ export function LessonShare(props: LessonShareProps) {
       schoolName: getSchoolName(data.school, getSchoolOption(data.school)),
       schoolOption: getSchoolOption(data.school),
       shareMedium: shareMedium,
-      pupilActivityResourceTypes: pupilActivityResource,
       emailSupplied: isEmailSupplied,
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "use",
+      componentType: "share_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      resourceTypes: selectedResources
+        .map((r) => classroomActivityMap[r])
+        .filter((r) => r !== undefined) as ResourceTypesValueType[],
+      audience: "Pupil",
     });
   };
-  const pupilActivityResource = selectedResources?.map((r) => {
-    const resource = classroomActivityMap[r];
-    return resource;
-  }) as PupilActivityResourceTypesValueType[];
 
   return (
     <Box $ph={[16, null]} $background={"grey20"}>
