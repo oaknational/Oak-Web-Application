@@ -10,7 +10,6 @@ import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
 
 import { SchoolSelectFormProps } from "../OnboardingForm/OnboardingForm.schema";
 
-import FieldError from "@/components/SharedComponents/FieldError";
 import Input from "@/components/SharedComponents/Input";
 
 type ManualEntrySchoolDetailsProps = {
@@ -32,11 +31,6 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
 }) => {
   return (
     <OakFlex $flexDirection={"column"}>
-      {"manualSchoolName" in hasErrors && (
-        <FieldError withoutMarginBottom id={"school-name-error"}>
-          Enter school name
-        </FieldError>
-      )}
       <Controller
         name="manualSchoolName"
         control={control}
@@ -53,26 +47,23 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           };
 
           return (
-            <OakBox $mt={"space-between-m"}>
-              <Input
-                label="School name"
-                placeholder="Type school name"
-                value={value}
-                isRequired
-                id={"school-name"}
-                withoutMarginBottom
-                onBlur={onBlurHandler}
-                onChange={onChangeHandler}
-              />
-            </OakBox>
+            <Input
+              label="School name"
+              placeholder="Type school name"
+              value={value}
+              isRequired
+              id={"school-name"}
+              onBlur={onBlurHandler}
+              onChange={onChangeHandler}
+              error={
+                "manualSchoolName" in hasErrors
+                  ? "Enter school name"
+                  : undefined
+              }
+            />
           );
         }}
       />
-      {"schoolAddress" in hasErrors && (
-        <FieldError withoutMarginBottom id={"school-address-error"}>
-          Enter school address
-        </FieldError>
-      )}
 
       <Controller
         name="schoolAddress"
@@ -91,18 +82,20 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           };
 
           return (
-            <OakBox $mt={"space-between-m"}>
-              <Input
-                label="School address"
-                placeholder="Type school address"
-                value={value}
-                isRequired
-                withoutMarginBottom
-                id={"school-address"}
-                onBlur={onBlurHandler}
-                onChange={onChangeHandler}
-              />
-            </OakBox>
+            <Input
+              label="School address"
+              placeholder="Type school address"
+              value={value}
+              isRequired
+              id={"school-address"}
+              onBlur={onBlurHandler}
+              onChange={onChangeHandler}
+              error={
+                "schoolAddress" in hasErrors
+                  ? "Enter school address"
+                  : undefined
+              }
+            />
           );
         }}
       />

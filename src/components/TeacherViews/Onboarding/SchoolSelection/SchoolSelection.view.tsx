@@ -95,7 +95,7 @@ export const SchoolSelectionView = () => {
         control={control as Control<OnboardingFormProps>}
         trigger={trigger as UseFormTrigger<OnboardingFormProps>}
         formState={formState}
-        heading="Select your school"
+        heading="Enter school's details"
         handleSubmit={handleSubmit}
         canSubmit={formState.isValid}
       >
