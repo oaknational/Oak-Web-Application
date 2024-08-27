@@ -6,15 +6,17 @@ import {
   FormEventHandler,
 } from "react";
 import styled from "styled-components";
-import { useRouter } from "next/router";
 import { OakFlex } from "@oaknational/oak-components";
 
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
-import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import {
+  ComponentTypeValueType,
+  ContextValueType,
+  SearchSourceValueType,
+} from "@/browser-lib/avo/Avo";
+// import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Input from "@/components/SharedComponents/Input/Input";
 import Button from "@/components/SharedComponents/Button";
 
@@ -30,6 +32,9 @@ type SearchFormProps = {
   handleSubmit: ({ searchTerm }: { searchTerm: string }) => void;
   analyticsSearchSource: SearchSourceValueType;
   searchContext: ContextValueType;
+  componentType: ComponentTypeValueType;
+  searchTime: number;
+  numberOfResults: number;
 };
 const SearchForm: FC<SearchFormProps> = (props) => {
   const {
@@ -38,33 +43,30 @@ const SearchForm: FC<SearchFormProps> = (props) => {
     analyticsSearchSource,
     placeholderText,
     searchContext,
+    // componentType,
+    // searchTime,
+    // numberOfResults,
   } = props;
   const [value, setValue] = useState(searchTerm);
   const { track } = useAnalytics();
-  const { analyticsUseCase, pageName } = useAnalyticsPageProps();
-  const router = useRouter();
 
-  const useCase =
-    pageName === "Homepage" && !analyticsUseCase ? "Teacher" : analyticsUseCase;
+  /**
+   * ! - This is commented out as I'm not sure where the data team want to call this track function from
+   */
 
-  const trackSearchAttempted = useCallback(() => {
-    track.searchAttempted({
-      searchTerm: value,
-      analyticsUseCase: useCase,
-      pageName,
-      searchFilterOptionSelected: getSortedSearchFiltersSelected(router.query),
-      searchSource: analyticsSearchSource,
-      context: searchContext,
-    });
-  }, [
-    track,
-    value,
-    useCase,
-    pageName,
-    router.query,
-    analyticsSearchSource,
-    searchContext,
-  ]);
+  // const trackSearchAccessed = useCallback(() => {
+  //   track.searchAccessed({
+  //     searchTerm: value,
+  //     platform: "owa",
+  //     product: "teacher lesson resources",
+  //     engagementIntent: "explore",
+  //     eventVersion: "2.0.0",
+  //     componentType: componentType,
+  //     analyticsUseCase: "Teacher",
+  //     searchResultCount: numberOfResults,
+  //     searchResultsLoadTime: searchTime,
+  //   });
+  // }, [track, value, componentType, numberOfResults, searchTime]);
 
   const trackSearchJourneyInitiated = useCallback(() => {
     track.searchJourneyInitiated({
@@ -81,9 +83,9 @@ const SearchForm: FC<SearchFormProps> = (props) => {
     (e) => {
       e.preventDefault();
       handleSubmit({ searchTerm: value });
-      trackSearchAttempted();
+      // trackSearchAccessed();
     },
-    [handleSubmit, trackSearchAttempted, value],
+    [handleSubmit, value],
   );
 
   return (
