@@ -11,6 +11,7 @@ export const unitListingFixture = (
     examBoardTitle: null,
     subjectSlug: "computing",
     subjectTitle: "Computing",
+    subjectParent: null,
     hasNewContent: false,
     tierSlug: null,
     phase: "secondary",
@@ -447,6 +448,7 @@ export const combinedUnitListingFixture = (
     programmeSlug: "maths-secondary-ks4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
+    subjectParent: null,
     units: [
       [
         {

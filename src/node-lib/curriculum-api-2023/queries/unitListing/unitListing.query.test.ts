@@ -123,6 +123,7 @@ describe("unitListing()", () => {
       examBoardTitle: null,
       subjectSlug: "maths",
       subjectTitle: "Maths",
+      subjectParent: "Maths",
       tierSlug: "foundation",
       phase: "primary",
       tiers: [

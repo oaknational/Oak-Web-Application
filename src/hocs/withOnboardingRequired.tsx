@@ -10,11 +10,11 @@ export function withOnboardingRequired<P extends object>(
   Component: ComponentType<P>,
   FallbackComponent?: ComponentType<PropsWithChildren>,
 ) {
-  function WrappedComponent(props: P) {
+  function WrappedComponent(props: Readonly<P>) {
     const { useUser } = useFeatureFlaggedClerk();
     useRequireOnboarding();
 
-    if (!useUser().user?.publicMetadata?.["owa:onboarded"]) {
+    if (!useUser().user?.publicMetadata?.owa?.isOnboarded) {
       if (FallbackComponent) {
         return (
           <FallbackComponent>

@@ -1,3 +1,4 @@
+"use client";
 import Bugsnag from "@bugsnag/js";
 import { OakConsentClient } from "@oaknational/oak-consent-client";
 

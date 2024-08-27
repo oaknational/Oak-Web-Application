@@ -35,7 +35,6 @@ import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 
 const OnboardingForm = ({
   showNewsletterSignUp = true,
-  showTermsAndConditions = true,
   ...props
 }: {
   children: React.ReactNode;
@@ -47,7 +46,6 @@ const OnboardingForm = ({
   control: Control<OnboardingFormProps>;
   trigger: UseFormTrigger<OnboardingFormProps>;
   showNewsletterSignUp?: boolean;
-  showTermsAndConditions?: boolean;
 }) => {
   const router = useRouter();
   const hutk = getHubspotUserToken();
@@ -67,8 +65,10 @@ const OnboardingForm = ({
         query: router.query,
       });
     } else {
+      const isTeacher = "school" in data || "manualSchoolName" in data;
+
       try {
-        await onboardUser();
+        await onboardUser({ isTeacher });
         await user?.reload();
       } catch (error) {
         setSubmitError("Something went wrong. Please try again.");
@@ -192,34 +192,6 @@ const OnboardingForm = ({
           )}
         </OakFlex>
       </OakFlex>
-
-      {showTermsAndConditions && (
-        <OakP $font="body-2" color="text-primary" $textAlign="center">
-          By continuing you agree to{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "legal",
-              legalSlug: "terms-and-conditions",
-            })}
-            target="_blank"
-            aria-label="Terms and conditions (opens in a new tab)"
-          >
-            Oak's terms & conditions
-          </OakLink>{" "}
-          and{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "legal",
-              legalSlug: "privacy-policy",
-            })}
-            target="_blank"
-            aria-label="Privacy policy (opens in a new tab)"
-          >
-            privacy policy
-          </OakLink>
-          .
-        </OakP>
-      )}
 
       <OakP $font="body-2" color="text-primary" $textAlign="center">
         Need help?{" "}

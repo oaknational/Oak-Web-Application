@@ -59,6 +59,7 @@
   },
   "clerk": {
     "publishableKey": "clerk public key",
-    "secretKey": "clerk super secret"
+    "secretKey": "clerk super secret",
+    "developmentUserRegion": "GB"
   }
 }

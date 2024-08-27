@@ -235,6 +235,11 @@ async function main() {
       process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
       oakConfig.clerk.publishableKey,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY || oakConfig.clerk.secretKey,
+
+    // Geolocation
+    DEVELOPMENT_USER_REGION:
+      process.env.DEVELOPMENT_USER_REGION ||
+      oakConfig.clerk.developmentUserRegion,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

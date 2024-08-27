@@ -61,6 +61,7 @@ const unitListingQuery =
       examBoardTitle: programmeFields.examboard,
       subjectSlug: programmeFields.subject_slug,
       subjectTitle: programmeFields.subject,
+      subjectParent: programmeFields.subject_parent || null,
       tierSlug: programmeFields.tier_slug,
       tiers: tiers,
       units: units,

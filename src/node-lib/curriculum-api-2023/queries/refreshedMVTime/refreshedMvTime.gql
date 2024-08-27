@@ -1,0 +1,8 @@
+query refreshedMVTime($viewName: String!) {
+  data: published_viewmanager_mvs(
+    where: { materializedview_name: { _like: $viewName } }
+  ) {
+    last_refresh_finish
+    materializedview_name
+  }
+}
