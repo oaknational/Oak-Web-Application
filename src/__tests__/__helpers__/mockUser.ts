@@ -14,6 +14,20 @@ export const mockUser = {
   reload: jest.fn(),
 } as unknown as UserResource;
 
+export const mockUserWithDownloadAccess: UserResource = {
+  ...mockUser,
+  publicMetadata: {
+    isRegionAuthorised: true,
+  },
+};
+
+export const mockUserWithoutDownloadAccess: UserResource = {
+  ...mockUser,
+  publicMetadata: {
+    isRegionAuthorised: false,
+  },
+};
+
 /**
  * Mock return value for a logged in state
  *
