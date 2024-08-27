@@ -37,9 +37,6 @@ describe("<SearchForm />", () => {
     const { getByRole } = render(
       <SearchForm
         searchContext="homepage"
-        searchTime={0}
-        componentType="search_button"
-        numberOfResults={0}
         placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
@@ -56,9 +53,6 @@ describe("<SearchForm />", () => {
       <SearchForm
         searchContext="homepage"
         placeholderText=""
-        searchTime={0}
-        componentType="search_button"
-        numberOfResults={0}
         searchTerm=""
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
@@ -82,9 +76,6 @@ describe("<SearchForm />", () => {
     const { getByRole } = render(
       <SearchForm
         searchContext="homepage"
-        searchTime={0}
-        componentType="search_button"
-        numberOfResults={0}
         placeholderText=""
         handleSubmit={handleSubmit}
         searchTerm={initialText}
@@ -109,9 +100,6 @@ describe("<SearchForm />", () => {
     const { getByRole } = render(
       <SearchForm
         searchContext="homepage"
-        searchTime={0}
-        componentType="search_button"
-        numberOfResults={0}
         placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
@@ -130,9 +118,6 @@ describe("<SearchForm />", () => {
     render(
       <SearchForm
         searchContext="homepage"
-        searchTime={0}
-        componentType="search_button"
-        numberOfResults={0}
         placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
@@ -149,9 +134,6 @@ describe("<SearchForm />", () => {
     render(
       <SearchForm
         searchContext="homepage"
-        searchTime={0}
-        componentType="search_button"
-        numberOfResults={0}
         placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
@@ -167,9 +149,6 @@ describe("<SearchForm />", () => {
     render(
       <SearchForm
         searchContext="homepage"
-        searchTime={0}
-        componentType="search_button"
-        numberOfResults={0}
         placeholderText=""
         searchTerm=""
         handleSubmit={handleSubmit}
@@ -187,9 +166,6 @@ describe("<SearchForm />", () => {
     const { getByRole } = render(
       <SearchForm
         searchContext="homepage"
-        searchTime={0}
-        componentType="search_button"
-        numberOfResults={0}
         placeholderText=""
         handleSubmit={handleSubmit}
         searchTerm={initialText}
@@ -215,9 +191,6 @@ describe("<SearchForm />", () => {
       <SearchForm
         placeholderText=""
         searchContext="homepage"
-        searchTime={0}
-        componentType="search_button"
-        numberOfResults={0}
         searchTerm={initialText}
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
@@ -245,9 +218,6 @@ describe("<SearchForm />", () => {
       <SearchForm
         searchContext="homepage"
         placeholderText={placeholderText}
-        searchTime={0}
-        componentType="search_button"
-        numberOfResults={0}
         searchTerm=""
         handleSubmit={handleSubmit}
         analyticsSearchSource={"homepage search box"}
