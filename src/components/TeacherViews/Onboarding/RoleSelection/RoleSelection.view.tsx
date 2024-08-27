@@ -1,10 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { OakRadioButton, OakRadioGroup } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakRadioButton,
+  OakRadioGroup,
+} from "@oaknational/oak-components";
 import { Control, UseFormTrigger, useForm } from "react-hook-form";
 
 import { OnboardingLayout } from "../../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
-import FieldError from "@/components/SharedComponents/FieldError";
 import Input from "@/components/SharedComponents/Input";
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
@@ -93,24 +96,22 @@ const RoleSelectionView = () => {
             />
           ))}
         </OakRadioGroup>
-        {formState.errors.role && (
-          <FieldError id="role-error" withoutMarginBottom>
-            {formState.errors.role.message}
-          </FieldError>
-        )}
         {getValues().role === "Other" && (
-          <Input
-            id="other-role"
-            error={formState.errors.other?.message}
-            label="Your role"
-            isRequired
-            required
-            onChange={(event) => handleChange("other", event.target.value)}
-            $mb={0}
-            placeholder="Type your role"
-            withoutMarginBottom
-            aria-describedby={formState.errors.other ? "other-role" : undefined}
-          />
+          <OakBox $mt="space-between-m">
+            <Input
+              id="other-role"
+              error={formState.errors.other?.message}
+              label="Your role"
+              isRequired
+              required
+              onChange={(event) => handleChange("other", event.target.value)}
+              $mb={0}
+              placeholder="Type your role"
+              aria-describedby={
+                formState.errors.other ? "other-role" : undefined
+              }
+            />
+          </OakBox>
         )}
       </OnboardingForm>
     </OnboardingLayout>
