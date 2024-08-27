@@ -1,4 +1,8 @@
 import { useMemo, useState } from "react";
+import {
+  examboards,
+  tierDescriptions,
+} from "@oaknational/oak-curriculum-schema";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 
@@ -17,7 +21,6 @@ import {
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
 import debouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import {
   getLessonOverviewBreadCrumb,
   getLessonDownloadsBreadCrumb,
@@ -126,7 +129,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonCohort,
   } = commonPathway;
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
   const isLegacyDownload = !lessonCohort || lessonCohort === LEGACY_COHORT;
 
   const onwardContent = lesson.nextLessons
@@ -213,6 +215,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         selectedResources,
       });
 
+      const examboard = examboards.safeParse(
+        (commonPathway as LessonPathway).examBoardTitle,
+      );
+      const tier = tierDescriptions.safeParse(
+        (commonPathway as LessonPathway).tierTitle,
+      );
       track.lessonResourcesDownloaded({
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         keyStageSlug,
@@ -223,12 +231,19 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         lessonName: lessonTitle,
         lessonSlug,
         resourceType: selectedResourcesForTracking,
-        analyticsUseCase,
         schoolUrn,
         schoolName,
         schoolOption,
         onwardContent,
         emailSupplied: data?.email ? true : false,
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "use",
+        analyticsUseCase: "Teacher",
+        eventVersion: "2.0.0",
+        examBoard: examboard.success ? examboard.data : null,
+        tierName: tier.success ? tier.data : null,
+        componentType: "lesson_download_button",
       });
     } catch (error) {
       setIsAttemptingDownload(false);
