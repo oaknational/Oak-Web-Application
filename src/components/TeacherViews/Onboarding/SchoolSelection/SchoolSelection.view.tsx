@@ -14,6 +14,7 @@ import {
   schoolSelectFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import ManualEntrySchoolDetails from "@/components/TeacherComponents/ManualEntrySchoolDetails";
+import FieldError from "@/components/SharedComponents/FieldError";
 
 export const SchoolSelectionView = () => {
   const [renderManualSchoolInput, setRenderManualSchoolInput] =
@@ -97,10 +98,13 @@ export const SchoolSelectionView = () => {
         formState={formState}
         heading="Enter school's details"
         handleSubmit={handleSubmit}
-        canSubmit={formState.isValid}
+        canSubmit={!formState.isSubmitted || formState.isValid}
       >
         {!renderManualSchoolInput && (
           <OakBox $mt="space-between-m">
+            <FieldError id="onboarding-school-error">
+              {"school" in formState.errors && formState.errors.school?.message}
+            </FieldError>
             <ResourcePageSchoolPicker
               hasError={
                 !renderManualSchoolInput &&
@@ -112,7 +116,6 @@ export const SchoolSelectionView = () => {
               schools={schools}
               label={"School"}
               setSelectedSchool={setSelectedSchool}
-              required={true}
               withHomeschool={false}
             />
             <OakFlex
