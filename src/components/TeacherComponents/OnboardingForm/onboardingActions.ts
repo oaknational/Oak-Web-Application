@@ -1,4 +1,5 @@
 import errorReporter from "@/common-lib/error-reporter";
+import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 import OakError from "@/errors/OakError";
 
 const apiRoute = "/api/auth/onboarding";
@@ -8,10 +9,16 @@ const reportError = errorReporter("onboardingActions");
 /**
  * Makes a request to mark the user as onboarded in Clerk
  */
-export async function onboardUser(): Promise<{ "owa:onboarded": true }> {
+export async function onboardUser(
+  data: OnboardingSchema,
+): Promise<UserPublicMetadata> {
   try {
     const response = await fetch(apiRoute, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     });
     if (!response.ok) {
       throw new OakError({
