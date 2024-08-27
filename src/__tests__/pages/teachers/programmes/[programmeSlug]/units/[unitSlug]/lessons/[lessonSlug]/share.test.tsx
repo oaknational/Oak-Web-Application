@@ -33,13 +33,34 @@ jest.mock(
   },
 );
 
+const lessonShared = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      lessonShared: (...args: unknown[]) => lessonShared(...args),
+    },
+  }),
+}));
+
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
+  () => ({
+    useHubspotSubmit: () => ({
+      onHubspotSubmit: () => {
+        return Promise.resolve(true);
+      },
+    }),
+  }),
+);
+
 beforeEach(() => {
   renderHook(() => useForm());
   localStorage.clear();
 });
 const render = renderWithProviders();
 
-describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
+describe("pages/teachers/lessons/[lessonSlug]/share", () => {
   it("Renders 'no shared resources available' message if there are no resources to share", () => {
     render(
       <LessonSharePage
@@ -54,6 +75,43 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     );
 
     expect(screen.getByText("No resources to share")).toBeInTheDocument();
+  });
+  it("tracks lesson share clicks", async () => {
+    const { result } = renderHook(() => useLocalStorageForDownloads());
+
+    result.current.setEmailInLocalStorage("test@test.com");
+    result.current.setTermsInLocalStorage(true);
+    result.current.setSchoolInLocalStorage({
+      schoolId: "1",
+      schoolName: "name",
+    });
+
+    render(<LessonSharePage {...props} />);
+    const shareButtonCopy = await screen.findByRole("link", {
+      name: "Share to Email",
+    });
+    screen.debug(shareButtonCopy);
+    expect(shareButtonCopy).not.toBeDisabled();
+    const user = userEvent.setup();
+    await user.click(shareButtonCopy);
+
+    expect(lessonShared).toHaveBeenCalledWith({
+      lessonName: "Islamic Geometry",
+      lessonSlug: "macbeth-lesson-1",
+      schoolUrn: 1,
+      schoolName: "",
+      schoolOption: "Selected school",
+      shareMedium: "email",
+      emailSupplied: true,
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "use",
+      componentType: "share_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      resourceTypes: ["starter-quiz", "video", "exit-quiz"],
+      audience: "Pupil",
+    });
   });
 
   describe("Share form", () => {
