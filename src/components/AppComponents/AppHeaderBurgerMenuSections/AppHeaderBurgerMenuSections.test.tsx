@@ -6,15 +6,13 @@ import AppHeaderBurgerMenuSections from "./AppHeaderBurgerMenuSections";
 
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import * as featureFlaggedClerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
+import { enableMockClerk } from "@/__tests__/__helpers__/mockClerk";
 
 jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
 describe("AppHeaderBurgerburgerMenuSections", () => {
   beforeEach(() => {
-    jest
-      .spyOn(featureFlaggedClerk, "useFeatureFlaggedClerk")
-      .mockReturnValue(featureFlaggedClerk.fakeClerkApi);
+    enableMockClerk();
   });
 
   it("renders 3 burger menu sections", () => {
@@ -50,13 +48,7 @@ describe("AppHeaderBurgerburgerMenuSections", () => {
     });
 
     it("does not render a sign out button when user is not logged in", () => {
-      jest
-        .spyOn(featureFlaggedClerk, "useFeatureFlaggedClerk")
-        .mockReturnValue({
-          ...featureFlaggedClerk.fakeClerkApi,
-          SignOutButton,
-          SignedIn: () => null,
-        });
+      enableMockClerk({ SignOutButton, SignedIn: () => null });
 
       renderWithProviders()(
         <AppHeaderBurgerMenuSections burgerMenuSections={burgerMenuSections} />,
@@ -67,13 +59,10 @@ describe("AppHeaderBurgerburgerMenuSections", () => {
     });
 
     it("renders a sign out button when a user is logged in", async () => {
-      jest
-        .spyOn(featureFlaggedClerk, "useFeatureFlaggedClerk")
-        .mockReturnValue({
-          ...featureFlaggedClerk.fakeClerkApi,
-          SignOutButton,
-          SignedIn: ({ children }) => <>{children}</>,
-        });
+      enableMockClerk({
+        SignOutButton,
+        SignedIn: ({ children }) => <>{children}</>,
+      });
 
       renderWithProviders()(
         <AppHeaderBurgerMenuSections burgerMenuSections={burgerMenuSections} />,

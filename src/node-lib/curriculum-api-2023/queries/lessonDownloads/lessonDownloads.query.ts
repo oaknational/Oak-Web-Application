@@ -106,6 +106,8 @@ const lessonDownloadsQuery =
       syntheticUnitvariantLessonsSchema.parse(bd),
     );
 
+    let lessonData: T;
+
     if (canonicalLesson) {
       const canonicalLessonDownloads = constructCanonicalLessonDownloads(
         downloads,
@@ -114,7 +116,7 @@ const lessonDownloadsQuery =
         is_legacy,
         copyright,
       );
-      return lessonDownloadsCanonicalSchema.parse(
+      lessonData = lessonDownloadsCanonicalSchema.parse(
         canonicalLessonDownloads,
       ) as T;
     } else {
@@ -126,12 +128,19 @@ const lessonDownloadsQuery =
         expired,
       );
 
-      return lessonDownloadsSchema.parse({
+      lessonData = lessonDownloadsSchema.parse({
         ...lessonDownloads,
         isLegacy: false,
         isSpecialist: false,
       }) as T;
     }
+
+    return {
+      ...lessonData,
+      isDownloadRegionRestricted: ["account-security-68rkee"].includes(
+        lessonSlug,
+      ),
+    };
   };
 
 export type LessonDownloadsQuery = ReturnType<typeof lessonDownloadsQuery>;

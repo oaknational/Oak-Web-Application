@@ -1,3 +1,34 @@
+# [1.533.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.532.0...v1.533.0) (2024-08-28)
+
+
+### Features
+
+* initial curric cli ([45e0307](https://github.com/oaknational/Oak-Web-Application/commit/45e0307922e56477570bbb89d06d5e5842709abb))
+
+# [1.532.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.531.0...v1.532.0) (2024-08-28)
+
+
+### Features
+
+* **LESQ-980:** display a notice when a download is geo restricted ([d115077](https://github.com/oaknational/Oak-Web-Application/commit/d115077726d7b80ee66509786ee586bf3ab7fe9a))
+
+# [1.531.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.530.0...v1.531.0) (2024-08-28)
+
+
+### Bug Fixes
+
+* correct missing role error ([65d3658](https://github.com/oaknational/Oak-Web-Application/commit/65d3658d2b16cafd755dac296625b253df6f329a))
+* don't initialise the continue button on the school picker as disabled ([3b93d67](https://github.com/oaknational/Oak-Web-Application/commit/3b93d674f3e46d29c0967e065417afbbe834f5f2))
+* ensure there is some padding on the block axis ([d7015a3](https://github.com/oaknational/Oak-Web-Application/commit/d7015a3e774fdb29b1b53df8a2be354c7a2277b2))
+* stop spreading $mb into the input in `Input` ([e90bd69](https://github.com/oaknational/Oak-Web-Application/commit/e90bd699b734e4964ef586223ac8d4ba8d410f84))
+
+
+### Features
+
+* **LESQ-1002:** apply a layout to the onboarding pages ([51f4773](https://github.com/oaknational/Oak-Web-Application/commit/51f47739ecf7876e8313a8745c66f5c40814b640))
+* **LESQ-1002:** install OakGlobalStyle in app router layout ([ca671ca](https://github.com/oaknational/Oak-Web-Application/commit/ca671ca63a8cab1b5b7c9c6c1a6e6a26ec34fad9))
+* **LESQ-1002:** share layouts between onboarding and registration ([3215dbf](https://github.com/oaknational/Oak-Web-Application/commit/3215dbf686875259defcbd8d58b65b01b8dcacfa))
+
 # [1.530.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.529.3...v1.530.0) (2024-08-23)
 
 
