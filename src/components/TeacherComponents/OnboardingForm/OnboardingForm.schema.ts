@@ -23,7 +23,7 @@ export const schoolSelectFormSchema = z
     school: z
       .string({
         errorMap: () => ({
-          message: "Select school",
+          message: "Please select your school",
         }),
       })
       .min(1, "Select school"),
