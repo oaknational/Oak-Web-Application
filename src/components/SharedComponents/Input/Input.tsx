@@ -139,6 +139,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     isOptional,
     isRequired,
     withoutMarginBottom,
+    $mb,
     ...inputProps
   } = props;
   const errorId = `${id}-error`;
@@ -151,7 +152,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         </FieldError>
       )}
       <InputFieldWrap
-        $mb={props.$mb ?? 32}
+        $mb={$mb ?? 32}
         $alignItems="center"
         $background="white"
         $width={"100%"}
