@@ -14,14 +14,6 @@ declare global {
      * 🚨 This should be set once by the Oak app the user first onboarded through.
      */
     sourceApp?: string;
-    /**
-     * ISO 3166-1 alpha-2 country code the user's IP address was geo-located as being within at the time of onboarding.
-     *
-     * This value could be incorrect or set to a value of XX if their IP is missing/incorrectly located by Cloudflare.
-     *
-     * 🚨 This should be set once by the Oak app the user first onboarded through.
-     */
-    region?: string;
     owa?: {
       /**
        * Indicates that the user self-identified as a teacher when onboarding.
@@ -31,6 +23,21 @@ declare global {
        * Indicates that the user has been onboarded
        */
       isOnboarded?: boolean;
+      /**
+       * Indicates that the user is authorised to download region restricted content
+       */
+      isRegionAuthorised?: boolean;
     };
+  }
+
+  interface UserPrivateMetadata {
+    /**
+     * ISO 3166-1 alpha-2 country code the user's IP address was geo-located as being within at the time of onboarding.
+     *
+     * This value could be incorrect or empty if their IP is missing/incorrectly located by Cloudflare or Netlify.
+     *
+     * 🚨 This should be set once by the Oak app the user first onboarded through.
+     */
+    region?: string;
   }
 }

@@ -1,7 +1,7 @@
-import { useUser } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 
-type UseUserReturn = ReturnType<typeof useUser>;
+import { UseUserReturn } from "./mockClerk";
+
 type UserResource = NonNullable<UseUserReturn["user"]>;
 type CurrentUser = NonNullable<Awaited<ReturnType<typeof currentUser>>>;
 
@@ -13,6 +13,24 @@ export const mockUser = {
   publicMetadata: {},
   reload: jest.fn(),
 } as unknown as UserResource;
+
+export const mockUserWithDownloadAccess: UserResource = {
+  ...mockUser,
+  publicMetadata: {
+    owa: {
+      isRegionAuthorised: true,
+    },
+  },
+};
+
+export const mockUserWithoutDownloadAccess: UserResource = {
+  ...mockUser,
+  publicMetadata: {
+    owa: {
+      isRegionAuthorised: false,
+    },
+  },
+};
 
 /**
  * Mock return value for a logged in state
