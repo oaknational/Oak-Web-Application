@@ -14,7 +14,6 @@ import {
   OakFlex,
   OakInlineBanner,
   OakLink,
-  OakP,
   OakPrimaryButton,
   OakSpan,
 } from "@oaknational/oak-components";
@@ -128,8 +127,8 @@ const OnboardingForm = ({
         $alignItems="flex-start"
         $gap="all-spacing-8"
         $pa="inner-padding-xl3"
-        $dropShadow="drop-shadow-standard"
-        $borderRadius="border-radius-s"
+        $dropShadow={[null, "drop-shadow-standard"]}
+        $borderRadius="border-radius-m2"
         $background={"white"}
         as="form"
         onSubmit={
@@ -138,11 +137,12 @@ const OnboardingForm = ({
       >
         <Logo height={48} width={104} variant="with text" />
         <OakFlex
-          $gap="all-spacing-8"
+          $gap="space-between-m"
           $flexDirection={"column"}
+          $width="100%"
           role={"fieldset"}
         >
-          <OakSpan role="legend" id={"form-legend"} $font="heading-light-5">
+          <OakSpan role="legend" id={"form-legend"} $font="heading-6">
             {props.heading}
           </OakSpan>
           <OakBox aria-live="polite" $display="contents">
@@ -193,7 +193,13 @@ const OnboardingForm = ({
         </OakFlex>
       </OakFlex>
 
-      <OakP $font="body-2" color="text-primary" $textAlign="center">
+      <OakBox
+        as="p"
+        $font="body-2"
+        color="text-primary"
+        $textAlign="center"
+        $pb="inner-padding-s"
+      >
         Need help?{" "}
         <OakLink
           href={resolveOakHref({
@@ -204,7 +210,7 @@ const OnboardingForm = ({
           Contact us
         </OakLink>
         .
-      </OakP>
+      </OakBox>
     </OakFlex>
   );
 };
