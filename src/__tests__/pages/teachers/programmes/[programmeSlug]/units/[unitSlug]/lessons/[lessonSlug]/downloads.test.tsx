@@ -18,7 +18,6 @@ import LessonDownloadsPage, {
   getStaticPaths,
   getStaticProps,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
-import OakError from "@/errors/OakError";
 
 const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
@@ -45,7 +44,7 @@ jest.mock(
   () => ({
     __esModule: true,
     default: () => {
-      throw new OakError({ code: "downloads/failed-to-fetch" });
+      Promise.resolve();
     },
   }),
 );
@@ -55,6 +54,28 @@ jest.mock(
   () => {
     return jest.fn();
   },
+);
+
+const lessonDownloaded = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      lessonResourcesDownloaded: (...args: unknown[]) =>
+        lessonDownloaded(...args),
+    },
+  }),
+}));
+
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
+  () => ({
+    useHubspotSubmit: () => ({
+      onHubspotSubmit: () => {
+        return Promise.resolve(true);
+      },
+    }),
+  }),
 );
 
 beforeEach(() => {
@@ -124,6 +145,99 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     );
 
     expect(screen.queryByText("Exit quiz questions")).not.toBeInTheDocument();
+  });
+  it("tracks download event with correct args", async () => {
+    const { result } = renderHook(() => useLocalStorageForDownloads());
+
+    result.current.setEmailInLocalStorage("test@test.com");
+    result.current.setTermsInLocalStorage(true);
+    result.current.setSchoolInLocalStorage({
+      schoolId: "1",
+      schoolName: "name",
+    });
+    render(<LessonDownloadsPage {...props} />);
+    const downloadButton = screen.getByRole("button", {
+      name: "Download .zip",
+    });
+    await userEvent.click(downloadButton);
+    expect(lessonDownloaded).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+      componentType: "lesson_download_button",
+      emailSupplied: true,
+      engagementIntent: "use",
+      eventVersion: "2.0.0",
+      examBoard: "Edexcel",
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key stage 4",
+      lessonName: "Transverse waves",
+      lessonSlug: "transverse-waves",
+      onwardContent: [
+        "representing-transverse-waves",
+        "representing-longitudinal-waves",
+        "oscilloscope",
+      ],
+      platform: "owa",
+      product: "teacher lesson resources",
+      resourceType: ["exit quiz questions", "exit quiz answers"],
+      schoolName: "",
+      schoolOption: "Selected school",
+      schoolUrn: 1,
+      subjectSlug: "combined-science",
+      subjectTitle: "Combined Science",
+      tierName: "Foundation",
+      unitName: "Measuring waves",
+      unitSlug: "measuring-waves",
+    });
+  });
+  it("tracks download event with correct args for lessons without pfs", async () => {
+    const { result } = renderHook(() => useLocalStorageForDownloads());
+
+    result.current.setEmailInLocalStorage("test@test.com");
+    result.current.setTermsInLocalStorage(true);
+    result.current.setSchoolInLocalStorage({
+      schoolId: "1",
+      schoolName: "name",
+    });
+    render(
+      <LessonDownloadsPage
+        curriculumData={lessonDownloadsFixtures({
+          tierTitle: null,
+          examBoardTitle: null,
+        })}
+      />,
+    );
+    const downloadButton = screen.getByRole("button", {
+      name: "Download .zip",
+    });
+    await userEvent.click(downloadButton);
+    expect(lessonDownloaded).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+      componentType: "lesson_download_button",
+      emailSupplied: true,
+      engagementIntent: "use",
+      eventVersion: "2.0.0",
+      examBoard: null,
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key stage 4",
+      lessonName: "Transverse waves",
+      lessonSlug: "transverse-waves",
+      onwardContent: [
+        "representing-transverse-waves",
+        "representing-longitudinal-waves",
+        "oscilloscope",
+      ],
+      platform: "owa",
+      product: "teacher lesson resources",
+      resourceType: ["exit quiz questions", "exit quiz answers"],
+      schoolName: "",
+      schoolOption: "Selected school",
+      schoolUrn: 1,
+      subjectSlug: "combined-science",
+      subjectTitle: "Combined Science",
+      tierName: null,
+      unitName: "Measuring waves",
+      unitSlug: "measuring-waves",
+    });
   });
 
   describe("download form", () => {
