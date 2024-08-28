@@ -19,7 +19,7 @@ export interface CategoryFilterListProps<T extends CategoryLinkProps>
   categories: Category<T>[];
   getIsSelected: (category: T) => boolean;
   setSelected: (category: T) => void;
-  trackingProps?: LearningThemeSelectedTrackingProps;
+  themeTrackingProps?: LearningThemeSelectedTrackingProps;
 }
 const CategoryFilterList = <T extends CategoryLinkProps>(
   props: CategoryFilterListProps<T>,
@@ -29,7 +29,7 @@ const CategoryFilterList = <T extends CategoryLinkProps>(
     labelledBy,
     getIsSelected,
     setSelected,
-    trackingProps,
+    themeTrackingProps: trackingProps,
     ...boxProps
   } = props;
 

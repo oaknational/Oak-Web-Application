@@ -41,7 +41,7 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
         componentType: "filter_link",
         eventVersion: "2.0.0",
         analyticsUseCase: "Teacher",
-        filterType: "Content type filter",
+        filterType: "Learning theme filter",
         filterValue: label,
         activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
       });

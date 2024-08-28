@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "3pUc4FqYUVhZNmXAM7dH",
+          "ac": "R6zuasvUheeLqu1AwJLF",
           "br": "b9x2zqGrG",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "3pUc4FqYUVhZNmXAM7dH",
+          "ac": "R6zuasvUheeLqu1AwJLF",
           "br": "b9x2zqGrG",
           "en": env,
           "ty": type,
@@ -1286,6 +1286,7 @@ export const FilterType = {
   'KEY_STAGE_FILTER': 'Key stage filter',
   'CONTENT_TYPE_FILTER': 'Content type filter',
   'EXAM_BOARD_FILTER': 'Exam board filter',
+  'LEARNING_THEME_FILTER': 'Learning theme filter',
 } as const;
 export type FilterTypeType = typeof FilterType;
 export type FilterTypeValueType = FilterTypeType[keyof FilterTypeType];
@@ -2658,72 +2659,6 @@ export function helpCentreSelected() {
   }
 }
 
-export interface LearningThemeSelectedProperties {
-  keyStageTitle: KeyStageTitleValueType;
-  keyStageSlug: string;
-  subjectTitle: string;
-  subjectSlug: string;
-  analyticsUseCase: AnalyticsUseCaseValueType;
-  learningThemeName: string;
-}
-/**
- * Learning Theme Selected: A learning theme filter is applied on a unit listing page
- *
- * When to trigger this event:
- * 1. A learning theme is selected on a unit listing page
- * View in Avo: https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/b9x2zqGrG/events/Vg3AmapucP/trigger/ssM2tCEE3
- *
- * @param properties the properties associatied with this event
- * @param properties.keyStageTitle: Title of the current key stage.
- * @param properties.keyStageSlug: Human-readable unique ID of the current key stage.
- * @param properties.subjectTitle: Title of the current subject.
- * @param properties.subjectSlug: Human-readable unique ID of the current subject.
- * @param properties.analyticsUseCase: User is engaging with the site as a pupil or a teacher as defined by the page url (eg. thenational.academy/pupils or thenational.academy/teachers
-
-NB - This will be removed, but keeping to ease transition from AUC to 'product'
- * @param properties.learningThemeName: Name of the learning theme used to group units
- *
- * @see {@link https://www.avo.app/schemas/5PhajbVijwhXVKIJtGMT/branches/b9x2zqGrG/events/Vg3AmapucP}
- */
-export function learningThemeSelected(
-  properties: LearningThemeSelectedProperties) {
-  // @ts-ignore
-  let eventPropertiesArray: array = [];
-  eventPropertiesArray.push({id: "qeEZpYqVhK", name: "Key Stage Title", value: properties.keyStageTitle});
-  eventPropertiesArray.push({id: "XMx9WMqh0H", name: "Key Stage Slug", value: properties.keyStageSlug});
-  eventPropertiesArray.push({id: "-MoOjO43sV", name: "Subject Title", value: properties.subjectTitle});
-  eventPropertiesArray.push({id: "8GyPDAapC-", name: "Subject Slug", value: properties.subjectSlug});
-  eventPropertiesArray.push({id: "DAS5R4dcvH", name: "Analytics Use Case", value: properties.analyticsUseCase});
-  eventPropertiesArray.push({id: "-t7ga1V-X", name: "Learning Theme Name", value: properties.learningThemeName});
-  let eventProperties = convertPropertiesArrayToMap(eventPropertiesArray)
-  // @ts-ignore
-  let userPropertiesArray: array = [];
-  let userProperties = convertPropertiesArrayToMap(userPropertiesArray)
-  // assert properties
-  if (__AVO_ENV__ !== AvoEnv.Prod || __WEB_DEBUGGER__) {
-    let messages: AvoAssertMessage[] = [];
-    // debug console in Avo
-    if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "Vg3AmapucP", "82b96557783201e4e3ce6446cfc719bc5ee4250482e38b8e0dda60217ed06738", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
-    }
-    InternalAvoLogger.logEventSent("Learning Theme Selected", eventProperties, userProperties);
-    if (__WEB_DEBUGGER__) {
-      // Avo web debugger
-      _avo_debugger_log("Vg3AmapucP", "Learning Theme Selected", messages, eventPropertiesArray, userPropertiesArray, []);
-    }
-  }
-  if (!__AVO_NOOP__) {
-    if (__INSPECTOR__ != null) {
-      // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Learning Theme Selected", eventProperties, "Vg3AmapucP", "82b96557783201e4e3ce6446cfc719bc5ee4250482e38b8e0dda60217ed06738");
-    }
-    // destination PostHogEU
-    PostHogEU.logEvent("Learning Theme Selected", (Object as any).assign({}, eventProperties));
-  } else {
-    // do nothing
-  }
-}
-
 export interface TierSelectedProperties {
   subjectTitle: string;
   subjectSlug: string;
@@ -3837,7 +3772,7 @@ export function searchRefined(properties: SearchRefinedProperties) {
     messages = messages.concat(assertActiveFilters(properties.activeFilters));
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "XpQ27vPNH4", "74ae41d0b81cd56c148ecdb355c376d1e6a9fb5da864eaf354a5e65499c5e998", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "XpQ27vPNH4", "2f11ad53c689c32fa351086d6f3662920901aff983ed9e5e42625098584a4274", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Search Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -3859,7 +3794,7 @@ export function searchRefined(properties: SearchRefinedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Refined", eventProperties, "XpQ27vPNH4", "74ae41d0b81cd56c148ecdb355c376d1e6a9fb5da864eaf354a5e65499c5e998");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Search Refined", eventProperties, "XpQ27vPNH4", "2f11ad53c689c32fa351086d6f3662920901aff983ed9e5e42625098584a4274");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Search Refined", (Object as any).assign({}, eventProperties));
@@ -4759,7 +4694,7 @@ export function browseRefined(properties: BrowseRefinedProperties) {
     messages = messages.concat(assertActiveFilters(properties.activeFilters));
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "qqX_ISnl2q", "a9ed031f308983779f4dda82a4fb152ccaf53376a08bc6060073c8866d53dc32", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "qqX_ISnl2q", "5e718f5fb5449dc65e37971681e5d717563a3e3ff5cb476eb256e59e0df9458b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Browse Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4781,7 +4716,7 @@ export function browseRefined(properties: BrowseRefinedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Refined", eventProperties, "qqX_ISnl2q", "a9ed031f308983779f4dda82a4fb152ccaf53376a08bc6060073c8866d53dc32");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Refined", eventProperties, "qqX_ISnl2q", "5e718f5fb5449dc65e37971681e5d717563a3e3ff5cb476eb256e59e0df9458b");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Browse Refined", (Object as any).assign({}, eventProperties));
@@ -4861,7 +4796,7 @@ export function browseRefinedAccessed(
     messages = messages.concat(assertActiveFilters(properties.activeFilters));
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "qqX_ISnl2q.oU4o61r0g", "a8ac15c7058f73e5f8ebd2e13ff29158c0298aac5ceae3d51c1c9f96575da624", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "qqX_ISnl2q.oU4o61r0g", "440e8c19375bdfda0d9d452f7e588af3b51a76d03b7ca2cedbccb9a63b8e1597", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Browse Refined", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4883,7 +4818,7 @@ export function browseRefinedAccessed(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Refined", eventProperties, "qqX_ISnl2q.oU4o61r0g", "a8ac15c7058f73e5f8ebd2e13ff29158c0298aac5ceae3d51c1c9f96575da624");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Browse Refined", eventProperties, "qqX_ISnl2q.oU4o61r0g", "440e8c19375bdfda0d9d452f7e588af3b51a76d03b7ca2cedbccb9a63b8e1597");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Browse Refined", (Object as any).assign({}, eventProperties));
@@ -4941,7 +4876,6 @@ export default {
   yearGroupSelected,
   webinarPageViewed,
   helpCentreSelected,
-  learningThemeSelected,
   tierSelected,
   pageview,
   resourceContainerExpanded,
@@ -4971,4 +4905,4 @@ export default {
 }
 
 // AVOMODULEMAP:"Avo"
-// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitAccessed","lessonSelected","yearGroupSelected","webinarPageViewed","helpCentreSelected","learningThemeSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","curriculumThreadHighlighted","unitInformationViewed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonSectionCompleted","lessonStarted","lessonSectionStarted","curriculumResourcesDownloaded","curriculumResourcesDownloadedCurriculumDocument","lessonSectionAbandoned","lessonAccessed","browseRefined","browseRefinedAccessed"]
+// AVOEVENTMAP:["planALessonSelected","newsletterSignUpCompleted","classroomSelected","teacherHubSelected","developYourCurriculumSelected","supportYourTeamSelected","notificationSelected","aboutSelected","videoStarted","videoPaused","videoPlayed","videoFinished","lessonResourcesDownloaded","keyStageSelected","subjectSelected","unitAccessed","lessonSelected","yearGroupSelected","webinarPageViewed","helpCentreSelected","tierSelected","pageview","resourceContainerExpanded","curriculumMapDownloaded","lessonResourceDownloadStarted","searchAccessed","searchResultOpened","searchJourneyInitiated","curriculumVisualiserAccessed","curriculumThreadHighlighted","unitInformationViewed","onwardContentSelected","lessonShared","lessonShareStarted","searchRefined","searchResultExpanded","lessonCompleted","lessonSectionCompleted","lessonStarted","lessonSectionStarted","curriculumResourcesDownloaded","curriculumResourcesDownloadedCurriculumDocument","lessonSectionAbandoned","lessonAccessed","browseRefined","browseRefinedAccessed"]
