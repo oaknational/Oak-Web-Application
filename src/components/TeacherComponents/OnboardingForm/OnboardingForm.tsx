@@ -106,6 +106,10 @@ const OnboardingForm = ({
 
       // Return the user to the page they originally arrived from
       // or to the home page as a fallback
+      console.log(
+        "diego about to redirect to ",
+        router.query.returnTo?.toString(),
+      );
       router.push(
         toSafeRedirect(
           router.query.returnTo?.toString() ?? "/",
