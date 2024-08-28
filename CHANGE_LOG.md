@@ -1,3 +1,10 @@
+# [1.533.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.532.0...v1.533.0) (2024-08-28)
+
+
+### Features
+
+* initial curric cli ([45e0307](https://github.com/oaknational/Oak-Web-Application/commit/45e0307922e56477570bbb89d06d5e5842709abb))
+
 # [1.532.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.531.0...v1.532.0) (2024-08-28)
 
 
