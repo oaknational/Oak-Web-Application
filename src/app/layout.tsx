@@ -4,7 +4,11 @@ import { Lexend } from "next/font/google";
 
 import { PHProvider } from "./providers";
 
-import { OakThemeProvider, oakDefaultTheme } from "@/styles/oakThemeApp";
+import {
+  OakGlobalStyle,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
 export const metadata = {
@@ -21,6 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={lexend.className}>
+      <OakGlobalStyle />
       <body style={{ margin: "0px" }}>
         <PHProvider>
           <OakThemeProvider theme={oakDefaultTheme}>
@@ -30,16 +35,18 @@ export default function RootLayout({
                   variables: {
                     colorPrimary: "#222222",
                     fontFamily: lexend.style.fontFamily,
-                    borderRadius: "8px",
+                    borderRadius: "4px",
                   },
                   elements: {
                     cardBox: {
                       boxShadow: "none",
-                      maxHeight: "100vh",
                       overflow: "auto",
+                      borderRadius: "8px",
                     },
                     card: {
+                      paddingBlock: "40px",
                       boxShadow: "none",
+                      borderRadius: "8px",
                     },
                     footer: {
                       background: "#ffffff",
