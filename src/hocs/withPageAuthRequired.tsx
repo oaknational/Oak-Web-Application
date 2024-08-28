@@ -32,6 +32,7 @@ export function withPageAuthRequired<P extends object>(
     }
 
     if (!isSignedIn) {
+      console.log("diego not signed in - redirecting to sign in");
       return <RedirectToSignIn />;
     }
 

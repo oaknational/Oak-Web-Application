@@ -16,8 +16,8 @@ export function withOnboardingRequired<P extends object>(
     useRequireOnboarding();
 
     if (!useUser().user?.publicMetadata?.owa?.isOnboarded) {
-      console.log("diego fallback component ", FallbackComponent);
       if (FallbackComponent) {
+        console.log("diego returning fallback component", props);
         return (
           <FallbackComponent>
             <Component {...props} />
@@ -27,7 +27,7 @@ export function withOnboardingRequired<P extends object>(
 
       return null;
     }
-
+    console.log("diego returning component", props);
     return <Component {...props} />;
   }
   WrappedComponent.displayName = `${Component.displayName}WithOnboardingRequired`;
