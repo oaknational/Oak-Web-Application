@@ -8,6 +8,12 @@ import OakError from "@/errors/OakError";
 
 const reportError = errorReporter("onboardingRoute");
 
+/**
+ * ISO 3166-1 alpha-2 country codes for countries whose users
+ * are authorised to download region restricted content
+ */
+const ALLOWED_REGIONS = ["GB", "IM", "GG", "JE"];
+
 export async function POST(req: Request) {
   const user = await currentUser();
 
@@ -18,19 +24,23 @@ export async function POST(req: Request) {
   try {
     const owaData = onboardingSchema.parse(await req.json());
     const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
-    const region = user.publicMetadata.region ?? getRegion(req, user.id);
+    const region = user.privateMetadata.region ?? getRegion(req, user.id);
+    const isRegionAuthorised = ALLOWED_REGIONS.includes(region!);
 
     const publicMetadata: UserPublicMetadata = {
       sourceApp,
       owa: {
         ...owaData,
+        isRegionAuthorised,
         isOnboarded: true,
       },
-      region,
     };
 
     await clerkClient().users.updateUserMetadata(user.id, {
       publicMetadata,
+      privateMetadata: {
+        region,
+      },
     });
 
     return Response.json(publicMetadata);
