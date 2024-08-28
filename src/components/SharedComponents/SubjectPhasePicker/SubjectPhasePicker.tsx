@@ -2,12 +2,19 @@ import { FC, useEffect, useState, useRef, useId } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { OakHeading, OakP, OakSpan } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakColorToken,
+  OakFlex,
+  OakHeading,
+  OakP,
+  OakPrimaryButton,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Svg from "@/components/SharedComponents/Svg";
 import Box from "@/components/SharedComponents/Box";
-import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Button from "@/components/SharedComponents/Button/Button";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import {
@@ -148,10 +155,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const [showSubjectError, setShowSubjectError] = useState(false);
   const [showPhaseError, setShowPhaseError] = useState(false);
   const [showExamboardError, setShowExamboardError] = useState(false);
-  const [displayNewBorders, setDisplayNewBorders] = useState<boolean>(true);
-  const [phaseBackground, setPhaseBackground] = useState<OakColorName>("white");
+  // const [displayNewBorders, setDisplayNewBorders] = useState<boolean>(true);
+  const [phaseBackground, setPhaseBackground] =
+    useState<OakColorToken>("white");
   const [subjectBackground, setSubjectBackground] =
-    useState<OakColorName>("white");
+    useState<OakColorName>("transparent");
 
   const schoolPhaseInputId = useId();
   const examBoardInputId = useId();
@@ -281,7 +289,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   );
 
   useEffect(() => {
-    let hideOuterBorders = false;
+    // let hideOuterBorders = false;
     let phaseBackgroundEnabled = true;
     let subjectBackgroundEnabled = true;
 
@@ -290,18 +298,18 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     }
 
     if (showSubjects) {
-      hideOuterBorders = true;
+      // hideOuterBorders = true;
       phaseBackgroundEnabled = false;
     }
 
     if (showPhases) {
-      hideOuterBorders = true;
+      // hideOuterBorders = true;
       subjectBackgroundEnabled = false;
     }
 
-    setDisplayNewBorders(hideOuterBorders);
+    // setDisplayNewBorders(hideOuterBorders);
     setPhaseBackground(phaseBackgroundEnabled ? "white" : "grey20");
-    setSubjectBackground(subjectBackgroundEnabled ? "white" : "grey20");
+    setSubjectBackground(subjectBackgroundEnabled ? "transparent" : "grey20");
   }, [selectedSubject, selectedPhase, showPhases, showSubjects]);
 
   useEffect(() => {
@@ -311,53 +319,41 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   }, []);
 
   return (
-    <Box
+    <OakBox
       $position="relative"
       data-testid="subjectPhasePicker"
-      $zIndex={"mobileFilters"}
+      $zIndex={99}
       $background={phaseBackground}
-      $maxWidth={960}
+      $maxWidth="all-spacing-23"
+      $borderRadius="border-radius-m"
+      $ba="border-solid-m"
     >
-      <BoxBorders
-        gapPosition="rightTop"
-        $zIndex={"inFront"}
-        hideRight={displayNewBorders}
-        hideBottom={displayNewBorders}
-        hideLeft={displayNewBorders}
-        hideTop={displayNewBorders}
-      />
-      <Flex
+      <OakFlex
         $position="relative"
         $alignItems={"center"}
         $justifyContent={"space-between"}
-        $gap={0}
+        $gap="space-between-none"
         $flexDirection={["column", "row"]}
         $width={"100%"}
       >
-        <Flex
+        <OakFlex
           $flexDirection={"row"}
           $alignItems={"center"}
           $justifyContent={"flex-start"}
           $width={["100%", "100%", "100%"]}
         >
-          <Box
+          <OakFlex
             $position={"relative"}
             $width={["50%", "50%"]}
             $borderColor={showSubjects ? "lemon" : "transparent"}
             $ba={3}
             $background={subjectBackground}
+            $pl={"inner-padding-m"}
+            $pr={"inner-padding-m"}
+            $pt={["inner-padding-s"]}
+            $pb={["inner-padding-s"]}
           >
-            <BoxBorders
-              $color={showSubjects ? "black" : "transparent"}
-              gapPosition="rightTop"
-            />
-
-            <SelectButton
-              $ph={24}
-              $pv={24}
-              onClick={toggleShowSubjects}
-              title="Subject"
-            >
+            <SelectButton onClick={toggleShowSubjects} title="Subject">
               <OakHeading
                 tag={"h3"}
                 $font={"heading-light-7"}
@@ -386,7 +382,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               </OakP>
               <ButtonFocusUnderline $color={"black"} name="underline-1" />
             </SelectButton>
-          </Box>
+          </OakFlex>
           {showSubjects && (
             <Box
               $background={"white"}
@@ -399,8 +395,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $zIndex={"inFront"}
               $width={"100%"}
             >
-              <BoxBorders />
-
               <FocusOn
                 autoFocus={false}
                 onClickOutside={() => setShowSubjects(false)}
@@ -478,37 +472,18 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               </FocusOn>
             </Box>
           )}
-          <Box
-            $height={80}
+          <OakFlex
             $position={"relative"}
-            $display={displayNewBorders ? "none" : "block"}
-            $zIndex={"inFront"}
-          >
-            <BoxBorders
-              $color="grey30"
-              hideBottom={true}
-              hideTop={true}
-              hideRight={true}
-            />
-          </Box>
-          <Flex
-            $position={"relative"}
+            $pl={"inner-padding-m"}
+            $pr={"inner-padding-m"}
+            $pt={["inner-padding-s"]}
+            $pb={["inner-padding-s"]}
             $width={["50%", "60%"]}
             $borderColor={showPhases ? "lemon" : "transparent"}
-            $ba={3}
-            $background={phaseBackground}
+            $ba="border-solid-s"
             $flexDirection={"row"}
           >
-            <BoxBorders
-              $color={showPhases ? "black" : "transparent"}
-              gapPosition="rightTop"
-            />
-            <SelectButton
-              $ph={24}
-              $pv={24}
-              onClick={toggleShowPhases}
-              title="Phase"
-            >
+            <SelectButton onClick={toggleShowPhases} title="Phase">
               <OakHeading
                 tag={"h3"}
                 $font={"heading-light-7"}
@@ -576,7 +551,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $top={"100%"}
                 $zIndex={"inFront"}
               >
-                <BoxBorders />
                 <FocusOn
                   autoFocus={false}
                   onClickOutside={() => setShowPhases(false)}
@@ -688,62 +662,46 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 </FocusOn>
               </SchoolPhaseDropDownBox>
             )}
-            <Box
-              $pl={18}
-              $pr={18}
-              $pt={[18, 0]}
-              $pb={[18, 0]}
+            <OakFlex
+              // $pl={"inner-padding-m"}
+              // $pr={"inner-padding-m"}
+              // $pt={["inner-padding-s"]}
+              // $pb={["inner-padding-s"]}
               $width={["100%", "fit-content"]}
               $display={["none", "block"]}
-              $mt={22}
             >
-              <Button
-                label="View"
-                icon="arrow-right"
-                $iconPosition="trailing"
-                iconBackground="transparent"
+              <OakPrimaryButton
+                iconName="arrow-right"
+                isTrailingIcon={true}
                 onClick={handleViewCurriculum}
-                size="large"
-                $fullWidth={false}
-                ref={viewButtonRef}
-              />
-            </Box>
-          </Flex>
-        </Flex>
-        <Box
-          $width={"90%"}
-          $position={"relative"}
-          $mt={[12, 0]}
-          $display={["block", " none"]}
-        >
-          <BoxBorders
-            $color="grey30"
-            hideTop={true}
-            hideRight={true}
-            hideLeft={true}
-          />
-        </Box>
+                // ref={viewButtonRef}
+              >
+                View
+              </OakPrimaryButton>
+            </OakFlex>
+          </OakFlex>
+        </OakFlex>
 
-        <Box
-          $pl={18}
-          $pr={18}
-          $pt={[18, 0]}
-          $pb={[18, 0]}
+        <OakFlex
+          $pl={"inner-padding-m"}
+          $pr={"inner-padding-m"}
+          $pt={["inner-padding-s"]}
+          $pb={["inner-padding-s"]}
           $width={["100%", "fit-content"]}
-          $display={["block", "none"]}
+          $display={["flex", "none"]}
+          $justifyContent="stretch"
         >
-          <Button
-            label="View curriculum"
-            icon="arrow-right"
-            $iconPosition="trailing"
-            iconBackground="transparent"
+          <OakPrimaryButton
+            width="100%"
+            iconName="arrow-right"
+            isTrailingIcon={true}
             onClick={handleViewCurriculum}
-            size="large"
-            $fullWidth={true}
-          />
-        </Box>
-      </Flex>
-    </Box>
+          >
+            View
+          </OakPrimaryButton>
+        </OakFlex>
+      </OakFlex>
+    </OakBox>
   );
 };
 
