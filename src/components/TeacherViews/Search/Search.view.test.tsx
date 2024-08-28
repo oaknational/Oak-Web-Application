@@ -157,18 +157,16 @@ const props: SearchProps = {
   setSearchTerm: jest.fn(),
 };
 
-const searchResultsDisplayed = jest.fn();
 const searchAttempted = jest.fn();
 const searchResultOpened = jest.fn();
 const searchJourneyInitiated = jest.fn();
 const searchResultExpanded = jest.fn();
+const searchAccessed = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      searchResultsDisplayed: (...args: unknown[]) =>
-        searchResultsDisplayed(...args),
       searchAttempted: (...args: unknown[]) => searchAttempted(...args),
       searchJourneyInitiated: (...args: unknown[]) =>
         searchJourneyInitiated(...args),
@@ -176,6 +174,7 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
         searchResultExpanded(...args),
       searchResultOpened: (...args: unknown[]) => searchResultOpened(...args),
       searchRefined: (...args: []) => searchRefined(...args),
+      searchAccessed: (...args: unknown[]) => searchAccessed(...args),
     },
   }),
 }));
