@@ -388,8 +388,8 @@ describe("Search.page.tsx", () => {
     expect(searchResultExpanded).toHaveBeenCalledWith({
       context: "search",
       analyticsUseCase: "Teacher",
-      componentType: "select_oak_lesson",
-      engagementIntent: "use",
+      componentType: "search_result_item",
+      engagementIntent: "refine",
       eventVersion: "2.0.0",
       platform: "owa",
       product: "teacher lesson resources",
@@ -403,8 +403,8 @@ describe("Search.page.tsx", () => {
       searchResultType: "lesson",
       subjectSlug: "subject-slug",
       subjectTitle: "subject title",
-      unitName: "topic title1 ",
-      unitSlug: "topic-slug",
+      unitName: "",
+      unitSlug: "",
     });
   });
   test("searchRefined function invoked when checked", () => {
