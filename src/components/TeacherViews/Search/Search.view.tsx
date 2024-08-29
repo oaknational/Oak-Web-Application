@@ -68,7 +68,7 @@ const Search: FC<SearchProps> = (props) => {
         searchTerm: query.term,
         platform: "owa",
         product: "teacher lesson resources",
-        engagementIntent: "explore",
+        engagementIntent: "refine",
         componentType: "search_button",
         eventVersion: "2.0.0",
         analyticsUseCase: "Teacher",
