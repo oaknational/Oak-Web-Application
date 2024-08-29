@@ -60,12 +60,17 @@ export const SpecialistLessonDownloadSchema = z.object({
     ),
     expired: z.boolean().nullable(),
     copyrightContent: copyrightContentSchema,
+    isDownloadRegionRestricted: z.boolean().optional(),
   }),
 });
 
 export type SpecialistLessonDownloads = z.infer<
   typeof SpecialistLessonDownloadSchema
->;
+> & {
+  lesson: {
+    isDownloadRegionRestricted: boolean;
+  };
+};
 export type SpecialistLessonDownloadsPageData = {
   curriculumData: SpecialistLessonDownloads;
 };

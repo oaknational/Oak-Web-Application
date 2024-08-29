@@ -1,3 +1,19 @@
+## [1.533.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.533.0...v1.533.1) (2024-08-28)
+
+# [1.533.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.532.0...v1.533.0) (2024-08-28)
+
+
+### Features
+
+* initial curric cli ([45e0307](https://github.com/oaknational/Oak-Web-Application/commit/45e0307922e56477570bbb89d06d5e5842709abb))
+
+# [1.532.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.531.0...v1.532.0) (2024-08-28)
+
+
+### Features
+
+* **LESQ-980:** display a notice when a download is geo restricted ([d115077](https://github.com/oaknational/Oak-Web-Application/commit/d115077726d7b80ee66509786ee586bf3ab7fe9a))
+
 # [1.531.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.530.0...v1.531.0) (2024-08-28)
 
 

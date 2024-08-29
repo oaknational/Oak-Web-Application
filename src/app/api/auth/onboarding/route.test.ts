@@ -36,6 +36,9 @@ jest.mock("@clerk/nextjs/server", () => {
   };
 });
 
+// @ts-expect-error - region is overwritten in development
+process.env.NODE_ENV = "production";
+
 describe("/api/auth/onboarding", () => {
   let req: Request;
   beforeEach(() => {
@@ -61,26 +64,31 @@ describe("/api/auth/onboarding", () => {
   it("marks the user as onboarded", async () => {
     const response = await POST(req);
 
-    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
-      publicMetadata: expect.objectContaining({
-        sourceApp: "http://example.com",
-        owa: {
-          isTeacher: true,
-          isOnboarded: true,
+    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+      "123",
+      expect.objectContaining({
+        publicMetadata: expect.objectContaining({
+          sourceApp: "http://example.com",
+          owa: expect.objectContaining({
+            isTeacher: true,
+            isOnboarded: true,
+          }),
+        }),
+        privateMetadata: {
+          region: "US",
         },
-        region: "GB",
       }),
-    });
+    );
 
     expect(response.status).toBe(200);
 
     await expect(response.json()).resolves.toEqual(
       expect.objectContaining({
-        owa: {
+        sourceApp: "http://example.com",
+        owa: expect.objectContaining({
           isTeacher: true,
           isOnboarded: true,
-        },
-        region: "GB",
+        }),
       }),
     );
   });
@@ -88,26 +96,71 @@ describe("/api/auth/onboarding", () => {
   it("sets the referer header as sourceApp", async () => {
     await POST(req);
 
-    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
-      publicMetadata: expect.objectContaining({
-        sourceApp: "http://example.com",
+    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({
+        publicMetadata: expect.objectContaining({
+          sourceApp: "http://example.com",
+        }),
       }),
-    });
+    );
   });
   it("sets the x-country header as region", async () => {
-    // @ts-expect-error - region is overwritten in development
-    process.env.NODE_ENV = "production";
     await POST(req);
 
-    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith("123", {
-      publicMetadata: expect.objectContaining({
-        region: "US",
+    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+      "123",
+      expect.objectContaining({
+        privateMetadata: expect.objectContaining({
+          region: "US",
+        }),
       }),
-    });
+    );
   });
+
+  it.each<[string | undefined, boolean]>([
+    ["US", false],
+    ["GB", true],
+    [undefined, false],
+  ])(
+    `for %p it sets isRegionAuthorised to %p`,
+    async (countryCode, isRegionAuthorised) => {
+      const req = new Request("http://example.com", {
+        method: "POST",
+        body: JSON.stringify({ isTeacher: true }),
+        headers: {
+          referer: "http://example.com/foo",
+          "x-country": countryCode!,
+        },
+      });
+      await POST(req);
+
+      expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.objectContaining({
+          publicMetadata: expect.objectContaining({
+            owa: expect.objectContaining({
+              isRegionAuthorised,
+            }),
+          }),
+        }),
+      );
+    },
+  );
+  it("sets the x-country header as region", async () => {
+    await POST(req);
+
+    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+      "123",
+      expect.objectContaining({
+        privateMetadata: expect.objectContaining({
+          region: "US",
+        }),
+      }),
+    );
+  });
+
   it("reports error when user has no region from x-country in header ", async () => {
-    // @ts-expect-error - region is overwritten in development
-    process.env.NODE_ENV = "production";
     await POST(
       new Request("http://example.com", {
         method: "POST",
@@ -141,11 +194,11 @@ describe("/api/auth/onboarding", () => {
 
     expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
       expect.anything(),
-      {
+      expect.objectContaining({
         publicMetadata: expect.objectContaining({
           sourceApp: "http://remember-me.com",
         }),
-      },
+      }),
     );
   });
 

@@ -18,6 +18,17 @@ import LessonDownloadsPage, {
   getStaticPaths,
   getStaticProps,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import {
+  mockLoggedIn,
+  mockUserWithDownloadAccess,
+  mockUserWithoutDownloadAccess,
+} from "@/__tests__/__helpers__/mockUser";
+import {
+  enableMockClerk,
+  setUseUserReturn,
+} from "@/__tests__/__helpers__/mockClerk";
+
+jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
 const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
@@ -79,6 +90,7 @@ jest.mock(
 );
 
 beforeEach(() => {
+  enableMockClerk();
   renderHook(() => useForm());
   localStorage.clear();
 });
@@ -334,7 +346,9 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     it("should select all resources if user checks 'Select all'", async () => {
       const { getByRole } = render(<LessonDownloadsPage {...props} />);
 
-      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
+      const selectAllCheckbox = getByRole("checkbox", {
+        name: "Select all",
+      });
       expect(selectAllCheckbox).toBeChecked();
 
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions", {
@@ -537,6 +551,50 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         canonical:
           "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/combined-science-secondary-ks4-foundation-edexcel/units/measuring-waves/lessons/transverse-waves",
         robots: "index,follow",
+      });
+    });
+  });
+
+  describe("when downloads are region restricted", () => {
+    const curriculumData = lessonDownloadsFixtures({
+      isDownloadRegionRestricted: true,
+    });
+
+    describe("and the user has access", () => {
+      beforeEach(() => {
+        setUseUserReturn({
+          ...mockLoggedIn,
+          user: mockUserWithDownloadAccess,
+        });
+      });
+
+      it("allows downloads", () => {
+        render(<LessonDownloadsPage curriculumData={curriculumData} />);
+
+        expect(
+          screen.queryByText(
+            "Sorry, downloads for this lesson are not available in your country",
+          ),
+        ).not.toBeInTheDocument();
+      });
+    });
+
+    describe("and the user does not have access", () => {
+      beforeEach(() => {
+        setUseUserReturn({
+          ...mockLoggedIn,
+          user: mockUserWithoutDownloadAccess,
+        });
+      });
+
+      it("disallows downloads", () => {
+        render(<LessonDownloadsPage curriculumData={curriculumData} />);
+
+        expect(
+          screen.queryByText(
+            "Sorry, downloads for this lesson are not available in your country",
+          ),
+        ).toBeInTheDocument();
       });
     });
   });
