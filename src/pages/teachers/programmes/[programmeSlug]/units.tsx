@@ -14,6 +14,8 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
+import { z } from "zod";
 
 import {
   getFallbackBlockingConfig,
@@ -43,6 +45,7 @@ import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitList
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
+import { TierSchema } from "@/node-lib/curriculum-api-2023/queries/unitListing/tiers/tiers.schema";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -101,9 +104,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     }),
   };
 
-  const trackUnitSelected = ({
-    ...props
-  }: UnitListItemProps | SpecialistUnit) => {
+  const trackUnitSelected = (
+    props: UnitListItemProps | SpecialistUnit,
+    examBoardTitle: z.infer<typeof examboards> | null,
+    tierSlug: z.infer<typeof tierSlugs> | null,
+    tiers: TierSchema,
+  ) => {
     // Temporary until tracking for specialist units
     const isSpecialistUnit = (
       x: UnitListItemProps | SpecialistUnit,
@@ -112,6 +118,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     };
 
     if (!isSpecialistUnit(props)) {
+      const tier = tiers.find((t) => t.tierSlug === tierSlug)?.tierTitle;
       return track.unitAccessed({
         platform: "owa",
         product: "teacher lesson resources",
@@ -127,8 +134,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
         subjectSlug: subjectSlug,
         yearGroupName: props.yearTitle,
         yearGroupSlug: (props as UnitListItemProps).year,
-        tierName: null,
-        examBoard: null,
+        tierName: tier ?? null,
+        examBoard: examBoardTitle,
       });
     }
   };
@@ -309,7 +316,14 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 {...curriculumData}
                 currentPageItems={currentPageItems}
                 paginationProps={paginationProps}
-                onClick={trackUnitSelected}
+                onClick={(props) =>
+                  trackUnitSelected(
+                    props,
+                    curriculumData.examBoardTitle,
+                    curriculumData.tierSlug,
+                    curriculumData.tiers,
+                  )
+                }
               />
             </OakGridArea>
           </OakGrid>
