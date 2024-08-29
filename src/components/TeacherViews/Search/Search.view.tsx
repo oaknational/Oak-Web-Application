@@ -99,34 +99,37 @@ const Search: FC<SearchProps> = (props) => {
       searchHit.isToggleOpen &&
       isKeyStageTitleValueType(searchHit.keyStageTitle)
     ) {
+      const lessonName =
+        searchHit.type === "lesson" ? removeHTMLTags(searchHit.title) : "";
+      const lessonSlug =
+        searchHit.type === "lesson" ? searchHit.buttonLinkProps.lessonSlug : "";
+      const unitName =
+        searchHit.type === "unit" ? removeHTMLTags(searchHit.title) : "";
+      const unitSlug =
+        searchHit.type === "unit" ? searchHit.buttonLinkProps.unitSlug : "";
+
       track.searchResultExpanded({
         analyticsUseCase: analyticsUseCase,
-        componentType: "select_oak_lesson",
-        engagementIntent: "use",
+        componentType: "search_result_item",
+        engagementIntent: "refine",
         eventVersion: "2.0.0",
         platform: "owa",
         product: "teacher lesson resources",
         context: "search",
-        keyStageSlug: searchHit.keyStageSlug || "",
+        keyStageSlug: searchHit.keyStageSlug,
         keyStageTitle: searchHit.keyStageTitle,
         subjectTitle: searchHit.subjectTitle,
         subjectSlug: searchHit.subjectSlug,
-        unitName:
-          searchHit.type === "lesson"
-            ? removeHTMLTags(searchHit.unitTitle)
-            : removeHTMLTags(searchHit.title),
-        unitSlug: searchHit.buttonLinkProps.unitSlug,
+        unitName,
+        unitSlug,
         searchRank: searchRank,
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
           router.query,
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName: removeHTMLTags(searchHit.title),
-        lessonSlug:
-          searchHit.type === "lesson"
-            ? searchHit.buttonLinkProps.lessonSlug
-            : "",
+        lessonName,
+        lessonSlug,
       });
     }
   };
