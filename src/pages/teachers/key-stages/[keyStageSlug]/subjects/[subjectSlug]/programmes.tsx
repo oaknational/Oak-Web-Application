@@ -34,8 +34,23 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const handleProgrammeClick = (
     programme: ProgrammeListingPageData["programmes"][number],
   ) => {
-    "tierSlug" in programme &&
-      programme.tierSlug !== null &&
+    const { tierTitle, examBoardTitle } = programme;
+
+    const filterValue =
+      examBoardTitle && tierTitle
+        ? `${examBoardTitle}, ${tierTitle}`
+        : examBoardTitle
+          ? examBoardTitle
+          : tierTitle;
+
+    const filterType =
+      examBoardTitle && tierTitle
+        ? "Exam board / tier filter"
+        : examBoardTitle
+          ? "Exam board filter"
+          : "Tier filter";
+
+    filterValue &&
       track.browseRefined({
         platform: "owa",
         product: "teacher lesson resources",
@@ -43,8 +58,8 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         componentType: "programme_card",
         eventVersion: "2.0.0",
         analyticsUseCase: "Teacher",
-        filterType: "Content type filter",
-        filterValue: programme.tierSlug,
+        filterType,
+        filterValue,
         activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
       });
   };
