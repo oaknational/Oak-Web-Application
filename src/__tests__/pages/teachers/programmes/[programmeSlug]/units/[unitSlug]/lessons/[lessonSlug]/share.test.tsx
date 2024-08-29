@@ -90,7 +90,6 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
     const shareButtonCopy = await screen.findByRole("link", {
       name: "Share to Email",
     });
-    screen.debug(shareButtonCopy);
     expect(shareButtonCopy).not.toBeDisabled();
     const user = userEvent.setup();
     await user.click(shareButtonCopy);
@@ -105,7 +104,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
       emailSupplied: true,
       platform: "owa",
       product: "teacher lesson resources",
-      engagementIntent: "use",
+      engagementIntent: "advocate",
       componentType: "share_button",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",

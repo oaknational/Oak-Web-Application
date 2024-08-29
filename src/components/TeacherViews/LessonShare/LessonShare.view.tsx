@@ -161,7 +161,7 @@ export function LessonShare(props: LessonShareProps) {
       emailSupplied: isEmailSupplied,
       platform: "owa",
       product: "teacher lesson resources",
-      engagementIntent: "use",
+      engagementIntent: "advocate",
       componentType: "share_button",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
