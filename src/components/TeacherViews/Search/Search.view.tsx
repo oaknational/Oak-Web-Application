@@ -57,8 +57,15 @@ const Search: FC<SearchProps> = (props) => {
   }, [query.term, setSearchStartTime, status]);
 
   useEffect(() => {
+    const searchHasFilters =
+      router.query.keyStages ||
+      router.query.examBoards ||
+      router.query.contentTypes ||
+      router.query.subjects;
+
     if (
       !router.query.page &&
+      !searchHasFilters &&
       searchStartTime &&
       (status === "success" || status === "fail")
     ) {
@@ -75,6 +82,7 @@ const Search: FC<SearchProps> = (props) => {
         searchResultCount: hitCount,
         searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
       });
+
       setSearchStartTime(null);
     }
   }, [
@@ -177,7 +185,7 @@ const Search: FC<SearchProps> = (props) => {
       platform: "owa",
       product: "teacher lesson resources",
       engagementIntent: "refine",
-      componentType: "keystage_keypad_button",
+      componentType: "filter_link",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
       searchResultCount: hitCount,
