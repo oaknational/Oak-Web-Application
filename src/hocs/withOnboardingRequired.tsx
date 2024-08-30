@@ -12,7 +12,6 @@ export function withOnboardingRequired<P extends object>(
 ) {
   function WrappedComponent(props: Readonly<P>) {
     const { useUser } = useFeatureFlaggedClerk();
-    console.log("diego user", useUser().user);
     useRequireOnboarding();
 
     if (!useUser().user?.publicMetadata?.owa?.isOnboarded) {
