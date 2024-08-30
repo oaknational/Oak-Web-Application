@@ -1,3 +1,15 @@
+# [1.534.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.533.1...v1.534.0) (2024-08-30)
+
+
+### Bug Fixes
+
+* updated to mv_subject_phase_options_0_3 to filter out cycle 2 subjects ([41356ca](https://github.com/oaknational/Oak-Web-Application/commit/41356cafdb06e62b705ccc3f8e7e829e99da00c6))
+
+
+### Features
+
+* update MVs which filter out cycle 2 from curric visualiser until ready for launch ([91aed18](https://github.com/oaknational/Oak-Web-Application/commit/91aed18a2f80b72ed2d67669ce4c52aad2f7594e))
+
 ## [1.533.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.533.0...v1.533.1) (2024-08-28)
 
 # [1.533.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.532.0...v1.533.0) (2024-08-28)
