@@ -1,6 +1,7 @@
 import { act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import mockRouter from "next-router-mock";
 
 import Search from "./Search.view";
 import { SearchProps } from "./search.view.types";
@@ -178,6 +179,9 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
     },
   }),
 }));
+
+//const useRouter = jest.spyOn(require("next/router"), "useRouter");
+jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 const render = renderWithProviders();
 
@@ -408,6 +412,7 @@ describe("Search.page.tsx", () => {
     });
   });
   test("searchRefined function invoked when checked", () => {
+    mockRouter.query = { subjects: ["english"] };
     const { getByRole } = render(
       <SearchComponent {...props} {...resultsProps} />,
     );
@@ -418,16 +423,16 @@ describe("Search.page.tsx", () => {
     expect(onChange).toHaveBeenCalledTimes(1);
 
     expect(searchRefined).toHaveBeenCalledWith({
-      activeFilters: [],
+      activeFilters: ["english"],
       analyticsUseCase: "Teacher",
-      componentType: "keystage_keypad_button",
+      componentType: "filter_link",
       engagementIntent: "refine",
       eventVersion: "2.0.0",
       platform: "owa",
       product: "teacher lesson resources",
-      filterType: "Content type filter",
-      filterValue: "Units",
       searchResultCount: 1,
+      filterType: null,
+      filterValue: null,
     });
   });
   test("filter button becomes visible when focussed", async () => {

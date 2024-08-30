@@ -27,7 +27,6 @@ import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
-import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -62,34 +61,46 @@ const Search: FC<SearchProps> = (props) => {
       router.query.examBoards ||
       router.query.contentTypes ||
       router.query.subjects;
-
+    console.log("diego router", router);
     if (
       !router.query.page &&
-      !searchHasFilters &&
       searchStartTime &&
       (status === "success" || status === "fail")
     ) {
-      const searchEndTime = performance.now();
-
-      track.searchAccessed({
-        searchTerm: query.term,
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "refine",
-        componentType: "search_button",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        searchResultCount: hitCount,
-        searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
-      });
-
-      setSearchStartTime(null);
+      if (!searchHasFilters) {
+        const searchEndTime = performance.now();
+        track.searchAccessed({
+          searchTerm: query.term,
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "refine",
+          componentType: "search_button",
+          eventVersion: "2.0.0",
+          analyticsUseCase: "Teacher",
+          searchResultCount: hitCount,
+          searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
+        });
+        setSearchStartTime(null);
+      } else {
+        track.searchRefined({
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "refine",
+          componentType: "filter_link",
+          eventVersion: "2.0.0",
+          analyticsUseCase: "Teacher",
+          searchResultCount: hitCount,
+          activeFilters: getSortedSearchFiltersSelected(router.query),
+          filterType: null,
+          filterValue: null,
+        });
+      }
     }
   }, [
     analyticsUseCase,
     hitCount,
     query.term,
-    router.query,
+    router,
     searchStartTime,
     setSearchStartTime,
     status,
@@ -177,24 +188,6 @@ const Search: FC<SearchProps> = (props) => {
     }
   };
 
-  const searchRefined = (
-    filterType: FilterTypeValueType,
-    filterValue: string,
-  ) => {
-    track.searchRefined({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "refine",
-      componentType: "filter_link",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-      searchResultCount: hitCount,
-      filterType: filterType,
-      filterValue: filterValue,
-      activeFilters: getSortedSearchFiltersSelected(router.query),
-    });
-  };
-
   const [filterButtonFocussed, setFilterButtonFocussed] = useState(false);
 
   return (
@@ -252,10 +245,6 @@ const Search: FC<SearchProps> = (props) => {
                           {...contentTypeFilter}
                           onChange={() => {
                             contentTypeFilter.onChange();
-                            searchRefined(
-                              "Content type filter",
-                              contentTypeFilter.title,
-                            );
                           }}
                         />
                       );
@@ -273,11 +262,7 @@ const Search: FC<SearchProps> = (props) => {
                     $alignSelf={"flex-end"}
                   >
                     <OakBox $mt={["space-between-m", null, null]}>
-                      <SearchFilters
-                        {...searchFilters}
-                        searchRefined={searchRefined}
-                        isMobileFilter
-                      />
+                      <SearchFilters {...searchFilters} isMobileFilter />
                     </OakBox>
                   </MobileFilters>
                 </OakFlex>
@@ -320,7 +305,7 @@ const Search: FC<SearchProps> = (props) => {
                   Skip to results
                 </OakSecondaryButton>
               </OakFlex>
-              <SearchFilters {...searchFilters} searchRefined={searchRefined} />
+              <SearchFilters {...searchFilters} />
             </OakFlex>
           </OakGridArea>
           <OakGridArea
