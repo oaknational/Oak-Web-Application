@@ -122,10 +122,6 @@ const Search: FC<SearchProps> = (props) => {
         searchHit.type === "lesson" ? removeHTMLTags(searchHit.title) : "";
       const lessonSlug =
         searchHit.type === "lesson" ? searchHit.buttonLinkProps.lessonSlug : "";
-      const unitName =
-        searchHit.type === "unit" ? removeHTMLTags(searchHit.title) : "";
-      const unitSlug =
-        searchHit.type === "unit" ? searchHit.buttonLinkProps.unitSlug : "";
 
       track.searchResultExpanded({
         analyticsUseCase: analyticsUseCase,
@@ -139,8 +135,8 @@ const Search: FC<SearchProps> = (props) => {
         keyStageTitle: searchHit.keyStageTitle,
         subjectTitle: searchHit.subjectTitle,
         subjectSlug: searchHit.subjectSlug,
-        unitName,
-        unitSlug,
+        unitName: removeHTMLTags(searchHit.title),
+        unitSlug: searchHit.buttonLinkProps.unitSlug,
         searchRank: searchRank,
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
           router.query,
