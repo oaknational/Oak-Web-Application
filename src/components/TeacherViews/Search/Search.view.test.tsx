@@ -180,7 +180,6 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
   }),
 }));
 
-//const useRouter = jest.spyOn(require("next/router"), "useRouter");
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 const render = renderWithProviders();
