@@ -61,7 +61,7 @@ const Search: FC<SearchProps> = (props) => {
       router.query.examBoards ||
       router.query.contentTypes ||
       router.query.subjects;
-    console.log("diego router", router);
+
     if (
       !router.query.page &&
       searchStartTime &&
@@ -122,6 +122,10 @@ const Search: FC<SearchProps> = (props) => {
         searchHit.type === "lesson" ? removeHTMLTags(searchHit.title) : "";
       const lessonSlug =
         searchHit.type === "lesson" ? searchHit.buttonLinkProps.lessonSlug : "";
+      const unitName =
+        searchHit.type === "lesson"
+          ? removeHTMLTags(searchHit.unitTitle)
+          : removeHTMLTags(searchHit.title);
 
       track.searchResultExpanded({
         analyticsUseCase: analyticsUseCase,
@@ -135,7 +139,7 @@ const Search: FC<SearchProps> = (props) => {
         keyStageTitle: searchHit.keyStageTitle,
         subjectTitle: searchHit.subjectTitle,
         subjectSlug: searchHit.subjectSlug,
-        unitName: removeHTMLTags(searchHit.title),
+        unitName,
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         searchRank: searchRank,
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
