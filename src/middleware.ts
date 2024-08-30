@@ -1,16 +1,11 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { clerkMiddleware } from "@clerk/nextjs/server";
 
-const isProtectedRoute = createRouteMatcher([
-  "/teachers/programmes/(.*)/units/(.*)/lessons/(.*)/downloads-auth",
-]);
-
-export default clerkMiddleware((auth, req) => {
-  console.log("diego auth", auth());
-  if (isProtectedRoute(req)) {
-    auth().protect();
-  }
-});
+export default clerkMiddleware();
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    // "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    "/api/auth/onboarding",
+  ],
 };
