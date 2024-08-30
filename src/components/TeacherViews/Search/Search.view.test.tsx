@@ -406,7 +406,7 @@ describe("Search.page.tsx", () => {
       searchResultType: "lesson",
       subjectSlug: "subject-slug",
       subjectTitle: "subject title",
-      unitName: "lesson title",
+      unitName: "topic title1 ",
       unitSlug: "topic-slug",
     });
   });
