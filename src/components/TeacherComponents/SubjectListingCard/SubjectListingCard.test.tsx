@@ -14,7 +14,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      subjectSelected: (...args: unknown[]) => subjectSelected(...args),
+      browseRefined: (...args: unknown[]) => subjectSelected(...args),
     },
   }),
 }));
@@ -96,11 +96,15 @@ describe("SubjectListingCardDouble", () => {
 
     expect(subjectSelected).toHaveBeenCalledTimes(1);
     expect(subjectSelected).toHaveBeenCalledWith({
-      keyStageSlug: "ks4",
-      keyStageTitle: "Key stage 4",
-      subjectSlug: "biology",
-      subjectTitle: "Biology",
-      analyticsUseCase: null,
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "refine",
+      componentType: "subject_card",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      filterType: "Subject filter",
+      filterValue: "biology",
+      activeFilters: { keyStage: ["ks4"] },
     });
   });
 });

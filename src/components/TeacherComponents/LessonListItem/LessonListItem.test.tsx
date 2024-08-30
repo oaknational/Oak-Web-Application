@@ -1,13 +1,13 @@
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
 
-import LessonListItem from "./LessonListItem";
+import LessonListItem, { LessonListItemProps } from "./LessonListItem";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const onClick = jest.fn();
 
-const props = {
+const props: LessonListItemProps = {
   unitTitle: "Adding surds",
   programmeSlug: "maths-secondary-ks4-higher",
   expired: false,
@@ -19,8 +19,6 @@ const props = {
   subjectSlug: "maths",
   subjectTitle: "Maths",
   unitSlug: "adding-surds-a57d",
-  themeSlug: "number-n-56",
-  themeTitle: "Number (N)",
   quizCount: 1,
   videoCount: 1,
   presentationCount: 1,
@@ -29,6 +27,8 @@ const props = {
   hitCount: 10,
   index: 3,
   currentPage: 1,
+  yearSlug: "higher",
+  yearTitle: "Higher",
   onClick: onClick,
 };
 

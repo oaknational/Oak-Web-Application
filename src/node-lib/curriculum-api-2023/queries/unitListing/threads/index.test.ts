@@ -54,6 +54,7 @@ describe("unit listing threads", () => {
           keyStageTitle: "Key Stage 2",
           yearTitle: "Year 4",
           yearOrder: 1,
+          year: "year-4",
           unitStudyOrder: 1,
           cohort: "cohort",
           lessonCount: 1,

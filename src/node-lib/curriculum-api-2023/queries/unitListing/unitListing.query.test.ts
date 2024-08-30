@@ -156,6 +156,7 @@ describe("unitListing()", () => {
             expired: false,
             expiredLessonCount: 1,
             yearTitle: "Year 1",
+            year: "year-1",
             yearOrder: 1,
             cohort: "2023-2024",
             learningThemes: [{ themeTitle: "Theme 1", themeSlug: "theme1" }],
