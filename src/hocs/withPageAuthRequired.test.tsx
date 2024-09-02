@@ -14,10 +14,10 @@ import {
 
 jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
-function MockRedirectToSignIn() {
-  return <div data-testid="redirectToSignIn" />;
+function MockRedirectToSignUp() {
+  return <div data-testid="redirectToSignUp" />;
 }
-MockRedirectToSignIn.displayName = "MockRedirectToSignIn";
+MockRedirectToSignUp.displayName = "MockRedirectToSignUp";
 
 describe(withPageAuthRequired, () => {
   const OriginalComponent = () => <div data-testid="canary" />;
@@ -25,7 +25,7 @@ describe(withPageAuthRequired, () => {
 
   beforeEach(() => {
     enableMockClerk({
-      RedirectToSignIn: MockRedirectToSignIn,
+      RedirectToSignUp: MockRedirectToSignUp,
     });
     setUseUserReturn(mockLoadingUser);
   });
@@ -61,10 +61,10 @@ describe(withPageAuthRequired, () => {
       setUseUserReturn(mockLoggedOut);
     });
 
-    it("redirects the user to sign-in", () => {
+    it.only("redirects the user to sign-up", () => {
       render(<Subject />);
 
-      expect(screen.queryByTestId("redirectToSignIn")).toBeInTheDocument();
+      expect(screen.queryByTestId("redirectToSignUp")).toBeInTheDocument();
     });
   });
 
