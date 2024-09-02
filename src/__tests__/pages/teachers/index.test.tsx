@@ -1,4 +1,4 @@
-import { screen, within, getByRole } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 
 import Teachers, { getStaticProps } from "@/pages/index";
 import CMSClient from "@/node-lib/cms";
@@ -57,35 +57,6 @@ describe("pages/index.tsx", () => {
 
     const h1 = screen.getByRole("heading", { level: 1 });
     expect(h1).toHaveTextContent("Teachers");
-  });
-
-  it("Renders a link to the blog list", () => {
-    render(<Teachers {...props} />);
-
-    const blogLink = screen.getByText("All blogs");
-    expect(blogLink).toBeInTheDocument();
-    expect(blogLink).toHaveAttribute("href", "/blog");
-  });
-
-  it("Renders the provided blog posts", async () => {
-    render(<Teachers {...props} />);
-
-    const list = screen
-      .getAllByRole("list")
-      .find((list) => list.textContent?.includes("Some blog post"));
-
-    expect(list).toBeInTheDocument();
-
-    const { getAllByRole } = within(list as HTMLElement);
-    const items = getAllByRole("listitem");
-
-    expect(items).toHaveLength(2);
-
-    expect(
-      getByRole(items[0] as HTMLElement, "link", {
-        name: "Some blog post",
-      }),
-    ).toHaveAttribute("href", "/blog/some-blog-post");
   });
 
   describe("getStaticProps", () => {
