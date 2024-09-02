@@ -1,4 +1,6 @@
 import { GetServerSidePropsContext, PreviewData } from "next";
+import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 
 import ProgrammesListingPage, {
   getStaticPaths,
@@ -13,7 +15,88 @@ import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
 
 const render = renderWithProviders();
 
+const programmesWithExamboards = [
+  {
+    programmeSlug: "maths-secondary-ks4-aqa",
+    subjectTitle: "Maths",
+    tierSlug: null,
+    tierTitle: null,
+    tierDisplayOrder: 1,
+    examBoardSlug: "aqa",
+    examBoardTitle: "AQA",
+    examBoardDisplayOrder: 1,
+  },
+  {
+    programmeSlug: "maths-secondary-ks4-edexcel",
+    subjectTitle: "Maths",
+    tierSlug: null,
+    tierTitle: null,
+    tierDisplayOrder: 3,
+    examBoardSlug: "edexcel",
+    examBoardTitle: "Edexcel",
+    examBoardDisplayOrder: 1,
+  },
+];
+const programmesWithTiersAndExamboards = [
+  {
+    programmeSlug: "maths-secondary-ks4-foundation",
+    subjectTitle: "Maths",
+    tierSlug: "foundation",
+    tierTitle: "Foundation",
+    tierDisplayOrder: 1,
+    examBoardSlug: "aqa",
+    examBoardTitle: "AQA",
+    examBoardDisplayOrder: 1,
+  },
+  {
+    programmeSlug: "maths-secondary-ks4-higher",
+    subjectTitle: "Maths",
+    tierSlug: "higher",
+    tierTitle: "Higher",
+    tierDisplayOrder: 1,
+    examBoardSlug: "aqa",
+    examBoardTitle: "AQA",
+    examBoardDisplayOrder: 1,
+  },
+  {
+    programmeSlug: "maths-secondary-ks4-higher",
+    subjectTitle: "Maths",
+    tierSlug: "higher",
+    tierTitle: "Higher",
+    tierDisplayOrder: 3,
+    examBoardSlug: "edexcel",
+    examBoardTitle: "Edexcel",
+    examBoardDisplayOrder: 1,
+  },
+
+  {
+    programmeSlug: "maths-secondary-ks4-foundation",
+    subjectTitle: "Maths",
+    tierSlug: "foundation",
+    tierTitle: "Foundation",
+    tierDisplayOrder: 3,
+    examBoardSlug: "edexcel",
+    examBoardTitle: "Edexcel",
+    examBoardDisplayOrder: 1,
+  },
+];
+
+const programmeSelected = jest.fn();
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: (...args: unknown[]) => programmeSelected(...args),
+    },
+  }),
+}));
+
 describe("programmes listing page", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.resetModules();
+  });
   describe("component rendering on page", () => {
     it("renders title from props ", () => {
       const { getByRole } = render(
@@ -106,28 +189,7 @@ describe("programmes listing page", () => {
       const { seo } = renderWithSeo()(
         <ProgrammesListingPage
           {...programmeListingFixture({
-            programmes: [
-              {
-                programmeSlug: "maths-secondary-ks4-foundation",
-                subjectTitle: "Maths",
-                tierSlug: null,
-                tierTitle: null,
-                tierDisplayOrder: 1,
-                examBoardSlug: "aqa",
-                examBoardTitle: "AQA",
-                examBoardDisplayOrder: 1,
-              },
-              {
-                programmeSlug: "maths-secondary-ks4-higher",
-                subjectTitle: "Maths",
-                tierSlug: null,
-                tierTitle: null,
-                tierDisplayOrder: 3,
-                examBoardSlug: "aqa",
-                examBoardTitle: "AQA",
-                examBoardDisplayOrder: 1,
-              },
-            ],
+            programmes: programmesWithExamboards,
           })}
         />,
       );
@@ -148,28 +210,7 @@ describe("programmes listing page", () => {
       const { seo } = renderWithSeo()(
         <ProgrammesListingPage
           {...programmeListingFixture({
-            programmes: [
-              {
-                programmeSlug: "maths-secondary-ks4-foundation",
-                subjectTitle: "Maths",
-                tierSlug: "foundation",
-                tierTitle: "Foundation",
-                tierDisplayOrder: 1,
-                examBoardSlug: "aqa",
-                examBoardTitle: "AQA",
-                examBoardDisplayOrder: 1,
-              },
-              {
-                programmeSlug: "maths-secondary-ks4-higher",
-                subjectTitle: "Maths",
-                tierSlug: "higher",
-                tierTitle: "Higher",
-                tierDisplayOrder: 3,
-                examBoardSlug: "aqa",
-                examBoardTitle: "AQA",
-                examBoardDisplayOrder: 1,
-              },
-            ],
+            programmes: programmesWithTiersAndExamboards,
           })}
         />,
       );
@@ -186,6 +227,80 @@ describe("programmes listing page", () => {
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
         robots: "index,follow",
+      });
+    });
+    it("should track a browse refined event when programme with tiers is selected", async () => {
+      render(<ProgrammesListingPage {...programmeListingFixture()} />);
+
+      const programmeCard = screen.getByRole("link", { name: "Foundation" });
+      await userEvent.click(programmeCard);
+      expect(programmeSelected).toHaveBeenCalledWith({
+        activeFilters: {
+          keyStage: ["ks4"],
+          subject: ["maths-l"],
+        },
+        analyticsUseCase: "Teacher",
+        componentType: "programme_card",
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        filterType: "Tier filter",
+        filterValue: "Foundation",
+        platform: "owa",
+        product: "teacher lesson resources",
+      });
+    });
+    it("should track a browse refined event when programme with examboards is selected", async () => {
+      render(
+        <ProgrammesListingPage
+          {...programmeListingFixture({
+            programmes: programmesWithExamboards,
+          })}
+        />,
+      );
+
+      const programmeCard = screen.getByRole("link", { name: "AQA" });
+      await userEvent.click(programmeCard);
+      expect(programmeSelected).toHaveBeenCalledWith({
+        activeFilters: {
+          keyStage: ["ks4"],
+          subject: ["maths-l"],
+        },
+        analyticsUseCase: "Teacher",
+        componentType: "programme_card",
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        filterType: "Exam board filter",
+        filterValue: "AQA",
+        platform: "owa",
+        product: "teacher lesson resources",
+      });
+    });
+    it("should track a browse refined event when programme with tiers and examboards is selected", async () => {
+      render(
+        <ProgrammesListingPage
+          {...programmeListingFixture({
+            programmes: programmesWithTiersAndExamboards,
+          })}
+        />,
+      );
+      const programmeCard = screen.getByRole("link", {
+        name: "Foundation AQA",
+      });
+      await userEvent.click(programmeCard);
+
+      expect(programmeSelected).toHaveBeenCalledWith({
+        activeFilters: {
+          keyStage: ["ks4"],
+          subject: ["maths-l"],
+        },
+        analyticsUseCase: "Teacher",
+        componentType: "programme_card",
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        filterType: "Exam board / tier filter",
+        filterValue: "AQA, Foundation",
+        platform: "owa",
+        product: "teacher lesson resources",
       });
     });
   });

@@ -14,7 +14,7 @@ import { UnitData } from "@/node-lib/curriculum-api-2023/queries/unitListing/uni
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],
-  "year" | "unitStudyOrder"
+  "unitStudyOrder"
 > &
   UnitListProps;
 

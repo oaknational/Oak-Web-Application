@@ -21,12 +21,20 @@ export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   keyStageTitle: string;
   unitSlug: string;
   unitTitle: string;
+  yearSlug: string;
+  yearTitle: string;
   hideTopHeading?: boolean;
   hitCount?: number;
   index: number;
   currentPage?: number;
   firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
   onClick: (props: LessonListItemProps | SpecialistLessonListItemProps) => void;
+};
+
+export const isLessonListItem = (
+  u: LessonListItemProps | SpecialistLesson,
+): u is LessonListItemProps => {
+  return (u as LessonListItemProps).programmeSlug !== undefined;
 };
 
 export type SpecialistLessonListItemProps = SpecialistLesson & {

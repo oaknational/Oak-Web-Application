@@ -4,8 +4,6 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 import { ResolveOakHrefProps } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
-import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { PixelSpacing } from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -29,22 +27,23 @@ const CategoryFilterListItem = <T extends CategoryLinkProps>(
   const arrowHidden = !isSelected;
 
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const onClick = () => {
     setSelected(linkProps);
 
     if (trackingProps) {
-      const { keyStageTitle, keyStageSlug, subjectTitle, subjectSlug } =
-        trackingProps;
+      const { keyStageSlug, subjectSlug } = trackingProps;
 
-      track.learningThemeSelected({
-        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-        keyStageSlug,
-        subjectTitle,
-        subjectSlug,
-        analyticsUseCase,
-        learningThemeName: label,
+      track.browseRefined({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "refine",
+        componentType: "filter_link",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        filterType: "Learning theme filter",
+        filterValue: label,
+        activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
       });
     }
   };

@@ -27,7 +27,6 @@ import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
-import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -40,11 +39,9 @@ const Search: FC<SearchProps> = (props) => {
     searchStartTime,
     setSearchStartTime,
   } = props;
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const router = useRouter();
-
   const hitCount = results.length;
 
   const shouldShowError = status === "fail";
@@ -59,29 +56,51 @@ const Search: FC<SearchProps> = (props) => {
   }, [query.term, setSearchStartTime, status]);
 
   useEffect(() => {
+    const searchHasFilters =
+      router.query.keyStages ||
+      router.query.examBoards ||
+      router.query.contentTypes ||
+      router.query.subjects;
+
     if (
       !router.query.page &&
       searchStartTime &&
       (status === "success" || status === "fail")
     ) {
-      const searchEndTime = performance.now();
-
-      track.searchResultsDisplayed({
-        searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query,
-        ),
-        searchResultCount: hitCount,
-        analyticsUseCase: analyticsUseCase,
-        context: "search",
-        searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
-      });
-      setSearchStartTime(null);
+      if (!searchHasFilters) {
+        const searchEndTime = performance.now();
+        track.searchAccessed({
+          searchTerm: query.term,
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "refine",
+          componentType: "search_button",
+          eventVersion: "2.0.0",
+          analyticsUseCase: "Teacher",
+          searchResultCount: hitCount,
+          searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
+        });
+        setSearchStartTime(null);
+      } else {
+        track.searchRefined({
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "refine",
+          componentType: "filter_link",
+          eventVersion: "2.0.0",
+          analyticsUseCase: "Teacher",
+          searchResultCount: hitCount,
+          activeFilters: getSortedSearchFiltersSelected(router.query),
+          filterType: null,
+          filterValue: null,
+        });
+      }
     }
   }, [
     analyticsUseCase,
     hitCount,
     query.term,
-    router.query,
+    router,
     searchStartTime,
     setSearchStartTime,
     status,
@@ -99,16 +118,28 @@ const Search: FC<SearchProps> = (props) => {
       searchHit.isToggleOpen &&
       isKeyStageTitleValueType(searchHit.keyStageTitle)
     ) {
+      const lessonName =
+        searchHit.type === "lesson" ? removeHTMLTags(searchHit.title) : "";
+      const lessonSlug =
+        searchHit.type === "lesson" ? searchHit.buttonLinkProps.lessonSlug : "";
+      const unitName =
+        searchHit.type === "lesson"
+          ? removeHTMLTags(searchHit.unitTitle)
+          : removeHTMLTags(searchHit.title);
+
       track.searchResultExpanded({
+        analyticsUseCase: analyticsUseCase,
+        componentType: "search_result_item",
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        platform: "owa",
+        product: "teacher lesson resources",
         context: "search",
-        keyStageSlug: searchHit.keyStageSlug || "",
+        keyStageSlug: searchHit.keyStageSlug,
         keyStageTitle: searchHit.keyStageTitle,
         subjectTitle: searchHit.subjectTitle,
         subjectSlug: searchHit.subjectSlug,
-        unitName:
-          searchHit.type === "lesson"
-            ? removeHTMLTags(searchHit.unitTitle)
-            : removeHTMLTags(searchHit.title),
+        unitName,
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         searchRank: searchRank,
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
@@ -116,11 +147,8 @@ const Search: FC<SearchProps> = (props) => {
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName: removeHTMLTags(searchHit.title),
-        lessonSlug:
-          searchHit.type === "lesson"
-            ? searchHit.buttonLinkProps.lessonSlug
-            : "",
+        lessonName,
+        lessonSlug,
       });
     }
   };
@@ -158,18 +186,6 @@ const Search: FC<SearchProps> = (props) => {
         context: "search",
       });
     }
-  };
-
-  const searchRefined = (
-    filterType: FilterTypeValueType,
-    filterValue: string,
-  ) => {
-    track.searchRefined({
-      context: "search",
-      searchResultCount: hitCount,
-      filterType: filterType,
-      filterValue: filterValue,
-    });
   };
 
   const [filterButtonFocussed, setFilterButtonFocussed] = useState(false);
@@ -229,10 +245,6 @@ const Search: FC<SearchProps> = (props) => {
                           {...contentTypeFilter}
                           onChange={() => {
                             contentTypeFilter.onChange();
-                            searchRefined(
-                              "Content type filter",
-                              contentTypeFilter.title,
-                            );
                           }}
                         />
                       );
@@ -250,11 +262,7 @@ const Search: FC<SearchProps> = (props) => {
                     $alignSelf={"flex-end"}
                   >
                     <OakBox $mt={["space-between-m", null, null]}>
-                      <SearchFilters
-                        {...searchFilters}
-                        searchRefined={searchRefined}
-                        isMobileFilter
-                      />
+                      <SearchFilters {...searchFilters} isMobileFilter />
                     </OakBox>
                   </MobileFilters>
                 </OakFlex>
@@ -297,7 +305,7 @@ const Search: FC<SearchProps> = (props) => {
                   Skip to results
                 </OakSecondaryButton>
               </OakFlex>
-              <SearchFilters {...searchFilters} searchRefined={searchRefined} />
+              <SearchFilters {...searchFilters} />
             </OakFlex>
           </OakGridArea>
           <OakGridArea
