@@ -1,13 +1,17 @@
 import { getBlogPosts } from "./getBlogPosts";
 
-import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
+import {
+  BlogPostPreview,
+  HomePage,
+  WebinarPreview,
+} from "@/common-lib/cms-types";
 import CMSClient from "@/node-lib/cms";
 
 jest.mock("src/node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-const pageData = {
+const pageData: HomePage = {
   heading: "",
   id: "",
   summaryPortableText: [],
