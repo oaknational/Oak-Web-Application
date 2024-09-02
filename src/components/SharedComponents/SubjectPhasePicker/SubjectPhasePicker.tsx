@@ -2,7 +2,13 @@ import { FC, useEffect, useState, useRef, useId } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { OakHeading, OakP, OakSpan } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakP,
+  OakSecondaryButton,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Svg from "@/components/SharedComponents/Svg";
@@ -88,6 +94,34 @@ const ButtonContainer = styled.div`
     }
   }
 
+  &.lot-picker {
+    button {
+      border-radius: var(--Border-Radius-border-radius-s, 4px);
+      border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
+      background: var(--Tokens-Background-bg-primary, #fff);
+
+      :hover {
+        /* drop-shadow-focus */
+        box-shadow:
+          0px 0px 0px 2px #ffe555,
+          0px 0px 0px 5px #575757;
+      }
+    }
+
+    div {
+      justify-content: flex-start;
+    }
+  }
+
+  &.selected {
+    button {
+      border-radius: var(--Border-Radius-border-radius-s, 4px);
+      border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
+      background-color: #222222;
+      color: #fff;
+    }
+  }
+
   &.selected img {
     filter: invert(1);
   }
@@ -96,6 +130,12 @@ const ButtonContainer = styled.div`
 const SchoolPhaseDropDownBox = styled(Box)<object>`
   width: 204%;
   left: -104%;
+  border-radius: 4px;
+  border: 2px solid var(--Tokens-Border-border-primary, #222);
+  background: var(--Primitives-Brand-white, #fff);
+
+  /* drop-shadow-standard */
+  box-shadow: 0px 8px 8px 0px rgba(92, 92, 92, 0.2);
 
   @media (min-width: 768px) {
     width: 100%;
@@ -250,17 +290,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       router.push({
         pathname: `/teachers/curriculum/${subjectPhaseSlug}/${tab}`,
       });
-    }
-  };
-
-  const phaseLabel = (phase: Phase) => {
-    switch (phase.slug) {
-      case "primary":
-        return "Primary\r\nKey Stage 1&2\r\nYears 1-6";
-      case "secondary":
-        return "Secondary\r\nKey Stage 3&4\r\nYears 7-11";
-      default:
-        throw new Error("Invalid phase: " + phase.title);
     }
   };
 
@@ -576,7 +605,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $top={"100%"}
                 $zIndex={"inFront"}
               >
-                <BoxBorders />
                 <FocusOn
                   autoFocus={false}
                   onClickOutside={() => setShowPhases(false)}
@@ -616,30 +644,40 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     $mb="space-between-s"
                     data-testid="phaseDropdownHeading"
                   >
-                    Choose a school phase:
+                    Choose a school phase
                   </OakHeading>
-                  <Box
+                  <OakFlex
                     radioGroup="radiogroup"
                     aria-labelledby={schoolPhaseInputId}
                     aria-required="true"
                     aria-describedby={showPhaseError ? phaseErrorId : undefined}
+                    $flexDirection={"column"}
+                    $gap={"space-between-s"}
                   >
-                    {(selectedSubject?.phases ?? phases).map((phase, index) => (
-                      <ButtonContainer className="multi-line" key={phase.slug}>
-                        <Button
+                    {(selectedSubject?.phases ?? phases).map((phase) => (
+                      <ButtonContainer
+                        className={`lot-picker ${
+                          isSelected(phase) ? "selected" : ""
+                        }`}
+                        key={phase.slug}
+                      >
+                        <OakSecondaryButton
+                          key={phase.slug}
                           role="radio"
-                          $mr={index === 0 ? 28 : 0}
-                          $mb={index === 0 ? 16 : 0}
-                          $mv={8}
-                          background={isSelected(phase) ? "black" : "grey20"}
-                          label={phaseLabel(phase)}
+                          pv={"inner-padding-s"}
+                          ph={"inner-padding-s"}
+                          width={"100%"}
                           onClick={() => handleSelectPhase(phase)}
                           aria-checked={isSelected(phase)}
                           title={phase.title}
-                        />
+                          textAlign={"start"}
+                        >
+                          {phase.title}
+                          <OakP $font={"body-2"}>Key stage 1 and 2</OakP>
+                        </OakSecondaryButton>
                       </ButtonContainer>
                     ))}
-                  </Box>
+                  </OakFlex>
                   {selectedPhase?.slug === "secondary" &&
                     selectedSubject?.examboards && (
                       <>
@@ -650,39 +688,37 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           tag={"h4"}
                           $font={"heading-6"}
                         >
-                          Choose an exam board for KS4:
+                          Choose an option for KS4
                         </OakHeading>
 
-                        <Box
+                        <OakFlex
                           role="radiogroup"
                           aria-labelledby={examBoardInputId}
                           aria-required="true"
                           aria-describedby={
                             showExamboardError ? examboardErrorId : undefined
                           }
+                          $flexDirection={"row"}
+                          $gap={"all-spacing-2"}
                         >
-                          {selectedSubject.examboards.map(
-                            (examboard, index) => (
-                              <ButtonContainer key={examboard.slug}>
-                                <Button
-                                  role="radio"
-                                  $mr={24}
-                                  $mt={index >= 2 ? [16, 0] : 0}
-                                  background={
-                                    isSelected(examboard) ? "black" : "grey20"
-                                  }
-                                  label={examboard.title}
-                                  onClick={() =>
-                                    handleSelectExamboard(examboard)
-                                  }
-                                  size="large"
-                                  title={examboard.title}
-                                  aria-checked={isSelected(examboard)}
-                                />
-                              </ButtonContainer>
-                            ),
-                          )}
-                        </Box>
+                          {selectedSubject.examboards.map((examboard) => (
+                            <ButtonContainer
+                              key={examboard.slug}
+                              className={`lot-picker ${
+                                isSelected(examboard) ? "selected" : ""
+                              }`}
+                            >
+                              <OakSecondaryButton
+                                role="radio"
+                                onClick={() => handleSelectExamboard(examboard)}
+                                title={examboard.title}
+                                aria-checked={isSelected(examboard)}
+                              >
+                                {examboard.title}
+                              </OakSecondaryButton>
+                            </ButtonContainer>
+                          ))}
+                        </OakFlex>
                       </>
                     )}
                 </FocusOn>
