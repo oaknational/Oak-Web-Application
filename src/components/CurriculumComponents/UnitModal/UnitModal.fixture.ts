@@ -41,6 +41,7 @@ export const mockUnit: Unit = {
   subject_parent_slug: null,
   subject_slug: "maths",
   tags: null,
+  subjectcategories: null,
   threads: [
     {
       slug: "number-addition-and-subtraction",
@@ -81,6 +82,7 @@ export const mockUnitKS4: Unit = {
   subject_parent_slug: null,
   subject_slug: "maths",
   tags: null,
+  subjectcategories: null,
   threads: [
     {
       slug: "number-addition-and-subtraction",

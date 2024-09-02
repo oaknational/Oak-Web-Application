@@ -62,6 +62,7 @@ export const getTransformedUnit = (
     tierTitle: unit.programme_fields.tier_description,
     examBoardSlug: unit.programme_fields.examboard_slug,
     examBoardTitle: unit.programme_fields.examboard,
+    yearSlug: unit.programme_fields.year_slug,
     yearTitle: unit.programme_fields.year_description,
     lessons: parsedLessons,
   };

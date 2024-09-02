@@ -1,0 +1,28 @@
+query pupilPreviewLesson($lessonSlug: String!) {
+  content: published_mv_lesson_content_new_2_0_0(
+    where: { lesson_slug: { _eq: $lessonSlug } }
+  ) {
+    lesson_id
+    lesson_title
+    lesson_slug
+    deprecated_fields
+    is_legacy
+    misconceptions_and_common_mistakes
+    equipment_and_resources
+    teacher_tips
+    key_learning_points
+    pupil_lesson_outcome
+    lesson_keywords
+    content_guidance
+    video_mux_playback_id
+    video_id
+    video_with_sign_language_mux_playback_id
+    transcript_sentences
+    starter_quiz
+    starter_quiz_id
+    exit_quiz
+    exit_quiz_id
+    supervision_level
+    video_title
+  }
+}

@@ -22,6 +22,7 @@ const ERROR_CODES = [
   "preview/zod-error",
   "cms/invalid-reference-data",
   "cms/invalid-hubspot-form",
+  "getRefreshedMVTime/params-incorrect",
   "curriculum-api/not-found",
   "curriculum-api/uniqueness-assumption-violated",
   "curriculum-api/params-incorrect",
@@ -29,6 +30,7 @@ const ERROR_CODES = [
   "urls/failed-to-resolve",
   "downloads/failed-to-fetch",
   "downloads/check-files-failed",
+  "onboarding/request-error",
 ] as const;
 export type ErrorCode = (typeof ERROR_CODES)[number];
 
@@ -125,6 +127,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     shouldNotify: true,
     responseStatusCode: 500,
   },
+  "getRefreshedMVTime/params-incorrect": {
+    message: "The params provided are incorrect",
+    shouldNotify: true,
+    responseStatusCode: 404,
+  },
   "curriculum-api/not-found": {
     message: "Resource not found",
     shouldNotify: false,
@@ -154,6 +161,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "downloads/check-files-failed": {
     message: "Failed to check file existence",
+    shouldNotify: true,
+  },
+  "onboarding/request-error": {
+    message: "Onboarding request failed",
     shouldNotify: true,
   },
 };

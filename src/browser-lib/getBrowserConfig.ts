@@ -174,6 +174,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
   },
+  hubspotOnboardingFormId: {
+    value: process.env.NEXT_PUBLIC_HUBSPOT_ONBOARDING_FORM_ID,
+    envName: "NEXT_PUBLIC_HUBSPOT_ONBOARDING_FORM_ID",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+  },
   hubspotFallbackFormId: {
     value: process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID,
     envName: "NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID",
@@ -341,6 +348,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: true,
     default: null,
     description: "URL to log the first user visit to",
+  },
+  developmentUserRegion: {
+    value: process.env.DEVELOPMENT_USER_REGION,
+    envName: "DEVELOPMENT_USER_REGION",
+    required: false,
+    availableInBrowser: false,
+    default: null,
+    description:
+      "The region to use in authentication when running in development mode",
   },
 });
 

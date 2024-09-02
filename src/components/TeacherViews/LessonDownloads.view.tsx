@@ -1,6 +1,11 @@
 import { useMemo, useState } from "react";
+import {
+  examboards,
+  tierDescriptions,
+} from "@oaknational/oak-curriculum-schema";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
+import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -17,7 +22,6 @@ import {
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import DownloadCardGroup from "@/components/TeacherComponents/DownloadCardGroup";
 import debouncedSubmit from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import {
   getLessonOverviewBreadCrumb,
   getLessonDownloadsBreadCrumb,
@@ -43,6 +47,7 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
 import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -54,6 +59,7 @@ type BaseLessonDownload = {
   copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
+  isDownloadRegionRestricted: boolean;
 };
 
 type CanonicalLesson = BaseLessonDownload & {
@@ -126,7 +132,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonCohort,
   } = commonPathway;
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
   const isLegacyDownload = !lessonCohort || lessonCohort === LEGACY_COHORT;
 
   const onwardContent = lesson.nextLessons
@@ -213,6 +218,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         selectedResources,
       });
 
+      const examboard = examboards.safeParse(
+        (commonPathway as LessonPathway).examBoardTitle,
+      );
+      const tier = tierDescriptions.safeParse(
+        (commonPathway as LessonPathway).tierTitle,
+      );
       track.lessonResourcesDownloaded({
         keyStageTitle: keyStageTitle as KeyStageTitleValueType,
         keyStageSlug,
@@ -223,12 +234,19 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         lessonName: lessonTitle,
         lessonSlug,
         resourceType: selectedResourcesForTracking,
-        analyticsUseCase,
         schoolUrn,
         schoolName,
         schoolOption,
         onwardContent,
         emailSupplied: data?.email ? true : false,
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "use",
+        analyticsUseCase: "Teacher",
+        eventVersion: "2.0.0",
+        examBoard: examboard.success ? examboard.data : null,
+        tierName: tier.success ? tier.data : null,
+        componentType: "lesson_download_button",
       });
     } catch (error) {
       setIsAttemptingDownload(false);
@@ -250,6 +268,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     !hasResources ||
     Boolean(expired) ||
     downloadsFilteredByCopyright.length === 0;
+
+  const { user } = useFeatureFlaggedClerk().useUser();
 
   return (
     <Box $ph={[16, null]} $background={"grey20"}>
@@ -288,74 +308,87 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           />
           <Hr $color={"grey60"} $mt={24} />
         </Box>
-        {!isDownloadSuccessful && (
-          <ResourcePageLayout
-            page={"download"}
-            errors={form.errors}
-            handleToggleSelectAll={handleToggleSelectAll}
-            selectAllChecked={selectAllChecked}
-            header="Download"
-            showNoResources={showNoResources}
-            showLoading={isLocalStorageLoading}
-            email={emailFromLocalStorage}
-            school={schoolNameFromLocalStorage}
-            schoolId={schoolIdFromLocalStorage}
-            setSchool={setSchool}
-            showSavedDetails={shouldDisplayDetailsCompleted}
-            onEditClick={handleEditDetailsCompletedClick}
-            register={form.register}
-            control={form.control}
-            showPostAlbCopyright={!isLegacyDownload}
-            resourcesHeader="Lesson resources"
-            triggerForm={form.trigger}
-            apiError={apiError}
-            hideSelectAll={Boolean(expired)}
-            updatedAt={updatedAt}
-            withHomeschool={true}
-            cardGroup={
-              !showNoResources && (
-                <DownloadCardGroup
-                  control={form.control}
-                  downloads={downloadsFilteredByCopyright}
-                  hasError={form.errors?.resources ? true : false}
-                  triggerForm={form.trigger}
-                />
-              )
-            }
-            cta={
-              <LoadingButton
-                type="button"
-                onClick={
-                  (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
-                }
-                text={"Download .zip"}
-                icon={"download"}
-                isLoading={isAttemptingDownload}
-                disabled={
-                  hasFormErrors ||
-                  noResourcesSelected ||
-                  showNoResources ||
-                  (!form.formState.isValid && !localStorageDetails)
-                }
-                loadingText={"Downloading..."}
+        {(() => {
+          if (
+            user &&
+            lesson.isDownloadRegionRestricted &&
+            !user.publicMetadata.owa?.isRegionAuthorised
+          ) {
+            return <LessonDownloadRegionBlocked />;
+          }
+
+          if (isDownloadSuccessful) {
+            return (
+              <DownloadConfirmation
+                lessonSlug={lessonSlug}
+                lessonTitle={lessonTitle}
+                unitSlug={unitSlug}
+                unitTitle={unitTitle}
+                programmeSlug={programmeSlug}
+                data-testid="downloads-confirmation"
+                isCanonical={props.isCanonical}
+                nextLessons={lesson.nextLessons}
+                onwardContentSelected={onwardContentSelected}
+                isSpecialist={isSpecialist}
               />
-            }
-          />
-        )}
-        <Box $display={isDownloadSuccessful ? "block" : "none"}>
-          <DownloadConfirmation
-            lessonSlug={lessonSlug}
-            lessonTitle={lessonTitle}
-            unitSlug={unitSlug}
-            unitTitle={unitTitle}
-            programmeSlug={programmeSlug}
-            data-testid="downloads-confirmation"
-            isCanonical={props.isCanonical}
-            nextLessons={lesson.nextLessons}
-            onwardContentSelected={onwardContentSelected}
-            isSpecialist={isSpecialist}
-          />
-        </Box>
+            );
+          }
+
+          return (
+            <ResourcePageLayout
+              page={"download"}
+              errors={form.errors}
+              handleToggleSelectAll={handleToggleSelectAll}
+              selectAllChecked={selectAllChecked}
+              header="Download"
+              showNoResources={showNoResources}
+              showLoading={isLocalStorageLoading}
+              email={emailFromLocalStorage}
+              school={schoolNameFromLocalStorage}
+              schoolId={schoolIdFromLocalStorage}
+              setSchool={setSchool}
+              showSavedDetails={shouldDisplayDetailsCompleted}
+              onEditClick={handleEditDetailsCompletedClick}
+              register={form.register}
+              control={form.control}
+              showPostAlbCopyright={!isLegacyDownload}
+              resourcesHeader="Lesson resources"
+              triggerForm={form.trigger}
+              apiError={apiError}
+              hideSelectAll={Boolean(expired)}
+              updatedAt={updatedAt}
+              withHomeschool={true}
+              cardGroup={
+                !showNoResources && (
+                  <DownloadCardGroup
+                    control={form.control}
+                    downloads={downloadsFilteredByCopyright}
+                    hasError={form.errors?.resources ? true : false}
+                    triggerForm={form.trigger}
+                  />
+                )
+              }
+              cta={
+                <LoadingButton
+                  type="button"
+                  onClick={
+                    (event) => void form.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+                  }
+                  text={"Download .zip"}
+                  icon={"download"}
+                  isLoading={isAttemptingDownload}
+                  disabled={
+                    hasFormErrors ||
+                    noResourcesSelected ||
+                    showNoResources ||
+                    (!form.formState.isValid && !localStorageDetails)
+                  }
+                  loadingText={"Downloading..."}
+                />
+              }
+            />
+          );
+        })()}
       </MaxWidth>
     </Box>
   );
