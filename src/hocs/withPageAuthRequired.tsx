@@ -12,7 +12,7 @@ export function withPageAuthRequired<P extends object>(
   FallbackComponent?: ComponentType<PropsWithChildren>,
 ) {
   function WrappedComponent(props: P) {
-    const { useUser, RedirectToSignIn } = useFeatureFlaggedClerk();
+    const { useUser, RedirectToSignUp } = useFeatureFlaggedClerk();
     const { isSignedIn, isLoaded } = useUser();
 
     if (!isLoaded) {
@@ -32,7 +32,7 @@ export function withPageAuthRequired<P extends object>(
     }
 
     if (!isSignedIn) {
-      return <RedirectToSignIn />;
+      return <RedirectToSignUp />;
     }
 
     return null;

@@ -1,6 +1,7 @@
 import {
   ClerkProvider,
   RedirectToSignIn,
+  RedirectToSignUp,
   SignedIn,
   SignedOut,
   SignOutButton,
@@ -20,6 +21,7 @@ const realClerkApi = {
   SignedOut,
   SignOutButton,
   RedirectToSignIn,
+  RedirectToSignUp,
 };
 type ClerkApi = typeof realClerkApi;
 
@@ -33,6 +35,7 @@ export const fakeClerkApi: ClerkApi = {
   SignedOut: EmptyComponent,
   SignOutButton: EmptyComponent,
   RedirectToSignIn: EmptyComponent,
+  RedirectToSignUp: EmptyComponent,
 };
 
 const clerkApiContext = createContext<ClerkApi>(fakeClerkApi);
