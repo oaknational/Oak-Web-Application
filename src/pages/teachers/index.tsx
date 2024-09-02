@@ -25,8 +25,6 @@ export type HomePageProps = {
   posts: SerializedPost[];
 };
 
-export type HomePageTab = "teachers" | "curriculum" | "pupils" | "ai";
-
 const Teachers: NextPage<TeachersHomePageProps> = (props) => {
   const { curriculumData, posts } = props;
 

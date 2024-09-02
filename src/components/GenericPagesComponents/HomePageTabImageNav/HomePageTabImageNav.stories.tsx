@@ -1,18 +1,28 @@
-import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
-import Component from ".";
+import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav/HomePageTabImageNav";
 
-import { HomePageTab } from "@/pages";
-
-export default {
-  component: Component,
-  argTypes: {},
-} as ComponentMeta<typeof Component>;
-
-const Template: ComponentStory<typeof Component> = (args) => {
-  const [current, setCurrent] = useState<HomePageTab>("teachers");
-  return <Component {...args} current={current} setCurrent={setCurrent} />;
+const meta: Meta<typeof HomePageTabImageNav> = {
+  component: HomePageTabImageNav,
+  argTypes: {
+    current: {
+      control: { type: "select" },
+      options: ["teachers", "curriculum", "ai", "pupils"],
+    },
+  },
+  parameters: {
+    controls: {
+      include: ["current"],
+      exclude: /\$[a-zA-Z]*/,
+    },
+  },
 };
 
-export const HomePageTabImageNav = Template.bind({});
+export default meta;
+type Story = StoryObj<typeof HomePageTabImageNav>;
+
+export const Primary: Story = {
+  args: {
+    current: "teachers",
+  },
+};

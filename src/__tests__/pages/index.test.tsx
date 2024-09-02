@@ -1,15 +1,12 @@
-import { screen, within, getByRole, fireEvent } from "@testing-library/react";
+import { screen, within, getByRole } from "@testing-library/react";
 
-import Teachers, {
-  HomePageProps,
-  SerializedPost,
-  getStaticProps,
-  TeachersHomePageProps,
-} from "@/pages/index";
+import Teachers, { getStaticProps } from "@/pages/index";
 import CMSClient from "@/node-lib/cms";
 import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
+import { SerializedPost } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
+import { TeachersHomePageProps } from "@/pages/teachers";
 
 jest.mock("src/node-lib/cms");
 
@@ -61,26 +58,7 @@ describe("pages/index.tsx", () => {
     const h1 = screen.getByRole("heading", { level: 1 });
     expect(h1).toHaveTextContent("Teachers");
   });
-  it("Render correct tab after selecting tab", () => {
-    const { getByTitle, getAllByTitle } = render(<Teachers {...props} />);
-    const curriculumPlans = getAllByTitle("Curriculum plans");
-    const curriculumPlansButton = curriculumPlans[1];
-    if (curriculumPlansButton) {
-      fireEvent.click(curriculumPlansButton);
-      const curriculumH1 = screen.getByRole("heading", { level: 1 });
-      expect(curriculumH1).toHaveTextContent("Teachers & subject leads");
-    } else {
-      throw new Error("Could not find curriculum plans button element");
-    }
 
-    fireEvent.click(getByTitle("Pupils"));
-    const pupilsH1 = screen.getByRole("heading", { level: 1 });
-    expect(pupilsH1).toHaveTextContent("Pupils");
-
-    fireEvent.click(getByTitle("Teaching resources"));
-    const teachersH1 = screen.getByRole("heading", { level: 1 });
-    expect(teachersH1).toHaveTextContent("Teachers");
-  });
   it("Renders a link to the blog list", () => {
     render(<Teachers {...props} />);
 
@@ -155,7 +133,7 @@ describe("pages/index.tsx", () => {
       ]);
       const result = (await getStaticProps({
         params: {},
-      })) as { props: HomePageProps };
+      })) as { props: TeachersHomePageProps };
 
       expect(result.props?.posts).toHaveLength(4);
     });
@@ -168,7 +146,7 @@ describe("pages/index.tsx", () => {
       ]);
       const result = (await getStaticProps({
         params: {},
-      })) as { props: HomePageProps };
+      })) as { props: TeachersHomePageProps };
 
       const postIds = result.props.posts.map((p) => p.id);
       expect(postIds).toEqual(["1", "2", "3"]);
@@ -182,7 +160,7 @@ describe("pages/index.tsx", () => {
       ]);
       const result = (await getStaticProps({
         params: {},
-      })) as { props: HomePageProps };
+      })) as { props: TeachersHomePageProps };
 
       const postIds = result.props.posts.map((p) => p.id as string);
       expect(postIds).toEqual(["2", "3"]);

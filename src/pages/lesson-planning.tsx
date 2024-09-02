@@ -11,8 +11,6 @@ import {
   OakLink,
 } from "@oaknational/oak-components";
 
-import { postToPostListItem, SerializedPost } from ".";
-
 import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
@@ -26,6 +24,10 @@ import { imageBuilder } from "@/components/SharedComponents/CMSImage/sanityImage
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
 import { getAndMergeWebinarsAndBlogs } from "@/utils/getAndMergeWebinarsAndBlogs";
+import {
+  postToPostListItem,
+  SerializedPost,
+} from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;

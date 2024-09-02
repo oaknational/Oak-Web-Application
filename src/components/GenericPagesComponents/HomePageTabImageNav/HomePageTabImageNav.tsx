@@ -3,7 +3,8 @@ import { OakFlex } from "@oaknational/oak-components";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import HomePageTabImageButton from "@/components/GenericPagesComponents/HomepageTabImageButton";
 import { Hr } from "@/components/SharedComponents/Typography";
-import { HomePageTab } from "@/pages";
+
+export type HomePageTab = "teachers" | "curriculum" | "ai" | "pupils";
 
 const HomePageTabImageNav = ({
   current,
