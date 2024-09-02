@@ -61,7 +61,7 @@ describe(withPageAuthRequired, () => {
       setUseUserReturn(mockLoggedOut);
     });
 
-    it.only("redirects the user to sign-up", () => {
+    it("redirects the user to sign-up", () => {
       render(<Subject />);
 
       expect(screen.queryByTestId("redirectToSignUp")).toBeInTheDocument();
