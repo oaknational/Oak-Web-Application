@@ -4,7 +4,7 @@ import PlanALesson, { getStaticProps } from "../../pages/lesson-planning";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 
-import { mockPosts } from "./index.test";
+import { mockPosts } from "./teachers/index.test";
 import { testPlanALessonPageData } from "./lesson-planning.fixture";
 
 import CMSClient from "@/node-lib/cms";
