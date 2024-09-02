@@ -245,6 +245,27 @@ module.exports = async (phase) => {
         },
       ];
     },
+    async rewrites() {
+      // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs
+      return releaseStage === "development"
+        ? [
+            {
+              source: "/ingest/static/:path*",
+              destination: "https://eu-assets.i.posthog.com/static/:path*",
+            },
+            {
+              source: "/ingest/:path*",
+              destination: "https://eu.i.posthog.com/:path*",
+            },
+            {
+              source: "/ingest/decide",
+              destination: "https://eu.i.posthog.com/decide",
+            },
+          ]
+        : [];
+    },
+    // Required for the posthog reverse proxy, but interferes with static URL redirections so we don't want this applied on production
+    skipTrailingSlashRedirect: releaseStage === "development",
   };
 
   // Stick the deployment URL in an env so the site map generation can use it.
