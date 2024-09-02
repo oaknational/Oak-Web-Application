@@ -2,39 +2,23 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import CMSClient from "@/node-lib/cms";
-import useAnalytics from "@/context/Analytics/useAnalytics";
 import getPageProps from "@/node-lib/getPageProps";
-import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
-import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
 import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
-import {
-  SerializedBlogPostPreview,
-  blogToPostListItem,
-} from "@/components/GenericPagesViews/BlogIndex.view";
-import {
-  SerializedWebinarPreview,
-  webinarToPostListItem,
-} from "@/components/GenericPagesViews/WebinarsIndex.view";
 import { HomePage } from "@/common-lib/cms-types";
-import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import curriculumApi2023, {
   TeachersHomePageData,
 } from "@/node-lib/curriculum-api-2023";
-import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
 import { getAndMergeWebinarsAndBlogs } from "@/utils/getAndMergeWebinarsAndBlogs";
+import {
+  HomePageLowerView,
+  SerializedPost,
+} from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
 };
-
-export type SerializedPost =
-  | ({ type: "blog-post" } & SerializedBlogPostPreview)
-  | ({ type: "webinar" } & SerializedWebinarPreview);
 
 export type HomePageProps = {
   pageData: HomePage;
@@ -43,52 +27,14 @@ export type HomePageProps = {
 
 export type HomePageTab = "teachers" | "curriculum" | "pupils" | "ai";
 
-export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
-  return post.type === "blog-post"
-    ? blogToPostListItem(post)
-    : webinarToPostListItem(post);
-};
-
-export const sortByDate = (a: { date: Date }, b: { date: Date }) => {
-  return b.date.getTime() - a.date.getTime();
-};
-
 const Teachers: NextPage<TeachersHomePageProps> = (props) => {
-  const { curriculumData } = props;
-  const posts = props.posts.map(postToPostListItem);
-  const blogListProps = usePostList({ items: posts, withImage: true });
-  const { track } = useAnalytics();
-  const newsletterFormProps = useNewsletterForm({
-    onSubmit: track.newsletterSignUpCompleted,
-  });
+  const { curriculumData, posts } = props;
 
   return (
     <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
       <HomePageTabImageNav current={"teachers"} />
       <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
-      <MaxWidth>
-        <BlogAndWebinarList
-          blogListPosts={blogListProps}
-          showImageOnTablet={true}
-          backgroundColor="white"
-          displayOnPhone={true}
-          isBackgroundWhite={true}
-          title={"Stay up to date"}
-        />
-      </MaxWidth>
-      <Flex $background={"lavender50"} $width={"100%"}>
-        <MaxWidth
-          $alignItems={"center"}
-          $background={"lavender50"}
-          $mt={58}
-          $mb={80}
-          $ph={16}
-        >
-          <Flex $maxWidth={["100%", 870]}>
-            <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
-          </Flex>
-        </MaxWidth>
-      </Flex>
+      <HomePageLowerView posts={posts} />
     </AppLayout>
   );
 };
