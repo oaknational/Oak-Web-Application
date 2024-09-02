@@ -6,15 +6,12 @@ import {
   FormEventHandler,
 } from "react";
 import styled from "styled-components";
-import { useRouter } from "next/router";
 import { OakFlex } from "@oaknational/oak-components";
 
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 import { ContextValueType, SearchSourceValueType } from "@/browser-lib/avo/Avo";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Input from "@/components/SharedComponents/Input/Input";
 import Button from "@/components/SharedComponents/Button";
 
@@ -41,30 +38,6 @@ const SearchForm: FC<SearchFormProps> = (props) => {
   } = props;
   const [value, setValue] = useState(searchTerm);
   const { track } = useAnalytics();
-  const { analyticsUseCase, pageName } = useAnalyticsPageProps();
-  const router = useRouter();
-
-  const useCase =
-    pageName === "Homepage" && !analyticsUseCase ? "Teacher" : analyticsUseCase;
-
-  const trackSearchAttempted = useCallback(() => {
-    track.searchAttempted({
-      searchTerm: value,
-      analyticsUseCase: useCase,
-      pageName,
-      searchFilterOptionSelected: getSortedSearchFiltersSelected(router.query),
-      searchSource: analyticsSearchSource,
-      context: searchContext,
-    });
-  }, [
-    track,
-    value,
-    useCase,
-    pageName,
-    router.query,
-    analyticsSearchSource,
-    searchContext,
-  ]);
 
   const trackSearchJourneyInitiated = useCallback(() => {
     track.searchJourneyInitiated({
@@ -81,9 +54,8 @@ const SearchForm: FC<SearchFormProps> = (props) => {
     (e) => {
       e.preventDefault();
       handleSubmit({ searchTerm: value });
-      trackSearchAttempted();
     },
-    [handleSubmit, trackSearchAttempted, value],
+    [handleSubmit, value],
   );
 
   return (

@@ -14,6 +14,15 @@ const link = {
   external: true,
 };
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefinedAccessed: jest.fn(),
+    },
+  }),
+}));
+
 describe("AppHeaderBurgerMenuLink", () => {
   it("displays a link", () => {
     renderWithTheme(<AppHeaderBurgerMenuLink link={link} />);
