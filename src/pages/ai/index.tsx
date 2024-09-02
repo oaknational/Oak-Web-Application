@@ -29,7 +29,7 @@ export const getStaticProps: GetStaticProps<PupilHomePageProps> = async (
   context,
 ) => {
   return getPageProps({
-    page: "curriculum-home-page::getStaticProps",
+    page: "ai-home-page::getStaticProps",
     context,
     getProps: getPropsFunction(context),
   });
