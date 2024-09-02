@@ -1,7 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCallback, useEffect, useState } from "react";
 import { Control, UseFormTrigger, useForm } from "react-hook-form";
-import { OakBox, OakFlex, OakLink, OakP } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakLink,
+  OakP,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import { OnboardingLayout } from "../../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
@@ -122,19 +128,22 @@ export const SchoolSelectionView = () => {
               $mt={"space-between-s"}
               $alignItems={"center"}
               $font={"body-2-bold"}
+              $width={"100%"}
             >
-              <OakP $font={"body-2"} $mr={"space-between-sssx"}>
-                Can't find your school?
+              <OakP $font={"body-2"}>
+                Can't find your school?{" "}
+                <OakSpan>
+                  <OakLink
+                    onClick={() => {
+                      setRenderManualSchoolInput(true);
+                      reset();
+                    }}
+                    element="button"
+                  >
+                    Enter manually
+                  </OakLink>
+                </OakSpan>
               </OakP>
-              <OakLink
-                onClick={() => {
-                  setRenderManualSchoolInput(true);
-                  reset();
-                }}
-                element="button"
-              >
-                Enter manually
-              </OakLink>
             </OakFlex>
           </OakBox>
         )}
