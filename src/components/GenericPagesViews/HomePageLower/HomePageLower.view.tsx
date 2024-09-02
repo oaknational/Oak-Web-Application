@@ -8,19 +8,10 @@ import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFo
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
-import {
-  blogToPostListItem,
-  SerializedBlogPostPreview,
-} from "@/components/GenericPagesViews/BlogIndex.view";
-import {
-  webinarToPostListItem,
-  SerializedWebinarPreview,
-} from "@/components/GenericPagesViews/WebinarsIndex.view";
+import { blogToPostListItem } from "@/components/GenericPagesViews/BlogIndex.view";
+import { SerializedPost } from "@/pages-helpers/homesite/getBlogPosts";
+import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIndex.view";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-
-export type SerializedPost =
-  | ({ type: "blog-post" } & SerializedBlogPostPreview)
-  | ({ type: "webinar" } & SerializedWebinarPreview);
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"

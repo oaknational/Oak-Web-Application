@@ -25,12 +25,10 @@ import OwaLink from "@/components/SharedComponents/OwaLink/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";
 import CMSClient from "@/node-lib/cms";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
-import {
-  blogToPostListItem,
-  SerializedBlogPostPreview,
-} from "@/components/GenericPagesViews/BlogIndex.view";
+import { blogToPostListItem } from "@/components/GenericPagesViews/BlogIndex.view";
 import { serializeDate } from "@/utils/serializeDate";
 import PostListItem from "@/components/SharedComponents/PostListItem";
+import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
 
 export type CurriculumHomePageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;

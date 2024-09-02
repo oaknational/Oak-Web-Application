@@ -2,17 +2,16 @@ import { NextPage } from "next";
 import { toPlainText } from "@portabletext/react";
 
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
-import { BlogWebinarCategory, WebinarPreview } from "@/common-lib/cms-types";
+import {
+  BlogWebinarCategory,
+  SerializedWebinarPreview,
+} from "@/common-lib/cms-types";
 import { WebinarsListingPage } from "@/common-lib/cms-types/webinarsListingPage";
 import PostListing from "@/components/GenericPagesViews/PostListing.view";
 import { getVideoThumbnail } from "@/components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import { PAGE_SIZE } from "@/components/SharedComponents/PostList/usePostList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
-
-export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
-  date: string;
-};
 
 export type WebinarListingPageProps = {
   webinars: SerializedWebinarPreview[];

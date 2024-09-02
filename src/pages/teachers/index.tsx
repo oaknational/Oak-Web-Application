@@ -2,7 +2,6 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import CMSClient from "@/node-lib/cms";
 import getPageProps from "@/node-lib/getPageProps";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
 import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
@@ -10,11 +9,11 @@ import { HomePage } from "@/common-lib/cms-types";
 import curriculumApi2023, {
   TeachersHomePageData,
 } from "@/node-lib/curriculum-api-2023";
-import { getAndMergeWebinarsAndBlogs } from "@/utils/getAndMergeWebinarsAndBlogs";
+import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import {
-  HomePageLowerView,
+  getBlogPosts,
   SerializedPost,
-} from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
+} from "@/pages-helpers/homesite/getBlogPosts";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -44,24 +43,22 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     page: "teachers-home-page::getStaticProps",
     context,
     getProps: async () => {
-      const isPreviewMode = context.preview === true;
-      const curriculumData = await curriculumApi2023.teachersHomePage();
+      const { pageData, posts } = await getBlogPosts(
+        context.preview === true,
+        5,
+      );
 
-      const teachersHomepageData = await CMSClient.homepage({
-        previewMode: isPreviewMode,
-      });
-
-      if (!teachersHomepageData) {
+      if (!pageData) {
         return {
           notFound: true,
         };
       }
 
-      const posts = await getAndMergeWebinarsAndBlogs(isPreviewMode, 5);
+      const curriculumData = await curriculumApi2023.teachersHomePage();
 
       const results: GetStaticPropsResult<TeachersHomePageProps> = {
         props: {
-          pageData: teachersHomepageData,
+          pageData,
           curriculumData,
           posts,
         },

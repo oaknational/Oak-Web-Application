@@ -1,10 +1,8 @@
 import { screen, within, getByRole } from "@testing-library/react";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import {
-  HomePageLowerView,
-  SerializedPost,
-} from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
+import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
+import { SerializedPost } from "@/pages-helpers/homesite/getBlogPosts";
 
 jest.mock("src/node-lib/cms");
 

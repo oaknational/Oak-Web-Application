@@ -24,10 +24,8 @@ import { imageBuilder } from "@/components/SharedComponents/CMSImage/sanityImage
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
 import { getAndMergeWebinarsAndBlogs } from "@/utils/getAndMergeWebinarsAndBlogs";
-import {
-  postToPostListItem,
-  SerializedPost,
-} from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
+import { postToPostListItem } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
+import { SerializedPost } from "@/pages-helpers/homesite/getBlogPosts";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;
