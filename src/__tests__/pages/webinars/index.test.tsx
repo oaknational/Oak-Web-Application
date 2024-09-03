@@ -1,10 +1,10 @@
 import { screen } from "@testing-library/react";
 
-import { WebinarPreview } from "../../../common-lib/cms-types";
 import {
   SerializedWebinarPreview,
-  WebinarListingPageProps,
-} from "../../../components/GenericPagesViews/WebinarsIndex.view";
+  WebinarPreview,
+} from "../../../common-lib/cms-types";
+import { WebinarListingPageProps } from "../../../components/GenericPagesViews/WebinarsIndex.view";
 import WebinarListingPage from "../../../pages/webinars";
 import { mockSeoResult, mockVideoAsset } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";

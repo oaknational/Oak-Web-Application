@@ -221,6 +221,7 @@ module.exports = async (phase) => {
     },
     async redirects() {
       return [
+        { source: "/teachers", destination: "/", permanent: true },
         {
           source: "/pupils/lessons/:lessonSlug",
           destination: "/pupils/lessons/:lessonSlug/overview",
