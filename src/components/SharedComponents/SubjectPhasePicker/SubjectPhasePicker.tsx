@@ -11,6 +11,7 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
+import Svg from "@/components/SharedComponents/Svg";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
