@@ -7,7 +7,7 @@ const downloadLessonResources = async (
   lessonSlug: string,
   selectedResourceTypes: ResourcesToDownloadArrayType,
   isLegacyDownload: boolean,
-  authFlagEnabled: boolean,
+  authFlagEnabled?: boolean,
   authToken?: string | null,
 ) => {
   if (selectedResourceTypes?.length === 0) {

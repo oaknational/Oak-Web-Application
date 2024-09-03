@@ -110,7 +110,7 @@ describe("createDownloadResourcesLink()", () => {
 
     expect(global.fetch).toBeCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
-      undefined,
+      { headers: { "X-Should-Authenticate-Download": "false" } },
     );
   });
   it("should fetch from download api if isLegacyDownloads = false", async () => {
@@ -122,7 +122,7 @@ describe("createDownloadResourcesLink()", () => {
 
     expect(global.fetch).toBeCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
-      undefined,
+      { headers: { "X-Should-Authenticate-Download": "false" } },
     );
   });
   it("should throw an error when NEXT_PUBLIC_DOWNLOAD_API_URL is not defined", async () => {
@@ -145,5 +145,43 @@ describe("createDownloadResourcesLink()", () => {
     } finally {
       process.env = originalEnv;
     }
+  });
+  it("should fetch with correct headers including Authorization when authToken is provided", async () => {
+    const authToken = "testToken";
+    await createDownloadResourcesLink(
+      "lesson-slug",
+      "exit-quiz-answers,worksheet-pdf",
+      true,
+      true,
+      authToken,
+    );
+
+    expect(global.fetch).toBeCalledWith(
+      expect.any(String),
+      expect.objectContaining({
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          "X-Should-Authenticate-Download": "true",
+        },
+      }),
+    );
+  });
+
+  it("should fetch with X-Should-Authenticate-Download set to false when authFlagEnabled is false", async () => {
+    await createDownloadResourcesLink(
+      "lesson-slug",
+      "exit-quiz-answers,worksheet-pdf",
+      true,
+      false, // authFlagEnabled
+    );
+
+    expect(global.fetch).toBeCalledWith(
+      expect.any(String),
+      expect.objectContaining({
+        headers: {
+          "X-Should-Authenticate-Download": "false",
+        },
+      }),
+    );
   });
 });
