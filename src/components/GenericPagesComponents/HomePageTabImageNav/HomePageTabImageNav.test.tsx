@@ -1,39 +1,39 @@
-import React, { useState } from "react";
-import { fireEvent } from "@testing-library/react";
-
 import HomePageTabImageNav from "./HomePageTabImageNav";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { HomePageTab } from "@/pages";
 
 describe("HomePageTabImageNav Component", () => {
-  test("renders without errors", () => {
+  it("renders without errors", () => {
     const { container } = renderWithTheme(
-      <HomePageTabImageNav current="teachers" setCurrent={() => {}} />,
+      <HomePageTabImageNav current="teachers" />,
     );
     expect(container).toBeTruthy();
   });
-  test("receives and handles props correctly", () => {
-    const setCurrent = jest.fn();
-    const { getAllByText } = renderWithTheme(
-      <HomePageTabImageNav current="teachers" setCurrent={setCurrent} />,
-    );
-    expect(getAllByText("Curriculum plans")[0]).toBeInTheDocument();
-  });
-  it("should receive and correctly use the setCurrent prop", () => {
-    const Wrapper = () => {
-      const [current, setCurrent] = useState<HomePageTab>("teachers");
-      return <HomePageTabImageNav current={current} setCurrent={setCurrent} />;
-    };
 
-    const { getByTitle, getAllByTestId } = renderWithTheme(<Wrapper />);
-    fireEvent.click(getByTitle("Curriculum plans"));
-    expect(getAllByTestId("Curriculum plans underline")[0]).toBeInTheDocument();
-    fireEvent.click(getByTitle("Pupils"));
-    expect(getAllByTestId("Pupils underline")[0]).toBeInTheDocument();
-    fireEvent.click(getByTitle("Teaching resources"));
-    expect(
-      getAllByTestId("Teaching resources underline")[0],
-    ).toBeInTheDocument();
-  });
+  it.each([
+    [/Curriculum Plans/i, "/curriculum"],
+    [/AI Experiments/i, "/ai"],
+    [/Pupils/i, "/pupils"],
+  ])(
+    "navigates to the correct tab when the button is clicked",
+    (name, path) => {
+      //mock window.location
+      Object.defineProperty(window, "location", {
+        value: {
+          href: "/",
+        },
+        writable: true,
+      });
+
+      const { getByRole } = renderWithTheme(
+        <HomePageTabImageNav current="teachers" />,
+      );
+      const curriculumButton = getByRole("link", {
+        name,
+      });
+      expect(curriculumButton).toBeTruthy();
+      curriculumButton.click();
+      expect(window.location.href).toBe(path);
+    },
+  );
 });
