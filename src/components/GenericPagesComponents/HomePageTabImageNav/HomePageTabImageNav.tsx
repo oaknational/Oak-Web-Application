@@ -16,11 +16,8 @@ const HomePageTabImageNav = ({
     if (tab === current) {
       return;
     }
-    if (tab === "teachers") {
-      window.location.href = "/";
-    } else {
-      window.location.href = `/${tab}`;
-    }
+
+    window.location.href = `/${tab}`;
   };
   return (
     <OakFlex $flexDirection={"column"}>
@@ -91,7 +88,7 @@ function getBackgroundColorByHomePageTab(current: HomePageTab | undefined) {
     return "lemon";
   }
   if (current === "ai") {
-    return "pink";
+    return "mint";
   }
   return "white";
 }
