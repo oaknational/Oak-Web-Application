@@ -68,7 +68,7 @@
     "@hubspot/api-client": "^11.1.0",
     "@mux/mux-node": "^8.8.0",
     "@mux/mux-player-react": "2.7.0-canary.0-7c57cdd",
-    "@oaknational/oak-components": "^1.26.0",
+    "@oaknational/oak-components": "^1.27.0",
     "@oaknational/oak-consent-client": "^2.1.0",
     "@oaknational/oak-curriculum-schema": "^1.19.0",
     "@portabletext/react": "^3.0.11",
