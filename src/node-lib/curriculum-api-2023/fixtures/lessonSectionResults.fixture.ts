@@ -98,7 +98,15 @@ export const sectionResultsFixture: LessonSectionResults = {
     ],
     isComplete: true,
   },
-  video: { isComplete: true },
+  video: {
+    isComplete: true,
+    played: true,
+    duration: 0,
+    timeElapsed: 0,
+    muted: false,
+    signedOpened: false,
+    transcriptOpened: false,
+  },
   "exit-quiz": {
     grade: 1,
     numQuestions: 6,

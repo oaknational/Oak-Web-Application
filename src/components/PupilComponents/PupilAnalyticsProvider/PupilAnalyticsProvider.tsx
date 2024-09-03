@@ -5,7 +5,6 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   AnalyticsUseCaseValueType,
   KeyStageTitleValueType,
-  KeyStageTitle,
   PhaseValueType,
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
@@ -108,7 +107,7 @@ export type PupilPathwayData = {
   lessonSlug: string;
   lessonName: string;
   keyStageSlug: string;
-  keyStageTitle: KeyStageTitleValueType | null;
+  keyStageTitle: KeyStageTitleValueType;
   subjectTitle: string;
   subjectSlug: string;
   yearGroupName: string;
@@ -331,14 +330,6 @@ export const PupilAnalyticsProvider = ({
   );
 };
 
-const isKeyStageTitle = (
-  keyStageTitle: string,
-): keyStageTitle is KeyStageTitleValueType => {
-  return Object.values(KeyStageTitle).includes(
-    keyStageTitle as KeyStageTitleValueType,
-  );
-};
-
 export const getPupilPathwayData = (
   browseData: LessonBrowseData,
 ): PupilPathwayData => {
@@ -347,7 +338,7 @@ export const getPupilPathwayData = (
     "stage",
   );
 
-  const keyStageTitle = isKeyStageTitle(k) ? k : null;
+  const keyStageTitle = k as KeyStageTitleValueType;
 
   if (!keyStageTitle) {
     console.error("Invalid key stage title", k);
