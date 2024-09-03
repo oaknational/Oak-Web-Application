@@ -16,7 +16,11 @@ const HomePageTabImageNav = ({
     if (tab === current) {
       return;
     }
-    window.location.href = `/${tab}`;
+    if (tab === "teachers") {
+      window.location.href = "/";
+    } else {
+      window.location.href = `/${tab}`;
+    }
   };
   return (
     <OakFlex $flexDirection={"column"}>
