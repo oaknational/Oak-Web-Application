@@ -15,7 +15,8 @@ const Home: NextPage<HomePageProps> = (props) => {
     } else if (window.location.href.includes("#curriculum")) {
       router.push("/curriculum");
     } else if (window.location.href.includes("#ai")) {
-      router.push("/ai");
+      //router.push("/ai");
+      router.push("/");
     } else if (window.location.href.includes("#teachers")) {
       router.push("/teachers");
     }

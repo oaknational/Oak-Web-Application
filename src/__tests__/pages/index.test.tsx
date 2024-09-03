@@ -36,7 +36,7 @@ describe("Homepage", () => {
       render(<Home {...props} />);
     });
 
-    it.each(["ai", "curriculum", "pupils", "teachers"])(
+    it.each(["curriculum", "pupils", "teachers"])(
       "redirects to / when the path includes #",
       (path) => {
         const pushMock = jest.fn();
