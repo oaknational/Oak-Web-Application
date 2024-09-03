@@ -43,7 +43,9 @@ export const lessonDownloadsQueryRaw = z.object({
 export type LessonDownloadsListSchema = z.infer<
   typeof lessonDownloadsListSchema
 >;
-export type LessonDownloadsPageData = z.infer<typeof lessonDownloadsSchema>;
+export type LessonDownloadsPageData = z.infer<typeof lessonDownloadsSchema> & {
+  isDownloadRegionRestricted: boolean;
+};
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
 export type NextLessonSchema = z.infer<typeof nextLessonSchema>;
 export type NextLesson = {

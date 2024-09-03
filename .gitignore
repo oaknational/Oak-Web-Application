@@ -98,3 +98,5 @@ public/mathjax/**/*
 #yalc
 .yalc/
 yalc.lock
+
+/scripts/dev/curriculum/output

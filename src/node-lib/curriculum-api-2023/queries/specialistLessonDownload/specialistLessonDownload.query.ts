@@ -126,6 +126,7 @@ export const specialistLessonDownloadQuery =
         nextLessons: [], // TODO: specialist MV needs to be update to support this functionality
         expired: lesson.expired ?? false,
         updatedAt: "2022",
+        isDownloadRegionRestricted: false,
       },
     };
   };

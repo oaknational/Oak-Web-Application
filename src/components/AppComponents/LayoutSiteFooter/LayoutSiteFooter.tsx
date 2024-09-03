@@ -10,6 +10,7 @@ import {
   OakFlex,
   useCookieConsent,
 } from "@oaknational/oak-components";
+import { keystageDescriptions } from "@oaknational/oak-curriculum-schema";
 
 import Logo from "@/components/AppComponents/Logo";
 import OwaLink from "@/components/SharedComponents/OwaLink";
@@ -25,6 +26,7 @@ import footerSections from "@/browser-lib/fixtures/footerSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { OakLinkProps } from "@/common-lib/urls";
 import useClickableCard from "@/hooks/useClickableCard";
+import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 
 type LayoutFooterLinkProps = {
   text: string;
@@ -63,7 +65,6 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
   const { openSettings } = useCookieConsent();
   const { containerProps, primaryTargetProps } =
     useClickableCard<HTMLAnchorElement>();
-
   if (props.type === "consent-manager-toggle") {
     return (
       <Button
@@ -135,6 +136,26 @@ const FooterLink: FC<LayoutFooterLinkProps> = (props) => {
           page={null}
           href={props.href}
           htmlAnchorProps={{ "aria-label": props.ariaLabel ?? undefined }}
+          onClick={() => {
+            const sentenceCaseText = props.text
+              .split(" ")
+              .map(toSentenceCase)
+              .join(" ");
+
+            if (keystageDescriptions.safeParse(sentenceCaseText).success) {
+              track.browseRefinedAccessed({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "footer_menu_link",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Key stage filter",
+                filterValue: props.text,
+                activeFilters: [],
+              });
+            }
+          }}
         >
           {props.text}
         </OwaLink>

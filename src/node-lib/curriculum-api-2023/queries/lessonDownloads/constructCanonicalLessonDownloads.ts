@@ -56,6 +56,7 @@ const constructCanonicalLessonDownloads = (
       pathways: [],
       isLegacy: false,
       isSpecialist: false,
+      isDownloadRegionRestricted: false,
     } as LessonDownloadsCanonical,
   );
 };

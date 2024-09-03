@@ -32,7 +32,7 @@ describe("ProgrammeListItem", () => {
     expect(screen.getByText("Higher")).toBeInTheDocument();
   });
 
-  it("calls tracking.tierSelected once, with correct props", async () => {
+  it("calls tracking.browseRefined once, with correct props", async () => {
     const onClick = jest.fn();
 
     renderWithTheme(

@@ -1,19 +1,22 @@
-import { screen, within, getByRole, fireEvent } from "@testing-library/react";
+import { useRouter } from "next/router";
 
-import Teachers, {
-  HomePageProps,
-  SerializedPost,
-  getStaticProps,
-  TeachersHomePageProps,
-} from "@/pages/index";
-import CMSClient from "@/node-lib/cms";
-import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
+import Home, { getStaticProps, TeachersHomePageProps } from "@/pages/index";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
+import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
+import CMSClient from "@/node-lib/cms";
+
+const render = renderWithProviders();
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
 
 jest.mock("src/node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
+
 export const mockPosts = [
   {
     id: "1",
@@ -32,6 +35,7 @@ export const mockPosts = [
     category: { title: "Some category", slug: "some-category" },
   },
 ] as SerializedPost[];
+
 const props: TeachersHomePageProps = {
   pageData: {
     heading: "",
@@ -47,67 +51,45 @@ const props: TeachersHomePageProps = {
   },
 };
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: () => false,
-}));
+describe("Homepage", () => {
+  describe("Page component", () => {
+    it("renders", () => {
+      // Ensure useRouter is not mocked here or reset it to its original state
+      (useRouter as jest.Mock).mockReturnValue({
+        push: jest.fn(),
+        route: "/",
+        pathname: "/",
+        query: "",
+        asPath: "/",
+      });
+      render(<Home {...props} />);
+    });
 
-const render = renderWithProviders();
+    it.each(["ai", "curriculum", "pupils"])(
+      "redirects to / when the path includes #",
+      (path) => {
+        const pushMock = jest.fn();
+        (useRouter as jest.Mock).mockReturnValue({
+          push: pushMock,
+          route: "/",
+          pathname: "/",
+          query: "",
+          asPath: "/",
+        });
 
-describe("pages/index.tsx", () => {
-  it("Renders correct title ", () => {
-    render(<Teachers {...props} />);
+        // mock the href of window.location
+        Object.defineProperty(window, "location", {
+          value: {
+            href: `/#${path}`,
+          },
+          writable: true,
+        });
 
-    const h1 = screen.getByRole("heading", { level: 1 });
-    expect(h1).toHaveTextContent("Teachers");
-  });
-  it("Render correct tab after selecting tab", () => {
-    const { getByTitle, getAllByTitle } = render(<Teachers {...props} />);
-    const curriculumPlans = getAllByTitle("Curriculum plans");
-    const curriculumPlansButton = curriculumPlans[1];
-    if (curriculumPlansButton) {
-      fireEvent.click(curriculumPlansButton);
-      const curriculumH1 = screen.getByRole("heading", { level: 1 });
-      expect(curriculumH1).toHaveTextContent("Teachers & subject leads");
-    } else {
-      throw new Error("Could not find curriculum plans button element");
-    }
+        render(<Home {...props} />);
 
-    fireEvent.click(getByTitle("Pupils"));
-    const pupilsH1 = screen.getByRole("heading", { level: 1 });
-    expect(pupilsH1).toHaveTextContent("Pupils");
-
-    fireEvent.click(getByTitle("Teaching resources"));
-    const teachersH1 = screen.getByRole("heading", { level: 1 });
-    expect(teachersH1).toHaveTextContent("Teachers");
-  });
-  it("Renders a link to the blog list", () => {
-    render(<Teachers {...props} />);
-
-    const blogLink = screen.getByText("All blogs");
-    expect(blogLink).toBeInTheDocument();
-    expect(blogLink).toHaveAttribute("href", "/blog");
-  });
-
-  it("Renders the provided blog posts", async () => {
-    render(<Teachers {...props} />);
-
-    const list = screen
-      .getAllByRole("list")
-      .find((list) => list.textContent?.includes("Some blog post"));
-
-    expect(list).toBeInTheDocument();
-
-    const { getAllByRole } = within(list as HTMLElement);
-    const items = getAllByRole("listitem");
-
-    expect(items).toHaveLength(2);
-
-    expect(
-      getByRole(items[0] as HTMLElement, "link", {
-        name: "Some blog post",
-      }),
-    ).toHaveAttribute("href", "/blog/some-blog-post");
+        expect(pushMock).toHaveBeenCalledWith(`/${path}`);
+      },
+    );
   });
 
   describe("getStaticProps", () => {
@@ -155,7 +137,7 @@ describe("pages/index.tsx", () => {
       ]);
       const result = (await getStaticProps({
         params: {},
-      })) as { props: HomePageProps };
+      })) as { props: TeachersHomePageProps };
 
       expect(result.props?.posts).toHaveLength(4);
     });
@@ -168,7 +150,7 @@ describe("pages/index.tsx", () => {
       ]);
       const result = (await getStaticProps({
         params: {},
-      })) as { props: HomePageProps };
+      })) as { props: TeachersHomePageProps };
 
       const postIds = result.props.posts.map((p) => p.id);
       expect(postIds).toEqual(["1", "2", "3"]);
@@ -182,7 +164,7 @@ describe("pages/index.tsx", () => {
       ]);
       const result = (await getStaticProps({
         params: {},
-      })) as { props: HomePageProps };
+      })) as { props: TeachersHomePageProps };
 
       const postIds = result.props.posts.map((p) => p.id as string);
       expect(postIds).toEqual(["2", "3"]);

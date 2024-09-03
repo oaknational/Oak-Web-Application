@@ -16,9 +16,6 @@ import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderLi
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { isKeyStageTitleValueType } from "@/components/TeacherViews/Search/helpers";
-import { keyStageToSentenceCase } from "@/context/Search/search.helpers";
 
 const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   const {
@@ -32,25 +29,38 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
   if (!programmes[0]) {
     throw new Error("No programmes");
   }
-  const keyStageSentenceCase = keyStageToSentenceCase(keyStageTitle);
-
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const handleProgrammeClick = (
     programme: ProgrammeListingPageData["programmes"][number],
   ) => {
-    "tierTitle" in programme &&
-      keyStageSentenceCase &&
-      programme.tierTitle !== null &&
-      isKeyStageTitleValueType(keyStageSentenceCase) &&
-      track.tierSelected({
-        subjectTitle,
-        subjectSlug,
-        keyStageTitle: keyStageSentenceCase,
-        keyStageSlug,
-        tierName: programme.tierTitle,
-        analyticsUseCase,
+    const { tierTitle, examBoardTitle } = programme;
+
+    const filterValue =
+      examBoardTitle && tierTitle
+        ? `${examBoardTitle}, ${tierTitle}`
+        : examBoardTitle
+          ? examBoardTitle
+          : tierTitle;
+
+    const filterType =
+      examBoardTitle && tierTitle
+        ? "Exam board / tier filter"
+        : examBoardTitle
+          ? "Exam board filter"
+          : "Tier filter";
+
+    filterValue &&
+      track.browseRefined({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "refine",
+        componentType: "programme_card",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        filterType,
+        filterValue,
+        activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
       });
   };
 

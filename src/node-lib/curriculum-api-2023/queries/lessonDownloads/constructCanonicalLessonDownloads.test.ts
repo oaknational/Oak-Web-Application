@@ -66,6 +66,7 @@ describe("constructCanonicalLessonDownloads", () => {
       isSpecialist: false,
       updatedAt: browseData[0]?.lesson_data?.updated_at ?? "",
       copyrightContent: null,
+      isDownloadRegionRestricted: false,
       pathways: [
         {
           programmeSlug: "programme-slug",
@@ -177,6 +178,7 @@ describe("constructCanonicalLessonDownloads", () => {
       isSpecialist: false,
       updatedAt: browseData[0]?.lesson_data?.updated_at ?? "",
       copyrightContent: null,
+      isDownloadRegionRestricted: false,
       pathways: [
         {
           programmeSlug: "programme-slug",

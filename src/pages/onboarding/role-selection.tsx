@@ -1,14 +1,20 @@
 import { NextPage } from "next";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import RoleSelectionView from "@/components/TeacherViews/Onboarding/RoleSelection.view";
 import withFeatureFlag from "@/hocs/withFeatureFlag";
+import RoleSelectionView from "@/components/TeacherViews/Onboarding/RoleSelection/RoleSelection.view";
+import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
 
 const RoleSelectionComponent: NextPage = () => {
-  return <RoleSelectionView />;
+  return (
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <RoleSelectionView />
+    </OakThemeProvider>
+  );
 };
 
 const RoleSelectionPage = withFeatureFlag(
-  RoleSelectionComponent,
+  withPageAuthRequired(RoleSelectionComponent),
   "use-auth-owa",
 );
 

@@ -32,12 +32,14 @@ const constructLessonDownloads = (
     lessonTitle: parsedCurrentLesson.lesson_data.title,
     subjectSlug: parsedCurrentLesson.programme_fields.subject_slug,
     subjectTitle: parsedCurrentLesson.programme_fields.subject,
-    unitSlug: parsedCurrentLesson.unit_data.slug,
+    unitSlug: parsedCurrentLesson.unit_slug,
     unitTitle: parsedCurrentLesson.unit_data.title,
     lessonCohort: parsedCurrentLesson.lesson_data._cohort,
     expired: expired ? expired : null,
     updatedAt: parsedCurrentLesson.lesson_data.updated_at,
     copyrightContent: lessonCopyRight,
+    examBoardTitle: parsedCurrentLesson.programme_fields.examboard_description,
+    tierTitle: parsedCurrentLesson.programme_fields.tier_description,
   };
 
   const unitLessonsArray = parsedBrowseData.map((lesson) => {

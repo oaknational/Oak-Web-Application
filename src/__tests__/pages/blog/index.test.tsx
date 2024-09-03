@@ -1,10 +1,10 @@
 import { screen } from "@testing-library/react";
 
-import { BlogPostPreview } from "../../../common-lib/cms-types";
 import {
+  BlogPostPreview,
   SerializedBlogPostPreview,
-  PostListingPageProps,
-} from "../../../components/GenericPagesViews/BlogIndex.view";
+} from "../../../common-lib/cms-types";
+import { PostListingPageProps } from "../../../components/GenericPagesViews/BlogIndex.view";
 import PostListingPage from "../../../pages/blog";
 import { mockImageAsset, mockSeoResult } from "../../__helpers__/cms";
 import renderWithProviders from "../../__helpers__/renderWithProviders";
