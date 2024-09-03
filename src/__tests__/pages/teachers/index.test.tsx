@@ -6,7 +6,7 @@ import { BlogPostPreview, WebinarPreview } from "@/common-lib/cms-types";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import { TeachersHomePageProps } from "@/pages/teachers";
-import { SerializedPost } from "@/pages-helpers/homesite/getBlogPosts";
+import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 
 jest.mock("src/node-lib/cms");
 

@@ -9,7 +9,7 @@ import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import { blogToPostListItem } from "@/components/GenericPagesViews/BlogIndex.view";
-import { SerializedPost } from "@/pages-helpers/homesite/getBlogPosts";
+import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIndex.view";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 

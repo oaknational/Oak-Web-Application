@@ -13,7 +13,7 @@ import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/
 import {
   getBlogPosts,
   SerializedPost,
-} from "@/pages-helpers/homesite/getBlogPosts";
+} from "@/pages-helpers/home/getBlogPosts";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;

@@ -9,7 +9,7 @@ import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/
 import {
   getPropsFunction,
   HomePageProps,
-} from "@/pages-helpers/homesite/getBlogPosts";
+} from "@/pages-helpers/home/getBlogPosts";
 
 const Pupils: NextPage<HomePageProps> = (props) => (
   <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>

@@ -10,7 +10,7 @@ import AiTab from "@/components/GenericPagesComponents/AiTab";
 import {
   getPropsFunction,
   SerializedPost,
-} from "@/pages-helpers/homesite/getBlogPosts";
+} from "@/pages-helpers/home/getBlogPosts";
 
 export type PupilHomePageProps = {
   pageData: HomePage;

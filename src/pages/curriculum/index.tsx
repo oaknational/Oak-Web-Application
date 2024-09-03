@@ -9,7 +9,7 @@ import CurriculumTab from "@/components/GenericPagesComponents/CurriculumTab";
 import {
   getPropsFunction,
   HomePageProps,
-} from "@/pages-helpers/homesite/getBlogPosts";
+} from "@/pages-helpers/home/getBlogPosts";
 
 const Curriculum: NextPage<HomePageProps> = (props) => (
   <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
