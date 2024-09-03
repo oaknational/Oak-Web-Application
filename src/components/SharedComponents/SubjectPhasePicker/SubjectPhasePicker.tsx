@@ -3,6 +3,7 @@ import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import {
+  isValidIconName,
   OakFlex,
   OakHeading,
   OakP,
@@ -11,7 +12,6 @@ import {
 } from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import Svg from "@/components/SharedComponents/Svg";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Button from "@/components/SharedComponents/Button/Button";
@@ -100,11 +100,33 @@ const ButtonContainer = styled.div`
       border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
       background: var(--Tokens-Background-bg-primary, #fff);
 
-      :hover {
+      :focus {
         /* drop-shadow-focus */
         box-shadow:
           0px 0px 0px 2px #ffe555,
           0px 0px 0px 5px #575757;
+      }
+
+      :active {
+        border-radius: var(--Border-Radius-border-radius-s, 4px);
+        border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
+        background: var(--Tokens-Background-bg-primary, #fff);
+
+        /* drop-shadow-pressed */
+        box-shadow:
+          2px 2px 0px 0px #ffe555,
+          4px 4px 0px 0px #575757;
+      }
+
+      :hover {
+        border-radius: var(--Border-Radius-border-radius-s, 4px);
+        border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
+        background: var(--Tokens-Background-bg-neutral, #f2f2f2);
+        color: #222222;
+
+        img {
+          filter: invert(0);
+        }
       }
     }
 
@@ -124,6 +146,14 @@ const ButtonContainer = styled.div`
 
   &.selected img {
     filter: invert(1);
+  }
+
+  &.subject-selection {
+    button {
+      padding: var(--Tokens-Inner-Padding-inner-padding-ssx, 4px)
+        var(--Tokens-Inner-Padding-inner-padding-s, 12px);
+      min-height: var(--All-spacing-Number-8, 40px);
+    }
   }
 `;
 
@@ -339,6 +369,24 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     }
   }, []);
 
+  const getIconName = (slug: string) => {
+    const iconName = `subject-${slug}`;
+    if (isValidIconName(iconName)) {
+      return iconName;
+    }
+    return;
+  };
+
+  const getPhaseText = (phase: Phase) => {
+    if (phase.slug === "primary") {
+      return "Key stage 1 and 2";
+    }
+    if (phase.slug === "secondary") {
+      return "Key stage 3 and 4";
+    }
+    return "";
+  };
+
   return (
     <Box
       $position="relative"
@@ -437,7 +485,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 scrollLock={false}
               >
                 {showSubjectError && (
-                  <Flex id={subjectErrorId} $flexDirection={"row"} $mb={20}>
+                  <OakFlex
+                    id={subjectErrorId}
+                    $flexDirection={"row"}
+                    $mb={"space-between-m"}
+                  >
                     <Icon
                       $color={"red"}
                       name="content-guidance"
@@ -446,9 +498,13 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     <OakP $color={"red"}>
                       Select a subject to view a curriculum
                     </OakP>
-                  </Flex>
+                  </OakFlex>
                 )}
-                <Flex $flexDirection={"row"} $alignItems={"center"} $mb={16}>
+                <OakFlex
+                  $flexDirection={"row"}
+                  $alignItems={"center"}
+                  $mb={"space-between-m"}
+                >
                   <OakHeading
                     id={subjectInputId}
                     tag={"h4"}
@@ -458,37 +514,42 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   >
                     Curriculum plans
                   </OakHeading>
-                </Flex>
+                </OakFlex>
                 <OakP $mb="space-between-s">
                   Explore our new curricula for 2023/2024.
                 </OakP>
-                <Box
+                <OakFlex
                   role="radiogroup"
                   aria-labelledby={subjectInputId}
                   aria-required="true"
                   aria-describedby={
                     showSubjectError ? subjectErrorId : undefined
                   }
+                  $gap={"space-between-s"}
+                  $alignItems={"flex-start"}
+                  $flexWrap={"wrap"}
                 >
                   {subjects.map((subject) => (
                     <ButtonContainer
-                      className={isSelected(subject) ? "selected" : ""}
+                      className={`lot-picker subject-selection ${
+                        isSelected(subject) ? "selected" : ""
+                      }`}
                       key={subject.slug}
                     >
-                      <Button
+                      <OakSecondaryButton
                         role="radio"
-                        $mb={24}
-                        $mr={24}
-                        background={isSelected(subject) ? "black" : "grey20"}
-                        subjectIcon={subject.slug}
-                        label={subject.title}
+                        iconName={getIconName(subject.slug)}
+                        iconGap={"space-between-sssx"}
                         onClick={() => handleSelectSubject(subject)}
                         aria-checked={isSelected(subject)}
                         title={subject.title}
-                      />
+                        hoverShadow={null}
+                      >
+                        {subject.title}
+                      </OakSecondaryButton>
                     </ButtonContainer>
                   ))}
-                </Box>
+                </OakFlex>
                 <Box $mt={24}>
                   <OwaLink
                     page={"curriculum-previous-downloads"}
@@ -671,9 +732,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           aria-checked={isSelected(phase)}
                           title={phase.title}
                           textAlign={"start"}
+                          hoverShadow={null}
                         >
                           {phase.title}
-                          <OakP $font={"body-2"}>Key stage 1 and 2</OakP>
+                          <OakP $font={"body-2"}>{getPhaseText(phase)}</OakP>
                         </OakSecondaryButton>
                       </ButtonContainer>
                     ))}
