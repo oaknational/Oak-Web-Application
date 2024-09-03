@@ -1,4 +1,6 @@
 "use client";
+import { useEffect, useState } from "react";
+
 import { resolveOakHref } from "@/common-lib/urls";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import { RegistrationLayout } from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
@@ -39,6 +41,48 @@ const TermsAndConditions = () => {
 };
 
 function Layout({ children }: { children: React.ReactNode }) {
+  const [render, setRender] = useState(false);
+
+  const checkElement = () => {
+    const element =
+      [...document.getElementsByClassName("cl-rootBox cl-signUp-root")][0] ||
+      [...document.getElementsByClassName("cl-rootBox cl-signIn-root")][0];
+
+    if (element) {
+      console.log("Element found:", element);
+      setRender(true);
+    } else {
+      console.log("Element not found, retrying...");
+      console.log(element);
+      setTimeout(checkElement, 100); // Retry after 100ms
+    }
+  };
+  useEffect(() => {
+    checkElement();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!render) checkElement();
+    const config = { attributes: true, childList: true, subtree: true };
+
+    // Create an observer instance linked to the callback function
+    const observer = new MutationObserver(() => setRender(false));
+
+    const x =
+      [...document.getElementsByClassName("cl-rootBox cl-signUp-root")][0] ||
+      [...document.getElementsByClassName("cl-rootBox cl-signIn-root")][0];
+    if (x) {
+      observer.observe(x, config);
+    }
+    // return () => {
+    //   console.log("disconnecting observer");
+    //   return observer.disconnect();
+    // };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [render]);
+
+  console.log("render", render);
   return (
     <RegistrationLayout
       asideSlot={
@@ -60,7 +104,7 @@ function Layout({ children }: { children: React.ReactNode }) {
         >
           {children}
         </OakBox>
-        <TermsAndConditions />
+        {render && <TermsAndConditions />}
       </OakBox>
       <OakFlex
         $flexDirection="column"
