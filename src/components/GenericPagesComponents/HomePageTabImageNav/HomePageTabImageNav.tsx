@@ -3,16 +3,25 @@ import { OakFlex } from "@oaknational/oak-components";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import HomePageTabImageButton from "@/components/GenericPagesComponents/HomepageTabImageButton";
 import { Hr } from "@/components/SharedComponents/Typography";
-import { HomePageTab } from "@/pages";
+
+export type HomePageTab = "teachers" | "curriculum" | "ai" | "pupils";
 
 const HomePageTabImageNav = ({
   current,
-  setCurrent,
   ...flexProps
 }: FlexProps & {
   current: HomePageTab | undefined;
-  setCurrent: (tab: HomePageTab) => void;
 }) => {
+  const setCurrent = (tab: HomePageTab) => {
+    if (tab === current) {
+      return;
+    }
+    if (tab === "teachers") {
+      window.location.href = "/";
+    } else {
+      window.location.href = `/${tab}`;
+    }
+  };
   return (
     <OakFlex $flexDirection={"column"}>
       <Flex

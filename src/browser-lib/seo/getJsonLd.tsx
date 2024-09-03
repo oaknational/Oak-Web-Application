@@ -11,12 +11,15 @@ import {
 } from "next-seo";
 
 import { Breadcrumb } from "../../components/SharedComponents/Breadcrumbs/Breadcrumbs";
-import { SerializedBlogPostPreview } from "../../components/GenericPagesViews/BlogIndex.view";
-import { SerializedWebinarPreview } from "../../components/GenericPagesViews/WebinarsIndex.view";
 import { getVideoThumbnail } from "../../components/SharedComponents/VideoPlayer/getVideoThumbnail";
 import { resolveOakHref } from "../../common-lib/urls";
 import { getOwaLinkHref } from "../../components/SharedComponents/OwaLink/OwaLink";
 import getBrowserConfig from "../getBrowserConfig";
+
+import {
+  SerializedBlogPostPreview,
+  SerializedWebinarPreview,
+} from "@/common-lib/cms-types";
 
 const courseProvider = {
   name: getBrowserConfig("seoAppName"),
