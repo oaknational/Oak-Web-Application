@@ -158,35 +158,6 @@ const CookieConsentStyles = createGlobalStyle`
 }
 `;
 
-// const Contentguidance = ({
-//   lessonContent,
-//   backUrl,
-// }: Pick<PupilExperienceViewProps, "lessonContent" | "backUrl">) => {
-//   const router = useRouter();
-//   const [isOpen, setIsOpen] = useState<boolean>(
-//     !!lessonContent.contentGuidance,
-//   );
-//   return (
-//     <OakPupilJourneyContentGuidance
-//       isOpen={isOpen}
-//       onAccept={() => {
-//         setIsOpen(false);
-
-//         // track.contentGuidanceAccepted({
-//         //   supervisionLevel: lessonContent.supervisionLevel || "",
-//         //   contentGuidanceWarning:
-//         //     lessonContent.contentGuidance?.find((cg) => {
-//         //       return cg.contentguidanceLabel as ContentGuidanceWarningValueType;
-//         //     }) || "Language and discrimination",
-//         // });
-//       }}
-//       onDecline={() => (backUrl ? router.replace(backUrl) : router.back())}
-//       contentGuidance={lessonContent.contentGuidance}
-//       supervisionLevel={lessonContent.supervisionLevel}
-//     />
-//   );
-// };
-
 const PupilExperienceLayout = ({
   browseData,
   lessonContent,
