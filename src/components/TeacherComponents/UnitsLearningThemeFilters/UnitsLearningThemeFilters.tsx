@@ -90,7 +90,7 @@ const UnitsLearningThemeFilters = ({
             },
           })),
         ]}
-        trackingProps={trackingProps}
+        themeTrackingProps={trackingProps}
       />
     </OakFlex>
   );

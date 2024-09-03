@@ -22,6 +22,7 @@ const ERROR_CODES = [
   "preview/zod-error",
   "cms/invalid-reference-data",
   "cms/invalid-hubspot-form",
+  "getRefreshedMVTime/params-incorrect",
   "curriculum-api/not-found",
   "curriculum-api/uniqueness-assumption-violated",
   "curriculum-api/params-incorrect",
@@ -125,6 +126,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "Error fetching or parsing referenced hubspot form",
     shouldNotify: true,
     responseStatusCode: 500,
+  },
+  "getRefreshedMVTime/params-incorrect": {
+    message: "The params provided are incorrect",
+    shouldNotify: true,
+    responseStatusCode: 404,
   },
   "curriculum-api/not-found": {
     message: "Resource not found",

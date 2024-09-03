@@ -9,6 +9,17 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
+import {
+  mockLoggedIn,
+  mockUserWithDownloadAccess,
+  mockUserWithoutDownloadAccess,
+} from "@/__tests__/__helpers__/mockUser";
+import {
+  enableMockClerk,
+  setUseUserReturn,
+} from "@/__tests__/__helpers__/mockClerk";
+
+jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
 const render = renderWithProviders();
 
@@ -16,6 +27,10 @@ const lesson = lessonDownloadsFixture({
   lessonTitle: "The meaning of time",
 });
 describe("LessonDownloadsCanonicalPage", () => {
+  beforeEach(() => {
+    enableMockClerk();
+  });
+
   it("Renders title from the props", async () => {
     const result = render(
       <LessonDownloadsCanonicalPage
@@ -25,6 +40,57 @@ describe("LessonDownloadsCanonicalPage", () => {
 
     expect(result.queryByText("Downloads")).toBeInTheDocument();
   });
+
+  describe("when downloads are region restricted", () => {
+    const curriculumData = {
+      ...lesson,
+      isDownloadRegionRestricted: true,
+      pathways: [],
+    };
+
+    describe("and the user has access", () => {
+      beforeEach(() => {
+        setUseUserReturn({
+          ...mockLoggedIn,
+          user: mockUserWithDownloadAccess,
+        });
+      });
+
+      it("allows downloads", () => {
+        const result = render(
+          <LessonDownloadsCanonicalPage curriculumData={curriculumData} />,
+        );
+
+        expect(
+          result.queryByText(
+            "Sorry, downloads for this lesson are not available in your country",
+          ),
+        ).not.toBeInTheDocument();
+      });
+    });
+
+    describe("and the user does not have access", () => {
+      beforeEach(() => {
+        setUseUserReturn({
+          ...mockLoggedIn,
+          user: mockUserWithoutDownloadAccess,
+        });
+      });
+
+      it("disallows downloads", () => {
+        const result = render(
+          <LessonDownloadsCanonicalPage curriculumData={curriculumData} />,
+        );
+
+        expect(
+          result.queryByText(
+            "Sorry, downloads for this lesson are not available in your country",
+          ),
+        ).toBeInTheDocument();
+      });
+    });
+  });
+
   describe("getStaticProps", () => {
     it("Should fetch the correct data", async () => {
       const propsResult = (await getStaticProps({

@@ -14,7 +14,6 @@ import {
   OakFlex,
   OakInlineBanner,
   OakLink,
-  OakP,
   OakPrimaryButton,
   OakSpan,
 } from "@oaknational/oak-components";
@@ -35,7 +34,6 @@ import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 
 const OnboardingForm = ({
   showNewsletterSignUp = true,
-  showTermsAndConditions = true,
   ...props
 }: {
   children: React.ReactNode;
@@ -47,7 +45,6 @@ const OnboardingForm = ({
   control: Control<OnboardingFormProps>;
   trigger: UseFormTrigger<OnboardingFormProps>;
   showNewsletterSignUp?: boolean;
-  showTermsAndConditions?: boolean;
 }) => {
   const router = useRouter();
   const hutk = getHubspotUserToken();
@@ -67,8 +64,10 @@ const OnboardingForm = ({
         query: router.query,
       });
     } else {
+      const isTeacher = "school" in data || "manualSchoolName" in data;
+
       try {
-        await onboardUser();
+        await onboardUser({ isTeacher });
         await user?.reload();
       } catch (error) {
         setSubmitError("Something went wrong. Please try again.");
@@ -128,8 +127,8 @@ const OnboardingForm = ({
         $alignItems="flex-start"
         $gap="all-spacing-8"
         $pa="inner-padding-xl3"
-        $dropShadow="drop-shadow-standard"
-        $borderRadius="border-radius-s"
+        $dropShadow={[null, "drop-shadow-standard"]}
+        $borderRadius="border-radius-m2"
         $background={"white"}
         as="form"
         onSubmit={
@@ -138,11 +137,12 @@ const OnboardingForm = ({
       >
         <Logo height={48} width={104} variant="with text" />
         <OakFlex
-          $gap="all-spacing-8"
+          $gap="space-between-m"
           $flexDirection={"column"}
+          $width="100%"
           role={"fieldset"}
         >
-          <OakSpan role="legend" id={"form-legend"} $font="heading-light-5">
+          <OakSpan role="legend" id={"form-legend"} $font="heading-6">
             {props.heading}
           </OakSpan>
           <OakBox aria-live="polite" $display="contents">
@@ -193,35 +193,13 @@ const OnboardingForm = ({
         </OakFlex>
       </OakFlex>
 
-      {showTermsAndConditions && (
-        <OakP $font="body-2" color="text-primary" $textAlign="center">
-          By continuing you agree to{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "legal",
-              legalSlug: "terms-and-conditions",
-            })}
-            target="_blank"
-            aria-label="Terms and conditions (opens in a new tab)"
-          >
-            Oak's terms & conditions
-          </OakLink>{" "}
-          and{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "legal",
-              legalSlug: "privacy-policy",
-            })}
-            target="_blank"
-            aria-label="Privacy policy (opens in a new tab)"
-          >
-            privacy policy
-          </OakLink>
-          .
-        </OakP>
-      )}
-
-      <OakP $font="body-2" color="text-primary" $textAlign="center">
+      <OakBox
+        as="p"
+        $font="body-2"
+        color="text-primary"
+        $textAlign="center"
+        $pb="inner-padding-s"
+      >
         Need help?{" "}
         <OakLink
           href={resolveOakHref({
@@ -232,7 +210,7 @@ const OnboardingForm = ({
           Contact us
         </OakLink>
         .
-      </OakP>
+      </OakBox>
     </OakFlex>
   );
 };

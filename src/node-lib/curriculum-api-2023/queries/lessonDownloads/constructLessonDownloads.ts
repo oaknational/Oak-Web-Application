@@ -38,6 +38,8 @@ const constructLessonDownloads = (
     expired: expired ? expired : null,
     updatedAt: parsedCurrentLesson.lesson_data.updated_at,
     copyrightContent: lessonCopyRight,
+    examBoardTitle: parsedCurrentLesson.programme_fields.examboard_description,
+    tierTitle: parsedCurrentLesson.programme_fields.tier_description,
   };
 
   const unitLessonsArray = parsedBrowseData.map((lesson) => {
