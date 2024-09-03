@@ -65,11 +65,11 @@ function Layout({ children }: { children: React.ReactNode }) {
 
     const observer = new MutationObserver(() => setRender(false));
 
-    const x =
+    const authElement =
       [...document.getElementsByClassName("cl-rootBox cl-signUp-root")][0] ||
       [...document.getElementsByClassName("cl-rootBox cl-signIn-root")][0];
-    if (x) {
-      observer.observe(x, config);
+    if (authElement) {
+      observer.observe(authElement, config);
     }
     return () => {
       return observer.disconnect();
