@@ -159,8 +159,11 @@ const ButtonContainer = styled.div`
 `;
 
 const SelectionDropDownBox = styled(Box)<object>`
-  width: 204%;
-  left: -104%;
+  .phase-selection {
+    width: 204%;
+    left: -104%;
+  }
+
   border-radius: 4px;
   border: 2px solid var(--Tokens-Border-border-primary, #222);
   background: var(--Primitives-Brand-white, #fff);
@@ -468,7 +471,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $dropShadow="interactiveCardHover"
               $left={0}
               $mt={8}
-              $pa={32}
+              $pa={24}
               $position="absolute"
               $top={["50%", "100%"]}
               $zIndex={"inFront"}
@@ -497,9 +500,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   </OakFlex>
                 )}
                 <OakFlex
-                  $flexDirection={"row"}
-                  $alignItems={"center"}
-                  $mb={"space-between-m"}
+                  $flexDirection={"column"}
+                  $alignItems={"flex-start"}
+                  $gap={"all-spacing-1"}
+                  $mb={"space-between-sssx"}
                 >
                   <OakHeading
                     id={subjectInputId}
@@ -510,10 +514,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   >
                     Curriculum plans
                   </OakHeading>
+                  <OakP $mb="space-between-s">
+                    Explore our new curricula for 2023/2024.
+                  </OakP>
                 </OakFlex>
-                <OakP $mb="space-between-s">
-                  Explore our new curricula for 2023/2024.
-                </OakP>
                 <OakFlex
                   role="radiogroup"
                   aria-labelledby={subjectInputId}
@@ -524,6 +528,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   $gap={"space-between-xs"}
                   $alignItems={"flex-start"}
                   $flexWrap={"wrap"}
+                  $mt={"space-between-none"}
                 >
                   {subjects.map((subject) => (
                     <ButtonContainer
@@ -661,6 +666,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $position="absolute"
                 $top={"100%"}
                 $zIndex={"inFront"}
+                className="phase-selection"
               >
                 <FocusOn
                   autoFocus={false}
