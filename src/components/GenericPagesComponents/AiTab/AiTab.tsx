@@ -36,8 +36,8 @@ const AiTab: FC = () => {
                 class, Aila can help speed things along.
               </OakTypography>
               <ButtonAsLink
-                label={"Go to Aila"}
-                aria-label="Try our ai tools (this will open in a new tab)"
+                label={"Create a lesson with Aila"}
+                aria-label="Create a lesson with Aila (this will open in a new tab)"
                 variant={"brushNav"}
                 page={"labs"}
                 icon={"external"}
