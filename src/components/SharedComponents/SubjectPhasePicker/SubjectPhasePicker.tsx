@@ -523,7 +523,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   aria-describedby={
                     showSubjectError ? subjectErrorId : undefined
                   }
-                  $gap={"space-between-s"}
+                  $gap={"space-between-xs"}
                   $alignItems={"flex-start"}
                   $flexWrap={"wrap"}
                 >
