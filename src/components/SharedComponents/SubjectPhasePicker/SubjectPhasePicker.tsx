@@ -1,10 +1,9 @@
-import { FC, useEffect, useState, useRef, useId } from "react";
+import { FC, useState, useId } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import {
   OakBox,
-  OakColorToken,
   OakFlex,
   OakHeading,
   OakP,
@@ -12,8 +11,9 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
+import BoxBorders from "../SpriteSheet/BrushSvgs/BoxBorders";
+
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import Svg from "@/components/SharedComponents/Svg";
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button/Button";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -23,12 +23,11 @@ import {
   Subject,
   SubjectPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
-import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
-import { OakColorName } from "@/styles/theme";
 import Icon from "@/components/SharedComponents/Icon";
 import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 
 /**
  * Interface to pick a subject, phase, and if applicable, an exam board.
@@ -43,42 +42,8 @@ export type SubjectPhasePickerData = {
     phase: Phase;
     examboard: Examboard | null;
   };
+  tab?: CurriculumTab;
 };
-
-const SelectButton = styled(UnstyledButton)<object>`
-  position: relative;
-  width: 100%;
-
-  svg[name="box-border-left"] {
-    display: none;
-  }
-
-  svg[name="underline-1"] {
-    display: none;
-    position: absolute;
-  }
-
-  &:focus {
-    outline: none;
-
-    svg[name="underline-1"] {
-      display: block;
-      bottom: -4px;
-      left: -4px;
-      width: calc(100% + 8px);
-      height: 10px;
-      transform: rotate(-1deg);
-    }
-  }
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const ButtonFocusUnderline = styled(Svg)<{ $color: OakColorName }>`
-  color: ${(props) => props.$color};
-`;
 
 const ButtonContainer = styled.div`
   display: inline-block;
@@ -100,6 +65,12 @@ const ButtonContainer = styled.div`
   }
 `;
 
+const FocusIndicatorAlt = styled(FocusIndicator)<object>`
+  &:hover {
+    background: #f2f2f2;
+  }
+`;
+
 const SchoolPhaseDropDownBox = styled(Box)<object>`
   width: 204%;
   left: -104%;
@@ -113,11 +84,9 @@ const SchoolPhaseDropDownBox = styled(Box)<object>`
 const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   subjects,
   currentSelection,
+  tab = "units",
 }) => {
   const router = useRouter();
-  const tab = (router.query.tab as CurriculumTab) ?? "units";
-  const path = router.asPath;
-
   const examboardErrorId = useId();
   const phaseErrorId = useId();
   const subjectErrorId = useId();
@@ -155,11 +124,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const [showSubjectError, setShowSubjectError] = useState(false);
   const [showPhaseError, setShowPhaseError] = useState(false);
   const [showExamboardError, setShowExamboardError] = useState(false);
-  // const [displayNewBorders, setDisplayNewBorders] = useState<boolean>(true);
-  const [phaseBackground, setPhaseBackground] =
-    useState<OakColorToken>("white");
-  const [subjectBackground, setSubjectBackground] =
-    useState<OakColorName>("transparent");
 
   const schoolPhaseInputId = useId();
   const examBoardInputId = useId();
@@ -185,9 +149,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     ) {
       setSelectedPhase(null);
     }
-    if (selectedPhase) {
-      viewButtonRef.current?.focus();
-    } else {
+    if (!selectedPhase) {
       setShowPhases(true);
     }
     setShowSubjects(false);
@@ -198,7 +160,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     setShowExamboardError(false);
     setSelectedExamboard(null);
     setSelectedPhase(phase);
-    viewButtonRef.current?.focus();
     if (
       phase.slug === "primary" ||
       !selectedSubject ||
@@ -249,7 +210,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       setShowPhases(true);
     }
     if (canViewCurriculum) {
-      viewButtonRef.current?.blur();
       let subjectPhaseSlug = selectedSubject?.slug + "-" + selectedPhase?.slug;
       if (selectedExamboard) {
         subjectPhaseSlug += "-" + selectedExamboard.slug;
@@ -280,61 +240,25 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     );
   };
 
-  const viewButtonRef = useRef<HTMLButtonElement>(null);
-  const depsRef = useRef(
-    selectedSubject &&
-      selectedPhase &&
-      path &&
-      path.startsWith("/teachers/curriculum/"),
-  );
-
-  useEffect(() => {
-    // let hideOuterBorders = false;
-    let phaseBackgroundEnabled = true;
-    let subjectBackgroundEnabled = true;
-
-    if (selectedSubject && selectedPhase) {
-      viewButtonRef.current?.focus();
-    }
-
-    if (showSubjects) {
-      // hideOuterBorders = true;
-      phaseBackgroundEnabled = false;
-    }
-
-    if (showPhases) {
-      // hideOuterBorders = true;
-      subjectBackgroundEnabled = false;
-    }
-
-    // setDisplayNewBorders(hideOuterBorders);
-    setPhaseBackground(phaseBackgroundEnabled ? "white" : "grey20");
-    setSubjectBackground(subjectBackgroundEnabled ? "transparent" : "grey20");
-  }, [selectedSubject, selectedPhase, showPhases, showSubjects]);
-
-  useEffect(() => {
-    if (depsRef) {
-      viewButtonRef.current?.blur();
-    }
-  }, []);
-
   return (
     <OakBox
       $position="relative"
       data-testid="subjectPhasePicker"
       $zIndex={99}
-      $background={phaseBackground}
       $maxWidth="all-spacing-23"
       $borderRadius="border-radius-m"
+      $borderColor={showSubjects || showPhases ? "transparent" : "black"}
       $ba="border-solid-m"
     >
       <OakFlex
         $position="relative"
+        $borderRadius="border-radius-m"
         $alignItems={"center"}
         $justifyContent={"space-between"}
         $gap="space-between-none"
         $flexDirection={["column", "row"]}
         $width={"100%"}
+        $background={showSubjects || showPhases ? "grey30" : "white"}
       >
         <OakFlex
           $flexDirection={"row"}
@@ -344,44 +268,63 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         >
           <OakFlex
             $position={"relative"}
-            $width={["50%", "50%"]}
-            $borderColor={showSubjects ? "lemon" : "transparent"}
-            $ba={3}
-            $background={subjectBackground}
-            $pl={"inner-padding-m"}
-            $pr={"inner-padding-m"}
-            $pt={["inner-padding-s"]}
-            $pb={["inner-padding-s"]}
+            $alignSelf={"stretch"}
+            $background={showSubjects ? "white" : null}
+            style={{ width: "50%" }}
           >
-            <SelectButton onClick={toggleShowSubjects} title="Subject">
-              <OakHeading
-                tag={"h3"}
-                $font={"heading-light-7"}
-                $mb="space-between-sssx"
-                $color={!showSubjectError ? "black" : "red"}
-                data-testid="selectSubjectHeading"
+            <FocusIndicatorAlt
+              disableMouseHover={true}
+              subFocus={showSubjects}
+              $width={"100%"}
+            >
+              <button
+                onClick={toggleShowSubjects}
+                title="Subject"
+                style={{
+                  background: "none",
+                  width: "100%",
+                  border: "none",
+                  padding: 0,
+                  outline: "none",
+                  textAlign: "left",
+                  userSelect: "none",
+                }}
               >
-                Subject
-              </OakHeading>
-              <OakP
-                $font={"body-2"}
-                $color={!showSubjectError ? "black" : "red"}
-              >
-                {showSubjectError && (
-                  <>
-                    <Icon
-                      $color={"red"}
-                      name="content-guidance"
-                      verticalAlign="bottom"
-                    />
-                    <OakSpan>Select a subject</OakSpan>
-                  </>
-                )}
-                {selectedSubject && <>{selectedSubject.title}</>}
-                {!showSubjectError && !selectedSubject && "Select"}
-              </OakP>
-              <ButtonFocusUnderline $color={"black"} name="underline-1" />
-            </SelectButton>
+                <OakBox
+                  $pl="inner-padding-m"
+                  $pr="inner-padding-m"
+                  $pt="inner-padding-s"
+                  $pb="inner-padding-s"
+                >
+                  <OakHeading
+                    tag={"h3"}
+                    $font={"heading-light-7"}
+                    $mb="space-between-sssx"
+                    $color={!showSubjectError ? "black" : "red"}
+                    data-testid="selectSubjectHeading"
+                  >
+                    Subject
+                  </OakHeading>
+                  <OakP
+                    $font={"body-2"}
+                    $color={!showSubjectError ? "black" : "red"}
+                  >
+                    {showSubjectError && (
+                      <>
+                        <Icon
+                          $color={"red"}
+                          name="content-guidance"
+                          verticalAlign="bottom"
+                        />
+                        <OakSpan>Select a subject</OakSpan>
+                      </>
+                    )}
+                    {selectedSubject && selectedSubject.title}
+                    {!showSubjectError && !selectedSubject && "Select"}
+                  </OakP>
+                </OakBox>
+              </button>
+            </FocusIndicatorAlt>
           </OakFlex>
           {showSubjects && (
             <Box
@@ -472,215 +415,284 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               </FocusOn>
             </Box>
           )}
-          <OakFlex
+          <Box
+            $height={50}
+            $width={3}
             $position={"relative"}
-            $pl={"inner-padding-m"}
-            $pr={"inner-padding-m"}
-            $pt={["inner-padding-s"]}
-            $pb={["inner-padding-s"]}
-            $width={["50%", "60%"]}
-            $borderColor={showPhases ? "lemon" : "transparent"}
-            $ba="border-solid-s"
-            $flexDirection={"row"}
+            $display={"block"}
+            $zIndex={"inFront"}
+            style={{ transform: "translate(-50%, 0)" }}
+            $visibility={showSubjects || showPhases ? "hidden" : null}
           >
-            <SelectButton onClick={toggleShowPhases} title="Phase">
-              <OakHeading
-                tag={"h3"}
-                $font={"heading-light-7"}
-                $mb="space-between-sssx"
-                $color={!showSubjectError ? "black" : "red"}
-                data-testid="selectPhaseHeading"
+            <BoxBorders
+              $color="grey30"
+              hideBottom={true}
+              hideTop={true}
+              hideRight={true}
+            />
+          </Box>
+          <Box $width={["50%", "60%"]} $position={"relative"}>
+            <OakFlex
+              $position={"relative"}
+              $flexDirection={"row"}
+              $gap="space-between-s"
+              $background={showPhases ? "white" : null}
+            >
+              <FocusIndicatorAlt
+                disableMouseHover={true}
+                $borderRadius={"border-radius-m"}
+                subFocus={showPhases}
+                $width={"100%"}
               >
-                School phase
-              </OakHeading>
-              <Box
-                $font={"body-2"}
-                $color={
-                  !showPhaseError && !showExamboardError ? "black" : "red"
-                }
-              >
-                {showPhaseError && (
-                  <>
-                    <Icon
-                      $color={"red"}
-                      name="content-guidance"
-                      verticalAlign="bottom"
-                    />
-                    Select a school phase
-                  </>
-                )}
-                {showExamboardError && (
-                  <>
-                    <Icon
-                      $color={"red"}
-                      name="content-guidance"
-                      verticalAlign="bottom"
-                    />
-                    Select an exam board option
-                  </>
-                )}
-                {selectedPhase && !showExamboardError && (
-                  <>
-                    <Box
-                      $textOverflow={"ellipsis"}
-                      $whiteSpace={"nowrap"}
-                      $overflowX={"hidden"}
+                <button
+                  onClick={toggleShowPhases}
+                  title="Phase"
+                  style={{
+                    background: "none",
+                    width: "100%",
+                    border: "none",
+                    padding: 0,
+                    outline: "none",
+                    textAlign: "left",
+                    userSelect: "none",
+                  }}
+                >
+                  <OakBox
+                    $pl="inner-padding-m"
+                    $pt="inner-padding-s"
+                    $pb="inner-padding-s"
+                    style={{ paddingRight: "9rem" }}
+                  >
+                    <OakHeading
+                      tag={"h3"}
+                      $font={"heading-light-7"}
+                      $mb="space-between-sssx"
+                      $color={!showSubjectError ? "black" : "red"}
+                      data-testid="selectPhaseHeading"
                     >
-                      <OakSpan>{selectedPhase.title}</OakSpan>
-                      {selectedExamboard && (
-                        <OakSpan>, {selectedExamboard.title}</OakSpan>
+                      School phase
+                    </OakHeading>
+                    <Box
+                      $font={"body-2"}
+                      $color={
+                        !showPhaseError && !showExamboardError ? "black" : "red"
+                      }
+                    >
+                      {showPhaseError && (
+                        <>
+                          <Icon
+                            $color={"red"}
+                            name="content-guidance"
+                            verticalAlign="bottom"
+                          />
+                          Select a school phase
+                        </>
+                      )}
+                      {showExamboardError && (
+                        <>
+                          <Icon
+                            $color={"red"}
+                            name="content-guidance"
+                            verticalAlign="bottom"
+                          />
+                          Select an exam board option
+                        </>
+                      )}
+                      {selectedPhase && !showExamboardError && (
+                        <>
+                          <Box
+                            $textOverflow={"ellipsis"}
+                            $whiteSpace={"nowrap"}
+                            $overflowX={"hidden"}
+                          >
+                            <OakSpan>{selectedPhase.title}</OakSpan>
+                            {selectedExamboard && (
+                              <OakSpan>, {selectedExamboard.title}</OakSpan>
+                            )}
+                          </Box>
+                        </>
+                      )}
+                      {!selectedPhase &&
+                        !showPhaseError &&
+                        !showExamboardError &&
+                        "Select"}
+                    </Box>
+                  </OakBox>
+                </button>
+              </FocusIndicatorAlt>
+              {showPhases && (
+                <SchoolPhaseDropDownBox
+                  $background={"white"}
+                  $dropShadow="interactiveCardHover"
+                  $mt={8}
+                  $pa={28}
+                  $position="absolute"
+                  $top={"100%"}
+                  $zIndex={"inFront"}
+                >
+                  <FocusOn
+                    autoFocus={false}
+                    onClickOutside={() => setShowPhases(false)}
+                    onEscapeKey={() => setShowPhases(false)}
+                    scrollLock={false}
+                  >
+                    {showPhaseError && (
+                      <Flex id={phaseErrorId} $flexDirection={"row"} $mb={20}>
+                        <Icon
+                          $color={"red"}
+                          name="content-guidance"
+                          verticalAlign="bottom"
+                        />
+                        <OakP $color={"red"}>
+                          Select a school phase to view the curriculum
+                        </OakP>
+                      </Flex>
+                    )}
+                    {showExamboardError ? (
+                      <Flex
+                        id={examboardErrorId}
+                        $flexDirection={"row"}
+                        $mb={20}
+                      >
+                        <Icon
+                          $color={"red"}
+                          name="content-guidance"
+                          verticalAlign="bottom"
+                        />
+                        <OakP $color={"red"}>
+                          Select an exam board to view the curriculum
+                        </OakP>
+                      </Flex>
+                    ) : (
+                      ""
+                    )}
+                    <OakHeading
+                      id={schoolPhaseInputId}
+                      tag={"h4"}
+                      $font={"heading-6"}
+                      $mb="space-between-s"
+                      data-testid="phaseDropdownHeading"
+                    >
+                      Choose a school phase:
+                    </OakHeading>
+                    <Box
+                      radioGroup="radiogroup"
+                      aria-labelledby={schoolPhaseInputId}
+                      aria-required="true"
+                      aria-describedby={
+                        showPhaseError ? phaseErrorId : undefined
+                      }
+                    >
+                      {(selectedSubject?.phases ?? phases).map(
+                        (phase, index) => (
+                          <ButtonContainer
+                            className="multi-line"
+                            key={phase.slug}
+                          >
+                            <Button
+                              role="radio"
+                              $mr={index === 0 ? 28 : 0}
+                              $mb={index === 0 ? 16 : 0}
+                              $mv={8}
+                              background={
+                                isSelected(phase) ? "black" : "grey20"
+                              }
+                              label={phaseLabel(phase)}
+                              onClick={() => handleSelectPhase(phase)}
+                              aria-checked={isSelected(phase)}
+                              title={phase.title}
+                            />
+                          </ButtonContainer>
+                        ),
                       )}
                     </Box>
-                  </>
-                )}
-                {!selectedPhase &&
-                  !showPhaseError &&
-                  !showExamboardError &&
-                  "Select"}
-              </Box>
-              <ButtonFocusUnderline $color={"black"} name="underline-1" />
-            </SelectButton>
+                    {selectedPhase?.slug === "secondary" &&
+                      selectedSubject?.examboards && (
+                        <>
+                          <OakHeading
+                            id={examBoardInputId}
+                            $mb="space-between-s"
+                            $mt="space-between-m"
+                            tag={"h4"}
+                            $font={"heading-6"}
+                          >
+                            Choose an exam board for KS4:
+                          </OakHeading>
 
-            {showPhases && (
-              <SchoolPhaseDropDownBox
-                $background={"white"}
-                $dropShadow="interactiveCardHover"
-                $mt={8}
-                $pa={28}
-                $position="absolute"
-                $top={"100%"}
-                $zIndex={"inFront"}
+                          <Box
+                            role="radiogroup"
+                            aria-labelledby={examBoardInputId}
+                            aria-required="true"
+                            aria-describedby={
+                              showExamboardError ? examboardErrorId : undefined
+                            }
+                          >
+                            {selectedSubject.examboards.map(
+                              (examboard, index) => (
+                                <ButtonContainer key={examboard.slug}>
+                                  <Button
+                                    role="radio"
+                                    $mr={24}
+                                    $mt={index >= 2 ? [16, 0] : 0}
+                                    background={
+                                      isSelected(examboard) ? "black" : "grey20"
+                                    }
+                                    label={examboard.title}
+                                    onClick={() =>
+                                      handleSelectExamboard(examboard)
+                                    }
+                                    size="large"
+                                    title={examboard.title}
+                                    aria-checked={isSelected(examboard)}
+                                  />
+                                </ButtonContainer>
+                              ),
+                            )}
+                          </Box>
+                        </>
+                      )}
+                  </FocusOn>
+                </SchoolPhaseDropDownBox>
+              )}
+              <OakFlex
+                $position={"absolute"}
+                $right="all-spacing-0"
+                $pr="inner-padding-m"
+                $alignContent={"center"}
+                $maxWidth={"all-spacing-17"}
+                $width={["100%", "fit-content"]}
+                $height={"100%"}
+                $display={["none", "block"]}
+                $zIndex={3}
               >
-                <FocusOn
-                  autoFocus={false}
-                  onClickOutside={() => setShowPhases(false)}
-                  onEscapeKey={() => setShowPhases(false)}
-                  scrollLock={false}
+                <OakPrimaryButton
+                  iconName="arrow-right"
+                  isTrailingIcon={true}
+                  onClick={handleViewCurriculum}
                 >
-                  {showPhaseError && (
-                    <Flex id={phaseErrorId} $flexDirection={"row"} $mb={20}>
-                      <Icon
-                        $color={"red"}
-                        name="content-guidance"
-                        verticalAlign="bottom"
-                      />
-                      <OakP $color={"red"}>
-                        Select a school phase to view the curriculum
-                      </OakP>
-                    </Flex>
-                  )}
-                  {showExamboardError ? (
-                    <Flex id={examboardErrorId} $flexDirection={"row"} $mb={20}>
-                      <Icon
-                        $color={"red"}
-                        name="content-guidance"
-                        verticalAlign="bottom"
-                      />
-                      <OakP $color={"red"}>
-                        Select an exam board to view the curriculum
-                      </OakP>
-                    </Flex>
-                  ) : (
-                    ""
-                  )}
-                  <OakHeading
-                    id={schoolPhaseInputId}
-                    tag={"h4"}
-                    $font={"heading-6"}
-                    $mb="space-between-s"
-                    data-testid="phaseDropdownHeading"
-                  >
-                    Choose a school phase:
-                  </OakHeading>
-                  <Box
-                    radioGroup="radiogroup"
-                    aria-labelledby={schoolPhaseInputId}
-                    aria-required="true"
-                    aria-describedby={showPhaseError ? phaseErrorId : undefined}
-                  >
-                    {(selectedSubject?.phases ?? phases).map((phase, index) => (
-                      <ButtonContainer className="multi-line" key={phase.slug}>
-                        <Button
-                          role="radio"
-                          $mr={index === 0 ? 28 : 0}
-                          $mb={index === 0 ? 16 : 0}
-                          $mv={8}
-                          background={isSelected(phase) ? "black" : "grey20"}
-                          label={phaseLabel(phase)}
-                          onClick={() => handleSelectPhase(phase)}
-                          aria-checked={isSelected(phase)}
-                          title={phase.title}
-                        />
-                      </ButtonContainer>
-                    ))}
-                  </Box>
-                  {selectedPhase?.slug === "secondary" &&
-                    selectedSubject?.examboards && (
-                      <>
-                        <OakHeading
-                          id={examBoardInputId}
-                          $mb="space-between-s"
-                          $mt="space-between-m"
-                          tag={"h4"}
-                          $font={"heading-6"}
-                        >
-                          Choose an exam board for KS4:
-                        </OakHeading>
-
-                        <Box
-                          role="radiogroup"
-                          aria-labelledby={examBoardInputId}
-                          aria-required="true"
-                          aria-describedby={
-                            showExamboardError ? examboardErrorId : undefined
-                          }
-                        >
-                          {selectedSubject.examboards.map(
-                            (examboard, index) => (
-                              <ButtonContainer key={examboard.slug}>
-                                <Button
-                                  role="radio"
-                                  $mr={24}
-                                  $mt={index >= 2 ? [16, 0] : 0}
-                                  background={
-                                    isSelected(examboard) ? "black" : "grey20"
-                                  }
-                                  label={examboard.title}
-                                  onClick={() =>
-                                    handleSelectExamboard(examboard)
-                                  }
-                                  size="large"
-                                  title={examboard.title}
-                                  aria-checked={isSelected(examboard)}
-                                />
-                              </ButtonContainer>
-                            ),
-                          )}
-                        </Box>
-                      </>
-                    )}
-                </FocusOn>
-              </SchoolPhaseDropDownBox>
-            )}
-            <OakFlex
-              // $pl={"inner-padding-m"}
-              // $pr={"inner-padding-m"}
-              // $pt={["inner-padding-s"]}
-              // $pb={["inner-padding-s"]}
-              $width={["100%", "fit-content"]}
-              $display={["none", "block"]}
-            >
-              <OakPrimaryButton
-                iconName="arrow-right"
-                isTrailingIcon={true}
-                onClick={handleViewCurriculum}
-                // ref={viewButtonRef}
-              >
-                View
-              </OakPrimaryButton>
+                  View
+                </OakPrimaryButton>
+              </OakFlex>
             </OakFlex>
-          </OakFlex>
+          </Box>
         </OakFlex>
+
+        <Box
+          style={{
+            width: "calc(100% - 1rem * 2)",
+            transform: "translate(0, 50%)",
+          }}
+          $height={3}
+          $position={"relative"}
+          $display={["block", " none"]}
+        >
+          <BoxBorders
+            $color="grey30"
+            hideTop={true}
+            hideRight={true}
+            hideLeft={true}
+          />
+        </Box>
 
         <OakFlex
           $pl={"inner-padding-m"}

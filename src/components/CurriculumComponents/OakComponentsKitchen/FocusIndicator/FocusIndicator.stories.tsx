@@ -14,9 +14,18 @@ type Story = StoryObj<typeof FocusIndicatorComponent>;
 const TestComponent = () => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <FocusIndicatorComponent>
-        <button>Test</button>
-      </FocusIndicatorComponent>
+      <div style={{ display: "flex" }}>
+        <FocusIndicatorComponent>
+          <button
+            style={{
+              background: "none",
+              border: "solid 1px black",
+            }}
+          >
+            Test
+          </button>
+        </FocusIndicatorComponent>
+      </div>
     </OakThemeProvider>
   );
 };

@@ -130,6 +130,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           <Hr $color={"white"} />
           <SubjectPhasePicker
             {...subjectPhaseOptions}
+            tab={tab}
             currentSelection={currentSelection}
           />
         </Box>
