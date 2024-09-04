@@ -440,7 +440,7 @@ export async function buildUnit(
     const combinedTitles = subjectcategories
       ? subjectcategories.map(({ title }) => title).join(", ")
       : "";
-    return combinedTitles !== "" ? `, ${combinedTitles}` : "";
+    return combinedTitles !== "" ? `: ${combinedTitles}` : "";
   }
 
   const xml = safeXml`
