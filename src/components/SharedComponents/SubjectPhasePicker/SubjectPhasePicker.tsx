@@ -158,7 +158,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const SchoolPhaseDropDownBox = styled(Box)<object>`
+const SelectionDropDownBox = styled(Box)<object>`
   width: 204%;
   left: -104%;
   border-radius: 4px;
@@ -463,7 +463,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             </SelectButton>
           </Box>
           {showSubjects && (
-            <SchoolPhaseDropDownBox
+            <SelectionDropDownBox
               $background={"white"}
               $dropShadow="interactiveCardHover"
               $left={0}
@@ -562,7 +562,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   </OwaLink>
                 </Box>
               </FocusOn>
-            </SchoolPhaseDropDownBox>
+            </SelectionDropDownBox>
           )}
           <Box
             $height={80}
@@ -653,7 +653,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             </SelectButton>
 
             {showPhases && (
-              <SchoolPhaseDropDownBox
+              <SelectionDropDownBox
                 $background={"white"}
                 $dropShadow="interactiveCardHover"
                 $mt={8}
@@ -780,7 +780,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       </>
                     )}
                 </FocusOn>
-              </SchoolPhaseDropDownBox>
+              </SelectionDropDownBox>
             )}
             <Box
               $pl={18}
