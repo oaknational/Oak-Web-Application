@@ -6,6 +6,8 @@ import {
   isValidIconName,
   OakFlex,
   OakHeading,
+  OakIcon,
+  OakIconName,
   OakP,
   OakSecondaryButton,
   OakSpan,
@@ -539,12 +541,18 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     >
                       <OakSecondaryButton
                         role="radio"
-                        iconName={getIconName(subject.slug)}
+                        // iconName={getIconName(subject.slug)}
                         iconGap={"space-between-sssx"}
                         onClick={() => handleSelectSubject(subject)}
                         aria-checked={isSelected(subject)}
                         title={subject.title}
                         hoverShadow={null}
+                        iconOverride={
+                          <OakIcon
+                            iconName={getIconName(subject.slug) as OakIconName}
+                            alt=""
+                          />
+                        }
                       >
                         {subject.title}
                       </OakSecondaryButton>
