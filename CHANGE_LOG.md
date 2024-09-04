@@ -1,3 +1,10 @@
+# [1.537.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.536.0...v1.537.0) (2024-09-04)
+
+
+### Features
+
+* add reverse proxying for posthog in development ([0ec2b76](https://github.com/oaknational/Oak-Web-Application/commit/0ec2b766c62f46d31dab5fade0709e43ea176e11))
+
 # [1.536.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.535.0...v1.536.0) (2024-09-03)
 
 
