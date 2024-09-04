@@ -28,15 +28,15 @@ const AiTab: FC = () => {
                 Teachers
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>
-                AI tools created for educators
+                Your lesson prep, transformed with AI
               </OakHeading>
               <OakTypography $font={"body-1"}>
-                Plan lessons and create quizzes with Oak AI Experiments, a new
-                and freely available suite of practical AI tools designed to
-                help save teachers time.
+                Try our free, AI-powered lesson assistant: Aila. Whether
+                it&apos;s creating bespoke resources or helping you tailor
+                content to your class, Aila can help speed things along.
               </OakTypography>
               <ButtonAsLink
-                label={"Go to Oak AI Experiments"}
+                label={"Go to Aila"}
                 aria-label="Try our ai tools (this will open in a new tab)"
                 variant={"brushNav"}
                 page={"labs"}
