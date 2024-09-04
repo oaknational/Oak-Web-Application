@@ -3,7 +3,7 @@ import HomePageTabImageButton from "./HomePageTabImageButton";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("HomePageTabImageButton", () => {
-  it("renders a button", () => {
+  it("renders a button with role as link", () => {
     const spy = jest.fn();
 
     const { getByRole } = renderWithTheme(
@@ -16,7 +16,7 @@ describe("HomePageTabImageButton", () => {
       />,
     );
 
-    const button = getByRole("button");
+    const button = getByRole("link");
     expect(button).toBeInTheDocument();
   });
 
@@ -61,7 +61,7 @@ describe("HomePageTabImageButton", () => {
       />,
     );
 
-    const button = getByRole("button");
+    const button = getByRole("link");
     button.click();
 
     expect(spy).toHaveBeenCalledTimes(1);
@@ -81,7 +81,7 @@ describe("HomePageTabImageButton", () => {
       />,
     );
 
-    const button = getByRole("button");
+    const button = getByRole("link");
     button.click();
 
     expect(spy).toHaveBeenCalledTimes(0);
@@ -112,7 +112,7 @@ describe("HomePageTabImageButton", () => {
         showNewIcon={true}
       />,
     );
-    const button = getByRole("button");
+    const button = getByRole("link");
     expect(button).toHaveAttribute("aria-label", "Click me (New)");
   });
 
