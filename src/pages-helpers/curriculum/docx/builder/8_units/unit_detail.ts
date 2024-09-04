@@ -434,12 +434,14 @@ export async function buildUnit(
     `;
   }
 
-  const getSubjectCategoriesAsString = (
+  function getSubjectCategoriesAsString(
     subjectcategories: SubjectCategory[] | null | undefined,
-  ) =>
-    subjectcategories
-      ? `, ${subjectcategories.map(({ title }) => title).join(", ")}`
+  ) {
+    const combinedTitles = subjectcategories
+      ? subjectcategories.map(({ title }) => title).join(", ")
       : "";
+    return combinedTitles !== "" ? `, ${combinedTitles}` : "";
+  }
 
   const xml = safeXml`
     <XML_FRAGMENT>
