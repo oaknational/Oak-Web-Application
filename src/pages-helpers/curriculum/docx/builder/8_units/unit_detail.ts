@@ -13,6 +13,7 @@ import {
 } from "../../docx";
 
 import { createProgrammeSlug } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
+import { SubjectCategory } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
 const DISABLE_COLUMN_BREAKS = true;
 
@@ -433,6 +434,13 @@ export async function buildUnit(
     `;
   }
 
+  const getSubjectCategoriesAsString = (
+    subjectcategories: SubjectCategory[] | null | undefined,
+  ) =>
+    subjectcategories
+      ? `, ${subjectcategories.map(({ title }) => title).join(", ")}`
+      : "";
+
   const xml = safeXml`
     <XML_FRAGMENT>
       ${
@@ -487,6 +495,9 @@ export async function buildUnit(
             <w:color w:val="222222" />
           </w:rPr>
           <w:t>Year ${cdata(unit.year)}</w:t>
+          <w:t>
+            ${cdata(getSubjectCategoriesAsString(unit.subjectcategories))}
+          </w:t>
         </w:r>
       </w:p>
 
