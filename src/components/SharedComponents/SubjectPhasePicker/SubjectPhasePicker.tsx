@@ -102,7 +102,7 @@ const ButtonContainer = styled.div`
       background: var(--Tokens-Background-bg-primary, #fff);
 
       :focus {
-        /* drop-shadow-focus */
+        /* drop-shadow-focus  */
         box-shadow:
           0px 0px 0px 2px #ffe555,
           0px 0px 0px 5px #575757;
