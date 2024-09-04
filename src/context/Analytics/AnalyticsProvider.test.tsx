@@ -51,6 +51,10 @@ const CallIdentify = () => {
   );
 };
 
+jest.mock("@/browser-lib/getBrowserConfig", () => {
+  return jest.fn().mockReturnValue("development");
+});
+
 describe("useAnalytics", () => {
   beforeEach(() => {
     jest.clearAllMocks();
