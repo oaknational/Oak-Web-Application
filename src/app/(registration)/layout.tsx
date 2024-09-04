@@ -77,7 +77,6 @@ function Layout({ children }: { children: React.ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [render]);
 
-  console.log("render", render);
   return (
     <RegistrationLayout
       asideSlot={
