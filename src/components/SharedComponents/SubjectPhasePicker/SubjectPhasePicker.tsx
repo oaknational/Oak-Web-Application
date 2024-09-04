@@ -159,9 +159,14 @@ const ButtonContainer = styled.div`
 `;
 
 const SelectionDropDownBox = styled(Box)<object>`
-  .phase-selection {
+  &.phase-selection {
     width: 204%;
     left: -104%;
+
+    @media (min-width: 768px) {
+      width: 100%;
+      left: 0;
+    }
   }
 
   border-radius: 4px;
@@ -170,11 +175,6 @@ const SelectionDropDownBox = styled(Box)<object>`
 
   /* drop-shadow-standard */
   box-shadow: 0px 8px 8px 0px rgba(92, 92, 92, 0.2);
-
-  @media (min-width: 768px) {
-    width: 100%;
-    left: 0;
-  }
 `;
 
 const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
