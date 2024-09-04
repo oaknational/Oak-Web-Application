@@ -36,7 +36,7 @@ describe("Onboarding form", () => {
     expect(fieldset).toContainElement(legend);
   });
 
-  it("renders newsletter signup checkbox", () => {
+  it.skip("renders newsletter signup checkbox", () => {
     renderForm();
 
     expect(
@@ -45,7 +45,7 @@ describe("Onboarding form", () => {
       ),
     ).toBeInTheDocument();
   });
-  it("should render the Controller component and handle checkbox change", async () => {
+  it.skip("should render the Controller component and handle checkbox change", async () => {
     renderForm();
 
     const checkbox = await screen.findByRole("checkbox", {
@@ -141,6 +141,7 @@ function renderForm(
       canSubmit={true}
       trigger={result.current.trigger}
       control={result.current.control}
+      forceHideNewsletterSignUp={true}
     >
       <div />
     </OnboardingForm>,

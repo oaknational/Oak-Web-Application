@@ -5,7 +5,7 @@ import {
   UseFormStateReturn,
   UseFormTrigger,
 } from "react-hook-form";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
 import {
@@ -31,9 +31,10 @@ import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/get
 import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
 import OakError from "@/errors/OakError";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
+import { subscriptionResponseSchema } from "@/pages/api/hubspot/subscription";
 
 const OnboardingForm = ({
-  showNewsletterSignUp = true,
+  forceHideNewsletterSignUp,
   ...props
 }: {
   children: React.ReactNode;
@@ -44,7 +45,7 @@ const OnboardingForm = ({
   onSubmit?: () => void;
   control: Control<OnboardingFormProps>;
   trigger: UseFormTrigger<OnboardingFormProps>;
-  showNewsletterSignUp?: boolean;
+  forceHideNewsletterSignUp?: boolean;
 }) => {
   const router = useRouter();
   const hutk = getHubspotUserToken();
@@ -52,6 +53,45 @@ const OnboardingForm = ({
   const { posthogDistinctId } = useAnalytics();
   const { user } = useUser();
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const [userRegisteredInHubspot, setUserRegisteredinHubspot] = useState<
+    boolean | undefined
+  >(undefined);
+
+  useEffect(() => {
+    const fetchData = async (email: string) => {
+      try {
+        const response = await fetch("/api/hubspot/subscription", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            subscriptionName: "School support",
+          }),
+        });
+
+        const result = subscriptionResponseSchema.parse(await response.json());
+        setUserRegisteredinHubspot(result);
+      } catch (err) {
+        if (err instanceof OakError) {
+          throw err;
+        }
+        throw new OakError({
+          code: "hubspot/unknown",
+          originalError: err,
+        });
+      }
+    };
+    if (forceHideNewsletterSignUp) {
+      return;
+    }
+    if (user?.emailAddresses[0]) {
+      const email = String(user.emailAddresses[0].emailAddress);
+      fetchData(email);
+    }
+  }, [user, forceHideNewsletterSignUp]);
 
   const onFormSubmit = async (data: OnboardingFormProps) => {
     if ("worksInSchool" in data) {
@@ -167,29 +207,32 @@ const OnboardingForm = ({
           >
             Continue
           </OakPrimaryButton>
-          {showNewsletterSignUp && (
-            <Controller
-              control={props.control}
-              name="newsletterSignUp"
-              render={({ field: { value, onChange, name, onBlur } }) => {
-                const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-                  onChange(e.target.checked);
-                  props.trigger("newsletterSignUp");
-                };
-                return (
-                  <OakCheckBox
-                    checked={value}
-                    name={name}
-                    onBlur={onBlur}
-                    onChange={onChangeHandler}
-                    value="Sign up to receive helpful content via email. Unsubscribe at any
+          {userRegisteredInHubspot === false &&
+            forceHideNewsletterSignUp !== true && (
+              <Controller
+                control={props.control}
+                name="newsletterSignUp"
+                render={({ field: { value, onChange, name, onBlur } }) => {
+                  const onChangeHandler = (
+                    e: ChangeEvent<HTMLInputElement>,
+                  ) => {
+                    onChange(e.target.checked);
+                    props.trigger("newsletterSignUp");
+                  };
+                  return (
+                    <OakCheckBox
+                      checked={value}
+                      name={name}
+                      onBlur={onBlur}
+                      onChange={onChangeHandler}
+                      value="Sign up to receive helpful content via email. Unsubscribe at any
                     time."
-                    id="newsletterSignUp"
-                  />
-                );
-              }}
-            />
-          )}
+                      id="newsletterSignUp"
+                    />
+                  );
+                }}
+              />
+            )}
         </OakFlex>
       </OakFlex>
 
