@@ -372,10 +372,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
   const getIconName = (slug: string) => {
     const iconName = `subject-${slug}`;
-    if (isValidIconName(iconName)) {
-      return iconName;
-    }
-    return;
+    return isValidIconName(iconName) ? iconName : undefined;
   };
 
   const getPhaseText = (phase: Phase) => {
