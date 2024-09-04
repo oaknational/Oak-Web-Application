@@ -1,3 +1,19 @@
+# [1.538.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.537.0...v1.538.0) (2024-09-04)
+
+
+### Bug Fixes
+
+* empty commit ([838bbc9](https://github.com/oaknational/Oak-Web-Application/commit/838bbc9be9519af1c85e6e8ea5315861bbf2acf6))
+* **next.config.js:** impermanent ai redirect ([a3f84be](https://github.com/oaknational/Oak-Web-Application/commit/a3f84bee6b75e2551c0c9364c5df06ad04e77627))
+* resolved conflicts ([58c000e](https://github.com/oaknational/Oak-Web-Application/commit/58c000e5b1ffb25015243b6926952bfb3ee8d0f2))
+
+
+### Features
+
+* change background colours and tab order ([335095e](https://github.com/oaknational/Oak-Web-Application/commit/335095e0215ed6e59fb531af09d5e4dd52d5d326))
+* change copy ([69b4e6a](https://github.com/oaknational/Oak-Web-Application/commit/69b4e6a19862768f3d3c27c08dcfbea8875dbd26))
+* prelaunch changes ([bf9748f](https://github.com/oaknational/Oak-Web-Application/commit/bf9748f0c090c28933b4da9a49634fa694ef4fe4))
+
 # [1.537.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.536.0...v1.537.0) (2024-09-04)
 
 
