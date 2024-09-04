@@ -33,13 +33,13 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { LessonListItemProps } from "@/components/TeacherComponents/LessonListItem";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { NEW_COHORT } from "@/config/cohort";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
+import { isLessonListItem } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -92,22 +92,28 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   } = paginationProps;
 
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const trackLessonSelected = ({
     ...props
   }: LessonListItemProps | SpecialistLesson) => {
-    track.lessonSelected({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug: props.subjectSlug,
-      unitName: unitTitle,
-      unitSlug,
-      lessonName: props.lessonTitle,
-      lessonSlug: props.lessonSlug,
-      analyticsUseCase,
-    });
+    if (isLessonListItem(props)) {
+      track.lessonAccessed({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "use",
+        componentType: "lesson_card",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        lessonName: props.lessonTitle,
+        lessonSlug: props.lessonSlug,
+        unitName: unitTitle,
+        unitSlug: unitSlug,
+        keyStageSlug: keyStageSlug,
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        yearGroupName: props.yearTitle,
+        yearGroupSlug: props.yearSlug,
+      });
+    }
   };
 
   const isNew = hasNewContent ?? false;

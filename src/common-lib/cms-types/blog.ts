@@ -45,3 +45,7 @@ export const blogPostPreviewSchema = blogPostSchema.pick({
 });
 
 export type BlogPostPreview = z.infer<typeof blogPostPreviewSchema>;
+
+export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
+  date: string;
+};

@@ -1,3 +1,69 @@
+# [1.536.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.535.0...v1.536.0) (2024-09-03)
+
+
+### Bug Fixes
+
+* ai page label ([082fb2f](https://github.com/oaknational/Oak-Web-Application/commit/082fb2f01560e1f323c2db9f9a812b09c49c3e6b))
+* broken import ([6d0824c](https://github.com/oaknational/Oak-Web-Application/commit/6d0824c5a3056173d8e9904d208b24315058ad31))
+* broken tests ([828abdd](https://github.com/oaknational/Oak-Web-Application/commit/828abdd3d0d80c8a1fe9b6502c263951dc2862f9))
+* reduce duplication ([7abdc0d](https://github.com/oaknational/Oak-Web-Application/commit/7abdc0d97926a099e10d4dcafe8430dd52f2d752))
+* remove /teachers route and redirect to / ([35392f3](https://github.com/oaknational/Oak-Web-Application/commit/35392f3145fa621b592b8232f1515d96b78b47b7))
+* satisfying sonar cloud ([baa8914](https://github.com/oaknational/Oak-Web-Application/commit/baa89144174de31b5bbfc472c4ebb6522ff781c9))
+* types ([cfbfdbc](https://github.com/oaknational/Oak-Web-Application/commit/cfbfdbcc4da98c8a55e80e117b6b2de04a3a05ab))
+
+
+### Features
+
+* **homepage:** create proper homepage routes ([1fb55fd](https://github.com/oaknational/Oak-Web-Application/commit/1fb55fd63555f86c25a7924e912c191372b2c33a))
+* redirect from old anchor targets ([7888c56](https://github.com/oaknational/Oak-Web-Application/commit/7888c5696df5b3d0b750880fe989463518e81941))
+* refactor homepages ([edfcdcc](https://github.com/oaknational/Oak-Web-Application/commit/edfcdcca1456e25d4557d1989b027d87871a2339))
+
+# [1.535.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.534.0...v1.535.0) (2024-08-30)
+
+
+### Bug Fixes
+
+* add missing props to test data ([8382f6e](https://github.com/oaknational/Oak-Web-Application/commit/8382f6e2f75d55000d4d9879cb4803af8669a58f))
+* expected test result ([d09f96a](https://github.com/oaknational/Oak-Web-Application/commit/d09f96a32ade5c59d0af0f8ff4faa41ab30edc4f))
+* missing test data ([7edd5fb](https://github.com/oaknational/Oak-Web-Application/commit/7edd5fbf7e387dd69dcb1d1689e4756c4ed475bb))
+* only send searchAccessed when no filters applied ([92146c4](https://github.com/oaknational/Oak-Web-Application/commit/92146c4f84e5680c0c1a5c491d045b921f4227ee))
+* search events pre-lim commit ([bd9d924](https://github.com/oaknational/Oak-Web-Application/commit/bd9d924df4dc4c32a29a91ad1fb57e09b0bd8734))
+* send searchAccessed from search page fix tests ([5430ccc](https://github.com/oaknational/Oak-Web-Application/commit/5430ccccef92cc454eaa7a10290a834e1b4e4519))
+* type errors ([617162e](https://github.com/oaknational/Oak-Web-Application/commit/617162edbfa86723465a479a9cde8b7203a43734))
+* use unitAccessed event for unit selected ([debc990](https://github.com/oaknational/Oak-Web-Application/commit/debc9902b5f99ec7edb559aea71642cfce953ec4))
+* use unitTitle for lesson results ([4175553](https://github.com/oaknational/Oak-Web-Application/commit/4175553b0c5637a2494638e8e4b5e4119e4cda65))
+
+
+### Features
+
+* add  browse refine accessed events to hamburger and footer ks page links ([9b72786](https://github.com/oaknational/Oak-Web-Application/commit/9b727868e51d7cbb81d09b83cf72955eb40a9378))
+* add examboard and tier to unit accessed event ([abf9e78](https://github.com/oaknational/Oak-Web-Application/commit/abf9e781d6d0e4b5bc5e721ab8017a4247c270c0))
+* replace keyStageSelected events with browse refined ([cae1210](https://github.com/oaknational/Oak-Web-Application/commit/cae12108cc840bbff2d1124e8ff933e1209db4af))
+* replace lesson selected event with lesson accessed ([4e1f96f](https://github.com/oaknational/Oak-Web-Application/commit/4e1f96f9a8ccf21294a81eabba04f72a11f41ee2))
+* replace theme selected event with browse refined ([bcc9236](https://github.com/oaknational/Oak-Web-Application/commit/bcc923607ddcc3a8fe3c95b50894e031e091e889))
+* replace tierSelected event with browse refined ([f68536c](https://github.com/oaknational/Oak-Web-Application/commit/f68536c79491e5d288d63cc9c80bbc189a2f8aa9))
+* replace unitSelected event with browse refined ([dbf427d](https://github.com/oaknational/Oak-Web-Application/commit/dbf427d11a01b4ef5e99f7e47d7f89a1aa1da3d1))
+* update downloadResourceButtonClicked event to lessonResourceDownloadStarted ([c2417ba](https://github.com/oaknational/Oak-Web-Application/commit/c2417bad1b9395cf68fb2b768deb64a13ebf6bc3))
+* update lesson downloads event ([207ed64](https://github.com/oaknational/Oak-Web-Application/commit/207ed64918c09bc977c81cd1380b4efb3fa6ab9f))
+* update lesson shared event ([c439310](https://github.com/oaknational/Oak-Web-Application/commit/c43931024c4b01f88813aae2c67f25c191140c63))
+* update programme tracking ([61ae86c](https://github.com/oaknational/Oak-Web-Application/commit/61ae86c7d35476d97ba5c49cd7cb1818d9a8d9e2))
+* update search result expanded event ([28e7047](https://github.com/oaknational/Oak-Web-Application/commit/28e7047d51590f57a0f2e10fc9bb631cc8e3c9fd))
+* update subject selected to use browse refined ([cd8c090](https://github.com/oaknational/Oak-Web-Application/commit/cd8c090261ab10f76aa2c5b3bbe4086d503c010f))
+* update theme tracking and add test ([d2eb48c](https://github.com/oaknational/Oak-Web-Application/commit/d2eb48c4fac6f07d9ced8c391206d24fb92347d4))
+* use teacher events avo branch ([1e57b7d](https://github.com/oaknational/Oak-Web-Application/commit/1e57b7d2cadb1f355c0ddca0342bcc2db1db83f8))
+
+# [1.534.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.533.1...v1.534.0) (2024-08-30)
+
+
+### Bug Fixes
+
+* updated to mv_subject_phase_options_0_3 to filter out cycle 2 subjects ([41356ca](https://github.com/oaknational/Oak-Web-Application/commit/41356cafdb06e62b705ccc3f8e7e829e99da00c6))
+
+
+### Features
+
+* update MVs which filter out cycle 2 from curric visualiser until ready for launch ([91aed18](https://github.com/oaknational/Oak-Web-Application/commit/91aed18a2f80b72ed2d67669ce4c52aad2f7594e))
+
 ## [1.533.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.533.0...v1.533.1) (2024-08-28)
 
 # [1.533.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.532.0...v1.533.0) (2024-08-28)
