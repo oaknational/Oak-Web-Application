@@ -463,7 +463,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             </SelectButton>
           </Box>
           {showSubjects && (
-            <Box
+            <SchoolPhaseDropDownBox
               $background={"white"}
               $dropShadow="interactiveCardHover"
               $left={0}
@@ -474,8 +474,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $zIndex={"inFront"}
               $width={"100%"}
             >
-              <BoxBorders />
-
               <FocusOn
                 autoFocus={false}
                 onClickOutside={() => setShowSubjects(false)}
@@ -564,7 +562,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   </OwaLink>
                 </Box>
               </FocusOn>
-            </Box>
+            </SchoolPhaseDropDownBox>
           )}
           <Box
             $height={80}
