@@ -158,15 +158,17 @@ const OnboardingForm = ({
             )}
           </OakBox>
           <OakBox>{props.children}</OakBox>
-          <OakPrimaryButton
-            disabled={!props.canSubmit}
-            width="100%"
-            type="submit"
-            onClick={props.onSubmit}
-            aria-description={submitError ?? undefined}
-          >
-            Continue
-          </OakPrimaryButton>
+          <OakBox $pv="inner-padding-xl">
+            <OakPrimaryButton
+              disabled={!props.canSubmit}
+              width="100%"
+              type="submit"
+              onClick={props.onSubmit}
+              aria-description={submitError ?? undefined}
+            >
+              Continue
+            </OakPrimaryButton>
+          </OakBox>
           {showNewsletterSignUp && (
             <Controller
               control={props.control}
