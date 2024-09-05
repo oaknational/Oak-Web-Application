@@ -158,15 +158,17 @@ const OnboardingForm = ({
             )}
           </OakBox>
           <OakBox>{props.children}</OakBox>
-          <OakPrimaryButton
-            disabled={!props.canSubmit}
-            width="100%"
-            type="submit"
-            onClick={props.onSubmit}
-            aria-description={submitError ?? undefined}
-          >
-            Continue
-          </OakPrimaryButton>
+          <OakBox $pv="inner-padding-xl">
+            <OakPrimaryButton
+              disabled={!props.canSubmit}
+              width="100%"
+              type="submit"
+              onClick={props.onSubmit}
+              aria-description={submitError ?? undefined}
+            >
+              Continue
+            </OakPrimaryButton>
+          </OakBox>
           {showNewsletterSignUp && (
             <Controller
               control={props.control}
@@ -182,8 +184,7 @@ const OnboardingForm = ({
                     name={name}
                     onBlur={onBlur}
                     onChange={onChangeHandler}
-                    value="Sign up to receive helpful content via email. Unsubscribe at any
-                    time."
+                    value="Sign up for our latest resources and updates by email. Unsubscribe at any time"
                     id="newsletterSignUp"
                   />
                 );
