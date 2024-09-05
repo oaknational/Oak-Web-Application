@@ -182,8 +182,7 @@ const OnboardingForm = ({
                     name={name}
                     onBlur={onBlur}
                     onChange={onChangeHandler}
-                    value="Sign up to receive helpful content via email. Unsubscribe at any
-                    time."
+                    value="Sign up for our latest resources and updates by email. Unsubscribe at any time"
                     id="newsletterSignUp"
                   />
                 );
