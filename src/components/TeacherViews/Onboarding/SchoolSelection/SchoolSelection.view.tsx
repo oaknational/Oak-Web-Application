@@ -23,9 +23,6 @@ export const SchoolSelectionView = () => {
     useForm<SchoolSelectFormProps>({
       resolver: zodResolver(schoolSelectFormSchema),
       mode: "onBlur",
-      defaultValues: {
-        newsletterSignUp: true,
-      },
     });
 
   const setSchoolDetailsInManualForm = useCallback(
