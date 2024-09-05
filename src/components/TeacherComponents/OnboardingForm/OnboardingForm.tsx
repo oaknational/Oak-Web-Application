@@ -67,6 +67,9 @@ const OnboardingForm = ({
     }
   }, [user, forceHideNewsletterSignUp]);
 
+  const showHubspotSignUp =
+    userRegisteredInHubspot === false && forceHideNewsletterSignUp !== true;
+
   const onFormSubmit = async (data: OnboardingFormProps) => {
     if ("worksInSchool" in data) {
       router.push({
@@ -181,32 +184,29 @@ const OnboardingForm = ({
           >
             Continue
           </OakPrimaryButton>
-          {userRegisteredInHubspot === false &&
-            forceHideNewsletterSignUp !== true && (
-              <Controller
-                control={props.control}
-                name="newsletterSignUp"
-                render={({ field: { value, onChange, name, onBlur } }) => {
-                  const onChangeHandler = (
-                    e: ChangeEvent<HTMLInputElement>,
-                  ) => {
-                    onChange(e.target.checked);
-                    props.trigger("newsletterSignUp");
-                  };
-                  return (
-                    <OakCheckBox
-                      checked={value}
-                      name={name}
-                      onBlur={onBlur}
-                      onChange={onChangeHandler}
-                      value="Sign up to receive helpful content via email. Unsubscribe at any
+          {showHubspotSignUp && (
+            <Controller
+              control={props.control}
+              name="newsletterSignUp"
+              render={({ field: { value, onChange, name, onBlur } }) => {
+                const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                  onChange(e.target.checked);
+                  props.trigger("newsletterSignUp");
+                };
+                return (
+                  <OakCheckBox
+                    checked={value}
+                    name={name}
+                    onBlur={onBlur}
+                    onChange={onChangeHandler}
+                    value="Sign up to receive helpful content via email. Unsubscribe at any
                     time."
-                      id="newsletterSignUp"
-                    />
-                  );
-                }}
-              />
-            )}
+                    id="newsletterSignUp"
+                  />
+                );
+              }}
+            />
+          )}
         </OakFlex>
       </OakFlex>
 
