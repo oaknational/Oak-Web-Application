@@ -1,3 +1,15 @@
+## [1.538.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.538.0...v1.538.1) (2024-09-05)
+
+
+### Bug Fixes
+
+* add span to enter manual ([f0fe62d](https://github.com/oaknational/Oak-Web-Application/commit/f0fe62d12f2addf5195a50c56330bf8eec7540c5))
+* amend test to redirect to sign up page ([3d3b0de](https://github.com/oaknational/Oak-Web-Application/commit/3d3b0de864f480a085c5d885ca2822d308000695))
+* bolden font ([2a30eec](https://github.com/oaknational/Oak-Web-Application/commit/2a30eec578c87c5e362027199f6101a497e435cb))
+* default to sign up page not sign in page ([cac692c](https://github.com/oaknational/Oak-Web-Application/commit/cac692cffb8394554c7cea68eeb56a88c3153a04))
+* empty commit ([f256446](https://github.com/oaknational/Oak-Web-Application/commit/f25644635537fd9d7a161a8d91fb8d20440ea339))
+* remove additional code ([16a947c](https://github.com/oaknational/Oak-Web-Application/commit/16a947ced58a927df77f00f3c56ad90753cebc47))
+
 # [1.538.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.537.0...v1.538.0) (2024-09-04)
 
 
