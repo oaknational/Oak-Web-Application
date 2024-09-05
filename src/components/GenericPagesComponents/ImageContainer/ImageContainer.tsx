@@ -6,7 +6,7 @@ import { IllustrationSlug } from "@/image-data";
 
 type ImageContainerProps = {
   imageSlug: IllustrationSlug;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 const ImageContainer: FC<ImageContainerProps> = (props) => {

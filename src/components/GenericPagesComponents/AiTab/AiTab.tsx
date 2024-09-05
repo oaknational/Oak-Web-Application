@@ -9,11 +9,11 @@ import {
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Illustration from "@/components/SharedComponents/Illustration";
+import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 
 const AiTab: FC = () => {
   return (
-    <OakFlex $background={"pink"} $pv="inner-padding-xl" $overflow={"hidden"}>
+    <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
       <MaxWidth $ph={[16]} $pb={24}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
@@ -28,16 +28,16 @@ const AiTab: FC = () => {
                 Teachers
               </OakHeading>
               <OakHeading $font={"heading-3"} tag={"h2"}>
-                AI tools created for educators
+                Your lesson prep, transformed with AI
               </OakHeading>
               <OakTypography $font={"body-1"}>
-                Plan lessons and create quizzes with Oak AI Experiments, a new
-                and freely available suite of practical AI tools designed to
-                help save teachers time.
+                Try our free, AI-powered lesson assistant: Aila. Whether it’s
+                creating bespoke resources or helping you tailor content to your
+                class, Aila can help speed things along.
               </OakTypography>
               <ButtonAsLink
-                label={"Go to Oak AI Experiments"}
-                aria-label="Try our ai tools (this will open in a new tab)"
+                label={"Create a lesson with Aila"}
+                aria-label="Create a lesson with Aila (this will open in a new tab)"
                 variant={"brushNav"}
                 page={"labs"}
                 icon={"external"}
@@ -54,14 +54,7 @@ const AiTab: FC = () => {
             $justifyContent="center"
             $pv="inner-padding-xl"
           >
-            <Illustration
-              slug="ai-hero"
-              priority
-              $borderStyle={"none"}
-              $maxWidth={450}
-              noCrop
-              $objectFit="contain"
-            />
+            <ImageContainer imageSlug={"hero-aila"} />
           </OakGridArea>
         </OakGrid>
       </MaxWidth>
