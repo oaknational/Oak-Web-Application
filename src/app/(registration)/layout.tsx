@@ -14,7 +14,7 @@ import withFeatureFlag from "@/hocs/withFeatureFlag";
 import { getIllustrationAsset } from "@/image-data";
 import { OakBox, OakFlex, OakLink, OakP } from "@/styles/oakThemeApp";
 
-export const TermsAndConditions = () => {
+const TermsAndConditions = () => {
   return (
     <OakBox>
       <OakP $font="body-2" color="text-primary" $textAlign="center">
