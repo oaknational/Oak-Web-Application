@@ -19,7 +19,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { OnboardingFormProps } from "./OnboardingForm.schema";
-import { onboardUser } from "./onboardingActions";
+import { getSubscriptionStatus, onboardUser } from "./onboardingActions";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -31,7 +31,6 @@ import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/get
 import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
 import OakError from "@/errors/OakError";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
-import { subscriptionResponseSchema } from "@/pages/api/hubspot/subscription";
 
 const OnboardingForm = ({
   forceHideNewsletterSignUp,
@@ -59,37 +58,12 @@ const OnboardingForm = ({
   >(undefined);
 
   useEffect(() => {
-    const fetchData = async (email: string) => {
-      try {
-        const response = await fetch("/api/hubspot/subscription", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            subscriptionName: "School support",
-          }),
-        });
-
-        const result = subscriptionResponseSchema.parse(await response.json());
-        setUserRegisteredinHubspot(result);
-      } catch (err) {
-        if (err instanceof OakError) {
-          throw err;
-        }
-        throw new OakError({
-          code: "hubspot/unknown",
-          originalError: err,
-        });
-      }
-    };
     if (forceHideNewsletterSignUp) {
       return;
     }
     if (user?.emailAddresses[0]) {
       const email = String(user.emailAddresses[0].emailAddress);
-      fetchData(email);
+      getSubscriptionStatus(email, setUserRegisteredinHubspot);
     }
   }, [user, forceHideNewsletterSignUp]);
 
