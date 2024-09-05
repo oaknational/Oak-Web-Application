@@ -1,3 +1,46 @@
+# [1.538.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.537.0...v1.538.0) (2024-09-04)
+
+
+### Bug Fixes
+
+* empty commit ([838bbc9](https://github.com/oaknational/Oak-Web-Application/commit/838bbc9be9519af1c85e6e8ea5315861bbf2acf6))
+* **next.config.js:** impermanent ai redirect ([a3f84be](https://github.com/oaknational/Oak-Web-Application/commit/a3f84bee6b75e2551c0c9364c5df06ad04e77627))
+* resolved conflicts ([58c000e](https://github.com/oaknational/Oak-Web-Application/commit/58c000e5b1ffb25015243b6926952bfb3ee8d0f2))
+
+
+### Features
+
+* change background colours and tab order ([335095e](https://github.com/oaknational/Oak-Web-Application/commit/335095e0215ed6e59fb531af09d5e4dd52d5d326))
+* change copy ([69b4e6a](https://github.com/oaknational/Oak-Web-Application/commit/69b4e6a19862768f3d3c27c08dcfbea8875dbd26))
+* prelaunch changes ([bf9748f](https://github.com/oaknational/Oak-Web-Application/commit/bf9748f0c090c28933b4da9a49634fa694ef4fe4))
+
+# [1.537.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.536.0...v1.537.0) (2024-09-04)
+
+
+### Features
+
+* add reverse proxying for posthog in development ([0ec2b76](https://github.com/oaknational/Oak-Web-Application/commit/0ec2b766c62f46d31dab5fade0709e43ea176e11))
+
+# [1.536.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.535.0...v1.536.0) (2024-09-03)
+
+
+### Bug Fixes
+
+* ai page label ([082fb2f](https://github.com/oaknational/Oak-Web-Application/commit/082fb2f01560e1f323c2db9f9a812b09c49c3e6b))
+* broken import ([6d0824c](https://github.com/oaknational/Oak-Web-Application/commit/6d0824c5a3056173d8e9904d208b24315058ad31))
+* broken tests ([828abdd](https://github.com/oaknational/Oak-Web-Application/commit/828abdd3d0d80c8a1fe9b6502c263951dc2862f9))
+* reduce duplication ([7abdc0d](https://github.com/oaknational/Oak-Web-Application/commit/7abdc0d97926a099e10d4dcafe8430dd52f2d752))
+* remove /teachers route and redirect to / ([35392f3](https://github.com/oaknational/Oak-Web-Application/commit/35392f3145fa621b592b8232f1515d96b78b47b7))
+* satisfying sonar cloud ([baa8914](https://github.com/oaknational/Oak-Web-Application/commit/baa89144174de31b5bbfc472c4ebb6522ff781c9))
+* types ([cfbfdbc](https://github.com/oaknational/Oak-Web-Application/commit/cfbfdbcc4da98c8a55e80e117b6b2de04a3a05ab))
+
+
+### Features
+
+* **homepage:** create proper homepage routes ([1fb55fd](https://github.com/oaknational/Oak-Web-Application/commit/1fb55fd63555f86c25a7924e912c191372b2c33a))
+* redirect from old anchor targets ([7888c56](https://github.com/oaknational/Oak-Web-Application/commit/7888c5696df5b3d0b750880fe989463518e81941))
+* refactor homepages ([edfcdcc](https://github.com/oaknational/Oak-Web-Application/commit/edfcdcca1456e25d4557d1989b027d87871a2339))
+
 # [1.535.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.534.0...v1.535.0) (2024-08-30)
 
 

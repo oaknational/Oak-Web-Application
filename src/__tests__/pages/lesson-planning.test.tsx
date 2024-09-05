@@ -4,22 +4,47 @@ import PlanALesson, { getStaticProps } from "../../pages/lesson-planning";
 import renderWithProviders from "../__helpers__/renderWithProviders";
 import renderWithSeo from "../__helpers__/renderWithSeo";
 
-import { mockPosts } from "./index.test";
 import { testPlanALessonPageData } from "./lesson-planning.fixture";
 
 import CMSClient from "@/node-lib/cms";
 import { BlogPostPreview } from "@/common-lib/cms-types";
+import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 
 jest.mock("@/node-lib/cms");
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-const testPlanningPageData = testPlanALessonPageData;
+const testPlanningPageData = { ...testPlanALessonPageData };
 const getPageData = jest.fn(() => testPlanningPageData);
+
+const mockPosts = [
+  {
+    id: "1",
+    type: "blog-post",
+    title: "Some blog post",
+    slug: "some-blog-post",
+    date: new Date("2021-12-01").toISOString(),
+    category: { title: "Some category", slug: "some-category" },
+  },
+  {
+    id: "2",
+    type: "blog-post",
+    title: "Some other post",
+    slug: "some-other-post",
+    date: new Date("2021-12-01").toISOString(),
+    category: { title: "Some category", slug: "some-category" },
+  },
+] as SerializedPost[];
 
 const render = renderWithProviders();
 
 describe("pages/lesson-planning.tsx", () => {
+  beforeAll(() => {
+    //mock console.error
+    jest.spyOn(console, "error").mockImplementation(() => {});
+    jest.spyOn(console, "log").mockImplementation(() => {});
+  });
+
   it("Renders header hero component", () => {
     const { getByRole } = render(
       <PlanALesson pageData={testPlanningPageData} posts={mockPosts} />,
@@ -52,7 +77,7 @@ describe("pages/lesson-planning.tsx", () => {
       <PlanALesson
         pageData={{
           ...testPlanningPageData,
-          content: testPlanALessonPageData.content.reverse(),
+          content: [...testPlanALessonPageData.content].reverse(),
         }}
         posts={mockPosts}
       />,
@@ -136,6 +161,8 @@ describe("pages/lesson-planning.tsx", () => {
   });
 
   it("renders a hero image with alt text", () => {
+    console.log({ mockPosts });
+
     render(
       <PlanALesson pageData={testPlanALessonPageData} posts={mockPosts} />,
     );
