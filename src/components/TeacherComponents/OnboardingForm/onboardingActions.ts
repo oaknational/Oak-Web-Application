@@ -59,7 +59,7 @@ export async function getSubscriptionStatus(
       },
       body: JSON.stringify({
         email,
-        subscriptionName: "School support",
+        subscriptionName: "School Support",
       }),
     });
     const result = subscriptionResponseSchema.parse(await response.json());
