@@ -132,7 +132,7 @@ export const SchoolSelectionView = () => {
             >
               <OakP $font={"body-2"}>
                 Can't find your school?{" "}
-                <OakSpan>
+                <OakSpan $font="body-2-bold">
                   <OakLink
                     onClick={() => {
                       setRenderManualSchoolInput(true);
