@@ -41,7 +41,7 @@ describe("Onboarding form", () => {
 
     expect(
       screen.getByLabelText(
-        "Sign up to receive helpful content via email. Unsubscribe at any time.",
+        "Sign up for our latest resources and updates by email. Unsubscribe at any time",
       ),
     ).toBeInTheDocument();
   });
@@ -49,7 +49,7 @@ describe("Onboarding form", () => {
     renderForm();
 
     const checkbox = await screen.findByRole("checkbox", {
-      name: /Sign up to receive helpful content via email. Unsubscribe at any time./i,
+      name: /Sign up for our latest resources and updates by email. Unsubscribe at any time/i,
     });
     expect(checkbox).toBeChecked();
 
