@@ -74,7 +74,7 @@ describe("getSubscriptionStatus", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: "fakeEmail.com",
-          subscriptionName: "School support",
+          subscriptionName: "School Support",
         }),
       }),
     );
