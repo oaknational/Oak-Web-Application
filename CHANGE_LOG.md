@@ -1,3 +1,10 @@
+## [1.538.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.538.1...v1.538.2) (2024-09-05)
+
+
+### Bug Fixes
+
+* update published_mv_subject_phase_options_0_3 -> published_mv_subject_phase_options_0_5 ([3153a19](https://github.com/oaknational/Oak-Web-Application/commit/3153a1976d0abd8d326e8de3524800fb82ddc668))
+
 ## [1.538.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.538.0...v1.538.1) (2024-09-05)
 
 
