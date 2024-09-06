@@ -5,6 +5,7 @@ import {
   SignedIn,
   SignedOut,
   SignOutButton,
+  useAuth,
   useUser,
 } from "@clerk/nextjs";
 import { useFeatureFlagEnabled } from "posthog-js/react";
@@ -17,6 +18,7 @@ EmptyComponent.displayName = "EmptyComponent";
 
 const realClerkApi = {
   useUser,
+  useAuth,
   SignedIn,
   SignedOut,
   SignOutButton,
@@ -30,6 +32,19 @@ export const fakeClerkApi: ClerkApi = {
     isLoaded: false,
     isSignedIn: undefined,
     user: undefined,
+  }),
+  useAuth: () => ({
+    getToken: () => Promise.resolve(null),
+    signOut: () => Promise.resolve(),
+    isLoaded: false,
+    isSignedIn: undefined,
+    userId: undefined,
+    sessionId: undefined,
+    actor: undefined,
+    orgId: undefined,
+    orgRole: undefined,
+    orgSlug: undefined,
+    has: undefined,
   }),
   SignedIn: EmptyComponent,
   SignedOut: EmptyComponent,
