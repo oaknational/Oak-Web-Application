@@ -1,3 +1,10 @@
+# [1.540.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.539.0...v1.540.0) (2024-09-06)
+
+
+### Features
+
+* convience script added ([7fac43b](https://github.com/oaknational/Oak-Web-Application/commit/7fac43bf41629dfe41368f126a2310087909f8eb))
+
 # [1.539.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.538.2...v1.539.0) (2024-09-06)
 
 
