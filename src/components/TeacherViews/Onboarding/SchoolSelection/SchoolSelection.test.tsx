@@ -27,7 +27,7 @@ describe("Onboarding view", () => {
 
     const fieldset = await screen.findByRole("fieldset");
     expect(fieldset).toBeInTheDocument();
-    const legend = await screen.findByText(/Enter school's details/i);
+    const legend = await screen.findByText(/Select your school/i);
     expect(legend).toBeInTheDocument();
 
     expect(fieldset).toContainElement(legend);
