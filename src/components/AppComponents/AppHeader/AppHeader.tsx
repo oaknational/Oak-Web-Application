@@ -1,5 +1,7 @@
 import { FC, useRef } from "react";
 import { OakFlex } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+import { UserButton } from "@clerk/nextjs";
 
 import Logo from "@/components/AppComponents/Logo";
 import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
@@ -15,6 +17,7 @@ import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderlin
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useSelectedArea from "@/hooks/useSelectedArea";
+import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 export const siteAreas = {
   teachers: "TEACHERS",
@@ -33,6 +36,9 @@ const AppHeader: FC<HeaderProps> = () => {
   const { openMenu, open } = useMenuContext();
   const { track } = useAnalytics();
   const selectedArea = useSelectedArea();
+  const { useUser } = useFeatureFlaggedClerk();
+  const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
+  const { isSignedIn } = useUser();
 
   return (
     <header>
@@ -64,6 +70,9 @@ const AppHeader: FC<HeaderProps> = () => {
             $gap="all-spacing-6"
             $font="heading-7"
           >
+            {isSignedIn && authFlagEnabled && (
+              <UserButton data-testid="clerk-user-button" />
+            )}
             <OwaLink
               page={"home"}
               $focusStyles={["underline"]}
