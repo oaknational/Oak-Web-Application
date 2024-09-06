@@ -1,3 +1,16 @@
+# [1.539.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.538.2...v1.539.0) (2024-09-06)
+
+
+### Bug Fixes
+
+* form submit test data ([bbd9725](https://github.com/oaknational/Oak-Web-Application/commit/bbd9725d203d6f5aed892812ddafef00f5b1af67))
+
+
+### Features
+
+* add should auth download header ([d96231a](https://github.com/oaknational/Oak-Web-Application/commit/d96231ab813296b5713f25a7e1fae3afba6a1504))
+* pass the user's session access token to the downloads API ([1219e00](https://github.com/oaknational/Oak-Web-Application/commit/1219e007982e513c5d699674f828503f419f8a9e))
+
 ## [1.538.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.538.1...v1.538.2) (2024-09-05)
 
 
