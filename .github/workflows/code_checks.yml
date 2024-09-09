@@ -34,7 +34,7 @@ jobs:
 
       - run: npm cache verify
 
-      - run: npm ci --verbose
+      - run: npm ci --verbose --prefer-offline
 
       # check cache after
       - run: npm cache ls
