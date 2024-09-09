@@ -59,7 +59,25 @@ export type WorksInSchoolFormProps = WorksInSchoolFormValues & {
   onSubmit: (values: WorksInSchoolFormValues) => Promise<void>;
 };
 
+const oakSupportSchema = z.object({
+  curriculumDesign: z.boolean().optional(),
+  departmentResources: z.boolean().optional(),
+  enhanceSkills: z.boolean().optional(),
+  resourcesInspiration: z.boolean().optional(),
+  disruptionLearning: z.boolean().optional(),
+});
+
+export const extendedOakSupportSchema = z.intersection(
+  oakSupportSchema,
+  schoolSelectFormSchema,
+);
+export type OakSupportSchema = z.infer<typeof extendedOakSupportSchema>;
+export type OakSupportFormProps = OakSupportSchema & {
+  onSubmit: (values: OakSupportSchema) => Promise<void>;
+};
+
 export type OnboardingFormProps =
   | SchoolSelectFormProps
   | RoleSelectFormProps
-  | WorksInSchoolFormProps;
+  | WorksInSchoolFormProps
+  | OakSupportFormProps;

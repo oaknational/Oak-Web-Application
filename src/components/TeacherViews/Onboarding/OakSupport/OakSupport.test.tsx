@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/dom";
 
-import OakSupport from "./OakSupport.view";
+import OakSupport, { oakSupportMap } from "./OakSupport.view";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -13,5 +13,10 @@ describe("OakSupport", () => {
       /Tell us a little bit about you so we can tailor Oak to suit your needs./i,
     );
     expect(promptBody).toBeInTheDocument();
+  });
+  it('renders checkboxes for each key in "oakSupportMap"', () => {
+    renderWithProviders()(<OakSupport />);
+    const checkboxes = screen.getAllByRole("checkbox");
+    expect(checkboxes).toHaveLength(Object.keys(oakSupportMap).length);
   });
 });
