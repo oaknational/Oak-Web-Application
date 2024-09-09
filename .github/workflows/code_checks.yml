@@ -34,7 +34,7 @@ jobs:
 
       - run: npm cache verify
 
-      - run: npm ci
+      - run: npm ci --verbose
 
       # check cache after
       - run: npm cache ls
@@ -45,7 +45,7 @@ jobs:
       - run: rm -rf ./node_modules
 
       # Install.
-      - run: npm ci
+      - run: npm ci --verbose
 
       # Check formatting adheres to our config.
       - run: npm run format:check
