@@ -24,7 +24,13 @@ jobs:
           cache: "npm"
           cache-dependency-path: ./package-lock.json
 
+      # check cache before
+      - run: npm cache ls
+
       - run: npm install
+
+      # check cache after
+      - run: npm cache ls
 
       # Remove the ./node_modules to check we're actually installing from cache
       - run: rm -rf ./node_modules
