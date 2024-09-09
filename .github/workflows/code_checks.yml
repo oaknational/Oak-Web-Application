@@ -27,6 +27,8 @@ jobs:
       # check cache before
       - run: npm cache ls
 
+      - run: npm cache verify
+
       - run: npm install
 
       # check cache after
