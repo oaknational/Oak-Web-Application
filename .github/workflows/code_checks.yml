@@ -34,7 +34,7 @@ jobs:
 
       - run: npm cache verify
 
-      - run: npm install
+      - run: npm ci
 
       # check cache after
       - run: npm cache ls
