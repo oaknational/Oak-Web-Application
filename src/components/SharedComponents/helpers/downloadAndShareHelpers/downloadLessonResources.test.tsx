@@ -43,6 +43,8 @@ describe("downloadLessonResources", () => {
       "lesson-slug",
       resourcesToDownloadAsSelection,
       true,
+      undefined, // authFlagEnabled
+      undefined, // authToken
     );
   });
 });
