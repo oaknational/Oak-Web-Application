@@ -25,6 +25,9 @@ jobs:
 
       - run: npm install
 
+      # Remove the ./node_modules to check we're actually installing from cache
+      - run: rm -rf ./node_modules
+
       # Install.
       - run: npm ci
 
