@@ -1,3 +1,17 @@
+# [1.541.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.540.0...v1.541.0) (2024-09-09)
+
+
+### Bug Fixes
+
+* change ordering of rtl tags ([3bbf739](https://github.com/oaknational/Oak-Web-Application/commit/3bbf73968e32feba7239f6d4d84988b11b178be4))
+* changed comma to colon ([4590d7e](https://github.com/oaknational/Oak-Web-Application/commit/4590d7e7acf5cb031585254f30a89e29522fc807))
+* update trailing comma issue ([7b63788](https://github.com/oaknational/Oak-Web-Application/commit/7b63788cb120f7224c173e3dddc4f368d5daa4f0))
+
+
+### Features
+
+* added subject categories to docx ([f2ec22b](https://github.com/oaknational/Oak-Web-Application/commit/f2ec22be7e21bdf6457da2af6834d0bee66dc156))
+
 # [1.540.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.539.0...v1.540.0) (2024-09-06)
 
 
