@@ -25,30 +25,9 @@ jobs:
         with:
           node-version: 20.x
           cache: "npm"
-          cache-dependency-path: ./package-lock.json
-
-      - run: ls -l /home/runner/.npm/
-      - run: find /home/runner/.npm/_cacache/  -type d
-
-      - run: npm --version
-
-      # check cache before
-      - run: npm cache ls
-
-      - run: npm cache verify
-
-      - run: npm ci --verbose
-
-      # check cache after
-      - run: npm cache ls
-
-      - run: ls -l ./node_modules
-
-      # Remove the ./node_modules to check we're actually installing from cache
-      - run: rm -rf ./node_modules
 
       # Install.
-      - run: npm ci --verbose
+      - run: npm ci
 
       # Check formatting adheres to our config.
       - run: npm run format:check
