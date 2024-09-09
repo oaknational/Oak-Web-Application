@@ -105,7 +105,13 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
           onChange={(e) => handleSelectThread(e.target.value)}
         >
           <Box>
-            <Box $mv={16} $position={"relative"}>
+            <Box
+              $mv={16}
+              $pl={12}
+              $position={"relative"}
+              $bl={1}
+              $borderColor="transparent"
+            >
               <RadioButton
                 aria-label={"None highlighted"}
                 value={""}
