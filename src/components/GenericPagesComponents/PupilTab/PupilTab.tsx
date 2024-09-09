@@ -15,7 +15,7 @@ import Svg from "@/components/SharedComponents/Svg";
 
 const PupilTab: FC = () => {
   return (
-    <OakFlex $background={"lemon"} $pv="inner-padding-xl" $overflow={"hidden"}>
+    <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
       <MaxWidth $ph={[16]} $pb={24}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>

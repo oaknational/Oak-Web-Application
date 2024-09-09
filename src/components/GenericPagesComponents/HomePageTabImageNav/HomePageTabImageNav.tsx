@@ -16,11 +16,8 @@ const HomePageTabImageNav = ({
     if (tab === current) {
       return;
     }
-    if (tab === "teachers") {
-      window.location.href = "/";
-    } else {
-      window.location.href = `/${tab}`;
-    }
+
+    window.location.href = `/${tab}`;
   };
   return (
     <OakFlex $flexDirection={"column"}>
@@ -33,10 +30,19 @@ const HomePageTabImageNav = ({
         $pb={2}
         $gap={[16, 32]}
         $justifyContent={"center"}
-        $background={getBackgroundColorByHomePageTab(current)}
+        $background={"mint"}
         {...flexProps}
         aria-label="Site sections"
       >
+        <HomePageTabImageButton
+          activeImageSlug="robot-waving"
+          passiveImageSlug="robot-waving-grey"
+          label={"AI Experiments"}
+          isCurrent={current === "ai"}
+          aria-current={current === "ai" ? "page" : undefined}
+          showNewIcon={true}
+          onClick={() => setCurrent("ai")}
+        />
         <HomePageTabImageButton
           activeImageSlug="teacher-carrying-stuff-1023-black"
           passiveImageSlug="teacher-carrying-stuff-1023-oakgrey4"
@@ -56,15 +62,7 @@ const HomePageTabImageNav = ({
           onClick={() => setCurrent("curriculum")}
           data-testid="curriculum-plans-button"
         />
-        <HomePageTabImageButton
-          activeImageSlug="robot-waving"
-          passiveImageSlug="robot-waving-grey"
-          label={"AI Experiments"}
-          isCurrent={current === "ai"}
-          aria-current={current === "ai" ? "page" : undefined}
-          showNewIcon={true}
-          onClick={() => setCurrent("ai")}
-        />
+
         <HomePageTabImageButton
           activeImageSlug="three-pupils-standing-1023-black"
           passiveImageSlug="three-pupils-standing-1023-oakgrey4"
@@ -79,21 +77,5 @@ const HomePageTabImageNav = ({
     </OakFlex>
   );
 };
-
-function getBackgroundColorByHomePageTab(current: HomePageTab | undefined) {
-  if (current === "teachers") {
-    return "mint";
-  }
-  if (current === "curriculum") {
-    return "aqua";
-  }
-  if (current === "pupils") {
-    return "lemon";
-  }
-  if (current === "ai") {
-    return "pink";
-  }
-  return "white";
-}
 
 export default HomePageTabImageNav;
