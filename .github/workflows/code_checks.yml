@@ -8,6 +8,9 @@ on:
     types: [opened, synchronize, reopened]
   merge_group:
 
+env:
+  PUPPETEER_DOWNLOAD_PATH: /home/runner/.npm/chromium
+
 jobs:
   lint_test_sonar:
     name: lint, check types, test, Sonar
