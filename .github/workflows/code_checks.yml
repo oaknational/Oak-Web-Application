@@ -25,7 +25,8 @@ jobs:
           cache-dependency-path: ./package-lock.json
 
       - run: ls -l /home/runner/.npm/
-
+      - run: ls -l /home/runner/.npm/_cacache/
+      
       - run: npm --version
 
       # check cache before
