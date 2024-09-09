@@ -19,4 +19,9 @@ describe("OakSupport", () => {
     const checkboxes = screen.getAllByRole("checkbox");
     expect(checkboxes).toHaveLength(Object.keys(oakSupportMap).length);
   });
+  it("renders a continue button that is enabled by default", () => {
+    renderWithProviders()(<OakSupport />);
+    const continueButton = screen.getByRole("button", { name: /continue/i });
+    expect(continueButton).toBeEnabled();
+  });
 });

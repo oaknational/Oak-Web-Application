@@ -18,30 +18,32 @@ export type RoleSelectFormProps = RoleSelectFormValues & {
   onSubmit: (values: RoleSelectFormValues) => Promise<void>;
 };
 
-export const schoolSelectFormSchema = z
-  .object({
-    school: z
-      .string({
-        errorMap: () => ({
-          message: "Please select your school",
-        }),
-      })
-      .min(1, "Select school"),
-    schoolName: z.string().optional(),
-    ...baseSchema.shape,
-  })
-  .or(
-    z.object({
-      manualSchoolName: z
-        .string()
-        .min(3, "School name must be at least 3 characters long"),
+const ukSchoolSchema = z.object({
+  school: z
+    .string({
+      errorMap: () => ({
+        message: "Please select your school",
+      }),
+    })
+    .min(1, "Select school"),
+  schoolName: z.string().optional(),
+  ...baseSchema.shape,
+});
+export type UkSchoolFormValues = z.infer<typeof ukSchoolSchema>;
 
-      schoolAddress: z
-        .string()
-        .min(3, "School address must be at least 3 characters long"),
-      ...baseSchema.shape,
-    }),
-  );
+const manualSchoolSchema = z.object({
+  manualSchoolName: z
+    .string()
+    .min(3, "School name must be at least 3 characters long"),
+
+  schoolAddress: z
+    .string()
+    .min(3, "School address must be at least 3 characters long"),
+  ...baseSchema.shape,
+});
+export type ManualSchoolFormValues = z.infer<typeof manualSchoolSchema>;
+
+export const schoolSelectFormSchema = ukSchoolSchema.or(manualSchoolSchema);
 
 export type SchoolSelectFormValues = z.infer<typeof schoolSelectFormSchema>;
 export type SchoolSelectFormProps = SchoolSelectFormValues & {
@@ -67,10 +69,10 @@ const oakSupportSchema = z.object({
   disruptionLearning: z.boolean().optional(),
 });
 
-export const extendedOakSupportSchema = z.intersection(
-  oakSupportSchema,
-  schoolSelectFormSchema,
-);
+export const extendedOakSupportSchema = oakSupportSchema
+  .merge(ukSchoolSchema)
+  .or(oakSupportSchema.merge(manualSchoolSchema));
+
 export type OakSupportSchema = z.infer<typeof extendedOakSupportSchema>;
 export type OakSupportFormProps = OakSupportSchema & {
   onSubmit: (values: OakSupportSchema) => Promise<void>;
@@ -81,3 +83,16 @@ export type OnboardingFormProps =
   | RoleSelectFormProps
   | WorksInSchoolFormProps
   | OakSupportFormProps;
+
+export const isSchoolSelectData = (
+  d: OnboardingFormProps,
+): d is SchoolSelectFormProps => {
+  return (
+    ("school" in d || "manualSchoolName" in d) &&
+    !("curriculumDesign" in d) &&
+    !("departmentResources" in d) &&
+    !("enhanceSkills" in d) &&
+    !("resourcesInspiration" in d) &&
+    !("disruptionLearning" in d)
+  );
+};
