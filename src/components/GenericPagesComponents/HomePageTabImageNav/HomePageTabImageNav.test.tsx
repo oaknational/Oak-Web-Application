@@ -5,7 +5,7 @@ import HomePageTabImageNav from "./HomePageTabImageNav";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("HomePageTabImageNav Component", () => {
-  it.only("renders without errors", () => {
+  it("renders without errors", () => {
     const { container } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <HomePageTabImageNav current="teachers" />
