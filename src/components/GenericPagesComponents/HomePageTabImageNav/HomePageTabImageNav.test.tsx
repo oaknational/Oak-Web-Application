@@ -30,14 +30,14 @@ describe("HomePageTabImageNav Component", () => {
       });
 
       const { getByRole } = renderWithTheme(
-        <HomePageTabImageNav current="teachers" />,
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <HomePageTabImageNav current="teachers" />
+        </OakThemeProvider>,
       );
       const curriculumButton = getByRole("link", {
         name,
       });
-      expect(curriculumButton).toBeTruthy();
-      curriculumButton.click();
-      expect(window.location.href).toBe(path);
+      expect(curriculumButton).toHaveAttribute("href", path);
     },
   );
 });
