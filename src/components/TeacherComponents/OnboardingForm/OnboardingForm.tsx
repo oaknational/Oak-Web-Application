@@ -67,7 +67,7 @@ const OnboardingForm = ({
     }
   }, [user, forceHideNewsletterSignUp]);
 
-  const showHubspotSignUp =
+  const showNewsletterSignUp =
     userRegisteredInHubspot === false && forceHideNewsletterSignUp !== true;
 
   const onFormSubmit = async (data: OnboardingFormProps) => {
@@ -184,7 +184,7 @@ const OnboardingForm = ({
           >
             Continue
           </OakPrimaryButton>
-          {showHubspotSignUp && (
+          {showNewsletterSignUp && (
             <Controller
               control={props.control}
               name="newsletterSignUp"
