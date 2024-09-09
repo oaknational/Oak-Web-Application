@@ -22,9 +22,12 @@ import {
 import ManualEntrySchoolDetails from "@/components/TeacherComponents/ManualEntrySchoolDetails";
 import FieldError from "@/components/SharedComponents/FieldError";
 
+type SchoolSelectionView = "school-picker" | "manual-entry" | "oak-support";
+
 export const SchoolSelectionView = () => {
-  const [renderManualSchoolInput, setRenderManualSchoolInput] =
-    useState<boolean>(false);
+  const [activeView, setActiveView] =
+    useState<SchoolSelectionView>("school-picker");
+
   const { formState, setValue, handleSubmit, control, trigger, reset } =
     useForm<SchoolSelectFormProps>({
       resolver: zodResolver(schoolSelectFormSchema),
@@ -40,9 +43,7 @@ export const SchoolSelectionView = () => {
         setValue("manualSchoolName", value, {
           shouldValidate: true,
         });
-      }
-
-      if (!isSchoolName) {
+      } else {
         setValue("schoolAddress", value, {
           shouldValidate: true,
         });
@@ -75,14 +76,14 @@ export const SchoolSelectionView = () => {
     if (selectedSchool && schoolPickerInputValue !== "") {
       setSchoolDetailsInForm(selectedSchool.toString(), schoolPickerInputValue);
     }
-    if (renderManualSchoolInput) {
+    if (activeView === "manual-entry") {
       reset();
     }
   }, [
     selectedSchool,
     schoolPickerInputValue,
     setSchoolDetailsInForm,
-    renderManualSchoolInput,
+    activeView,
     reset,
   ]);
 
@@ -106,14 +107,14 @@ export const SchoolSelectionView = () => {
         handleSubmit={handleSubmit}
         canSubmit={!formState.isSubmitted || formState.isValid}
       >
-        {!renderManualSchoolInput && (
+        {activeView === "school-picker" && (
           <OakBox $mt="space-between-m">
             <FieldError id="onboarding-school-error">
               {"school" in formState.errors && formState.errors.school?.message}
             </FieldError>
             <ResourcePageSchoolPicker
               hasError={
-                !renderManualSchoolInput &&
+                activeView === "school-picker" &&
                 "school" in formState.errors &&
                 formState.errors?.school !== undefined
               }
@@ -135,7 +136,7 @@ export const SchoolSelectionView = () => {
                 <OakSpan $font="body-2-bold">
                   <OakLink
                     onClick={() => {
-                      setRenderManualSchoolInput(true);
+                      setActiveView("manual-entry");
                       reset();
                     }}
                     element="button"
@@ -148,13 +149,13 @@ export const SchoolSelectionView = () => {
           </OakBox>
         )}
 
-        {renderManualSchoolInput && (
+        {activeView === "manual-entry" && (
           <ManualEntrySchoolDetails
             hasErrors={formState.errors}
             onManualSchoolInputChange={setSchoolDetailsInManualForm}
             setValue={setValue}
             control={control}
-            setRenderManualSchoolInput={setRenderManualSchoolInput}
+            onSelectFromDropdown={() => setActiveView("school-picker")}
             reset={reset}
           />
         )}
