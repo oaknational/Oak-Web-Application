@@ -1,6 +1,7 @@
 import { Client as HubspotClient } from "@hubspot/api-client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
+import { PublicSubscriptionStatus } from "@hubspot/api-client/lib/codegen/communication_preferences";
 
 import getServerConfig from "@/node-lib/getServerConfig";
 
@@ -14,6 +15,15 @@ const subscriptionRequestSchema = z.object({
 });
 export const subscriptionResponseSchema = z.boolean();
 
+export const getisSubscribed = (
+  statuses: PublicSubscriptionStatus[],
+  subscriptionName: string,
+) => {
+  const subscription = statuses.find((s) => s.name === subscriptionName);
+  const isSubscribed = subscription?.status === "SUBSCRIBED";
+  return isSubscribed;
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -23,10 +33,10 @@ export default async function handler(
     const apiResponse =
       await hubspot.communicationPreferences.statusApi.getEmailStatus(email);
 
-    const subscription = apiResponse.subscriptionStatuses.find(
-      (s) => s.name === subscriptionName,
+    const isSubscribed = getisSubscribed(
+      apiResponse.subscriptionStatuses,
+      subscriptionName,
     );
-    const isSubscribed = subscription?.status === "SUBSCRIBED";
 
     return res.status(200).json(isSubscribed);
   } catch (error) {
