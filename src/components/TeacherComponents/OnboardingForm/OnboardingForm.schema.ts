@@ -61,7 +61,7 @@ export type WorksInSchoolFormProps = WorksInSchoolFormValues & {
   onSubmit: (values: WorksInSchoolFormValues) => Promise<void>;
 };
 
-const oakSupportSchema = z.object({
+export const useOfOakSchema = z.object({
   curriculumDesign: z.boolean().optional(),
   departmentResources: z.boolean().optional(),
   enhanceSkills: z.boolean().optional(),
@@ -69,20 +69,20 @@ const oakSupportSchema = z.object({
   disruptionLearning: z.boolean().optional(),
 });
 
-export const extendedOakSupportSchema = oakSupportSchema
+export const extendedUseOfOakSchema = useOfOakSchema
   .merge(ukSchoolSchema)
-  .or(oakSupportSchema.merge(manualSchoolSchema));
+  .or(useOfOakSchema.merge(manualSchoolSchema));
 
-export type OakSupportSchema = z.infer<typeof extendedOakSupportSchema>;
-export type OakSupportFormProps = OakSupportSchema & {
-  onSubmit: (values: OakSupportSchema) => Promise<void>;
+export type UseOfOakFormSchema = z.infer<typeof extendedUseOfOakSchema>;
+export type UseOfOakFormProps = UseOfOakFormSchema & {
+  onSubmit: (values: UseOfOakFormSchema) => Promise<void>;
 };
 
 export type OnboardingFormProps =
   | SchoolSelectFormProps
   | RoleSelectFormProps
   | WorksInSchoolFormProps
-  | OakSupportFormProps;
+  | UseOfOakFormProps;
 
 export const isSchoolSelectData = (
   d: OnboardingFormProps,

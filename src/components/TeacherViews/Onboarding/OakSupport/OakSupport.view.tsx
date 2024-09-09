@@ -10,9 +10,9 @@ import { useRouter } from "next/router";
 
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
-  OakSupportFormProps,
+  UseOfOakFormProps,
   OnboardingFormProps,
-  extendedOakSupportSchema,
+  extendedUseOfOakSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import { OnboardingLayout } from "@/components/TeacherComponents/OnboardingLayout/OnboardingLayout";
 
@@ -27,7 +27,7 @@ export const oakSupportMap = {
     "To manage a disruption to learning, eg. absences, cover lesson, remote learning",
 };
 
-type OakSupportKey = keyof typeof oakSupportMap;
+export type OakSupportKey = keyof typeof oakSupportMap;
 
 const OakSupport = () => {
   const {
@@ -38,8 +38,8 @@ const OakSupport = () => {
     getValues,
     control,
     trigger,
-  } = useForm<OakSupportFormProps>({
-    resolver: zodResolver(extendedOakSupportSchema),
+  } = useForm<UseOfOakFormProps>({
+    resolver: zodResolver(extendedUseOfOakSchema),
     mode: "onBlur",
     defaultValues: {
       curriculumDesign: false,
