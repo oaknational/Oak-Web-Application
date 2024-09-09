@@ -55,7 +55,7 @@ describe("Onboarding form", () => {
     renderForm({}, false);
 
     expect(
-      screen.getByLabelText(
+      await screen.findByLabelText(
         "Sign up for our latest resources and updates by email. Unsubscribe at any time",
       ),
     ).toBeInTheDocument();
