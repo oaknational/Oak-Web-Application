@@ -1,28 +1,20 @@
 import { OakFlex, OakHomepageTabButton } from "@oaknational/oak-components";
 
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import { Hr } from "@/components/SharedComponents/Typography";
 
 export type HomePageTab = "teachers" | "curriculum" | "ai" | "pupils";
 
-const HomePageTabImageNav = ({
-  current,
-  ...flexProps
-}: FlexProps & {
-  current: HomePageTab | undefined;
-}) => {
+const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
   return (
-    <OakFlex $flexDirection={"column"}>
-      <Flex
+    <OakFlex $flexDirection={"column"} $justifyContent={"center"}>
+      <OakFlex
         as="nav"
-        $width={"100%"}
-        $pt={[40, 32]}
-        $flexDirection={"row"}
-        $ph={[12, 0]}
-        $gap={[16, 32]}
-        $justifyContent={"center"}
         $background={"mint"}
-        {...flexProps}
+        $width={"100%"}
+        $alignItems={"end"}
+        $justifyContent={"center"}
+        $gap={["space-between-s", "space-between-m2"]}
+        $pt={["inner-padding-xl3", "inner-padding-xl2"]}
         aria-label="Site sections"
       >
         <OakHomepageTabButton
@@ -54,7 +46,7 @@ const HomePageTabImageNav = ({
           element="a"
           isActive={current === "pupils"}
         />
-      </Flex>
+      </OakFlex>
       <Hr $mt={0} $mb={0} $color={"white"} thickness={2} />
     </OakFlex>
   );
