@@ -1,5 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { OakCheckBox, OakFlex } from "@oaknational/oak-components";
+import {
+  OakCheckBox,
+  OakFlex,
+  OakSecondaryButton,
+} from "@oaknational/oak-components";
 import { Control, UseFormTrigger, useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
@@ -91,6 +95,12 @@ const OakSupport = () => {
         control={control as Control<OnboardingFormProps>}
         trigger={trigger as UseFormTrigger<OnboardingFormProps>}
         showNewsletterSignUp={false}
+        subheading="Select all that apply"
+        secondaryButton={
+          <OakSecondaryButton width="100%" $mt="space-between-xs">
+            Skip
+          </OakSecondaryButton>
+        }
       >
         <OakFlex $flexDirection="column" $gap="space-between-s">
           {Object.entries(oakSupportMap).map(([key, value]) => (

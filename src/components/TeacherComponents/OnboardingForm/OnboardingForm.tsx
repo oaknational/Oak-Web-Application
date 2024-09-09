@@ -16,6 +16,7 @@ import {
   OakFlex,
   OakInlineBanner,
   OakLink,
+  OakP,
   OakPrimaryButton,
   OakSpan,
 } from "@oaknational/oak-components";
@@ -47,6 +48,8 @@ const OnboardingForm = ({
   handleSubmit: UseFormHandleSubmit<OnboardingFormProps>;
   formState: UseFormStateReturn<OnboardingFormProps>;
   heading: string;
+  subheading?: string;
+  secondaryButton?: React.ReactNode;
   canSubmit: boolean;
   onSubmit?: () => void;
   control: Control<OnboardingFormProps>;
@@ -180,9 +183,16 @@ const OnboardingForm = ({
           $width="100%"
           role={"fieldset"}
         >
-          <OakSpan role="legend" id={"form-legend"} $font="heading-6">
-            {props.heading}
-          </OakSpan>
+          <OakFlex $flexDirection="column" $gap="space-between-ssx">
+            <OakSpan role="legend" id={"form-legend"} $font="heading-6">
+              {props.heading}
+            </OakSpan>
+            {props.subheading && (
+              <OakP $font="body-2" color="text-subdued">
+                {props.subheading}
+              </OakP>
+            )}
+          </OakFlex>
           <OakBox aria-live="polite" $display="contents">
             {submitError && (
               <OakInlineBanner
@@ -206,6 +216,7 @@ const OnboardingForm = ({
             >
               Continue
             </OakPrimaryButton>
+            {props.secondaryButton}
           </OakBox>
           {showNewsletterSignUp && (
             <Controller
