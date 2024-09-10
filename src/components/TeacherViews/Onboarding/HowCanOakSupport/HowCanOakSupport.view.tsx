@@ -94,7 +94,7 @@ const HowCanOakSupport = () => {
         handleSubmit={handleSubmit}
         control={control as Control<OnboardingFormProps>}
         trigger={trigger as UseFormTrigger<OnboardingFormProps>}
-        showNewsletterSignUp={false}
+        forceHideNewsletterSignUp={true}
         subheading="Select all that apply"
         secondaryButton={
           <OakSecondaryButton width="100%" $mt="space-between-xs">

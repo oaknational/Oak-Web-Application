@@ -108,6 +108,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  hubspotOwaAccessToken: {
+    value: process.env.HUBSPOT_OWA_ACCESS_TOKEN,
+    envName: "HUBSPOT_OWA_ACCESS_TOKEN",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   curriculumApiUrl: {
     value: process.env.CURRICULUM_API_URL,
     envName: "CURRICULUM_API_URL",
