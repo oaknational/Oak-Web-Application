@@ -1,5 +1,3 @@
-import { encode } from "querystring";
-
 import {
   Control,
   Controller,
@@ -22,12 +20,11 @@ import {
 } from "@oaknational/oak-components";
 
 import {
-  ManualSchoolFormValues,
   OnboardingFormProps,
-  UkSchoolFormValues,
   isSchoolSelectData,
 } from "./OnboardingForm.schema";
 import { getSubscriptionStatus, onboardUser } from "./onboardingActions";
+import { getQueryParamsFromOnboardingFormData } from "./getQueryParamsFromOnboardingFormData";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -91,35 +88,16 @@ const OnboardingForm = ({
         query: router.query,
       });
     } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
-      const encodedQueryData = new URLSearchParams(encode(router.query));
-      encodedQueryData.set(
-        "newsletterSignUp",
-        data.newsletterSignUp.toString(),
+      const encodedQueryData = getQueryParamsFromOnboardingFormData(
+        data,
+        router.query,
       );
-
-      const schoolName = (data as UkSchoolFormValues).schoolName;
-      const school = (data as UkSchoolFormValues).school;
-      const schoolAddress = (data as ManualSchoolFormValues).schoolAddress;
-      const manualSchoolName = (data as ManualSchoolFormValues)
-        .manualSchoolName;
-      if (schoolName) {
-        encodedQueryData.set("schoolName", encodeURI(schoolName));
-      }
-      if (school) {
-        encodedQueryData.set("school", encodeURI(school));
-      }
-      if (schoolAddress) {
-        encodedQueryData.set("schoolAddress", encodeURI(schoolAddress));
-      }
-      if (manualSchoolName) {
-        encodedQueryData.set("manualSchoolName", encodeURI(manualSchoolName));
-      }
 
       router.push({
         pathname: resolveOakHref({
           page: "onboarding-use-of-oak",
         }),
-        query: encodedQueryData.toString(),
+        query: encodedQueryData,
       });
     } else {
       const isTeacher = "school" in data || "manualSchoolName" in data;
