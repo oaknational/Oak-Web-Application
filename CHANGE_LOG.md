@@ -1,3 +1,10 @@
+## [1.543.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.0...v1.543.1) (2024-09-10)
+
+
+### Bug Fixes
+
+* cache chromium in dependency cache to speed up CI ([99972ac](https://github.com/oaknational/Oak-Web-Application/commit/99972ac7593ed3b66b872a0e75cfc6779e662da4))
+
 # [1.543.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.542.0...v1.543.0) (2024-09-10)
 
 
