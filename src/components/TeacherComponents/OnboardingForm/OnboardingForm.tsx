@@ -178,12 +178,16 @@ const OnboardingForm = ({
           $width="100%"
           role={"fieldset"}
         >
-          <OakFlex $flexDirection="column" $gap="space-between-ssx">
+          <OakFlex
+            $flexDirection="column"
+            $gap="space-between-ssx"
+            $pb={props.subheading ? "inner-padding-m" : "inner-padding-none"}
+          >
             <OakSpan role="legend" id={"form-legend"} $font="heading-6">
               {props.heading}
             </OakSpan>
             {props.subheading && (
-              <OakP $font="body-2" color="text-subdued">
+              <OakP $font="body-2" $color="text-subdued">
                 {props.subheading}
               </OakP>
             )}

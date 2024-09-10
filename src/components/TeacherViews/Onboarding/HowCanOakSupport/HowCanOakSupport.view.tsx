@@ -4,6 +4,7 @@ import {
   OakFlex,
   OakLink,
   OakSecondaryButton,
+  OakSpan,
 } from "@oaknational/oak-components";
 import { Control, UseFormTrigger, useForm } from "react-hook-form";
 import { useEffect } from "react";
@@ -109,10 +110,11 @@ const HowCanOakSupport = () => {
             <FieldError id="missing-values" withoutMarginBottom>
               An error occurred. Please{" "}
               <OakLink
-                color="error"
                 href={resolveOakHref({ page: "onboarding-school-selection" })}
               >
-                go back
+                <OakSpan $color="text-error" $textDecoration="underline">
+                  go back
+                </OakSpan>
               </OakLink>{" "}
               to the previous step and try again.
             </FieldError>
