@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   OakCheckBox,
   OakFlex,
+  OakLink,
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 import { Control, UseFormTrigger, useForm } from "react-hook-form";
@@ -15,6 +16,8 @@ import {
   extendedUseOfOakSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import { OnboardingLayout } from "@/components/TeacherComponents/OnboardingLayout/OnboardingLayout";
+import FieldError from "@/components/SharedComponents/FieldError";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export const oakSupportMap = {
   curriculumDesign: "To help with our curriculum design",
@@ -82,6 +85,10 @@ const HowCanOakSupport = () => {
     trigger();
   }, [router.query, setValue, trigger]);
 
+  const hasMissingFormData = Object.values(formState.errors).some(
+    (error) => error.message !== undefined,
+  );
+
   return (
     <OnboardingLayout
       promptBody="Tell us a little bit about you so we can tailor Oak to suit your needs."
@@ -97,7 +104,11 @@ const HowCanOakSupport = () => {
         forceHideNewsletterSignUp={true}
         subheading="Select all that apply"
         secondaryButton={
-          <OakSecondaryButton width="100%" $mt="space-between-xs">
+          <OakSecondaryButton
+            width="100%"
+            $mt="space-between-xs"
+            disabled={hasMissingFormData}
+          >
             Skip
           </OakSecondaryButton>
         }
@@ -111,6 +122,18 @@ const HowCanOakSupport = () => {
               onChange={() => handleToggleCheckbox(key as OakSupportKey)}
             />
           ))}
+          {hasMissingFormData && (
+            <FieldError id="missing-values" withoutMarginBottom>
+              An error occurred. Please{" "}
+              <OakLink
+                color="error"
+                href={resolveOakHref({ page: "onboarding-school-selection" })}
+              >
+                go back
+              </OakLink>{" "}
+              to the previous step and try again.
+            </FieldError>
+          )}
         </OakFlex>
       </OnboardingForm>
     </OnboardingLayout>

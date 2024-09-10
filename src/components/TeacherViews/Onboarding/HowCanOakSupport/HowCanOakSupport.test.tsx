@@ -40,4 +40,17 @@ describe("HowCanOakSupport", () => {
     const continueButton = screen.getByRole("button", { name: /continue/i });
     await waitFor(() => expect(continueButton).toBeEnabled());
   });
+  it("disabled buttons and renders an error message if there is missing data", async () => {
+    mockRouter.push({
+      pathname: "/onboarding/how-can-oak-support",
+      query: {},
+    });
+    renderWithProviders()(<HowCanOakSupport />);
+    const continueButton = screen.getByRole("button", { name: /continue/i });
+    await waitFor(() => expect(continueButton).toBeDisabled());
+    const skipButton = screen.getByRole("button", { name: /skip/i });
+    await waitFor(() => expect(skipButton).toBeDisabled());
+    const errorMessage = screen.getByText(/An error occurred. Please/i);
+    await waitFor(() => expect(errorMessage).toBeInTheDocument());
+  });
 });
