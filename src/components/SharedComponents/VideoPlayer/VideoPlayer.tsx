@@ -2,7 +2,7 @@ import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
-
+import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
@@ -16,7 +16,6 @@ import {
   useSignedStoryboardToken,
 } from "./useSignedVideoToken";
 
-import { OakP, OakFlex } from "@oaknational/oak-components";
 import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
