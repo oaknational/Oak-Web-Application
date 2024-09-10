@@ -29,7 +29,7 @@ export const oakSupportMap = {
 
 export type OakSupportKey = keyof typeof oakSupportMap;
 
-const OakSupport = () => {
+const HowCanOakSupport = () => {
   const {
     formState,
     setValue,
@@ -117,4 +117,4 @@ const OakSupport = () => {
   );
 };
 
-export default OakSupport;
+export default HowCanOakSupport;

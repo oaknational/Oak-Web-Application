@@ -8,7 +8,7 @@ import { useOfOakSchema } from "@/components/TeacherComponents/OnboardingForm/On
 import {
   OakSupportKey,
   oakSupportMap,
-} from "@/components/TeacherViews/Onboarding/OakSupport/OakSupport.view";
+} from "@/components/TeacherViews/Onboarding/HowCanOakSupport/HowCanOakSupport.view";
 
 export const USER_ROLES = ["Teacher", "Parent", "Student", "Other"] as const;
 export type UserRole = (typeof USER_ROLES)[number];

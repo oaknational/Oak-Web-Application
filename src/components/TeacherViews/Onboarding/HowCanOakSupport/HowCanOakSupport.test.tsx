@@ -1,12 +1,12 @@
 import { screen } from "@testing-library/dom";
 
-import OakSupport, { oakSupportMap } from "./OakSupport.view";
+import HowCanOakSupport, { oakSupportMap } from "./HowCanOakSupport.view";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-describe("OakSupport", () => {
+describe("HowCanOakSupport", () => {
   it("renders the onboarding layout with the correct prompt", () => {
-    renderWithProviders()(<OakSupport />);
+    renderWithProviders()(<HowCanOakSupport />);
     const promptHeading = screen.getByText(/Last step.../i);
     expect(promptHeading).toBeInTheDocument();
     const promptBody = screen.getByText(
@@ -15,12 +15,12 @@ describe("OakSupport", () => {
     expect(promptBody).toBeInTheDocument();
   });
   it('renders checkboxes for each key in "oakSupportMap"', () => {
-    renderWithProviders()(<OakSupport />);
+    renderWithProviders()(<HowCanOakSupport />);
     const checkboxes = screen.getAllByRole("checkbox");
     expect(checkboxes).toHaveLength(Object.keys(oakSupportMap).length);
   });
   it("renders a continue button that is enabled by default", () => {
-    renderWithProviders()(<OakSupport />);
+    renderWithProviders()(<HowCanOakSupport />);
     const continueButton = screen.getByRole("button", { name: /continue/i });
     expect(continueButton).toBeEnabled();
   });

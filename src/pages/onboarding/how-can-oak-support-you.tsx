@@ -3,12 +3,12 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import withFeatureFlag from "@/hocs/withFeatureFlag";
 import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
-import OakSupport from "@/components/TeacherViews/Onboarding/OakSupport/OakSupport.view";
+import HowCanOakSupport from "@/components/TeacherViews/Onboarding/HowCanOakSupport/HowCanOakSupport.view";
 
 const RoleSelectionComponent: NextPage = () => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakSupport />
+      <HowCanOakSupport />
     </OakThemeProvider>
   );
 };
