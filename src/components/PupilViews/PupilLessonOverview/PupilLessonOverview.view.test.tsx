@@ -1,6 +1,7 @@
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+
 import { PupilViewsLessonOverview } from "./PupilLessonOverview.view";
 
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import {
   LessonEngineContext,

@@ -1,3 +1,5 @@
+import { OakP } from "@oaknational/oak-components";
+
 import {
   PupilAnalyticsProvider,
   getPupilAudioData,
@@ -5,7 +7,6 @@ import {
   getPupilVideoData,
 } from "./PupilAnalyticsProvider";
 
-import { OakP } from "@oaknational/oak-components";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";

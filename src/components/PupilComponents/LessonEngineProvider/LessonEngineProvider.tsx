@@ -239,6 +239,7 @@ export const LessonEngineProvider = memo(
       pupilExperienceLessonActivity: section,
       pupilQuizGrade: state.sections[section]?.grade || 0,
       pupilQuizNumQuestions: state.sections[section]?.numQuestions || 0,
+      // FIXME: these are still wrong. The full results should be sent
       hintQuestion: "",
       hintQuestionResult: "",
       hintUsed: "",
@@ -417,10 +418,3 @@ export const LessonEngineProvider = memo(
     );
   },
 );
-
-// todo: add tracking for the following events
-// activityResultsShared,
-// activityResultsSharedStarterQuiz,
-// activityResultsSharedExitQuiz,
-// lessonSummaryReviewed,
-// lessonAccessed,

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { act, renderHook, render } from "@testing-library/react";
+import { OakSpan } from "@oaknational/oak-components";
 
 import {
   LessonEngineProvider,
@@ -10,7 +11,6 @@ import {
   useLessonEngineContext,
 } from "./LessonEngineProvider";
 
-import { OakSpan } from "@oaknational/oak-components";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const usePupilAnalyticsMock = {

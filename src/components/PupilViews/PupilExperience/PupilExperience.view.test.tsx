@@ -1,13 +1,13 @@
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
+import { OakTooltipProps } from "@oaknational/oak-components";
 
 import {
   PupilExperienceView,
   pickAvailableSectionsForLesson,
 } from "./PupilExperience.view";
 
-import { OakTooltipProps } from "@oaknational/oak-components";
 import * as LessonEngineProvider from "@/components/PupilComponents/LessonEngineProvider";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { allLessonReviewSections } from "@/components/PupilComponents/LessonEngineProvider";
