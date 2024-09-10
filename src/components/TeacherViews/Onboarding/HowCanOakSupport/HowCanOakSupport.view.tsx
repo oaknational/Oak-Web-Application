@@ -9,6 +9,8 @@ import { Control, UseFormTrigger, useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
+import { setQueryParamsInOnboardingForm } from "./setQueryParams";
+
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
   UseOfOakFormProps,
@@ -62,26 +64,7 @@ const HowCanOakSupport = () => {
 
   useEffect(() => {
     const queryData = router.query;
-    const schoolName = queryData.schoolName;
-    if (schoolName && typeof schoolName === "string") {
-      setValue("schoolName", decodeURI(schoolName));
-    }
-    const school = queryData.school;
-    if (school && typeof school === "string") {
-      setValue("school", decodeURI(school));
-    }
-    const manualSchoolName = queryData.manualSchoolName;
-    if (manualSchoolName && typeof manualSchoolName === "string") {
-      setValue("manualSchoolName", decodeURI(manualSchoolName));
-    }
-    const schoolAddress = queryData.schoolAddress;
-    if (schoolAddress && typeof schoolAddress === "string") {
-      setValue("schoolAddress", decodeURI(schoolAddress));
-    }
-    const newsletterSignUp = queryData.newsletterSignUp;
-    if (newsletterSignUp) {
-      setValue("newsletterSignUp", newsletterSignUp === "true");
-    }
+    setQueryParamsInOnboardingForm(queryData, setValue);
     trigger();
   }, [router.query, setValue, trigger]);
 
