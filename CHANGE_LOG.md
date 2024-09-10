@@ -1,3 +1,18 @@
+# [1.542.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.541.0...v1.542.0) (2024-09-10)
+
+
+### Bug Fixes
+
+* correct capitalisation for subscription name ([6ae74d5](https://github.com/oaknational/Oak-Web-Application/commit/6ae74d5cc4dd49e4d58d31574cda24db259a5f04))
+* merge removed async query ([03be117](https://github.com/oaknational/Oak-Web-Application/commit/03be11793515320f6852de955f9eb39438d84371))
+
+
+### Features
+
+* add access token to config ([f7655ca](https://github.com/oaknational/Oak-Web-Application/commit/f7655cab0076eea4af4af24fd6e352ef7848f185))
+* add api call to get user subscription statuses by email ([b6e26df](https://github.com/oaknational/Oak-Web-Application/commit/b6e26dfa228096da8451bd34745295976378c46a))
+* make sign up deselected by default ([44d01d3](https://github.com/oaknational/Oak-Web-Application/commit/44d01d3630e776c0889d79c6688dd173633e1ceb))
+
 # [1.541.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.540.0...v1.541.0) (2024-09-09)
 
 
