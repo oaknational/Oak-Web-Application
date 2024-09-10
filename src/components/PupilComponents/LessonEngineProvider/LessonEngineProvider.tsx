@@ -299,41 +299,43 @@ export const LessonEngineProvider = memo(
 
     const trackSectionStarted = (section: LessonSection) => {
       trackLessonStarted();
-      // confusingly review is not a review section as it does not have stored results
-      if (isLessonReviewSection(section)) {
-        if (track.lessonActivityStarted) {
-          track.lessonActivityStarted(getActivityTrackingData(section));
-        }
-      }
+
       if (
+        section === "intro" &&
+        track.lessonActivityStartedIntroduction &&
+        !state.sections["intro"]?.isComplete
+      ) {
+        track.lessonActivityStartedIntroduction(
+          getActivityTrackingData(section),
+        );
+      } else if (
         section === "starter-quiz" &&
-        track.lessonActivityStartedStarterQuiz
+        track.lessonActivityStartedStarterQuiz &&
+        !state.sections["starter-quiz"]?.isComplete
       ) {
         track.lessonActivityStartedStarterQuiz({
           ...getQuizTrackingData(section),
           hintAvailable: true,
         });
-      }
-      if (section === "video" && track.lessonActivityStartedLessonVideo) {
-        track.lessonActivityStartedLessonVideo(getVideoTrackingData(section));
-      }
-      if (section === "exit-quiz" && track.lessonActivityStartedExitQuiz) {
+      } else if (
+        section === "exit-quiz" &&
+        track.lessonActivityStartedExitQuiz &&
+        !state.sections["exit-quiz"]?.isComplete
+      ) {
         track.lessonActivityStartedExitQuiz({
           ...getQuizTrackingData(section),
           hintAvailable: true,
         });
-      }
-      if (section === "intro" && track.lessonActivityStartedIntroduction) {
-        track.lessonActivityStartedIntroduction(
-          getActivityTrackingData(section),
-        );
+      } else if (
+        section === "video" &&
+        track.lessonActivityStartedLessonVideo &&
+        !state.sections["video"]?.isComplete
+      ) {
+        track.lessonActivityStartedLessonVideo(getVideoTrackingData(section));
       }
     };
 
     const updateCurrentSection = (section: LessonSection) => {
-      trackLessonStarted();
-      trackSectionStarted(section);
-
       if (
         isLessonReviewSection(state.currentSection) &&
         !state.sections[state.currentSection]?.isComplete
@@ -344,29 +346,9 @@ export const LessonEngineProvider = memo(
           );
         }
       }
-      if (
-        section === "starter-quiz" &&
-        !state.sections["starter-quiz"]?.isComplete
-      ) {
-        track.lessonActivityStartedStarterQuiz({
-          ...getQuizTrackingData(section),
-          hintAvailable: true,
-        });
-      }
-      if (section === "video" && !state.sections["video"]?.isComplete) {
-        track.lessonActivityStartedLessonVideo(getVideoTrackingData(section));
-      }
-      if (section === "exit-quiz" && !state.sections["exit-quiz"]?.isComplete) {
-        track.lessonActivityStartedExitQuiz({
-          ...getQuizTrackingData(section),
-          hintAvailable: true,
-        });
-      }
-      if (section === "intro" && !state.sections["intro"]?.isComplete) {
-        track.lessonActivityStartedIntroduction(
-          getActivityTrackingData(section),
-        );
-      }
+
+      trackSectionStarted(section);
+
       dispatch({ type: "setCurrentSection", section });
     };
 
