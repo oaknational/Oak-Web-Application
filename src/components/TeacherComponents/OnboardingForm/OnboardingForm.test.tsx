@@ -3,6 +3,7 @@ import { DefaultValues, useForm } from "react-hook-form";
 import { renderHook } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
+import fetchMock from "jest-fetch-mock";
 
 import OnboardingForm from "./OnboardingForm";
 import { OnboardingFormProps } from "./OnboardingForm.schema";
@@ -13,7 +14,13 @@ import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 
 jest.mock("@/browser-lib/hubspot/forms");
-jest.mock("./onboardingActions");
+jest.mock("./onboardingActions", () => {
+  const actual = jest.requireActual("./onboardingActions");
+  return {
+    ...actual,
+    onboardUser: jest.fn(),
+  };
+});
 jest.mock("@clerk/nextjs", () => {
   return {
     useUser() {
@@ -25,6 +32,13 @@ jest.mock("@clerk/nextjs", () => {
 type OnboardingFormState = DefaultValues<OnboardingFormProps>;
 
 describe("Onboarding form", () => {
+  beforeAll(() => {
+    fetchMock.enableMocks();
+  });
+  afterAll(() => {
+    fetchMock.disableMocks();
+  });
+
   it("should render the onboarding form with fieldset and legend", async () => {
     renderForm();
 
@@ -36,26 +50,28 @@ describe("Onboarding form", () => {
     expect(fieldset).toContainElement(legend);
   });
 
-  it("renders newsletter signup checkbox", () => {
-    renderForm();
+  it("renders newsletter signup checkbox", async () => {
+    fetchMock.mockResponse(JSON.stringify(false));
+    renderForm({}, false);
 
     expect(
-      screen.getByLabelText(
-        "Sign up to receive helpful content via email. Unsubscribe at any time.",
+      await screen.findByLabelText(
+        "Sign up for our latest resources and updates by email. Unsubscribe at any time",
       ),
     ).toBeInTheDocument();
   });
   it("should render the Controller component and handle checkbox change", async () => {
-    renderForm();
+    fetchMock.mockResponse(JSON.stringify(false));
+    renderForm({}, false);
 
     const checkbox = await screen.findByRole("checkbox", {
-      name: /Sign up to receive helpful content via email. Unsubscribe at any time./i,
+      name: /Sign up for our latest resources and updates by email. Unsubscribe at any time/i,
     });
-    expect(checkbox).toBeChecked();
+    expect(checkbox).not.toBeChecked();
 
     fireEvent.click(checkbox);
 
-    expect(checkbox).not.toBeChecked();
+    expect(checkbox).toBeChecked();
   });
 
   it.each<[string, string, boolean]>([
@@ -126,6 +142,7 @@ describe("Onboarding form", () => {
 
 function renderForm(
   formState: OnboardingFormState = { newsletterSignUp: true },
+  forceHideNewsletterSignUp: boolean = true,
 ) {
   const { result } = renderHook(() =>
     useForm<OnboardingFormProps>({
@@ -141,6 +158,7 @@ function renderForm(
       canSubmit={true}
       trigger={result.current.trigger}
       control={result.current.control}
+      forceHideNewsletterSignUp={forceHideNewsletterSignUp}
     >
       <div />
     </OnboardingForm>,

@@ -18,7 +18,7 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 const CurriculumTab: FC = () => {
   return (
-    <OakFlex $background={"aqua"} $pv="inner-padding-xl">
+    <OakFlex $background={"mint"} $pv="inner-padding-xl">
       <MaxWidth $ph={[16]} $pb={24}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>

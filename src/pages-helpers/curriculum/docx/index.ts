@@ -81,19 +81,16 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
       <w:p>
         <w:pPr>
             <w:jc w:val="right"/>
-            <w:rPr/>
         </w:pPr>
         <w:r>
             <w:rPr>
-                <w:rtl w:val="0"/>
-                <w:rPr>
                   <w:rFonts
                     w:ascii="Arial"
                     w:eastAsia="Arial"
                     w:hAnsi="Arial"
                     w:cs="Arial"
                   />
-                </w:rPr>
+                  <w:rtl w:val="0"/>
             </w:rPr>
             <w:t xml:space="preserve">Exported ${format(
               new Date(),

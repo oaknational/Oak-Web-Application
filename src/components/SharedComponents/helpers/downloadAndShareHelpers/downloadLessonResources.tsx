@@ -7,6 +7,8 @@ const downloadLessonResources = async (
   lessonSlug: string,
   selectedResourceTypes: ResourcesToDownloadArrayType,
   isLegacyDownload: boolean,
+  authFlagEnabled?: boolean,
+  authToken?: string | null,
 ) => {
   if (selectedResourceTypes?.length === 0) {
     console.log("no resources to download");
@@ -19,6 +21,8 @@ const downloadLessonResources = async (
     lessonSlug,
     selection,
     isLegacyDownload,
+    authFlagEnabled,
+    authToken,
   );
 
   if (downloadResourcesLink) {
