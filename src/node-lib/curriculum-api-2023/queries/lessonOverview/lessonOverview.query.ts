@@ -152,10 +152,12 @@ const transformedLessonOverviewData = (
 ): LessonOverviewPageData => {
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
+  const unitTitle =
+    browseData.programmeFields.optionality ?? browseData.unitData.title;
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
-    unitTitle: browseData.unitData.title,
+    unitTitle,
     keyStageSlug: browseData.programmeFields.keystageSlug,
     keyStageTitle: toSentenceCase(
       browseData.programmeFields.keystageDescription,
