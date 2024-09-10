@@ -90,7 +90,7 @@ const OnboardingForm = ({
         }),
         query: router.query,
       });
-    } else if (isSchoolSelectData(data)) {
+    } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
       const encodedQueryData = new URLSearchParams(encode(router.query));
       encodedQueryData.set(
         "newsletterSignUp",
