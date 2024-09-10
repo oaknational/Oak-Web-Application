@@ -45,7 +45,7 @@ export const OnboardingView = () => {
         heading="Do you work in a school?"
         handleSubmit={handleSubmit}
         canSubmit={!formState.errors.worksInSchool}
-        showNewsletterSignUp={false}
+        forceHideNewsletterSignUp={true}
       >
         <OakBox>
           <FieldError id={"onboarding-error"}>
