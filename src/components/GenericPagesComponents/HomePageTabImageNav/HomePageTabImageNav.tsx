@@ -11,10 +11,11 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
         as="nav"
         $background={"mint"}
         $width={"100%"}
-        $alignItems={"end"}
+        $alignItems={"stretch"}
         $justifyContent={"center"}
         $gap={["space-between-s", "space-between-m2"]}
         $pt={["inner-padding-xl3", "inner-padding-xl2"]}
+        $ph={["inner-padding-s", null]}
         aria-label="Site sections"
       >
         <OakHomepageTabButton
