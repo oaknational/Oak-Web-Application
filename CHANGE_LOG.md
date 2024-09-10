@@ -1,3 +1,17 @@
+# [1.543.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.542.0...v1.543.0) (2024-09-10)
+
+
+### Bug Fixes
+
+* padding and alignment ([557325d](https://github.com/oaknational/Oak-Web-Application/commit/557325dbf35e418c0c83dbe13f79464f26ca6140))
+* remove only ([bedfddd](https://github.com/oaknational/Oak-Web-Application/commit/bedfddd1a970773d533b83775b0ec44fe0334f66))
+* update tests for new implementation ([d8eb2b5](https://github.com/oaknational/Oak-Web-Application/commit/d8eb2b528e78482f37e5d8e1f393336fc52c0f88))
+
+
+### Features
+
+* bump to latest oak components ([66276c8](https://github.com/oaknational/Oak-Web-Application/commit/66276c813ee91dec39c5c9f57607648d46438eb6))
+
 # [1.542.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.541.0...v1.542.0) (2024-09-10)
 
 
