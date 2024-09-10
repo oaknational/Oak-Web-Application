@@ -88,11 +88,7 @@ const HowCanOakSupport = () => {
         forceHideNewsletterSignUp={true}
         subheading="Select all that apply"
         secondaryButton={
-          <OakSecondaryButton
-            width="100%"
-            $mt="space-between-xs"
-            disabled={hasMissingFormData}
-          >
+          <OakSecondaryButton width="100%" disabled={hasMissingFormData}>
             Skip
           </OakSecondaryButton>
         }

@@ -205,7 +205,11 @@ const OnboardingForm = ({
             )}
           </OakBox>
           <OakBox>{props.children}</OakBox>
-          <OakBox $pv="inner-padding-xl">
+          <OakFlex
+            $pv="inner-padding-xl"
+            $gap="space-between-xs"
+            $flexDirection="column"
+          >
             <OakPrimaryButton
               disabled={!props.canSubmit}
               width="100%"
@@ -216,7 +220,7 @@ const OnboardingForm = ({
               Continue
             </OakPrimaryButton>
             {props.secondaryButton}
-          </OakBox>
+          </OakFlex>
           {showNewsletterSignUp && (
             <Controller
               control={props.control}
