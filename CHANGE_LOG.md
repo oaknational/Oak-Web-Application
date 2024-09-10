@@ -1,3 +1,39 @@
+## [1.543.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.0...v1.543.1) (2024-09-10)
+
+
+### Bug Fixes
+
+* cache chromium in dependency cache to speed up CI ([99972ac](https://github.com/oaknational/Oak-Web-Application/commit/99972ac7593ed3b66b872a0e75cfc6779e662da4))
+
+# [1.543.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.542.0...v1.543.0) (2024-09-10)
+
+
+### Bug Fixes
+
+* padding and alignment ([557325d](https://github.com/oaknational/Oak-Web-Application/commit/557325dbf35e418c0c83dbe13f79464f26ca6140))
+* remove only ([bedfddd](https://github.com/oaknational/Oak-Web-Application/commit/bedfddd1a970773d533b83775b0ec44fe0334f66))
+* update tests for new implementation ([d8eb2b5](https://github.com/oaknational/Oak-Web-Application/commit/d8eb2b528e78482f37e5d8e1f393336fc52c0f88))
+
+
+### Features
+
+* bump to latest oak components ([66276c8](https://github.com/oaknational/Oak-Web-Application/commit/66276c813ee91dec39c5c9f57607648d46438eb6))
+
+# [1.542.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.541.0...v1.542.0) (2024-09-10)
+
+
+### Bug Fixes
+
+* correct capitalisation for subscription name ([6ae74d5](https://github.com/oaknational/Oak-Web-Application/commit/6ae74d5cc4dd49e4d58d31574cda24db259a5f04))
+* merge removed async query ([03be117](https://github.com/oaknational/Oak-Web-Application/commit/03be11793515320f6852de955f9eb39438d84371))
+
+
+### Features
+
+* add access token to config ([f7655ca](https://github.com/oaknational/Oak-Web-Application/commit/f7655cab0076eea4af4af24fd6e352ef7848f185))
+* add api call to get user subscription statuses by email ([b6e26df](https://github.com/oaknational/Oak-Web-Application/commit/b6e26dfa228096da8451bd34745295976378c46a))
+* make sign up deselected by default ([44d01d3](https://github.com/oaknational/Oak-Web-Application/commit/44d01d3630e776c0889d79c6688dd173633e1ceb))
+
 # [1.541.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.540.0...v1.541.0) (2024-09-09)
 
 
