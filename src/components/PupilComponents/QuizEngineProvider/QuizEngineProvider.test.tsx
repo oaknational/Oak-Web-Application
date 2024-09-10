@@ -20,7 +20,7 @@ import {
   LessonEngineContextType,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+import { invariant } from "@/utils/invariant";
 
 describe("QuizEngineContext", () => {
   const wrapper = (

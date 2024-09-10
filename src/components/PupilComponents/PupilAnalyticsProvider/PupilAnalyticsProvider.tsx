@@ -1,17 +1,22 @@
 import { createContext } from "react";
+import { capitalize } from "lodash";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   AnalyticsUseCaseValueType,
+  ExamBoardValueType,
   KeyStageTitleValueType,
+  PathwayValueType,
   PhaseValueType,
+  TierNameValueType,
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { unionOrNull } from "@/utils/narrowToUnion";
 
 /**
  * This file is used to wrap the track function from the analytics context
@@ -35,6 +40,7 @@ type NavigationEventProps =
   | "yearGroupSlug"
   | "phase"
   | "tierName"
+  | "pathway"
   | "examBoard"
   | "releaseGroup"
   | "analyticsUseCase";
@@ -113,8 +119,9 @@ export type PupilPathwayData = {
   yearGroupName: string;
   yearGroupSlug: string;
   phase: PhaseValueType;
-  tierName: string | null | undefined;
-  examBoard: string | null | undefined;
+  tierName: TierNameValueType | null | undefined;
+  pathway: PathwayValueType | null | undefined;
+  examBoard: ExamBoardValueType | null | undefined;
   releaseGroup: string;
 };
 
@@ -353,6 +360,7 @@ export const getPupilPathwayData = (
   if (browseData.programmeFields.phase === "foundation") {
     throw new Error("Foundation phase is not supported");
   }
+
   return {
     unitName: browseData.unitData.description ?? "",
     unitSlug: browseData.unitData.slug,
@@ -365,9 +373,13 @@ export const getPupilPathwayData = (
     yearGroupName: browseData.programmeFields.year,
     yearGroupSlug: browseData.programmeFields.yearSlug,
     phase: browseData.programmeFields.phase,
-    tierName: browseData.programmeFields.tier,
+    tierName: unionOrNull<TierNameValueType>(
+      capitalize(browseData.programmeFields.tier ?? undefined),
+      ["Higher", "Foundation", "Core"],
+    ),
     examBoard: browseData.programmeFields.examboard,
     releaseGroup: browseData.isLegacy ? "legacy" : "2023",
+    pathway: null, // TODO: not yet implemented
   };
 };
 
