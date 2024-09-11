@@ -45,7 +45,7 @@ type NavigationEventProps =
   | "releaseGroup"
   | "analyticsUseCase";
 
-type DefaultVideoProps =
+type VideoDataProps =
   | "videoTitle"
   | "numberOfVideos"
   | "videoSlug"
@@ -53,7 +53,7 @@ type DefaultVideoProps =
   | "videoPlaybackId"
   | "signedAvailable";
 
-type DefaultAudioProps =
+type AudioDataProps =
   | "audioTitle"
   | "numberOfAudios"
   | "audioSlug"
@@ -63,25 +63,21 @@ type DefaultAudioProps =
 export const trackingEvents = [
   "lessonStarted",
   "lessonCompleted",
-  "lessonActivityCompleted",
   "lessonActivityCompletedIntroduction",
   "lessonActivityCompletedStarterQuiz",
   "lessonActivityCompletedLessonVideo",
   "lessonActivityCompletedExitQuiz",
   "lessonActivityCompletedLessonAudio",
-  "lessonActivityStarted",
   "lessonActivityStartedIntroduction",
   "lessonActivityStartedStarterQuiz",
   "lessonActivityStartedLessonVideo",
   "lessonActivityStartedExitQuiz",
   "lessonActivityStartedLessonAudio",
-  "lessonActivityAbandoned",
   "lessonActivityAbandonedStarterQuiz",
   "lessonActivityAbandonedIntroduction",
   "lessonActivityAbandonedLessonVideo",
   "lessonActivityAbandonedExitQuiz",
   "lessonActivityAbandonedLessonAudio",
-  "lessonActivityDownloaded",
   "lessonActivityDownloadedWorksheet",
   "contentGuidanceAccepted",
   "contentGuidanceDeclined",
@@ -98,7 +94,7 @@ export type PupilAnalyticsTrack = {
   [eventName in PupilAnalyticsEvents]: (
     props: Omit<
       Parameters<TrackFns[eventName]>[0],
-      NavigationEventProps | DefaultVideoProps | DefaultAudioProps
+      NavigationEventProps | VideoDataProps | AudioDataProps
     >,
   ) => void;
 };
@@ -125,6 +121,7 @@ export type PupilPathwayData = {
   releaseGroup: string;
 };
 
+// TODO: The assumptions behind these types seem wrong. We currently have one video per lesson, but if we have multiple videos they are likely to have multiple titles, slugs, etc.
 export type PupilVideoData = {
   videoTitle: string;
   numberOfVideos: number;
@@ -192,11 +189,6 @@ export const PupilAnalyticsProvider = ({
         ...args,
         ...additionalArgs,
       }),
-    lessonActivityCompleted: (args) =>
-      track.lessonActivityCompleted({
-        ...additionalArgs,
-        ...args,
-      }),
     lessonActivityCompletedIntroduction: (args) =>
       track.lessonActivityCompletedIntroduction({
         ...args,
@@ -235,11 +227,7 @@ export const PupilAnalyticsProvider = ({
         ...audioData,
       });
     },
-    lessonActivityStarted: (args) =>
-      track.lessonActivityStarted({
-        ...additionalArgs,
-        ...args,
-      }),
+
     lessonActivityStartedIntroduction: (args) =>
       track.lessonActivityStartedIntroduction({
         ...additionalArgs,
@@ -277,13 +265,6 @@ export const PupilAnalyticsProvider = ({
         ...audioData,
       });
     },
-
-    lessonActivityAbandoned: (args) =>
-      track.lessonActivityAbandoned({
-        ...additionalArgs,
-        ...args,
-        ...videoData,
-      }),
     lessonActivityAbandonedStarterQuiz: (args) =>
       track.lessonActivityAbandonedStarterQuiz({
         ...additionalArgs,
@@ -321,11 +302,6 @@ export const PupilAnalyticsProvider = ({
         ...audioData,
       });
     },
-    lessonActivityDownloaded: (args) =>
-      track.lessonActivityDownloaded({
-        ...additionalArgs,
-        ...args,
-      }),
     lessonActivityDownloadedWorksheet: (args) =>
       track.lessonActivityDownloadedWorksheet({
         ...additionalArgs,
@@ -434,7 +410,7 @@ export const getPupilVideoData = (
   return {
     videoTitle: lessonContent.videoTitle ?? "",
     numberOfVideos: 1,
-    videoSlug: [lessonContent.lessonSlug],
+    videoSlug: [lessonContent.lessonSlug], //FIXME: this is misleading and duplicates the pathway data
     isCaptioned: lessonContent.transcriptSentences.length > 0,
     videoPlaybackId: [
       lessonContent.videoMuxPlaybackId || "",

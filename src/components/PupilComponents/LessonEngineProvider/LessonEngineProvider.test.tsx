@@ -208,11 +208,11 @@ describe("LessonEngineProvider", () => {
   });
 
   it("sends tracking data when a lesson section is completed", () => {
-    const lessonSectionCompleted = jest.fn();
+    const lessonSectionCompletedIntroduction = jest.fn();
 
     jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonActivityCompleted")
-      .mockImplementation(lessonSectionCompleted);
+      .spyOn(usePupilAnalyticsMock.track, "lessonActivityCompletedIntroduction")
+      .mockImplementation(lessonSectionCompletedIntroduction);
 
     const { result } = renderHook(() => useLessonEngineContext(), {
       wrapper: ProviderWrapper,
@@ -221,7 +221,7 @@ describe("LessonEngineProvider", () => {
     act(() => {
       result.current.completeActivity("intro");
     });
-    expect(lessonSectionCompleted).toHaveBeenCalled();
+    expect(lessonSectionCompletedIntroduction).toHaveBeenCalled();
   });
 
   it("sends tracking data when the lesson is started", () => {
@@ -242,11 +242,11 @@ describe("LessonEngineProvider", () => {
   });
 
   it("sends quiz result data when a quiz section is complete", () => {
-    const lessonSectionCompleted = jest.fn();
+    const lessonActivityStartedStarterQuiz = jest.fn();
 
     jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonActivityCompleted")
-      .mockImplementation(lessonSectionCompleted);
+      .spyOn(usePupilAnalyticsMock.track, "lessonActivityStartedStarterQuiz")
+      .mockImplementation(lessonActivityStartedStarterQuiz);
 
     const { result } = renderHook(() => useLessonEngineContext(), {
       wrapper: ProviderWrapper,
@@ -275,9 +275,11 @@ describe("LessonEngineProvider", () => {
       result.current.completeActivity("starter-quiz");
     });
 
-    expect(lessonSectionCompleted).toHaveBeenCalledWith({
-      pupilExperienceLessonActivity: "starter-quiz",
-    });
+    expect(lessonActivityStartedStarterQuiz).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pupilExperienceLessonActivity: "starter-quiz",
+      }),
+    );
   });
 });
 

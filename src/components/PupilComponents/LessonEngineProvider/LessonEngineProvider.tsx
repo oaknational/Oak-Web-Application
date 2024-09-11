@@ -338,10 +338,35 @@ export const LessonEngineProvider = memo(
         isLessonReviewSection(state.currentSection) &&
         !state.sections[state.currentSection]?.isComplete
       ) {
-        if (track.lessonActivityAbandoned) {
-          track.lessonActivityAbandoned(
-            getActivityTrackingData(state.currentSection),
-          );
+        switch (state.currentSection) {
+          case "intro":
+            if (track.lessonActivityAbandonedIntroduction) {
+              track.lessonActivityAbandonedIntroduction(
+                getActivityTrackingData(state.currentSection),
+              );
+            }
+            break;
+          case "starter-quiz":
+            if (track.lessonActivityAbandonedStarterQuiz) {
+              track.lessonActivityAbandonedStarterQuiz(
+                getQuizTrackingData(state.currentSection),
+              );
+            }
+            break;
+          case "video":
+            if (track.lessonActivityAbandonedLessonVideo) {
+              track.lessonActivityAbandonedLessonVideo(
+                getVideoTrackingData(state.currentSection),
+              );
+            }
+            break;
+          case "exit-quiz":
+            if (track.lessonActivityAbandonedExitQuiz) {
+              track.lessonActivityAbandonedExitQuiz(
+                getQuizTrackingData(state.currentSection),
+              );
+            }
+            break;
         }
       }
 
