@@ -1,5 +1,5 @@
 import { FC, useRef } from "react";
-import { OakFlex } from "@oaknational/oak-components";
+import { oakColorTokens, OakFlex } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import { UserButton } from "@clerk/nextjs";
 
@@ -79,6 +79,11 @@ const AppHeader: FC<HeaderProps> = () => {
                       [`@media (max-width: ${getBreakpoint("small")}px)`]: {
                         width: "100%",
                         maxWidth: "100%",
+                      },
+                    },
+                    userButtonTrigger: {
+                      "&:focus": {
+                        boxShadow: `0px 0px 0px 2px ${oakColorTokens.lemon}, 0px 0px 0px 5px ${oakColorTokens.grey60} !important`,
                       },
                     },
                     userButtonPopoverCard: {
