@@ -18,6 +18,7 @@ import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useSelectedArea from "@/hooks/useSelectedArea";
 import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
+import { getBreakpoint } from "@/styles/utils/responsive";
 
 export const siteAreas = {
   teachers: "TEACHERS",
@@ -71,7 +72,26 @@ const AppHeader: FC<HeaderProps> = () => {
             $font="heading-7"
           >
             {isSignedIn && authFlagEnabled && (
-              <UserButton data-testid="clerk-user-button" />
+              <UserButton
+                appearance={{
+                  elements: {
+                    userButtonAvatarBox: {
+                      [`@media (max-width: ${getBreakpoint("small")}px)`]: {
+                        width: "100%",
+                        maxWidth: "100%",
+                      },
+                    },
+                    userButtonPopoverCard: {
+                      [`@media (max-width: ${getBreakpoint("small")}px)`]: {
+                        width: "100%",
+                        maxWidth: "100%",
+                        marginLeft: "0",
+                      },
+                    },
+                  },
+                }}
+                data-testid="clerk-user-button"
+              />
             )}
             <OwaLink
               page={"home"}
