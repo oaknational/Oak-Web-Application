@@ -1,15 +1,20 @@
 import { OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
+function isJSDOM() {
+  return globalThis?.navigator?.userAgent?.includes("jsdom/");
+}
+
 const FocusIndicator = styled(OakBox)<{
   disableMouseHover?: boolean;
   subFocus?: boolean;
+  disableActive?: boolean;
 }>`
   box-shadow: ${(props) =>
     props.subFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
   z-index: ${(props) => (props.subFocus ? "2" : "")};
 
-  &:has(button:focus-visible) {
+  &:has(button${isJSDOM() ? "" : ":focus-visible"}) {
     border-radius: 0.25rem;
     z-index: 2;
     box-shadow:
@@ -18,7 +23,7 @@ const FocusIndicator = styled(OakBox)<{
   }
 
   &:has(button:hover),
-  &:has(button:hover:not(:focus-visible, :active)) {
+  &:has(button:hover:not(:active${isJSDOM() ? "" : ", :focus-visible"})) {
     z-index: 1;
     box-shadow: ${(props) =>
       props.disableMouseHover
@@ -31,9 +36,10 @@ const FocusIndicator = styled(OakBox)<{
   &:has(button:active) {
     z-index: 2;
     background: transparent;
-    box-shadow:
-      rgb(255, 229, 85) 0.125rem 0.125rem 0px,
-      rgb(87, 87, 87) 0.25rem 0.25rem 0px;
+    box-shadow: ${(props) =>
+      props.disableActive
+        ? ""
+        : "rgb(255, 229, 85) 0.125rem 0.125rem 0px, rgb(87, 87, 87) 0.25rem 0.25rem 0px;"};
   }
 `;
 

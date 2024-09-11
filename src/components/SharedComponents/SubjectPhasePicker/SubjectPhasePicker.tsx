@@ -65,6 +65,17 @@ const ButtonContainer = styled.div`
   }
 `;
 
+const PhaseButton = styled.button`
+  background: none;
+  width: 100%;
+  border: none;
+  padding: 0px;
+  outline: none;
+  text-align: left;
+  user-select: none;
+  cursor: pointer;
+`;
+
 const FocusIndicatorAlt = styled(FocusIndicator)<object>`
   &:hover {
     background: #f2f2f2;
@@ -252,7 +263,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     >
       <OakFlex
         $position="relative"
-        $borderRadius="border-radius-m"
+        $borderRadius="border-radius-s"
         $alignItems={"center"}
         $justifyContent={"space-between"}
         $gap="space-between-none"
@@ -275,25 +286,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             <FocusIndicatorAlt
               disableMouseHover={true}
               subFocus={showSubjects}
+              disableActive={true}
               $width={"100%"}
               $bblr={["border-radius-square", "border-radius-m"]}
               $bbrr={["border-radius-square", "border-radius-square"]}
               $btlr={["border-radius-m", "border-radius-m"]}
               $btrr={["border-radius-square", "border-radius-square"]}
             >
-              <button
-                onClick={toggleShowSubjects}
-                title="Subject"
-                style={{
-                  background: "none",
-                  width: "100%",
-                  border: "none",
-                  padding: 0,
-                  outline: "none",
-                  textAlign: "left",
-                  userSelect: "none",
-                }}
-              >
+              <PhaseButton onClick={toggleShowSubjects} title="Subject">
                 <OakBox
                   $pl="inner-padding-m"
                   $pr="inner-padding-m"
@@ -327,7 +327,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     {!showSubjectError && !selectedSubject && "Select"}
                   </OakP>
                 </OakBox>
-              </button>
+              </PhaseButton>
             </FocusIndicatorAlt>
           </OakFlex>
           {showSubjects && (
@@ -444,25 +444,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               <FocusIndicatorAlt
                 disableMouseHover={true}
                 subFocus={showPhases}
+                disableActive={true}
                 $width={"100%"}
                 $bblr={["border-radius-square", "border-radius-square"]}
                 $bbrr={["border-radius-square", "border-radius-m"]}
                 $btlr={["border-radius-square", "border-radius-square"]}
                 $btrr={["border-radius-m", "border-radius-m"]}
               >
-                <button
-                  onClick={toggleShowPhases}
-                  title="Phase"
-                  style={{
-                    background: "none",
-                    width: "100%",
-                    border: "none",
-                    padding: 0,
-                    outline: "none",
-                    textAlign: "left",
-                    userSelect: "none",
-                  }}
-                >
+                <PhaseButton onClick={toggleShowPhases} title="Phase">
                   <OakBox
                     $pl="inner-padding-m"
                     $pt="inner-padding-s"
@@ -523,7 +512,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         "Select"}
                     </Box>
                   </OakBox>
-                </button>
+                </PhaseButton>
               </FocusIndicatorAlt>
               {showPhases && (
                 <SchoolPhaseDropDownBox
@@ -674,6 +663,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   iconName="arrow-right"
                   isTrailingIcon={true}
                   onClick={handleViewCurriculum}
+                  data-testid="view-desktop"
                 >
                   View
                 </OakPrimaryButton>
