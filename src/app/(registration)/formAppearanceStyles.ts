@@ -1,3 +1,31 @@
+import { oakColorTokens } from "@oaknational/oak-components";
+
+const formFocusStyles = {
+  "&:focus": {
+    boxShadow: `0px 0px 0px 2px ${oakColorTokens.lemon}, 0px 0px 0px 5px ${oakColorTokens.grey60} !important`,
+  },
+};
+
+const buttonStyles = {
+  padding: "8px",
+  radius: "4px",
+  border: `1px solid ${oakColorTokens.grey50} !important`,
+  ...formFocusStyles,
+};
+
+const headerTextStyles = {
+  textAlign: "start",
+  fontWeight: "300",
+  fontSize: "16px",
+  color: oakColorTokens.grey60,
+};
+
+const linkFocusStyles = {
+  borderRadius: "4px",
+  outline: "none",
+  boxShadow: `0px 0px 0px 2px ${oakColorTokens.lemon}, 0px 0px 0px 5px ${oakColorTokens.grey60}`,
+};
+
 export const formAppearanceStyles = {
   elements: {
     card: {
@@ -6,62 +34,52 @@ export const formAppearanceStyles = {
     logoBox: {
       height: "47px",
       justifyContent: "flex-start",
+      "a:focus": linkFocusStyles,
     },
     headerTitle: {
       fontSize: "20px",
       textAlign: "start",
       marginBottom: "8px",
-      color: "#222222",
+      color: oakColorTokens.black,
       fontWeight: "600",
     },
     headerSubtitle: {
-      fontSize: "16px",
-      textAlign: "start",
-      color: "#575757",
-      fontWeight: "300",
+      ...headerTextStyles,
     },
     dividerText: {
-      fontSize: "16px",
-      color: "#575757",
+      ...headerTextStyles,
     },
     dividerLine: {
       height: "1px",
-      background: "#808080",
+      background: oakColorTokens.grey50,
     },
     button__google: {
-      padding: "8px",
-      radius: "4px",
-      border: "1px solid #808080 !important",
+      ...buttonStyles,
     },
     button__microsoft: {
-      padding: "8px",
-      radius: "4px",
-      border: "1px solid #808080 !important",
+      ...buttonStyles,
     },
-
     socialButtonsBlockButtonText: {
-      fontSize: "16px",
-      color: "black",
-      fontWeight: "300",
+      ...headerTextStyles,
+      color: oakColorTokens.black,
     },
-
     formFieldLabel: {
       fontSize: "16px",
       fontWeight: "500",
-      color: "black",
+      color: oakColorTokens.black,
     },
     button: {
       padding: "14px",
       fontSize: "16px",
+      ...formFocusStyles,
     },
-
     formFieldInput: {
       padding: "16px",
-      border: "1px solid #808080 !important",
+      border: `1px solid ${oakColorTokens.grey50} !important`,
+      ...formFocusStyles,
     },
-
     input: {
-      border: "1px solid #808080 !important",
+      border: `1px solid ${oakColorTokens.grey50} !important`,
     },
     footer: {
       padding: "0px",
@@ -72,32 +90,31 @@ export const formAppearanceStyles = {
       padding: "0px !important",
       width: "100%",
       paddingLeft: "40px  !important",
+      "a:focus": linkFocusStyles,
     },
     footerActionLink: {
-      color: "#0D24C4",
+      color: oakColorTokens.navy,
       textAlign: "start !important",
       fontSize: "16px",
       "&:hover": {
-        color: "#0D24C4",
+        color: oakColorTokens.navy,
       },
     },
     formResendCodeLink: {
       fontWeight: "300",
       fontSize: "16px",
-      color: "#575757",
+      color: oakColorTokens.grey60,
+      ...formFocusStyles,
     },
-
     footerActionText: {
-      color: "#000000",
-      fontWeight: "300",
-      fontSize: "16px",
+      ...headerTextStyles,
+      color: oakColorTokens.black,
       display: "block",
       textAlign: "start !important",
+      ...formFocusStyles,
     },
     identityPreviewText: {
-      fontWeight: "300",
-      fontSize: "16px",
-      color: "#575757",
+      ...headerTextStyles,
     },
   },
 };
