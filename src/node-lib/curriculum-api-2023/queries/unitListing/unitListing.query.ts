@@ -1,4 +1,5 @@
 import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
+import { kebabCase } from "lodash";
 
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
@@ -12,7 +13,6 @@ import { NEW_COHORT } from "@/config/cohort";
 const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.unitListing(args);
-
     const unitsForProgramme = res.units;
 
     if (!unitsForProgramme || unitsForProgramme.length === 0) {
@@ -22,6 +22,7 @@ const unitListingQuery =
     const parsedRawUnits = unitsForProgramme.map((p) =>
       syntheticUnitvariantLessonsSchema.parse(p),
     );
+
     const firstUnit = parsedRawUnits[0];
 
     if (!firstUnit) {
@@ -47,7 +48,38 @@ const unitListingQuery =
       : [];
 
     const units = await getUnitsForProgramme(parsedRawUnits);
+
     const learningThemes = getAllLearningThemes(units);
+
+    // REFACTOR: This is a temporary solution to get the subject categories
+    const subjectCats = Array.from(
+      new Set(
+        parsedRawUnits
+          .flatMap((u) => u.unit_data.subjectcategories)
+          .filter(
+            (category): category is string => typeof category === "string",
+          ),
+      ),
+    ).sort();
+
+    const subjectCategories = subjectCats.map((category) => {
+      const categoryIconMap: { [key: string]: string } = {
+        Grammar: "subject-english-grammar",
+        Handwriting: "subject-english-handwriting",
+        "Reading, writing & oracy": "subject-english-reading-writing-oracy",
+        Spelling: "subject-english-spelling",
+        Vocabulary: "subject-english-vocabulary",
+        Physics: "subject-physics",
+        Biology: "subject-biology",
+        Chemistry: "subject-chemistry",
+      };
+
+      return {
+        label: category,
+        iconName: categoryIconMap[category],
+        slug: kebabCase(category),
+      };
+    });
 
     const hasNewContent = units
       .flatMap((unit) => unit.flatMap((u) => u.cohort ?? "2020-2023"))
@@ -68,6 +100,7 @@ const unitListingQuery =
       phase: programmeFields.phase_slug,
       learningThemes: learningThemes,
       hasNewContent,
+      subjectCategories,
     };
   };
 

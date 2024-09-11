@@ -1,4 +1,5 @@
 import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
+import { kebabCase } from "lodash";
 
 import { getThreadsForUnit } from "../threads/getThreadsForUnit";
 
@@ -19,6 +20,15 @@ export const getUnitsForProgramme = async (
           pd.unit_slug === programme.unit_slug &&
           pd.lesson_data.deprecated_fields?.expired,
       ).length;
+      const subjectCategory = programme.unit_data.subjectcategories
+        ? programme.unit_data.subjectcategories?.map((category) => {
+            if (typeof category === "string") {
+              return { label: category, slug: kebabCase(category) };
+            } else {
+              return null;
+            }
+          })
+        : null;
 
       const unit = {
         slug: programme.unit_slug,
@@ -38,6 +48,9 @@ export const getUnitsForProgramme = async (
         lessonCount,
         expiredLessonCount,
         expired: lessonCount === expiredLessonCount,
+        subjectCategories: programme.unit_data.subjectcategories
+          ? subjectCategory
+          : null,
       };
       if (acc[unitId]) {
         const slugExists = acc[unitId]?.find((u) => u.slug === unit.slug);

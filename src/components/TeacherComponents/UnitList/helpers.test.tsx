@@ -46,6 +46,9 @@ describe("unit list helpers", () => {
       phase: "secondary",
       learningThemes: [],
       hasNewContent: false,
+      subjectCategories: [
+        { label: "Biology", slug: "biology", iconName: "icon-biology" },
+      ],
     });
     expect(result).toEqual(true);
   });
@@ -90,6 +93,7 @@ describe("unit list helpers", () => {
       learningThemes: [],
       hasNewContent: false,
       currentPageItems: [],
+      subjectCategories: [{ label: "Biology", slug: "biology", iconName: "" }],
       paginationProps: mockPaginationProps,
       onClick: () => {},
     });

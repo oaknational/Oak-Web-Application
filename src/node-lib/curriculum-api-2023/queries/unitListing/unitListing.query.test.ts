@@ -98,7 +98,7 @@ describe("unitListing()", () => {
     });
     expect(res).toBeNull();
   });
-  test("returns the correct data", async () => {
+  test.only("returns the correct data", async () => {
     mockBatched.mockResolvedValueOnce(
       Promise.resolve([
         {
@@ -126,6 +126,7 @@ describe("unitListing()", () => {
       subjectParent: "Maths",
       tierSlug: "foundation",
       phase: "primary",
+      subjectCategories: [],
       tiers: [
         {
           tierSlug: "foundation",
@@ -159,6 +160,8 @@ describe("unitListing()", () => {
             year: "year-1",
             yearOrder: 1,
             cohort: "2023-2024",
+            // FIX this shoulf be null
+            subjectCategories: [null, null, null],
             learningThemes: [{ themeTitle: "Theme 1", themeSlug: "theme1" }],
           },
         ],

@@ -1,6 +1,6 @@
 import React, { useId } from "react";
 import { useRouter } from "next/router";
-import { useTheme } from "styled-components";
+import styled from "styled-components";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -8,9 +8,13 @@ import {
   NextPage,
 } from "next";
 import {
+  OakBox,
+  OakFlex,
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakIconProps,
+  OakSearchFilterCheckBox,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
@@ -28,7 +32,6 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import UnitList from "@/components/TeacherComponents/UnitList";
-import Box from "@/components/SharedComponents/Box";
 import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import TabularNav from "@/components/SharedComponents/TabularNav";
@@ -51,6 +54,25 @@ export type UnitListingPageProps = {
   curriculumData: UnitListingData;
 };
 
+const StyledFieldset = styled.fieldset`
+  border: 0px;
+  margin: 0;
+  padding: 0;
+`;
+
+/**
+ *
+ * FIXME:
+ * - Break into components?
+ * - Routing
+ * - Rename function
+ * - Bump component lib version
+ * - Type errors
+ * - Test files
+ *
+ * @returns
+ */
+
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
 }) => {
@@ -65,6 +87,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     units,
     examBoardTitle,
     hasNewContent,
+    subjectCategories,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -73,8 +96,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
 
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
+  const categorySlug = router.query["category"]?.toString();
 
-  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
+  const unitsFilteredByLearningTheme = filterLearningTheme(
+    themeSlug,
+    categorySlug,
+    units,
+  );
   const paginationProps = usePagination({
     totalResults: unitsFilteredByLearningTheme.length,
     pageSize: RESULTS_PER_PAGE,
@@ -89,10 +117,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     isLastPage,
     isFirstPage,
   } = paginationProps;
-
-  const theme = useTheme();
-
-  const HEADER_HEIGHT = theme.header.height;
 
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
@@ -200,23 +224,117 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               $colSpan={[12, 12, 3]}
               $pl={["inner-padding-xl"]}
             >
-              <Box
+              <OakBox
                 $display={["none", "none", "block"]}
                 $position={[null, null, "sticky"]}
-                $top={[null, null, HEADER_HEIGHT]}
-                $mt={[0, 0, 24]}
-                $pt={[48]}
+                $pt={["inner-padding-xl4"]}
+                $maxWidth={"all-spacing-20"}
               >
+                <OakHeading tag="h3" $font="heading-6" $mb="space-between-m">
+                  Filters
+                </OakHeading>
+                {subjectCategories && subjectCategories.length > 1 && (
+                  <OakFlex
+                    $mb="space-between-m"
+                    $flexDirection={"column"}
+                    $pb={"inner-padding-xl2"}
+                    $bb={"border-solid-s"}
+                    $borderColor={"border-neutral-lighter"}
+                    $flexGrow={1}
+                  >
+                    <StyledFieldset>
+                      <OakHeading
+                        tag="h3"
+                        as={"legend"}
+                        $font="heading-7"
+                        $mb="space-between-s"
+                      >
+                        Category
+                      </OakHeading>
+                      <OakFlex
+                        $flexDirection={"row"}
+                        $flexWrap={"wrap"}
+                        $gap={"space-between-ssx"}
+                        $flexGrow={1}
+                      >
+                        <OakSearchFilterCheckBox
+                          value="all"
+                          displayValue="All"
+                          id="all"
+                          checked={!categorySlug}
+                          onChange={() => {
+                            const { category, ...restQuery } = router.query;
+                            router.push({
+                              pathname: router.pathname,
+                              query: restQuery,
+                            });
+                            // double check browse refined
+                            track.browseRefined({
+                              platform: "owa",
+                              product: "teacher lesson resources",
+                              engagementIntent: "refine",
+                              componentType: "filter_link",
+                              eventVersion: "2.0.0",
+                              analyticsUseCase: "Teacher",
+                              filterValue: "all",
+                              filterType: "Subject filter",
+                              activeFilters: {
+                                content_types: "units",
+                              },
+                            });
+                          }}
+                        />
+                        {subjectCategories.map((category) =>
+                          category ? (
+                            <OakSearchFilterCheckBox
+                              // get the icon types
+                              icon={
+                                `subject-${category.slug}` as OakIconProps["iconName"]
+                              }
+                              key={category.label}
+                              value={category.label}
+                              displayValue={category.label}
+                              id={category.label}
+                              checked={categorySlug === category.slug}
+                              onChange={() => {
+                                track.browseRefined({
+                                  platform: "owa",
+                                  product: "teacher lesson resources",
+                                  engagementIntent: "refine",
+                                  componentType: "filter_link",
+                                  eventVersion: "2.0.0",
+                                  analyticsUseCase: "Teacher",
+                                  filterValue: category.label,
+                                  filterType: "Subject filter",
+                                  activeFilters: {
+                                    content_types: "units",
+                                  },
+                                });
+                                router.push({
+                                  pathname: router.pathname,
+                                  query: {
+                                    ...router.query,
+                                    category: category.slug,
+                                  },
+                                });
+                              }}
+                            />
+                          ) : null,
+                        )}
+                      </OakFlex>
+                    </StyledFieldset>
+                  </OakFlex>
+                )}
                 {learningThemes?.length > 1 && (
                   <Flex $flexDirection={"column"}>
                     <OakHeading
                       id={learningThemesId}
                       tag="h3"
-                      $font="body-3"
+                      $font="heading-7"
                       $mb="space-between-s"
                     >
                       {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
-                      Filter by thread
+                      Threads
                     </OakHeading>
                     <UnitsLearningThemeFilters
                       labelledBy={learningThemesId}
@@ -235,7 +353,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     />
                   </Flex>
                 )}
-              </Box>
+              </OakBox>
             </OakGridArea>
 
             <OakGridArea
@@ -265,32 +383,124 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     <MobileFilters
                       $position={tiers.length === 0 ? "absolute" : "relative"}
                       providedId={learningThemesFilterId}
-                      label="Threads"
+                      label="Filters"
                       $mt={0}
                       $mb={[16, 16, 0]}
                       applyForTablet
                     >
-                      <UnitsLearningThemeFilters
-                        labelledBy={learningThemesFilterId}
-                        learningThemes={learningThemes}
-                        selectedThemeSlug={themeSlug ? themeSlug : "all"}
-                        linkProps={{
-                          page: "unit-index",
-                          programmeSlug,
-                        }}
-                        trackingProps={{
-                          keyStageSlug,
-                          keyStageTitle:
-                            keyStageTitle as KeyStageTitleValueType,
-                          subjectTitle,
-                          subjectSlug,
-                        }}
-                      />
+                      <OakBox $mt={"space-between-m2"}>
+                        <OakHeading
+                          tag="h3"
+                          $font="heading-7"
+                          $mb={"space-between-m"}
+                        >
+                          Categories
+                        </OakHeading>
+                        <OakFlex
+                          $maxWidth={"all-spacing-20"}
+                          $flexDirection={"row"}
+                          $flexWrap={"wrap"}
+                          $mb={"space-between-m2"}
+                          $gap={"space-between-xs"}
+                        >
+                          <OakSearchFilterCheckBox
+                            value="all"
+                            displayValue="All"
+                            id="all"
+                            checked={!categorySlug}
+                            onChange={() => {
+                              const { category, ...restQuery } = router.query;
+                              router.push({
+                                pathname: router.pathname,
+                                query: restQuery,
+                              });
+                              // double check browse refined
+                              track.browseRefined({
+                                platform: "owa",
+                                product: "teacher lesson resources",
+                                engagementIntent: "refine",
+                                componentType: "filter_link",
+                                eventVersion: "2.0.0",
+                                analyticsUseCase: "Teacher",
+                                filterValue: "all",
+                                filterType: "Subject filter",
+                                activeFilters: {
+                                  content_types: "units",
+                                },
+                              });
+                            }}
+                          />
+                          {subjectCategories &&
+                            subjectCategories.map((category) =>
+                              category ? (
+                                <OakSearchFilterCheckBox
+                                  // get the icon types
+                                  icon={
+                                    category.iconName as OakIconProps["iconName"]
+                                  }
+                                  key={category.label}
+                                  value={category.label}
+                                  displayValue={category.label}
+                                  id={category.label}
+                                  checked={categorySlug === category.slug}
+                                  onChange={() => {
+                                    track.browseRefined({
+                                      platform: "owa",
+                                      product: "teacher lesson resources",
+                                      engagementIntent: "refine",
+                                      componentType: "filter_link",
+                                      eventVersion: "2.0.0",
+                                      analyticsUseCase: "Teacher",
+                                      filterValue: category.label,
+                                      filterType: "Subject filter",
+                                      activeFilters: {
+                                        content_types: "units",
+                                      },
+                                    });
+                                    router.push({
+                                      pathname: router.pathname,
+                                      query: {
+                                        ...router.query,
+                                        category: category.slug,
+                                      },
+                                    });
+                                  }}
+                                />
+                              ) : null,
+                            )}
+                        </OakFlex>
+                      </OakBox>
+                      <>
+                        <OakHeading
+                          tag="h3"
+                          $font="heading-7"
+                          $mb={"space-between-m"}
+                        >
+                          Threads
+                        </OakHeading>
+
+                        <UnitsLearningThemeFilters
+                          labelledBy={learningThemesFilterId}
+                          learningThemes={learningThemes}
+                          selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                          linkProps={{
+                            page: "unit-index",
+                            programmeSlug,
+                          }}
+                          trackingProps={{
+                            keyStageSlug,
+                            keyStageTitle:
+                              keyStageTitle as KeyStageTitleValueType,
+                            subjectTitle,
+                            subjectSlug,
+                          }}
+                        />
+                      </>
                     </MobileFilters>
                   )}
                 </Flex>
 
-                {tiers.length > 0 && (
+                {tiers.length > 0 && currentPageItems.length >= 1 && (
                   <nav aria-label="tiers" data-testid="tiers-nav">
                     <TabularNav
                       $mb={[10, 10, 24]}
@@ -312,19 +522,29 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   </nav>
                 )}
               </Flex>
-              <UnitList
-                {...curriculumData}
-                currentPageItems={currentPageItems}
-                paginationProps={paginationProps}
-                onClick={(props) =>
-                  trackUnitSelected(
-                    props,
-                    curriculumData.examBoardTitle,
-                    curriculumData.tierSlug,
-                    curriculumData.tiers,
-                  )
-                }
-              />
+              {currentPageItems.length >= 1 ? (
+                <UnitList
+                  {...curriculumData}
+                  currentPageItems={currentPageItems}
+                  paginationProps={paginationProps}
+                  onClick={(props) =>
+                    trackUnitSelected(
+                      props,
+                      curriculumData.examBoardTitle,
+                      curriculumData.tierSlug,
+                      curriculumData.tiers,
+                    )
+                  }
+                />
+              ) : (
+                <OakHeading
+                  tag="h3"
+                  $font={"heading-light-6"}
+                  $mb={"space-between-m2"}
+                >
+                  No results. Please try removing some filters.
+                </OakHeading>
+              )}
             </OakGridArea>
           </OakGrid>
         </MaxWidth>

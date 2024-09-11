@@ -6,12 +6,12 @@ describe("filterLearningTheme", () => {
   it("should return units if themeSlug is undefined", () => {
     const units = unitListingFixture().units;
     const themeSlug = undefined;
-    expect(filterLearningTheme(themeSlug, units)).toEqual(units);
+    expect(filterLearningTheme(themeSlug, undefined, units)).toEqual(units);
   });
   it("should return units if themeSlug has a value", () => {
     const themeSlug = "computer-science-1";
     const units = unitListingFixture().units;
-    expect(filterLearningTheme(themeSlug, units)).toEqual([
+    expect(filterLearningTheme(themeSlug, undefined, units)).toEqual([
       [
         {
           slug: "data-representation-618b",
@@ -30,6 +30,7 @@ describe("filterLearningTheme", () => {
           yearTitle: "Year 10",
           year: "year-10",
           cohort: "2023-2024",
+          subjectCategories: null,
           learningThemes: [
             {
               themeSlug: "computer-science-1",
