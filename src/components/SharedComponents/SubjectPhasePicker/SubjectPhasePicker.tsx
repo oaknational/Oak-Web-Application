@@ -276,6 +276,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               disableMouseHover={true}
               subFocus={showSubjects}
               $width={"100%"}
+              $bblr={["border-radius-square", "border-radius-m"]}
+              $bbrr={["border-radius-square", "border-radius-square"]}
+              $btlr={["border-radius-m", "border-radius-m"]}
+              $btrr={["border-radius-square", "border-radius-square"]}
             >
               <button
                 onClick={toggleShowSubjects}
@@ -421,7 +425,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $position={"relative"}
             $display={"block"}
             $zIndex={"inFront"}
-            style={{ transform: "translate(-50%, 0)" }}
             $visibility={showSubjects || showPhases ? "hidden" : null}
           >
             <BoxBorders
@@ -440,9 +443,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             >
               <FocusIndicatorAlt
                 disableMouseHover={true}
-                $borderRadius={"border-radius-m"}
                 subFocus={showPhases}
                 $width={"100%"}
+                $bblr={["border-radius-square", "border-radius-square"]}
+                $bbrr={["border-radius-square", "border-radius-m"]}
+                $btlr={["border-radius-square", "border-radius-square"]}
+                $btrr={["border-radius-m", "border-radius-m"]}
               >
                 <button
                   onClick={toggleShowPhases}
@@ -461,7 +467,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     $pl="inner-padding-m"
                     $pt="inner-padding-s"
                     $pb="inner-padding-s"
-                    style={{ paddingRight: "9rem" }}
                   >
                     <OakHeading
                       tag={"h3"}

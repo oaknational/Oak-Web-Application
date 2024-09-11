@@ -5,12 +5,12 @@ const FocusIndicator = styled(OakBox)<{
   disableMouseHover?: boolean;
   subFocus?: boolean;
 }>`
-  border-radius: 0.25rem;
   box-shadow: ${(props) =>
     props.subFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
   z-index: ${(props) => (props.subFocus ? "2" : "")};
 
-  &:focus-visible {
+  &:has(button:focus-visible) {
+    border-radius: 0.25rem;
     z-index: 2;
     box-shadow:
       rgb(255, 229, 85) 0px 0px 0px 0.125rem,
@@ -18,7 +18,7 @@ const FocusIndicator = styled(OakBox)<{
   }
 
   &:has(button:hover),
-  &:has(button:hover:not(:focus, :active)) {
+  &:has(button:hover:not(:focus-visible, :active)) {
     z-index: 1;
     box-shadow: ${(props) =>
       props.disableMouseHover
@@ -30,6 +30,7 @@ const FocusIndicator = styled(OakBox)<{
   }
   &:has(button:active) {
     z-index: 2;
+    background: transparent;
     box-shadow:
       rgb(255, 229, 85) 0.125rem 0.125rem 0px,
       rgb(87, 87, 87) 0.25rem 0.25rem 0px;
