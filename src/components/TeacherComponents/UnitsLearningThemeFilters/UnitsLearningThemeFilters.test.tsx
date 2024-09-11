@@ -84,7 +84,7 @@ describe("UnitsLearningThemeFilters", () => {
       activeFilters: { keyStage: ["ks3"], subject: ["english"] },
     });
   });
-  test("skip units button becomes visible when focussed", async () => {
+  test("skip filters button becomes visible when focussed", async () => {
     const { getByText } = renderWithTheme(
       <UnitsLearningThemeFilters
         labelledBy={"Learning Theme Filter"}

@@ -35,7 +35,7 @@ const UnitsLearningThemeFilters = ({
   linkProps,
   trackingProps,
 }: UnitsLearningThemeFiltersProps) => {
-  const [SkipUnitsFocusButton, setSkipUnitsFocusButton] = useState(false);
+  const [skipFiltersButton, setSkipFiltersButton] = useState(false);
   const listStateProps = useCategoryFilterList({
     selectedKey: selectedThemeSlug,
     getKey: (
@@ -84,16 +84,14 @@ const UnitsLearningThemeFilters = ({
         $position={"relative"}
         $flexDirection={"column"}
       >
-        <OakBox $mb={SkipUnitsFocusButton ? "space-between-xs" : "auto"}>
+        <OakBox $mb={skipFiltersButton ? "space-between-xs" : "auto"}>
           <OakSecondaryButton
             element="a"
             href="#unit-list"
-            onFocus={() => setSkipUnitsFocusButton(true)}
-            onBlur={() => setSkipUnitsFocusButton(false)}
+            onFocus={() => setSkipFiltersButton(true)}
+            onBlur={() => setSkipFiltersButton(false)}
             style={
-              SkipUnitsFocusButton
-                ? {}
-                : { position: "absolute", top: "-600px" }
+              skipFiltersButton ? {} : { position: "absolute", top: "-600px" }
             }
           >
             Skip to units
