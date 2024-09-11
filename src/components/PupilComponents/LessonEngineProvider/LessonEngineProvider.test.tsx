@@ -290,6 +290,8 @@ describe("LessonEngineProvider", () => {
           hintUsed: "",
         }),
       );
+
+      expect(mockEvent).toHaveBeenCalledTimes(1);
     },
   );
 

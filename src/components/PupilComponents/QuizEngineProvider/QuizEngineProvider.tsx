@@ -288,6 +288,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         _currentQuestionIndex === numQuestions &&
         isLessonReviewSection(currentSection)
       ) {
+        // NB. in strict mode this will be called twice resulting in double logging
         completeActivity(currentSection);
       }
       return _currentQuestionIndex;
