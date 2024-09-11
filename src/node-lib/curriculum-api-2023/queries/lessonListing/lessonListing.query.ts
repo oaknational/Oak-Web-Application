@@ -50,6 +50,7 @@ export const getTransformedUnit = (
   unit: SyntheticUnitvariantLessons,
   parsedLessons: LessonListingPageData["lessons"],
 ): LessonListingPageData => {
+  const unitTitle = unit.programme_fields.optionality ?? unit.unit_data.title;
   return {
     programmeSlug: unit.programme_slug,
     keyStageSlug: unit.programme_fields.keystage_slug,
@@ -57,7 +58,7 @@ export const getTransformedUnit = (
     subjectSlug: unit.programme_fields.subject_slug,
     subjectTitle: unit.programme_fields.subject,
     unitSlug: unit.unit_slug,
-    unitTitle: unit.unit_data.title,
+    unitTitle,
     tierSlug: unit.programme_fields.tier_slug,
     tierTitle: unit.programme_fields.tier_description,
     examBoardSlug: unit.programme_fields.examboard_slug,
