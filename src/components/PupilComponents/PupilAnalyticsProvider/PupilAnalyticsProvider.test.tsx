@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import { renderHook } from "@testing-library/react";
+import { ReactNode } from "react";
 import { OakP } from "@oaknational/oak-components";
 
 import {
@@ -13,6 +13,7 @@ import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import errorReporter from "@/common-lib/error-reporter";
 
 // Mock the useAnalytics hook
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -20,18 +21,9 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   default: jest.fn(() => ({ track: jest.fn() })),
 }));
 
-const render = renderWithProviders();
+jest.mock("@/common-lib/error-reporter", () => jest.fn(() => jest.fn()));
 
-const ProviderWrapper = ({ children }: { children: ReactNode }) => {
-  return (
-    <PupilAnalyticsProvider
-      pupilPathwayData={getPupilPathwayData(lessonBrowseDataFixture({}))}
-      lessonContent={lessonContentFixture({})}
-    >
-      {children}
-    </PupilAnalyticsProvider>
-  );
-};
+const render = renderWithProviders();
 
 const pupilPathwayData = getPupilPathwayData(lessonBrowseDataFixture({}));
 
@@ -50,6 +42,10 @@ describe("PupilAnalyticsProvider", () => {
   });
 
   describe("track", () => {
+    beforeEach(() => {
+      jest.spyOn(console, "error").mockImplementation(() => {});
+    });
+
     afterEach(() => {
       jest.clearAllMocks();
     });
@@ -62,7 +58,16 @@ describe("PupilAnalyticsProvider", () => {
         (useAnalytics as jest.Mock).mockReturnValue({ track: trackSpy });
 
         const { result } = renderHook(() => usePupilAnalytics(), {
-          wrapper: ProviderWrapper,
+          wrapper: ({ children }: { children: ReactNode }) => (
+            <PupilAnalyticsProvider
+              lessonContent={lessonContentFixture({})}
+              pupilPathwayData={getPupilPathwayData(
+                lessonBrowseDataFixture({}),
+              )}
+            >
+              {children}
+            </PupilAnalyticsProvider>
+          ),
         });
 
         //@ts-expect-error: it's not worth narrowing the types just for this test
@@ -74,6 +79,68 @@ describe("PupilAnalyticsProvider", () => {
           }),
         );
       },
+    );
+  });
+
+  it.each([
+    "lessonActivityStartedLessonAudio",
+    "lessonActivityCompletedLessonAudio",
+    "lessonActivityAbandonedLessonAudio",
+  ])("reports an error if the audio data is missing", (eventName) => {
+    //spy on the track function
+    const trackSpy = { [eventName]: jest.fn() };
+    (useAnalytics as jest.Mock).mockReturnValue({ track: trackSpy });
+
+    const reporter = jest.fn();
+    (errorReporter as jest.Mock).mockReturnValue(reporter);
+
+    const { result } = renderHook(() => usePupilAnalytics(), {
+      wrapper: ({ children }: { children: ReactNode }) => (
+        <PupilAnalyticsProvider
+          pupilPathwayData={getPupilPathwayData(lessonBrowseDataFixture({}))}
+        >
+          {children}
+        </PupilAnalyticsProvider>
+      ),
+    });
+
+    //@ts-expect-error: it's not worth narrowing the types just for this test
+    result.current.track[eventName]({});
+
+    expect(reporter).toHaveBeenCalledWith(
+      new Error("No audio data available"),
+      { severity: "warning" },
+    );
+  });
+
+  it.each([
+    "lessonActivityStartedLessonVideo",
+    "lessonActivityCompletedLessonVideo",
+    "lessonActivityAbandonedLessonVideo",
+  ])("reports an error if the video data is missing", (eventName) => {
+    //spy on the track function
+    const trackSpy = { [eventName]: jest.fn() };
+    (useAnalytics as jest.Mock).mockReturnValue({ track: trackSpy });
+
+    const reporter = jest.fn();
+    (errorReporter as jest.Mock).mockReturnValue(reporter);
+
+    const { result } = renderHook(() => usePupilAnalytics(), {
+      wrapper: ({ children }: { children: ReactNode }) => (
+        <PupilAnalyticsProvider
+          pupilPathwayData={getPupilPathwayData(lessonBrowseDataFixture({}))}
+        >
+          {children}
+        </PupilAnalyticsProvider>
+      ),
+    });
+
+    //@ts-expect-error: it's not worth narrowing the types just for this test
+    result.current.track[eventName]({});
+
+    expect(reporter).toHaveBeenCalledWith(
+      new Error("No video data available"),
+      { severity: "warning" },
     );
   });
 });
