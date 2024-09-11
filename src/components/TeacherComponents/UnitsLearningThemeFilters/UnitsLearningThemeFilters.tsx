@@ -1,4 +1,11 @@
-import { OakFlex } from "@oaknational/oak-components";
+import {
+  OakBox,
+  oakDefaultTheme,
+  OakFlex,
+  OakSecondaryButton,
+  OakThemeProvider,
+} from "@oaknational/oak-components";
+import { useState } from "react";
 
 import {
   SpecialistUnitListingLinkProps,
@@ -28,6 +35,7 @@ const UnitsLearningThemeFilters = ({
   linkProps,
   trackingProps,
 }: UnitsLearningThemeFiltersProps) => {
+  const [SkipUnitsFocusButton, setSkipUnitsFocusButton] = useState(false);
   const listStateProps = useCategoryFilterList({
     selectedKey: selectedThemeSlug,
     getKey: (
@@ -70,29 +78,50 @@ const UnitsLearningThemeFilters = ({
     : [];
 
   return (
-    <OakFlex $flexDirection={"column"}>
-      <CategoryFilterList
-        {...listStateProps}
-        labelledBy={labelledBy}
-        categories={[
-          {
-            label: "All in suggested order",
-            linkProps: {
-              ...linkProps,
-              search: { ...linkProps.search, ["learning-theme"]: undefined },
+    <OakThemeProvider theme={oakDefaultTheme}>
+      <OakFlex
+        $mb={"space-between-xl"}
+        $position={"relative"}
+        $flexDirection={"column"}
+      >
+        <OakBox $mb={SkipUnitsFocusButton ? "space-between-xs" : "auto"}>
+          <OakSecondaryButton
+            element="a"
+            href="#unit-list"
+            onFocus={() => setSkipUnitsFocusButton(true)}
+            onBlur={() => setSkipUnitsFocusButton(false)}
+            style={
+              SkipUnitsFocusButton
+                ? {}
+                : { position: "absolute", top: "-600px" }
+            }
+          >
+            Skip to units
+          </OakSecondaryButton>
+        </OakBox>
+        <CategoryFilterList
+          {...listStateProps}
+          labelledBy={labelledBy}
+          categories={[
+            {
+              label: "All in suggested order",
+              linkProps: {
+                ...linkProps,
+                search: { ...linkProps.search, ["learning-theme"]: undefined },
+              },
             },
-          },
-          ...learningThemesMapped.map(({ label, slug }) => ({
-            label: label ? label : "",
-            linkProps: {
-              ...linkProps,
-              search: { ...linkProps.search, ["learning-theme"]: slug },
-            },
-          })),
-        ]}
-        themeTrackingProps={trackingProps}
-      />
-    </OakFlex>
+            ...learningThemesMapped.map(({ label, slug }) => ({
+              label: label ? label : "",
+              linkProps: {
+                ...linkProps,
+                search: { ...linkProps.search, ["learning-theme"]: slug },
+              },
+            })),
+          ]}
+          themeTrackingProps={trackingProps}
+        />
+      </OakFlex>
+    </OakThemeProvider>
   );
 };
 
