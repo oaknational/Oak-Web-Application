@@ -76,6 +76,7 @@ const unitListingQuery =
 
       return {
         label: category,
+        //FIXME: This is a temporary solution to get the icon name
         iconName: categoryIconMap[category] ?? "",
         slug: kebabCase(category),
       };
