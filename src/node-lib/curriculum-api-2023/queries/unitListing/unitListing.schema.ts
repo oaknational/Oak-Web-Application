@@ -14,18 +14,6 @@ import { tierSchema } from "./tiers/tiers.schema";
 import { learningThemes } from "./threads/threads.schema";
 import { unitSchema } from "./units/units.schema";
 
-enum IconName {
-  Grammar = "Grammar",
-  Handwriting = "Handwriting",
-  ReadingWritingOracy = "Reading, writing & oracy",
-  Spelling = "Spelling",
-  Vocabulary = "Vocabulary",
-  Physics = "Physics",
-  Biology = "Biology",
-  Chemistry = "Chemistry",
-}
-const iconNameValues = Object.values(IconName) as [string, ...string[]];
-
 const unitListingData = z.object({
   programmeSlug: z.string(),
   keyStageSlug: keystageSlugs,
@@ -44,7 +32,7 @@ const unitListingData = z.object({
   phase: phaseSlugs,
   subjectCategories: z.array(
     z.object({
-      iconName: z.enum(iconNameValues),
+      iconName: z.string(),
       label: z.string(),
       slug: z.string(),
     }),
