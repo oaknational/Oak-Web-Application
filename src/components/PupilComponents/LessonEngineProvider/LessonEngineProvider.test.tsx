@@ -221,7 +221,7 @@ describe("LessonEngineProvider", () => {
     act(() => {
       result.current.completeActivity("intro");
     });
-    expect(lessonSectionCompletedIntroduction).toHaveBeenCalled();
+    expect(lessonSectionCompletedIntroduction).toHaveBeenCalledTimes(1);
   });
 
   it("sends tracking data when the lesson is started", () => {
@@ -238,15 +238,15 @@ describe("LessonEngineProvider", () => {
     act(() => {
       result.current.proceedToNextSection();
     });
-    expect(lessonStarted).toHaveBeenCalled();
+    expect(lessonStarted).toHaveBeenCalledTimes(1);
   });
 
   it("sends quiz result data when a quiz section is complete", () => {
-    const lessonActivityStartedStarterQuiz = jest.fn();
+    const lessonActivityCompletedStarterQuiz = jest.fn();
 
     jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonActivityStartedStarterQuiz")
-      .mockImplementation(lessonActivityStartedStarterQuiz);
+      .spyOn(usePupilAnalyticsMock.track, "lessonActivityCompletedStarterQuiz")
+      .mockImplementation(lessonActivityCompletedStarterQuiz);
 
     const { result } = renderHook(() => useLessonEngineContext(), {
       wrapper: ProviderWrapper,
@@ -275,12 +275,128 @@ describe("LessonEngineProvider", () => {
       result.current.completeActivity("starter-quiz");
     });
 
-    expect(lessonActivityStartedStarterQuiz).toHaveBeenCalledWith(
+    expect(lessonActivityCompletedStarterQuiz).toHaveBeenCalledWith(
       expect.objectContaining({
         pupilExperienceLessonActivity: "starter-quiz",
       }),
     );
   });
+
+  it.each<{
+    event: string;
+    currentSection: LessonSection;
+    nextSection: LessonSection;
+  }>([
+    {
+      event: "lessonActivityAbandonedIntroduction",
+      currentSection: "intro",
+      nextSection: "starter-quiz",
+    },
+    {
+      event: "lessonActivityAbandonedStarterQuiz",
+      currentSection: "starter-quiz",
+      nextSection: "intro",
+    },
+    {
+      event: "lessonActivityAbandonedExitQuiz",
+      currentSection: "exit-quiz",
+      nextSection: "intro",
+    },
+    {
+      event: "lessonActivityAbandonedLessonVideo",
+      currentSection: "video",
+      nextSection: "intro",
+    },
+  ])(
+    "sends abandoned event data when current section is changed - $event",
+    (props) => {
+      const mockAnalytics = jest.fn();
+
+      jest
+        .spyOn(usePupilAnalyticsMock.track, props.event)
+        .mockImplementation(mockAnalytics);
+
+      const { result } = renderHook(() => useLessonEngineContext(), {
+        wrapper: ProviderWrapper,
+      });
+
+      act(() => {
+        result.current.updateCurrentSection(props.currentSection);
+      });
+
+      expect(result.current.currentSection).toEqual(props.currentSection);
+
+      act(() => {
+        result.current.updateCurrentSection(props.nextSection);
+      });
+
+      expect(mockAnalytics).toHaveBeenCalledWith(
+        expect.objectContaining({
+          pupilExperienceLessonActivity: props.currentSection,
+        }),
+      );
+
+      expect(mockAnalytics).toHaveBeenCalledTimes(1);
+    },
+  );
+
+  it.each<{
+    event: string;
+    currentSection: LessonSection;
+    nextSection: LessonSection;
+  }>([
+    {
+      event: "lessonActivityStartedIntroduction",
+      currentSection: "starter-quiz",
+      nextSection: "intro",
+    },
+    {
+      event: "lessonActivityStartedStarterQuiz",
+      currentSection: "intro",
+      nextSection: "starter-quiz",
+    },
+    {
+      event: "lessonActivityStartedExitQuiz",
+      currentSection: "intro",
+      nextSection: "exit-quiz",
+    },
+    {
+      event: "lessonActivityStartedLessonVideo",
+      currentSection: "intro",
+      nextSection: "video",
+    },
+  ])(
+    "sends started event data when current section is changed - $event",
+    (props) => {
+      const mockAnalytics = jest.fn();
+
+      jest
+        .spyOn(usePupilAnalyticsMock.track, props.event)
+        .mockImplementation(mockAnalytics);
+
+      const { result } = renderHook(() => useLessonEngineContext(), {
+        wrapper: ProviderWrapper,
+      });
+
+      act(() => {
+        result.current.updateCurrentSection(props.currentSection);
+      });
+
+      expect(result.current.currentSection).toEqual(props.currentSection);
+
+      act(() => {
+        result.current.updateCurrentSection(props.nextSection);
+      });
+
+      expect(mockAnalytics).toHaveBeenCalledWith(
+        expect.objectContaining({
+          pupilExperienceLessonActivity: props.nextSection,
+        }),
+      );
+
+      expect(mockAnalytics).toHaveBeenCalledTimes(1);
+    },
+  );
 });
 
 describe(isLessonReviewSection, () => {

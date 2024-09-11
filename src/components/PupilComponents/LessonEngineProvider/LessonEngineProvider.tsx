@@ -296,8 +296,6 @@ export const LessonEngineProvider = memo(
     };
 
     const trackSectionStarted = (section: LessonSection) => {
-      trackLessonStarted();
-
       if (
         section === "intro" &&
         track.lessonActivityStartedIntroduction &&
@@ -370,18 +368,19 @@ export const LessonEngineProvider = memo(
         }
       }
 
+      trackLessonStarted();
       trackSectionStarted(section);
 
       dispatch({ type: "setCurrentSection", section });
     };
 
     const proceedToNextSection = () => {
-      trackLessonStarted();
       dispatch({ type: "proceedToNextSection" });
       const nextSection =
         state.lessonReviewSections.find(
           (section) => !state.sections[section]?.isComplete,
         ) ?? "review";
+      trackLessonStarted();
       trackSectionStarted(nextSection);
     };
 
