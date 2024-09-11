@@ -29,9 +29,6 @@ export const SchoolSelectionView = () => {
     useForm<SchoolSelectFormProps>({
       resolver: zodResolver(schoolSelectFormSchema),
       mode: "onBlur",
-      defaultValues: {
-        newsletterSignUp: true,
-      },
     });
 
   const setSchoolDetailsInManualForm = useCallback(
@@ -106,7 +103,16 @@ export const SchoolSelectionView = () => {
         handleSubmit={handleSubmit}
         canSubmit={!formState.isSubmitted || formState.isValid}
       >
-        {!renderManualSchoolInput && (
+        {renderManualSchoolInput ? (
+          <ManualEntrySchoolDetails
+            hasErrors={formState.errors}
+            onManualSchoolInputChange={setSchoolDetailsInManualForm}
+            setValue={setValue}
+            control={control}
+            setRenderManualSchoolInput={setRenderManualSchoolInput}
+            reset={reset}
+          />
+        ) : (
           <OakBox $mt="space-between-m">
             <FieldError id="onboarding-school-error">
               {"school" in formState.errors && formState.errors.school?.message}
@@ -146,17 +152,6 @@ export const SchoolSelectionView = () => {
               </OakP>
             </OakFlex>
           </OakBox>
-        )}
-
-        {renderManualSchoolInput && (
-          <ManualEntrySchoolDetails
-            hasErrors={formState.errors}
-            onManualSchoolInputChange={setSchoolDetailsInManualForm}
-            setValue={setValue}
-            control={control}
-            setRenderManualSchoolInput={setRenderManualSchoolInput}
-            reset={reset}
-          />
         )}
       </OnboardingForm>
     </OnboardingLayout>

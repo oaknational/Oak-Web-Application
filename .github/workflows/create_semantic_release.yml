@@ -4,6 +4,9 @@
 # - a Github release, which will trigger a deployment
 name: Create Github Release
 
+env:
+  PUPPETEER_DOWNLOAD_PATH: /home/runner/.npm/chromium
+
 # All changes to `main` have gone through
 # automated checks and should have gone
 # through code review and manual checks
