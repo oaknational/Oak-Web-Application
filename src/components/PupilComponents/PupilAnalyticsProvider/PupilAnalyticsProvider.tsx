@@ -150,13 +150,11 @@ export type AdditionalArgType = PupilPathwayData & {
 export const PupilAnalyticsProvider = ({
   children,
   pupilPathwayData,
-  pupilVideoData,
-  pupilAudioData,
+  lessonContent,
 }: {
   children: React.ReactNode;
   pupilPathwayData: PupilPathwayData;
-  pupilVideoData: PupilVideoData;
-  pupilAudioData: PupilAudioData;
+  lessonContent?: LessonContent;
 }) => {
   const { track } = useAnalytics();
 
@@ -165,11 +163,27 @@ export const PupilAnalyticsProvider = ({
     analyticsUseCase: "Pupil",
   };
 
-  const defaultVideoArgs: PupilVideoData = {
-    ...pupilVideoData,
+  const videoData = lessonContent && getPupilVideoData(lessonContent);
+  const audioData = lessonContent && getPupilAudioData(lessonContent);
+
+  const reportNoAudio = () => {
+    console.error("No audio data available");
+    const error = new Error("No audio data available");
+    errorReporter(
+      "pupils::pupilAnalyticsProvider::lessonActivityCompletedLessonAudio::noAudioData",
+    )(error, {
+      severity: "warning",
+    });
   };
-  const defaultAudioArgs: PupilAudioData = {
-    ...pupilAudioData,
+
+  const reportNoVideo = () => {
+    console.error("No video data available");
+    const error = new Error("No video data available");
+    errorReporter(
+      "pupils::pupilAnalyticsProvider::lessonActivityCompletedLessonVideo::noVideoData",
+    )(error, {
+      severity: "warning",
+    });
   };
 
   const pupilTrack: PupilAnalyticsTrack = {
@@ -193,23 +207,34 @@ export const PupilAnalyticsProvider = ({
         ...args,
         ...additionalArgs,
       }),
-    lessonActivityCompletedLessonVideo: (args) =>
+    lessonActivityCompletedLessonVideo: (args) => {
+      if (!videoData) {
+        reportNoVideo();
+        return;
+      }
+
       track.lessonActivityCompletedLessonVideo({
         ...args,
         ...additionalArgs,
-        ...defaultVideoArgs,
-      }),
+        ...videoData,
+      });
+    },
     lessonActivityCompletedExitQuiz: (args) =>
       track.lessonActivityCompletedExitQuiz({
         ...args,
         ...additionalArgs,
       }),
-    lessonActivityCompletedLessonAudio: (args) =>
+    lessonActivityCompletedLessonAudio: (args) => {
+      if (!audioData) {
+        reportNoAudio();
+        return;
+      }
       track.lessonActivityCompletedLessonAudio({
         ...args,
         ...additionalArgs,
-        ...defaultAudioArgs,
-      }),
+        ...audioData,
+      });
+    },
     lessonActivityStarted: (args) =>
       track.lessonActivityStarted({
         ...additionalArgs,
@@ -225,29 +250,39 @@ export const PupilAnalyticsProvider = ({
         ...additionalArgs,
         ...args,
       }),
-    lessonActivityStartedLessonVideo: (args) =>
+    lessonActivityStartedLessonVideo: (args) => {
+      if (!videoData) {
+        reportNoVideo();
+        return;
+      }
       track.lessonActivityStartedLessonVideo({
         ...additionalArgs,
-        ...defaultVideoArgs,
+        ...videoData,
         ...args,
-      }),
+      });
+    },
     lessonActivityStartedExitQuiz: (args) =>
       track.lessonActivityStartedExitQuiz({
         ...additionalArgs,
         ...args,
       }),
-    lessonActivityStartedLessonAudio: (args) =>
+    lessonActivityStartedLessonAudio: (args) => {
+      if (!audioData) {
+        reportNoAudio();
+        return;
+      }
       track.lessonActivityStartedLessonAudio({
         ...additionalArgs,
         ...args,
-        ...defaultAudioArgs,
-      }),
+        ...audioData,
+      });
+    },
 
     lessonActivityAbandoned: (args) =>
       track.lessonActivityAbandoned({
         ...additionalArgs,
         ...args,
-        ...defaultVideoArgs,
+        ...videoData,
       }),
     lessonActivityAbandonedStarterQuiz: (args) =>
       track.lessonActivityAbandonedStarterQuiz({
@@ -259,23 +294,33 @@ export const PupilAnalyticsProvider = ({
         ...additionalArgs,
         ...args,
       }),
-    lessonActivityAbandonedLessonVideo: (args) =>
+    lessonActivityAbandonedLessonVideo: (args) => {
+      if (!videoData) {
+        reportNoVideo();
+        return;
+      }
       track.lessonActivityAbandonedLessonVideo({
         ...additionalArgs,
-        ...defaultVideoArgs,
+        ...videoData,
         ...args,
-      }),
+      });
+    },
     lessonActivityAbandonedExitQuiz: (args) =>
       track.lessonActivityAbandonedExitQuiz({
         ...additionalArgs,
         ...args,
       }),
-    lessonActivityAbandonedLessonAudio: (args) =>
+    lessonActivityAbandonedLessonAudio: (args) => {
+      if (!audioData) {
+        reportNoAudio();
+        return;
+      }
       track.lessonActivityAbandonedLessonAudio({
         ...additionalArgs,
         ...args,
-        ...defaultAudioArgs,
-      }),
+        ...audioData,
+      });
+    },
     lessonActivityDownloaded: (args) =>
       track.lessonActivityDownloaded({
         ...additionalArgs,
@@ -314,8 +359,8 @@ export const PupilAnalyticsProvider = ({
     lessonSummaryReviewed: (args) =>
       track.lessonSummaryReviewed({
         ...additionalArgs,
-        ...defaultVideoArgs,
-        ...defaultAudioArgs,
+        ...videoData,
+        ...audioData,
         ...args,
       }),
     lessonAccessed: (args) =>

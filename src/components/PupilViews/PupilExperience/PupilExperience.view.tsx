@@ -25,9 +25,7 @@ import { PupilLayout } from "@/components/PupilComponents/PupilLayout/PupilLayou
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   PupilAnalyticsProvider,
-  getPupilAudioData,
   getPupilPathwayData,
-  getPupilVideoData,
 } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import {
   LessonBrowseData,
@@ -244,8 +242,7 @@ export const PupilExperienceView = (props: PupilExperienceViewProps) => {
   return (
     <PupilAnalyticsProvider
       pupilPathwayData={getPupilPathwayData(browseData)}
-      pupilVideoData={getPupilVideoData(lessonContent)}
-      pupilAudioData={getPupilAudioData(lessonContent)}
+      lessonContent={lessonContent}
     >
       <PupilExperienceLayout {...props} />
     </PupilAnalyticsProvider>

@@ -257,9 +257,7 @@ export const LessonEngineProvider = memo(
 
     const completeActivity = (section: LessonReviewSection) => {
       trackLessonStarted();
-      if (track.lessonActivityCompleted) {
-        track.lessonActivityCompleted(getActivityTrackingData(section));
-      }
+
       if (section === "intro" && track.lessonActivityCompletedIntroduction) {
         track.lessonActivityCompletedIntroduction(
           getActivityTrackingData(section),
