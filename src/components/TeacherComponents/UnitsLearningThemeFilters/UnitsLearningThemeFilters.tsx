@@ -79,11 +79,7 @@ const UnitsLearningThemeFilters = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <OakFlex
-        $mb={"space-between-xl"}
-        $position={"relative"}
-        $flexDirection={"column"}
-      >
+      <OakFlex $flexDirection={"column"}>
         <OakBox $mb={skipFiltersButton ? "space-between-xs" : "auto"}>
           <OakSecondaryButton
             element="a"
@@ -97,6 +93,7 @@ const UnitsLearningThemeFilters = ({
             Skip to units
           </OakSecondaryButton>
         </OakBox>
+
         <CategoryFilterList
           {...listStateProps}
           labelledBy={labelledBy}
