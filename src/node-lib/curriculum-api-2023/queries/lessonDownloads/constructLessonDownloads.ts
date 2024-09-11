@@ -20,7 +20,9 @@ const constructLessonDownloads = (
 
   const parsedCurrentLesson =
     syntheticUnitvariantLessonsSchema.parse(currentLesson);
-
+  const unitTitle =
+    parsedCurrentLesson.programme_fields.optionality ??
+    parsedCurrentLesson.unit_data.title;
   const downloadsPageData = {
     downloads,
     programmeSlug: parsedCurrentLesson.programme_slug,
@@ -33,7 +35,7 @@ const constructLessonDownloads = (
     subjectSlug: parsedCurrentLesson.programme_fields.subject_slug,
     subjectTitle: parsedCurrentLesson.programme_fields.subject,
     unitSlug: parsedCurrentLesson.unit_slug,
-    unitTitle: parsedCurrentLesson.unit_data.title,
+    unitTitle,
     lessonCohort: parsedCurrentLesson.lesson_data._cohort,
     expired: expired ? expired : null,
     updatedAt: parsedCurrentLesson.lesson_data.updated_at,
