@@ -1,4 +1,5 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { PupilViewsLessonOverview } from "./PupilLessonOverview.view";
 
@@ -10,7 +11,11 @@ import {
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { PupilProvider } from "@/browser-lib/pupil-api/PupilClientProvider";
 
-describe(PupilViewsLessonOverview, () => {
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn((a) => a),
+}));
+
+describe("PupilViewsLessonOverview", () => {
   it("displays the lesson title", () => {
     const { queryByRole } = renderWithTheme(
       <PupilProvider>
@@ -203,4 +208,59 @@ describe(PupilViewsLessonOverview, () => {
       expect(getByTestId("proceed-to-next-section")).toHaveTextContent(label);
     },
   );
+  describe("should display print Share lesson results button", () => {
+    it("should not display the print button when the feature flag is disabled", () => {
+      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(false);
+      const { queryByRole } = renderWithTheme(
+        <PupilProvider>
+          {" "}
+          <OakThemeProvider theme={oakDefaultTheme}>
+            <LessonEngineContext.Provider value={createLessonEngineContext()}>
+              <PupilViewsLessonOverview
+                lessonTitle="Introduction to The Canterbury Tales"
+                subjectTitle="English"
+                subjectSlug="english"
+                lessonSlug="lesson-slug"
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                starterQuizNumQuestions={4}
+                exitQuizNumQuestions={5}
+                expirationDate={null}
+              />
+            </LessonEngineContext.Provider>
+          </OakThemeProvider>
+        </PupilProvider>,
+      );
+
+      expect(
+        queryByRole("button", { name: "Share lesson results" }),
+      ).not.toBeInTheDocument();
+    });
+    it("should display the print button when the feature flag is enabled", () => {
+      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+      const { getByRole } = renderWithTheme(
+        <PupilProvider>
+          <OakThemeProvider theme={oakDefaultTheme}>
+            <LessonEngineContext.Provider value={createLessonEngineContext()}>
+              <PupilViewsLessonOverview
+                lessonTitle="Introduction to The Canterbury Tales"
+                subjectTitle="English"
+                subjectSlug="english"
+                lessonSlug="lesson-slug"
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                starterQuizNumQuestions={4}
+                exitQuizNumQuestions={5}
+                expirationDate={null}
+              />
+            </LessonEngineContext.Provider>
+          </OakThemeProvider>
+        </PupilProvider>,
+      );
+
+      expect(
+        getByRole("button", { name: "Share lesson results" }),
+      ).toBeInTheDocument();
+    });
+  });
 });

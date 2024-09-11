@@ -74,7 +74,8 @@ export const PupilViewsLessonOverview = ({
     lessonStarted,
     updateCurrentSection,
   } = useLessonEngineContext();
-  const { logAttempt } = useOakPupil();
+  const pupilClient = useOakPupil();
+  const { logAttempt } = pupilClient;
   const isShowShareButton = useFeatureFlagEnabled("share-results-button");
   const getSectionLinkProps = useGetSectionLinkProps();
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
