@@ -76,7 +76,7 @@ const unitListingQuery =
 
       return {
         label: category,
-        iconName: categoryIconMap[category],
+        iconName: categoryIconMap[category] ?? "",
         slug: kebabCase(category),
       };
     });
