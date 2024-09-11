@@ -241,46 +241,57 @@ describe("LessonEngineProvider", () => {
     expect(lessonStarted).toHaveBeenCalledTimes(1);
   });
 
-  it("sends quiz result data when a quiz section is complete", () => {
-    const lessonActivityCompletedStarterQuiz = jest.fn();
+  it.each<{ section: "starter-quiz" | "exit-quiz"; event: string }>([
+    { section: "starter-quiz", event: "lessonActivityCompletedStarterQuiz" },
+    { section: "exit-quiz", event: "lessonActivityCompletedExitQuiz" },
+  ])(
+    "sends quiz result data when a quiz section is complete $section",
+    (props) => {
+      const mockEvent = jest.fn();
 
-    jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonActivityCompletedStarterQuiz")
-      .mockImplementation(lessonActivityCompletedStarterQuiz);
+      jest
+        .spyOn(usePupilAnalyticsMock.track, props.event)
+        .mockImplementation(mockEvent);
 
-    const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: ProviderWrapper,
-    });
+      const { result } = renderHook(() => useLessonEngineContext(), {
+        wrapper: ProviderWrapper,
+      });
 
-    act(() => {
-      result.current.updateCurrentSection("starter-quiz");
-    });
+      act(() => {
+        result.current.updateCurrentSection(props.section);
+      });
 
-    expect(result.current.currentSection).toEqual("starter-quiz");
+      expect(result.current.currentSection).toEqual(props.section);
 
-    act(() => {
-      result.current.updateSectionResult({
+      act(() => {
+        result.current.updateSectionResult({
+          grade: 2,
+          numQuestions: 4,
+        });
+      });
+
+      expect(result.current.sectionResults[props.section]).toEqual({
         grade: 2,
         numQuestions: 4,
+        isComplete: false,
       });
-    });
 
-    expect(result.current.sectionResults["starter-quiz"]).toEqual({
-      grade: 2,
-      numQuestions: 4,
-      isComplete: false,
-    });
+      act(() => {
+        result.current.completeActivity(props.section);
+      });
 
-    act(() => {
-      result.current.completeActivity("starter-quiz");
-    });
-
-    expect(lessonActivityCompletedStarterQuiz).toHaveBeenCalledWith(
-      expect.objectContaining({
-        pupilExperienceLessonActivity: "starter-quiz",
-      }),
-    );
-  });
+      expect(mockEvent).toHaveBeenCalledWith(
+        expect.objectContaining({
+          pupilExperienceLessonActivity: props.section,
+          pupilQuizGrade: 2,
+          pupilQuizNumQuestions: 4,
+          hintQuestion: "",
+          hintQuestionResult: "",
+          hintUsed: "",
+        }),
+      );
+    },
+  );
 
   it.each<{
     event: string;
