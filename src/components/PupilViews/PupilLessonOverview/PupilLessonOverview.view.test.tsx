@@ -1,5 +1,7 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useOakPupil } from "@oaknational/oak-pupil-client";
+import userEvent from "@testing-library/user-event";
 
 import { PupilViewsLessonOverview } from "./PupilLessonOverview.view";
 
@@ -10,10 +12,16 @@ import {
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { PupilProvider } from "@/browser-lib/pupil-api/PupilClientProvider";
+import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn((a) => a),
 }));
+
+Object.defineProperty(window, "open", {
+  configurable: true,
+  value: jest.fn(),
+});
 
 describe("PupilViewsLessonOverview", () => {
   it("displays the lesson title", () => {
@@ -118,6 +126,7 @@ describe("PupilViewsLessonOverview", () => {
   });
 
   it("displays the number of questions for each quiz", () => {
+    // console.log(logAttempt);
     const { getByTestId } = renderWithTheme(
       <PupilProvider>
         {" "}
@@ -261,6 +270,37 @@ describe("PupilViewsLessonOverview", () => {
       expect(
         getByRole("button", { name: "Share lesson results" }),
       ).toBeInTheDocument();
+    });
+    it("logAttempt function is called when button is clicked", () => {
+      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+      const { getByRole } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({
+              sectionResults: sectionResultsFixture,
+            })}
+          >
+            {" "}
+            <PupilProvider>
+              <PupilViewsLessonOverview
+                lessonTitle="Introduction to The Canterbury Tales"
+                subjectTitle="English"
+                subjectSlug="english"
+                lessonSlug="lesson-slug"
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                starterQuizNumQuestions={4}
+                exitQuizNumQuestions={5}
+                expirationDate={null}
+              />
+            </PupilProvider>
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+      const button = getByRole("button", { name: "Share lesson results" });
+      userEvent.click(button).then(() => {
+        expect(useOakPupil().logAttempt).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });
