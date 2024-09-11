@@ -33,6 +33,18 @@ jest.mock("@/components/PupilViews/PupilExpired/PupilExpired.view", () => ({
   PupilExpiredView: jest.fn(() => "PupilExpiredView"),
 }));
 
+jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
+  return {
+    PupilViewsLessonOverview: () => (
+      <div>
+        <div>Lesson Title</div>
+        <div data-testid="content-guidance-info">Guidance Title</div>
+        <div data-testid="suervision-level-info">Supervision Level</div>
+      </div>
+    ),
+  };
+});
+
 jest.mock("@oaknational/oak-components", () => {
   return {
     ...jest.requireActual("@oaknational/oak-components"),
@@ -94,7 +106,11 @@ describe("PupilExperienceView", () => {
       const lessonContent = lessonContentFixture({
         lessonTitle: "Lesson Title",
       });
-      const lessonBrowseData = lessonBrowseDataFixture({});
+      const lessonBrowseData = lessonBrowseDataFixture({
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+      });
       const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
 
       jest
@@ -222,7 +238,7 @@ describe("PupilExperienceView", () => {
     expect(getByTestId("content-guidance-info")).toHaveTextContent(
       contentguidanceLabel,
     );
-    expect(getByTestId("content-guidance-info")).toHaveTextContent(
+    expect(getByTestId("suervision-level-info")).toHaveTextContent(
       supervisionLevel,
     );
   });

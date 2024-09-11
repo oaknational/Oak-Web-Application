@@ -31,6 +31,7 @@ import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { PupilProvider } from "@/browser-lib/pupil-api/PupilClientProvider";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -73,7 +74,7 @@ export const PupilPageContent = ({
     supervisionLevel,
   } = lessonContent;
 
-  const { lessonData, programmeFields } = browseData;
+  const { lessonData, programmeFields, lessonSlug } = browseData;
   const { subject, subjectSlug, yearDescription, phase } = programmeFields;
 
   const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
@@ -91,6 +92,9 @@ export const PupilPageContent = ({
       return (
         <PupilViewsLessonOverview
           lessonTitle={lessonTitle ?? ""}
+          lessonSlug={lessonSlug ?? ""}
+          programmeSlug={browseData.programmeSlug}
+          unitSlug={browseData.unitSlug}
           subjectTitle={subject}
           subjectSlug={subjectSlug}
           yearTitle={yearDescription}
@@ -170,50 +174,56 @@ export const PupilExperienceView = ({
   const isSensitive = lessonContent.deprecatedFields?.isSensitive === true;
 
   return (
-    <PupilAnalyticsProvider pupilPathwayData={getPupilPathwayData(browseData)}>
-      <PupilLayout
-        seoProps={{
-          ...getSeoProps({
-            title: browseData.lessonData.title,
-            description: browseData.lessonData.pupilLessonOutcome,
-          }),
-          noIndex: isSensitive,
-          noFollow: isSensitive,
-        }}
+    <PupilProvider>
+      <PupilAnalyticsProvider
+        pupilPathwayData={getPupilPathwayData(browseData)}
       >
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <OakPupilJourneyContentGuidance
-            isOpen={isOpen}
-            onAccept={() => setIsOpen(false)}
-            onDecline={() =>
-              backUrl ? router.replace(backUrl) : router.back()
-            }
-            contentGuidance={lessonContent.contentGuidance}
-            supervisionLevel={lessonContent.supervisionLevel}
-          />
+        <PupilLayout
+          seoProps={{
+            ...getSeoProps({
+              title: browseData.lessonData.title,
+              description: browseData.lessonData.pupilLessonOutcome,
+            }),
+            noIndex: isSensitive,
+            noFollow: isSensitive,
+          }}
+        >
+          <OakThemeProvider theme={oakDefaultTheme}>
+            <OakPupilJourneyContentGuidance
+              isOpen={isOpen}
+              onAccept={() => setIsOpen(false)}
+              onDecline={() =>
+                backUrl ? router.replace(backUrl) : router.back()
+              }
+              contentGuidance={lessonContent.contentGuidance}
+              supervisionLevel={lessonContent.supervisionLevel}
+            />
 
-          <CookieConsentStyles />
-          <LessonEngineProvider
-            initialLessonReviewSections={availableSections}
-            initialSection={initialSection}
-          >
-            <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
-              <OakBox $height={"100vh"}>
-                {browseData.lessonData.deprecatedFields?.expired ? (
-                  <PupilExpiredView lessonTitle={browseData.lessonData.title} />
-                ) : (
-                  <PupilPageContent
-                    browseData={browseData}
-                    lessonContent={lessonContent}
-                    hasWorksheet={hasWorksheet}
-                    backUrl={backUrl}
-                  />
-                )}
+            <CookieConsentStyles />
+            <LessonEngineProvider
+              initialLessonReviewSections={availableSections}
+              initialSection={initialSection}
+            >
+              <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
+                <OakBox $height={"100vh"}>
+                  {browseData.lessonData.deprecatedFields?.expired ? (
+                    <PupilExpiredView
+                      lessonTitle={browseData.lessonData.title}
+                    />
+                  ) : (
+                    <PupilPageContent
+                      browseData={browseData}
+                      lessonContent={lessonContent}
+                      hasWorksheet={hasWorksheet}
+                      backUrl={backUrl}
+                    />
+                  )}
+                </OakBox>
               </OakBox>
-            </OakBox>
-          </LessonEngineProvider>
-        </OakThemeProvider>
-      </PupilLayout>
-    </PupilAnalyticsProvider>
+            </LessonEngineProvider>
+          </OakThemeProvider>
+        </PupilLayout>
+      </PupilAnalyticsProvider>
+    </PupilProvider>
   );
 };
