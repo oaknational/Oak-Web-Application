@@ -126,10 +126,12 @@ export function getCopyrightContent(
 const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   const pathways = res.browseData.map((l) => {
     const lesson = lessonBrowseDataSchema.parse(l);
+    const unitTitle =
+      lesson.programme_fields.optionality ?? lesson.unit_data.title;
     const pathway = {
       programmeSlug: lesson.programme_slug,
       unitSlug: lesson.unit_slug,
-      unitTitle: lesson.unit_data.title,
+      unitTitle,
       keyStageSlug: lesson.programme_fields.keystage_slug,
       keyStageTitle: lesson.programme_fields.keystage_description,
       subjectSlug: lesson.programme_fields.subject_slug,
@@ -152,10 +154,12 @@ const transformedLessonOverviewData = (
 ): LessonOverviewPageData => {
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
+  const unitTitle =
+    browseData.programmeFields.optionality ?? browseData.unitData.title;
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
-    unitTitle: browseData.unitData.title,
+    unitTitle,
     keyStageSlug: browseData.programmeFields.keystageSlug,
     keyStageTitle: toSentenceCase(
       browseData.programmeFields.keystageDescription,

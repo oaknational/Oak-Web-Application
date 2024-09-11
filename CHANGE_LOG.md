@@ -1,3 +1,12 @@
+## [1.543.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.1...v1.543.2) (2024-09-11)
+
+
+### Bug Fixes
+
+* optionality title on canonical lesson page ([f31d693](https://github.com/oaknational/Oak-Web-Application/commit/f31d6937ce158b68adcbe5b258095d9c7e38a1d8))
+* use optionality title for unit when available ([7824fad](https://github.com/oaknational/Oak-Web-Application/commit/7824fad52bd01bd56adf341e8ac4006d23eed170))
+* use optionality title on lesson share page ([92ec92e](https://github.com/oaknational/Oak-Web-Application/commit/92ec92eb93147a5a70e4d0442aaf1e75fb89edaf))
+
 ## [1.543.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.0...v1.543.1) (2024-09-10)
 
 
