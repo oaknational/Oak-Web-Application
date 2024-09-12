@@ -14,12 +14,17 @@ import {
   OakFlex,
   OakInlineBanner,
   OakLink,
+  OakP,
   OakPrimaryButton,
   OakSpan,
 } from "@oaknational/oak-components";
 
-import { OnboardingFormProps } from "./OnboardingForm.schema";
+import {
+  OnboardingFormProps,
+  isSchoolSelectData,
+} from "./OnboardingForm.schema";
 import { getSubscriptionStatus, onboardUser } from "./onboardingActions";
+import { getQueryParamsFromOnboardingFormData } from "./getQueryParamsFromOnboardingFormData";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -40,6 +45,8 @@ const OnboardingForm = ({
   handleSubmit: UseFormHandleSubmit<OnboardingFormProps>;
   formState: UseFormStateReturn<OnboardingFormProps>;
   heading: string;
+  subheading?: string;
+  secondaryButton?: React.ReactNode;
   canSubmit: boolean;
   onSubmit?: () => void;
   control: Control<OnboardingFormProps>;
@@ -79,6 +86,18 @@ const OnboardingForm = ({
             : "onboarding-role-selection",
         }),
         query: router.query,
+      });
+    } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
+      const encodedQueryData = getQueryParamsFromOnboardingFormData(
+        data,
+        router.query,
+      );
+
+      router.push({
+        pathname: resolveOakHref({
+          page: "onboarding-use-of-oak",
+        }),
+        query: encodedQueryData,
       });
     } else {
       const isTeacher = "school" in data || "manualSchoolName" in data;
@@ -159,9 +178,20 @@ const OnboardingForm = ({
           $width="100%"
           role={"fieldset"}
         >
-          <OakSpan role="legend" id={"form-legend"} $font="heading-6">
-            {props.heading}
-          </OakSpan>
+          <OakFlex
+            $flexDirection="column"
+            $gap="space-between-ssx"
+            $pb={props.subheading ? "inner-padding-m" : "inner-padding-none"}
+          >
+            <OakSpan role="legend" id={"form-legend"} $font="heading-6">
+              {props.heading}
+            </OakSpan>
+            {props.subheading && (
+              <OakP $font="body-2" $color="text-subdued">
+                {props.subheading}
+              </OakP>
+            )}
+          </OakFlex>
           <OakBox aria-live="polite" $display="contents">
             {submitError && (
               <OakInlineBanner
@@ -175,7 +205,11 @@ const OnboardingForm = ({
             )}
           </OakBox>
           <OakBox>{props.children}</OakBox>
-          <OakBox $pv="inner-padding-xl">
+          <OakFlex
+            $pv="inner-padding-xl"
+            $gap="space-between-xs"
+            $flexDirection="column"
+          >
             <OakPrimaryButton
               disabled={!props.canSubmit}
               width="100%"
@@ -185,7 +219,8 @@ const OnboardingForm = ({
             >
               Continue
             </OakPrimaryButton>
-          </OakBox>
+            {props.secondaryButton}
+          </OakFlex>
           {showNewsletterSignUp && (
             <Controller
               control={props.control}
