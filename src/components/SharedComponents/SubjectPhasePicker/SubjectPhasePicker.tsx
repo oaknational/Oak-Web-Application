@@ -30,6 +30,14 @@ import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[t
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
+import { getPhaseText } from "@/utils/curriculum/formatting";
+
+const DEFAULT_KEYSTAGES = [
+  { slug: "ks1" },
+  { slug: "ks2" },
+  { slug: "ks3" },
+  { slug: "ks4" },
+];
 
 /**
  * Interface to pick a subject, phase, and if applicable, an exam board.
@@ -312,16 +320,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const getIconName = (slug: string) => {
     const iconName = `subject-${slug}`;
     return isValidIconName(iconName) ? iconName : undefined;
-  };
-
-  const getPhaseText = (phase: Phase) => {
-    if (phase.slug === "primary") {
-      return "Key stage 1 and 2";
-    }
-    if (phase.slug === "secondary") {
-      return "Key stage 3 and 4";
-    }
-    return "";
   };
 
   return (
@@ -695,7 +693,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             hoverShadow={null}
                           >
                             {phase.title}
-                            <OakP $font={"body-2"}>{getPhaseText(phase)}</OakP>
+                            <OakP $font={"body-2"}>
+                              {getPhaseText(
+                                phase,
+                                selectedSubject?.keystages ?? DEFAULT_KEYSTAGES,
+                              )}
+                            </OakP>
                           </OakSecondaryButton>
                         </ButtonContainer>
                       ))}
