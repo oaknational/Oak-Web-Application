@@ -19,8 +19,6 @@ import {
   isValidIconName,
 } from "@oaknational/oak-components";
 import { useEffect, useState } from "react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
-import { useOakPupil } from "@oaknational/oak-pupil-client";
 
 import {
   LessonReviewSection,
@@ -29,13 +27,9 @@ import {
 import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { resolveOakHref } from "@/common-lib/urls";
 
 type PupilViewsLessonOverviewProps = {
   lessonTitle: string;
-  lessonSlug: string;
-  programmeSlug: string;
-  unitSlug: string;
   yearTitle?: string;
   phase?: "primary" | "secondary";
   subjectTitle: string;
@@ -51,9 +45,6 @@ type PupilViewsLessonOverviewProps = {
 
 export const PupilViewsLessonOverview = ({
   lessonTitle,
-  lessonSlug,
-  programmeSlug,
-  unitSlug,
   subjectTitle,
   yearTitle,
   phase = "primary",
@@ -74,9 +65,6 @@ export const PupilViewsLessonOverview = ({
     lessonStarted,
     updateCurrentSection,
   } = useLessonEngineContext();
-  const pupilClient = useOakPupil();
-  const { logAttempt } = pupilClient;
-  const isShowShareButton = useFeatureFlagEnabled("share-results-button");
   const getSectionLinkProps = useGetSectionLinkProps();
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
   const [isMounted, setIsMounted] = useState(false);
@@ -97,24 +85,6 @@ export const PupilViewsLessonOverview = ({
 
     return "not-started";
   }
-
-  const handleShareResultsClick = async () => {
-    const attemptData = {
-      lessonData: { slug: lessonSlug, title: lessonTitle },
-      browseData: { subject: subjectTitle, yearDescription: yearTitle ?? "" },
-      sectionResults: sectionResults,
-    };
-    const attemptId = await logAttempt(attemptData, true);
-    window.open(
-      `${resolveOakHref({
-        page: "pupil-lesson",
-        programmeSlug,
-        unitSlug,
-        lessonSlug,
-      })}/results/${attemptId}`,
-      "_blank",
-    );
-  };
 
   return (
     <OakLessonLayout
@@ -201,14 +171,6 @@ export const PupilViewsLessonOverview = ({
               $ph={["inner-padding-m", "inner-padding-none"]}
               $bb={["border-solid-l", "border-solid-none", "border-solid-none"]}
             >
-              {isShowShareButton && (
-                <OakPrimaryButton
-                  type="button"
-                  onClick={handleShareResultsClick}
-                >
-                  Share lesson results
-                </OakPrimaryButton>
-              )}
               {isValidIconName(subjectIconName) && (
                 <OakBox
                   $mb={[

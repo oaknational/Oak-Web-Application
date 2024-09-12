@@ -53,6 +53,7 @@ export type PupilExperienceViewProps = {
   hasWorksheet: boolean;
   backUrl?: string | null;
   initialSection: LessonSection;
+  pageType: "preview" | "canonical" | "browse";
 };
 
 export const PupilPageContent = ({
@@ -60,6 +61,7 @@ export const PupilPageContent = ({
   lessonContent,
   hasWorksheet,
   backUrl,
+  pageType,
 }: Omit<PupilExperienceViewProps, "initialSection">) => {
   const { currentSection } = useLessonEngineContext();
   const {
@@ -92,9 +94,6 @@ export const PupilPageContent = ({
       return (
         <PupilViewsLessonOverview
           lessonTitle={lessonTitle ?? ""}
-          lessonSlug={lessonSlug ?? ""}
-          programmeSlug={browseData.programmeSlug}
-          unitSlug={browseData.unitSlug}
           subjectTitle={subject}
           subjectSlug={subjectSlug}
           yearTitle={yearDescription}
@@ -136,6 +135,12 @@ export const PupilPageContent = ({
           phase={phase as "primary" | "secondary"}
           starterQuizQuestionsArray={starterQuiz ?? []}
           exitQuizQuestionsArray={exitQuiz ?? []}
+          programmeSlug={browseData.programmeSlug}
+          unitSlug={browseData.unitSlug}
+          subjectTitle={subject}
+          yearTitle={yearDescription}
+          lessonSlug={lessonSlug ?? ""}
+          pageType={pageType}
         />
       );
     default:
@@ -164,6 +169,7 @@ export const PupilExperienceView = ({
   hasWorksheet,
   backUrl,
   initialSection,
+  pageType,
 }: PupilExperienceViewProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(
     !!lessonContent.contentGuidance,
@@ -216,6 +222,7 @@ export const PupilExperienceView = ({
                       lessonContent={lessonContent}
                       hasWorksheet={hasWorksheet}
                       backUrl={backUrl}
+                      pageType={pageType}
                     />
                   )}
                 </OakBox>

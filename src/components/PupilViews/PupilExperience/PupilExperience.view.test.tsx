@@ -127,6 +127,7 @@ describe("PupilExperienceView", () => {
             browseData={lessonBrowseData}
             hasWorksheet={false}
             initialSection="overview"
+            pageType="browse"
           />
         </PupilAnalyticsProvider>,
       );
@@ -161,6 +162,7 @@ describe("PupilExperienceView", () => {
               browseData={lessonBrowseData}
               hasWorksheet={false}
               initialSection="overview"
+              pageType="browse"
             />
           </PupilAnalyticsProvider>,
         );
@@ -191,6 +193,7 @@ describe("PupilExperienceView", () => {
           browseData={lessonBrowseData}
           hasWorksheet={false}
           initialSection="overview"
+          pageType="browse"
         />
       </PupilAnalyticsProvider>,
     );
@@ -227,6 +230,7 @@ describe("PupilExperienceView", () => {
           browseData={lessonBrowseData}
           hasWorksheet={false}
           initialSection="overview"
+          pageType="browse"
         />
       </PupilAnalyticsProvider>,
     );
@@ -272,6 +276,7 @@ describe("PupilExperienceView", () => {
           browseData={lessonBrowseData}
           hasWorksheet={false}
           initialSection="overview"
+          pageType="browse"
         />
       </PupilAnalyticsProvider>,
     );
@@ -313,6 +318,7 @@ describe("PupilExperienceView", () => {
           browseData={lessonBrowseData}
           hasWorksheet={false}
           initialSection="overview"
+          pageType="browse"
         />
       </PupilAnalyticsProvider>,
     );
@@ -354,6 +360,7 @@ describe("PupilExperienceView", () => {
           browseData={lessonBrowseData}
           hasWorksheet={false}
           initialSection="overview"
+          pageType="browse"
         />
       </PupilAnalyticsProvider>,
     );
@@ -397,6 +404,7 @@ describe("PupilExperienceView", () => {
           browseData={lessonBrowseData}
           hasWorksheet={false}
           initialSection="overview"
+          pageType="browse"
         />
       </PupilAnalyticsProvider>,
     );
@@ -428,6 +436,7 @@ describe("PupilExperienceView", () => {
           browseData={lessonBrowseData}
           hasWorksheet={false}
           initialSection="review"
+          pageType="browse"
         />
       </PupilAnalyticsProvider>,
     );
@@ -456,6 +465,7 @@ describe("PupilExperienceView", () => {
           browseData={lessonBrowseData}
           hasWorksheet={false}
           initialSection="overview"
+          pageType="browse"
         />
       </PupilAnalyticsProvider>,
     );

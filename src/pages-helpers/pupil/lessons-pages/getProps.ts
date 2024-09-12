@@ -122,6 +122,7 @@ export const getProps = ({
         hasWorksheet,
         initialSection: section,
         backUrl,
+        pageType: page,
       },
     };
 
