@@ -1,3 +1,5 @@
+import { useFeatureFlagVariantKey } from "posthog-js/react";
+import { useState } from "react";
 import {
   oakDefaultTheme,
   OakFlex,
@@ -6,8 +8,6 @@ import {
   OakSpan,
   OakThemeProvider,
 } from "@oaknational/oak-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
-import { useState } from "react";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
@@ -41,7 +41,7 @@ const Page = () => {
     // record success event
     track.videoPlayed({
       videoTitle: String(variantKey),
-      videoPlaybackId: "pupil-client-action-demo",
+      videoPlaybackId: ["pupil-client-action-demo"],
       durationSeconds: 10,
       isCaptioned: false,
       isMuted: false,
