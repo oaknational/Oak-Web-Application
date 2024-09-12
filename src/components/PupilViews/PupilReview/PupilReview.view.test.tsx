@@ -176,7 +176,7 @@ describe("PupilReview", () => {
     it("logAttempt function is called when button is clicked", async () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
       //spy on the track function
-      const logAttemptSpy = jest.fn();
+      const logAttemptSpy = jest.fn(() => Promise.resolve("attempt-id"));
       (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
 
       const { getByRole } = renderWithTheme(
