@@ -1,3 +1,5 @@
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+
 import HomePageTabImageNav from "./HomePageTabImageNav";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -5,7 +7,9 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 describe("HomePageTabImageNav Component", () => {
   it("renders without errors", () => {
     const { container } = renderWithTheme(
-      <HomePageTabImageNav current="teachers" />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <HomePageTabImageNav current="teachers" />
+      </OakThemeProvider>,
     );
     expect(container).toBeTruthy();
   });
@@ -26,14 +30,14 @@ describe("HomePageTabImageNav Component", () => {
       });
 
       const { getByRole } = renderWithTheme(
-        <HomePageTabImageNav current="teachers" />,
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <HomePageTabImageNav current="teachers" />
+        </OakThemeProvider>,
       );
       const curriculumButton = getByRole("link", {
         name,
       });
-      expect(curriculumButton).toBeTruthy();
-      curriculumButton.click();
-      expect(window.location.href).toBe(path);
+      expect(curriculumButton).toHaveAttribute("href", path);
     },
   );
 });

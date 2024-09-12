@@ -86,7 +86,9 @@ const lessonShareQuery =
       lessonSlug: args.lessonSlug,
       lessonTitle: parsedRawLesson.lesson_title,
       unitSlug: args.unitSlug,
-      unitTitle: parsedRawBrowseData.unit_title,
+      unitTitle:
+        parsedRawBrowseData.programme_fields.optionality ??
+        parsedRawBrowseData.unit_title,
       subjectSlug: parsedRawBrowseData.programme_fields.subject_slug,
       subjectTitle: parsedRawBrowseData.programme_fields.subject,
       examBoardSlug: parsedRawBrowseData.programme_fields.examboard_slug,
