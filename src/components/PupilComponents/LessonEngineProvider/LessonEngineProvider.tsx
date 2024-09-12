@@ -144,7 +144,7 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
     case "updateSectionResult": {
       if (!isLessonReviewSection(currentState.currentSection)) {
         throw new Error(
-          `Cannot update quiz result for non-review section '${currentState.currentSection}'`,
+          `Cannot update result for non-review section '${currentState.currentSection}'`,
         );
       }
 
@@ -256,6 +256,11 @@ export const LessonEngineProvider = memo(
     });
 
     const completeActivity = (section: LessonReviewSection) => {
+      if (state.sections[section]?.isComplete) {
+        console.warn(`Section '${section}' is already complete`);
+        return;
+      }
+
       trackLessonStarted();
 
       if (section === "intro" && track.lessonActivityCompletedIntroduction) {
@@ -270,6 +275,7 @@ export const LessonEngineProvider = memo(
       ) {
         track.lessonActivityCompletedStarterQuiz(getQuizTrackingData(section));
       }
+
       if (section === "video" && state.sections["video"] !== undefined) {
         track.lessonActivityCompletedLessonVideo(getVideoTrackingData(section));
       }

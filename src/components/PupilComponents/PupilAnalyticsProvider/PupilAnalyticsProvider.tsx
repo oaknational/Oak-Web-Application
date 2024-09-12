@@ -184,11 +184,13 @@ export const PupilAnalyticsProvider = ({
   };
 
   const pupilTrack: PupilAnalyticsTrack = {
-    lessonCompleted: (args) =>
+    lessonCompleted: (args) => {
+      console.log("PA: lessonCompleted");
       track.lessonCompleted({
         ...args,
         ...additionalArgs,
-      }),
+      });
+    },
     lessonActivityCompletedIntroduction: (args) =>
       track.lessonActivityCompletedIntroduction({
         ...args,

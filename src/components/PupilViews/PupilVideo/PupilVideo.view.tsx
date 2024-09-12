@@ -36,8 +36,12 @@ export const PupilViewsVideo = ({
   transcriptSentences,
   isLegacy,
 }: PupilViewsVideoProps) => {
-  const { completeActivity, updateCurrentSection, updateSectionResult } =
-    useLessonEngineContext();
+  const {
+    completeActivity,
+    updateCurrentSection,
+    updateSectionResult,
+    sectionResults,
+  } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const playbackId =
@@ -53,6 +57,11 @@ export const PupilViewsVideo = ({
     signedOpened: false,
     transcriptOpened: false,
   });
+
+  // make sure the video result is initialized
+  if (!sectionResults.video) {
+    updateSectionResult(videoResult.current);
+  }
 
   const handleVideoEvent = (event: VideoEventCallbackArgs) => {
     videoResult.current.played = true;
