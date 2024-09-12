@@ -13,6 +13,7 @@ query curriculumOverview(
     limit: 1
   ) {
     id: _id
+    explainerRaw
     subjectPrinciples
     partnerBio
     curriculumPartner {

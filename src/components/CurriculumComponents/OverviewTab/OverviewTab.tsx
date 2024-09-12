@@ -57,6 +57,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
     props.data;
   const {
+    explainerRaw,
     subjectPrinciples,
     partnerBio,
     curriculumPartner,
@@ -119,6 +120,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           >
             Overview
           </OakHeading>
+          <OakP>{JSON.stringify(explainerRaw)}</OakP>
           <OakHeading
             tag="h3"
             $font={["heading-6", "heading-5"]}

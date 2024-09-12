@@ -889,6 +889,7 @@ export type CurriculumInfoPageOverview = Document & {
   /** Date the document was last modified */
   _updatedAt?: Maybe<Scalars['DateTime']['output']>;
   curriculumPartner?: Maybe<CurriculumPartner>;
+  explainerRaw?: Maybe<Scalars['JSON']['output']>;
   partnerBio?: Maybe<Scalars['String']['output']>;
   phase?: Maybe<Scalars['String']['output']>;
   subject?: Maybe<Scalars['String']['output']>;
@@ -3707,7 +3708,7 @@ export type CurriculumOverviewQueryVariables = Exact<{
 }>;
 
 
-export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, videoAuthor?: string | null, videoExplainer?: string | null, id?: string | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
+export type CurriculumOverviewQuery = { __typename?: 'RootQuery', allCurriculumInfoPageOverview: Array<{ __typename?: 'CurriculumInfoPageOverview', explainerRaw?: any | null, subjectPrinciples?: Array<string | null> | null, partnerBio?: string | null, videoAuthor?: string | null, videoExplainer?: string | null, id?: string | null, curriculumPartner?: { __typename?: 'CurriculumPartner', name?: string | null, image?: { __typename?: 'Image', asset?: { __typename?: 'SanityImageAsset', _id?: string | null, url?: string | null } | null, hotspot?: { __typename?: 'SanityImageHotspot', x?: number | null, y?: number | null, width?: number | null, height?: number | null } | null } | null } | null, video?: { __typename?: 'Video', title?: string | null, captions?: Array<string | null> | null, video?: { __typename?: 'MuxVideo', asset?: { __typename?: 'MuxVideoAsset', assetId?: string | null, thumbTime?: number | null, playbackId?: string | null } | null } | null } | null }> };
 
 export type HomepageQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
@@ -4603,6 +4604,7 @@ export const CurriculumOverviewDocument = gql`
     limit: 1
   ) {
     id: _id
+    explainerRaw
     subjectPrinciples
     partnerBio
     curriculumPartner {
