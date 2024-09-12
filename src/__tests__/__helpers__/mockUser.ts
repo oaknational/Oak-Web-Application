@@ -12,6 +12,7 @@ export const mockUser = {
   id: "user-123",
   publicMetadata: {},
   reload: jest.fn(),
+  emailAddresses: [{ emailAddress: "test-email" }],
 } as unknown as UserResource;
 
 export const mockUserWithDownloadAccess: UserResource = {

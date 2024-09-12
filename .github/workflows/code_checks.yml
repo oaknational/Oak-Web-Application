@@ -1,5 +1,8 @@
 name: Code checks
 
+env:
+  PUPPETEER_DOWNLOAD_PATH: /home/runner/.npm/chromium
+
 on:
   push:
     branches:

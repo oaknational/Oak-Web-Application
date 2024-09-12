@@ -3,6 +3,8 @@
 
 import { SignIn } from "@clerk/nextjs";
 
+import { formAppearanceStyles } from "../../formAppearanceStyles";
+
 export default function SignInPage() {
-  return <SignIn />;
+  return <SignIn appearance={formAppearanceStyles} />;
 }

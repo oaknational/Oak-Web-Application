@@ -1,3 +1,146 @@
+# [1.545.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.544.0...v1.545.0) (2024-09-12)
+
+
+### Features
+
+* unit list skip filters ([0a58f7d](https://github.com/oaknational/Oak-Web-Application/commit/0a58f7dfc889dcaa2479ef22d055b75236b6a7f5))
+
+# [1.544.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.3...v1.544.0) (2024-09-12)
+
+
+### Bug Fixes
+
+* default newsletter sign up to false in school select ([f65e08d](https://github.com/oaknational/Oak-Web-Application/commit/f65e08d6d37e5a974183ae5362cfa4dff054965b))
+* remove btn margin to prevent overflowing focus state ([4acfad0](https://github.com/oaknational/Oak-Web-Application/commit/4acfad08199aaa67ccbe70b542c8c6a60a826600))
+* style adjustments ([3a01cd0](https://github.com/oaknational/Oak-Web-Application/commit/3a01cd049523aca55b447ded05ce6f9a9337b332))
+
+
+### Features
+
+* add navigation to use of oak page and capture data from url ([5b17434](https://github.com/oaknational/Oak-Web-Application/commit/5b17434e31fa76fb669d6167f0faa5099d26ec52))
+* add oak support onboarding page ([0edbc11](https://github.com/oaknational/Oak-Web-Application/commit/0edbc115507724dbdf3dc41c5767cc5a8b2f73ee))
+* add onboarding form and checkboxes to oak support page ([29c6364](https://github.com/oaknational/Oak-Web-Application/commit/29c63645101e11386ff7c6b9fa215468ba2b7d49))
+* add skip button and subheading ([dfd8184](https://github.com/oaknational/Oak-Web-Application/commit/dfd8184d6695c16b518227e01a2238b10f0a402e))
+* handle missing form data ([75b7816](https://github.com/oaknational/Oak-Web-Application/commit/75b7816d88b02ae60918504f0cd930f9e7d2b94d))
+* include use of oak options in hubspot submission ([6c47f00](https://github.com/oaknational/Oak-Web-Application/commit/6c47f00f4956f0d82f1ac2b40f7dd00f6636e741))
+* only show how can oak support onboarding page when user is not already signed up ([d093073](https://github.com/oaknational/Oak-Web-Application/commit/d093073c6ff4090b8b0ad66275c0fa2c3f536fed))
+
+## [1.543.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.2...v1.543.3) (2024-09-11)
+
+## [1.543.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.1...v1.543.2) (2024-09-11)
+
+
+### Bug Fixes
+
+* optionality title on canonical lesson page ([f31d693](https://github.com/oaknational/Oak-Web-Application/commit/f31d6937ce158b68adcbe5b258095d9c7e38a1d8))
+* use optionality title for unit when available ([7824fad](https://github.com/oaknational/Oak-Web-Application/commit/7824fad52bd01bd56adf341e8ac4006d23eed170))
+* use optionality title on lesson share page ([92ec92e](https://github.com/oaknational/Oak-Web-Application/commit/92ec92eb93147a5a70e4d0442aaf1e75fb89edaf))
+
+## [1.543.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.0...v1.543.1) (2024-09-10)
+
+
+### Bug Fixes
+
+* cache chromium in dependency cache to speed up CI ([99972ac](https://github.com/oaknational/Oak-Web-Application/commit/99972ac7593ed3b66b872a0e75cfc6779e662da4))
+
+# [1.543.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.542.0...v1.543.0) (2024-09-10)
+
+
+### Bug Fixes
+
+* padding and alignment ([557325d](https://github.com/oaknational/Oak-Web-Application/commit/557325dbf35e418c0c83dbe13f79464f26ca6140))
+* remove only ([bedfddd](https://github.com/oaknational/Oak-Web-Application/commit/bedfddd1a970773d533b83775b0ec44fe0334f66))
+* update tests for new implementation ([d8eb2b5](https://github.com/oaknational/Oak-Web-Application/commit/d8eb2b528e78482f37e5d8e1f393336fc52c0f88))
+
+
+### Features
+
+* bump to latest oak components ([66276c8](https://github.com/oaknational/Oak-Web-Application/commit/66276c813ee91dec39c5c9f57607648d46438eb6))
+
+# [1.542.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.541.0...v1.542.0) (2024-09-10)
+
+
+### Bug Fixes
+
+* correct capitalisation for subscription name ([6ae74d5](https://github.com/oaknational/Oak-Web-Application/commit/6ae74d5cc4dd49e4d58d31574cda24db259a5f04))
+* merge removed async query ([03be117](https://github.com/oaknational/Oak-Web-Application/commit/03be11793515320f6852de955f9eb39438d84371))
+
+
+### Features
+
+* add access token to config ([f7655ca](https://github.com/oaknational/Oak-Web-Application/commit/f7655cab0076eea4af4af24fd6e352ef7848f185))
+* add api call to get user subscription statuses by email ([b6e26df](https://github.com/oaknational/Oak-Web-Application/commit/b6e26dfa228096da8451bd34745295976378c46a))
+* make sign up deselected by default ([44d01d3](https://github.com/oaknational/Oak-Web-Application/commit/44d01d3630e776c0889d79c6688dd173633e1ceb))
+
+# [1.541.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.540.0...v1.541.0) (2024-09-09)
+
+
+### Bug Fixes
+
+* change ordering of rtl tags ([3bbf739](https://github.com/oaknational/Oak-Web-Application/commit/3bbf73968e32feba7239f6d4d84988b11b178be4))
+* changed comma to colon ([4590d7e](https://github.com/oaknational/Oak-Web-Application/commit/4590d7e7acf5cb031585254f30a89e29522fc807))
+* update trailing comma issue ([7b63788](https://github.com/oaknational/Oak-Web-Application/commit/7b63788cb120f7224c173e3dddc4f368d5daa4f0))
+
+
+### Features
+
+* added subject categories to docx ([f2ec22b](https://github.com/oaknational/Oak-Web-Application/commit/f2ec22be7e21bdf6457da2af6834d0bee66dc156))
+
+# [1.540.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.539.0...v1.540.0) (2024-09-06)
+
+
+### Features
+
+* convience script added ([7fac43b](https://github.com/oaknational/Oak-Web-Application/commit/7fac43bf41629dfe41368f126a2310087909f8eb))
+
+# [1.539.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.538.2...v1.539.0) (2024-09-06)
+
+
+### Bug Fixes
+
+* form submit test data ([bbd9725](https://github.com/oaknational/Oak-Web-Application/commit/bbd9725d203d6f5aed892812ddafef00f5b1af67))
+
+
+### Features
+
+* add should auth download header ([d96231a](https://github.com/oaknational/Oak-Web-Application/commit/d96231ab813296b5713f25a7e1fae3afba6a1504))
+* pass the user's session access token to the downloads API ([1219e00](https://github.com/oaknational/Oak-Web-Application/commit/1219e007982e513c5d699674f828503f419f8a9e))
+
+## [1.538.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.538.1...v1.538.2) (2024-09-05)
+
+
+### Bug Fixes
+
+* update published_mv_subject_phase_options_0_3 -> published_mv_subject_phase_options_0_5 ([3153a19](https://github.com/oaknational/Oak-Web-Application/commit/3153a1976d0abd8d326e8de3524800fb82ddc668))
+
+## [1.538.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.538.0...v1.538.1) (2024-09-05)
+
+
+### Bug Fixes
+
+* add span to enter manual ([f0fe62d](https://github.com/oaknational/Oak-Web-Application/commit/f0fe62d12f2addf5195a50c56330bf8eec7540c5))
+* amend test to redirect to sign up page ([3d3b0de](https://github.com/oaknational/Oak-Web-Application/commit/3d3b0de864f480a085c5d885ca2822d308000695))
+* bolden font ([2a30eec](https://github.com/oaknational/Oak-Web-Application/commit/2a30eec578c87c5e362027199f6101a497e435cb))
+* default to sign up page not sign in page ([cac692c](https://github.com/oaknational/Oak-Web-Application/commit/cac692cffb8394554c7cea68eeb56a88c3153a04))
+* empty commit ([f256446](https://github.com/oaknational/Oak-Web-Application/commit/f25644635537fd9d7a161a8d91fb8d20440ea339))
+* remove additional code ([16a947c](https://github.com/oaknational/Oak-Web-Application/commit/16a947ced58a927df77f00f3c56ad90753cebc47))
+
+# [1.538.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.537.0...v1.538.0) (2024-09-04)
+
+
+### Bug Fixes
+
+* empty commit ([838bbc9](https://github.com/oaknational/Oak-Web-Application/commit/838bbc9be9519af1c85e6e8ea5315861bbf2acf6))
+* **next.config.js:** impermanent ai redirect ([a3f84be](https://github.com/oaknational/Oak-Web-Application/commit/a3f84bee6b75e2551c0c9364c5df06ad04e77627))
+* resolved conflicts ([58c000e](https://github.com/oaknational/Oak-Web-Application/commit/58c000e5b1ffb25015243b6926952bfb3ee8d0f2))
+
+
+### Features
+
+* change background colours and tab order ([335095e](https://github.com/oaknational/Oak-Web-Application/commit/335095e0215ed6e59fb531af09d5e4dd52d5d326))
+* change copy ([69b4e6a](https://github.com/oaknational/Oak-Web-Application/commit/69b4e6a19862768f3d3c27c08dcfbea8875dbd26))
+* prelaunch changes ([bf9748f](https://github.com/oaknational/Oak-Web-Application/commit/bf9748f0c090c28933b4da9a49634fa694ef4fe4))
+
 # [1.537.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.536.0...v1.537.0) (2024-09-04)
 
 
