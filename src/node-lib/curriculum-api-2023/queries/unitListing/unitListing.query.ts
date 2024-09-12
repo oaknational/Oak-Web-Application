@@ -60,7 +60,7 @@ const unitListingQuery =
             (category): category is string => typeof category === "string",
           ),
       ),
-    ).sort();
+    ).sort((a, b) => a.localeCompare(b));
 
     const subjectCategories = subjectCats.map((category) => {
       const categoryIconMap: { [key: string]: string } = {
