@@ -2,7 +2,7 @@ type GenericUnitListingData<U> = {
   units: U[][];
 };
 
-function filterLearningTheme<
+function filterUnits<
   U extends {
     learningThemes?: { themeSlug?: string | null }[] | null;
     subjectCategories?: ({ label: string; slug: string } | null)[] | null;
@@ -34,4 +34,4 @@ function filterLearningTheme<
   );
 }
 
-export default filterLearningTheme;
+export default filterUnits;

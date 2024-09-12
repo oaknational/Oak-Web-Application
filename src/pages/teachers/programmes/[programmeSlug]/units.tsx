@@ -1,6 +1,5 @@
 import React, { useId } from "react";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -9,12 +8,9 @@ import {
 } from "next";
 import {
   OakBox,
-  OakFlex,
   OakGrid,
   OakGridArea,
   OakHeading,
-  OakIconProps,
-  OakSearchFilterCheckBox,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
@@ -38,7 +34,7 @@ import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import filterLearningTheme from "@/utils/filterLearningTheme/filterLearningTheme";
+import filterUnits from "@/utils/filterUnits/filterUnits";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -49,28 +45,16 @@ import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 import { TierSchema } from "@/node-lib/curriculum-api-2023/queries/unitListing/tiers/tiers.schema";
+import SubjectCategoryFilters from "@/components/TeacherComponents/SubjectCategoryFilters";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
 };
 
-const StyledFieldset = styled.fieldset`
-  border: 0px;
-  margin: 0;
-  padding: 0;
-`;
-
 /**
  *
  * FIXME:
- * - Break into components?
  * - Routing
- * - Rename function
- * - Bump component lib version
- * - Type errors
- * - Test files
- *
- * @returns
  */
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
@@ -98,7 +82,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const themeSlug = router.query["learning-theme"]?.toString();
   const categorySlug = router.query["category"]?.toString();
 
-  const unitsFilteredByLearningTheme = filterLearningTheme(
+  const unitsFilteredByLearningTheme = filterUnits(
     themeSlug,
     categorySlug,
     units,
@@ -233,98 +217,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 <OakHeading tag="h3" $font="heading-6" $mb="space-between-m">
                   Filters
                 </OakHeading>
-                {subjectCategories && subjectCategories.length > 1 && (
-                  <OakFlex
-                    $mb="space-between-m"
-                    $flexDirection={"column"}
-                    $pb={"inner-padding-xl2"}
-                    $bb={"border-solid-s"}
-                    $borderColor={"border-neutral-lighter"}
-                    $flexGrow={1}
-                  >
-                    <StyledFieldset>
-                      <OakHeading
-                        tag="h3"
-                        as={"legend"}
-                        $font="heading-7"
-                        $mb="space-between-s"
-                      >
-                        Category
-                      </OakHeading>
-                      <OakFlex
-                        $flexDirection={"row"}
-                        $flexWrap={"wrap"}
-                        $gap={"space-between-ssx"}
-                        $flexGrow={1}
-                      >
-                        <OakSearchFilterCheckBox
-                          value="all"
-                          displayValue="All"
-                          id="all"
-                          checked={!categorySlug}
-                          onChange={() => {
-                            const { category, ...restQuery } = router.query;
-                            router.push({
-                              pathname: router.pathname,
-                              query: restQuery,
-                            });
-                            // double check browse refined
-                            track.browseRefined({
-                              platform: "owa",
-                              product: "teacher lesson resources",
-                              engagementIntent: "refine",
-                              componentType: "filter_link",
-                              eventVersion: "2.0.0",
-                              analyticsUseCase: "Teacher",
-                              filterValue: "all",
-                              filterType: "Subject filter",
-                              activeFilters: {
-                                content_types: "units",
-                              },
-                            });
-                          }}
-                        />
-                        {subjectCategories.map((category) =>
-                          category ? (
-                            <OakSearchFilterCheckBox
-                              // get the icon types
-                              icon={
-                                `subject-${category.slug}` as OakIconProps["iconName"]
-                              }
-                              key={category.label}
-                              value={category.label}
-                              displayValue={category.label}
-                              id={category.label}
-                              checked={categorySlug === category.slug}
-                              onChange={() => {
-                                track.browseRefined({
-                                  platform: "owa",
-                                  product: "teacher lesson resources",
-                                  engagementIntent: "refine",
-                                  componentType: "filter_link",
-                                  eventVersion: "2.0.0",
-                                  analyticsUseCase: "Teacher",
-                                  filterValue: category.label,
-                                  filterType: "Subject filter",
-                                  activeFilters: {
-                                    content_types: "units",
-                                  },
-                                });
-                                router.push({
-                                  pathname: router.pathname,
-                                  query: {
-                                    ...router.query,
-                                    category: category.slug,
-                                  },
-                                });
-                              }}
-                            />
-                          ) : null,
-                        )}
-                      </OakFlex>
-                    </StyledFieldset>
-                  </OakFlex>
-                )}
+
+                <SubjectCategoryFilters
+                  subjectCategories={subjectCategories}
+                  categorySlug={categorySlug}
+                  browseRefined={track.browseRefined}
+                />
                 {learningThemes?.length > 1 && (
                   <Flex $flexDirection={"column"}>
                     <OakHeading
@@ -389,86 +287,11 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       applyForTablet
                     >
                       <OakBox $mt={"space-between-m2"}>
-                        <OakHeading
-                          tag="h3"
-                          $font="heading-7"
-                          $mb={"space-between-m"}
-                        >
-                          Categories
-                        </OakHeading>
-                        <OakFlex
-                          $maxWidth={"all-spacing-20"}
-                          $flexDirection={"row"}
-                          $flexWrap={"wrap"}
-                          $mb={"space-between-m2"}
-                          $gap={"space-between-xs"}
-                        >
-                          <OakSearchFilterCheckBox
-                            value="all"
-                            displayValue="All"
-                            id="all"
-                            checked={!categorySlug}
-                            onChange={() => {
-                              const { category, ...restQuery } = router.query;
-                              router.push({
-                                pathname: router.pathname,
-                                query: restQuery,
-                              });
-                              // double check browse refined
-                              track.browseRefined({
-                                platform: "owa",
-                                product: "teacher lesson resources",
-                                engagementIntent: "refine",
-                                componentType: "filter_link",
-                                eventVersion: "2.0.0",
-                                analyticsUseCase: "Teacher",
-                                filterValue: "all",
-                                filterType: "Subject filter",
-                                activeFilters: {
-                                  content_types: "units",
-                                },
-                              });
-                            }}
-                          />
-                          {subjectCategories &&
-                            subjectCategories.map((category) =>
-                              category ? (
-                                <OakSearchFilterCheckBox
-                                  // get the icon types
-                                  icon={
-                                    category.iconName as OakIconProps["iconName"]
-                                  }
-                                  key={category.label}
-                                  value={category.label}
-                                  displayValue={category.label}
-                                  id={category.label}
-                                  checked={categorySlug === category.slug}
-                                  onChange={() => {
-                                    track.browseRefined({
-                                      platform: "owa",
-                                      product: "teacher lesson resources",
-                                      engagementIntent: "refine",
-                                      componentType: "filter_link",
-                                      eventVersion: "2.0.0",
-                                      analyticsUseCase: "Teacher",
-                                      filterValue: category.label,
-                                      filterType: "Subject filter",
-                                      activeFilters: {
-                                        content_types: "units",
-                                      },
-                                    });
-                                    router.push({
-                                      pathname: router.pathname,
-                                      query: {
-                                        ...router.query,
-                                        category: category.slug,
-                                      },
-                                    });
-                                  }}
-                                />
-                              ) : null,
-                            )}
-                        </OakFlex>
+                        <SubjectCategoryFilters
+                          subjectCategories={subjectCategories}
+                          categorySlug={categorySlug}
+                          browseRefined={track.browseRefined}
+                        />
                       </OakBox>
                       <>
                         <OakHeading

@@ -1,17 +1,17 @@
 import unitListingFixture from "../../node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 
-import filterLearningTheme from "./filterLearningTheme";
+import filterUnits from "./filterUnits";
 
-describe("filterLearningTheme", () => {
+describe("filterUnits", () => {
   it("should return units if themeSlug is undefined", () => {
     const units = unitListingFixture().units;
     const themeSlug = undefined;
-    expect(filterLearningTheme(themeSlug, undefined, units)).toEqual(units);
+    expect(filterUnits(themeSlug, undefined, units)).toEqual(units);
   });
   it("should return units if themeSlug has a value", () => {
     const themeSlug = "computer-science-1";
     const units = unitListingFixture().units;
-    expect(filterLearningTheme(themeSlug, undefined, units)).toEqual([
+    expect(filterUnits(themeSlug, undefined, units)).toEqual([
       [
         {
           slug: "data-representation-618b",
