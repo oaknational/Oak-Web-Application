@@ -107,6 +107,12 @@ export const Default: Story = {
             lessonTitle={args.lessonTitle}
             starterQuizQuestionsArray={quizQuestions}
             exitQuizQuestionsArray={exitQuizQuestions}
+            lessonSlug="lesson-slug"
+            programmeSlug="programme-slug"
+            unitSlug="unit-slug"
+            subjectTitle="subject-title"
+            yearTitle="year-title"
+            pageType="browse"
           />
         </LessonEngineContext.Provider>
       </MathJaxProvider>
