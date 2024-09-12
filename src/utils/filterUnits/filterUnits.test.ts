@@ -41,4 +41,115 @@ describe("filterUnits", () => {
       ],
     ]);
   });
+  it("should return units if categorySlug has a value", () => {
+    const categorySlug = "grammar";
+    const units = unitListingFixture().units;
+    expect(filterUnits(undefined, categorySlug, units)).toEqual([
+      [
+        {
+          slug: "computer-systems-e17a",
+          title: "Computer Systems",
+          nullTitle: "Computer Systems",
+          programmeSlug: "computing-secondary-ks4",
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key Stage 4",
+          subjectSlug: "computing",
+          subjectTitle: "Computing",
+          lessonCount: 12,
+          unitStudyOrder: 2,
+          yearOrder: 1,
+          expired: false,
+          expiredLessonCount: 0,
+          yearTitle: "Year 10",
+          year: "year-10",
+          cohort: "2023-2024",
+          subjectCategories: [
+            {
+              label: "Grammar",
+              slug: "grammar",
+            },
+          ],
+
+          learningThemes: [
+            {
+              themeSlug: "computer-science-2",
+              themeTitle: "Computer Science",
+            },
+          ],
+        },
+      ],
+      [
+        {
+          slug: "networks-fe4b",
+          title: "Networks",
+          nullTitle: "Networks",
+          programmeSlug: "computing-secondary-ks4",
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key Stage 4",
+          subjectSlug: "computing",
+          subjectTitle: "Computing",
+          lessonCount: 6,
+          unitStudyOrder: 3,
+          expired: false,
+          yearOrder: 1,
+          expiredLessonCount: 0,
+          yearTitle: "Year 10",
+          year: "year-10",
+          cohort: "2023-2024",
+          subjectCategories: [
+            {
+              label: "Grammar",
+              slug: "grammar",
+            },
+          ],
+          learningThemes: [
+            {
+              themeSlug: "computer-science-3",
+              themeTitle: "Computer Science",
+            },
+          ],
+        },
+      ],
+    ]);
+  });
+  it("should return unit when both subjectCategory and learningTheme passed into function", () => {
+    const categorySlug = "grammar";
+    const themeSlug = "computer-science-3";
+    const units = unitListingFixture().units;
+    expect(filterUnits(themeSlug, categorySlug, units)).toEqual([
+      [
+        {
+          slug: "networks-fe4b",
+          title: "Networks",
+          nullTitle: "Networks",
+          programmeSlug: "computing-secondary-ks4",
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key Stage 4",
+          subjectSlug: "computing",
+          subjectTitle: "Computing",
+          lessonCount: 6,
+          unitStudyOrder: 3,
+          expired: false,
+          yearOrder: 1,
+          subjectCategories: [
+            {
+              label: "Grammar",
+              slug: "grammar",
+            },
+          ],
+
+          expiredLessonCount: 0,
+          yearTitle: "Year 10",
+          year: "year-10",
+          cohort: "2023-2024",
+          learningThemes: [
+            {
+              themeSlug: "computer-science-3",
+              themeTitle: "Computer Science",
+            },
+          ],
+        },
+      ],
+    ]);
+  });
 });

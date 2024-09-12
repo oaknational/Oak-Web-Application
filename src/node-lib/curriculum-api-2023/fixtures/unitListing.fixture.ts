@@ -70,7 +70,12 @@ export const unitListingFixture = (
           yearTitle: "Year 10",
           year: "year-10",
           cohort: "2023-2024",
-          subjectCategories: null,
+          subjectCategories: [
+            {
+              label: "Grammar",
+              slug: "grammar",
+            },
+          ],
 
           learningThemes: [
             {
@@ -94,7 +99,12 @@ export const unitListingFixture = (
           unitStudyOrder: 3,
           expired: false,
           yearOrder: 1,
-          subjectCategories: null,
+          subjectCategories: [
+            {
+              label: "Grammar",
+              slug: "grammar",
+            },
+          ],
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
