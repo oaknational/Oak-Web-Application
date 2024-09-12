@@ -109,21 +109,6 @@ export const Default: Story = {
         title: "efwef",
       },
       sectionResults: sectionResultsFixture,
-      //   {
-      //     "exit-quiz": sectionResultsFixture["exit-quiz"],
-      //     "starter-quiz": sectionResultsFixture["starter-quiz"],
-      //     video: {
-      //       played: false,
-      //       duration: 0,
-      //       timeElapsed: 0,
-      //       isComplete: true,
-      //     },
-      //     intro: {
-      //       worksheetAvailable: false,
-      //       worksheetDownloaded: false,
-      //       isComplete: true,
-      //     },
-      //   },
     },
   },
 };
