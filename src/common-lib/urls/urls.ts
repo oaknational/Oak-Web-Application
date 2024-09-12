@@ -305,6 +305,10 @@ type OnboardingRoleSelectionLinkProps = {
   page: "onboarding-role-selection";
 };
 
+type OnboardingUseOfOak = {
+  page: "onboarding-use-of-oak";
+};
+
 export type OakLinkProps =
   | LabsLinkProps
   | SubjectListingLinkProps
@@ -361,7 +365,8 @@ export type OakLinkProps =
   | CurriculumPreviousDownloadsLinkProps
   | OnboardingLinkProps
   | OnboardingSchoolSelectionLinkProps
-  | OnboardingRoleSelectionLinkProps;
+  | OnboardingRoleSelectionLinkProps
+  | OnboardingUseOfOak;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -842,6 +847,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Onboarding: Role Selection",
     configType: "internal",
     pageType: "onboarding-role-selection",
+  }),
+  "onboarding-use-of-oak": createOakPageConfig({
+    pathPattern: "/onboarding/how-can-oak-support-you",
+    analyticsPageName: "Onboarding: Use Of Oak",
+    configType: "internal",
+    pageType: "onboarding-use-of-oak",
   }),
 };
 

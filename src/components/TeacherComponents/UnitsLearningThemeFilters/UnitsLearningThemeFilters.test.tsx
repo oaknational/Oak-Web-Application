@@ -1,5 +1,7 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
+import { act } from "react-dom/test-utils";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import UnitsLearningThemeFilters from "./UnitsLearningThemeFilters";
 
@@ -18,26 +20,29 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 describe("UnitsLearningThemeFilters", () => {
   test("should render links to lessons", () => {
     const { getByRole } = renderWithTheme(
-      <UnitsLearningThemeFilters
-        labelledBy={"Learning Theme Filter"}
-        learningThemes={[
-          {
-            themeTitle: "Grammar",
-            themeSlug: "grammar",
-          },
-        ]}
-        selectedThemeSlug={"all"}
-        linkProps={{
-          page: "unit-index",
-          programmeSlug: "maths-secondary-ks3",
-        }}
-        trackingProps={{
-          keyStageSlug: "ks3",
-          keyStageTitle: "Key stage 3",
-          subjectSlug: "english",
-          subjectTitle: "English",
-        }}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitsLearningThemeFilters
+          labelledBy={"Learning Theme Filter"}
+          learningThemes={[
+            {
+              themeTitle: "Grammar",
+              themeSlug: "grammar",
+            },
+          ]}
+          selectedThemeSlug={"all"}
+          linkProps={{
+            page: "unit-index",
+            programmeSlug: "maths-secondary-ks3",
+          }}
+          trackingProps={{
+            keyStageSlug: "ks3",
+            keyStageTitle: "Key stage 3",
+            subjectSlug: "english",
+            subjectTitle: "English",
+          }}
+        />
+        ,
+      </OakThemeProvider>,
     );
     expect(getByRole("link", { name: "Grammar" })).toHaveAttribute(
       "href",
@@ -46,26 +51,29 @@ describe("UnitsLearningThemeFilters", () => {
   });
   test("should call tracking browse refined with correct args", async () => {
     renderWithTheme(
-      <UnitsLearningThemeFilters
-        labelledBy={"Learning Theme Filter"}
-        learningThemes={[
-          {
-            themeTitle: "Grammar",
-            themeSlug: "grammar",
-          },
-        ]}
-        selectedThemeSlug={"all"}
-        linkProps={{
-          page: "unit-index",
-          programmeSlug: "maths-secondary-ks3",
-        }}
-        trackingProps={{
-          keyStageSlug: "ks3",
-          keyStageTitle: "Key stage 3",
-          subjectSlug: "english",
-          subjectTitle: "English",
-        }}
-      />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitsLearningThemeFilters
+          labelledBy={"Learning Theme Filter"}
+          learningThemes={[
+            {
+              themeTitle: "Grammar",
+              themeSlug: "grammar",
+            },
+          ]}
+          selectedThemeSlug={"all"}
+          linkProps={{
+            page: "unit-index",
+            programmeSlug: "maths-secondary-ks3",
+          }}
+          trackingProps={{
+            keyStageSlug: "ks3",
+            keyStageTitle: "Key stage 3",
+            subjectSlug: "english",
+            subjectTitle: "English",
+          }}
+        />
+        ,
+      </OakThemeProvider>,
     );
 
     const grammarThread = screen.getByRole("link", { name: "Grammar" });
@@ -82,5 +90,49 @@ describe("UnitsLearningThemeFilters", () => {
       filterValue: "Grammar",
       activeFilters: { keyStage: ["ks3"], subject: ["english"] },
     });
+  });
+  test("skip filters button becomes visible when focussed", async () => {
+    const { getByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitsLearningThemeFilters
+          labelledBy={"Learning Theme Filter"}
+          learningThemes={[
+            {
+              themeTitle: "Grammar",
+              themeSlug: "grammar",
+            },
+          ]}
+          selectedThemeSlug={"all"}
+          linkProps={{
+            page: "unit-index",
+            programmeSlug: "maths-secondary-ks3",
+          }}
+          trackingProps={{
+            keyStageSlug: "ks3",
+            keyStageTitle: "Key stage 3",
+            subjectSlug: "english",
+            subjectTitle: "English",
+          }}
+        />
+        ,
+      </OakThemeProvider>,
+    );
+
+    const skipUnits = getByText("Skip to units").closest("a");
+
+    if (!skipUnits) {
+      throw new Error("Could not find filter button");
+    }
+
+    act(() => {
+      skipUnits.focus();
+    });
+    expect(skipUnits).toHaveFocus();
+    expect(skipUnits).not.toHaveStyle("position: absolute");
+
+    act(() => {
+      skipUnits.blur();
+    });
+    expect(skipUnits).not.toHaveFocus();
   });
 });
