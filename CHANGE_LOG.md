@@ -1,3 +1,23 @@
+# [1.544.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.3...v1.544.0) (2024-09-12)
+
+
+### Bug Fixes
+
+* default newsletter sign up to false in school select ([f65e08d](https://github.com/oaknational/Oak-Web-Application/commit/f65e08d6d37e5a974183ae5362cfa4dff054965b))
+* remove btn margin to prevent overflowing focus state ([4acfad0](https://github.com/oaknational/Oak-Web-Application/commit/4acfad08199aaa67ccbe70b542c8c6a60a826600))
+* style adjustments ([3a01cd0](https://github.com/oaknational/Oak-Web-Application/commit/3a01cd049523aca55b447ded05ce6f9a9337b332))
+
+
+### Features
+
+* add navigation to use of oak page and capture data from url ([5b17434](https://github.com/oaknational/Oak-Web-Application/commit/5b17434e31fa76fb669d6167f0faa5099d26ec52))
+* add oak support onboarding page ([0edbc11](https://github.com/oaknational/Oak-Web-Application/commit/0edbc115507724dbdf3dc41c5767cc5a8b2f73ee))
+* add onboarding form and checkboxes to oak support page ([29c6364](https://github.com/oaknational/Oak-Web-Application/commit/29c63645101e11386ff7c6b9fa215468ba2b7d49))
+* add skip button and subheading ([dfd8184](https://github.com/oaknational/Oak-Web-Application/commit/dfd8184d6695c16b518227e01a2238b10f0a402e))
+* handle missing form data ([75b7816](https://github.com/oaknational/Oak-Web-Application/commit/75b7816d88b02ae60918504f0cd930f9e7d2b94d))
+* include use of oak options in hubspot submission ([6c47f00](https://github.com/oaknational/Oak-Web-Application/commit/6c47f00f4956f0d82f1ac2b40f7dd00f6636e741))
+* only show how can oak support onboarding page when user is not already signed up ([d093073](https://github.com/oaknational/Oak-Web-Application/commit/d093073c6ff4090b8b0ad66275c0fa2c3f536fed))
+
 ## [1.543.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.2...v1.543.3) (2024-09-11)
 
 ## [1.543.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.1...v1.543.2) (2024-09-11)
