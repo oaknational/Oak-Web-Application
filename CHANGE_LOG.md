@@ -1,3 +1,10 @@
+# [1.545.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.544.0...v1.545.0) (2024-09-12)
+
+
+### Features
+
+* unit list skip filters ([0a58f7d](https://github.com/oaknational/Oak-Web-Application/commit/0a58f7dfc889dcaa2479ef22d055b75236b6a7f5))
+
 # [1.544.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.543.3...v1.544.0) (2024-09-12)
 
 

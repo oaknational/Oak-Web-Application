@@ -5,6 +5,7 @@ import {
   OakUnitListItem,
   OakUnitListOptionalityItem,
   OakPagination,
+  OakAnchorTarget,
 } from "@oaknational/oak-components";
 import { NextRouter, useRouter } from "next/router";
 
@@ -260,6 +261,7 @@ const UnitList: FC<UnitListProps> = (props) => {
 
   return (
     <OakFlex $flexDirection="column">
+      <OakAnchorTarget id="unit-list" />
       {currentPageItems.length ? (
         isUnitListData(props) ? (
           <OakFlex $flexDirection="column" $gap="space-between-xxl">
