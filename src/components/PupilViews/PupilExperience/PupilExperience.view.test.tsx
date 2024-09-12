@@ -33,6 +33,18 @@ jest.mock("@/components/PupilViews/PupilExpired/PupilExpired.view", () => ({
   PupilExpiredView: jest.fn(() => "PupilExpiredView"),
 }));
 
+jest.mock("@/components/PupilViews/PupilReview", () => {
+  return {
+    PupilViewsReview: () => (
+      <div>
+        <div>Lesson review</div>
+        <div data-testid="content-guidance-info">Guidance Title</div>
+        <div data-testid="suervision-level-info">Supervision Level</div>
+      </div>
+    ),
+  };
+});
+
 jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
   return {
     PupilViewsLessonOverview: () => (
@@ -418,7 +430,11 @@ describe("PupilExperienceView", () => {
     const lessonContent = lessonContentFixture({
       lessonTitle: "Lesson Title",
     });
-    const lessonBrowseData = lessonBrowseDataFixture({});
+    const lessonBrowseData = lessonBrowseDataFixture({
+      lessonSlug: "lesson-slug",
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+    });
     const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
     lessonBrowseData.programmeFields.phase = "secondary";
     lessonContent.lessonTitle = null;
@@ -436,7 +452,7 @@ describe("PupilExperienceView", () => {
           browseData={lessonBrowseData}
           hasWorksheet={false}
           initialSection="review"
-          pageType="browse"
+          pageType="canonical"
         />
       </PupilAnalyticsProvider>,
     );
