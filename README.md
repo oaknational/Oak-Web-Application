@@ -2,7 +2,7 @@
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen)
 
-The Oak National Academy Web Application code base.
+The Oak National Academy Web Application code base .
 
 - [Getting started](#getting-started)
 - [Automatic Checks](#automatic-checks)
