@@ -25,7 +25,6 @@ import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider"
 import { QuizResults } from "@/components/PupilComponents/QuizResults";
 import { resolveOakHref } from "@/common-lib/urls";
 
-
 // TODO: add question arrays for starter and exit quizzes so that the expand quiz results can be rendered
 
 type PupilViewsReviewProps = {

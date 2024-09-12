@@ -13,7 +13,6 @@ import { createLessonEngineContext } from "@/components/PupilComponents/pupilTes
 import { PupilProvider } from "@/browser-lib/pupil-api/PupilClientProvider";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 
-
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn((a) => a),
 }));
