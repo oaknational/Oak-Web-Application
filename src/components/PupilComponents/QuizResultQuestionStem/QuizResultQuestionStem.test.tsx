@@ -6,7 +6,7 @@ import { QuizResultQuestionStem } from "@/components/PupilComponents/QuizResultQ
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { ImageOrTextItem } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
-import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+import { invariant } from "@/utils/invariant";
 
 const starterQuiz = quizQuestions;
 const mcqText = starterQuiz ? starterQuiz[0] : null;
