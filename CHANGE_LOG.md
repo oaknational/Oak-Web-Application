@@ -1,3 +1,10 @@
+## [1.546.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.546.0...v1.546.1) (2024-09-13)
+
+
+### Bug Fixes
+
+* render optionality units when there are 2 of them ([fc6d3df](https://github.com/oaknational/Oak-Web-Application/commit/fc6d3df1db0ca23d61c86e04020fb1e086401be3))
+
 # [1.546.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.545.0...v1.546.0) (2024-09-12)
 
 
