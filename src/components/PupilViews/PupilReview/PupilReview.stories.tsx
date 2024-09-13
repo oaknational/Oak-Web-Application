@@ -82,6 +82,9 @@ export const Default: Story = {
                 duration: 0,
                 timeElapsed: 0,
                 isComplete: args.isComplete,
+                muted: false,
+                signedOpened: false,
+                transcriptOpened: false,
               },
               intro: {
                 worksheetAvailable: false,
@@ -90,7 +93,7 @@ export const Default: Story = {
               },
             },
             isLessonComplete: args.isComplete,
-            completeSection: () => {},
+            completeActivity: () => {},
             updateCurrentSection: () => {},
             proceedToNextSection: () => {},
             updateSectionResult: () => {},
@@ -101,6 +104,7 @@ export const Default: Story = {
               "exit-quiz",
             ],
             lessonStarted: true,
+            updateWorksheetDownloaded: () => {},
           }}
         >
           <PupilViewsReview

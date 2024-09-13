@@ -1,3 +1,40 @@
+## [1.546.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.546.0...v1.546.1) (2024-09-13)
+
+
+### Bug Fixes
+
+* render optionality units when there are 2 of them ([fc6d3df](https://github.com/oaknational/Oak-Web-Application/commit/fc6d3df1db0ca23d61c86e04020fb1e086401be3))
+
+# [1.546.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.545.0...v1.546.0) (2024-09-12)
+
+
+### Bug Fixes
+
+* ensure video completed is sent even if they didn't watch it ([666b64f](https://github.com/oaknational/Oak-Web-Application/commit/666b64fd785d098cbe717a1d915da2863bb7f30b))
+* formatting ([57c0139](https://github.com/oaknational/Oak-Web-Application/commit/57c01392c4fad3ad7e470804565c1a82514901be))
+* lint errors ([8dc6b36](https://github.com/oaknational/Oak-Web-Application/commit/8dc6b36b17ef28ad556c2b8b06a149eb47b98dd3))
+* refactor audio and video analytics functions ([8b73779](https://github.com/oaknational/Oak-Web-Application/commit/8b737791ee4ec2c79d0fb4e56083077fe6945fff))
+* remove duplicate tracking calls ([5d3ae9b](https://github.com/oaknational/Oak-Web-Application/commit/5d3ae9b9e38f0790efbc64fd71cbf4f3233af16b))
+* resolved conflicts ([8d0f5de](https://github.com/oaknational/Oak-Web-Application/commit/8d0f5de4e00c1f2dd0c4b5979d6b8743aea3c5b6))
+
+
+### Features
+
+* accommodate type changes in avo ([4bb47fe](https://github.com/oaknational/Oak-Web-Application/commit/4bb47fef10dcf7171f89309e27a0a4f523807d8f))
+* **avo:** fix fixture and match types ([8848cb8](https://github.com/oaknational/Oak-Web-Application/commit/8848cb8f4a0d56e391d7ccade8ee3e3073fad2dc))
+* **avo:** update avo tracking events ([02bc65f](https://github.com/oaknational/Oak-Web-Application/commit/02bc65f521a9e8f900f39d05aea74d87d8e2ddcf))
+* **avo:** update avo tracking events ([eeaf603](https://github.com/oaknational/Oak-Web-Application/commit/eeaf603f79a2742b4b445dd9c13c824d2e31944b))
+* **merge:** merge conflicts ([bf90224](https://github.com/oaknational/Oak-Web-Application/commit/bf90224e82007e7e213e4cc56be6227987672490))
+* **merge:** merge conflicts ([a1a04fc](https://github.com/oaknational/Oak-Web-Application/commit/a1a04fc94c2d0c074838183b964e72a22c691cef))
+* **package:** update package ([cd9e67d](https://github.com/oaknational/Oak-Web-Application/commit/cd9e67d099f28f0d11c994528657106d55c75867))
+* **package:** update package ([d86991f](https://github.com/oaknational/Oak-Web-Application/commit/d86991fe723e95ac5e2fba6ebf6c792c41d88c8a))
+* **package:** update package ([59ca8cf](https://github.com/oaknational/Oak-Web-Application/commit/59ca8cf2ac5041395f7eaa7796cadf8e57ad9628))
+* **test:** fix test types ([4326f60](https://github.com/oaknational/Oak-Web-Application/commit/4326f60631366d856bd91575f7fa2950756a0037))
+* **test:** fix test types ([58a0993](https://github.com/oaknational/Oak-Web-Application/commit/58a0993df5fb50a70b99651372a481a3b47c6cda))
+* **test:** fix test types ([818ceef](https://github.com/oaknational/Oak-Web-Application/commit/818ceeffc623562cfccb53ce7652d22198ab9c19))
+* **test:** fix test types ([06e0ffb](https://github.com/oaknational/Oak-Web-Application/commit/06e0ffbb580ece0ecf9e953f692c84f21cb59236))
+* **tests:** fix unrelated tests ([cccb25e](https://github.com/oaknational/Oak-Web-Application/commit/cccb25e34fe55d94d12b5abb6887815e63828f61))
+
 # [1.545.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.544.0...v1.545.0) (2024-09-12)
 
 

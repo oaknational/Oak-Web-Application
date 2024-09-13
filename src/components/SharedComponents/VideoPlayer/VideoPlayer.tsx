@@ -47,6 +47,7 @@ export type VideoEventCallbackArgs = {
   event: "play" | "playing" | "pause" | "end";
   timeElapsed: number | null;
   duration: number | null;
+  muted: boolean;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
@@ -126,6 +127,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       event: "play",
       duration: getDuration(mediaElRef),
       timeElapsed: getTimeElapsed(mediaElRef),
+      muted: mediaElRef.current?.muted || false,
     });
   };
 
@@ -137,6 +139,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       event: "pause",
       duration: getDuration(mediaElRef),
       timeElapsed: getTimeElapsed(mediaElRef),
+      muted: mediaElRef.current?.muted || false,
     });
   };
 
@@ -148,12 +151,14 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         event: "end",
         duration: getDuration(mediaElRef),
         timeElapsed: getTimeElapsed(mediaElRef),
+        muted: mediaElRef.current?.muted || false,
       });
     } else if (mediaElRef.current?.classList.contains(PLAYING_CLASSNAME)) {
       userEventCallback({
         event: "playing",
         duration: getDuration(mediaElRef),
         timeElapsed: getTimeElapsed(mediaElRef),
+        muted: mediaElRef.current?.muted || false,
       });
     }
   };

@@ -12,6 +12,7 @@ import { LessonEngineContext } from "@/components/PupilComponents/LessonEnginePr
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { PupilProvider } from "@/browser-lib/pupil-api/PupilClientProvider";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn((a) => a),
@@ -29,6 +30,8 @@ jest.mock("@oaknational/oak-pupil-client", () => ({
   })),
 }));
 
+const mockBroweData = lessonBrowseDataFixture({});
+
 describe("PupilReview", () => {
   it("displays the lesson title", () => {
     const { getByText } = renderWithTheme(
@@ -36,14 +39,11 @@ describe("PupilReview", () => {
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsReview
             lessonTitle="Lesson title"
-            phase="secondary"
             exitQuizQuestionsArray={[]}
             starterQuizQuestionsArray={[]}
-            lessonSlug="lesson-slug"
-            programmeSlug="programme-slug"
+            browseData={mockBroweData}
             unitSlug="unit-slug"
-            subjectTitle="subject-title"
-            yearTitle="year-title"
+            programmeSlug="programme-slug"
             pageType="browse"
           />
         </LessonEngineContext.Provider>
@@ -57,15 +57,12 @@ describe("PupilReview", () => {
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsReview
             lessonTitle="Lesson title"
-            phase="primary"
             exitQuizQuestionsArray={[]}
             starterQuizQuestionsArray={[]}
-            lessonSlug="lesson-slug"
             programmeSlug="programme-slug"
             unitSlug="unit-slug"
-            subjectTitle="subject-title"
-            yearTitle="year-title"
             pageType="browse"
+            browseData={mockBroweData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -83,12 +80,10 @@ describe("PupilReview", () => {
             lessonTitle="Lesson title"
             exitQuizQuestionsArray={[]}
             starterQuizQuestionsArray={[]}
-            lessonSlug="lesson-slug"
             programmeSlug="programme-slug"
             unitSlug="unit-slug"
-            subjectTitle="subject-title"
-            yearTitle="year-title"
             pageType="browse"
+            browseData={mockBroweData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -106,12 +101,10 @@ describe("PupilReview", () => {
             lessonTitle="Lesson title"
             exitQuizQuestionsArray={[]}
             starterQuizQuestionsArray={[]}
-            lessonSlug="lesson-slug"
             programmeSlug="programme-slug"
             unitSlug="unit-slug"
-            subjectTitle="subject-title"
-            yearTitle="year-title"
             pageType="browse"
+            browseData={mockBroweData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -124,19 +117,16 @@ describe("PupilReview", () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(false);
       const { queryByRole } = renderWithTheme(
         <PupilProvider>
-          {" "}
           <OakThemeProvider theme={oakDefaultTheme}>
             <LessonEngineContext.Provider value={createLessonEngineContext()}>
               <PupilViewsReview
                 lessonTitle="Lesson title"
                 exitQuizQuestionsArray={[]}
                 starterQuizQuestionsArray={[]}
-                lessonSlug="lesson-slug"
                 programmeSlug="programme-slug"
                 unitSlug="unit-slug"
-                subjectTitle="subject-title"
-                yearTitle="year-title"
                 pageType="browse"
+                browseData={mockBroweData}
               />
             </LessonEngineContext.Provider>
           </OakThemeProvider>
@@ -157,11 +147,9 @@ describe("PupilReview", () => {
                 lessonTitle="Lesson title"
                 exitQuizQuestionsArray={[]}
                 starterQuizQuestionsArray={[]}
-                lessonSlug="lesson-slug"
                 programmeSlug="programme-slug"
                 unitSlug="unit-slug"
-                subjectTitle="subject-title"
-                yearTitle="year-title"
+                browseData={mockBroweData}
                 pageType="browse"
               />
             </LessonEngineContext.Provider>
@@ -170,7 +158,7 @@ describe("PupilReview", () => {
       );
 
       expect(
-        getByRole("button", { name: "Share lesson results" }),
+        getByRole("button", { name: "Printable results" }),
       ).toBeInTheDocument();
     });
     it("logAttempt function is called when button is clicked", async () => {
@@ -186,24 +174,21 @@ describe("PupilReview", () => {
               sectionResults: sectionResultsFixture,
             })}
           >
-            {" "}
             <PupilProvider>
               <PupilViewsReview
                 lessonTitle="Lesson title"
                 exitQuizQuestionsArray={[]}
                 starterQuizQuestionsArray={[]}
-                lessonSlug="lesson-slug"
                 programmeSlug="programme-slug"
                 unitSlug="unit-slug"
-                subjectTitle="subject-title"
-                yearTitle="year-title"
+                browseData={mockBroweData}
                 pageType="browse"
               />
             </PupilProvider>
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
-      const button = getByRole("button", { name: "Share lesson results" });
+      const button = getByRole("button", { name: "Printable results" });
       await userEvent.click(button).then(() => {
         expect(logAttemptSpy).toHaveBeenCalledTimes(1);
       });

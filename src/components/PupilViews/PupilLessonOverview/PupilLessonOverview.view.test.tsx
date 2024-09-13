@@ -9,6 +9,22 @@ import {
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { PupilProvider } from "@/browser-lib/pupil-api/PupilClientProvider";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+
+const mockBroweData = lessonBrowseDataFixture({
+  programmeFields: {
+    ...lessonBrowseDataFixture({}).programmeFields,
+    phase: "primary",
+    yearDescription: "Year 1",
+    subject: "English",
+    subjectSlug: "english",
+  },
+  lessonSlug: "introduction-to-the-canterbury-tales",
+  lessonData: {
+    ...lessonBrowseDataFixture({}).lessonData,
+    expirationDate: null,
+  },
+});
 
 describe("PupilViewsLessonOverview", () => {
   it("displays the lesson title", () => {
@@ -19,12 +35,9 @@ describe("PupilViewsLessonOverview", () => {
           <LessonEngineContext.Provider value={createLessonEngineContext()}>
             <PupilViewsLessonOverview
               lessonTitle="Introduction to The Canterbury Tales"
-              subjectTitle="English"
-              subjectSlug="english"
-              phase="secondary"
               starterQuizNumQuestions={4}
               exitQuizNumQuestions={5}
-              expirationDate={null}
+              browseData={mockBroweData}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -55,12 +68,9 @@ describe("PupilViewsLessonOverview", () => {
             >
               <PupilViewsLessonOverview
                 lessonTitle="Introduction to The Canterbury Tales"
-                subjectTitle="English"
-                subjectSlug="english"
-                phase="primary"
                 starterQuizNumQuestions={4}
                 exitQuizNumQuestions={5}
-                expirationDate={null}
+                browseData={mockBroweData}
               />
             </LessonEngineContext.Provider>
           </OakThemeProvider>
@@ -77,23 +87,24 @@ describe("PupilViewsLessonOverview", () => {
   it("displays in-progress for in progress sections", () => {
     const { getByTestId } = renderWithTheme(
       <PupilProvider>
-        {" "}
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider
             value={createLessonEngineContext({
               currentSection: "starter-quiz",
               sectionResults: {
-                "starter-quiz": { grade: 1, isComplete: false },
+                "starter-quiz": {
+                  grade: 1,
+                  isComplete: false,
+                  numQuestions: 0,
+                },
               },
             })}
           >
             <PupilViewsLessonOverview
               lessonTitle="Introduction to The Canterbury Tales"
-              subjectTitle="English"
-              subjectSlug="english"
               starterQuizNumQuestions={4}
               exitQuizNumQuestions={5}
-              expirationDate={null}
+              browseData={mockBroweData}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -112,11 +123,9 @@ describe("PupilViewsLessonOverview", () => {
           <LessonEngineContext.Provider value={createLessonEngineContext()}>
             <PupilViewsLessonOverview
               lessonTitle="Introduction to The Canterbury Tales"
-              subjectTitle="English"
-              subjectSlug="english"
               starterQuizNumQuestions={4}
               exitQuizNumQuestions={5}
-              expirationDate={null}
+              browseData={mockBroweData}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -141,14 +150,18 @@ describe("PupilViewsLessonOverview", () => {
     },
     {
       context: {
-        sectionResults: { "starter-quiz": { isComplete: true } },
+        sectionResults: {
+          "starter-quiz": { isComplete: true, numQuestions: 5, grade: 1 },
+        },
         lessonStarted: true,
       },
       label: "Continue lesson",
     },
     {
       context: {
-        sectionResults: { "exit-quiz": { isComplete: true } },
+        sectionResults: {
+          "exit-quiz": { isComplete: true, numQuestions: 5, grade: 1 },
+        },
         lessonStarted: true,
       },
       label: "Continue lesson",
@@ -175,11 +188,9 @@ describe("PupilViewsLessonOverview", () => {
             >
               <PupilViewsLessonOverview
                 lessonTitle="Introduction to The Canterbury Tales"
-                subjectTitle="English"
-                subjectSlug="english"
                 starterQuizNumQuestions={4}
                 exitQuizNumQuestions={5}
-                expirationDate={null}
+                browseData={mockBroweData}
               />
             </LessonEngineContext.Provider>
           </OakThemeProvider>

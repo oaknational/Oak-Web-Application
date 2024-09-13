@@ -1,4 +1,5 @@
 import { isString } from "lodash";
+import { useEffect, useState } from "react";
 import {
   OakBox,
   OakBulletList,
@@ -18,7 +19,6 @@ import {
   OakSubjectIcon,
   isValidIconName,
 } from "@oaknational/oak-components";
-import { useEffect, useState } from "react";
 
 import {
   LessonReviewSection,

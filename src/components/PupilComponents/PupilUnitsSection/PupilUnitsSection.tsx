@@ -156,13 +156,6 @@ export const PupilUnitsSection = ({
                   optionalityUnit[0],
                   optionalityUnit[0].supplementaryData.unitOrder,
                 );
-            } else if (optionalityUnit.length === 2) {
-              // 2 optionalities, doesn't need sublistings but the unit with optionality should be used for the title.
-              const unit = optionalityUnit.find(
-                (unit) => unit.programmeFields.optionality,
-              );
-              if (unit)
-                return renderListItem(unit, unit.supplementaryData.unitOrder);
             } else {
               // More than 2 optionalities and therefore needs sublistings
               if (optionalityUnit[0])
