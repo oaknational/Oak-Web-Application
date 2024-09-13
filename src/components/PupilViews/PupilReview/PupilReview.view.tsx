@@ -30,14 +30,11 @@ import { resolveOakHref } from "@/common-lib/urls";
 type PupilViewsReviewProps = {
   lessonTitle: string;
   backUrl?: string | null;
-  phase?: "primary" | "secondary";
   starterQuizQuestionsArray: QuestionsArray;
   exitQuizQuestionsArray: QuestionsArray;
   programmeSlug: string;
   unitSlug: string;
-  subjectTitle: string;
-  yearTitle: string;
-  lessonSlug: string;
+  browseData: PupilExperienceViewProps["browseData"];
   pageType: PupilExperienceViewProps["pageType"];
 };
 
@@ -45,16 +42,14 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const {
     lessonTitle,
     backUrl,
-    phase = "primary",
     starterQuizQuestionsArray,
     exitQuizQuestionsArray,
     programmeSlug,
     unitSlug,
-    subjectTitle,
-    yearTitle,
-    lessonSlug,
+    browseData: { programmeFields, lessonSlug },
     pageType,
   } = props;
+  const { phase = "primary", yearDescription, subject } = programmeFields;
   const {
     updateCurrentSection,
     sectionResults,
@@ -70,7 +65,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
 
   const pupilClient = useOakPupil();
   const { logAttempt } = pupilClient;
-  const isShowShareButton = useFeatureFlagEnabled("share-results-button");
+  const isShowShareButtons = useFeatureFlagEnabled("share-results-button");
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
@@ -86,10 +81,10 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     </OakLessonBottomNav>
   );
 
-  const handleShareResultsClick = async () => {
+  const handlePrintableResultsClick = async () => {
     const attemptData = {
       lessonData: { slug: lessonSlug, title: lessonTitle },
-      browseData: { subject: subjectTitle, yearDescription: yearTitle ?? "" },
+      browseData: { subject: subject, yearDescription: yearDescription ?? "" },
       sectionResults: sectionResults,
     };
     const attemptId = await logAttempt(attemptData, true);
@@ -116,7 +111,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     <OakLessonLayout
       bottomNavSlot={bottomNavSlot}
       lessonSectionName={"review"}
-      phase={phase}
+      phase={phase as "primary" | "secondary"}
       topNavSlot={null}
     >
       <OakGrid
@@ -145,12 +140,12 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
-              {isShowShareButton && (
+              {isShowShareButtons && (
                 <OakPrimaryButton
                   type="button"
-                  onClick={handleShareResultsClick}
+                  onClick={handlePrintableResultsClick}
                 >
-                  Share lesson results
+                  Printable results
                 </OakPrimaryButton>
               )}
               <OakHeading tag="h2" $font={"heading-light-7"}>

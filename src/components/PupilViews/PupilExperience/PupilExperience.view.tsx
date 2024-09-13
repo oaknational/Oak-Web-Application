@@ -76,9 +76,6 @@ export const PupilPageContent = ({
     supervisionLevel,
   } = lessonContent;
 
-  const { lessonData, programmeFields, lessonSlug } = browseData;
-  const { subject, subjectSlug, yearDescription, phase } = programmeFields;
-
   const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
   const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;
 
@@ -94,17 +91,13 @@ export const PupilPageContent = ({
       return (
         <PupilViewsLessonOverview
           lessonTitle={lessonTitle ?? ""}
-          subjectTitle={subject}
-          subjectSlug={subjectSlug}
-          yearTitle={yearDescription}
-          phase={phase as "primary" | "secondary"}
+          browseData={browseData}
           pupilLessonOutcome={pupilLessonOutcome ?? undefined}
           contentGuidance={contentGuidance}
           supervisionLevel={supervisionLevel ?? undefined}
           starterQuizNumQuestions={starterQuizNumQuestions}
           exitQuizNumQuestions={exitQuizNumQuestions}
           backUrl={backUrl}
-          expirationDate={lessonData.expirationDate}
         />
       );
     case "intro":
@@ -132,14 +125,11 @@ export const PupilPageContent = ({
         <PupilViewsReview
           lessonTitle={lessonTitle ?? ""}
           backUrl={backUrl}
-          phase={phase as "primary" | "secondary"}
           starterQuizQuestionsArray={starterQuiz ?? []}
           exitQuizQuestionsArray={exitQuiz ?? []}
           programmeSlug={browseData.programmeSlug}
           unitSlug={browseData.unitSlug}
-          subjectTitle={subject}
-          yearTitle={yearDescription}
-          lessonSlug={lessonSlug ?? ""}
+          browseData={browseData}
           pageType={pageType}
         />
       );

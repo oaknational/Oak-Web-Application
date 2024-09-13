@@ -1,7 +1,7 @@
-import FeaturedResultsPage from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/results/[attemptId]";
+import ResultsPage from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/results/[attemptId]";
 
-describe("FeaturedResultsPage", () => {
+describe("ResultsPage", () => {
   it("should render", () => {
-    expect(FeaturedResultsPage).toBeTruthy();
+    expect(ResultsPage).toBeTruthy();
   });
 });

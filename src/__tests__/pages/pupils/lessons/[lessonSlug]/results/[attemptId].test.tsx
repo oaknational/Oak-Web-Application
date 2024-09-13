@@ -1,7 +1,7 @@
-import FeaturedCanonicalResultsPage from "@/pages/pupils/lessons/[lessonSlug]/results/[attemptId]";
+import CanonicalResultsPage from "@/pages/pupils/lessons/[lessonSlug]/results/[attemptId]";
 
-describe("FeaturedResultsPage", () => {
+describe("CanonicalResultsPage", () => {
   it("should render", () => {
-    expect(FeaturedCanonicalResultsPage).toBeTruthy();
+    expect(CanonicalResultsPage).toBeTruthy();
   });
 });
