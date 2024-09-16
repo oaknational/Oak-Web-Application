@@ -15,6 +15,12 @@ export const unitListingFixture = (
     hasNewContent: false,
     tierSlug: null,
     phase: "secondary",
+    yearGroups: [
+      {
+        year: "year-10",
+        yearTitle: "Year 10",
+      },
+    ],
     tiers: [],
     subjectCategories: [
       {

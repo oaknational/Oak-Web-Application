@@ -1,4 +1,4 @@
-import React, { useId } from "react";
+import React, { useId, useState } from "react";
 import { useRouter } from "next/router";
 import {
   GetStaticPathsResult,
@@ -16,6 +16,7 @@ import {
 } from "@oaknational/oak-components";
 import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
+import styled from "styled-components";
 
 import {
   getFallbackBlockingConfig,
@@ -46,15 +47,26 @@ import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/Ne
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 import { TierSchema } from "@/node-lib/curriculum-api-2023/queries/unitListing/tiers/tiers.schema";
 import SubjectCategoryFilters from "@/components/TeacherComponents/SubjectCategoryFilters";
+import YearGroupFilters from "@/components/TeacherComponents/YearGroupFilters";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
 };
 
+const StyledFieldset = styled.fieldset`
+  border: 0px;
+  margin: 0;
+  padding: 0;
+`;
 /**
  *
  * FIXME:
- * - Routing
+ * ! - REFACTOR TO USE STATE
+ * ! - CREATE A FUNCTION TO FILTER UNITS
+ * ! - UPDATE CURRENT FILTER FUNCTION WITH YEARS
+ * ! - MOBILE RESPONSIVENESS
+ * ! - ROUTING
+ * ! - TRACKING
  */
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
@@ -72,6 +84,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     examBoardTitle,
     hasNewContent,
     subjectCategories,
+    yearGroups,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -81,10 +94,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
   const categorySlug = router.query["category"]?.toString();
+  const yearGroupSlug = router.query["year"]?.toString();
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const unitsFilteredByLearningTheme = filterUnits(
     themeSlug,
     categorySlug,
+    yearGroupSlug,
     units,
   );
   const paginationProps = usePagination({
@@ -214,43 +230,56 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 $pt={["inner-padding-xl4"]}
                 $maxWidth={"all-spacing-20"}
               >
-                <OakHeading tag="h3" $font="heading-6" $mb="space-between-m">
-                  Filters
-                </OakHeading>
+                <StyledFieldset>
+                  <OakHeading tag="h3" $font="heading-6" $mb="space-between-m">
+                    Filters
+                  </OakHeading>
 
-                <SubjectCategoryFilters
-                  subjectCategories={subjectCategories}
-                  categorySlug={categorySlug}
-                  browseRefined={track.browseRefined}
-                />
-                {learningThemes?.length > 1 && (
-                  <Flex $flexDirection={"column"}>
-                    <OakHeading
-                      id={learningThemesId}
-                      tag="h3"
-                      $font="heading-7"
-                      $mb="space-between-s"
-                    >
-                      {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
-                      Threads
-                    </OakHeading>
-                    <UnitsLearningThemeFilters
-                      labelledBy={learningThemesId}
-                      learningThemes={learningThemes}
-                      selectedThemeSlug={themeSlug ? themeSlug : "all"}
-                      linkProps={{
-                        page: "unit-index",
-                        programmeSlug,
-                      }}
-                      trackingProps={{
-                        keyStageSlug,
-                        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                        subjectTitle,
-                        subjectSlug,
-                      }}
+                  {yearGroups.length && (
+                    <YearGroupFilters
+                      yearGroups={yearGroups}
+                      yearGroupSlug={yearGroupSlug}
+                      browseRefined={track.browseRefined}
                     />
-                  </Flex>
-                )}
+                  )}
+                  {subjectCategories && subjectCategories.length > 1 && (
+                    <SubjectCategoryFilters
+                      subjectCategories={subjectCategories}
+                      categorySlug={categorySlug}
+                      browseRefined={track.browseRefined}
+                      setSelectedCategory={setSelectedCategory}
+                    />
+                  )}
+                  {learningThemes?.length > 1 && (
+                    <Flex $flexDirection={"column"}>
+                      <OakHeading
+                        id={learningThemesId}
+                        tag="h3"
+                        $font="heading-7"
+                        $mb="space-between-s"
+                      >
+                        {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
+                        Threads
+                      </OakHeading>
+                      <UnitsLearningThemeFilters
+                        labelledBy={learningThemesId}
+                        learningThemes={learningThemes}
+                        selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                        linkProps={{
+                          page: "unit-index",
+                          programmeSlug,
+                        }}
+                        trackingProps={{
+                          keyStageSlug,
+                          keyStageTitle:
+                            keyStageTitle as KeyStageTitleValueType,
+                          subjectTitle,
+                          subjectSlug,
+                        }}
+                      />
+                    </Flex>
+                  )}
+                </StyledFieldset>
               </OakBox>
             </OakGridArea>
 
@@ -286,8 +315,16 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       $mb={[16, 16, 0]}
                       applyForTablet
                     >
+                      {yearGroups.length && (
+                        <YearGroupFilters
+                          yearGroups={yearGroups}
+                          yearGroupSlug={yearGroupSlug}
+                          browseRefined={track.browseRefined}
+                        />
+                      )}
                       <OakBox $mt={"space-between-m2"}>
                         <SubjectCategoryFilters
+                          setSelectedCategory={setSelectedCategory}
                           subjectCategories={subjectCategories}
                           categorySlug={categorySlug}
                           browseRefined={track.browseRefined}
@@ -350,6 +387,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   {...curriculumData}
                   currentPageItems={currentPageItems}
                   paginationProps={paginationProps}
+                  selectedCategory={selectedCategory}
                   onClick={(props) =>
                     trackUnitSelected(
                       props,

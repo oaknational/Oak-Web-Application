@@ -11,6 +11,7 @@ import unitListingFixture, {
 
 const currentPageItems: UnitListProps = {
   ...unitListingFixture(),
+  selectedCategory: "biology",
   lessonCount: 10,
   currentPageItems: unitListingFixture().units.slice(0, 5),
   paginationProps: {
@@ -44,6 +45,7 @@ UnitList.args = currentPageItems;
 
 const currentPageItemsWithTiers: UnitListProps = {
   ...unitListingWithTiers(),
+  selectedCategory: "biology",
   lessonCount: 10,
   currentPageItems: unitListingWithTiers().units.slice(0, 5),
   paginationProps: {

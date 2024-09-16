@@ -6,10 +6,12 @@ function filterUnits<
   U extends {
     learningThemes?: { themeSlug?: string | null }[] | null;
     subjectCategories?: ({ label: string; slug: string } | null)[] | null;
+    year?: string | null;
   },
 >(
   themeSlug: string | undefined,
   categorySlug: string | undefined,
+  yearGroup: string | undefined,
   units: GenericUnitListingData<U>["units"],
 ): GenericUnitListingData<U>["units"] {
   return units.filter((unitVariant) =>
@@ -28,8 +30,9 @@ function filterUnits<
             return category.slug === categorySlug;
           })
         : true;
+      const yearGroupMatch = yearGroup ? unit.year === yearGroup : true;
 
-      return themeMatch && categoryMatch;
+      return themeMatch && categoryMatch && yearGroupMatch;
     }),
   );
 }

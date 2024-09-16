@@ -1,67 +1,51 @@
-import React from "react";
-import { useRouter } from "next/router";
 import {
   OakFlex,
   OakHeading,
-  OakIconProps,
   OakSearchFilterCheckBox,
 } from "@oaknational/oak-components";
+import React, { FC } from "react";
+import { useRouter } from "next/router";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
-type SubjectCategoryFiltersProps = {
-  subjectCategories: { label: string; slug: string; iconName: string }[];
-  categorySlug: string | undefined;
-  setSelectedCategory: (category: string | null) => void;
+type YearGroupFiltersProps = {
+  yearGroups: { yearTitle: string; year: string }[];
   browseRefined: TrackFns["browseRefined"];
+  yearGroupSlug?: string | null;
 };
 
-const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
-  subjectCategories,
-  categorySlug,
+const YearGroupFilters: FC<YearGroupFiltersProps> = ({
+  yearGroups,
   browseRefined,
-  setSelectedCategory,
 }) => {
   const router = useRouter();
 
   return (
     <OakFlex
-      $mb="space-between-m"
+      $mv="space-between-m"
       $flexDirection={"column"}
       $pb={"inner-padding-xl2"}
       $bb={"border-solid-s"}
       $borderColor={"border-neutral-lighter"}
       $flexGrow={1}
     >
-      <OakHeading
-        tag="h3"
-        as={"legend"}
-        $font="heading-7"
-        $mb="space-between-s"
-      >
-        Category
+      <OakHeading tag="h3" $font={"heading-7"} $mb={"space-between-m2"}>
+        Year
       </OakHeading>
       <OakFlex
-        $flexDirection={"row"}
+        $alignItems="flex-start"
+        onChange={() => {}}
         $flexWrap={"wrap"}
         $gap={"space-between-ssx"}
+        aria-describedby={"year-group"}
         $flexGrow={1}
       >
         <OakSearchFilterCheckBox
           value="all"
           displayValue="All"
           id="all"
-          checked={!categorySlug}
+          checked={!router.query.year}
           onChange={() => {
-            const { category, ...restQuery } = router.query;
-            router.push(
-              {
-                pathname: router.pathname,
-                query: restQuery,
-              },
-              undefined,
-              { shallow: true },
-            );
             browseRefined({
               platform: "owa",
               product: "teacher lesson resources",
@@ -73,20 +57,27 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
               filterType: "Subject filter",
               activeFilters: {
                 content_types: "units",
-                learning_themes: router.query.learningTheme,
+                //   learning_themes: router.query.learningTheme,
               },
             });
-            setSelectedCategory(null);
+            const { year, ...restQuery } = router.query;
+            router.push(
+              {
+                pathname: router.pathname,
+                query: restQuery,
+              },
+              undefined,
+              { shallow: true },
+            );
           }}
         />
-        {subjectCategories.map((category) => (
+        {yearGroups.map((yearGroup) => (
           <OakSearchFilterCheckBox
-            icon={category.iconName as OakIconProps["iconName"]}
-            key={category.label}
-            value={category.label}
-            displayValue={category.label}
-            id={category.label}
-            checked={categorySlug === category.slug}
+            id={yearGroup.yearTitle}
+            value={yearGroup.yearTitle}
+            displayValue={yearGroup.yearTitle}
+            key={yearGroup.year}
+            checked={yearGroup.year === router.query.year}
             onChange={() => {
               browseRefined({
                 platform: "owa",
@@ -95,11 +86,11 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
                 componentType: "filter_link",
                 eventVersion: "2.0.0",
                 analyticsUseCase: "Teacher",
-                filterValue: category.label,
+                filterValue: "all",
                 filterType: "Subject filter",
                 activeFilters: {
                   content_types: "units",
-                  learning_themes: router.query.learningTheme,
+                  //   learning_themes: router.query.learningTheme,
                 },
               });
               router.push(
@@ -107,13 +98,12 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
                   pathname: router.pathname,
                   query: {
                     ...router.query,
-                    category: category.slug,
+                    year: yearGroup.year,
                   },
                 },
                 undefined,
                 { shallow: true },
               );
-              setSelectedCategory(category.label);
             }}
           />
         ))}
@@ -122,4 +112,4 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
   );
 };
 
-export default SubjectCategoryFilters;
+export default YearGroupFilters;
