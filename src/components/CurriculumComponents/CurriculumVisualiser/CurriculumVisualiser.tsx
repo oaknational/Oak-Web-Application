@@ -16,6 +16,7 @@ import UnitModal, {
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
+import { isVisibleUnit } from "@/utils/curriculum/units";
 
 export type YearData = {
   [key: string]: {
@@ -90,31 +91,6 @@ function dedupUnits(units: Unit[]) {
     }
     return false;
   });
-}
-
-export function isVisibleUnit(
-  yearSelection: YearSelection,
-  year: string,
-  unit: Unit,
-) {
-  const s = yearSelection[year];
-  if (!s) {
-    return false;
-  }
-  const filterBySubject =
-    !s.subject || s.subject.subject_slug === unit.subject_slug;
-  const filterBySubjectCategory =
-    s.subjectCategory?.id == -1 ||
-    unit.subjectcategories?.findIndex(
-      (subjectcategory) => subjectcategory.id === s.subjectCategory?.id,
-    ) !== -1;
-  const filterByTier =
-    !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
-
-  // Look for duplicates that don't have an examboard, tier or subject parent
-  // (i.e. aren't handled by other filters)
-
-  return filterBySubject && filterBySubjectCategory && filterByTier;
 }
 
 function isSelectedSubject(

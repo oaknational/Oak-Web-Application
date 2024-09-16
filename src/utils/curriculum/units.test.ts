@@ -1,5 +1,6 @@
-import highlightedYearGroupUnitCount from "./highlightedYearGroupUnitCount";
+import { getNumberOfSelectedUnits } from "./units";
 
+// TODO: Shouldn't be reaching into <CurriculumVisualiser/> component for core types
 import {
   YearData,
   YearSelection,
@@ -9,14 +10,12 @@ import {
   SubjectCategory,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
-jest.mock("@/components/CurriculumComponents/CurriculumVisualiser", () => ({
+jest.mock("./units", () => ({
   isVisibleUnit: jest.fn(),
 }));
 
-describe("highlightedYearGroupUnitCount", () => {
-  const mockIsVisibleUnit = jest.requireMock(
-    "@/components/CurriculumComponents/CurriculumVisualiser",
-  ).isVisibleUnit;
+describe("getNumberOfSelectedUnits", () => {
+  const mockIsVisibleUnit = jest.requireMock("./units").isVisibleUnit;
 
   let yearData: YearData;
 
@@ -44,7 +43,7 @@ describe("highlightedYearGroupUnitCount", () => {
   });
 
   it("should return 0 when yearData is empty", () => {
-    const result = highlightedYearGroupUnitCount({}, "", {});
+    const result = getNumberOfSelectedUnits({}, "", {});
     expect(result).toBe(0);
   });
 
@@ -52,7 +51,7 @@ describe("highlightedYearGroupUnitCount", () => {
     const yearSelection: YearSelection = {};
     mockIsVisibleUnit.mockReturnValue(true);
 
-    const result = highlightedYearGroupUnitCount(yearData, "", yearSelection);
+    const result = getNumberOfSelectedUnits(yearData, "", yearSelection);
     expect(result).toBe(5);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });
@@ -61,7 +60,7 @@ describe("highlightedYearGroupUnitCount", () => {
     const yearSelection: YearSelection = {};
     mockIsVisibleUnit.mockReturnValue(true);
 
-    const result = highlightedYearGroupUnitCount(yearData, "8", yearSelection);
+    const result = getNumberOfSelectedUnits(yearData, "8", yearSelection);
     expect(result).toBe(3);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(3);
   });
@@ -75,7 +74,7 @@ describe("highlightedYearGroupUnitCount", () => {
       .mockReturnValueOnce(false)
       .mockReturnValueOnce(true);
 
-    const result = highlightedYearGroupUnitCount(yearData, "", yearSelection);
+    const result = getNumberOfSelectedUnits(yearData, "", yearSelection);
     expect(result).toBe(3);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });
@@ -84,7 +83,7 @@ describe("highlightedYearGroupUnitCount", () => {
     const yearSelection: YearSelection = {};
     mockIsVisibleUnit.mockReturnValue(false);
 
-    const result = highlightedYearGroupUnitCount(yearData, "", yearSelection);
+    const result = getNumberOfSelectedUnits(yearData, "", yearSelection);
     expect(result).toBe(0);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });

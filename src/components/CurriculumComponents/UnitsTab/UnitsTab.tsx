@@ -12,7 +12,6 @@ import CurriculumVisualiser, {
   Subject,
   Tier,
   Unit,
-  isVisibleUnit,
   SubjectCategory,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
@@ -30,7 +29,10 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import highlightedYearGroupUnitCount from "@/utils/highlightedYearGroupUnitCount";
+import {
+  getNumberOfSelectedUnits,
+  isVisibleUnit,
+} from "@/utils/curriculum/units";
 
 // Types and interfaces
 
@@ -92,7 +94,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
   const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
     string | null
   >(null);
-  const unitCount = highlightedYearGroupUnitCount(
+  const unitCount = getNumberOfSelectedUnits(
     yearData,
     selectedYear,
     yearSelection,
