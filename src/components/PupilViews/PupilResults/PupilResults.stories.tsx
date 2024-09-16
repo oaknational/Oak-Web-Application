@@ -3,7 +3,6 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilViewsResults } from "./PupilResults.view";
 
-import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import {
   exitQuizQuestions,
   quizQuestions,
@@ -11,13 +10,7 @@ import {
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 
-type CustomArgs = React.ComponentProps<typeof PupilViewsResults> & {
-  starterGrade: number;
-  exitGrade: number;
-  isComplete: boolean;
-};
-
-const meta: Meta<CustomArgs> = {
+const meta: Meta<typeof PupilViewsResults> = {
   component: PupilViewsResults,
   decorators: [
     (Story) => (
@@ -29,19 +22,7 @@ const meta: Meta<CustomArgs> = {
 
   argTypes: {},
   parameters: {
-    controls: {
-      starterGrade: {
-        control: {
-          type: "number",
-        },
-      },
-      exitGrade: {
-        control: {
-          type: "number",
-        },
-      },
-      include: ["starterGrade", "exitGrade", "isComplete"],
-    },
+    controls: {},
   },
 } satisfies Meta<typeof PupilViewsResults>;
 
@@ -49,50 +30,11 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/*
- * This is the view users will see on encountering an expired lesson
- *
- */
-
 export const Default: Story = {
   render: (args) => {
     return (
       <MathJaxProvider>
-        {" "}
-        <LessonEngineContext.Provider
-          value={{
-            currentSection: "review",
-            sectionResults: {
-              "exit-quiz": sectionResultsFixture["exit-quiz"],
-              "starter-quiz": sectionResultsFixture["starter-quiz"],
-              video: {
-                played: false,
-                duration: 0,
-                timeElapsed: 0,
-                isComplete: args.isComplete,
-              },
-              intro: {
-                worksheetAvailable: false,
-                worksheetDownloaded: false,
-                isComplete: args.isComplete,
-              },
-            },
-            isLessonComplete: args.isComplete,
-            completeSection: () => {},
-            updateCurrentSection: () => {},
-            proceedToNextSection: () => {},
-            updateSectionResult: () => {},
-            lessonReviewSections: [
-              "intro",
-              "starter-quiz",
-              "video",
-              "exit-quiz",
-            ],
-            lessonStarted: true,
-          }}
-        >
-          <PupilViewsResults {...args} />
-        </LessonEngineContext.Provider>
+        <PupilViewsResults {...args} />
       </MathJaxProvider>
     );
   },
