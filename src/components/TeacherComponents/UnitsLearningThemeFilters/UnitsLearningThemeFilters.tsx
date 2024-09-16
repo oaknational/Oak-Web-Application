@@ -1,14 +1,9 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import styled from "styled-components";
 
-import {
-  OakBox,
-  OakBoxProps,
-  OakFlex,
-  OakLabel,
-  OakLabelProps,
-} from "@oaknational/oak-components";
+import { ThemeRadioButton } from "./ThemeRadioButton";
+
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 import {
   SpecialistUnitListingLinkProps,
   UnitListingLinkProps,
@@ -28,24 +23,6 @@ export type UnitsLearningThemeFiltersProps = {
   linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps;
   trackingProps?: LearningThemeSelectedTrackingProps;
 };
-
-const RadioButtonLabel = styled(OakLabel)<OakLabelProps>`
-  cursor: pointer;
-  display: flex;
-  gap: 8px; // TODO: replace with spacing token
-`;
-
-const HiddenRadioButtonInput = styled.input.attrs({
-  type: "radio",
-})`
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-`;
-
-const RadioButtonFocus = styled(OakBox)<OakBoxProps>`
-  box-shadow: ${`inset 0 0 0 0.13rem #ffe555`}; // TODO: replace with colour token
-`;
 
 const UnitsLearningThemeFilters = ({
   learningThemes = [],
@@ -134,51 +111,13 @@ const UnitsLearningThemeFilters = ({
             $pa="inner-padding-s"
             key={theme.slug}
           >
-            <RadioButtonLabel htmlFor={theme.slug}>
-              <HiddenRadioButtonInput
-                value={theme.slug}
-                id={theme.slug}
-                checked={isChecked}
-                onChange={() => onChange(theme)}
-                tabIndex={0}
-                onFocus={() => setFocussedThemeSlug(theme.slug)}
-                onBlur={() => setFocussedThemeSlug(undefined)}
-              />
-              <OakFlex
-                $height={"all-spacing-6"}
-                $width="all-spacing-6"
-                $borderColor={"black"}
-                $flexGrow={0}
-                $flexShrink={0}
-                $alignItems={"center"}
-                $justifyContent={"center"}
-                $background="bg-primary"
-                $ba="border-solid-m"
-                $borderRadius="border-radius-circle"
-              >
-                {isChecked && (
-                  <OakBox
-                    $height={"all-spacing-4"}
-                    $width="all-spacing-4"
-                    $background="black"
-                    $position="absolute"
-                    $borderRadius="border-radius-circle"
-                  />
-                )}
-                {isFocussed && (
-                  <RadioButtonFocus
-                    $height={"all-spacing-7"}
-                    $width="all-spacing-7"
-                    $background="transparent"
-                    $position="absolute"
-                    $ba="border-solid-m"
-                    $borderColor="grey60"
-                    $borderRadius="border-radius-circle"
-                  />
-                )}
-              </OakFlex>
-              {theme.label}
-            </RadioButtonLabel>
+            <ThemeRadioButton
+              theme={theme}
+              isChecked={isChecked}
+              isFocussed={isFocussed}
+              onChange={onChange}
+              onFocus={setFocussedThemeSlug}
+            />
           </OakBox>
         );
       })}
