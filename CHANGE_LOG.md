@@ -1,3 +1,10 @@
+## [1.547.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.547.0...v1.547.1) (2024-09-16)
+
+
+### Bug Fixes
+
+* set the sign-in and sign-up routes on ClerkProvider ([d9b599e](https://github.com/oaknational/Oak-Web-Application/commit/d9b599eca9b934f16611fd7849cc28bd23ddc990))
+
 # [1.547.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.546.2...v1.547.0) (2024-09-16)
 
 
