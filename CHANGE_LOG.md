@@ -1,3 +1,10 @@
+## [1.546.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.546.1...v1.546.2) (2024-09-16)
+
+
+### Bug Fixes
+
+* enable Clerk middleware for all routes ([8efc688](https://github.com/oaknational/Oak-Web-Application/commit/8efc688b4f7d855dee6835afdeeec9d2c3768656))
+
 ## [1.546.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.546.0...v1.546.1) (2024-09-13)
 
 
