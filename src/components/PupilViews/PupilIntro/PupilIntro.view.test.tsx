@@ -1,8 +1,8 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { userEvent } from "@testing-library/user-event";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilViewsIntro } from "./PupilIntro.view";
 
@@ -185,7 +185,7 @@ describe("PupilIntro", () => {
       </OakThemeProvider>,
     );
     fireEvent.click(getByRole("link", { name: /I'm ready/i }));
-    expect(context.completeSection).toHaveBeenCalledWith("intro");
+    expect(context.completeActivity).toHaveBeenCalledWith("intro");
   });
 
   it("updates the section results when the worksheet is downloaded", async () => {
@@ -199,7 +199,7 @@ describe("PupilIntro", () => {
     );
 
     await userEvent.click(getByRole("button", { name: /Download worksheet/i }));
-    expect(context.updateSectionResult).toHaveBeenCalledWith({
+    expect(context.updateWorksheetDownloaded).toHaveBeenCalledWith({
       worksheetDownloaded: true,
       worksheetAvailable: true,
     });

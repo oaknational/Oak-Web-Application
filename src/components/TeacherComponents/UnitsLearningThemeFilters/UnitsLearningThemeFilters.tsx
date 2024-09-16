@@ -1,9 +1,13 @@
-import { useRouter } from "next/router";
+import {
+  OakBox,
+  OakFlex,
+  OakSecondaryButton,
+} from "@oaknational/oak-components";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import { ThemeRadioButton } from "./ThemeRadioButton";
 
-import { OakBox, OakFlex } from "@oaknational/oak-components";
 import {
   SpecialistUnitListingLinkProps,
   UnitListingLinkProps,
@@ -30,6 +34,7 @@ const UnitsLearningThemeFilters = ({
   linkProps,
   trackingProps,
 }: UnitsLearningThemeFiltersProps) => {
+  const [skipFiltersButton, setSkipFiltersButton] = useState(false);
   const learningThemesMapped = learningThemes
     ? learningThemes
         .map((learningTheme) => {
@@ -96,31 +101,47 @@ const UnitsLearningThemeFilters = ({
   };
 
   return (
-    <OakFlex $flexDirection="column" $gap="space-between-ssx">
-      {[
-        { slug: "all", label: "All in suggested order" },
-        ...learningThemesMapped,
-      ].map((theme) => {
-        const isChecked = activeThemeSlug === theme.slug;
-        const isFocussed = focussedThemeSlug === theme.slug;
-        return (
-          <OakBox
-            $borderColor="border-neutral-lighter"
-            $borderStyle="solid"
-            $borderRadius="border-radius-s"
-            $pa="inner-padding-s"
-            key={theme.slug}
-          >
-            <ThemeRadioButton
-              theme={theme}
-              isChecked={isChecked}
-              isFocussed={isFocussed}
-              onChange={onChange}
-              onFocus={setFocussedThemeSlug}
-            />
-          </OakBox>
-        );
-      })}
+    <OakFlex $flexDirection={"column"}>
+      <OakBox $mb={skipFiltersButton ? "space-between-xs" : "auto"}>
+        <OakSecondaryButton
+          element="a"
+          aria-label="Skip to units"
+          href="#unit-list"
+          onFocus={() => setSkipFiltersButton(true)}
+          onBlur={() => setSkipFiltersButton(false)}
+          style={
+            skipFiltersButton ? {} : { position: "absolute", top: "-600px" }
+          }
+        >
+          Skip to units
+        </OakSecondaryButton>
+      </OakBox>
+      <OakFlex $flexDirection="column" $gap="space-between-ssx">
+        {[
+          { slug: "all", label: "All in suggested order" },
+          ...learningThemesMapped,
+        ].map((theme) => {
+          const isChecked = activeThemeSlug === theme.slug;
+          const isFocussed = focussedThemeSlug === theme.slug;
+          return (
+            <OakBox
+              $borderColor="border-neutral-lighter"
+              $borderStyle="solid"
+              $borderRadius="border-radius-s"
+              $pa="inner-padding-s"
+              key={theme.slug}
+            >
+              <ThemeRadioButton
+                theme={theme}
+                isChecked={isChecked}
+                isFocussed={isFocussed}
+                onChange={onChange}
+                onFocus={setFocussedThemeSlug}
+              />
+            </OakBox>
+          );
+        })}
+      </OakFlex>
     </OakFlex>
   );
 };

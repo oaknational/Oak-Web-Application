@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, FC, ChangeEvent } from "react";
+import React, { FC, ChangeEvent } from "react";
 import {
   Control,
   Controller,
@@ -14,7 +14,7 @@ import Input from "@/components/SharedComponents/Input";
 
 type ManualEntrySchoolDetailsProps = {
   setValue: UseFormSetValue<SchoolSelectFormProps>;
-  setRenderManualSchoolInput: Dispatch<SetStateAction<boolean>>;
+  onSelectFromDropdown: () => void;
   control: Control<SchoolSelectFormProps>;
   hasErrors: FieldErrors<SchoolSelectFormProps>;
   onManualSchoolInputChange: (isSchoolName: boolean, value: string) => void;
@@ -22,10 +22,9 @@ type ManualEntrySchoolDetailsProps = {
 };
 
 const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
-  setRenderManualSchoolInput,
+  onSelectFromDropdown: setRenderManualSchoolInput,
   control,
   onManualSchoolInputChange,
-
   hasErrors,
   reset,
 }) => {
@@ -110,7 +109,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
       <OakBox $font="body-2-bold">
         <OakLink
           onClick={() => {
-            setRenderManualSchoolInput((prev) => !prev);
+            setRenderManualSchoolInput();
             reset();
           }}
           element="button"
