@@ -16,7 +16,6 @@ import {
 import { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
-
 export type LearningTheme = {
   themeSlug: string;
   themeTitle: string;
@@ -94,8 +93,8 @@ const UnitsLearningThemeFilters = ({
     string | undefined
   >(undefined);
 
-  const onChange = (themeSlug: string) => {
-    setActiveThemeSlug(themeSlug);
+  const onChange = (theme: { label: string; slug: string }) => {
+    setActiveThemeSlug(theme.slug);
     if (trackingProps) {
       const { keyStageSlug, subjectSlug } = trackingProps;
 
@@ -107,12 +106,12 @@ const UnitsLearningThemeFilters = ({
         eventVersion: "2.0.0",
         analyticsUseCase: "Teacher",
         filterType: "Learning theme filter",
-        filterValue: themeSlug,
+        filterValue: theme.label,
         activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
       });
     }
 
-    const query = themeSlug === "all" ? {} : { "learning-theme": themeSlug };
+    const query = theme.slug === "all" ? {} : { "learning-theme": theme.slug };
     router.push({
       pathname: `/teachers/programmes/${linkProps.programmeSlug}/units`,
       query,
@@ -140,7 +139,7 @@ const UnitsLearningThemeFilters = ({
                 value={theme.slug}
                 id={theme.slug}
                 checked={isChecked}
-                onChange={() => onChange(theme.slug)}
+                onChange={() => onChange(theme)}
                 tabIndex={0}
                 onFocus={() => setFocussedThemeSlug(theme.slug)}
                 onBlur={() => setFocussedThemeSlug(undefined)}
