@@ -241,14 +241,16 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       Skip to units
                     </OakSecondaryButton>
                   </OakBox>
-                  {yearGroups.length >= 1 && (
+                  {yearGroups.length > 1 && (
                     <YearGroupFilters
                       yearGroups={yearGroups}
+                      screenVal="desktop"
                       browseRefined={track.browseRefined}
                     />
                   )}
                   {subjectCategories && subjectCategories.length > 1 && (
                     <SubjectCategoryFilters
+                      screenVal="desktop"
                       subjectCategories={subjectCategories}
                       categorySlug={categorySlug}
                       browseRefined={track.browseRefined}
@@ -320,14 +322,16 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     applyForTablet
                   >
                     <StyledFieldset>
-                      {yearGroups.length >= 1 && (
+                      {yearGroups.length > 1 && (
                         <YearGroupFilters
+                          screenVal="mobile"
                           yearGroups={yearGroups}
                           browseRefined={track.browseRefined}
                         />
                       )}
                       {subjectCategories && subjectCategories.length > 1 && (
                         <SubjectCategoryFilters
+                          screenVal="mobile"
                           setSelectedCategory={setSelectedCategory}
                           subjectCategories={subjectCategories}
                           categorySlug={categorySlug}

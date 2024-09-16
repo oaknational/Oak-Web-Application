@@ -11,11 +11,13 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 type YearGroupFiltersProps = {
   yearGroups: { yearTitle: string; year: string }[];
   browseRefined: TrackFns["browseRefined"];
+  screenVal: "desktop" | "mobile";
 };
 
 const YearGroupFilters: FC<YearGroupFiltersProps> = ({
   yearGroups,
   browseRefined,
+  screenVal,
 }) => {
   const router = useRouter();
 
@@ -35,13 +37,12 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
         $alignItems="flex-start"
         $flexWrap={"wrap"}
         $gap={"space-between-ssx"}
-        aria-describedby={"year-group"}
         $flexGrow={1}
       >
         <OakSearchFilterCheckBox
-          value="all-year-groups"
+          value={`${screenVal}-all-year-groups`}
           displayValue="All"
-          id="all-year-groups"
+          id={`all-year-groups-${screenVal}`}
           checked={!router.query.year}
           onChange={() => {
             browseRefined({
@@ -72,8 +73,8 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
         />
         {yearGroups.map((yearGroup) => (
           <OakSearchFilterCheckBox
-            id={yearGroup.yearTitle}
-            value={yearGroup.year}
+            id={`${yearGroup.yearTitle}-${screenVal}`}
+            value={`${screenVal}-${yearGroup.year}`}
             displayValue={yearGroup.yearTitle}
             key={yearGroup.year}
             checked={yearGroup.year === router.query.year}

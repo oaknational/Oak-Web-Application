@@ -14,6 +14,7 @@ type SubjectCategoryFiltersProps = {
   categorySlug: string | undefined;
   setSelectedCategory: (category: string | null) => void;
   browseRefined: TrackFns["browseRefined"];
+  screenVal: "desktop" | "mobile";
 };
 
 const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
@@ -21,6 +22,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
   categorySlug,
   browseRefined,
   setSelectedCategory,
+  screenVal,
 }) => {
   const router = useRouter();
 
@@ -48,9 +50,9 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
         $flexGrow={1}
       >
         <OakSearchFilterCheckBox
-          value="all-categories"
+          value={`${screenVal}-all-categories`}
           displayValue="All"
-          id="all-categories"
+          id={`all-categories-${screenVal}-`}
           checked={!categorySlug}
           onChange={() => {
             const { category, ...restQuery } = router.query;
@@ -84,9 +86,9 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
           <OakSearchFilterCheckBox
             icon={category.iconName as OakIconProps["iconName"]}
             key={category.label}
-            value={category.slug}
+            value={`${screenVal}-${category.slug}`}
             displayValue={category.label}
-            id={category.label}
+            id={`${category.label}-${screenVal}`}
             checked={categorySlug === category.slug}
             onChange={() => {
               browseRefined({
