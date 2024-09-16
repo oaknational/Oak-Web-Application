@@ -10,6 +10,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
 type CustomArgs = React.ComponentProps<typeof PupilViewsReview> & {
   starterGrade: number;
@@ -111,6 +112,10 @@ export const Default: Story = {
             lessonTitle={args.lessonTitle}
             starterQuizQuestionsArray={quizQuestions}
             exitQuizQuestionsArray={exitQuizQuestions}
+            programmeSlug="programme-slug"
+            unitSlug="unit-slug"
+            pageType="browse"
+            browseData={lessonBrowseDataFixture({})}
           />
         </LessonEngineContext.Provider>
       </MathJaxProvider>

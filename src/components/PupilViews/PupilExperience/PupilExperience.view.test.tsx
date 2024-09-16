@@ -29,6 +29,30 @@ jest.mock("@/components/PupilViews/PupilExpired/PupilExpired.view", () => ({
   PupilExpiredView: jest.fn(() => "PupilExpiredView"),
 }));
 
+jest.mock("@/components/PupilViews/PupilReview", () => {
+  return {
+    PupilViewsReview: () => (
+      <div>
+        <div>Lesson review</div>
+        <div data-testid="content-guidance-info">Guidance Title</div>
+        <div data-testid="suervision-level-info">Supervision Level</div>
+      </div>
+    ),
+  };
+});
+
+jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
+  return {
+    PupilViewsLessonOverview: () => (
+      <div>
+        <div>Lesson Title</div>
+        <div data-testid="content-guidance-info">Guidance Title</div>
+        <div data-testid="suervision-level-info">Supervision Level</div>
+      </div>
+    ),
+  };
+});
+
 jest.mock("@oaknational/oak-components", () => {
   return {
     ...jest.requireActual("@oaknational/oak-components"),
@@ -90,7 +114,11 @@ describe("PupilExperienceView", () => {
       const lessonContent = lessonContentFixture({
         lessonTitle: "Lesson Title",
       });
-      const lessonBrowseData = lessonBrowseDataFixture({});
+      const lessonBrowseData = lessonBrowseDataFixture({
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+      });
 
       jest
         .spyOn(LessonEngineProvider, "useLessonEngineContext")
@@ -105,6 +133,7 @@ describe("PupilExperienceView", () => {
           browseData={lessonBrowseData}
           hasWorksheet={false}
           initialSection="overview"
+          pageType="browse"
         />,
       );
 
@@ -135,6 +164,7 @@ describe("PupilExperienceView", () => {
             browseData={lessonBrowseData}
             hasWorksheet={false}
             initialSection="overview"
+            pageType="browse"
           />,
         );
 
@@ -161,6 +191,7 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         initialSection="overview"
+        pageType="browse"
       />,
     );
 
@@ -194,6 +225,7 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         initialSection="overview"
+        pageType="browse"
       />,
     );
     const dialog = getByRole("alertdialog");
@@ -204,7 +236,7 @@ describe("PupilExperienceView", () => {
     expect(getByTestId("content-guidance-info")).toHaveTextContent(
       contentguidanceLabel,
     );
-    expect(getByTestId("content-guidance-info")).toHaveTextContent(
+    expect(getByTestId("suervision-level-info")).toHaveTextContent(
       supervisionLevel,
     );
   });
@@ -236,6 +268,7 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         initialSection="overview"
+        pageType="browse"
       />,
     );
     await userEvent.click(getByTestId("acceptButton"));
@@ -274,6 +307,7 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         initialSection="overview"
+        pageType="browse"
       />,
     );
 
@@ -312,6 +346,7 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         initialSection="overview"
+        pageType="browse"
       />,
     );
 
@@ -352,6 +387,7 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         initialSection="overview"
+        pageType="browse"
       />,
     );
 
@@ -364,7 +400,11 @@ describe("PupilExperienceView", () => {
     const lessonContent = lessonContentFixture({
       lessonTitle: "Lesson Title",
     });
-    const lessonBrowseData = lessonBrowseDataFixture({});
+    const lessonBrowseData = lessonBrowseDataFixture({
+      lessonSlug: "lesson-slug",
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+    });
 
     lessonBrowseData.programmeFields.phase = "secondary";
     lessonContent.lessonTitle = null;
@@ -381,6 +421,7 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         initialSection="review"
+        pageType="browse"
       />,
     );
 
@@ -406,6 +447,7 @@ describe("PupilExperienceView", () => {
         browseData={lessonBrowseData}
         hasWorksheet={false}
         initialSection="overview"
+        pageType="browse"
       />,
     );
 

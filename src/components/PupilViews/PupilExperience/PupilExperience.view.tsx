@@ -31,6 +31,7 @@ import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { PupilProvider } from "@/browser-lib/pupil-api/PupilClientProvider";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
 
@@ -54,6 +55,7 @@ export type PupilExperienceViewProps = {
   hasWorksheet: boolean;
   backUrl?: string | null;
   initialSection: LessonSection;
+  pageType: "preview" | "canonical" | "browse";
 };
 
 export const PupilPageContent = ({
@@ -61,6 +63,7 @@ export const PupilPageContent = ({
   lessonContent,
   hasWorksheet,
   backUrl,
+  pageType,
 }: Omit<PupilExperienceViewProps, "initialSection">) => {
   const { currentSection } = useLessonEngineContext();
   const {
@@ -74,9 +77,6 @@ export const PupilPageContent = ({
     contentGuidance,
     supervisionLevel,
   } = lessonContent;
-
-  const { lessonData, programmeFields } = browseData;
-  const { subject, subjectSlug, yearDescription, phase } = programmeFields;
 
   const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
   const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;
@@ -93,17 +93,13 @@ export const PupilPageContent = ({
       return (
         <PupilViewsLessonOverview
           lessonTitle={lessonTitle ?? ""}
-          subjectTitle={subject}
-          subjectSlug={subjectSlug}
-          yearTitle={yearDescription}
-          phase={phase as "primary" | "secondary"}
+          browseData={browseData}
           pupilLessonOutcome={pupilLessonOutcome ?? undefined}
           contentGuidance={contentGuidance}
           supervisionLevel={supervisionLevel ?? undefined}
           starterQuizNumQuestions={starterQuizNumQuestions}
           exitQuizNumQuestions={exitQuizNumQuestions}
           backUrl={backUrl}
-          expirationDate={lessonData.expirationDate}
         />
       );
     case "intro":
@@ -131,9 +127,12 @@ export const PupilPageContent = ({
         <PupilViewsReview
           lessonTitle={lessonTitle ?? ""}
           backUrl={backUrl}
-          phase={phase as "primary" | "secondary"}
           starterQuizQuestionsArray={starterQuiz ?? []}
           exitQuizQuestionsArray={exitQuiz ?? []}
+          programmeSlug={browseData.programmeSlug}
+          unitSlug={browseData.unitSlug}
+          browseData={browseData}
+          pageType={pageType}
         />
       );
     default:
@@ -162,6 +161,7 @@ const PupilExperienceLayout = ({
   hasWorksheet,
   backUrl,
   initialSection,
+  pageType,
 }: PupilExperienceViewProps) => {
   const { track } = usePupilAnalytics();
   const [isOpen, setIsOpen] = useState<boolean>(
@@ -193,47 +193,50 @@ const PupilExperienceLayout = ({
   };
 
   return (
-    <PupilLayout
-      seoProps={{
-        ...getSeoProps({
-          title: browseData.lessonData.title,
-          description: browseData.lessonData.pupilLessonOutcome,
-        }),
-        noIndex: isSensitive,
-        noFollow: isSensitive,
-      }}
-    >
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <CookieConsentStyles />
-        <LessonEngineProvider
-          initialLessonReviewSections={availableSections}
-          initialSection={initialSection}
-        >
-          <OakPupilJourneyContentGuidance
-            isOpen={isOpen}
-            onAccept={handleContentGuidanceAccept}
-            onDecline={handleContentGuidanceDecline}
-            contentGuidance={lessonContent.contentGuidance}
-            supervisionLevel={lessonContent.supervisionLevel}
-          />
+    <PupilProvider>
+      <PupilLayout
+        seoProps={{
+          ...getSeoProps({
+            title: browseData.lessonData.title,
+            description: browseData.lessonData.pupilLessonOutcome,
+          }),
+          noIndex: isSensitive,
+          noFollow: isSensitive,
+        }}
+      >
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <CookieConsentStyles />
+          <LessonEngineProvider
+            initialLessonReviewSections={availableSections}
+            initialSection={initialSection}
+          >
+            <OakPupilJourneyContentGuidance
+              isOpen={isOpen}
+              onAccept={handleContentGuidanceAccept}
+              onDecline={handleContentGuidanceDecline}
+              contentGuidance={lessonContent.contentGuidance}
+              supervisionLevel={lessonContent.supervisionLevel}
+            />
 
-          <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
-            <OakBox $height={"100vh"}>
-              {browseData.lessonData.deprecatedFields?.expired ? (
-                <PupilExpiredView lessonTitle={browseData.lessonData.title} />
-              ) : (
-                <PupilPageContent
-                  browseData={browseData}
-                  lessonContent={lessonContent}
-                  hasWorksheet={hasWorksheet}
-                  backUrl={backUrl}
-                />
-              )}
+            <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
+              <OakBox $height={"100vh"}>
+                {browseData.lessonData.deprecatedFields?.expired ? (
+                  <PupilExpiredView lessonTitle={browseData.lessonData.title} />
+                ) : (
+                  <PupilPageContent
+                    browseData={browseData}
+                    lessonContent={lessonContent}
+                    hasWorksheet={hasWorksheet}
+                    backUrl={backUrl}
+                    pageType={pageType}
+                  />
+                )}
+              </OakBox>
             </OakBox>
-          </OakBox>
-        </LessonEngineProvider>
-      </OakThemeProvider>
-    </PupilLayout>
+          </LessonEngineProvider>
+        </OakThemeProvider>
+      </PupilLayout>
+    </PupilProvider>
   );
 };
 
