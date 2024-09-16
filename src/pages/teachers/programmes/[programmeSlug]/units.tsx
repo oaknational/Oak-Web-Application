@@ -58,11 +58,6 @@ const StyledFieldset = styled.fieldset`
   margin: 0;
   padding: 0;
 `;
-/**
- *
- * ! - UPDATE CURRENT FILTER FUNCTION WITH YEARS
- * ! - TRACKING
- */
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
