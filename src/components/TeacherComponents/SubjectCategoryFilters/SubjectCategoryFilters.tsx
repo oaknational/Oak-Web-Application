@@ -48,9 +48,9 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
         $flexGrow={1}
       >
         <OakSearchFilterCheckBox
-          value="all"
+          value="all-categories"
           displayValue="All"
-          id="all"
+          id="all-categories"
           checked={!categorySlug}
           onChange={() => {
             const { category, ...restQuery } = router.query;

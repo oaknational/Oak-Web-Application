@@ -39,9 +39,9 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
         $flexGrow={1}
       >
         <OakSearchFilterCheckBox
-          value="all"
+          value="all-year-groups"
           displayValue="All"
-          id="all"
+          id="all-year-groups"
           checked={!router.query.year}
           onChange={() => {
             browseRefined({
