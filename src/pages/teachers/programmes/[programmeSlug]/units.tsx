@@ -60,12 +60,7 @@ const StyledFieldset = styled.fieldset`
 `;
 /**
  *
- * FIXME:
- * ! - REFACTOR TO USE STATE
- * ! - CREATE A FUNCTION TO FILTER UNITS
  * ! - UPDATE CURRENT FILTER FUNCTION WITH YEARS
- * ! - MOBILE RESPONSIVENESS
- * ! - ROUTING
  * ! - TRACKING
  */
 
@@ -235,10 +230,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     Filters
                   </OakHeading>
 
-                  {yearGroups.length && (
+                  {yearGroups.length >= 1 && (
                     <YearGroupFilters
                       yearGroups={yearGroups}
-                      yearGroupSlug={yearGroupSlug}
                       browseRefined={track.browseRefined}
                     />
                   )}
@@ -315,10 +309,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       $mb={[16, 16, 0]}
                       applyForTablet
                     >
-                      {yearGroups.length && (
+                      {yearGroups.length >= 1 && (
                         <YearGroupFilters
                           yearGroups={yearGroups}
-                          yearGroupSlug={yearGroupSlug}
                           browseRefined={track.browseRefined}
                         />
                       )}

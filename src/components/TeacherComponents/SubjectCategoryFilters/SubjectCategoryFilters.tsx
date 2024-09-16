@@ -74,6 +74,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
               activeFilters: {
                 content_types: "units",
                 learning_themes: router.query.learningTheme,
+                year_group: router.query.year,
               },
             });
             setSelectedCategory(null);
@@ -100,6 +101,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
                 activeFilters: {
                   content_types: "units",
                   learning_themes: router.query.learningTheme,
+                  year_group: router.query.year,
                 },
               });
               router.push(

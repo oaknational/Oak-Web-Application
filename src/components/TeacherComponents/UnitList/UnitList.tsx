@@ -127,7 +127,10 @@ const UnitList: FC<UnitListProps> = (props) => {
     paginationProps;
   const router = useRouter();
   const category = router.query["category"]?.toString();
-
+  const modifiedCategory =
+    category === "reading-writing-oracy"
+      ? "Reading, writing & oracy"
+      : category;
   const newPageItems = getPageItems(currentPageItems, false);
   const legacyPageItems = getPageItems(currentPageItems, true);
 
@@ -221,16 +224,11 @@ const UnitList: FC<UnitListProps> = (props) => {
     });
   };
 
-  const NewUnits = ({ category }: { category?: string }) => {
-    const modifiedCategory =
-      category === "reading-writing-oracy"
-        ? "Reading, writing & oracy"
-        : category;
-
-    return newPageItems.length && phaseSlug ? (
+  const NewUnits = ({ category }: { category?: string }) =>
+    newPageItems.length && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={false}
-        subject={modifiedCategory ?? subjectSlug}
+        subject={category ?? subjectSlug}
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
           page: "curriculum-units",
@@ -242,8 +240,6 @@ const UnitList: FC<UnitListProps> = (props) => {
         unitCards={getUnitCards(newPageItems)}
       />
     ) : null;
-  };
-
   const LegacyUnits = () =>
     legacyPageItems.length && keyStageSlug && phaseSlug ? (
       <OakUnitsContainer
@@ -271,7 +267,7 @@ const UnitList: FC<UnitListProps> = (props) => {
       {currentPageItems.length ? (
         isUnitListData(props) ? (
           <OakFlex $flexDirection="column" $gap="space-between-xxl">
-            <NewUnits category={category} />
+            <NewUnits category={modifiedCategory} />
             <LegacyUnits />
           </OakFlex>
         ) : (

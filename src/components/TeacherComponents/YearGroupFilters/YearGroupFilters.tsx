@@ -11,7 +11,6 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 type YearGroupFiltersProps = {
   yearGroups: { yearTitle: string; year: string }[];
   browseRefined: TrackFns["browseRefined"];
-  yearGroupSlug?: string | null;
 };
 
 const YearGroupFilters: FC<YearGroupFiltersProps> = ({
@@ -34,7 +33,6 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
       </OakHeading>
       <OakFlex
         $alignItems="flex-start"
-        onChange={() => {}}
         $flexWrap={"wrap"}
         $gap={"space-between-ssx"}
         aria-describedby={"year-group"}
@@ -57,7 +55,8 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
               filterType: "Subject filter",
               activeFilters: {
                 content_types: "units",
-                //   learning_themes: router.query.learningTheme,
+                learning_themes: router.query.learningTheme,
+                categories: router.query.category,
               },
             });
             const { year, ...restQuery } = router.query;
@@ -86,11 +85,12 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                 componentType: "filter_link",
                 eventVersion: "2.0.0",
                 analyticsUseCase: "Teacher",
-                filterValue: "all",
+                filterValue: yearGroup.yearTitle,
                 filterType: "Subject filter",
                 activeFilters: {
                   content_types: "units",
-                  //   learning_themes: router.query.learningTheme,
+                  learning_themes: router.query.learningTheme,
+                  categories: router.query.category,
                 },
               });
               router.push(
