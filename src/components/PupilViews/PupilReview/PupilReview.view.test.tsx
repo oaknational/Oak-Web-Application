@@ -2,7 +2,10 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { useFeatureFlagEnabled } from "posthog-js/react";
-import { useOakPupil } from "@oaknational/oak-pupil-client";
+import {
+  OakPupilClientProvider,
+  useOakPupil,
+} from "@oaknational/oak-pupil-client";
 import userEvent from "@testing-library/user-event";
 
 import { PupilViewsReview } from "./PupilReview.view";
@@ -10,7 +13,6 @@ import { PupilViewsReview } from "./PupilReview.view";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
-import { PupilProvider } from "@/browser-lib/pupil-api/PupilClientProvider";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
@@ -116,7 +118,12 @@ describe("PupilReview", () => {
     it("should not display the print button when the feature flag is disabled", () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(false);
       const { queryByRole } = renderWithTheme(
-        <PupilProvider>
+        <OakPupilClientProvider
+          config={{
+            getLessonAttemptUrl: "example.com",
+            logLessonAttemptUrl: "example.com",
+          }}
+        >
           <OakThemeProvider theme={oakDefaultTheme}>
             <LessonEngineContext.Provider value={createLessonEngineContext()}>
               <PupilViewsReview
@@ -130,7 +137,7 @@ describe("PupilReview", () => {
               />
             </LessonEngineContext.Provider>
           </OakThemeProvider>
-        </PupilProvider>,
+        </OakPupilClientProvider>,
       );
 
       expect(
@@ -140,7 +147,12 @@ describe("PupilReview", () => {
     it("should display the print button when the feature flag is enabled", () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
       const { getByTestId } = renderWithTheme(
-        <PupilProvider>
+        <OakPupilClientProvider
+          config={{
+            getLessonAttemptUrl: "example.com",
+            logLessonAttemptUrl: "example.com",
+          }}
+        >
           <OakThemeProvider theme={oakDefaultTheme}>
             <LessonEngineContext.Provider value={createLessonEngineContext()}>
               <PupilViewsReview
@@ -154,7 +166,7 @@ describe("PupilReview", () => {
               />
             </LessonEngineContext.Provider>
           </OakThemeProvider>
-        </PupilProvider>,
+        </OakPupilClientProvider>,
       );
 
       expect(getByTestId("printable-results-button")).toBeInTheDocument();
@@ -172,7 +184,12 @@ describe("PupilReview", () => {
               sectionResults: sectionResultsFixture,
             })}
           >
-            <PupilProvider>
+            <OakPupilClientProvider
+              config={{
+                getLessonAttemptUrl: "example.com",
+                logLessonAttemptUrl: "example.com",
+              }}
+            >
               <PupilViewsReview
                 lessonTitle="Lesson title"
                 exitQuizQuestionsArray={[]}
@@ -182,7 +199,7 @@ describe("PupilReview", () => {
                 browseData={mockBroweData}
                 pageType="browse"
               />
-            </PupilProvider>
+            </OakPupilClientProvider>
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
