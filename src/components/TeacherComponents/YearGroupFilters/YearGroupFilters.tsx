@@ -73,7 +73,7 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
         {yearGroups.map((yearGroup) => (
           <OakSearchFilterCheckBox
             id={yearGroup.yearTitle}
-            value={yearGroup.yearTitle}
+            value={yearGroup.year}
             displayValue={yearGroup.yearTitle}
             key={yearGroup.year}
             checked={yearGroup.year === router.query.year}

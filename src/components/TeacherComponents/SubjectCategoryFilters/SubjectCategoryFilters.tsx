@@ -84,7 +84,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
           <OakSearchFilterCheckBox
             icon={category.iconName as OakIconProps["iconName"]}
             key={category.label}
-            value={category.label}
+            value={category.slug}
             displayValue={category.label}
             id={category.label}
             checked={categorySlug === category.slug}
