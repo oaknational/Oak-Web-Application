@@ -31,7 +31,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import UnitList from "@/components/TeacherComponents/UnitList";
 import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
-import MobileFilters from "@/components/SharedComponents/MobileFilters";
+// import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
@@ -111,7 +111,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   } = paginationProps;
 
   const learningThemesId = useId();
-  const learningThemesFilterId = useId();
+  // const learningThemesFilterId = useId();
 
   const unitsSEO = {
     ...getSeoProps({
@@ -311,7 +311,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     </Flex>
                   )}
 
-                  {learningThemes.length > 1 && (
+                  {/* {learningThemes.length > 1 && (
                     <MobileFilters
                       $position={tiers.length === 0 ? "absolute" : "relative"}
                       providedId={learningThemesFilterId}
@@ -361,7 +361,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         />
                       </>
                     </MobileFilters>
-                  )}
+                  )} */}
                 </Flex>
 
                 {tiers.length > 0 && currentPageItems.length >= 1 && (
