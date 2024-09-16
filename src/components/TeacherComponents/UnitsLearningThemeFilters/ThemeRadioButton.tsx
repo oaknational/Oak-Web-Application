@@ -49,7 +49,6 @@ export const ThemeRadioButton = ({
         tabIndex={0}
         onFocus={() => onFocus(theme.slug)}
         onBlur={() => onFocus(undefined)}
-        onMouseDown={(e) => e.preventDefault()}
       />
       <OakFlex
         $height={"all-spacing-6"}
