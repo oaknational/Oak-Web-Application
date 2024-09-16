@@ -31,7 +31,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import UnitList from "@/components/TeacherComponents/UnitList";
 import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
-// import MobileFilters from "@/components/SharedComponents/MobileFilters";
+import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
@@ -111,7 +111,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   } = paginationProps;
 
   const learningThemesId = useId();
-  // const learningThemesFilterId = useId();
+  const learningThemesFilterId = useId();
 
   const unitsSEO = {
     ...getSeoProps({
@@ -311,57 +311,59 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     </Flex>
                   )}
 
-                  {/* {learningThemes.length > 1 && (
-                    <MobileFilters
-                      $position={tiers.length === 0 ? "absolute" : "relative"}
-                      providedId={learningThemesFilterId}
-                      label="Filters"
-                      $mt={0}
-                      $mb={[16, 16, 0]}
-                      applyForTablet
-                    >
+                  <MobileFilters
+                    $position={tiers.length === 0 ? "absolute" : "relative"}
+                    providedId={learningThemesFilterId}
+                    label="Filters"
+                    $mt={0}
+                    $mb={[16, 16, 0]}
+                    applyForTablet
+                  >
+                    <StyledFieldset>
                       {yearGroups.length >= 1 && (
                         <YearGroupFilters
                           yearGroups={yearGroups}
                           browseRefined={track.browseRefined}
                         />
                       )}
-                      <OakBox $mt={"space-between-m2"}>
+                      {subjectCategories && subjectCategories.length > 1 && (
                         <SubjectCategoryFilters
                           setSelectedCategory={setSelectedCategory}
                           subjectCategories={subjectCategories}
                           categorySlug={categorySlug}
                           browseRefined={track.browseRefined}
                         />
-                      </OakBox>
-                      <>
-                        <OakHeading
-                          tag="h3"
-                          $font="heading-7"
-                          $mb={"space-between-m"}
-                        >
-                          Threads
-                        </OakHeading>
+                      )}
+                      {learningThemes.length > 1 && (
+                        <>
+                          <OakHeading
+                            tag="h3"
+                            $font="heading-7"
+                            $mb={"space-between-m"}
+                          >
+                            Threads
+                          </OakHeading>
 
-                        <UnitsLearningThemeFilters
-                          labelledBy={learningThemesFilterId}
-                          learningThemes={learningThemes}
-                          selectedThemeSlug={themeSlug ? themeSlug : "all"}
-                          linkProps={{
-                            page: "unit-index",
-                            programmeSlug,
-                          }}
-                          trackingProps={{
-                            keyStageSlug,
-                            keyStageTitle:
-                              keyStageTitle as KeyStageTitleValueType,
-                            subjectTitle,
-                            subjectSlug,
-                          }}
-                        />
-                      </>
-                    </MobileFilters>
-                  )} */}
+                          <UnitsLearningThemeFilters
+                            labelledBy={learningThemesFilterId}
+                            learningThemes={learningThemes}
+                            selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                            linkProps={{
+                              page: "unit-index",
+                              programmeSlug,
+                            }}
+                            trackingProps={{
+                              keyStageSlug,
+                              keyStageTitle:
+                                keyStageTitle as KeyStageTitleValueType,
+                              subjectTitle,
+                              subjectSlug,
+                            }}
+                          />
+                        </>
+                      )}
+                    </StyledFieldset>
+                  </MobileFilters>
                 </Flex>
 
                 {tiers.length > 0 && currentPageItems.length >= 1 && (

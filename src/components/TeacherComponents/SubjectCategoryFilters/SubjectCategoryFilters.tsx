@@ -26,7 +26,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
 
   return (
     <OakFlex
-      $mb="space-between-m"
+      $mv="space-between-m"
       $flexDirection={"column"}
       $pb={"inner-padding-xl2"}
       $bb={"border-solid-s"}
