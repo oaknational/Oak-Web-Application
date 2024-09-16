@@ -6,7 +6,7 @@ import {
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import { ThemeRadioButton } from "./ThemeRadioButton";
+import { RadioTheme, ThemeRadioButton, isRadioTheme } from "./ThemeRadioButton";
 
 import {
   SpecialistUnitListingLinkProps,
@@ -16,8 +16,8 @@ import { LearningThemeSelectedTrackingProps } from "@/components/SharedComponent
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type LearningTheme = {
-  themeSlug: string;
-  themeTitle: string;
+  themeSlug?: string | null;
+  themeTitle?: string | null;
 };
 
 export type UnitsLearningThemeFiltersProps = {
@@ -35,7 +35,7 @@ const UnitsLearningThemeFilters = ({
   trackingProps,
 }: UnitsLearningThemeFiltersProps) => {
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
-  const learningThemesMapped = learningThemes
+  const learningThemesMapped: Array<RadioTheme> = learningThemes
     ? learningThemes
         .map((learningTheme) => {
           return {
@@ -43,26 +43,17 @@ const UnitsLearningThemeFilters = ({
             slug: learningTheme?.themeSlug,
           };
         })
-        .sort(
-          (
-            a: {
-              label: string | undefined | null;
-              slug: string | undefined | null;
-            },
-            b: {
-              label: string | undefined | null;
-              slug: string | undefined | null;
-            },
-          ) => {
-            if (a?.slug === "no-theme") {
-              return 0;
-            } else if (b?.slug === "no-theme") {
-              return -1;
-            } else {
-              return 0;
-            }
-          },
-        )
+        .filter((theme) => isRadioTheme(theme))
+        .map((theme) => theme as RadioTheme) // why is this necessary?
+        .sort((a: RadioTheme, b: RadioTheme) => {
+          if (a.slug === "no-theme") {
+            return 0;
+          } else if (b.slug === "no-theme") {
+            return -1;
+          } else {
+            return 0;
+          }
+        })
     : [];
 
   const router = useRouter();

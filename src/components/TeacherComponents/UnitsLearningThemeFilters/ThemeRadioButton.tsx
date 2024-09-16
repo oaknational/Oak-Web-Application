@@ -26,6 +26,16 @@ const RadioButtonFocus = styled(OakBox)<OakBoxProps>`
   box-shadow: ${`inset 0 0 0 0.13rem #ffe555`}; // TODO: replace with colour token
 `;
 export type RadioTheme = { slug: string; label: string };
+
+export const isRadioTheme = (u: unknown): u is RadioTheme => {
+  return (
+    typeof u === "object" &&
+    u !== null &&
+    typeof (u as RadioTheme).slug === "string" &&
+    typeof (u as RadioTheme).label === "string"
+  );
+};
+
 export const ThemeRadioButton = ({
   theme,
   isChecked,
