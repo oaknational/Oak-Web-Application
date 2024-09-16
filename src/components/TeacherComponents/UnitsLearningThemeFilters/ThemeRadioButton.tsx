@@ -42,10 +42,12 @@ export const ThemeRadioButton = ({
   isFocussed,
   onChange,
   onFocus,
+  id,
 }: {
   theme: RadioTheme;
   isChecked: boolean;
   isFocussed: boolean;
+  id: string;
   onChange: (theme: RadioTheme) => void;
   onFocus: (value: string | undefined) => void;
 }) => {
@@ -53,7 +55,7 @@ export const ThemeRadioButton = ({
     <RadioButtonLabel htmlFor={theme.slug}>
       <HiddenRadioButtonInput
         value={theme.slug}
-        id={theme.slug}
+        id={id}
         checked={isChecked}
         onChange={() => onChange(theme)}
         tabIndex={0}

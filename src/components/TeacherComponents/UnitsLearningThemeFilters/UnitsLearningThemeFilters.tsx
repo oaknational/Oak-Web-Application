@@ -111,7 +111,7 @@ const UnitsLearningThemeFilters = ({
         {[
           { slug: "all", label: "All in suggested order" },
           ...learningThemesMapped,
-        ].map((theme) => {
+        ].map((theme, i) => {
           const isChecked = activeThemeSlug === theme.slug;
           const isFocussed = focussedThemeSlug === theme.slug;
           return (
@@ -128,6 +128,7 @@ const UnitsLearningThemeFilters = ({
                 isFocussed={isFocussed}
                 onChange={onChange}
                 onFocus={setFocussedThemeSlug}
+                id={`${theme.slug}-${i}`}
               />
             </OakBox>
           );
