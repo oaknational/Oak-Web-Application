@@ -14,7 +14,7 @@ import { isMatchAnswer } from "../QuizUtils/answerTypeDiscriminators";
 import { getStemTextData } from "../QuizUtils/stemUtils";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
-import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+import { invariant } from "@/utils/invariant";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 const StyledUL = styled(OakUL)`

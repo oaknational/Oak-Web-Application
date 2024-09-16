@@ -10,7 +10,12 @@ const render = renderWithProviders();
 
 const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
   if (userEventCallback) {
-    userEventCallback({ event: "play", timeElapsed: 20, duration: 40 });
+    userEventCallback({
+      event: "play",
+      timeElapsed: 20,
+      duration: 40,
+      muted: false,
+    });
   }
   return <video data-testid="video-player" />;
 };
