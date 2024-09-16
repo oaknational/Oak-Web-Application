@@ -42,9 +42,8 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
   const categorySlug = router.query["category"]?.toString();
-  // potential refactor
-
   const year = router.query["year"]?.toString();
+
   const unitsFilteredByLearningTheme = filterUnits(
     themeSlug,
     categorySlug,

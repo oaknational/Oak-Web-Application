@@ -2,9 +2,6 @@ import unitListingFixture from "../../node-lib/curriculum-api-2023/fixtures/unit
 
 import filterUnits from "./filterUnits";
 
-/**
- * ! - Add test for year filter
- */
 describe("filterUnits", () => {
   it("should return units if themeSlug is undefined", () => {
     const units = unitListingFixture().units;
@@ -120,6 +117,56 @@ describe("filterUnits", () => {
     const themeSlug = "computer-science-3";
     const units = unitListingFixture().units;
     expect(filterUnits(themeSlug, categorySlug, undefined, units)).toEqual([
+      [
+        {
+          slug: "networks-fe4b",
+          title: "Networks",
+          nullTitle: "Networks",
+          programmeSlug: "computing-secondary-ks4",
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key Stage 4",
+          subjectSlug: "computing",
+          subjectTitle: "Computing",
+          lessonCount: 6,
+          unitStudyOrder: 3,
+          expired: false,
+          yearOrder: 1,
+          subjectCategories: [
+            {
+              label: "Grammar",
+              slug: "grammar",
+            },
+          ],
+
+          expiredLessonCount: 0,
+          yearTitle: "Year 10",
+          year: "year-10",
+          cohort: "2023-2024",
+          learningThemes: [
+            {
+              themeSlug: "computer-science-3",
+              themeTitle: "Computer Science",
+            },
+          ],
+        },
+      ],
+    ]);
+  });
+  it.only("should return unit when both subjectCategory and learningTheme passed into function", () => {
+    const categorySlug = "grammar";
+    const themeSlug = "computer-science-3";
+    const year = "year-10";
+    const units = unitListingFixture().units;
+    const filteredUnits = filterUnits(undefined, undefined, year, units);
+
+    filteredUnits.forEach((unit) => {
+      unit.forEach((u) => {
+        expect(u.year).toBe(year);
+        expect(u.yearTitle).toBe("Year 10");
+      });
+    });
+
+    expect(filterUnits(themeSlug, categorySlug, year, units)).toEqual([
       [
         {
           slug: "networks-fe4b",

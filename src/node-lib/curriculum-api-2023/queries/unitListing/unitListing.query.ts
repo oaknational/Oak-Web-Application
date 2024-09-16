@@ -15,6 +15,7 @@ import { getAllLearningThemes } from "./threads/getAllLearningThemes";
 
 import { NEW_COHORT } from "@/config/cohort";
 
+// category icons don't have a consistent naming convention
 const categoryIconMap = {
   Grammar: "subject-english-grammar",
   Handwriting: "subject-english-handwriting",
