@@ -107,11 +107,15 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       );
   };
 
+  if (phase === "foundation") {
+    throw new Error("Foundation phase is not supported");
+  }
+
   return (
     <OakLessonLayout
       bottomNavSlot={bottomNavSlot}
       lessonSectionName={"review"}
-      phase={phase as "primary" | "secondary"}
+      phase={phase}
       topNavSlot={null}
     >
       <OakGrid
