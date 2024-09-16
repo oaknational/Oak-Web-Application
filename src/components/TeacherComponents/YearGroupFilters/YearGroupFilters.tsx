@@ -21,14 +21,14 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
 
   return (
     <OakFlex
-      $mv="space-between-m"
+      $mv="space-between-m2"
       $flexDirection={"column"}
       $pb={"inner-padding-xl2"}
       $bb={"border-solid-s"}
       $borderColor={"border-neutral-lighter"}
       $flexGrow={1}
     >
-      <OakHeading tag="h3" $font={"heading-7"} $mb={"space-between-m2"}>
+      <OakHeading tag="h3" $font={"heading-7"} $mb={"space-between-m"}>
         Year
       </OakHeading>
       <OakFlex

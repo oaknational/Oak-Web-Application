@@ -152,7 +152,7 @@ describe("filterUnits", () => {
       ],
     ]);
   });
-  it.only("should return unit when both subjectCategory and learningTheme passed into function", () => {
+  it("should return unit when both subjectCategory and learningTheme passed into function", () => {
     const categorySlug = "grammar";
     const themeSlug = "computer-science-3";
     const year = "year-10";

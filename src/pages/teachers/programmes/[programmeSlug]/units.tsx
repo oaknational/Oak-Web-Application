@@ -11,6 +11,7 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
+  OakSecondaryButton,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
@@ -86,6 +87,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const categorySlug = router.query["category"]?.toString();
   const yearGroupSlug = router.query["year"]?.toString();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [skipFiltersButton, setSkipFiltersButton] = useState(false);
 
   const unitsFilteredByLearningTheme = filterUnits(
     themeSlug,
@@ -221,10 +223,24 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 $maxWidth={"all-spacing-20"}
               >
                 <StyledFieldset>
-                  <OakHeading tag="h3" $font="heading-6" $mb="space-between-m">
+                  <OakHeading
+                    tag="h3"
+                    $font="heading-6"
+                    $mb={"space-between-ssx"}
+                  >
                     Filters
                   </OakHeading>
-
+                  <OakBox $mb={skipFiltersButton ? "space-between-xs" : "auto"}>
+                    <OakSecondaryButton
+                      element="a"
+                      aria-label="Skip to units"
+                      href="#unit-list"
+                      onFocus={() => setSkipFiltersButton(true)}
+                      onBlur={() => setSkipFiltersButton(false)}
+                    >
+                      Skip to units
+                    </OakSecondaryButton>
+                  </OakBox>
                   {yearGroups.length >= 1 && (
                     <YearGroupFilters
                       yearGroups={yearGroups}

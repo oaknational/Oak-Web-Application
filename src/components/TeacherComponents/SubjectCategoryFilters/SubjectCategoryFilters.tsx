@@ -37,7 +37,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
         tag="h3"
         as={"legend"}
         $font="heading-7"
-        $mb="space-between-s"
+        $mb="space-between-m"
       >
         Category
       </OakHeading>
