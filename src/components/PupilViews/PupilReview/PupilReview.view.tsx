@@ -143,11 +143,13 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               {isShowShareButtons && (
                 <OakPrimaryButton
                   type="button"
+                  role="button"
                   aria-label="Printable results, opens in a new tab"
                   title="Printable results (opens in a new tab)"
                   iconName={"external"}
                   isTrailingIcon
                   onClick={handlePrintableResultsClick}
+                  data-testid="printable-results-button"
                 >
                   Printable results
                 </OakPrimaryButton>

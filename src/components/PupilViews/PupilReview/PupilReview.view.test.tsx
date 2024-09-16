@@ -139,7 +139,7 @@ describe("PupilReview", () => {
     });
     it("should display the print button when the feature flag is enabled", () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
-      const { getByRole } = renderWithTheme(
+      const { getByTestId } = renderWithTheme(
         <PupilProvider>
           <OakThemeProvider theme={oakDefaultTheme}>
             <LessonEngineContext.Provider value={createLessonEngineContext()}>
@@ -157,9 +157,7 @@ describe("PupilReview", () => {
         </PupilProvider>,
       );
 
-      expect(
-        getByRole("button", { name: "Printable results" }),
-      ).toBeInTheDocument();
+      expect(getByTestId("printable-results-button")).toBeInTheDocument();
     });
     it("logAttempt function is called when button is clicked", async () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
@@ -167,7 +165,7 @@ describe("PupilReview", () => {
       const logAttemptSpy = jest.fn(() => Promise.resolve("attempt-id"));
       (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
 
-      const { getByRole } = renderWithTheme(
+      const { getByTestId } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider
             value={createLessonEngineContext({
@@ -188,7 +186,7 @@ describe("PupilReview", () => {
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
-      const button = getByRole("button", { name: "Printable results" });
+      const button = getByTestId("printable-results-button");
       await userEvent.click(button).then(() => {
         expect(logAttemptSpy).toHaveBeenCalledTimes(1);
       });
