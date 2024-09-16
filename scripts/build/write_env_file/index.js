@@ -101,6 +101,9 @@ async function main() {
     HUBSPOT_FORMS_ACCESS_TOKEN:
       process.env.HUBSPOT_FORMS_ACCESS_TOKEN ||
       secretsFromNetwork.HUBSPOT_FORMS_ACCESS_TOKEN,
+    HUBSPOT_OWA_ACCESS_TOKEN:
+      process.env.HUBSPOT_OWA_ACCESS_TOKEN ||
+      secretsFromNetwork.HUBSPOT_OWA_ACCESS_TOKEN,
 
     // Oak
     // App hosting URL, needed for accurate sitemaps (and canonical URLs in the metadata?).

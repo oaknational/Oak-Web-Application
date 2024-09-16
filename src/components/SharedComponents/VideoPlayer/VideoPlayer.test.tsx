@@ -122,6 +122,7 @@ describe("VideoPlayer", () => {
       duration: 100,
       event: "play",
       timeElapsed: 0,
+      muted: false,
     });
   });
 
@@ -135,6 +136,7 @@ describe("VideoPlayer", () => {
       duration: 100,
       event: "pause",
       timeElapsed: 0,
+      muted: false,
     });
   });
 

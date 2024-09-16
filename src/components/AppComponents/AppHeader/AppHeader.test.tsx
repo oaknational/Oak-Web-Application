@@ -1,13 +1,35 @@
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import AppHeader from ".";
 
+import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
+jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk", () => ({
+  useFeatureFlaggedClerk: jest.fn(() => ({
+    useUser: jest.fn(() => ({
+      isSignedIn: true,
+    })),
+  })),
+}));
+
+jest.mock("@clerk/nextjs", () => ({
+  UserButton: () => (
+    <div data-testid="clerk-user-button">Mocked User Button</div>
+  ),
+}));
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(() => true),
+}));
 
 describe("components/AppHeader", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   test("header should be in the document", () => {
     const { getByRole } = render(<AppHeader />);
 
@@ -76,5 +98,36 @@ describe("components/AppHeader", () => {
     }
 
     expect(pupilsLink.closest("a")).toHaveAttribute("href", "/pupils/years");
+  });
+
+  it("does not render a sign out button when user is not logged in", () => {
+    (useFeatureFlaggedClerk as jest.Mock).mockImplementationOnce(() => ({
+      useUser: () => ({
+        isSignedIn: false, // Override for this test
+      }),
+    }));
+    renderWithProviders()(<AppHeader />);
+
+    const signOutButton = screen.queryByTestId("clerk-user-button");
+    expect(signOutButton).not.toBeInTheDocument();
+  });
+
+  it("renders a sign out button when a user is logged in and feature flag is on", async () => {
+    renderWithProviders()(<AppHeader />);
+    (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+    const signOutButton = screen.getByText("Mocked User Button");
+    expect(signOutButton).toBeInTheDocument();
+  });
+  it("does not render a sign out button when feature flag is off", () => {
+    (useFeatureFlagEnabled as jest.Mock).mockReturnValue(false);
+    (useFeatureFlaggedClerk as jest.Mock).mockImplementationOnce(() => ({
+      useUser: () => ({
+        isSignedIn: true, // Override for this test
+      }),
+    }));
+    renderWithProviders()(<AppHeader />);
+
+    const signOutButton = screen.queryByTestId("clerk-user-button");
+    expect(signOutButton).not.toBeInTheDocument();
   });
 });

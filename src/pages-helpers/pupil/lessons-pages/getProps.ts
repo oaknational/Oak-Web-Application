@@ -11,7 +11,7 @@ import {
   PupilExperienceViewProps,
 } from "@/components/PupilViews/PupilExperience";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+import { invariant } from "@/utils/invariant";
 
 export type PupilLessonPageURLParams = {
   lessonSlug: string;
@@ -122,6 +122,7 @@ export const getProps = ({
         hasWorksheet,
         initialSection: section,
         backUrl,
+        pageType: page,
       },
     };
 

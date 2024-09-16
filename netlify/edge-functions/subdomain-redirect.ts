@@ -63,9 +63,8 @@ async function redirectNetlifySubdomains(
   console.log(`URL is on allow list: ${isOnAllowList}`);
 
   if (subdomain && !redirected && !isOnAllowList) {
-    const redirectTargetUrl = new URL(
-      `https://${subdomain}.netlify.thenational.academy/`,
-    ).href;
+    const redirectTargetUrl = new URL(request.url);
+    redirectTargetUrl.host = `${subdomain}.netlify.thenational.academy`;
     console.log("Redirected to Cloudflare - ", redirectTargetUrl);
     logRequestComplete();
 
