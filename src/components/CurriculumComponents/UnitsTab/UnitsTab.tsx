@@ -21,6 +21,7 @@ import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 
 import Box from "@/components/SharedComponents/Box";
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -29,6 +30,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import highlightedYearGroupUnitCount from "@/utils/highlightedYearGroupUnitCount";
 
 // Types and interfaces
 
@@ -77,6 +79,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
   const [yearSelection, setYearSelection] = useState<YearSelection>({
     ...initialYearSelection,
   });
+
   // This useLayoutEffect hook should be deprecated once the url structure of the visualiser should be updated
   useLayoutEffect(() => {
     setYearSelection(initialYearSelection);
@@ -89,6 +92,11 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
   const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
     string | null
   >(null);
+  const unitCount = highlightedYearGroupUnitCount(
+    yearData,
+    selectedYear,
+    yearSelection,
+  );
 
   // Filter interaction handlers
 
@@ -312,15 +320,35 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                 <Box $mb={16}>
                   <RadioButton value={""} data-testid={"all-years-radio"}>
                     All
+                    {selectedYear === "" && (
+                      <ScreenReaderOnly>
+                        {` Showing ${unitCount} ${
+                          unitCount === 1 ? "unit" : "units"
+                        }`}
+                      </ScreenReaderOnly>
+                    )}
                   </RadioButton>
                 </Box>
-                {yearOptions.map((yearOption) => (
-                  <Box key={yearOption} $mb={16}>
-                    <RadioButton value={yearOption} data-testid={"year-radio"}>
-                      Year {yearOption}
-                    </RadioButton>
-                  </Box>
-                ))}
+                {yearOptions.map((yearOption) => {
+                  const isSelected = selectedYear === yearOption;
+                  return (
+                    <Box key={yearOption} $mb={16}>
+                      <RadioButton
+                        value={yearOption}
+                        data-testid={"year-radio"}
+                      >
+                        Year {yearOption}
+                        {isSelected && (
+                          <ScreenReaderOnly>
+                            {` Showing ${unitCount} ${
+                              unitCount === 1 ? "unit" : "units"
+                            }`}
+                          </ScreenReaderOnly>
+                        )}
+                      </RadioButton>
+                    </Box>
+                  );
+                })}
               </RadioGroup>
             </Fieldset>
           </OakGridArea>
