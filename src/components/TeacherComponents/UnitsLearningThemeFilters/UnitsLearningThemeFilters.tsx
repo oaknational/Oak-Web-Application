@@ -111,7 +111,11 @@ const UnitsLearningThemeFilters = ({
           Skip to units
         </OakSecondaryButton>
       </OakBox>
-      <OakFlex $flexDirection="column" $gap="space-between-ssx">
+      <OakFlex
+        $flexDirection="column"
+        $gap="space-between-ssx"
+        role="radiogroup"
+      >
         {[
           { slug: "all", label: "All in suggested order" },
           ...learningThemesMapped,
@@ -119,22 +123,14 @@ const UnitsLearningThemeFilters = ({
           const isChecked = activeThemeSlug === theme.slug;
           const isFocussed = focussedThemeSlug === theme.slug;
           return (
-            <OakBox
-              $borderColor="border-neutral-lighter"
-              $borderStyle="solid"
-              $borderRadius="border-radius-s"
-              $pa="inner-padding-s"
-              key={theme.slug}
-            >
-              <ThemeRadioButton
-                theme={theme}
-                isChecked={isChecked}
-                isFocussed={isFocussed}
-                onChange={onChange}
-                onFocus={setFocussedThemeSlug}
-                id={`${theme.slug}-${i}`}
-              />
-            </OakBox>
+            <ThemeRadioButton
+              theme={theme}
+              isChecked={isChecked}
+              isFocussed={isFocussed}
+              onChange={onChange}
+              onFocus={setFocussedThemeSlug}
+              id={`${theme.slug}-${i}`}
+            />
           );
         })}
       </OakFlex>

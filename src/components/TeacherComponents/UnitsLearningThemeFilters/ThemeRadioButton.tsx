@@ -52,50 +52,58 @@ export const ThemeRadioButton = ({
   onFocus: (value: string | undefined) => void;
 }) => {
   return (
-    <RadioButtonLabel htmlFor={id}>
-      <HiddenRadioButtonInput
-        value={theme.slug}
-        id={id}
-        checked={isChecked}
-        onChange={() => onChange(theme)}
-        tabIndex={0}
-        onFocus={() => onFocus(theme.slug)}
-        onBlur={() => onFocus(undefined)}
-      />
-      <OakFlex
-        $height={"all-spacing-6"}
-        $width="all-spacing-6"
-        $borderColor={"black"}
-        $flexGrow={0}
-        $flexShrink={0}
-        $alignItems={"center"}
-        $justifyContent={"center"}
-        $background="bg-primary"
-        $ba="border-solid-m"
-        $borderRadius="border-radius-circle"
-      >
-        {isChecked && (
-          <OakBox
-            $height={"all-spacing-4"}
-            $width="all-spacing-4"
-            $background="black"
-            $position="absolute"
-            $borderRadius="border-radius-circle"
-          />
-        )}
-        {isFocussed && (
-          <RadioButtonFocus
-            $height={"all-spacing-7"}
-            $width="all-spacing-7"
-            $background="transparent"
-            $position="absolute"
-            $ba="border-solid-m"
-            $borderColor="grey60"
-            $borderRadius="border-radius-circle"
-          />
-        )}
-      </OakFlex>
-      {theme.label}
-    </RadioButtonLabel>
+    <OakBox
+      $borderColor="border-neutral-lighter"
+      $borderStyle="solid"
+      $borderRadius="border-radius-s"
+      $pa="inner-padding-s"
+      key={theme.slug}
+    >
+      <RadioButtonLabel htmlFor={id}>
+        <HiddenRadioButtonInput
+          value={theme.slug}
+          id={id}
+          checked={isChecked}
+          onChange={() => onChange(theme)}
+          tabIndex={0}
+          onFocus={() => onFocus(theme.slug)}
+          onBlur={() => onFocus(undefined)}
+        />
+        <OakFlex
+          $height={"all-spacing-6"}
+          $width="all-spacing-6"
+          $borderColor={"black"}
+          $flexGrow={0}
+          $flexShrink={0}
+          $alignItems={"center"}
+          $justifyContent={"center"}
+          $background="bg-primary"
+          $ba="border-solid-m"
+          $borderRadius="border-radius-circle"
+        >
+          {isChecked && (
+            <OakBox
+              $height={"all-spacing-4"}
+              $width="all-spacing-4"
+              $background="black"
+              $position="absolute"
+              $borderRadius="border-radius-circle"
+            />
+          )}
+          {isFocussed && (
+            <RadioButtonFocus
+              $height={"all-spacing-7"}
+              $width="all-spacing-7"
+              $background="transparent"
+              $position="absolute"
+              $ba="border-solid-m"
+              $borderColor="grey60"
+              $borderRadius="border-radius-circle"
+            />
+          )}
+        </OakFlex>
+        {theme.label}
+      </RadioButtonLabel>
+    </OakBox>
   );
 };
