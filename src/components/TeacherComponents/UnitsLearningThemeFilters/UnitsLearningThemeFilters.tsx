@@ -4,7 +4,6 @@ import {
   OakSecondaryButton,
 } from "@oaknational/oak-components";
 import { useState } from "react";
-import { useRouter } from "next/router";
 
 import { RadioTheme, RadioTile, isRadioTheme } from "./RadioTile";
 
@@ -27,6 +26,7 @@ export type UnitsLearningThemeFiltersProps = {
   linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps;
   trackingProps?: LearningThemeSelectedTrackingProps;
   idSuffix: string;
+  onChangeCallback: (theme: string | undefined) => void;
 };
 
 const UnitsLearningThemeFilters = ({
@@ -35,6 +35,7 @@ const UnitsLearningThemeFilters = ({
   linkProps,
   trackingProps,
   idSuffix,
+  onChangeCallback,
 }: UnitsLearningThemeFiltersProps) => {
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
   const learningThemesMapped: Array<RadioTheme> = learningThemes
@@ -57,18 +58,19 @@ const UnitsLearningThemeFilters = ({
         })
     : [];
 
-  const router = useRouter();
   const { track } = useAnalytics();
 
-  // Manual setting the active theme slug on select to avoid a delay in visual state updating while the page reloads
   const [activeThemeSlug, setActiveThemeSlug] = useState(selectedThemeSlug);
-
   const [focussedThemeSlug, setFocussedThemeSlug] = useState<
     string | undefined
   >(undefined);
 
   const onChange = (theme: { label: string; slug: string }) => {
     setActiveThemeSlug(theme.slug);
+
+    const callbackValue = theme.slug === "all" ? undefined : theme.slug;
+    onChangeCallback(callbackValue);
+
     if (trackingProps) {
       const { keyStageSlug, subjectSlug } = trackingProps;
 
@@ -85,15 +87,9 @@ const UnitsLearningThemeFilters = ({
       });
     }
 
-    const query = theme.slug === "all" ? {} : { "learning-theme": theme.slug };
-    router.replace(
-      {
-        pathname: `/teachers/programmes/${linkProps.programmeSlug}/units`,
-        query,
-      },
-      undefined,
-      { shallow: true },
-    );
+    const query = theme.slug === "all" ? "" : `?learning-theme=${theme.slug}`;
+    const newUrl = `/teachers/programmes/${linkProps.programmeSlug}/units${query}`;
+    window.history.replaceState(window.history.state, "", newUrl);
   };
 
   return (

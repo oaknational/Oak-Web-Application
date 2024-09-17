@@ -1,4 +1,4 @@
-import React, { useId } from "react";
+import React, { useId, useState } from "react";
 import { useRouter } from "next/router";
 import { useTheme } from "styled-components";
 import {
@@ -74,7 +74,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
 
-  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
+  const [selectedThemeSlug, setSelectedThemeSlug] = useState<
+    string | undefined
+  >(themeSlug);
+
+  const unitsFilteredByLearningTheme = filterLearningTheme(
+    selectedThemeSlug,
+    units,
+  );
+
   const paginationProps = usePagination({
     totalResults: unitsFilteredByLearningTheme.length,
     pageSize: RESULTS_PER_PAGE,
@@ -233,6 +241,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         subjectSlug,
                       }}
                       idSuffix="desktop"
+                      onChangeCallback={setSelectedThemeSlug}
                     />
                   </Flex>
                 )}
@@ -287,6 +296,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                           subjectSlug,
                         }}
                         idSuffix="mobile"
+                        onChangeCallback={setSelectedThemeSlug}
                       />
                     </MobileFilters>
                   )}

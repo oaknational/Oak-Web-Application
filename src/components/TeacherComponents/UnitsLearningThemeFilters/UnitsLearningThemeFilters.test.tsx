@@ -40,6 +40,7 @@ describe("UnitsLearningThemeFilters", () => {
           subjectSlug: "english",
           subjectTitle: "English",
         }}
+        onChangeCallback={jest.fn}
       />,
     );
 
@@ -80,6 +81,7 @@ describe("UnitsLearningThemeFilters", () => {
             subjectSlug: "english",
             subjectTitle: "English",
           }}
+          onChangeCallback={jest.fn}
         />
         ,
       </OakThemeProvider>,

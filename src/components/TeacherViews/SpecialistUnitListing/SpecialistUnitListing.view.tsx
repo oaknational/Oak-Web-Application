@@ -1,4 +1,4 @@
-import { FC, useId } from "react";
+import { FC, useId, useState } from "react";
 import { useTheme } from "styled-components";
 import { useRouter } from "next/router";
 import {
@@ -42,7 +42,14 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
 
-  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
+  const [selectedThemeSlug, setSelectedThemeSlug] = useState<
+    string | undefined
+  >(themeSlug);
+
+  const unitsFilteredByLearningTheme = filterLearningTheme(
+    selectedThemeSlug,
+    units,
+  );
 
   const theme = useTheme();
 
@@ -121,6 +128,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                       programmeSlug: programmeSlug,
                     }}
                     idSuffix="desktop"
+                    onChangeCallback={setSelectedThemeSlug}
                   />
                 </OakFlex>
               )}
@@ -176,6 +184,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                       programmeSlug: programmeSlug,
                     }}
                     idSuffix="mobile"
+                    onChangeCallback={setSelectedThemeSlug}
                   />
                 </MobileFilters>
               )}
