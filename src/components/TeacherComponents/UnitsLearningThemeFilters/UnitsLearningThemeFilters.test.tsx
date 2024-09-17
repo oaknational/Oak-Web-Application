@@ -28,6 +28,7 @@ describe("UnitsLearningThemeFilters", () => {
             themeSlug: "grammar",
           },
         ]}
+        idSuffix="test"
         selectedThemeSlug={"all"}
         linkProps={{
           page: "unit-index",
@@ -72,6 +73,7 @@ describe("UnitsLearningThemeFilters", () => {
             page: "unit-index",
             programmeSlug: "maths-secondary-ks3",
           }}
+          idSuffix="test"
           trackingProps={{
             keyStageSlug: "ks3",
             keyStageTitle: "Key stage 3",

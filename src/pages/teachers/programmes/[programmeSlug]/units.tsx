@@ -232,6 +232,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         subjectTitle,
                         subjectSlug,
                       }}
+                      idSuffix="desktop"
                     />
                   </Flex>
                 )}
@@ -285,6 +286,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                           subjectTitle,
                           subjectSlug,
                         }}
+                        idSuffix="mobile"
                       />
                     </MobileFilters>
                   )}

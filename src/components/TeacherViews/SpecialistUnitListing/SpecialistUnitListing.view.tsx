@@ -120,6 +120,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                       page: "specialist-unit-index",
                       programmeSlug: programmeSlug,
                     }}
+                    idSuffix="desktop"
                   />
                 </OakFlex>
               )}
@@ -174,6 +175,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                       page: "specialist-unit-index",
                       programmeSlug: programmeSlug,
                     }}
+                    idSuffix="mobile"
                   />
                 </MobileFilters>
               )}

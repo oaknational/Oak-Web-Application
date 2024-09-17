@@ -26,6 +26,7 @@ export type UnitsLearningThemeFiltersProps = {
   learningThemes: LearningTheme[] | null;
   linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps;
   trackingProps?: LearningThemeSelectedTrackingProps;
+  idSuffix: string;
 };
 
 const UnitsLearningThemeFilters = ({
@@ -33,6 +34,7 @@ const UnitsLearningThemeFilters = ({
   selectedThemeSlug,
   linkProps,
   trackingProps,
+  idSuffix,
 }: UnitsLearningThemeFiltersProps) => {
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
   const learningThemesMapped: Array<RadioTheme> = learningThemes
@@ -119,7 +121,7 @@ const UnitsLearningThemeFilters = ({
         {[
           { slug: "all", label: "All in suggested order" },
           ...learningThemesMapped,
-        ].map((theme, i) => {
+        ].map((theme) => {
           const isChecked = activeThemeSlug === theme.slug;
           const isFocussed = focussedThemeSlug === theme.slug;
           return (
@@ -129,7 +131,7 @@ const UnitsLearningThemeFilters = ({
               isFocussed={isFocussed}
               onChange={onChange}
               onFocus={setFocussedThemeSlug}
-              id={`${theme.slug}-${i}`}
+              id={`${theme.slug}-${idSuffix}`}
             />
           );
         })}
