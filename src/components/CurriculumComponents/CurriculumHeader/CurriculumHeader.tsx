@@ -17,7 +17,6 @@ import {
   CurriculumTab,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
-import usePrereleaseFlag from "@/hooks/usePrereleaseFlag";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -34,7 +33,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   subjectPhaseOptions,
   keyStages,
 }) => {
-  const downloadsEnabled = usePrereleaseFlag("curriculum.downloads");
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
   const subject = subjectPhaseOptions.subjects.find(
@@ -98,18 +96,15 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       currentStyles: ["underline"],
       scroll: false,
     },
-  ];
-
-  if (downloadsEnabled) {
-    links.push({
+    {
       label: "Download",
       page: "curriculum-downloads",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "downloads",
       currentStyles: ["underline"],
       scroll: false,
-    });
-  }
+    },
+  ];
 
   return (
     <Box $mb={40}>

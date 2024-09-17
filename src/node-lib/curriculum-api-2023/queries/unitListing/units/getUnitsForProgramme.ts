@@ -30,6 +30,7 @@ export const getUnitsForProgramme = async (
         subjectSlug: programme.programme_fields.subject_slug,
         subjectTitle: programme.programme_fields.subject,
         yearTitle: programme.programme_fields.year_description,
+        year: programme.programme_fields.year_slug,
         unitStudyOrder: programme.supplementary_data.unit_order,
         yearOrder: programme.programme_fields.year_display_order,
         cohort: programme.unit_data._cohort,

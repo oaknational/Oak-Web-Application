@@ -17,6 +17,7 @@ describe("Component - Curriculum Header", () => {
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa"),
+      keyStages: ["ks4"],
       subjectPhaseOptions: { subjects: subjectPhaseOptionsFixture() },
       pageSlug: "test-slug",
       tab: "overview",
@@ -77,16 +78,6 @@ describe("Component - Curriculum Header", () => {
   });
 
   test("user can see the tabular navigation", async () => {
-    const { findByTestId } = renderComponent();
-    const tabularNav = await findByTestId("tabularNav");
-    expect(tabularNav).toBeInTheDocument();
-    const links = await findAllByRole(tabularNav, "link");
-    expect(links).toHaveLength(2);
-    expect(links[0]).toHaveTextContent("Unit sequence");
-    expect(links[1]).toHaveTextContent("Overview");
-  });
-
-  test("user can see the tabular navigation (downloads prerelease)", async () => {
     // NOTE: This is only active during testing.
     mockPrerelease("curriculum.downloads");
     const { findByTestId } = renderComponent();

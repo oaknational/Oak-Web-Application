@@ -2,18 +2,14 @@ import { NextPage } from "next";
 
 import {
   PostListingPage,
-  BlogPostPreview,
   BlogWebinarCategory,
+  SerializedBlogPostPreview,
 } from "@/common-lib/cms-types";
 import { PostListItemProps } from "@/components/SharedComponents/PostListItem";
 import PostListing from "@/components/GenericPagesViews/PostListing.view";
 import { PAGE_SIZE } from "@/components/SharedComponents/PostList/usePostList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
-
-export type SerializedBlogPostPreview = Omit<BlogPostPreview, "date"> & {
-  date: string;
-};
 
 export type PostListingPageProps = {
   blogs: SerializedBlogPostPreview[];

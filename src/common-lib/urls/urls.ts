@@ -135,6 +135,20 @@ export type PupilLessonLinkProps = {
   lessonSlug: string;
 };
 
+export type PupilLessonResultsLinkProps = {
+  page: "pupil-lesson-results";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+  attemptId: string;
+};
+
+export type PupilLessonResultsCanonicalLinkProps = {
+  page: "pupil-lesson-results-canonical";
+  lessonSlug: string;
+  attemptId: string;
+};
+
 export type PupilLessonListingLinkProps = {
   page: "pupil-lesson-index";
   programmeSlug: string;
@@ -293,6 +307,22 @@ type CurriculumPreviousDownloadsLinkProps = {
   };
 };
 
+type OnboardingLinkProps = {
+  page: "onboarding";
+};
+
+type OnboardingSchoolSelectionLinkProps = {
+  page: "onboarding-school-selection";
+};
+
+type OnboardingRoleSelectionLinkProps = {
+  page: "onboarding-role-selection";
+};
+
+type OnboardingUseOfOak = {
+  page: "onboarding-use-of-oak";
+};
+
 export type OakLinkProps =
   | LabsLinkProps
   | SubjectListingLinkProps
@@ -306,6 +336,8 @@ export type OakLinkProps =
   | LessonShareCanonicalLinkProps
   | LessonOverviewLinkProps
   | PupilLessonLinkProps
+  | PupilLessonResultsLinkProps
+  | PupilLessonResultsCanonicalLinkProps
   | PupilLessonListingLinkProps
   | PupilUnitListingLinkProps
   | PupilSubjectListingLinkProps
@@ -346,7 +378,11 @@ export type OakLinkProps =
   | CurriculumOverviewLinkProps
   | CurriculumUnitsLinkProps
   | CurriculumDownloadsLinkProps
-  | CurriculumPreviousDownloadsLinkProps;
+  | CurriculumPreviousDownloadsLinkProps
+  | OnboardingLinkProps
+  | OnboardingSchoolSelectionLinkProps
+  | OnboardingRoleSelectionLinkProps
+  | OnboardingUseOfOak;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -645,6 +681,19 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "pupil-lesson",
   }),
+  "pupil-lesson-results": createOakPageConfig({
+    pathPattern:
+      "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/results/:attemptId",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "pupil-lesson-results",
+  }),
+  "pupil-lesson-results-canonical": createOakPageConfig({
+    pathPattern: "/pupils/lessons/:lessonSlug/results/:attemptId",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "pupil-lesson-results-canonical",
+  }),
   "pupil-lesson-index": createOakPageConfig({
     pathPattern: "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons",
     analyticsPageName: "Lesson Listing",
@@ -809,6 +858,30 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Previous Downloads",
     configType: "internal",
     pageType: "curriculum-previous-downloads",
+  }),
+  onboarding: createOakPageConfig({
+    pathPattern: "/onboarding",
+    analyticsPageName: "Onboarding: Work In School",
+    configType: "internal",
+    pageType: "onboarding",
+  }),
+  "onboarding-school-selection": createOakPageConfig({
+    pathPattern: "/onboarding/school-selection",
+    analyticsPageName: "Onboarding: School Selection",
+    configType: "internal",
+    pageType: "onboarding-school-selection",
+  }),
+  "onboarding-role-selection": createOakPageConfig({
+    pathPattern: "/onboarding/role-selection",
+    analyticsPageName: "Onboarding: Role Selection",
+    configType: "internal",
+    pageType: "onboarding-role-selection",
+  }),
+  "onboarding-use-of-oak": createOakPageConfig({
+    pathPattern: "/onboarding/how-can-oak-support-you",
+    analyticsPageName: "Onboarding: Use Of Oak",
+    configType: "internal",
+    pageType: "onboarding-use-of-oak",
   }),
 };
 

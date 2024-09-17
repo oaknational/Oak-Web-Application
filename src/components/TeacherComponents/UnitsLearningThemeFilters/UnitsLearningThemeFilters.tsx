@@ -1,4 +1,9 @@
-import { OakFlex } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakSecondaryButton,
+} from "@oaknational/oak-components";
+import { useState } from "react";
 
 import {
   SpecialistUnitListingLinkProps,
@@ -28,6 +33,7 @@ const UnitsLearningThemeFilters = ({
   linkProps,
   trackingProps,
 }: UnitsLearningThemeFiltersProps) => {
+  const [skipFiltersButton, setSkipFiltersButton] = useState(false);
   const listStateProps = useCategoryFilterList({
     selectedKey: selectedThemeSlug,
     getKey: (
@@ -71,6 +77,21 @@ const UnitsLearningThemeFilters = ({
 
   return (
     <OakFlex $flexDirection={"column"}>
+      <OakBox $mb={skipFiltersButton ? "space-between-xs" : "auto"}>
+        <OakSecondaryButton
+          element="a"
+          aria-label="Skip to units"
+          href="#unit-list"
+          onFocus={() => setSkipFiltersButton(true)}
+          onBlur={() => setSkipFiltersButton(false)}
+          style={
+            skipFiltersButton ? {} : { position: "absolute", top: "-600px" }
+          }
+        >
+          Skip to units
+        </OakSecondaryButton>
+      </OakBox>
+
       <CategoryFilterList
         {...listStateProps}
         labelledBy={labelledBy}
@@ -90,7 +111,7 @@ const UnitsLearningThemeFilters = ({
             },
           })),
         ]}
-        trackingProps={trackingProps}
+        themeTrackingProps={trackingProps}
       />
     </OakFlex>
   );

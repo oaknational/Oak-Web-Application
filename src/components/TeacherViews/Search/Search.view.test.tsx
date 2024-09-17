@@ -1,6 +1,7 @@
-import { act, waitFor } from "@testing-library/react";
+import { act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import mockRouter from "next-router-mock";
 
 import Search from "./Search.view";
 import { SearchProps } from "./search.view.types";
@@ -157,18 +158,16 @@ const props: SearchProps = {
   setSearchTerm: jest.fn(),
 };
 
-const searchResultsDisplayed = jest.fn();
 const searchAttempted = jest.fn();
 const searchResultOpened = jest.fn();
 const searchJourneyInitiated = jest.fn();
 const searchResultExpanded = jest.fn();
+const searchAccessed = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      searchResultsDisplayed: (...args: unknown[]) =>
-        searchResultsDisplayed(...args),
       searchAttempted: (...args: unknown[]) => searchAttempted(...args),
       searchJourneyInitiated: (...args: unknown[]) =>
         searchJourneyInitiated(...args),
@@ -176,9 +175,12 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
         searchResultExpanded(...args),
       searchResultOpened: (...args: unknown[]) => searchResultOpened(...args),
       searchRefined: (...args: []) => searchRefined(...args),
+      searchAccessed: (...args: unknown[]) => searchAccessed(...args),
     },
   }),
 }));
+
+jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
 const render = renderWithProviders();
 
@@ -317,28 +319,6 @@ describe("Search.page.tsx", () => {
     expect(onLinkClick).toHaveBeenCalled();
   });
 
-  test("searchResultsDisplayed is called when a search is completed with success status", async () => {
-    render(<SearchComponent {...props} {...resultsProps} />);
-    await waitFor(() =>
-      expect(searchResultsDisplayed).toHaveBeenCalledTimes(1),
-    );
-  });
-  test("searchResultsDisplayed is called when a search is completed with fail status", async () => {
-    render(
-      <SearchComponent {...{ ...props, status: "fail" }} {...resultsProps} />,
-    );
-    await waitFor(() =>
-      expect(searchResultsDisplayed).toHaveBeenCalledTimes(1),
-    );
-  });
-  test("searchResultsDisplayed is not called when status is not asked", async () => {
-    render(<SearchComponent {...props} />);
-    await waitFor(() => expect(searchResultsDisplayed).not.toHaveBeenCalled());
-  });
-  test("searchResultsDisplayed is not called when status is loading", async () => {
-    render(<SearchComponent {...{ ...props, status: "loading" }} />);
-    await waitFor(() => expect(searchResultsDisplayed).not.toHaveBeenCalled());
-  });
   test("setSearchStartTime is called with performance.now() when query.term is truthy", () => {
     render(<SearchComponent {...props} {...resultsProps} />);
 
@@ -410,6 +390,12 @@ describe("Search.page.tsx", () => {
     expect(searchResultExpanded).toHaveBeenCalledTimes(1);
     expect(searchResultExpanded).toHaveBeenCalledWith({
       context: "search",
+      analyticsUseCase: "Teacher",
+      componentType: "search_result_item",
+      engagementIntent: "refine",
+      eventVersion: "2.0.0",
+      platform: "owa",
+      product: "teacher lesson resources",
       keyStageSlug: "ks1",
       keyStageTitle: "Key stage 1",
       lessonName: "lesson title",
@@ -425,6 +411,7 @@ describe("Search.page.tsx", () => {
     });
   });
   test("searchRefined function invoked when checked", () => {
+    mockRouter.query = { subjects: ["english"] };
     const { getByRole } = render(
       <SearchComponent {...props} {...resultsProps} />,
     );
@@ -435,10 +422,16 @@ describe("Search.page.tsx", () => {
     expect(onChange).toHaveBeenCalledTimes(1);
 
     expect(searchRefined).toHaveBeenCalledWith({
-      context: "search",
-      filterType: "Content type filter",
-      filterValue: "Units",
+      activeFilters: ["english"],
+      analyticsUseCase: "Teacher",
+      componentType: "filter_link",
+      engagementIntent: "refine",
+      eventVersion: "2.0.0",
+      platform: "owa",
+      product: "teacher lesson resources",
       searchResultCount: 1,
+      filterType: null,
+      filterValue: null,
     });
   });
   test("filter button becomes visible when focussed", async () => {

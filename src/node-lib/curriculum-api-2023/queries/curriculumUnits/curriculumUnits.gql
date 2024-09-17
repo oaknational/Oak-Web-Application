@@ -20,6 +20,7 @@ query curriculumUnits($where: published_mv_curriculum_units_including_new_0_0_13
     subject_parent
     subject_parent_slug
     tags
+    subjectcategories
     tier
     tier_slug
     title

@@ -1,4 +1,5 @@
 import { OakSpan } from "@oaknational/oak-components";
+import { isString } from "lodash";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 
@@ -12,11 +13,19 @@ export const QuizCorrectAnswers = () => {
         Array.isArray(currentQuestionState.correctAnswer) &&
         currentQuestionState.correctAnswer.length > 1:
         return (
-          "Correct answers: " + currentQuestionState.correctAnswer.join(", ")
+          "Correct answers: " +
+          currentQuestionState.correctAnswer
+            .filter((answer) => isString(answer))
+            .join(", ")
         );
       case currentQuestionState &&
         Array.isArray(currentQuestionState.correctAnswer):
-        return "Correct answer: " + currentQuestionState.correctAnswer[0];
+        return (
+          "Correct answer: " +
+          currentQuestionState.correctAnswer.filter((answer) =>
+            isString(answer),
+          )[0]
+        );
       case currentQuestionState && Boolean(currentQuestionState.correctAnswer):
         return "Correct answer: " + currentQuestionState.correctAnswer;
       default:

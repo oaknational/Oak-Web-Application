@@ -28,6 +28,7 @@ describe("filterLearningTheme", () => {
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [
             {

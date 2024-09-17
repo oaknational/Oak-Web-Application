@@ -9,7 +9,10 @@ const subjectPhaseOptionsQuery = (sdk: Sdk) => async () => {
   if (subjectPhaseOptions.length === 0) {
     throw new OakError({ code: "curriculum-api/not-found" });
   }
-  return subjectPhaseOptionsSchema.parse(subjectPhaseOptions);
+  const results = subjectPhaseOptionsSchema.parse(subjectPhaseOptions);
+  return results.filter((result) => {
+    return result.state === "published";
+  });
 };
 
 export default subjectPhaseOptionsQuery;

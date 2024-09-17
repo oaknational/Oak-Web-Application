@@ -12,6 +12,8 @@ const lessonListingFixture = (
     tierSlug: null,
     unitSlug: "adding-surds-a57d",
     unitTitle: "Adding surds",
+    yearSlug: "year-10",
+    yearTitle: "Year 10",
     lessons: [
       {
         expired: false,

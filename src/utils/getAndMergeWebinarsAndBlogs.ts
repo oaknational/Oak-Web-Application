@@ -1,6 +1,9 @@
 import CMSClient from "@/node-lib/cms";
-import { sortByDate } from "@/pages";
 import { serializeDate } from "@/utils/serializeDate";
+
+const sortByDate = (a: { date: Date }, b: { date: Date }) => {
+  return b.date.getTime() - a.date.getTime();
+};
 
 export const getAndMergeWebinarsAndBlogs = async (
   isPreviewMode: boolean,

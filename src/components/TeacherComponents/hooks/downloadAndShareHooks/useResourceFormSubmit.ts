@@ -1,3 +1,5 @@
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
 import type {
@@ -5,6 +7,7 @@ import type {
   ResourceFormProps,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
+import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 type UseResourceFormProps = {
   onSubmit?: () => void;
@@ -16,6 +19,9 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
     setEmailInLocalStorage,
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
+
+  const auth = useFeatureFlaggedClerk().useAuth();
+  const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa") || false;
 
   const onSubmit = async (data: ResourceFormProps, slug: string) => {
     if (props.onSubmit) {
@@ -48,10 +54,14 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
       setTermsInLocalStorage(terms);
     }
     if (props.type === "download") {
+      const accessToken = await auth.getToken();
+
       await downloadLessonResources(
         slug,
         downloads as DownloadResourceType[],
         props.isLegacyDownload,
+        authFlagEnabled,
+        accessToken,
       );
     }
   };

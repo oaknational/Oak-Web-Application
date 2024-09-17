@@ -108,6 +108,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  hubspotOwaAccessToken: {
+    value: process.env.HUBSPOT_OWA_ACCESS_TOKEN,
+    envName: "HUBSPOT_OWA_ACCESS_TOKEN",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   curriculumApiUrl: {
     value: process.env.CURRICULUM_API_URL,
     envName: "CURRICULUM_API_URL",
@@ -185,37 +192,20 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
-  auth0Secret: {
-    value: process.env.AUTH0_SECRET,
-    envName: "AUTH0_SECRET",
+  clerkPublishableKey: {
+    description:
+      "Note: this value must also be set in Netlify's environment vars since it is needed in middleware",
+    value: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+    envName: "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
     required: true,
-    availableInBrowser: false,
+    availableInBrowser: true,
     default: null,
   },
-  auth0IssuerBaseURL: {
-    value: process.env.AUTH0_ISSUER_BASE_URL,
-    envName: "AUTH0_ISSUER_BASE_URL",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  auth0ClientId: {
-    value: process.env.AUTH0_CLIENT_ID,
-    envName: "AUTH0_CLIENT_ID",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  auth0ClientSecret: {
-    value: process.env.AUTH0_CLIENT_SECRET,
-    envName: "AUTH0_CLIENT_SECRET",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
-  auth0BaseURL: {
-    value: process.env.AUTH0_BASE_URL,
-    envName: "AUTH0_BASE_URL",
+  clerkSecretKey: {
+    description:
+      "Note: this value must also be set in Netlify's environment vars since it is needed in middleware",
+    value: process.env.CLERK_SECRET_KEY,
+    envName: "CLERK_SECRET_KEY",
     required: true,
     availableInBrowser: false,
     default: null,

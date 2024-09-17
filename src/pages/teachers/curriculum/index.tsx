@@ -25,12 +25,10 @@ import OwaLink from "@/components/SharedComponents/OwaLink/OwaLink";
 import Icon from "@/components/SharedComponents/Icon";
 import CMSClient from "@/node-lib/cms";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
-import {
-  blogToPostListItem,
-  SerializedBlogPostPreview,
-} from "@/components/GenericPagesViews/BlogIndex.view";
+import { blogToPostListItem } from "@/components/GenericPagesViews/BlogIndex.view";
 import { serializeDate } from "@/utils/serializeDate";
 import PostListItem from "@/components/SharedComponents/PostListItem";
+import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
 
 export type CurriculumHomePageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -99,11 +97,12 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               >
                 <Illustration
                   noCrop
-                  sizes={getSizes([500, 800])}
+                  sizes={getSizes([340, 480])}
                   slug="curriculum-approach"
                   $objectFit="contain"
                   $objectPosition={"center"}
                   fill
+                  format={null}
                   alt="Our guiding curriculum principles summarise the important features of great curricula. They are: flexible, accessible, diverse, evidence informed, knowledge and vocabulary rich, sequenced and coherent"
                 />
               </Cover>

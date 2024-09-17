@@ -120,17 +120,22 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   }: {
     downloadResourceButtonName: DownloadResourceButtonNameValueType;
   }) => {
-    track.downloadResourceButtonClicked({
-      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-      keyStageSlug,
-      subjectTitle,
-      subjectSlug,
-      unitName: unitTitle,
-      unitSlug,
-      lessonName: lessonTitle,
-      lessonSlug,
+    track.lessonResourceDownloadStarted({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "use",
+      componentType: "lesson_download_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
       downloadResourceButtonName,
-      analyticsUseCase,
+      keyStageSlug: keyStageSlug,
+      keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+      subjectSlug: subjectSlug,
+      subjectTitle: subjectTitle,
+      unitSlug: unitSlug,
+      unitName: unitTitle,
+      lessonSlug: lessonSlug,
+      lessonName: lessonTitle,
     });
   };
 

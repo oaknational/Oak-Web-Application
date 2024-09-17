@@ -41,6 +41,8 @@ describe("constructLessonDownloads", () => {
       updatedAt: "2024-02-28T08:09:20.247619+00:00",
       copyrightContent: null,
       nextLessons: [],
+      tierTitle: null,
+      examBoardTitle: null,
     };
 
     expect(result).toEqual(expectedResult);

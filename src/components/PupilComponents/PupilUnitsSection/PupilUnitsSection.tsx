@@ -10,7 +10,7 @@ import {
   OakPupilJourneyUnitsFilter,
   OakBulletList,
 } from "@oaknational/oak-components";
-import _ from "lodash";
+import { intersection } from "lodash";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
@@ -80,7 +80,7 @@ export const PupilUnitsSection = ({
       ? indexedUnits.filter(
           (unit) =>
             unit[0] &&
-            (_.intersection(unit[0].unitData.subjectcategories, filterItems)
+            (intersection(unit[0].unitData.subjectcategories, filterItems)
               .length > 0 ||
               filterItems.includes("All")),
         )
@@ -156,13 +156,6 @@ export const PupilUnitsSection = ({
                   optionalityUnit[0],
                   optionalityUnit[0].supplementaryData.unitOrder,
                 );
-            } else if (optionalityUnit.length === 2) {
-              // 2 optionalities, doesn't need sublistings but the unit with optionality should be used for the title.
-              const unit = optionalityUnit.find(
-                (unit) => unit.programmeFields.optionality,
-              );
-              if (unit)
-                return renderListItem(unit, unit.supplementaryData.unitOrder);
             } else {
               // More than 2 optionalities and therefore needs sublistings
               if (optionalityUnit[0])

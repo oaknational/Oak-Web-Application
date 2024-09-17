@@ -5,16 +5,13 @@ import {
 } from "@oaknational/oak-components";
 
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import {
-  PupilAnswerMatch,
-  QuestionFeedbackType,
-} from "@/components/PupilComponents/QuizUtils/questionTypes";
+import { QuestionFeedbackType } from "@/components/PupilComponents/QuizUtils/questionTypes";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 export type QuizResultMatchProps = {
   answers: MatchAnswer[];
   feedback: QuestionFeedbackType[];
-  pupilAnswers: PupilAnswerMatch;
+  pupilAnswers: number[];
 };
 
 export const QuizResultMatch = ({
@@ -36,8 +33,8 @@ export const QuizResultMatch = ({
         `Correct choice not found for pupil answer ${pupilAnswer}`,
       );
     }
-    const prefix = answer?.correctChoice[0].text;
-    const standardText = pupilAnswer;
+    const prefix = answer?.matchOption?.[0]?.text;
+    const standardText = answers[pupilAnswer]?.correctChoice?.[0]?.text;
 
     return (
       <MathJaxWrap>
@@ -54,7 +51,7 @@ export const QuizResultMatch = ({
   return (
     <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
       <OakSpan $font={"body-3-bold"}>Your answer:</OakSpan>
-      <OakFlex $flexDirection={"column"} $gap={"space-between-m2"}>
+      <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
         {resultItems}
       </OakFlex>
     </OakFlex>

@@ -7,26 +7,49 @@ import {
   OakImage,
   OakLessonBottomNav,
   OakLessonLayout,
-  OakLessonReviewItem,
+  OakLessonReviewIntroVideo,
+  OakLessonReviewQuiz,
   OakPrimaryButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
+import { useOakPupil } from "@oaknational/oak-pupil-client";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import { PupilExperienceViewProps } from "../PupilExperience";
 
 import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
+import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
+import { QuizResults } from "@/components/PupilComponents/QuizResults";
+import { resolveOakHref } from "@/common-lib/urls";
 
 // TODO: add question arrays for starter and exit quizzes so that the expand quiz results can be rendered
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
   backUrl?: string | null;
-  phase?: "primary" | "secondary";
+  starterQuizQuestionsArray: QuestionsArray;
+  exitQuizQuestionsArray: QuestionsArray;
+  programmeSlug: string;
+  unitSlug: string;
+  browseData: PupilExperienceViewProps["browseData"];
+  pageType: PupilExperienceViewProps["pageType"];
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
-  const { lessonTitle, backUrl, phase = "primary" } = props;
+  const {
+    lessonTitle,
+    backUrl,
+    starterQuizQuestionsArray,
+    exitQuizQuestionsArray,
+    programmeSlug,
+    unitSlug,
+    browseData: { programmeFields, lessonSlug },
+    pageType,
+  } = props;
+  const { phase = "primary", yearDescription, subject } = programmeFields;
   const {
     updateCurrentSection,
     sectionResults,
@@ -39,6 +62,10 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     isLessonComplete,
     sectionResults,
   );
+
+  const pupilClient = useOakPupil();
+  const { logAttempt } = pupilClient;
+  const isShowShareButtons = useFeatureFlagEnabled("share-results-button");
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
@@ -53,6 +80,36 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       </OakPrimaryButton>
     </OakLessonBottomNav>
   );
+
+  const handlePrintableResultsClick = async () => {
+    const attemptData = {
+      lessonData: { slug: lessonSlug, title: lessonTitle },
+      browseData: { subject: subject, yearDescription: yearDescription ?? "" },
+      sectionResults: sectionResults,
+    };
+    const attemptId = await logAttempt(attemptData, true);
+    if (attemptId)
+      window.open(
+        pageType === "canonical"
+          ? resolveOakHref({
+              page: "pupil-lesson-results-canonical",
+              lessonSlug,
+              attemptId,
+            })
+          : resolveOakHref({
+              page: "pupil-lesson-results",
+              programmeSlug,
+              unitSlug,
+              lessonSlug,
+              attemptId,
+            }),
+        "_blank",
+      );
+  };
+
+  if (phase === "foundation") {
+    throw new Error("Foundation phase is not supported");
+  }
 
   return (
     <OakLessonLayout
@@ -87,6 +144,20 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
+              {isShowShareButtons && (
+                <OakPrimaryButton
+                  type="button"
+                  role="button"
+                  aria-label="Printable results, opens in a new tab"
+                  title="Printable results (opens in a new tab)"
+                  iconName={"external"}
+                  isTrailingIcon
+                  onClick={handlePrintableResultsClick}
+                  data-testid="printable-results-button"
+                >
+                  Printable results
+                </OakPrimaryButton>
+              )}
               <OakHeading tag="h2" $font={"heading-light-7"}>
                 {lessonTitle}
               </OakHeading>
@@ -108,19 +179,44 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
             $mb="space-between-xl"
           >
             {lessonReviewSections.map((lessonSection) => {
-              return (
-                <OakLessonReviewItem
-                  key={lessonSection}
-                  lessonSectionName={lessonSection}
-                  completed={!!sectionResults[lessonSection]?.isComplete}
-                  grade={sectionResults[lessonSection]?.grade ?? 0}
-                  numQuestions={
-                    sectionResults[lessonSection]?.numQuestions ?? 0
-                  }
-                />
-              );
+              if (lessonSection === "intro" || lessonSection === "video") {
+                return (
+                  <OakLessonReviewIntroVideo
+                    key={lessonSection}
+                    lessonSectionName={lessonSection}
+                    completed={!!sectionResults[lessonSection]?.isComplete}
+                  />
+                );
+              } else if (
+                lessonSection === "exit-quiz" ||
+                lessonSection === "starter-quiz"
+              ) {
+                const quizArray =
+                  lessonSection === "exit-quiz"
+                    ? exitQuizQuestionsArray
+                    : starterQuizQuestionsArray;
+                return (
+                  <OakLessonReviewQuiz
+                    key={lessonSection}
+                    lessonSectionName={lessonSection}
+                    completed={!!sectionResults[lessonSection]?.isComplete}
+                    grade={sectionResults[lessonSection]?.grade ?? 0}
+                    numQuestions={
+                      sectionResults[lessonSection]?.numQuestions ?? 0
+                    }
+                    resultsSlot={
+                      <QuizResults
+                        sectionResults={sectionResults}
+                        quizArray={quizArray}
+                        lessonSection={lessonSection}
+                      />
+                    }
+                  />
+                );
+              }
             })}
           </OakFlex>
+
           <OakFlex
             $flexGrow={1}
             $flexDirection={["row", "column"]}
