@@ -13,7 +13,7 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 import { tierSchema } from "./tiers/tiers.schema";
-import { learningThemes } from "./threads/threads.schema";
+import { learningThemes } from "./filters/threads.schema";
 import { unitSchema } from "./units/units.schema";
 
 const unitListingData = z.object({

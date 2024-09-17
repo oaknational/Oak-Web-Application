@@ -1,7 +1,7 @@
 import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 import { kebabCase } from "lodash";
 
-import { getThreadsForUnit } from "../threads/getThreadsForUnit";
+import { getThreadsForUnit } from "../filters/getThreadsForUnit";
 
 import { UnitData, UnitsForProgramme, unitSchema } from "./units.schema";
 

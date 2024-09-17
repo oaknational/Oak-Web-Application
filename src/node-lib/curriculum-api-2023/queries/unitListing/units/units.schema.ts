@@ -8,7 +8,7 @@ import {
   yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
 
-import { learningThemesSchema } from "../threads/threads.schema";
+import { learningThemesSchema } from "../filters/threads.schema";
 
 const unitData = z.object({
   slug: z.string(),
