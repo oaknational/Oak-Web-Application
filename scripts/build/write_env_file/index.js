@@ -233,6 +233,14 @@ async function main() {
       process.env.NEXT_PUBLIC_OAK_USER_LOG_URL ||
       oakConfig.oakConsent?.userLogUrl,
 
+    // oak-pupil-client
+    NEXT_PUBLIC_LOG_LESSON_ATTEMPT_URL:
+      process.env.NEXT_PUBLIC_LOG_LESSON_ATTEMPT_URL ||
+      oakConfig.oakPupilClient?.logLessonAttemptUrl,
+    NEXT_PUBLIC_GET_LESSON_ATTEMPT_URL:
+      process.env.NEXT_PUBLIC_GET_LESSON_ATTEMPT_URL ||
+      oakConfig.oakPupilClient?.getLessonAttemptUrl,
+
     // Clerk
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
       process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||

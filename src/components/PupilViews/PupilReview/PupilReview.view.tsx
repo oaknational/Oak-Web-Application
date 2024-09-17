@@ -81,6 +81,30 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       </OakPrimaryButton>
     </OakLessonBottomNav>
   );
+  const handleShareResultsClick = async () => {
+    const attemptData = {
+      lessonData: { slug: lessonSlug, title: lessonTitle },
+      browseData: { subject: subject, yearDescription: yearDescription ?? "" },
+      sectionResults: sectionResults,
+    };
+    try {
+      const attemptId = await logAttempt(attemptData, false);
+      if (!attemptId) {
+        throw new Error("Failed to log attempt");
+      }
+      const shareUrl = `${
+        process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL
+      }${resolveOakHref({
+        page: "pupil-lesson-results-canonical",
+        lessonSlug,
+        attemptId,
+      })}`;
+      alert("See results at " + shareUrl);
+    } catch (e) {
+      console.error(e);
+      alert("Failed to share results");
+    }
+  };
 
   const handlePrintableResultsClick = async () => {
     const attemptData = {
@@ -146,18 +170,30 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                 Lesson review
               </OakHeading>
               {isShowShareButtons && (
-                <OakPrimaryButton
-                  type="button"
-                  role="button"
-                  aria-label="Printable results, opens in a new tab"
-                  title="Printable results (opens in a new tab)"
-                  iconName={"external"}
-                  isTrailingIcon
-                  onClick={handlePrintableResultsClick}
-                  data-testid="printable-results-button"
-                >
-                  Printable results
-                </OakPrimaryButton>
+                <OakFlex $gap={"space-between-s"}>
+                  <OakPrimaryButton
+                    type="button"
+                    role="button"
+                    aria-label="Printable results, opens in a new tab"
+                    title="Printable results (opens in a new tab)"
+                    iconName={"external"}
+                    isTrailingIcon
+                    onClick={handlePrintableResultsClick}
+                    data-testid="printable-results-button"
+                  >
+                    Printable results
+                  </OakPrimaryButton>
+                  <OakPrimaryButton
+                    type="button"
+                    role="button"
+                    aria-label="Share results"
+                    title="Share results"
+                    onClick={handleShareResultsClick}
+                    data-testid="share-results-button"
+                  >
+                    Share results
+                  </OakPrimaryButton>
+                </OakFlex>
               )}
               <OakHeading tag="h2" $font={"heading-light-7"}>
                 {lessonTitle}
