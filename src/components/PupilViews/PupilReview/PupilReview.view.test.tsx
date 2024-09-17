@@ -35,6 +35,32 @@ jest.mock("@oaknational/oak-pupil-client", () => ({
 const mockBroweData = lessonBrowseDataFixture({});
 
 describe("PupilReview", () => {
+  it("error messages when the phase is foundation", () => {
+    const mockBrowseDataWithFoundation = lessonBrowseDataFixture({
+      ...mockBroweData,
+      programmeFields: {
+        ...lessonBrowseDataFixture({}).programmeFields,
+        phase: "foundation",
+      },
+    });
+    expect(() =>
+      renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsReview
+              lessonTitle="Lesson title"
+              exitQuizQuestionsArray={[]}
+              starterQuizQuestionsArray={[]}
+              browseData={mockBrowseDataWithFoundation}
+              unitSlug="unit-slug"
+              programmeSlug="programme-slug"
+              pageType="browse"
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      ),
+    ).toThrow("Foundation phase is not supported");
+  });
   it("displays the lesson title", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -297,6 +323,59 @@ describe("PupilReview", () => {
       const button = getByText("Share results");
       await userEvent.click(button).then(() => {
         expect(logAttemptSpy).toHaveBeenCalledTimes(1);
+      });
+    });
+    it("throws error if attempt_d s not returned by logAttempt", async () => {
+      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+      //spy on the track function
+      const logAttemptSpy = jest.fn(() => Promise.resolve(null));
+      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+      // Mock console.error
+      let consoleErrorSpy = jest
+        .spyOn(console, "error")
+        .mockImplementation(() => {});
+
+      const { getByText } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({
+              sectionResults: sectionResultsFixture,
+            })}
+          >
+            <OakPupilClientProvider
+              config={{
+                getLessonAttemptUrl: "example.com",
+                logLessonAttemptUrl: "example.com",
+              }}
+            >
+              <PupilViewsReview
+                lessonTitle="Lesson title"
+                exitQuizQuestionsArray={[]}
+                starterQuizQuestionsArray={[]}
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                browseData={mockBroweData}
+                pageType="browse"
+              />
+            </OakPupilClientProvider>
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      // clear all other consoles
+      consoleErrorSpy.mockRestore();
+      consoleErrorSpy = jest
+        .spyOn(console, "error")
+        .mockImplementation(() => {});
+
+      const button = getByText("Share results");
+      await userEvent.click(button).then(() => {
+        expect(logAttemptSpy).toHaveBeenCalledTimes(1);
+        const firstCallArg = consoleErrorSpy.mock.calls[0]?.[0];
+        expect(firstCallArg).toBeInstanceOf(Error);
+        expect(firstCallArg.message).toBe("Failed to log attempt");
+        const secondCallArg = consoleErrorSpy.mock.calls[1]?.[0];
+        expect(secondCallArg.message).toBe("Not implemented: window.alert");
       });
     });
   });

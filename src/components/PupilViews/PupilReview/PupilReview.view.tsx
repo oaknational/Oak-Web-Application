@@ -98,7 +98,6 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
         lessonSlug,
         attemptId,
       })}`;
-      // navigator.clipboard.writeText(shareUrl);
       alert("See results at " + shareUrl);
     } catch (e) {
       console.error(e);
