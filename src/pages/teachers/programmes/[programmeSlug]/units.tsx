@@ -253,13 +253,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   {yearGroups.length > 1 && (
                     <YearGroupFilters
                       yearGroups={yearGroups}
-                      screenVal="desktop"
+                      idSuffix="desktop"
                       browseRefined={track.browseRefined}
                     />
                   )}
                   {subjectCategories && subjectCategories.length > 1 && (
                     <SubjectCategoryFilters
-                      screenVal="desktop"
+                      idSuffix="desktop"
                       subjectCategories={subjectCategories}
                       categorySlug={categorySlug}
                       browseRefined={track.browseRefined}
@@ -333,14 +333,14 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     <StyledFieldset>
                       {yearGroups.length > 1 && (
                         <YearGroupFilters
-                          screenVal="mobile"
+                          idSuffix="mobile"
                           yearGroups={yearGroups}
                           browseRefined={track.browseRefined}
                         />
                       )}
                       {subjectCategories && subjectCategories.length > 1 && (
                         <SubjectCategoryFilters
-                          screenVal="mobile"
+                          idSuffix="mobile"
                           setSelectedCategory={setSelectedCategory}
                           subjectCategories={subjectCategories}
                           categorySlug={categorySlug}

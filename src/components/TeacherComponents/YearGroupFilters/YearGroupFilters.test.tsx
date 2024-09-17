@@ -32,7 +32,7 @@ describe("YearGroupFilters", () => {
             },
           ]}
           browseRefined={browseRefined}
-          screenVal={"desktop"}
+          idSuffix={"desktop"}
         />
       </OakThemeProvider>,
     );
@@ -50,7 +50,7 @@ describe("YearGroupFilters", () => {
             },
           ]}
           browseRefined={browseRefined}
-          screenVal={"desktop"}
+          idSuffix={"desktop"}
         />
       </OakThemeProvider>,
     );

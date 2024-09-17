@@ -5,19 +5,26 @@ import {
 } from "@oaknational/oak-components";
 import React, { FC } from "react";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 type YearGroupFiltersProps = {
   yearGroups: { yearTitle: string; year: string }[];
   browseRefined: TrackFns["browseRefined"];
-  screenVal: "desktop" | "mobile";
+  idSuffix: "desktop" | "mobile";
 };
+
+const StyledFieldset = styled.fieldset`
+  border: 0px;
+  margin: 0;
+  padding: 0;
+`;
 
 const YearGroupFilters: FC<YearGroupFiltersProps> = ({
   yearGroups,
   browseRefined,
-  screenVal,
+  idSuffix,
 }) => {
   const router = useRouter();
 
@@ -29,62 +36,27 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
       $bb={"border-solid-s"}
       $borderColor={"border-neutral-lighter"}
       $flexGrow={1}
-      role="fieldset"
     >
-      <OakHeading
-        role="legend"
-        as={"legend"}
-        tag="h3"
-        $font={"heading-7"}
-        $mb={"space-between-m"}
-      >
-        Year
-      </OakHeading>
-      <OakFlex
-        $alignItems="flex-start"
-        $flexWrap={"wrap"}
-        $gap={"space-between-ssx"}
-        $flexGrow={1}
-      >
-        <OakSearchFilterCheckBox
-          value={`${screenVal}-all-year-groups`}
-          displayValue="All"
-          id={`all-year-groups-${screenVal}`}
-          checked={!router.query.year}
-          onChange={() => {
-            browseRefined({
-              platform: "owa",
-              product: "teacher lesson resources",
-              engagementIntent: "refine",
-              componentType: "filter_link",
-              eventVersion: "2.0.0",
-              analyticsUseCase: "Teacher",
-              filterValue: "all",
-              filterType: "Subject filter",
-              activeFilters: {
-                content_types: "units",
-                learning_themes: router.query.learningTheme,
-                categories: router.query.category,
-              },
-            });
-            const { year, ...restQuery } = router.query;
-            router.push(
-              {
-                pathname: router.pathname,
-                query: restQuery,
-              },
-              undefined,
-              { shallow: true },
-            );
-          }}
-        />
-        {yearGroups.map((yearGroup) => (
+      <StyledFieldset>
+        <OakHeading
+          as={"legend"}
+          tag="h3"
+          $font={"heading-7"}
+          $mb={"space-between-m"}
+        >
+          Year
+        </OakHeading>
+        <OakFlex
+          $alignItems="flex-start"
+          $flexWrap={"wrap"}
+          $gap={"space-between-ssx"}
+          $flexGrow={1}
+        >
           <OakSearchFilterCheckBox
-            id={`${yearGroup.yearTitle}-${screenVal}`}
-            value={`${screenVal}-${yearGroup.year}`}
-            displayValue={yearGroup.yearTitle}
-            key={yearGroup.year}
-            checked={yearGroup.year === router.query.year}
+            value={`${idSuffix}-all-year-groups`}
+            displayValue="All"
+            id={`all-year-groups-${idSuffix}`}
+            checked={!router.query.year}
             onChange={() => {
               browseRefined({
                 platform: "owa",
@@ -93,7 +65,7 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                 componentType: "filter_link",
                 eventVersion: "2.0.0",
                 analyticsUseCase: "Teacher",
-                filterValue: yearGroup.yearTitle,
+                filterValue: "all",
                 filterType: "Subject filter",
                 activeFilters: {
                   content_types: "units",
@@ -101,21 +73,56 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                   categories: router.query.category,
                 },
               });
-              router.push(
+              const { year, ...restQuery } = router.query;
+              router.replace(
                 {
                   pathname: router.pathname,
-                  query: {
-                    ...router.query,
-                    year: yearGroup.year,
-                  },
+                  query: restQuery,
                 },
                 undefined,
                 { shallow: true },
               );
             }}
           />
-        ))}
-      </OakFlex>
+          {yearGroups.map((yearGroup) => (
+            <OakSearchFilterCheckBox
+              id={`${yearGroup.yearTitle}-${idSuffix}`}
+              value={`${idSuffix}-${yearGroup.year}`}
+              displayValue={yearGroup.yearTitle}
+              key={yearGroup.year}
+              checked={yearGroup.year === router.query.year}
+              onChange={() => {
+                browseRefined({
+                  platform: "owa",
+                  product: "teacher lesson resources",
+                  engagementIntent: "refine",
+                  componentType: "filter_link",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  filterValue: yearGroup.yearTitle,
+                  filterType: "Subject filter",
+                  activeFilters: {
+                    content_types: "units",
+                    learning_themes: router.query.learningTheme,
+                    categories: router.query.category,
+                  },
+                });
+                router.replace(
+                  {
+                    pathname: router.pathname,
+                    query: {
+                      ...router.query,
+                      year: yearGroup.year,
+                    },
+                  },
+                  undefined,
+                  { shallow: true },
+                );
+              }}
+            />
+          ))}
+        </OakFlex>
+      </StyledFieldset>
     </OakFlex>
   );
 };

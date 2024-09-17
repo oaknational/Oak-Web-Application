@@ -35,7 +35,7 @@ describe("SubjectCategoryFilters", () => {
           categorySlug={"all"}
           setSelectedCategory={() => {}}
           browseRefined={browseRefined}
-          screenVal={"desktop"}
+          idSuffix={"desktop"}
         />
       </OakThemeProvider>,
     );
@@ -54,7 +54,7 @@ describe("SubjectCategoryFilters", () => {
           categorySlug={"all"}
           setSelectedCategory={() => {}}
           browseRefined={browseRefined}
-          screenVal={"desktop"}
+          idSuffix={"desktop"}
           subjectCategories={[category]}
         />
       </OakThemeProvider>,
