@@ -25,7 +25,7 @@ const eventProps = {
   isMuted: false,
   timeElapsedSeconds: 211,
   videoLocation: "webinar",
-  videoPlaybackId: "12mux67",
+  videoPlaybackId: ["12mux67"],
   videoTitle: "Top video",
 };
 const getState: VideoTrackingGetState = () => ({

@@ -25,7 +25,7 @@ import {
   isImage,
   isText,
 } from "@/components/PupilComponents/QuizUtils/stemUtils";
-import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+import { invariant } from "@/utils/invariant";
 import {
   isMatchAnswer,
   isOrderAnswer,
@@ -68,7 +68,7 @@ export const useQuizEngineContext = () => {
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
-  const { updateSectionResult, completeSection, currentSection } =
+  const { updateSectionResult, completeActivity, currentSection } =
     useLessonEngineContext();
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
@@ -288,11 +288,12 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         _currentQuestionIndex === numQuestions &&
         isLessonReviewSection(currentSection)
       ) {
-        completeSection(currentSection);
+        // NB. in strict mode this will be called twice resulting in double logging
+        completeActivity(currentSection);
       }
       return _currentQuestionIndex;
     });
-  }, [numQuestions, setCurrentQuestionIndex, completeSection, currentSection]);
+  }, [numQuestions, setCurrentQuestionIndex, completeActivity, currentSection]);
 
   const currentQuestionDisplayIndex =
     currentQuestionIndex - (numQuestions - numInteractiveQuestions);

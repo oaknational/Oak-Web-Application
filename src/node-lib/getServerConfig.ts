@@ -193,6 +193,8 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
   },
   clerkPublishableKey: {
+    description:
+      "Note: this value must also be set in Netlify's environment vars since it is needed in middleware",
     value: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
     envName: "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
     required: true,
@@ -200,6 +202,8 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
   },
   clerkSecretKey: {
+    description:
+      "Note: this value must also be set in Netlify's environment vars since it is needed in middleware",
     value: process.env.CLERK_SECRET_KEY,
     envName: "CLERK_SECRET_KEY",
     required: true,
