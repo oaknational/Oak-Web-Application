@@ -1,3 +1,10 @@
+# [1.549.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.548.0...v1.549.0) (2024-09-16)
+
+
+### Features
+
+* **UnitsTab:** add left padding to Box component ([bc2099d](https://github.com/oaknational/Oak-Web-Application/commit/bc2099d10f31fb14444e3af27447bdf3b9a7a0a8))
+
 # [1.548.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.547.1...v1.548.0) (2024-09-16)
 
 
