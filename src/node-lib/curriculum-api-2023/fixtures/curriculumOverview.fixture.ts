@@ -24,6 +24,7 @@ export const curriculumOverviewCMSFixture = (
 ): CurriculumOverviewSanityData => {
   return {
     id: "curriculum.overview",
+    curriculumExplainer: { explainerRaw: undefined },
     subjectPrinciples: [
       "Pairing procedural knowledge with conceptual understanding",
       "Aligning with the Concrete Pictorial Abstract approach to mathematics teaching and learning",

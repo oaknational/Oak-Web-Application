@@ -136,7 +136,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             </OakHeading>
             <OakP>
               <PortableText
-                value={curriculumExplainer}
+                value={curriculumExplainer.explainerRaw}
                 components={{
                   ...basePortableTextComponents.list,
                   ...basePortableTextComponents.listItem,

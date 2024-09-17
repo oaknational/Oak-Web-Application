@@ -147,6 +147,11 @@ async function getData(opts: {
             asset: { assetId: "", playbackId: "undefined", thumbTime: null },
           },
         },
+        curriculumExplainer: {
+          explainerRaw: [
+            "Explainer is undefined for this record. Please check the CMS.",
+          ],
+        },
         videoAuthor:
           "Video author is undefined for this record. Please check the CMS.",
         videoExplainer:
