@@ -63,7 +63,6 @@ export const RadioTile = ({
       $ba="border-solid-m"
       $borderRadius="border-radius-s"
       $pa="inner-padding-s"
-      key={theme.slug}
       $position={"relative"}
       $background={isFocussed || isChecked ? "black" : "transparent"}
       $color={isFocussed || isChecked ? "white" : "black"}

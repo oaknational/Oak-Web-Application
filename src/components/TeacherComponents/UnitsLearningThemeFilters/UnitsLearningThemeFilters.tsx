@@ -126,6 +126,7 @@ const UnitsLearningThemeFilters = ({
             return (
               <RadioTile
                 theme={theme}
+                key={theme.slug}
                 isChecked={isChecked}
                 isFocussed={isFocussed}
                 onChange={onChange}
