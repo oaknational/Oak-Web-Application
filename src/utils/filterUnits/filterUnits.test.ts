@@ -3,15 +3,26 @@ import unitListingFixture from "../../node-lib/curriculum-api-2023/fixtures/unit
 import filterUnits from "./filterUnits";
 
 describe("filterUnits", () => {
-  it("should return units if themeSlug is undefined", () => {
+  it("should return all units if all filters are undefined", () => {
+    const params = {
+      themeSlug: undefined,
+      categorySlug: undefined,
+      yearGroup: undefined,
+      units: unitListingFixture().units,
+    };
     const units = unitListingFixture().units;
-    const themeSlug = undefined;
-    expect(filterUnits(themeSlug, undefined, undefined, units)).toEqual(units);
+
+    expect(filterUnits(params)).toEqual(units);
   });
-  it("should return units if themeSlug has a value", () => {
-    const themeSlug = "computer-science-1";
-    const units = unitListingFixture().units;
-    expect(filterUnits(themeSlug, undefined, undefined, units)).toEqual([
+  it("should return units with same theme if themeSlug has a value", () => {
+    const params = {
+      themeSlug: "computer-science-1",
+      categorySlug: undefined,
+      yearGroup: undefined,
+      units: unitListingFixture().units,
+    };
+
+    expect(filterUnits(params)).toEqual([
       [
         {
           slug: "data-representation-618b",
@@ -41,10 +52,15 @@ describe("filterUnits", () => {
       ],
     ]);
   });
-  it("should return units if categorySlug has a value", () => {
-    const categorySlug = "grammar";
-    const units = unitListingFixture().units;
-    expect(filterUnits(undefined, categorySlug, undefined, units)).toEqual([
+  it("should return units with matching categorySlug", () => {
+    const params = {
+      themeSlug: undefined,
+      categorySlug: "grammar",
+      yearGroup: undefined,
+      units: unitListingFixture().units,
+    };
+
+    expect(filterUnits(params)).toEqual([
       [
         {
           slug: "computer-systems-e17a",
@@ -112,11 +128,15 @@ describe("filterUnits", () => {
       ],
     ]);
   });
-  it("should return unit when both subjectCategory and learningTheme passed into function", () => {
-    const categorySlug = "grammar";
-    const themeSlug = "computer-science-3";
-    const units = unitListingFixture().units;
-    expect(filterUnits(themeSlug, categorySlug, undefined, units)).toEqual([
+  it("should return units with both matching subjectCategory and learningTheme", () => {
+    const params = {
+      themeSlug: "computer-science-3",
+      categorySlug: "grammar",
+      yearGroup: undefined,
+      units: unitListingFixture().units,
+    };
+
+    expect(filterUnits(params)).toEqual([
       [
         {
           slug: "networks-fe4b",
@@ -152,21 +172,29 @@ describe("filterUnits", () => {
       ],
     ]);
   });
-  it("should return unit when both subjectCategory and learningTheme passed into function", () => {
-    const categorySlug = "grammar";
-    const themeSlug = "computer-science-3";
-    const year = "year-10";
-    const units = unitListingFixture().units;
-    const filteredUnits = filterUnits(undefined, undefined, year, units);
+  it("should return units with correct year", () => {
+    const params = {
+      themeSlug: undefined,
+      categorySlug: undefined,
+      yearGroup: "year-10",
+      units: unitListingFixture().units,
+    };
+
+    const filteredUnits = filterUnits(params);
 
     filteredUnits.forEach((unit) => {
       unit.forEach((u) => {
-        expect(u.year).toBe(year);
+        expect(u.year).toBe(params.yearGroup);
         expect(u.yearTitle).toBe("Year 10");
       });
     });
-
-    expect(filterUnits(themeSlug, categorySlug, year, units)).toEqual([
+  });
+  it("returns correct units when all filters are applied", () => {
+    const categorySlug = "grammar";
+    const themeSlug = "computer-science-3";
+    const yearGroup = "year-10";
+    const units = unitListingFixture().units;
+    expect(filterUnits({ themeSlug, categorySlug, yearGroup, units })).toEqual([
       [
         {
           slug: "networks-fe4b",

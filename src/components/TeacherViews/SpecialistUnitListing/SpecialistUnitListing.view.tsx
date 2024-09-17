@@ -44,12 +44,12 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   const categorySlug = router.query["category"]?.toString();
   const year = router.query["year"]?.toString();
 
-  const unitsFilteredByLearningTheme = filterUnits(
+  const unitsFilteredByLearningTheme = filterUnits({
     themeSlug,
     categorySlug,
-    year,
+    yearGroup: year,
     units,
-  );
+  });
 
   const theme = useTheme();
 

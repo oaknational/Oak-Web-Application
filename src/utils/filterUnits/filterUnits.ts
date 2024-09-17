@@ -2,18 +2,25 @@ type GenericUnitListingData<U> = {
   units: U[][];
 };
 
+type FilterUnitsParams<U> = {
+  themeSlug?: string;
+  categorySlug?: string;
+  yearGroup?: string;
+  units: GenericUnitListingData<U>["units"];
+};
+
 function filterUnits<
   U extends {
     learningThemes?: { themeSlug?: string | null }[] | null;
     subjectCategories?: ({ label: string; slug: string } | null)[] | null;
     year?: string | null;
   },
->(
-  themeSlug: string | undefined,
-  categorySlug: string | undefined,
-  yearGroup: string | undefined,
-  units: GenericUnitListingData<U>["units"],
-): GenericUnitListingData<U>["units"] {
+>({
+  themeSlug,
+  categorySlug,
+  yearGroup,
+  units,
+}: FilterUnitsParams<U>): GenericUnitListingData<U>["units"] {
   return units.filter((unitVariant) =>
     unitVariant.some((unit) => {
       const themeMatch = themeSlug

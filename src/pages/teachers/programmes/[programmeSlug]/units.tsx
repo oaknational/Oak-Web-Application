@@ -89,12 +89,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
 
-  const filteredUnits = filterUnits(
+  const filteredUnits = filterUnits({
     themeSlug,
     categorySlug,
-    yearGroupSlug,
+    yearGroup: yearGroupSlug,
     units,
-  );
+  });
   const paginationProps = usePagination({
     totalResults: filteredUnits.length,
     pageSize: RESULTS_PER_PAGE,
