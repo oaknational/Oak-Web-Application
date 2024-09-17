@@ -86,6 +86,12 @@ export const RadioTile = ({
           tabIndex={0}
           onFocus={() => onFocus(theme.slug)}
           onBlur={() => onFocus(undefined)}
+          onClick={(e) => {
+            // remove focus on mouse click events
+            if (e.clientX || e.clientY) {
+              onFocus(undefined);
+            }
+          }}
         />
         <OakFlex
           $height={"all-spacing-6"}
