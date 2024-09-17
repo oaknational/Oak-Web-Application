@@ -6,7 +6,7 @@ import {
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import { RadioTheme, ThemeRadioButton, isRadioTheme } from "./ThemeRadioButton";
+import { RadioTheme, RadioTile, isRadioTheme } from "./RadioTile";
 
 import {
   SpecialistUnitListingLinkProps,
@@ -123,7 +123,7 @@ const UnitsLearningThemeFilters = ({
           const isChecked = activeThemeSlug === theme.slug;
           const isFocussed = focussedThemeSlug === theme.slug;
           return (
-            <ThemeRadioButton
+            <RadioTile
               theme={theme}
               isChecked={isChecked}
               isFocussed={isFocussed}

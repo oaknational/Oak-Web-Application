@@ -8,10 +8,11 @@ import {
   OakLabelProps,
 } from "@/styles/oakThemeApp";
 
-const RadioButtonLabel = styled(OakLabel)<OakLabelProps>`
+// TODO: extract to components lib
+const RadioTileLabel = styled(OakLabel)<OakLabelProps>`
   cursor: pointer;
   display: flex;
-  gap: 8px; // TODO: replace with spacing token
+  gap: 8px;
 `;
 
 const HiddenRadioButtonInput = styled.input.attrs({
@@ -22,9 +23,14 @@ const HiddenRadioButtonInput = styled.input.attrs({
   cursor: pointer;
 `;
 
-const RadioButtonFocus = styled(OakBox)<OakBoxProps>`
-  box-shadow: ${`inset 0 0 0 0.13rem #ffe555`}; // TODO: replace with colour token
+const RadioTileFocus = styled(OakBox)<OakBoxProps>`
+  box-shadow: ${`inset 0 0 0 0.15rem #ffe555`};
+  width: calc(100% + 12px);
+  height: calc(100% + 12px);
+  top: -6px;
+  left: -6px;
 `;
+
 export type RadioTheme = { slug: string; label: string };
 
 export const isRadioTheme = (u: unknown): u is RadioTheme => {
@@ -36,7 +42,7 @@ export const isRadioTheme = (u: unknown): u is RadioTheme => {
   );
 };
 
-export const ThemeRadioButton = ({
+export const RadioTile = ({
   theme,
   isChecked,
   isFocussed,
@@ -53,13 +59,26 @@ export const ThemeRadioButton = ({
 }) => {
   return (
     <OakBox
-      $borderColor="border-neutral-lighter"
-      $borderStyle="solid"
+      $borderColor="border-neutral"
+      $ba="border-solid-m"
       $borderRadius="border-radius-s"
       $pa="inner-padding-s"
       key={theme.slug}
+      $position={"relative"}
+      $background={isFocussed || isChecked ? "black" : "transparent"}
+      $color={isFocussed || isChecked ? "white" : "black"}
     >
-      <RadioButtonLabel htmlFor={id}>
+      {isFocussed && (
+        <RadioTileFocus
+          $background="transparent"
+          $position="absolute"
+          $ba="border-solid-l"
+          $borderColor="grey60"
+          $borderRadius="border-radius-s"
+        />
+      )}
+
+      <RadioTileLabel htmlFor={id}>
         <HiddenRadioButtonInput
           value={theme.slug}
           id={id}
@@ -72,12 +91,12 @@ export const ThemeRadioButton = ({
         <OakFlex
           $height={"all-spacing-6"}
           $width="all-spacing-6"
-          $borderColor={"black"}
+          $borderColor="border-neutral"
           $flexGrow={0}
           $flexShrink={0}
           $alignItems={"center"}
           $justifyContent={"center"}
-          $background="bg-primary"
+          $background={"bg-primary"}
           $ba="border-solid-m"
           $borderRadius="border-radius-circle"
         >
@@ -90,20 +109,9 @@ export const ThemeRadioButton = ({
               $borderRadius="border-radius-circle"
             />
           )}
-          {isFocussed && (
-            <RadioButtonFocus
-              $height={"all-spacing-7"}
-              $width="all-spacing-7"
-              $background="transparent"
-              $position="absolute"
-              $ba="border-solid-m"
-              $borderColor="grey60"
-              $borderRadius="border-radius-circle"
-            />
-          )}
         </OakFlex>
         {theme.label}
-      </RadioButtonLabel>
+      </RadioTileLabel>
     </OakBox>
   );
 };
