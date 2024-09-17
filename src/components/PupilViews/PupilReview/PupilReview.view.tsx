@@ -24,6 +24,7 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizResults } from "@/components/PupilComponents/QuizResults";
 import { resolveOakHref } from "@/common-lib/urls";
+import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 
 // TODO: add question arrays for starter and exit quizzes so that the expand quiz results can be rendered
 
@@ -46,7 +47,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     exitQuizQuestionsArray,
     programmeSlug,
     unitSlug,
-    browseData: { programmeFields, lessonSlug },
+    browseData: { programmeFields, lessonSlug, isLegacy },
     pageType,
   } = props;
   const { phase = "primary", yearDescription, subject } = programmeFields;
@@ -209,6 +210,9 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                         sectionResults={sectionResults}
                         quizArray={quizArray}
                         lessonSection={lessonSection}
+                        copyrightNotice={
+                          <CopyrightNotice isLegacyLicense={isLegacy} />
+                        }
                       />
                     }
                   />
