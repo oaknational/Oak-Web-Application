@@ -1,3 +1,20 @@
+# [1.551.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.550.0...v1.551.0) (2024-09-17)
+
+
+### Bug Fixes
+
+* added explainer to fixture ([364b1b6](https://github.com/oaknational/Oak-Web-Application/commit/364b1b6f77ee1cc40714009204cd2ca7fc64e347))
+* made explainer optional (for now) ([0b2ad75](https://github.com/oaknational/Oak-Web-Application/commit/0b2ad75e6a8d8384bacee252ef1bd5e5b42681a5))
+
+
+### Features
+
+* add curriculum explainer to overview page ([02c5bb9](https://github.com/oaknational/Oak-Web-Application/commit/02c5bb9d45285482034a4f47bbfc2b5f3eb30cfc))
+* added explainers into curriculum downloads and curriculum overview tab ([d92af4e](https://github.com/oaknational/Oak-Web-Application/commit/d92af4e2ae2e5b41656fc7e50d11a588025463c0))
+* update sanity explainer data ([ebd01d3](https://github.com/oaknational/Oak-Web-Application/commit/ebd01d351da035fcae36fede4622603ae115ef28))
+* update tests ([b5f4416](https://github.com/oaknational/Oak-Web-Application/commit/b5f441604075a97d72cc4ba390299efd88011810))
+* updated explainer sanity data ([c48a508](https://github.com/oaknational/Oak-Web-Application/commit/c48a508991bc626bb98bf2c8efce258e4ea360cf))
+
 # [1.550.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.549.1...v1.550.0) (2024-09-17)
 
 
