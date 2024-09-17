@@ -85,10 +85,14 @@ const UnitsLearningThemeFilters = ({
     }
 
     const query = theme.slug === "all" ? {} : { "learning-theme": theme.slug };
-    router.push({
-      pathname: `/teachers/programmes/${linkProps.programmeSlug}/units`,
-      query,
-    });
+    router.push(
+      {
+        pathname: `/teachers/programmes/${linkProps.programmeSlug}/units`,
+        query,
+      },
+      undefined,
+      { shallow: true },
+    );
   };
 
   return (
