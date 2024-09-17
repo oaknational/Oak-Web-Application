@@ -45,9 +45,8 @@ const UnitsLearningThemeFilters = ({
             slug: learningTheme?.themeSlug,
           };
         })
-        .filter((theme) => isRadioTheme(theme))
-        .map((theme) => theme as RadioTheme)
-        .sort((a: RadioTheme, b: RadioTheme) => {
+        .filter(isRadioTheme)
+        .sort((a, b) => {
           if (a.slug === "no-theme") {
             return 0;
           } else if (b.slug === "no-theme") {
