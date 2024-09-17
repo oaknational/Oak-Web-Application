@@ -117,24 +117,24 @@ const UnitsLearningThemeFilters = ({
         $flexDirection="column"
         $gap="space-between-ssx"
         role="radiogroup"
+        $pb="inner-padding-xl2"
       >
-        {[
-          { slug: "all", label: "All in suggested order" },
-          ...learningThemesMapped,
-        ].map((theme) => {
-          const isChecked = activeThemeSlug === theme.slug;
-          const isFocussed = focussedThemeSlug === theme.slug;
-          return (
-            <RadioTile
-              theme={theme}
-              isChecked={isChecked}
-              isFocussed={isFocussed}
-              onChange={onChange}
-              onFocus={setFocussedThemeSlug}
-              id={`${theme.slug}-${idSuffix}`}
-            />
-          );
-        })}
+        {[{ slug: "all", label: "All" }, ...learningThemesMapped].map(
+          (theme) => {
+            const isChecked = activeThemeSlug === theme.slug;
+            const isFocussed = focussedThemeSlug === theme.slug;
+            return (
+              <RadioTile
+                theme={theme}
+                isChecked={isChecked}
+                isFocussed={isFocussed}
+                onChange={onChange}
+                onFocus={setFocussedThemeSlug}
+                id={`${theme.slug}-${idSuffix}`}
+              />
+            );
+          },
+        )}
       </OakFlex>
     </OakFlex>
   );
