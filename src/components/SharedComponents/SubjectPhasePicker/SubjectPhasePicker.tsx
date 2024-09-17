@@ -116,6 +116,11 @@ const ButtonContainer = styled.div`
       border: 1px solid var(--Tokens-Border-border-neutral-lighter, #cacaca);
       background-color: #222222;
       color: #fff;
+
+      :hover {
+        background: #222222;
+        color: #fff;
+      }
     }
   }
 
