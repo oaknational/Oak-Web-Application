@@ -44,7 +44,7 @@ const UnitsLearningThemeFilters = ({
           };
         })
         .filter((theme) => isRadioTheme(theme))
-        .map((theme) => theme as RadioTheme) // why is this necessary?
+        .map((theme) => theme as RadioTheme)
         .sort((a: RadioTheme, b: RadioTheme) => {
           if (a.slug === "no-theme") {
             return 0;
