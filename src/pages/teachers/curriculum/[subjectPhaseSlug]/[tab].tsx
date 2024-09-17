@@ -7,6 +7,7 @@ import {
 import React, { MutableRefObject } from "react";
 import { useRouter } from "next/router";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { uniq } from "lodash";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
@@ -94,7 +95,7 @@ export type CurriculumInfoPageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   subjectPhaseOptions: SubjectPhasePickerData;
   curriculumOverviewTabData: CurriculumOverviewMVData;
-  curriculumOverviewSanityData: CurriculumOverviewSanityData;
+  curriculumOverviewSanityData?: CurriculumOverviewSanityData;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   mvRefreshTime: number;
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
@@ -122,30 +123,30 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     subjectTitle: curriculumOverviewTabData.subjectTitle,
     examboardSlug: examboardSlug,
   };
-  let keyStagesData: string;
-  switch (phaseSlug) {
-    case "primary":
-      keyStagesData = `KS1-2`;
-      break;
-    case "secondary":
-      keyStagesData = `KS3-4`;
-      break;
-    default:
-      keyStagesData = "";
-      break;
-  }
+
+  const keyStages = uniq(
+    Object.values(curriculumUnitsFormattedData.yearData).flatMap(({ units }) =>
+      units.map((unit) => unit.keystage_slug),
+    ),
+  );
+
   let tabContent: JSX.Element;
 
   switch (tab) {
     case "overview":
       tabContent = (
-        <OverviewTab
-          data={{
-            curriculumInfo: curriculumOverviewTabData,
-            curriculumCMSInfo: curriculumOverviewSanityData,
-            curriculumSelectionSlugs,
-          }}
-        />
+        <>
+          {curriculumOverviewSanityData && <div>Missing...</div>}
+          {curriculumOverviewSanityData && (
+            <OverviewTab
+              data={{
+                curriculumInfo: curriculumOverviewTabData,
+                curriculumCMSInfo: curriculumOverviewSanityData,
+                curriculumSelectionSlugs,
+              }}
+            />
+          )}
+        </>
       );
 
       break;
@@ -180,14 +181,14 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
               metadataType: "title",
               subjectSlug: subjectSlug,
               examboardSlug: examboardSlug,
-              keyStagesData: keyStagesData,
+              keyStages: keyStages,
               tab: tab,
             }),
             description: buildCurriculumMetadata({
               metadataType: "description",
               subjectSlug: subjectSlug,
               examboardSlug: examboardSlug,
-              keyStagesData: keyStagesData,
+              keyStages: keyStages,
               tab: tab,
             }),
           }),
@@ -197,6 +198,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         <CurriculumHeader
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
+          keyStages={keyStages}
           color1="mint"
           color2="mint30"
         />
@@ -515,12 +517,18 @@ export const getStaticProps: GetStaticProps<
           ...slugs,
         });
 
-      if (!curriculumOverviewSanityData) {
-        return {
-          notFound: true,
-        };
-      }
-      const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
+      // if (!curriculumOverviewSanityData) {
+      //   return {
+      //     notFound: true,
+      //   };
+      // }
+      const querySlugs = {
+        ...slugs,
+        state: "new",
+      };
+
+      const curriculumUnitsTabData =
+        await curriculumApi.curriculumUnits(querySlugs);
 
       // Sort the units to have examboard versions first - this is so non-examboard units are removed
       // in the visualiser
@@ -544,12 +552,28 @@ export const getStaticProps: GetStaticProps<
       );
 
       const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
           curriculumSelectionSlugs: slugs,
           subjectPhaseOptions,
           curriculumOverviewTabData,
-          curriculumOverviewSanityData,
+          // TODO: Hack to null the object for testing
+          curriculumOverviewSanityData:
+            curriculumOverviewSanityData !== null
+              ? curriculumOverviewSanityData
+              : {
+                  id: "",
+                  subjectPrinciples: [],
+                  partnerBio: "",
+                  curriculumPartner: {
+                    name: "",
+                    image: null,
+                  },
+                  video: null,
+                  videoAuthor: null,
+                  videoExplainer: null,
+                },
           curriculumUnitsFormattedData,
           mvRefreshTime,
           curriculumDownloadsTabData,

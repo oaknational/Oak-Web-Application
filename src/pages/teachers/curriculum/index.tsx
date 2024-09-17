@@ -202,7 +202,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
 
 export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
-    const subjects = await curriculumApi2023.subjectPhaseOptions();
+    const subjects = (await curriculumApi2023.subjectPhaseOptions())
+      // TODO: Replace this with GraphQL filter
+      .filter((subject) => subject.state === "new");
     return {
       subjects: subjects,
     };
