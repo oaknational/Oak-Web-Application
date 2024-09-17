@@ -1,6 +1,5 @@
 import React, { useId, useState } from "react";
 import { useRouter } from "next/router";
-import { useTheme } from "styled-components";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -97,10 +96,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     isLastPage,
     isFirstPage,
   } = paginationProps;
-
-  const theme = useTheme();
-
-  const HEADER_HEIGHT = theme.header.height;
 
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
@@ -210,8 +205,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             >
               <Box
                 $display={["none", "none", "block"]}
-                $position={[null, null, "sticky"]}
-                $top={[null, null, HEADER_HEIGHT]}
                 $mt={[0, 0, 24]}
                 $pt={[48]}
               >
