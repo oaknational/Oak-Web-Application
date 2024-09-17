@@ -155,12 +155,15 @@ const FocusIndicatorAlt = styled(FocusIndicator)<object>`
 `;
 
 const SelectionDropDownBox = styled(Box)<object>`
+  width: calc(100% + 2px);
+  margin-left: -2px;
+
   &.phase-selection {
-    width: 204%;
-    left: -104%;
+    width: calc(200% + 4px);
+    left: -100%;
 
     @media (min-width: 768px) {
-      width: 100%;
+      width: calc(100% + 4px);
       left: 0;
     }
   }
@@ -333,7 +336,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       data-testid="subjectPhasePicker"
       $zIndex={99}
       $maxWidth="all-spacing-23"
-      $borderRadius="border-radius-m"
+      $borderRadius="border-radius-s"
       $borderColor={showSubjects || showPhases ? "transparent" : "black"}
       $ba="border-solid-m"
     >
@@ -364,10 +367,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               subFocus={showSubjects}
               disableActive={true}
               $width={"100%"}
-              $bblr={["border-radius-square", "border-radius-m"]}
-              $bbrr={["border-radius-square", "border-radius-square"]}
-              $btlr={["border-radius-m", "border-radius-m"]}
-              $btrr={["border-radius-square", "border-radius-square"]}
+              $bblr={["border-radius-square", "border-radius-s"]}
+              $bbrr={["border-radius-square", "border-radius-s"]}
+              $btlr={["border-radius-s", "border-radius-s"]}
+              $btrr={["border-radius-square", "border-radius-s"]}
             >
               <PickerButton onClick={toggleShowSubjects} title="Subject">
                 <OakBox
@@ -543,10 +546,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 subFocus={showPhases}
                 disableActive={true}
                 $width={"100%"}
-                $bblr={["border-radius-square", "border-radius-square"]}
-                $bbrr={["border-radius-square", "border-radius-m"]}
-                $btlr={["border-radius-square", "border-radius-square"]}
-                $btrr={["border-radius-m", "border-radius-m"]}
+                $bblr={["border-radius-square", "border-radius-s"]}
+                $bbrr={["border-radius-square", "border-radius-s"]}
+                $btlr={["border-radius-square", "border-radius-s"]}
+                $btrr={["border-radius-s", "border-radius-s"]}
               >
                 <PickerButton onClick={toggleShowPhases} title="Phase">
                   <OakBox
