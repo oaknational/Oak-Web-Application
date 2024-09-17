@@ -7574,6 +7574,7 @@ export const data: CombinedCurriculumData = {
   phaseTitle: "Secondary",
   examboardTitle: "AQA",
   id: "5c9bf0e6-6627-4621-9f1f-d92853fe803e",
+  curriculumExplainer: { explainerRaw: undefined },
   subjectPrinciples: [
     "Pupils regularly read a range of text types as a group and independently, have frequent opportunities to develop personal responses to texts, and build their background knowledge, tier 2 vocabulary and fluency to support comprehension.",
     "Writing for a range of purposes, expressing creativity and building writing stamina are developed alongside a deep understanding of grammar, sentence construction, disciplinary writing and underlying spelling patterns.",
