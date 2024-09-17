@@ -13,7 +13,7 @@ import {
 } from "../docx";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
-import { ENABLE_CYCLE_2 } from "@/utils/curriculum/constants";
+import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 
 type PortableTextToDocxDef = {
   list: (block: PortableTextJSON[number], content: string) => Promise<string>;
@@ -107,6 +107,7 @@ export default async function generate(
   zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
+  const cycleTwoEnabled = isCycleTwoEnabled();
   const images = await insertImages(zip, {
     educationRoad: join(
       process.cwd(),
@@ -271,7 +272,7 @@ export default async function generate(
 
   let pageXml;
 
-  if (ENABLE_CYCLE_2) {
+  if (cycleTwoEnabled) {
     pageXml = safeXml`
       <root>
         <w:p>
@@ -293,7 +294,7 @@ export default async function generate(
             `,
           )}
         </w:p>
-        ${ENABLE_CYCLE_2 ? explainerXml : ""}
+        ${cycleTwoEnabled ? explainerXml : ""}
       </root>
     `;
   } else {
