@@ -14,7 +14,8 @@ jest.mock("next/router", () => ({
 describe("YearGroupFilters", () => {
   const mockRouter = {
     query: {},
-    push: jest.fn(),
+    replace: jest.fn(),
+
     pathname: "/test-path",
   };
   beforeEach(() => {
@@ -58,7 +59,7 @@ describe("YearGroupFilters", () => {
     const yearButton = screen.getByText("Year 1");
     fireEvent.click(yearButton);
 
-    expect(mockRouter.push).toHaveBeenCalledWith(
+    expect(mockRouter.replace).toHaveBeenCalledWith(
       {
         pathname: "/test-path",
         query: {

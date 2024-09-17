@@ -14,7 +14,7 @@ jest.mock("next/router", () => ({
 describe("SubjectCategoryFilters", () => {
   const mockRouter = {
     query: {},
-    push: jest.fn(),
+    replace: jest.fn(),
     pathname: "/test-path",
   };
   beforeEach(() => {
@@ -63,7 +63,7 @@ describe("SubjectCategoryFilters", () => {
     const categoryButton = screen.getByText("Test Category");
     fireEvent.click(categoryButton);
 
-    expect(mockRouter.push).toHaveBeenCalledWith(
+    expect(mockRouter.replace).toHaveBeenCalledWith(
       {
         pathname: "/test-path",
         query: {
