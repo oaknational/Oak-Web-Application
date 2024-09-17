@@ -4,6 +4,6 @@ export function isCycleTwoEnabled() {
   return ENABLE_CYCLE_2;
 }
 
-export function useCycleTwo() {
+export function useCycleTwoEnabled() {
   return ENABLE_CYCLE_2;
 }

@@ -26,7 +26,7 @@ import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
-import { ENABLE_CYCLE_2 } from "@/utils/curriculum/constants";
+import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 
 export type OverviewTabProps = {
   data: {
@@ -79,6 +79,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   } = curriculumCMSInfo;
   const { curriculaDesc } = curriculumInfo;
   const { subjectSlug } = curriculumSelectionSlugs;
+  const isCycleTwoEnabled = useCycleTwoEnabled();
 
   const itemiseSubjectPrinciples = (
     principle: string,
@@ -119,7 +120,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   };
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-      {ENABLE_CYCLE_2 && (
+      {isCycleTwoEnabled && (
         <OakFlex $mb="space-between-ssx">
           <Box
             $mr={16}
@@ -134,7 +135,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             >
               Overview
             </OakHeading>
-            <OakP>
+            <OakP data-testid="explainer">
               <PortableText
                 value={curriculumExplainer.explainerRaw}
                 components={{
@@ -155,7 +156,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </Box>
         </OakFlex>
       )}
-      {!ENABLE_CYCLE_2 && (
+      {!isCycleTwoEnabled && (
         <>
           <OakFlex $mb="space-between-ssx">
             <Box
