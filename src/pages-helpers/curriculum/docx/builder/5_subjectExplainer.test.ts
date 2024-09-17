@@ -18,6 +18,7 @@ describe("5_subjectExplainer", () => {
   });
 
   it("simple", async () => {
+    isCycleTwoEnabled.mockReturnValue(false);
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {
@@ -70,6 +71,22 @@ describe("5_subjectExplainer", () => {
               _key: "82cf6558d6f8",
               markDefs: [],
             },
+            ...["one", "two", "three"].map((text) => {
+              return {
+                children: [
+                  {
+                    _type: "span",
+                    marks: [],
+                    text: text,
+                    _key: "470ecdd07b7d",
+                  },
+                ],
+                _type: "block",
+                listItem: "bullet",
+                _key: "82cf6558d6f8",
+                markDefs: [],
+              };
+            }),
           ],
         },
       } as CombinedCurriculumData,
