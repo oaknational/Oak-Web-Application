@@ -212,11 +212,11 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     <OakHeading
                       id={learningThemesId}
                       tag="h3"
-                      $font="body-3"
+                      $font="heading-7"
                       $mb="space-between-s"
                     >
                       {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
-                      Filter by thread
+                      Threads
                     </OakHeading>
                     <UnitsLearningThemeFilters
                       labelledBy={learningThemesId}
