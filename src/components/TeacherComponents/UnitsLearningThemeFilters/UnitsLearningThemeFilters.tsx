@@ -87,7 +87,7 @@ const UnitsLearningThemeFilters = ({
     }
 
     const query = theme.slug === "all" ? {} : { "learning-theme": theme.slug };
-    router.push(
+    router.replace(
       {
         pathname: `/teachers/programmes/${linkProps.programmeSlug}/units`,
         query,
