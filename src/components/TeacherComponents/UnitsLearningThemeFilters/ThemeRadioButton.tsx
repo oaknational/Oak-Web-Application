@@ -52,7 +52,7 @@ export const ThemeRadioButton = ({
   onFocus: (value: string | undefined) => void;
 }) => {
   return (
-    <RadioButtonLabel htmlFor={theme.slug}>
+    <RadioButtonLabel htmlFor={id}>
       <HiddenRadioButtonInput
         value={theme.slug}
         id={id}
