@@ -89,16 +89,16 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
 
-  const unitsFilteredByLearningTheme = filterUnits(
+  const filteredUnits = filterUnits(
     themeSlug,
     categorySlug,
     yearGroupSlug,
     units,
   );
   const paginationProps = usePagination({
-    totalResults: unitsFilteredByLearningTheme.length,
+    totalResults: filteredUnits.length,
     pageSize: RESULTS_PER_PAGE,
-    items: unitsFilteredByLearningTheme,
+    items: filteredUnits,
   });
 
   const {
@@ -308,7 +308,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   {tiers.length === 0 && (
                     <Flex $minWidth={120} $mb={16} $position={"relative"}>
                       <OakHeading $font={"heading-5"} tag={"h2"}>
-                        {`Units (${unitsFilteredByLearningTheme.length})`}
+                        {`Units (${filteredUnits.length})`}
                       </OakHeading>
                     </Flex>
                   )}
@@ -398,6 +398,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   currentPageItems={currentPageItems}
                   paginationProps={paginationProps}
                   selectedCategory={selectedCategory}
+                  filteredUnits={filteredUnits}
                   onClick={(props) =>
                     trackUnitSelected(
                       props,

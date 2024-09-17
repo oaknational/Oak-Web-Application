@@ -45,6 +45,7 @@ export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
   paginationProps: PaginationProps & PageSize;
   onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
   selectedCategory?: string | null;
+  filteredUnits?: UnitListingData["units"];
 };
 
 const isUnitOption = (
@@ -119,6 +120,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     onClick,
     subjectSlug,
     subjectParent,
+    filteredUnits,
   } = props;
 
   const linkSubject = subjectParent
@@ -158,7 +160,17 @@ const UnitList: FC<UnitListProps> = (props) => {
         if (newAndLegacyUnitsOnPage) {
           calculatedIndex = index;
         } else {
-          calculatedIndex = baseIndex - indexOfFirstLegacyUnit;
+          if (filteredUnits) {
+            const legacyUnits = filteredUnits?.filter((unit) => {
+              return isSlugLegacy(unit[0]!.programmeSlug);
+            });
+            const findIndex = legacyUnits?.findIndex((unit) => {
+              return unit[0]?.slug === item[0]?.slug;
+            });
+            calculatedIndex = findIndex;
+          } else {
+            calculatedIndex = baseIndex - indexOfFirstLegacyUnit;
+          }
         }
       }
 
@@ -241,6 +253,7 @@ const UnitList: FC<UnitListProps> = (props) => {
         unitCards={getUnitCards(newPageItems)}
       />
     ) : null;
+
   const LegacyUnits = () =>
     legacyPageItems.length && keyStageSlug && phaseSlug ? (
       <OakUnitsContainer
