@@ -29,7 +29,7 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
 
   return (
     <StyledFieldset>
-      <legend>Select category</legend>
+      <legend>Select year group</legend>
       <OakFlex
         $mv="space-between-m2"
         $flexDirection={"column"}

@@ -159,18 +159,16 @@ const UnitList: FC<UnitListProps> = (props) => {
       if (isItemLegacy) {
         if (newAndLegacyUnitsOnPage) {
           calculatedIndex = index;
+        } else if (filteredUnits) {
+          const legacyUnits = filteredUnits?.filter((unit) =>
+            isSlugLegacy(unit[0]!.programmeSlug),
+          );
+          const findIndex = legacyUnits?.findIndex(
+            (unit) => unit[0]?.slug === item[0]?.slug,
+          );
+          calculatedIndex = findIndex;
         } else {
-          if (filteredUnits) {
-            const legacyUnits = filteredUnits?.filter((unit) => {
-              return isSlugLegacy(unit[0]!.programmeSlug);
-            });
-            const findIndex = legacyUnits?.findIndex((unit) => {
-              return unit[0]?.slug === item[0]?.slug;
-            });
-            calculatedIndex = findIndex;
-          } else {
-            calculatedIndex = baseIndex - indexOfFirstLegacyUnit;
-          }
+          calculatedIndex = baseIndex - indexOfFirstLegacyUnit;
         }
       }
 
