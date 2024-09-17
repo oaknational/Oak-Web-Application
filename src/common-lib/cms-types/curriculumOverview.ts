@@ -6,7 +6,9 @@ import { portableTextSchema } from "./portableText";
 export const curriculumOverviewCMSSchema = z
   .object({
     id: z.string().nullish(),
-    curriculumExplainerRaw: portableTextSchema.optional(),
+    curriculumExplainer: z.object({
+      explainerRaw: portableTextSchema.optional(),
+    }),
     subjectPrinciples: z.string().array(),
     partnerBio: z.string(),
     curriculumPartner: z.object({

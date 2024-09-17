@@ -70,7 +70,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
     props.data;
   const {
-    curriculumExplainerRaw,
+    curriculumExplainer,
     subjectPrinciples,
     partnerBio,
     curriculumPartner,
@@ -136,7 +136,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             </OakHeading>
             <OakP>
               <PortableText
-                value={curriculumExplainerRaw}
+                value={curriculumExplainer}
                 components={{
                   ...basePortableTextComponents.list,
                   ...basePortableTextComponents.listItem,

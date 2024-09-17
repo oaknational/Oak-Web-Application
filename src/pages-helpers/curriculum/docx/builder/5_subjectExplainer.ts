@@ -129,138 +129,145 @@ export default async function generate(
       }
     | undefined;
 
-  const explainerXml = await portableTextToDocx(data.curriculumExplainerRaw, {
-    list: async () => {
-      currentNumbering = await insertNumbering(zip, {
-        bullet: safeXml`
-          <XML_FRAGMENT>
-            <w:multiLevelType w:val="multilevel" />
-            <w:lvl w:ilvl="0">
-              <w:start w:val="1" />
-              <w:numFmt w:val="bullet" />
-              <w:lvlText w:val="" />
-              <w:lvlJc w:val="left" />
+  const explainerXml = await portableTextToDocx(
+    data.curriculumExplainer.explainerRaw,
+    {
+      list: async () => {
+        currentNumbering = await insertNumbering(zip, {
+          bullet: safeXml`
+            <XML_FRAGMENT>
+              <w:multiLevelType w:val="multilevel" />
+              <w:lvl w:ilvl="0">
+                <w:start w:val="1" />
+                <w:numFmt w:val="bullet" />
+                <w:lvlText w:val="" />
+                <w:lvlJc w:val="left" />
+                <w:pPr>
+                  <w:tabs>
+                    <w:tab w:val="num" w:pos="720" />
+                  </w:tabs>
+                  <w:ind w:left="720" w:hanging="720" />
+                </w:pPr>
+                <w:rPr>
+                  <w:rFonts
+                    w:ascii="Symbol"
+                    w:hAnsi="Symbol"
+                    w:hint="default"
+                  />
+                </w:rPr>
+              </w:lvl>
+            </XML_FRAGMENT>
+          `,
+          numbering: safeXml`
+            <XML_FRAGMENT>
+              <w:lvl w:ilvl="0">
+                <w:start w:val="1" />
+                <w:numFmt w:val="decimal" />
+                <w:lvlText w:val="%1." />
+                <w:lvlJc w:val="left" />
+                <w:pPr>
+                  <w:ind w:left="360" w:hanging="360" />
+                </w:pPr>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                </w:rPr>
+              </w:lvl>
+            </XML_FRAGMENT>
+          `,
+        });
+        return "";
+      },
+      listItem: async (block, content) => {
+        if (!currentNumbering) {
+          throw new Error("Invalid numbering");
+        }
+        const numId =
+          block.listItem === "numbering"
+            ? currentNumbering.numbering
+            : currentNumbering.bullet;
+        return safeXml`
+          <w:p>
+            <w:pPr>
+              <w:numPr>
+                <w:ilvl w:val="0" />
+                <w:numId w:val="${numId}" />
+              </w:numPr>
+              <w:spacing w:line="276" w:lineRule="auto" />
+              <w:ind w:left="425" w:right="-17" w:hanging="360" />
+            </w:pPr>
+            ${content}
+          </w:p>
+        `;
+      },
+      block: {
+        normal: async (_block, content) => {
+          return safeXml` <w:p>${content}</w:p> `;
+        },
+        heading2: async (_block, content) => {
+          return safeXml`
+            <w:p>
               <w:pPr>
-                <w:tabs>
-                  <w:tab w:val="num" w:pos="720" />
-                </w:tabs>
-                <w:ind w:left="720" w:hanging="720" />
+                <w:pStyle w:val="Heading3" />
               </w:pPr>
-              <w:rPr>
-                <w:rFonts w:ascii="Symbol" w:hAnsi="Symbol" w:hint="default" />
-              </w:rPr>
-            </w:lvl>
-          </XML_FRAGMENT>
-        `,
-        numbering: safeXml`
-          <XML_FRAGMENT>
-            <w:lvl w:ilvl="0">
-              <w:start w:val="1" />
-              <w:numFmt w:val="decimal" />
-              <w:lvlText w:val="%1." />
-              <w:lvlJc w:val="left" />
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:b />
+                  <w:color w:val="222222" />
+                  <w:sz w:val="36" />
+                </w:rPr>
+                ${content}
+              </w:r>
+            </w:p>
+          `;
+        },
+        heading3: async (_block, content) => {
+          return safeXml`
+            <w:p>
               <w:pPr>
-                <w:ind w:left="360" w:hanging="360" />
+                <w:pStyle w:val="Heading4" />
               </w:pPr>
-              <w:rPr>
-                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-              </w:rPr>
-            </w:lvl>
-          </XML_FRAGMENT>
-        `,
-      });
-      return "";
-    },
-    listItem: async (block, content) => {
-      if (!currentNumbering) {
-        throw new Error("Invalid numbering");
-      }
-      const numId =
-        block.listItem === "numbering"
-          ? currentNumbering.numbering
-          : currentNumbering.bullet;
-      return safeXml`
-        <w:p>
-          <w:pPr>
-            <w:numPr>
-              <w:ilvl w:val="0" />
-              <w:numId w:val="${numId}" />
-            </w:numPr>
-            <w:spacing w:line="276" w:lineRule="auto" />
-            <w:ind w:left="425" w:right="-17" w:hanging="360" />
-          </w:pPr>
-          ${content}
-        </w:p>
-      `;
-    },
-    block: {
-      normal: async (_block, content) => {
-        return safeXml` <w:p>${content}</w:p> `;
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:b />
+                  <w:color w:val="222222" />
+                  <w:sz w:val="28" />
+                </w:rPr>
+                ${content}
+              </w:r>
+            </w:p>
+          `;
+        },
+        heading4: async (_block, content) => {
+          return safeXml`
+            <w:p>
+              <w:pPr>
+                <w:pStyle w:val="Heading5" />
+              </w:pPr>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:b />
+                  <w:color w:val="222222" />
+                  <w:sz w:val="24" />
+                </w:rPr>
+                ${content}
+              </w:r>
+            </w:p>
+          `;
+        },
       },
-      heading2: async (_block, content) => {
-        return safeXml`
-          <w:p>
-            <w:pPr>
-              <w:pStyle w:val="Heading3" />
-            </w:pPr>
-            <w:r>
-              <w:rPr>
-                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                <w:b />
-                <w:color w:val="222222" />
-                <w:sz w:val="36" />
-              </w:rPr>
-              ${content}
-            </w:r>
-          </w:p>
-        `;
-      },
-      heading3: async (_block, content) => {
-        return safeXml`
-          <w:p>
-            <w:pPr>
-              <w:pStyle w:val="Heading4" />
-            </w:pPr>
-            <w:r>
-              <w:rPr>
-                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                <w:b />
-                <w:color w:val="222222" />
-                <w:sz w:val="28" />
-              </w:rPr>
-              ${content}
-            </w:r>
-          </w:p>
-        `;
-      },
-      heading4: async (_block, content) => {
-        return safeXml`
-          <w:p>
-            <w:pPr>
-              <w:pStyle w:val="Heading5" />
-            </w:pPr>
-            <w:r>
-              <w:rPr>
-                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                <w:b />
-                <w:color w:val="222222" />
-                <w:sz w:val="24" />
-              </w:rPr>
-              ${content}
-            </w:r>
-          </w:p>
-        `;
+      marks: {
+        strong: async () => {
+          return safeXml`<w:b val="1" />`;
+        },
+        em: async () => {
+          return safeXml`<w:i val="1" />`;
+        },
       },
     },
-    marks: {
-      strong: async () => {
-        return safeXml`<w:b val="1" />`;
-      },
-      em: async () => {
-        return safeXml`<w:i val="1" />`;
-      },
-    },
-  });
+  );
 
   let pageXml;
 
