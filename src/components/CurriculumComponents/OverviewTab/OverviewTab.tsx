@@ -26,6 +26,7 @@ import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
+import { ENABLE_CYCLE_2 } from "@/utils/curriculum/constants";
 
 export type OverviewTabProps = {
   data: {
@@ -34,8 +35,6 @@ export type OverviewTabProps = {
     curriculumSelectionSlugs: CurriculumSelectionSlugs;
   };
 };
-
-const CURRICULUM_EXPLAINER_ENABLED = false;
 
 const PrincipleBullet = ({
   bulletText,
@@ -71,7 +70,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
     props.data;
   const {
-    explainerRaw,
+    curriculumExplainerRaw,
     subjectPrinciples,
     partnerBio,
     curriculumPartner,
@@ -120,7 +119,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   };
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-      {CURRICULUM_EXPLAINER_ENABLED && (
+      {ENABLE_CYCLE_2 && (
         <OakFlex $mb="space-between-ssx">
           <Box
             $mr={16}
@@ -137,7 +136,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             </OakHeading>
             <OakP>
               <PortableText
-                value={explainerRaw}
+                value={curriculumExplainerRaw}
                 components={{
                   ...basePortableTextComponents.list,
                   ...basePortableTextComponents.listItem,
@@ -156,7 +155,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </Box>
         </OakFlex>
       )}
-      {!CURRICULUM_EXPLAINER_ENABLED && (
+      {!ENABLE_CYCLE_2 && (
         <>
           <OakFlex $mb="space-between-ssx">
             <Box
@@ -172,28 +171,24 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               >
                 Overview
               </OakHeading>
-              {!CURRICULUM_EXPLAINER_ENABLED && (
-                <>
-                  <OakHeading
-                    tag="h3"
-                    $font={["heading-6", "heading-5"]}
-                    data-testid="intent-heading"
-                    $mb="space-between-s"
-                    line-height={48}
-                  >
-                    Curriculum explainer
-                  </OakHeading>
-                  <OakTypography
-                    $font={["body-2", "body-1"]}
-                    style={{ fontWeight: "light" }}
-                    $mt="space-between-ssx"
-                    $mr="space-between-xs"
-                    $whiteSpace={"break-spaces"}
-                  >
-                    {curriculaDesc}
-                  </OakTypography>
-                </>
-              )}
+              <OakHeading
+                tag="h3"
+                $font={["heading-6", "heading-5"]}
+                data-testid="intent-heading"
+                $mb="space-between-s"
+                line-height={48}
+              >
+                Curriculum explainer
+              </OakHeading>
+              <OakTypography
+                $font={["body-2", "body-1"]}
+                style={{ fontWeight: "light" }}
+                $mt="space-between-ssx"
+                $mr="space-between-xs"
+                $whiteSpace={"break-spaces"}
+              >
+                {curriculaDesc}
+              </OakTypography>
             </Box>
 
             <Card

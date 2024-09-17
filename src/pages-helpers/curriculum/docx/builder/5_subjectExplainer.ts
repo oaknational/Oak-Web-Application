@@ -13,8 +13,7 @@ import {
 } from "../docx";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
-
-const CURRICULUM_EXPLAINER_ENABLED = false;
+import { ENABLE_CYCLE_2 } from "@/utils/curriculum/constants";
 
 type PortableTextToDocxDef = {
   list: (block: PortableTextJSON[number], content: string) => Promise<string>;
@@ -130,7 +129,7 @@ export default async function generate(
       }
     | undefined;
 
-  const explainerXml = await portableTextToDocx(data.explainerRaw, {
+  const explainerXml = await portableTextToDocx(data.curriculumExplainerRaw, {
     list: async () => {
       currentNumbering = await insertNumbering(zip, {
         bullet: safeXml`
@@ -265,7 +264,7 @@ export default async function generate(
 
   let pageXml;
 
-  if (CURRICULUM_EXPLAINER_ENABLED) {
+  if (ENABLE_CYCLE_2) {
     pageXml = safeXml`
       <root>
         <w:p>
@@ -287,7 +286,7 @@ export default async function generate(
             `,
           )}
         </w:p>
-        ${CURRICULUM_EXPLAINER_ENABLED ? explainerXml : ""}
+        ${ENABLE_CYCLE_2 ? explainerXml : ""}
       </root>
     `;
   } else {
