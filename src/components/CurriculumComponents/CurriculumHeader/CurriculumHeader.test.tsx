@@ -17,7 +17,7 @@ describe("Component - Curriculum Header", () => {
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa"),
-      keyStages: ["ks4"],
+      keyStages: ["ks3", "ks4"],
       subjectPhaseOptions: { subjects: subjectPhaseOptionsFixture() },
       pageSlug: "test-slug",
       tab: "overview",
@@ -60,6 +60,7 @@ describe("Component - Curriculum Header", () => {
   test("should return correct page title for primary phase subject", () => {
     const { getByTestId } = renderComponent({
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-primary"),
+      keyStages: ["ks1", "ks2"],
     });
 
     expect(getByTestId("curriculum-heading")).toHaveTextContent(
