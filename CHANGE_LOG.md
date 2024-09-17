@@ -1,3 +1,12 @@
+# [1.550.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.549.1...v1.550.0) (2024-09-17)
+
+
+### Features
+
+* **share-button:** add share attempt button behind feature flag ([faf9027](https://github.com/oaknational/Oak-Web-Application/commit/faf9027906cbdb7a457099971366c480c3f295d6))
+* **share:** add tests to share button ([8e828f9](https://github.com/oaknational/Oak-Web-Application/commit/8e828f90b79ca3507ed9a02fdb529c1ce9787da8))
+* **share:** add tests to share button ([dd1dfc3](https://github.com/oaknational/Oak-Web-Application/commit/dd1dfc35e75dfa51410b7a78356179dd14ef6efa))
+
 ## [1.549.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.549.0...v1.549.1) (2024-09-17)
 
 # [1.549.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.548.0...v1.549.0) (2024-09-16)
