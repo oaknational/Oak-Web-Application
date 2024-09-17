@@ -237,6 +237,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       href="#unit-list"
                       onFocus={() => setSkipFiltersButton(true)}
                       onBlur={() => setSkipFiltersButton(false)}
+                      style={
+                        skipFiltersButton
+                          ? {}
+                          : {
+                              position: "absolute",
+                              top: "-9999px",
+                              left: "-9999px",
+                            }
+                      }
                     >
                       Skip to units
                     </OakSecondaryButton>
