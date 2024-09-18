@@ -43,8 +43,8 @@ describe("UnitsLearningThemeFilters", () => {
     );
     const themes = await screen.findAllByRole("radio");
     expect(themes[0]).toBe(screen.getByLabelText("All"));
-    expect(themes[2]).toBe(screen.getByLabelText("Algebra"));
-    expect(themes[3]).toBe(screen.getByLabelText("No theme"));
+    expect(themes[1]).toBe(screen.getByLabelText("Algebra"));
+    expect(themes[2]).toBe(screen.getByLabelText("No theme"));
   });
   test("should call tracking browse refined with correct args", async () => {
     renderWithProviders()(
