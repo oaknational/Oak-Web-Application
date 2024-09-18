@@ -19,6 +19,8 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
+import useLocalStorageForDownloads from "../hooks/downloadAndShareHooks/useLocalStorageForDownloads";
+
 import {
   OnboardingFormProps,
   isSchoolSelectData,
@@ -59,6 +61,11 @@ const OnboardingForm = ({
   const { posthogDistinctId } = useAnalytics();
   const { user } = useUser();
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const {
+    setSchoolInLocalStorage,
+    setEmailInLocalStorage,
+    setTermsInLocalStorage,
+  } = useLocalStorageForDownloads();
 
   const [userRegisteredInHubspot, setUserRegisteredinHubspot] = useState<
     boolean | undefined
@@ -127,6 +134,23 @@ const OnboardingForm = ({
           hubspotFormId,
           payload: hubspotFormPayload,
         });
+        if (isSchoolSelectData(data)) {
+          if ("school" in data) {
+            setSchoolInLocalStorage({
+              schoolName: data.schoolName || data.school,
+              schoolId: data.school,
+            });
+          } else if ("manualSchoolName" in data) {
+            setSchoolInLocalStorage({
+              schoolName: data.manualSchoolName,
+              schoolId: data.manualSchoolName, // were not going to know the school id here
+            });
+          }
+        }
+        userEmail && setEmailInLocalStorage(userEmail);
+        userRegisteredInHubspot
+          ? setTermsInLocalStorage(true)
+          : setTermsInLocalStorage(data.newsletterSignUp);
       } catch (error) {
         if (error instanceof OakError) {
           reportError(error);
