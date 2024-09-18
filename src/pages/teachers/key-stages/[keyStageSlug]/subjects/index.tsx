@@ -18,6 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getCombinedSubjects } from "@/pages-helpers/teacher/subject-listing-page/getCombinedSubjects";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -40,6 +41,7 @@ export type SubjectListingPageProps = {
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle, keyStages } = props;
   const containerHeight = keyStages.length > 4 ? 172 : 120;
+  const { track } = useAnalytics();
 
   return (
     <AppLayout
@@ -53,7 +55,26 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
     >
       <Box $background={"lavender50"} $height={[containerHeight, 140]}>
         <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]} $pv={32}>
-          <KeyStageKeypad keyStages={keyStages} title="Select key stage" />
+          <KeyStageKeypad
+            keyStages={keyStages}
+            title="Select key stage"
+            trackingOnClick={(
+              filterValue: string,
+              activeFilters: Record<string, string[]>,
+            ) =>
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "keystage_keypad_button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Key stage filter",
+                filterValue,
+                activeFilters,
+              })
+            }
+          />
         </MaxWidth>
       </Box>
       <SubjectListingPage

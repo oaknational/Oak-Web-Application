@@ -117,11 +117,17 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     posthogToAnalyticsService(posthogClient),
   ).current;
   const posthogConsent = useOakConsent().getConsent(ServicePolicyMap.POSTHOG);
+  const isDevelopmentBuild = getBrowserConfig("releaseStage") === "development";
   const posthog = useAnalyticsService({
     service: posthogService,
     config: {
-      apiHost: getBrowserConfig("posthogApiHost"),
       apiKey: getBrowserConfig("posthogApiKey"),
+      apiHost: isDevelopmentBuild
+        ? "/ingest"
+        : getBrowserConfig("posthogApiHost"),
+      uiHost: isDevelopmentBuild
+        ? getBrowserConfig("posthogApiHost")
+        : undefined,
     },
     consentState: posthogConsent,
     setPosthogDistinctId,

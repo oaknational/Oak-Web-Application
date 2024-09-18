@@ -26,10 +26,12 @@ const constructCanonicalLessonDownloads = (
 
   return browseData.reduce(
     (acc, lesson) => {
+      const unitTitle =
+        lesson.programme_fields.optionality ?? lesson.unit_data.title;
       const pathwayLesson = {
         programmeSlug: lesson.programme_slug,
         unitSlug: lesson.unit_data.slug,
-        unitTitle: lesson.unit_data.title,
+        unitTitle,
         keyStageSlug: lesson.programme_fields.keystage_slug,
         keyStageTitle: toSentenceCase(
           lesson.programme_fields.keystage_description,
@@ -56,6 +58,7 @@ const constructCanonicalLessonDownloads = (
       pathways: [],
       isLegacy: false,
       isSpecialist: false,
+      isDownloadRegionRestricted: false,
     } as LessonDownloadsCanonical,
   );
 };

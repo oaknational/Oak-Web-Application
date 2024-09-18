@@ -34,6 +34,7 @@ export const KeyStageKeypad: Story = {
           <Component
             keyStages={keyStageKeypad.keyStages}
             title="Select key stage"
+            trackingOnClick={() => {}}
           />
         </OakFlex>
       </OakFlex>

@@ -5,6 +5,7 @@ import {
   subjectSlugs,
   subjects,
   yearDescriptions,
+  yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
 
 import { learningThemesSchema } from "../threads/threads.schema";
@@ -22,7 +23,8 @@ const unitData = z.object({
   unitStudyOrder: z.number(),
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
-  yearTitle: yearDescriptions.nullable(),
+  yearTitle: yearDescriptions,
+  year: yearSlugs,
   yearOrder: z.number(),
   cohort: z.string().nullish(),
   learningThemes: z.array(learningThemesSchema).nullable(),

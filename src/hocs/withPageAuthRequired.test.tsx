@@ -1,36 +1,33 @@
 import { render, screen } from "@testing-library/react";
-import { useUser } from "@clerk/nextjs";
 
 import { withPageAuthRequired } from "./withPageAuthRequired";
 
-import * as clerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 import {
   mockLoadingUser,
   mockLoggedIn,
   mockLoggedOut,
 } from "@/__tests__/__helpers__/mockUser";
+import {
+  enableMockClerk,
+  setUseUserReturn,
+} from "@/__tests__/__helpers__/mockClerk";
 
 jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
-function MockRedirectToSignIn() {
-  return <div data-testid="redirectToSignIn" />;
+function MockRedirectToSignUp() {
+  return <div data-testid="redirectToSignUp" />;
 }
-MockRedirectToSignIn.displayName = "MockRedirectToSignIn";
+MockRedirectToSignUp.displayName = "MockRedirectToSignUp";
 
 describe(withPageAuthRequired, () => {
   const OriginalComponent = () => <div data-testid="canary" />;
   const Subject = withPageAuthRequired(OriginalComponent);
-  let useUserReturn: ReturnType<typeof useUser>;
 
   beforeEach(() => {
-    useUserReturn = mockLoadingUser;
-    jest.spyOn(clerk, "useFeatureFlaggedClerk").mockReturnValue({
-      ...clerk.fakeClerkApi,
-      RedirectToSignIn: MockRedirectToSignIn,
-      useUser() {
-        return useUserReturn;
-      },
+    enableMockClerk({
+      RedirectToSignUp: MockRedirectToSignUp,
     });
+    setUseUserReturn(mockLoadingUser);
   });
 
   describe("when clerk has yet to load", () => {
@@ -61,19 +58,19 @@ describe(withPageAuthRequired, () => {
 
   describe("when the user is not signed-in", () => {
     beforeEach(() => {
-      useUserReturn = mockLoggedOut;
+      setUseUserReturn(mockLoggedOut);
     });
 
-    it("redirects the user to sign-in", () => {
+    it("redirects the user to sign-up", () => {
       render(<Subject />);
 
-      expect(screen.queryByTestId("redirectToSignIn")).toBeInTheDocument();
+      expect(screen.queryByTestId("redirectToSignUp")).toBeInTheDocument();
     });
   });
 
   describe("when the user is signed-in", () => {
     beforeEach(() => {
-      useUserReturn = mockLoggedIn;
+      setUseUserReturn(mockLoggedIn);
     });
 
     it("redirects them to sign-in", () => {

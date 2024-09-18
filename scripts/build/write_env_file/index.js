@@ -101,6 +101,9 @@ async function main() {
     HUBSPOT_FORMS_ACCESS_TOKEN:
       process.env.HUBSPOT_FORMS_ACCESS_TOKEN ||
       secretsFromNetwork.HUBSPOT_FORMS_ACCESS_TOKEN,
+    HUBSPOT_OWA_ACCESS_TOKEN:
+      process.env.HUBSPOT_OWA_ACCESS_TOKEN ||
+      secretsFromNetwork.HUBSPOT_OWA_ACCESS_TOKEN,
 
     // Oak
     // App hosting URL, needed for accurate sitemaps (and canonical URLs in the metadata?).
@@ -230,11 +233,24 @@ async function main() {
       process.env.NEXT_PUBLIC_OAK_USER_LOG_URL ||
       oakConfig.oakConsent?.userLogUrl,
 
+    // oak-pupil-client
+    NEXT_PUBLIC_LOG_LESSON_ATTEMPT_URL:
+      process.env.NEXT_PUBLIC_LOG_LESSON_ATTEMPT_URL ||
+      oakConfig.oakPupilClient?.logLessonAttemptUrl,
+    NEXT_PUBLIC_GET_LESSON_ATTEMPT_URL:
+      process.env.NEXT_PUBLIC_GET_LESSON_ATTEMPT_URL ||
+      oakConfig.oakPupilClient?.getLessonAttemptUrl,
+
     // Clerk
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
       process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
       oakConfig.clerk.publishableKey,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY || oakConfig.clerk.secretKey,
+
+    // Geolocation
+    DEVELOPMENT_USER_REGION:
+      process.env.DEVELOPMENT_USER_REGION ||
+      oakConfig.clerk.developmentUserRegion,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

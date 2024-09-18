@@ -135,6 +135,20 @@ export type PupilLessonLinkProps = {
   lessonSlug: string;
 };
 
+export type PupilLessonResultsLinkProps = {
+  page: "pupil-lesson-results";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+  attemptId: string;
+};
+
+export type PupilLessonResultsCanonicalLinkProps = {
+  page: "pupil-lesson-results-canonical";
+  lessonSlug: string;
+  attemptId: string;
+};
+
 export type PupilLessonListingLinkProps = {
   page: "pupil-lesson-index";
   programmeSlug: string;
@@ -305,6 +319,10 @@ type OnboardingRoleSelectionLinkProps = {
   page: "onboarding-role-selection";
 };
 
+type OnboardingUseOfOak = {
+  page: "onboarding-use-of-oak";
+};
+
 export type OakLinkProps =
   | LabsLinkProps
   | SubjectListingLinkProps
@@ -318,6 +336,8 @@ export type OakLinkProps =
   | LessonShareCanonicalLinkProps
   | LessonOverviewLinkProps
   | PupilLessonLinkProps
+  | PupilLessonResultsLinkProps
+  | PupilLessonResultsCanonicalLinkProps
   | PupilLessonListingLinkProps
   | PupilUnitListingLinkProps
   | PupilSubjectListingLinkProps
@@ -361,7 +381,8 @@ export type OakLinkProps =
   | CurriculumPreviousDownloadsLinkProps
   | OnboardingLinkProps
   | OnboardingSchoolSelectionLinkProps
-  | OnboardingRoleSelectionLinkProps;
+  | OnboardingRoleSelectionLinkProps
+  | OnboardingUseOfOak;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -660,6 +681,19 @@ export const OAK_PAGES: {
     configType: "internal",
     pageType: "pupil-lesson",
   }),
+  "pupil-lesson-results": createOakPageConfig({
+    pathPattern:
+      "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/results/:attemptId",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "pupil-lesson-results",
+  }),
+  "pupil-lesson-results-canonical": createOakPageConfig({
+    pathPattern: "/pupils/lessons/:lessonSlug/results/:attemptId",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "pupil-lesson-results-canonical",
+  }),
   "pupil-lesson-index": createOakPageConfig({
     pathPattern: "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons",
     analyticsPageName: "Lesson Listing",
@@ -842,6 +876,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Onboarding: Role Selection",
     configType: "internal",
     pageType: "onboarding-role-selection",
+  }),
+  "onboarding-use-of-oak": createOakPageConfig({
+    pathPattern: "/onboarding/how-can-oak-support-you",
+    analyticsPageName: "Onboarding: Use Of Oak",
+    configType: "internal",
+    pageType: "onboarding-use-of-oak",
   }),
 };
 

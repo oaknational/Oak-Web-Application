@@ -5,7 +5,7 @@ import {
   UseFormStateReturn,
   UseFormTrigger,
 } from "react-hook-form";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
 import {
@@ -19,8 +19,12 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
-import { OnboardingFormProps } from "./OnboardingForm.schema";
-import { onboardUser } from "./onboardingActions";
+import {
+  OnboardingFormProps,
+  isSchoolSelectData,
+} from "./OnboardingForm.schema";
+import { getSubscriptionStatus, onboardUser } from "./onboardingActions";
+import { getQueryParamsFromOnboardingFormData } from "./getQueryParamsFromOnboardingFormData";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -34,20 +38,20 @@ import OakError from "@/errors/OakError";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 
 const OnboardingForm = ({
-  showNewsletterSignUp = true,
-  showTermsAndConditions = true,
+  forceHideNewsletterSignUp,
   ...props
 }: {
   children: React.ReactNode;
   handleSubmit: UseFormHandleSubmit<OnboardingFormProps>;
   formState: UseFormStateReturn<OnboardingFormProps>;
   heading: string;
+  subheading?: string;
+  secondaryButton?: React.ReactNode;
   canSubmit: boolean;
   onSubmit?: () => void;
   control: Control<OnboardingFormProps>;
   trigger: UseFormTrigger<OnboardingFormProps>;
-  showNewsletterSignUp?: boolean;
-  showTermsAndConditions?: boolean;
+  forceHideNewsletterSignUp?: boolean;
 }) => {
   const router = useRouter();
   const hutk = getHubspotUserToken();
@@ -55,6 +59,23 @@ const OnboardingForm = ({
   const { posthogDistinctId } = useAnalytics();
   const { user } = useUser();
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const [userRegisteredInHubspot, setUserRegisteredinHubspot] = useState<
+    boolean | undefined
+  >(undefined);
+
+  useEffect(() => {
+    if (forceHideNewsletterSignUp) {
+      return;
+    }
+    if (user?.emailAddresses[0]) {
+      const email = String(user.emailAddresses[0].emailAddress);
+      getSubscriptionStatus(email, setUserRegisteredinHubspot);
+    }
+  }, [user, forceHideNewsletterSignUp]);
+
+  const showNewsletterSignUp =
+    userRegisteredInHubspot === false && forceHideNewsletterSignUp !== true;
 
   const onFormSubmit = async (data: OnboardingFormProps) => {
     if ("worksInSchool" in data) {
@@ -66,9 +87,23 @@ const OnboardingForm = ({
         }),
         query: router.query,
       });
+    } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
+      const encodedQueryData = getQueryParamsFromOnboardingFormData(
+        data,
+        router.query,
+      );
+
+      router.push({
+        pathname: resolveOakHref({
+          page: "onboarding-use-of-oak",
+        }),
+        query: encodedQueryData,
+      });
     } else {
+      const isTeacher = "school" in data || "manualSchoolName" in data;
+
       try {
-        await onboardUser();
+        await onboardUser({ isTeacher });
         await user?.reload();
       } catch (error) {
         setSubmitError("Something went wrong. Please try again.");
@@ -128,8 +163,8 @@ const OnboardingForm = ({
         $alignItems="flex-start"
         $gap="all-spacing-8"
         $pa="inner-padding-xl3"
-        $dropShadow="drop-shadow-standard"
-        $borderRadius="border-radius-s"
+        $dropShadow={[null, "drop-shadow-standard"]}
+        $borderRadius="border-radius-m2"
         $background={"white"}
         as="form"
         onSubmit={
@@ -138,13 +173,25 @@ const OnboardingForm = ({
       >
         <Logo height={48} width={104} variant="with text" />
         <OakFlex
-          $gap="all-spacing-8"
+          $gap="space-between-m"
           $flexDirection={"column"}
+          $width="100%"
           role={"fieldset"}
         >
-          <OakSpan role="legend" id={"form-legend"} $font="heading-light-5">
-            {props.heading}
-          </OakSpan>
+          <OakFlex
+            $flexDirection="column"
+            $gap="space-between-ssx"
+            $pb={props.subheading ? "inner-padding-m" : "inner-padding-none"}
+          >
+            <OakSpan role="legend" id={"form-legend"} $font="heading-6">
+              {props.heading}
+            </OakSpan>
+            {props.subheading && (
+              <OakP $font="body-2" $color="text-subdued">
+                {props.subheading}
+              </OakP>
+            )}
+          </OakFlex>
           <OakBox aria-live="polite" $display="contents">
             {submitError && (
               <OakInlineBanner
@@ -158,15 +205,22 @@ const OnboardingForm = ({
             )}
           </OakBox>
           <OakBox>{props.children}</OakBox>
-          <OakPrimaryButton
-            disabled={!props.canSubmit}
-            width="100%"
-            type="submit"
-            onClick={props.onSubmit}
-            aria-description={submitError ?? undefined}
+          <OakFlex
+            $pv="inner-padding-xl"
+            $gap="space-between-xs"
+            $flexDirection="column"
           >
-            Continue
-          </OakPrimaryButton>
+            <OakPrimaryButton
+              disabled={!props.canSubmit}
+              width="100%"
+              type="submit"
+              onClick={props.onSubmit}
+              aria-description={submitError ?? undefined}
+            >
+              Continue
+            </OakPrimaryButton>
+            {props.secondaryButton}
+          </OakFlex>
           {showNewsletterSignUp && (
             <Controller
               control={props.control}
@@ -182,8 +236,7 @@ const OnboardingForm = ({
                     name={name}
                     onBlur={onBlur}
                     onChange={onChangeHandler}
-                    value="Sign up to receive helpful content via email. Unsubscribe at any
-                    time."
+                    value="Sign up for our latest resources and updates by email. Unsubscribe at any time"
                     id="newsletterSignUp"
                   />
                 );
@@ -193,35 +246,13 @@ const OnboardingForm = ({
         </OakFlex>
       </OakFlex>
 
-      {showTermsAndConditions && (
-        <OakP $font="body-2" color="text-primary" $textAlign="center">
-          By continuing you agree to{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "legal",
-              legalSlug: "terms-and-conditions",
-            })}
-            target="_blank"
-            aria-label="Terms and conditions (opens in a new tab)"
-          >
-            Oak's terms & conditions
-          </OakLink>{" "}
-          and{" "}
-          <OakLink
-            href={resolveOakHref({
-              page: "legal",
-              legalSlug: "privacy-policy",
-            })}
-            target="_blank"
-            aria-label="Privacy policy (opens in a new tab)"
-          >
-            privacy policy
-          </OakLink>
-          .
-        </OakP>
-      )}
-
-      <OakP $font="body-2" color="text-primary" $textAlign="center">
+      <OakBox
+        as="p"
+        $font="body-2"
+        color="text-primary"
+        $textAlign="center"
+        $pb="inner-padding-s"
+      >
         Need help?{" "}
         <OakLink
           href={resolveOakHref({
@@ -232,7 +263,7 @@ const OnboardingForm = ({
           Contact us
         </OakLink>
         .
-      </OakP>
+      </OakBox>
     </OakFlex>
   );
 };

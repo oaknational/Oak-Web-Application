@@ -12,6 +12,10 @@ import {
   OakPrimaryButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
+import { useOakPupil } from "@oaknational/oak-pupil-client";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import { PupilExperienceViewProps } from "../PupilExperience";
 
 import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
 
@@ -19,25 +23,33 @@ import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngin
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizResults } from "@/components/PupilComponents/QuizResults";
+import { resolveOakHref } from "@/common-lib/urls";
 
 // TODO: add question arrays for starter and exit quizzes so that the expand quiz results can be rendered
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
   backUrl?: string | null;
-  phase?: "primary" | "secondary";
   starterQuizQuestionsArray: QuestionsArray;
   exitQuizQuestionsArray: QuestionsArray;
+  programmeSlug: string;
+  unitSlug: string;
+  browseData: PupilExperienceViewProps["browseData"];
+  pageType: PupilExperienceViewProps["pageType"];
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const {
     lessonTitle,
     backUrl,
-    phase = "primary",
     starterQuizQuestionsArray,
     exitQuizQuestionsArray,
+    programmeSlug,
+    unitSlug,
+    browseData: { programmeFields, lessonSlug },
+    pageType,
   } = props;
+  const { phase = "primary", yearDescription, subject } = programmeFields;
   const {
     updateCurrentSection,
     sectionResults,
@@ -50,6 +62,10 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     isLessonComplete,
     sectionResults,
   );
+
+  const pupilClient = useOakPupil();
+  const { logAttempt } = pupilClient;
+  const isShowShareButtons = useFeatureFlagEnabled("share-results-button");
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
@@ -64,6 +80,60 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       </OakPrimaryButton>
     </OakLessonBottomNav>
   );
+  const handleShareResultsClick = async () => {
+    const attemptData = {
+      lessonData: { slug: lessonSlug, title: lessonTitle },
+      browseData: { subject: subject, yearDescription: yearDescription ?? "" },
+      sectionResults: sectionResults,
+    };
+    try {
+      const attemptId = await logAttempt(attemptData, false);
+      if (!attemptId) {
+        throw new Error("Failed to log attempt");
+      }
+      const shareUrl = `${
+        process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL
+      }${resolveOakHref({
+        page: "pupil-lesson-results-canonical",
+        lessonSlug,
+        attemptId,
+      })}`;
+      alert("See results at " + shareUrl);
+    } catch (e) {
+      console.error(e);
+      alert("Failed to share results");
+    }
+  };
+
+  const handlePrintableResultsClick = async () => {
+    const attemptData = {
+      lessonData: { slug: lessonSlug, title: lessonTitle },
+      browseData: { subject: subject, yearDescription: yearDescription ?? "" },
+      sectionResults: sectionResults,
+    };
+    const attemptId = await logAttempt(attemptData, true);
+    if (attemptId)
+      window.open(
+        pageType === "canonical"
+          ? resolveOakHref({
+              page: "pupil-lesson-results-canonical",
+              lessonSlug,
+              attemptId,
+            })
+          : resolveOakHref({
+              page: "pupil-lesson-results",
+              programmeSlug,
+              unitSlug,
+              lessonSlug,
+              attemptId,
+            }),
+        "_blank",
+      );
+  };
+
+  if (phase === "foundation") {
+    throw new Error("Foundation phase is not supported");
+  }
 
   return (
     <OakLessonLayout
@@ -98,6 +168,32 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
+              {isShowShareButtons && (
+                <OakFlex $gap={"space-between-s"}>
+                  <OakPrimaryButton
+                    type="button"
+                    role="button"
+                    aria-label="Printable results, opens in a new tab"
+                    title="Printable results (opens in a new tab)"
+                    iconName={"external"}
+                    isTrailingIcon
+                    onClick={handlePrintableResultsClick}
+                    data-testid="printable-results-button"
+                  >
+                    Printable results
+                  </OakPrimaryButton>
+                  <OakPrimaryButton
+                    type="button"
+                    role="button"
+                    aria-label="Share results"
+                    title="Share results"
+                    onClick={handleShareResultsClick}
+                    data-testid="share-results-button"
+                  >
+                    Share results
+                  </OakPrimaryButton>
+                </OakFlex>
+              )}
               <OakHeading tag="h2" $font={"heading-light-7"}>
                 {lessonTitle}
               </OakHeading>

@@ -2,6 +2,9 @@ name: Deployment Actions
 
 on: deployment_status
 
+env:
+  PUPPETEER_DOWNLOAD_PATH: /home/runner/.npm/chromium
+
 jobs:
   dump_github_event:
     uses: ./.github/workflows/dump_event.yml

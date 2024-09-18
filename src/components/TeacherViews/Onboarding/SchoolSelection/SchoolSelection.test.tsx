@@ -43,18 +43,6 @@ describe("Onboarding view", () => {
       name: "Continue",
     });
     expect(continueButton).toBeInTheDocument();
-    expect(continueButton).toBeDisabled();
-  });
-  it("renders terms and conditions text", async () => {
-    renderWithProviders()(<SchoolSelectionView />);
-    const tsAndCs = await screen.findByText("Oak's terms & conditions", {
-      exact: false,
-    });
-    expect(tsAndCs).toBeInTheDocument();
-    expect(tsAndCs.closest("a")).toHaveAttribute(
-      "href",
-      "/legal/terms-and-conditions",
-    );
   });
   it("renders contact us text", async () => {
     renderWithProviders()(<SchoolSelectionView />);
@@ -64,25 +52,20 @@ describe("Onboarding view", () => {
     expect(contactUs.closest("a")).toHaveAttribute("href", "/contact-us");
   });
 
-  it("it enables the continue button when a school is selected", async () => {
+  it("it disables the continue button when the form is invalid", async () => {
     renderWithProviders()(<SchoolSelectionView />);
     const continueButton = await screen.findByRole("button", {
       name: "Continue",
     });
-    expect(continueButton).toBeDisabled();
-    const inputBox = await screen.findByRole("combobox");
 
     const user = userEvent.setup();
-    await user.type(inputBox, "Bea");
-    const school = await screen.findByText("uvoir Primary School", {
-      exact: false,
-    });
-    await user.click(school);
+    await user.click(continueButton);
+
     expect(
       await screen.findByRole("button", {
         name: "Continue",
       }),
-    ).toBeEnabled();
+    ).toBeDisabled();
   });
   it("clears the input when a school is not completed", async () => {
     renderWithProviders()(<SchoolSelectionView />);
@@ -145,37 +128,6 @@ describe("Onboarding view", () => {
         "Enter school address",
       );
       expect(schoolAddressError).toBeInTheDocument();
-    });
-    it("enables continue button when school name and address are entered", async () => {
-      renderWithProviders()(<SchoolSelectionView />);
-      const user = userEvent.setup();
-
-      const manualButton = await screen.findByRole("button", {
-        name: "Enter manually",
-      });
-      userEvent.click(manualButton);
-
-      expect(
-        await screen.findByRole("button", {
-          name: "Continue",
-        }),
-      ).toBeDisabled();
-
-      const schoolNameInput =
-        await screen.findByPlaceholderText("Type school name");
-      const schoolAddressInput = await screen.findByPlaceholderText(
-        "Type school address",
-      );
-
-      await user.type(schoolNameInput, "Old Swinford");
-      await user.type(schoolAddressInput, "123 Oak Street");
-      await user.tab();
-
-      expect(
-        await screen.findByRole("button", {
-          name: "Continue",
-        }),
-      ).toBeEnabled();
     });
   });
 });

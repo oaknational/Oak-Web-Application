@@ -1,5 +1,4 @@
-import React, { Dispatch, SetStateAction, FC, ChangeEvent } from "react";
-import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
+import React, { FC, ChangeEvent } from "react";
 import {
   Control,
   Controller,
@@ -7,15 +6,15 @@ import {
   UseFormReset,
   UseFormSetValue,
 } from "react-hook-form";
+import { OakBox, OakFlex, OakLink } from "@oaknational/oak-components";
 
 import { SchoolSelectFormProps } from "../OnboardingForm/OnboardingForm.schema";
 
-import FieldError from "@/components/SharedComponents/FieldError";
 import Input from "@/components/SharedComponents/Input";
 
 type ManualEntrySchoolDetailsProps = {
   setValue: UseFormSetValue<SchoolSelectFormProps>;
-  setRenderManualSchoolInput: Dispatch<SetStateAction<boolean>>;
+  onSelectFromDropdown: () => void;
   control: Control<SchoolSelectFormProps>;
   hasErrors: FieldErrors<SchoolSelectFormProps>;
   onManualSchoolInputChange: (isSchoolName: boolean, value: string) => void;
@@ -23,20 +22,21 @@ type ManualEntrySchoolDetailsProps = {
 };
 
 const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
-  setRenderManualSchoolInput,
+  onSelectFromDropdown: setRenderManualSchoolInput,
   control,
   onManualSchoolInputChange,
-
   hasErrors,
   reset,
 }) => {
   return (
-    <OakFlex $flexDirection={"column"}>
-      {"manualSchoolName" in hasErrors && (
-        <FieldError withoutMarginBottom id={"school-name-error"}>
-          Enter school name
-        </FieldError>
-      )}
+    <OakFlex
+      $flexDirection={"column"}
+      $mt={
+        "manualSchoolName" in hasErrors
+          ? "space-between-none"
+          : "space-between-m"
+      }
+    >
       <Controller
         name="manualSchoolName"
         control={control}
@@ -53,26 +53,24 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           };
 
           return (
-            <OakBox $mt={"space-between-m"}>
-              <Input
-                label="School name"
-                placeholder="Type school name"
-                value={value}
-                isRequired
-                id={"school-name"}
-                withoutMarginBottom
-                onBlur={onBlurHandler}
-                onChange={onChangeHandler}
-              />
-            </OakBox>
+            <Input
+              label="School name"
+              placeholder="Type school name"
+              value={value}
+              isRequired
+              id={"school-name"}
+              onBlur={onBlurHandler}
+              onChange={onChangeHandler}
+              error={
+                "manualSchoolName" in hasErrors
+                  ? "Enter school name"
+                  : undefined
+              }
+              $mb={"schoolAddress" in hasErrors ? 16 : 32}
+            />
           );
         }}
       />
-      {"schoolAddress" in hasErrors && (
-        <FieldError withoutMarginBottom id={"school-address-error"}>
-          Enter school address
-        </FieldError>
-      )}
 
       <Controller
         name="schoolAddress"
@@ -91,25 +89,27 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
           };
 
           return (
-            <OakBox $mt={"space-between-m"}>
-              <Input
-                label="School address"
-                placeholder="Type school address"
-                value={value}
-                isRequired
-                withoutMarginBottom
-                id={"school-address"}
-                onBlur={onBlurHandler}
-                onChange={onChangeHandler}
-              />
-            </OakBox>
+            <Input
+              label="School address"
+              placeholder="Type school address"
+              value={value}
+              isRequired
+              id={"school-address"}
+              onBlur={onBlurHandler}
+              onChange={onChangeHandler}
+              error={
+                "schoolAddress" in hasErrors
+                  ? "Enter school address"
+                  : undefined
+              }
+            />
           );
         }}
       />
       <OakBox $font="body-2-bold">
         <OakLink
           onClick={() => {
-            setRenderManualSchoolInput((prev) => !prev);
+            setRenderManualSchoolInput();
             reset();
           }}
           element="button"

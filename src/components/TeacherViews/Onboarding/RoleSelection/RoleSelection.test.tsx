@@ -23,7 +23,9 @@ describe("RoleSelection", () => {
 
     await userEvent.click(continueButton);
 
-    const roleError = await screen.findByText(/Please select your role/i);
+    const roleError = await screen.findByText(
+      /Please select what describes you best/i,
+    );
     expect(roleError).toBeDefined();
     expect(roleError).toBeVisible();
   });
@@ -57,13 +59,17 @@ describe("RoleSelection", () => {
     });
     await userEvent.click(continueButton);
 
-    const roleError = await screen.findByText(/Please select your role/i);
+    const roleError = await screen.findByText(
+      /Please select what describes you best/i,
+    );
     expect(roleError).toBeDefined();
     expect(roleError).toBeVisible();
 
     const teacherRadio = await screen.findByLabelText(/teacher trainer/i);
     await userEvent.click(teacherRadio);
 
-    expect(screen.queryByText(/Please select your role/i)).toBeNull();
+    expect(
+      screen.queryByText(/Please select what describes you best/i),
+    ).toBeNull();
   });
 });

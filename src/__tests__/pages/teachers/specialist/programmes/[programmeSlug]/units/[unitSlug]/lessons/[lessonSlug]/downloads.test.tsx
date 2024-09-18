@@ -6,8 +6,23 @@ import { SpecialistLessonDownloadFixture } from "@/node-lib/curriculum-api-2023/
 import SpecialistLessonDownloadsPage, {
   getStaticProps,
 } from "@/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
+import {
+  enableMockClerk,
+  setUseUserReturn,
+} from "@/__tests__/__helpers__/mockClerk";
+import {
+  mockLoggedIn,
+  mockUserWithDownloadAccess,
+  mockUserWithoutDownloadAccess,
+} from "@/__tests__/__helpers__/mockUser";
+
+jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
 const render = renderWithProviders();
+
+beforeEach(() => {
+  enableMockClerk();
+});
 
 describe("pages/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads", () => {
   it("renders lessons", () => {
@@ -19,6 +34,50 @@ describe("pages/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[
 
     const slidedeck = screen.getByText("Slide deck");
     expect(slidedeck).toBeInTheDocument();
+  });
+});
+
+describe("when downloads are region restricted", () => {
+  const curriculumData = SpecialistLessonDownloadFixture({
+    isDownloadRegionRestricted: true,
+  });
+
+  describe("and the user has access", () => {
+    beforeEach(() => {
+      setUseUserReturn({
+        ...mockLoggedIn,
+        user: mockUserWithDownloadAccess,
+      });
+    });
+
+    it("allows downloads", () => {
+      render(<SpecialistLessonDownloadsPage curriculumData={curriculumData} />);
+
+      expect(
+        screen.queryByText(
+          "Sorry, downloads for this lesson are not available in your country",
+        ),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  describe("and the user does not have access", () => {
+    beforeEach(() => {
+      setUseUserReturn({
+        ...mockLoggedIn,
+        user: mockUserWithoutDownloadAccess,
+      });
+    });
+
+    it("disallows downloads", () => {
+      render(<SpecialistLessonDownloadsPage curriculumData={curriculumData} />);
+
+      expect(
+        screen.queryByText(
+          "Sorry, downloads for this lesson are not available in your country",
+        ),
+      ).toBeInTheDocument();
+    });
   });
 });
 

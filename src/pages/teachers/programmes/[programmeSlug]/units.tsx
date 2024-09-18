@@ -1,6 +1,5 @@
-import React, { useId } from "react";
+import React, { useId, useState } from "react";
 import { useRouter } from "next/router";
-import { useTheme } from "styled-components";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -14,6 +13,8 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
+import { z } from "zod";
 
 import {
   getFallbackBlockingConfig,
@@ -37,13 +38,13 @@ import filterLearningTheme from "@/utils/filterLearningTheme/filterLearningTheme
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
+import { TierSchema } from "@/node-lib/curriculum-api-2023/queries/unitListing/tiers/tiers.schema";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -66,14 +67,21 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   } = curriculumData;
 
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const learningThemes = curriculumData.learningThemes ?? [];
 
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
 
-  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
+  const [selectedThemeSlug, setSelectedThemeSlug] = useState<
+    string | undefined
+  >(themeSlug);
+
+  const unitsFilteredByLearningTheme = filterLearningTheme(
+    selectedThemeSlug,
+    units,
+  );
+
   const paginationProps = usePagination({
     totalResults: unitsFilteredByLearningTheme.length,
     pageSize: RESULTS_PER_PAGE,
@@ -89,10 +97,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     isFirstPage,
   } = paginationProps;
 
-  const theme = useTheme();
-
-  const HEADER_HEIGHT = theme.header.height;
-
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
 
@@ -103,9 +107,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     }),
   };
 
-  const trackUnitSelected = ({
-    ...props
-  }: UnitListItemProps | SpecialistUnit) => {
+  const trackUnitSelected = (
+    props: UnitListItemProps | SpecialistUnit,
+    examBoardTitle: z.infer<typeof examboards> | null,
+    tierSlug: z.infer<typeof tierSlugs> | null,
+    tiers: TierSchema,
+  ) => {
     // Temporary until tracking for specialist units
     const isSpecialistUnit = (
       x: UnitListItemProps | SpecialistUnit,
@@ -114,14 +121,24 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     };
 
     if (!isSpecialistUnit(props)) {
-      return track.unitSelected({
-        keyStageTitle: props.keyStageTitle as KeyStageTitleValueType,
-        keyStageSlug,
-        subjectTitle,
-        subjectSlug,
+      const tier = tiers.find((t) => t.tierSlug === tierSlug)?.tierTitle;
+      return track.unitAccessed({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "refine",
+        componentType: "unit_card",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
         unitName: props.title,
         unitSlug: props.slug,
-        analyticsUseCase,
+        keyStageSlug: keyStageSlug,
+        keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+        subjectTitle: subjectTitle,
+        subjectSlug: subjectSlug,
+        yearGroupName: props.yearTitle,
+        yearGroupSlug: (props as UnitListItemProps).year,
+        tierName: tier ?? null,
+        examBoard: examBoardTitle,
       });
     }
   };
@@ -188,8 +205,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             >
               <Box
                 $display={["none", "none", "block"]}
-                $position={[null, null, "sticky"]}
-                $top={[null, null, HEADER_HEIGHT]}
                 $mt={[0, 0, 24]}
                 $pt={[48]}
               >
@@ -198,11 +213,11 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     <OakHeading
                       id={learningThemesId}
                       tag="h3"
-                      $font="body-3"
+                      $font="heading-7"
                       $mb="space-between-s"
                     >
                       {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
-                      Filter by thread
+                      Threads
                     </OakHeading>
                     <UnitsLearningThemeFilters
                       labelledBy={learningThemesId}
@@ -218,6 +233,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         subjectTitle,
                         subjectSlug,
                       }}
+                      idSuffix="desktop"
+                      onChangeCallback={setSelectedThemeSlug}
                     />
                   </Flex>
                 )}
@@ -271,6 +288,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                           subjectTitle,
                           subjectSlug,
                         }}
+                        idSuffix="mobile"
+                        onChangeCallback={setSelectedThemeSlug}
                       />
                     </MobileFilters>
                   )}
@@ -302,7 +321,14 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 {...curriculumData}
                 currentPageItems={currentPageItems}
                 paginationProps={paginationProps}
-                onClick={trackUnitSelected}
+                onClick={(props) =>
+                  trackUnitSelected(
+                    props,
+                    curriculumData.examBoardTitle,
+                    curriculumData.tierSlug,
+                    curriculumData.tiers,
+                  )
+                }
               />
             </OakGridArea>
           </OakGrid>

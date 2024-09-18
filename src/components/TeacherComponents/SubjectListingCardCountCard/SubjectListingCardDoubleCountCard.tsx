@@ -6,9 +6,7 @@ import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import SubjectListingTextTile from "@/components/TeacherComponents/SubjectListingTextTile";
 import { SubjectListingCardProps } from "@/components/TeacherComponents/SubjectListingCard";
 import { KeyStageSubjectData } from "@/node-lib/curriculum-api-2023/queries/subjectListing/subjectListing.schema";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import {
   ProgrammeListingLinkProps,
   UnitListingLinkProps,
@@ -21,7 +19,6 @@ export type SubjectListingCardCountCardProps = KeyStageSubjectData &
 
 const SubjectListingCardCountCard: FC<SubjectListingCardCountCardProps> = ({
   keyStageSlug,
-  keyStageTitle,
   programmeSlug,
   programmeCount,
   subjectSlug,
@@ -31,7 +28,6 @@ const SubjectListingCardCountCard: FC<SubjectListingCardCountCardProps> = ({
   isLegacyLesson,
 }) => {
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
   const ariaLabel = `${subjectTitle}: ${unitCount} ${
     unitCount > 1 ? "units" : "unit"
   }, ${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"} ${
@@ -72,12 +68,16 @@ const SubjectListingCardCountCard: FC<SubjectListingCardCountCardProps> = ({
         aria-label={ariaLabel}
         $hideDefaultFocus
         onClick={() => {
-          track.subjectSelected({
-            keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-            keyStageSlug,
-            subjectTitle: subjectTitle,
-            subjectSlug: subjectSlug,
-            analyticsUseCase,
+          track.browseRefined({
+            platform: "owa",
+            product: "teacher lesson resources",
+            engagementIntent: "refine",
+            componentType: "subject_card",
+            eventVersion: "2.0.0",
+            analyticsUseCase: "Teacher",
+            filterType: "Subject filter",
+            filterValue: subjectSlug,
+            activeFilters: { keyStage: [keyStageSlug] },
           });
         }}
       >

@@ -11,21 +11,21 @@ import {
   OakLink,
 } from "@oaknational/oak-components";
 
-import { postToPostListItem, SerializedPost } from ".";
-
 import Layout from "@/components/AppComponents/Layout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import CMSClient from "@/node-lib/cms";
 import { PlanALessonPage } from "@/common-lib/cms-types/planALessonPage";
-import { getNavItems } from "@/pages-helpers/homesite/plan-a-lesson/getNavItems";
+import { getNavItems } from "@/pages-helpers/home/plan-a-lesson/getNavItems";
 import LessonPlanningBlog from "@/components/GenericPagesComponents/LessonPlanningBlog";
 import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
 import { imageBuilder } from "@/components/SharedComponents/CMSImage/sanityImageBuilder";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
 import { getAndMergeWebinarsAndBlogs } from "@/utils/getAndMergeWebinarsAndBlogs";
+import { postToPostListItem } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
+import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 
 export type PlanALessonProps = {
   pageData: PlanALessonPage;
