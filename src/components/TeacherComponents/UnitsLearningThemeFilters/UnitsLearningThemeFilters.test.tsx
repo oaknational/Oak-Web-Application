@@ -18,6 +18,34 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("UnitsLearningThemeFilters", () => {
+  test("should render threads with no theme last", async () => {
+    renderWithProviders()(
+      <UnitsLearningThemeFilters
+        labelledBy={"Learning Theme Filter"}
+        learningThemes={[
+          {
+            themeTitle: "No theme",
+            themeSlug: "no-theme",
+          },
+          {
+            themeTitle: "Algebra",
+            themeSlug: "algebra",
+          },
+        ]}
+        selectedThemeSlug={"all"}
+        linkProps={{
+          page: "unit-index",
+          programmeSlug: "maths-secondary-ks3",
+        }}
+        idSuffix="test"
+        onChangeCallback={jest.fn}
+      />,
+    );
+    const themes = await screen.findAllByRole("radio");
+    expect(themes[0]).toBe(screen.getByLabelText("All"));
+    expect(themes[2]).toBe(screen.getByLabelText("Algebra"));
+    expect(themes[3]).toBe(screen.getByLabelText("No theme"));
+  });
   test("should call tracking browse refined with correct args", async () => {
     renderWithProviders()(
       <UnitsLearningThemeFilters
