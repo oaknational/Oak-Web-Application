@@ -4,15 +4,17 @@ const baseSchema = z.object({
   newsletterSignUp: z.boolean(),
 });
 
-export const roleSelectFormSchema = z.object({
-  ...baseSchema.shape,
-  role: z.string({
-    errorMap: () => ({
-      message: "Select a role",
-    }),
-  }),
-  other: z.string().optional(),
-});
+export const roleSelectFormSchema = z
+  .object({
+    ...baseSchema.shape,
+    role: z.string({ message: "Please select what describes you best" }),
+    other: z.string().trim().optional(),
+  })
+  .refine((input) => input.role === "Other" && !!input.other, {
+    message: "Please tell us what your role is",
+    path: ["other"],
+  });
+
 export type RoleSelectFormValues = z.infer<typeof roleSelectFormSchema>;
 export type RoleSelectFormProps = RoleSelectFormValues & {
   onSubmit: (values: RoleSelectFormValues) => Promise<void>;
