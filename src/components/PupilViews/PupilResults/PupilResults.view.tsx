@@ -4,12 +4,14 @@ import { LessonSectionResults } from "@/components/PupilComponents/LessonEngineP
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizResults } from "@/components/PupilComponents/QuizResults";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 
 type PupilViewsResultsProps = {
   attemptData: {
     browseData: {
       subject: string;
       yearDescription: string;
+      isLegacy: boolean;
     };
     lessonData: {
       slug: string;
@@ -36,6 +38,11 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
             sectionResults={sectionResults}
             quizArray={starterQuizQuestionsArray}
             lessonSection={"starter-quiz"}
+            copyrightNotice={
+              <CopyrightNotice
+                isLegacyLicense={attemptData.browseData.isLegacy}
+              />
+            }
           />
         </OakFlex>
         <OakFlex $flexDirection={"column"}>
@@ -44,6 +51,11 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
             sectionResults={sectionResults}
             quizArray={exitQuizQuestionsArray}
             lessonSection={"exit-quiz"}
+            copyrightNotice={
+              <CopyrightNotice
+                isLegacyLicense={attemptData.browseData.isLegacy}
+              />
+            }
           />
         </OakFlex>
       </MathJaxWrap>

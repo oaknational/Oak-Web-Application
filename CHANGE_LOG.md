@@ -1,3 +1,67 @@
+# [1.553.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.552.1...v1.553.0) (2024-09-18)
+
+
+### Bug Fixes
+
+* type errors ([a8b4bfb](https://github.com/oaknational/Oak-Web-Application/commit/a8b4bfb3ddd422d5866fed56d018cb85abdd50a5))
+
+
+### Features
+
+* image attribution and copyright on quiz results ([4d9c930](https://github.com/oaknational/Oak-Web-Application/commit/4d9c93064dfeef86489a4c4cdf298a5414c51bac))
+
+## [1.552.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.552.0...v1.552.1) (2024-09-18)
+
+# [1.552.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.551.0...v1.552.0) (2024-09-18)
+
+
+### Bug Fixes
+
+* add on blur ([9dc94bd](https://github.com/oaknational/Oak-Web-Application/commit/9dc94bdd981613968a5577ddbd3fd94f1546d9ab))
+* keys ([7ea778f](https://github.com/oaknational/Oak-Web-Application/commit/7ea778fe0a6e9ca98086e2736be8e3baeb310146))
+* make ids unique across desktop and mobile ([d7d79c1](https://github.com/oaknational/Oak-Web-Application/commit/d7d79c1d2ade4088c90a8620bef4d52243443ce4))
+* make thread filters non sticky ([04f0739](https://github.com/oaknational/Oak-Web-Application/commit/04f0739d290019cb6c7a9e146f28468b91e7732b))
+* remove focus on mouse click events ([a168479](https://github.com/oaknational/Oak-Web-Application/commit/a168479636efe64a7902723b9e7713cb87edc577))
+* themes for specialist units ([24be731](https://github.com/oaknational/Oak-Web-Application/commit/24be731ba2d37c520321cc897324f908e12679fb))
+* use correct id in label for ([ae08cda](https://github.com/oaknational/Oak-Web-Application/commit/ae08cda3bff1c383d8e8bd9cc5bfaad7c4328a49))
+
+
+### Features
+
+* style radio tile ([dee34a9](https://github.com/oaknational/Oak-Web-Application/commit/dee34a933098a4cec2a1603e3c4138a409ec39a8))
+* update filters heading ([f4c0465](https://github.com/oaknational/Oak-Web-Application/commit/f4c04651ce510c140659030295fcb5398c329fa4))
+* use router replace instead of push ([6acad56](https://github.com/oaknational/Oak-Web-Application/commit/6acad56b49acbdb461c5a06b30047a4832367069))
+* use shallow nav ([241537a](https://github.com/oaknational/Oak-Web-Application/commit/241537aa90b1af080f50e6d9418352dd33a362d1))
+* use window replace state to update url rather than next router ([f50f406](https://github.com/oaknational/Oak-Web-Application/commit/f50f4064259ba838f21373ef588a5bddc0c1cbf7))
+
+# [1.551.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.550.0...v1.551.0) (2024-09-17)
+
+
+### Bug Fixes
+
+* added explainer to fixture ([364b1b6](https://github.com/oaknational/Oak-Web-Application/commit/364b1b6f77ee1cc40714009204cd2ca7fc64e347))
+* made explainer optional (for now) ([0b2ad75](https://github.com/oaknational/Oak-Web-Application/commit/0b2ad75e6a8d8384bacee252ef1bd5e5b42681a5))
+
+
+### Features
+
+* add curriculum explainer to overview page ([02c5bb9](https://github.com/oaknational/Oak-Web-Application/commit/02c5bb9d45285482034a4f47bbfc2b5f3eb30cfc))
+* added explainers into curriculum downloads and curriculum overview tab ([d92af4e](https://github.com/oaknational/Oak-Web-Application/commit/d92af4e2ae2e5b41656fc7e50d11a588025463c0))
+* update sanity explainer data ([ebd01d3](https://github.com/oaknational/Oak-Web-Application/commit/ebd01d351da035fcae36fede4622603ae115ef28))
+* update tests ([b5f4416](https://github.com/oaknational/Oak-Web-Application/commit/b5f441604075a97d72cc4ba390299efd88011810))
+* updated explainer sanity data ([c48a508](https://github.com/oaknational/Oak-Web-Application/commit/c48a508991bc626bb98bf2c8efce258e4ea360cf))
+
+# [1.550.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.549.1...v1.550.0) (2024-09-17)
+
+
+### Features
+
+* **share-button:** add share attempt button behind feature flag ([faf9027](https://github.com/oaknational/Oak-Web-Application/commit/faf9027906cbdb7a457099971366c480c3f295d6))
+* **share:** add tests to share button ([8e828f9](https://github.com/oaknational/Oak-Web-Application/commit/8e828f90b79ca3507ed9a02fdb529c1ce9787da8))
+* **share:** add tests to share button ([dd1dfc3](https://github.com/oaknational/Oak-Web-Application/commit/dd1dfc35e75dfa51410b7a78356179dd14ef6efa))
+
+## [1.549.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.549.0...v1.549.1) (2024-09-17)
+
 # [1.549.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.548.0...v1.549.0) (2024-09-16)
 
 
