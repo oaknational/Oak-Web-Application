@@ -1,4 +1,10 @@
-import React, { FC, useState, useLayoutEffect, ChangeEvent } from "react";
+import React, {
+  FC,
+  useState,
+  useLayoutEffect,
+  useEffect,
+  ChangeEvent,
+} from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -86,7 +92,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
   }, [initialYearSelection]);
 
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
+  const [selectedYear, setSelectedYear] = useState<string>("");
   const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
     useState<number>(0);
   const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
@@ -97,6 +103,16 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
     selectedYear,
     yearSelection,
   );
+
+  // Screen reader announcements
+
+  const [unitAnnouncement, setUnitAnnouncement] = useState("");
+
+  useEffect(() => {
+    setUnitAnnouncement(
+      `Showing ${unitCount} ${unitCount === 1 ? "unit" : "units"}`,
+    );
+  }, [selectedYear, unitCount]);
 
   // Filter interaction handlers
 
@@ -318,36 +334,29 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                 onChange={handleSelectYear}
               >
                 <Box $mb={16}>
-                  <RadioButton value={""} data-testid={"all-years-radio"}>
+                  <RadioButton
+                    aria-label="All year groups"
+                    value={""}
+                    data-testid={"all-years-radio"}
+                  >
                     All
-                    <ScreenReaderOnly aria-live="polite" aria-atomic="true">
-                      {selectedYear === "" &&
-                        ` Showing ${unitCount} ${
-                          unitCount === 1 ? "unit" : "units"
-                        }`}
-                    </ScreenReaderOnly>
                   </RadioButton>
                 </Box>
-                {yearOptions.map((yearOption) => {
-                  const isSelected = selectedYear === yearOption;
-                  return (
-                    <Box key={yearOption} $mb={16}>
-                      <RadioButton
-                        value={yearOption}
-                        data-testid={"year-radio"}
-                      >
-                        Year {yearOption}
-                        <ScreenReaderOnly aria-live="polite" aria-atomic="true">
-                          {isSelected &&
-                            ` Showing ${unitCount} ${
-                              unitCount === 1 ? "unit" : "units"
-                            }`}
-                        </ScreenReaderOnly>
-                      </RadioButton>
-                    </Box>
-                  );
-                })}
+                {yearOptions.map((yearOption) => (
+                  <Box key={yearOption} $mb={16}>
+                    <RadioButton
+                      value={yearOption}
+                      data-testid={"year-radio"}
+                      aria-label={`Year ${yearOption}`}
+                    >
+                      Year {yearOption}
+                    </RadioButton>
+                  </Box>
+                ))}
               </RadioGroup>
+              <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+                {unitAnnouncement}
+              </ScreenReaderOnly>
             </Fieldset>
           </OakGridArea>
           <CurriculumVisualiser
