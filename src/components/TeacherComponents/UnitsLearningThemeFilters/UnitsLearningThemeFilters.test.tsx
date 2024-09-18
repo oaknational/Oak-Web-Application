@@ -24,12 +24,16 @@ describe("UnitsLearningThemeFilters", () => {
         labelledBy={"Learning Theme Filter"}
         learningThemes={[
           {
-            themeTitle: "No theme",
+            themeTitle: "No theme 1",
             themeSlug: "no-theme",
           },
           {
             themeTitle: "Algebra",
             themeSlug: "algebra",
+          },
+          {
+            themeTitle: "No theme 2",
+            themeSlug: "no-theme",
           },
         ]}
         selectedThemeSlug={"all"}
@@ -44,7 +48,34 @@ describe("UnitsLearningThemeFilters", () => {
     const themes = await screen.findAllByRole("radio");
     expect(themes[0]).toBe(screen.getByLabelText("All"));
     expect(themes[1]).toBe(screen.getByLabelText("Algebra"));
-    expect(themes[2]).toBe(screen.getByLabelText("No theme"));
+    expect(themes[2]).toBe(screen.getByLabelText("No theme 1"));
+  });
+  test("should call callback method with correct value", async () => {
+    const onChangeCallback = jest.fn();
+    renderWithProviders()(
+      <UnitsLearningThemeFilters
+        labelledBy={"Learning Theme Filter"}
+        learningThemes={[
+          {
+            themeTitle: "Algebra",
+            themeSlug: "algebra",
+          },
+        ]}
+        selectedThemeSlug={"all"}
+        linkProps={{
+          page: "unit-index",
+          programmeSlug: "maths-secondary-ks3",
+        }}
+        idSuffix="test"
+        onChangeCallback={onChangeCallback}
+      />,
+    );
+    const algebraFilter = screen.getByLabelText("Algebra");
+    await userEvent.click(algebraFilter);
+    expect(onChangeCallback).toHaveBeenCalledWith("algebra");
+    const allFilter = screen.getByLabelText("All");
+    await userEvent.click(allFilter);
+    expect(onChangeCallback).toHaveBeenCalledWith(undefined);
   });
   test("should call tracking browse refined with correct args", async () => {
     renderWithProviders()(
