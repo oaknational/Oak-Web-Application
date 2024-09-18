@@ -18,6 +18,7 @@ import { QuizResultOrder } from "@/components/PupilComponents/QuizResultOrder/Qu
 import { QuizResultMatch } from "@/components/PupilComponents/QuizResultMatch";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import type { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { QuizAttribution } from "@/components/PupilComponents/QuizAttribution/QuizAttribution";
 
 type CorectAnswerSectionProps = {
   questionResult: QuestionState;
@@ -141,9 +142,10 @@ export type QuizResultsProps = {
   lessonSection: "exit-quiz" | "starter-quiz";
   quizArray: QuestionsArray;
   sectionResults: LessonSectionResults;
+  copyrightNotice?: React.ReactNode;
 };
 export const QuizResults = (props: QuizResultsProps) => {
-  const { lessonSection, quizArray, sectionResults } = props;
+  const { lessonSection, quizArray, sectionResults, copyrightNotice } = props;
 
   return (
     <MathJaxProvider>
@@ -158,6 +160,8 @@ export const QuizResults = (props: QuizResultsProps) => {
             />
           ),
         )}
+        <QuizAttribution questionData={quizArray} />
+        {copyrightNotice}
       </OakFlex>
     </MathJaxProvider>
   );

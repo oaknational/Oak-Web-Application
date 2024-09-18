@@ -23,6 +23,7 @@ describe("PupilResults", () => {
               browseData: {
                 subject: "ewfw",
                 yearDescription: "efwef",
+                isLegacy: false,
               },
               lessonData: {
                 slug: "efwef",
