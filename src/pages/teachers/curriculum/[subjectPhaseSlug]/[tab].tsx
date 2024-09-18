@@ -95,7 +95,7 @@ export type CurriculumInfoPageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   subjectPhaseOptions: SubjectPhasePickerData;
   curriculumOverviewTabData: CurriculumOverviewMVData;
-  curriculumOverviewSanityData?: CurriculumOverviewSanityData;
+  curriculumOverviewSanityData: CurriculumOverviewSanityData;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
   mvRefreshTime: number;
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
@@ -135,18 +135,13 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   switch (tab) {
     case "overview":
       tabContent = (
-        <>
-          {curriculumOverviewSanityData && <div>Missing...</div>}
-          {curriculumOverviewSanityData && (
-            <OverviewTab
-              data={{
-                curriculumInfo: curriculumOverviewTabData,
-                curriculumCMSInfo: curriculumOverviewSanityData,
-                curriculumSelectionSlugs,
-              }}
-            />
-          )}
-        </>
+        <OverviewTab
+          data={{
+            curriculumInfo: curriculumOverviewTabData,
+            curriculumCMSInfo: curriculumOverviewSanityData,
+            curriculumSelectionSlugs,
+          }}
+        />
       );
 
       break;
@@ -552,6 +547,7 @@ export const getStaticProps: GetStaticProps<
           curriculumSelectionSlugs: slugs,
           subjectPhaseOptions,
           curriculumOverviewTabData,
+          curriculumOverviewSanityData,
           curriculumUnitsFormattedData,
           mvRefreshTime,
           curriculumDownloadsTabData,
