@@ -12,6 +12,7 @@ import { QuizResults } from "@/components/PupilComponents/QuizResults";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { LessonSectionResults } from "@/components/PupilComponents/LessonEngineProvider";
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 
 type PupilViewsResultsProps = {
   attemptData: LessonAttemptCamelCase;
@@ -48,6 +49,11 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
               sectionResults={sectionResults as LessonSectionResults}
               quizArray={starterQuizQuestionsArray}
               lessonSection={"starter-quiz"}
+              copyrightNotice={
+                <CopyrightNotice
+                  isLegacyLicense={attemptData.browseData.isLegacy}
+                />
+              }
             />
           </OakFlex>
           <OakFlex $flexDirection={"column"}>
@@ -56,6 +62,11 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
               sectionResults={sectionResults as LessonSectionResults}
               quizArray={exitQuizQuestionsArray}
               lessonSection={"exit-quiz"}
+              copyrightNotice={
+                <CopyrightNotice
+                  isLegacyLicense={attemptData.browseData.isLegacy}
+                />
+              }
             />
           </OakFlex>
         </MathJaxWrap>
