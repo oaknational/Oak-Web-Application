@@ -89,7 +89,7 @@ describe("Onboarding view", () => {
         name: "Enter manually",
       });
 
-      userEvent.click(manualButton);
+      await userEvent.click(manualButton);
 
       expect(await screen.findByText("School name")).toBeInTheDocument();
       expect(await screen.findByText("School address")).toBeInTheDocument();
@@ -102,10 +102,10 @@ describe("Onboarding view", () => {
       const manualButton = await screen.findByRole("button", {
         name: "Enter manually",
       });
-      userEvent.click(manualButton);
+      await userEvent.click(manualButton);
       const inputBox = await screen.findByPlaceholderText("Type school name");
-      user.type(inputBox, "  ");
-      user.tab();
+      await user.type(inputBox, "  ");
+      await user.tab();
 
       const schoolNameError = await screen.findByText("Enter school name");
       expect(schoolNameError).toBeInTheDocument();
