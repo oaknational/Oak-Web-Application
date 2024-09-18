@@ -50,9 +50,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
               quizArray={starterQuizQuestionsArray}
               lessonSection={"starter-quiz"}
               copyrightNotice={
-                <CopyrightNotice
-                  isLegacyLicense={attemptData.browseData.isLegacy}
-                />
+                <CopyrightNotice isLegacyLicense={browseData.isLegacy} />
               }
             />
           </OakFlex>
@@ -63,9 +61,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
               quizArray={exitQuizQuestionsArray}
               lessonSection={"exit-quiz"}
               copyrightNotice={
-                <CopyrightNotice
-                  isLegacyLicense={attemptData.browseData.isLegacy}
-                />
+                <CopyrightNotice isLegacyLicense={browseData.isLegacy} />
               }
             />
           </OakFlex>
