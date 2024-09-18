@@ -31,7 +31,8 @@ const FocusIndicator = styled(OakBox)<{
         : `rgb(255, 229, 85) 0.125rem 0.125rem 0px;`};
   }
   &:has(button:hover) {
-    box-shadow: none;
+    box-shadow: ${(props) =>
+      props.subFocus ? `rgb(87, 87, 87) 0px 0px 0px 0.125rem` : "none"};
   }
   &:has(button:active) {
     z-index: 2;
