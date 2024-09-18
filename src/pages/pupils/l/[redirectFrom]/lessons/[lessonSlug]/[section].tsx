@@ -123,6 +123,7 @@ export const getStaticProps: GetStaticProps<
           hasWorksheet,
           backUrl,
           initialSection: section,
+          pageType: "canonical",
         },
       };
 

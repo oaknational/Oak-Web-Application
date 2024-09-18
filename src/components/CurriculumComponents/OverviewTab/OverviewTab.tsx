@@ -7,6 +7,11 @@ import {
   OakTypography,
   OakFlex,
 } from "@oaknational/oak-components";
+import {
+  PortableText,
+  PortableTextBlockComponent,
+  PortableTextComponents,
+} from "@portabletext/react";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -20,6 +25,8 @@ import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPh
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
+import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 
 export type OverviewTabProps = {
   data: {
@@ -53,10 +60,17 @@ const PrincipleBullet = ({
   </OakLI>
 );
 
+const blockHeadingComponents: PortableTextComponents["block"] = {
+  heading2: (props) => <OakHeading tag="h2">{props.children}</OakHeading>,
+  heading3: (props) => <OakHeading tag="h3">{props.children}</OakHeading>,
+  heading4: (props) => <OakHeading tag="h4">{props.children}</OakHeading>,
+};
+
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
     props.data;
   const {
+    curriculumExplainer,
     subjectPrinciples,
     partnerBio,
     curriculumPartner,
@@ -65,6 +79,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   } = curriculumCMSInfo;
   const { curriculaDesc } = curriculumInfo;
   const { subjectSlug } = curriculumSelectionSlugs;
+  const isCycleTwoEnabled = useCycleTwoEnabled();
 
   const itemiseSubjectPrinciples = (
     principle: string,
@@ -105,82 +120,124 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   };
   return (
     <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
-      <OakFlex $mb="space-between-ssx">
-        <Box
-          $mr={16}
-          $pb={48}
-          $maxWidth={["100%", "100%", "65%"]}
-          $textAlign={"left"}
-        >
-          <OakHeading
-            tag="h2"
-            $font={["heading-5", "heading-4"]}
-            $mb="space-between-m"
+      {isCycleTwoEnabled && (
+        <OakFlex $mb="space-between-ssx">
+          <Box
+            $mr={16}
+            $pb={48}
+            $maxWidth={["100%", "100%", "65%"]}
+            $textAlign={"left"}
           >
-            Overview
-          </OakHeading>
-          <OakHeading
-            tag="h3"
-            $font={["heading-6", "heading-5"]}
-            data-testid="intent-heading"
-            $mb="space-between-s"
-            line-height={48}
-          >
-            Curriculum explainer
-          </OakHeading>
-          <OakTypography
-            $font={["body-2", "body-1"]}
-            style={{ fontWeight: "light" }}
-            $mt="space-between-ssx"
-            $mr="space-between-xs"
-            $whiteSpace={"break-spaces"}
-          >
-            {curriculaDesc}
-          </OakTypography>
-        </Box>
+            <OakHeading
+              tag="h2"
+              $font={["heading-5", "heading-4"]}
+              $mb="space-between-m"
+            >
+              Overview
+            </OakHeading>
+            <OakP data-testid="explainer">
+              <PortableText
+                value={curriculumExplainer.explainerRaw}
+                components={{
+                  ...basePortableTextComponents.list,
+                  ...basePortableTextComponents.listItem,
+                  block: {
+                    ...basePortableTextComponents.block,
+                    ...blockHeadingComponents,
+                  } as PortableTextBlockComponent,
+                  types: {},
+                  marks: {
+                    strong: basePortableTextComponents.marks!.strong,
+                    em: basePortableTextComponents.marks!.em,
+                  },
+                }}
+              />
+            </OakP>
+          </Box>
+        </OakFlex>
+      )}
+      {!isCycleTwoEnabled && (
+        <>
+          <OakFlex $mb="space-between-ssx">
+            <Box
+              $mr={16}
+              $pb={48}
+              $maxWidth={["100%", "100%", "65%"]}
+              $textAlign={"left"}
+            >
+              <OakHeading
+                tag="h2"
+                $font={["heading-5", "heading-4"]}
+                $mb="space-between-m"
+              >
+                Overview
+              </OakHeading>
+              <OakHeading
+                tag="h3"
+                $font={["heading-6", "heading-5"]}
+                data-testid="intent-heading"
+                $mb="space-between-s"
+                line-height={48}
+              >
+                Curriculum explainer
+              </OakHeading>
+              <OakTypography
+                $font={["body-2", "body-1"]}
+                style={{ fontWeight: "light" }}
+                $mt="space-between-ssx"
+                $mr="space-between-xs"
+                $whiteSpace={"break-spaces"}
+              >
+                {curriculaDesc}
+              </OakTypography>
+            </Box>
 
-        <Card
-          $ml={40}
-          $maxHeight={200}
-          $maxWidth={[0, 0, 200]}
-          $ma={"auto"}
-          $zIndex={"inFront"}
-          $transform={["rotate(-2.179deg) scale(1.5, 1.5) translate(15%,40%)"]}
-          $display={["none", "none", "flex"]}
-          $background={"lemon50"}
-        >
-          <BrushBorders color="lemon50" />
-          <SubjectIcon
-            subjectSlug={subjectSlug}
-            $maxHeight={200}
-            $maxWidth={200}
-            $transform={["rotate(-2.179deg)", "scale(1.25, 1.25)"]}
-            $background={"lemon50"}
-          />
-        </Card>
-      </OakFlex>
-      <Card
-        $maxWidth={"100%"}
-        $background={"mint30"}
-        $zIndex={"neutral"}
-        $mb={80}
-      >
-        <BrushBorders color={"mint30"} />
-        <Box $ma={16}>
-          <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
-            Subject principles
-          </OakHeading>
-          <OakUL
-            $font={["body-2", "body-1"]}
-            $mt="space-between-m"
-            $reset={true}
+            <Card
+              $ml={40}
+              $maxHeight={200}
+              $maxWidth={[0, 0, 200]}
+              $ma={"auto"}
+              $zIndex={"inFront"}
+              $transform={[
+                "rotate(-2.179deg) scale(1.5, 1.5) translate(15%,40%)",
+              ]}
+              $display={["none", "none", "flex"]}
+              $background={"lemon50"}
+            >
+              <BrushBorders color="lemon50" />
+              <SubjectIcon
+                subjectSlug={subjectSlug}
+                $maxHeight={200}
+                $maxWidth={200}
+                $transform={["rotate(-2.179deg)", "scale(1.25, 1.25)"]}
+                $background={"lemon50"}
+              />
+            </Card>
+          </OakFlex>
+          <Card
+            $maxWidth={"100%"}
+            $background={"mint30"}
+            $zIndex={"neutral"}
+            $mb={80}
           >
-            {subjectPrinciples.map((item, i) =>
-              itemiseSubjectPrinciples(item, i),
-            )}
-          </OakUL>
-        </Box>
-      </Card>
+            <BrushBorders color={"mint30"} />
+            <Box $ma={16}>
+              <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
+                Subject principles
+              </OakHeading>
+              <OakUL
+                $font={["body-2", "body-1"]}
+                $mt="space-between-m"
+                $reset={true}
+              >
+                {subjectPrinciples.map((item, i) =>
+                  itemiseSubjectPrinciples(item, i),
+                )}
+              </OakUL>
+            </Box>
+          </Card>
+        </>
+      )}
       {video && videoExplainer && (
         <OakFlex
           $alignItems={"center"}
