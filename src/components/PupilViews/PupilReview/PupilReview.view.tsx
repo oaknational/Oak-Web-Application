@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   OakFlex,
   OakGrid,
@@ -28,8 +29,6 @@ import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider"
 import { QuizResults } from "@/components/PupilComponents/QuizResults";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
-
-// TODO: add question arrays for starter and exit quizzes so that the expand quiz results can be rendered
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -67,6 +66,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const pupilClient = useOakPupil();
   const { logAttempt } = pupilClient;
   const isShowShareButtons = useFeatureFlagEnabled("share-results-button");
+  const [isAttemptingShare, setIsAttemptingShare] = useState<boolean>(false);
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
@@ -82,17 +82,19 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     </OakLessonBottomNav>
   );
   const handleShareResultsClick = async () => {
+    setIsAttemptingShare(true);
     const attemptData = {
       lessonData: { slug: lessonSlug, title: lessonTitle },
       browseData: { subject: subject, yearDescription: yearDescription ?? "" },
       sectionResults: sectionResults,
     };
-    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
     try {
+      const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
       const attemptId = await logAttempt(parsedAttemptData, false);
       if (!attemptId) {
         throw new Error("Failed to log attempt");
       }
+      setIsAttemptingShare(false);
       const shareUrl = `${
         process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL
       }${resolveOakHref({
@@ -100,10 +102,15 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
         lessonSlug,
         attemptId,
       })}`;
-      alert("See results at " + shareUrl);
+      setTimeout(() => {
+        alert("See results at " + shareUrl);
+      }, 0);
     } catch (e) {
+      setIsAttemptingShare(false);
       console.error(e);
-      alert("Failed to share results");
+      setTimeout(() => {
+        alert("Failed to log attempt");
+      }, 0);
     }
   };
 
@@ -118,7 +125,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     if (attemptId)
       window.open(
         resolveOakHref({
-          page: "pupil-lesson-results-canonical-share",
+          page: "pupil-lesson-results-canonical-printable",
           lessonSlug,
           attemptId,
         }),
@@ -184,6 +191,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                     title="Share results"
                     onClick={handleShareResultsClick}
                     data-testid="share-results-button"
+                    isLoading={isAttemptingShare}
                   >
                     Share results
                   </OakPrimaryButton>

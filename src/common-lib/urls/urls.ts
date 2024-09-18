@@ -148,7 +148,11 @@ export type PupilLessonResultsCanonicalShareLinkProps = {
   lessonSlug: string;
   attemptId: string;
 };
-
+export type PupilLessonResultsCanonicalPrintableLinkProps = {
+  page: "pupil-lesson-results-canonical-printable";
+  lessonSlug: string;
+  attemptId: string;
+};
 export type PupilLessonListingLinkProps = {
   page: "pupil-lesson-index";
   programmeSlug: string;
@@ -338,6 +342,7 @@ export type OakLinkProps =
   | PupilLessonLinkProps
   | PupilLessonResultsLinkProps
   | PupilLessonResultsCanonicalShareLinkProps
+  | PupilLessonResultsCanonicalPrintableLinkProps
   | PupilLessonListingLinkProps
   | PupilUnitListingLinkProps
   | PupilSubjectListingLinkProps
@@ -693,6 +698,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "pupil-lesson-results-canonical-share",
+  }),
+  "pupil-lesson-results-canonical-printable": createOakPageConfig({
+    pathPattern: "/pupils/lessons/:lessonSlug/results/:attemptId/printable",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "pupil-lesson-results-canonical-printable",
   }),
   "pupil-lesson-index": createOakPageConfig({
     pathPattern: "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons",
