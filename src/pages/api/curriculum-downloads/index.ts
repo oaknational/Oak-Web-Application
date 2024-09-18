@@ -147,6 +147,24 @@ async function getData(opts: {
             asset: { assetId: "", playbackId: "undefined", thumbTime: null },
           },
         },
+        curriculumExplainer: {
+          explainerRaw: [
+            {
+              children: [
+                {
+                  _type: "span",
+                  marks: [],
+                  text: "Aims and purpose",
+                  _key: "470ecdd07b7d",
+                },
+              ],
+              _type: "block",
+              style: "heading2",
+              _key: "82cf6558d6f8",
+              markDefs: [],
+            },
+          ],
+        },
         videoAuthor:
           "Video author is undefined for this record. Please check the CMS.",
         videoExplainer:
