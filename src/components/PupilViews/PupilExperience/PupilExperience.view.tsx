@@ -7,6 +7,7 @@ import {
   oakDefaultTheme,
   OakPupilJourneyContentGuidance,
 } from "@oaknational/oak-components";
+import { OakPupilClientProvider } from "@oaknational/oak-pupil-client";
 
 import {
   LessonEngineProvider,
@@ -31,9 +32,9 @@ import {
   LessonBrowseData,
   LessonContent,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { PupilProvider } from "@/browser-lib/pupil-api/PupilClientProvider";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -193,7 +194,12 @@ const PupilExperienceLayout = ({
   };
 
   return (
-    <PupilProvider>
+    <OakPupilClientProvider
+      config={{
+        getLessonAttemptUrl: getBrowserConfig("oakGetLessonAttemptUrl"),
+        logLessonAttemptUrl: getBrowserConfig("oakLogLessonAttemptUrl"),
+      }}
+    >
       <PupilLayout
         seoProps={{
           ...getSeoProps({
@@ -236,7 +242,7 @@ const PupilExperienceLayout = ({
           </LessonEngineProvider>
         </OakThemeProvider>
       </PupilLayout>
-    </PupilProvider>
+    </OakPupilClientProvider>
   );
 };
 

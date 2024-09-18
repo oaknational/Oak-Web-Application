@@ -252,7 +252,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                 value={selectedThread ? selectedThread.slug : ""}
               >
                 <SkipLink href="#content">Skip to units</SkipLink>
-                <Box $mv={16}>
+                <Box $mv={16} $pl={12} $bl={1} $borderColor="transparent">
                   <RadioButton
                     aria-label={"None highlighted"}
                     value={""}
