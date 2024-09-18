@@ -110,9 +110,10 @@ const UnitsLearningThemeFilters = ({
       newUrl = `${newBaseUrl}?${params.toString()}`;
     } else if (!yearGroupSlug && !categorySlug && theme.slug !== "all") {
       const newBaseUrl = `${window.location.origin}/teachers/programmes/${programmeSlug}/units`;
+
       newUrl = `${newBaseUrl}?learning-theme=${theme.slug}`;
     } else if (!yearGroupSlug && !categorySlug && theme.slug === "all") {
-      newUrl = `teachers/programmes/${programmeSlug}/units`;
+      newUrl = `${window.location.origin}/teachers/programmes/${programmeSlug}/units`;
     }
 
     window.history.replaceState(window.history.state, "", newUrl);

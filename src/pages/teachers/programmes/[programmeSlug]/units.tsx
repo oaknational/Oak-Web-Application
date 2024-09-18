@@ -290,7 +290,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         onChangeCallback={setSelectedThemeSlug}
                         labelledBy={learningThemesId}
                         learningThemes={learningThemes}
-                        selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                        selectedThemeSlug={selectedThemeSlug ?? "all"}
                         categorySlug={categorySlug}
                         yearGroupSlug={yearGroupSlug}
                         programmeSlug={programmeSlug}
@@ -378,7 +378,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                             onChangeCallback={setSelectedThemeSlug}
                             labelledBy={learningThemesFilterId}
                             learningThemes={learningThemes}
-                            selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                            selectedThemeSlug={selectedThemeSlug ?? "all"}
                             linkProps={{
                               page: "unit-index",
                               programmeSlug,

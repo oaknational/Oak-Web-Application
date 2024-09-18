@@ -77,27 +77,23 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                   categories: router.query.category,
                 },
               });
-              const { year, ...restQuery } = router.query;
-              !selectedThemeSlug
-                ? router.replace(
-                    {
-                      pathname: router.pathname,
-                      query: restQuery,
-                    },
-                    undefined,
-                    { shallow: true },
-                  )
-                : router.replace(
-                    {
-                      pathname: router.pathname,
-                      query: {
-                        "learning-theme": selectedThemeSlug,
-                        programmeSlug,
-                      },
-                    },
-                    undefined,
-                    { shallow: true },
-                  );
+
+              router.replace(
+                {
+                  pathname: router.pathname,
+                  query: {
+                    ...(selectedThemeSlug && {
+                      "learning-theme": selectedThemeSlug,
+                    }),
+                    programmeSlug,
+                    ...(router.query.category && {
+                      category: router.query.category,
+                    }),
+                  },
+                },
+                undefined,
+                { shallow: true },
+              );
             }}
           />
           {yearGroups.map((yearGroup) => (
@@ -123,30 +119,24 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                     categories: router.query.category,
                   },
                 });
-                selectedThemeSlug
-                  ? router.replace(
-                      {
-                        pathname: router.pathname,
-                        query: {
-                          ...router.query,
-                          year: yearGroup.year,
-                          "learning-theme": selectedThemeSlug,
-                        },
-                      },
-                      undefined,
-                      { shallow: true },
-                    )
-                  : router.replace(
-                      {
-                        pathname: router.pathname,
-                        query: {
-                          ...router.query,
-                          year: yearGroup.year,
-                        },
-                      },
-                      undefined,
-                      { shallow: true },
-                    );
+
+                router.replace(
+                  {
+                    pathname: router.pathname,
+                    query: {
+                      ...(selectedThemeSlug && {
+                        "learning-theme": selectedThemeSlug,
+                      }),
+                      programmeSlug,
+                      year: yearGroup.year,
+                      ...(router.query.category && {
+                        category: router.query.category,
+                      }),
+                    },
+                  },
+                  undefined,
+                  { shallow: true },
+                );
               }}
             />
           ))}

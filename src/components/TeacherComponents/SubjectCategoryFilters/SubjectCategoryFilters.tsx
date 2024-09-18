@@ -67,27 +67,22 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
             id={`all-categories-${idSuffix}`}
             checked={!categorySlug}
             onChange={() => {
-              const { category, ...restQuery } = router.query;
-              !selectedThemeSlug
-                ? router.replace(
-                    {
-                      pathname: router.pathname,
-                      query: restQuery,
-                    },
-                    undefined,
-                    { shallow: true },
-                  )
-                : router.replace(
-                    {
-                      pathname: router.pathname,
-                      query: {
-                        programmeSlug,
-                        "learning-theme": selectedThemeSlug,
-                      },
-                    },
-                    undefined,
-                    { shallow: true },
-                  );
+              router.replace(
+                {
+                  pathname: router.pathname,
+                  query: {
+                    ...(selectedThemeSlug && {
+                      "learning-theme": selectedThemeSlug,
+                    }),
+                    programmeSlug,
+                    ...(router.query.year && {
+                      year: router.query.year,
+                    }),
+                  },
+                },
+                undefined,
+                { shallow: true },
+              );
 
               browseRefined({
                 platform: "owa",
@@ -131,30 +126,24 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
                     year_group: router.query.year,
                   },
                 });
-                selectedThemeSlug
-                  ? router.replace(
-                      {
-                        pathname: router.pathname,
-                        query: {
-                          ...router.query,
-                          category: category.slug,
-                          "learning-theme": selectedThemeSlug,
-                        },
-                      },
-                      undefined,
-                      { shallow: true },
-                    )
-                  : router.replace(
-                      {
-                        pathname: router.pathname,
-                        query: {
-                          ...router.query,
-                          category: category.slug,
-                        },
-                      },
-                      undefined,
-                      { shallow: true },
-                    );
+                router.replace(
+                  {
+                    pathname: router.pathname,
+                    query: {
+                      ...(selectedThemeSlug && {
+                        "learning-theme": selectedThemeSlug,
+                      }),
+                      programmeSlug,
+                      category: category.slug,
+                      ...(router.query.year && {
+                        year: router.query.year,
+                      }),
+                    },
+                  },
+                  undefined,
+                  { shallow: true },
+                );
+
                 setSelectedCategory(category.label);
               }}
             />
