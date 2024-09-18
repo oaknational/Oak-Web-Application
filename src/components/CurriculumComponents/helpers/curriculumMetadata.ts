@@ -26,7 +26,7 @@ export const buildCurriculumMetadata = (
   if (keyStages.includes("ks3")) keyStagesItems.push("3");
   if (keyStages.includes("ks4")) keyStagesItems.push("4");
   const keyStagesData =
-    keyStagesItems.length > 0 ? `K${keyStagesItems.join("-")}` : ``;
+    keyStagesItems.length > 0 ? `KS${keyStagesItems.join("-")}` : ``;
 
   if (props.tab === "overview" && props.metadataType === "title") {
     const examboard = getExamboardFromSlug(props);
