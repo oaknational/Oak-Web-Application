@@ -6,6 +6,9 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
+import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
+import { z } from "zod";
+
 import {
   OakGrid,
   OakGridArea,
@@ -13,9 +16,6 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
-import { z } from "zod";
-
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -222,7 +222,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     <UnitsLearningThemeFilters
                       labelledBy={learningThemesId}
                       learningThemes={learningThemes}
-                      selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                      selectedThemeSlug={
+                        selectedThemeSlug ? selectedThemeSlug : "all"
+                      }
                       linkProps={{
                         page: "unit-index",
                         programmeSlug,
@@ -276,7 +278,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       <UnitsLearningThemeFilters
                         labelledBy={learningThemesFilterId}
                         learningThemes={learningThemes}
-                        selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                        selectedThemeSlug={
+                          selectedThemeSlug ? selectedThemeSlug : "all"
+                        }
                         linkProps={{
                           page: "unit-index",
                           programmeSlug,

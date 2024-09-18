@@ -62,9 +62,6 @@ const UnitsLearningThemeFilters = ({
   const { track } = useAnalytics();
 
   const [activeThemeSlug, setActiveThemeSlug] = useState(selectedThemeSlug);
-  const [focussedThemeSlug, setFocussedThemeSlug] = useState<
-    string | undefined
-  >(undefined);
 
   const onChange = (theme: TileItem) => {
     setActiveThemeSlug(theme.id);
@@ -117,15 +114,12 @@ const UnitsLearningThemeFilters = ({
       >
         {[{ id: "all", label: "All" }, ...themeTileItems].map((theme) => {
           const isChecked = activeThemeSlug === theme.id;
-          const isFocussed = focussedThemeSlug === theme.id;
           return (
             <OakRadioTile
               tileItem={theme}
               key={theme.id}
               isChecked={isChecked}
-              isFocussed={isFocussed}
               onChange={onChange}
-              onFocus={setFocussedThemeSlug}
               id={`${theme.id}-${idSuffix}`}
             />
           );
