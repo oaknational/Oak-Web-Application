@@ -51,8 +51,6 @@ const curriculumUnitsQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    // TODO: Re-enable me
-    return res as ReturnType<(typeof CurriculumUnitsSchema)["parse"]>;
     return CurriculumUnitsSchema.parse(res);
   };
 
