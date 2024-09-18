@@ -70,6 +70,7 @@ describe("SubjectCategoryFilters", () => {
         pathname: "/test-path",
         query: {
           category: "test-category",
+          programmeSlug: "test-programme",
         },
       },
       undefined,

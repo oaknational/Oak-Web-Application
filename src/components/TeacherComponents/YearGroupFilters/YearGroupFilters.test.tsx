@@ -66,6 +66,7 @@ describe("YearGroupFilters", () => {
         pathname: "/test-path",
         query: {
           year: "year-1",
+          programmeSlug: "test-programme",
         },
       },
       undefined,
