@@ -17,7 +17,9 @@ export function getNumberOfSelectedUnits(
     const units = yearData[year]?.units;
     if (units && (selectedYear === "" || selectedYear === year)) {
       units.forEach((unit) => {
-        isVisibleUnit(yearSelection, year, unit) ? count++ : count;
+        if (isVisibleUnit(yearSelection, year, unit)) {
+          count += 1;
+        }
       });
     }
   });
