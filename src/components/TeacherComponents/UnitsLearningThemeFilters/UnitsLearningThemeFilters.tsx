@@ -1,12 +1,13 @@
+import { useState } from "react";
+
 import {
   OakBox,
   OakFlex,
   OakSecondaryButton,
+  TileItem,
+  isTileItem,
+  OakRadioTile,
 } from "@oaknational/oak-components";
-import { useState } from "react";
-
-import { RadioTheme, RadioTile, isRadioTheme } from "./RadioTile";
-
 import {
   SpecialistUnitListingLinkProps,
   UnitListingLinkProps,
@@ -38,19 +39,19 @@ const UnitsLearningThemeFilters = ({
   onChangeCallback,
 }: UnitsLearningThemeFiltersProps) => {
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
-  const learningThemesMapped: Array<RadioTheme> = learningThemes
+  const themeTileItems: Array<TileItem> = learningThemes
     ? learningThemes
         .map((learningTheme) => {
           return {
             label: learningTheme?.themeTitle,
-            slug: learningTheme?.themeSlug,
+            id: learningTheme?.themeSlug,
           };
         })
-        .filter(isRadioTheme)
+        .filter(isTileItem)
         .sort((a, b) => {
-          if (a.slug === "no-theme") {
+          if (a.id === "no-theme") {
             return 0;
-          } else if (b.slug === "no-theme") {
+          } else if (b.id === "no-theme") {
             return -1;
           } else {
             return 0;
@@ -65,10 +66,10 @@ const UnitsLearningThemeFilters = ({
     string | undefined
   >(undefined);
 
-  const onChange = (theme: { label: string; slug: string }) => {
-    setActiveThemeSlug(theme.slug);
+  const onChange = (theme: TileItem) => {
+    setActiveThemeSlug(theme.id);
 
-    const callbackValue = theme.slug === "all" ? undefined : theme.slug;
+    const callbackValue = theme.id === "all" ? undefined : theme.id;
     onChangeCallback(callbackValue);
 
     if (trackingProps) {
@@ -87,7 +88,7 @@ const UnitsLearningThemeFilters = ({
       });
     }
 
-    const query = theme.slug === "all" ? "" : `?learning-theme=${theme.slug}`;
+    const query = theme.id === "all" ? "" : `?learning-theme=${theme.id}`;
     const newUrl = `/teachers/programmes/${linkProps.programmeSlug}/units${query}`;
     window.history.replaceState(window.history.state, "", newUrl);
   };
@@ -114,23 +115,21 @@ const UnitsLearningThemeFilters = ({
         role="radiogroup"
         $pb="inner-padding-xl2"
       >
-        {[{ slug: "all", label: "All" }, ...learningThemesMapped].map(
-          (theme) => {
-            const isChecked = activeThemeSlug === theme.slug;
-            const isFocussed = focussedThemeSlug === theme.slug;
-            return (
-              <RadioTile
-                theme={theme}
-                key={theme.slug}
-                isChecked={isChecked}
-                isFocussed={isFocussed}
-                onChange={onChange}
-                onFocus={setFocussedThemeSlug}
-                id={`${theme.slug}-${idSuffix}`}
-              />
-            );
-          },
-        )}
+        {[{ id: "all", label: "All" }, ...themeTileItems].map((theme) => {
+          const isChecked = activeThemeSlug === theme.id;
+          const isFocussed = focussedThemeSlug === theme.id;
+          return (
+            <OakRadioTile
+              tileItem={theme}
+              key={theme.id}
+              isChecked={isChecked}
+              isFocussed={isFocussed}
+              onChange={onChange}
+              onFocus={setFocussedThemeSlug}
+              id={`${theme.id}-${idSuffix}`}
+            />
+          );
+        })}
       </OakFlex>
     </OakFlex>
   );
