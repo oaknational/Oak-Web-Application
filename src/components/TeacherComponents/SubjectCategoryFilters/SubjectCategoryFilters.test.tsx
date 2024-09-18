@@ -25,6 +25,7 @@ describe("SubjectCategoryFilters", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <SubjectCategoryFilters
+          programmeSlug={"test-programme"}
           subjectCategories={[
             {
               label: "Grammar",
@@ -51,6 +52,7 @@ describe("SubjectCategoryFilters", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <SubjectCategoryFilters
+          programmeSlug={"test-programme"}
           categorySlug={"all"}
           setSelectedCategory={() => {}}
           browseRefined={browseRefined}

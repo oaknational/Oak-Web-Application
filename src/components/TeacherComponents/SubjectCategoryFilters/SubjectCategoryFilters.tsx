@@ -16,6 +16,8 @@ type SubjectCategoryFiltersProps = {
   setSelectedCategory: (category: string | null) => void;
   browseRefined: TrackFns["browseRefined"];
   idSuffix: "desktop" | "mobile";
+  selectedThemeSlug?: string;
+  programmeSlug: string;
 };
 
 const StyledFieldset = styled.fieldset`
@@ -30,6 +32,8 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
   browseRefined,
   setSelectedCategory,
   idSuffix,
+  selectedThemeSlug,
+  programmeSlug,
 }) => {
   const router = useRouter();
 
@@ -64,14 +68,27 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
             checked={!categorySlug}
             onChange={() => {
               const { category, ...restQuery } = router.query;
-              router.replace(
-                {
-                  pathname: router.pathname,
-                  query: restQuery,
-                },
-                undefined,
-                { shallow: true },
-              );
+              !selectedThemeSlug
+                ? router.replace(
+                    {
+                      pathname: router.pathname,
+                      query: restQuery,
+                    },
+                    undefined,
+                    { shallow: true },
+                  )
+                : router.replace(
+                    {
+                      pathname: router.pathname,
+                      query: {
+                        programmeSlug,
+                        "learning-theme": selectedThemeSlug,
+                      },
+                    },
+                    undefined,
+                    { shallow: true },
+                  );
+
               browseRefined({
                 platform: "owa",
                 product: "teacher lesson resources",
@@ -114,17 +131,30 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
                     year_group: router.query.year,
                   },
                 });
-                router.replace(
-                  {
-                    pathname: router.pathname,
-                    query: {
-                      ...router.query,
-                      category: category.slug,
-                    },
-                  },
-                  undefined,
-                  { shallow: true },
-                );
+                selectedThemeSlug
+                  ? router.replace(
+                      {
+                        pathname: router.pathname,
+                        query: {
+                          ...router.query,
+                          category: category.slug,
+                          "learning-theme": selectedThemeSlug,
+                        },
+                      },
+                      undefined,
+                      { shallow: true },
+                    )
+                  : router.replace(
+                      {
+                        pathname: router.pathname,
+                        query: {
+                          ...router.query,
+                          category: category.slug,
+                        },
+                      },
+                      undefined,
+                      { shallow: true },
+                    );
                 setSelectedCategory(category.label);
               }}
             />

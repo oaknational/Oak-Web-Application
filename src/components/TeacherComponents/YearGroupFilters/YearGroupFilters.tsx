@@ -13,6 +13,8 @@ type YearGroupFiltersProps = {
   yearGroups: { yearTitle: string; year: string }[];
   browseRefined: TrackFns["browseRefined"];
   idSuffix: "desktop" | "mobile";
+  selectedThemeSlug?: string;
+  programmeSlug: string;
 };
 
 const StyledFieldset = styled.fieldset`
@@ -25,6 +27,8 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
   yearGroups,
   browseRefined,
   idSuffix,
+  selectedThemeSlug,
+  programmeSlug,
 }) => {
   const router = useRouter();
 
@@ -74,14 +78,26 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                 },
               });
               const { year, ...restQuery } = router.query;
-              router.replace(
-                {
-                  pathname: router.pathname,
-                  query: restQuery,
-                },
-                undefined,
-                { shallow: true },
-              );
+              !selectedThemeSlug
+                ? router.replace(
+                    {
+                      pathname: router.pathname,
+                      query: restQuery,
+                    },
+                    undefined,
+                    { shallow: true },
+                  )
+                : router.replace(
+                    {
+                      pathname: router.pathname,
+                      query: {
+                        "learning-theme": selectedThemeSlug,
+                        programmeSlug,
+                      },
+                    },
+                    undefined,
+                    { shallow: true },
+                  );
             }}
           />
           {yearGroups.map((yearGroup) => (
@@ -107,17 +123,30 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                     categories: router.query.category,
                   },
                 });
-                router.replace(
-                  {
-                    pathname: router.pathname,
-                    query: {
-                      ...router.query,
-                      year: yearGroup.year,
-                    },
-                  },
-                  undefined,
-                  { shallow: true },
-                );
+                selectedThemeSlug
+                  ? router.replace(
+                      {
+                        pathname: router.pathname,
+                        query: {
+                          ...router.query,
+                          year: yearGroup.year,
+                          "learning-theme": selectedThemeSlug,
+                        },
+                      },
+                      undefined,
+                      { shallow: true },
+                    )
+                  : router.replace(
+                      {
+                        pathname: router.pathname,
+                        query: {
+                          ...router.query,
+                          year: yearGroup.year,
+                        },
+                      },
+                      undefined,
+                      { shallow: true },
+                    );
               }}
             />
           ))}

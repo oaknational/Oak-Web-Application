@@ -26,6 +26,7 @@ describe("YearGroupFilters", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <YearGroupFilters
+          programmeSlug="test-programme"
           yearGroups={[
             {
               yearTitle: "Year 1",
@@ -44,6 +45,7 @@ describe("YearGroupFilters", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <YearGroupFilters
+          programmeSlug="test-programme"
           yearGroups={[
             {
               yearTitle: "Year 1",

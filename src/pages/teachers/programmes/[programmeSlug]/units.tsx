@@ -89,8 +89,12 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
 
+  const [selectedThemeSlug, setSelectedThemeSlug] = useState<
+    string | undefined
+  >(themeSlug);
+
   const filteredUnits = filterUnits({
-    themeSlug,
+    themeSlug: selectedThemeSlug,
     categorySlug,
     yearGroup: yearGroupSlug,
     units,
@@ -255,6 +259,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       yearGroups={yearGroups}
                       idSuffix="desktop"
                       browseRefined={track.browseRefined}
+                      selectedThemeSlug={selectedThemeSlug}
+                      programmeSlug={programmeSlug}
                     />
                   )}
                   {subjectCategories && subjectCategories.length > 1 && (
@@ -264,6 +270,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       categorySlug={categorySlug}
                       browseRefined={track.browseRefined}
                       setSelectedCategory={setSelectedCategory}
+                      programmeSlug={programmeSlug}
+                      selectedThemeSlug={selectedThemeSlug}
                     />
                   )}
                   {learningThemes?.length > 1 && (
@@ -278,9 +286,14 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         Threads
                       </OakHeading>
                       <UnitsLearningThemeFilters
+                        idSuffix="desktop"
+                        onChangeCallback={setSelectedThemeSlug}
                         labelledBy={learningThemesId}
                         learningThemes={learningThemes}
                         selectedThemeSlug={themeSlug ? themeSlug : "all"}
+                        categorySlug={categorySlug}
+                        yearGroupSlug={yearGroupSlug}
+                        programmeSlug={programmeSlug}
                         linkProps={{
                           page: "unit-index",
                           programmeSlug,
@@ -334,6 +347,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       {yearGroups.length > 1 && (
                         <YearGroupFilters
                           idSuffix="mobile"
+                          programmeSlug={programmeSlug}
                           yearGroups={yearGroups}
                           browseRefined={track.browseRefined}
                         />
@@ -341,6 +355,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       {subjectCategories && subjectCategories.length > 1 && (
                         <SubjectCategoryFilters
                           idSuffix="mobile"
+                          programmeSlug={programmeSlug}
                           setSelectedCategory={setSelectedCategory}
                           subjectCategories={subjectCategories}
                           categorySlug={categorySlug}
@@ -358,6 +373,9 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                           </OakHeading>
 
                           <UnitsLearningThemeFilters
+                            idSuffix="mobile"
+                            programmeSlug={programmeSlug}
+                            onChangeCallback={setSelectedThemeSlug}
                             labelledBy={learningThemesFilterId}
                             learningThemes={learningThemes}
                             selectedThemeSlug={themeSlug ? themeSlug : "all"}

@@ -1,4 +1,4 @@
-import { FC, useId } from "react";
+import { FC, useId, useState } from "react";
 import { useTheme } from "styled-components";
 import { useRouter } from "next/router";
 import {
@@ -43,9 +43,12 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   const themeSlug = router.query["learning-theme"]?.toString();
   const categorySlug = router.query["category"]?.toString();
   const year = router.query["year"]?.toString();
+  const [selectedThemeSlug, setSelectedThemeSlug] = useState<
+    string | undefined
+  >(themeSlug);
 
   const unitsFilteredByLearningTheme = filterUnits({
-    themeSlug,
+    themeSlug: selectedThemeSlug,
     categorySlug,
     yearGroup: year,
     units,
@@ -121,12 +124,15 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   </OakP>
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
+                    programmeSlug={programmeSlug}
                     learningThemes={learningThemes}
                     selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
                       page: "specialist-unit-index",
                       programmeSlug: programmeSlug,
                     }}
+                    idSuffix="desktop"
+                    onChangeCallback={setSelectedThemeSlug}
                   />
                 </OakFlex>
               )}
@@ -176,11 +182,14 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
                     learningThemes={learningThemes}
+                    programmeSlug={programmeSlug}
                     selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
                       page: "specialist-unit-index",
                       programmeSlug: programmeSlug,
                     }}
+                    idSuffix="mobile"
+                    onChangeCallback={setSelectedThemeSlug}
                   />
                 </MobileFilters>
               )}
