@@ -1,3 +1,15 @@
+# [1.553.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.552.1...v1.553.0) (2024-09-18)
+
+
+### Bug Fixes
+
+* type errors ([a8b4bfb](https://github.com/oaknational/Oak-Web-Application/commit/a8b4bfb3ddd422d5866fed56d018cb85abdd50a5))
+
+
+### Features
+
+* image attribution and copyright on quiz results ([4d9c930](https://github.com/oaknational/Oak-Web-Application/commit/4d9c93064dfeef86489a4c4cdf298a5414c51bac))
+
 ## [1.552.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.552.0...v1.552.1) (2024-09-18)
 
 # [1.552.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.551.0...v1.552.0) (2024-09-18)
