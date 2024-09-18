@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 import { RadioTheme, RadioTile, isRadioTheme } from "./RadioTile";
+import { generateUrl } from "./generateUrl";
 
 import {
   SpecialistUnitListingLinkProps,
@@ -90,31 +91,12 @@ const UnitsLearningThemeFilters = ({
       });
     }
 
-    const url = new URL(window.history.state.url, window.location.origin);
-    const params = new URLSearchParams(url.search);
-
-    const currentUrl = window.history.state.url;
-    let newUrl = currentUrl;
-
-    if ((yearGroupSlug || categorySlug) && theme.slug !== "all") {
-      const newBaseUrl = `${window.location.origin}/teachers/programmes/${programmeSlug}/units`;
-      params.delete("programmeSlug");
-      params.delete("learning-theme");
-      newUrl = `${newBaseUrl}?${params.toString()}&learning-theme=${
-        theme.slug
-      }`;
-    } else if ((yearGroupSlug || categorySlug) && theme.slug === "all") {
-      const newBaseUrl = `${window.location.origin}/teachers/programmes/${programmeSlug}/units`;
-      params.delete("programmeSlug");
-      params.delete("learning-theme");
-      newUrl = `${newBaseUrl}?${params.toString()}`;
-    } else if (!yearGroupSlug && !categorySlug && theme.slug !== "all") {
-      const newBaseUrl = `${window.location.origin}/teachers/programmes/${programmeSlug}/units`;
-
-      newUrl = `${newBaseUrl}?learning-theme=${theme.slug}`;
-    } else if (!yearGroupSlug && !categorySlug && theme.slug === "all") {
-      newUrl = `${window.location.origin}/teachers/programmes/${programmeSlug}/units`;
-    }
+    const newUrl = generateUrl(
+      theme,
+      programmeSlug,
+      yearGroupSlug,
+      categorySlug,
+    );
 
     window.history.replaceState(window.history.state, "", newUrl);
   };
