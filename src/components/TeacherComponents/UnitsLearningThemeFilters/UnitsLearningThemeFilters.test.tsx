@@ -16,6 +16,12 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("UnitsLearningThemeFilters", () => {
+  beforeAll(() => {
+    // Mock window.history.state
+    jest.spyOn(window.history, "state", "get").mockReturnValue({
+      url: "https://example.com/some-path",
+    });
+  });
   test("should call tracking browse refined with correct args", async () => {
     renderWithProviders()(
       <UnitsLearningThemeFilters
