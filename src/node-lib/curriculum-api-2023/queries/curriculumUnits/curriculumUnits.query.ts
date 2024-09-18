@@ -18,10 +18,6 @@ const curriculumUnitsQuery =
     const baseWhere = {
       _and: [
         {
-          // TODO: Make this configurable
-          state: { _in: ["new"] },
-        },
-        {
           _or: [
             { subject_slug: { _eq: subjectSlug } },
             { subject_parent_slug: { _eq: subjectSlug } },
@@ -57,7 +53,7 @@ const curriculumUnitsQuery =
 
     // TODO: Re-enable me
     return res as ReturnType<(typeof CurriculumUnitsSchema)["parse"]>;
-    // return CurriculumUnitsSchema.parse(res);
+    return CurriculumUnitsSchema.parse(res);
   };
 
 export default curriculumUnitsQuery;

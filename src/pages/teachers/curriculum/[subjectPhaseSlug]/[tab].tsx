@@ -517,18 +517,12 @@ export const getStaticProps: GetStaticProps<
           ...slugs,
         });
 
-      // if (!curriculumOverviewSanityData) {
-      //   return {
-      //     notFound: true,
-      //   };
-      // }
-      const querySlugs = {
-        ...slugs,
-        state: "new",
-      };
-
-      const curriculumUnitsTabData =
-        await curriculumApi.curriculumUnits(querySlugs);
+      if (!curriculumOverviewSanityData) {
+        return {
+          notFound: true,
+        };
+      }
+      const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
 
       // Sort the units to have examboard versions first - this is so non-examboard units are removed
       // in the visualiser
@@ -558,22 +552,6 @@ export const getStaticProps: GetStaticProps<
           curriculumSelectionSlugs: slugs,
           subjectPhaseOptions,
           curriculumOverviewTabData,
-          // TODO: Hack to null the object for testing
-          curriculumOverviewSanityData:
-            curriculumOverviewSanityData !== null
-              ? curriculumOverviewSanityData
-              : {
-                  id: "",
-                  subjectPrinciples: [],
-                  partnerBio: "",
-                  curriculumPartner: {
-                    name: "",
-                    image: null,
-                  },
-                  video: null,
-                  videoAuthor: null,
-                  videoExplainer: null,
-                },
           curriculumUnitsFormattedData,
           mvRefreshTime,
           curriculumDownloadsTabData,
