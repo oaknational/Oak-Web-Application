@@ -144,6 +144,7 @@ export type QuizResultsProps = {
 };
 export const QuizResults = (props: QuizResultsProps) => {
   const { lessonSection, quizArray, sectionResults } = props;
+  console.log(sectionResults);
 
   return (
     <MathJaxProvider>

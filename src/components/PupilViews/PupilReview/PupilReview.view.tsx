@@ -12,7 +12,10 @@ import {
   OakPrimaryButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-import { useOakPupil } from "@oaknational/oak-pupil-client";
+import {
+  attemptDataCamelCaseSchema,
+  useOakPupil,
+} from "@oaknational/oak-pupil-client";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { PupilExperienceViewProps } from "../PupilExperience";
@@ -44,10 +47,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     backUrl,
     starterQuizQuestionsArray,
     exitQuizQuestionsArray,
-    programmeSlug,
-    unitSlug,
     browseData: { programmeFields, lessonSlug },
-    pageType,
   } = props;
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const {
@@ -86,15 +86,16 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       browseData: { subject: subject, yearDescription: yearDescription ?? "" },
       sectionResults: sectionResults,
     };
+    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
     try {
-      const attemptId = await logAttempt(attemptData, false);
+      const attemptId = await logAttempt(parsedAttemptData, false);
       if (!attemptId) {
         throw new Error("Failed to log attempt");
       }
       const shareUrl = `${
         process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL
       }${resolveOakHref({
-        page: "pupil-lesson-results-canonical",
+        page: "pupil-lesson-results-canonical-share",
         lessonSlug,
         attemptId,
       })}`;
@@ -111,22 +112,15 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       browseData: { subject: subject, yearDescription: yearDescription ?? "" },
       sectionResults: sectionResults,
     };
-    const attemptId = await logAttempt(attemptData, true);
+    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+    const attemptId = await logAttempt(parsedAttemptData, true);
     if (attemptId)
       window.open(
-        pageType === "canonical"
-          ? resolveOakHref({
-              page: "pupil-lesson-results-canonical",
-              lessonSlug,
-              attemptId,
-            })
-          : resolveOakHref({
-              page: "pupil-lesson-results",
-              programmeSlug,
-              unitSlug,
-              lessonSlug,
-              attemptId,
-            }),
+        resolveOakHref({
+          page: "pupil-lesson-results-canonical-share",
+          lessonSlug,
+          attemptId,
+        }),
         "_blank",
       );
   };
