@@ -19,6 +19,8 @@ import SkipLink from "../OakComponentsKitchen/SkipLink";
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 
+import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
+import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import Box from "@/components/SharedComponents/Box";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
@@ -29,10 +31,6 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import {
-  getNumberOfSelectedUnits,
-  isVisibleUnit,
-} from "@/utils/curriculum/units";
 
 // Types and interfaces
 

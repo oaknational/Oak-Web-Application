@@ -1,4 +1,5 @@
-import { getNumberOfSelectedUnits } from "./units";
+import { getNumberOfSelectedUnits } from "./getNumberOfSelectedUnits";
+import { isVisibleUnit } from "./isVisibleUnit";
 
 // TODO: Shouldn't be reaching into <CurriculumVisualiser/> component for core types
 import {
@@ -10,13 +11,13 @@ import {
   SubjectCategory,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
-jest.mock("./units", () => ({
-  isVisibleUnit: jest.fn(),
-}));
+jest.mock("./isVisibleUnit");
+
+const mockIsVisibleUnit = isVisibleUnit as jest.MockedFunction<
+  typeof isVisibleUnit
+>;
 
 describe("getNumberOfSelectedUnits", () => {
-  const mockIsVisibleUnit = jest.requireMock("./units").isVisibleUnit;
-
   let yearData: YearData;
 
   beforeEach(() => {

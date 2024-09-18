@@ -4,6 +4,7 @@ import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import { createProgrammeSlug } from "../UnitsTab/UnitsTab";
 
+import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import Box from "@/components/SharedComponents/Box";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
@@ -16,7 +17,6 @@ import UnitModal, {
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import { isVisibleUnit } from "@/utils/curriculum/units";
 
 export type YearData = {
   [key: string]: {
@@ -164,7 +164,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
   const visibleYears = useRef<Set<number>>(new Set());
   const visualiserRef = useRef<HTMLDivElement>(null);
-  /* Intersection observer to update year filter selection when 
+  /* Intersection observer to update year filter selection when
   scrolling through the visualiser on mobile */
   useEffect(() => {
     const options = { rootMargin: "-50% 0px 0px 0px" };
