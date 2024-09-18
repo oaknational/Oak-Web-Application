@@ -50,6 +50,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     triggerForm: UseFormTrigger<ResourceFormProps>;
     apiError?: string | null;
     updatedAt: string;
+    hasFullOnboarding: boolean;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -142,6 +143,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                   handleEditDetailsCompletedClick={props.onEditClick}
                   showPostAlbCopyright={props.showPostAlbCopyright}
                   copyrightYear={props.updatedAt}
+                  hideDetails={props.hasFullOnboarding}
                 />
                 {hasFormErrors && (
                   <OakFlex $flexDirection={"row"}>

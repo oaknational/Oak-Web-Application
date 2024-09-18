@@ -3,6 +3,7 @@ import {
   examboards,
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
@@ -90,6 +91,16 @@ type LessonDownloadsProps =
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
+  const { useUser } = useFeatureFlaggedClerk();
+  const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
+  const { isSignedIn, user } = useUser();
+
+  const hasFullOnboarding = Boolean(
+    authFlagEnabled &&
+      isSignedIn &&
+      user.publicMetadata.owa?.isTeacher !== undefined,
+  );
+
   const { lesson } = props;
   const {
     lessonTitle,
@@ -181,8 +192,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const [apiError, setApiError] = useState<string | null>(null);
 
   const { onSubmit } = useResourceFormSubmit({
-    isLegacyDownload: isLegacyDownload,
     type: "download",
+    isLegacyDownload,
+    hasFullOnboarding,
   });
 
   const { onHubspotSubmit } = useHubspotSubmit();
@@ -268,8 +280,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     !hasResources ||
     Boolean(expired) ||
     downloadsFilteredByCopyright.length === 0;
-
-  const { user } = useFeatureFlaggedClerk().useUser();
 
   return (
     <Box $ph={[16, null]} $background={"grey20"}>
@@ -358,6 +368,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               hideSelectAll={Boolean(expired)}
               updatedAt={updatedAt}
               withHomeschool={true}
+              hasFullOnboarding={Boolean(hasFullOnboarding)}
               cardGroup={
                 !showNoResources && (
                   <DownloadCardGroup

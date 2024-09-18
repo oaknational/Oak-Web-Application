@@ -36,6 +36,7 @@ export type TermsAgreementFormProps = {
   handleEditDetailsCompletedClick?: () => void;
   showPostAlbCopyright?: boolean;
   copyrightYear: string;
+  hideDetails: boolean;
 };
 
 const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
@@ -49,7 +50,11 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
   handleEditDetailsCompletedClick = () => {},
   showPostAlbCopyright = true,
   copyrightYear,
+  hideDetails,
 }) => {
+  if (hideDetails) {
+    return null;
+  }
   return (
     <>
       <OakHeading
