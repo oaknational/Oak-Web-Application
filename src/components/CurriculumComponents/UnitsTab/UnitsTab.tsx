@@ -320,13 +320,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                 <Box $mb={16}>
                   <RadioButton value={""} data-testid={"all-years-radio"}>
                     All
-                    {selectedYear === "" && (
-                      <ScreenReaderOnly>
-                        {` Showing ${unitCount} ${
+                    <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+                      {selectedYear === "" &&
+                        ` Showing ${unitCount} ${
                           unitCount === 1 ? "unit" : "units"
                         }`}
-                      </ScreenReaderOnly>
-                    )}
+                    </ScreenReaderOnly>
                   </RadioButton>
                 </Box>
                 {yearOptions.map((yearOption) => {
@@ -338,13 +337,12 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                         data-testid={"year-radio"}
                       >
                         Year {yearOption}
-                        {isSelected && (
-                          <ScreenReaderOnly>
-                            {` Showing ${unitCount} ${
+                        <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+                          {isSelected &&
+                            ` Showing ${unitCount} ${
                               unitCount === 1 ? "unit" : "units"
                             }`}
-                          </ScreenReaderOnly>
-                        )}
+                        </ScreenReaderOnly>
                       </RadioButton>
                     </Box>
                   );
