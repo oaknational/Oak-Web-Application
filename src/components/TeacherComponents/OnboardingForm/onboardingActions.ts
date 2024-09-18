@@ -49,8 +49,9 @@ export async function onboardUser(
 
 export async function getSubscriptionStatus(
   email: string,
-  callback: (status: boolean) => void,
+  callback?: (status: boolean) => void,
 ) {
+  console.log(email);
   try {
     const response = await fetch("/api/hubspot/subscription", {
       method: "POST",
@@ -63,7 +64,10 @@ export async function getSubscriptionStatus(
       }),
     });
     const result = subscriptionResponseSchema.parse(await response.json());
-    callback(result);
+    if (callback) {
+      callback(result);
+    }
+    return result;
   } catch (err) {
     if (err instanceof OakError) {
       throw err;
