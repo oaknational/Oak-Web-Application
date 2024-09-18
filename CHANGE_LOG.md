@@ -1,3 +1,27 @@
+## [1.552.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.552.0...v1.552.1) (2024-09-18)
+
+# [1.552.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.551.0...v1.552.0) (2024-09-18)
+
+
+### Bug Fixes
+
+* add on blur ([9dc94bd](https://github.com/oaknational/Oak-Web-Application/commit/9dc94bdd981613968a5577ddbd3fd94f1546d9ab))
+* keys ([7ea778f](https://github.com/oaknational/Oak-Web-Application/commit/7ea778fe0a6e9ca98086e2736be8e3baeb310146))
+* make ids unique across desktop and mobile ([d7d79c1](https://github.com/oaknational/Oak-Web-Application/commit/d7d79c1d2ade4088c90a8620bef4d52243443ce4))
+* make thread filters non sticky ([04f0739](https://github.com/oaknational/Oak-Web-Application/commit/04f0739d290019cb6c7a9e146f28468b91e7732b))
+* remove focus on mouse click events ([a168479](https://github.com/oaknational/Oak-Web-Application/commit/a168479636efe64a7902723b9e7713cb87edc577))
+* themes for specialist units ([24be731](https://github.com/oaknational/Oak-Web-Application/commit/24be731ba2d37c520321cc897324f908e12679fb))
+* use correct id in label for ([ae08cda](https://github.com/oaknational/Oak-Web-Application/commit/ae08cda3bff1c383d8e8bd9cc5bfaad7c4328a49))
+
+
+### Features
+
+* style radio tile ([dee34a9](https://github.com/oaknational/Oak-Web-Application/commit/dee34a933098a4cec2a1603e3c4138a409ec39a8))
+* update filters heading ([f4c0465](https://github.com/oaknational/Oak-Web-Application/commit/f4c04651ce510c140659030295fcb5398c329fa4))
+* use router replace instead of push ([6acad56](https://github.com/oaknational/Oak-Web-Application/commit/6acad56b49acbdb461c5a06b30047a4832367069))
+* use shallow nav ([241537a](https://github.com/oaknational/Oak-Web-Application/commit/241537aa90b1af080f50e6d9418352dd33a362d1))
+* use window replace state to update url rather than next router ([f50f406](https://github.com/oaknational/Oak-Web-Application/commit/f50f4064259ba838f21373ef588a5bddc0c1cbf7))
+
 # [1.551.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.550.0...v1.551.0) (2024-09-17)
 
 
