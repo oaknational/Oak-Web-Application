@@ -8,7 +8,6 @@ import {
 } from "next";
 import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
-
 import {
   OakGrid,
   OakGridArea,
@@ -16,6 +15,7 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
