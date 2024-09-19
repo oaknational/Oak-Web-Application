@@ -80,7 +80,16 @@ export const subjectPhaseOptionSchema = subjectSchema.extend({
   phases: z.array(phaseSchema),
   cycle: z.string(),
   ks4_options: z.array(ks4OptionSchema).optional().nullable(),
-  keystages: z.array(keyStageSchema).optional().nullable(),
+  keystages: z
+    .array(
+      z
+        .object({
+          title: z.string(),
+          slug: z.string(),
+        })
+        .nullable(),
+    )
+    .nullable(),
 });
 
 const curriculumHeaderData = z.object({
