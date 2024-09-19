@@ -19,7 +19,7 @@ type CanonicalResultsShareURLParams = {
   lessonSlug: string;
   attemptId: string;
 };
-type CanonicalResultsSharePageProps = {
+export type CanonicalResultsSharePageProps = {
   browseData: LessonBrowseData;
   content: LessonContent;
   attemptData: LessonAttemptCamelCase;
