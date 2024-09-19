@@ -1,6 +1,5 @@
-import React, { useId } from "react";
+import React, { useId, useState } from "react";
 import { useRouter } from "next/router";
-import { useTheme } from "styled-components";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -74,7 +73,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
 
-  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
+  const [selectedThemeSlug, setSelectedThemeSlug] = useState<
+    string | undefined
+  >(themeSlug);
+
+  const unitsFilteredByLearningTheme = filterLearningTheme(
+    selectedThemeSlug,
+    units,
+  );
+
   const paginationProps = usePagination({
     totalResults: unitsFilteredByLearningTheme.length,
     pageSize: RESULTS_PER_PAGE,
@@ -89,10 +96,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     isLastPage,
     isFirstPage,
   } = paginationProps;
-
-  const theme = useTheme();
-
-  const HEADER_HEIGHT = theme.header.height;
 
   const learningThemesId = useId();
   const learningThemesFilterId = useId();
@@ -202,8 +205,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             >
               <Box
                 $display={["none", "none", "block"]}
-                $position={[null, null, "sticky"]}
-                $top={[null, null, HEADER_HEIGHT]}
                 $mt={[0, 0, 24]}
                 $pt={[48]}
               >
@@ -212,11 +213,11 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     <OakHeading
                       id={learningThemesId}
                       tag="h3"
-                      $font="body-3"
+                      $font="heading-7"
                       $mb="space-between-s"
                     >
                       {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
-                      Filter by thread
+                      Threads
                     </OakHeading>
                     <UnitsLearningThemeFilters
                       labelledBy={learningThemesId}
@@ -232,6 +233,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         subjectTitle,
                         subjectSlug,
                       }}
+                      idSuffix="desktop"
+                      onChangeCallback={setSelectedThemeSlug}
                     />
                   </Flex>
                 )}
@@ -285,6 +288,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                           subjectTitle,
                           subjectSlug,
                         }}
+                        idSuffix="mobile"
+                        onChangeCallback={setSelectedThemeSlug}
                       />
                     </MobileFilters>
                   )}

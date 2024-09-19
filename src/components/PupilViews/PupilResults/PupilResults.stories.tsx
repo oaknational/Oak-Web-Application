@@ -45,6 +45,7 @@ export const Default: Story = {
       browseData: {
         subject: "ewfw",
         yearDescription: "efwef",
+        isLegacy: false,
       },
       lessonData: {
         slug: "efwef",

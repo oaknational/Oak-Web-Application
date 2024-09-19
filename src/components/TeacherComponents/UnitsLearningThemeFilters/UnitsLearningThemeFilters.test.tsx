@@ -5,7 +5,7 @@ import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import UnitsLearningThemeFilters from "./UnitsLearningThemeFilters";
 
-import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const browseRefined = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -18,66 +18,33 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("UnitsLearningThemeFilters", () => {
-  test("should render links to lessons", () => {
-    const { getByRole } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <UnitsLearningThemeFilters
-          labelledBy={"Learning Theme Filter"}
-          learningThemes={[
-            {
-              themeTitle: "Grammar",
-              themeSlug: "grammar",
-            },
-          ]}
-          selectedThemeSlug={"all"}
-          linkProps={{
-            page: "unit-index",
-            programmeSlug: "maths-secondary-ks3",
-          }}
-          trackingProps={{
-            keyStageSlug: "ks3",
-            keyStageTitle: "Key stage 3",
-            subjectSlug: "english",
-            subjectTitle: "English",
-          }}
-        />
-        ,
-      </OakThemeProvider>,
-    );
-    expect(getByRole("link", { name: "Grammar" })).toHaveAttribute(
-      "href",
-      "/teachers/programmes/maths-secondary-ks3/units?learning-theme=grammar",
-    );
-  });
   test("should call tracking browse refined with correct args", async () => {
-    renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <UnitsLearningThemeFilters
-          labelledBy={"Learning Theme Filter"}
-          learningThemes={[
-            {
-              themeTitle: "Grammar",
-              themeSlug: "grammar",
-            },
-          ]}
-          selectedThemeSlug={"all"}
-          linkProps={{
-            page: "unit-index",
-            programmeSlug: "maths-secondary-ks3",
-          }}
-          trackingProps={{
-            keyStageSlug: "ks3",
-            keyStageTitle: "Key stage 3",
-            subjectSlug: "english",
-            subjectTitle: "English",
-          }}
-        />
-        ,
-      </OakThemeProvider>,
+    renderWithProviders()(
+      <UnitsLearningThemeFilters
+        labelledBy={"Learning Theme Filter"}
+        learningThemes={[
+          {
+            themeTitle: "Grammar",
+            themeSlug: "grammar",
+          },
+        ]}
+        idSuffix="test"
+        selectedThemeSlug={"all"}
+        linkProps={{
+          page: "unit-index",
+          programmeSlug: "maths-secondary-ks3",
+        }}
+        trackingProps={{
+          keyStageSlug: "ks3",
+          keyStageTitle: "Key stage 3",
+          subjectSlug: "english",
+          subjectTitle: "English",
+        }}
+        onChangeCallback={jest.fn}
+      />,
     );
 
-    const grammarThread = screen.getByRole("link", { name: "Grammar" });
-    screen.debug(grammarThread);
+    const grammarThread = await screen.findByText("Grammar");
     await userEvent.click(grammarThread);
     expect(browseRefined).toHaveBeenCalledWith({
       platform: "owa",
@@ -92,7 +59,7 @@ describe("UnitsLearningThemeFilters", () => {
     });
   });
   test("skip filters button becomes visible when focussed", async () => {
-    const { getByText } = renderWithTheme(
+    const { getByText } = renderWithProviders()(
       <OakThemeProvider theme={oakDefaultTheme}>
         <UnitsLearningThemeFilters
           labelledBy={"Learning Theme Filter"}
@@ -107,12 +74,14 @@ describe("UnitsLearningThemeFilters", () => {
             page: "unit-index",
             programmeSlug: "maths-secondary-ks3",
           }}
+          idSuffix="test"
           trackingProps={{
             keyStageSlug: "ks3",
             keyStageTitle: "Key stage 3",
             subjectSlug: "english",
             subjectTitle: "English",
           }}
+          onChangeCallback={jest.fn}
         />
         ,
       </OakThemeProvider>,
