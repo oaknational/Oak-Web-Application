@@ -84,6 +84,7 @@ describe("5_subjectExplainer", () => {
                 _type: "block",
                 listItem: "bullet",
                 _key: "82cf6558d6f8",
+                level: 1,
                 markDefs: [],
               };
             }),

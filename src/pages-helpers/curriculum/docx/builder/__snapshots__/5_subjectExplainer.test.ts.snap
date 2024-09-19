@@ -342,7 +342,7 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
     <w:p>
       <w:pPr>
         <w:pStyle
-          w:val="Heading3"
+          w:val="Heading4"
         ></w:pStyle>
       </w:pPr>
       <w:r>
@@ -357,7 +357,7 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:val="222222"
           ></w:color>
           <w:sz
-            w:val="36"
+            w:val="28"
           ></w:sz>
         </w:rPr>
         <w:r>
@@ -380,11 +380,6 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
           w:line="276"
           w:lineRule="auto"
         ></w:spacing>
-        <w:ind
-          w:left="425"
-          w:right="-17"
-          w:hanging="360"
-        ></w:ind>
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
@@ -405,11 +400,6 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
           w:line="276"
           w:lineRule="auto"
         ></w:spacing>
-        <w:ind
-          w:left="425"
-          w:right="-17"
-          w:hanging="360"
-        ></w:ind>
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
@@ -430,11 +420,6 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
           w:line="276"
           w:lineRule="auto"
         ></w:spacing>
-        <w:ind
-          w:left="425"
-          w:right="-17"
-          w:hanging="360"
-        ></w:ind>
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
@@ -727,7 +712,38 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       ></w:lvlJc>
       <w:pPr>
         <w:ind
-          w:left="360"
+          w:left="425"
+          w:right="-17"
+          w:hanging="360"
+        ></w:ind>
+      </w:pPr>
+      <w:rPr>
+        <w:rFonts
+          w:ascii="Arial"
+          w:hAnsi="Arial"
+          w:cs="Arial"
+        ></w:rFonts>
+      </w:rPr>
+    </w:lvl>
+    <w:lvl
+      w:ilvl="1"
+    >
+      <w:start
+        w:val="1"
+      ></w:start>
+      <w:numFmt
+        w:val="decimal"
+      ></w:numFmt>
+      <w:lvlText
+        w:val="%1."
+      ></w:lvlText>
+      <w:lvlJc
+        w:val="left"
+      ></w:lvlJc>
+      <w:pPr>
+        <w:ind
+          w:left="850"
+          w:right="-17"
           w:hanging="360"
         ></w:ind>
       </w:pPr>
@@ -770,8 +786,45 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
           ></w:tab>
         </w:tabs>
         <w:ind
-          w:left="720"
-          w:hanging="720"
+          w:left="425"
+          w:right="-17"
+          w:hanging="360"
+        ></w:ind>
+      </w:pPr>
+      <w:rPr>
+        <w:rFonts
+          w:ascii="Symbol"
+          w:hAnsi="Symbol"
+          w:hint="default"
+        ></w:rFonts>
+      </w:rPr>
+    </w:lvl>
+    <w:lvl
+      w:ilvl="1"
+    >
+      <w:start
+        w:val="1"
+      ></w:start>
+      <w:numFmt
+        w:val="bullet"
+      ></w:numFmt>
+      <w:lvlText
+        w:val=""
+      ></w:lvlText>
+      <w:lvlJc
+        w:val="left"
+      ></w:lvlJc>
+      <w:pPr>
+        <w:tabs>
+          <w:tab
+            w:val="num"
+            w:pos="1440"
+          ></w:tab>
+        </w:tabs>
+        <w:ind
+          w:left="850"
+          w:right="-17"
+          w:hanging="360"
         ></w:ind>
       </w:pPr>
       <w:rPr>
