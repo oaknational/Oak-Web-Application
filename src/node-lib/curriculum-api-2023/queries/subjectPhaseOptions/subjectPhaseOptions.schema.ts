@@ -5,7 +5,7 @@ const phaseSchema = z.object({
   title: z.string(),
 });
 
-const examboard = z.object({
+const ks4OptionSchema = z.object({
   slug: z.string(),
   title: z.string(),
 });
@@ -15,8 +15,18 @@ const subjectPhaseOptionsSchema = z
     slug: z.string(),
     title: z.string(),
     phases: z.array(phaseSchema),
-    examboards: z.array(examboard).optional().nullable(),
     state: z.string().optional(),
+    keystages: z
+      .array(
+        z
+          .object({
+            title: z.string(),
+            slug: z.string(),
+          })
+          .nullable(),
+      )
+      .nullable(),
+    ks4_options: z.array(ks4OptionSchema).optional().nullable(),
     cycle: z.string(),
   })
   .array();

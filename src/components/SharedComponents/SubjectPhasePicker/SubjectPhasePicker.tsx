@@ -11,7 +11,7 @@ import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxB
 import Button from "@/components/SharedComponents/Button/Button";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import {
-  Examboard,
+  KS4Option,
   Phase,
   Subject,
   SubjectPhaseOption,
@@ -34,7 +34,7 @@ export type SubjectPhasePickerData = {
   currentSelection?: {
     subject: SubjectPhaseOption;
     phase: Phase;
-    examboard: Examboard | null;
+    ks4Option: KS4Option | null;
   };
 };
 
@@ -111,12 +111,13 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const tab = (router.query.tab as CurriculumTab) ?? "units";
   const path = router.asPath;
 
-  const examboardErrorId = useId();
+  const KS4OptionErrorId = useId();
   const phaseErrorId = useId();
   const subjectErrorId = useId();
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  console.log(subjects);
 
   const phases = [
     { title: "Primary", slug: "primary" },
@@ -131,8 +132,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     (option) => option.slug === currentSelection?.phase.slug,
   );
 
-  const initialExamboard = initialSubject?.examboards?.find(
-    (option) => option.slug === currentSelection?.examboard?.slug,
+  const initialExamboard = initialSubject?.ks4_options?.find(
+    (option) => option.slug === currentSelection?.ks4Option?.slug,
   );
 
   const [showSubjects, setShowSubjects] = useState(false);
@@ -142,12 +143,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const [selectedPhase, setSelectedPhase] = useState<Phase | null>(
     initialPhase || null,
   );
-  const [selectedExamboard, setSelectedExamboard] = useState<Examboard | null>(
+  const [selectedKS4Option, setSelectedKS4Option] = useState<KS4Option | null>(
     initialExamboard || null,
   );
   const [showSubjectError, setShowSubjectError] = useState(false);
   const [showPhaseError, setShowPhaseError] = useState(false);
-  const [showExamboardError, setShowExamboardError] = useState(false);
+  const [showKS4OptionError, setShowKS4OptionError] = useState(false);
   const [displayNewBorders, setDisplayNewBorders] = useState<boolean>(true);
   const [phaseBackground, setPhaseBackground] = useState<OakColorName>("white");
   const [subjectBackground, setSubjectBackground] =
@@ -169,7 +170,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
   const handleSelectSubject = (subject: SubjectPhaseOption): void => {
     setShowSubjectError(false);
-    setSelectedExamboard(null);
+    setSelectedKS4Option(null);
     setSelectedSubject(subject);
     if (
       selectedPhase &&
@@ -187,22 +188,22 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
   const handleSelectPhase = (phase: Phase): void => {
     setShowPhaseError(false);
-    setShowExamboardError(false);
-    setSelectedExamboard(null);
+    setShowKS4OptionError(false);
+    setSelectedKS4Option(null);
     setSelectedPhase(phase);
     viewButtonRef.current?.focus();
     if (
       phase.slug === "primary" ||
       !selectedSubject ||
-      !selectedSubject.examboards
+      !selectedSubject.ks4_options
     ) {
       setShowPhases(false);
     }
   };
 
-  const handleSelectExamboard = (examboard: Examboard): void => {
-    setShowExamboardError(false);
-    setSelectedExamboard(examboard);
+  const handleSelectKS4Option = (ks4Option: KS4Option): void => {
+    setShowKS4OptionError(false);
+    setSelectedKS4Option(ks4Option);
     setShowPhases(false);
   };
 
@@ -232,19 +233,19 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       }
     }
     if (
-      selectedSubject?.examboards &&
+      selectedSubject?.ks4_options &&
       selectedPhase?.slug === "secondary" &&
-      !selectedExamboard
+      !selectedKS4Option
     ) {
       canViewCurriculum = false;
-      setShowExamboardError(true);
+      setShowKS4OptionError(true);
       setShowPhases(true);
     }
     if (canViewCurriculum) {
       viewButtonRef.current?.blur();
       let subjectPhaseSlug = selectedSubject?.slug + "-" + selectedPhase?.slug;
-      if (selectedExamboard) {
-        subjectPhaseSlug += "-" + selectedExamboard.slug;
+      if (selectedKS4Option) {
+        subjectPhaseSlug += "-" + selectedKS4Option.slug;
       }
       trackViewCurriculum();
       router.push({
@@ -264,11 +265,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     }
   };
 
-  const isSelected = (option: Subject | Phase | Examboard) => {
+  const isSelected = (option: Subject | Phase | KS4Option) => {
     return (
       option.slug === selectedSubject?.slug ||
       option.slug === selectedPhase?.slug ||
-      option.slug === selectedExamboard?.slug
+      option.slug === selectedKS4Option?.slug
     );
   };
 
@@ -521,7 +522,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               <Box
                 $font={"body-2"}
                 $color={
-                  !showPhaseError && !showExamboardError ? "black" : "red"
+                  !showPhaseError && !showKS4OptionError ? "black" : "red"
                 }
               >
                 {showPhaseError && (
@@ -534,7 +535,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     Select a school phase
                   </>
                 )}
-                {showExamboardError && (
+                {showKS4OptionError && (
                   <>
                     <Icon
                       $color={"red"}
@@ -544,7 +545,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     Select an exam board option
                   </>
                 )}
-                {selectedPhase && !showExamboardError && (
+                {selectedPhase && !showKS4OptionError && (
                   <>
                     <Box
                       $textOverflow={"ellipsis"}
@@ -552,15 +553,15 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       $overflowX={"hidden"}
                     >
                       <OakSpan>{selectedPhase.title}</OakSpan>
-                      {selectedExamboard && (
-                        <OakSpan>, {selectedExamboard.title}</OakSpan>
+                      {selectedKS4Option && (
+                        <OakSpan>, {selectedKS4Option.title}</OakSpan>
                       )}
                     </Box>
                   </>
                 )}
                 {!selectedPhase &&
                   !showPhaseError &&
-                  !showExamboardError &&
+                  !showKS4OptionError &&
                   "Select"}
               </Box>
               <ButtonFocusUnderline $color={"black"} name="underline-1" />
@@ -595,15 +596,15 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       </OakP>
                     </Flex>
                   )}
-                  {showExamboardError ? (
-                    <Flex id={examboardErrorId} $flexDirection={"row"} $mb={20}>
+                  {showKS4OptionError ? (
+                    <Flex id={KS4OptionErrorId} $flexDirection={"row"} $mb={20}>
                       <Icon
                         $color={"red"}
                         name="content-guidance"
                         verticalAlign="bottom"
                       />
                       <OakP $color={"red"}>
-                        Select an exam board to view the curriculum
+                        Select an option to view the curriculum
                       </OakP>
                     </Flex>
                   ) : (
@@ -641,7 +642,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     ))}
                   </Box>
                   {selectedPhase?.slug === "secondary" &&
-                    selectedSubject?.examboards && (
+                    selectedSubject?.ks4_options && (
                       <>
                         <OakHeading
                           id={examBoardInputId}
@@ -658,26 +659,26 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           aria-labelledby={examBoardInputId}
                           aria-required="true"
                           aria-describedby={
-                            showExamboardError ? examboardErrorId : undefined
+                            showKS4OptionError ? KS4OptionErrorId : undefined
                           }
                         >
-                          {selectedSubject.examboards.map(
-                            (examboard, index) => (
-                              <ButtonContainer key={examboard.slug}>
+                          {selectedSubject.ks4_options.map(
+                            (ks4Option, index) => (
+                              <ButtonContainer key={ks4Option.slug}>
                                 <Button
                                   role="radio"
                                   $mr={24}
                                   $mt={index >= 2 ? [16, 0] : 0}
                                   background={
-                                    isSelected(examboard) ? "black" : "grey20"
+                                    isSelected(ks4Option) ? "black" : "grey20"
                                   }
-                                  label={examboard.title}
+                                  label={ks4Option.title}
                                   onClick={() =>
-                                    handleSelectExamboard(examboard)
+                                    handleSelectKS4Option(ks4Option)
                                   }
                                   size="large"
-                                  title={examboard.title}
-                                  aria-checked={isSelected(examboard)}
+                                  title={ks4Option.title}
+                                  aria-checked={isSelected(ks4Option)}
                                 />
                               </ButtonContainer>
                             ),

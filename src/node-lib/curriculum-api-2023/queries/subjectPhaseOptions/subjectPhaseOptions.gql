@@ -4,6 +4,7 @@ query subjectPhaseOptions {
     slug
     phases
     examboards
+    ks4_options
     cycle
   }
 }

@@ -41,9 +41,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   const phase = subject?.phases.find(
     (phase) => phase.slug === curriculumSelectionSlugs.phaseSlug,
   );
-  const examboard =
-    subject?.examboards?.find(
-      (examboard) => examboard.slug === curriculumSelectionSlugs.examboardSlug,
+  const ks4Option =
+    subject?.ks4Options?.find(
+      (option) => option.slug === curriculumSelectionSlugs.ks4OptionSlug,
     ) ?? null;
 
   if (!subject || !phase) {
@@ -53,11 +53,11 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   const currentSelection = {
     subject: subject,
     phase: phase,
-    examboard: examboard,
+    ks4Option: ks4Option,
   };
 
   const subjectPhaseSlug = `${subject.slug}-${phase.slug}${
-    examboard ? `-${examboard.slug}` : ""
+    ks4Option ? `-${ks4Option.slug}` : ""
   }`;
 
   let pageTitle: string;
@@ -168,7 +168,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}
                   >
-                    {`${examboard ? examboard.title : "All exam boards"} (KS4)`}
+                    {`${ks4Option ? ks4Option.title : "All exam boards"} (KS4)`}
                   </OakP>
                 )}
                 <OakHeading

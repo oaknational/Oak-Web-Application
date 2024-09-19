@@ -30,9 +30,10 @@ describe("Component - subject phase picker", () => {
         phases: [],
         examboards: [],
         cycle: "1",
+        ks4_options: [],
       },
       phase: { title: "Secondary", slug: "secondary" },
-      examboard: { title: "AQA", slug: "aqa" },
+      ks4Option: { title: "AQA", slug: "aqa" },
     };
     const { getByTitle } = render(
       <SubjectPhasePicker

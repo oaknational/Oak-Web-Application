@@ -45,7 +45,7 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTi
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
   subjectSlug: string;
-  examboardSlug: string | null;
+  ks4OptionSlug: string | null;
 };
 
 export type CurriculumUnitsYearGroup = {
@@ -116,12 +116,12 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
   const { tiers, child_subjects } = curriculumDownloadsTabData;
-  const { subjectSlug, examboardSlug, phaseSlug } = curriculumSelectionSlugs;
+  const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
     subjectSlug,
     phaseSlug,
     subjectTitle: curriculumOverviewTabData.subjectTitle,
-    examboardSlug: examboardSlug,
+    examboardSlug: ks4OptionSlug,
   };
 
   const keyStages = uniq(
@@ -175,14 +175,14 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
             title: buildCurriculumMetadata({
               metadataType: "title",
               subjectSlug: subjectSlug,
-              examboardSlug: examboardSlug,
+              examboardSlug: ks4OptionSlug,
               keyStages: keyStages,
               tab: tab,
             }),
             description: buildCurriculumMetadata({
               metadataType: "description",
               subjectSlug: subjectSlug,
-              examboardSlug: examboardSlug,
+              examboardSlug: ks4OptionSlug,
               keyStages: keyStages,
               tab: tab,
             }),
@@ -224,13 +224,13 @@ export const getStaticPaths = async () => {
 export const parseSubjectPhaseSlug = (slug: string) => {
   const parts = slug.split("-");
   const lastSlug = parts.pop() ?? null;
-  let phaseSlug: string | null, examboardSlug: string | null;
+  let phaseSlug: string | null, ks4OptionSlug: string | null;
   // Use phase to determine if examboard is present
   if (lastSlug && ["primary", "secondary"].includes(lastSlug)) {
-    examboardSlug = null;
+    ks4OptionSlug = null;
     phaseSlug = lastSlug;
   } else {
-    examboardSlug = lastSlug;
+    ks4OptionSlug = lastSlug;
     phaseSlug = parts.pop() ?? null;
   }
   const subjectSlug = parts.join("-");
@@ -242,7 +242,7 @@ export const parseSubjectPhaseSlug = (slug: string) => {
   return {
     phaseSlug: phaseSlug,
     subjectSlug: subjectSlug,
-    examboardSlug: examboardSlug,
+    ks4OptionSlug: ks4OptionSlug,
   };
 };
 

@@ -8,9 +8,9 @@ const curriculumUnitsQuery =
   async (args: {
     subjectSlug: string;
     phaseSlug: string;
-    examboardSlug: string | null;
+    ks4OptionSlug: string | null;
   }) => {
-    const { subjectSlug, phaseSlug, examboardSlug } = args;
+    const { subjectSlug, phaseSlug, ks4OptionSlug } = args;
     if (!subjectSlug || !phaseSlug) {
       throw new OakError({ code: "curriculum-api/params-incorrect" });
     }
@@ -27,10 +27,10 @@ const curriculumUnitsQuery =
       ],
     };
 
-    const examboardCondition = examboardSlug
+    const ks4OptionCondition = ks4OptionSlug
       ? {
           _or: [
-            { examboard_slug: { _eq: examboardSlug } },
+            { examboard_slug: { _eq: ks4OptionSlug } },
             { examboard_slug: { _is_null: true } },
           ],
         }
@@ -38,7 +38,7 @@ const curriculumUnitsQuery =
 
     const where = {
       ...baseWhere,
-      _and: [...baseWhere._and, examboardCondition],
+      _and: [...baseWhere._and, ks4OptionCondition],
     };
 
     const res = await sdk.curriculumUnits({
