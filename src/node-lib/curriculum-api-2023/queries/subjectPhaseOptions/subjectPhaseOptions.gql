@@ -1,9 +1,9 @@
 query subjectPhaseOptions {
-  options: published_mv_subject_phase_options_0_5 {
+  options: published_mv_subject_phase_options_0_7 {
     title
     slug
     phases
     examboards
-    state
+    cycle
   }
 }

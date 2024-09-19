@@ -7,6 +7,7 @@ import {
 import React, { MutableRefObject } from "react";
 import { useRouter } from "next/router";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { uniq } from "lodash";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
@@ -122,18 +123,13 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     subjectTitle: curriculumOverviewTabData.subjectTitle,
     examboardSlug: examboardSlug,
   };
-  let keyStagesData: string;
-  switch (phaseSlug) {
-    case "primary":
-      keyStagesData = `KS1-2`;
-      break;
-    case "secondary":
-      keyStagesData = `KS3-4`;
-      break;
-    default:
-      keyStagesData = "";
-      break;
-  }
+
+  const keyStages = uniq(
+    Object.values(curriculumUnitsFormattedData.yearData).flatMap(({ units }) =>
+      units.map((unit) => unit.keystage_slug),
+    ),
+  );
+
   let tabContent: JSX.Element;
 
   switch (tab) {
@@ -180,14 +176,14 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
               metadataType: "title",
               subjectSlug: subjectSlug,
               examboardSlug: examboardSlug,
-              keyStagesData: keyStagesData,
+              keyStages: keyStages,
               tab: tab,
             }),
             description: buildCurriculumMetadata({
               metadataType: "description",
               subjectSlug: subjectSlug,
               examboardSlug: examboardSlug,
-              keyStagesData: keyStagesData,
+              keyStages: keyStages,
               tab: tab,
             }),
           }),
@@ -197,6 +193,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         <CurriculumHeader
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
+          keyStages={keyStages}
           color1="mint"
           color2="mint30"
         />
@@ -544,6 +541,7 @@ export const getStaticProps: GetStaticProps<
       );
 
       const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
           curriculumSelectionSlugs: slugs,
