@@ -52,7 +52,6 @@ export const subjectSchema = z.object({
   title: z.string(),
   slug: z.string(),
   displayOrder: z.number().optional(),
-  cycle: z.string().optional(),
 });
 const phaseSchema = z.object({
   title: z.string(),
@@ -80,6 +79,7 @@ export const searchPageSchema = z.object({
 export const subjectPhaseOptionSchema = subjectSchema.extend({
   phases: z.array(phaseSchema),
   examboards: z.array(examboardSchema).optional().nullable(),
+  cycle: z.string(),
 });
 
 const curriculumHeaderData = z.object({
