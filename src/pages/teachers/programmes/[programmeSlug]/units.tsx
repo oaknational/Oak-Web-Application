@@ -1,4 +1,4 @@
-import React, { useId, useState } from "react";
+import React, { useId, useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import {
   GetStaticPathsResult,
@@ -87,11 +87,17 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const categorySlug = router.query["category"]?.toString();
   const yearGroupSlug = router.query["year"]?.toString();
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
+  const filtersRef = useRef<HTMLDivElement>(null);
 
   const [selectedThemeSlug, setSelectedThemeSlug] = useState<
     string | undefined
   >(themeSlug);
 
+  useEffect(() => {
+    if (filtersRef.current) {
+      filtersRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [selectedThemeSlug, categorySlug, yearGroupSlug, themeSlug]);
   const filteredUnits = filterUnits({
     themeSlug: selectedThemeSlug,
     categorySlug,
@@ -233,7 +239,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   >
                     Filters
                   </OakHeading>
-                  <OakBox $mb={skipFiltersButton ? "space-between-xs" : "auto"}>
+                  <OakBox
+                    ref={filtersRef}
+                    $mb={skipFiltersButton ? "space-between-xs" : "auto"}
+                  >
                     <OakSecondaryButton
                       element="a"
                       aria-label="Skip to units"
