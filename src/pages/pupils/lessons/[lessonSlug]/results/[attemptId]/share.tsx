@@ -44,8 +44,6 @@ export const getServerSideProps: GetServerSideProps<
   CanonicalResultsSharePageProps,
   CanonicalResultsShareURLParams
 > = async (context) => {
-  console.log("urlstring", getBrowserConfig("oakGetLessonAttemptUrl"));
-
   return getPageProps({
     page: "pupil-canonical-results-share::getServerSideProps",
     context,
