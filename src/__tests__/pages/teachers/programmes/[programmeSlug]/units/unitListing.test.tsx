@@ -21,6 +21,10 @@ jest.mock("@/utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
 }));
 
+beforeEach(() => {
+  window.HTMLElement.prototype.scrollIntoView = jest.fn();
+});
+
 const unitSelected = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
