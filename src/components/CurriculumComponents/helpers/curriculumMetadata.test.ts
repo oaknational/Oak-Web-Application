@@ -5,7 +5,7 @@ describe("buildCurriculumMetadata", () => {
     const result = buildCurriculumMetadata({
       metadataType: "title",
       tab: "overview",
-      keyStagesData: "KS3-4",
+      keyStages: ["ks3", "ks4"],
       subjectSlug: "Math",
       examboardSlug: "aqa",
     });
@@ -16,7 +16,7 @@ describe("buildCurriculumMetadata", () => {
     const result = buildCurriculumMetadata({
       metadataType: "description",
       tab: "overview",
-      keyStagesData: "KS1-2",
+      keyStages: ["ks1", "ks2"],
       subjectSlug: "Science",
     });
     expect(result).toBe(
@@ -28,7 +28,7 @@ describe("buildCurriculumMetadata", () => {
     const result = buildCurriculumMetadata({
       metadataType: "title",
       tab: "units",
-      keyStagesData: "KS3-4",
+      keyStages: ["ks3", "ks4"],
       subjectSlug: "English",
       examboardSlug: "edexcel",
     });
@@ -39,7 +39,7 @@ describe("buildCurriculumMetadata", () => {
     const result = buildCurriculumMetadata({
       metadataType: "description",
       tab: "units",
-      keyStagesData: "KS3-4",
+      keyStages: ["ks3", "ks4"],
       subjectSlug: "History",
     });
     expect(result).toBe(
@@ -51,7 +51,7 @@ describe("buildCurriculumMetadata", () => {
     const result = buildCurriculumMetadata({
       metadataType: "description",
       tab: "downloads",
-      keyStagesData: "KS3-4",
+      keyStages: ["ks3", "ks4"],
       subjectSlug: "History",
     });
     expect(result).toBe(
@@ -63,7 +63,7 @@ describe("buildCurriculumMetadata", () => {
     const result = buildCurriculumMetadata({
       metadataType: "title",
       tab: "downloads",
-      keyStagesData: "KS3-4",
+      keyStages: ["ks3", "ks4"],
       subjectSlug: "English",
       examboardSlug: "edexcel",
     });
@@ -76,7 +76,7 @@ describe("buildCurriculumMetadata", () => {
         // @ts-expect-error because we want to test for bad values
         metadataType: "foo",
         tab: "downloads",
-        keyStagesData: "KS3-4",
+        keyStages: ["ks3", "ks4"],
         subjectSlug: "English",
         examboardSlug: "edexcel",
       });
