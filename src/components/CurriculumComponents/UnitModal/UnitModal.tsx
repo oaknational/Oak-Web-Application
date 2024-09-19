@@ -132,6 +132,9 @@ const UnitModal: FC<UnitModalProps> = ({
               <Box $display={optionalityModalOpen ? "none" : "block"}>
                 <CurriculumUnitDetails
                   threads={unitData.threads}
+                  cycle={unitData.cycle}
+                  whyThisWhyNow={unitData.why_this_why_now}
+                  description={unitData.description}
                   lessons={unitData.lessons}
                   priorUnitDescription={
                     unitData.connection_prior_unit_description

@@ -1,5 +1,5 @@
-query curriculumUnits($where: published_mv_curriculum_units_0_9_bool_exp) {
-  units: published_mv_curriculum_units_0_9(where: $where) {
+query curriculumUnits($where: published_mv_curriculum_units_0_10_bool_exp) {
+  units: published_mv_curriculum_units_0_10(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title
@@ -24,6 +24,9 @@ query curriculumUnits($where: published_mv_curriculum_units_0_9_bool_exp) {
     tier
     tier_slug
     title
+    why_this_why_now
+    description
+    cycle
     unit_options
     threads
     year
