@@ -66,7 +66,7 @@ export const getServerSideProps: GetServerSideProps<
         logLessonAttemptUrl: getBrowserConfig("oakLogLessonAttemptUrl"),
       });
       const attemptData = await networkClient.getAttempt(attemptId);
-      const parsedAttemptData = keysToCamelCase(attemptData)[attemptId];
+      const parsedAttemptData = keysToCamelCase(attemptData[attemptId]);
 
       if (!parsedAttemptData) {
         throw new Error("unexpected attemptData");
