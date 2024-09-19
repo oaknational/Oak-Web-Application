@@ -8,7 +8,7 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Primary", slug: "primary" },
       { title: "Secondary", slug: "secondary" },
     ],
-    examboards: [
+    ks4_options: [
       { title: "AQA", slug: "aqa" },
       { title: "Edexcel", slug: "edexcel" },
     ],
@@ -21,7 +21,7 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Primary", slug: "primary" },
       { title: "Secondary", slug: "secondary" },
     ],
-    examboards: null,
+    ks4_options: null,
     cycle: "1",
   },
   {
@@ -31,7 +31,7 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Primary", slug: "primary" },
       { title: "Secondary", slug: "secondary" },
     ],
-    examboards: [
+    ks4_options: [
       { title: "AQA", slug: "aqa" },
       { title: "Edexcel", slug: "edexcel" },
     ],
@@ -44,14 +44,14 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Primary", slug: "primary" },
       { title: "Secondary", slug: "secondary" },
     ],
-    examboards: null,
+    ks4_options: null,
     cycle: "1",
   },
   {
     title: "Music",
     slug: "music",
     phases: [{ title: "Secondary", slug: "secondary" }],
-    examboards: null,
+    ks4_options: null,
     cycle: "1",
   },
   {
@@ -61,7 +61,7 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Primary", slug: "primary" },
       { title: "Secondary", slug: "secondary" },
     ],
-    examboards: null,
+    ks4_options: null,
     cycle: "1",
   },
 ];
