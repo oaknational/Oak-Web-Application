@@ -94,8 +94,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   >(themeSlug);
 
   useEffect(() => {
-    if (filtersRef.current) {
-      filtersRef.current.scrollIntoView({ behavior: "smooth" });
+    if (selectedThemeSlug || categorySlug || yearGroupSlug || themeSlug) {
+      if (filtersRef.current) {
+        filtersRef.current.scrollIntoView({ behavior: "smooth" });
+      }
     }
   }, [selectedThemeSlug, categorySlug, yearGroupSlug, themeSlug]);
   const filteredUnits = filterUnits({
