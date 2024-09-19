@@ -222,9 +222,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     <UnitsLearningThemeFilters
                       labelledBy={learningThemesId}
                       learningThemes={learningThemes}
-                      selectedThemeSlug={
-                        selectedThemeSlug ? selectedThemeSlug : "all"
-                      }
+                      selectedThemeSlug={selectedThemeSlug ?? "all"}
                       linkProps={{
                         page: "unit-index",
                         programmeSlug,
