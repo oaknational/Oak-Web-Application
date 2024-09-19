@@ -23,6 +23,7 @@ export type CurriculumHeaderPageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   color1?: OakColorName;
   color2?: OakColorName;
+  keyStages: string[];
 };
 
 const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
@@ -30,6 +31,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   color2 = "aqua30",
   curriculumSelectionSlugs,
   subjectPhaseOptions,
+  keyStages,
 }) => {
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
@@ -59,12 +61,18 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   }`;
 
   let pageTitle: string;
+  const keyStageStrings: string[] = [];
+  if (keyStages.includes("ks1")) keyStageStrings.push("KS1");
+  if (keyStages.includes("ks2")) keyStageStrings.push("KS2");
+  if (keyStages.includes("ks3")) keyStageStrings.push("KS3");
+  if (keyStages.includes("ks4")) keyStageStrings.push("KS4");
+  const keyStageString = keyStageStrings.join(" & ");
   switch (phase.slug) {
     case "primary":
-      pageTitle = `KS1 & KS2 ${subject.title}`;
+      pageTitle = `${keyStageString} ${subject.title}`;
       break;
     case "secondary":
-      pageTitle = `KS3 & KS4 ${subject.title}`;
+      pageTitle = `${keyStageString} ${subject.title}`;
       break;
     default:
       pageTitle = "";
@@ -155,7 +163,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 />
               </Box>
               <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
-                {phase.slug === "secondary" && (
+                {keyStages.includes("ks4") && (
                   <OakP
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}

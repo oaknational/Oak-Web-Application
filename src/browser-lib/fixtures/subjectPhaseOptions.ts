@@ -11,6 +11,7 @@ const subjectPhaseOptions = {
         { title: "AQA", slug: "aqa" },
         { title: "Edexcel", slug: "edexcel" },
       ],
+      cycle: "1",
     },
     {
       title: "Geography",
@@ -20,6 +21,7 @@ const subjectPhaseOptions = {
         { title: "Secondary", slug: "secondary" },
       ],
       examboards: null,
+      cycle: "1",
     },
     {
       title: "History",
@@ -32,6 +34,7 @@ const subjectPhaseOptions = {
         { title: "AQA", slug: "aqa" },
         { title: "Edexcel", slug: "edexcel" },
       ],
+      cycle: "1",
     },
     {
       title: "Maths",
@@ -41,12 +44,14 @@ const subjectPhaseOptions = {
         { title: "Secondary", slug: "secondary" },
       ],
       examboards: null,
+      cycle: "1",
     },
     {
       title: "Music",
       slug: "music",
       phases: [{ title: "Secondary", slug: "secondary" }],
       examboards: null,
+      cycle: "1",
     },
     {
       title: "Science",
@@ -56,6 +61,7 @@ const subjectPhaseOptions = {
         { title: "Secondary", slug: "secondary" },
       ],
       examboards: null,
+      cycle: "1",
     },
   ],
 };
