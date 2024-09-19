@@ -29,6 +29,7 @@ import { blogToPostListItem } from "@/components/GenericPagesViews/BlogIndex.vie
 import { serializeDate } from "@/utils/serializeDate";
 import PostListItem from "@/components/SharedComponents/PostListItem";
 import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
+import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 
 export type CurriculumHomePageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -202,7 +203,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
 
 export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
-    const subjects = await curriculumApi2023.subjectPhaseOptions();
+    const subjects = await curriculumApi2023.subjectPhaseOptions({
+      cycles: isCycleTwoEnabled() ? ["1", "2"] : ["1"],
+    });
     return {
       subjects: subjects,
     };
