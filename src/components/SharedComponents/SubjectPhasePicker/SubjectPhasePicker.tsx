@@ -22,6 +22,7 @@ import Icon from "@/components/SharedComponents/Icon";
 import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 /**
  * Interface to pick a subject, phase, and if applicable, an exam board.
@@ -117,7 +118,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-  console.log(subjects);
 
   const phases = [
     { title: "Primary", slug: "primary" },
@@ -310,6 +310,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       viewButtonRef.current?.blur();
     }
   }, []);
+
+  const createKS4OptionTitle = (subject: string, option: KS4Option) => {
+    const { title, slug } = option;
+    if (subject === "Computing" && isExamboardSlug(slug)) {
+      return `${title} (Computer Science)`;
+    }
+    return title;
+  };
 
   return (
     <Box
@@ -662,8 +670,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             showKS4OptionError ? KS4OptionErrorId : undefined
                           }
                         >
-                          {selectedSubject.ks4_options.map(
-                            (ks4Option, index) => (
+                          {selectedSubject.ks4_options
+                            // sort Core/GSCE first
+                            .sort((a) => (isExamboardSlug(a.slug) ? 1 : -1))
+                            .map((ks4Option, index) => (
                               <ButtonContainer key={ks4Option.slug}>
                                 <Button
                                   role="radio"
@@ -672,17 +682,22 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                   background={
                                     isSelected(ks4Option) ? "black" : "grey20"
                                   }
-                                  label={ks4Option.title}
+                                  label={createKS4OptionTitle(
+                                    selectedSubject.title,
+                                    ks4Option,
+                                  )}
                                   onClick={() =>
                                     handleSelectKS4Option(ks4Option)
                                   }
                                   size="large"
-                                  title={ks4Option.title}
+                                  title={createKS4OptionTitle(
+                                    selectedSubject.title,
+                                    ks4Option,
+                                  )}
                                   aria-checked={isSelected(ks4Option)}
                                 />
                               </ButtonContainer>
-                            ),
-                          )}
+                            ))}
                         </Box>
                       </>
                     )}
