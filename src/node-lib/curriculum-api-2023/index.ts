@@ -52,6 +52,7 @@ export const subjectSchema = z.object({
   title: z.string(),
   slug: z.string(),
   displayOrder: z.number().optional(),
+  cycle: z.string().optional(),
 });
 const phaseSchema = z.object({
   title: z.string(),
