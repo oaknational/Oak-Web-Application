@@ -21,9 +21,9 @@ import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAs
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  keyStages: string[];
   color1?: OakColorName;
   color2?: OakColorName;
-  keyStages: string[];
 };
 
 const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
@@ -34,6 +34,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   keyStages,
 }) => {
   const router = useRouter();
+  // const isCycleTwoEnabled = useCycleTwoEnabled();
   const tab = router.query.tab as CurriculumTab;
   const subject = subjectPhaseOptions.subjects.find(
     (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug,
@@ -42,7 +43,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     (phase) => phase.slug === curriculumSelectionSlugs.phaseSlug,
   );
   const ks4Option =
-    subject?.ks4Options?.find(
+    subject?.ks4_options?.find(
       (option) => option.slug === curriculumSelectionSlugs.ks4OptionSlug,
     ) ?? null;
 
@@ -163,7 +164,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 />
               </Box>
               <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
-                {keyStages.includes("ks4") && (
+                {phase.slug === "secondary" && (
                   <OakP
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}

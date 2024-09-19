@@ -1,9 +1,9 @@
 query subjectPhaseOptions {
-  options: published_mv_subject_phase_options_0_7 {
+  options: published_mv_subject_phase_options_0_8 {
     title
     slug
     phases
-    examboards
+    keystages
     ks4_options
     cycle
   }
