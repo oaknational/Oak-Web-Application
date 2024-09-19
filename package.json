@@ -126,7 +126,7 @@
     "@actions/exec": "^1.1.1",
     "@actions/github": "^6.0.0",
     "@axe-core/react": "^4.9.1",
-    "@babel/core": "^7.24.7",
+    "@babel/core": "^7.25.2",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/prompt-cli": "^19.3.1",
