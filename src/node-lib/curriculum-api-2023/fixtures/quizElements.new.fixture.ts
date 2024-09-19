@@ -510,12 +510,7 @@ export const exitQuizQuestions: QuizQuestion[] = [
       "$${4\\over 5a}=6$$ gives $$4 = 30a$$. So $$a= {4\\over 30}$$ or $$a={2\\over 15}$$",
     questionId: 254013,
     questionUid: "QUES-RINS2-54013",
-    questionStem: [
-      {
-        text: "Which of these is the solution to the equation $${4\\over 5a}+2 = 8$$?",
-        type: "text",
-      },
-    ],
+    questionStem: questionStemWithImage,
     questionType: "multiple-choice",
   },
   {
@@ -550,12 +545,7 @@ export const exitQuizQuestions: QuizQuestion[] = [
       "$$20 = 6(a+3)$$, $${20\\over 6}=a+3$$, $${10\\over 3}-3=a$$. Therefore $$a={1\\over 3}$$",
     questionId: 254014,
     questionUid: "QUES-WNIR2-54014",
-    questionStem: [
-      {
-        text: "Which of these is the solution to the equation $$\\frac{20}{a+3}=6$$?",
-        type: "text",
-      },
-    ],
+    questionStem: questionStemWithImage,
     questionType: "multiple-choice",
   },
   {

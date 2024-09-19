@@ -1,3 +1,35 @@
+# [1.554.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.553.0...v1.554.0) (2024-09-19)
+
+
+### Bug Fixes
+
+* added missing cycle in subject phase picker types ([9c833d4](https://github.com/oaknational/Oak-Web-Application/commit/9c833d429de3c71ae8cc1bb68db3f374b434e721))
+* added missing cycle to schema/fixtures ([669bfbc](https://github.com/oaknational/Oak-Web-Application/commit/669bfbc6f80f96a6bd5f0371f6301d77bf855bdf))
+* disable schema check for initial spike of cycle2 curric units ([c1a56b3](https://github.com/oaknational/Oak-Web-Application/commit/c1a56b36cab496b679cbd47814dadc3b710a45ea))
+* failing <CurriculumHeader/> tests ([02adb97](https://github.com/oaknational/Oak-Web-Application/commit/02adb9743c71915e1108aefecda73a5d5f50ca4f))
+* remove "All exam boards" for KS3 in <CurriculumHeader/> ([7436aa0](https://github.com/oaknational/Oak-Web-Application/commit/7436aa086dbbfeb1569d35f7704edc67cfa621ff))
+* some small temporary fixes to see cycle 2 data in visualiser ([0a910bf](https://github.com/oaknational/Oak-Web-Application/commit/0a910bf0bc41eecee1df4853bef1e29c985c6fcc))
+
+
+### Features
+
+* added in new cycle 2 MVs + filters ([b446bc9](https://github.com/oaknational/Oak-Web-Application/commit/b446bc9fef1d6b076da69a1a7d223aeed8af25a7))
+* initial spike for adding cycle 2 to curriculum visualizer ([a89bec9](https://github.com/oaknational/Oak-Web-Application/commit/a89bec9668f351e1179a4ab1202797e2c175201b))
+
+# [1.553.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.552.1...v1.553.0) (2024-09-18)
+
+
+### Bug Fixes
+
+* type errors ([a8b4bfb](https://github.com/oaknational/Oak-Web-Application/commit/a8b4bfb3ddd422d5866fed56d018cb85abdd50a5))
+
+
+### Features
+
+* image attribution and copyright on quiz results ([4d9c930](https://github.com/oaknational/Oak-Web-Application/commit/4d9c93064dfeef86489a4c4cdf298a5414c51bac))
+
+## [1.552.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.552.0...v1.552.1) (2024-09-18)
+
 # [1.552.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.551.0...v1.552.0) (2024-09-18)
 
 

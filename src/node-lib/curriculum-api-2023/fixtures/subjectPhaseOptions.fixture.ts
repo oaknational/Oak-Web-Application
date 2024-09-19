@@ -12,6 +12,7 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "AQA", slug: "aqa" },
       { title: "Edexcel", slug: "edexcel" },
     ],
+    cycle: "1",
   },
   {
     title: "Geography",
@@ -21,6 +22,7 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Secondary", slug: "secondary" },
     ],
     examboards: null,
+    cycle: "1",
   },
   {
     title: "History",
@@ -33,6 +35,7 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "AQA", slug: "aqa" },
       { title: "Edexcel", slug: "edexcel" },
     ],
+    cycle: "1",
   },
   {
     title: "Maths",
@@ -42,12 +45,14 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Secondary", slug: "secondary" },
     ],
     examboards: null,
+    cycle: "1",
   },
   {
     title: "Music",
     slug: "music",
     phases: [{ title: "Secondary", slug: "secondary" }],
     examboards: null,
+    cycle: "1",
   },
   {
     title: "Science",
@@ -57,6 +62,7 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Secondary", slug: "secondary" },
     ],
     examboards: null,
+    cycle: "1",
   },
 ];
 export default subjectPhaseOptionsFixture;
