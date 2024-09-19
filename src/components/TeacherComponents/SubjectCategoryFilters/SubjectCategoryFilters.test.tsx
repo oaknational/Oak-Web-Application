@@ -34,7 +34,6 @@ describe("SubjectCategoryFilters", () => {
             },
           ]}
           categorySlug={"all"}
-          setSelectedCategory={() => {}}
           browseRefined={browseRefined}
           idSuffix={"desktop"}
         />
@@ -54,7 +53,6 @@ describe("SubjectCategoryFilters", () => {
         <SubjectCategoryFilters
           programmeSlug={"test-programme"}
           categorySlug={"all"}
-          setSelectedCategory={() => {}}
           browseRefined={browseRefined}
           idSuffix={"desktop"}
           subjectCategories={[category]}

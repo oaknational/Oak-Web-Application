@@ -6,7 +6,7 @@ import { Sdk } from "../../sdk";
 import { getTiersForProgramme } from "./tiers/getTiersForProgramme";
 import { getUnitsForProgramme } from "./units/getUnitsForProgramme";
 import { getAllLearningThemes } from "./filters/getAllLearningThemes";
-import { getAllCategories } from "./filters/getAllCategroies";
+import { getAllCategories } from "./filters/getAllCategories";
 import { getAllYearGroups } from "./filters/getAllYearGroups";
 
 import { NEW_COHORT } from "@/config/cohort";

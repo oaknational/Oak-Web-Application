@@ -44,7 +44,6 @@ export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
   currentPageItems: CurrentPageItemsProps[] | SpecialistUnit[][];
   paginationProps: PaginationProps & PageSize;
   onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
-  selectedCategory?: string | null;
   filteredUnits?: UnitListingData["units"];
 };
 

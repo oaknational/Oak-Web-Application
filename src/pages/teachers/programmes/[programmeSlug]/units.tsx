@@ -86,7 +86,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const themeSlug = router.query["learning-theme"]?.toString();
   const categorySlug = router.query["category"]?.toString();
   const yearGroupSlug = router.query["year"]?.toString();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
 
   const [selectedThemeSlug, setSelectedThemeSlug] = useState<
@@ -269,7 +268,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       subjectCategories={subjectCategories}
                       categorySlug={categorySlug}
                       browseRefined={track.browseRefined}
-                      setSelectedCategory={setSelectedCategory}
                       programmeSlug={programmeSlug}
                       selectedThemeSlug={selectedThemeSlug}
                     />
@@ -356,7 +354,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         <SubjectCategoryFilters
                           idSuffix="mobile"
                           programmeSlug={programmeSlug}
-                          setSelectedCategory={setSelectedCategory}
                           subjectCategories={subjectCategories}
                           categorySlug={categorySlug}
                           browseRefined={track.browseRefined}
@@ -424,7 +421,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   {...curriculumData}
                   currentPageItems={currentPageItems}
                   paginationProps={paginationProps}
-                  selectedCategory={selectedCategory}
                   filteredUnits={filteredUnits}
                   onClick={(props) =>
                     trackUnitSelected(

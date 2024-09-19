@@ -29,7 +29,7 @@ const unitData = z.object({
   cohort: z.string().nullish(),
   learningThemes: z.array(learningThemesSchema).nullable(),
   subjectCategories: z
-    .array(z.object({ label: z.string(), slug: z.string() }).or(z.null()))
+    .array(z.object({ label: z.string(), slug: z.string() }))
     .nullish(),
 });
 

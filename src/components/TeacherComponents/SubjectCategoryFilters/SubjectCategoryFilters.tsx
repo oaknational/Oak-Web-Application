@@ -13,7 +13,6 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 type SubjectCategoryFiltersProps = {
   subjectCategories: { label: string; slug: string; iconName: string }[];
   categorySlug: string | undefined;
-  setSelectedCategory: (category: string | null) => void;
   browseRefined: TrackFns["browseRefined"];
   idSuffix: "desktop" | "mobile";
   selectedThemeSlug?: string;
@@ -30,7 +29,6 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
   subjectCategories,
   categorySlug,
   browseRefined,
-  setSelectedCategory,
   idSuffix,
   selectedThemeSlug,
   programmeSlug,
@@ -99,7 +97,6 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
                   year_group: router.query.year,
                 },
               });
-              setSelectedCategory(null);
             }}
           />
           {subjectCategories.map((category) => (
@@ -143,8 +140,6 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
                   undefined,
                   { shallow: true },
                 );
-
-                setSelectedCategory(category.label);
               }}
             />
           ))}

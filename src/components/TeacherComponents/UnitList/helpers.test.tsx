@@ -94,7 +94,6 @@ describe("unit list helpers", () => {
       learningThemes: [],
       hasNewContent: false,
       currentPageItems: [],
-      selectedCategory: "biology",
       yearGroups: [{ year: "year-10", yearTitle: "Year 10" }],
       subjectCategories: [
         { label: "Biology", slug: "biology", iconName: "icon-biology" },
@@ -129,7 +128,6 @@ describe("unit list helpers", () => {
       hasNewContent: false,
       currentPageItems: [],
       paginationProps: mockPaginationProps,
-      selectedCategory: "biology",
       yearGroups: [{ year: "year-10", yearTitle: "Year 10" }],
       onClick: () => {},
     });
