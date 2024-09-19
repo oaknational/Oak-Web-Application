@@ -29,6 +29,7 @@ describe("Component - subject phase picker", () => {
         slug: "english",
         phases: [],
         examboards: [],
+        cycle: "1",
       },
       phase: { title: "Secondary", slug: "secondary" },
       examboard: { title: "AQA", slug: "aqa" },

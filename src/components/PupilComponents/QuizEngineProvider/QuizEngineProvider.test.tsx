@@ -20,7 +20,7 @@ import {
   LessonEngineContextType,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
-import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+import { invariant } from "@/utils/invariant";
 
 describe("QuizEngineContext", () => {
   const wrapper = (
@@ -141,7 +141,7 @@ describe("QuizEngineContext", () => {
       });
       expect(result.current.currentQuestionIndex).toBe(i + 1); // act followed  by expect to ensure that state is updated
     }
-    expect(lessonEngineContext.completeSection).toHaveBeenCalledWith(
+    expect(lessonEngineContext.completeActivity).toHaveBeenCalledWith(
       "starter-quiz",
     );
   });

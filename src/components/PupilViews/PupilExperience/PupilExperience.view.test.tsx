@@ -1,7 +1,7 @@
-import { OakTooltipProps } from "@oaknational/oak-components";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
+import { OakTooltipProps } from "@oaknational/oak-components";
 
 import {
   PupilExperienceView,
@@ -15,10 +15,6 @@ import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/le
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
-import {
-  PupilAnalyticsProvider,
-  getPupilPathwayData,
-} from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import "@/__tests__/__helpers__/IntersectionObserverMock";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 
@@ -32,6 +28,30 @@ jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
 jest.mock("@/components/PupilViews/PupilExpired/PupilExpired.view", () => ({
   PupilExpiredView: jest.fn(() => "PupilExpiredView"),
 }));
+
+jest.mock("@/components/PupilViews/PupilReview", () => {
+  return {
+    PupilViewsReview: () => (
+      <div>
+        <div>Lesson review</div>
+        <div data-testid="content-guidance-info">Guidance Title</div>
+        <div data-testid="suervision-level-info">Supervision Level</div>
+      </div>
+    ),
+  };
+});
+
+jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
+  return {
+    PupilViewsLessonOverview: () => (
+      <div>
+        <div>Lesson Title</div>
+        <div data-testid="content-guidance-info">Guidance Title</div>
+        <div data-testid="suervision-level-info">Supervision Level</div>
+      </div>
+    ),
+  };
+});
 
 jest.mock("@oaknational/oak-components", () => {
   return {
@@ -94,8 +114,11 @@ describe("PupilExperienceView", () => {
       const lessonContent = lessonContentFixture({
         lessonTitle: "Lesson Title",
       });
-      const lessonBrowseData = lessonBrowseDataFixture({});
-      const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+      const lessonBrowseData = lessonBrowseDataFixture({
+        lessonSlug: "lesson-slug",
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+      });
 
       jest
         .spyOn(LessonEngineProvider, "useLessonEngineContext")
@@ -105,14 +128,13 @@ describe("PupilExperienceView", () => {
           }),
         );
       const { getByText } = render(
-        <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
-          <PupilExperienceView
-            lessonContent={lessonContent}
-            browseData={lessonBrowseData}
-            hasWorksheet={false}
-            initialSection="overview"
-          />
-        </PupilAnalyticsProvider>,
+        <PupilExperienceView
+          lessonContent={lessonContent}
+          browseData={lessonBrowseData}
+          hasWorksheet={false}
+          initialSection="overview"
+          pageType="browse"
+        />,
       );
 
       expect(getByText("Lesson Title")).toBeInTheDocument();
@@ -136,17 +158,14 @@ describe("PupilExperienceView", () => {
             }),
           );
 
-        const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
-
         const { getByText } = render(
-          <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
-            <PupilExperienceView
-              lessonContent={lessonContent}
-              browseData={lessonBrowseData}
-              hasWorksheet={false}
-              initialSection="overview"
-            />
-          </PupilAnalyticsProvider>,
+          <PupilExperienceView
+            lessonContent={lessonContent}
+            browseData={lessonBrowseData}
+            hasWorksheet={false}
+            initialSection="overview"
+            pageType="browse"
+          />,
         );
 
         expect(getByText(name as RegExp)).toBeInTheDocument();
@@ -160,8 +179,6 @@ describe("PupilExperienceView", () => {
     const lessonBrowseData = lessonBrowseDataFixture({});
     lessonBrowseData.lessonData.deprecatedFields = { expired: true };
 
-    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
-
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
         currentSection: "overview",
@@ -169,14 +186,13 @@ describe("PupilExperienceView", () => {
     );
 
     const { getByText } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
-        <PupilExperienceView
-          lessonContent={lessonContent}
-          browseData={lessonBrowseData}
-          hasWorksheet={false}
-          initialSection="overview"
-        />
-      </PupilAnalyticsProvider>,
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        initialSection="overview"
+        pageType="browse"
+      />,
     );
 
     expect(getByText("PupilExpiredView", { exact: false })).toBeInTheDocument();
@@ -197,7 +213,6 @@ describe("PupilExperienceView", () => {
       supervisionLevel,
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
-    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -205,14 +220,13 @@ describe("PupilExperienceView", () => {
       }),
     );
     const { getByTestId, getByRole } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
-        <PupilExperienceView
-          lessonContent={lessonContent}
-          browseData={lessonBrowseData}
-          hasWorksheet={false}
-          initialSection="overview"
-        />
-      </PupilAnalyticsProvider>,
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        initialSection="overview"
+        pageType="browse"
+      />,
     );
     const dialog = getByRole("alertdialog");
 
@@ -222,7 +236,7 @@ describe("PupilExperienceView", () => {
     expect(getByTestId("content-guidance-info")).toHaveTextContent(
       contentguidanceLabel,
     );
-    expect(getByTestId("content-guidance-info")).toHaveTextContent(
+    expect(getByTestId("suervision-level-info")).toHaveTextContent(
       supervisionLevel,
     );
   });
@@ -242,7 +256,6 @@ describe("PupilExperienceView", () => {
       supervisionLevel,
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
-    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -250,14 +263,13 @@ describe("PupilExperienceView", () => {
       }),
     );
     const { getByTestId, getByRole } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
-        <PupilExperienceView
-          lessonContent={lessonContent}
-          browseData={lessonBrowseData}
-          hasWorksheet={false}
-          initialSection="overview"
-        />
-      </PupilAnalyticsProvider>,
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        initialSection="overview"
+        pageType="browse"
+      />,
     );
     await userEvent.click(getByTestId("acceptButton"));
     waitFor(() => {
@@ -280,7 +292,6 @@ describe("PupilExperienceView", () => {
       supervisionLevel,
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
-    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -290,15 +301,14 @@ describe("PupilExperienceView", () => {
     mockRouter.push("/initial-path");
 
     const { getByTestId } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
-        <PupilExperienceView
-          backUrl="/somewhere-else"
-          lessonContent={lessonContent}
-          browseData={lessonBrowseData}
-          hasWorksheet={false}
-          initialSection="overview"
-        />
-      </PupilAnalyticsProvider>,
+      <PupilExperienceView
+        backUrl="/somewhere-else"
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        initialSection="overview"
+        pageType="browse"
+      />,
     );
 
     expect(mockRouter.asPath).toBe("/initial-path");
@@ -322,7 +332,6 @@ describe("PupilExperienceView", () => {
       supervisionLevel,
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
-    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -331,15 +340,14 @@ describe("PupilExperienceView", () => {
     );
 
     render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
-        <PupilExperienceView
-          backUrl="/somewhere-else"
-          lessonContent={lessonContent}
-          browseData={lessonBrowseData}
-          hasWorksheet={false}
-          initialSection="overview"
-        />
-      </PupilAnalyticsProvider>,
+      <PupilExperienceView
+        backUrl="/somewhere-else"
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        initialSection="overview"
+        pageType="browse"
+      />,
     );
 
     expect(
@@ -365,7 +373,6 @@ describe("PupilExperienceView", () => {
       supervisionLevel,
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
-    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -374,15 +381,14 @@ describe("PupilExperienceView", () => {
     );
 
     render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
-        <PupilExperienceView
-          backUrl="/somewhere-else"
-          lessonContent={lessonContent}
-          browseData={lessonBrowseData}
-          hasWorksheet={false}
-          initialSection="overview"
-        />
-      </PupilAnalyticsProvider>,
+      <PupilExperienceView
+        backUrl="/somewhere-else"
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        initialSection="overview"
+        pageType="browse"
+      />,
     );
 
     expect(
@@ -394,8 +400,12 @@ describe("PupilExperienceView", () => {
     const lessonContent = lessonContentFixture({
       lessonTitle: "Lesson Title",
     });
-    const lessonBrowseData = lessonBrowseDataFixture({});
-    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
+    const lessonBrowseData = lessonBrowseDataFixture({
+      lessonSlug: "lesson-slug",
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+    });
+
     lessonBrowseData.programmeFields.phase = "secondary";
     lessonContent.lessonTitle = null;
 
@@ -406,14 +416,13 @@ describe("PupilExperienceView", () => {
     );
 
     const { getByText, queryByText } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
-        <PupilExperienceView
-          lessonContent={lessonContent}
-          browseData={lessonBrowseData}
-          hasWorksheet={false}
-          initialSection="review"
-        />
-      </PupilAnalyticsProvider>,
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        initialSection="review"
+        pageType="browse"
+      />,
     );
 
     expect(queryByText("Lesson Title")).toBeNull();
@@ -425,7 +434,6 @@ describe("PupilExperienceView", () => {
       lessonTitle: "Lesson Title",
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
-    const pupilPathwayData = getPupilPathwayData(lessonBrowseData);
 
     jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
@@ -434,14 +442,13 @@ describe("PupilExperienceView", () => {
     );
 
     const { queryByText } = render(
-      <PupilAnalyticsProvider pupilPathwayData={pupilPathwayData}>
-        <PupilExperienceView
-          lessonContent={lessonContent}
-          browseData={lessonBrowseData}
-          hasWorksheet={false}
-          initialSection="overview"
-        />
-      </PupilAnalyticsProvider>,
+      <PupilExperienceView
+        lessonContent={lessonContent}
+        browseData={lessonBrowseData}
+        hasWorksheet={false}
+        initialSection="overview"
+        pageType="browse"
+      />,
     );
 
     expect(queryByText("Lesson Title")).toBeNull();

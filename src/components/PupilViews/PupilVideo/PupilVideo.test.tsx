@@ -1,5 +1,5 @@
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import userEvent from "@testing-library/user-event";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilViewsVideo } from "./PupilVideo.view";
 
@@ -10,7 +10,12 @@ import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/Vide
 
 const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
   if (userEventCallback) {
-    userEventCallback({ event: "play", timeElapsed: 0, duration: 0 });
+    userEventCallback({
+      event: "play",
+      timeElapsed: 0,
+      duration: 0,
+      muted: false,
+    });
   }
   return <span data-testid="video-player" />;
 };
@@ -63,11 +68,11 @@ describe(PupilViewsVideo, () => {
   });
 
   it('completes the section when "I\'ve finished the video" is clicked', async () => {
-    const completeSection = jest.fn();
+    const completeActivity = jest.fn();
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider
-          value={createLessonEngineContext({ completeSection })}
+          value={createLessonEngineContext({ completeActivity })}
         >
           <PupilViewsVideo
             videoMuxPlaybackId="123"
@@ -82,7 +87,7 @@ describe(PupilViewsVideo, () => {
 
     await userEvent.click(getByText("I've finished the video"));
 
-    expect(completeSection).toHaveBeenCalled();
+    expect(completeActivity).toHaveBeenCalled();
   });
 
   it('sets the current section to "overview" when the back button is clicked', async () => {
@@ -173,6 +178,9 @@ describe(PupilViewsVideo, () => {
       played: true,
       duration: 0,
       timeElapsed: 0,
+      muted: false,
+      signedOpened: false,
+      transcriptOpened: false,
     });
   });
 });
