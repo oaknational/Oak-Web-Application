@@ -30,7 +30,7 @@ describe("Component - subject phase picker", () => {
         phases: [],
         examboards: [],
         cycle: "1",
-        ks4_options: [],
+        ks4_options: [{ title: "AQA", slug: "aqa" }],
       },
       phase: { title: "Secondary", slug: "secondary" },
       ks4Option: { title: "AQA", slug: "aqa" },

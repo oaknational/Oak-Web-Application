@@ -132,6 +132,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               tag="h2"
               $font={["heading-5", "heading-4"]}
               $mb="space-between-m"
+              data-testid="overview-heading"
             >
               Overview
             </OakHeading>
@@ -169,13 +170,13 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 tag="h2"
                 $font={["heading-5", "heading-4"]}
                 $mb="space-between-m"
+                data-testid="overview-heading"
               >
                 Overview
               </OakHeading>
               <OakHeading
                 tag="h3"
                 $font={["heading-6", "heading-5"]}
-                data-testid="intent-heading"
                 $mb="space-between-s"
                 line-height={48}
               >

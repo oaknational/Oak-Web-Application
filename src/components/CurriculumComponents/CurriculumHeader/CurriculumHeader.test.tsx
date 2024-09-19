@@ -94,6 +94,6 @@ describe("Component - Curriculum Header", () => {
   test("keyStage metadata", () => {
     const { getByTestId } = renderComponent();
     const examboardMetadata = getByTestId("examboard-metadata");
-    expect(examboardMetadata).toHaveTextContent("AQA (KS4)");
+    expect(examboardMetadata).toHaveTextContent("All exam boards (KS4)");
   });
 });
