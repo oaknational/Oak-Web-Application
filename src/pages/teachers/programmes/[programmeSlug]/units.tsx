@@ -336,7 +336,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   $position={"relative"}
                   $alignItems={"center"}
                 >
-                  {tiers.length === 0 && currentPageItems.length > 1 && (
+                  {tiers.length === 0 && currentPageItems.length >= 1 && (
                     <Flex $minWidth={120} $mb={16} $position={"relative"}>
                       <OakHeading $font={"heading-5"} tag={"h2"}>
                         {`Units (${filteredUnits.length})`}
