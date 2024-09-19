@@ -120,7 +120,7 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(button);
     const control = getByTitle("Phase");
     await userEvent.click(await findByTitle("Secondary"));
-    const examboardTitle = await findByText("Choose an exam board for KS4:");
+    const examboardTitle = await findByText("Choose an option for KS4:");
     expect(examboardTitle).toBeTruthy();
     const aqa = (await findAllByTitle("AQA"))[0];
     if (!aqa) {
@@ -171,7 +171,7 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(getByTitle("Secondary"));
     await userEvent.click(document.body);
     await userEvent.click(viewButton);
-    expect(queryByText("Select an exam board option")).toBeTruthy();
+    expect(queryByText("Select an option for KS4")).toBeTruthy();
   });
 
   test("calls tracking.curriculumVisualiserAccessed once, with correct props", async () => {
