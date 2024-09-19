@@ -25,7 +25,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 /**
- * Interface to pick a subject, phase, and if applicable, an exam board.
+ * Interface to pick a subject, phase, and if applicable, an option for KS4 (pathway/exam board).
  * ## Usage
  * Used on curriculum homepage, new curriculum pages.
  */
@@ -132,7 +132,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     (option) => option.slug === currentSelection?.phase.slug,
   );
 
-  const initialExamboard = initialSubject?.ks4_options?.find(
+  const initialKS4Option = initialSubject?.ks4_options?.find(
     (option) => option.slug === currentSelection?.ks4Option?.slug,
   );
 
@@ -144,7 +144,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     initialPhase || null,
   );
   const [selectedKS4Option, setSelectedKS4Option] = useState<KS4Option | null>(
-    initialExamboard || null,
+    initialKS4Option || null,
   );
   const [showSubjectError, setShowSubjectError] = useState(false);
   const [showPhaseError, setShowPhaseError] = useState(false);
@@ -155,7 +155,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     useState<OakColorName>("white");
 
   const schoolPhaseInputId = useId();
-  const examBoardInputId = useId();
+  const ks4OptionInputId = useId();
   const subjectInputId = useId();
 
   const toggleShowSubjects = () => {
@@ -550,7 +550,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       name="content-guidance"
                       verticalAlign="bottom"
                     />
-                    Select an exam board option
+                    Select an option for KS4
                   </>
                 )}
                 {selectedPhase && !showKS4OptionError && (
@@ -653,18 +653,18 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     selectedSubject?.ks4_options && (
                       <>
                         <OakHeading
-                          id={examBoardInputId}
+                          id={ks4OptionInputId}
                           $mb="space-between-s"
                           $mt="space-between-m"
                           tag={"h4"}
                           $font={"heading-6"}
                         >
-                          Choose an exam board for KS4:
+                          Choose an option for KS4:
                         </OakHeading>
 
                         <Box
                           role="radiogroup"
-                          aria-labelledby={examBoardInputId}
+                          aria-labelledby={ks4OptionInputId}
                           aria-required="true"
                           aria-describedby={
                             showKS4OptionError ? KS4OptionErrorId : undefined
