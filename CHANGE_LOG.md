@@ -1,3 +1,35 @@
+# [1.556.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.555.0...v1.556.0) (2024-09-20)
+
+
+### Bug Fixes
+
+* add filterUnit tests ([694dc7a](https://github.com/oaknational/Oak-Web-Application/commit/694dc7a235ca12ee85dc135d31f54a866c13f778))
+* amend getUnitsForProgramme function and add test ([21a1820](https://github.com/oaknational/Oak-Web-Application/commit/21a182068ab248917c6c8c8d167b81fcd41b998a))
+* amend tests ([06b3328](https://github.com/oaknational/Oak-Web-Application/commit/06b3328ed3f43770b6bc56c152b780a222057462))
+* bug with category and years filters ([4909c6f](https://github.com/oaknational/Oak-Web-Application/commit/4909c6f249489b6b3fb718440cb07a29a7d7c33f))
+* legacy counts and adds fieldsets and legends to filters ([ba59d0f](https://github.com/oaknational/Oak-Web-Application/commit/ba59d0f66dc7a6ac4c5acea7ea94f06820e59b89))
+* rename prop and fix pa11y issues ([f0c919a](https://github.com/oaknational/Oak-Web-Application/commit/f0c919a859bd0ef1a5946ade7366a174650469f6))
+
+
+### Features
+
+* fix type error add year gorup filters ([c30fec3](https://github.com/oaknational/Oak-Web-Application/commit/c30fec3d556b615079539b251f34cac83c4168f0))
+* update oak-components package ([af44ebc](https://github.com/oaknational/Oak-Web-Application/commit/af44ebc3e4a27159c30f57291e448321ec5e8b07))
+
+# [1.555.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.554.1...v1.555.0) (2024-09-19)
+
+
+### Features
+
+* added the functional part of multi-level lists to the new curriculum explainer ([74f36d8](https://github.com/oaknational/Oak-Web-Application/commit/74f36d82b4e0b7024ac8098b6dcc8b1f1f7e0f87))
+
+## [1.554.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.554.0...v1.554.1) (2024-09-19)
+
+
+### Bug Fixes
+
+* set default value for newsletter sign up ([9a68c2a](https://github.com/oaknational/Oak-Web-Application/commit/9a68c2a04fbad6e5953fa7431933b9261b916a91))
+
 # [1.554.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.553.0...v1.554.0) (2024-09-19)
 
 

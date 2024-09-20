@@ -41,6 +41,9 @@ const RoleSelectionView = () => {
   } = useForm<RoleSelectFormProps>({
     resolver: zodResolver(roleSelectFormSchema),
     mode: "onBlur",
+    defaultValues: {
+      newsletterSignUp: false,
+    },
   });
 
   const handleChange = (role: "other" | "role", value: string) => {
