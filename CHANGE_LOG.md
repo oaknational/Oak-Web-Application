@@ -1,3 +1,10 @@
+# [1.557.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.556.0...v1.557.0) (2024-09-20)
+
+
+### Features
+
+* make specialist downloads restricted ([a309c3c](https://github.com/oaknational/Oak-Web-Application/commit/a309c3c7818cde72be89029cf009dbc7bce9608a))
+
 # [1.556.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.555.0...v1.556.0) (2024-09-20)
 
 
