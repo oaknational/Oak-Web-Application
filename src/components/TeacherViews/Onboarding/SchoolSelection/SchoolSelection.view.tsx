@@ -124,6 +124,7 @@ export const SchoolSelectionView = () => {
               label={"School"}
               setSelectedSchool={setSelectedSchool}
               withHomeschool={false}
+              required
             />
             <OakFlex
               $mt={"space-between-s"}
