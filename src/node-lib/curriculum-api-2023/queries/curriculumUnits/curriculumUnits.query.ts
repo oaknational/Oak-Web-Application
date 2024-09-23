@@ -45,13 +45,18 @@ const curriculumUnitsQuery =
       where: where,
     });
 
-    const units = res.units;
+    const units = res.units.map((unit) => {
+      return {
+        ...unit,
+        order: unit.order ?? 0,
+      };
+    });
 
     if (!units || units.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    return CurriculumUnitsSchema.parse(res);
+    return CurriculumUnitsSchema.parse({ units });
   };
 
 export default curriculumUnitsQuery;

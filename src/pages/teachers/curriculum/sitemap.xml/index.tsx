@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const basePath = "teachers/curriculum";
 
   const curriculumResult = await curriculumApi2023.subjectPhaseOptions({
-    cycles: isCycleTwoEnabled() ? ["1", "2"] : ["1"],
+    cycle: isCycleTwoEnabled() ? "2" : "1",
   });
 
   const curriculumPathSlugs: string[] = [];
