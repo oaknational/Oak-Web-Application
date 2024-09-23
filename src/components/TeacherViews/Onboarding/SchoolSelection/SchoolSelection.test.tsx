@@ -89,39 +89,39 @@ describe("Onboarding view", () => {
         name: "Enter manually",
       });
 
-      userEvent.click(manualButton);
+      await userEvent.click(manualButton);
 
       expect(await screen.findByText("School name")).toBeInTheDocument();
       expect(await screen.findByText("School address")).toBeInTheDocument();
     });
 
-    it("shows error message when school name is not entered correctly", async () => {
+    it("shows error message when school name is empty", async () => {
       renderWithProviders()(<SchoolSelectionView />);
       const user = userEvent.setup();
 
       const manualButton = await screen.findByRole("button", {
         name: "Enter manually",
       });
-      userEvent.click(manualButton);
+      await userEvent.click(manualButton);
       const inputBox = await screen.findByPlaceholderText("Type school name");
-      await user.type(inputBox, "B");
+      await user.type(inputBox, "  ");
       await user.tab();
 
       const schoolNameError = await screen.findByText("Enter school name");
       expect(schoolNameError).toBeInTheDocument();
     });
-    it("shows error message when school address is not entered correctly", async () => {
+    it("shows error message when school address is empty", async () => {
       renderWithProviders()(<SchoolSelectionView />);
       const user = userEvent.setup();
 
       const manualButton = await screen.findByRole("button", {
         name: "Enter manually",
       });
-      userEvent.click(manualButton);
+      await userEvent.click(manualButton);
       const inputBox = await screen.findByPlaceholderText(
         "Type school address",
       );
-      await user.type(inputBox, "B");
+      await user.type(inputBox, "  ");
       await user.tab();
 
       const schoolAddressError = await screen.findByText(

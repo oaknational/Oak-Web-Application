@@ -1,3 +1,19 @@
+## [1.557.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.557.0...v1.557.1) (2024-09-20)
+
+
+### Bug Fixes
+
+* **LESQ-1073:** make the school picker input required ([05fe506](https://github.com/oaknational/Oak-Web-Application/commit/05fe5062443c645ecbf39983b8836e634e0bc9ed))
+* **LESQ-1073:** remove length validation on manual school name ([8ebce62](https://github.com/oaknational/Oak-Web-Application/commit/8ebce622c869d5f50b134123ee626bdd59a19796))
+* role selection form breaking after adding `noValidate` to form ([2b64ae7](https://github.com/oaknational/Oak-Web-Application/commit/2b64ae7deaa00f6c293afcc00f46be050315f097))
+
+# [1.557.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.556.0...v1.557.0) (2024-09-20)
+
+
+### Features
+
+* make specialist downloads restricted ([a309c3c](https://github.com/oaknational/Oak-Web-Application/commit/a309c3c7818cde72be89029cf009dbc7bce9608a))
+
 # [1.556.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.555.0...v1.556.0) (2024-09-20)
 
 
