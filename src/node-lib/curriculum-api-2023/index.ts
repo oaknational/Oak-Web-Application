@@ -63,6 +63,11 @@ export const examboardSchema = z.object({
   slug: z.string(),
   displayOrder: z.number().optional(),
 });
+export const keystagesSchema = z.object({
+  title: z.string(),
+  slug: z.string(),
+  displayOrder: z.number().optional(),
+});
 
 const contentTypesSchema = z.object({
   slug: z.union([z.literal("unit"), z.literal("lesson")]),
@@ -79,6 +84,7 @@ export const searchPageSchema = z.object({
 export const subjectPhaseOptionSchema = subjectSchema.extend({
   phases: z.array(phaseSchema),
   examboards: z.array(examboardSchema).optional().nullable(),
+  keystages: z.array(keystagesSchema).optional().nullable(),
   cycle: z.string(),
 });
 
