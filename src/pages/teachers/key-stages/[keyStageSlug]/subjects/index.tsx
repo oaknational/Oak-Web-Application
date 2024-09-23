@@ -43,12 +43,17 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const containerHeight = keyStages.length > 4 ? 172 : 120;
   const { track } = useAnalytics();
 
+  const metaDescriptionSlug =
+    keyStageSlug === "early-years-foundation-stage"
+      ? "EYFS"
+      : keyStageSlug.toUpperCase();
+
   return (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Free ${keyStageSlug.toUpperCase()} Teaching Resources for Lesson Planning`,
-          description: `Click here to browse and download our free ${keyStageSlug.toUpperCase()} teaching resources for lesson planning. Our teaching resources are made by subject experts and entirely free to download and use.`,
+          title: `Free ${metaDescriptionSlug} Teaching Resources for Lesson Planning`,
+          description: `Click here to browse and download our free ${metaDescriptionSlug} teaching resources for lesson planning. Our teaching resources are made by subject experts and entirely free to download and use.`,
         }),
       }}
       $background="white"
