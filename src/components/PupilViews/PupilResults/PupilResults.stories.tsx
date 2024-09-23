@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { LessonAttemptCamelCase } from "@oaknational/oak-pupil-client";
 
 import { PupilViewsResults } from "./PupilResults.view";
 
@@ -42,16 +43,18 @@ export const Default: Story = {
     starterQuizQuestionsArray: quizQuestions,
     exitQuizQuestionsArray: exitQuizQuestions,
     attemptData: {
+      attemptId: "efwef",
+      createdAt: "efwef",
       browseData: {
         subject: "ewfw",
         yearDescription: "efwef",
-        isLegacy: false,
       },
       lessonData: {
         slug: "efwef",
         title: "efwef",
       },
-      sectionResults: sectionResultsFixture,
+      sectionResults:
+        sectionResultsFixture as LessonAttemptCamelCase["sectionResults"],
     },
   },
 };
