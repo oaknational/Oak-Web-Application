@@ -13,7 +13,6 @@ import {
   SerializedPost,
 } from "@/pages-helpers/home/getBlogPosts";
 import { HomePage } from "@/common-lib/cms-types";
-import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 
 export type TeachersHomePageProps = HomePageProps & {
   curriculumData: TeachersHomePageData;
@@ -28,7 +27,14 @@ const Home: NextPage<TeachersHomePageProps> = (props) => {
   const { curriculumData, posts } = props;
 
   return (
-    <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
+    <AppLayout
+      seoProps={{
+        title: "Free, time-saving teacher resources | Oak National Academy",
+        description:
+          "Explore our free, time-saving teacher resources from Oak National Academy. Browse and download worksheets, quizzes and slides from KS1 to KS4. ",
+      }}
+      $background={"white"}
+    >
       <HomePageTabImageNav current={"teachers"} />
       <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
       <HomePageLowerView posts={posts} />
