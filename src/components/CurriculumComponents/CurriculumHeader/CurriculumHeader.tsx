@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { useRouter } from "next/router";
 import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
 
-import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { Hr } from "@/components/SharedComponents/Typography";
@@ -35,7 +34,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   keyStages,
 }) => {
   const router = useRouter();
-  const cycleTwoEnabled = useCycleTwoEnabled();
   const tab = router.query.tab as CurriculumTab;
   const subject = subjectPhaseOptions.subjects.find(
     (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug,
@@ -138,18 +136,10 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             ]}
           />
           <Hr $color={"white"} />
-          {!cycleTwoEnabled && (
-            <SubjectPhasePicker
-              {...subjectPhaseOptions}
-              currentSelection={currentSelection}
-            />
-          )}
-          {cycleTwoEnabled && (
-            <SubjectPhasePicker
-              {...subjectPhaseOptions}
-              currentSelection={currentSelection}
-            />
-          )}
+          <SubjectPhasePicker
+            {...subjectPhaseOptions}
+            currentSelection={currentSelection}
+          />
         </Box>
       </Flex>
       <Box $background={color2}>
