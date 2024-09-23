@@ -40,6 +40,6 @@ describe("PupilResults", () => {
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
-    expect(getByText("Results Page")).toBeInTheDocument();
+    expect(getByText("Results")).toBeInTheDocument();
   });
 });
