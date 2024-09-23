@@ -249,6 +249,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       setShowPhases(true);
     }
     setShowSubjects(false);
+    setShowPhases(true);
   };
 
   const handleSelectPhase = (phase: Phase): void => {
