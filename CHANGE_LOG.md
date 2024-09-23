@@ -1,3 +1,66 @@
+# [1.558.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.557.1...v1.558.0) (2024-09-23)
+
+
+### Features
+
+* **loading:** add loading state to the button ([8521a28](https://github.com/oaknational/Oak-Web-Application/commit/8521a28e7201b4e8efc646e81be2d464febcc79a))
+* **package:** remove yalc ([9f5c973](https://github.com/oaknational/Oak-Web-Application/commit/9f5c97324c16b1010e1f5b280f6f4f4c2eb15e2f))
+* **share:** add page tests ([2c6450c](https://github.com/oaknational/Oak-Web-Application/commit/2c6450c04efb1dcbcce8d7ef1dbc1e3b73e3e9f4))
+* **share:** fix id being convert to camel case ([dc74139](https://github.com/oaknational/Oak-Web-Application/commit/dc7413942e221e55520517f868e8686f16a2bc99))
+* **sharepage:** create the share results page, fetch and render data ([5bcafbb](https://github.com/oaknational/Oak-Web-Application/commit/5bcafbb34feb30e381e86ac4be534f12975e179c))
+* **sharepage:** create the share results page, fetch and render data ([f908e14](https://github.com/oaknational/Oak-Web-Application/commit/f908e14603e443f11be20dc6d8257babf3aeae8b))
+* **sharepage:** create the share results page, fetch and render data ([41db79e](https://github.com/oaknational/Oak-Web-Application/commit/41db79e55cf22edf4c1396e62806dfa62ab9b1d4))
+* **test:** test new code ([683dc38](https://github.com/oaknational/Oak-Web-Application/commit/683dc389323f0a35ea5b891b258bd72069c38888))
+* **test:** test new code ([cb05209](https://github.com/oaknational/Oak-Web-Application/commit/cb052098e924cf811693d13df3e0dc0665e0092a))
+
+## [1.557.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.557.0...v1.557.1) (2024-09-20)
+
+
+### Bug Fixes
+
+* **LESQ-1073:** make the school picker input required ([05fe506](https://github.com/oaknational/Oak-Web-Application/commit/05fe5062443c645ecbf39983b8836e634e0bc9ed))
+* **LESQ-1073:** remove length validation on manual school name ([8ebce62](https://github.com/oaknational/Oak-Web-Application/commit/8ebce622c869d5f50b134123ee626bdd59a19796))
+* role selection form breaking after adding `noValidate` to form ([2b64ae7](https://github.com/oaknational/Oak-Web-Application/commit/2b64ae7deaa00f6c293afcc00f46be050315f097))
+
+# [1.557.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.556.0...v1.557.0) (2024-09-20)
+
+
+### Features
+
+* make specialist downloads restricted ([a309c3c](https://github.com/oaknational/Oak-Web-Application/commit/a309c3c7818cde72be89029cf009dbc7bce9608a))
+
+# [1.556.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.555.0...v1.556.0) (2024-09-20)
+
+
+### Bug Fixes
+
+* add filterUnit tests ([694dc7a](https://github.com/oaknational/Oak-Web-Application/commit/694dc7a235ca12ee85dc135d31f54a866c13f778))
+* amend getUnitsForProgramme function and add test ([21a1820](https://github.com/oaknational/Oak-Web-Application/commit/21a182068ab248917c6c8c8d167b81fcd41b998a))
+* amend tests ([06b3328](https://github.com/oaknational/Oak-Web-Application/commit/06b3328ed3f43770b6bc56c152b780a222057462))
+* bug with category and years filters ([4909c6f](https://github.com/oaknational/Oak-Web-Application/commit/4909c6f249489b6b3fb718440cb07a29a7d7c33f))
+* legacy counts and adds fieldsets and legends to filters ([ba59d0f](https://github.com/oaknational/Oak-Web-Application/commit/ba59d0f66dc7a6ac4c5acea7ea94f06820e59b89))
+* rename prop and fix pa11y issues ([f0c919a](https://github.com/oaknational/Oak-Web-Application/commit/f0c919a859bd0ef1a5946ade7366a174650469f6))
+
+
+### Features
+
+* fix type error add year gorup filters ([c30fec3](https://github.com/oaknational/Oak-Web-Application/commit/c30fec3d556b615079539b251f34cac83c4168f0))
+* update oak-components package ([af44ebc](https://github.com/oaknational/Oak-Web-Application/commit/af44ebc3e4a27159c30f57291e448321ec5e8b07))
+
+# [1.555.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.554.1...v1.555.0) (2024-09-19)
+
+
+### Features
+
+* added the functional part of multi-level lists to the new curriculum explainer ([74f36d8](https://github.com/oaknational/Oak-Web-Application/commit/74f36d82b4e0b7024ac8098b6dcc8b1f1f7e0f87))
+
+## [1.554.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.554.0...v1.554.1) (2024-09-19)
+
+
+### Bug Fixes
+
+* set default value for newsletter sign up ([9a68c2a](https://github.com/oaknational/Oak-Web-Application/commit/9a68c2a04fbad6e5953fa7431933b9261b916a91))
+
 # [1.554.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.553.0...v1.554.0) (2024-09-19)
 
 

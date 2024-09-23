@@ -147,7 +147,26 @@ export default async function generate(
                   <w:tabs>
                     <w:tab w:val="num" w:pos="720" />
                   </w:tabs>
-                  <w:ind w:left="720" w:hanging="720" />
+                  <w:ind w:left="425" w:right="-17" w:hanging="360" />
+                </w:pPr>
+                <w:rPr>
+                  <w:rFonts
+                    w:ascii="Symbol"
+                    w:hAnsi="Symbol"
+                    w:hint="default"
+                  />
+                </w:rPr>
+              </w:lvl>
+              <w:lvl w:ilvl="1">
+                <w:start w:val="1" />
+                <w:numFmt w:val="bullet" />
+                <w:lvlText w:val="" />
+                <w:lvlJc w:val="left" />
+                <w:pPr>
+                  <w:tabs>
+                    <w:tab w:val="num" w:pos="1440" />
+                  </w:tabs>
+                  <w:ind w:left="850" w:right="-17" w:hanging="360" />
                 </w:pPr>
                 <w:rPr>
                   <w:rFonts
@@ -167,7 +186,19 @@ export default async function generate(
                 <w:lvlText w:val="%1." />
                 <w:lvlJc w:val="left" />
                 <w:pPr>
-                  <w:ind w:left="360" w:hanging="360" />
+                  <w:ind w:left="425" w:right="-17" w:hanging="360" />
+                </w:pPr>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                </w:rPr>
+              </w:lvl>
+              <w:lvl w:ilvl="1">
+                <w:start w:val="1" />
+                <w:numFmt w:val="decimal" />
+                <w:lvlText w:val="%1." />
+                <w:lvlJc w:val="left" />
+                <w:pPr>
+                  <w:ind w:left="850" w:right="-17" w:hanging="360" />
                 </w:pPr>
                 <w:rPr>
                   <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
@@ -186,15 +217,15 @@ export default async function generate(
           block.listItem === "numbering"
             ? currentNumbering.numbering
             : currentNumbering.bullet;
+
         return safeXml`
           <w:p>
             <w:pPr>
               <w:numPr>
-                <w:ilvl w:val="0" />
+                <w:ilvl w:val="${block.level - 1}" />
                 <w:numId w:val="${numId}" />
               </w:numPr>
               <w:spacing w:line="276" w:lineRule="auto" />
-              <w:ind w:left="425" w:right="-17" w:hanging="360" />
             </w:pPr>
             ${content}
           </w:p>
@@ -204,7 +235,7 @@ export default async function generate(
         normal: async (_block, content) => {
           return safeXml` <w:p>${content}</w:p> `;
         },
-        heading2: async (_block, content) => {
+        heading1: async (_block, content) => {
           return safeXml`
             <w:p>
               <w:pPr>
@@ -222,7 +253,7 @@ export default async function generate(
             </w:p>
           `;
         },
-        heading3: async (_block, content) => {
+        heading2: async (_block, content) => {
           return safeXml`
             <w:p>
               <w:pPr>
@@ -240,11 +271,29 @@ export default async function generate(
             </w:p>
           `;
         },
-        heading4: async (_block, content) => {
+        heading3: async (_block, content) => {
           return safeXml`
             <w:p>
               <w:pPr>
                 <w:pStyle w:val="Heading5" />
+              </w:pPr>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:b />
+                  <w:color w:val="222222" />
+                  <w:sz w:val="24" />
+                </w:rPr>
+                ${content}
+              </w:r>
+            </w:p>
+          `;
+        },
+        heading4: async (_block, content) => {
+          return safeXml`
+            <w:p>
+              <w:pPr>
+                <w:pStyle w:val="Heading6" />
               </w:pPr>
               <w:r>
                 <w:rPr>
