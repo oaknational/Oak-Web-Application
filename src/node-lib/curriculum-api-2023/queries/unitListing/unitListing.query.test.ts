@@ -79,7 +79,9 @@ jest.mock("../../sdk", () => {
             }),
             programme_slug: "programme-slug",
             supplementary_data: { unit_order: 1, order_in_unit: 1 },
-            unit_data: unitDataFixture({ overrides: { unit_id: 1 } }),
+            unit_data: unitDataFixture({
+              overrides: { unit_id: 1, subjectcategories: ["Physics"] },
+            }),
             unit_slug: "unit-slug",
           },
         ],
@@ -126,6 +128,14 @@ describe("unitListing()", () => {
       subjectParent: "Maths",
       tierSlug: "foundation",
       phase: "primary",
+      yearGroups: [{ yearTitle: "Year 1", year: "year-1" }],
+      subjectCategories: [
+        {
+          label: "Physics",
+          iconName: "subject-physics",
+          slug: "physics",
+        },
+      ],
       tiers: [
         {
           tierSlug: "foundation",
@@ -159,6 +169,7 @@ describe("unitListing()", () => {
             year: "year-1",
             yearOrder: 1,
             cohort: "2023-2024",
+            subjectCategories: [],
             learningThemes: [{ themeTitle: "Theme 1", themeSlug: "theme1" }],
           },
         ],
