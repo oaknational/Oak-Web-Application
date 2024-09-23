@@ -1,5 +1,6 @@
 import mockRouter from "next-router-mock";
 import userEvent from "@testing-library/user-event";
+import { act } from "@testing-library/react";
 
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import UnitListingPage, {
@@ -19,6 +20,10 @@ const utilsMock = jest.requireMock("@/utils/resultsPerPage");
 jest.mock("@/utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
 }));
+
+beforeEach(() => {
+  window.HTMLElement.prototype.scrollIntoView = jest.fn();
+});
 
 const unitSelected = jest.fn();
 
@@ -124,19 +129,43 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       });
     });
   });
+  describe("unit search filters", () => {
+    it("unit filtered by the learningTheme const ", () => {
+      mockRouter.push({
+        pathname: "/teachers/programmes/art-primary-ks1/units",
+        query: {
+          learningTheme: "computer-science-2",
+        },
+      });
+      const { getByRole } = render(
+        <UnitListingPage curriculumData={unitListingFixture()} />,
+      );
 
-  it("unitsFilteredByLearningTheme filters units by the learningTheme const ", () => {
-    mockRouter.push({
-      pathname: "/teachers/programmes/art-primary-ks1/units",
-      query: {
-        learningTheme: "computer-science-2",
-      },
+      expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
     });
-    const { getByRole } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />,
-    );
 
-    expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
+    it("skip filters button becomes visible when focussed", async () => {
+      const { getByText } = render(
+        <UnitListingPage curriculumData={unitListingFixture()} />,
+      );
+
+      const skipUnits = getByText("Skip to units").closest("a");
+
+      if (!skipUnits) {
+        throw new Error("Could not find filter button");
+      }
+
+      act(() => {
+        skipUnits.focus();
+      });
+      expect(skipUnits).toHaveFocus();
+      expect(skipUnits).not.toHaveStyle("position: absolute");
+
+      act(() => {
+        skipUnits.blur();
+      });
+      expect(skipUnits).not.toHaveFocus();
+    });
   });
 
   describe("getStaticPaths", () => {

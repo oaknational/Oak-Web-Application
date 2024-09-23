@@ -34,13 +34,15 @@ const RoleSelectionView = () => {
     setValue,
     handleSubmit,
     clearErrors,
-    setError,
     getValues,
     control,
     trigger,
   } = useForm<RoleSelectFormProps>({
     resolver: zodResolver(roleSelectFormSchema),
     mode: "onBlur",
+    defaultValues: {
+      newsletterSignUp: false,
+    },
   });
 
   const handleChange = (role: "other" | "role", value: string) => {
@@ -61,17 +63,6 @@ const RoleSelectionView = () => {
           formState.errors.role === undefined &&
           formState.errors.other === undefined
         }
-        onSubmit={() => {
-          if (getValues().role === "Other" && !getValues().other) {
-            setError("other", {
-              message: "Please tell us what your role is",
-            });
-          } else if (!getValues().role) {
-            setError("role", {
-              message: "Please select what describes you best",
-            });
-          }
-        }}
         control={control as Control<OnboardingFormProps>}
         trigger={trigger as UseFormTrigger<OnboardingFormProps>}
       >

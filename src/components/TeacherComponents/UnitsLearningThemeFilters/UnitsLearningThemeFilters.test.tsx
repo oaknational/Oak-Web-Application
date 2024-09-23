@@ -1,7 +1,5 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { act } from "react-dom/test-utils";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import UnitsLearningThemeFilters from "./UnitsLearningThemeFilters";
 
@@ -18,9 +16,16 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("UnitsLearningThemeFilters", () => {
+  beforeAll(() => {
+    // Mock window.history.state
+    jest.spyOn(window.history, "state", "get").mockReturnValue({
+      url: "https://example.com/some-path",
+    });
+  });
   test("should call tracking browse refined with correct args", async () => {
     renderWithProviders()(
       <UnitsLearningThemeFilters
+        programmeSlug="maths-secondary-ks3"
         labelledBy={"Learning Theme Filter"}
         learningThemes={[
           {
@@ -57,51 +62,5 @@ describe("UnitsLearningThemeFilters", () => {
       filterValue: "Grammar",
       activeFilters: { keyStage: ["ks3"], subject: ["english"] },
     });
-  });
-  test("skip filters button becomes visible when focussed", async () => {
-    const { getByText } = renderWithProviders()(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <UnitsLearningThemeFilters
-          labelledBy={"Learning Theme Filter"}
-          learningThemes={[
-            {
-              themeTitle: "Grammar",
-              themeSlug: "grammar",
-            },
-          ]}
-          selectedThemeSlug={"all"}
-          linkProps={{
-            page: "unit-index",
-            programmeSlug: "maths-secondary-ks3",
-          }}
-          idSuffix="test"
-          trackingProps={{
-            keyStageSlug: "ks3",
-            keyStageTitle: "Key stage 3",
-            subjectSlug: "english",
-            subjectTitle: "English",
-          }}
-          onChangeCallback={jest.fn}
-        />
-        ,
-      </OakThemeProvider>,
-    );
-
-    const skipUnits = getByText("Skip to units").closest("a");
-
-    if (!skipUnits) {
-      throw new Error("Could not find filter button");
-    }
-
-    act(() => {
-      skipUnits.focus();
-    });
-    expect(skipUnits).toHaveFocus();
-    expect(skipUnits).not.toHaveStyle("position: absolute");
-
-    act(() => {
-      skipUnits.blur();
-    });
-    expect(skipUnits).not.toHaveFocus();
   });
 });
