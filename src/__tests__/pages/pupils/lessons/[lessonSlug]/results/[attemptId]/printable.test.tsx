@@ -14,7 +14,6 @@ import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/le
 import OakError from "@/errors/OakError";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-
 const mockProps: CanonicalResultsPrintablePageProps = {
   browseData: lessonBrowseDataFixture({}),
   content: lessonContentFixture({}),
