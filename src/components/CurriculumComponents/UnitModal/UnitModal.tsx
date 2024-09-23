@@ -237,6 +237,10 @@ const UnitModal: FC<UnitModalProps> = ({
                                       optionalUnit.connection_prior_unit_title,
                                     futureUnitTitle:
                                       optionalUnit.connection_future_unit_title,
+                                    description: optionalUnit.description,
+                                    whyThisWhyNow:
+                                      optionalUnit.why_this_why_now,
+                                    cycle: unitData.cycle,
                                   });
                                 }}
                               />
