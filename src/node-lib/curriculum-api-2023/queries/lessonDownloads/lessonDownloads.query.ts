@@ -137,9 +137,7 @@ const lessonDownloadsQuery =
 
     return {
       ...lessonData,
-      isDownloadRegionRestricted: ["account-security-68rkee"].includes(
-        lessonSlug,
-      ),
+      isDownloadRegionRestricted: true,
     };
   };
 

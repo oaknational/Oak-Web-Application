@@ -127,6 +127,63 @@ describe("unit listing units", () => {
     expect(res[0][0]?.title).toEqual("Optional 1");
     expect(res[0][1]?.title).toEqual("Optional 2");
   });
+  test("getUnitsForProgramme adds subjectCategory ", async () => {
+    mockBatched.mockResolvedValueOnce(
+      Promise.resolve([
+        {
+          data: {
+            threads: [
+              {
+                threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
+                unit_id: 1,
+              },
+            ],
+          },
+        },
+      ]),
+    );
+    const programmeFixture = syntheticUnitvariantLessonsFixture();
+
+    const res = await getUnitsForProgramme([
+      syntheticUnitvariantLessonsFixture({
+        overrides: {
+          programme_fields: {
+            ...programmeFixture.programme_fields,
+            optionality: "Optional 1",
+          },
+          unit_data: {
+            ...programmeFixture.unit_data,
+            subjectcategories: ["Category1"],
+            unit_id: 1,
+          },
+        },
+      }),
+      syntheticUnitvariantLessonsFixture({
+        overrides: {
+          unit_slug: "unit-slug-2",
+          programme_fields: {
+            ...programmeFixture.programme_fields,
+            optionality: "Optional 2",
+          },
+          unit_data: {
+            ...programmeFixture.unit_data,
+            unit_id: 1,
+            subjectcategories: null,
+          },
+        },
+      }),
+    ]);
+
+    expect(res[0]).toHaveLength(2);
+    if (!res[0]) {
+      throw new Error("No units found");
+    }
+    expect(res[0][0]?.subjectCategories).toEqual([
+      { label: "Category1", slug: "category-1" },
+    ]);
+    expect(res[0][1]?.subjectCategories).toBeNull();
+  });
+
   test("getUnitsForProgrammes removes null variant", async () => {
     mockBatched.mockResolvedValueOnce(
       Promise.resolve([
