@@ -88,6 +88,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const yearGroupSlug = router.query["year"]?.toString();
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
   const filtersRef = useRef<HTMLDivElement>(null);
+  const isFiltersAvailable =
+    yearGroups.length > 1 ||
+    subjectCategories?.length > 1 ||
+    learningThemes.length > 1;
 
   const [selectedThemeSlug, setSelectedThemeSlug] = useState<
     string | undefined
@@ -234,36 +238,38 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 $maxWidth={"all-spacing-20"}
               >
                 <StyledFieldset>
-                  <OakHeading
-                    tag="h3"
-                    $font="heading-6"
-                    $mb={"space-between-ssx"}
-                  >
-                    Filters
-                  </OakHeading>
-                  <OakBox
-                    ref={filtersRef}
-                    $mb={skipFiltersButton ? "space-between-xs" : "auto"}
-                  >
-                    <OakSecondaryButton
-                      element="a"
-                      aria-label="Skip to units"
-                      href="#unit-list"
-                      onFocus={() => setSkipFiltersButton(true)}
-                      onBlur={() => setSkipFiltersButton(false)}
-                      style={
-                        skipFiltersButton
-                          ? {}
-                          : {
-                              position: "absolute",
-                              top: "-9999px",
-                              left: "-9999px",
-                            }
-                      }
-                    >
-                      Skip to units
-                    </OakSecondaryButton>
-                  </OakBox>
+                  {isFiltersAvailable && (
+                    <OakBox $mb={"space-between-m2"}>
+                      <OakHeading
+                        tag="h3"
+                        $font="heading-6"
+                        $mb={"space-between-ssx"}
+                      >
+                        Filters
+                      </OakHeading>
+
+                      <OakBox ref={filtersRef}>
+                        <OakSecondaryButton
+                          element="a"
+                          aria-label="Skip to units"
+                          href="#unit-list"
+                          onFocus={() => setSkipFiltersButton(true)}
+                          onBlur={() => setSkipFiltersButton(false)}
+                          style={
+                            skipFiltersButton
+                              ? {}
+                              : {
+                                  position: "absolute",
+                                  top: "-9999px",
+                                  left: "-9999px",
+                                }
+                          }
+                        >
+                          Skip to units
+                        </OakSecondaryButton>
+                      </OakBox>
+                    </OakBox>
+                  )}
                   {yearGroups.length > 1 && (
                     <YearGroupFilters
                       yearGroups={yearGroups}
