@@ -29,6 +29,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 
 // Types and interfaces
 
@@ -317,7 +318,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                 {yearOptions.map((yearOption) => (
                   <Box key={yearOption} $mb={16}>
                     <RadioButton value={yearOption} data-testid={"year-radio"}>
-                      Year {yearOption}
+                      {getYearGroupTitle(yearData, yearOption)}
                     </RadioButton>
                   </Box>
                 ))}
