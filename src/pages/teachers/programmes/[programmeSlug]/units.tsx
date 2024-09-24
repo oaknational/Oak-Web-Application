@@ -90,7 +90,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const filtersRef = useRef<HTMLDivElement>(null);
   const isFiltersAvailable =
     yearGroups.length > 1 ||
-    subjectCategories?.length > 1 ||
+    subjectCategories.length > 1 ||
     learningThemes.length > 1;
 
   const [selectedThemeSlug, setSelectedThemeSlug] = useState<
