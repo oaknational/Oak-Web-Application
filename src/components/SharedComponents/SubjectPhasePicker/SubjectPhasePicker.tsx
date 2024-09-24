@@ -596,7 +596,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             name="content-guidance"
                             verticalAlign="bottom"
                           />
-                          Select a KS4 option
+                          Select an option for KS4
                         </>
                       )}
                       {selectedPhase && !showKS4OptionError && (
