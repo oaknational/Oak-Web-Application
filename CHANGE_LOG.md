@@ -1,3 +1,14 @@
+## [1.558.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.558.1...v1.558.2) (2024-09-23)
+
+
+### Bug Fixes
+
+* make order nullable and don't include cycle 1 in phase options when cycle 2 is enabled ([e54589f](https://github.com/oaknational/Oak-Web-Application/commit/e54589f41f9c9710d9e6c32fa54c8e4c9046ca0c))
+* null order data fix for curriculumUnits query ([c7b743c](https://github.com/oaknational/Oak-Web-Application/commit/c7b743c2d7bf0ec3198bda2d635ecdbd082ae51f))
+* temporarily added nullable() to order ([fb74726](https://github.com/oaknational/Oak-Web-Application/commit/fb747264a86f4f703a2aa61b61c4b5ee02d34071))
+
+## [1.558.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.558.0...v1.558.1) (2024-09-23)
+
 # [1.558.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.557.1...v1.558.0) (2024-09-23)
 
 
