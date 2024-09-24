@@ -3,6 +3,7 @@ import { VisuallyHidden } from "react-aria";
 import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import { createProgrammeSlug } from "../UnitsTab/UnitsTab";
+import Alert from "../OakComponentsKitchen/Alert";
 
 import Box from "@/components/SharedComponents/Box";
 import Card from "@/components/SharedComponents/Card/Card";
@@ -23,6 +24,8 @@ export type YearData = {
     childSubjects: Subject[];
     tiers: Tier[];
     subjectCategories: SubjectCategory[];
+    labels: string[];
+    groupAs: string | null;
   };
 };
 
@@ -244,10 +247,23 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
       {yearData &&
         Object.keys(yearData)
           .filter((year) => !selectedYear || selectedYear === year)
+          .sort((a, b) => {
+            if (a === "all-years") {
+              return -1;
+            }
+            if (a < b) return -1;
+            if (a > b) return 1;
+            return 0;
+          })
           .map((year, index) => {
-            const { units, childSubjects, tiers, subjectCategories } = yearData[
-              year
-            ] as YearData[string];
+            const {
+              units,
+              childSubjects,
+              tiers,
+              subjectCategories,
+              labels,
+              groupAs,
+            } = yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
@@ -256,6 +272,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
               isVisibleUnit(yearSelection, year, unit),
             );
             const dedupedUnits = dedupUnits(filteredUnits);
+
+            let yearTitle: string;
+            if (groupAs && year === "all") {
+              yearTitle = `${groupAs} (all years)`;
+            } else {
+              yearTitle = `Year ${year}`;
+            }
 
             return (
               <Box
@@ -278,11 +301,19 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 <OakHeading
                   tag="h3"
                   $font={["heading-6", "heading-5"]}
-                  $mb="space-between-m2"
+                  $mb="space-between-s"
                   data-testid="year-heading"
                 >
-                  Year {year}
+                  {yearTitle}
                 </OakHeading>
+                {labels.includes("swimming") && (
+                  <Alert
+                    $mb="space-between-s"
+                    $mr="space-between-m2"
+                    type="info"
+                    message="Swimming units should be selected based on the ability and experience of your pupils."
+                  />
+                )}
                 {childSubjects.length < 1 && subjectCategories?.length > 1 && (
                   <Box role="group" aria-label="Categories">
                     {subjectCategories.map((subjectCategory, index) => {
@@ -366,7 +397,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 )}
                 <OakFlex
                   $flexWrap={"wrap"}
-                  $mt="space-between-xs"
+                  $pt="inner-padding-s"
                   data-testid="unit-cards"
                 >
                   {dedupedUnits.map((unit: Unit, index: number) => {
