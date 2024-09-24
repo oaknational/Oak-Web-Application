@@ -315,18 +315,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                     All
                   </RadioButton>
                 </Box>
-                {yearOptions.map((yearOption) => {
-                  return (
-                    <Box key={yearOption} $mb={16}>
-                      <RadioButton
-                        value={yearOption}
-                        data-testid={"year-radio"}
-                      >
-                        {getYearGroupTitle(yearData, yearOption)}
-                      </RadioButton>
-                    </Box>
-                  );
-                })}
+                {yearOptions.map((yearOption) => (
+                  <Box key={yearOption} $mb={16}>
+                    <RadioButton value={yearOption} data-testid={"year-radio"}>
+                      {getYearGroupTitle(yearData, yearOption)}
+                    </RadioButton>
+                  </Box>
+                ))}
               </RadioGroup>
             </Fieldset>
           </OakGridArea>
