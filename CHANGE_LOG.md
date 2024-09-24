@@ -1,3 +1,23 @@
+# [1.561.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.560.0...v1.561.0) (2024-09-24)
+
+
+### Bug Fixes
+
+* added getYearGroupTitle into year group heading in curriculum visualiser ([9a1b818](https://github.com/oaknational/Oak-Web-Application/commit/9a1b818fe93680797c7c6c4b3bacc4d0cbd3bcf9))
+* year sort order in curriculum visualizer ([6dade80](https://github.com/oaknational/Oak-Web-Application/commit/6dade80f8bbd2100dc974efe607f9793207354c2))
+
+
+### Features
+
+* added <Alert/> component and initial swimming for cycle 2 ([dbf1c4e](https://github.com/oaknational/Oak-Web-Application/commit/dbf1c4eb099ba4ea2d91852fb4bd3e402a03bcf9))
+
+# [1.560.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.559.0...v1.560.0) (2024-09-24)
+
+
+### Features
+
+* **LESQ-1076:** redirect unonboarded users to onboard page ([73c5b5b](https://github.com/oaknational/Oak-Web-Application/commit/73c5b5bfc2a77dd082d36ec3302bf4fdf6b0d646))
+
 # [1.559.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.558.2...v1.559.0) (2024-09-24)
 
 
