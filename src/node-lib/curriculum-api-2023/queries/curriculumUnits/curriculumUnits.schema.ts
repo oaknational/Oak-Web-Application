@@ -32,8 +32,8 @@ const curriculumUnitsSchema = z.object({
       subject_parent_slug: z.string().nullable(),
       tier: z.string().nullable(),
       tier_slug: z.string().nullable(),
-      pathway: z.string().nullable().optional(),
-      pathway_slug: z.string().nullable().optional(),
+      pathway: z.string().nullable().nullable(),
+      pathway_slug: z.string().nullable().nullable(),
       tags: z
         .array(
           z.object({

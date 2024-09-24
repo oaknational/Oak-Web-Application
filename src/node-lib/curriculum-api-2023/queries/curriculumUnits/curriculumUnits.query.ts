@@ -2,6 +2,7 @@ import CurriculumUnitsSchema from "./curriculumUnits.schema";
 
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 const curriculumUnitsQuery =
   (sdk: Sdk) =>
@@ -27,18 +28,35 @@ const curriculumUnitsQuery =
       ],
     };
 
-    const ks4OptionCondition = ks4OptionSlug
+    const isExamboard = isExamboardSlug(ks4OptionSlug);
+
+    const examboardSlug = isExamboard ? ks4OptionSlug : null;
+    const pathwaySlug = !isExamboard ? ks4OptionSlug : null;
+
+    const examboardCondition = examboardSlug
       ? {
           _or: [
-            { examboard_slug: { _eq: ks4OptionSlug } },
+            { examboard_slug: { _eq: examboardSlug } },
             { examboard_slug: { _is_null: true } },
           ],
         }
       : { examboard_slug: { _is_null: true } };
 
+    const pathwayCondition = pathwaySlug
+      ? {
+          _or: [
+            { pathway_slug: { _eq: pathwaySlug } },
+            { pathway_slug: { _is_null: true } },
+          ],
+        }
+      : { pathway_slug: { _is_null: true } };
+
     const where = {
       ...baseWhere,
-      _and: [...baseWhere._and, ks4OptionCondition],
+      _and: [
+        ...baseWhere._and,
+        isExamboard ? examboardCondition : pathwayCondition,
+      ],
     };
 
     const res = await sdk.curriculumUnits({
