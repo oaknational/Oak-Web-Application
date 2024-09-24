@@ -60,23 +60,15 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     ks4Option ? `-${ks4Option.slug}` : ""
   }`;
 
-  let pageTitle: string;
+  let pageTitle: string = "";
   const keyStageStrings: string[] = [];
   if (keyStages.includes("ks1")) keyStageStrings.push("KS1");
   if (keyStages.includes("ks2")) keyStageStrings.push("KS2");
   if (keyStages.includes("ks3")) keyStageStrings.push("KS3");
   if (keyStages.includes("ks4")) keyStageStrings.push("KS4");
   const keyStageString = keyStageStrings.join(" & ");
-  switch (phase.slug) {
-    case "primary":
-      pageTitle = `${keyStageString} ${subject.title}`;
-      break;
-    case "secondary":
-      pageTitle = `${keyStageString} ${subject.title}`;
-      break;
-    default:
-      pageTitle = "";
-      break;
+  if (["primary", "secondary"].includes(phase.slug)) {
+    pageTitle = `${keyStageString} ${subject.title}`;
   }
 
   const links: ButtonAsLinkProps[] = [
