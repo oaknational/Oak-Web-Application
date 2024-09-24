@@ -81,7 +81,14 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
   const exitQuiz = sectionResults["exit-quiz"];
   const starterQuiz = sectionResults["starter-quiz"];
   const worksheetDownloaded = sectionResults["intro"].worksheetDownloaded;
+  const video = sectionResults["video"];
   const [showBanner, setShowBanner] = useState(true);
+
+  const percentageVideoWatched =
+    video.duration > 0 && video.timeElapsed > 0
+      ? Math.ceil((video.timeElapsed / video.duration) * 100)
+      : 0;
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <MathJaxWrap>
@@ -105,21 +112,26 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
             breadcrumbs={[yearDescription, subject]}
             iconName={`subject-${subjectSlug}`}
             title={title}
-            videoPercentage={80}
+            videoPercentage={percentageVideoWatched}
             worksheetDownloaded={worksheetDownloaded}
           />
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
             <OakHeading tag="h2" $font={"heading-5"}>
               Results
             </OakHeading>
-            <OakHandDrawnHR $height={"all-spacing-1"} />
-            <OakQuizPrintableSubHeader
-              title={"Starter quiz"}
-              grade={starterQuiz.grade}
-              numQuestions={starterQuiz.numQuestions}
-              attempts={1}
-            />
-            {starterQuiz.questionResults &&
+
+            {starterQuiz?.questionResults && (
+              <>
+                <OakHandDrawnHR $height={"all-spacing-1"} />
+                <OakQuizPrintableSubHeader
+                  title={"Starter quiz"}
+                  grade={starterQuiz.grade}
+                  numQuestions={starterQuiz.numQuestions}
+                  attempts={1}
+                />
+              </>
+            )}
+            {starterQuiz?.questionResults &&
               starterQuiz.questionResults.map((questionResult, index) => (
                 <QuizSectionRender
                   index={index}
@@ -128,14 +140,19 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
                   lessonSection={"starter-quiz"}
                 />
               ))}
-            <OakHandDrawnHR $height={"all-spacing-1"} />
-            <OakQuizPrintableSubHeader
-              title={"Exit quiz"}
-              grade={exitQuiz.grade}
-              numQuestions={exitQuiz.numQuestions}
-              attempts={1}
-            />
-            {exitQuiz.questionResults &&
+
+            {exitQuiz?.questionResults && (
+              <>
+                <OakHandDrawnHR $height={"all-spacing-1"} />
+                <OakQuizPrintableSubHeader
+                  title={"Exit quiz"}
+                  grade={exitQuiz.grade}
+                  numQuestions={exitQuiz.numQuestions}
+                  attempts={1}
+                />
+              </>
+            )}
+            {exitQuiz?.questionResults &&
               exitQuiz.questionResults.map((questionResult, index) => (
                 <QuizSectionRender
                   index={index}

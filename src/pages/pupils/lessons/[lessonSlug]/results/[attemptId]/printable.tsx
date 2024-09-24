@@ -5,6 +5,13 @@ import {
   useOakPupil,
 } from "@oaknational/oak-pupil-client";
 import { useEffect, useState } from "react";
+import {
+  OakFlex,
+  OakInlineBanner,
+  OakLoadingSpinner,
+  OakMaxWidth,
+  OakTypography,
+} from "@oaknational/oak-components";
 
 import getPageProps from "@/node-lib/getPageProps";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
@@ -16,13 +23,6 @@ import {
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { PupilViewsResults } from "@/components/PupilViews/PupilResults";
-import {
-  OakFlex,
-  OakInlineBanner,
-  OakLoadingSpinner,
-  OakMaxWidth,
-  OakTypography,
-} from "@/styles/oakThemeApp";
 
 export type CanonicalResultsPrintablePageProps = {
   browseData: LessonBrowseData;
