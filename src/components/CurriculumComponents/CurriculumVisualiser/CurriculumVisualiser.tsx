@@ -252,9 +252,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             if (a === "all-years") {
               return -1;
             }
-            if (a < b) return -1;
-            if (a > b) return 1;
-            return 0;
+            const aNum = parseInt(a);
+            const bNum = parseInt(b);
+            return aNum - bNum;
           })
           .map((year, index) => {
             const { units, childSubjects, tiers, subjectCategories, labels } =
