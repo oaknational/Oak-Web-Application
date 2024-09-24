@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { waitFor } from "@testing-library/react";
+import { getByTestId, waitFor } from "@testing-library/react";
 
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
@@ -120,7 +120,7 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(button);
     const control = getByTitle("Phase");
     await userEvent.click(await findByTitle("Secondary"));
-    const examboardTitle = await findByText("Choose an option for KS4:");
+    const examboardTitle = await findByText("Choose an option for KS4");
     expect(examboardTitle).toBeTruthy();
     const aqa = (await findAllByTitle("AQA"))[0];
     if (!aqa) {
@@ -151,10 +151,10 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user clicks View without complete selection and gets error", async () => {
-    const { getByText, getAllByTitle, getByTitle, queryByText } = render(
+    const { getByTestId, getAllByTitle, getByTitle, queryByText } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
-    const viewButton = getByText("View");
+    const viewButton = getByTestId("view-desktop");
     await userEvent.click(viewButton);
     expect(queryByText("Select a subject")).toBeTruthy();
     expect(queryByText("Select a school phase")).toBeTruthy();
@@ -175,7 +175,7 @@ describe("Component - subject phase picker", () => {
   });
 
   test("calls tracking.curriculumVisualiserAccessed once, with correct props", async () => {
-    const { findAllByTitle, getByTitle, findByTitle, getByText } = render(
+    const { findAllByTitle, getByTitle, findByTitle, baseElement } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     await userEvent.click(getByTitle("Subject"));
@@ -187,7 +187,7 @@ describe("Component - subject phase picker", () => {
 
     await userEvent.click(await findByTitle("Primary"));
 
-    const viewButton = getByText("View");
+    const viewButton = getByTestId(baseElement, "view-desktop");
     await userEvent.click(viewButton);
 
     expect(curriculumVisualiserAccessed).toHaveBeenCalledTimes(1);

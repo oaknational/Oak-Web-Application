@@ -63,6 +63,11 @@ export const ks4OptionSchema = z.object({
   slug: z.string(),
   displayOrder: z.number().optional(),
 });
+export const keystagesSchema = z.object({
+  title: z.string(),
+  slug: z.string(),
+  displayOrder: z.number().optional(),
+});
 
 const contentTypesSchema = z.object({
   slug: z.union([z.literal("unit"), z.literal("lesson")]),
@@ -78,18 +83,9 @@ export const searchPageSchema = z.object({
 
 export const subjectPhaseOptionSchema = subjectSchema.extend({
   phases: z.array(phaseSchema),
+  keystages: z.array(keystagesSchema).optional().nullable(),
   cycle: z.string(),
   ks4_options: z.array(ks4OptionSchema).optional().nullable(),
-  keystages: z
-    .array(
-      z
-        .object({
-          title: z.string(),
-          slug: z.string(),
-        })
-        .nullable(),
-    )
-    .nullable(),
 });
 
 const curriculumHeaderData = z.object({
