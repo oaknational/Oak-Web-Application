@@ -125,6 +125,8 @@ const curriculumVisualiserFixture = {
       childSubjects: [],
       tiers: [],
       subjectCategories: [],
+      labels: [],
+      groupAs: null,
     },
   },
   mobileHeaderScrollOffset: 148,
