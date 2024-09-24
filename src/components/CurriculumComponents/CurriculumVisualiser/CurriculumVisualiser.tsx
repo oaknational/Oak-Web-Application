@@ -17,6 +17,7 @@ import UnitModal, {
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 
 export type YearData = {
   [key: string]: {
@@ -256,14 +257,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             return 0;
           })
           .map((year, index) => {
-            const {
-              units,
-              childSubjects,
-              tiers,
-              subjectCategories,
-              labels,
-              groupAs,
-            } = yearData[year] as YearData[string];
+            const { units, childSubjects, tiers, subjectCategories, labels } =
+              yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
@@ -273,12 +268,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             );
             const dedupedUnits = dedupUnits(filteredUnits);
 
-            let yearTitle: string;
-            if (groupAs && year === "all") {
-              yearTitle = `${groupAs} (all years)`;
-            } else {
-              yearTitle = `Year ${year}`;
-            }
+            const yearTitle = getYearGroupTitle(yearData, year);
 
             return (
               <Box
