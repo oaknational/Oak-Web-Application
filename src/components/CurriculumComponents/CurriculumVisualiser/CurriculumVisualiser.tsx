@@ -82,7 +82,7 @@ type CurriculumVisualiserProps = {
   setVisibleMobileYearRefID: (refID: string) => void;
 };
 
-function dedupUnits(units: Unit[]) {
+export function dedupUnits(units: Unit[]) {
   const unitLookup = new Set();
   return units.filter((unit) => {
     if (!unitLookup.has(unit.slug)) {

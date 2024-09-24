@@ -1,3 +1,5 @@
+import { dedupUnits } from "../../components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser";
+
 import { isVisibleUnit } from "./isVisibleUnit";
 
 // TODO: These types should be moved out of components
@@ -15,11 +17,16 @@ export function getNumberOfSelectedUnits(
 
   Object.keys(yearData).forEach((year) => {
     const units = yearData[year]?.units;
+
     if (units && (selectedYear === "" || selectedYear === year)) {
-      units.forEach((unit) => {
-        if (isVisibleUnit(yearSelection, year, unit)) {
-          count += 1;
-        }
+      const filteredUnits = units.filter((unit) => {
+        return isVisibleUnit(yearSelection, year, unit);
+      });
+
+      const dedupedUnits = dedupUnits(filteredUnits);
+
+      dedupedUnits.forEach(() => {
+        count += 1;
       });
     }
   });

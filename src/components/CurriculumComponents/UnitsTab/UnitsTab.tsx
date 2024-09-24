@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  useState,
-  useLayoutEffect,
-  useEffect,
-  ChangeEvent,
-} from "react";
+import React, { FC, useState, useLayoutEffect, ChangeEvent } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -103,16 +97,6 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
     selectedYear,
     yearSelection,
   );
-
-  // Screen reader announcements
-
-  const [unitAnnouncement, setUnitAnnouncement] = useState("");
-
-  useEffect(() => {
-    setUnitAnnouncement(
-      `Showing ${unitCount} ${unitCount === 1 ? "unit" : "units"}`,
-    );
-  }, [selectedYear, unitCount]);
 
   // Filter interaction handlers
 
@@ -355,7 +339,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                 ))}
               </RadioGroup>
               <ScreenReaderOnly aria-live="polite" aria-atomic="true">
-                {unitAnnouncement}
+                Showing {unitCount} {unitCount === 1 ? "unit" : "units"}
               </ScreenReaderOnly>
             </Fieldset>
           </OakGridArea>
