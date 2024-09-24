@@ -23,6 +23,6 @@ const TestComponent = () => {
   );
 };
 
-export const SkipLink: Story = {
+export const Alert: Story = {
   render: TestComponent,
 };
