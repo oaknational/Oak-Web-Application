@@ -1,3 +1,10 @@
+# [1.560.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.559.0...v1.560.0) (2024-09-24)
+
+
+### Features
+
+* **LESQ-1076:** redirect unonboarded users to onboard page ([73c5b5b](https://github.com/oaknational/Oak-Web-Application/commit/73c5b5bfc2a77dd082d36ec3302bf4fdf6b0d646))
+
 # [1.559.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.558.2...v1.559.0) (2024-09-24)
 
 
