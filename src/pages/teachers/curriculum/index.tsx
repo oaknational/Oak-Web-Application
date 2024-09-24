@@ -204,7 +204,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
 export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
     const subjects = await curriculumApi2023.subjectPhaseOptions({
-      cycles: isCycleTwoEnabled() ? ["1", "2"] : ["1"],
+      cycle: isCycleTwoEnabled() ? "2" : "1",
     });
     return {
       subjects: subjects,
