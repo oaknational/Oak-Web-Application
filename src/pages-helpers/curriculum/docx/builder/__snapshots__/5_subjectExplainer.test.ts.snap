@@ -339,11 +339,21 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         w:id="20002"
       ></w:bookmarkEnd>
     </w:p>
+    <w:p></w:p>
+    <w:p></w:p>
     <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
         ></w:pStyle>
+        <w:keepNext></w:keepNext>
+        <w:spacing
+          w:lineRule="auto"
+          w:before="0"
+          w:after="120"
+          w:beforeAutospacing="0"
+          w:afterAutospacing="0"
+        ></w:spacing>
       </w:pPr>
       <w:r>
         <w:rPr>
@@ -353,6 +363,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:b></w:b>
+          <w:i
+            w:val="0"
+          ></w:i>
           <w:color
             w:val="222222"
           ></w:color>
@@ -367,6 +380,15 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:r>
     </w:p>
     <w:p>
+      <w:pPr>
+        <w:spacing
+          w:lineRule="auto"
+          w:before="0"
+          w:after="0"
+          w:beforeAutospacing="0"
+          w:afterAutospacing="0"
+        ></w:spacing>
+      </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
         <w:t><![CDATA[test]]></w:t>
@@ -377,6 +399,14 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         <w:pStyle
           w:val="Heading4"
         ></w:pStyle>
+        <w:keepNext></w:keepNext>
+        <w:spacing
+          w:lineRule="auto"
+          w:before="480"
+          w:after="192"
+          w:beforeAutospacing="0"
+          w:afterAutospacing="0"
+        ></w:spacing>
       </w:pPr>
       <w:r>
         <w:rPr>
@@ -386,6 +416,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:b></w:b>
+          <w:i
+            w:val="0"
+          ></w:i>
           <w:color
             w:val="222222"
           ></w:color>
@@ -400,6 +433,15 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:r>
     </w:p>
     <w:p>
+      <w:pPr>
+        <w:spacing
+          w:lineRule="auto"
+          w:before="0"
+          w:after="0"
+          w:beforeAutospacing="0"
+          w:afterAutospacing="0"
+        ></w:spacing>
+      </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
         <w:t><![CDATA[test]]></w:t>
@@ -410,6 +452,14 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         <w:pStyle
           w:val="Heading5"
         ></w:pStyle>
+        <w:keepNext></w:keepNext>
+        <w:spacing
+          w:lineRule="auto"
+          w:before="240"
+          w:after="192"
+          w:beforeAutospacing="0"
+          w:afterAutospacing="0"
+        ></w:spacing>
       </w:pPr>
       <w:r>
         <w:rPr>
@@ -419,6 +469,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:b></w:b>
+          <w:i
+            w:val="0"
+          ></w:i>
           <w:color
             w:val="222222"
           ></w:color>
@@ -433,6 +486,15 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:r>
     </w:p>
     <w:p>
+      <w:pPr>
+        <w:spacing
+          w:lineRule="auto"
+          w:before="0"
+          w:after="0"
+          w:beforeAutospacing="0"
+          w:afterAutospacing="0"
+        ></w:spacing>
+      </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
         <w:t><![CDATA[test]]></w:t>
@@ -443,6 +505,14 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         <w:pStyle
           w:val="Heading6"
         ></w:pStyle>
+        <w:keepNext></w:keepNext>
+        <w:spacing
+          w:lineRule="auto"
+          w:before="0"
+          w:after="240"
+          w:beforeAutospacing="48"
+          w:afterAutospacing="0"
+        ></w:spacing>
       </w:pPr>
       <w:r>
         <w:rPr>
@@ -452,6 +522,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:b></w:b>
+          <w:i
+            w:val="0"
+          ></w:i>
           <w:color
             w:val="222222"
           ></w:color>
@@ -466,6 +539,15 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       </w:r>
     </w:p>
     <w:p>
+      <w:pPr>
+        <w:spacing
+          w:lineRule="auto"
+          w:before="0"
+          w:after="0"
+          w:beforeAutospacing="0"
+          w:afterAutospacing="0"
+        ></w:spacing>
+      </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
         <w:t><![CDATA[test]]></w:t>
@@ -711,6 +793,10 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         <w:t><![CDATA[three]]></w:t>
       </w:r>
     </w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
   </w:body>
 </w:document>",
   "word/endnotes.xml": "<?xml
@@ -1072,7 +1158,7 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         </w:tabs>
         <w:ind
           w:left="425"
-          w:right="-17"
+          w:right="-50"
           w:hanging="360"
         ></w:ind>
       </w:pPr>
@@ -1108,7 +1194,7 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         </w:tabs>
         <w:ind
           w:left="850"
-          w:right="-17"
+          w:right="-50"
           w:hanging="360"
         ></w:ind>
       </w:pPr>

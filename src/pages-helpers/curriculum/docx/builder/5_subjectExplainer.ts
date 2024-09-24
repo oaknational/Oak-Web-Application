@@ -9,6 +9,7 @@ import {
   insertImages,
   insertNumbering,
   JSZipCached,
+  line240,
   wrapInBookmarkPoint,
 } from "../docx";
 
@@ -16,14 +17,23 @@ import { PortableTextJSON } from "@/common-lib/cms-types";
 import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 
 type PortableTextToDocxDef = {
-  list: (block: PortableTextJSON[number], content: string) => Promise<string>;
+  list: (
+    block: PortableTextJSON[number],
+    content: string,
+    previousBlock?: PortableTextJSON[number],
+  ) => Promise<string>;
   listItem: (
     block: PortableTextJSON[number],
     content: string,
+    previousBlock?: PortableTextJSON[number],
   ) => Promise<string>;
   block: Record<
     string,
-    (block: PortableTextJSON[number], content: string) => Promise<string>
+    (
+      block: PortableTextJSON[number],
+      content: string,
+      previousBlock?: PortableTextJSON[number],
+    ) => Promise<string>
   >;
   marks: Record<string, (block: PortableTextJSON[number]) => Promise<string>>;
 };
@@ -67,20 +77,21 @@ async function renderItem(
       </w:r>
     `;
   } else if (block._type === "block") {
+    const previousBlock = blocks[index - 1];
     if (block.listItem) {
       const listIndex = findListIndex(blocks, index);
       let output = "";
       if (listIndex === 0) {
-        output += await types.list(block, content);
+        output += await types.list(block, content, previousBlock);
       }
-      output += await types.listItem(block, content);
+      output += await types.listItem(block, content, previousBlock);
       return output;
     }
     const renderer =
       block.style in types.block
         ? types.block[block.style]
         : types.block.normal;
-    return (await renderer?.(block, content)) ?? "";
+    return (await renderer?.(block, content, previousBlock)) ?? "";
   }
 }
 
@@ -147,7 +158,7 @@ export default async function generate(
                   <w:tabs>
                     <w:tab w:val="num" w:pos="720" />
                   </w:tabs>
-                  <w:ind w:left="425" w:right="-17" w:hanging="360" />
+                  <w:ind w:left="425" w:right="-50" w:hanging="360" />
                 </w:pPr>
                 <w:rPr>
                   <w:rFonts
@@ -166,7 +177,7 @@ export default async function generate(
                   <w:tabs>
                     <w:tab w:val="num" w:pos="1440" />
                   </w:tabs>
-                  <w:ind w:left="850" w:right="-17" w:hanging="360" />
+                  <w:ind w:left="850" w:right="-50" w:hanging="360" />
                 </w:pPr>
                 <w:rPr>
                   <w:rFonts
@@ -232,19 +243,45 @@ export default async function generate(
         `;
       },
       block: {
-        normal: async (_block, content) => {
-          return safeXml` <w:p>${content}</w:p> `;
+        normal: async (_block, content, previousBlock) => {
+          const numberOfEmptyLinesBefore =
+            previousBlock?.style === "normal" ? 1 : 0;
+          return safeXml`
+            <w:p>
+              <w:pPr>
+                <w:spacing
+                  w:lineRule="auto"
+                  w:before="${line240(numberOfEmptyLinesBefore)}"
+                  w:after="${line240(0)}"
+                  w:beforeAutospacing="0"
+                  w:afterAutospacing="0"
+                />
+              </w:pPr>
+              ${content}
+            </w:p>
+          `;
         },
-        heading1: async (_block, content) => {
+        heading1: async (_block, content, previousBlock) => {
+          const numberOfEmptyLinesBefore =
+            previousBlock?.style === "normal" ? 3 : 0;
           return safeXml`
             <w:p>
               <w:pPr>
                 <w:pStyle w:val="Heading3" />
+                <w:keepNext />
+                <w:spacing
+                  w:lineRule="auto"
+                  w:before="${line240(numberOfEmptyLinesBefore)}"
+                  w:after="${line240(0.5)}"
+                  w:beforeAutospacing="0"
+                  w:afterAutospacing="0"
+                />
               </w:pPr>
               <w:r>
                 <w:rPr>
                   <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
                   <w:b />
+                  <w:i w:val="0" />
                   <w:color w:val="222222" />
                   <w:sz w:val="36" />
                 </w:rPr>
@@ -253,16 +290,27 @@ export default async function generate(
             </w:p>
           `;
         },
-        heading2: async (_block, content) => {
+        heading2: async (_block, content, previousBlock) => {
+          const numberOfEmptyLinesBefore =
+            previousBlock?.style === "normal" ? 2 : 0;
           return safeXml`
             <w:p>
               <w:pPr>
                 <w:pStyle w:val="Heading4" />
+                <w:keepNext />
+                <w:spacing
+                  w:lineRule="auto"
+                  w:before="${line240(numberOfEmptyLinesBefore)}"
+                  w:after="${line240(0.8)}"
+                  w:beforeAutospacing="0"
+                  w:afterAutospacing="0"
+                />
               </w:pPr>
               <w:r>
                 <w:rPr>
                   <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
                   <w:b />
+                  <w:i w:val="0" />
                   <w:color w:val="222222" />
                   <w:sz w:val="28" />
                 </w:rPr>
@@ -271,16 +319,30 @@ export default async function generate(
             </w:p>
           `;
         },
-        heading3: async (_block, content) => {
+        heading3: async (_block, content, previousBlock) => {
+          let numberOfEmptyLinesBefore =
+            previousBlock?.style === "normal" ? 1 : 0;
+          numberOfEmptyLinesBefore =
+            previousBlock?.style === "heading2" ? 1 : numberOfEmptyLinesBefore;
+
           return safeXml`
             <w:p>
               <w:pPr>
                 <w:pStyle w:val="Heading5" />
+                <w:keepNext />
+                <w:spacing
+                  w:lineRule="auto"
+                  w:before="${line240(numberOfEmptyLinesBefore)}"
+                  w:after="${line240(0.8)}"
+                  w:beforeAutospacing="0"
+                  w:afterAutospacing="0"
+                />
               </w:pPr>
               <w:r>
                 <w:rPr>
                   <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
                   <w:b />
+                  <w:i w:val="0" />
                   <w:color w:val="222222" />
                   <w:sz w:val="24" />
                 </w:rPr>
@@ -294,11 +356,20 @@ export default async function generate(
             <w:p>
               <w:pPr>
                 <w:pStyle w:val="Heading6" />
+                <w:keepNext />
+                <w:spacing
+                  w:lineRule="auto"
+                  w:before="0"
+                  w:after="${line240(1)}"
+                  w:beforeAutospacing="${line240(0.2)}"
+                  w:afterAutospacing="0"
+                />
               </w:pPr>
               <w:r>
                 <w:rPr>
                   <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
                   <w:b />
+                  <w:i w:val="0" />
                   <w:color w:val="222222" />
                   <w:sz w:val="24" />
                 </w:rPr>
@@ -343,7 +414,12 @@ export default async function generate(
             `,
           )}
         </w:p>
+        <w:p />
+        <w:p />
         ${cycleTwoEnabled ? explainerXml : ""}
+        ${Array(4)
+          .fill(true)
+          .map(() => safeXml`<w:p />`)}
       </root>
     `;
   } else {
