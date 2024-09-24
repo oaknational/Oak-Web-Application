@@ -31,6 +31,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 
 // Types and interfaces
 
