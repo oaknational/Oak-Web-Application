@@ -596,7 +596,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             name="content-guidance"
                             verticalAlign="bottom"
                           />
-                          Select an exam board option
+                          Select a KS4 option
                         </>
                       )}
                       {selectedPhase && !showKS4OptionError && (
@@ -707,10 +707,13 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             textAlign={"start"}
                             hoverShadow={null}
                           >
-                            {getPhaseText(
-                              phase,
-                              selectedSubject?.keystages ?? DEFAULT_KEYSTAGES,
-                            )}
+                            {phase.title}
+                            <OakP $font={"body-2"}>
+                              {getPhaseText(
+                                phase,
+                                selectedSubject?.keystages ?? DEFAULT_KEYSTAGES,
+                              )}
+                            </OakP>
                           </OakSecondaryButton>
                         </ButtonContainer>
                       ))}
@@ -734,6 +737,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             aria-describedby={
                               showKS4OptionError ? ks4OptionErrorId : undefined
                             }
+                            $flexWrap={"wrap"}
                             $flexDirection={"row"}
                             $gap={"all-spacing-2"}
                           >
