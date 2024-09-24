@@ -332,9 +332,9 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                     <RadioButton
                       value={yearOption}
                       data-testid={"year-radio"}
-                      aria-label={`Year ${yearOption}`}
+                      aria-label={getYearGroupTitle(yearData, yearOption)}
                     >
-                      Year {yearOption}
+                      {getYearGroupTitle(yearData, yearOption)}
                     </RadioButton>
                   </Box>
                 ))}
