@@ -27,5 +27,6 @@ export const pupilUnitListingQuery =
     const browseData = keysToCamelCase(
       browseDataSnake,
     ) as UnitListingBrowseData;
+
     return browseData;
   };

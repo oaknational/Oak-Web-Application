@@ -62,7 +62,35 @@ describe("5_subjectExplainer", () => {
                 {
                   _type: "span",
                   marks: [],
-                  text: "Aims and purpose",
+                  text: "Heading 1",
+                  _key: "470ecdd07b7d",
+                },
+              ],
+              _type: "block",
+              style: "heading1",
+              _key: "82cf6558d6f8",
+              markDefs: [],
+            },
+            {
+              children: [
+                {
+                  _type: "span",
+                  marks: [],
+                  text: "test",
+                  _key: "470ecdd07b7d",
+                },
+              ],
+              _type: "block",
+              style: "normal",
+              _key: "82cf6558d6f8",
+              markDefs: [],
+            },
+            {
+              children: [
+                {
+                  _type: "span",
+                  marks: [],
+                  text: "Heading 2",
                   _key: "470ecdd07b7d",
                 },
               ],
@@ -71,21 +99,111 @@ describe("5_subjectExplainer", () => {
               _key: "82cf6558d6f8",
               markDefs: [],
             },
-            ...["one", "two", "three"].map((text) => {
-              return {
-                children: [
-                  {
-                    _type: "span",
-                    marks: [],
-                    text: text,
-                    _key: "470ecdd07b7d",
-                  },
-                ],
-                _type: "block",
-                listItem: "bullet",
-                _key: "82cf6558d6f8",
-                markDefs: [],
-              };
+            {
+              children: [
+                {
+                  _type: "span",
+                  marks: [],
+                  text: "test",
+                  _key: "470ecdd07b7d",
+                },
+              ],
+              _type: "block",
+              style: "normal",
+              _key: "82cf6558d6f8",
+              markDefs: [],
+            },
+            {
+              children: [
+                {
+                  _type: "span",
+                  marks: [],
+                  text: "Heading 3",
+                  _key: "470ecdd07b7d",
+                },
+              ],
+              _type: "block",
+              style: "heading3",
+              _key: "82cf6558d6f8",
+              markDefs: [],
+            },
+            {
+              children: [
+                {
+                  _type: "span",
+                  marks: [],
+                  text: "test",
+                  _key: "470ecdd07b7d",
+                },
+              ],
+              _type: "block",
+              style: "normal",
+              _key: "82cf6558d6f8",
+              markDefs: [],
+            },
+            {
+              children: [
+                {
+                  _type: "span",
+                  marks: [],
+                  text: "Heading 4",
+                  _key: "470ecdd07b7d",
+                },
+              ],
+              _type: "block",
+              style: "heading4",
+              _key: "82cf6558d6f8",
+              markDefs: [],
+            },
+            {
+              children: [
+                {
+                  _type: "span",
+                  marks: [],
+                  text: "test",
+                  _key: "470ecdd07b7d",
+                },
+              ],
+              _type: "block",
+              style: "normal",
+              _key: "82cf6558d6f8",
+              markDefs: [],
+            },
+            ...["one", "two", "three"].flatMap((text) => {
+              return [
+                {
+                  children: [
+                    {
+                      _type: "span",
+                      marks: [],
+                      text: text,
+                      _key: "470ecdd07b7d",
+                    },
+                  ],
+                  _type: "block",
+                  listItem: "bullet",
+                  _key: "82cf6558d6f8",
+                  level: 1,
+                  markDefs: [],
+                },
+                ...["one", "two", "three"].map((text) => {
+                  return {
+                    children: [
+                      {
+                        _type: "span",
+                        marks: [],
+                        text: text,
+                        _key: "470ecdd07b7d",
+                      },
+                    ],
+                    _type: "block",
+                    listItem: "bullet",
+                    _key: "82cf6558d6f8",
+                    level: 2,
+                    markDefs: [],
+                  };
+                }),
+              ];
             }),
           ],
         },

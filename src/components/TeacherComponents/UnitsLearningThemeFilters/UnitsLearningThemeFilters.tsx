@@ -1,11 +1,9 @@
-import {
-  OakBox,
-  OakFlex,
-  OakSecondaryButton,
-} from "@oaknational/oak-components";
+import { OakFlex } from "@oaknational/oak-components";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import { RadioTheme, RadioTile, isRadioTheme } from "./RadioTile";
+import { generateUrl } from "./generateUrl";
 
 import {
   SpecialistUnitListingLinkProps,
@@ -27,17 +25,19 @@ export type UnitsLearningThemeFiltersProps = {
   trackingProps?: LearningThemeSelectedTrackingProps;
   idSuffix: string;
   onChangeCallback: (theme: string | undefined) => void;
+  categorySlug?: string;
+  yearGroupSlug?: string;
+  programmeSlug: string;
 };
 
 const UnitsLearningThemeFilters = ({
   learningThemes = [],
   selectedThemeSlug,
-  linkProps,
   trackingProps,
   idSuffix,
   onChangeCallback,
+  programmeSlug,
 }: UnitsLearningThemeFiltersProps) => {
-  const [skipFiltersButton, setSkipFiltersButton] = useState(false);
   const learningThemesMapped: Array<RadioTheme> = learningThemes
     ? learningThemes
         .map((learningTheme) => {
@@ -57,6 +57,10 @@ const UnitsLearningThemeFilters = ({
           }
         })
     : [];
+  const router = useRouter();
+
+  const categorySlug = router.query["category"]?.toString();
+  const yearGroupSlug = router.query["year"]?.toString();
 
   const { track } = useAnalytics();
 
@@ -87,27 +91,18 @@ const UnitsLearningThemeFilters = ({
       });
     }
 
-    const query = theme.slug === "all" ? "" : `?learning-theme=${theme.slug}`;
-    const newUrl = `/teachers/programmes/${linkProps.programmeSlug}/units${query}`;
+    const newUrl = generateUrl(
+      theme,
+      programmeSlug,
+      yearGroupSlug,
+      categorySlug,
+    );
+
     window.history.replaceState(window.history.state, "", newUrl);
   };
 
   return (
     <OakFlex $flexDirection={"column"}>
-      <OakBox $mb={skipFiltersButton ? "space-between-xs" : "auto"}>
-        <OakSecondaryButton
-          element="a"
-          aria-label="Skip to units"
-          href="#unit-list"
-          onFocus={() => setSkipFiltersButton(true)}
-          onBlur={() => setSkipFiltersButton(false)}
-          style={
-            skipFiltersButton ? {} : { position: "absolute", top: "-600px" }
-          }
-        >
-          Skip to units
-        </OakSecondaryButton>
-      </OakBox>
       <OakFlex
         $flexDirection="column"
         $gap="space-between-ssx"

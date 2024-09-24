@@ -46,6 +46,10 @@ describe("unit list helpers", () => {
       phase: "secondary",
       learningThemes: [],
       hasNewContent: false,
+      yearGroups: [{ year: "year-1", yearTitle: "Year 1" }],
+      subjectCategories: [
+        { label: "Biology", slug: "biology", iconName: "icon-biology" },
+      ],
     });
     expect(result).toEqual(true);
   });
@@ -90,6 +94,10 @@ describe("unit list helpers", () => {
       learningThemes: [],
       hasNewContent: false,
       currentPageItems: [],
+      yearGroups: [{ year: "year-10", yearTitle: "Year 10" }],
+      subjectCategories: [
+        { label: "Biology", slug: "biology", iconName: "icon-biology" },
+      ],
       paginationProps: mockPaginationProps,
       onClick: () => {},
     });
@@ -120,6 +128,7 @@ describe("unit list helpers", () => {
       hasNewContent: false,
       currentPageItems: [],
       paginationProps: mockPaginationProps,
+      yearGroups: [{ year: "year-10", yearTitle: "Year 10" }],
       onClick: () => {},
     });
     expect(result).toEqual({
