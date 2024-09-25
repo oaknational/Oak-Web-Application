@@ -1,3 +1,18 @@
+# [1.563.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.2...v1.563.0) (2024-09-25)
+
+
+### Features
+
+* **printable:** create style printable results page ([da4f960](https://github.com/oaknational/Oak-Web-Application/commit/da4f96020d9ab630755fb61bc7321704ae8c5ab3))
+* **printable:** create style printable results page ([c8570cf](https://github.com/oaknational/Oak-Web-Application/commit/c8570cfb281b94f3c42b8f7c6fe26465e3ff23ba))
+* **share:** handle no worksheet and handle hints ([f59bcb3](https://github.com/oaknational/Oak-Web-Application/commit/f59bcb3c4735f3df6564df03e2148bdd59294214))
+* **share:** handle no worksheet and handle hints ([867cb3c](https://github.com/oaknational/Oak-Web-Application/commit/867cb3c48123340a06b0bf502b069356b7b1a792))
+* **share:** handle no worksheet and handle hints ([1877aff](https://github.com/oaknational/Oak-Web-Application/commit/1877affdd133d785f1abf2362659606665bf92b5))
+* **share:** no worksheet bug ([40d6e2a](https://github.com/oaknational/Oak-Web-Application/commit/40d6e2a648d7b7368d1e49a15d85976056556c99))
+* **share:** no worksheet bug ([4d9ae21](https://github.com/oaknational/Oak-Web-Application/commit/4d9ae21021b11bf279fe04af7e06912ff2431a0e))
+* **share:** no worksheet bug ([7c4e9fb](https://github.com/oaknational/Oak-Web-Application/commit/7c4e9fb0404ee26266e44b3d937d174cc28a7a66))
+* **video:** update video schema ([1787eb4](https://github.com/oaknational/Oak-Web-Application/commit/1787eb468a7f2544d9efd70d9bc1be67b003985e))
+
 ## [1.562.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.1...v1.562.2) (2024-09-25)
 
 
