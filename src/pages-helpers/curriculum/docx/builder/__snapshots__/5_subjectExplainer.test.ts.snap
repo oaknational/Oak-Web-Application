@@ -349,10 +349,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         <w:keepNext></w:keepNext>
         <w:spacing
           w:lineRule="auto"
+          w:line="240"
           w:before="0"
           w:after="120"
-          w:beforeAutospacing="0"
-          w:afterAutospacing="0"
         ></w:spacing>
       </w:pPr>
       <w:r>
@@ -373,20 +372,16 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:val="36"
           ></w:sz>
         </w:rPr>
-        <w:r>
-          <w:rPr></w:rPr>
-          <w:t><![CDATA[Heading 1]]></w:t>
-        </w:r>
+        <w:t><![CDATA[Heading 1]]></w:t>
       </w:r>
     </w:p>
     <w:p>
       <w:pPr>
         <w:spacing
           w:lineRule="auto"
+          w:line="240"
           w:before="0"
           w:after="0"
-          w:beforeAutospacing="0"
-          w:afterAutospacing="0"
         ></w:spacing>
       </w:pPr>
       <w:r>
@@ -402,10 +397,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         <w:keepNext></w:keepNext>
         <w:spacing
           w:lineRule="auto"
+          w:line="240"
           w:before="480"
           w:after="192"
-          w:beforeAutospacing="0"
-          w:afterAutospacing="0"
         ></w:spacing>
       </w:pPr>
       <w:r>
@@ -426,20 +420,16 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:val="28"
           ></w:sz>
         </w:rPr>
-        <w:r>
-          <w:rPr></w:rPr>
-          <w:t><![CDATA[Heading 2]]></w:t>
-        </w:r>
+        <w:t><![CDATA[Heading 2]]></w:t>
       </w:r>
     </w:p>
     <w:p>
       <w:pPr>
         <w:spacing
           w:lineRule="auto"
+          w:line="240"
           w:before="0"
           w:after="0"
-          w:beforeAutospacing="0"
-          w:afterAutospacing="0"
         ></w:spacing>
       </w:pPr>
       <w:r>
@@ -455,10 +445,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         <w:keepNext></w:keepNext>
         <w:spacing
           w:lineRule="auto"
+          w:line="240"
           w:before="240"
           w:after="192"
-          w:beforeAutospacing="0"
-          w:afterAutospacing="0"
         ></w:spacing>
       </w:pPr>
       <w:r>
@@ -479,20 +468,16 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:r>
-          <w:rPr></w:rPr>
-          <w:t><![CDATA[Heading 3]]></w:t>
-        </w:r>
+        <w:t><![CDATA[Heading 3]]></w:t>
       </w:r>
     </w:p>
     <w:p>
       <w:pPr>
         <w:spacing
           w:lineRule="auto"
+          w:line="240"
           w:before="0"
           w:after="0"
-          w:beforeAutospacing="0"
-          w:afterAutospacing="0"
         ></w:spacing>
       </w:pPr>
       <w:r>
@@ -508,10 +493,10 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         <w:keepNext></w:keepNext>
         <w:spacing
           w:lineRule="auto"
+          w:line="240"
           w:before="0"
           w:after="240"
           w:beforeAutospacing="48"
-          w:afterAutospacing="0"
         ></w:spacing>
       </w:pPr>
       <w:r>
@@ -532,20 +517,16 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:r>
-          <w:rPr></w:rPr>
-          <w:t><![CDATA[Heading 4]]></w:t>
-        </w:r>
+        <w:t><![CDATA[Heading 4]]></w:t>
       </w:r>
     </w:p>
     <w:p>
       <w:pPr>
         <w:spacing
           w:lineRule="auto"
+          w:line="240"
           w:before="0"
           w:after="0"
-          w:beforeAutospacing="0"
-          w:afterAutospacing="0"
         ></w:spacing>
       </w:pPr>
       <w:r>

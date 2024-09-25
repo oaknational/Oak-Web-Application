@@ -35,18 +35,22 @@ type PortableTextToDocxDef = {
       previousBlock?: PortableTextJSON[number],
     ) => Promise<string>
   >;
+  blockStyling: Record<string, (block: PortableTextJSON[number]) => string>;
   marks: Record<string, (block: PortableTextJSON[number]) => Promise<string>>;
 };
 
 function rulesFromMarks(
   block: PortableTextJSON[number],
   types: PortableTextToDocxDef,
+  parent?: PortableTextJSON[number],
 ) {
-  return block.marks
-    .map((mark: string) => {
-      return mark in types.marks ? types.marks[mark]?.(block) : "";
-    })
-    .join("");
+  const rules = block.marks.map((mark: string) => {
+    return mark in types.marks ? types.marks[mark]?.(block) : "";
+  });
+  if (types.blockStyling[parent?.style]) {
+    rules.push(types.blockStyling[parent?.style]?.(block));
+  }
+  return rules.join("");
 }
 
 function findListIndex(blocks: PortableTextJSON, index: number) {
@@ -68,11 +72,12 @@ async function renderItem(
   types: PortableTextToDocxDef,
   { blocks, index }: { blocks: PortableTextJSON; index: number },
   content: string,
+  parent?: PortableTextJSON[number],
 ) {
   if (block._type === "span") {
     return safeXml`
       <w:r>
-        <w:rPr>${rulesFromMarks(block, types)}</w:rPr>
+        <w:rPr>${rulesFromMarks(block, types, parent)}</w:rPr>
         <w:t>${cdata(block.text)}</w:t>
       </w:r>
     `;
@@ -98,6 +103,7 @@ async function renderItem(
 async function portableTextToDocx(
   blocks: PortableTextJSON[number],
   types: PortableTextToDocxDef,
+  parent?: PortableTextJSON[number],
 ) {
   if (!blocks) return "";
   let output = "";
@@ -107,7 +113,8 @@ async function portableTextToDocx(
       block,
       types,
       { blocks, index },
-      await portableTextToDocx(block.children, types),
+      await portableTextToDocx(block.children, types, block),
+      parent,
     );
     index++;
   }
@@ -236,7 +243,7 @@ export default async function generate(
                 <w:ilvl w:val="${block.level - 1}" />
                 <w:numId w:val="${numId}" />
               </w:numPr>
-              <w:spacing w:line="276" w:lineRule="auto" />
+              <w:spacing w:line="276" w:lineRule="auto" w:line="240" />
             </w:pPr>
             ${content}
           </w:p>
@@ -251,10 +258,9 @@ export default async function generate(
               <w:pPr>
                 <w:spacing
                   w:lineRule="auto"
+                  w:line="240"
                   w:before="${line240(numberOfEmptyLinesBefore)}"
                   w:after="${line240(0)}"
-                  w:beforeAutospacing="0"
-                  w:afterAutospacing="0"
                 />
               </w:pPr>
               ${content}
@@ -271,22 +277,12 @@ export default async function generate(
                 <w:keepNext />
                 <w:spacing
                   w:lineRule="auto"
+                  w:line="240"
                   w:before="${line240(numberOfEmptyLinesBefore)}"
                   w:after="${line240(0.5)}"
-                  w:beforeAutospacing="0"
-                  w:afterAutospacing="0"
                 />
               </w:pPr>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:b />
-                  <w:i w:val="0" />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="36" />
-                </w:rPr>
-                ${content}
-              </w:r>
+              ${content}
             </w:p>
           `;
         },
@@ -300,22 +296,12 @@ export default async function generate(
                 <w:keepNext />
                 <w:spacing
                   w:lineRule="auto"
+                  w:line="240"
                   w:before="${line240(numberOfEmptyLinesBefore)}"
                   w:after="${line240(0.8)}"
-                  w:beforeAutospacing="0"
-                  w:afterAutospacing="0"
                 />
               </w:pPr>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:b />
-                  <w:i w:val="0" />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="28" />
-                </w:rPr>
-                ${content}
-              </w:r>
+              ${content}
             </w:p>
           `;
         },
@@ -332,22 +318,12 @@ export default async function generate(
                 <w:keepNext />
                 <w:spacing
                   w:lineRule="auto"
+                  w:line="240"
                   w:before="${line240(numberOfEmptyLinesBefore)}"
                   w:after="${line240(0.8)}"
-                  w:beforeAutospacing="0"
-                  w:afterAutospacing="0"
                 />
               </w:pPr>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:b />
-                  <w:i w:val="0" />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="24" />
-                </w:rPr>
-                ${content}
-              </w:r>
+              ${content}
             </w:p>
           `;
         },
@@ -359,23 +335,52 @@ export default async function generate(
                 <w:keepNext />
                 <w:spacing
                   w:lineRule="auto"
+                  w:line="240"
                   w:before="0"
                   w:after="${line240(1)}"
                   w:beforeAutospacing="${line240(0.2)}"
-                  w:afterAutospacing="0"
                 />
               </w:pPr>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:b />
-                  <w:i w:val="0" />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="24" />
-                </w:rPr>
-                ${content}
-              </w:r>
+              ${content}
             </w:p>
+          `;
+        },
+      },
+      blockStyling: {
+        heading1: () => {
+          return safeXml`
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:b />
+            <w:i w:val="0" />
+            <w:color w:val="222222" />
+            <w:sz w:val="36" />
+          `;
+        },
+        heading2: () => {
+          return safeXml`
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:b />
+            <w:i w:val="0" />
+            <w:color w:val="222222" />
+            <w:sz w:val="28" />
+          `;
+        },
+        heading3: () => {
+          return safeXml`
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:b />
+            <w:i w:val="0" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          `;
+        },
+        heading4: () => {
+          return safeXml`
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:b />
+            <w:i w:val="0" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
           `;
         },
       },
