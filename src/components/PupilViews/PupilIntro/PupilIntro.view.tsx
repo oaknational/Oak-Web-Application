@@ -43,6 +43,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     completeActivity,
     updateCurrentSection,
     updateWorksheetDownloaded,
+    currentSection,
     updateSectionResult,
     sectionResults,
   } = useLessonEngineContext();
@@ -53,7 +54,10 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   );
 
   useEffect(() => {
-    if (!sectionResults.intro?.worksheetAvailable) {
+    if (
+      !sectionResults.intro?.worksheetAvailable &&
+      currentSection === "intro"
+    ) {
       sectionResults.intro?.worksheetDownloaded ||
         updateSectionResult({
           worksheetDownloaded:
@@ -61,7 +65,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
           worksheetAvailable: hasWorksheet ? true : false,
         });
     }
-  }, [hasWorksheet, sectionResults.intro, updateSectionResult]);
+  }, [hasWorksheet, sectionResults.intro, updateSectionResult, currentSection]);
 
   const handleDownloadClicked = () => {
     updateWorksheetDownloaded({
