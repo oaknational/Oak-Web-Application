@@ -1,3 +1,10 @@
+## [1.562.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.0...v1.562.1) (2024-09-25)
+
+
+### Bug Fixes
+
+* **LESQ-1095:** onboarding not firing when selecting a non-teacher role ([83fe6fe](https://github.com/oaknational/Oak-Web-Application/commit/83fe6fe303aec232342ef549d754b0e73f79fe1d))
+
 # [1.562.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.561.2...v1.562.0) (2024-09-25)
 
 
