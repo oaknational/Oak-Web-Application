@@ -14,7 +14,7 @@ export function isSwimmingHackEnabled() {
   return ENABLE_CYCLE_2 && SWIMMING_HACK;
 }
 
-export function getUnitFeatures(unit?: Unit) {
+export function getUnitFeatures(unit?: Unit | null) {
   if (!unit) {
     return;
   }
