@@ -328,19 +328,6 @@ async function buildYear(
   yearSlugs: Slug,
   slugs: Slugs,
 ) {
-  const yearTitleSuffix = [
-    getSuffixFromFeatures(
-      getUnitFeatures(formattedData.yearData[year]?.units[0]),
-    ),
-    "units",
-  ]
-    .filter(Boolean)
-    .join(" ");
-  const yearTitle = getYearGroupTitle(
-    formattedData.yearData,
-    year,
-    yearTitleSuffix,
-  );
   const images = await insertImages(zip, {
     jumpOutArrow: join(
       process.cwd(),
@@ -439,6 +426,18 @@ async function buildYear(
         .join(", ");
     }
   }
+
+  const yearTitleSuffix = [
+    getSuffixFromFeatures(getUnitFeatures(firstUnit)),
+    "units",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  const yearTitle = getYearGroupTitle(
+    formattedData.yearData,
+    year,
+    yearTitleSuffix,
+  );
 
   const isSwimming = formattedData.yearData[year]?.labels.includes("swimming");
 

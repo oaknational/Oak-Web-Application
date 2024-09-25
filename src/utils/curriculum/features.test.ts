@@ -85,12 +85,24 @@ describe("getUnitFeatures", () => {
     MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
     MOCK_SWIMMING_HACK.mockReturnValue(false);
     expect(
-      getUnitFeatures({ subject_slug: "computing", year: "11" } as Unit),
+      getUnitFeatures({
+        subject_slug: "computing",
+        year: "11",
+        pathway_slug: "gcse",
+      } as Unit),
     ).toEqual({
       programmes_fields_overrides: {
         subject: "Computer Science",
       },
     });
+
+    expect(
+      getUnitFeatures({
+        subject_slug: "computing",
+        year: "11",
+        pathway_slug: "core",
+      } as Unit),
+    ).toEqual(undefined);
 
     expect(
       getUnitFeatures({ subject_slug: "computing", year: "9" } as Unit),

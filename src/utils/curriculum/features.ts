@@ -43,6 +43,7 @@ export function getUnitFeatures(unit?: Unit | null) {
     };
   } else if (
     unit.subject_slug === "computing" &&
+    unit.pathway_slug === "gcse" &&
     ["10", "11"].includes(unit.year)
   ) {
     return {
