@@ -16,18 +16,6 @@ export function getYearGroupTitle(
   return `Year ${year}${suffixStr}`;
 }
 
-export function getYearGroupTitleDocx(yearData: YearData, year: string) {
-  if (year in yearData) {
-    const { groupAs } = yearData[year]!;
-    if (groupAs && year === "all-years") {
-      return `${groupAs} units (all years)`;
-    } else {
-      return `Year ${year}`;
-    }
-  }
-  return `Year ${year}`;
-}
-
 export function getPhaseText(
   phase: Pick<Phase, "slug">,
   keystages: { slug: string }[],
