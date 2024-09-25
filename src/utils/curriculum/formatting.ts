@@ -1,11 +1,26 @@
 import { YearData } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { Phase } from "@/node-lib/curriculum-api-2023";
 
-export function getYearGroupTitle(yearData: YearData, year: string) {
+export function getYearGroupTitle(
+  yearData: YearData,
+  year: string,
+  suffix?: string,
+) {
+  const suffixStr = suffix ? ` ${suffix}` : "";
   if (year in yearData) {
     const { groupAs } = yearData[year]!;
     if (groupAs && year === "all-years") {
-      return `${groupAs} (all years)`;
+      return `${groupAs}${suffixStr} (all years)`;
+    }
+  }
+  return `Year ${year}${suffixStr}`;
+}
+
+export function getYearGroupTitleDocx(yearData: YearData, year: string) {
+  if (year in yearData) {
+    const { groupAs } = yearData[year]!;
+    if (groupAs && year === "all-years") {
+      return `${groupAs} units (all years)`;
     } else {
       return `Year ${year}`;
     }
