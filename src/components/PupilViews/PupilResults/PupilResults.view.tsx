@@ -114,7 +114,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
             title={title}
             videoPercentage={percentageVideoWatched}
             worksheetDownloaded={worksheetDownloaded}
-            worksheetAvailable={worksheetAvailable}
+            workSheetAvailable={worksheetAvailable}
           />
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
             <OakHeading tag="h2" $font={"heading-5"}>
