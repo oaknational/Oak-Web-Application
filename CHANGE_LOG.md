@@ -1,3 +1,10 @@
+## [1.561.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.561.1...v1.561.2) (2024-09-25)
+
+
+### Bug Fixes
+
+* tweak border radius of oak-inline banner ([0727dc3](https://github.com/oaknational/Oak-Web-Application/commit/0727dc304a4f1bc1ff3bc8a75e465928af972341))
+
 ## [1.561.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.561.0...v1.561.1) (2024-09-24)
 
 # [1.561.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.560.0...v1.561.0) (2024-09-24)
