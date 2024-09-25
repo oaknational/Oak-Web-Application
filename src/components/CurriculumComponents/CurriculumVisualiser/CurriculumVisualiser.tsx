@@ -5,6 +5,7 @@ import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
 import { createProgrammeSlug } from "../UnitsTab/UnitsTab";
 import Alert from "../OakComponentsKitchen/Alert";
 
+import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import Box from "@/components/SharedComponents/Box";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
@@ -85,7 +86,7 @@ type CurriculumVisualiserProps = {
   setVisibleMobileYearRefID: (refID: string) => void;
 };
 
-function dedupUnits(units: Unit[]) {
+export function dedupUnits(units: Unit[]) {
   const unitLookup = new Set();
   return units.filter((unit) => {
     if (!unitLookup.has(unit.slug)) {
@@ -94,31 +95,6 @@ function dedupUnits(units: Unit[]) {
     }
     return false;
   });
-}
-
-export function isVisibleUnit(
-  yearSelection: YearSelection,
-  year: string,
-  unit: Unit,
-) {
-  const s = yearSelection[year];
-  if (!s) {
-    return false;
-  }
-  const filterBySubject =
-    !s.subject || s.subject.subject_slug === unit.subject_slug;
-  const filterBySubjectCategory =
-    s.subjectCategory?.id == -1 ||
-    unit.subjectcategories?.findIndex(
-      (subjectcategory) => subjectcategory.id === s.subjectCategory?.id,
-    ) !== -1;
-  const filterByTier =
-    !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
-
-  // Look for duplicates that don't have an examboard, tier or subject parent
-  // (i.e. aren't handled by other filters)
-
-  return filterBySubject && filterBySubjectCategory && filterByTier;
 }
 
 function isSelectedSubject(
@@ -192,7 +168,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
   const visibleYears = useRef<Set<number>>(new Set());
   const visualiserRef = useRef<HTMLDivElement>(null);
-  /* Intersection observer to update year filter selection when 
+  /* Intersection observer to update year filter selection when
   scrolling through the visualiser on mobile */
   useEffect(() => {
     const options = { rootMargin: "-50% 0px 0px 0px" };

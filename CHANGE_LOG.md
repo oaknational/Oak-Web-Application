@@ -1,3 +1,17 @@
+# [1.562.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.561.2...v1.562.0) (2024-09-25)
+
+
+### Bug Fixes
+
+* **accessibility:** resolve aria-live announcements issue for year group filters ([c3e3a5c](https://github.com/oaknational/Oak-Web-Application/commit/c3e3a5c5d269e1d6b6553cce49cf3cb6738896f4))
+* voice unit announcement discrepancy for KS3 and KS4 science curriculum ([6c5390f](https://github.com/oaknational/Oak-Web-Application/commit/6c5390f88e66393d2d5d8c6d37ab199f73890b02))
+
+
+### Features
+
+* add ARIA attributes to enhance accessibility ([5f88bfb](https://github.com/oaknational/Oak-Web-Application/commit/5f88bfb399c33d4238474b26c98c66f9d97e6218))
+* add unit count feedback associated with year group filters for screen readers ([0b13f9e](https://github.com/oaknational/Oak-Web-Application/commit/0b13f9e9a676b0de0eb47b2b756df0b7cef11849))
+
 ## [1.561.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.561.1...v1.561.2) (2024-09-25)
 
 
