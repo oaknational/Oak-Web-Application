@@ -17,6 +17,7 @@ import {
   OakSpan,
   OakStaticMessageCard,
 } from "@oaknational/oak-components";
+import { useEffect } from "react";
 
 import { useWorksheetDownload } from "./useWorksheetDownload";
 
@@ -51,6 +52,17 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     isLegacy ?? false,
   );
 
+  useEffect(() => {
+    if (!sectionResults.intro?.worksheetAvailable) {
+      sectionResults.intro?.worksheetDownloaded ||
+        updateSectionResult({
+          worksheetDownloaded:
+            sectionResults.intro?.worksheetDownloaded || false,
+          worksheetAvailable: hasWorksheet ? true : false,
+        });
+    }
+  }, [hasWorksheet, sectionResults.intro, updateSectionResult]);
+
   const handleDownloadClicked = () => {
     updateWorksheetDownloaded({
       worksheetDownloaded: true,
@@ -58,14 +70,6 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     });
     startDownload();
   };
-
-  if (!sectionResults.intro?.worksheetAvailable && hasWorksheet) {
-    sectionResults.intro?.worksheetDownloaded ||
-      updateSectionResult({
-        worksheetDownloaded: sectionResults.intro?.worksheetDownloaded || false,
-        worksheetAvailable: true,
-      });
-  }
 
   const topNavSlot = (
     <OakLessonTopNav

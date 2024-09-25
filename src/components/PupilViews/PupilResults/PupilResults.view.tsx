@@ -80,7 +80,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
   const { title } = lessonData;
   const exitQuiz = sectionResults["exit-quiz"];
   const starterQuiz = sectionResults["starter-quiz"];
-  const worksheetDownloaded = sectionResults["intro"].worksheetDownloaded;
+  const { worksheetDownloaded, worksheetAvailable } = sectionResults["intro"];
   const video = sectionResults["video"];
   const [showBanner, setShowBanner] = useState(true);
 
@@ -114,6 +114,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
             title={title}
             videoPercentage={percentageVideoWatched}
             worksheetDownloaded={worksheetDownloaded}
+            worksheetAvailable={worksheetAvailable}
           />
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
             <OakHeading tag="h2" $font={"heading-5"}>
