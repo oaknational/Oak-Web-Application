@@ -29,6 +29,8 @@ describe("getNumberOfSelectedUnits", () => {
         childSubjects: [] as Subject[],
         tiers: [] as Tier[],
         subjectCategories: [] as SubjectCategory[],
+        labels: [],
+        groupAs: null,
       },
       "8": {
         units: [
@@ -39,6 +41,8 @@ describe("getNumberOfSelectedUnits", () => {
         childSubjects: [] as Subject[],
         tiers: [] as Tier[],
         subjectCategories: [] as SubjectCategory[],
+        labels: [],
+        groupAs: null,
       },
     };
   });
