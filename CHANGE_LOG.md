@@ -1,3 +1,10 @@
+## [1.562.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.1...v1.562.2) (2024-09-25)
+
+
+### Bug Fixes
+
+* set max with of image to 600px on homepage ([c21a6af](https://github.com/oaknational/Oak-Web-Application/commit/c21a6afe7f03daac0606f0bf0280a9d3265f38a4))
+
 ## [1.562.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.0...v1.562.1) (2024-09-25)
 
 
