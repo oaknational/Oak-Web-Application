@@ -55,7 +55,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
 
   useEffect(() => {
     if (
-      !sectionResults.intro?.worksheetAvailable &&
+      sectionResults.intro?.worksheetAvailable === undefined &&
       currentSection === "intro"
     ) {
       sectionResults.intro?.worksheetDownloaded ||
