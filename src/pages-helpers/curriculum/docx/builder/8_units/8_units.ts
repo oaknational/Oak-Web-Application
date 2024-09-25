@@ -22,7 +22,11 @@ import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import {
+  getSuffixFromFeatures,
+  getYearGroupTitle,
+} from "@/utils/curriculum/formatting";
+import { getUnitFeatures } from "@/utils/curriculum/features";
 
 function generateGroupedUnits(
   data: CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>,
@@ -324,7 +328,19 @@ async function buildYear(
   yearSlugs: Slug,
   slugs: Slugs,
 ) {
-  const yearTitle = getYearGroupTitle(formattedData.yearData, year, "units");
+  const yearTitleSuffix = [
+    getSuffixFromFeatures(
+      getUnitFeatures(formattedData.yearData[year]?.units[0]),
+    ),
+    "units",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  const yearTitle = getYearGroupTitle(
+    formattedData.yearData,
+    year,
+    yearTitleSuffix,
+  );
   const images = await insertImages(zip, {
     jumpOutArrow: join(
       process.cwd(),

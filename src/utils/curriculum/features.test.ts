@@ -65,7 +65,7 @@ describe("isSwimmingHackEnabled", () => {
 });
 
 describe("getUnitFeatures", () => {
-  it("returns rules when hack enabled and matching unit", () => {
+  it("returns swimming rules when hack enabled and matching unit", () => {
     MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
     MOCK_SWIMMING_HACK.mockReturnValue(true);
     expect(
@@ -79,6 +79,22 @@ describe("getUnitFeatures", () => {
         keystage: "All keystages",
       },
     });
+  });
+
+  it("returns computer science override when matching unit", () => {
+    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
+    MOCK_SWIMMING_HACK.mockReturnValue(false);
+    expect(
+      getUnitFeatures({ subject_slug: "computing", year: "11" } as Unit),
+    ).toEqual({
+      programmes_fields_overrides: {
+        subject: "Computer Science",
+      },
+    });
+
+    expect(
+      getUnitFeatures({ subject_slug: "computing", year: "9" } as Unit),
+    ).toEqual(undefined);
   });
 
   it("returns nothing when hack disabled", () => {
