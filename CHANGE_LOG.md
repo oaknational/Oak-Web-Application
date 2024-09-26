@@ -1,3 +1,76 @@
+## [1.568.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.568.0...v1.568.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* remove separator from bottom border ([66756af](https://github.com/oaknational/Oak-Web-Application/commit/66756af678155e0185485cac77241df7a3a219db))
+
+# [1.568.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.567.0...v1.568.0) (2024-09-26)
+
+
+### Features
+
+* added in new cycle 2 MVs + filters ([ae05fbe](https://github.com/oaknational/Oak-Web-Application/commit/ae05fbea84aa5ee8e90f3ca16ac61fe885fc5f04))
+* added why_this_why_now/description to unit modal ([620dd8d](https://github.com/oaknational/Oak-Web-Application/commit/620dd8d8dba4958ab4cc89b064d43902f6cf6136))
+
+# [1.567.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.566.0...v1.567.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* added pathway check into computing condition in getUnitFeatures() ([c49d3fd](https://github.com/oaknational/Oak-Web-Application/commit/c49d3fd8cc9ab60996e24d971bdea830a6cc3f91))
+
+
+### Features
+
+* added "computer science" to <UnitModal/> ([b314db1](https://github.com/oaknational/Oak-Web-Application/commit/b314db1ff07484713e49b858895ca15604ed9615))
+* added computer science subject overrides for cycle 2 ([9e8c951](https://github.com/oaknational/Oak-Web-Application/commit/9e8c951d3c0c2a63b19e9e5918e30dd2721deba0))
+
+# [1.566.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.565.1...v1.566.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* sort years in unit details pages in curriculum downloads (docx) ([d42f3e8](https://github.com/oaknational/Oak-Web-Application/commit/d42f3e829adb1ba39a64d3ca006a297947d17583))
+
+
+### Features
+
+* added swimming to curriculum downloads (docx) ([1f0aedd](https://github.com/oaknational/Oak-Web-Application/commit/1f0aeddcdad475a454ec4dfb158df28e11c7571b))
+
+## [1.565.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.565.0...v1.565.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* **LESQ-1082:** only render filter heading when options ([72359ad](https://github.com/oaknational/Oak-Web-Application/commit/72359ad000c3b674ffdeb9e4368b897d97f4c0c4))
+
+# [1.565.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.564.0...v1.565.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* added year sorting ([5fc5967](https://github.com/oaknational/Oak-Web-Application/commit/5fc596726674cf1e870136e021877ed67e8baa4c))
+* invalid XML element nesting ([c198e28](https://github.com/oaknational/Oak-Web-Application/commit/c198e28c8b10381952f1225645e74e02e1e337e9))
+* remove more curriculum download content for cycle 2, now that we have explainers ([c2ed0a0](https://github.com/oaknational/Oak-Web-Application/commit/c2ed0a039b172a885a60389e586ad1c916a91011))
+
+
+### Features
+
+* added styling to explainer in docx ([acd7565](https://github.com/oaknational/Oak-Web-Application/commit/acd75650473b5f3e41cd5134813a23307eed337f))
+
+# [1.564.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.563.0...v1.564.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* added isCurricPartnerHackEnabled() test and partner title plurals ([c157a7e](https://github.com/oaknational/Oak-Web-Application/commit/c157a7e760ae459308494e12674f19e953792597))
+
+
+### Features
+
+* added explainer styling, sticky contents and new partners footer in overview tab ([b793341](https://github.com/oaknational/Oak-Web-Application/commit/b793341488921618262ee85f8570d7c164800b06))
+
 # [1.563.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.2...v1.563.0) (2024-09-25)
 
 

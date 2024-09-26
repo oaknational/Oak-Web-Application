@@ -42,6 +42,7 @@ import {
 import { YearSelection } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { getUnitFeatures } from "@/utils/curriculum/features";
+import { sortYears } from "@/utils/curriculum/sorting";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
@@ -291,7 +292,7 @@ export function createYearOptions(units: Unit[]): string[] {
     }
   });
   // Sort year data
-  yearOptions.sort((a, b) => Number(a) - Number(b));
+  yearOptions.sort(sortYears);
 
   return yearOptions;
 }

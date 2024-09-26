@@ -337,6 +337,10 @@ export function pointToDxa(input: number) {
   return input * 20;
 }
 
+export function line240(input: number) {
+  return Math.round(input * 240);
+}
+
 export function cmToDxa(cm: number) {
   const inches = cm / 2.54;
   return Math.round(inches * 72 * 20);
