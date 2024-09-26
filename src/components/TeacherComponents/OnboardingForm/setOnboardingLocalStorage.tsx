@@ -22,7 +22,7 @@ export function setOnboardingLocalStorage(
   }
 
   userEmail &&
-    (userSubscribedInHubspot || newsletterSignUp) &&
+    (userSubscribedInHubspot ?? newsletterSignUp) &&
     localStorageForDownloads.setEmailInLocalStorage(userEmail); // adding email to the details form on download/share is the same as accepting the newsletter sigh up in onboarding
 
   localStorageForDownloads.setTermsInLocalStorage(true); // on sign up they are accepting terms so this is true
