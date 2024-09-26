@@ -10,13 +10,15 @@ import {
 
 import { uncapitalizeSubject } from "./helper";
 
+import { sortYears } from "@/utils/curriculum/sorting";
+
 export default async function generate(
   zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
-  const years = Array.from(
-    new Set(data.units.map((unit) => parseInt(unit.year))),
-  ).sort((a, b) => a - b);
+  const years = Array.from(new Set(data.units.map((unit) => unit.year))).sort(
+    sortYears,
+  );
 
   const links = [
     {
