@@ -903,6 +903,8 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               why_this_why_now: null,
             },
           ],
+          groupAs: null,
+          labels: [],
         },
         "11": {
           childSubjects: [
@@ -1265,6 +1267,8 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               why_this_why_now: null,
             },
           ],
+          groupAs: null,
+          labels: [],
         },
         "7": {
           childSubjects: [],
@@ -1371,6 +1375,8 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               why_this_why_now: null,
             },
           ],
+          groupAs: null,
+          labels: [],
         },
       };
       expect(createUnitsListingByYear(unitData)).toEqual(unitListingByYear);

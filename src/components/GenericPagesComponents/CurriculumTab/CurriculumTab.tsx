@@ -86,6 +86,7 @@ const CurriculumTab: FC = () => {
                   $objectFit="contain"
                   priority
                   $ba={3}
+                  width={600}
                   $borderStyle={"solid"}
                   $borderColor={"black"}
                 />
