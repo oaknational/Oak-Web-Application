@@ -13,12 +13,30 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 
+const setEmailInLocalStorage = jest.fn();
+const setSchoolInLocalStorage = jest.fn();
+const setTermsInLocalStorage = jest.fn();
+
+jest.mock("../hooks/downloadAndShareHooks/useLocalStorageForDownloads", () => {
+  return jest.fn(() => ({
+    setEmailInLocalStorage,
+    setSchoolInLocalStorage,
+    setTermsInLocalStorage,
+  }));
+});
+
 jest.mock("@/browser-lib/hubspot/forms");
 jest.mock("./onboardingActions", () => {
   const actual = jest.requireActual("./onboardingActions");
   return {
     ...actual,
     onboardUser: jest.fn(),
+    setSubscriptionStatus: jest.fn((email, callback) => {
+      if (callback) {
+        callback(true);
+      }
+      return true;
+    }),
   };
 });
 jest.mock("@clerk/nextjs", () => {
@@ -137,6 +155,37 @@ describe("Onboarding form", () => {
         ).toBeInTheDocument();
       });
     });
+    describe("local storage is updated with onboarding data", () => {
+      it("email and terms is set in local storage if ", async () => {
+        fetchMock.mockResponse(JSON.stringify(true));
+
+        jest
+          .spyOn(onboardingActions, "onboardUser")
+          .mockResolvedValue({ owa: { isTeacher: true, isOnboarded: true } });
+
+        await submitForm(formState, false);
+
+        await waitFor(() =>
+          expect(setEmailInLocalStorage).toHaveBeenCalledWith("test-email"),
+        );
+        await waitFor(() =>
+          expect(setTermsInLocalStorage).toHaveBeenCalledWith(true),
+        );
+      });
+      it("school is set in local storage", async () => {
+        fetchMock.mockResponse(JSON.stringify(true));
+        jest
+          .spyOn(onboardingActions, "onboardUser")
+          .mockResolvedValue({ owa: { isTeacher: true, isOnboarded: true } });
+
+        await submitForm(formState, false);
+
+        expect(setSchoolInLocalStorage).toHaveBeenCalledWith({
+          schoolId: "Grange Hill",
+          schoolName: "Grange Hill",
+        });
+      });
+    });
   });
 });
 
@@ -165,8 +214,11 @@ function renderForm(
   );
 }
 
-async function submitForm(formState: OnboardingFormState) {
-  renderForm(formState);
+async function submitForm(
+  formState: OnboardingFormState,
+  forceHideNewsletterSignUp?: boolean,
+) {
+  renderForm(formState, forceHideNewsletterSignUp);
 
   await userEvent.setup().click(screen.getByText("Continue"));
 }

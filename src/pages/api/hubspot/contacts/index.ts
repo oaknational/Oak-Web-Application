@@ -17,9 +17,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const email = "joe.baker@thenational.academy";
+  const email = req.body.email;
   const contactId = email;
   const properties = ["contact_school_name", "contact_school_urn"];
+
   const idProperty = "email";
   // An error is thrown from the HubSpot API if the following props are not set
   const propertiesWithHistory = undefined;
@@ -35,19 +36,22 @@ export default async function handler(
       idProperty,
     );
 
-    const contact = contactResponseSchema.parse({
+    const contact = {
       email: apiResponse.properties.email,
       schoolName: apiResponse.properties.contact_school_name,
       schoolId: apiResponse.properties.contact_school_urn,
-    });
-    // const contact = contactResponseSchema.parse({
-    //   email: "made up",
-    //   schoolName: "made up",
-    //   schoolId: ",made up",
-    // });
+      hadSharedOrDownloaded:
+        apiResponse.properties.last_shared_downloaded_a_owa_resource,
+    };
 
     return res.status(200).json(contact);
   } catch (error) {
+    if (error instanceof Error && "code" in error) {
+      if (error.code === 404) {
+        return res.status(204).end(); // No content
+      }
+    }
+
     return res.status(500).json({ error: JSON.stringify(error) });
   }
 }

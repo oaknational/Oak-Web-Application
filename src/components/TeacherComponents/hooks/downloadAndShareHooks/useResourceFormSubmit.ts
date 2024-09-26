@@ -1,8 +1,5 @@
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
-import { getSubscriptionStatus } from "../../OnboardingForm/onboardingActions";
-import { getContactDetails } from "../../helpers/downloadAndShareHelpers/getHubspotContact";
-
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
 import type {
@@ -14,7 +11,6 @@ import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFla
 
 type UseResourceFormProps = {
   onSubmit?: () => void;
-  hasFullOnboarding: boolean;
 } & ({ type: "share" } | { type: "download"; isLegacyDownload: boolean });
 
 const useResourceFormSubmit = (props: UseResourceFormProps) => {
@@ -24,10 +20,7 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
 
-  // const auth = useFeatureFlaggedClerk().useAuth();
-  const { useUser, useAuth } = useFeatureFlaggedClerk();
-  const auth = useAuth();
-  const { user } = useUser();
+  const auth = useFeatureFlaggedClerk().useAuth();
   const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa") || false;
 
   const onSubmit = async (data: ResourceFormProps, slug: string) => {
@@ -35,35 +28,12 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
       props.onSubmit();
     }
 
-    let email: string | undefined;
-    let schoolId: string | undefined;
-    let schoolName: string | undefined;
-    let terms: boolean | undefined;
-
-    // what do we want to do for share ??
-
-    if (props.hasFullOnboarding && user?.primaryEmailAddress?.emailAddress) {
-      // we fetch school and subscription status from hubspot
-
-      email = user?.primaryEmailAddress?.emailAddress;
-
-      const hubspotContact = await getContactDetails(email);
-      const hubspotSubscriptionStatus = await getSubscriptionStatus(email);
-      // console.log("hubspotSubscriptionStatus", hubspotContact);
-
-      schoolId = hubspotContact.schoolId;
-      schoolName = hubspotContact.schoolName;
-      // schoolId = "hubspotContact.schoolId;";
-      // schoolName = "hubspotContact.schoolName;";
-      terms = hubspotSubscriptionStatus;
-    } else {
-      email = data?.email;
-      schoolId = data?.school;
-      schoolName = data?.schoolName;
-      terms = data?.terms;
-    }
-
+    const email = data?.email;
+    const schoolId = data?.school;
+    const schoolName = data?.schoolName;
+    const terms = data?.terms;
     const downloads = data?.resources;
+
     if (email) {
       setEmailInLocalStorage(email);
     }
@@ -95,7 +65,7 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
       );
     }
   };
-  console.log("ONSUBMIT");
+
   return { onSubmit };
 };
 

@@ -1,9 +1,14 @@
+import { z } from "zod";
+
 import OakError from "@/errors/OakError";
 
-export async function getContactDetails(
-  email: string,
-  callback?: (contactDetails: unknown) => void,
-) {
+const contactDetails = z.object({
+  email: z.string(),
+  schoolName: z.string().nullish(),
+  schoolId: z.string().nullish(),
+});
+
+export async function fetchHubspotContactDetails(email: string) {
   try {
     const response = await fetch(`/api/hubspot/contacts`, {
       method: "POST",
@@ -16,10 +21,8 @@ export async function getContactDetails(
       throw new Error("Failed to fetch contact details");
     }
 
-    const result = await response.json();
-    if (callback) {
-      callback(result);
-    }
+    const result = contactDetails.parse(await response.json());
+
     return result;
   } catch (err) {
     if (err instanceof OakError) {

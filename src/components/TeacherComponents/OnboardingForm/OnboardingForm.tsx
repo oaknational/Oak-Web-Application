@@ -23,20 +23,19 @@ import useLocalStorageForDownloads from "../hooks/downloadAndShareHooks/useLocal
 
 import {
   OnboardingFormProps,
+  SchoolSelectFormProps,
   isSchoolSelectData,
 } from "./OnboardingForm.schema";
 import { getSubscriptionStatus, onboardUser } from "./onboardingActions";
 import { getQueryParamsFromOnboardingFormData } from "./getQueryParamsFromOnboardingFormData";
+import { submitOnboardingHubspotData } from "./submitOnboardingHubspotData";
+import { setOnboardingLocalStorage } from "./setOnboardingLocalStorage";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useUtmParams from "@/hooks/useUtmParams";
 import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
-import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
-import OakError from "@/errors/OakError";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 
 const OnboardingForm = ({
@@ -61,13 +60,9 @@ const OnboardingForm = ({
   const { posthogDistinctId } = useAnalytics();
   const { user } = useUser();
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const {
-    setSchoolInLocalStorage,
-    setEmailInLocalStorage,
-    setTermsInLocalStorage,
-  } = useLocalStorageForDownloads();
+  const localStorageForDownloads = useLocalStorageForDownloads();
 
-  const [userRegisteredInHubspot, setUserRegisteredinHubspot] = useState<
+  const [userSubscribedInHubspot, setUserSubscribedInHubspot] = useState<
     boolean | undefined
   >(undefined);
 
@@ -75,14 +70,38 @@ const OnboardingForm = ({
     if (forceHideNewsletterSignUp) {
       return;
     }
+
     if (user?.emailAddresses[0]) {
       const email = String(user.emailAddresses[0].emailAddress);
-      getSubscriptionStatus(email, setUserRegisteredinHubspot);
+      getSubscriptionStatus(email, setUserSubscribedInHubspot);
     }
   }, [user, forceHideNewsletterSignUp]);
 
   const showNewsletterSignUp =
-    userRegisteredInHubspot === false && forceHideNewsletterSignUp !== true;
+    userSubscribedInHubspot === false && forceHideNewsletterSignUp !== true;
+
+  const handleSuccessfulOnboarding = async (data: SchoolSelectFormProps) => {
+    const userEmail = user?.emailAddresses[0]?.emailAddress;
+
+    if (isSchoolSelectData(data)) {
+      setOnboardingLocalStorage(
+        localStorageForDownloads,
+        showNewsletterSignUp,
+        data,
+        userEmail,
+        userSubscribedInHubspot,
+      );
+
+      await submitOnboardingHubspotData(
+        hutk,
+        utmParams,
+        data,
+        userSubscribedInHubspot,
+        posthogDistinctId,
+        userEmail,
+      );
+    }
+  };
 
   const onFormSubmit = async (data: OnboardingFormProps) => {
     if ("worksInSchool" in data) {
@@ -112,58 +131,12 @@ const OnboardingForm = ({
       try {
         await onboardUser({ isTeacher });
         await user?.reload();
+        isSchoolSelectData(data) && (await handleSuccessfulOnboarding(data));
       } catch (error) {
         setSubmitError("Something went wrong. Please try again.");
         // No point in proceeding to hubspot sign-up if onboarding failed
         return;
       }
-      const hubspotFormId = getBrowserConfig("hubspotOnboardingFormId");
-      const userEmail = user?.primaryEmailAddress?.emailAddress;
-      const hubspotFormPayload = getHubspotOnboardingFormPayload({
-        hutk,
-        data: {
-          ...utmParams,
-          ...data,
-          oakUserId: posthogDistinctId,
-          email: userEmail,
-        },
-      });
-
-      try {
-        await hubspotSubmitForm({
-          hubspotFormId,
-          payload: hubspotFormPayload,
-        });
-        if (isSchoolSelectData(data)) {
-          if ("school" in data) {
-            setSchoolInLocalStorage({
-              schoolName: data.schoolName || data.school,
-              schoolId: data.school,
-            });
-          } else if ("manualSchoolName" in data) {
-            setSchoolInLocalStorage({
-              schoolName: data.manualSchoolName,
-              schoolId: data.manualSchoolName, // were not going to know the school id here
-            });
-          }
-        }
-        userEmail && setEmailInLocalStorage(userEmail);
-        userRegisteredInHubspot
-          ? setTermsInLocalStorage(true)
-          : setTermsInLocalStorage(data.newsletterSignUp);
-      } catch (error) {
-        if (error instanceof OakError) {
-          reportError(error);
-        } else {
-          reportError(
-            new OakError({
-              code: "hubspot/unknown",
-              originalError: error,
-            }),
-          );
-        }
-      }
-
       // Return the user to the page they originally arrived from
       // or to the home page as a fallback
       router.push(
