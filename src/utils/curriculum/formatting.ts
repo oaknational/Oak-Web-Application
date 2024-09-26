@@ -1,3 +1,5 @@
+import { getUnitFeatures } from "./features";
+
 import { YearData } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { Phase } from "@/node-lib/curriculum-api-2023";
 
@@ -43,4 +45,13 @@ export function getPhaseText(
     }
   }
   return "";
+}
+
+export function getSuffixFromFeatures(
+  features: ReturnType<typeof getUnitFeatures>,
+) {
+  if (features?.programmes_fields_overrides?.subject) {
+    return `(${features.programmes_fields_overrides?.subject})`;
+  }
+  return;
 }

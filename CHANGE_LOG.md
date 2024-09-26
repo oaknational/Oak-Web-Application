@@ -1,3 +1,28 @@
+# [1.567.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.566.0...v1.567.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* added pathway check into computing condition in getUnitFeatures() ([c49d3fd](https://github.com/oaknational/Oak-Web-Application/commit/c49d3fd8cc9ab60996e24d971bdea830a6cc3f91))
+
+
+### Features
+
+* added "computer science" to <UnitModal/> ([b314db1](https://github.com/oaknational/Oak-Web-Application/commit/b314db1ff07484713e49b858895ca15604ed9615))
+* added computer science subject overrides for cycle 2 ([9e8c951](https://github.com/oaknational/Oak-Web-Application/commit/9e8c951d3c0c2a63b19e9e5918e30dd2721deba0))
+
+# [1.566.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.565.1...v1.566.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* sort years in unit details pages in curriculum downloads (docx) ([d42f3e8](https://github.com/oaknational/Oak-Web-Application/commit/d42f3e829adb1ba39a64d3ca006a297947d17583))
+
+
+### Features
+
+* added swimming to curriculum downloads (docx) ([1f0aedd](https://github.com/oaknational/Oak-Web-Application/commit/1f0aeddcdad475a454ec4dfb158df28e11c7571b))
+
 ## [1.565.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.565.0...v1.565.1) (2024-09-26)
 
 
