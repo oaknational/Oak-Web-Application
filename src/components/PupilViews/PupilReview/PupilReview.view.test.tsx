@@ -380,5 +380,85 @@ describe("PupilReview", () => {
         expect(secondCallArg.message).toBe("Not implemented: window.alert");
       });
     });
+    it("copies the correct url to the clipboard when logAttempt returns a string", () => {
+      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+      //spy on the track function
+      const logAttemptSpy = jest.fn(() => "attempt-id");
+      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+
+      const { getByText } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({
+              sectionResults: sectionResultsFixture,
+            })}
+          >
+            <OakPupilClientProvider
+              config={{
+                getLessonAttemptUrl: "example.com",
+                logLessonAttemptUrl: "example.com",
+              }}
+            >
+              <PupilViewsReview
+                lessonTitle="Lesson title"
+                exitQuizQuestionsArray={[]}
+                starterQuizQuestionsArray={[]}
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                browseData={mockBroweData}
+                pageType="browse"
+              />
+            </OakPupilClientProvider>
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+      const button = getByText("Share results");
+      userEvent.click(button).then(() => {
+        expect(logAttemptSpy).toHaveBeenCalledTimes(1);
+        expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+          "example.com/attempt-id",
+        );
+      });
+    });
+    it("copies correct url to clipbpard when logAttempt returns a promise", () => {
+      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+      //spy on the track function
+      const logAttemptSpy = jest.fn(() => Promise.resolve("attempt-id"));
+      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+
+      const { getByText } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({
+              sectionResults: sectionResultsFixture,
+            })}
+          >
+            <OakPupilClientProvider
+              config={{
+                getLessonAttemptUrl: "example.com",
+                logLessonAttemptUrl: "example.com",
+              }}
+            >
+              <PupilViewsReview
+                lessonTitle="Lesson title"
+                exitQuizQuestionsArray={[]}
+                starterQuizQuestionsArray={[]}
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                browseData={mockBroweData}
+                pageType="browse"
+              />
+            </OakPupilClientProvider>
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+      const button = getByText("Share results");
+      userEvent.click(button).then(() => {
+        expect(logAttemptSpy).toHaveBeenCalledTimes(1);
+        expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+          "example.com/attempt-id",
+        );
+      });
+    });
   });
 });
