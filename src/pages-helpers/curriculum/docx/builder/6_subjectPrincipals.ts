@@ -14,6 +14,8 @@ import {
 
 import { generateGridCols } from "./helper";
 
+import { isCycleTwoEnabled } from "@/utils/curriculum/features";
+
 export default async function generate(
   zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
@@ -28,6 +30,10 @@ export default async function generate(
       "src/pages-helpers/curriculum/docx/builder/images/underline.png",
     ),
   });
+
+  if (isCycleTwoEnabled()) {
+    return "<w:p/>";
+  }
 
   const pageXml = safeXml`
     <root>

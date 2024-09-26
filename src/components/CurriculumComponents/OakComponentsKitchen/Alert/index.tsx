@@ -55,7 +55,7 @@ export default function Alert(props: AlertProps) {
       data-testid="oak-inline-banner"
       $background={alertTypes[type]?.backgroundColour}
       $pa={"inner-padding-m"}
-      $borderRadius={"border-radius-m"}
+      $borderRadius={"border-radius-m2"}
       $borderStyle={"solid"}
       $borderColor={alertTypes[type]?.borderColour}
       $flexDirection={"row"}

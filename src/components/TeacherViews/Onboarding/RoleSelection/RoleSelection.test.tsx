@@ -4,6 +4,9 @@ import userEvent from "@testing-library/user-event";
 import RoleSelectionView from "./RoleSelection.view";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import * as onboardingActions from "@/components/TeacherComponents/OnboardingForm/onboardingActions";
+
+jest.mock("@/components/TeacherComponents/OnboardingForm/onboardingActions");
 
 describe("RoleSelection", () => {
   it("renders a group of radio buttons in a form", () => {
@@ -71,5 +74,23 @@ describe("RoleSelection", () => {
     expect(
       screen.queryByText(/Please select what describes you best/i),
     ).toBeNull();
+  });
+  it("can submit when a role is selected", async () => {
+    jest.spyOn(onboardingActions, "onboardUser");
+
+    renderWithProviders()(<RoleSelectionView />);
+
+    await userEvent.click(
+      screen.getByRole("radio", {
+        name: "Training to become a teacher",
+      }),
+    );
+    await userEvent.click(
+      screen.getByRole("button", {
+        name: /continue/i,
+      }),
+    );
+
+    expect(onboardingActions.onboardUser).toHaveBeenCalled();
   });
 });

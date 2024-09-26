@@ -24,6 +24,9 @@ query curriculumUnits($where: published_mv_curriculum_units_0_12_bool_exp) {
     tier
     tier_slug
     title
+    why_this_why_now
+    description
+    cycle
     unit_options
     threads
     year

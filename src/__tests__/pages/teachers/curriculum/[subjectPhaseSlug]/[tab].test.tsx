@@ -85,6 +85,9 @@ const unitData = [
     title: "Plant growth and development",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -161,6 +164,9 @@ const unitData = [
     title: "Ecosystems",
     unit_options: [],
     year: "7",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -232,6 +238,9 @@ const unitData = [
     title: "Health and disease",
     unit_options: [],
     year: "10",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -318,6 +327,9 @@ const unitData = [
       "Coordination and control: maintaining a constant internal environment",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -398,6 +410,9 @@ const unitData = [
       "Coordination and control: maintaining a constant internal environment",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -481,6 +496,9 @@ const unitData = [
     title: "Transport and exchange surfaces in plants",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
 ];
 
@@ -879,6 +897,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Health and disease",
               unit_options: [],
               year: "10",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
           ],
           groupAs: null,
@@ -972,6 +993,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Plant growth and development",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
             {
               connection_future_unit_description:
@@ -1062,6 +1086,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                 "Coordination and control: maintaining a constant internal environment",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
             {
               connection_future_unit_description:
@@ -1146,6 +1173,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                 "Coordination and control: maintaining a constant internal environment",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
             {
               connection_future_unit_description:
@@ -1231,6 +1261,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Transport and exchange surfaces in plants",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
           ],
           groupAs: null,
@@ -1336,6 +1369,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Ecosystems",
               unit_options: [],
               year: "7",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
           ],
           groupAs: null,
