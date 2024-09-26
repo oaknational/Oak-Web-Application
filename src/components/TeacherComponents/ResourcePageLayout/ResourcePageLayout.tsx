@@ -14,6 +14,8 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 
+import CopyrightNotice from "../CopyrightNotice";
+
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToDownload";
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
@@ -50,7 +52,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     triggerForm: UseFormTrigger<ResourceFormProps>;
     apiError?: string | null;
     updatedAt: string;
-    hasFullOnboarding: boolean;
+    hasFullOnboarding: boolean | undefined;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -111,8 +113,27 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                 </Box>
               )}
               {props.cardGroup}
+              {props.hasFullOnboarding && (
+                <>
+                  <OakBox
+                    $pb={"inner-padding-xl3"}
+                    $mt={"space-between-m"}
+                    $maxWidth={"all-spacing-22"}
+                  >
+                    <CopyrightNotice
+                      fullWidth
+                      showPostAlbCopyright={props.showPostAlbCopyright}
+                      openLinksExternally={true}
+                      copyrightYear={props.updatedAt}
+                    />
+                  </OakBox>
+
+                  {props.cta}
+                </>
+              )}
             </Flex>
           </OakBox>
+
           <Flex
             $flexDirection="column"
             $alignSelf="center"
@@ -164,7 +185,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                     </OakFlex>
                   </OakFlex>
                 )}
-                {props.cta}
+                {!props.hasFullOnboarding && props.cta}
 
                 {props.apiError && !hasFormErrors && (
                   <FieldError

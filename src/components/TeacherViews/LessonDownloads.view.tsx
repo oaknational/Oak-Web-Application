@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   examboards,
   tierDescriptions,
@@ -94,12 +94,19 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { useUser } = useFeatureFlaggedClerk();
   const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
   const { isSignedIn, user } = useUser();
+  const [hasFullOnboarding, setHasFullOnboarding] = useState(false);
 
-  const hasFullOnboarding = Boolean(
-    authFlagEnabled &&
-      isSignedIn &&
-      user.publicMetadata.owa?.isTeacher !== undefined,
-  );
+  useEffect(() => {
+    if (user != null) {
+      // as user has signed in with full onboarding journey on OWA
+      const newHasFullOnboarding = Boolean(
+        authFlagEnabled &&
+          isSignedIn &&
+          user.publicMetadata?.owa?.isTeacher !== undefined,
+      );
+      setHasFullOnboarding(newHasFullOnboarding);
+    }
+  }, [authFlagEnabled, isSignedIn, user, user?.publicMetadata?.owa?.isTeacher]);
 
   const { lesson } = props;
   const {
@@ -194,7 +201,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const { onSubmit } = useResourceFormSubmit({
     type: "download",
     isLegacyDownload,
-    hasFullOnboarding,
   });
 
   const { onHubspotSubmit } = useHubspotSubmit();
@@ -368,7 +374,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               hideSelectAll={Boolean(expired)}
               updatedAt={updatedAt}
               withHomeschool={true}
-              hasFullOnboarding={Boolean(hasFullOnboarding)}
+              hasFullOnboarding={hasFullOnboarding}
               cardGroup={
                 !showNoResources && (
                   <DownloadCardGroup
