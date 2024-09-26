@@ -27,6 +27,7 @@ import {
   getYearGroupTitle,
 } from "@/utils/curriculum/formatting";
 import { getUnitFeatures } from "@/utils/curriculum/features";
+import { sortYears } from "@/utils/curriculum/sorting";
 
 function generateGroupedUnits(
   data: CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>,
@@ -106,7 +107,7 @@ function generateGroupedUnits(
     },
   );
 
-  return unitOptions;
+  return unitOptions.sort((a, b) => sortYears(a.year, b.year));
 }
 
 export default async function generate(
