@@ -1,4 +1,20 @@
+import { YearData } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { Phase } from "@/node-lib/curriculum-api-2023";
+
+export function getYearGroupTitle(
+  yearData: YearData,
+  year: string,
+  suffix?: string,
+) {
+  const suffixStr = suffix ? ` ${suffix}` : "";
+  if (year in yearData) {
+    const { groupAs } = yearData[year]!;
+    if (groupAs && year === "all-years") {
+      return `${groupAs}${suffixStr} (all years)`;
+    }
+  }
+  return `Year ${year}${suffixStr}`;
+}
 
 export function getPhaseText(
   phase: Pick<Phase, "slug">,

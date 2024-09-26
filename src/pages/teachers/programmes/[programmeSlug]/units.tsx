@@ -88,6 +88,10 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
   const yearGroupSlug = router.query["year"]?.toString();
   const [skipFiltersButton, setSkipFiltersButton] = useState(false);
   const filtersRef = useRef<HTMLDivElement>(null);
+  const isFiltersAvailable =
+    yearGroups.length > 1 ||
+    subjectCategories.length > 1 ||
+    learningThemes.length > 1;
 
   const [selectedThemeSlug, setSelectedThemeSlug] = useState<
     string | undefined
@@ -234,36 +238,38 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 $maxWidth={"all-spacing-20"}
               >
                 <StyledFieldset>
-                  <OakHeading
-                    tag="h3"
-                    $font="heading-6"
-                    $mb={"space-between-ssx"}
-                  >
-                    Filters
-                  </OakHeading>
-                  <OakBox
-                    ref={filtersRef}
-                    $mb={skipFiltersButton ? "space-between-xs" : "auto"}
-                  >
-                    <OakSecondaryButton
-                      element="a"
-                      aria-label="Skip to units"
-                      href="#unit-list"
-                      onFocus={() => setSkipFiltersButton(true)}
-                      onBlur={() => setSkipFiltersButton(false)}
-                      style={
-                        skipFiltersButton
-                          ? {}
-                          : {
-                              position: "absolute",
-                              top: "-9999px",
-                              left: "-9999px",
-                            }
-                      }
-                    >
-                      Skip to units
-                    </OakSecondaryButton>
-                  </OakBox>
+                  {isFiltersAvailable && (
+                    <OakBox $mb={"space-between-m2"}>
+                      <OakHeading
+                        tag="h3"
+                        $font="heading-6"
+                        $mb={"space-between-ssx"}
+                      >
+                        Filters
+                      </OakHeading>
+
+                      <OakBox ref={filtersRef}>
+                        <OakSecondaryButton
+                          element="a"
+                          aria-label="Skip to units"
+                          href="#unit-list"
+                          onFocus={() => setSkipFiltersButton(true)}
+                          onBlur={() => setSkipFiltersButton(false)}
+                          style={
+                            skipFiltersButton
+                              ? {}
+                              : {
+                                  position: "absolute",
+                                  top: "-9999px",
+                                  left: "-9999px",
+                                }
+                          }
+                        >
+                          Skip to units
+                        </OakSecondaryButton>
+                      </OakBox>
+                    </OakBox>
+                  )}
                   {yearGroups.length > 1 && (
                     <YearGroupFilters
                       yearGroups={yearGroups}
@@ -344,65 +350,67 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     </Flex>
                   )}
 
-                  <MobileFilters
-                    $position={tiers.length === 0 ? "absolute" : "relative"}
-                    providedId={learningThemesFilterId}
-                    label="Filters"
-                    $mt={0}
-                    $mb={[16, 16, 0]}
-                    applyForTablet
-                  >
-                    <StyledFieldset>
-                      {yearGroups.length > 1 && (
-                        <YearGroupFilters
-                          idSuffix="mobile"
-                          programmeSlug={programmeSlug}
-                          yearGroups={yearGroups}
-                          browseRefined={track.browseRefined}
-                        />
-                      )}
-                      {subjectCategories && subjectCategories.length > 1 && (
-                        <SubjectCategoryFilters
-                          idSuffix="mobile"
-                          programmeSlug={programmeSlug}
-                          subjectCategories={subjectCategories}
-                          categorySlug={categorySlug}
-                          browseRefined={track.browseRefined}
-                        />
-                      )}
-                      {learningThemes.length > 1 && (
-                        <>
-                          <OakHeading
-                            tag="h3"
-                            $font="heading-7"
-                            $mb={"space-between-m"}
-                          >
-                            Threads
-                          </OakHeading>
-
-                          <UnitsLearningThemeFilters
+                  {isFiltersAvailable && (
+                    <MobileFilters
+                      $position={tiers.length === 0 ? "absolute" : "relative"}
+                      providedId={learningThemesFilterId}
+                      label="Filters"
+                      $mt={0}
+                      $mb={[16, 16, 0]}
+                      applyForTablet
+                    >
+                      <StyledFieldset>
+                        {yearGroups.length > 1 && (
+                          <YearGroupFilters
                             idSuffix="mobile"
                             programmeSlug={programmeSlug}
-                            onChangeCallback={setSelectedThemeSlug}
-                            labelledBy={learningThemesFilterId}
-                            learningThemes={learningThemes}
-                            selectedThemeSlug={selectedThemeSlug ?? "all"}
-                            linkProps={{
-                              page: "unit-index",
-                              programmeSlug,
-                            }}
-                            trackingProps={{
-                              keyStageSlug,
-                              keyStageTitle:
-                                keyStageTitle as KeyStageTitleValueType,
-                              subjectTitle,
-                              subjectSlug,
-                            }}
+                            yearGroups={yearGroups}
+                            browseRefined={track.browseRefined}
                           />
-                        </>
-                      )}
-                    </StyledFieldset>
-                  </MobileFilters>
+                        )}
+                        {subjectCategories && subjectCategories.length > 1 && (
+                          <SubjectCategoryFilters
+                            idSuffix="mobile"
+                            programmeSlug={programmeSlug}
+                            subjectCategories={subjectCategories}
+                            categorySlug={categorySlug}
+                            browseRefined={track.browseRefined}
+                          />
+                        )}
+                        {learningThemes.length > 1 && (
+                          <>
+                            <OakHeading
+                              tag="h3"
+                              $font="heading-7"
+                              $mb={"space-between-m"}
+                            >
+                              Threads
+                            </OakHeading>
+
+                            <UnitsLearningThemeFilters
+                              idSuffix="mobile"
+                              programmeSlug={programmeSlug}
+                              onChangeCallback={setSelectedThemeSlug}
+                              labelledBy={learningThemesFilterId}
+                              learningThemes={learningThemes}
+                              selectedThemeSlug={selectedThemeSlug ?? "all"}
+                              linkProps={{
+                                page: "unit-index",
+                                programmeSlug,
+                              }}
+                              trackingProps={{
+                                keyStageSlug,
+                                keyStageTitle:
+                                  keyStageTitle as KeyStageTitleValueType,
+                                subjectTitle,
+                                subjectSlug,
+                              }}
+                            />
+                          </>
+                        )}
+                      </StyledFieldset>
+                    </MobileFilters>
+                  )}
                 </Flex>
 
                 {tiers.length > 0 && currentPageItems.length >= 1 && (

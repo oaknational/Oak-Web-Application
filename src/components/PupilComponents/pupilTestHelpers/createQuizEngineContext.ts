@@ -20,6 +20,7 @@ export function createQuizEngineContext(
     ],
     score: 0,
     updateQuestionMode: jest.fn(),
+    updateHintOffered: jest.fn(),
     handleSubmitMCAnswer: jest.fn(),
     handleNextQuestion: jest.fn(),
     handleSubmitShortAnswer: jest.fn(),
