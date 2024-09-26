@@ -59,7 +59,7 @@ describe(QuizAttribution, () => {
     );
 
     expect(getByTestId("quiz-attribution").textContent).toEqual(
-      "test attribution picture, 1 attribution for image #1, 2 attribution for image #2, 3 attribution for image #3",
+      "1 test attribution picture, 2 attribution for image #1, 3 attribution for image #2, 4 attribution for image #3",
     );
   });
 

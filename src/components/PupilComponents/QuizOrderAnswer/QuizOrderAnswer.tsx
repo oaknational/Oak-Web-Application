@@ -10,7 +10,7 @@ import {
 
 import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
 
-import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+import { invariant } from "@/utils/invariant";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 
 export type QuizOrderAnswerProps = {

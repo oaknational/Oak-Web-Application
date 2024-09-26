@@ -17,6 +17,7 @@ import {
   OakSpan,
   OakStaticMessageCard,
 } from "@oaknational/oak-components";
+import { useEffect } from "react";
 
 import { useWorksheetDownload } from "./useWorksheetDownload";
 
@@ -39,8 +40,10 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     hasWorksheet,
   } = props;
   const {
-    completeSection,
+    completeActivity,
     updateCurrentSection,
+    updateWorksheetDownloaded,
+    currentSection,
     updateSectionResult,
     sectionResults,
   } = useLessonEngineContext();
@@ -50,21 +53,27 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     isLegacy ?? false,
   );
 
+  useEffect(() => {
+    if (
+      sectionResults.intro?.worksheetAvailable === undefined &&
+      currentSection === "intro"
+    ) {
+      sectionResults.intro?.worksheetDownloaded ||
+        updateSectionResult({
+          worksheetDownloaded:
+            sectionResults.intro?.worksheetDownloaded || false,
+          worksheetAvailable: hasWorksheet ? true : false,
+        });
+    }
+  }, [hasWorksheet, sectionResults.intro, updateSectionResult, currentSection]);
+
   const handleDownloadClicked = () => {
-    updateSectionResult({
+    updateWorksheetDownloaded({
       worksheetDownloaded: true,
       worksheetAvailable: true,
     });
     startDownload();
   };
-
-  if (!sectionResults.intro?.worksheetAvailable && hasWorksheet) {
-    sectionResults.intro?.worksheetDownloaded ||
-      updateSectionResult({
-        worksheetDownloaded: sectionResults.intro?.worksheetDownloaded || false,
-        worksheetAvailable: true,
-      });
-  }
 
   const topNavSlot = (
     <OakLessonTopNav
@@ -87,7 +96,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     <OakLessonBottomNav>
       <OakPrimaryButton
         element="a"
-        {...getSectionLinkProps("overview", () => completeSection("intro"))}
+        {...getSectionLinkProps("overview", () => completeActivity("intro"))}
         width={["100%", "max-content"]}
         isTrailingIcon
         iconName="arrow-right"

@@ -164,6 +164,7 @@ const OnboardingForm = ({
         $borderRadius="border-radius-m2"
         $background={"white"}
         as="form"
+        noValidate
         onSubmit={
           (event) => void props.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
         }

@@ -13,7 +13,7 @@ import {
   Tier,
   Subject,
 } from "@oaknational/oak-components";
-import { mapKeys, camelCase } from "lodash";
+import { mapKeys, camelCase, capitalize } from "lodash";
 
 import CurriculumDownloadView, {
   CurriculumDownloadViewData,
@@ -35,8 +35,10 @@ import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import {
   PhaseValueType,
   ResourceFileTypeValueType,
+  TierNameValueType,
 } from "@/browser-lib/avo/Avo";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
+import { unionOrNull } from "@/utils/narrowToUnion";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -250,7 +252,10 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         !schoolId || schoolId === "homeschool" ? 0 : parseInt(schoolId),
       schoolName: dataSchoolName || "",
       resourceFileType: resourceFileType,
-      tierName: tierSelected,
+      tierName: unionOrNull<TierNameValueType>(
+        capitalize(tierSelected ?? undefined),
+        ["Foundation", "Higher"],
+      ),
       childSubjectName: subject,
       childSubjectSlug: child_subjects?.find((s) => s.subject_slug === subject)
         ?.subject,

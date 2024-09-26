@@ -7,6 +7,7 @@ import {
 import React, { MutableRefObject } from "react";
 import { useRouter } from "next/router";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { isEqual, uniq } from "lodash";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
@@ -40,6 +41,8 @@ import {
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { YearSelection } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+import { getUnitFeatures } from "@/utils/curriculum/features";
+import { sortYears } from "@/utils/curriculum/sorting";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
@@ -67,6 +70,8 @@ export type CurriculumUnitsYearData<T = Unit> = {
     subjectCategories: SubjectCategory[];
     tiers: Tier[];
     pathways: Pathway[];
+    labels: string[];
+    groupAs: string | null;
     ref?: MutableRefObject<HTMLDivElement>;
   };
 };
@@ -122,18 +127,13 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     subjectTitle: curriculumOverviewTabData.subjectTitle,
     examboardSlug: examboardSlug,
   };
-  let keyStagesData: string;
-  switch (phaseSlug) {
-    case "primary":
-      keyStagesData = `KS1-2`;
-      break;
-    case "secondary":
-      keyStagesData = `KS3-4`;
-      break;
-    default:
-      keyStagesData = "";
-      break;
-  }
+
+  const keyStages = uniq(
+    Object.values(curriculumUnitsFormattedData.yearData).flatMap(({ units }) =>
+      units.map((unit) => unit.keystage_slug),
+    ),
+  );
+
   let tabContent: JSX.Element;
 
   switch (tab) {
@@ -180,14 +180,14 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
               metadataType: "title",
               subjectSlug: subjectSlug,
               examboardSlug: examboardSlug,
-              keyStagesData: keyStagesData,
+              keyStages: keyStages,
               tab: tab,
             }),
             description: buildCurriculumMetadata({
               metadataType: "description",
               subjectSlug: subjectSlug,
               examboardSlug: examboardSlug,
-              keyStagesData: keyStagesData,
+              keyStages: keyStages,
               tab: tab,
             }),
           }),
@@ -197,6 +197,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         <CurriculumHeader
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
+          keyStages={keyStages}
           color1="mint"
           color2="mint30"
         />
@@ -284,12 +285,14 @@ export function createYearOptions(units: Unit[]): string[] {
 
   units.forEach((unit: Unit) => {
     // Populate years object
-    if (yearOptions.every((yo) => yo !== unit.year)) {
-      yearOptions.push(unit.year);
+    const year =
+      getUnitFeatures(unit)?.programmes_fields_overrides.year ?? unit.year;
+    if (yearOptions.every((yo) => yo !== year)) {
+      yearOptions.push(year);
     }
   });
   // Sort year data
-  yearOptions.sort((a, b) => Number(a) - Number(b));
+  yearOptions.sort(sortYears);
 
   return yearOptions;
 }
@@ -335,7 +338,10 @@ export function createUnitsListingByYear(
     // Check if the yearData object has an entry for the unit's year
     // If not, initialize it with default values
 
-    let currentYearData = yearData[unit.year];
+    const year =
+      getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year;
+
+    let currentYearData = yearData[year];
     if (!currentYearData) {
       currentYearData = {
         units: [],
@@ -343,8 +349,10 @@ export function createUnitsListingByYear(
         subjectCategories: [],
         tiers: [],
         pathways: [],
+        labels: [],
+        groupAs: null,
       };
-      yearData[unit.year] = currentYearData;
+      yearData[year] = currentYearData;
     }
 
     // Add the current unit
@@ -405,6 +413,33 @@ export function createUnitsListingByYear(
       }
     });
   });
+
+  for (const year of Object.keys(yearData)) {
+    const data = yearData[year]!;
+    if (data.units.length > 0) {
+      const labels = getUnitFeatures(data.units[0]!)?.labels ?? [];
+      if (
+        data.units.every((unit) =>
+          isEqual(getUnitFeatures(unit)?.labels, labels),
+        )
+      ) {
+        data.labels = data.labels.concat(labels);
+      }
+    }
+
+    if (data.units.length > 0) {
+      const groupAs = getUnitFeatures(data.units[0]!)?.group_as;
+      if (groupAs) {
+        if (
+          data.units.every(
+            (unit) => getUnitFeatures(unit)?.group_as === groupAs,
+          )
+        ) {
+          data.groupAs = groupAs;
+        }
+      }
+    }
+  }
 
   return yearData;
 }
@@ -544,6 +579,7 @@ export const getStaticProps: GetStaticProps<
       );
 
       const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
           curriculumSelectionSlugs: slugs,

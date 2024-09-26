@@ -70,7 +70,11 @@ export function useFeatureFlaggedClerk() {
 export function FeatureFlaggedClerkProvider({ children }: PropsWithChildren) {
   if (useFeatureFlagEnabled("use-auth-owa")) {
     return (
-      <ClerkProvider>
+      <ClerkProvider
+        signInUrl="/sign-in"
+        signUpUrl="/sign-up"
+        afterSignOutUrl="/"
+      >
         <clerkApiContext.Provider value={realClerkApi}>
           {children}
         </clerkApiContext.Provider>

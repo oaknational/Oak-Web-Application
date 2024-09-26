@@ -1,4 +1,5 @@
 import { isString } from "lodash";
+import { useEffect, useState } from "react";
 import {
   OakBox,
   OakBulletList,
@@ -18,7 +19,6 @@ import {
   OakSubjectIcon,
   isValidIconName,
 } from "@oaknational/oak-components";
-import { useEffect, useState } from "react";
 
 import {
   LessonReviewSection,
@@ -29,34 +29,34 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 type PupilViewsLessonOverviewProps = {
+  browseData: LessonBrowseData;
   lessonTitle: string;
-  yearTitle?: string;
-  phase?: "primary" | "secondary";
-  subjectTitle: string;
-  subjectSlug: string;
   pupilLessonOutcome?: string;
   contentGuidance?: OakPupilContentGuidance[] | null;
   supervisionLevel?: string;
   starterQuizNumQuestions: number;
   exitQuizNumQuestions: number;
   backUrl?: string | null;
-  expirationDate: LessonBrowseData["lessonData"]["expirationDate"];
 };
 
 export const PupilViewsLessonOverview = ({
   lessonTitle,
-  subjectTitle,
-  yearTitle,
-  phase = "primary",
-  subjectSlug,
   pupilLessonOutcome,
   contentGuidance,
   supervisionLevel,
   exitQuizNumQuestions,
   starterQuizNumQuestions,
   backUrl,
-  expirationDate,
+  browseData,
 }: PupilViewsLessonOverviewProps) => {
+  const { programmeFields, lessonData } = browseData;
+  const {
+    subjectSlug,
+    phase = "primary",
+    yearDescription,
+    subject,
+  } = programmeFields;
+  const { expirationDate } = lessonData;
   const {
     sectionResults,
     proceedToNextSection,
@@ -89,7 +89,7 @@ export const PupilViewsLessonOverview = ({
   return (
     <OakLessonLayout
       lessonSectionName={"overview"}
-      phase={phase}
+      phase={phase as "primary" | "secondary"}
       topNavSlot={null}
       bottomNavSlot={
         <OakLessonBottomNav>
@@ -193,7 +193,7 @@ export const PupilViewsLessonOverview = ({
               <OakBox>
                 <OakBox $mb="space-between-s" $display={["none", "block"]}>
                   <OakBulletList
-                    listItems={[yearTitle, subjectTitle].filter(isString)}
+                    listItems={[yearDescription, subject].filter(isString)}
                     $color="text-subdued"
                   />
                 </OakBox>

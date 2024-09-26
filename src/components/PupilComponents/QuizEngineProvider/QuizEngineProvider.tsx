@@ -25,7 +25,7 @@ import {
   isImage,
   isText,
 } from "@/components/PupilComponents/QuizUtils/stemUtils";
-import { invariant } from "@/components/PupilComponents/pupilUtils/invariant";
+import { invariant } from "@/utils/invariant";
 import {
   isMatchAnswer,
   isOrderAnswer,
@@ -48,6 +48,7 @@ export type QuizEngineContextType = {
   numQuestions: number;
   numInteractiveQuestions: number;
   updateQuestionMode: (mode: QuestionModeType) => void;
+  updateHintOffered: (offerHint: boolean) => void;
   handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
   handleSubmitShortAnswer: (pupilAnswer?: string) => void;
   handleSubmitOrderAnswer: (pupilAnswers: number[]) => void;
@@ -68,7 +69,7 @@ export const useQuizEngineContext = () => {
 
 export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
-  const { updateSectionResult, completeSection, currentSection } =
+  const { updateSectionResult, completeActivity, currentSection } =
     useLessonEngineContext();
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
@@ -114,6 +115,13 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const updateQuestionMode = useCallback(
     (mode: QuestionModeType) => {
       updateCurrentQuestion({ mode });
+    },
+    [updateCurrentQuestion],
+  );
+
+  const updateHintOffered = useCallback(
+    (offerHint: boolean) => {
+      updateCurrentQuestion({ offerHint });
     },
     [updateCurrentQuestion],
   );
@@ -288,11 +296,12 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         _currentQuestionIndex === numQuestions &&
         isLessonReviewSection(currentSection)
       ) {
-        completeSection(currentSection);
+        // NB. in strict mode this will be called twice resulting in double logging
+        completeActivity(currentSection);
       }
       return _currentQuestionIndex;
     });
-  }, [numQuestions, setCurrentQuestionIndex, completeSection, currentSection]);
+  }, [numQuestions, setCurrentQuestionIndex, completeActivity, currentSection]);
 
   const currentQuestionDisplayIndex =
     currentQuestionIndex - (numQuestions - numInteractiveQuestions);
@@ -309,6 +318,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         numQuestions,
         numInteractiveQuestions,
         updateQuestionMode,
+        updateHintOffered,
         handleSubmitMCAnswer,
         handleSubmitShortAnswer,
         handleSubmitOrderAnswer,
