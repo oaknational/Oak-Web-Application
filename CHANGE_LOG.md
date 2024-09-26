@@ -1,3 +1,15 @@
+# [1.564.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.563.0...v1.564.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* added isCurricPartnerHackEnabled() test and partner title plurals ([c157a7e](https://github.com/oaknational/Oak-Web-Application/commit/c157a7e760ae459308494e12674f19e953792597))
+
+
+### Features
+
+* added explainer styling, sticky contents and new partners footer in overview tab ([b793341](https://github.com/oaknational/Oak-Web-Application/commit/b793341488921618262ee85f8570d7c164800b06))
+
 # [1.563.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.2...v1.563.0) (2024-09-25)
 
 
