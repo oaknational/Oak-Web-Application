@@ -62,6 +62,20 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
   const { isSignedIn, user } = useUser();
 
+  const [hasFullOnboarding, setHasFullOnboarding] = useState(false);
+
+  useEffect(() => {
+    if (user != null) {
+      // as user has signed in with full onboarding journey on OWA
+      const newHasFullOnboarding = Boolean(
+        authFlagEnabled &&
+          isSignedIn &&
+          user.publicMetadata?.owa?.isTeacher !== undefined,
+      );
+      setHasFullOnboarding(newHasFullOnboarding);
+    }
+  }, [authFlagEnabled, isSignedIn, user, user?.publicMetadata?.owa?.isTeacher]);
+
   const {
     schoolFromLocalStorage,
     emailFromLocalStorage,
@@ -320,6 +334,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setActiveResources,
     handleToggleSelectAll,
     selectAllChecked,
+    hasFullOnboarding,
     form: {
       trigger,
       setValue,

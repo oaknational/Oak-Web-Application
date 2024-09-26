@@ -128,6 +128,7 @@ export function LessonShare(props: LessonShareProps) {
     selectAllChecked,
     editDetailsClicked,
     setEmailInLocalStorage,
+    hasFullOnboarding,
   } = useResourceFormState({
     shareResources: shareableResources,
     type: "share",
@@ -223,6 +224,7 @@ export function LessonShare(props: LessonShareProps) {
           schoolId={schoolIdFromLocalStorage}
           setSchool={setSchool}
           showSavedDetails={shouldDisplayDetailsCompleted}
+          hasFullOnboarding={hasFullOnboarding}
           onEditClick={handleEditDetailsCompletedClick}
           register={form.register}
           control={form.control}

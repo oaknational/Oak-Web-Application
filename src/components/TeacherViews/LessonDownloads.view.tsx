@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   examboards,
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
@@ -92,22 +91,7 @@ type LessonDownloadsProps =
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { useUser } = useFeatureFlaggedClerk();
-  const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
-  const { isSignedIn, user } = useUser();
-  const [hasFullOnboarding, setHasFullOnboarding] = useState(false);
-
-  useEffect(() => {
-    if (user != null) {
-      // as user has signed in with full onboarding journey on OWA
-      const newHasFullOnboarding = Boolean(
-        authFlagEnabled &&
-          isSignedIn &&
-          user.publicMetadata?.owa?.isTeacher !== undefined,
-      );
-      setHasFullOnboarding(newHasFullOnboarding);
-    }
-  }, [authFlagEnabled, isSignedIn, user, user?.publicMetadata?.owa?.isTeacher]);
-
+  const { user } = useUser();
   const { lesson } = props;
   const {
     lessonTitle,
@@ -185,6 +169,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     handleToggleSelectAll,
     selectAllChecked,
     setEmailInLocalStorage,
+    hasFullOnboarding,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
     type: "download",
