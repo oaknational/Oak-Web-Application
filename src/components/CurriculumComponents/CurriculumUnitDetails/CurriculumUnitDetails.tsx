@@ -5,6 +5,7 @@ import {
   OakP,
   OakOL,
   OakFlex,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { Thread } from "../CurriculumVisualiser";
@@ -22,6 +23,9 @@ export type CurriculumUnitDetailsProps = {
   futureUnitDescription: string | null;
   priorUnitTitle: string | null;
   futureUnitTitle: string | null;
+  whyThisWhyNow: string | null;
+  description: string | null;
+  cycle: string;
 };
 
 export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
@@ -31,6 +35,9 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   futureUnitDescription,
   priorUnitTitle,
   futureUnitTitle,
+  whyThisWhyNow,
+  description,
+  cycle,
 }) => {
   const threadTitleSet = new Set<string>(threads.map((thread) => thread.title));
 
@@ -80,8 +87,36 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
         </Box>
       )}
       <OakFlex $flexDirection={"column"}>
+        {cycle === "2" && (
+          <>
+            {description && (
+              <OakBox $mb={"space-between-m2"}>
+                <OakHeading
+                  tag="h3"
+                  $font={"heading-6"}
+                  $mb="space-between-ssx"
+                >
+                  Description
+                </OakHeading>
+                <OakP>{description}</OakP>
+              </OakBox>
+            )}
+
+            {whyThisWhyNow && (
+              <CurriculumUnitDetailsAccordion title="Why this why now">
+                <OakP $mb="space-between-xs" $font={"body-2"}>
+                  {whyThisWhyNow}
+                </OakP>
+              </CurriculumUnitDetailsAccordion>
+            )}
+          </>
+        )}
+
         {numberOfLessons >= 1 && (
-          <CurriculumUnitDetailsAccordion title="Lessons in unit">
+          <CurriculumUnitDetailsAccordion
+            title="Lessons in unit"
+            lastAccordion={cycle === "2"}
+          >
             <OakOL $mt="space-between-none" data-testid="lesson-title-list">
               {lessons &&
                 uniqueLessonTitlesArray?.map((lesson) => {
@@ -91,29 +126,33 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
           </CurriculumUnitDetailsAccordion>
         )}
 
-        {priorUnitDescription && (
-          <CurriculumUnitDetailsAccordion title="Previous unit description">
-            <OakP $mb="space-between-xs" $font={"body-2-bold"}>
-              {priorUnitTitle}
-            </OakP>
-            <OakP $mb="space-between-xs" $font={"body-2"}>
-              {priorUnitDescription}
-            </OakP>
-          </CurriculumUnitDetailsAccordion>
-        )}
+        {cycle === "1" && (
+          <>
+            {priorUnitDescription && (
+              <CurriculumUnitDetailsAccordion title="Previous unit description">
+                <OakP $mb="space-between-xs" $font={"body-2-bold"}>
+                  {priorUnitTitle}
+                </OakP>
+                <OakP $mb="space-between-xs" $font={"body-2"}>
+                  {priorUnitDescription}
+                </OakP>
+              </CurriculumUnitDetailsAccordion>
+            )}
 
-        {futureUnitDescription && (
-          <CurriculumUnitDetailsAccordion
-            title="Following unit description"
-            lastAccordion={true}
-          >
-            <OakP $mb="space-between-xs" $font={"body-2-bold"}>
-              {futureUnitTitle}
-            </OakP>
-            <OakP $mb="space-between-xs" $font={"body-2"}>
-              {futureUnitDescription}
-            </OakP>
-          </CurriculumUnitDetailsAccordion>
+            {futureUnitDescription && (
+              <CurriculumUnitDetailsAccordion
+                title="Following unit description"
+                lastAccordion={true}
+              >
+                <OakP $mb="space-between-xs" $font={"body-2-bold"}>
+                  {futureUnitTitle}
+                </OakP>
+                <OakP $mb="space-between-xs" $font={"body-2"}>
+                  {futureUnitDescription}
+                </OakP>
+              </CurriculumUnitDetailsAccordion>
+            )}
+          </>
         )}
       </OakFlex>
     </OakFlex>
