@@ -12,7 +12,6 @@ import CurriculumVisualiser, {
   Subject,
   Tier,
   Unit,
-  isVisibleUnit,
   SubjectCategory,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
@@ -20,7 +19,10 @@ import SkipLink from "../OakComponentsKitchen/SkipLink";
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 
+import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
+import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import Box from "@/components/SharedComponents/Box";
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -78,18 +80,24 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
   const [yearSelection, setYearSelection] = useState<YearSelection>({
     ...initialYearSelection,
   });
+
   // This useLayoutEffect hook should be deprecated once the url structure of the visualiser should be updated
   useLayoutEffect(() => {
     setYearSelection(initialYearSelection);
   }, [initialYearSelection]);
 
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
+  const [selectedYear, setSelectedYear] = useState<string>("");
   const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
     useState<number>(0);
   const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
     string | null
   >(null);
+  const unitCount = getNumberOfSelectedUnits(
+    yearData,
+    selectedYear,
+    yearSelection,
+  );
 
   // Filter interaction handlers
 
@@ -311,18 +319,29 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                 onChange={handleSelectYear}
               >
                 <Box $mb={16}>
-                  <RadioButton value={""} data-testid={"all-years-radio"}>
+                  <RadioButton
+                    aria-label="All year groups"
+                    value={""}
+                    data-testid={"all-years-radio"}
+                  >
                     All
                   </RadioButton>
                 </Box>
                 {yearOptions.map((yearOption) => (
                   <Box key={yearOption} $mb={16}>
-                    <RadioButton value={yearOption} data-testid={"year-radio"}>
+                    <RadioButton
+                      value={yearOption}
+                      data-testid={"year-radio"}
+                      aria-label={getYearGroupTitle(yearData, yearOption)}
+                    >
                       {getYearGroupTitle(yearData, yearOption)}
                     </RadioButton>
                   </Box>
                 ))}
               </RadioGroup>
+              <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+                Showing {unitCount} {unitCount === 1 ? "unit" : "units"}
+              </ScreenReaderOnly>
             </Fieldset>
           </OakGridArea>
           <CurriculumVisualiser
