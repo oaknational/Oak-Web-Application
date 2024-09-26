@@ -1,3 +1,44 @@
+# [1.565.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.564.0...v1.565.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* added year sorting ([5fc5967](https://github.com/oaknational/Oak-Web-Application/commit/5fc596726674cf1e870136e021877ed67e8baa4c))
+* invalid XML element nesting ([c198e28](https://github.com/oaknational/Oak-Web-Application/commit/c198e28c8b10381952f1225645e74e02e1e337e9))
+* remove more curriculum download content for cycle 2, now that we have explainers ([c2ed0a0](https://github.com/oaknational/Oak-Web-Application/commit/c2ed0a039b172a885a60389e586ad1c916a91011))
+
+
+### Features
+
+* added styling to explainer in docx ([acd7565](https://github.com/oaknational/Oak-Web-Application/commit/acd75650473b5f3e41cd5134813a23307eed337f))
+
+# [1.564.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.563.0...v1.564.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* added isCurricPartnerHackEnabled() test and partner title plurals ([c157a7e](https://github.com/oaknational/Oak-Web-Application/commit/c157a7e760ae459308494e12674f19e953792597))
+
+
+### Features
+
+* added explainer styling, sticky contents and new partners footer in overview tab ([b793341](https://github.com/oaknational/Oak-Web-Application/commit/b793341488921618262ee85f8570d7c164800b06))
+
+# [1.563.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.2...v1.563.0) (2024-09-25)
+
+
+### Features
+
+* **printable:** create style printable results page ([da4f960](https://github.com/oaknational/Oak-Web-Application/commit/da4f96020d9ab630755fb61bc7321704ae8c5ab3))
+* **printable:** create style printable results page ([c8570cf](https://github.com/oaknational/Oak-Web-Application/commit/c8570cfb281b94f3c42b8f7c6fe26465e3ff23ba))
+* **share:** handle no worksheet and handle hints ([f59bcb3](https://github.com/oaknational/Oak-Web-Application/commit/f59bcb3c4735f3df6564df03e2148bdd59294214))
+* **share:** handle no worksheet and handle hints ([867cb3c](https://github.com/oaknational/Oak-Web-Application/commit/867cb3c48123340a06b0bf502b069356b7b1a792))
+* **share:** handle no worksheet and handle hints ([1877aff](https://github.com/oaknational/Oak-Web-Application/commit/1877affdd133d785f1abf2362659606665bf92b5))
+* **share:** no worksheet bug ([40d6e2a](https://github.com/oaknational/Oak-Web-Application/commit/40d6e2a648d7b7368d1e49a15d85976056556c99))
+* **share:** no worksheet bug ([4d9ae21](https://github.com/oaknational/Oak-Web-Application/commit/4d9ae21021b11bf279fe04af7e06912ff2431a0e))
+* **share:** no worksheet bug ([7c4e9fb](https://github.com/oaknational/Oak-Web-Application/commit/7c4e9fb0404ee26266e44b3d937d174cc28a7a66))
+* **video:** update video schema ([1787eb4](https://github.com/oaknational/Oak-Web-Application/commit/1787eb468a7f2544d9efd70d9bc1be67b003985e))
+
 ## [1.562.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.1...v1.562.2) (2024-09-25)
 
 
