@@ -1,3 +1,24 @@
+## [1.565.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.565.0...v1.565.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* **LESQ-1082:** only render filter heading when options ([72359ad](https://github.com/oaknational/Oak-Web-Application/commit/72359ad000c3b674ffdeb9e4368b897d97f4c0c4))
+
+# [1.565.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.564.0...v1.565.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* added year sorting ([5fc5967](https://github.com/oaknational/Oak-Web-Application/commit/5fc596726674cf1e870136e021877ed67e8baa4c))
+* invalid XML element nesting ([c198e28](https://github.com/oaknational/Oak-Web-Application/commit/c198e28c8b10381952f1225645e74e02e1e337e9))
+* remove more curriculum download content for cycle 2, now that we have explainers ([c2ed0a0](https://github.com/oaknational/Oak-Web-Application/commit/c2ed0a039b172a885a60389e586ad1c916a91011))
+
+
+### Features
+
+* added styling to explainer in docx ([acd7565](https://github.com/oaknational/Oak-Web-Application/commit/acd75650473b5f3e41cd5134813a23307eed337f))
+
 # [1.564.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.563.0...v1.564.0) (2024-09-26)
 
 
