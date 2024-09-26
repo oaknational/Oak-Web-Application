@@ -13,7 +13,7 @@ import {
   OakLessonReviewQuiz,
   OakPrimaryButton,
   OakTertiaryButton,
-} from "@oaknational/oak-components";
+ OakSecondaryButton } from "@oaknational/oak-components";
 import {
   attemptDataCamelCaseSchema,
   useOakPupil,
@@ -179,8 +179,11 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               </OakHeading>
               {isShowShareButtons && (
                 <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+                  <OakHeading tag="h2" $font={"body-2-bold"}>
+                    Share options:
+                  </OakHeading>
                   <OakFlex $gap={"space-between-s"}>
-                    <OakPrimaryButton
+                    <OakSecondaryButton
                       type="button"
                       role="button"
                       aria-label="Printable results, opens in a new tab"
@@ -191,17 +194,19 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                       data-testid="printable-results-button"
                     >
                       Printable results
-                    </OakPrimaryButton>
-                    <OakPrimaryButton
+                    </OakSecondaryButton>
+                    <OakSecondaryButton
                       type="button"
                       role="button"
                       aria-label="Share results"
                       title="Share results"
                       onClick={handleShareResultsClick}
+                      iconName={"share"}
+                      isTrailingIcon
                       data-testid="share-results-button"
                     >
                       Share results
-                    </OakPrimaryButton>
+                    </OakSecondaryButton>
                   </OakFlex>
                   {isAttemptingShare === "shared" && (
                     <OakFlex $gap={"space-between-sssx"} $alignItems={"center"}>
