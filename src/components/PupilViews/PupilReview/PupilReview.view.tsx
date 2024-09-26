@@ -183,7 +183,10 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                   <OakHeading tag="h2" $font={"body-2-bold"}>
                     Share options:
                   </OakHeading>
-                  <OakFlex $gap={"space-between-s"}>
+                  <OakFlex
+                    $gap={"space-between-s"}
+                    $flexDirection={["column", "row"]}
+                  >
                     <OakSecondaryButton
                       type="button"
                       role="button"
