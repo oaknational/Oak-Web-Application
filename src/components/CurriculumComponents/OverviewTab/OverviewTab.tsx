@@ -29,7 +29,10 @@ import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
-import { useCycleTwoEnabled } from "@/utils/curriculum/features";
+import {
+  isCurricPartnerHackEnabled,
+  useCycleTwoEnabled,
+} from "@/utils/curriculum/features";
 
 export type OverviewTabProps = {
   data: {
@@ -174,7 +177,9 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   };
 
   // TODO: Add multiple curriculum partners here, see <https://www.notion.so/oaknationalacademy/New-curriculum-partner-design-in-overview-tab-10326cc4e1b180098542eb3b70ba270d>
-  const curriculumPartners = [curriculumPartner];
+  const curriculumPartners = isCurricPartnerHackEnabled()
+    ? [curriculumPartner, curriculumPartner]
+    : [curriculumPartner];
 
   const h1Headings = (curriculumExplainer.explainerRaw ?? []).filter(
     (block) => {
