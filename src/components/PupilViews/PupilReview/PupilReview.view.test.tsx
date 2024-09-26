@@ -288,7 +288,7 @@ describe("PupilReview", () => {
 
       expect(queryByText("Share results")).toBeInTheDocument();
     });
-    it("logAttempt function is called when button is clicked", async () => {
+    it("logAttempt function is called when button is clicked", () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
       //spy on the track function
       const logAttemptSpy = jest.fn(() => Promise.resolve("attempt-id"));
@@ -321,14 +321,16 @@ describe("PupilReview", () => {
         </OakThemeProvider>,
       );
       const button = getByText("Share results");
-      await userEvent.click(button).then(() => {
+      userEvent.click(button).then(() => {
         expect(logAttemptSpy).toHaveBeenCalledTimes(1);
       });
     });
-    it("throws error if attempt_d s not returned by logAttempt", async () => {
+    it("throws error if attempt_id s not returned by logAttempt", () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
       //spy on the track function
-      const logAttemptSpy = jest.fn(() => Promise.resolve(null));
+      const logAttemptSpy = jest.fn(() => {
+        Promise.resolve(null);
+      });
       (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
       // Mock console.error
       let consoleErrorSpy = jest
@@ -369,7 +371,7 @@ describe("PupilReview", () => {
         .mockImplementation(() => {});
 
       const button = getByText("Share results");
-      await userEvent.click(button).then(() => {
+      userEvent.click(button).then(() => {
         expect(logAttemptSpy).toHaveBeenCalledTimes(1);
         const firstCallArg = consoleErrorSpy.mock.calls[0]?.[0];
         expect(firstCallArg).toBeInstanceOf(Error);
