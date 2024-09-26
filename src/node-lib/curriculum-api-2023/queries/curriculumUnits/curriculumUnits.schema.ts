@@ -60,12 +60,17 @@ const curriculumUnitsSchema = z.object({
         }),
       ),
       title: z.string(),
+      description: z.string().nullable(),
+      why_this_why_now: z.string().nullable(),
+      cycle: z.string(),
       unit_options: z.array(
         z.object({
           connection_prior_unit_description: z.string().nullable(),
           connection_future_unit_description: z.string().nullable(),
           connection_prior_unit_title: z.string().nullable(),
           connection_future_unit_title: z.string().nullable(),
+          description: z.string().nullable(),
+          why_this_why_now: z.string().nullable(),
           title: z.string(),
           unitvariant_id: z.number(),
           lessons: z.array(

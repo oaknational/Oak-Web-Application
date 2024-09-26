@@ -14,6 +14,9 @@ const testCurriculumUnitDetails = {
   futureUnitDescription: "test future unit description",
   priorUnitTitle: "test prior unit title",
   futureUnitTitle: "test future unit title",
+  cycle: "1",
+  whyThisWhyNow: "test why this why now",
+  description: "test description",
 };
 
 describe("CurriculumUnitDetails component", () => {
@@ -38,7 +41,7 @@ describe("CurriculumUnitDetails component", () => {
   });
 
   describe("accordion functionality on component", () => {
-    test("it should render all accordion components", () => {
+    test("it should render all accordion components (cycle 1)", () => {
       const { getAllByTestId, getByText } = renderWithTheme(
         <CurriculumUnitDetails {...testCurriculumUnitDetails} />,
       );
@@ -47,6 +50,17 @@ describe("CurriculumUnitDetails component", () => {
       expect(getByText("Lessons in unit")).toBeInTheDocument();
       expect(getByText("Previous unit description")).toBeInTheDocument();
       expect(getByText("Following unit description")).toBeInTheDocument();
+    });
+
+    test("it should render all accordion components (cycle 2)", () => {
+      const { getAllByTestId, getByText } = renderWithTheme(
+        <CurriculumUnitDetails {...testCurriculumUnitDetails} cycle="2" />,
+      );
+
+      expect(getAllByTestId("accordion-component")).toHaveLength(2);
+      expect(getByText("Lessons in unit")).toBeInTheDocument();
+      expect(getByText("Description")).toBeInTheDocument();
+      expect(getByText("Why this why now")).toBeInTheDocument();
     });
 
     test("when expanding lesson accordion it should render correct lessons list", async () => {

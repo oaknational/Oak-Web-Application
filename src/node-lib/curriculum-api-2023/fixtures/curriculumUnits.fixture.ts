@@ -103,6 +103,9 @@ const curriculumUnitsTabFixture = (
         title: "Forces",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -193,6 +196,9 @@ const curriculumUnitsTabFixture = (
         title: "Biodiversity",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -264,6 +270,9 @@ const curriculumUnitsTabFixture = (
         title: "Plant nutrition and photosynthesis",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -343,6 +352,9 @@ const curriculumUnitsTabFixture = (
         title: "Eukaryotic and prokaryotic cells",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -422,6 +434,9 @@ const curriculumUnitsTabFixture = (
         title: "Eukaryotic and prokaryotic cells",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -505,6 +520,9 @@ const curriculumUnitsTabFixture = (
         title: "Atomic structure and the periodic table",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -588,6 +606,9 @@ const curriculumUnitsTabFixture = (
         title: "Atomic structure and the periodic table",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -686,6 +707,9 @@ const curriculumUnitsTabFixture = (
         title: "Particle explanations of density and pressure ",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -784,6 +808,9 @@ const curriculumUnitsTabFixture = (
         title: "Particle explanations of density and pressure ",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -844,6 +871,9 @@ const curriculumUnitsTabFixture = (
           "Defences against pathogens, the human immune system and vaccination",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -908,6 +938,9 @@ const curriculumUnitsTabFixture = (
           "Defences against pathogens, the human immune system and vaccination",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -1027,6 +1060,9 @@ const curriculumUnitsTabFixture = (
         title: "Using Earth's resources",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -1136,6 +1172,9 @@ const curriculumUnitsTabFixture = (
         title: "Using Earth's resources",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -1191,6 +1230,9 @@ const curriculumUnitsTabFixture = (
           "Defences against pathogens, the human immune system and vaccination",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -1250,6 +1292,9 @@ const curriculumUnitsTabFixture = (
           "Defences against pathogens, the human immune system and vaccination",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -1344,6 +1389,9 @@ const curriculumUnitsTabFixture = (
         title: "Forces make things change",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -1449,6 +1497,9 @@ const curriculumUnitsTabFixture = (
         title: "Forces make things change",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -1534,6 +1585,9 @@ const curriculumUnitsTabFixture = (
         title: "Solid, liquid, gas states and changes of state",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -1633,6 +1687,9 @@ const curriculumUnitsTabFixture = (
         title: "Understanding chemical reactions",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -1732,6 +1789,9 @@ const curriculumUnitsTabFixture = (
         title: "Materials",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -1790,6 +1850,9 @@ const curriculumUnitsTabFixture = (
         title: "DNA and the genome",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -1869,6 +1932,9 @@ const curriculumUnitsTabFixture = (
         title: "DNA and the genome",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -2003,6 +2069,9 @@ const curriculumUnitsTabFixture = (
         title: "Structure and bonding",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -2147,6 +2216,9 @@ const curriculumUnitsTabFixture = (
         title: "Structure and bonding",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -2226,6 +2298,9 @@ const curriculumUnitsTabFixture = (
         title: "Eukaryotic and prokaryotic cells",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -2305,6 +2380,9 @@ const curriculumUnitsTabFixture = (
         title: "Eukaryotic and prokaryotic cells",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -2408,6 +2486,9 @@ const curriculumUnitsTabFixture = (
         title: "Measuring and calculating motion",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -2506,6 +2587,9 @@ const curriculumUnitsTabFixture = (
         title: "Measuring and calculating motion",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -2564,6 +2648,9 @@ const curriculumUnitsTabFixture = (
         title: "Aerobic and anaerobic cellular respiration",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -2633,6 +2720,9 @@ const curriculumUnitsTabFixture = (
         title: "Groups of the periodic table",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -2697,6 +2787,9 @@ const curriculumUnitsTabFixture = (
         title: "Groups of the periodic table",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -2811,6 +2904,9 @@ const curriculumUnitsTabFixture = (
         title: "Rate of reaction",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -2919,6 +3015,9 @@ const curriculumUnitsTabFixture = (
         title: "Nuclear physics",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3028,6 +3127,9 @@ const curriculumUnitsTabFixture = (
         title: "Nuclear physics",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3113,6 +3215,9 @@ const curriculumUnitsTabFixture = (
         title: "Cells",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3212,6 +3317,9 @@ const curriculumUnitsTabFixture = (
         title: "Moving by force",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3312,6 +3420,9 @@ const curriculumUnitsTabFixture = (
         title: "Hidden forces",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3392,6 +3503,9 @@ const curriculumUnitsTabFixture = (
         title: "Health and disease",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3470,6 +3584,9 @@ const curriculumUnitsTabFixture = (
         title: "States of matter",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3543,6 +3660,9 @@ const curriculumUnitsTabFixture = (
         title: "States of matter",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3636,6 +3756,9 @@ const curriculumUnitsTabFixture = (
         title: "Particle explanations of density and pressure ",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3729,6 +3852,9 @@ const curriculumUnitsTabFixture = (
         title: "Particle explanations of density and pressure ",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3817,6 +3943,9 @@ const curriculumUnitsTabFixture = (
         title: "Electric fields and circuit calculations",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3907,6 +4036,9 @@ const curriculumUnitsTabFixture = (
         title: "Electric fields and circuit calculations",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -3985,6 +4117,9 @@ const curriculumUnitsTabFixture = (
         title: "Biomass transfer, food security and biodiversity",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4069,6 +4204,9 @@ const curriculumUnitsTabFixture = (
         title: "Biomass transfer, food security and biodiversity",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4158,6 +4296,9 @@ const curriculumUnitsTabFixture = (
         title: "Atmosphere and changing climate",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4216,6 +4357,9 @@ const curriculumUnitsTabFixture = (
         title: "Aerobic and anaerobic cellular respiration",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4288,6 +4432,9 @@ const curriculumUnitsTabFixture = (
         title: "Electromagnetism",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4370,6 +4517,9 @@ const curriculumUnitsTabFixture = (
         title: "Electromagnetism",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4469,6 +4619,9 @@ const curriculumUnitsTabFixture = (
         title: "Solar system and beyond",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4539,6 +4692,9 @@ const curriculumUnitsTabFixture = (
         title: "Species and classification (differences between species)",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4630,6 +4786,9 @@ const curriculumUnitsTabFixture = (
         title: "Adaptations, competition, natural selection and evolution",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4713,6 +4872,9 @@ const curriculumUnitsTabFixture = (
         title: "Biological molecules and enzymes",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4846,6 +5008,9 @@ const curriculumUnitsTabFixture = (
         title: "Separating substances",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4899,6 +5064,9 @@ const curriculumUnitsTabFixture = (
         title: "DNA and the genome",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -4952,6 +5120,9 @@ const curriculumUnitsTabFixture = (
         title: "DNA and the genome",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -5050,6 +5221,9 @@ const curriculumUnitsTabFixture = (
         title: "Measuring waves",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -5138,6 +5312,9 @@ const curriculumUnitsTabFixture = (
         title: "Measuring waves",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -5222,6 +5399,9 @@ const curriculumUnitsTabFixture = (
         title: "Transport and exchange surfaces in plants",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -5340,6 +5520,9 @@ const curriculumUnitsTabFixture = (
         title: "Industrial chemistry",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -5453,6 +5636,9 @@ const curriculumUnitsTabFixture = (
         title: "Industrial chemistry",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -5532,6 +5718,9 @@ const curriculumUnitsTabFixture = (
         title: "Forces make things change",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -5610,6 +5799,9 @@ const curriculumUnitsTabFixture = (
         title: "Forces make things change",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -5729,6 +5921,9 @@ const curriculumUnitsTabFixture = (
         title: "Electromagnetic waves",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -5853,6 +6048,9 @@ const curriculumUnitsTabFixture = (
         title: "Electromagnetic waves",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -5958,6 +6156,9 @@ const curriculumUnitsTabFixture = (
         title: "Solutions",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6035,6 +6236,9 @@ const curriculumUnitsTabFixture = (
         title: "Variation (differences within species)",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6135,6 +6339,9 @@ const curriculumUnitsTabFixture = (
         title: "Carbon cycle and climate change",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6217,6 +6424,9 @@ const curriculumUnitsTabFixture = (
         title: "Transport and exchange surfaces in humans",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6330,6 +6540,9 @@ const curriculumUnitsTabFixture = (
         title: "Calculations involving masses",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6393,6 +6606,9 @@ const curriculumUnitsTabFixture = (
         title: "Calculations involving masses",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6471,6 +6687,9 @@ const curriculumUnitsTabFixture = (
         title: "States of matter",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6544,6 +6763,9 @@ const curriculumUnitsTabFixture = (
         title: "States of matter",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6629,6 +6851,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy of moving objects",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6713,6 +6938,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy of moving objects",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6777,6 +7005,9 @@ const curriculumUnitsTabFixture = (
         title: "Hormones and human reproduction",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6830,6 +7061,9 @@ const curriculumUnitsTabFixture = (
         title: "Hormones and human reproduction",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6907,6 +7141,9 @@ const curriculumUnitsTabFixture = (
         title: "Chemical analysis",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -6979,6 +7216,9 @@ const curriculumUnitsTabFixture = (
         title: "Chemical analysis",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -7032,6 +7272,9 @@ const curriculumUnitsTabFixture = (
         title: "Biomass transfer, food security and biodiversity",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -7085,6 +7328,9 @@ const curriculumUnitsTabFixture = (
         title: "Biomass transfer, food security and biodiversity",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -7189,6 +7435,9 @@ const curriculumUnitsTabFixture = (
         title: "Mains electricity",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -7281,6 +7530,9 @@ const curriculumUnitsTabFixture = (
         title: "Mains electricity",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -7376,6 +7628,9 @@ const curriculumUnitsTabFixture = (
         title: "Ecosystems",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -7476,6 +7731,9 @@ const curriculumUnitsTabFixture = (
         title: "Earth's resources",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -7575,6 +7833,9 @@ const curriculumUnitsTabFixture = (
         title: "Waves",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -7656,6 +7917,9 @@ const curriculumUnitsTabFixture = (
         title: "Coordination and control: the human nervous system",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -7737,6 +8001,9 @@ const curriculumUnitsTabFixture = (
         title: "Coordination and control: the human nervous system",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -7862,6 +8129,9 @@ const curriculumUnitsTabFixture = (
         title: "Making salts",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8017,6 +8287,9 @@ const curriculumUnitsTabFixture = (
         title: "Making salts",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8097,6 +8370,9 @@ const curriculumUnitsTabFixture = (
         title: "Health and disease",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8197,6 +8473,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy of moving particles",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8296,6 +8575,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy of moving particles",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8366,6 +8648,9 @@ const curriculumUnitsTabFixture = (
         title: "Plant growth and development",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8430,6 +8715,9 @@ const curriculumUnitsTabFixture = (
         title: "Plant growth and development",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8507,6 +8795,9 @@ const curriculumUnitsTabFixture = (
         title: "Organic chemistry",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8594,6 +8885,9 @@ const curriculumUnitsTabFixture = (
         title: "Organic chemistry",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8713,6 +9007,9 @@ const curriculumUnitsTabFixture = (
         title: "Using Earth's resources",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8822,6 +9119,9 @@ const curriculumUnitsTabFixture = (
         title: "Using Earth's resources",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8895,6 +9195,9 @@ const curriculumUnitsTabFixture = (
         title: "Gravity in space",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -8967,6 +9270,9 @@ const curriculumUnitsTabFixture = (
         title: "Gravity in space",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -9066,6 +9372,9 @@ const curriculumUnitsTabFixture = (
         title: "Sound, light and vision",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -9165,6 +9474,9 @@ const curriculumUnitsTabFixture = (
         title: "Series circuits",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -9259,6 +9571,9 @@ const curriculumUnitsTabFixture = (
         title: "Disease and drugs",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -9322,6 +9637,9 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: hormones and the human endocrine system",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -9385,6 +9703,9 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: hormones and the human endocrine system",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -9478,6 +9799,9 @@ const curriculumUnitsTabFixture = (
         title: "Chemistry of carbon",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -9571,6 +9895,9 @@ const curriculumUnitsTabFixture = (
         title: "Chemistry of carbon",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -9669,6 +9996,9 @@ const curriculumUnitsTabFixture = (
         title: "Circuit components",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -9767,6 +10097,9 @@ const curriculumUnitsTabFixture = (
         title: "Circuit components",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -9856,6 +10189,9 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: maintaining a constant internal environment",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -9938,6 +10274,9 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: maintaining a constant internal environment",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10047,6 +10386,9 @@ const curriculumUnitsTabFixture = (
         title: "Electrolysis",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10146,6 +10488,9 @@ const curriculumUnitsTabFixture = (
         title: "Electrolysis",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10230,6 +10575,9 @@ const curriculumUnitsTabFixture = (
         title: "Transport and exchange surfaces in plants",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10314,6 +10662,9 @@ const curriculumUnitsTabFixture = (
         title: "Heredity and DNA",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10403,6 +10754,9 @@ const curriculumUnitsTabFixture = (
         title: "Reproduction in humans",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10492,6 +10846,9 @@ const curriculumUnitsTabFixture = (
         title: "Patterns in the periodic table",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10554,6 +10911,9 @@ const curriculumUnitsTabFixture = (
         title: "Photosynthesis: requirements and products",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10615,6 +10975,9 @@ const curriculumUnitsTabFixture = (
         title: "Photosynthesis: requirements and products",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10688,6 +11051,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy changes in reactions",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10756,6 +11122,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy changes in reactions",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10839,6 +11208,9 @@ const curriculumUnitsTabFixture = (
         title: "Biological molecules and enzymes",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -10929,6 +11301,9 @@ const curriculumUnitsTabFixture = (
         title: "Photosynthesis: factors affecting the rate",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -11014,6 +11389,9 @@ const curriculumUnitsTabFixture = (
         title: "Photosynthesis: factors affecting the rate",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -11118,6 +11496,9 @@ const curriculumUnitsTabFixture = (
         title: "Nuclear physics",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -11221,6 +11602,9 @@ const curriculumUnitsTabFixture = (
         title: "Nuclear physics",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -11306,6 +11690,9 @@ const curriculumUnitsTabFixture = (
         title: "Separation techniques",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -11405,6 +11792,9 @@ const curriculumUnitsTabFixture = (
         title: "Fuels and energetics",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -11505,6 +11895,9 @@ const curriculumUnitsTabFixture = (
         title: "Resistance and parallel circuits",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -11583,6 +11976,9 @@ const curriculumUnitsTabFixture = (
         title: "Inheritance, genotype and phenotype",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -11661,6 +12057,9 @@ const curriculumUnitsTabFixture = (
         title: "Inheritance, genotype and phenotype",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -11775,6 +12174,9 @@ const curriculumUnitsTabFixture = (
         title: "Rate of reaction",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -11909,6 +12311,9 @@ const curriculumUnitsTabFixture = (
         title: "Structure and bonding",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12048,6 +12453,9 @@ const curriculumUnitsTabFixture = (
         title: "Structure and bonding",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12107,6 +12515,9 @@ const curriculumUnitsTabFixture = (
         title: "Drugs and new treatments for disease",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12165,6 +12576,9 @@ const curriculumUnitsTabFixture = (
         title: "Drugs and new treatments for disease",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12229,6 +12643,9 @@ const curriculumUnitsTabFixture = (
         title: "Hormones and human reproduction",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12282,6 +12699,9 @@ const curriculumUnitsTabFixture = (
         title: "Hormones and human reproduction",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12352,6 +12772,9 @@ const curriculumUnitsTabFixture = (
         title: "Human skeleton and muscles",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12451,6 +12874,9 @@ const curriculumUnitsTabFixture = (
         title: "Making images",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12540,6 +12966,9 @@ const curriculumUnitsTabFixture = (
         title: "Reproduction in plants",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12603,6 +13032,9 @@ const curriculumUnitsTabFixture = (
         title: "Cell division: mitosis and meiosis",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12666,6 +13098,9 @@ const curriculumUnitsTabFixture = (
         title: "Cell division: mitosis and meiosis",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12748,6 +13183,9 @@ const curriculumUnitsTabFixture = (
         title: "Transport and exchange surfaces in humans",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12829,6 +13267,9 @@ const curriculumUnitsTabFixture = (
         title: "Variation and natural selection at the genetic level",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12910,6 +13351,9 @@ const curriculumUnitsTabFixture = (
         title: "Variation and natural selection at the genetic level",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -12979,6 +13423,9 @@ const curriculumUnitsTabFixture = (
         title: "Groups of the periodic table",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13043,6 +13490,9 @@ const curriculumUnitsTabFixture = (
         title: "Groups of the periodic table",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13144,6 +13594,9 @@ const curriculumUnitsTabFixture = (
         title: "Heating and cooling",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13238,6 +13691,9 @@ const curriculumUnitsTabFixture = (
         title: "Diet and exercise",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13307,6 +13763,9 @@ const curriculumUnitsTabFixture = (
         title: "Stem cells and differentiation",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13390,6 +13849,9 @@ const curriculumUnitsTabFixture = (
         title: "Electric fields and circuit calculations",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13475,6 +13937,9 @@ const curriculumUnitsTabFixture = (
         title: "Electric fields and circuit calculations",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13535,6 +14000,9 @@ const curriculumUnitsTabFixture = (
         title: "Classification in modern biology",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13596,6 +14064,9 @@ const curriculumUnitsTabFixture = (
         title: "Classification in modern biology",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13662,6 +14133,9 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: maintaining a constant internal environment",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13733,6 +14207,9 @@ const curriculumUnitsTabFixture = (
         title: "Diffusion",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13832,6 +14309,9 @@ const curriculumUnitsTabFixture = (
         title: "Acids and bases",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13914,6 +14394,9 @@ const curriculumUnitsTabFixture = (
         title: "Fossil evidence, selective breeding and explaining evolution",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -13996,6 +14479,9 @@ const curriculumUnitsTabFixture = (
         title: "Fossil evidence, selective breeding and explaining evolution",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -14067,6 +14553,9 @@ const curriculumUnitsTabFixture = (
         title: "Coordination and control: the human nervous system",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -14130,6 +14619,9 @@ const curriculumUnitsTabFixture = (
         title: "Gene technology",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -14193,6 +14685,9 @@ const curriculumUnitsTabFixture = (
         title: "Gene technology",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -14265,6 +14760,9 @@ const curriculumUnitsTabFixture = (
         title: "Electromagnetism",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -14337,6 +14835,9 @@ const curriculumUnitsTabFixture = (
         title: "Electromagnetism",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -14412,6 +14913,9 @@ const curriculumUnitsTabFixture = (
         title: "Human digestive system",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -14511,6 +15015,9 @@ const curriculumUnitsTabFixture = (
         title: "Magnets and electromagnets",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -14602,6 +15109,9 @@ const curriculumUnitsTabFixture = (
         title: "Living organisms and their environments",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -14693,6 +15203,9 @@ const curriculumUnitsTabFixture = (
         title: "Living organisms and their environments",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -14826,6 +15339,9 @@ const curriculumUnitsTabFixture = (
         title: "Separating substances",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -14916,6 +15432,9 @@ const curriculumUnitsTabFixture = (
         title: "Photosynthesis: factors affecting the rate",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15001,6 +15520,9 @@ const curriculumUnitsTabFixture = (
         title: "Photosynthesis: factors affecting the rate",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15100,6 +15622,9 @@ const curriculumUnitsTabFixture = (
         title: "Atoms, elements and compounds",
         unit_options: [],
         year: "7",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15191,6 +15716,9 @@ const curriculumUnitsTabFixture = (
         title: "Breathing and respiration",
         unit_options: [],
         year: "8",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15254,6 +15782,9 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: hormones and the human endocrine system",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15317,6 +15848,9 @@ const curriculumUnitsTabFixture = (
           "Coordination and control: hormones and the human endocrine system",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15406,6 +15940,9 @@ const curriculumUnitsTabFixture = (
         title: "Atmosphere and changing climate",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15504,6 +16041,9 @@ const curriculumUnitsTabFixture = (
         title: "Measuring waves",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15592,6 +16132,9 @@ const curriculumUnitsTabFixture = (
         title: "Measuring waves",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15645,6 +16188,9 @@ const curriculumUnitsTabFixture = (
         title: "Drugs and new treatments for disease",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15698,6 +16244,9 @@ const curriculumUnitsTabFixture = (
         title: "Drugs and new treatments for disease",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15760,6 +16309,9 @@ const curriculumUnitsTabFixture = (
         title: "Photosynthesis: requirements and products",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15821,6 +16373,9 @@ const curriculumUnitsTabFixture = (
         title: "Photosynthesis: requirements and products",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -15920,6 +16475,9 @@ const curriculumUnitsTabFixture = (
         title: "Electromagnetic waves",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16024,6 +16582,9 @@ const curriculumUnitsTabFixture = (
         title: "Electromagnetic waves",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16132,6 +16693,9 @@ const curriculumUnitsTabFixture = (
         title: "Calculations involving masses",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16195,6 +16759,9 @@ const curriculumUnitsTabFixture = (
         title: "Calculations involving masses",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16270,6 +16837,9 @@ const curriculumUnitsTabFixture = (
         title: "Variation and natural selection at the genetic level",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16345,6 +16915,9 @@ const curriculumUnitsTabFixture = (
         title: "Variation and natural selection at the genetic level",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16418,6 +16991,9 @@ const curriculumUnitsTabFixture = (
         title: "Inheritance, genotype and phenotype",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16491,6 +17067,9 @@ const curriculumUnitsTabFixture = (
         title: "Inheritance, genotype and phenotype",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16553,6 +17132,9 @@ const curriculumUnitsTabFixture = (
         title: "Industrial chemistry",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16620,6 +17202,9 @@ const curriculumUnitsTabFixture = (
         title: "Industrial chemistry",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16704,6 +17289,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy of moving objects",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16789,6 +17377,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy of moving objects",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16850,6 +17441,9 @@ const curriculumUnitsTabFixture = (
         title: "Classification in modern biology",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16910,6 +17504,9 @@ const curriculumUnitsTabFixture = (
         title: "Classification in modern biology",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -16973,6 +17570,9 @@ const curriculumUnitsTabFixture = (
         title: "Cell division: mitosis and meiosis",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -17036,6 +17636,9 @@ const curriculumUnitsTabFixture = (
         title: "Cell division: mitosis and meiosis",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -17128,6 +17731,9 @@ const curriculumUnitsTabFixture = (
         title: "Mains electricity",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -17222,6 +17828,9 @@ const curriculumUnitsTabFixture = (
         title: "Mains electricity",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -17337,6 +17946,9 @@ const curriculumUnitsTabFixture = (
         title: "Making salts",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -17472,6 +18084,9 @@ const curriculumUnitsTabFixture = (
         title: "Making salts",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -17535,6 +18150,9 @@ const curriculumUnitsTabFixture = (
         title: "Gene technology",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -17598,6 +18216,9 @@ const curriculumUnitsTabFixture = (
         title: "Gene technology",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -17667,6 +18288,9 @@ const curriculumUnitsTabFixture = (
         title: "Stem cells and differentiation",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -17766,6 +18390,9 @@ const curriculumUnitsTabFixture = (
         title: "Electrolysis",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -17855,6 +18482,9 @@ const curriculumUnitsTabFixture = (
         title: "Electrolysis",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -17954,6 +18584,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy of moving particles",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -18054,6 +18687,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy of moving particles",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -18130,6 +18766,9 @@ const curriculumUnitsTabFixture = (
         title: "Fossil evidence, selective breeding and explaining evolution",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -18206,6 +18845,9 @@ const curriculumUnitsTabFixture = (
         title: "Fossil evidence, selective breeding and explaining evolution",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -18289,6 +18931,9 @@ const curriculumUnitsTabFixture = (
         title: "Chemistry of carbon",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -18372,6 +19017,9 @@ const curriculumUnitsTabFixture = (
         title: "Chemistry of carbon",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -18453,6 +19101,9 @@ const curriculumUnitsTabFixture = (
         title: "Living organisms and their environments",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -18534,6 +19185,9 @@ const curriculumUnitsTabFixture = (
         title: "Living organisms and their environments",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -18632,6 +19286,9 @@ const curriculumUnitsTabFixture = (
         title: "Circuit components",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -18730,6 +19387,9 @@ const curriculumUnitsTabFixture = (
         title: "Circuit components",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -18798,6 +19458,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy changes in reactions",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
       {
         connection_prior_unit_description:
@@ -18871,6 +19534,9 @@ const curriculumUnitsTabFixture = (
         title: "Energy changes in reactions",
         unit_options: [],
         year: "10",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       },
     ],
     ...partial,
