@@ -1,3 +1,16 @@
+# [1.567.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.566.0...v1.567.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* added pathway check into computing condition in getUnitFeatures() ([c49d3fd](https://github.com/oaknational/Oak-Web-Application/commit/c49d3fd8cc9ab60996e24d971bdea830a6cc3f91))
+
+
+### Features
+
+* added "computer science" to <UnitModal/> ([b314db1](https://github.com/oaknational/Oak-Web-Application/commit/b314db1ff07484713e49b858895ca15604ed9615))
+* added computer science subject overrides for cycle 2 ([9e8c951](https://github.com/oaknational/Oak-Web-Application/commit/9e8c951d3c0c2a63b19e9e5918e30dd2721deba0))
+
 # [1.566.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.565.1...v1.566.0) (2024-09-26)
 
 
