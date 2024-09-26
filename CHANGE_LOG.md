@@ -1,3 +1,10 @@
+## [1.568.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.568.0...v1.568.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* remove separator from bottom border ([66756af](https://github.com/oaknational/Oak-Web-Application/commit/66756af678155e0185485cac77241df7a3a219db))
+
 # [1.568.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.567.0...v1.568.0) (2024-09-26)
 
 
