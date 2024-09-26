@@ -22,11 +22,12 @@ import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import { sortYears } from "@/utils/curriculum/sorting";
 
-function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
-  const data = formatCurriculumUnitsData(
-    combinedCurriculumData,
-  ) as CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>;
+function generateGroupedUnits(
+  data: CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>,
+) {
   const unitOptions = Object.entries(data.yearData).flatMap(
     ([year, { childSubjects, tiers, units, pathways }]) => {
       let options: {
@@ -102,18 +103,29 @@ function generateGroupedUnits(combinedCurriculumData: CombinedCurriculumData) {
     },
   );
 
-  return unitOptions;
+  return unitOptions.sort((a, b) => sortYears(a.year, b.year));
 }
 
 export default async function generate(
   zip: JSZipCached,
   { data, slugs }: { data: CombinedCurriculumData; slugs: Slugs },
 ) {
+  const formattedData = formatCurriculumUnitsData(
+    data,
+  ) as CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>;
+
   const yearXml: string[] = [];
-  const groupedUnits = generateGroupedUnits(data);
+  const groupedUnits = generateGroupedUnits(formattedData);
   for (const { units, year, childSubject, tier, pathway } of groupedUnits) {
     yearXml.push(
-      await buildYear(zip, year, units, { childSubject, tier, pathway }, slugs),
+      await buildYear(
+        zip,
+        year,
+        formattedData,
+        units,
+        { childSubject, tier, pathway },
+        slugs,
+      ),
     );
   }
 
@@ -306,10 +318,14 @@ type Slug = { childSubject?: string; tier?: string; pathway?: string };
 async function buildYear(
   zip: JSZipCached,
   year: string,
+  formattedData: CurriculumUnitsFormattedData<
+    CombinedCurriculumData["units"][number]
+  >,
   unitsInput: CombinedCurriculumData["units"],
   yearSlugs: Slug,
   slugs: Slugs,
 ) {
+  const yearTitle = getYearGroupTitle(formattedData.yearData, year, "units");
   const images = await insertImages(zip, {
     jumpOutArrow: join(
       process.cwd(),
@@ -409,6 +425,8 @@ async function buildYear(
     }
   }
 
+  const isSwimming = formattedData.yearData[year]?.labels.includes("swimming");
+
   const xml = safeXml`
     <XML_FRAGMENT>
       ${!subjectTierPathwayTitle
@@ -447,11 +465,32 @@ async function buildYear(
                 <w:color w:val="222222" />
                 <w:sz w:val="56" />
               </w:rPr>
-              <w:t>Year ${cdata(year)} units</w:t>
+              <w:t>${cdata(yearTitle)}</w:t>
             </w:r>
           `,
         )}
       </w:p>
+      ${!isSwimming
+        ? ""
+        : safeXml`
+            <XML_FRAGMENT>
+              <w:p>
+                <w:r>
+                  <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                    <w:color w:val="222222" />
+                    <w:sz w:val="24" />
+                  </w:rPr>
+                  <w:t>
+                    ${cdata(
+                      "Swimming units should be selected based on the ability and experience of your pupils.",
+                    )}
+                  </w:t>
+                </w:r>
+              </w:p>
+              <w:p />
+            </XML_FRAGMENT>
+          `}
       <w:p>
         ${wrapInLinkTo(
           links.interactiveSequence!,
