@@ -97,7 +97,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
             </OakFlex>
           </StyledFieldset>
         </OakBox>
-        <OakBox $bb={"border-solid-s"} $borderColor={"grey40"}>
+        <OakBox>
           <StyledFieldset>
             <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
               Subjects
