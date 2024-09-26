@@ -17,6 +17,7 @@ import {
   CurriculumTab,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
+import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -33,6 +34,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   subjectPhaseOptions,
   keyStages,
 }) => {
+  const cycleTwoEnabled = isCycleTwoEnabled();
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
   const subject = subjectPhaseOptions.subjects.find(
@@ -134,13 +136,13 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           />
         </Box>
       </Flex>
-      <Box $background={color2}>
+      <Box $background={cycleTwoEnabled ? color1 : color2}>
         {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
         <Flex $pv={32}>
           <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
             <OakFlex>
               <Box
-                $background={color1}
+                $background={cycleTwoEnabled ? color2 : color1}
                 $borderRadius={6}
                 $minWidth={56}
                 $mr={12}
