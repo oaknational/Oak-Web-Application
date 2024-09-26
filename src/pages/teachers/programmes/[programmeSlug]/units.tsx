@@ -350,65 +350,67 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     </Flex>
                   )}
 
-                  <MobileFilters
-                    $position={tiers.length === 0 ? "absolute" : "relative"}
-                    providedId={learningThemesFilterId}
-                    label="Filters"
-                    $mt={0}
-                    $mb={[16, 16, 0]}
-                    applyForTablet
-                  >
-                    <StyledFieldset>
-                      {yearGroups.length > 1 && (
-                        <YearGroupFilters
-                          idSuffix="mobile"
-                          programmeSlug={programmeSlug}
-                          yearGroups={yearGroups}
-                          browseRefined={track.browseRefined}
-                        />
-                      )}
-                      {subjectCategories && subjectCategories.length > 1 && (
-                        <SubjectCategoryFilters
-                          idSuffix="mobile"
-                          programmeSlug={programmeSlug}
-                          subjectCategories={subjectCategories}
-                          categorySlug={categorySlug}
-                          browseRefined={track.browseRefined}
-                        />
-                      )}
-                      {learningThemes.length > 1 && (
-                        <>
-                          <OakHeading
-                            tag="h3"
-                            $font="heading-7"
-                            $mb={"space-between-m"}
-                          >
-                            Threads
-                          </OakHeading>
-
-                          <UnitsLearningThemeFilters
+                  {isFiltersAvailable && (
+                    <MobileFilters
+                      $position={tiers.length === 0 ? "absolute" : "relative"}
+                      providedId={learningThemesFilterId}
+                      label="Filters"
+                      $mt={0}
+                      $mb={[16, 16, 0]}
+                      applyForTablet
+                    >
+                      <StyledFieldset>
+                        {yearGroups.length > 1 && (
+                          <YearGroupFilters
                             idSuffix="mobile"
                             programmeSlug={programmeSlug}
-                            onChangeCallback={setSelectedThemeSlug}
-                            labelledBy={learningThemesFilterId}
-                            learningThemes={learningThemes}
-                            selectedThemeSlug={selectedThemeSlug ?? "all"}
-                            linkProps={{
-                              page: "unit-index",
-                              programmeSlug,
-                            }}
-                            trackingProps={{
-                              keyStageSlug,
-                              keyStageTitle:
-                                keyStageTitle as KeyStageTitleValueType,
-                              subjectTitle,
-                              subjectSlug,
-                            }}
+                            yearGroups={yearGroups}
+                            browseRefined={track.browseRefined}
                           />
-                        </>
-                      )}
-                    </StyledFieldset>
-                  </MobileFilters>
+                        )}
+                        {subjectCategories && subjectCategories.length > 1 && (
+                          <SubjectCategoryFilters
+                            idSuffix="mobile"
+                            programmeSlug={programmeSlug}
+                            subjectCategories={subjectCategories}
+                            categorySlug={categorySlug}
+                            browseRefined={track.browseRefined}
+                          />
+                        )}
+                        {learningThemes.length > 1 && (
+                          <>
+                            <OakHeading
+                              tag="h3"
+                              $font="heading-7"
+                              $mb={"space-between-m"}
+                            >
+                              Threads
+                            </OakHeading>
+
+                            <UnitsLearningThemeFilters
+                              idSuffix="mobile"
+                              programmeSlug={programmeSlug}
+                              onChangeCallback={setSelectedThemeSlug}
+                              labelledBy={learningThemesFilterId}
+                              learningThemes={learningThemes}
+                              selectedThemeSlug={selectedThemeSlug ?? "all"}
+                              linkProps={{
+                                page: "unit-index",
+                                programmeSlug,
+                              }}
+                              trackingProps={{
+                                keyStageSlug,
+                                keyStageTitle:
+                                  keyStageTitle as KeyStageTitleValueType,
+                                subjectTitle,
+                                subjectSlug,
+                              }}
+                            />
+                          </>
+                        )}
+                      </StyledFieldset>
+                    </MobileFilters>
+                  )}
                 </Flex>
 
                 {tiers.length > 0 && currentPageItems.length >= 1 && (
