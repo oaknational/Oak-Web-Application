@@ -22,7 +22,11 @@ import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import {
+  getSuffixFromFeatures,
+  getYearGroupTitle,
+} from "@/utils/curriculum/formatting";
+import { getUnitFeatures } from "@/utils/curriculum/features";
 import { sortYears } from "@/utils/curriculum/sorting";
 
 function generateGroupedUnits(
@@ -325,7 +329,6 @@ async function buildYear(
   yearSlugs: Slug,
   slugs: Slugs,
 ) {
-  const yearTitle = getYearGroupTitle(formattedData.yearData, year, "units");
   const images = await insertImages(zip, {
     jumpOutArrow: join(
       process.cwd(),
@@ -424,6 +427,18 @@ async function buildYear(
         .join(", ");
     }
   }
+
+  const yearTitleSuffix = [
+    getSuffixFromFeatures(getUnitFeatures(firstUnit)),
+    "units",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  const yearTitle = getYearGroupTitle(
+    formattedData.yearData,
+    year,
+    yearTitleSuffix,
+  );
 
   const isSwimming = formattedData.yearData[year]?.labels.includes("swimming");
 
