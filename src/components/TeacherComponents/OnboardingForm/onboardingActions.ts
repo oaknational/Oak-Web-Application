@@ -51,7 +51,6 @@ export async function getSubscriptionStatus(
   email: string,
   callback?: (status: boolean) => void,
 ) {
-  console.log(email);
   try {
     const response = await fetch("/api/hubspot/subscription", {
       method: "POST",

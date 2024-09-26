@@ -5,7 +5,6 @@ import { createMocks } from "node-mocks-http";
 import handler from ".";
 
 const getById = jest.fn();
-const error = new Error("Not found");
 
 jest.mock(
   "@hubspot/api-client/lib/codegen/crm/contacts/types/PromiseAPI",
@@ -69,7 +68,7 @@ describe("Handler API", () => {
 
   test("should return 204 when contact is not found", async () => {
     // Mock the getById response to throw a 404 error
-    console.log("error", error);
+
     (hubspot.crm.contacts.basicApi.getById as jest.Mock).mockRejectedValueOnce(
       Object.assign(new Error("Not Found"), { code: 404 }),
     );
