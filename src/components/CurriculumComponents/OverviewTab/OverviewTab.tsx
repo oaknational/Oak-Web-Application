@@ -191,6 +191,10 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     document.querySelector(`#header-${selector}`)?.scrollIntoView();
   };
 
+  const partnerTitle = `Our curriculum partner${
+    curriculumPartners.length > 1 ? "s" : ""
+  }`;
+
   const contents = (
     <OakFlex $gap={"space-between-m"} $flexDirection={"column"}>
       <OakP>Contents</OakP>
@@ -433,7 +437,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                   $font={["heading-6", "heading-5"]}
                   $mb="space-between-s"
                 >
-                  Our curriculum partner
+                  {partnerTitle}
                 </OakHeading>
                 <OakTypography $font={"body-1"}>{partnerBio}</OakTypography>
               </Box>
@@ -451,7 +455,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             >
               <OakBox $display={["block", "none"]}>
                 <OakHeading tag="h3" $font={["heading-5"]}>
-                  Our curriculum partner
+                  {partnerTitle}
                 </OakHeading>
               </OakBox>
               <OakFlex
@@ -493,7 +497,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                           {curriculumPartnerIndex === 0 && (
                             <OakBox $display={["none", "block"]}>
                               <OakHeading tag="h3" $font={["heading-5"]}>
-                                Our curriculum partner
+                                {partnerTitle}
                               </OakHeading>
                             </OakBox>
                           )}
