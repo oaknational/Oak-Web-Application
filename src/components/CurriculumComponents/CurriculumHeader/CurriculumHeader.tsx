@@ -150,7 +150,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   subjectSlug={subject.slug}
                   $color="white"
                   $borderColor="white"
-                  $width={64}
+                  $width={80}
                   data-testid="subjectIcon"
                 />
               </Box>
