@@ -17,6 +17,7 @@ import {
   CurriculumTab,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
+import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -33,6 +34,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   subjectPhaseOptions,
   keyStages,
 }) => {
+  const cycleTwoEnabled = isCycleTwoEnabled();
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
   const subject = subjectPhaseOptions.subjects.find(
@@ -60,23 +62,15 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     examboard ? `-${examboard.slug}` : ""
   }`;
 
-  let pageTitle: string;
+  let pageTitle: string = "";
   const keyStageStrings: string[] = [];
   if (keyStages.includes("ks1")) keyStageStrings.push("KS1");
   if (keyStages.includes("ks2")) keyStageStrings.push("KS2");
   if (keyStages.includes("ks3")) keyStageStrings.push("KS3");
   if (keyStages.includes("ks4")) keyStageStrings.push("KS4");
   const keyStageString = keyStageStrings.join(" & ");
-  switch (phase.slug) {
-    case "primary":
-      pageTitle = `${keyStageString} ${subject.title}`;
-      break;
-    case "secondary":
-      pageTitle = `${keyStageString} ${subject.title}`;
-      break;
-    default:
-      pageTitle = "";
-      break;
+  if (["primary", "secondary"].includes(phase.slug)) {
+    pageTitle = `${keyStageString} ${subject.title}`;
   }
 
   const links: ButtonAsLinkProps[] = [
@@ -142,13 +136,13 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           />
         </Box>
       </Flex>
-      <Box $background={color2}>
+      <Box $background={cycleTwoEnabled ? color1 : color2}>
         {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
         <Flex $pv={32}>
           <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
             <OakFlex>
               <Box
-                $background={color1}
+                $background={cycleTwoEnabled ? color2 : color1}
                 $borderRadius={6}
                 $minWidth={56}
                 $mr={12}

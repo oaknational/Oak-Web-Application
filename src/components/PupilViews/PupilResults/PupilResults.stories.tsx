@@ -10,6 +10,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
 const meta: Meta<typeof PupilViewsResults> = {
   component: PupilViewsResults,
@@ -40,6 +41,7 @@ export const Default: Story = {
     );
   },
   args: {
+    browseData: lessonBrowseDataFixture({}),
     starterQuizQuestionsArray: quizQuestions,
     exitQuizQuestionsArray: exitQuizQuestions,
     attemptData: {
