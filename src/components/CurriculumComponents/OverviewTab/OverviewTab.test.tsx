@@ -2,6 +2,7 @@ import OverviewTab from "./OverviewTab";
 
 import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const useCycleTwoEnabled = jest.fn(() => false);
 jest.mock("@/utils/curriculum/features", () => ({
@@ -51,7 +52,8 @@ describe("Component - Overview Tab", () => {
     fixture.curriculumCMSInfo.subjectPrinciples = [
       "Sequences learning over time which: • Builds musical knowledge, techniques and specialist language • Promotes the understanding of a diverse range of genres, traditions and styles • Develops pupils analytical skills in responding to different types of music",
     ];
-    const { getByTestId } = renderWithTheme(<OverviewTab data={fixture} />);
+    const render = renderWithProviders();
+    const { getByTestId } = render(<OverviewTab data={fixture} />);
     const explainer = getByTestId("explainer");
     expect(explainer).toHaveTextContent("Aims and purpose");
   });
