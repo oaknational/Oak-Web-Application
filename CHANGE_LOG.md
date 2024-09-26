@@ -1,3 +1,10 @@
+## [1.565.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.565.0...v1.565.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* **LESQ-1082:** only render filter heading when options ([72359ad](https://github.com/oaknational/Oak-Web-Application/commit/72359ad000c3b674ffdeb9e4368b897d97f4c0c4))
+
 # [1.565.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.564.0...v1.565.0) (2024-09-26)
 
 
