@@ -4,7 +4,7 @@ exports[`Fieldset render 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-gsFSXq hJncQr gXxntV"
+      class="sc-fqkvVR sc-gsFSXq cTKaen gXxntV"
       data-testid="oak-inline-banner"
       type="info"
     >
@@ -34,7 +34,7 @@ exports[`Fieldset render 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq bRmvpu gXxntV"
+      class="sc-fqkvVR sc-gsFSXq jmhHRi gXxntV"
       data-testid="oak-inline-banner"
       type="neutral"
     >
@@ -64,7 +64,7 @@ exports[`Fieldset render 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq dZGHts gXxntV"
+      class="sc-fqkvVR sc-gsFSXq bAhQYs gXxntV"
       data-testid="oak-inline-banner"
       type="success"
     >
@@ -94,7 +94,7 @@ exports[`Fieldset render 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq faIYJV gXxntV"
+      class="sc-fqkvVR sc-gsFSXq cnpfpZ gXxntV"
       data-testid="oak-inline-banner"
       type="alert"
     >
@@ -124,7 +124,7 @@ exports[`Fieldset render 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq igFOuh gXxntV"
+      class="sc-fqkvVR sc-gsFSXq eRnHFx gXxntV"
       data-testid="oak-inline-banner"
       type="error"
     >

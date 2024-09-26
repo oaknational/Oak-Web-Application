@@ -1,3 +1,67 @@
+# [1.564.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.563.0...v1.564.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* added isCurricPartnerHackEnabled() test and partner title plurals ([c157a7e](https://github.com/oaknational/Oak-Web-Application/commit/c157a7e760ae459308494e12674f19e953792597))
+
+
+### Features
+
+* added explainer styling, sticky contents and new partners footer in overview tab ([b793341](https://github.com/oaknational/Oak-Web-Application/commit/b793341488921618262ee85f8570d7c164800b06))
+
+# [1.563.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.2...v1.563.0) (2024-09-25)
+
+
+### Features
+
+* **printable:** create style printable results page ([da4f960](https://github.com/oaknational/Oak-Web-Application/commit/da4f96020d9ab630755fb61bc7321704ae8c5ab3))
+* **printable:** create style printable results page ([c8570cf](https://github.com/oaknational/Oak-Web-Application/commit/c8570cfb281b94f3c42b8f7c6fe26465e3ff23ba))
+* **share:** handle no worksheet and handle hints ([f59bcb3](https://github.com/oaknational/Oak-Web-Application/commit/f59bcb3c4735f3df6564df03e2148bdd59294214))
+* **share:** handle no worksheet and handle hints ([867cb3c](https://github.com/oaknational/Oak-Web-Application/commit/867cb3c48123340a06b0bf502b069356b7b1a792))
+* **share:** handle no worksheet and handle hints ([1877aff](https://github.com/oaknational/Oak-Web-Application/commit/1877affdd133d785f1abf2362659606665bf92b5))
+* **share:** no worksheet bug ([40d6e2a](https://github.com/oaknational/Oak-Web-Application/commit/40d6e2a648d7b7368d1e49a15d85976056556c99))
+* **share:** no worksheet bug ([4d9ae21](https://github.com/oaknational/Oak-Web-Application/commit/4d9ae21021b11bf279fe04af7e06912ff2431a0e))
+* **share:** no worksheet bug ([7c4e9fb](https://github.com/oaknational/Oak-Web-Application/commit/7c4e9fb0404ee26266e44b3d937d174cc28a7a66))
+* **video:** update video schema ([1787eb4](https://github.com/oaknational/Oak-Web-Application/commit/1787eb468a7f2544d9efd70d9bc1be67b003985e))
+
+## [1.562.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.1...v1.562.2) (2024-09-25)
+
+
+### Bug Fixes
+
+* set max with of image to 600px on homepage ([c21a6af](https://github.com/oaknational/Oak-Web-Application/commit/c21a6afe7f03daac0606f0bf0280a9d3265f38a4))
+
+## [1.562.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.562.0...v1.562.1) (2024-09-25)
+
+
+### Bug Fixes
+
+* **LESQ-1095:** onboarding not firing when selecting a non-teacher role ([83fe6fe](https://github.com/oaknational/Oak-Web-Application/commit/83fe6fe303aec232342ef549d754b0e73f79fe1d))
+
+# [1.562.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.561.2...v1.562.0) (2024-09-25)
+
+
+### Bug Fixes
+
+* **accessibility:** resolve aria-live announcements issue for year group filters ([c3e3a5c](https://github.com/oaknational/Oak-Web-Application/commit/c3e3a5c5d269e1d6b6553cce49cf3cb6738896f4))
+* voice unit announcement discrepancy for KS3 and KS4 science curriculum ([6c5390f](https://github.com/oaknational/Oak-Web-Application/commit/6c5390f88e66393d2d5d8c6d37ab199f73890b02))
+
+
+### Features
+
+* add ARIA attributes to enhance accessibility ([5f88bfb](https://github.com/oaknational/Oak-Web-Application/commit/5f88bfb399c33d4238474b26c98c66f9d97e6218))
+* add unit count feedback associated with year group filters for screen readers ([0b13f9e](https://github.com/oaknational/Oak-Web-Application/commit/0b13f9e9a676b0de0eb47b2b756df0b7cef11849))
+
+## [1.561.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.561.1...v1.561.2) (2024-09-25)
+
+
+### Bug Fixes
+
+* tweak border radius of oak-inline banner ([0727dc3](https://github.com/oaknational/Oak-Web-Application/commit/0727dc304a4f1bc1ff3bc8a75e465928af972341))
+
+## [1.561.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.561.0...v1.561.1) (2024-09-24)
+
 # [1.561.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.560.0...v1.561.0) (2024-09-24)
 
 

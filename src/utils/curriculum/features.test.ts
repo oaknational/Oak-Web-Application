@@ -3,12 +3,14 @@ import {
   useCycleTwoEnabled,
   isSwimmingHackEnabled,
   getUnitFeatures,
+  isCurricPartnerHackEnabled,
 } from "./features";
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
 const MOCK_ENABLE_CYCLE_2 = jest.fn();
 const MOCK_SWIMMING_HACK = jest.fn();
+const MOCK_CURRIC_PARTNER_HACK = jest.fn();
 jest.mock("./constants", () => ({
   __esModule: true,
   get ENABLE_CYCLE_2() {
@@ -16,6 +18,9 @@ jest.mock("./constants", () => ({
   },
   get SWIMMING_HACK() {
     return MOCK_SWIMMING_HACK() ?? false;
+  },
+  get CURRIC_PARTNER_HACK() {
+    return MOCK_CURRIC_PARTNER_HACK() ?? false;
   },
   default: {},
 }));
@@ -61,6 +66,23 @@ describe("isSwimmingHackEnabled", () => {
   it("false when only SWIMMING_HACK is true", () => {
     MOCK_SWIMMING_HACK.mockReturnValue(true);
     expect(isSwimmingHackEnabled()).toEqual(false);
+  });
+});
+
+describe("isCurricPartnerHackEnabled", () => {
+  it("true when ENABLE_CYCLE_2 & CURRIC_PARTNER_HACK is true", () => {
+    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
+    MOCK_CURRIC_PARTNER_HACK.mockReturnValue(true);
+    expect(isCurricPartnerHackEnabled()).toEqual(true);
+  });
+
+  it("false when neither true", () => {
+    expect(isCurricPartnerHackEnabled()).toEqual(false);
+  });
+
+  it("false when only CURRIC_PARTNER_HACK is true", () => {
+    MOCK_CURRIC_PARTNER_HACK.mockReturnValue(true);
+    expect(isCurricPartnerHackEnabled()).toEqual(false);
   });
 });
 

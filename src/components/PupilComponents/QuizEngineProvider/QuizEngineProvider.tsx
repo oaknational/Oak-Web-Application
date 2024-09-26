@@ -48,6 +48,7 @@ export type QuizEngineContextType = {
   numQuestions: number;
   numInteractiveQuestions: number;
   updateQuestionMode: (mode: QuestionModeType) => void;
+  updateHintOffered: (offerHint: boolean) => void;
   handleSubmitMCAnswer: (pupilAnswer?: MCAnswer | MCAnswer[] | null) => void;
   handleSubmitShortAnswer: (pupilAnswer?: string) => void;
   handleSubmitOrderAnswer: (pupilAnswers: number[]) => void;
@@ -114,6 +115,13 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const updateQuestionMode = useCallback(
     (mode: QuestionModeType) => {
       updateCurrentQuestion({ mode });
+    },
+    [updateCurrentQuestion],
+  );
+
+  const updateHintOffered = useCallback(
+    (offerHint: boolean) => {
+      updateCurrentQuestion({ offerHint });
     },
     [updateCurrentQuestion],
   );
@@ -310,6 +318,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         numQuestions,
         numInteractiveQuestions,
         updateQuestionMode,
+        updateHintOffered,
         handleSubmitMCAnswer,
         handleSubmitShortAnswer,
         handleSubmitOrderAnswer,
