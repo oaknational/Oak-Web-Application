@@ -1,13 +1,13 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component from ".";
 
 export default {
   component: Component,
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 

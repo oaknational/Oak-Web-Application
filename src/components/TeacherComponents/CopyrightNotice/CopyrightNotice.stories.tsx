@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory } from "@storybook/react";
+import { StoryFn } from "@storybook/react";
 
 import Component from ".";
 
@@ -10,8 +10,6 @@ export default {
   },
 };
 
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
+const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
 
 export const CopyrightNotice = Template.bind({});

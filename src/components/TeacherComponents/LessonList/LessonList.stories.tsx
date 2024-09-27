@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import { LessonListProps } from "./LessonList";
 
@@ -11,7 +11,7 @@ import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 export default {
   decorators: [AnalyticsDecorator],
   component: Component,
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 const { lessons, ...unit } = lessonListingFixture();
 const lessonsWithUnitData = lessons.map((lesson) => ({
@@ -43,7 +43,7 @@ const currentPageItems: LessonListProps = {
   },
 };
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 

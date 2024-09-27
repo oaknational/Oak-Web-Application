@@ -4,6 +4,7 @@ import * as NextImage from "next/image";
 import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
 import { fn } from "@storybook/test";
 import { Lexend } from "next/font/google";
+import "./jest-mock";
 
 import "../src/browser-lib/oak-globals/oakGlobals";
 import useOakTheme, { THEME_NAMES } from "../src/hooks/useOakTheme";

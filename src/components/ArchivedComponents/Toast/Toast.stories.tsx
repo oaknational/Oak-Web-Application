@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component from ".";
 
@@ -10,9 +10,9 @@ import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton"
 export default {
   decorators: [PostHogDecorator],
   component: Component,
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = () => {
+const Template: StoryFn<typeof Component> = () => {
   return (
     <ToastProvider>
       <Component />

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { MockedFunction } from "jest-mock";
+import { MockedFunction } from "jest";
 
 import CMSClient from "@/node-lib/cms";
 import curriculumApi from "@/node-lib/curriculum-api-2023";

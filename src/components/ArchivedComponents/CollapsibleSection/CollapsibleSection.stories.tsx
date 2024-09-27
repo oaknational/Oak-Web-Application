@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { OakHeading } from "@oaknational/oak-components";
 
 import Component from ".";
@@ -9,9 +9,9 @@ import Card from "@/components/SharedComponents/Card";
 export default {
   component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = () => {
+const Template: StoryFn<typeof Component> = () => {
   return (
     <Component
       title={"Slide deck"}

@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component from "./PostHeader";
 
@@ -8,9 +8,9 @@ import ToastDecorator from "@/storybook-decorators/ToastDecorator";
 export default {
   decorators: [ToastDecorator, PostHogDecorator],
   component: Component,
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 

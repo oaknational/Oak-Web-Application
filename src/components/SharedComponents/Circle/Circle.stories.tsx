@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component from ".";
 
@@ -12,9 +12,9 @@ export default {
       defaultValue: "lemon50",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (props) => (
+const Template: StoryFn<typeof Component> = (props) => (
   <Component {...props}>Hi!</Component>
 );
 

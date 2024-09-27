@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component from ".";
 
@@ -7,9 +7,9 @@ import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTit
 
 export default {
   component: Component,
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = () => (
+const Template: StoryFn<typeof Component> = () => (
   <Card>
     <CardTitle tag="h2">Did you know about our lessons?</CardTitle>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
