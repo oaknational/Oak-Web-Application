@@ -71,6 +71,7 @@ firebase-debug.log
 
 # storybook
 /storybook-static
+doctor-storybook.log
 
 # asdf version manager
 .tool-versions

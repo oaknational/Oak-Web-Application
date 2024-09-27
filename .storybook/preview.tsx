@@ -2,6 +2,7 @@ import React from "react";
 import { ThemeProvider } from "styled-components";
 import * as NextImage from "next/image";
 import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
+import { fn } from "@storybook/test";
 import { Lexend } from "next/font/google";
 
 import "../src/browser-lib/oak-globals/oakGlobals";
@@ -13,23 +14,25 @@ import InlineSpriteSheet from "../src/components/GenericPagesComponents/InlineSp
 const OriginalNextImage = NextImage.default;
 // @ts-ignore
 OriginalNextImage.propTypes = {
-  unoptimized: null,
+  unoptimized: undefined,
 };
 // @ts-ignore
 OriginalNextImage.defaultProps = {
   unoptimized: true,
 };
 
-// This causes error 'cannot redefine property: default'
-// Object.defineProperty(NextImage, "default", {
-//   configurable: true,
-//   value: (props) => <OriginalNextImage {...props} unoptimized />,
-// });
+const lexend = Lexend({
+  subsets: ["latin"],
+  variable: "--font-lexend",
+});
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: {
+    // 👇 Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked
+    args: { onClick: fn(), onSubmit: fn() },
+  },
   controls: {
-    // sorts component props into alphbetical order
+    // sorts component props into alphabetical order
     sort: "alpha",
     matchers: {
       color: /(background|color)$/i,
@@ -54,29 +57,20 @@ export const parameters = {
   },
 };
 
-const lexend = Lexend({ subsets: ["latin"] });
-
-const withThemeProvider = (Story, context) => {
+const WithThemeProvider = (Story, context) => {
   const { theme } = useOakTheme({ overrideTheme: context.globals.theme });
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle fontFamily={lexend.style.fontFamily} />
-        <>
-          <style jsx global>{`
-            html {
-              font-family: ${lexend.style.fontFamily};
-            }
-          `}</style>
-        </>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle fontFamily={lexend.style.fontFamily} />
+      <div className={lexend.variable}>
         <Story {...context} />
-        <SpriteSheet />
-        <InlineSpriteSheet />
-      </ThemeProvider>
-    </>
+      </div>
+      <SpriteSheet />
+      <InlineSpriteSheet />
+    </ThemeProvider>
   );
 };
-export const decorators = [withThemeProvider];
+export const decorators = [WithThemeProvider];
 
 export const globalTypes = {
   // This will show in UI but not change theme until hook is updated and can take a theme string
@@ -93,3 +87,4 @@ export const globalTypes = {
     },
   },
 };
+export const tags = ["autodocs", "autodocs", "autodocs"];
