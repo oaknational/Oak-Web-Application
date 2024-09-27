@@ -22,7 +22,16 @@ export function isCurricPartnerHackEnabled() {
   return ENABLE_CYCLE_2 && CURRIC_PARTNER_HACK;
 }
 
-export function getUnitFeatures(unit: Unit) {
+export function getUnitFeatures(unit?: Unit | null) {
+  if (!unit) {
+    return;
+  }
+
+  if (!isCycleTwoEnabled()) {
+    // Early exit
+    return;
+  }
+
   // HACK: Swimming primary isn't yet published so we're hacking in some secondary units and giving them the overrides
   if (
     isSwimmingHackEnabled() &&
@@ -38,6 +47,16 @@ export function getUnitFeatures(unit: Unit) {
       programmes_fields_overrides: {
         year: "all-years",
         keystage: "All keystages",
+      },
+    };
+  } else if (
+    unit.subject_slug === "computing" &&
+    unit.pathway_slug === "gcse" &&
+    ["10", "11"].includes(unit.year)
+  ) {
+    return {
+      programmes_fields_overrides: {
+        subject: "Computer Science",
       },
     };
   }

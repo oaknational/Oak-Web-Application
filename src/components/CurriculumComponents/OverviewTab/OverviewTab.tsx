@@ -64,17 +64,22 @@ const ExplainerStyles = styled("div")`
   h6 {
     font-weight: 600;
     margin-top: 0.5rem;
+    margin-bottom: 1rem;
     font-size: 1rem;
   }
+  ul + h3,
   p + h3 {
     margin-top: 4.5rem;
   }
+  ul + h4,
   p + h4 {
     margin-top: 1.5 em;
   }
+  ul + h5,
   p + h5 {
     margin-top: 3.5rem;
   }
+  ul + h6,
   p + h6 {
     margin-top: 0.5rem;
   }
@@ -303,6 +308,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                   tag="h2"
                   $font={["heading-5", "heading-4"]}
                   $mb="space-between-m"
+                  data-testid="overview-heading"
                 >
                   Overview
                 </OakHeading>

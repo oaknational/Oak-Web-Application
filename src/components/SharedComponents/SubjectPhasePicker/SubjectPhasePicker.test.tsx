@@ -28,11 +28,15 @@ describe("Component - subject phase picker", () => {
         title: "English",
         slug: "english",
         phases: [],
-        examboards: [],
         cycle: "1",
+        ks4_options: [{ title: "AQA", slug: "aqa" }],
+        keystages: [
+          { title: "KS1", slug: "ks1" },
+          { title: "KS3", slug: "ks3" },
+        ],
       },
       phase: { title: "Secondary", slug: "secondary" },
-      examboard: { title: "AQA", slug: "aqa" },
+      ks4Option: { title: "AQA", slug: "aqa" },
     };
     const { getByTitle } = render(
       <SubjectPhasePicker
@@ -167,7 +171,7 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(getByTitle("Secondary"));
     await userEvent.click(document.body);
     await userEvent.click(viewButton);
-    expect(queryByText("Select an exam board option")).toBeTruthy();
+    expect(queryByText("Select an option for KS4")).toBeTruthy();
   });
 
   test("calls tracking.curriculumVisualiserAccessed once, with correct props", async () => {
