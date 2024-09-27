@@ -52,7 +52,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     triggerForm: UseFormTrigger<ResourceFormProps>;
     apiError?: string | null;
     updatedAt: string;
-    hasFullOnboarding: boolean | undefined;
+    hasOnboardingDownloadDetails: boolean | undefined;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -113,7 +113,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                 </Box>
               )}
               {props.cardGroup}
-              {props.hasFullOnboarding && (
+              {props.hasOnboardingDownloadDetails && (
                 <>
                   <OakBox
                     $pb={"inner-padding-xl3"}
@@ -164,7 +164,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                   handleEditDetailsCompletedClick={props.onEditClick}
                   showPostAlbCopyright={props.showPostAlbCopyright}
                   copyrightYear={props.updatedAt}
-                  hideDetails={props.hasFullOnboarding}
+                  hideDetails={props.hasOnboardingDownloadDetails}
                 />
                 {hasFormErrors && (
                   <OakFlex $flexDirection={"row"}>
@@ -185,7 +185,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                     </OakFlex>
                   </OakFlex>
                 )}
-                {!props.hasFullOnboarding && props.cta}
+                {!props.hasOnboardingDownloadDetails && props.cta}
 
                 {props.apiError && !hasFormErrors && (
                   <FieldError

@@ -169,7 +169,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     handleToggleSelectAll,
     selectAllChecked,
     setEmailInLocalStorage,
-    hasFullOnboarding,
+    hasOnboardingDownloadDetails,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
     type: "download",
@@ -359,7 +359,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               hideSelectAll={Boolean(expired)}
               updatedAt={updatedAt}
               withHomeschool={true}
-              hasFullOnboarding={hasFullOnboarding}
+              hasOnboardingDownloadDetails={hasOnboardingDownloadDetails}
               cardGroup={
                 !showNoResources && (
                   <DownloadCardGroup
