@@ -10,15 +10,14 @@ import {
 
 import { uncapitalizeSubject } from "./helper";
 
-import { sortYears } from "@/utils/curriculum/sorting";
+import { formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 
 export default async function generate(
   zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
-  const years = Array.from(new Set(data.units.map((unit) => unit.year))).sort(
-    sortYears,
-  );
+  const { yearOptions, yearData } = formatCurriculumUnitsData(data);
 
   const links = [
     {
@@ -33,10 +32,10 @@ export default async function generate(
       anchorId: "section_curriculum_overview",
       text: `${data.subjectTitle} curriculum overview`,
     },
-    ...years.map((year) => {
+    ...yearOptions.map((year) => {
       return {
         anchorId: `section_year_${year}`,
-        text: `Year ${year}`,
+        text: getYearGroupTitle(yearData, year, "units"),
       };
     }),
     {
