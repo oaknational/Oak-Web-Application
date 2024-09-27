@@ -1,14 +1,20 @@
 import useLocalStorageForDownloads from "../hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 
-import { SchoolSelectFormProps } from "./OnboardingForm.schema";
+import { OnboardingFormProps } from "./OnboardingForm.schema";
 
-export function setOnboardingLocalStorage(
-  localStorageForDownloads: ReturnType<typeof useLocalStorageForDownloads>,
-  newsletterSignUp: boolean,
-  data: SchoolSelectFormProps,
-  userEmail?: string,
-  userSubscribedInHubspot?: boolean,
-) {
+interface OnboardingData {
+  localStorageForDownloads: ReturnType<typeof useLocalStorageForDownloads>;
+  userSubscribed: boolean;
+  data: OnboardingFormProps;
+  userEmail?: string;
+}
+
+export async function setOnboardingLocalStorage({
+  localStorageForDownloads,
+  data,
+  userEmail,
+  userSubscribed,
+}: OnboardingData) {
   if ("school" in data) {
     localStorageForDownloads.setSchoolInLocalStorage({
       schoolName: data.schoolName || data.school,
@@ -19,11 +25,18 @@ export function setOnboardingLocalStorage(
       schoolName: data.manualSchoolName,
       schoolId: data.manualSchoolName,
     });
+  } else {
+    localStorageForDownloads.setSchoolInLocalStorage({
+      schoolName: "",
+      schoolId: "",
+    });
   }
 
-  userEmail &&
-    (userSubscribedInHubspot ?? newsletterSignUp) &&
-    localStorageForDownloads.setEmailInLocalStorage(userEmail); // adding email to the details form on download/share is the same as accepting the newsletter sigh up in onboarding
+  if (userEmail && userSubscribed) {
+    localStorageForDownloads.setEmailInLocalStorage(userEmail);
+  } else {
+    localStorageForDownloads.setEmailInLocalStorage(""); // on download they subscribe by adding email, so this is empty if unsubscribed
+  }
 
   localStorageForDownloads.setTermsInLocalStorage(true); // on sign up they are accepting terms so this is true
 }

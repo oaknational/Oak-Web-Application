@@ -23,7 +23,6 @@ import useLocalStorageForDownloads from "../hooks/downloadAndShareHooks/useLocal
 
 import {
   OnboardingFormProps,
-  SchoolSelectFormProps,
   isSchoolSelectData,
 } from "./OnboardingForm.schema";
 import { getSubscriptionStatus, onboardUser } from "./onboardingActions";
@@ -80,27 +79,28 @@ const OnboardingForm = ({
   const showNewsletterSignUp =
     userSubscribedInHubspot === false && forceHideNewsletterSignUp !== true;
 
-  const handleSuccessfulOnboarding = async (data: SchoolSelectFormProps) => {
+  const handleSuccessfulOnboarding = async (data: OnboardingFormProps) => {
     const userEmail = user?.emailAddresses[0]?.emailAddress;
 
-    if (isSchoolSelectData(data)) {
-      setOnboardingLocalStorage(
-        localStorageForDownloads,
-        showNewsletterSignUp,
-        data,
-        userEmail,
-        userSubscribedInHubspot,
-      );
+    const userSubscribed =
+      "newsletterSignUp" in data &&
+      (userSubscribedInHubspot ?? data.newsletterSignUp);
 
-      await submitOnboardingHubspotData(
-        hutk,
-        utmParams,
-        data,
-        userSubscribedInHubspot,
-        posthogDistinctId,
-        userEmail,
-      );
-    }
+    await setOnboardingLocalStorage({
+      localStorageForDownloads,
+      data,
+      userEmail,
+      userSubscribed,
+    });
+
+    await submitOnboardingHubspotData({
+      hutk,
+      utmParams,
+      data,
+      userSubscribed,
+      posthogDistinctId,
+      userEmail,
+    });
   };
 
   const onFormSubmit = async (data: OnboardingFormProps) => {
@@ -131,10 +131,10 @@ const OnboardingForm = ({
       try {
         await onboardUser({ isTeacher });
         await user?.reload();
-        isSchoolSelectData(data) && (await handleSuccessfulOnboarding(data));
+
+        await handleSuccessfulOnboarding(data);
       } catch (error) {
         setSubmitError("Something went wrong. Please try again.");
-        // No point in proceeding to hubspot sign-up if onboarding failed
         return;
       }
       // Return the user to the page they originally arrived from

@@ -97,11 +97,12 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     const updateUserDetailsFromHubspot = async (email: string) => {
       const hubspotContact = await fetchHubspotContactDetails(email);
       const subscriptionStatus = await getSubscriptionStatus(email);
+      setEmailInLocalStorage("");
+      setTermsInLocalStorage(true);
+      setValue("terms", true);
       if (subscriptionStatus) {
         setEmailInLocalStorage(email);
         setValue("email", email);
-        setTermsInLocalStorage(subscriptionStatus);
-        setValue("terms", subscriptionStatus);
       }
 
       if (hubspotContact) {
@@ -120,6 +121,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         if (schoolId) {
           setValue("school", schoolId);
         }
+      } else {
+        setHasFullOnboarding(false);
       }
     };
 

@@ -1,25 +1,35 @@
-import { SchoolSelectFormProps } from "./OnboardingForm.schema";
+import { OnboardingFormProps } from "./OnboardingForm.schema";
 
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
 import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
+
 const reportError = errorReporter("resolveHubspotFormReferences.ts");
 
-export async function submitOnboardingHubspotData(
-  hutk: string | undefined,
+interface OnboardingHubspotData {
+  hutk: string | undefined;
   utmParams: Partial<
     Record<
       "utm_source" | "utm_medium" | "utm_campaign" | "utm_term" | "utm_content",
       string
     >
-  >,
-  data: SchoolSelectFormProps,
-  userSubscribedInHubspot: boolean | undefined,
-  posthogDistinctId: string | null,
-  userEmail: string | undefined,
-) {
+  >;
+  data: OnboardingFormProps;
+  userSubscribed: boolean;
+  posthogDistinctId: string | null;
+  userEmail: string | undefined;
+}
+
+export async function submitOnboardingHubspotData({
+  hutk,
+  utmParams,
+  data,
+  userSubscribed,
+  posthogDistinctId,
+  userEmail,
+}: OnboardingHubspotData) {
   const hubspotFormId = getBrowserConfig("hubspotOnboardingFormId");
 
   const hubspotFormPayload = getHubspotOnboardingFormPayload({
@@ -27,12 +37,10 @@ export async function submitOnboardingHubspotData(
     data: {
       ...utmParams,
       ...data,
-      newsletterSignUp: userSubscribedInHubspot || data.newsletterSignUp,
+      role: "role" in data ? data.role : "",
+      newsletterSignUp: userSubscribed,
       oakUserId: posthogDistinctId,
-      email:
-        userSubscribedInHubspot || data.newsletterSignUp
-          ? userEmail
-          : undefined,
+      email: userEmail,
     },
   });
 
