@@ -43,6 +43,7 @@ export const QuizResultMatch = ({
           standardText={standardText}
           boldPrefixText={prefix}
           feedbackState={feedbackState}
+          aria-role="listItem"
         />
       </MathJaxWrap>
     );

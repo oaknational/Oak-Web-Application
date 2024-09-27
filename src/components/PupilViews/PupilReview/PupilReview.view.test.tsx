@@ -7,6 +7,7 @@ import {
   useOakPupil,
 } from "@oaknational/oak-pupil-client";
 import userEvent from "@testing-library/user-event";
+import { act } from "@testing-library/react";
 
 import { PupilViewsReview } from "./PupilReview.view";
 
@@ -15,6 +16,14 @@ import { LessonEngineContext } from "@/components/PupilComponents/LessonEnginePr
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+
+const writeText = jest.fn();
+
+Object.assign(navigator, {
+  clipboard: {
+    writeText,
+  },
+});
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn((a) => a),
@@ -27,12 +36,18 @@ Object.defineProperty(window, "open", {
 
 jest.mock("@oaknational/oak-pupil-client", () => ({
   ...jest.requireActual("@oaknational/oak-pupil-client"),
+  OakPupilClientProvider: jest.fn(({ children }) => children),
   useOakPupil: jest.fn(() => ({
     logAttempt: () => console.log("logAttempt"),
   })),
 }));
 
-const mockBroweData = lessonBrowseDataFixture({});
+const mockBroweData = lessonBrowseDataFixture({
+  programmeFields: {
+    ...lessonBrowseDataFixture({}).programmeFields,
+    yearDescription: "Year 1",
+  },
+});
 
 describe("PupilReview", () => {
   it("error messages when the phase is foundation", () => {
@@ -288,10 +303,10 @@ describe("PupilReview", () => {
 
       expect(queryByText("Share results")).toBeInTheDocument();
     });
-    it("logAttempt function is called when button is clicked", async () => {
+    it("logAttempt function is called when button is clicked", () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
       //spy on the track function
-      const logAttemptSpy = jest.fn(() => Promise.resolve("attempt-id"));
+      const logAttemptSpy = jest.fn(() => "some-attempt-id");
       (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
 
       const { getByText } = renderWithTheme(
@@ -321,17 +336,25 @@ describe("PupilReview", () => {
         </OakThemeProvider>,
       );
       const button = getByText("Share results");
-      await userEvent.click(button).then(() => {
-        expect(logAttemptSpy).toHaveBeenCalledTimes(1);
+      // Simulate the button click
+      act(() => {
+        button.click(); // Manually trigger click
       });
+
+      // Assert that logAttempt has been called once
+      expect(logAttemptSpy).toHaveBeenCalledTimes(1);
     });
-    it("throws error if attempt_d s not returned by logAttempt", async () => {
+    it("throws error if promise returns null", () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
       //spy on the track function
-      const logAttemptSpy = jest.fn(() => Promise.resolve(null));
+      const logAttemptSpy = jest.fn(() => ({
+        promise: Promise.reject(new Error("Test error")), // Simulate a rejected promise
+        attemptId: "some-attempt-id",
+      }));
       (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
       // Mock console.error
-      let consoleErrorSpy = jest
+
+      const consoleErrorSpy = jest
         .spyOn(console, "error")
         .mockImplementation(() => {});
 
@@ -362,21 +385,123 @@ describe("PupilReview", () => {
         </OakThemeProvider>,
       );
 
-      // clear all other consoles
       consoleErrorSpy.mockRestore();
-      consoleErrorSpy = jest
-        .spyOn(console, "error")
-        .mockImplementation(() => {});
 
       const button = getByText("Share results");
-      await userEvent.click(button).then(() => {
-        expect(logAttemptSpy).toHaveBeenCalledTimes(1);
-        const firstCallArg = consoleErrorSpy.mock.calls[0]?.[0];
-        expect(firstCallArg).toBeInstanceOf(Error);
-        expect(firstCallArg.message).toBe("Failed to log attempt");
-        const secondCallArg = consoleErrorSpy.mock.calls[1]?.[0];
-        expect(secondCallArg.message).toBe("Not implemented: window.alert");
+
+      userEvent.click(button).then(() => {
+        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+          "Error sharing results: Test error",
+        );
       });
+    });
+    it("copies the correct url to the clipboard when logAttempt returns a promise", () => {
+      // Enable the feature flag
+      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+      const logAttemptSpy = jest.fn(() => ({
+        promise: Promise.reject(new Error("Test error")),
+        attemptId: "some-attempt-id",
+      }));
+
+      // Mock useOakPupil to return an object with logAttempt
+      (useOakPupil as jest.Mock).mockReturnValue({
+        logAttempt: logAttemptSpy,
+      });
+      // Render the component
+      const { getByText } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({
+              sectionResults: sectionResultsFixture,
+            })}
+          >
+            <OakPupilClientProvider
+              config={{
+                getLessonAttemptUrl: "example.com",
+                logLessonAttemptUrl: "example.com",
+              }}
+            >
+              <PupilViewsReview
+                lessonTitle="Lesson title"
+                exitQuizQuestionsArray={[]}
+                starterQuizQuestionsArray={[]}
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                browseData={mockBroweData}
+                pageType="browse"
+              />
+            </OakPupilClientProvider>
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      // Find the button and log its presence
+      const button = getByText("Share results");
+      expect(button).toBeInTheDocument(); // Ensure the button exists
+
+      // Simulate the button click
+      act(() => {
+        button.click(); // Manually trigger click
+      });
+
+      // Assert that logAttempt has been called once
+      expect(logAttemptSpy).toHaveBeenCalledTimes(1);
+      expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+        "http://localhost:3000/pupils/lessons/lesson-slug/results/some-attempt-id/share",
+      );
+    });
+    it("copies correct url to clipboard when logAttempt returns a string", () => {
+      // Enable the feature flag
+      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+      const logAttemptSpy = jest.fn(() => "some-attempt-id");
+
+      // Mock useOakPupil to return an object with logAttempt
+      (useOakPupil as jest.Mock).mockReturnValue({
+        logAttempt: logAttemptSpy,
+      });
+      // Render the component
+      const { getByText } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({
+              sectionResults: sectionResultsFixture,
+            })}
+          >
+            <OakPupilClientProvider
+              config={{
+                getLessonAttemptUrl: "example.com",
+                logLessonAttemptUrl: "example.com",
+              }}
+            >
+              <PupilViewsReview
+                lessonTitle="Lesson title"
+                exitQuizQuestionsArray={[]}
+                starterQuizQuestionsArray={[]}
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                browseData={mockBroweData}
+                pageType="browse"
+              />
+            </OakPupilClientProvider>
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      // Find the button and log its presence
+      const button = getByText("Share results");
+      expect(button).toBeInTheDocument(); // Ensure the button exists
+
+      // Simulate the button click
+      act(() => {
+        button.click(); // Manually trigger click
+      });
+
+      // Assert that logAttempt has been called once
+      expect(logAttemptSpy).toHaveBeenCalledTimes(1);
+      expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+        "http://localhost:3000/pupils/lessons/lesson-slug/results/some-attempt-id/share",
+      );
     });
   });
 });

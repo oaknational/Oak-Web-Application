@@ -1,3 +1,31 @@
+# [1.569.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.568.2...v1.569.0) (2024-09-27)
+
+
+### Features
+
+* **review:** remove local client ([ca39d6b](https://github.com/oaknational/Oak-Web-Application/commit/ca39d6be3bc5c14e2891c2adef80d2741edc234c))
+* **review:** test coverage ([bd889d7](https://github.com/oaknational/Oak-Web-Application/commit/bd889d7c6031423944575bfd082714b5a5e841c0))
+* **review:** update client dep ([9b1b142](https://github.com/oaknational/Oak-Web-Application/commit/9b1b1423d0cdbf565619643a1a22254d933ba80f))
+* **review:** update client dep ([4d31386](https://github.com/oaknational/Oak-Web-Application/commit/4d31386f72767a467deb4bcb9297bd012e0d83d6))
+* **review:** update client dep ([42073b2](https://github.com/oaknational/Oak-Web-Application/commit/42073b28aecb5674f7cf09763a9edf10fabff593))
+* **share:** button style changes ([7c2d9ad](https://github.com/oaknational/Oak-Web-Application/commit/7c2d9adac59d27e6bb117571f39e2d2e43a683cf))
+* **share:** fetch and forget for log attempt ([36bc3c4](https://github.com/oaknational/Oak-Web-Application/commit/36bc3c41f6ab9407dbc6143a2fdadf984234e928))
+* **share:** fix tests ([242f620](https://github.com/oaknational/Oak-Web-Application/commit/242f6202c0596c99c26f443d1ef10f1fff77bf34))
+
+## [1.568.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.568.1...v1.568.2) (2024-09-26)
+
+
+### Bug Fixes
+
+* more robust curriculum styling in overview tab ([8fb01c6](https://github.com/oaknational/Oak-Web-Application/commit/8fb01c61dd1fdf029e2cf02e4fbfb43fff212638))
+
+## [1.568.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.568.0...v1.568.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* remove separator from bottom border ([66756af](https://github.com/oaknational/Oak-Web-Application/commit/66756af678155e0185485cac77241df7a3a219db))
+
 # [1.568.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.567.0...v1.568.0) (2024-09-26)
 
 
