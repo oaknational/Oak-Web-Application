@@ -1,3 +1,50 @@
+## [1.568.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.568.1...v1.568.2) (2024-09-26)
+
+
+### Bug Fixes
+
+* more robust curriculum styling in overview tab ([8fb01c6](https://github.com/oaknational/Oak-Web-Application/commit/8fb01c61dd1fdf029e2cf02e4fbfb43fff212638))
+
+## [1.568.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.568.0...v1.568.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* remove separator from bottom border ([66756af](https://github.com/oaknational/Oak-Web-Application/commit/66756af678155e0185485cac77241df7a3a219db))
+
+# [1.568.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.567.0...v1.568.0) (2024-09-26)
+
+
+### Features
+
+* added in new cycle 2 MVs + filters ([ae05fbe](https://github.com/oaknational/Oak-Web-Application/commit/ae05fbea84aa5ee8e90f3ca16ac61fe885fc5f04))
+* added why_this_why_now/description to unit modal ([620dd8d](https://github.com/oaknational/Oak-Web-Application/commit/620dd8d8dba4958ab4cc89b064d43902f6cf6136))
+
+# [1.567.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.566.0...v1.567.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* added pathway check into computing condition in getUnitFeatures() ([c49d3fd](https://github.com/oaknational/Oak-Web-Application/commit/c49d3fd8cc9ab60996e24d971bdea830a6cc3f91))
+
+
+### Features
+
+* added "computer science" to <UnitModal/> ([b314db1](https://github.com/oaknational/Oak-Web-Application/commit/b314db1ff07484713e49b858895ca15604ed9615))
+* added computer science subject overrides for cycle 2 ([9e8c951](https://github.com/oaknational/Oak-Web-Application/commit/9e8c951d3c0c2a63b19e9e5918e30dd2721deba0))
+
+# [1.566.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.565.1...v1.566.0) (2024-09-26)
+
+
+### Bug Fixes
+
+* sort years in unit details pages in curriculum downloads (docx) ([d42f3e8](https://github.com/oaknational/Oak-Web-Application/commit/d42f3e829adb1ba39a64d3ca006a297947d17583))
+
+
+### Features
+
+* added swimming to curriculum downloads (docx) ([1f0aedd](https://github.com/oaknational/Oak-Web-Application/commit/1f0aeddcdad475a454ec4dfb158df28e11c7571b))
+
 ## [1.565.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.565.0...v1.565.1) (2024-09-26)
 
 
