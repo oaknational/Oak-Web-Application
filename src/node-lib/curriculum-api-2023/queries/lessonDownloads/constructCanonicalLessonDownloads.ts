@@ -12,6 +12,10 @@ const constructCanonicalLessonDownloads = (
   browseData: SyntheticUnitvariantLessons[],
   isLegacy: boolean,
   lessonCopyRight: { copyrightInfo: string }[] | null,
+  restrictions: {
+    geoRestricted: boolean | null;
+    loginRequired: boolean | null;
+  },
 ): LessonDownloadsCanonical => {
   const baseDownloads = {
     downloads: downloads,
@@ -55,10 +59,10 @@ const constructCanonicalLessonDownloads = (
     },
     {
       ...baseDownloads,
+      ...restrictions,
       pathways: [],
       isLegacy: false,
       isSpecialist: false,
-      isDownloadRegionRestricted: false,
     } as LessonDownloadsCanonical,
   );
 };
