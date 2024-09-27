@@ -97,12 +97,13 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     const updateUserDetailsFromHubspot = async (email: string) => {
       const hubspotContact = await fetchHubspotContactDetails(email);
       const subscriptionStatus = await getSubscriptionStatus(email);
-      setEmailInLocalStorage("");
       setTermsInLocalStorage(true);
       setValue("terms", true);
       if (subscriptionStatus) {
         setEmailInLocalStorage(email);
         setValue("email", email);
+      } else {
+        setEmailInLocalStorage("");
       }
 
       if (hubspotContact) {
@@ -123,45 +124,49 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         }
       } else {
         setHasFullOnboarding(false);
+        setSchoolInLocalStorage({
+          schoolId: "",
+          schoolName: "",
+        });
       }
     };
 
-    const updateUserDetailsFromLocalStorage = () => {
-      if (emailFromLocalStorage) {
-        setValue("email", emailFromLocalStorage);
-      }
-
-      if (termsFromLocalStorage) {
-        setValue("terms", termsFromLocalStorage);
-      }
-
-      if (schoolIdFromLocalStorage) {
-        setValue("school", schoolIdFromLocalStorage);
-
-        const schoolUrn = getSchoolUrn(
-          schoolIdFromLocalStorage,
-          getSchoolOption(schoolIdFromLocalStorage),
-        );
-        setSchoolUrn(schoolUrn);
-      }
-    };
-
-    if (authFlagEnabled && isSignedIn && userEmail) {
+    if (userEmail) {
       updateUserDetailsFromHubspot(userEmail);
-    } else if (!userEmail) {
-      updateUserDetailsFromLocalStorage();
     }
   }, [
     authFlagEnabled,
-    emailFromLocalStorage,
     isSignedIn,
-    schoolIdFromLocalStorage,
     setEmailInLocalStorage,
     setSchoolInLocalStorage,
     setTermsInLocalStorage,
     setValue,
-    termsFromLocalStorage,
     user?.emailAddresses,
+  ]);
+
+  useEffect(() => {
+    if (emailFromLocalStorage) {
+      setValue("email", emailFromLocalStorage);
+    }
+
+    if (termsFromLocalStorage) {
+      setValue("terms", termsFromLocalStorage);
+    }
+
+    if (schoolIdFromLocalStorage) {
+      setValue("school", schoolIdFromLocalStorage);
+
+      const schoolUrn = getSchoolUrn(
+        schoolIdFromLocalStorage,
+        getSchoolOption(schoolIdFromLocalStorage),
+      );
+      setSchoolUrn(schoolUrn);
+    }
+  }, [
+    emailFromLocalStorage,
+    schoolIdFromLocalStorage,
+    setValue,
+    termsFromLocalStorage,
   ]);
 
   const resources = (() => {
