@@ -129,7 +129,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       }
     };
 
-    if (userEmail) {
+    if (userEmail && authFlagEnabled && isSignedIn) {
       updateUserDetailsFromHubspot(userEmail);
     }
   }, [
