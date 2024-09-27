@@ -1,3 +1,10 @@
+## [1.568.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.568.1...v1.568.2) (2024-09-26)
+
+
+### Bug Fixes
+
+* more robust curriculum styling in overview tab ([8fb01c6](https://github.com/oaknational/Oak-Web-Application/commit/8fb01c61dd1fdf029e2cf02e4fbfb43fff212638))
+
 ## [1.568.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.568.0...v1.568.1) (2024-09-26)
 
 
