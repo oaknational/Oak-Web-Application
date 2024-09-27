@@ -22,9 +22,9 @@ import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  keyStages: string[];
   color1?: OakColorName;
   color2?: OakColorName;
-  keyStages: string[];
 };
 
 const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
@@ -43,9 +43,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   const phase = subject?.phases.find(
     (phase) => phase.slug === curriculumSelectionSlugs.phaseSlug,
   );
-  const examboard =
-    subject?.examboards?.find(
-      (examboard) => examboard.slug === curriculumSelectionSlugs.examboardSlug,
+  const ks4Option =
+    subject?.ks4_options?.find(
+      (option) => option.slug === curriculumSelectionSlugs.ks4OptionSlug,
     ) ?? null;
 
   if (!subject || !phase) {
@@ -55,11 +55,11 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   const currentSelection = {
     subject: subject,
     phase: phase,
-    examboard: examboard,
+    ks4Option: ks4Option,
   };
 
   const subjectPhaseSlug = `${subject.slug}-${phase.slug}${
-    examboard ? `-${examboard.slug}` : ""
+    ks4Option ? `-${ks4Option.slug}` : ""
   }`;
 
   let pageTitle: string = "";
@@ -157,12 +157,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 />
               </Box>
               <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
-                {keyStages.includes("ks4") && (
+                {phase.slug === "secondary" && (
                   <OakP
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}
                   >
-                    {`${examboard ? examboard.title : "All exam boards"} (KS4)`}
+                    {`${ks4Option ? ks4Option.title : "All exam boards"} (KS4)`}
                   </OakP>
                 )}
                 <OakHeading

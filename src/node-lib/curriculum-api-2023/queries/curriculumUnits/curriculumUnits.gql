@@ -30,5 +30,7 @@ query curriculumUnits($where: published_mv_curriculum_units_0_12_bool_exp) {
     unit_options
     threads
     year
+    pathway
+    pathway_slug
   }
 }
