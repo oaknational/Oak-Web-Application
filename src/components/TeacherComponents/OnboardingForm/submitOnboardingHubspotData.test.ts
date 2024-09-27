@@ -24,14 +24,15 @@ const utmParams = {
   utm_term: "utm_term",
   utm_content: "utm_content",
 };
-const data = {
-  schoolName: "schoolName",
-  role: "role",
-  phase: "phase",
-  subject: "subject",
+
+const submit = jest.fn();
+const data: SchoolSelectFormProps = {
+  school: "123",
+  schoolName: "Test School",
   newsletterSignUp: true,
-} as unknown as SchoolSelectFormProps;
-const userSubscribedInHubspot = true;
+  onSubmit: submit,
+};
+const userSubscribed = true;
 const posthogDistinctId = "posthogDistinctId";
 const userEmail = "userEmail";
 
@@ -41,14 +42,14 @@ describe("submitHubspotData", () => {
     jest.resetModules();
   });
   test("should call getHubspotOnboardingFormPayload with the correct values", async () => {
-    await submitOnboardingHubspotData(
+    await submitOnboardingHubspotData({
       hutk,
       utmParams,
       data,
-      userSubscribedInHubspot,
+      userSubscribed,
       posthogDistinctId,
       userEmail,
-    );
+    });
 
     expect(getHubspotOnboardingFormPayload).toHaveBeenCalledWith({
       hutk,
@@ -56,10 +57,10 @@ describe("submitHubspotData", () => {
         email: "userEmail",
         newsletterSignUp: true,
         oakUserId: "posthogDistinctId",
-        phase: "phase",
-        role: "role",
-        schoolName: "schoolName",
-        subject: "subject",
+        role: "",
+        onSubmit: submit,
+        schoolName: "Test School",
+        school: "123",
         utm_campaign: "utm_campaign",
         utm_content: "utm_content",
         utm_medium: "utm_medium",
@@ -68,161 +69,20 @@ describe("submitHubspotData", () => {
       },
     });
   });
-  test("should call getHubspotOnboardingFormPayload with the correct values", async () => {
-    await submitOnboardingHubspotData(
-      hutk,
-      utmParams,
-      data,
-      userSubscribedInHubspot,
-      posthogDistinctId,
-      userEmail,
-    );
 
-    expect(hubspotSubmitForm).toHaveBeenCalled();
-  });
-  test("should set email to userEmail if userSubscribedInHubspot is true", async () => {
-    const userSubscribedInHubspot = true;
-    const data = { newsletterSignUp: false } as SchoolSelectFormProps;
-
-    await submitOnboardingHubspotData(
-      hutk,
-      utmParams,
-      data,
-      userSubscribedInHubspot,
-      posthogDistinctId,
-      userEmail,
-    );
-
-    expect(getHubspotOnboardingFormPayload).toHaveBeenCalledWith(
-      expect.objectContaining({
-        data: expect.objectContaining({
-          email: userEmail,
-        }),
-      }),
-    );
-  });
-
-  test("should set email to userEmail if data.newsletterSignUp is true", async () => {
-    const userSubscribedInHubspot = false;
-    const data = { newsletterSignUp: true } as SchoolSelectFormProps;
-
-    await submitOnboardingHubspotData(
-      hutk,
-      utmParams,
-      data,
-      userSubscribedInHubspot,
-      posthogDistinctId,
-      userEmail,
-    );
-
-    expect(getHubspotOnboardingFormPayload).toHaveBeenCalledWith(
-      expect.objectContaining({
-        data: expect.objectContaining({
-          email: userEmail,
-        }),
-      }),
-    );
-  });
-  test("should set newsletterSignUp to true if userSubscribedInHubspot is true", async () => {
-    const userSubscribedInHubspot = true;
-    const data = { newsletterSignUp: false } as SchoolSelectFormProps;
-
-    await submitOnboardingHubspotData(
-      hutk,
-      utmParams,
-      data,
-      userSubscribedInHubspot,
-      posthogDistinctId,
-      userEmail,
-    );
-
-    expect(getHubspotOnboardingFormPayload).toHaveBeenCalledWith(
-      expect.objectContaining({
-        data: expect.objectContaining({
-          newsletterSignUp: true,
-        }),
-      }),
-    );
-  });
-
-  test("should use data.newsletterSignUp when userSubscribedInHubspot is false", async () => {
-    const userSubscribedInHubspot = false;
-    const data = { newsletterSignUp: true } as SchoolSelectFormProps;
-
-    await submitOnboardingHubspotData(
-      hutk,
-      utmParams,
-      data,
-      userSubscribedInHubspot,
-      posthogDistinctId,
-      userEmail,
-    );
-
-    expect(getHubspotOnboardingFormPayload).toHaveBeenCalledWith(
-      expect.objectContaining({
-        data: expect.objectContaining({
-          newsletterSignUp: true,
-        }),
-      }),
-    );
-  });
-
-  test("should set newsletterSignUp to false if both userSubscribedInHubspot and data.newsletterSignUp are false", async () => {
-    const userSubscribedInHubspot = false;
-    const data = { newsletterSignUp: false } as SchoolSelectFormProps;
-
-    await submitOnboardingHubspotData(
-      hutk,
-      utmParams,
-      data,
-      userSubscribedInHubspot,
-      posthogDistinctId,
-      userEmail,
-    );
-
-    expect(getHubspotOnboardingFormPayload).toHaveBeenCalledWith(
-      expect.objectContaining({
-        data: expect.objectContaining({
-          newsletterSignUp: false,
-        }),
-      }),
-    );
-  });
-
-  test("should set email to undefined if both userSubscribedInHubspot and data.newsletterSignUp are false", async () => {
-    const userSubscribedInHubspot = false;
-    const data = { newsletterSignUp: false } as SchoolSelectFormProps;
-
-    await submitOnboardingHubspotData(
-      hutk,
-      utmParams,
-      data,
-      userSubscribedInHubspot,
-      posthogDistinctId,
-      userEmail,
-    );
-
-    expect(getHubspotOnboardingFormPayload).toHaveBeenCalledWith(
-      expect.objectContaining({
-        data: expect.objectContaining({
-          email: undefined,
-        }),
-      }),
-    );
-  });
   test("should throw and report error if failed to submit to hubspot", async () => {
     (hubspotSubmitForm as jest.Mock).mockRejectedValue(
       new OakError({ code: "hubspot/unknown" }),
     );
 
-    await submitOnboardingHubspotData(
+    await submitOnboardingHubspotData({
       hutk,
       utmParams,
       data,
-      userSubscribedInHubspot,
+      userSubscribed,
       posthogDistinctId,
       userEmail,
-    );
+    });
 
     expect(reportError).toHaveBeenCalled();
   });
