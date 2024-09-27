@@ -83,8 +83,9 @@ const OnboardingForm = ({
     const userEmail = user?.emailAddresses[0]?.emailAddress;
 
     const userSubscribed =
-      "newsletterSignUp" in data &&
-      (userSubscribedInHubspot ?? data.newsletterSignUp);
+      userSubscribedInHubspot !== undefined
+        ? userSubscribedInHubspot
+        : "newsletterSignUp" in data && data.newsletterSignUp;
 
     await setOnboardingLocalStorage({
       localStorageForDownloads,
