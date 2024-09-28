@@ -11,6 +11,7 @@ import {
 import { FC, FormEvent, useId, useState } from "react";
 import styled from "styled-components";
 
+
 import AcceptTerms from "../OakComponentsKitchen/AcceptTerms";
 import YourDetails from "../OakComponentsKitchen/YourDetails";
 import Terms from "../OakComponentsKitchen/Terms";
@@ -18,6 +19,7 @@ import Terms from "../OakComponentsKitchen/Terms";
 import { submitSchema } from "./schema";
 import { School, runSchema } from "./helper";
 
+import { ScreenReaderOnly } from "@/components/SharedComponents/ScreenReaderOnly/ScreenReaderOnly.stories";
 import Box from "@/components/SharedComponents/Box";
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
@@ -139,9 +141,11 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
 
   return (
     <OakBox $color="black">
-      <OakHeading tag="h2" $font={["heading-4"]} $mb={["space-between-m"]}>
-        Download
-      </OakHeading>
+      <ScreenReaderOnly>
+        <OakHeading tag="h2" $font={["heading-4"]} $mb={["space-between-m"]}>
+          Download
+        </OakHeading>
+      </ScreenReaderOnly>
       {onBackToKs4Options && (
         <Box $mb={24}>
           <Button
