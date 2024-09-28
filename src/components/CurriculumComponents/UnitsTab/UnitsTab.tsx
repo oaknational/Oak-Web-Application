@@ -205,14 +205,16 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
   return (
     <Box>
       <Box $maxWidth={1280} $mh={"auto"} $ph={[0, 18]} $width={"100%"}>
-        <OakHeading
-          tag="h2"
-          $mb="space-between-m"
-          $ml={["space-between-s", "space-between-none"]}
-          $font={["heading-5", "heading-4"]}
-        >
-          Unit sequence
-        </OakHeading>
+        <ScreenReaderOnly>
+          <OakHeading
+            tag="h2"
+            $mb="space-between-m"
+            $ml={["space-between-s", "space-between-none"]}
+            $font={["heading-5", "heading-4"]}
+          >
+            Unit sequence
+          </OakHeading>
+        </ScreenReaderOnly>
         <OakP
           $mh={["space-between-s", "space-between-none"]}
           $mb={"space-between-xl"}
