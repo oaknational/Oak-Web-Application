@@ -167,7 +167,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 )}
                 <OakHeading
                   tag={"h1"}
-                  $font={["heading-4", "heading-3"]}
+                  $font={["heading-5", "heading-3"]}
                   data-testid="curriculum-heading"
                 >
                   {pageTitle}
