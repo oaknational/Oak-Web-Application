@@ -1,9 +1,11 @@
+/* istanbul ignore file */
 "use client";
 
 import React, { useState } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 
+// https://nextjs.org/docs/app/building-your-application/styling/css-in-js#styled-components
 export default function StyledComponentsRegistry({
   children,
 }: {
