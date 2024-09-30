@@ -40,7 +40,6 @@ export default async function generate(
             <w:color w:val="222222" />
             <w:sz w:val="24" />
           </w:rPr>
-          <w:t />
         </w:r>
       </w:p>
       <w:p>

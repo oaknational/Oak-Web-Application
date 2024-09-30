@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { LessonAttemptCamelCase } from "@oaknational/oak-pupil-client";
 
 import { PupilViewsResults } from "./PupilResults.view";
 
@@ -9,6 +10,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
 const meta: Meta<typeof PupilViewsResults> = {
   component: PupilViewsResults,
@@ -39,19 +41,22 @@ export const Default: Story = {
     );
   },
   args: {
+    browseData: lessonBrowseDataFixture({}),
     starterQuizQuestionsArray: quizQuestions,
     exitQuizQuestionsArray: exitQuizQuestions,
     attemptData: {
+      attemptId: "efwef",
+      createdAt: "efwef",
       browseData: {
         subject: "ewfw",
         yearDescription: "efwef",
-        isLegacy: false,
       },
       lessonData: {
         slug: "efwef",
         title: "efwef",
       },
-      sectionResults: sectionResultsFixture,
+      sectionResults:
+        sectionResultsFixture as LessonAttemptCamelCase["sectionResults"],
     },
   },
 };

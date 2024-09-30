@@ -1,9 +1,11 @@
+import { useState } from "react";
 import {
   OakFlex,
   OakGrid,
   OakGridArea,
   OakHandDrawnCard,
   OakHeading,
+  OakIcon,
   OakImage,
   OakLessonBottomNav,
   OakLessonLayout,
@@ -11,8 +13,12 @@ import {
   OakLessonReviewQuiz,
   OakPrimaryButton,
   OakTertiaryButton,
+  OakSecondaryButton,
 } from "@oaknational/oak-components";
-import { useOakPupil } from "@oaknational/oak-pupil-client";
+import {
+  attemptDataCamelCaseSchema,
+  useOakPupil,
+} from "@oaknational/oak-pupil-client";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { PupilExperienceViewProps } from "../PupilExperience";
@@ -25,8 +31,6 @@ import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider"
 import { QuizResults } from "@/components/PupilComponents/QuizResults";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
-
-// TODO: add question arrays for starter and exit quizzes so that the expand quiz results can be rendered
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -45,10 +49,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     backUrl,
     starterQuizQuestionsArray,
     exitQuizQuestionsArray,
-    programmeSlug,
-    unitSlug,
     browseData: { programmeFields, lessonSlug, isLegacy },
-    pageType,
   } = props;
   const { phase = "primary", yearDescription, subject } = programmeFields;
   const {
@@ -67,6 +68,9 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const pupilClient = useOakPupil();
   const { logAttempt } = pupilClient;
   const isShowShareButtons = useFeatureFlagEnabled("share-results-button");
+  const [isAttemptingShare, setIsAttemptingShare] = useState<
+    "failed" | "shared" | "initial"
+  >("initial");
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
@@ -81,55 +85,60 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       </OakPrimaryButton>
     </OakLessonBottomNav>
   );
-  const handleShareResultsClick = async () => {
+  const handleShareResultsClick = () => {
     const attemptData = {
       lessonData: { slug: lessonSlug, title: lessonTitle },
       browseData: { subject: subject, yearDescription: yearDescription ?? "" },
       sectionResults: sectionResults,
     };
-    try {
-      const attemptId = await logAttempt(attemptData, false);
-      if (!attemptId) {
-        throw new Error("Failed to log attempt");
-      }
+    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+    const res = logAttempt(parsedAttemptData, false);
+    if (typeof res === "string") {
       const shareUrl = `${
         process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL
       }${resolveOakHref({
-        page: "pupil-lesson-results-canonical",
+        page: "pupil-lesson-results-canonical-share",
+        lessonSlug,
+        attemptId: res,
+      })}`;
+      navigator.clipboard.writeText(shareUrl);
+      setIsAttemptingShare("shared");
+    } else {
+      const { promise, attemptId } = res;
+      promise.catch((e) => {
+        console.error(e);
+        setIsAttemptingShare("failed");
+      });
+      const shareUrl = `${
+        process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL
+      }${resolveOakHref({
+        page: "pupil-lesson-results-canonical-share",
         lessonSlug,
         attemptId,
       })}`;
-      alert("See results at " + shareUrl);
-    } catch (e) {
-      console.error(e);
-      alert("Failed to share results");
+      navigator.clipboard.writeText(shareUrl);
+      setIsAttemptingShare("shared");
     }
   };
 
-  const handlePrintableResultsClick = async () => {
+  const handlePrintableResultsClick = () => {
     const attemptData = {
       lessonData: { slug: lessonSlug, title: lessonTitle },
       browseData: { subject: subject, yearDescription: yearDescription ?? "" },
       sectionResults: sectionResults,
     };
-    const attemptId = await logAttempt(attemptData, true);
-    if (attemptId)
+    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+    const attemptId = logAttempt(parsedAttemptData, true);
+    if (typeof attemptId === "string") {
       window.open(
-        pageType === "canonical"
-          ? resolveOakHref({
-              page: "pupil-lesson-results-canonical",
-              lessonSlug,
-              attemptId,
-            })
-          : resolveOakHref({
-              page: "pupil-lesson-results",
-              programmeSlug,
-              unitSlug,
-              lessonSlug,
-              attemptId,
-            }),
+        resolveOakHref({
+          page: "pupil-lesson-results-canonical-printable",
+          lessonSlug,
+          attemptId,
+        }),
         "_blank",
       );
+    }
   };
 
   if (phase === "foundation") {
@@ -170,29 +179,67 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                 Lesson review
               </OakHeading>
               {isShowShareButtons && (
-                <OakFlex $gap={"space-between-s"}>
-                  <OakPrimaryButton
-                    type="button"
-                    role="button"
-                    aria-label="Printable results, opens in a new tab"
-                    title="Printable results (opens in a new tab)"
-                    iconName={"external"}
-                    isTrailingIcon
-                    onClick={handlePrintableResultsClick}
-                    data-testid="printable-results-button"
+                <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+                  <OakHeading tag="h2" $font={"body-2-bold"}>
+                    Share options:
+                  </OakHeading>
+                  <OakFlex
+                    $gap={"space-between-s"}
+                    $flexDirection={["column", "row"]}
                   >
-                    Printable results
-                  </OakPrimaryButton>
-                  <OakPrimaryButton
-                    type="button"
-                    role="button"
-                    aria-label="Share results"
-                    title="Share results"
-                    onClick={handleShareResultsClick}
-                    data-testid="share-results-button"
-                  >
-                    Share results
-                  </OakPrimaryButton>
+                    <OakSecondaryButton
+                      type="button"
+                      role="button"
+                      aria-label="Printable results, opens in a new tab"
+                      title="Printable results (opens in a new tab)"
+                      iconName={"external"}
+                      isTrailingIcon
+                      onClick={handlePrintableResultsClick}
+                      data-testid="printable-results-button"
+                    >
+                      Printable results
+                    </OakSecondaryButton>
+                    <OakSecondaryButton
+                      type="button"
+                      role="button"
+                      aria-label="Share results"
+                      title="Share results"
+                      onClick={handleShareResultsClick}
+                      iconName={"share"}
+                      isTrailingIcon
+                      data-testid="share-results-button"
+                    >
+                      Share results
+                    </OakSecondaryButton>
+                  </OakFlex>
+                  {isAttemptingShare === "shared" && (
+                    <OakFlex $gap={"space-between-sssx"} $alignItems={"center"}>
+                      <OakIcon
+                        iconName={"tick"}
+                        $colorFilter={"text-success"}
+                      />
+                      <OakHeading
+                        tag="h2"
+                        $font={"heading-light-7"}
+                        $color={"text-success"}
+                      >
+                        Link copied to clipboard! You can share this with your
+                        teacher.
+                      </OakHeading>
+                    </OakFlex>
+                  )}
+                  {isAttemptingShare === "failed" && (
+                    <OakFlex $gap={"space-between-sssx"} $alignItems={"center"}>
+                      <OakIcon iconName={"cross"} $colorFilter={"text-error"} />
+                      <OakHeading
+                        tag="h2"
+                        $font={"heading-light-7"}
+                        $color={"text-error"}
+                      >
+                        Failed to share results. Please try again.
+                      </OakHeading>
+                    </OakFlex>
+                  )}
                 </OakFlex>
               )}
               <OakHeading tag="h2" $font={"heading-light-7"}>

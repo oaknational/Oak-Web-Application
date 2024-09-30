@@ -70,7 +70,7 @@ const curriculumOverviewSlugsFixture = (
   return {
     phaseSlug: "primary",
     subjectSlug: "maths",
-    examboardSlug: null,
+    ks4OptionSlug: null,
     ...partial,
   };
 };

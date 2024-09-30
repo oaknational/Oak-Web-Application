@@ -55,6 +55,7 @@ const QuizInner = () => {
     currentQuestionDisplayIndex,
     questionState,
     handleNextQuestion,
+    updateHintOffered,
     numQuestions,
     numInteractiveQuestions,
   } = quizEngineContext;
@@ -114,6 +115,11 @@ const QuizInner = () => {
           <MathJaxWrap>{currentQuestionData.hint}</MathJaxWrap>
         )
       }
+      hintToggled={({ isOpen }: { isOpen: boolean }) => {
+        if (isOpen) {
+          updateHintOffered(true);
+        }
+      }}
       feedback={
         isFeedbackMode ? pickFeedback(isCorrect, isPartiallyCorrect) : null
       }
