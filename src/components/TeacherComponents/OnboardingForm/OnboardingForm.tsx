@@ -45,7 +45,7 @@ const OnboardingForm = ({
   formState: UseFormStateReturn<OnboardingFormProps>;
   heading: string;
   subheading?: string;
-  secondaryButton?: React.ReactNode;
+  secondaryButton?: (isSubmitting: boolean) => React.ReactNode;
   canSubmit: boolean;
   onSubmit?: () => void;
   control: Control<OnboardingFormProps>;
@@ -57,7 +57,7 @@ const OnboardingForm = ({
   const { posthogDistinctId } = useAnalytics();
   const { user } = useUser();
   const [submitError, setSubmitError] = useState<string | null>(null);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [userRegisteredInHubspot, setUserRegisteredinHubspot] = useState<
     boolean | undefined
   >(undefined);
@@ -76,6 +76,10 @@ const OnboardingForm = ({
     userRegisteredInHubspot === false && forceHideNewsletterSignUp !== true;
 
   const onFormSubmit = async (data: OnboardingFormProps) => {
+    if (isSubmitting) {
+      return;
+    }
+
     if ("worksInSchool" in data) {
       router.push({
         pathname: resolveOakHref({
@@ -98,6 +102,7 @@ const OnboardingForm = ({
         query: encodedQueryData,
       });
     } else {
+      setIsSubmitting(true);
       const isTeacher = "school" in data || "manualSchoolName" in data;
 
       try {
@@ -105,6 +110,7 @@ const OnboardingForm = ({
         await user?.reload();
       } catch (error) {
         setSubmitError("Something went wrong. Please try again.");
+        setIsSubmitting(false);
         // No point in proceeding to hubspot sign-up if onboarding failed
         return;
       }
@@ -188,7 +194,7 @@ const OnboardingForm = ({
             $flexDirection="column"
           >
             <OakPrimaryButton
-              disabled={!props.canSubmit}
+              disabled={!props.canSubmit || isSubmitting}
               width="100%"
               type="submit"
               onClick={props.onSubmit}
@@ -196,7 +202,7 @@ const OnboardingForm = ({
             >
               Continue
             </OakPrimaryButton>
-            {props.secondaryButton}
+            {props.secondaryButton?.(isSubmitting)}
           </OakFlex>
           {showNewsletterSignUp && (
             <Controller

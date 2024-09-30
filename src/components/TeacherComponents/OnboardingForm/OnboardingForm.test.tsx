@@ -1,7 +1,9 @@
 import { fireEvent, screen, waitFor } from "@testing-library/dom";
 import { DefaultValues, useForm } from "react-hook-form";
 import { renderHook } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import userEvent, {
+  PointerEventsCheckLevel,
+} from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 import fetchMock from "jest-fetch-mock";
 
@@ -102,9 +104,23 @@ describe("Onboarding form", () => {
       mockRouter.setCurrentUrl("/onboarding?returnTo=/downloads");
     });
 
-    it("onboards the user through Clerk", async () => {
-      jest.spyOn(onboardingActions, "onboardUser");
+    afterEach(() => {
+      jest.spyOn(onboardingActions, "onboardUser").mockReset();
+    });
 
+    it("only allows the form to be submitted once", async () => {
+      renderForm(formState);
+
+      const continueButton = screen.getByText("Continue");
+      await userEvent.click(continueButton);
+      await userEvent.click(continueButton, {
+        pointerEventsCheck: PointerEventsCheckLevel.EachTarget,
+      });
+
+      expect(onboardingActions.onboardUser).toHaveBeenCalledTimes(1);
+    });
+
+    it("onboards the user through Clerk", async () => {
       await submitForm(formState);
 
       expect(onboardingActions.onboardUser).toHaveBeenCalledWith(
@@ -125,16 +141,24 @@ describe("Onboarding form", () => {
     });
 
     describe("when Clerk onboarding fails", () => {
-      it("displays an error", async () => {
+      beforeEach(() => {
         jest
           .spyOn(onboardingActions, "onboardUser")
           .mockRejectedValue(new Error());
+      });
 
+      it("displays an error", async () => {
         await submitForm(formState);
 
         expect(
           screen.getByText("Something went wrong. Please try again."),
         ).toBeInTheDocument();
+      });
+
+      it("allows the form to be submitted again", async () => {
+        await submitForm(formState);
+
+        expect(screen.getByRole("button", { name: /Continue/ })).toBeEnabled();
       });
     });
   });
