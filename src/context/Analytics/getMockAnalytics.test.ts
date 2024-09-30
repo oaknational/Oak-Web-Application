@@ -26,7 +26,13 @@ describe("getMockAnalytics", () => {
 
   it("should call console.log when identify is called", () => {
     const consoleSpy = jest.spyOn(console, "log");
-    mockAnalytics.identify();
+
+    // Assuming identify requires two arguments, e.g., userId and traits
+    const userId = "user123";
+    const traits = { email: "user@example.com" };
+
+    mockAnalytics.identify(userId, traits);
+
     expect(consoleSpy).toHaveBeenCalledWith("Mock identify called");
     consoleSpy.mockRestore();
   });
