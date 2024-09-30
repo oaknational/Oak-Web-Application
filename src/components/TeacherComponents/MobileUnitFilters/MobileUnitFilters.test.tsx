@@ -9,6 +9,10 @@ import MobileUnitFilters, { MobileUnitFiltersProps } from "./MobileUnitFilters";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
 // Mock data
 const mockProps: MobileUnitFiltersProps = {
   numberOfUnits: 10,

@@ -23,7 +23,7 @@ export type UnitsLearningThemeFiltersProps = {
   learningThemes: LearningTheme[] | null;
   linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps;
   trackingProps?: LearningThemeSelectedTrackingProps;
-  idSuffix: string;
+  idSuffix: "desktop" | "mobile";
   onChangeCallback: (theme: string | undefined) => void;
   categorySlug?: string;
   yearGroupSlug?: string;
