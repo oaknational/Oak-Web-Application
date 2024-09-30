@@ -597,7 +597,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       expect(parsed).toEqual({
         subjectSlug: "english",
         phaseSlug: "secondary",
-        examboardSlug: "aqa",
+        ks4OptionSlug: "aqa",
       });
     });
 
@@ -642,7 +642,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       });
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(null);
       const slugs = parseSubjectPhaseSlug("maths-secondary");
-      const { queryByTestId, queryAllByTestId } = render(
+      const { queryByTestId } = render(
         <CurriculumInfoPage
           mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
@@ -659,8 +659,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           }}
         />,
       );
-      expect(queryByTestId("intent-heading")).toBeInTheDocument();
-      expect(queryAllByTestId("subject-principles")).toHaveLength(4);
+      expect(queryByTestId("overview-heading")).toBeInTheDocument();
     });
 
     it("renders the Curriculum Units Tab", () => {
