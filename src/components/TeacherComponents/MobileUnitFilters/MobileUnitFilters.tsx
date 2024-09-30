@@ -90,7 +90,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
         themeSlug: inputTheme,
         categorySlug: category,
         yearGroup: year,
-        units: units as unknown as SpecialistUnitListingData["units"],
+        units: units as SpecialistUnitListingData["units"],
       });
       setCurrNumberOfUnits(filteredUnits.length);
     }

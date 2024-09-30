@@ -7,7 +7,6 @@ import {
   OakHeading,
   OakP,
   OakFlex,
-  OakBox,
 } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -109,13 +108,13 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
           <OakGridArea
             $order={[0, 2]}
             $colSpan={[12, 4, 3]}
-            $pl={["inner-padding-xl"]}
+            $pl={[undefined, "inner-padding-xl"]}
           >
             <Box
               $position={[null, "sticky"]}
               $top={[null, HEADER_HEIGHT]}
-              $mt={[0, 32]}
-              $pt={[48]}
+              $mt={[0, 0, 32]}
+              $pt={[24, 48]}
             >
               {learningThemes?.length > 1 && (
                 <OakFlex
@@ -145,22 +144,24 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   />
                 </OakFlex>
               )}
-              {learningThemes.length > 1 && (
-                <OakBox $display={["auto", "auto", "none"]}>
-                  <MobileUnitFilters
-                    {...curriculumData}
-                    numberOfUnits={unitsFilteredByLearningTheme.length}
-                    browseRefined={track.browseRefined}
-                    learningThemesFilterId={learningThemesId}
-                    setSelectedThemeSlug={setSelectedThemeSlug}
-                    isSpecialist={true}
-                  />
-                </OakBox>
-              )}
+              <OakFlex $justifyContent={["flex-end", undefined]}>
+                {learningThemes.length > 1 && (
+                  <OakFlex $display={["auto", "auto", "none"]}>
+                    <MobileUnitFilters
+                      {...curriculumData}
+                      numberOfUnits={unitsFilteredByLearningTheme.length}
+                      browseRefined={track.browseRefined}
+                      learningThemesFilterId={learningThemesId}
+                      setSelectedThemeSlug={setSelectedThemeSlug}
+                      isSpecialist={true}
+                    />
+                  </OakFlex>
+                )}
+              </OakFlex>
             </Box>
           </OakGridArea>
           <OakGridArea $order={[1, 0]} $colSpan={[12, 8, 9]}>
-            <Flex $flexDirection={["column-reverse", "column"]} $pt={[48]}>
+            <Flex $flexDirection={["column-reverse", "column"]} $pt={[24, 48]}>
               <OakFlex
                 $minWidth="all-spacing-16"
                 $mb="space-between-m"

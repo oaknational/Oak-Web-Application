@@ -42,9 +42,9 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
     <OakFlex
       $mv="space-between-m2"
       $flexDirection={"column"}
-      $pb={"inner-padding-xl2"}
-      $bb={"border-solid-s"}
-      $borderColor={"border-neutral-lighter"}
+      $pb={isMobile ? undefined : "inner-padding-xl2"}
+      $bb={isMobile ? undefined : "border-solid-s"}
+      $borderColor={isMobile ? undefined : "border-neutral-lighter"}
       $flexGrow={1}
     >
       <StyledFieldset>
