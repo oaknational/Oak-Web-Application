@@ -3,10 +3,9 @@ import { useContext } from "react";
 import { AnalyticsContext, analyticsContext } from "./AnalyticsProvider";
 import { getMockAnalytics } from "./getMockAnalytics";
 
-const isStorybook = !!process.env.STORYBOOK;
-
 const useAnalytics = (): AnalyticsContext => {
   const analytics = useContext(analyticsContext);
+  const isStorybook = !!process.env.STORYBOOK;
 
   if (isStorybook) {
     return getMockAnalytics();

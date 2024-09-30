@@ -3,10 +3,9 @@ import { useContext } from "react";
 import { pupilAnalyticsContext } from "./PupilAnalyticsProvider";
 import { getMockPupilAnalytics } from "./getMockPupilAnalytics";
 
-const isStorybook = !!process.env.STORYBOOK;
-
 export const usePupilAnalytics = () => {
   const analytics = useContext(pupilAnalyticsContext);
+  const isStorybook = !!process.env.STORYBOOK;
 
   if (isStorybook) {
     return getMockPupilAnalytics();
