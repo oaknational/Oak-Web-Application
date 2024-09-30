@@ -7,6 +7,7 @@ import {
   OakHeading,
   OakP,
   OakFlex,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -18,9 +19,10 @@ import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import LearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
-import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import filterUnits from "@/utils/filterUnits/filterUnits";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters";
 
 type SpecialistPageData = {
   curriculumData: SpecialistUnitListingData;
@@ -46,7 +48,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   const [selectedThemeSlug, setSelectedThemeSlug] = useState<
     string | undefined
   >(themeSlug);
-
+  const { track } = useAnalytics();
   const unitsFilteredByLearningTheme = filterUnits({
     themeSlug: selectedThemeSlug,
     categorySlug,
@@ -65,6 +67,10 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
   });
 
   const { currentPageItems } = paginationProps;
+
+  /**
+   * ! - FIX POSITIONING OF FILTER BUTTON
+   */
 
   return (
     <>
@@ -106,14 +112,16 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
             $pl={["inner-padding-xl"]}
           >
             <Box
-              $display={["none", "block"]}
               $position={[null, "sticky"]}
               $top={[null, HEADER_HEIGHT]}
               $mt={[0, 32]}
               $pt={[48]}
             >
               {learningThemes?.length > 1 && (
-                <OakFlex $flexDirection={"column"}>
+                <OakFlex
+                  $display={["none", "none", "block"]}
+                  $flexDirection={"column"}
+                >
                   <OakP
                     id={themeId}
                     $color={"black"}
@@ -133,8 +141,21 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                     }}
                     idSuffix="desktop"
                     onChangeCallback={setSelectedThemeSlug}
+                    browseRefined={track.browseRefined}
                   />
                 </OakFlex>
+              )}
+              {learningThemes.length > 1 && (
+                <OakBox $display={["auto", "auto", "none"]}>
+                  <MobileUnitFilters
+                    {...curriculumData}
+                    numberOfUnits={unitsFilteredByLearningTheme.length}
+                    browseRefined={track.browseRefined}
+                    learningThemesFilterId={learningThemesId}
+                    setSelectedThemeSlug={setSelectedThemeSlug}
+                    isSpecialist={true}
+                  />
+                </OakBox>
               )}
             </Box>
           </OakGridArea>
@@ -171,29 +192,8 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   />
                 </nav>
               )}
-              {learningThemes.length > 1 && (
-                <MobileFilters
-                  providedId={learningThemesId}
-                  label="Filter by thread"
-                  $mt={0}
-                  $mb={[16, 0]}
-                  iconBackground="white"
-                >
-                  <LearningThemeFilters
-                    labelledBy={learningThemesId}
-                    learningThemes={learningThemes}
-                    programmeSlug={programmeSlug}
-                    selectedThemeSlug={themeSlug ? themeSlug : "all"}
-                    linkProps={{
-                      page: "specialist-unit-index",
-                      programmeSlug: programmeSlug,
-                    }}
-                    idSuffix="mobile"
-                    onChangeCallback={setSelectedThemeSlug}
-                  />
-                </MobileFilters>
-              )}
             </Flex>
+
             <UnitList
               {...curriculumData}
               currentPageItems={currentPageItems}

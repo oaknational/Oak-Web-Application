@@ -1,7 +1,6 @@
 type GenericUnitListingData<U> = {
   units: U[][];
 };
-
 type FilterUnitsParams<U> = {
   themeSlug?: string;
   categorySlug?: string;

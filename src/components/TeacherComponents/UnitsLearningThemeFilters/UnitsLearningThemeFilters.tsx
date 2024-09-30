@@ -10,7 +10,7 @@ import {
   UnitListingLinkProps,
 } from "@/common-lib/urls";
 import { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
-import useAnalytics from "@/context/Analytics/useAnalytics";
+import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 export type LearningTheme = {
   themeSlug?: string | null;
@@ -28,6 +28,9 @@ export type UnitsLearningThemeFiltersProps = {
   categorySlug?: string;
   yearGroupSlug?: string;
   programmeSlug: string;
+  setMobileFilter?: React.Dispatch<React.SetStateAction<string | undefined>>;
+  activeMobileFilter?: string;
+  browseRefined: TrackFns["browseRefined"];
 };
 
 const UnitsLearningThemeFilters = ({
@@ -37,6 +40,9 @@ const UnitsLearningThemeFilters = ({
   idSuffix,
   onChangeCallback,
   programmeSlug,
+  setMobileFilter,
+  activeMobileFilter,
+  browseRefined,
 }: UnitsLearningThemeFiltersProps) => {
   const learningThemesMapped: Array<RadioTheme> = learningThemes
     ? learningThemes
@@ -58,11 +64,10 @@ const UnitsLearningThemeFilters = ({
         })
     : [];
   const router = useRouter();
+  const isMobile = idSuffix === "mobile";
 
   const categorySlug = router.query["category"]?.toString();
   const yearGroupSlug = router.query["year"]?.toString();
-
-  const { track } = useAnalytics();
 
   const [activeThemeSlug, setActiveThemeSlug] = useState(selectedThemeSlug);
   const [focussedThemeSlug, setFocussedThemeSlug] = useState<
@@ -70,35 +75,40 @@ const UnitsLearningThemeFilters = ({
   >(undefined);
 
   const onChange = (theme: { label: string; slug: string }) => {
-    setActiveThemeSlug(theme.slug);
-
     const callbackValue = theme.slug === "all" ? undefined : theme.slug;
-    onChangeCallback(callbackValue);
+    if (!isMobile) {
+      setActiveThemeSlug(theme.slug);
 
-    if (trackingProps) {
-      const { keyStageSlug, subjectSlug } = trackingProps;
+      onChangeCallback(callbackValue);
 
-      track.browseRefined({
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "refine",
-        componentType: "filter_link",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        filterType: "Learning theme filter",
-        filterValue: theme.label,
-        activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
-      });
+      if (trackingProps) {
+        const { keyStageSlug, subjectSlug } = trackingProps;
+
+        browseRefined({
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "refine",
+          componentType: "filter_link",
+          eventVersion: "2.0.0",
+          analyticsUseCase: "Teacher",
+          filterType: "Learning theme filter",
+          filterValue: theme.label,
+          activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
+        });
+      }
+
+      const newUrl = generateUrl(
+        theme,
+        programmeSlug,
+        yearGroupSlug,
+        categorySlug,
+      );
+
+      window.history.replaceState(window.history.state, "", newUrl);
+    } else {
+      setMobileFilter && setMobileFilter(callbackValue);
+      setActiveThemeSlug(theme.slug);
     }
-
-    const newUrl = generateUrl(
-      theme,
-      programmeSlug,
-      yearGroupSlug,
-      categorySlug,
-    );
-
-    window.history.replaceState(window.history.state, "", newUrl);
   };
 
   return (
@@ -111,7 +121,13 @@ const UnitsLearningThemeFilters = ({
       >
         {[{ slug: "all", label: "All" }, ...learningThemesMapped].map(
           (theme) => {
-            const isChecked = activeThemeSlug === theme.slug;
+            const activeMobTheme =
+              activeMobileFilter === undefined || activeMobileFilter === ""
+                ? "all"
+                : activeMobileFilter;
+            const isChecked = !isMobile
+              ? activeThemeSlug === theme.slug
+              : activeMobTheme === theme.slug;
             const isFocussed = focussedThemeSlug === theme.slug;
             return (
               <RadioTile

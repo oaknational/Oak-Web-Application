@@ -45,6 +45,7 @@ describe("UnitsLearningThemeFilters", () => {
           subjectSlug: "english",
           subjectTitle: "English",
         }}
+        browseRefined={browseRefined}
         onChangeCallback={jest.fn}
       />,
     );
