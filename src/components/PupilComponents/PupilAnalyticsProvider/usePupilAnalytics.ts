@@ -1,6 +1,7 @@
 import { useContext } from "react";
 
 import { pupilAnalyticsContext } from "./PupilAnalyticsProvider";
+import { getMockPupilAnalytics } from "./getMockPupilAnalytics";
 
 const isStorybook = !!process.env.STORYBOOK;
 
@@ -8,13 +9,7 @@ export const usePupilAnalytics = () => {
   const analytics = useContext(pupilAnalyticsContext);
 
   if (isStorybook) {
-    // Provide a mock implementation for Storybook
-    return {
-      trackEvent: (event: string, data: unknown) => {
-        console.log(`Mock trackEvent called with event: ${event}, data:`, data);
-      },
-      // Add other mock methods as needed
-    };
+    return getMockPupilAnalytics();
   }
 
   if (!analytics) {

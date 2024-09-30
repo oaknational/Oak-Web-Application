@@ -1,20 +1,15 @@
 import { useContext } from "react";
 
-import { analyticsContext } from "./AnalyticsProvider";
+import { AnalyticsContext, analyticsContext } from "./AnalyticsProvider";
+import { getMockAnalytics } from "./getMockAnalytics";
 
 const isStorybook = !!process.env.STORYBOOK;
 
-const useAnalytics = () => {
+const useAnalytics = (): AnalyticsContext => {
   const analytics = useContext(analyticsContext);
 
   if (isStorybook) {
-    // Provide a mock implementation for Storybook
-    return {
-      trackEvent: (event: string, data: unknown) => {
-        console.log(`Mock trackEvent called with event: ${event}, data:`, data);
-      },
-      // Add other mock methods as needed
-    };
+    return getMockAnalytics();
   }
 
   if (!analytics) {
