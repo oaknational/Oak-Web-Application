@@ -9,7 +9,6 @@ import MobileUnitFilters, { MobileUnitFiltersProps } from "./MobileUnitFilters";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-// Mock data
 const mockProps: MobileUnitFiltersProps = {
   numberOfUnits: 10,
   browseRefined: jest.fn() as TrackFns["browseRefined"],
@@ -42,10 +41,6 @@ const mockProps: MobileUnitFiltersProps = {
   hasNewContent: false,
   phase: "primary",
 };
-
-/**
- * ? - Test for the filtering of units?
- */
 
 describe("MobileUnitFilters", () => {
   beforeAll(() => {
@@ -170,6 +165,39 @@ describe("MobileUnitFilters", () => {
     waitFor(() => {
       expect(submitButton).not.toBeInTheDocument();
       expect(screen.queryByText(/Filters/i)).not.toBeInTheDocument();
+    });
+  });
+
+  it("invokes browse refined with the correct props", async () => {
+    renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <MobileUnitFilters {...mockProps} />
+      </OakThemeProvider>,
+    );
+    const filterToggle = screen.getByRole("button", { name: /filter/i });
+    const user = userEvent.setup();
+
+    await user.click(filterToggle);
+
+    const submitButton = screen.getByRole("button", { name: /Show results/i });
+
+    await user.click(submitButton);
+
+    expect(mockProps.browseRefined).toHaveBeenCalledWith({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "refine",
+      componentType: "filter_link",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      filterValue: "show results",
+      filterType: "Subject filter",
+      activeFilters: {
+        content_types: "units",
+        learning_themes: "",
+        categories: "",
+        year: "",
+      },
     });
   });
 });

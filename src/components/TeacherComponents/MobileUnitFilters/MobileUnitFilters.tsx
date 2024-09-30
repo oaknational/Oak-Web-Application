@@ -27,14 +27,6 @@ export type MobileUnitFiltersProps = {
   isSpecialist?: boolean;
 } & (UnitListingData | SpecialistUnitListingData);
 
-/**
- * ! - REFACTOR
- * ? - Submit button centering on tablet / mobile view
- * ? - refactor is mobile idSuffix
- * ? - Refactor the use of router in the component
- * ? - Can more be passed in via the props?
- */
-
 // Type guard as due to differences in specialist and non-specialist unit listing data
 function isUnitListingData(
   data: UnitListingData | SpecialistUnitListingData,
@@ -103,6 +95,24 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
   };
 
   const handleSubmitButton = () => {
+    if (isUnitListing) {
+      browseRefined({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "refine",
+        componentType: "filter_link",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        filterValue: "show results",
+        filterType: "Subject filter",
+        activeFilters: {
+          content_types: "units",
+          learning_themes: theme,
+          categories: category,
+          year: year,
+        },
+      });
+    }
     router.replace({
       pathname: router.pathname,
       query: {
