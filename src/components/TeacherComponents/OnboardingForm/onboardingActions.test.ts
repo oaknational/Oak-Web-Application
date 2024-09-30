@@ -1,8 +1,28 @@
 import fetchMock from "jest-fetch-mock";
 
-import { getSubscriptionStatus, onboardUser } from "./onboardingActions";
+import {
+  getSubscriptionStatus,
+  onboardUser,
+  onboardUserToHubspot,
+} from "./onboardingActions";
 
 import OakError from "@/errors/OakError";
+import * as hubspotForms from "@/browser-lib/hubspot/forms";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
+import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
+
+const reportError = jest.fn();
+
+jest.mock("@/browser-lib/hubspot/forms");
+jest.mock("@/common-lib/error-reporter", () => {
+  return {
+    __esModule: true,
+    default: () => {
+      return (...args: unknown[]) => reportError(...args);
+    },
+  };
+});
 
 describe(onboardUser, () => {
   beforeAll(() => {
@@ -90,5 +110,58 @@ describe("getSubscriptionStatus", () => {
     await expect(
       getSubscriptionStatus("fakeEmail.com", jest.fn),
     ).rejects.toEqual(expect.any(OakError));
+  });
+});
+
+describe(onboardUserToHubspot, () => {
+  const hubspotData = {
+    oakUserId: "123",
+    newsletterSignUp: false,
+    school: "Grange Hill",
+  };
+
+  beforeEach(() => {
+    jest.spyOn(hubspotForms, "hubspotSubmitForm").mockResolvedValue(undefined);
+  });
+
+  it("submits the correct hubspot form", async () => {
+    await onboardUserToHubspot(hubspotData);
+
+    expect(jest.spyOn(hubspotForms, "hubspotSubmitForm")).toHaveBeenCalledWith({
+      hubspotFormId: getBrowserConfig("hubspotOnboardingFormId"),
+      payload: getHubspotOnboardingFormPayload({
+        hutk: getHubspotUserToken(),
+        data: hubspotData,
+      }),
+    });
+  });
+
+  it("reports OakErrors", async () => {
+    reportError.mockReset();
+    const oakError = new OakError({ code: "hubspot/not-loaded" });
+
+    jest
+      .spyOn(hubspotForms, "hubspotSubmitForm")
+      .mockRejectedValueOnce(oakError);
+
+    await onboardUserToHubspot(hubspotData);
+
+    expect(reportError).toHaveBeenCalledWith(oakError);
+  });
+
+  it("wraps vanilla errors in OakError", async () => {
+    reportError.mockReset();
+    const error = new Error();
+
+    jest.spyOn(hubspotForms, "hubspotSubmitForm").mockRejectedValueOnce(error);
+
+    await onboardUserToHubspot(hubspotData);
+
+    expect(reportError).toHaveBeenCalledWith(
+      new OakError({
+        code: "hubspot/unknown",
+        originalError: error,
+      }),
+    );
   });
 });

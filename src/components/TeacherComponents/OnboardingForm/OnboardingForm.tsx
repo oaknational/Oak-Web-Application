@@ -23,18 +23,17 @@ import {
   OnboardingFormProps,
   isSchoolSelectData,
 } from "./OnboardingForm.schema";
-import { getSubscriptionStatus, onboardUser } from "./onboardingActions";
+import {
+  getSubscriptionStatus,
+  onboardUser,
+  onboardUserToHubspot,
+} from "./onboardingActions";
 import { getQueryParamsFromOnboardingFormData } from "./getQueryParamsFromOnboardingFormData";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useUtmParams from "@/hooks/useUtmParams";
-import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
-import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
-import OakError from "@/errors/OakError";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
 
 const OnboardingForm = ({
@@ -54,7 +53,6 @@ const OnboardingForm = ({
   forceHideNewsletterSignUp?: boolean;
 }) => {
   const router = useRouter();
-  const hutk = getHubspotUserToken();
   const utmParams = useUtmParams();
   const { posthogDistinctId } = useAnalytics();
   const { user } = useUser();
@@ -110,35 +108,13 @@ const OnboardingForm = ({
         // No point in proceeding to hubspot sign-up if onboarding failed
         return;
       }
-      const hubspotFormId = getBrowserConfig("hubspotOnboardingFormId");
-      const userEmail = user?.primaryEmailAddress?.emailAddress;
-      const hubspotFormPayload = getHubspotOnboardingFormPayload({
-        hutk,
-        data: {
-          ...utmParams,
-          ...data,
-          oakUserId: posthogDistinctId,
-          email: userEmail,
-        },
-      });
 
-      try {
-        await hubspotSubmitForm({
-          hubspotFormId,
-          payload: hubspotFormPayload,
-        });
-      } catch (error) {
-        if (error instanceof OakError) {
-          reportError(error);
-        } else {
-          reportError(
-            new OakError({
-              code: "hubspot/unknown",
-              originalError: error,
-            }),
-          );
-        }
-      }
+      await onboardUserToHubspot({
+        ...utmParams,
+        ...data,
+        oakUserId: posthogDistinctId,
+        email: user?.primaryEmailAddress?.emailAddress,
+      });
 
       // Return the user to the page they originally arrived from
       // or to the home page as a fallback
