@@ -67,10 +67,6 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
 
   const { currentPageItems } = paginationProps;
 
-  /**
-   * ! - FIX POSITIONING OF FILTER BUTTON
-   */
-
   return (
     <>
       <HeaderListing
