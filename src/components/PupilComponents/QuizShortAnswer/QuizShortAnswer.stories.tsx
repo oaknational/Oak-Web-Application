@@ -82,7 +82,9 @@ export const Init: Story = {
       </QuizEngineContext.Provider>
     );
   },
-  args: {},
+  args: {
+    onChange: () => {},
+  },
 };
 
 export const FeedbackCorrect: Story = {
@@ -99,7 +101,9 @@ export const FeedbackCorrect: Story = {
       </QuizEngineContext.Provider>
     );
   },
-  args: {},
+  args: {
+    onChange: () => {},
+  },
 };
 
 export const FeedbackIncorrect: Story = {
@@ -116,5 +120,7 @@ export const FeedbackIncorrect: Story = {
       </QuizEngineContext.Provider>
     );
   },
-  args: {},
+  args: {
+    onChange: () => {},
+  },
 };
