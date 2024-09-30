@@ -14,7 +14,7 @@ import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentPro
 export const metadata = {
   title: "Oak National Academy",
   description:
-    "Browse and download our lesson planning resources, view our curriculum plans and explore our AI lesson assistant - all optional, free and adaptable.",
+    "Browse and download Oak National Academy's lesson planning resources, find curriculum plans, and explore our AI lesson assistant - all completely free.",
 };
 const lexend = Lexend({ subsets: ["latin"] });
 
