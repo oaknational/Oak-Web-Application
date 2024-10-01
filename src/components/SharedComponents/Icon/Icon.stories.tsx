@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { OakHeading } from "@oaknational/oak-components";
 
 import Component from "./Icon";
@@ -9,9 +9,9 @@ import { ICON_NAMES } from "@/image-data";
 export default {
   component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
+const Template: StoryFn<typeof Component> = (args) => (
   <>
     <OakHeading $font={"heading-5"} $mb={"space-between-m"} tag="h2">
       Icons

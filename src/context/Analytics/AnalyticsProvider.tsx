@@ -64,7 +64,7 @@ export type TrackFns = Omit<
   typeof Avo,
   "initAvo" | "AvoEnv" | "avoInspectorApiKey"
 >;
-type AnalyticsContext = {
+export type AnalyticsContext = {
   track: TrackFns;
   identify: IdentifyFn;
   posthogDistinctId: PosthogDistinctId | null;

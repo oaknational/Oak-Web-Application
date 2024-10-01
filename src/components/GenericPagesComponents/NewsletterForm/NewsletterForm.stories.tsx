@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import Component from ".";
@@ -11,9 +11,9 @@ export default {
       default: "dark",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
+const Template: StoryFn<typeof Component> = (args) => (
   <OakGrid>
     <OakGridArea $colSpan={[12, 6]}>
       <Component {...args} />

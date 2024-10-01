@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { OakP, OakFlex } from "@oaknational/oak-components";
 
 import Component from ".";
@@ -15,9 +15,9 @@ export default {
       defaultValue: "grey20",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   return (
     <Component {...args}>
       <h2>Card title</h2>
@@ -28,7 +28,7 @@ const Template: ComponentStory<typeof Component> = (args) => {
 
 export const Card = Template.bind({});
 
-export const CardIconButton: ComponentStory<typeof Component> = (args) => (
+export const CardIconButton: StoryFn<typeof Component> = (args) => (
   <div style={{ width: "300px", height: "250px" }}>
     <Component {...args}>
       <CardTitle
@@ -47,7 +47,7 @@ export const CardIconButton: ComponentStory<typeof Component> = (args) => (
   </div>
 );
 
-export const CardImageButton: ComponentStory<typeof Component> = (args) => (
+export const CardImageButton: StoryFn<typeof Component> = (args) => (
   <div style={{ width: "300px" }}>
     <Component {...args}>
       <CardImage illustration="magic-carpet" />
@@ -71,9 +71,7 @@ CardImageButton.args = {
   pa: 0,
 };
 
-export const CardLargeIconCentered: ComponentStory<typeof Component> = (
-  args,
-) => (
+export const CardLargeIconCentered: StoryFn<typeof Component> = (args) => (
   <div style={{ width: "300px", height: "336px" }}>
     <Component {...args}>
       <CardTitle
