@@ -22,9 +22,11 @@ const Template: StoryFn<typeof Component> = (args) => (
   </>
 );
 
-export const Icon = Template.bind({});
+export const Icon = {
+  render: Template,
 
-Icon.args = {
-  name: "bell",
-  size: 48,
+  args: {
+    name: "bell",
+    size: 48,
+  },
 };

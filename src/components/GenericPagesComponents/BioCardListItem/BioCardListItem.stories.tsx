@@ -10,8 +10,11 @@ const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const BioCardListItem = Template.bind({});
-BioCardListItem.args = {
-  name: "John Smith",
-  role: "Worker",
+export const BioCardListItem = {
+  render: Template,
+
+  args: {
+    name: "John Smith",
+    role: "Worker",
+  },
 };

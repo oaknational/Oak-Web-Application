@@ -18,4 +18,6 @@ const Template: StoryFn<typeof Component> = (args) => (
   </div>
 );
 
-export const LayoutSiteFooter = Template.bind({});
+export const LayoutSiteFooter = {
+  render: Template,
+};

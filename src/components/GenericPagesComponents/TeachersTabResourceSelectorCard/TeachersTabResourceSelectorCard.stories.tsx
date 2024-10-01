@@ -21,4 +21,6 @@ const Template: StoryFn<typeof Component> = (args) => (
   />
 );
 
-export const TeachersTabResourceSelectorCard = Template.bind({});
+export const TeachersTabResourceSelectorCard = {
+  render: Template,
+};

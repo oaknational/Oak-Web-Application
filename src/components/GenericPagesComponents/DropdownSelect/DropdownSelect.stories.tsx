@@ -18,43 +18,49 @@ const Template: StoryFn<typeof Component> = (args) => {
   );
 };
 
-export const DropdownSelect = Template.bind({});
+export const DropdownSelect = {
+  render: Template,
 
-DropdownSelect.args = {
-  listItems: [
-    { value: "1", label: "Teacher" },
-    { value: "2", label: "Parent" },
-    { value: "3", label: "Pupil" },
-    { value: "4", label: "Other" },
-  ],
-  name: "Role select dropdown",
-  placeholder: "What describes you best?",
-  label: "User type",
+  args: {
+    listItems: [
+      { value: "1", label: "Teacher" },
+      { value: "2", label: "Parent" },
+      { value: "3", label: "Pupil" },
+      { value: "4", label: "Other" },
+    ],
+    name: "Role select dropdown",
+    placeholder: "What describes you best?",
+    label: "User type",
+  },
 };
 
-export const DropdownSelectIcon = Template.bind({});
+export const DropdownSelectIcon = {
+  render: Template,
 
-DropdownSelectIcon.args = {
-  listItems: [
-    { value: "1", label: "Teacher" },
-    { value: "2", label: "Parent" },
-    { value: "3", label: "Pupil" },
-    { value: "4", label: "Other" },
-  ],
-  name: "Role select dropdown",
-  placeholder: "What describes you best?",
-  icon: "chevron-down",
+  args: {
+    listItems: [
+      { value: "1", label: "Teacher" },
+      { value: "2", label: "Parent" },
+      { value: "3", label: "Pupil" },
+      { value: "4", label: "Other" },
+    ],
+    name: "Role select dropdown",
+    placeholder: "What describes you best?",
+    icon: "chevron-down",
+  },
 };
 
-export const DropdownSelectLabel = Template.bind({});
+export const DropdownSelectLabel = {
+  render: Template,
 
-DropdownSelectLabel.args = {
-  listItems: [
-    { value: "1", label: "Teacher" },
-    { value: "2", label: "Parent" },
-    { value: "3", label: "Pupil" },
-    { value: "4", label: "Other" },
-  ],
-  name: "Role select dropdown",
-  label: "What describes you best?",
+  args: {
+    listItems: [
+      { value: "1", label: "Teacher" },
+      { value: "2", label: "Parent" },
+      { value: "3", label: "Pupil" },
+      { value: "4", label: "Other" },
+    ],
+    name: "Role select dropdown",
+    label: "What describes you best?",
+  },
 };

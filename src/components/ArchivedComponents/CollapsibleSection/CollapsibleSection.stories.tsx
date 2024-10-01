@@ -43,4 +43,6 @@ const Template: StoryFn<typeof Component> = () => {
   );
 };
 
-export const CollapsibleSection = Template.bind({});
+export const CollapsibleSection = {
+  render: Template,
+};

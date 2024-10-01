@@ -10,11 +10,18 @@ const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const TextBadge = Template.bind({});
-TextBadge.args = {
-  text: "80%",
+export const TextBadge = {
+  render: Template,
+
+  args: {
+    text: "80%",
+  },
 };
-export const IconBadge = Template.bind({});
-IconBadge.args = {
-  icon: "share",
+
+export const IconBadge = {
+  render: Template,
+
+  args: {
+    icon: "share",
+  },
 };

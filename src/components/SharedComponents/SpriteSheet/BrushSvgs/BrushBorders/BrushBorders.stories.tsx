@@ -22,4 +22,6 @@ const Template: StoryFn<typeof Component> = () => (
   </Card>
 );
 
-export const BrushBorders = Template.bind({});
+export const BrushBorders = {
+  render: Template,
+};

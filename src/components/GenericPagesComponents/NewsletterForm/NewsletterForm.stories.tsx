@@ -23,32 +23,39 @@ const Template: StoryFn<typeof Component> = (args) => (
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-export const NewsletterForm = Template.bind({});
-NewsletterForm.args = {
-  onSubmit: async () => {
-    await sleep(2000);
-  },
-};
+export const NewsletterForm = {
+  render: Template,
 
-export const WithError = Template.bind({});
-WithError.parameters = {
-  docs: {
-    description: {
-      story:
-        "Fill out this form correctly and press submit to see the submission error.",
+  args: {
+    onSubmit: async () => {
+      await sleep(2000);
     },
   },
 };
-WithError.args = {
-  onSubmit: async (data) => {
-    await sleep(2000);
-    if (data.email.includes("fishy")) {
+
+export const WithError = {
+  render: Template,
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Fill out this form correctly and press submit to see the submission error.",
+      },
+    },
+  },
+
+  args: {
+    onSubmit: async (data: { email: string }) => {
+      await sleep(2000);
+      if (data.email.includes("fishy")) {
+        throw new Error(
+          "Thank you, that's been received, but please check as your email doesn't look quite right.",
+        );
+      }
       throw new Error(
-        "Thank you, that's been received, but please check as your email doesn't look quite right.",
+        "Sorry, we couldn't sign you up just now, try again later.",
       );
-    }
-    throw new Error(
-      "Sorry, we couldn't sign you up just now, try again later.",
-    );
+    },
   },
 };
