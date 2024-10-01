@@ -21,4 +21,6 @@ const Template: StoryFn<typeof Component> = () => {
   );
 };
 
-export const Toast = Template.bind({});
+export const Toast = {
+  render: Template,
+};

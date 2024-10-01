@@ -13,4 +13,6 @@ const Template: StoryFn<typeof Component> = () => {
   return <Component keyStages={keyStagesNavData} />;
 };
 
-export const KeyStagesNav = Template.bind({});
+export const KeyStagesNav = {
+  render: Template,
+};

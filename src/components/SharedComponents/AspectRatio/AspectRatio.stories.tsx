@@ -17,8 +17,10 @@ const Template: StoryFn<typeof Component> = (args) => (
   </Box>
 );
 
-export const AspectRatio = Template.bind({});
+export const AspectRatio = {
+  render: Template,
 
-AspectRatio.args = {
-  ratio: "1:1",
+  args: {
+    ratio: "1:1",
+  },
 };

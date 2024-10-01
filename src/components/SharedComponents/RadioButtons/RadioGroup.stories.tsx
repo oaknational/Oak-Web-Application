@@ -19,11 +19,15 @@ const Template: StoryFn<typeof Component> = (args) => {
   );
 };
 
-export const RadioGroup = Template.bind({});
+export const RadioGroup = {
+  render: Template,
+};
 
-export const RadioGroupError = Template.bind({});
+export const RadioGroupError = {
+  render: Template,
 
-RadioGroupError.args = {
-  hasError: true,
-  errorMessage: "Please select/search a school or an option from above",
+  args: {
+    hasError: true,
+    errorMessage: "Please select/search a school or an option from above",
+  },
 };

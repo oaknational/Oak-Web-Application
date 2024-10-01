@@ -38,9 +38,10 @@ const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const UnitList = Template.bind({});
-
-UnitList.args = currentPageItems;
+export const UnitList = {
+  render: Template,
+  args: currentPageItems,
+};
 
 const currentPageItemsWithTiers: UnitListProps = {
   ...unitListingWithTiers(),
@@ -62,6 +63,7 @@ const currentPageItemsWithTiers: UnitListProps = {
   },
 };
 
-export const UnitListTiers = Template.bind({});
-
-UnitListTiers.args = currentPageItemsWithTiers;
+export const UnitListTiers = {
+  render: Template,
+  args: currentPageItemsWithTiers,
+};

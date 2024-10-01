@@ -24,10 +24,14 @@ const Template: StoryFn<typeof Component> = (args) => {
   );
 };
 
-export const Toggle = Template.bind({});
+export const Toggle = {
+  render: Template,
+};
 
-export const ToggleDisabled = Template.bind({});
+export const ToggleDisabled = {
+  render: Template,
 
-ToggleDisabled.args = {
-  disabled: true,
+  args: {
+    disabled: true,
+  },
 };

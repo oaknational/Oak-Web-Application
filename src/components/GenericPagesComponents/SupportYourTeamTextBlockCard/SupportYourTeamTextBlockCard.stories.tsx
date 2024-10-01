@@ -49,9 +49,12 @@ const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const SupportYourTeamTextBlockCard = Template.bind({});
-SupportYourTeamTextBlockCard.args = {
-  background: "lemon50",
-  title: "Card title",
-  bodyPortableText: bodyPortableText,
+export const SupportYourTeamTextBlockCard = {
+  render: Template,
+
+  args: {
+    background: "lemon50",
+    title: "Card title",
+    bodyPortableText: bodyPortableText,
+  },
 };

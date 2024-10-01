@@ -28,4 +28,6 @@ const Template: StoryFn<typeof Component> = (args) => (
   </OakFlex>
 );
 
-export const IconButton = Template.bind({});
+export const IconButton = {
+  render: Template,
+};

@@ -20,4 +20,6 @@ const Template: StoryFn<typeof Component> = (args) => (
   </MenuProvider>
 );
 
-export const Menu = Template.bind({});
+export const Menu = {
+  render: Template,
+};

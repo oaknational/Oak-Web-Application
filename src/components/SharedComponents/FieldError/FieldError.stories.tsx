@@ -14,9 +14,11 @@ const Template: StoryFn<typeof Component> = (args) => (
   </>
 );
 
-export const FieldError = Template.bind({});
+export const FieldError = {
+  render: Template,
 
-FieldError.args = {
-  id: "error id",
-  children: "Display error here",
+  args: {
+    id: "error id",
+    children: "Display error here",
+  },
 };

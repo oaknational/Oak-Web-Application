@@ -39,7 +39,6 @@ import HeaderLesson from "@/components/TeacherComponents/LessonOverviewHeader";
 import { useCurrentSection } from "@/components/TeacherComponents/helpers/lessonHelpers/useCurrentSection";
 import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOverviewAnchorLinks";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
-import { GridArea } from "@/components/SharedComponents/Grid.deprecated/GridArea.deprecated.stories";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
 import { keyLearningPoint } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonOverviewDownloads } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
@@ -48,6 +47,7 @@ import {
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
+import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads };

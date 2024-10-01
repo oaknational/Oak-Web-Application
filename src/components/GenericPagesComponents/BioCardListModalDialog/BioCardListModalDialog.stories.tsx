@@ -40,7 +40,10 @@ const Template: StoryFn<typeof Component> = (args) => {
   );
 };
 
-export const BioCardListModalDialog = Template.bind({});
-BioCardListModalDialog.args = {
-  size: "small",
+export const BioCardListModalDialog = {
+  render: Template,
+
+  args: {
+    size: "small",
+  },
 };
