@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import { UnitListProps } from "./UnitList";
 
@@ -32,15 +32,16 @@ const currentPageItems: UnitListProps = {
 export default {
   decorators: [AnalyticsDecorator],
   component: Component,
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const UnitList = Template.bind({});
-
-UnitList.args = currentPageItems;
+export const UnitList = {
+  render: Template,
+  args: currentPageItems,
+};
 
 const currentPageItemsWithTiers: UnitListProps = {
   ...unitListingWithTiers(),
@@ -62,6 +63,7 @@ const currentPageItemsWithTiers: UnitListProps = {
   },
 };
 
-export const UnitListTiers = Template.bind({});
-
-UnitListTiers.args = currentPageItemsWithTiers;
+export const UnitListTiers = {
+  render: Template,
+  args: currentPageItemsWithTiers,
+};

@@ -104,4 +104,5 @@ export const mockCurrentUser: CurrentUser = {
   primaryPhoneNumber: null,
   primaryWeb3Wallet: null,
   fullName: null,
+  deleteSelfEnabled: false,
 };

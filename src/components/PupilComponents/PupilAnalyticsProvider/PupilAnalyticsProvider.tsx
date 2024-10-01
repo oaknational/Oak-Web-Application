@@ -99,9 +99,12 @@ export type PupilAnalyticsTrack = {
   ) => void;
 };
 
-export const pupilAnalyticsContext = createContext<{
+export type PupilAnalyticsContext = {
   track: PupilAnalyticsTrack;
-} | null>(null);
+};
+
+export const pupilAnalyticsContext =
+  createContext<PupilAnalyticsContext | null>(null);
 
 export type PupilPathwayData = {
   unitName: string;

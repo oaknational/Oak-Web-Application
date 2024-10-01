@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import Component from ".";
@@ -11,9 +11,9 @@ export default {
       default: "dark",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
+const Template: StoryFn<typeof Component> = (args) => (
   <OakGrid>
     <OakGridArea $colSpan={[12, 6]}>
       <Component {...args} />
@@ -21,44 +21,47 @@ const Template: ComponentStory<typeof Component> = (args) => (
   </OakGrid>
 );
 
-export const DynamicForm = Template.bind({});
-DynamicForm.args = {
-  form: {
-    formId: "abc-def",
-    portalId: 12345,
-    submitButtonLabel: "Submit label",
-    successMessage: "Success message",
-    fields: [
-      {
-        name: "name",
-        label: "Name",
-        type: "string",
-        required: true,
-      },
-      {
-        name: "user_type",
-        label: "User Type",
-        type: "select",
-        required: true,
-        options: [
-          { label: "Teacher", value: "Teacher" },
-          { label: "Pupil", value: "Pupil" },
-          { label: "Parent", value: "Parent" },
-        ],
-      },
-      {
-        name: "school",
-        label: "School",
-        type: "string",
-        required: false,
-        renderWhen: [
-          {
-            field: "user_type",
-            operator: "in",
-            value: ["Teacher"],
-          },
-        ],
-      },
-    ],
+export const DynamicForm = {
+  render: Template,
+
+  args: {
+    form: {
+      formId: "abc-def",
+      portalId: 12345,
+      submitButtonLabel: "Submit label",
+      successMessage: "Success message",
+      fields: [
+        {
+          name: "name",
+          label: "Name",
+          type: "string",
+          required: true,
+        },
+        {
+          name: "user_type",
+          label: "User Type",
+          type: "select",
+          required: true,
+          options: [
+            { label: "Teacher", value: "Teacher" },
+            { label: "Pupil", value: "Pupil" },
+            { label: "Parent", value: "Parent" },
+          ],
+        },
+        {
+          name: "school",
+          label: "School",
+          type: "string",
+          required: false,
+          renderWhen: [
+            {
+              field: "user_type",
+              operator: "in",
+              value: ["Teacher"],
+            },
+          ],
+        },
+      ],
+    },
   },
 };
