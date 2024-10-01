@@ -1121,6 +1121,7 @@ export const ExamBoard = {
   'EDUQAS': 'Eduqas',
   'OCR': 'OCR',
   'WJEC': 'WJEC',
+  'EDEXCELB': 'Edexcel B',
 } as const;
 export type ExamBoardType = typeof ExamBoard;
 export type ExamBoardValueType = ExamBoardType[keyof ExamBoardType];
