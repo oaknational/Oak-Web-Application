@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { OakFlex } from "@oaknational/oak-components";
 
 import Component from "./LandingPageHero";
@@ -7,9 +7,9 @@ import Component from "./LandingPageHero";
 export default {
   component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
+const Template: StoryFn<typeof Component> = (args) => (
   <OakFlex $background={"lavender50"} $justifyContent={"center"} $width="100%">
     <Component {...args} />
   </OakFlex>

@@ -1,40 +1,82 @@
 import { getYearGroupTitle, getPhaseText } from "./formatting";
 
 describe("getYearGroupTitle", () => {
-  it("support all-years", () => {
-    expect(
-      getYearGroupTitle(
-        {
-          ["all-years"]: {
-            units: [],
-            childSubjects: [],
-            tiers: [],
-            subjectCategories: [],
-            labels: [],
-            groupAs: "Swimming",
+  describe("no suffix", () => {
+    it("support all-years", () => {
+      expect(
+        getYearGroupTitle(
+          {
+            ["all-years"]: {
+              units: [],
+              childSubjects: [],
+              tiers: [],
+              subjectCategories: [],
+              labels: [],
+              groupAs: "Swimming",
+            },
           },
-        },
-        "all-years",
-      ),
-    ).toEqual("Swimming (all years)");
+          "all-years",
+        ),
+      ).toEqual("Swimming (all years)");
+    });
+
+    it("support years", () => {
+      expect(
+        getYearGroupTitle(
+          {
+            ["7"]: {
+              units: [],
+              childSubjects: [],
+              tiers: [],
+              subjectCategories: [],
+              labels: [],
+              groupAs: null,
+            },
+          },
+          "7",
+        ),
+      ).toEqual("Year 7");
+    });
   });
 
-  it("support years", () => {
-    expect(
-      getYearGroupTitle(
-        {
-          ["7"]: {
-            units: [],
-            childSubjects: [],
-            tiers: [],
-            subjectCategories: [],
-            labels: [],
-            groupAs: null,
+  describe("with suffix", () => {
+    it("support all-years", () => {
+      expect(
+        getYearGroupTitle(
+          {
+            ["all-years"]: {
+              units: [],
+              childSubjects: [],
+              tiers: [],
+              subjectCategories: [],
+              labels: [],
+              groupAs: "Swimming",
+            },
           },
-        },
-        "7",
-      ),
-    ).toEqual("Year 7");
+          "all-years",
+          "units",
+        ),
+      ).toEqual("Swimming units (all years)");
+    });
+
+    it("support years", () => {
+      expect(
+        getYearGroupTitle(
+          {
+            ["7"]: {
+              units: [],
+              childSubjects: [],
+              tiers: [],
+              subjectCategories: [],
+              labels: [],
+              groupAs: null,
+            },
+          },
+          "7",
+          "units",
+        ),
+      ).toEqual("Year 7 units");
+    });
   });
 });
 

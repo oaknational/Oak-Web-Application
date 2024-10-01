@@ -18,7 +18,11 @@ import UnitModal, {
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import {
+  getSuffixFromFeatures,
+  getYearGroupTitle,
+} from "@/utils/curriculum/formatting";
+import { getUnitFeatures } from "@/utils/curriculum/features";
 
 export type YearData = {
   [key: string]: {
@@ -244,7 +248,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             );
             const dedupedUnits = dedupUnits(filteredUnits);
 
-            const yearTitle = getYearGroupTitle(yearData, year);
+            const features = getUnitFeatures(units[0]);
+            const yearTitle = getYearGroupTitle(
+              yearData,
+              year,
+              getSuffixFromFeatures(features),
+            );
 
             return (
               <Box

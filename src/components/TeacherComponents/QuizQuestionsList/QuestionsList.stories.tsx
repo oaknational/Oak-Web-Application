@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import { QuizQuestionListProps } from "./QuestionsList";
 
@@ -11,7 +11,7 @@ import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 export default {
   decorators: [AnalyticsDecorator],
   component: Component,
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
 const { starterQuiz } = lessonOverviewFixture();
 
@@ -21,7 +21,7 @@ const currentPageItems: QuizQuestionListProps = {
   isMathJaxLesson: false,
 };
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 

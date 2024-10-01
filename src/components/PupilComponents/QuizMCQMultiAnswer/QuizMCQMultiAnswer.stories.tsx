@@ -86,7 +86,9 @@ export const Primary: Story = {
       </OakBox>
     </QuizEngineProvider>
   ),
-  args: {},
+  args: {
+    onChange: () => {},
+  },
 };
 
 export const FeedbackMode: Story = {
@@ -100,7 +102,9 @@ export const FeedbackMode: Story = {
       </OakBox>
     </QuizEngineContext.Provider>
   ),
-  args: {},
+  args: {
+    onChange: () => {},
+  },
 };
 
 export const WithImagesNoFeedback: Story = {
@@ -125,7 +129,9 @@ export const WithImagesNoFeedback: Story = {
       </QuizEngineContext.Provider>
     );
   },
-  args: {},
+  args: {
+    onChange: () => {},
+  },
 };
 
 export const WithImagesFeedback: Story = {
@@ -155,5 +161,7 @@ export const WithImagesFeedback: Story = {
       </QuizEngineContext.Provider>
     );
   },
-  args: {},
+  args: {
+    onChange: () => {},
+  },
 };

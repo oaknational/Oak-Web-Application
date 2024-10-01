@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { ChangeEvent, useState } from "react";
 
 import Component from ".";
@@ -10,9 +10,9 @@ export default {
       defaultValue: "Placeholder",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   const [value, setValue] = useState("");
   return (
     <Component

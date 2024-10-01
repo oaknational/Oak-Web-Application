@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { OakHeading, OakP } from "@oaknational/oak-components";
 
 import { SupportYourTeamTextBlockCardULTick as Component } from "./SupportYourTeamTextBlockCardULTick";
@@ -16,14 +16,14 @@ export default {
       defaultValue: "lemon50",
     },
   },
-} as ComponentMeta<typeof Card>;
+} as Meta<typeof Card>;
 
 /**
  * This portable text block will turn bullet points into ticks.
  * ## Usage
  * Pass this into the components prop in the PortableText component.
  */
-const Template: ComponentStory<typeof Card> = (args) => {
+const Template: StoryFn<typeof Card> = (args) => {
   return (
     <Card {...args}>
       <OakHeading $mb="space-between-m" $font={"heading-5"} tag={"h2"}>
