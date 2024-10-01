@@ -1,3 +1,11 @@
+## [1.571.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.571.0...v1.571.1) (2024-10-01)
+
+
+### Bug Fixes
+
+* **storybook:** lesson overview ([4e528e5](https://github.com/oaknational/Oak-Web-Application/commit/4e528e5cb5cf6af78675829baa34c4b58f58e2c1))
+* **test:** pupil analytics ([11cc631](https://github.com/oaknational/Oak-Web-Application/commit/11cc631a55a0cf5333bbc9d45cff1b4a48f7b001))
+
 # [1.571.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.570.1...v1.571.0) (2024-10-01)
 
 
