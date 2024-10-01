@@ -7,7 +7,6 @@ import {
 import { useEffect, useState } from "react";
 import {
   OakFlex,
-  OakInlineBanner,
   OakLoadingSpinner,
   OakMaxWidth,
   OakTypography,
@@ -62,11 +61,6 @@ export const InnerRender = (props: CanonicalResultsPrintablePageProps) => {
   if (!attemptData) {
     return (
       <OakMaxWidth $mt={"space-between-l"}>
-        <OakInlineBanner
-          isOpen
-          message="To share lesson results with your teacher, select the 'Copy link' option on the lesson review page."
-          type="neutral"
-        />
         <OakFlex
           $justifyContent={"center"}
           $alignItems={"center"}

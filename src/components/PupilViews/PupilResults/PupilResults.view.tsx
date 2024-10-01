@@ -3,7 +3,6 @@ import {
   OakFlex,
   OakHandDrawnHR,
   OakHeading,
-  OakInlineBanner,
   OakJauntyAngleLabel,
   OakMaxWidth,
   OakQuizPrintableHeader,
@@ -11,7 +10,6 @@ import {
   OakThemeProvider,
 } from "@oaknational/oak-components";
 import { LessonAttemptCamelCase } from "@oaknational/oak-pupil-client";
-import { useState } from "react";
 
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
@@ -42,17 +40,20 @@ const QuizSectionRender = (props: QuizResultsProps) => {
       key={index}
       $gap={"all-spacing-5"}
     >
-      <QuizResultInner
-        index={index}
-        questionResult={questionResult}
-        quizArray={quizQuestionArray}
-        lessonSection={lessonSection}
-      />
+      <OakFlex $pb={["inner-padding-xl", "inner-padding-none"]}>
+        <QuizResultInner
+          index={index}
+          questionResult={questionResult}
+          quizArray={quizQuestionArray}
+          lessonSection={lessonSection}
+        />
+      </OakFlex>
+
       {index !== quizQuestionArray.length - 1 && (
         <OakHandDrawnHR
           $height={"all-spacing-1"}
-          $pl={"inner-padding-xl"}
-          $ml={"space-between-s"}
+          $pl={["inner-padding-none", "inner-padding-xl"]}
+          $ml={["space-between-none", "space-between-s"]}
         />
       )}
       <OakJauntyAngleLabel
@@ -82,7 +83,6 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
   const starterQuiz = sectionResults["starter-quiz"];
   const { worksheetDownloaded, worksheetAvailable } = sectionResults["intro"];
   const video = sectionResults["video"];
-  const [showBanner, setShowBanner] = useState(true);
 
   const percentageVideoWatched =
     video.duration > 0 && video.timeElapsed > 0
@@ -96,17 +96,8 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
           $gap={"space-between-m"}
           $flexDirection={"column"}
           $mt={"space-between-l"}
+          $ph={"inner-padding-s"}
         >
-          {showBanner && (
-            <OakInlineBanner
-              canDismiss
-              isOpen
-              message="To share lesson results with your teacher, select the 'Copy link' option on the lesson review page >"
-              onDismiss={() => setShowBanner(false)}
-              type="neutral"
-            />
-          )}
-
           <OakQuizPrintableHeader
             alt="icon"
             breadcrumbs={[yearDescription, subject]}

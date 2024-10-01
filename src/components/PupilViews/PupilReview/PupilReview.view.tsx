@@ -58,6 +58,12 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     isLessonComplete,
     lessonReviewSections,
   } = useLessonEngineContext();
+  console.log(
+    "sectionResults",
+    sectionResults,
+    lessonReviewSections.includes("exit-quiz"),
+    lessonReviewSections.includes("starter-quiz"),
+  );
   const getSectionLinkProps = useGetSectionLinkProps();
 
   const { finalFeedback } = useLessonReviewFeedback(
@@ -67,6 +73,9 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
 
   const pupilClient = useOakPupil();
   const { logAttempt } = pupilClient;
+  const hasQuiz =
+    lessonReviewSections.includes("exit-quiz") ||
+    lessonReviewSections.includes("starter-quiz");
   const isShowShareButtons = useFeatureFlagEnabled("share-results-button");
   const [isAttemptingShare, setIsAttemptingShare] = useState<
     "failed" | "shared" | "initial"
@@ -178,7 +187,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
-              {isShowShareButtons && (
+              {isShowShareButtons && hasQuiz && (
                 <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
                   <OakHeading tag="h2" $font={"body-2-bold"}>
                     Share options:
