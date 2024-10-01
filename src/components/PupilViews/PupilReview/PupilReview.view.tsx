@@ -207,7 +207,6 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                         isTrailingIcon
                         onClick={handlePrintableResultsClick}
                         data-testid="printable-results-button"
-                        $display={"none"}
                       >
                         Printable results
                       </OakSecondaryButton>
