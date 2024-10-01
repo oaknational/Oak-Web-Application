@@ -103,7 +103,8 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
         <OakGrid data-testid="specialist-unit-grid">
           <OakGridArea
             $order={[0, 2]}
-            $colSpan={[12, 4, 3]}
+            $colSpan={[12, 12, 3]}
+            $display={["block", "none", "block"]}
             $pl={[undefined, "inner-padding-xl"]}
           >
             <Box
@@ -156,16 +157,33 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
               </OakFlex>
             </Box>
           </OakGridArea>
-          <OakGridArea $order={[1, 0]} $colSpan={[12, 8, 9]}>
+          <OakGridArea $order={[1, 0]} $colSpan={[12, 12, 9]}>
             <Flex $flexDirection={["column-reverse", "column"]} $pt={[24, 48]}>
               <OakFlex
                 $minWidth="all-spacing-16"
                 $mb="space-between-m"
                 $position={"relative"}
+                $justifyContent={[
+                  "space-between",
+                  "space-between",
+                  "flex-start",
+                ]}
               >
                 <OakHeading $font={"heading-5"} tag={"h2"}>
                   {`Units`}
                 </OakHeading>
+                {learningThemes.length > 1 && (
+                  <OakFlex $display={["none", "block", "none"]}>
+                    <MobileUnitFilters
+                      {...curriculumData}
+                      numberOfUnits={unitsFilteredByLearningTheme.length}
+                      browseRefined={track.browseRefined}
+                      learningThemesFilterId={learningThemesId}
+                      setSelectedThemeSlug={setSelectedThemeSlug}
+                      isSpecialist={true}
+                    />
+                  </OakFlex>
+                )}
               </OakFlex>
               {developmentStage.length > 0 && (
                 <nav

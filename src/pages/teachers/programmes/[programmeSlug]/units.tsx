@@ -292,7 +292,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     />
                   )}
                   {learningThemes?.length > 1 && (
-                    <Flex $flexDirection={"column"}>
+                    <OakFlex $flexDirection={"column"}>
                       <OakHeading
                         id={learningThemesId}
                         tag="h3"
@@ -324,7 +324,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         }}
                         browseRefined={track.browseRefined}
                       />
-                    </Flex>
+                    </OakFlex>
                   )}
                 </StyledFieldset>
               </OakBox>
@@ -335,26 +335,38 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               $colSpan={[12, 12, 9]}
               $mt={"space-between-m2"}
             >
-              <Flex
+              <OakFlex
                 $flexDirection={["column-reverse", "column-reverse", "column"]}
               >
-                <Flex
+                <OakFlex
                   $flexDirection={"row"}
                   $minWidth={["100%", "auto"]}
                   $justifyContent={"space-between"}
                   $position={"relative"}
-                  $alignItems={"center"}
                 >
                   {tiers.length === 0 && currentPageItems.length >= 1 && (
-                    <Flex $minWidth={120} $mb={16} $position={"relative"}>
-                      <OakHeading $font={"heading-5"} tag={"h2"}>
-                        {`Units (${filteredUnits.length})`}
-                      </OakHeading>
-                    </Flex>
+                    <>
+                      <Flex $minWidth={120} $mb={16} $position={"relative"}>
+                        <OakHeading $font={"heading-5"} tag={"h2"}>
+                          {`Units (${filteredUnits.length})`}
+                        </OakHeading>
+                      </Flex>
+                      {isFiltersAvailable && (
+                        <OakBox $display={["auto", "auto", "none"]}>
+                          <MobileUnitFilters
+                            {...curriculumData}
+                            numberOfUnits={filteredUnits.length}
+                            browseRefined={track.browseRefined}
+                            setSelectedThemeSlug={setSelectedThemeSlug}
+                            learningThemesFilterId={learningThemesFilterId}
+                          />
+                        </OakBox>
+                      )}
+                    </>
                   )}
-                </Flex>
-                <OakFlex $justifyContent={"space-between"}>
-                  {tiers.length > 0 && currentPageItems.length >= 1 && (
+                </OakFlex>
+                {tiers.length > 0 && currentPageItems.length >= 1 && (
+                  <OakFlex $justifyContent={"space-between"}>
                     <nav aria-label="tiers" data-testid="tiers-nav">
                       <TabularNav
                         $mb={[10, 10, 24]}
@@ -374,21 +386,20 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                         )}
                       />
                     </nav>
-                  )}
-
-                  {isFiltersAvailable && (
-                    <OakBox $display={["auto", "auto", "none"]}>
-                      <MobileUnitFilters
-                        {...curriculumData}
-                        numberOfUnits={filteredUnits.length}
-                        browseRefined={track.browseRefined}
-                        setSelectedThemeSlug={setSelectedThemeSlug}
-                        learningThemesFilterId={learningThemesFilterId}
-                      />
-                    </OakBox>
-                  )}
-                </OakFlex>
-              </Flex>
+                    {isFiltersAvailable && (
+                      <OakBox $display={["auto", "auto", "none"]}>
+                        <MobileUnitFilters
+                          {...curriculumData}
+                          numberOfUnits={filteredUnits.length}
+                          browseRefined={track.browseRefined}
+                          setSelectedThemeSlug={setSelectedThemeSlug}
+                          learningThemesFilterId={learningThemesFilterId}
+                        />
+                      </OakBox>
+                    )}
+                  </OakFlex>
+                )}
+              </OakFlex>
               {currentPageItems.length >= 1 ? (
                 <UnitList
                   {...curriculumData}
