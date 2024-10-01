@@ -103,7 +103,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
         componentType: "filter_link",
         eventVersion: "2.0.0",
         analyticsUseCase: "Teacher",
-        filterValue: "show results",
+        filterValue: "show results button",
         filterType: "Subject filter",
         activeFilters: {
           content_types: "units",
