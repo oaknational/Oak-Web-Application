@@ -14,6 +14,7 @@ import {
   OakPrimaryButton,
   OakTertiaryButton,
   OakSecondaryButton,
+  OakBox,
 } from "@oaknational/oak-components";
 import {
   attemptDataCamelCaseSchema,
@@ -196,18 +197,22 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                     $gap={"space-between-s"}
                     $flexDirection={["column", "row"]}
                   >
-                    <OakSecondaryButton
-                      type="button"
-                      role="button"
-                      aria-label="Printable results, opens in a new tab"
-                      title="Printable results (opens in a new tab)"
-                      iconName={"external"}
-                      isTrailingIcon
-                      onClick={handlePrintableResultsClick}
-                      data-testid="printable-results-button"
-                    >
-                      Printable results
-                    </OakSecondaryButton>
+                    <OakBox $display={["none", "flex"]}>
+                      <OakSecondaryButton
+                        type="button"
+                        role="button"
+                        aria-label="Printable results, opens in a new tab"
+                        title="Printable results (opens in a new tab)"
+                        iconName={"external"}
+                        isTrailingIcon
+                        onClick={handlePrintableResultsClick}
+                        data-testid="printable-results-button"
+                        $display={"none"}
+                      >
+                        Printable results
+                      </OakSecondaryButton>
+                    </OakBox>
+
                     <OakSecondaryButton
                       type="button"
                       role="button"
