@@ -1,5 +1,4 @@
-import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import Component from "./PupilTab";
 
@@ -11,6 +10,4 @@ export default {
   argTypes: {},
 } as Meta<typeof Component>;
 
-const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
-
-export const PupilTab = Template.bind({});
+export const PupilTab = {};

@@ -31,4 +31,6 @@ const Template: StoryFn<typeof Component> = (args) => {
   );
 };
 
-export const Checkbox = Template.bind({});
+export const Checkbox = {
+  render: Template,
+};

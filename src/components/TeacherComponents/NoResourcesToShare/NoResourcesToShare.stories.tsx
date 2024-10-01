@@ -11,4 +11,6 @@ const Template: StoryFn<typeof Component> = () => {
   return <Component />;
 };
 
-export const DetailsCompleted = Template.bind({});
+export const DetailsCompleted = {
+  render: Template,
+};

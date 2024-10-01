@@ -1,5 +1,4 @@
-import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import Component from "./SearchResults";
 
@@ -14,12 +13,12 @@ export default {
   argTypes: {},
 } as Meta<typeof Component>;
 
-const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
-
 const hits = searchResultsHitsSchema.parse(elasticResponseFixture.hits.hits);
 const allKeyStages = teachersHomePageFixture().keyStages;
-export const SearchResults = Template.bind({});
-SearchResults.args = {
-  hits,
-  allKeyStages,
+
+export const SearchResults = {
+  args: {
+    hits,
+    allKeyStages,
+  },
 };

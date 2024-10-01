@@ -1,5 +1,4 @@
-import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import Component from ".";
 
@@ -10,6 +9,4 @@ export default {
   },
 } as Meta<typeof Component>;
 
-const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
-
-export const Logo = Template.bind({});
+export const Logo = {};

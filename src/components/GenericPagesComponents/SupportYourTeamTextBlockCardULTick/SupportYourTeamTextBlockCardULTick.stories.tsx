@@ -41,5 +41,7 @@ const Template: StoryFn<typeof Card> = (args) => {
   );
 };
 
-export const SupportYourTeamTextBlockCardULTick = Template.bind({});
-SupportYourTeamTextBlockCardULTick.parameters = {};
+export const SupportYourTeamTextBlockCardULTick = {
+  render: Template,
+  parameters: {},
+};

@@ -28,4 +28,6 @@ const Template: StoryFn<typeof Component> = (args) => (
   </Component>
 );
 
-export const ButtonGroup = Template.bind({});
+export const ButtonGroup = {
+  render: Template,
+};

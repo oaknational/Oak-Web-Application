@@ -16,5 +16,7 @@ const Template: StoryFn<typeof Component> = (args) => {
   );
 };
 
-export const BioCarsListModal = Template.bind({});
-BioCarsListModal.args = {};
+export const BioCardListModal = {
+  render: Template,
+  args: {},
+};

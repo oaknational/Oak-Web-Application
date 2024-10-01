@@ -26,8 +26,11 @@ const Template: StoryFn<typeof Component> = (args) => (
   </Component>
 );
 
-export const P = Template.bind({});
-P.args = {
-  fontSize: 16,
-  color: "grey70",
+export const P = {
+  render: Template,
+
+  args: {
+    fontSize: 16,
+    color: "grey70",
+  },
 };

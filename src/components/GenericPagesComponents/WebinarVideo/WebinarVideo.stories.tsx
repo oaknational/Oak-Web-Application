@@ -25,14 +25,20 @@ const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const WebinarVideo = Template.bind({});
-WebinarVideo.args = {
-  webinar: mockWebinar(),
+export const WebinarVideo = {
+  render: Template,
+
+  args: {
+    webinar: mockWebinar(),
+  },
 };
 
-export const WebinarVideoUpcoming = Template.bind({});
-WebinarVideoUpcoming.args = {
-  webinar: mockWebinar({
-    date: "2053-04-14",
-  }),
+export const WebinarVideoUpcoming = {
+  render: Template,
+
+  args: {
+    webinar: mockWebinar({
+      date: "2053-04-14",
+    }),
+  },
 };

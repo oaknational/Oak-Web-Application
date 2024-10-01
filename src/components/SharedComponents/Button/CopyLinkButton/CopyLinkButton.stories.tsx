@@ -15,4 +15,6 @@ const Template: StoryFn<typeof Component> = (args) => (
   </ToastProvider>
 );
 
-export const CopyLinkButton = Template.bind({});
+export const CopyLinkButton = {
+  render: Template,
+};

@@ -18,8 +18,14 @@ const Template: StoryFn<typeof Component> = (props) => (
   <Component {...props}>Hi!</Component>
 );
 
-export const Circle = Template.bind({});
-export const CircleWithDropShadow = Template.bind({});
-CircleWithDropShadow.args = {
-  $dropShadow: "grey20",
+export const Circle = {
+  render: Template,
+};
+
+export const CircleWithDropShadow = {
+  render: Template,
+
+  args: {
+    $dropShadow: "grey20",
+  },
 };
