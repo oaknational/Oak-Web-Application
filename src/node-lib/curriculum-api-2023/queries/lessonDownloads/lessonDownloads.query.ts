@@ -1,5 +1,3 @@
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
-
 import {
   InputMaybe,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
@@ -11,6 +9,7 @@ import lessonDownloadsSchema, {
 import { constructDownloadsArray } from "./downloadUtils";
 import constructCanonicalLessonDownloads from "./constructCanonicalLessonDownloads";
 import constructLessonDownloads from "./constructLessonDownloads";
+import { rawSyntheticUVLessonSchema } from "./rawSyntheticUVLesson.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -103,7 +102,7 @@ const lessonDownloadsQuery =
       : null;
 
     const parsedBrowseData = browse_data.map((bd) =>
-      syntheticUnitvariantLessonsSchema.parse(bd),
+      rawSyntheticUVLessonSchema.parse(bd),
     );
 
     let lessonData: T;
