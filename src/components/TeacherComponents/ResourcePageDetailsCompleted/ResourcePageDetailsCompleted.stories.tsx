@@ -26,4 +26,6 @@ const Template: StoryFn<typeof Component> = (args) => {
   );
 };
 
-export const ResourcePageDetailsCompleted = Template.bind({});
+export const ResourcePageDetailsCompleted = {
+  render: Template,
+};

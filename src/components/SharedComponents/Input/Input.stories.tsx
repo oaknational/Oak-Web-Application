@@ -23,10 +23,21 @@ const Template: StoryFn<typeof Component> = (args) => {
   );
 };
 
-export const Input = Template.bind({});
-export const WithIcon = Template.bind({});
-WithIcon.args = { icon: "search" };
-export const WithLabel = Template.bind({});
-WithLabel.args = { label: "Password" };
-export const WithError = Template.bind({});
-WithError.args = { error: "Password should contain at least 8 characters" };
+export const Input = {
+  render: Template,
+};
+
+export const WithIcon = {
+  render: Template,
+  args: { icon: "search" },
+};
+
+export const WithLabel = {
+  render: Template,
+  args: { label: "Password" },
+};
+
+export const WithError = {
+  render: Template,
+  args: { error: "Password should contain at least 8 characters" },
+};

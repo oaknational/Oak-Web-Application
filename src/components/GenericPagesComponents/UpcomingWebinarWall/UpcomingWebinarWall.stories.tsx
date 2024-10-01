@@ -30,10 +30,13 @@ const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const UpcomingWebinarWall = Template.bind({});
-UpcomingWebinarWall.args = {
-  headingTag: "h3",
-  headingText: "Register to view",
-  buttonHref: "https://example.com",
-  buttonText: "Register",
+export const UpcomingWebinarWall = {
+  render: Template,
+
+  args: {
+    headingTag: "h3",
+    headingText: "Register to view",
+    buttonHref: "https://example.com",
+    buttonText: "Register",
+  },
 };

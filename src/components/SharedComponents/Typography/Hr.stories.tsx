@@ -16,4 +16,6 @@ const Template: StoryFn<typeof Component> = (args) => (
   </Typography>
 );
 
-export const Hr = Template.bind({});
+export const Hr = {
+  render: Template,
+};

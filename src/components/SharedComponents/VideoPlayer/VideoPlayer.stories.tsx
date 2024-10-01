@@ -27,5 +27,7 @@ const Template: StoryFn<typeof Component> = (args) => (
   </OakGrid>
 );
 
-export const VideoPlayer = Template.bind({});
-VideoPlayer.args = {};
+export const VideoPlayer = {
+  render: Template,
+  args: {},
+};

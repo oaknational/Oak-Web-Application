@@ -70,15 +70,19 @@ const Template: StoryFn<typeof Component> = (args) => {
   );
 };
 
-export const ResourcePageSchoolPicker = Template.bind({});
+export const ResourcePageSchoolPicker = {
+  render: Template,
 
-ResourcePageSchoolPicker.args = {
-  hasError: false,
+  args: {
+    hasError: false,
+  },
 };
 
-export const ResourcePageSchoolPickerError = Template.bind({});
+export const ResourcePageSchoolPickerError = {
+  render: Template,
 
-ResourcePageSchoolPickerError.args = {
-  hasError: true,
-  required: true,
+  args: {
+    hasError: true,
+    required: true,
+  },
 };

@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import Component from ".";
 
@@ -10,10 +10,8 @@ export default {
   component: Component,
 } as Meta<typeof Component>;
 
-const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
-
-export const ProgrammeList = Template.bind({});
-
-ProgrammeList.args = {
-  ...programmeListingFixture(),
+export const ProgrammeList = {
+  args: {
+    ...programmeListingFixture(),
+  },
 };

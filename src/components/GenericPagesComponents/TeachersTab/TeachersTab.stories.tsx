@@ -16,4 +16,6 @@ const Template: StoryFn<typeof Component> = (args) => (
   <Component {...args} keyStages={keyStageKeypad.keyStages} />
 );
 
-export const TeachersTab = Template.bind({});
+export const TeachersTab = {
+  render: Template,
+};

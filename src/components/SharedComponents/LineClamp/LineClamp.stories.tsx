@@ -23,4 +23,6 @@ const Template: StoryFn<typeof Component> = (args) => (
   </Component>
 );
 
-export const LineClamp = Template.bind({});
+export const LineClamp = {
+  render: Template,
+};
