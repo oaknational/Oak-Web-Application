@@ -40,4 +40,10 @@ query specialistLessonOverview(
     starter_quiz
     worksheet_asset_object
   }
+  contentRestrictions: published_mv_lesson_content_published_2_1_0(
+    where: { lesson_slug: { _eq: $lessonSlug } }
+  ) {
+    geo_restricted
+    login_required
+  }
 }

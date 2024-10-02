@@ -8,7 +8,7 @@ describe("specialistLessonOverview()", () => {
       await specialistLessonOverviewCanonical({
         ...sdk,
         specialistLessonOverviewCanonical: jest.fn(() =>
-          Promise.resolve({ lesson: [] }),
+          Promise.resolve({ lesson: [], contentRestrictions: [] }),
         ),
       })({
         lessonSlug: "specialist-lesson-slug",
@@ -22,6 +22,7 @@ describe("specialistLessonOverview()", () => {
         ...sdk,
         specialistLessonOverviewCanonical: jest.fn(() =>
           Promise.resolve({
+            contentRestrictions: [],
             lesson: [
               {
                 synthetic_programme_slug: "specialist-programme-slug-0",

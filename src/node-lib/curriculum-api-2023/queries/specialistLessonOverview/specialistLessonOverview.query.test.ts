@@ -8,7 +8,7 @@ describe("specialistLessonOverview()", () => {
       await specialistLessonOverview({
         ...sdk,
         specialistLessonOverview: jest.fn(() =>
-          Promise.resolve({ lesson: [] }),
+          Promise.resolve({ lesson: [], contentRestrictions: [] }),
         ),
       })({
         lessonSlug: "specialist-lesson-slug",
@@ -101,6 +101,9 @@ describe("specialistLessonOverview()", () => {
               video_title: null,
             },
           ],
+          contentRestrictions: [
+            { geo_restricted: false, login_required: false },
+          ],
         }),
       ),
     })({
@@ -154,6 +157,9 @@ describe("specialistLessonOverview()", () => {
                 threads: null,
                 video_title: null,
               },
+            ],
+            contentRestrictions: [
+              { geo_restricted: false, login_required: false },
             ],
           }),
         ),

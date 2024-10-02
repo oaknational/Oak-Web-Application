@@ -1,9 +1,15 @@
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
 import LessonOverviewHeader, {
   LessonOverviewHeaderProps,
 } from "./LessonOverviewHeader";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(),
+}));
 
 const props = {
   ...lessonOverviewFixture(),
@@ -108,7 +114,9 @@ describe("LessonOverviewHeader", () => {
     const description = getAllByText("A pupil lesson outcome");
     expect(description).toHaveLength(2); // mobile and desktop
   });
-  it("renders a geo restriction banner when geoRestricted is true", () => {
+  it("renders a geo restriction banner when geoRestricted is true and useFeatureFlagEnabled = true ", () => {
+    (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+
     const testProps = {
       ...props,
       geoRestricted: true,
@@ -121,5 +129,21 @@ describe("LessonOverviewHeader", () => {
       "Downloads are available to UK users only",
     );
     expect(description).toHaveLength(2); // mobile and desktop
+  });
+  it("renders does not render a geo restriction banner when geoRestricted is true and useFeatureFlagEnabled = false ", () => {
+    (useFeatureFlagEnabled as jest.Mock).mockReturnValue(false);
+
+    const testProps = {
+      ...props,
+      geoRestricted: true,
+      pupilLessonOutcome: "A pupil lesson outcome",
+    };
+    const { queryAllByText } = renderWithTheme(
+      <LessonOverviewHeader {...testProps} />,
+    );
+    const description = queryAllByText(
+      "Downloads are available to UK users only",
+    );
+    expect(description).toHaveLength(0); // mobile and desktop
   });
 });

@@ -105,6 +105,13 @@ export const specialistLessonOverviewRawSchema = z.array(
   }),
 );
 
+export const specialistLessonOverviewRawRestrictionsSchema = z.array(
+  z.object({
+    geo_restricted: z.boolean().nullable(),
+    login_required: z.boolean().nullable(),
+  }),
+);
+
 export type SpecialistLessonDataRaw = z.infer<
   typeof specialistLessonOverviewRawSchema
 >;

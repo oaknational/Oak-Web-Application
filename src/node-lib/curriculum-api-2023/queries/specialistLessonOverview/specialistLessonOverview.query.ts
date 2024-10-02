@@ -2,6 +2,7 @@ import { LessonOverviewDownloads } from "../lessonOverview/lessonOverview.schema
 
 import specialistLessonOverviewSchema, {
   SpecialistLessonDataRaw,
+  specialistLessonOverviewRawRestrictionsSchema,
   specialistLessonOverviewRawSchema,
 } from "./specialistLessonOverview.schema";
 
@@ -62,6 +63,7 @@ export const constructDownloadsArray = (
 
 export const generateLessonOverviewFromRaw = (
   rawLesson: unknown,
+  contentRestrictions: unknown,
   errorCallback: (
     lessonOverview: SpecialistLessonDataRaw,
     error: OakError,
@@ -69,11 +71,15 @@ export const generateLessonOverviewFromRaw = (
 ) => {
   const parsedLessonOverview =
     specialistLessonOverviewRawSchema.parse(rawLesson);
+  const parsedRestrictions =
+    specialistLessonOverviewRawRestrictionsSchema.parse(contentRestrictions);
 
   if (
     !parsedLessonOverview ||
+    !parsedRestrictions ||
     parsedLessonOverview.length === 0 ||
-    !parsedLessonOverview[0]
+    !parsedLessonOverview[0] ||
+    !parsedRestrictions[0]
   ) {
     throw new OakError({ code: "curriculum-api/not-found" });
   }
@@ -86,6 +92,7 @@ export const generateLessonOverviewFromRaw = (
   }
 
   const lesson = parsedLessonOverview[0];
+  const restrictions = parsedRestrictions[0];
 
   const transformedLesson: LessonOverviewAll = {
     isLegacy: true,
@@ -133,8 +140,8 @@ export const generateLessonOverviewFromRaw = (
     downloads: constructDownloadsArray(lesson),
     updatedAt: "2022",
     pathways: [],
-    loginRequired: false,
-    geoRestricted: false,
+    loginRequired: restrictions.login_required,
+    geoRestricted: restrictions.geo_restricted,
   };
 
   return specialistLessonOverviewSchema.parse({
@@ -158,6 +165,7 @@ const specialistLessonOverview =
 
     return generateLessonOverviewFromRaw(
       specialistLessonOverview.lesson,
+      specialistLessonOverview.contentRestrictions,
       (lessonOverview, error) => {
         errorReporter("curriculum-api-2023::specialistLessonOverview")(error, {
           severity: "warning",
