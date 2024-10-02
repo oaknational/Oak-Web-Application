@@ -1,7 +1,3 @@
-/**
- * @jest-environment node
- */
-
 import { NextApiRequest, NextApiResponse } from "next";
 import { Client as HubspotClient } from "@hubspot/api-client";
 import { createMocks } from "node-mocks-http";
