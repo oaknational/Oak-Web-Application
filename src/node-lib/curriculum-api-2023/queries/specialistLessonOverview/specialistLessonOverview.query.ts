@@ -133,6 +133,8 @@ export const generateLessonOverviewFromRaw = (
     downloads: constructDownloadsArray(lesson),
     updatedAt: "2022",
     pathways: [],
+    loginRequired: false,
+    geoRestricted: false,
   };
 
   return specialistLessonOverviewSchema.parse({

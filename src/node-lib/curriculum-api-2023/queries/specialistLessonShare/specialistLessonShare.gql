@@ -23,4 +23,10 @@ query specialistLessonShare(
     presentation_url
     synthetic_programme_slug
   }
+  restrictions: published_mv_lesson_content_published_2_1_0(
+    where: { lesson_slug: { _eq: $lessonSlug } }
+  ) {
+    geo_restricted
+    login_required
+  }
 }

@@ -43,6 +43,8 @@ export type LessonOverviewHeaderProps = {
   onClickDownloadAll: () => void;
   onClickShareAll: () => void;
   showDownloadAll: boolean;
+  geoRestricted: boolean | null;
+  loginRequired: boolean | null;
 };
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {

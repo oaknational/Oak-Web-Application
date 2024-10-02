@@ -217,6 +217,11 @@ const transformedLessonOverviewData = (
     videoTitle: content.videoTitle,
     lessonCohort: browseData.lessonData.Cohort,
     pathways: pathways,
+    geoRestricted:
+      browseData.lessonSlug === "automated-cybercrime-6xh64c"
+        ? true
+        : content.geoRestricted,
+    loginRequired: content.loginRequired,
   };
 };
 

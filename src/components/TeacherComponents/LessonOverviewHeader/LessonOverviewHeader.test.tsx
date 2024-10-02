@@ -108,4 +108,18 @@ describe("LessonOverviewHeader", () => {
     const description = getAllByText("A pupil lesson outcome");
     expect(description).toHaveLength(2); // mobile and desktop
   });
+  it("renders a geo restriction banner when geoRestricted is true", () => {
+    const testProps = {
+      ...props,
+      geoRestricted: true,
+      pupilLessonOutcome: "A pupil lesson outcome",
+    };
+    const { getAllByText } = renderWithTheme(
+      <LessonOverviewHeader {...testProps} />,
+    );
+    const description = getAllByText(
+      "Downloads are available to UK users only",
+    );
+    expect(description).toHaveLength(2); // mobile and desktop
+  });
 });

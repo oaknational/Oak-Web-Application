@@ -88,6 +88,8 @@ const lessonOverviewFixture = (
     transcriptSentences: ["this is a sentence", "this is another sentence"],
     starterQuiz: quizQuestions,
     exitQuiz: quizQuestions,
+    geoRestricted: false,
+    loginRequired: false,
     downloads: [
       { exists: true, type: "intro-quiz-answers" },
       { exists: true, type: "intro-quiz-questions" },

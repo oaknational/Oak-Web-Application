@@ -90,6 +90,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     copyrightContent,
     isSpecialist,
     updatedAt,
+    geoRestricted,
+    loginRequired,
   } = lesson;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -226,6 +228,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           keyLearningPoints,
         )}
         showDownloadAll={showDownloadAll}
+        geoRestricted={geoRestricted}
+        loginRequired={loginRequired}
       />
       <MaxWidth $ph={16} $pb={80}>
         <NewContentBanner

@@ -4,7 +4,9 @@ import {
   OakP,
   OakSpan,
   OakFlex,
+  OakInlineBanner,
 } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
@@ -27,7 +29,9 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     isNew,
     subjectIconBackgroundColor,
     isSpecialist,
+    geoRestricted,
   } = props;
+  const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
 
   return (
     <Flex $flexDirection={"column"} $display={["flex", "none"]} $gap={24}>
@@ -62,6 +66,17 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
         <Box>
           <OakP $font={"body-3"}>{pupilLessonOutcome}</OakP>
         </Box>
+      )}
+      {authFlagEnabled && (
+        <OakFlex>
+          <OakInlineBanner
+            $pv="inner-padding-ssx"
+            $ph={"inner-padding-s"}
+            type="info"
+            isOpen={Boolean(geoRestricted)}
+            message={"Downloads are available to UK users only"}
+          />
+        </OakFlex>
       )}
       <LessonOverviewHeaderDownloadAllButton {...props} />
       {!isSpecialist && <LessonOverviewHeaderShareAllButton {...props} />}
