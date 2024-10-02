@@ -133,9 +133,6 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
                   lessonSection={"starter-quiz"}
                 />
               ))}
-            {starterQuiz?.questionResults && (
-              <CopyrightNotice isLegacyLicense={isLegacy} />
-            )}
 
             {exitQuiz?.questionResults && (
               <>
@@ -157,9 +154,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
                   lessonSection={"exit-quiz"}
                 />
               ))}
-            {exitQuiz?.questionResults && (
-              <CopyrightNotice isLegacyLicense={isLegacy} />
-            )}
+            <CopyrightNotice isLegacyLicense={isLegacy} />
           </OakFlex>
         </OakMaxWidth>
       </MathJaxWrap>
