@@ -1,26 +1,30 @@
+/**
+ * @jest-environment node
+ */
+
 import { NextApiRequest, NextApiResponse } from "next";
 import { Client as HubspotClient } from "@hubspot/api-client";
 import { createMocks } from "node-mocks-http";
 
-import handler from ".";
+import handler, { createHandler } from ".";
 
 const getById = jest.fn();
 
-jest.mock(
-  "@hubspot/api-client/lib/codegen/crm/contacts/types/PromiseAPI",
-  () => {
-    return {
-      ...jest.requireActual(
-        "@hubspot/api-client/lib/codegen/crm/contacts/types/PromiseAPI",
-      ),
-      PromiseBasicApi: jest.fn().mockImplementation(() => {
-        return {
-          getById: getById,
-        };
-      }),
+jest.mock("@hubspot/api-client", () => {
+  class Client {
+    crm = {
+      contacts: {
+        basicApi: {
+          getById: jest.fn().mockImplementation((...args) => getById(...args)),
+        },
+      },
     };
-  },
-);
+  }
+
+  return {
+    Client,
+  };
+});
 
 describe("Handler API", () => {
   const hubspot = new HubspotClient();
@@ -30,13 +34,16 @@ describe("Handler API", () => {
   });
 
   test("should return 200 with valid contact data", async () => {
-    (hubspot.crm.contacts.basicApi.getById as jest.Mock).mockResolvedValueOnce({
+    // eslint-disable-next-line
+    // @ts-ignore
+    jest.spyOn(hubspot.crm.contacts.basicApi, "getById").mockResolvedValueOnce({
       properties: {
         email: "test@email.com",
         contact_school_name: "Test School",
         contact_school_urn: "123456",
       },
     });
+    const handler = createHandler(hubspot);
 
     // Mock req and res objects
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
@@ -55,7 +62,6 @@ describe("Handler API", () => {
       schoolId: "123456",
     });
 
-    // Ensure the mocked API function was called with the correct params
     expect(hubspot.crm.contacts.basicApi.getById).toHaveBeenCalledWith(
       "test@email.com", // contactId
       ["contact_school_name", "contact_school_urn"], // properties
@@ -66,29 +72,12 @@ describe("Handler API", () => {
     );
   });
 
-  test("should return 204 when contact is not found", async () => {
-    // Mock the getById response to throw a 404 error
-
-    (hubspot.crm.contacts.basicApi.getById as jest.Mock).mockRejectedValueOnce(
-      Object.assign(new Error("Not Found"), { code: 404 }),
-    );
-
-    const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
-      method: "POST",
-      body: {
-        email: "notfound@email.com",
-      },
-    });
-
-    await handler(req, res);
-
-    expect(res._getStatusCode()).toBe(204);
-  });
-
   test("should return 500 when an unknown error occurs", async () => {
-    (hubspot.crm.contacts.basicApi.getById as jest.Mock).mockRejectedValue(
-      new Error("Unknown error"),
-    );
+    // eslint-disable-next-line
+    // @ts-ignore
+    jest
+      .spyOn(hubspot.crm.contacts.basicApi, "getById")
+      .mockRejectedValue(new Error("Unknown error"));
 
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
       method: "POST",

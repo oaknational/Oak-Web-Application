@@ -25,10 +25,13 @@ import {
   OnboardingFormProps,
   isSchoolSelectData,
 } from "./OnboardingForm.schema";
-import { getSubscriptionStatus, onboardUser } from "./onboardingActions";
+import {
+  getSubscriptionStatus,
+  onboardUser,
+  setOnboardingLocalStorage,
+  submitOnboardingHubspotData,
+} from "./onboardingActions";
 import { getQueryParamsFromOnboardingFormData } from "./getQueryParamsFromOnboardingFormData";
-import { submitOnboardingHubspotData } from "./submitOnboardingHubspotData";
-import { setOnboardingLocalStorage } from "./setOnboardingLocalStorage";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -83,9 +86,8 @@ const OnboardingForm = ({
     const userEmail = user?.emailAddresses[0]?.emailAddress;
 
     const userSubscribed =
-      userSubscribedInHubspot !== undefined
-        ? userSubscribedInHubspot
-        : "newsletterSignUp" in data && data.newsletterSignUp;
+      userSubscribedInHubspot ||
+      ("newsletterSignUp" in data && data.newsletterSignUp);
 
     await setOnboardingLocalStorage({
       localStorageForDownloads,
