@@ -30,6 +30,7 @@ export const mockTeacherUserWithDownloadAccess: UserResource = {
     owa: {
       isRegionAuthorised: true,
       isTeacher: true,
+      isOnboarded: true,
     },
   },
 };
