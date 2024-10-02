@@ -34,7 +34,8 @@ export const SpecialistLessonDownloadFixture = (
         },
       ],
       expired: false,
-      isDownloadRegionRestricted: false,
+      geoRestricted: false,
+      loginRequired: false,
       ...partialLesson,
     },
   };

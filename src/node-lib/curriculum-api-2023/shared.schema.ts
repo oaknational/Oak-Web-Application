@@ -230,6 +230,8 @@ export const baseLessonDownloadsSchema = z.object({
   isSpecialist: z.literal(false),
   copyrightContent: copyrightContentSchema,
   updatedAt: z.string(),
+  geoRestricted: z.boolean().nullable(),
+  loginRequired: z.boolean().nullable(),
 });
 
 export const lessonListSchema = z.array(
