@@ -69,7 +69,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     if (user != null) {
       // as user has signed in with full onboarding journey on OWA
       const hasOnboardingDownloadDetails = Boolean(
-        authFlagEnabled && isSignedIn && user.publicMetadata?.owa?.isTeacher,
+        authFlagEnabled && isSignedIn && user.publicMetadata?.owa?.isOnboarded,
       );
       setHasOnboardingDownloadDetails(hasOnboardingDownloadDetails);
     }
@@ -110,8 +110,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         const schoolName = hubspotContact.schoolName;
 
         setSchoolInLocalStorage({
-          schoolId: schoolId ?? "",
-          schoolName: schoolName ?? "",
+          schoolId: schoolId ?? "notListed",
+          schoolName: schoolName ?? "notListed",
         });
 
         if (schoolName) {
