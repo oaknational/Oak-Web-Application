@@ -1,17 +1,8 @@
 import { OakPupilJourneyYearButton } from "@oaknational/oak-components";
 
-import {
-  ProgrammeFields,
-  PupilProgrammeListingData,
-} from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
+import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 
-export type TierData = Pick<
-  ProgrammeFields,
-  "tier" | "tierSlug" | "tierDisplayOrder" | "tierDescription"
-> & {
-  isLegacy: boolean;
-};
 export const BrowseTierSelector = ({
   tiers,
   baseSlug,
