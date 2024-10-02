@@ -20,7 +20,6 @@ import {
   attemptDataCamelCaseSchema,
   useOakPupil,
 } from "@oaknational/oak-pupil-client";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { PupilExperienceViewProps } from "../PupilExperience";
 
@@ -71,7 +70,6 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const hasQuiz =
     lessonReviewSections.includes("exit-quiz") ||
     lessonReviewSections.includes("starter-quiz");
-  const isShowShareButtons = useFeatureFlagEnabled("share-results-button");
   const [isAttemptingShare, setIsAttemptingShare] = useState<
     "failed" | "shared" | "initial"
   >("initial");
@@ -182,7 +180,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
-              {isShowShareButtons && hasQuiz && (
+              {hasQuiz && (
                 <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
                   <OakHeading tag="h2" $font={"body-2-bold"}>
                     Share options:
