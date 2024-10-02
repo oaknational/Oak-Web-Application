@@ -259,7 +259,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       childSubjectName: subject,
       childSubjectSlug: child_subjects?.find((s) => s.subject_slug === subject)
         ?.subject,
-      examBoardSlug: slugs.examboardSlug,
+      examBoardSlug: slugs.ks4OptionSlug,
     });
   }
 
@@ -271,7 +271,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       mvRefreshTime,
       slugs.subjectSlug,
       slugs.phaseSlug,
-      slugs.examboardSlug,
+      slugs.ks4OptionSlug,
       tierSelected,
       childSubjectSelected,
     );

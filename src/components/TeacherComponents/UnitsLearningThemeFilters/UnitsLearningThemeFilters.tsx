@@ -1,18 +1,16 @@
-import {
-  OakBox,
-  OakFlex,
-  OakSecondaryButton,
-} from "@oaknational/oak-components";
+import { OakFlex } from "@oaknational/oak-components";
 import { useState } from "react";
+import { useRouter } from "next/router";
+
+import { RadioTheme, RadioTile, isRadioTheme } from "./RadioTile";
+import { generateUrl } from "./generateUrl";
 
 import {
   SpecialistUnitListingLinkProps,
   UnitListingLinkProps,
 } from "@/common-lib/urls";
-import CategoryFilterList, {
-  LearningThemeSelectedTrackingProps,
-} from "@/components/SharedComponents/CategoryFilterList";
-import useCategoryFilterList from "@/components/SharedComponents/CategoryFilterList/useCategoryFilterList";
+import { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type LearningTheme = {
   themeSlug?: string | null;
@@ -25,27 +23,22 @@ export type UnitsLearningThemeFiltersProps = {
   learningThemes: LearningTheme[] | null;
   linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps;
   trackingProps?: LearningThemeSelectedTrackingProps;
+  idSuffix: string;
+  onChangeCallback: (theme: string | undefined) => void;
+  categorySlug?: string;
+  yearGroupSlug?: string;
+  programmeSlug: string;
 };
+
 const UnitsLearningThemeFilters = ({
-  labelledBy,
   learningThemes = [],
   selectedThemeSlug,
-  linkProps,
   trackingProps,
+  idSuffix,
+  onChangeCallback,
+  programmeSlug,
 }: UnitsLearningThemeFiltersProps) => {
-  const [skipFiltersButton, setSkipFiltersButton] = useState(false);
-  const listStateProps = useCategoryFilterList({
-    selectedKey: selectedThemeSlug,
-    getKey: (
-      linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps,
-    ) => {
-      if (linkProps.search?.["learning-theme"]) {
-        return linkProps.search?.["learning-theme"];
-      } else return "all";
-    },
-  });
-
-  const learningThemesMapped = learningThemes
+  const learningThemesMapped: Array<RadioTheme> = learningThemes
     ? learningThemes
         .map((learningTheme) => {
           return {
@@ -53,66 +46,87 @@ const UnitsLearningThemeFilters = ({
             slug: learningTheme?.themeSlug,
           };
         })
-        .sort(
-          (
-            a: {
-              label: string | undefined | null;
-              slug: string | undefined | null;
-            },
-            b: {
-              label: string | undefined | null;
-              slug: string | undefined | null;
-            },
-          ) => {
-            if (a?.slug === "no-theme") {
-              return 0;
-            } else if (b?.slug === "no-theme") {
-              return -1;
-            } else {
-              return 0;
-            }
-          },
-        )
+        .filter(isRadioTheme)
+        .sort((a, b) => {
+          if (a.slug === "no-theme") {
+            return 0;
+          } else if (b.slug === "no-theme") {
+            return -1;
+          } else {
+            return 0;
+          }
+        })
     : [];
+  const router = useRouter();
+
+  const categorySlug = router.query["category"]?.toString();
+  const yearGroupSlug = router.query["year"]?.toString();
+
+  const { track } = useAnalytics();
+
+  const [activeThemeSlug, setActiveThemeSlug] = useState(selectedThemeSlug);
+  const [focussedThemeSlug, setFocussedThemeSlug] = useState<
+    string | undefined
+  >(undefined);
+
+  const onChange = (theme: { label: string; slug: string }) => {
+    setActiveThemeSlug(theme.slug);
+
+    const callbackValue = theme.slug === "all" ? undefined : theme.slug;
+    onChangeCallback(callbackValue);
+
+    if (trackingProps) {
+      const { keyStageSlug, subjectSlug } = trackingProps;
+
+      track.browseRefined({
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "refine",
+        componentType: "filter_link",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        filterType: "Learning theme filter",
+        filterValue: theme.label,
+        activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
+      });
+    }
+
+    const newUrl = generateUrl(
+      theme,
+      programmeSlug,
+      yearGroupSlug,
+      categorySlug,
+    );
+
+    window.history.replaceState(window.history.state, "", newUrl);
+  };
 
   return (
     <OakFlex $flexDirection={"column"}>
-      <OakBox $mb={skipFiltersButton ? "space-between-xs" : "auto"}>
-        <OakSecondaryButton
-          element="a"
-          aria-label="Skip to units"
-          href="#unit-list"
-          onFocus={() => setSkipFiltersButton(true)}
-          onBlur={() => setSkipFiltersButton(false)}
-          style={
-            skipFiltersButton ? {} : { position: "absolute", top: "-600px" }
-          }
-        >
-          Skip to units
-        </OakSecondaryButton>
-      </OakBox>
-
-      <CategoryFilterList
-        {...listStateProps}
-        labelledBy={labelledBy}
-        categories={[
-          {
-            label: "All in suggested order",
-            linkProps: {
-              ...linkProps,
-              search: { ...linkProps.search, ["learning-theme"]: undefined },
-            },
+      <OakFlex
+        $flexDirection="column"
+        $gap="space-between-ssx"
+        role="radiogroup"
+        $pb="inner-padding-xl2"
+      >
+        {[{ slug: "all", label: "All" }, ...learningThemesMapped].map(
+          (theme) => {
+            const isChecked = activeThemeSlug === theme.slug;
+            const isFocussed = focussedThemeSlug === theme.slug;
+            return (
+              <RadioTile
+                theme={theme}
+                key={theme.slug}
+                isChecked={isChecked}
+                isFocussed={isFocussed}
+                onChange={onChange}
+                onFocus={setFocussedThemeSlug}
+                id={`${theme.slug}-${idSuffix}`}
+              />
+            );
           },
-          ...learningThemesMapped.map(({ label, slug }) => ({
-            label: label ? label : "",
-            linkProps: {
-              ...linkProps,
-              search: { ...linkProps.search, ["learning-theme"]: slug },
-            },
-          })),
-        ]}
-        themeTrackingProps={trackingProps}
-      />
+        )}
+      </OakFlex>
     </OakFlex>
   );
 };

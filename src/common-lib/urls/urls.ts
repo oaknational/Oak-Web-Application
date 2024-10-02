@@ -135,6 +135,24 @@ export type PupilLessonLinkProps = {
   lessonSlug: string;
 };
 
+export type PupilLessonResultsLinkProps = {
+  page: "pupil-lesson-results";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+  attemptId: string;
+};
+
+export type PupilLessonResultsCanonicalShareLinkProps = {
+  page: "pupil-lesson-results-canonical-share";
+  lessonSlug: string;
+  attemptId: string;
+};
+export type PupilLessonResultsCanonicalPrintableLinkProps = {
+  page: "pupil-lesson-results-canonical-printable";
+  lessonSlug: string;
+  attemptId: string;
+};
 export type PupilLessonListingLinkProps = {
   page: "pupil-lesson-index";
   programmeSlug: string;
@@ -322,6 +340,9 @@ export type OakLinkProps =
   | LessonShareCanonicalLinkProps
   | LessonOverviewLinkProps
   | PupilLessonLinkProps
+  | PupilLessonResultsLinkProps
+  | PupilLessonResultsCanonicalShareLinkProps
+  | PupilLessonResultsCanonicalPrintableLinkProps
   | PupilLessonListingLinkProps
   | PupilUnitListingLinkProps
   | PupilSubjectListingLinkProps
@@ -664,6 +685,25 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "pupil-lesson",
+  }),
+  "pupil-lesson-results": createOakPageConfig({
+    pathPattern:
+      "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/results/:attemptId",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "pupil-lesson-results",
+  }),
+  "pupil-lesson-results-canonical-share": createOakPageConfig({
+    pathPattern: "/pupils/lessons/:lessonSlug/results/:attemptId/share",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "pupil-lesson-results-canonical-share",
+  }),
+  "pupil-lesson-results-canonical-printable": createOakPageConfig({
+    pathPattern: "/pupils/lessons/:lessonSlug/results/:attemptId/printable",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "pupil-lesson-results-canonical-printable",
   }),
   "pupil-lesson-index": createOakPageConfig({
     pathPattern: "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons",

@@ -82,7 +82,9 @@ export const Default: Story = {
       </QuizEngineContext.Provider>
     );
   },
-  args: {},
+  args: {
+    onChange: () => {},
+  },
 };
 
 export const Feedback: Story = {
@@ -102,5 +104,7 @@ export const Feedback: Story = {
       </QuizEngineContext.Provider>
     );
   },
-  args: {},
+  args: {
+    onChange: () => {},
+  },
 };

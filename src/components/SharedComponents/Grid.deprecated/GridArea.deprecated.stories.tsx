@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import Component from "./GridArea.deprecated";
 
@@ -22,10 +22,6 @@ export default {
     colSpan: { defaultValue: [12, 6, 4] },
     rowSpan: { defaultValue: 1 },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
-
-export const GridArea = Template.bind({});
+export const GridArea = {};

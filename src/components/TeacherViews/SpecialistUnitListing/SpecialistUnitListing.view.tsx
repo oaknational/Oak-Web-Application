@@ -1,4 +1,4 @@
-import { FC, useId } from "react";
+import { FC, useId, useState } from "react";
 import { useTheme } from "styled-components";
 import { useRouter } from "next/router";
 import {
@@ -19,7 +19,7 @@ import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import LearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
-import filterLearningTheme from "@/utils/filterLearningTheme/filterLearningTheme";
+import filterUnits from "@/utils/filterUnits/filterUnits";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 
 type SpecialistPageData = {
@@ -41,8 +41,18 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
 
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
+  const categorySlug = router.query["category"]?.toString();
+  const year = router.query["year"]?.toString();
+  const [selectedThemeSlug, setSelectedThemeSlug] = useState<
+    string | undefined
+  >(themeSlug);
 
-  const unitsFilteredByLearningTheme = filterLearningTheme(themeSlug, units);
+  const unitsFilteredByLearningTheme = filterUnits({
+    themeSlug: selectedThemeSlug,
+    categorySlug,
+    yearGroup: year,
+    units,
+  });
 
   const theme = useTheme();
 
@@ -114,12 +124,15 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   </OakP>
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
+                    programmeSlug={programmeSlug}
                     learningThemes={learningThemes}
                     selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
                       page: "specialist-unit-index",
                       programmeSlug: programmeSlug,
                     }}
+                    idSuffix="desktop"
+                    onChangeCallback={setSelectedThemeSlug}
                   />
                 </OakFlex>
               )}
@@ -169,11 +182,14 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
                     learningThemes={learningThemes}
+                    programmeSlug={programmeSlug}
                     selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
                       page: "specialist-unit-index",
                       programmeSlug: programmeSlug,
                     }}
+                    idSuffix="mobile"
+                    onChangeCallback={setSelectedThemeSlug}
                   />
                 </MobileFilters>
               )}

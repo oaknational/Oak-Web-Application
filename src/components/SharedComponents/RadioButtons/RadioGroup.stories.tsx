@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component from "./RadioGroup";
 import Radio from "./Radio";
@@ -7,9 +7,9 @@ import Radio from "./Radio";
 export default {
   component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   const [selected, setSelected] = useState("");
   return (
     <Component value={selected} onChange={setSelected} {...args}>
@@ -19,11 +19,15 @@ const Template: ComponentStory<typeof Component> = (args) => {
   );
 };
 
-export const RadioGroup = Template.bind({});
+export const RadioGroup = {
+  render: Template,
+};
 
-export const RadioGroupError = Template.bind({});
+export const RadioGroupError = {
+  render: Template,
 
-RadioGroupError.args = {
-  hasError: true,
-  errorMessage: "Please select/search a school or an option from above",
+  args: {
+    hasError: true,
+    errorMessage: "Please select/search a school or an option from above",
+  },
 };

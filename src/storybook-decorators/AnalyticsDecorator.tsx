@@ -1,4 +1,4 @@
-import { Story } from "@storybook/react";
+import { StoryFn } from "@storybook/react";
 
 import * as Avo from "../browser-lib/avo/Avo";
 import { analyticsContext } from "../context/Analytics/AnalyticsProvider";
@@ -16,7 +16,7 @@ const noopTrackingFns = Object.entries(trackingFns).reduce(
   },
   {} as unknown as TrackingFns,
 );
-export default function AnalyticsDecorator(Story: Story) {
+export default function AnalyticsDecorator(Story: StoryFn) {
   const value = {
     identify: noop,
     posthogDistinctId: testPosthogDistinctId,

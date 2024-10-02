@@ -147,6 +147,24 @@ async function getData(opts: {
             asset: { assetId: "", playbackId: "undefined", thumbTime: null },
           },
         },
+        curriculumExplainer: {
+          explainerRaw: [
+            {
+              children: [
+                {
+                  _type: "span",
+                  marks: [],
+                  text: "Aims and purpose",
+                  _key: "470ecdd07b7d",
+                },
+              ],
+              _type: "block",
+              style: "heading2",
+              _key: "82cf6558d6f8",
+              markDefs: [],
+            },
+          ],
+        },
         videoAuthor:
           "Video author is undefined for this record. Please check the CMS.",
         videoExplainer:
@@ -177,9 +195,9 @@ async function getData(opts: {
   const subject = subjectPhaseOptions.subjects.find((subject) => {
     return subject.slug === subjectSlug && subject.state === state;
   }) as SubjectPhasePickerData["subjects"][number] | undefined;
-  const examboard =
-    subject?.examboards?.find(
-      (examboard) => examboard.slug === examboardSlug,
+  const ks4Option =
+    subject?.ks4_options?.find(
+      (ks4_option) => ks4_option.slug === examboardSlug,
     ) ?? null;
 
   const combinedCurriculumData: CombinedCurriculumData = {
@@ -187,7 +205,7 @@ async function getData(opts: {
     ...curriculumOverviewTabData,
     ...curriculumOverviewSanityData,
     ...{ state },
-    examboardTitle: examboard?.title ?? null,
+    examboardTitle: ks4Option?.title ?? null,
   };
 
   return {

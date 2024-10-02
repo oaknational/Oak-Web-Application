@@ -47,7 +47,8 @@ const lessonDownloadsFixtures = (
       },
     ],
     updatedAt: "2024-09-29T14:00:00.000Z",
-    isDownloadRegionRestricted: false,
+    geoRestricted: false,
+    loginRequired: false,
     ...partial,
   };
 };

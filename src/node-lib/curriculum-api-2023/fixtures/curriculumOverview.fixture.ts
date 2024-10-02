@@ -24,6 +24,24 @@ export const curriculumOverviewCMSFixture = (
 ): CurriculumOverviewSanityData => {
   return {
     id: "curriculum.overview",
+    curriculumExplainer: {
+      explainerRaw: [
+        {
+          children: [
+            {
+              _type: "span",
+              marks: [],
+              text: "Aims and purpose",
+              _key: "470ecdd07b7d",
+            },
+          ],
+          _type: "block",
+          style: "heading2",
+          _key: "82cf6558d6f8",
+          markDefs: [],
+        },
+      ],
+    },
     subjectPrinciples: [
       "Pairing procedural knowledge with conceptual understanding",
       "Aligning with the Concrete Pictorial Abstract approach to mathematics teaching and learning",
@@ -52,7 +70,7 @@ const curriculumOverviewSlugsFixture = (
   return {
     phaseSlug: "primary",
     subjectSlug: "maths",
-    examboardSlug: null,
+    ks4OptionSlug: null,
     ...partial,
   };
 };

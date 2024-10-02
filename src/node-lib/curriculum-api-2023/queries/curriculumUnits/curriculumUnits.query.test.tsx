@@ -11,7 +11,7 @@ describe("curriculum units query", () => {
       })({
         subjectSlug: "",
         phaseSlug: "",
-        examboardSlug: null,
+        ks4OptionSlug: null,
       });
     }).rejects.toThrow(`The params provided are incorrect`);
   });
@@ -24,7 +24,7 @@ describe("curriculum units query", () => {
       })({
         subjectSlug: "english",
         phaseSlug: "secondary",
-        examboardSlug: "aqa",
+        ks4OptionSlug: "aqa",
       });
     }).rejects.toThrow(`Resource not found`);
   });

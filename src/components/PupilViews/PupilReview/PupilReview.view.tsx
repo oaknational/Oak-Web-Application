@@ -1,9 +1,11 @@
+import { useState } from "react";
 import {
   OakFlex,
   OakGrid,
   OakGridArea,
   OakHandDrawnCard,
   OakHeading,
+  OakIcon,
   OakImage,
   OakLessonBottomNav,
   OakLessonLayout,
@@ -11,7 +13,15 @@ import {
   OakLessonReviewQuiz,
   OakPrimaryButton,
   OakTertiaryButton,
+  OakSecondaryButton,
 } from "@oaknational/oak-components";
+import {
+  attemptDataCamelCaseSchema,
+  useOakPupil,
+} from "@oaknational/oak-pupil-client";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import { PupilExperienceViewProps } from "../PupilExperience";
 
 import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
 
@@ -19,25 +29,29 @@ import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngin
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizResults } from "@/components/PupilComponents/QuizResults";
-
-// TODO: add question arrays for starter and exit quizzes so that the expand quiz results can be rendered
+import { resolveOakHref } from "@/common-lib/urls";
+import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
   backUrl?: string | null;
-  phase?: "primary" | "secondary";
   starterQuizQuestionsArray: QuestionsArray;
   exitQuizQuestionsArray: QuestionsArray;
+  programmeSlug: string;
+  unitSlug: string;
+  browseData: PupilExperienceViewProps["browseData"];
+  pageType: PupilExperienceViewProps["pageType"];
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const {
     lessonTitle,
     backUrl,
-    phase = "primary",
     starterQuizQuestionsArray,
     exitQuizQuestionsArray,
+    browseData: { programmeFields, lessonSlug, isLegacy },
   } = props;
+  const { phase = "primary", yearDescription, subject } = programmeFields;
   const {
     updateCurrentSection,
     sectionResults,
@@ -50,6 +64,13 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     isLessonComplete,
     sectionResults,
   );
+
+  const pupilClient = useOakPupil();
+  const { logAttempt } = pupilClient;
+  const isShowShareButtons = useFeatureFlagEnabled("share-results-button");
+  const [isAttemptingShare, setIsAttemptingShare] = useState<
+    "failed" | "shared" | "initial"
+  >("initial");
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
@@ -64,6 +85,65 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       </OakPrimaryButton>
     </OakLessonBottomNav>
   );
+  const handleShareResultsClick = () => {
+    const attemptData = {
+      lessonData: { slug: lessonSlug, title: lessonTitle },
+      browseData: { subject: subject, yearDescription: yearDescription ?? "" },
+      sectionResults: sectionResults,
+    };
+    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+    const res = logAttempt(parsedAttemptData, false);
+    if (typeof res === "string") {
+      const shareUrl = `${
+        process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL
+      }${resolveOakHref({
+        page: "pupil-lesson-results-canonical-share",
+        lessonSlug,
+        attemptId: res,
+      })}`;
+      navigator.clipboard.writeText(shareUrl);
+      setIsAttemptingShare("shared");
+    } else {
+      const { promise, attemptId } = res;
+      promise.catch((e) => {
+        console.error(e);
+        setIsAttemptingShare("failed");
+      });
+      const shareUrl = `${
+        process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL
+      }${resolveOakHref({
+        page: "pupil-lesson-results-canonical-share",
+        lessonSlug,
+        attemptId,
+      })}`;
+      navigator.clipboard.writeText(shareUrl);
+      setIsAttemptingShare("shared");
+    }
+  };
+
+  const handlePrintableResultsClick = () => {
+    const attemptData = {
+      lessonData: { slug: lessonSlug, title: lessonTitle },
+      browseData: { subject: subject, yearDescription: yearDescription ?? "" },
+      sectionResults: sectionResults,
+    };
+    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+    const attemptId = logAttempt(parsedAttemptData, true);
+    if (typeof attemptId === "string") {
+      window.open(
+        resolveOakHref({
+          page: "pupil-lesson-results-canonical-printable",
+          lessonSlug,
+          attemptId,
+        }),
+        "_blank",
+      );
+    }
+  };
+
+  if (phase === "foundation") {
+    throw new Error("Foundation phase is not supported");
+  }
 
   return (
     <OakLessonLayout
@@ -98,6 +178,70 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
+              {isShowShareButtons && (
+                <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+                  <OakHeading tag="h2" $font={"body-2-bold"}>
+                    Share options:
+                  </OakHeading>
+                  <OakFlex
+                    $gap={"space-between-s"}
+                    $flexDirection={["column", "row"]}
+                  >
+                    <OakSecondaryButton
+                      type="button"
+                      role="button"
+                      aria-label="Printable results, opens in a new tab"
+                      title="Printable results (opens in a new tab)"
+                      iconName={"external"}
+                      isTrailingIcon
+                      onClick={handlePrintableResultsClick}
+                      data-testid="printable-results-button"
+                    >
+                      Printable results
+                    </OakSecondaryButton>
+                    <OakSecondaryButton
+                      type="button"
+                      role="button"
+                      aria-label="Share results"
+                      title="Share results"
+                      onClick={handleShareResultsClick}
+                      iconName={"share"}
+                      isTrailingIcon
+                      data-testid="share-results-button"
+                    >
+                      Share results
+                    </OakSecondaryButton>
+                  </OakFlex>
+                  {isAttemptingShare === "shared" && (
+                    <OakFlex $gap={"space-between-sssx"} $alignItems={"center"}>
+                      <OakIcon
+                        iconName={"tick"}
+                        $colorFilter={"text-success"}
+                      />
+                      <OakHeading
+                        tag="h2"
+                        $font={"heading-light-7"}
+                        $color={"text-success"}
+                      >
+                        Link copied to clipboard! You can share this with your
+                        teacher.
+                      </OakHeading>
+                    </OakFlex>
+                  )}
+                  {isAttemptingShare === "failed" && (
+                    <OakFlex $gap={"space-between-sssx"} $alignItems={"center"}>
+                      <OakIcon iconName={"cross"} $colorFilter={"text-error"} />
+                      <OakHeading
+                        tag="h2"
+                        $font={"heading-light-7"}
+                        $color={"text-error"}
+                      >
+                        Failed to share results. Please try again.
+                      </OakHeading>
+                    </OakFlex>
+                  )}
+                </OakFlex>
+              )}
               <OakHeading tag="h2" $font={"heading-light-7"}>
                 {lessonTitle}
               </OakHeading>
@@ -149,6 +293,9 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                         sectionResults={sectionResults}
                         quizArray={quizArray}
                         lessonSection={lessonSection}
+                        copyrightNotice={
+                          <CopyrightNotice isLegacyLicense={isLegacy} />
+                        }
                       />
                     }
                   />

@@ -15,6 +15,7 @@ import {
 } from "@/components/CurriculumComponents/CurriculumUnitDetails";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { getUnitFeatures } from "@/utils/curriculum/features";
 
 type UnitModalProps = {
   unitData: Unit | null;
@@ -90,6 +91,10 @@ const UnitModal: FC<UnitModalProps> = ({
     }
   });
 
+  const subjectTitle =
+    getUnitFeatures(unitData)?.programmes_fields_overrides.subject ??
+    unitData?.subject;
+
   return (
     <>
       {unitData && (
@@ -120,7 +125,7 @@ const UnitModal: FC<UnitModalProps> = ({
               />
             </Box>
             <LessonMetadata
-              subjectTitle={unitData.subject}
+              subjectTitle={subjectTitle}
               yearTitle={`Year ${unitData.year}`}
             />
             <OakHeading tag="h2" $font={"heading-5"}>
@@ -132,6 +137,9 @@ const UnitModal: FC<UnitModalProps> = ({
               <Box $display={optionalityModalOpen ? "none" : "block"}>
                 <CurriculumUnitDetails
                   threads={unitData.threads}
+                  cycle={unitData.cycle}
+                  whyThisWhyNow={unitData.why_this_why_now}
+                  description={unitData.description}
                   lessons={unitData.lessons}
                   priorUnitDescription={
                     unitData.connection_prior_unit_description
@@ -234,6 +242,10 @@ const UnitModal: FC<UnitModalProps> = ({
                                       optionalUnit.connection_prior_unit_title,
                                     futureUnitTitle:
                                       optionalUnit.connection_future_unit_title,
+                                    description: optionalUnit.description,
+                                    whyThisWhyNow:
+                                      optionalUnit.why_this_why_now,
+                                    cycle: unitData.cycle,
                                   });
                                 }}
                               />
