@@ -48,14 +48,14 @@ const QuizSectionRender = (props: QuizResultsProps) => {
           lessonSection={lessonSection}
         />
       </OakFlex>
-
-      {index !== quizQuestionArray.length - 1 && (
-        <OakHandDrawnHR
-          $height={"all-spacing-1"}
-          $pl={["inner-padding-none", "inner-padding-xl"]}
-          $ml={["space-between-none", "space-between-s"]}
-        />
-      )}
+      <OakHandDrawnHR
+        hrColor={
+          index !== quizQuestionArray.length - 1 ? "black" : "transparent"
+        }
+        $height={"all-spacing-1"}
+        $pl={["inner-padding-none", "inner-padding-xl"]}
+        $ml={["space-between-none", "space-between-s"]}
+      />
       <OakJauntyAngleLabel
         $position={"absolute"}
         $bottom={"all-spacing-5"}

@@ -212,7 +212,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                       aria-label="Share results"
                       title="Share results"
                       onClick={handleShareResultsClick}
-                      iconName={"share"}
+                      iconName={"copy"}
                       isTrailingIcon
                       data-testid="share-results-button"
                     >
