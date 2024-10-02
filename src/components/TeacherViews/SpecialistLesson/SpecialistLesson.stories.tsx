@@ -52,6 +52,8 @@ export const SpecialistLessonPage: Story = {
       expired: false,
       downloads: [],
       updatedAt: "2022-02-22T12:00:00Z",
+      geoRestricted: false,
+      loginRequired: false,
     },
   },
 };

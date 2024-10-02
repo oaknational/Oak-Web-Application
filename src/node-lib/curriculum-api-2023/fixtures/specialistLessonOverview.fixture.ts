@@ -114,6 +114,8 @@ const specialistLessonOverviewFixture = (
     ],
     updatedAt: "2022-02-01T00:00:00Z",
     pathways: [],
+    geoRestricted: false,
+    loginRequired: false,
     ...partial,
   };
 };

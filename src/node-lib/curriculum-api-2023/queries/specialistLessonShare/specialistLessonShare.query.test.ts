@@ -47,6 +47,7 @@ describe("specialistLessonShare.query", () => {
           specialistLessonShare: jest.fn(() =>
             Promise.resolve({
               specialistLessonShare: [],
+              restrictions: [],
             }),
           ),
         })({

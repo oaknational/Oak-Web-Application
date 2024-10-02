@@ -38,6 +38,8 @@ describe("hasLessonMathJax", () => {
     unitSlug: "example-unit-slug",
     programmeSlug: "example-programme-slug",
     updatedAt: "2022",
+    geoRestricted: false,
+    loginRequired: false,
   };
 
   it("detects MathJax in keyLearningPoints", () => {
