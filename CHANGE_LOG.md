@@ -1,3 +1,24 @@
+# [1.573.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.572.1...v1.573.0) (2024-10-02)
+
+
+### Features
+
+* adds mobile filter to specialist page and removes bottom border ([925f72f](https://github.com/oaknational/Oak-Web-Application/commit/925f72f28bd2cb1b3ed1a7643ccc32af74a306f7))
+* **buton:** update aria label ([0ef98b9](https://github.com/oaknational/Oak-Web-Application/commit/0ef98b98cd983a7d99484f08a890ab2287826151))
+* **icons:** change icon to copy ([984aedf](https://github.com/oaknational/Oak-Web-Application/commit/984aedf24d9a6700dd04fb8631253dff95eaaff8))
+* **LESQ-1045:** implement filter drawer on unit pages ([dd2801d](https://github.com/oaknational/Oak-Web-Application/commit/dd2801d5b90024adc99691705237fa26132d5639))
+* **prinatable:** add copuright ([af69aca](https://github.com/oaknational/Oak-Web-Application/commit/af69acac23cdf8b00f02d236ab1d830c20e52050))
+* **prinatable:** add copuright ([37a14a7](https://github.com/oaknational/Oak-Web-Application/commit/37a14a778d9db08fdd4e28efc47874f3b676b0e1))
+* **prinatable:** add copuright ([9c6891a](https://github.com/oaknational/Oak-Web-Application/commit/9c6891a85c766b7fc2c44015ebd6ba89ca56692d))
+* **prinatable:** add copuright ([469aa6b](https://github.com/oaknational/Oak-Web-Application/commit/469aa6b1c9b391ab18e10765e8931f7640149ab3))
+* **prinatable:** add copuright ([f5a4dca](https://github.com/oaknational/Oak-Web-Application/commit/f5a4dca29c9a3f6b7c750faf6f81d35b301e9bc3))
+* **prinatable:** release feature ([4c94c6f](https://github.com/oaknational/Oak-Web-Application/commit/4c94c6ffee67a2cfe962a96b0202e2a4010504ce))
+* **results:** change button copy ([de6a463](https://github.com/oaknational/Oak-Web-Application/commit/de6a4636287a159cc5ec139ac15abb49115d8e40))
+* **results:** change button copy ([1e3db9b](https://github.com/oaknational/Oak-Web-Application/commit/1e3db9bbd126619febcbd469fbc48f8bd0d18bd1))
+* **results:** remove printable button on mobile ([07553e0](https://github.com/oaknational/Oak-Web-Application/commit/07553e0d6dffa79b0df183a4dec7aa9af65861b0))
+* **results:** remove printable button on mobile ([982455f](https://github.com/oaknational/Oak-Web-Application/commit/982455f32124550a6cf23381ddbf2603d7e09254))
+* **results:** styling for mobile ([2ae66b1](https://github.com/oaknational/Oak-Web-Application/commit/2ae66b1dec9e497bb5f67534527125bb8bfea9fd))
+
 ## [1.572.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.572.0...v1.572.1) (2024-10-02)
 
 
