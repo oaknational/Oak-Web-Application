@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component from ".";
 
@@ -13,9 +13,9 @@ export default {
       defaultValue: "Label off",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   const [value, setValue] = useState(false);
   return (
     <div style={{ background: "lightBlue", padding: "100px" }}>
@@ -24,10 +24,14 @@ const Template: ComponentStory<typeof Component> = (args) => {
   );
 };
 
-export const Toggle = Template.bind({});
+export const Toggle = {
+  render: Template,
+};
 
-export const ToggleDisabled = Template.bind({});
+export const ToggleDisabled = {
+  render: Template,
 
-ToggleDisabled.args = {
-  disabled: true,
+  args: {
+    disabled: true,
+  },
 };

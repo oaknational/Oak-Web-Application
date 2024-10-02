@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { useState } from "react";
 
 import Component from "./ResourcePageSchoolPicker";
@@ -47,9 +47,9 @@ const items = [
 export default {
   component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   const [schoolPickerInputValue, setSchoolPickerInputValue] = useState("");
 
   return (
@@ -70,15 +70,19 @@ const Template: ComponentStory<typeof Component> = (args) => {
   );
 };
 
-export const ResourcePageSchoolPicker = Template.bind({});
+export const ResourcePageSchoolPicker = {
+  render: Template,
 
-ResourcePageSchoolPicker.args = {
-  hasError: false,
+  args: {
+    hasError: false,
+  },
 };
 
-export const ResourcePageSchoolPickerError = Template.bind({});
+export const ResourcePageSchoolPickerError = {
+  render: Template,
 
-ResourcePageSchoolPickerError.args = {
-  hasError: true,
-  required: true,
+  args: {
+    hasError: true,
+    required: true,
+  },
 };

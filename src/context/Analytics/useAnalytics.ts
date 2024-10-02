@@ -1,9 +1,15 @@
 import { useContext } from "react";
 
-import { analyticsContext } from "./AnalyticsProvider";
+import { AnalyticsContext, analyticsContext } from "./AnalyticsProvider";
+import { getMockAnalytics } from "./getMockAnalytics";
 
-const useAnalytics = () => {
+const useAnalytics = (): AnalyticsContext => {
   const analytics = useContext(analyticsContext);
+  const isStorybook = !!process.env.STORYBOOK;
+
+  if (isStorybook) {
+    return getMockAnalytics();
+  }
 
   if (!analytics) {
     throw new Error("useAnalytics called outside of AnalyticsProvider");

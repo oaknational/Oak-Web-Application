@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component from "./Button";
 
@@ -14,9 +14,9 @@ export default {
       defaultValue: "brush",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
+const Template: StoryFn<typeof Component> = (args) => (
   <>
     <Component background="black" $mr={24} {...args} />
     <Component background="blue" $mr={24} {...args} />
@@ -24,17 +24,20 @@ const Template: ComponentStory<typeof Component> = (args) => (
   </>
 );
 
-export const Button = Template.bind({});
-
-export const ButtonWithIcon = Template.bind({});
-ButtonWithIcon.args = {
-  icon: "save",
-  size: "large",
+export const Button = {
+  render: Template,
 };
 
-const MinimalButtonWithIconTemplate: ComponentStory<typeof Component> = (
-  args,
-) => (
+export const ButtonWithIcon = {
+  render: Template,
+
+  args: {
+    icon: "save",
+    size: "large",
+  },
+};
+
+const MinimalButtonWithIconTemplate: StoryFn<typeof Component> = (args) => (
   <>
     <Component iconBackground="black" $mr={24} {...args} />
     <Component iconBackground="blue" $mr={24} {...args} />
@@ -42,9 +45,12 @@ const MinimalButtonWithIconTemplate: ComponentStory<typeof Component> = (
   </>
 );
 
-export const MinimalButtonWithIcon = MinimalButtonWithIconTemplate.bind({});
-MinimalButtonWithIcon.args = {
-  variant: "minimal",
-  icon: "save",
-  size: "large",
+export const MinimalButtonWithIcon = {
+  render: MinimalButtonWithIconTemplate,
+
+  args: {
+    variant: "minimal",
+    icon: "save",
+    size: "large",
+  },
 };

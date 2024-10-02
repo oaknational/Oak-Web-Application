@@ -13,6 +13,7 @@ jest.mock("../../sdk", () => {
     specialistLessonDownloads: jest.fn(() =>
       Promise.resolve({
         specialistLessonDownloads: [SpecialistLessonDownloadRawFixture()],
+        restrictions: [],
       }),
     ),
   };
@@ -36,6 +37,7 @@ describe("specialistLessonDownload.query", () => {
           specialistLessonDownloads: jest.fn(() =>
             Promise.resolve({
               specialistLessonDownloads: [],
+              restrictions: [],
             }),
           ),
         })({
