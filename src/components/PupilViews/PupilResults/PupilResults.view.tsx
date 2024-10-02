@@ -133,7 +133,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
                   lessonSection={"starter-quiz"}
                 />
               ))}
-            {exitQuiz?.questionResults && (
+            {starterQuiz?.questionResults && (
               <CopyrightNotice isLegacyLicense={isLegacy} />
             )}
 
