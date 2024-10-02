@@ -33,7 +33,7 @@ describe("UnitsLearningThemeFilters", () => {
             themeSlug: "grammar",
           },
         ]}
-        idSuffix="test"
+        idSuffix="desktop"
         selectedThemeSlug={"all"}
         linkProps={{
           page: "unit-index",
@@ -45,6 +45,7 @@ describe("UnitsLearningThemeFilters", () => {
           subjectSlug: "english",
           subjectTitle: "English",
         }}
+        browseRefined={browseRefined}
         onChangeCallback={jest.fn}
       />,
     );
@@ -62,5 +63,42 @@ describe("UnitsLearningThemeFilters", () => {
       filterValue: "Grammar",
       activeFilters: { keyStage: ["ks3"], subject: ["english"] },
     });
+  });
+
+  test("on mobile, invokes setMobileFilter with correct value", async () => {
+    const setMobileFilter = jest.fn();
+    renderWithProviders()(
+      <UnitsLearningThemeFilters
+        programmeSlug="maths-secondary-ks3"
+        labelledBy={"Learning Theme Filter"}
+        learningThemes={[
+          {
+            themeTitle: "Grammar",
+            themeSlug: "grammar",
+          },
+        ]}
+        idSuffix="mobile"
+        selectedThemeSlug={"all"}
+        setMobileFilter={setMobileFilter}
+        linkProps={{
+          page: "unit-index",
+          programmeSlug: "maths-secondary-ks3",
+        }}
+        trackingProps={{
+          keyStageSlug: "ks3",
+          keyStageTitle: "Key stage 3",
+          subjectSlug: "english",
+          subjectTitle: "English",
+        }}
+        browseRefined={browseRefined}
+        onChangeCallback={jest.fn}
+      />,
+    );
+
+    const user = userEvent.setup();
+    const grammarThread = screen.getByText("Grammar");
+    await user.click(grammarThread);
+
+    expect(setMobileFilter).toHaveBeenCalledWith("grammar");
   });
 });

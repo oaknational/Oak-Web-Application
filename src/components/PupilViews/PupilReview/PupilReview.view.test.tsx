@@ -1,7 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakPupilClientProvider,
   useOakPupil,
@@ -24,10 +23,6 @@ Object.assign(navigator, {
     writeText,
   },
 });
-
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: jest.fn((a) => a),
-}));
 
 Object.defineProperty(window, "open", {
   configurable: true,
@@ -156,35 +151,7 @@ describe("PupilReview", () => {
     expect(queryByText("Fantastic job - well done!")).toBeInTheDocument();
   });
   describe("Printable results button", () => {
-    it("should not display the print button when the feature flag is disabled", () => {
-      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(false);
-      const { queryByText } = renderWithTheme(
-        <OakPupilClientProvider
-          config={{
-            getLessonAttemptUrl: "example.com",
-            logLessonAttemptUrl: "example.com",
-          }}
-        >
-          <OakThemeProvider theme={oakDefaultTheme}>
-            <LessonEngineContext.Provider value={createLessonEngineContext()}>
-              <PupilViewsReview
-                lessonTitle="Lesson title"
-                exitQuizQuestionsArray={[]}
-                starterQuizQuestionsArray={[]}
-                programmeSlug="programme-slug"
-                unitSlug="unit-slug"
-                pageType="browse"
-                browseData={mockBroweData}
-              />
-            </LessonEngineContext.Provider>
-          </OakThemeProvider>
-        </OakPupilClientProvider>,
-      );
-
-      expect(queryByText("Printable results")).not.toBeInTheDocument();
-    });
-    it("should display the print button when the feature flag is enabled", () => {
-      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+    it("should display the print button", () => {
       const { queryByText } = renderWithTheme(
         <OakPupilClientProvider
           config={{
@@ -211,7 +178,6 @@ describe("PupilReview", () => {
       expect(queryByText("Printable results")).toBeInTheDocument();
     });
     it("logAttempt function is called when button is clicked", async () => {
-      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
       //spy on the track function
       const logAttemptSpy = jest.fn(() => Promise.resolve("attempt-id"));
       (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
@@ -248,36 +214,8 @@ describe("PupilReview", () => {
       });
     });
   });
-  describe("Share results button", () => {
-    it("should not display the print button when the feature flag is disabled", () => {
-      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(false);
-      const { queryByText } = renderWithTheme(
-        <OakPupilClientProvider
-          config={{
-            getLessonAttemptUrl: "example.com",
-            logLessonAttemptUrl: "example.com",
-          }}
-        >
-          <OakThemeProvider theme={oakDefaultTheme}>
-            <LessonEngineContext.Provider value={createLessonEngineContext()}>
-              <PupilViewsReview
-                lessonTitle="Lesson title"
-                exitQuizQuestionsArray={[]}
-                starterQuizQuestionsArray={[]}
-                programmeSlug="programme-slug"
-                unitSlug="unit-slug"
-                pageType="browse"
-                browseData={mockBroweData}
-              />
-            </LessonEngineContext.Provider>
-          </OakThemeProvider>
-        </OakPupilClientProvider>,
-      );
-
-      expect(queryByText("Share results")).not.toBeInTheDocument();
-    });
-    it("should display the print button when the feature flag is enabled", () => {
-      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+  describe("Copy link button", () => {
+    it("should display the print button", () => {
       const { queryByText } = renderWithTheme(
         <OakPupilClientProvider
           config={{
@@ -301,10 +239,9 @@ describe("PupilReview", () => {
         </OakPupilClientProvider>,
       );
 
-      expect(queryByText("Share results")).toBeInTheDocument();
+      expect(queryByText("Copy link")).toBeInTheDocument();
     });
     it("logAttempt function is called when button is clicked", () => {
-      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
       //spy on the track function
       const logAttemptSpy = jest.fn(() => "some-attempt-id");
       (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
@@ -335,7 +272,7 @@ describe("PupilReview", () => {
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
-      const button = getByText("Share results");
+      const button = getByText("Copy link");
       // Simulate the button click
       act(() => {
         button.click(); // Manually trigger click
@@ -345,7 +282,6 @@ describe("PupilReview", () => {
       expect(logAttemptSpy).toHaveBeenCalledTimes(1);
     });
     it("throws error if promise returns null", () => {
-      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
       //spy on the track function
       const logAttemptSpy = jest.fn(() => ({
         promise: Promise.reject(new Error("Test error")), // Simulate a rejected promise
@@ -387,7 +323,7 @@ describe("PupilReview", () => {
 
       consoleErrorSpy.mockRestore();
 
-      const button = getByText("Share results");
+      const button = getByText("Copy link");
 
       userEvent.click(button).then(() => {
         expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
@@ -397,8 +333,6 @@ describe("PupilReview", () => {
       });
     });
     it("copies the correct url to the clipboard when logAttempt returns a promise", () => {
-      // Enable the feature flag
-      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
       const logAttemptSpy = jest.fn(() => ({
         promise: Promise.reject(new Error("Test error")),
         attemptId: "some-attempt-id",
@@ -437,7 +371,7 @@ describe("PupilReview", () => {
       );
 
       // Find the button and log its presence
-      const button = getByText("Share results");
+      const button = getByText("Copy link");
       expect(button).toBeInTheDocument(); // Ensure the button exists
 
       // Simulate the button click
@@ -453,7 +387,6 @@ describe("PupilReview", () => {
     });
     it("copies correct url to clipboard when logAttempt returns a string", () => {
       // Enable the feature flag
-      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
       const logAttemptSpy = jest.fn(() => "some-attempt-id");
 
       // Mock useOakPupil to return an object with logAttempt
@@ -489,7 +422,7 @@ describe("PupilReview", () => {
       );
 
       // Find the button and log its presence
-      const button = getByText("Share results");
+      const button = getByText("Copy link");
       expect(button).toBeInTheDocument(); // Ensure the button exists
 
       // Simulate the button click

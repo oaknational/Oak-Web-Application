@@ -14,12 +14,12 @@ import {
   OakPrimaryButton,
   OakTertiaryButton,
   OakSecondaryButton,
+  OakBox,
 } from "@oaknational/oak-components";
 import {
   attemptDataCamelCaseSchema,
   useOakPupil,
 } from "@oaknational/oak-pupil-client";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { PupilExperienceViewProps } from "../PupilExperience";
 
@@ -67,7 +67,9 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
 
   const pupilClient = useOakPupil();
   const { logAttempt } = pupilClient;
-  const isShowShareButtons = useFeatureFlagEnabled("share-results-button");
+  const hasQuiz =
+    lessonReviewSections.includes("exit-quiz") ||
+    lessonReviewSections.includes("starter-quiz");
   const [isAttemptingShare, setIsAttemptingShare] = useState<
     "failed" | "shared" | "initial"
   >("initial");
@@ -178,7 +180,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
-              {isShowShareButtons && (
+              {hasQuiz && (
                 <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
                   <OakHeading tag="h2" $font={"body-2-bold"}>
                     Share options:
@@ -187,29 +189,32 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                     $gap={"space-between-s"}
                     $flexDirection={["column", "row"]}
                   >
+                    <OakBox $display={["none", "flex"]}>
+                      <OakSecondaryButton
+                        type="button"
+                        role="button"
+                        aria-label="Printable results, opens in a new tab"
+                        title="Printable results (opens in a new tab)"
+                        iconName={"external"}
+                        isTrailingIcon
+                        onClick={handlePrintableResultsClick}
+                        data-testid="printable-results-button"
+                      >
+                        Printable results
+                      </OakSecondaryButton>
+                    </OakBox>
+
                     <OakSecondaryButton
                       type="button"
                       role="button"
-                      aria-label="Printable results, opens in a new tab"
-                      title="Printable results (opens in a new tab)"
-                      iconName={"external"}
-                      isTrailingIcon
-                      onClick={handlePrintableResultsClick}
-                      data-testid="printable-results-button"
-                    >
-                      Printable results
-                    </OakSecondaryButton>
-                    <OakSecondaryButton
-                      type="button"
-                      role="button"
-                      aria-label="Share results"
-                      title="Share results"
+                      aria-label="Copy link to clipboard"
+                      title="Copy link to clipboard"
                       onClick={handleShareResultsClick}
-                      iconName={"share"}
+                      iconName={"copy"}
                       isTrailingIcon
                       data-testid="share-results-button"
                     >
-                      Share results
+                      Copy link
                     </OakSecondaryButton>
                   </OakFlex>
                   {isAttemptingShare === "shared" && (

@@ -18,6 +18,7 @@ describe("SubjectCategoryFilters", () => {
     pathname: "/test-path",
   };
   beforeEach(() => {
+    jest.resetAllMocks();
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
   });
 
@@ -76,5 +77,71 @@ describe("SubjectCategoryFilters", () => {
     );
 
     expect(getByText("Test Category")).toBeInTheDocument();
+  });
+
+  it("browse refined analytics provider invoked with correct props", () => {
+    const category = {
+      slug: "test-category",
+      label: "Test Category",
+      iconName: "grammar",
+    };
+    renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <SubjectCategoryFilters
+          programmeSlug={"test-programme"}
+          categorySlug={"all"}
+          browseRefined={browseRefined}
+          idSuffix={"desktop"}
+          subjectCategories={[category]}
+        />
+      </OakThemeProvider>,
+    );
+
+    const categoryButton = screen.getByText("Test Category");
+    fireEvent.click(categoryButton);
+
+    expect(browseRefined).toHaveBeenCalledWith({
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "refine",
+      componentType: "filter_link",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      filterValue: "Test Category",
+      filterType: "Subject filter",
+      activeFilters: {
+        content_types: "units",
+        learning_themes: undefined,
+        year_group: undefined,
+      },
+    });
+  });
+
+  it("on mobile, setCategory function invoked with selected category", () => {
+    const mockSetCategory = jest.fn();
+
+    const category = {
+      slug: "test-category",
+      label: "Test Category",
+      iconName: "grammar",
+    };
+    renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <SubjectCategoryFilters
+          programmeSlug={"test-programme"}
+          categorySlug={"all"}
+          browseRefined={browseRefined}
+          idSuffix={"mobile"}
+          setCategory={mockSetCategory}
+          subjectCategories={[category]}
+        />
+      </OakThemeProvider>,
+    );
+
+    const categoryButton = screen.getByText("Test Category");
+    fireEvent.click(categoryButton);
+
+    expect(mockSetCategory).toHaveBeenCalledWith("test-category");
+    expect(mockRouter.replace).not.toHaveBeenCalled();
   });
 });
