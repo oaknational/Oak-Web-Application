@@ -105,7 +105,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
                   },
                 });
               } else {
-                setCategory && setCategory("");
+                setCategory?.("");
               }
             }}
           />

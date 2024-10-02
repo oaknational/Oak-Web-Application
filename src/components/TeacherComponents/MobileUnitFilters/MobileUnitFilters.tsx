@@ -131,7 +131,6 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
     setCategory(router.query["category"]?.toString() ?? "");
     setTheme(router.query["learning-theme"]?.toString() ?? "");
   };
-  // Cloudinary svg system icon not accepting color props
   return (
     <>
       <OakTertiaryButton

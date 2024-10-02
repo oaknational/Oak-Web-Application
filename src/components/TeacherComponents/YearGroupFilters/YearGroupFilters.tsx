@@ -102,7 +102,7 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
                   { shallow: true },
                 );
               } else {
-                setYear && setYear("");
+                setYear?.("");
               }
             }}
           />

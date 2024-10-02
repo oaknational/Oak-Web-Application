@@ -106,7 +106,7 @@ const UnitsLearningThemeFilters = ({
 
       window.history.replaceState(window.history.state, "", newUrl);
     } else {
-      setMobileFilter && setMobileFilter(callbackValue);
+      setMobileFilter?.(callbackValue);
       setActiveThemeSlug(theme.slug);
     }
   };
