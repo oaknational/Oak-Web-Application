@@ -59,12 +59,6 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     isLessonComplete,
     lessonReviewSections,
   } = useLessonEngineContext();
-  console.log(
-    "sectionResults",
-    sectionResults,
-    lessonReviewSections.includes("exit-quiz"),
-    lessonReviewSections.includes("starter-quiz"),
-  );
   const getSectionLinkProps = useGetSectionLinkProps();
 
   const { finalFeedback } = useLessonReviewFeedback(
@@ -222,7 +216,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                       isTrailingIcon
                       data-testid="share-results-button"
                     >
-                      Share results
+                      Copy link
                     </OakSecondaryButton>
                   </OakFlex>
                   {isAttemptingShare === "shared" && (

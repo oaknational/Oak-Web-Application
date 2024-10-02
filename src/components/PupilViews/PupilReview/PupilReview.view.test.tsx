@@ -248,7 +248,7 @@ describe("PupilReview", () => {
       });
     });
   });
-  describe("Share results button", () => {
+  describe("Copy link button", () => {
     it("should not display the print button when the feature flag is disabled", () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(false);
       const { queryByText } = renderWithTheme(
@@ -274,7 +274,7 @@ describe("PupilReview", () => {
         </OakPupilClientProvider>,
       );
 
-      expect(queryByText("Share results")).not.toBeInTheDocument();
+      expect(queryByText("Copy link")).not.toBeInTheDocument();
     });
     it("should display the print button when the feature flag is enabled", () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
@@ -301,7 +301,7 @@ describe("PupilReview", () => {
         </OakPupilClientProvider>,
       );
 
-      expect(queryByText("Share results")).toBeInTheDocument();
+      expect(queryByText("Copy link")).toBeInTheDocument();
     });
     it("logAttempt function is called when button is clicked", () => {
       (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
@@ -335,7 +335,7 @@ describe("PupilReview", () => {
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
-      const button = getByText("Share results");
+      const button = getByText("Copy link");
       // Simulate the button click
       act(() => {
         button.click(); // Manually trigger click
@@ -387,7 +387,7 @@ describe("PupilReview", () => {
 
       consoleErrorSpy.mockRestore();
 
-      const button = getByText("Share results");
+      const button = getByText("Copy link");
 
       userEvent.click(button).then(() => {
         expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
@@ -437,7 +437,7 @@ describe("PupilReview", () => {
       );
 
       // Find the button and log its presence
-      const button = getByText("Share results");
+      const button = getByText("Copy link");
       expect(button).toBeInTheDocument(); // Ensure the button exists
 
       // Simulate the button click
@@ -489,7 +489,7 @@ describe("PupilReview", () => {
       );
 
       // Find the button and log its presence
-      const button = getByText("Share results");
+      const button = getByText("Copy link");
       expect(button).toBeInTheDocument(); // Ensure the button exists
 
       // Simulate the button click
