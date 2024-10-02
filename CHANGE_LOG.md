@@ -1,3 +1,10 @@
+## [1.572.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.572.0...v1.572.1) (2024-10-02)
+
+
+### Bug Fixes
+
+* rendering the registration UI twice ([e53028e](https://github.com/oaknational/Oak-Web-Application/commit/e53028e79e3d3b1688eb5f69033f908dbce25a43))
+
 # [1.572.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.571.1...v1.572.0) (2024-10-02)
 
 
