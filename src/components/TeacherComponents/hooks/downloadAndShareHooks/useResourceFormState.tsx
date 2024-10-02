@@ -68,10 +68,10 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   useEffect(() => {
     if (user != null) {
       // as user has signed in with full onboarding journey on OWA
-      const newHasOnboardingDownloadDetails = Boolean(
+      const hasOnboardingDownloadDetails = Boolean(
         authFlagEnabled && isSignedIn && user.publicMetadata?.owa?.isTeacher,
       );
-      setHasOnboardingDownloadDetails(newHasOnboardingDownloadDetails);
+      setHasOnboardingDownloadDetails(hasOnboardingDownloadDetails);
     }
   }, [authFlagEnabled, isSignedIn, user, user?.publicMetadata?.owa?.isTeacher]);
 
