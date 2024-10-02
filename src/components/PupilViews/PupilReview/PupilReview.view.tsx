@@ -209,8 +209,8 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                     <OakSecondaryButton
                       type="button"
                       role="button"
-                      aria-label="Share results"
-                      title="Share results"
+                      aria-label="Copy link to clipboard"
+                      title="Copy link to clipboard"
                       onClick={handleShareResultsClick}
                       iconName={"copy"}
                       isTrailingIcon
