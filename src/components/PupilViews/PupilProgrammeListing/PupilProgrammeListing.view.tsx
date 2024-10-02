@@ -13,21 +13,20 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
-import { getExamboardData } from "./getExamboardData";
-
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
-import {
-  BrowseExamboardSelector,
-  ExamboardData,
-} from "@/components/PupilComponents/BrowseExamboardSelector";
-import {
-  BrowseTierSelector,
-  TierData,
-} from "@/components/PupilComponents/BrowseTierSelector";
+import { BrowseExamboardSelector } from "@/components/PupilComponents/BrowseExamboardSelector";
+import { BrowseTierSelector } from "@/components/PupilComponents/BrowseTierSelector";
 import { resolveOakHref } from "@/common-lib/urls";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
+import { BrowsePathwaySelector } from "@/components/PupilComponents/BrowsePathwaySelector";
+import {
+  ExamboardData,
+  PathwayData,
+  TierData,
+} from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
+import { getExamboardData } from "@/pages-helpers/pupil/options-pages/getExamboardData";
 
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
@@ -36,6 +35,7 @@ export type PupilViewsProgrammeListingProps = {
   examboardSlug?: ExamboardData["examboardSlug"];
   examboards: ExamboardData[];
   tiers: TierData[];
+  pathways: PathwayData[];
 };
 
 export const PupilViewsProgrammeListing = ({
@@ -45,12 +45,18 @@ export const PupilViewsProgrammeListing = ({
   examboardSlug,
   examboards,
   tiers,
+  pathways,
 }: PupilViewsProgrammeListingProps) => {
   const [chosenExamboard, setChosenExamboard] = useState<ExamboardData | null>(
     examboardSlug && examboards.length >= 1
       ? getExamboardData({ examboardSlug, availableExamboards: examboards })
       : null,
   );
+
+  const [chosenTier, setChosenTier] = useState<TierData | null>(null); // TODO: this potentially might be set from a slug in future
+  const [chosenPathway, setChosenPathway] = useState<PathwayData | null>(null);
+
+  // TODO: recalculate examboards, tiers, pathways based on chosenExamboard, chosenTier, chosenPathway - this way we avoid offering options which don't exist
 
   if (!programmes[0]) {
     throw new Error("No programme data available");
@@ -67,28 +73,59 @@ export const PupilViewsProgrammeListing = ({
   const yearDescriptions = programmes[0]?.programmeFields.yearDescription;
 
   const topNavSlot = () => {
-    if (chosenExamboard !== null && tiers.length > 1) {
-      return (
-        <OakTertiaryButton
-          iconName="arrow-left"
-          onClick={() => setChosenExamboard(null)}
-        >
-          Change examboard
-        </OakTertiaryButton>
-      );
-    } else {
-      return (
-        <OakTertiaryButton
-          iconName="arrow-left"
-          element="a"
-          href={resolveOakHref({
-            page: "pupil-subject-index",
-            yearSlug,
-          })}
-        >
-          Change subject
-        </OakTertiaryButton>
-      );
+    const current = getCurrentOption();
+    const options = ["pathway", "examboard", "tier"].filter(
+      (f) =>
+        (f === "pathway" && pathways.length > 1) ||
+        (f === "tier" && tiers.length > 1) ||
+        (f === "examboard" && examboards.length > 1),
+    );
+    const currentIndex = options.indexOf(current);
+    const prevIndex = currentIndex - 1;
+    const option = options[prevIndex] || "none";
+
+    switch (option) {
+      case "examboard":
+        return (
+          <OakTertiaryButton
+            iconName="arrow-left"
+            onClick={() => setChosenExamboard(null)}
+          >
+            Change examboard
+          </OakTertiaryButton>
+        );
+
+      case "tier":
+        return (
+          <OakTertiaryButton
+            iconName="arrow-left"
+            onClick={() => setChosenTier(null)}
+          >
+            Change tier
+          </OakTertiaryButton>
+        );
+      case "pathway":
+        return (
+          <OakTertiaryButton
+            iconName="arrow-left"
+            onClick={() => setChosenPathway(null)}
+          >
+            Change pathway
+          </OakTertiaryButton>
+        );
+      default:
+        return (
+          <OakTertiaryButton
+            iconName="arrow-left"
+            element="a"
+            href={resolveOakHref({
+              page: "pupil-subject-index",
+              yearSlug,
+            })}
+          >
+            Change subject
+          </OakTertiaryButton>
+        );
     }
   };
 
@@ -97,50 +134,83 @@ export const PupilViewsProgrammeListing = ({
     breadcrumbs.push(chosenExamboard.examboard);
   }
 
+  const getCurrentOption = () => {
+    const options = [];
+    if (pathways.length > 1 && chosenPathway === null) {
+      options.push("pathway");
+    }
+    if (examboards.length > 1 && chosenExamboard === null) {
+      options.push("examboard");
+    }
+    if (tiers.length > 1 && chosenTier === null) {
+      options.push("tier");
+    }
+
+    return options[0] || "none";
+  };
+
   const BrowseOptions = () => {
-    if (
-      (chosenExamboard !== null && tiers.length > 1) ||
-      (examboards.length <= 1 && tiers.length >= 1)
-    ) {
-      return (
-        <BrowseTierSelector
-          tiers={tiers}
-          baseSlug={baseSlug}
-          examboardSlug={
-            chosenExamboard ? chosenExamboard.examboardSlug : undefined
-          }
-          phaseSlug={phaseSlug}
-        />
-      );
-    } else if (examboards.length > 1 && chosenExamboard === null) {
-      return (
-        <BrowseExamboardSelector
-          examboards={examboards}
-          baseSlug={baseSlug}
-          onClick={
-            tiers.length > 1
-              ? (examboard) => setChosenExamboard(examboard)
-              : undefined
-          }
-          phaseSlug={phaseSlug}
-        />
-      );
-    } else {
-      return <OakBox>No programme factors to be selected</OakBox>;
+    switch (getCurrentOption()) {
+      case "pathway":
+        return (
+          <BrowsePathwaySelector
+            pathways={pathways}
+            onClick={setChosenPathway}
+            phaseSlug={phaseSlug}
+          />
+        );
+      case "tier":
+        return (
+          <BrowseTierSelector
+            tiers={tiers}
+            baseSlug={baseSlug}
+            examboardSlug={
+              chosenExamboard ? chosenExamboard.examboardSlug : undefined
+            }
+            phaseSlug={phaseSlug}
+          />
+        );
+      case "examboard":
+        return (
+          <BrowseExamboardSelector
+            examboards={examboards}
+            baseSlug={baseSlug}
+            onClick={
+              tiers.length > 1
+                ? (examboard) => setChosenExamboard(examboard)
+                : undefined
+            }
+            phaseSlug={phaseSlug}
+          />
+        );
+      default:
+        return <OakBox>No programme factors to be selected</OakBox>;
     }
   };
 
   const optionTitles = (): { hint: string; title: string } => {
-    if (examboards.length > 1 && chosenExamboard === null) {
-      return {
-        hint: "An exam board sets and assesses what you learn in your GCSE course. If you can't find your exam board here or are not sure which exam board you are studying, ask your teacher.",
-        title: "Choose an exam board",
-      };
+    switch (getCurrentOption()) {
+      case "pathway":
+        return {
+          hint: "A pathway is either examined or non-examined",
+          title: "Choose a pathway",
+        };
+      case "examboard":
+        return {
+          hint: "An exam board sets and assesses what you learn in your GCSE course. If you can't find your exam board here or are not sure which exam board you are studying, ask your teacher.",
+          title: "Choose an exam board",
+        };
+      case "tier":
+        return {
+          hint: "Some GCSE subjects have a foundation and higher tier. Different content may be covered in each tier so it is important to check with your teacher if you are unsure which tier you are doing.",
+          title: "Choose a tier",
+        };
+      default:
+        return {
+          hint: "",
+          title: "No programme factors to be selected",
+        };
     }
-    return {
-      hint: "Some GCSE subjects have a foundation and higher tier. Different content may be covered in each tier so it is important to check with your teacher if you are unsure which tier you are doing.",
-      title: "Choose a tier",
-    };
   };
 
   const iconSlug = `subject-${subjectSlug}`;

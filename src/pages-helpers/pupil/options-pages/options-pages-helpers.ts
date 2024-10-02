@@ -9,9 +9,12 @@ import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/querie
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
-import { getAvailableProgrammeFactor } from "@/components/PupilViews/PupilProgrammeListing/getAvailableProgrammeFactor";
-import { ExamboardData } from "@/components/PupilComponents/BrowseExamboardSelector";
-import { TierData } from "@/components/PupilComponents/BrowseTierSelector";
+import {
+  ExamboardData,
+  PathwayData,
+  TierData,
+  getAvailableProgrammeFactor,
+} from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 import { PupilViewsProgrammeListingProps } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 
 export type OptionsURLParams = {
@@ -57,8 +60,11 @@ export const getPupilOptionData = async (
   }
 
   const yearSlug = getYearSlug({ programmes });
+
+  // these get the inital values for the SSR but subsequent values are dynamically produced by the client taking state into account
   const examboards = getExamboards(programmes);
   const tiers = getTiers(programmes);
+  const pathways = getPathways(programmes);
 
   return {
     props: {
@@ -68,6 +74,7 @@ export const getPupilOptionData = async (
       examboardSlug,
       examboards,
       tiers,
+      pathways,
     },
   };
 };
@@ -140,4 +147,29 @@ const getTiers = (programmes: PupilProgrammeListingData[]) => {
     .filter((tier): tier is TierData => tier !== undefined);
 
   return tiers;
+};
+
+const getPathways = (programmes: PupilProgrammeListingData[]) => {
+  const allPathways: { [key: string]: PathwayData[] } = groupBy(
+    getAvailableProgrammeFactor({
+      programmes,
+      factorPrefix: "pathway",
+    }) as PathwayData[],
+    (pathway: PathwayData) => pathway.pathway,
+  );
+
+  // This creates an array of pathways giving preference to non-legacy examboards
+  const pathways = Object.keys(allPathways)
+    .map((pathway) => {
+      const mappedPathway = allPathways[pathway];
+      if (!Array.isArray(mappedPathway) || mappedPathway.length < 1) return;
+      return (
+        allPathways[pathway]?.find(
+          (pathway: PathwayData) => !pathway.isLegacy,
+        ) ?? mappedPathway[0]
+      );
+    })
+    .filter((pathway): pathway is PathwayData => pathway !== undefined);
+
+  return pathways;
 };
