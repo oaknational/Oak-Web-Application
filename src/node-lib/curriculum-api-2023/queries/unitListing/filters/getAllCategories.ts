@@ -1,7 +1,7 @@
 import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 import { kebabCase } from "lodash";
 
-type Category = {
+export type Category = {
   label: string;
   iconName: string;
   slug: string;

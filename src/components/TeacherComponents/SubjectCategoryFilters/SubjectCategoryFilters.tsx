@@ -9,14 +9,17 @@ import {
 import styled from "styled-components";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
+import { Category } from "@/node-lib/curriculum-api-2023/queries/unitListing/filters/getAllCategories";
 
 type SubjectCategoryFiltersProps = {
-  subjectCategories: { label: string; slug: string; iconName: string }[];
+  subjectCategories: Category[];
   categorySlug: string | undefined;
   browseRefined: TrackFns["browseRefined"];
   idSuffix: "desktop" | "mobile";
   selectedThemeSlug?: string;
   programmeSlug: string;
+  activeMobileFilter?: string;
+  setCategory?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const StyledFieldset = styled.fieldset`
@@ -32,16 +35,19 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
   idSuffix,
   selectedThemeSlug,
   programmeSlug,
+  activeMobileFilter,
+  setCategory,
 }) => {
   const router = useRouter();
+  const isMobile = idSuffix === "mobile";
 
   return (
     <OakFlex
       $mv="space-between-m"
       $flexDirection={"column"}
-      $pb={"inner-padding-xl2"}
-      $bb={"border-solid-s"}
-      $borderColor={"border-neutral-lighter"}
+      $pb={isMobile ? undefined : "inner-padding-xl2"}
+      $bb={isMobile ? undefined : "border-solid-s"}
+      $borderColor={isMobile ? undefined : "border-neutral-lighter"}
       $flexGrow={1}
     >
       <StyledFieldset>
@@ -65,38 +71,42 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
             id={`all-categories-${idSuffix}`}
             checked={!categorySlug}
             onChange={() => {
-              router.replace(
-                {
-                  pathname: router.pathname,
-                  query: {
-                    ...(selectedThemeSlug && {
-                      "learning-theme": selectedThemeSlug,
-                    }),
-                    programmeSlug,
-                    ...(router.query.year && {
-                      year: router.query.year,
-                    }),
+              if (!isMobile) {
+                router.replace(
+                  {
+                    pathname: router.pathname,
+                    query: {
+                      ...(selectedThemeSlug && {
+                        "learning-theme": selectedThemeSlug,
+                      }),
+                      programmeSlug,
+                      ...(router.query.year && {
+                        year: router.query.year,
+                      }),
+                    },
                   },
-                },
-                undefined,
-                { shallow: true },
-              );
+                  undefined,
+                  { shallow: true },
+                );
 
-              browseRefined({
-                platform: "owa",
-                product: "teacher lesson resources",
-                engagementIntent: "refine",
-                componentType: "filter_link",
-                eventVersion: "2.0.0",
-                analyticsUseCase: "Teacher",
-                filterValue: "all",
-                filterType: "Subject filter",
-                activeFilters: {
-                  content_types: "units",
-                  learning_themes: router.query.learningTheme,
-                  year_group: router.query.year,
-                },
-              });
+                browseRefined({
+                  platform: "owa",
+                  product: "teacher lesson resources",
+                  engagementIntent: "refine",
+                  componentType: "filter_link",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  filterValue: "all",
+                  filterType: "Subject filter",
+                  activeFilters: {
+                    content_types: "units",
+                    learning_themes: router.query.learningTheme,
+                    year_group: router.query.year,
+                  },
+                });
+              } else {
+                setCategory?.("");
+              }
             }}
           />
           {subjectCategories.map((category) => (
@@ -106,40 +116,48 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
               value={`${idSuffix}-${category.slug}`}
               displayValue={category.label}
               id={`${category.label}-${idSuffix}`}
-              checked={categorySlug === category.slug}
+              checked={
+                !isMobile
+                  ? categorySlug === category.slug
+                  : activeMobileFilter === category.slug
+              }
               onChange={() => {
-                browseRefined({
-                  platform: "owa",
-                  product: "teacher lesson resources",
-                  engagementIntent: "refine",
-                  componentType: "filter_link",
-                  eventVersion: "2.0.0",
-                  analyticsUseCase: "Teacher",
-                  filterValue: category.label,
-                  filterType: "Subject filter",
-                  activeFilters: {
-                    content_types: "units",
-                    learning_themes: router.query.learningTheme,
-                    year_group: router.query.year,
-                  },
-                });
-                router.replace(
-                  {
-                    pathname: router.pathname,
-                    query: {
-                      ...(selectedThemeSlug && {
-                        "learning-theme": selectedThemeSlug,
-                      }),
-                      programmeSlug,
-                      category: category.slug,
-                      ...(router.query.year && {
-                        year: router.query.year,
-                      }),
+                if (!isMobile) {
+                  browseRefined({
+                    platform: "owa",
+                    product: "teacher lesson resources",
+                    engagementIntent: "refine",
+                    componentType: "filter_link",
+                    eventVersion: "2.0.0",
+                    analyticsUseCase: "Teacher",
+                    filterValue: category.label,
+                    filterType: "Subject filter",
+                    activeFilters: {
+                      content_types: "units",
+                      learning_themes: router.query.learningTheme,
+                      year_group: router.query.year,
                     },
-                  },
-                  undefined,
-                  { shallow: true },
-                );
+                  });
+                  router.replace(
+                    {
+                      pathname: router.pathname,
+                      query: {
+                        ...(selectedThemeSlug && {
+                          "learning-theme": selectedThemeSlug,
+                        }),
+                        programmeSlug,
+                        category: category.slug,
+                        ...(router.query.year && {
+                          year: router.query.year,
+                        }),
+                      },
+                    },
+                    undefined,
+                    { shallow: true },
+                  );
+                } else {
+                  setCategory && setCategory(category.slug);
+                }
               }}
             />
           ))}
