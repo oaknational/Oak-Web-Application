@@ -1,3 +1,10 @@
+# [1.572.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.571.1...v1.572.0) (2024-10-02)
+
+
+### Features
+
+* **LESQ-981:** query for `geo_restricted` and `login_required` in downloads ([aea3fbf](https://github.com/oaknational/Oak-Web-Application/commit/aea3fbfa797028ba30e56ae3e5ae0e5f116d3eba))
+
 ## [1.571.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.571.0...v1.571.1) (2024-10-01)
 
 
