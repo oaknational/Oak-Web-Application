@@ -33,6 +33,8 @@ export const downloadsAssetData = z.object({
   has_supplementary_asset_object: z.boolean(),
   is_legacy: z.boolean(),
   expired: z.boolean().nullable().optional(),
+  geo_restricted: z.boolean().nullable(),
+  login_required: z.boolean().nullable(),
 });
 
 export const lessonDownloadsQueryRaw = z.object({
@@ -43,9 +45,7 @@ export const lessonDownloadsQueryRaw = z.object({
 export type LessonDownloadsListSchema = z.infer<
   typeof lessonDownloadsListSchema
 >;
-export type LessonDownloadsPageData = z.infer<typeof lessonDownloadsSchema> & {
-  isDownloadRegionRestricted: boolean;
-};
+export type LessonDownloadsPageData = z.infer<typeof lessonDownloadsSchema>;
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
 export type NextLessonSchema = z.infer<typeof nextLessonSchema>;
 export type NextLesson = {

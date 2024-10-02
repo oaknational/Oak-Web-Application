@@ -16,6 +16,8 @@ const downloadAssets = {
   has_supplementary_asset_object: true,
   is_legacy: true,
   expired: true,
+  geo_restricted: false,
+  login_required: false,
 };
 
 describe("lessonDownloads()", () => {
@@ -88,6 +90,8 @@ describe("lessonDownloads()", () => {
                 has_supplementary_asset_object: true,
                 is_legacy: true,
                 expired: true,
+                geo_restricted: false,
+                login_required: false,
               },
             ],
             browse_data: [syntheticUnitvariantLessonsFixture()],
@@ -174,6 +178,8 @@ describe("lessonDownloadsCanonical()", () => {
                 starter_quiz: [],
                 exit_quiz: [],
                 is_legacy: true,
+                geo_restricted: false,
+                login_required: false,
               },
             ],
             browse_data: [syntheticUnitvariantLessonsFixture()],
