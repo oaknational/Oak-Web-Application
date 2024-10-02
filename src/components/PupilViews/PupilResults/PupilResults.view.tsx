@@ -16,6 +16,7 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { QuizResultInner } from "@/components/PupilComponents/QuizResultInner";
 import { QuestionState } from "@/components/PupilComponents/QuizUtils/questionTypes";
+import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 
 type PupilViewsResultsProps = {
   attemptData: LessonAttemptCamelCase;
@@ -76,7 +77,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
     browseData,
   } = props;
   const { sectionResults } = attemptData;
-  const { programmeFields, lessonData } = browseData;
+  const { programmeFields, lessonData, isLegacy } = browseData;
   const { yearDescription, subject, subjectSlug } = programmeFields;
   const { title } = lessonData;
   const exitQuiz = sectionResults["exit-quiz"];
@@ -132,6 +133,9 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
                   lessonSection={"starter-quiz"}
                 />
               ))}
+            {exitQuiz?.questionResults && (
+              <CopyrightNotice isLegacyLicense={isLegacy} />
+            )}
 
             {exitQuiz?.questionResults && (
               <>
@@ -153,6 +157,9 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
                   lessonSection={"exit-quiz"}
                 />
               ))}
+            {exitQuiz?.questionResults && (
+              <CopyrightNotice isLegacyLicense={isLegacy} />
+            )}
           </OakFlex>
         </OakMaxWidth>
       </MathJaxWrap>
