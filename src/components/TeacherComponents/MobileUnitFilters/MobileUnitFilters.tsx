@@ -136,7 +136,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
     <>
       <OakTertiaryButton
         isTrailingIcon
-        iconName="system"
+        iconName="filter"
         onClick={() => setIsOpen(true)}
       >
         Filter
