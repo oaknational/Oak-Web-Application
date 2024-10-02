@@ -16,7 +16,10 @@ const Template: StoryFn<typeof Component> = (args) => (
   <Component {...args}>Heading 1</Component>
 );
 
-export const Heading = Template.bind({});
-Heading.args = {
-  tag: "h1",
+export const Heading = {
+  render: Template,
+
+  args: {
+    tag: "h1",
+  },
 };

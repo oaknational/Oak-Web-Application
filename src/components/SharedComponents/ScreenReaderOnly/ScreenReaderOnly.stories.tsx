@@ -14,6 +14,7 @@ const Template: StoryFn<typeof Component> = (args) => (
   </Component>
 );
 
-export const ScreenReaderOnly = Template.bind({});
-
-ScreenReaderOnly.args = {};
+export const ScreenReaderOnly = {
+  render: Template,
+  args: {},
+};

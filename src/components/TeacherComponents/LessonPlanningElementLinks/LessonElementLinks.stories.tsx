@@ -17,4 +17,6 @@ const Template: StoryFn<typeof Component> = () => (
   />
 );
 
-export const LessonPlanningElementLinks = Template.bind({});
+export const LessonPlanningElementLinks = {
+  render: Template,
+};

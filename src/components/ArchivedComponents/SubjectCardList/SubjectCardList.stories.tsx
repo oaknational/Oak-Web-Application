@@ -1,4 +1,4 @@
-import { StoryFn, Meta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
 
@@ -9,10 +9,6 @@ export default {
   component: Component,
   argTypes: {},
 } as Meta<typeof Component>;
-
-const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
-
-export const SubjectCardList = Template.bind({});
 
 const subjects = [
   [
@@ -26,14 +22,16 @@ const subjects = [
   ],
 ] as unknown as KeyStageSubject[];
 
-SubjectCardList.args = {
-  subjects: subjects,
-  isAvailable: true,
+export const SubjectCardList = {
+  args: {
+    subjects: subjects,
+    isAvailable: true,
+  },
 };
 
-export const SubjectCardListUnavailable = Template.bind({});
-
-SubjectCardListUnavailable.args = {
-  subjects: subjects,
-  isAvailable: false,
+export const SubjectCardListUnavailable = {
+  args: {
+    subjects: subjects,
+    isAvailable: false,
+  },
 };

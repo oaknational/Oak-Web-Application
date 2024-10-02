@@ -1,8 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   examboards,
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
@@ -59,7 +60,8 @@ type BaseLessonDownload = {
   copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
-  isDownloadRegionRestricted: boolean;
+  geoRestricted: boolean | null;
+  loginRequired: boolean | null;
 };
 
 type CanonicalLesson = BaseLessonDownload & {
@@ -271,6 +273,18 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const { user } = useFeatureFlaggedClerk().useUser();
 
+  // TODO remove once we're confident that restrictions are being
+  // applied correctly in production
+  const useAuthOwaEnabled = useFeatureFlagEnabled("use-auth-owa");
+  useEffect(() => {
+    if (useAuthOwaEnabled) {
+      console.log("restrictions", {
+        geoRestricted: lesson.geoRestricted,
+        loginRequired: lesson.loginRequired,
+      });
+    }
+  }, [lesson.geoRestricted, lesson.loginRequired, useAuthOwaEnabled]);
+
   return (
     <Box $ph={[16, null]} $background={"grey20"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
@@ -311,7 +325,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         {(() => {
           if (
             user &&
-            lesson.isDownloadRegionRestricted &&
+            lesson.geoRestricted &&
             !user.publicMetadata.owa?.isRegionAuthorised
           ) {
             return <LessonDownloadRegionBlocked />;

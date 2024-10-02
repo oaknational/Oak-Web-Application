@@ -25,6 +25,7 @@ const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const LessonList = Template.bind({});
-
-LessonList.args = currentPageItems;
+export const LessonList = {
+  render: Template,
+  args: currentPageItems,
+};

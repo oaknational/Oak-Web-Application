@@ -48,24 +48,30 @@ const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const PostList = Template.bind({});
-PostList.args = {
-  currentPageItems,
+export const PostList = {
+  render: Template,
+
+  args: {
+    currentPageItems,
+  },
 };
 
-export const PostListWithUpcomingWebinar = Template.bind({});
-PostListWithUpcomingWebinar.args = {
-  upcomingItem: {
-    titleTag: "h2",
-    title: "She came in through the bathroom window",
-    summary:
-      'Penny Lane, there is a barber showing photographs Of every head he\'s had the pleasure to know And all the people that come and go Stop and say, "Hello"',
-    slug: "long-road",
-    contentType: "webinar",
-    category: { title: "Curriculum Planning", slug: "curriculum-planning" },
-    date: new Date(2059, 7, 17).toISOString(),
+export const PostListWithUpcomingWebinar = {
+  render: Template,
+
+  args: {
+    upcomingItem: {
+      titleTag: "h2",
+      title: "She came in through the bathroom window",
+      summary:
+        'Penny Lane, there is a barber showing photographs Of every head he\'s had the pleasure to know And all the people that come and go Stop and say, "Hello"',
+      slug: "long-road",
+      contentType: "webinar",
+      category: { title: "Curriculum Planning", slug: "curriculum-planning" },
+      date: new Date(2059, 7, 17).toISOString(),
+    },
+    currentPageItems,
+    withContainingHrs: true,
+    withUpcomingItem: true,
   },
-  currentPageItems,
-  withContainingHrs: true,
-  withUpcomingItem: true,
 };

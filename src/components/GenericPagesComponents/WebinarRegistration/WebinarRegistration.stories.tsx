@@ -24,7 +24,10 @@ const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const WebinarRegistration = Template.bind({});
-WebinarRegistration.args = {
-  headingTag: "h3",
+export const WebinarRegistration = {
+  render: Template,
+
+  args: {
+    headingTag: "h3",
+  },
 };

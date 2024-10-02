@@ -15,4 +15,6 @@ const Template: StoryFn<typeof Component> = (args) => (
   </Component>
 );
 
-export const Blockquote = Template.bind({});
+export const Blockquote = {
+  render: Template,
+};

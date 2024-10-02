@@ -1,5 +1,4 @@
-import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import Component, { OAK_SOCIALS } from "./SocialButtons";
 
@@ -8,9 +7,8 @@ export default {
   argTypes: {},
 } as Meta<typeof Component>;
 
-const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
-
-export const SocialButtons = Template.bind({});
-SocialButtons.args = {
-  ...OAK_SOCIALS,
+export const SocialButtons = {
+  args: {
+    ...OAK_SOCIALS,
+  },
 };

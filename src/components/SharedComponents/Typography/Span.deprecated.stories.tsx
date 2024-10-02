@@ -23,8 +23,11 @@ const Template: StoryFn<typeof Component> = (args) => (
   </Typography>
 );
 
-export const Span = Template.bind({});
-Span.args = {
-  fontWeight: 600,
-  color: "inYourFace",
+export const Span = {
+  render: Template,
+
+  args: {
+    fontWeight: 600,
+    color: "inYourFace",
+  },
 };

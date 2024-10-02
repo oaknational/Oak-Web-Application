@@ -24,12 +24,17 @@ const Template: StoryFn<typeof Component> = (args) => (
   </>
 );
 
-export const Button = Template.bind({});
+export const Button = {
+  render: Template,
+};
 
-export const ButtonWithIcon = Template.bind({});
-ButtonWithIcon.args = {
-  icon: "save",
-  size: "large",
+export const ButtonWithIcon = {
+  render: Template,
+
+  args: {
+    icon: "save",
+    size: "large",
+  },
 };
 
 const MinimalButtonWithIconTemplate: StoryFn<typeof Component> = (args) => (
@@ -40,9 +45,12 @@ const MinimalButtonWithIconTemplate: StoryFn<typeof Component> = (args) => (
   </>
 );
 
-export const MinimalButtonWithIcon = MinimalButtonWithIconTemplate.bind({});
-MinimalButtonWithIcon.args = {
-  variant: "minimal",
-  icon: "save",
-  size: "large",
+export const MinimalButtonWithIcon = {
+  render: MinimalButtonWithIconTemplate,
+
+  args: {
+    variant: "minimal",
+    icon: "save",
+    size: "large",
+  },
 };

@@ -31,7 +31,10 @@ const Template: StoryFn<typeof Component> = (args) => (
   </Component>
 );
 
-export const Typography = Template.bind({});
-Typography.args = {
-  color: "grey70",
+export const Typography = {
+  render: Template,
+
+  args: {
+    color: "grey70",
+  },
 };
