@@ -1,3 +1,37 @@
+# [1.572.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.571.1...v1.572.0) (2024-10-02)
+
+
+### Features
+
+* **LESQ-981:** query for `geo_restricted` and `login_required` in downloads ([aea3fbf](https://github.com/oaknational/Oak-Web-Application/commit/aea3fbfa797028ba30e56ae3e5ae0e5f116d3eba))
+
+## [1.571.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.571.0...v1.571.1) (2024-10-01)
+
+
+### Bug Fixes
+
+* **storybook:** lesson overview ([4e528e5](https://github.com/oaknational/Oak-Web-Application/commit/4e528e5cb5cf6af78675829baa34c4b58f58e2c1))
+* **test:** pupil analytics ([11cc631](https://github.com/oaknational/Oak-Web-Application/commit/11cc631a55a0cf5333bbc9d45cff1b4a48f7b001))
+
+# [1.571.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.570.1...v1.571.0) (2024-10-01)
+
+
+### Bug Fixes
+
+* analytics mocks ([d939609](https://github.com/oaknational/Oak-Web-Application/commit/d939609e0c7306bcc83b58783680ea194f318881))
+
+
+### Features
+
+* **storybook:** add tests ([0768460](https://github.com/oaknational/Oak-Web-Application/commit/07684600337305fcb611e432164ec6757abf189c))
+* **storybook:** mock pupil analytics tests ([0e9bec5](https://github.com/oaknational/Oak-Web-Application/commit/0e9bec5b2ad70c97980010a12e8c7737ca0a0f49))
+* **storybook:** update analytics context ([8187a70](https://github.com/oaknational/Oak-Web-Application/commit/8187a7019585b46b7a473adc80c38a2653c8574a))
+* **storybook:** update args ([bba3fd1](https://github.com/oaknational/Oak-Web-Application/commit/bba3fd11d728163ed863ad467a6862924a684d79))
+* **storybook:** update tests ([8fb630a](https://github.com/oaknational/Oak-Web-Application/commit/8fb630a6590c42fc4f0fc2549e9b67487f917caa))
+* **storybook:** update types ([29060e1](https://github.com/oaknational/Oak-Web-Application/commit/29060e1ccf62ff8871fd6b5a67ac391d22806cea))
+* **storybook:** upgrade 7 to 8 ([4885236](https://github.com/oaknational/Oak-Web-Application/commit/48852368ff46bb698b188e3d5a01b7b0ae1b6f5d))
+* **upgrade:** contextualise pupil analytics ([c180eb4](https://github.com/oaknational/Oak-Web-Application/commit/c180eb4769c994ced5aa0e18787ddcf84f8d3079))
+
 ## [1.570.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.570.0...v1.570.1) (2024-09-30)
 
 # [1.570.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.569.0...v1.570.0) (2024-09-27)

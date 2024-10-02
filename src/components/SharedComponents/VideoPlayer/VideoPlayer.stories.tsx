@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import Component from ".";
@@ -17,9 +17,9 @@ export default {
       defaultValue: "Test video",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
+const Template: StoryFn<typeof Component> = (args) => (
   <OakGrid>
     <OakGridArea $colSpan={[12, 6, 6]}>
       <Component {...args} />
@@ -27,5 +27,7 @@ const Template: ComponentStory<typeof Component> = (args) => (
   </OakGrid>
 );
 
-export const VideoPlayer = Template.bind({});
-VideoPlayer.args = {};
+export const VideoPlayer = {
+  render: Template,
+  args: {},
+};

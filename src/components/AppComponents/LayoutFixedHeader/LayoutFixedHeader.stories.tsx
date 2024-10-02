@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import Component from "./LayoutFixedHeader";
 
@@ -10,10 +10,6 @@ export default {
     },
     background: { defaultValue: "grey40" },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
-
-export const LayoutFixedHeader = Template.bind({});
+export const LayoutFixedHeader = {};

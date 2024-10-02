@@ -1,12 +1,12 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component from ".";
 
 export default {
   component: Component,
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = () => (
+const Template: StoryFn<typeof Component> = () => (
   <Component
     linkTargetIds={{
       worksheet: "",
@@ -17,4 +17,6 @@ const Template: ComponentStory<typeof Component> = () => (
   />
 );
 
-export const LessonPlanningElementLinks = Template.bind({});
+export const LessonPlanningElementLinks = {
+  render: Template,
+};

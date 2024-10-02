@@ -1,5 +1,4 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import Component from "./SearchResultsItem";
 
@@ -13,17 +12,15 @@ export default {
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Component>;
-
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
+} as Meta<typeof Component>;
 
 const hit = searchResultsHitSchema.parse(elasticResponseFixture.hits.hits[0]);
 
 const allKeyStages = teachersHomePageFixture().keyStages;
 const searchHitObject = getSearchHitObject(hit, allKeyStages);
-export const SearchResultsItem = Template.bind({});
-SearchResultsItem.args = {
-  ...searchHitObject,
+
+export const SearchResultsItem = {
+  args: {
+    ...searchHitObject,
+  },
 };

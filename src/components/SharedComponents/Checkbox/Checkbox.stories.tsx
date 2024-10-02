@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component from ".";
 
@@ -22,13 +22,15 @@ export default {
       action: "changed",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   const [value, setValue] = useState(false);
   return (
     <Component {...args} checked={value} onChange={() => setValue(!value)} />
   );
 };
 
-export const Checkbox = Template.bind({});
+export const Checkbox = {
+  render: Template,
+};

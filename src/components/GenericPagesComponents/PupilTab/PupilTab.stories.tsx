@@ -1,5 +1,4 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import Component from "./PupilTab";
 
@@ -9,10 +8,6 @@ export default {
   decorators: [AnalyticsDecorator],
   component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
-
-export const PupilTab = Template.bind({});
+export const PupilTab = {};
