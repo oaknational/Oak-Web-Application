@@ -19,6 +19,8 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 
+import useLocalStorageForDownloads from "../hooks/downloadAndShareHooks/useLocalStorageForDownloads";
+
 import {
   OnboardingFormProps,
   isSchoolSelectData,
@@ -26,7 +28,8 @@ import {
 import {
   getSubscriptionStatus,
   onboardUser,
-  onboardUserToHubspot,
+  setOnboardingLocalStorage,
+  submitOnboardingHubspotData,
 } from "./onboardingActions";
 import { getQueryParamsFromOnboardingFormData } from "./getQueryParamsFromOnboardingFormData";
 
@@ -35,6 +38,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useUtmParams from "@/hooks/useUtmParams";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
+import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
 
 const OnboardingForm = ({
   forceHideNewsletterSignUp,
@@ -58,7 +62,8 @@ const OnboardingForm = ({
   const { user } = useUser();
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [userRegisteredInHubspot, setUserRegisteredinHubspot] = useState<
+  const localStorageForDownloads = useLocalStorageForDownloads();
+  const [userSubscribedInHubspot, setUserSubscribedInHubspot] = useState<
     boolean | undefined
   >(undefined);
 
@@ -68,12 +73,12 @@ const OnboardingForm = ({
     }
     if (user?.emailAddresses[0]) {
       const email = String(user.emailAddresses[0].emailAddress);
-      getSubscriptionStatus(email, setUserRegisteredinHubspot);
+      getSubscriptionStatus(email, setUserSubscribedInHubspot);
     }
   }, [user, forceHideNewsletterSignUp]);
 
   const showNewsletterSignUp =
-    userRegisteredInHubspot === false && forceHideNewsletterSignUp !== true;
+    userSubscribedInHubspot === false && forceHideNewsletterSignUp !== true;
 
   const onFormSubmit = async (data: OnboardingFormProps) => {
     if (isSubmitting) {
@@ -114,14 +119,27 @@ const OnboardingForm = ({
         // No point in proceeding to hubspot sign-up if onboarding failed
         return;
       }
+      const userSubscribed =
+        userSubscribedInHubspot ||
+        ("newsletterSignUp" in data && data.newsletterSignUp);
 
-      await onboardUserToHubspot({
-        ...utmParams,
-        ...data,
-        oakUserId: posthogDistinctId,
-        email: user?.primaryEmailAddress?.emailAddress,
+      const userEmail = user?.emailAddresses[0]?.emailAddress;
+
+      await setOnboardingLocalStorage({
+        localStorageForDownloads,
+        data,
+        userEmail,
+        userSubscribed,
       });
 
+      await submitOnboardingHubspotData({
+        hutk: getHubspotUserToken(),
+        utmParams,
+        data,
+        userSubscribed,
+        posthogDistinctId,
+        userEmail,
+      });
       // Return the user to the page they originally arrived from
       // or to the home page as a fallback
       router.push(

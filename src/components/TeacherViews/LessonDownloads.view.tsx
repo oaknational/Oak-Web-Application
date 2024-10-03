@@ -92,6 +92,8 @@ type LessonDownloadsProps =
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
+  const { useUser } = useFeatureFlaggedClerk();
+  const { user } = useUser();
   const { lesson } = props;
   const {
     lessonTitle,
@@ -169,6 +171,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     handleToggleSelectAll,
     selectAllChecked,
     setEmailInLocalStorage,
+    hasOnboardingDownloadDetails,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
     type: "download",
@@ -183,8 +186,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const [apiError, setApiError] = useState<string | null>(null);
 
   const { onSubmit } = useResourceFormSubmit({
-    isLegacyDownload: isLegacyDownload,
     type: "download",
+    isLegacyDownload,
   });
 
   const { onHubspotSubmit } = useHubspotSubmit();
@@ -270,8 +273,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     !hasResources ||
     Boolean(expired) ||
     downloadsFilteredByCopyright.length === 0;
-
-  const { user } = useFeatureFlaggedClerk().useUser();
 
   // TODO remove once we're confident that restrictions are being
   // applied correctly in production
@@ -372,6 +373,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               hideSelectAll={Boolean(expired)}
               updatedAt={updatedAt}
               withHomeschool={true}
+              hasOnboardingDownloadDetails={hasOnboardingDownloadDetails}
               cardGroup={
                 !showNoResources && (
                   <DownloadCardGroup
