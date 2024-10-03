@@ -557,7 +557,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
   describe("when downloads are region restricted", () => {
     const curriculumData = lessonDownloadsFixtures({
-      isDownloadRegionRestricted: true,
+      geoRestricted: true,
     });
 
     describe("and the user has access", () => {

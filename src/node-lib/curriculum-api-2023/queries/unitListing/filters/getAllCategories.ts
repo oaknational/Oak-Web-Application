@@ -2,7 +2,7 @@ import { kebabCase } from "lodash";
 
 import { RawSuvLessons } from "../rawSuvLessons.schema";
 
-type Category = {
+export type Category = {
   label: string;
   iconName: string;
   slug: string;
