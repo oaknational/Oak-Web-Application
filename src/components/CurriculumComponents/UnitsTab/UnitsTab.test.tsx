@@ -240,8 +240,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     );
     const unitCards = await findAllByTestId("unit-card");
 
-    // This number hasn't been properly checked. It's a bit like a snapshot, I'm going to leave it as is so that if it changes unexpectedly it is picked up.
-    const VISIBLE_UNITS = 81;
+    // Not sure if this number hasn't been properly checked. It's a bit like a snapshot, I'm going to leave it as is so that if it changes unexpectedly it is picked up.
+    const VISIBLE_UNITS = 87;
     expect(unitCards).toHaveLength(VISIBLE_UNITS);
   });
 
@@ -1065,8 +1065,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       expect(highlightedThreadsBox).toHaveTextContent(
         "BQ01 Biology: What are living things and what are they made of?",
       );
-      // This number hasn't been properly checked. Its a bit like a snapshot, I'm going to leave it as is so that if it changes unexpectedly it is picked up.
-      expect(highlightedUnitsBox).toHaveTextContent("14 units highlighted");
+      // Not sure if this number hasn't been properly checked. It's a bit like a snapshot, I'm going to leave it as is so that if it changes unexpectedly it is picked up.
+      expect(highlightedUnitsBox).toHaveTextContent("16 units highlighted");
     }
   });
   test("mobile: mobile filter options visible", async () => {
