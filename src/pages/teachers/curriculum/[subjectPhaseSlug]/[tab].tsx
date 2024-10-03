@@ -503,13 +503,54 @@ export function createDownloadsData(
   return downloadsData;
 }
 
+function sanatiseUnits(units: Unit[]): Unit[] {
+  return units.filter((unit, index) => {
+    // Find all units that have the same slug and year
+    const similarUnits = units.filter(
+      (u, i) =>
+        i !== index && // Exclude the current unit itself
+        u.slug === unit.slug &&
+        u.year === unit.year,
+    );
+
+    // Check if there is a more specific unit
+    const isMoreSpecific = similarUnits.some(
+      (u) =>
+        (unit.tier_slug === null && u.tier_slug !== null) ||
+        (unit.examboard_slug === null && u.examboard_slug !== null) ||
+        (unit.pathway_slug === null && u.pathway_slug !== null),
+    );
+
+    // Retain one unit even if identical, but discard duplicates
+    if (isMoreSpecific) {
+      return false; // Remove if a more specific version exists
+    }
+
+    // If this is the first occurrence of the unit in the array, keep it
+    const firstOccurrenceIndex = units.findIndex(
+      (u) =>
+        u.slug === unit.slug &&
+        u.year === unit.year &&
+        u.subject_slug === unit.subject_slug &&
+        u.subject_parent_slug === unit.subject_parent_slug &&
+        u.tier_slug === unit.tier_slug &&
+        u.examboard_slug === unit.examboard_slug &&
+        u.pathway_slug === unit.pathway_slug,
+    );
+
+    return index === firstOccurrenceIndex;
+  });
+}
+
 export function formatCurriculumUnitsData(
   data: CurriculumUnitsTabData,
 ): CurriculumUnitsFormattedData {
   const { units } = data;
-  const yearData = createUnitsListingByYear(units);
-  const threadOptions = createThreadOptions(units);
-  const yearOptions = createYearOptions(units);
+  // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
+  const filteredUnits = sanatiseUnits(units);
+  const yearData = createUnitsListingByYear(filteredUnits);
+  const threadOptions = createThreadOptions(filteredUnits);
+  const yearOptions = createYearOptions(filteredUnits);
   const initialYearSelection = createInitialYearFilterSelection(yearData);
   const formattedDataCurriculumUnits = {
     yearData,
@@ -568,6 +609,9 @@ export const getStaticProps: GetStaticProps<
 
       // Sort by unit order
       curriculumUnitsTabData.units.sort((a, b) => a.order - b.order);
+
+      console.log("FindMe");
+      //console.log(curriculumUnitsTabData.units);
 
       const curriculumUnitsFormattedData = formatCurriculumUnitsData(
         curriculumUnitsTabData,
