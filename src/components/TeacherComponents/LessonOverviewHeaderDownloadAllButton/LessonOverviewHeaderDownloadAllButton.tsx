@@ -39,8 +39,10 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     : "downloads";
 
   const { user } = useFeatureFlaggedClerk().useUser();
-
-  const displaySignInMessage = !user || !user?.publicMetadata?.owa?.isOnboarded;
+  let displaySignInMessage = false;
+  if (useFeatureFlagEnabled("use-auth-owa")) {
+    displaySignInMessage = !user || !user?.publicMetadata?.owa?.isOnboarded;
+  }
 
   if (expired || !showDownloadAll) {
     return null;
