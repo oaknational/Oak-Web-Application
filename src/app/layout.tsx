@@ -3,6 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Lexend } from "next/font/google";
 
 import { PHProvider } from "./providers";
+import StyledComponentsRegistry from "./styles-registry";
 
 import {
   OakGlobalStyle,
@@ -14,7 +15,7 @@ import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentPro
 export const metadata = {
   title: "Oak National Academy",
   description:
-    "Browse and download our lesson planning resources, view our curriculum plans and explore our AI lesson assistant - all optional, free and adaptable.",
+    "Browse and download Oak National Academy's lesson planning resources, find curriculum plans, and explore our AI lesson assistant - all completely free.",
 };
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -27,38 +28,40 @@ export default function RootLayout({
     <html lang="en" className={lexend.className}>
       <OakGlobalStyle />
       <body style={{ margin: "0px" }}>
-        <PHProvider>
-          <OakThemeProvider theme={oakDefaultTheme}>
-            <CookieConsentProvider>
-              <ClerkProvider
-                appearance={{
-                  variables: {
-                    colorPrimary: "#222222",
-                    fontFamily: lexend.style.fontFamily,
-                    borderRadius: "4px",
-                  },
-                  elements: {
-                    cardBox: {
-                      boxShadow: "none",
-                      overflow: "auto",
-                      borderRadius: "8px",
+        <StyledComponentsRegistry>
+          <PHProvider>
+            <OakThemeProvider theme={oakDefaultTheme}>
+              <CookieConsentProvider>
+                <ClerkProvider
+                  appearance={{
+                    variables: {
+                      colorPrimary: "#222222",
+                      fontFamily: lexend.style.fontFamily,
+                      borderRadius: "4px",
                     },
-                    card: {
-                      paddingBlock: "40px",
-                      boxShadow: "none",
-                      borderRadius: "8px",
+                    elements: {
+                      cardBox: {
+                        boxShadow: "none",
+                        overflow: "auto",
+                        borderRadius: "8px",
+                      },
+                      card: {
+                        paddingBlock: "40px",
+                        boxShadow: "none",
+                        borderRadius: "8px",
+                      },
+                      footer: {
+                        background: "#ffffff",
+                      },
                     },
-                    footer: {
-                      background: "#ffffff",
-                    },
-                  },
-                }}
-              >
-                {children}
-              </ClerkProvider>
-            </CookieConsentProvider>
-          </OakThemeProvider>
-        </PHProvider>
+                  }}
+                >
+                  {children}
+                </ClerkProvider>
+              </CookieConsentProvider>
+            </OakThemeProvider>
+          </PHProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

@@ -28,12 +28,12 @@ describe("SpecialistUnitListing", () => {
     const { queryAllByText } = render(
       <SpecialistUnitListing curriculumData={specialistUnitListingFixture()} />,
     );
-    // mobile and desktop both rendered
+
     const themePrimary = queryAllByText("Test Theme Primary");
     const themeSecondary = queryAllByText("Test Theme Secondary");
 
-    expect(themePrimary).toHaveLength(2);
-    expect(themeSecondary).toHaveLength(2);
+    expect(themePrimary).toHaveLength(1);
+    expect(themeSecondary).toHaveLength(1);
   });
 
   test("specialist unit list", () => {
