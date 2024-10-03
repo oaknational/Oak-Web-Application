@@ -95,9 +95,23 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       }
     };
     if (isLessonComplete) {
-      storeResultsInLocalStorage();
+      const timeout = setTimeout(() => {
+        storeResultsInLocalStorage();
+      }, 0);
+
+      return () => {
+        clearTimeout(timeout);
+      };
     }
-  });
+  }, [
+    isLessonComplete,
+    lessonSlug,
+    lessonTitle,
+    logAttempt,
+    sectionResults,
+    subject,
+    yearDescription,
+  ]);
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
