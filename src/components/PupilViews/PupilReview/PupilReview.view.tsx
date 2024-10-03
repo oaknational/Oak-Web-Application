@@ -99,8 +99,6 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     }
   });
 
-  useEffect(() => {}, [storedAttemptLocally]);
-
   const bottomNavSlot = (
     <OakLessonBottomNav>
       <OakPrimaryButton
