@@ -204,7 +204,7 @@ export const getHubspotOnboardingFormPayload = (props: {
       : isInternationalTeacher
         ? data.manualSchoolName
         : "notListed",
-    contact_school_urn: isUkTeacher ? data.school.split("-")[0] : "notListed",
+    contact_school_urn: isUkTeacher ? data.school.split("-")[0] : undefined,
     manual_input_school_address: isInternationalTeacher
       ? data.schoolAddress
       : undefined,
