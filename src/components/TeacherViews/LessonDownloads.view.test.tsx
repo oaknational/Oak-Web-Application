@@ -7,7 +7,7 @@ import {
 import {
   mockLoggedIn,
   mockTeacherUserWithDownloadAccess,
-  mockUserWithDownloadAccess,
+  mockUserWithDownloadAccessNotOnboarded,
 } from "@/__tests__/__helpers__/mockUser";
 import lessonDownloadsFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -50,7 +50,7 @@ describe("Hiding 'Your details", () => {
   it("should show 'Your Details' with logged in but not fully onboarded ", () => {
     setUseUserReturn({
       ...mockLoggedIn,
-      user: mockUserWithDownloadAccess,
+      user: mockUserWithDownloadAccessNotOnboarded,
     });
     const result = render(
       <LessonDownloads lesson={lesson} isCanonical={false} />,
