@@ -213,10 +213,11 @@ const filterValidSubjectPhaseOptions = (subjects: SubjectPhaseOption[]) => {
       const gcseIndex = ks4_options.findIndex(
         ({ slug }: { slug: string }) => slug === "gcse",
       );
-      ks4_options.splice(gcseIndex, 1);
+      if (gcseIndex > 0) {
+        ks4_options.splice(gcseIndex, 1);
+      }
     }
   });
-
   return subjects;
 };
 
