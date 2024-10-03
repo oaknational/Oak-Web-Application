@@ -38,11 +38,10 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     ? "downloads-auth"
     : "downloads";
 
-  const { user } = useFeatureFlaggedClerk().useUser();
-  let displaySignInMessage = false;
-  if (useFeatureFlagEnabled("use-auth-owa")) {
-    displaySignInMessage = !user || !user?.publicMetadata?.owa?.isOnboarded;
-  }
+  const { user, isLoaded } = useFeatureFlaggedClerk().useUser();
+
+  const displaySignInMessage =
+    isLoaded && !user?.publicMetadata?.owa?.isOnboarded;
 
   if (expired || !showDownloadAll) {
     return null;
