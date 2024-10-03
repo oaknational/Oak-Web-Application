@@ -97,15 +97,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     if (isLessonComplete) {
       storeResultsInLocalStorage();
     }
-  }, [
-    sectionResults,
-    isLessonComplete,
-    lessonSlug,
-    lessonTitle,
-    subject,
-    yearDescription,
-    logAttempt,
-  ]);
+  });
 
   useEffect(() => {}, [storedAttemptLocally]);
 
