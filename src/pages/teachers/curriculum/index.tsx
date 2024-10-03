@@ -15,7 +15,9 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Hr } from "@/components/SharedComponents/Typography";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import curriculumApi2023, {
+  SubjectPhaseOption,
+} from "@/node-lib/curriculum-api-2023";
 import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/SharedComponents/Illustration/Illustration";
@@ -30,6 +32,7 @@ import { serializeDate } from "@/utils/serializeDate";
 import PostListItem from "@/components/SharedComponents/PostListItem";
 import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
 import { isCycleTwoEnabled } from "@/utils/curriculum/features";
+import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 export type CurriculumHomePageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -201,13 +204,29 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
   );
 };
 
+const filterValidSubjectPhaseOptions = (subjects: SubjectPhaseOption[]) => {
+  subjects.forEach(({ ks4_options }) => {
+    if (
+      ks4_options &&
+      ks4_options.some(({ slug }: { slug: string }) => isExamboardSlug(slug))
+    ) {
+      const gcseIndex = ks4_options.findIndex(
+        ({ slug }: { slug: string }) => slug === "gcse",
+      );
+      ks4_options.splice(gcseIndex, 1);
+    }
+  });
+
+  return subjects;
+};
+
 export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
     const subjects = await curriculumApi2023.subjectPhaseOptions({
       cycle: isCycleTwoEnabled() ? "2" : "1",
     });
     return {
-      subjects: subjects,
+      subjects: filterValidSubjectPhaseOptions(subjects),
     };
   };
 
