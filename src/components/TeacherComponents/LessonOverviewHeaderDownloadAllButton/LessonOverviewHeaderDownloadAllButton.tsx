@@ -9,6 +9,7 @@ import {
   SpecialistLessonDownloadsLinkProps,
 } from "@/common-lib/urls";
 import Box, { BoxProps } from "@/components/SharedComponents/Box";
+import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 export const LessonOverviewHeaderDownloadAllButton: FC<
   LessonOverviewHeaderDownloadAllButtonProps & BoxProps
@@ -36,6 +37,10 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
   const downloads = useFeatureFlagEnabled("use-auth-owa")
     ? "downloads-auth"
     : "downloads";
+
+  const { user } = useFeatureFlaggedClerk().useUser();
+
+  const displaySignInMessage = !user || !user?.publicMetadata?.owa?.isOnboarded;
 
   if (expired || !showDownloadAll) {
     return null;
@@ -80,7 +85,11 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
         icon="arrow-right"
         size="large"
         $iconPosition="trailing"
-        label={`Download all resources`}
+        label={
+          displaySignInMessage
+            ? `Sign in to download all resources`
+            : `Download all resources`
+        }
         onClick={onClickDownloadAll}
       />
     </Box>
