@@ -1,3 +1,10 @@
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
+import {
+  getHubspotOnboardingFormPayload,
+  OnboardingHubspotFormData,
+} from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
+import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
 import errorReporter from "@/common-lib/error-reporter";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 import OakError from "@/errors/OakError";
@@ -5,7 +12,7 @@ import { subscriptionResponseSchema } from "@/pages/api/hubspot/subscription";
 
 const onboardingApiRoute = "/api/auth/onboarding";
 
-const reportError = errorReporter("onboardingActions");
+export const reportError = errorReporter("onboardingActions");
 
 /**
  * Makes a request to mark the user as onboarded in Clerk
@@ -72,5 +79,34 @@ export async function getSubscriptionStatus(
       code: "hubspot/unknown",
       originalError: err,
     });
+  }
+}
+
+/**
+ * Sends onboarding data to hubspot
+ */
+export async function onboardUserToHubspot(data: OnboardingHubspotFormData) {
+  const hubspotFormId = getBrowserConfig("hubspotOnboardingFormId");
+  const hubspotFormPayload = getHubspotOnboardingFormPayload({
+    hutk: getHubspotUserToken(),
+    data,
+  });
+
+  try {
+    await hubspotSubmitForm({
+      hubspotFormId,
+      payload: hubspotFormPayload,
+    });
+  } catch (error) {
+    if (error instanceof OakError) {
+      reportError(error);
+    } else {
+      reportError(
+        new OakError({
+          code: "hubspot/unknown",
+          originalError: error,
+        }),
+      );
+    }
   }
 }
