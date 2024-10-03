@@ -1,5 +1,4 @@
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
-import { groupBy } from "lodash";
 import {
   ProgrammeFields,
   examboardSlugs,
@@ -10,9 +9,7 @@ import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
 import {
-  ExamboardData,
-  PathwayData,
-  TierData,
+  FactorData,
   getAvailableProgrammeFactor,
 } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 import { PupilViewsProgrammeListingProps } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
@@ -62,9 +59,18 @@ export const getPupilOptionData = async (
   const yearSlug = getYearSlug({ programmes });
 
   // these get the inital values for the SSR but subsequent values are dynamically produced by the client taking state into account
-  const examboards = getExamboards(programmes);
-  const tiers = getTiers(programmes);
-  const pathways = getPathways(programmes);
+  const examboards = getAvailableProgrammeFactor({
+    factorPrefix: "examboard",
+    programmes,
+  });
+  const tiers = getAvailableProgrammeFactor({
+    factorPrefix: "tier",
+    programmes,
+  });
+  const pathways = getAvailableProgrammeFactor({
+    factorPrefix: "pathway",
+    programmes,
+  });
 
   return {
     props: {
@@ -99,77 +105,3 @@ export const isExamboardSlug = (
   examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
 ): examboardSlug is ProgrammeFields["examboard_slug"] =>
   Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
-
-const getExamboards = (programmes: PupilProgrammeListingData[]) => {
-  const allExamboards: { [key: string]: ExamboardData[] } = groupBy(
-    getAvailableProgrammeFactor({
-      programmes,
-      factorPrefix: "examboard",
-    }) as ExamboardData[],
-    (examboard: ExamboardData) => examboard.examboard,
-  );
-
-  // This creates an array of examboards giving preference to non-legacy examboards
-  const examboards = Object.keys(allExamboards)
-    .map((examboard) => {
-      const mappedExamboard = allExamboards[examboard];
-      if (!Array.isArray(mappedExamboard) || mappedExamboard.length < 1) return;
-      return (
-        allExamboards[examboard]?.find(
-          (examboard: ExamboardData) => !examboard.isLegacy,
-        ) ?? mappedExamboard[0]
-      );
-    })
-    .filter((examboard): examboard is ExamboardData => examboard !== undefined);
-
-  return examboards;
-};
-
-const getTiers = (programmes: PupilProgrammeListingData[]) => {
-  const allTiers: { [key: string]: TierData[] } = groupBy(
-    getAvailableProgrammeFactor({
-      programmes: programmes,
-      factorPrefix: "tier",
-    }) as TierData[],
-    (tier: TierData) => tier.tier,
-  );
-
-  // This creates an array of tiers giving preference to non-legacy tiers
-  const tiers = Object.keys(allTiers)
-    .map((tierLabel) => {
-      const mappedTier = allTiers[tierLabel];
-      if (!Array.isArray(mappedTier) || mappedTier.length < 1) return;
-      return (
-        allTiers[tierLabel]?.find((tier: TierData) => !tier.isLegacy) ??
-        mappedTier[0]
-      );
-    })
-    .filter((tier): tier is TierData => tier !== undefined);
-
-  return tiers;
-};
-
-const getPathways = (programmes: PupilProgrammeListingData[]) => {
-  const allPathways: { [key: string]: PathwayData[] } = groupBy(
-    getAvailableProgrammeFactor({
-      programmes,
-      factorPrefix: "pathway",
-    }) as PathwayData[],
-    (pathway: PathwayData) => pathway.pathway,
-  );
-
-  // This creates an array of pathways giving preference to non-legacy examboards
-  const pathways = Object.keys(allPathways)
-    .map((pathway) => {
-      const mappedPathway = allPathways[pathway];
-      if (!Array.isArray(mappedPathway) || mappedPathway.length < 1) return;
-      return (
-        allPathways[pathway]?.find(
-          (pathway: PathwayData) => !pathway.isLegacy,
-        ) ?? mappedPathway[0]
-      );
-    })
-    .filter((pathway): pathway is PathwayData => pathway !== undefined);
-
-  return pathways;
-};

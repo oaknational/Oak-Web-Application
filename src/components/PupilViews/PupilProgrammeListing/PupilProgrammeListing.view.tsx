@@ -14,28 +14,22 @@ import {
 } from "@oaknational/oak-components";
 
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
-import { BrowseExamboardSelector } from "@/components/PupilComponents/BrowseExamboardSelector";
-import { BrowseTierSelector } from "@/components/PupilComponents/BrowseTierSelector";
+import { BrowseFactorSelector } from "@/components/PupilComponents/BrowseFactorSelector";
 import { resolveOakHref } from "@/common-lib/urls";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
-import { BrowsePathwaySelector } from "@/components/PupilComponents/BrowsePathwaySelector";
-import {
-  ExamboardData,
-  PathwayData,
-  TierData,
-} from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
-import { getExamboardData } from "@/pages-helpers/pupil/options-pages/getExamboardData";
+import { FactorData } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
+import { getFactorDataFromSlug } from "@/pages-helpers/pupil/options-pages/getFactorDataFromSlug";
 
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
   baseSlug: string;
   yearSlug: PupilProgrammeListingData["yearSlug"];
-  examboardSlug?: ExamboardData["examboardSlug"];
-  examboards: ExamboardData[];
-  tiers: TierData[];
-  pathways: PathwayData[];
+  examboardSlug?: PupilProgrammeListingData["programmeFields"]["examboardSlug"];
+  examboards: FactorData[];
+  tiers: FactorData[];
+  pathways: FactorData[];
 };
 
 export const PupilViewsProgrammeListing = ({
@@ -47,16 +41,57 @@ export const PupilViewsProgrammeListing = ({
   tiers,
   pathways,
 }: PupilViewsProgrammeListingProps) => {
-  const [chosenExamboard, setChosenExamboard] = useState<ExamboardData | null>(
-    examboardSlug && examboards.length >= 1
-      ? getExamboardData({ examboardSlug, availableExamboards: examboards })
+  const orderedFactors = ["pathway", "examboard", "tier"];
+
+  const [chosenPathway, setChosenPathway] = useState<FactorData | null>(null);
+
+  // TODO this filtering could potentially be abstracted to allow for further program factors
+  const filteredExamboards = examboards.filter((examboard) => {
+    return programmes.find(
+      (p) =>
+        p.programmeFields.examboardSlug === examboard.factorSlug &&
+        (!chosenPathway ||
+          p.programmeFields.pathwaySlug === chosenPathway.factorSlug),
+    );
+  });
+
+  const [chosenExamboard, setChosenExamboard] = useState<FactorData | null>(
+    examboardSlug && filteredExamboards.length >= 1
+      ? getFactorDataFromSlug({
+          factorSlug: examboardSlug,
+          availableFactors: filteredExamboards,
+        })
       : null,
   );
 
-  const [chosenTier, setChosenTier] = useState<TierData | null>(null); // TODO: this potentially might be set from a slug in future
-  const [chosenPathway, setChosenPathway] = useState<PathwayData | null>(null);
+  // TODO: this potentially might be set from a slug in future
+  const [chosenTier, setChosenTier] = useState<FactorData | null>(null);
 
-  // TODO: recalculate examboards, tiers, pathways based on chosenExamboard, chosenTier, chosenPathway - this way we avoid offering options which don't exist
+  const filteredTiers = tiers.filter((tier) => {
+    return programmes.find(
+      (p) =>
+        p.programmeFields.tierSlug === tier.factorSlug &&
+        (!chosenPathway ||
+          p.programmeFields.pathwaySlug === chosenPathway.factorSlug) &&
+        (!chosenExamboard ||
+          p.programmeFields.examboardSlug === chosenExamboard.factorSlug),
+    );
+  });
+
+  const availableFactors = orderedFactors.filter(
+    (f) =>
+      (f === "pathway" && pathways.length > 1) ||
+      (f === "tier" && filteredTiers.length > 1) ||
+      (f === "examboard" && filteredExamboards.length > 1),
+  );
+
+  const currentFactor =
+    availableFactors.filter(
+      (f) =>
+        (f === "pathway" && chosenPathway === null) ||
+        (f === "examboard" && chosenExamboard === null) ||
+        (f === "tier" && chosenTier === null),
+    )[0] || "none";
 
   if (!programmes[0]) {
     throw new Error("No programme data available");
@@ -72,17 +107,17 @@ export const PupilViewsProgrammeListing = ({
   const subjectDescription = programmes[0]?.programmeFields.subject;
   const yearDescriptions = programmes[0]?.programmeFields.yearDescription;
 
+  // TODO : replace this with an array of chosen factors
+  const currentSlug = `${baseSlug}${
+    chosenPathway ? `-${chosenPathway.factorSlug}` : ""
+  }${chosenExamboard ? `-${chosenExamboard.factorSlug}` : ""}${
+    chosenTier ? `-${chosenTier.factorSlug}` : ""
+  }`;
+
   const topNavSlot = () => {
-    const current = getCurrentOption();
-    const options = ["pathway", "examboard", "tier"].filter(
-      (f) =>
-        (f === "pathway" && pathways.length > 1) ||
-        (f === "tier" && tiers.length > 1) ||
-        (f === "examboard" && examboards.length > 1),
-    );
-    const currentIndex = options.indexOf(current);
+    const currentIndex = availableFactors.indexOf(currentFactor);
     const prevIndex = currentIndex - 1;
-    const option = options[prevIndex] || "none";
+    const option = availableFactors[prevIndex] || "none";
 
     switch (option) {
       case "examboard":
@@ -130,57 +165,55 @@ export const PupilViewsProgrammeListing = ({
   };
 
   const breadcrumbs: string[] = [yearDescriptions];
-  if (chosenExamboard?.examboard && tiers.length > 1) {
-    breadcrumbs.push(chosenExamboard.examboard);
+  if (chosenExamboard?.factor && tiers.length > 1) {
+    breadcrumbs.push(chosenExamboard.factor);
   }
 
-  const getCurrentOption = () => {
-    const options = [];
-    if (pathways.length > 1 && chosenPathway === null) {
-      options.push("pathway");
-    }
-    if (examboards.length > 1 && chosenExamboard === null) {
-      options.push("examboard");
-    }
-    if (tiers.length > 1 && chosenTier === null) {
-      options.push("tier");
-    }
-
-    return options[0] || "none";
-  };
-
   const BrowseOptions = () => {
-    switch (getCurrentOption()) {
+    if (currentFactor === "none") {
+      return <OakBox>No programme factors to be selected</OakBox>;
+    }
+
+    const currentIndex = availableFactors.indexOf(currentFactor);
+    const nextIndex = currentIndex + 1;
+    const nextFactor = availableFactors[nextIndex] || "none";
+
+    switch (currentFactor) {
       case "pathway":
         return (
-          <BrowsePathwaySelector
-            pathways={pathways}
-            onClick={setChosenPathway}
+          <BrowseFactorSelector
+            factors={pathways}
+            baseSlug={currentSlug}
+            onClick={
+              nextFactor !== "none"
+                ? (pathway) => setChosenPathway(pathway)
+                : undefined
+            }
             phaseSlug={phaseSlug}
           />
         );
       case "tier":
         return (
-          <BrowseTierSelector
-            tiers={tiers}
-            baseSlug={baseSlug}
-            examboardSlug={
-              chosenExamboard ? chosenExamboard.examboardSlug : undefined
-            }
+          <BrowseFactorSelector
+            factors={filteredTiers}
+            baseSlug={currentSlug}
             phaseSlug={phaseSlug}
+            onClick={
+              nextFactor !== "none" ? (tier) => setChosenTier(tier) : undefined
+            }
           />
         );
       case "examboard":
         return (
-          <BrowseExamboardSelector
-            examboards={examboards}
-            baseSlug={baseSlug}
+          <BrowseFactorSelector
+            factors={filteredExamboards}
+            baseSlug={currentSlug}
+            phaseSlug={phaseSlug}
             onClick={
-              tiers.length > 1
+              nextFactor !== "none"
                 ? (examboard) => setChosenExamboard(examboard)
                 : undefined
             }
-            phaseSlug={phaseSlug}
           />
         );
       default:
@@ -189,7 +222,7 @@ export const PupilViewsProgrammeListing = ({
   };
 
   const optionTitles = (): { hint: string; title: string } => {
-    switch (getCurrentOption()) {
+    switch (currentFactor) {
       case "pathway":
         return {
           hint: "A pathway is either examined or non-examined",
