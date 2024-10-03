@@ -513,17 +513,15 @@ function sanatiseUnits(units: Unit[]): Unit[] {
         u.year === unit.year,
     );
 
-    // Check if there is a more specific unit
+    // Check if there is a more specific unit and remove if so
     const isMoreSpecific = similarUnits.some(
       (u) =>
         (unit.tier_slug === null && u.tier_slug !== null) ||
         (unit.examboard_slug === null && u.examboard_slug !== null) ||
         (unit.pathway_slug === null && u.pathway_slug !== null),
     );
-
-    // Retain one unit even if identical, but discard duplicates
     if (isMoreSpecific) {
-      return false; // Remove if a more specific version exists
+      return false;
     }
 
     // If this is the first occurrence of the unit in the array, keep it
@@ -609,9 +607,6 @@ export const getStaticProps: GetStaticProps<
 
       // Sort by unit order
       curriculumUnitsTabData.units.sort((a, b) => a.order - b.order);
-
-      console.log("FindMe");
-      //console.log(curriculumUnitsTabData.units);
 
       const curriculumUnitsFormattedData = formatCurriculumUnitsData(
         curriculumUnitsTabData,
