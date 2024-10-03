@@ -1,3 +1,15 @@
+# [1.574.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.573.2...v1.574.0) (2024-10-03)
+
+
+### Bug Fixes
+
+* add conditional logic to check for feature flag ([87b3101](https://github.com/oaknational/Oak-Web-Application/commit/87b31014ad29cbfa3d83329d660d51bec2a39057))
+
+
+### Features
+
+* optionally change download button message ([fe00c36](https://github.com/oaknational/Oak-Web-Application/commit/fe00c3684383ec229003266c3c6a52ac4bd69d39))
+
 ## [1.573.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.573.1...v1.573.2) (2024-10-03)
 
 
