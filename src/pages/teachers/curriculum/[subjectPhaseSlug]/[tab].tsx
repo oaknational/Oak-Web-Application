@@ -510,16 +510,29 @@ function sanatiseUnits(units: Unit[]): Unit[] {
       (u, i) =>
         i !== index && // Exclude the current unit itself
         u.slug === unit.slug &&
-        u.year === unit.year,
+        u.year === unit.year &&
+        u.subject_slug === unit.subject_slug &&
+        u.subject_parent_slug === unit.subject_parent_slug,
     );
 
     // Check if there is a more specific unit and remove if so
-    const isMoreSpecific = similarUnits.some(
-      (u) =>
-        (unit.tier_slug === null && u.tier_slug !== null) ||
-        (unit.examboard_slug === null && u.examboard_slug !== null) ||
-        (unit.pathway_slug === null && u.pathway_slug !== null),
-    );
+    const isMoreSpecific = similarUnits.some((u) => {
+      // Define an array of the optional fields (keys) that we want to check
+      // These fields are considered "specific" if they are not null
+      const fieldsToCheck: (keyof Unit)[] = [
+        "tier_slug",
+        "examboard_slug",
+        "pathway_slug",
+      ];
+
+      return fieldsToCheck.some(
+        (field) =>
+          unit[field] === null &&
+          u[field] !== null &&
+          // We want to only consider the unit `u` more specific if all other fields are identical.
+          fieldsToCheck.every((f) => f === field || unit[f] === u[f]),
+      );
+    });
     if (isMoreSpecific) {
       return false;
     }
