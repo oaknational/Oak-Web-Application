@@ -1,3 +1,17 @@
+## [1.573.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.573.1...v1.573.2) (2024-10-03)
+
+
+### Bug Fixes
+
+* **LESQ-1097:** prevent multiple submissions of the onboarding form ([68b6534](https://github.com/oaknational/Oak-Web-Application/commit/68b65347afb939f45dfea9cfea8fc69e3ebf8821))
+
+## [1.573.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.573.0...v1.573.1) (2024-10-02)
+
+
+### Bug Fixes
+
+* update laout meta description and homepage.json ([440dfc3](https://github.com/oaknational/Oak-Web-Application/commit/440dfc33d4a51f0159cb395a4bca686ecedf4d44))
+
 # [1.573.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.572.1...v1.573.0) (2024-10-02)
 
 

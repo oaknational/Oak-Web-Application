@@ -10,9 +10,12 @@ import {
 } from "./onboardingActions";
 import { SchoolSelectFormProps } from "./OnboardingForm.schema";
 
+import * as hubspotForms from "@/browser-lib/hubspot/forms";
 import OakError from "@/errors/OakError";
 import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
 
 jest.mock("@/browser-lib/hubspot/forms");
 jest.mock("@/browser-lib/hubspot/forms/getHubspotFormPayloads");
@@ -56,6 +59,16 @@ const dataManual: SchoolSelectFormProps = {
 const userEmail = "test@example.com";
 const userSubscribed = true;
 const posthogDistinctId = "posthogDistinctId";
+
+jest.mock("@/browser-lib/hubspot/forms");
+jest.mock("@/common-lib/error-reporter", () => {
+  return {
+    __esModule: true,
+    default: () => {
+      return (...args: unknown[]) => reportError(...args);
+    },
+  };
+});
 
 describe(onboardUser, () => {
   beforeAll(() => {
@@ -222,7 +235,13 @@ describe("setOnboardingLocalStorage", () => {
 });
 
 describe("submitHubspotData", () => {
+  const hubspotData = {
+    oakUserId: "123",
+    newsletterSignUp: false,
+    school: "Grange Hill",
+  };
   beforeEach(() => {
+    jest.spyOn(hubspotForms, "hubspotSubmitForm").mockResolvedValue(undefined);
     jest.clearAllMocks();
     jest.resetModules();
   });
@@ -253,6 +272,86 @@ describe("submitHubspotData", () => {
         utm_term: "utm_term",
       },
     });
+  });
+  it("submits the correct hubspot form", async () => {
+    await submitOnboardingHubspotData({
+      hutk,
+      utmParams,
+      data,
+      userSubscribed,
+      posthogDistinctId,
+      userEmail,
+    });
+
+    expect(jest.spyOn(hubspotForms, "hubspotSubmitForm")).toHaveBeenCalledWith({
+      hubspotFormId: getBrowserConfig("hubspotOnboardingFormId"),
+      payload: getHubspotOnboardingFormPayload({
+        hutk: getHubspotUserToken(),
+        data: hubspotData,
+      }),
+    });
+  });
+
+  it("reports OakErrors", async () => {
+    reportError.mockReset();
+    const oakError = new OakError({ code: "hubspot/not-loaded" });
+
+    jest
+      .spyOn(hubspotForms, "hubspotSubmitForm")
+      .mockRejectedValueOnce(oakError);
+
+    await submitOnboardingHubspotData({
+      hutk,
+      utmParams,
+      data,
+      userSubscribed,
+      posthogDistinctId,
+      userEmail,
+    });
+
+    expect(reportError).toHaveBeenCalledWith(oakError);
+  });
+
+  it("submits the correct hubspot form", async () => {
+    await submitOnboardingHubspotData({
+      hutk,
+      utmParams,
+      data,
+      userSubscribed,
+      posthogDistinctId,
+      userEmail,
+    });
+
+    expect(jest.spyOn(hubspotForms, "hubspotSubmitForm")).toHaveBeenCalledWith({
+      hubspotFormId: getBrowserConfig("hubspotOnboardingFormId"),
+      payload: getHubspotOnboardingFormPayload({
+        hutk: getHubspotUserToken(),
+        data: hubspotData,
+      }),
+    });
+  });
+
+  it("wraps vanilla errors in OakError", async () => {
+    reportError.mockReset();
+    const error = new Error();
+
+    jest.spyOn(hubspotForms, "hubspotSubmitForm").mockRejectedValueOnce(error);
+
+    await submitOnboardingHubspotData({
+      hutk,
+      utmParams,
+      data,
+      userSubscribed,
+      posthogDistinctId,
+      userEmail,
+    });
+
+    expect(reportError).toHaveBeenCalledWith(
+      new OakError({
+        code: "hubspot/unknown",
+        originalError: error,
+      }),
+    );
   });
 
   test("should throw and report error if failed to submit to hubspot", async () => {

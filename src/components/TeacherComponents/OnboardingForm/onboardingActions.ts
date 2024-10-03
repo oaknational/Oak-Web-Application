@@ -2,17 +2,17 @@ import useLocalStorageForDownloads from "../hooks/downloadAndShareHooks/useLocal
 
 import { OnboardingFormProps } from "./OnboardingForm.schema";
 
+import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
+import errorReporter from "@/common-lib/error-reporter";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 import OakError from "@/errors/OakError";
 import { subscriptionResponseSchema } from "@/pages/api/hubspot/subscription";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
-import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
-import errorReporter from "@/common-lib/error-reporter";
 
 const onboardingApiRoute = "/api/auth/onboarding";
 
-const reportError = errorReporter("onboardingActions");
+export const reportError = errorReporter("onboardingActions");
 
 /**
  * Makes a request to mark the user as onboarded in Clerk
@@ -85,8 +85,6 @@ export async function getSubscriptionStatus(
   }
 }
 
-const reportHubspotError = errorReporter("resolveHubspotFormReferences.ts");
-
 interface OnboardingHubspotData {
   hutk: string | undefined;
   utmParams: Partial<
@@ -130,9 +128,9 @@ export async function submitOnboardingHubspotData({
     });
   } catch (error) {
     if (error instanceof OakError) {
-      reportHubspotError(error);
+      reportError(error);
     } else {
-      reportHubspotError(
+      reportError(
         new OakError({
           code: "hubspot/unknown",
           originalError: error,

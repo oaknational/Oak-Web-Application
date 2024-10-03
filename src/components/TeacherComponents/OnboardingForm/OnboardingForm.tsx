@@ -37,8 +37,8 @@ import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useUtmParams from "@/hooks/useUtmParams";
-import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
 import toSafeRedirect from "@/common-lib/urls/toSafeRedirect";
+import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
 
 const OnboardingForm = ({
   forceHideNewsletterSignUp,
@@ -49,7 +49,7 @@ const OnboardingForm = ({
   formState: UseFormStateReturn<OnboardingFormProps>;
   heading: string;
   subheading?: string;
-  secondaryButton?: React.ReactNode;
+  secondaryButton?: (isSubmitting: boolean) => React.ReactNode;
   canSubmit: boolean;
   onSubmit?: () => void;
   control: Control<OnboardingFormProps>;
@@ -57,13 +57,12 @@ const OnboardingForm = ({
   forceHideNewsletterSignUp?: boolean;
 }) => {
   const router = useRouter();
-  const hutk = getHubspotUserToken();
   const utmParams = useUtmParams();
   const { posthogDistinctId } = useAnalytics();
   const { user } = useUser();
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const localStorageForDownloads = useLocalStorageForDownloads();
-
   const [userSubscribedInHubspot, setUserSubscribedInHubspot] = useState<
     boolean | undefined
   >(undefined);
@@ -72,7 +71,6 @@ const OnboardingForm = ({
     if (forceHideNewsletterSignUp) {
       return;
     }
-
     if (user?.emailAddresses[0]) {
       const email = String(user.emailAddresses[0].emailAddress);
       getSubscriptionStatus(email, setUserSubscribedInHubspot);
@@ -82,31 +80,11 @@ const OnboardingForm = ({
   const showNewsletterSignUp =
     userSubscribedInHubspot === false && forceHideNewsletterSignUp !== true;
 
-  const handleSuccessfulOnboarding = async (data: OnboardingFormProps) => {
-    const userEmail = user?.emailAddresses[0]?.emailAddress;
-
-    const userSubscribed =
-      userSubscribedInHubspot ||
-      ("newsletterSignUp" in data && data.newsletterSignUp);
-
-    await setOnboardingLocalStorage({
-      localStorageForDownloads,
-      data,
-      userEmail,
-      userSubscribed,
-    });
-
-    await submitOnboardingHubspotData({
-      hutk,
-      utmParams,
-      data,
-      userSubscribed,
-      posthogDistinctId,
-      userEmail,
-    });
-  };
-
   const onFormSubmit = async (data: OnboardingFormProps) => {
+    if (isSubmitting) {
+      return;
+    }
+
     if ("worksInSchool" in data) {
       router.push({
         pathname: resolveOakHref({
@@ -129,17 +107,39 @@ const OnboardingForm = ({
         query: encodedQueryData,
       });
     } else {
+      setIsSubmitting(true);
       const isTeacher = "school" in data || "manualSchoolName" in data;
 
       try {
         await onboardUser({ isTeacher });
         await user?.reload();
-
-        await handleSuccessfulOnboarding(data);
       } catch (error) {
         setSubmitError("Something went wrong. Please try again.");
+        setIsSubmitting(false);
+        // No point in proceeding to hubspot sign-up if onboarding failed
         return;
       }
+      const userSubscribed =
+        userSubscribedInHubspot ||
+        ("newsletterSignUp" in data && data.newsletterSignUp);
+
+      const userEmail = user?.emailAddresses[0]?.emailAddress;
+
+      await setOnboardingLocalStorage({
+        localStorageForDownloads,
+        data,
+        userEmail,
+        userSubscribed,
+      });
+
+      await submitOnboardingHubspotData({
+        hutk: getHubspotUserToken(),
+        utmParams,
+        data,
+        userSubscribed,
+        posthogDistinctId,
+        userEmail,
+      });
       // Return the user to the page they originally arrived from
       // or to the home page as a fallback
       router.push(
@@ -212,7 +212,7 @@ const OnboardingForm = ({
             $flexDirection="column"
           >
             <OakPrimaryButton
-              disabled={!props.canSubmit}
+              disabled={!props.canSubmit || isSubmitting}
               width="100%"
               type="submit"
               onClick={props.onSubmit}
@@ -220,7 +220,7 @@ const OnboardingForm = ({
             >
               Continue
             </OakPrimaryButton>
-            {props.secondaryButton}
+            {props.secondaryButton?.(isSubmitting)}
           </OakFlex>
           {showNewsletterSignUp && (
             <Controller
