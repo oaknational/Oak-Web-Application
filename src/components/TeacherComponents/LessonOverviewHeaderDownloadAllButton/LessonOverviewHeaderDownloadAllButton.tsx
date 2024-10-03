@@ -88,7 +88,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
         $iconPosition="trailing"
         label={
           displaySignInMessage
-            ? `Sign in to download all resources`
+            ? `Sign in to download`
             : `Download all resources`
         }
         onClick={onClickDownloadAll}
