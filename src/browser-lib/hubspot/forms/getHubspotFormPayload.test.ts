@@ -210,6 +210,7 @@ describe("getHubspotOnboardingFormPayload", () => {
     });
     expect(result.fields).toEqual([
       { name: "contact_school_name", value: "Totally real school" },
+
       { name: "do_you_work_in_a_school", value: "Yes" },
       { name: "email", value: "email value" },
       { name: "email_consent_on_account_creation", value: "Yes" },
@@ -239,6 +240,8 @@ describe("getHubspotOnboardingFormPayload", () => {
       },
     });
     expect(result.fields).toEqual([
+      { name: "contact_school_name", value: "notListed" },
+
       { name: "do_you_work_in_a_school", value: "No" },
       { name: "email", value: "email value" },
       { name: "email_consent_on_account_creation", value: "Yes" },
@@ -247,6 +250,7 @@ describe("getHubspotOnboardingFormPayload", () => {
       { name: "latest_utm_medium", value: "some medium" },
       { name: "latest_utm_source", value: "a source" },
       { name: "latest_utm_term", value: "term" },
+
       { name: "non_school_role_description", value: "role value" },
       {
         name: "non_school_role_description_freetext",
