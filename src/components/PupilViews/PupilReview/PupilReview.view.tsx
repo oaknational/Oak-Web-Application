@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   OakFlex,
   OakGrid,
@@ -73,6 +73,41 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const [isAttemptingShare, setIsAttemptingShare] = useState<
     "failed" | "shared" | "initial"
   >("initial");
+  const [storedAttemptLocally, setStoredAttemptLocally] = useState<{
+    stored: boolean;
+    attemptId: string;
+  }>({ stored: false, attemptId: "" });
+
+  useEffect(() => {
+    const storeResultsInLocalStorage = () => {
+      const attemptData = {
+        lessonData: { slug: lessonSlug, title: lessonTitle },
+        browseData: {
+          subject: subject,
+          yearDescription: yearDescription ?? "",
+        },
+        sectionResults: sectionResults,
+      };
+      const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+      const attemptId = logAttempt(parsedAttemptData, true);
+      if (typeof attemptId === "string") {
+        setStoredAttemptLocally({ stored: true, attemptId });
+      }
+    };
+    if (isLessonComplete) {
+      storeResultsInLocalStorage();
+    }
+  }, [
+    sectionResults,
+    isLessonComplete,
+    lessonSlug,
+    lessonTitle,
+    subject,
+    yearDescription,
+    logAttempt,
+  ]);
+
+  useEffect(() => {}, [storedAttemptLocally]);
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
@@ -123,26 +158,6 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     }
   };
 
-  const handlePrintableResultsClick = () => {
-    const attemptData = {
-      lessonData: { slug: lessonSlug, title: lessonTitle },
-      browseData: { subject: subject, yearDescription: yearDescription ?? "" },
-      sectionResults: sectionResults,
-    };
-    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
-    const attemptId = logAttempt(parsedAttemptData, true);
-    if (typeof attemptId === "string") {
-      window.open(
-        resolveOakHref({
-          page: "pupil-lesson-results-canonical-printable",
-          lessonSlug,
-          attemptId,
-        }),
-        "_blank",
-      );
-    }
-  };
-
   if (phase === "foundation") {
     throw new Error("Foundation phase is not supported");
   }
@@ -189,21 +204,26 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                     $gap={"space-between-s"}
                     $flexDirection={["column", "row"]}
                   >
-                    <OakBox $display={["none", "flex"]}>
-                      <OakSecondaryButton
-                        type="button"
-                        role="button"
-                        aria-label="Printable results, opens in a new tab"
-                        title="Printable results (opens in a new tab)"
-                        iconName={"external"}
-                        isTrailingIcon
-                        onClick={handlePrintableResultsClick}
-                        data-testid="printable-results-button"
-                      >
-                        Printable results
-                      </OakSecondaryButton>
-                    </OakBox>
-
+                    {storedAttemptLocally.stored && (
+                      <OakBox $display={["none", "flex"]}>
+                        <OakSecondaryButton
+                          element="a"
+                          href={resolveOakHref({
+                            page: "pupil-lesson-results-canonical-printable",
+                            lessonSlug,
+                            attemptId: storedAttemptLocally.attemptId,
+                          })}
+                          target="_blank"
+                          aria-label="Printable results, opens in a new tab"
+                          title="Printable results (opens in a new tab)"
+                          iconName={"external"}
+                          isTrailingIcon
+                          data-testid="printable-results-button"
+                        >
+                          Printable results
+                        </OakSecondaryButton>
+                      </OakBox>
+                    )}
                     <OakSecondaryButton
                       type="button"
                       role="button"

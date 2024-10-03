@@ -130,29 +130,45 @@ describe("PupilReview", () => {
   });
 
   it("displays a special message when the lesson is complete", () => {
-    const { queryByText } = renderWithTheme(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <LessonEngineContext.Provider
-          value={createLessonEngineContext({ isLessonComplete: true })}
-        >
-          <PupilViewsReview
-            lessonTitle="Lesson title"
-            exitQuizQuestionsArray={[]}
-            starterQuizQuestionsArray={[]}
-            programmeSlug="programme-slug"
-            unitSlug="unit-slug"
-            pageType="browse"
-            browseData={mockBroweData}
-          />
-        </LessonEngineContext.Provider>
-      </OakThemeProvider>,
+    const logAttemptSpy = jest.fn(() => Promise.resolve("attempt-id"));
+    (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+
+    const { getByText } = renderWithTheme(
+      <OakPupilClientProvider
+        config={{
+          getLessonAttemptUrl: "example.com",
+          logLessonAttemptUrl: "example.com",
+        }}
+      >
+        {" "}
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({
+              isLessonComplete: true,
+              sectionResults: sectionResultsFixture,
+            })}
+          >
+            <PupilViewsReview
+              lessonTitle="Lesson title"
+              exitQuizQuestionsArray={[]}
+              starterQuizQuestionsArray={[]}
+              programmeSlug="programme-slug"
+              unitSlug="unit-slug"
+              pageType="browse"
+              browseData={mockBroweData}
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>
+      </OakPupilClientProvider>,
     );
 
-    expect(queryByText("Fantastic job - well done!")).toBeInTheDocument();
+    expect(getByText("Great effort!")).toBeInTheDocument();
   });
   describe("Printable results button", () => {
     it("should display the print button", () => {
-      const { queryByText } = renderWithTheme(
+      const logAttemptSpy = jest.fn(() => "attempt-id");
+      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+      const { getByText } = renderWithTheme(
         <OakPupilClientProvider
           config={{
             getLessonAttemptUrl: "example.com",
@@ -160,7 +176,12 @@ describe("PupilReview", () => {
           }}
         >
           <OakThemeProvider theme={oakDefaultTheme}>
-            <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <LessonEngineContext.Provider
+              value={createLessonEngineContext({
+                sectionResults: sectionResultsFixture,
+                isLessonComplete: true,
+              })}
+            >
               <PupilViewsReview
                 lessonTitle="Lesson title"
                 exitQuizQuestionsArray={[]}
@@ -175,11 +196,11 @@ describe("PupilReview", () => {
         </OakPupilClientProvider>,
       );
 
-      expect(queryByText("Printable results")).toBeInTheDocument();
+      expect(getByText("Printable results")).toBeInTheDocument();
     });
     it("logAttempt function is called when button is clicked", async () => {
       //spy on the track function
-      const logAttemptSpy = jest.fn(() => Promise.resolve("attempt-id"));
+      const logAttemptSpy = jest.fn(() => "attempt-id");
       (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
 
       const { getByTestId } = renderWithTheme(
@@ -187,6 +208,7 @@ describe("PupilReview", () => {
           <LessonEngineContext.Provider
             value={createLessonEngineContext({
               sectionResults: sectionResultsFixture,
+              isLessonComplete: true,
             })}
           >
             <OakPupilClientProvider
