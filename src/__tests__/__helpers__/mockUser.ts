@@ -20,6 +20,7 @@ export const mockUserWithDownloadAccess: UserResource = {
   publicMetadata: {
     owa: {
       isRegionAuthorised: true,
+      isOnboarded: true,
     },
   },
 };
