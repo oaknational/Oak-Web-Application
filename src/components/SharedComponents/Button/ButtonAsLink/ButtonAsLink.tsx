@@ -2,7 +2,11 @@ import { FC } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-import { CommonButtonProps, defaultButtonProps } from "../common";
+import {
+  ButtonVariant,
+  CommonButtonProps,
+  defaultButtonProps,
+} from "../common";
 
 import {
   OwaLinkPropsWithoutChildren,
@@ -25,11 +29,14 @@ const StyledNextLink = styled.a<ButtonStylesProps>`
    pointer-events: none;
   `}
 `;
+
 export type ButtonAsLinkProps = CommonButtonProps &
   OwaLinkPropsWithoutChildren &
   Pick<ButtonInnerProps, "currentStyles"> & {
     disabled?: boolean;
+    variant?: ButtonVariant;
   };
+
 const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   const { nextLinkProps, ...transformedProps } = transformOwaLinkProps(props);
   const {
@@ -42,11 +49,15 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     disabled,
     isCurrent,
     currentStyles,
+    $font,
+    variant = "minimal",
     ...linkProps
   } = transformedProps;
 
-  const { size, variant, $iconPosition, background } =
-    getButtonStylesProps(transformedProps);
+  const { size, $iconPosition, background } = getButtonStylesProps({
+    ...transformedProps,
+    variant,
+  });
 
   // aria-label overrides label.
   // If labelSuffixA11y is provided, it is appended to the label.
@@ -83,6 +94,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
           disabled={disabled}
           isCurrent={isCurrent}
           currentStyles={currentStyles}
+          $font={$font}
         />
       </StyledNextLink>
     </Link>

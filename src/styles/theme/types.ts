@@ -53,6 +53,7 @@ export type PixelSpacing =
   | 56
   | 58
   | 60
+  | 62
   | 64
   | 66
   | 72

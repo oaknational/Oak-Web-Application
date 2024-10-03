@@ -2,12 +2,13 @@ import React, { FC } from "react";
 import { useRouter } from "next/router";
 import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
 
+import CurriculumHeaderTabNav from "../CurriculumHeaderTabNav";
+
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { Hr } from "@/components/SharedComponents/Typography";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon/SubjectIcon";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
-import TabularNav from "@/components/SharedComponents/TabularNav";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -79,7 +80,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       page: "curriculum-units",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "units",
-      currentStyles: ["underline"],
+      currentStyles: ["border-top"],
       scroll: false,
     },
     {
@@ -87,7 +88,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       page: "curriculum-overview",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "overview",
-      currentStyles: ["underline"],
+      currentStyles: ["border-top"],
       scroll: false,
     },
     {
@@ -95,13 +96,13 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       page: "curriculum-downloads",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "downloads",
-      currentStyles: ["underline"],
+      currentStyles: ["border-top"],
       scroll: false,
     },
   ];
 
   return (
-    <Box $mb={40}>
+    <Box $mb={[62, 40]}>
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
       <Flex $background={color1} $pv={[20]}>
         <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
@@ -138,7 +139,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       </Flex>
       <Box $background={cycleTwoEnabled ? color1 : color2}>
         {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
-        <Flex $pv={32}>
+        <Flex $pb={[24, 24]} $pt={[20, 30]}>
           <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
             <OakFlex>
               <Box
@@ -156,7 +157,11 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   data-testid="subjectIcon"
                 />
               </Box>
-              <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
+              <OakFlex
+                $rowGap={["all-spacing-2", "all-spacing-2"]}
+                $justifyContent={"center"}
+                $flexDirection={"column"}
+              >
                 {phase.slug === "secondary" && (
                   <OakP
                     $font={"heading-light-7"}
@@ -176,13 +181,18 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             </OakFlex>
           </Box>
         </Flex>
-        <TabularNav
+        <CurriculumHeaderTabNav
+          data-testid="tabularNav"
+          label="Curriculum Selection"
+          links={links}
+          variant="flat"
+          $alignItems={"center"}
+          $borderColor="mint30"
+          $bt={2}
+          $height={[64, 66]}
           $maxWidth={1280}
           $mh={"auto"}
           $ph={18}
-          label="Curriculum Selection"
-          links={links}
-          data-testid="tabularNav"
         />
       </Box>
     </Box>

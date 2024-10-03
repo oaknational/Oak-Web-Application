@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import {
+  OakHeading,
   OakDownloadsJourneyChildSubjectTierSelector,
   OakThemeProvider,
   oakDefaultTheme,
@@ -26,6 +27,7 @@ import {
   useDownloadsLocalStorage,
 } from "./helper";
 
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly/ScreenReaderOnly";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Box from "@/components/SharedComponents/Box";
@@ -321,6 +323,9 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
+      <ScreenReaderOnly>
+        <OakHeading tag="h2">Download</OakHeading>
+      </ScreenReaderOnly>
       <Box $maxWidth={1280} $mh={"auto"} $ph={18} $pb={[48]} $width={"100%"}>
         {subjectTierSelectionVisible === true && (
           <OakDownloadsJourneyChildSubjectTierSelector

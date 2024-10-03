@@ -53,6 +53,7 @@ export type ButtonCurrentStyles = (
   | "color"
   | "text-underline"
   | "underline"
+  | "border-top"
 )[];
 
 export type ButtonInnerProps = {
@@ -77,6 +78,7 @@ export type ButtonInnerProps = {
   $font?: ResponsiveValues<FontVariant> | undefined;
   labelColor?: OakColorName;
 };
+// ButtonInner.tsx
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   let { icon } = props;
   const { subjectIcon } = props;
@@ -88,14 +90,14 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     labelSuffixA11y,
     shouldHideLabel,
     background,
-    variant,
+    variant = "minimal",
     isCurrent,
     currentStyles,
     $font,
     labelColor,
   } = props;
-  const iconSize = buttonIconSizeMap[buttonSize];
 
+  const iconSize = buttonIconSizeMap[buttonSize];
   const theme = useTheme();
   const defaultIconBackground = getButtonIconBackground(background)({ theme });
 
@@ -112,14 +114,6 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     icon = "arrow-right";
   }
 
-  /**
-   * currentColor is the text/icon color when the button has state "current"
-   * as standard, this applies to links (ButtonAsLink) when they link to the
-   * current page. In this case `isCurrent=true` should be passed as a prop.
-   * At the moment, currentColor is hardcoded, but there may come a time when
-   * we need the value to depend on the original color of the button, in which
-   * case it should come from theme.
-   */
   const currentColor: OakColorName = "grey60";
   const displayProperty = shouldHideLabel?.map((hide) =>
     hide ? "none" : "block",

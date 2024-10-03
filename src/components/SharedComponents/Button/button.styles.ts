@@ -94,6 +94,7 @@ const buttonStyles = css<ButtonStylesProps>`
       color: ${getButtonColor(props.background, props.variant, props.disabled)};
     `;
   }}
+
   transition: ${HOVER_SHADOW_TRANSITION};
 
   :focus {
@@ -185,6 +186,54 @@ const buttonStyles = css<ButtonStylesProps>`
       :hover:not(:focus) ${ButtonLabel} {
         text-decoration: underline;
       }
+    `}
+
+  ${(props) =>
+    props.variant === "flat" &&
+    css`
+      background-color: ${props.theme.colors.mint};
+      color: ${props.theme.colors.grey60};
+      border: none;
+      padding-top: 21px;
+      padding-bottom: 18px;
+      height: fit-content;
+      transition: none;
+      margin-right: 0;
+
+      @media (min-width: 750px) {
+        padding-top: 19px;
+        padding-bottom: 20px;
+      }
+
+      &:hover {
+        box-shadow: unset;
+        background-color: ${props.theme.colors.mint30};
+        transition: none;
+      }
+
+      &:focus {
+        padding-left: 18px;
+        border: 2.5px solid ${props.theme.colors.grey60};
+        color: ${props.theme.colors.grey60};
+        box-shadow:
+          inset 0 0 0 2px ${props.theme.colors.lemon},
+          inset 0 -2px 0 0 ${props.theme.colors.lemon};
+      }
+
+      ${(props["aria-current"] === "page" || props.isCurrent) &&
+      css`
+        background-color: ${props.theme.colors.mint30};
+        box-shadow: inset 0 9px 0 0 ${props.theme.colors.black};
+        color: ${props.theme.colors.black};
+
+        @media (min-width: 750px) {
+          box-shadow: inset 0 7px 0 0 ${props.theme.colors.black};
+        }
+
+        /* &:focus {
+          padding-left: 13.5px;
+        } */
+      `}
     `}
 
   ${(props) =>

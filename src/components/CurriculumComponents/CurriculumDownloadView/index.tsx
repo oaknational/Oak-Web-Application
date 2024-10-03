@@ -11,7 +11,6 @@ import {
 import { FC, FormEvent, useId, useState } from "react";
 import styled from "styled-components";
 
-
 import AcceptTerms from "../OakComponentsKitchen/AcceptTerms";
 import YourDetails from "../OakComponentsKitchen/YourDetails";
 import Terms from "../OakComponentsKitchen/Terms";
@@ -142,7 +141,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
   return (
     <OakBox $color="black">
       <ScreenReaderOnly>
-        <OakHeading tag="h2" $font={["heading-4"]} $mb={["space-between-m"]}>
+        <OakHeading aria-role={"heading"} tag="h2">
           Download
         </OakHeading>
       </ScreenReaderOnly>
