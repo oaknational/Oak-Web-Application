@@ -1,5 +1,3 @@
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
-
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 
@@ -8,6 +6,7 @@ import { getUnitsForProgramme } from "./units/getUnitsForProgramme";
 import { getAllLearningThemes } from "./filters/getAllLearningThemes";
 import { getAllCategories } from "./filters/getAllCategories";
 import { getAllYearGroups } from "./filters/getAllYearGroups";
+import { rawSuvLessonsSchema } from "./rawSuvLessons.schema";
 
 import { NEW_COHORT } from "@/config/cohort";
 
@@ -21,7 +20,7 @@ const unitListingQuery =
     }
 
     const parsedRawUnits = unitsForProgramme.map((p) =>
-      syntheticUnitvariantLessonsSchema.parse(p),
+      rawSuvLessonsSchema.parse(p),
     );
 
     const firstUnit = parsedRawUnits[0];

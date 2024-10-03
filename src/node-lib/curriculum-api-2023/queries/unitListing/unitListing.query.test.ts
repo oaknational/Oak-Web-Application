@@ -48,7 +48,6 @@ jest.mock("../../sdk", () => {
             is_legacy: false,
             lesson_data: lessonDataFixture(),
             lesson_slug: "lesson-slug",
-            null_unitvariant: unitvariantFixture(),
             programme_fields: programmeFieldsFixture({
               overrides: {
                 tier: "foundation",
