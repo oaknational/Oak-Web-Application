@@ -1,3 +1,25 @@
+# [1.575.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.574.0...v1.575.0) (2024-10-03)
+
+
+### Bug Fixes
+
+* do not submit not listed to hubspot ([5a7fee5](https://github.com/oaknational/Oak-Web-Application/commit/5a7fee51188a33807d3c3436feacb00c56d4d269))
+* only with feature flag ([0b0486f](https://github.com/oaknational/Oak-Web-Application/commit/0b0486fa87bdecfd6fa57b38f1473086ad053888))
+* show details test ([5d1fd42](https://github.com/oaknational/Oak-Web-Application/commit/5d1fd423d99b954aa118040ffa6ca2434fb86c01))
+* subscribed logic ([c87befc](https://github.com/oaknational/Oak-Web-Application/commit/c87befcb5cc561429efc20c4df72bc6690a2ba51))
+
+
+### Features
+
+* auth downloads details state from hubpot and local storage ([2c5154f](https://github.com/oaknational/Oak-Web-Application/commit/2c5154f937d7660e1b7660373498262b78a87f00))
+* get contact from hubspot ([9b9e826](https://github.com/oaknational/Oak-Web-Application/commit/9b9e8262911d88bd8ed4853a45f2be6500db3264))
+* hide details non teacher ([e3c9d62](https://github.com/oaknational/Oak-Web-Application/commit/e3c9d62a9d886eb60c61981ea539cf8c9e0926f7))
+* hide details on downloads ([f7c99b6](https://github.com/oaknational/Oak-Web-Application/commit/f7c99b625045532b5f1383d365a8384ded018db5))
+* hide details with full onboarding ([90849ae](https://github.com/oaknational/Oak-Web-Application/commit/90849ae83dc8aa447f2c62c1b5eb39f77c13fb1d))
+* hubspot  for non teachers ([2eb2e95](https://github.com/oaknational/Oak-Web-Application/commit/2eb2e958c3788bb0d17101d7841bc7026a7966de))
+* not listed for non teacher users in local storage ([bd31c94](https://github.com/oaknational/Oak-Web-Application/commit/bd31c9405e951d00e7324ea8b56430e0e0701537))
+* update local storage in onboarding ([f45bd8d](https://github.com/oaknational/Oak-Web-Application/commit/f45bd8d9864f7e73f48df22b67f270eda64540d5))
+
 # [1.574.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.573.2...v1.574.0) (2024-10-03)
 
 

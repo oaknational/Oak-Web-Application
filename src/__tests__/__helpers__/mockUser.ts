@@ -25,6 +25,27 @@ export const mockUserWithDownloadAccess: UserResource = {
   },
 };
 
+export const mockUserWithDownloadAccessNotOnboarded: UserResource = {
+  ...mockUser,
+  publicMetadata: {
+    owa: {
+      isRegionAuthorised: true,
+      isOnboarded: false,
+    },
+  },
+};
+
+export const mockTeacherUserWithDownloadAccess: UserResource = {
+  ...mockUser,
+  publicMetadata: {
+    owa: {
+      isRegionAuthorised: true,
+      isTeacher: true,
+      isOnboarded: true,
+    },
+  },
+};
+
 export const mockUserWithoutDownloadAccess: UserResource = {
   ...mockUser,
   publicMetadata: {
