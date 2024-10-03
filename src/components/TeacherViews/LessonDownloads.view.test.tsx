@@ -16,7 +16,7 @@ const lesson = lessonDownloadsFixture({
 });
 
 jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: jest.fn(() => true),
+  useFeatureFlagVariantKey: jest.fn(() => "with-login"),
 }));
 
 describe("Hiding 'Your details", () => {

@@ -9,8 +9,9 @@ import { AuthLayout } from "../../auth-layout";
 
 import { getIllustrationAsset } from "@/image-data";
 import CMSImage from "@/components/SharedComponents/CMSImage";
+import withFeatureFlag from "@/hocs/withFeatureFlag";
 
-export default function SignInPage() {
+function SignInPage() {
   return (
     <AuthLayout
       asideSlot={
@@ -27,3 +28,11 @@ export default function SignInPage() {
     </AuthLayout>
   );
 }
+
+const SigninPageWithFeatureFlag = withFeatureFlag(
+  SignInPage,
+  "teacher-download-auth",
+  "with-login",
+);
+
+export default SigninPageWithFeatureFlag;
