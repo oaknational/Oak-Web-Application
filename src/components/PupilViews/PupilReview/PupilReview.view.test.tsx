@@ -164,78 +164,7 @@ describe("PupilReview", () => {
 
     expect(getByText("Great effort!")).toBeInTheDocument();
   });
-  describe("Printable results button", () => {
-    it("should display the print button", () => {
-      const logAttemptSpy = jest.fn(() => "attempt-id");
-      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
-      const { getByText } = renderWithTheme(
-        <OakPupilClientProvider
-          config={{
-            getLessonAttemptUrl: "example.com",
-            logLessonAttemptUrl: "example.com",
-          }}
-        >
-          <OakThemeProvider theme={oakDefaultTheme}>
-            <LessonEngineContext.Provider
-              value={createLessonEngineContext({
-                sectionResults: sectionResultsFixture,
-                isLessonComplete: true,
-              })}
-            >
-              <PupilViewsReview
-                lessonTitle="Lesson title"
-                exitQuizQuestionsArray={[]}
-                starterQuizQuestionsArray={[]}
-                programmeSlug="programme-slug"
-                unitSlug="unit-slug"
-                browseData={mockBroweData}
-                pageType="browse"
-              />
-            </LessonEngineContext.Provider>
-          </OakThemeProvider>
-        </OakPupilClientProvider>,
-      );
 
-      expect(getByText("Printable results")).toBeInTheDocument();
-    });
-    it("logAttempt function is called when button is clicked", async () => {
-      //spy on the track function
-      const logAttemptSpy = jest.fn(() => "attempt-id");
-      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
-
-      const { getByTestId } = renderWithTheme(
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider
-            value={createLessonEngineContext({
-              sectionResults: sectionResultsFixture,
-              isLessonComplete: true,
-            })}
-          >
-            <OakPupilClientProvider
-              config={{
-                getLessonAttemptUrl: "example.com",
-                logLessonAttemptUrl: "example.com",
-              }}
-            >
-              <PupilViewsReview
-                lessonTitle="Lesson title"
-                exitQuizQuestionsArray={[]}
-                starterQuizQuestionsArray={[]}
-                programmeSlug="programme-slug"
-                unitSlug="unit-slug"
-                browseData={mockBroweData}
-                pageType="browse"
-              />
-            </OakPupilClientProvider>
-          </LessonEngineContext.Provider>
-        </OakThemeProvider>,
-      );
-      const button = getByTestId("printable-results-button");
-      await userEvent.click(button).then(() => {
-        expect(logAttemptSpy).toHaveBeenCalledTimes(1);
-      });
-    });
-  });
   describe("Copy link button", () => {
     it("should display the print button", () => {
       const { queryByText } = renderWithTheme(
@@ -321,6 +250,7 @@ describe("PupilReview", () => {
           <LessonEngineContext.Provider
             value={createLessonEngineContext({
               sectionResults: sectionResultsFixture,
+              isLessonComplete: false,
             })}
           >
             <OakPupilClientProvider
@@ -457,6 +387,97 @@ describe("PupilReview", () => {
       expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
         "http://localhost:3000/pupils/lessons/lesson-slug/results/some-attempt-id/share",
       );
+    });
+  });
+  describe("Printable results button", () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      // @ts-expect-error - unable to mock setTimeout with jest.runOnlyPendingTimers
+      jest.spyOn(global, "setTimeout").mockImplementation((fn) => fn());
+    });
+    it("should display the print button and log attempt after timeout", () => {
+      // Mock the logAttempt function
+      const logAttemptSpy = jest.fn(() => "attempt-id");
+      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+
+      // Render the component
+      const { getByText } = renderWithTheme(
+        <OakPupilClientProvider
+          config={{
+            getLessonAttemptUrl: "example.com",
+            logLessonAttemptUrl: "example.com",
+          }}
+        >
+          <OakThemeProvider theme={oakDefaultTheme}>
+            <LessonEngineContext.Provider
+              value={createLessonEngineContext({
+                sectionResults: sectionResultsFixture,
+                isLessonComplete: true, // Ensure lesson is complete to trigger the effect
+              })}
+            >
+              <PupilViewsReview
+                lessonTitle="Lesson title"
+                exitQuizQuestionsArray={[]}
+                starterQuizQuestionsArray={[]}
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                browseData={mockBroweData}
+                pageType="browse"
+              />
+            </LessonEngineContext.Provider>
+          </OakThemeProvider>
+        </OakPupilClientProvider>,
+      );
+
+      // Fast-forward and exhaust all timers to ensure the setTimeout callback is executed
+      // jest.runOnlyPendingTimers();
+
+      // Check if the logAttempt function was called
+      expect(logAttemptSpy).toHaveBeenCalledTimes(1); // Ensure it's called once
+
+      // Check that the print button is displayed
+      expect(getByText("Printable results")).toBeInTheDocument();
+
+      // Clean up and restore real timers
+      jest.useRealTimers();
+    });
+
+    it("logAttempt function is called when button is clicked", async () => {
+      //spy on the track function
+      const logAttemptSpy = jest.fn(() => "attempt-id");
+      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+
+      const { getByTestId } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext({
+              sectionResults: sectionResultsFixture,
+              isLessonComplete: true,
+            })}
+          >
+            <OakPupilClientProvider
+              config={{
+                getLessonAttemptUrl: "example.com",
+                logLessonAttemptUrl: "example.com",
+              }}
+            >
+              <PupilViewsReview
+                lessonTitle="Lesson title"
+                exitQuizQuestionsArray={[]}
+                starterQuizQuestionsArray={[]}
+                programmeSlug="programme-slug"
+                unitSlug="unit-slug"
+                browseData={mockBroweData}
+                pageType="browse"
+              />
+            </OakPupilClientProvider>
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+      const button = getByTestId("printable-results-button");
+      await userEvent.click(button).then(() => {
+        expect(logAttemptSpy).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });
