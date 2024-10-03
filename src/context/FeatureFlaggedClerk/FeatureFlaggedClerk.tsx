@@ -8,7 +8,7 @@ import {
   useAuth,
   useUser,
 } from "@clerk/nextjs";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { PropsWithChildren, createContext, useContext } from "react";
 
 function EmptyComponent() {
@@ -68,7 +68,7 @@ export function useFeatureFlaggedClerk() {
  * TODO remove this abstraction once the `use-auth-owa` feature flag is retired
  */
 export function FeatureFlaggedClerkProvider({ children }: PropsWithChildren) {
-  if (useFeatureFlagEnabled("use-auth-owa")) {
+  if (useFeatureFlagVariantKey("teacher-download-auth") === "with-login") {
     return (
       <ClerkProvider
         signInUrl="/sign-in"

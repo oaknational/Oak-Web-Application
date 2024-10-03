@@ -15,7 +15,8 @@ const OnboardingComponent: NextPage = () => {
 
 const OnboardingPage = withFeatureFlag(
   withPageAuthRequired(OnboardingComponent),
-  "use-auth-owa",
+  "teacher-download-auth",
+  "with-login",
 );
 
 export default OnboardingPage;
