@@ -4,6 +4,7 @@ import {
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
 import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useUser } from "@clerk/nextjs";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
@@ -48,7 +49,6 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
 import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -92,8 +92,6 @@ type LessonDownloadsProps =
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
-  const { useUser } = useFeatureFlaggedClerk();
-  const { user } = useUser();
   const { lesson } = props;
   const {
     lessonTitle,
@@ -104,6 +102,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     copyrightContent,
     updatedAt,
   } = lesson;
+
+  const { user } = useUser();
 
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical

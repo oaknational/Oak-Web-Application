@@ -7,26 +7,13 @@ import {
   mockLoggedIn,
   mockLoggedOut,
 } from "@/__tests__/__helpers__/mockUser";
-import {
-  enableMockClerk,
-  setUseUserReturn,
-} from "@/__tests__/__helpers__/mockClerk";
-
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
-
-function MockRedirectToSignUp() {
-  return <div data-testid="redirectToSignUp" />;
-}
-MockRedirectToSignUp.displayName = "MockRedirectToSignUp";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 describe(withPageAuthRequired, () => {
   const OriginalComponent = () => <div data-testid="canary" />;
   const Subject = withPageAuthRequired(OriginalComponent);
 
   beforeEach(() => {
-    enableMockClerk({
-      RedirectToSignUp: MockRedirectToSignUp,
-    });
     setUseUserReturn(mockLoadingUser);
   });
 
@@ -64,7 +51,9 @@ describe(withPageAuthRequired, () => {
     it("redirects the user to sign-up", () => {
       render(<Subject />);
 
-      expect(screen.queryByTestId("redirectToSignUp")).toBeInTheDocument();
+      expect(
+        screen.queryByTestId("clerk-redirect-to-sign-up"),
+      ).toBeInTheDocument();
     });
   });
 
