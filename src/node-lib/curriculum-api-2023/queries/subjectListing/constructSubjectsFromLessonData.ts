@@ -1,8 +1,6 @@
-import {
-  subjects,
-  subjectSlugs,
-  SyntheticUnitvariantLessons,
-} from "@oaknational/oak-curriculum-schema";
+import { subjects, subjectSlugs } from "@oaknational/oak-curriculum-schema";
+
+import { RawSyntheticUVLesson } from "../lessonDownloads/rawSyntheticUVLesson.schema";
 
 interface UnprocessedSubject {
   [key: string]: {
@@ -25,7 +23,7 @@ interface ProcessedSubject {
 }
 
 export const constructSubjectsFromLessonData = (
-  lessons: SyntheticUnitvariantLessons[],
+  lessons: RawSyntheticUVLesson[],
 ): ProcessedSubject[] => {
   const subjects = lessons.reduce((acc, lesson) => {
     let { programme_slug } = lesson;

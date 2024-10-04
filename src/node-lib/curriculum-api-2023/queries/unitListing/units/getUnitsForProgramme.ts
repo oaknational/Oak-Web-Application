@@ -1,12 +1,12 @@
-import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 import { kebabCase } from "lodash";
 
+import { RawSuvLessons } from "../rawSuvLessons.schema";
 import { getThreadsForUnit } from "../filters/getThreadsForUnit";
 
 import { UnitData, UnitsForProgramme, unitSchema } from "./units.schema";
 
 export const getUnitsForProgramme = async (
-  programmeData: SyntheticUnitvariantLessons[],
+  programmeData: RawSuvLessons[],
 ): Promise<UnitsForProgramme> => {
   const partialUniqueUnits = programmeData.reduce(
     (acc, programme) => {

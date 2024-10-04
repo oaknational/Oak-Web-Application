@@ -1,7 +1,6 @@
-import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
-
 import { LessonDownloadsCanonical } from "./lessonDownloadsCanonical.schema";
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
+import { RawSyntheticUVLesson } from "./rawSyntheticUVLesson.schema";
 
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
@@ -9,7 +8,7 @@ import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 const constructCanonicalLessonDownloads = (
   downloads: LessonDownloadsListSchema,
   lessonSlug: string,
-  browseData: SyntheticUnitvariantLessons[],
+  browseData: RawSyntheticUVLesson[],
   isLegacy: boolean,
   lessonCopyRight: { copyrightInfo: string }[] | null,
   restrictions: {

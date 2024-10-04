@@ -1,3 +1,28 @@
+## [1.576.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.0...v1.576.1) (2024-10-04)
+
+
+### Bug Fixes
+
+* maths KS4 tiers, removed duplicates and improved unit specificity ([b8ba2c5](https://github.com/oaknational/Oak-Web-Application/commit/b8ba2c52804e3977d6655c1779654a5d15c2e92d))
+* stop filtering out some of combined science units ([f72f37f](https://github.com/oaknational/Oak-Web-Application/commit/f72f37f423752dc8c9383bd5235539c029e70a07))
+* updating tests ([324d812](https://github.com/oaknational/Oak-Web-Application/commit/324d81232d02e244b4baf65698d372bbc9950135))
+
+# [1.576.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.575.1...v1.576.0) (2024-10-03)
+
+
+### Bug Fixes
+
+* resolve conflicts ([61ffbf5](https://github.com/oaknational/Oak-Web-Application/commit/61ffbf5dcc011cfcc02ad1ff9edaeb9743a75b0e))
+* type errors ([251a2d2](https://github.com/oaknational/Oak-Web-Application/commit/251a2d27967d94c2f8a06770a3f4dcef33701cff))
+* update to correct mv ([437566a](https://github.com/oaknational/Oak-Web-Application/commit/437566a569323617e1c91d3ed7bec86cea41f5e1))
+
+
+### Features
+
+* updated avo ([26e995b](https://github.com/oaknational/Oak-Web-Application/commit/26e995b744819cb89d8a4265135f6a44d0788a39))
+
+## [1.575.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.575.0...v1.575.1) (2024-10-03)
+
 # [1.575.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.574.0...v1.575.0) (2024-10-03)
 
 
