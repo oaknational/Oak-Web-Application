@@ -25,7 +25,8 @@ describe("SearchFilters", () => {
     expect(searchFilters).toHaveLength(
       props.keyStageFilters.length +
         props.subjectFilters.length +
-        props.examBoardFilters.length,
+        props.examBoardFilters.length +
+        1,
     );
   });
   test("have correct a11y label", () => {
