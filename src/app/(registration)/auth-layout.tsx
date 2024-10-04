@@ -8,10 +8,8 @@ import {
 } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import CMSImage from "@/components/SharedComponents/CMSImage";
 import { RegistrationLayout } from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
 import withFeatureFlag from "@/hocs/withFeatureFlag";
-import { getIllustrationAsset } from "@/image-data";
 import { OakBox, OakFlex, OakLink, OakP } from "@/styles/oakThemeApp";
 
 const TermsAndConditions = () => {
@@ -46,7 +44,13 @@ const TermsAndConditions = () => {
   );
 };
 
-function Layout({ children }: { children: React.ReactNode }) {
+function BaseAuthLayout({
+  children,
+  asideSlot,
+}: {
+  children: React.ReactNode;
+  asideSlot: React.ReactNode;
+}) {
   const clerkRef = useRef<null | HTMLDivElement>(null);
   const [clerkRendered, setClerkRendered] = useState(false);
 
@@ -75,17 +79,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   }, [clerkRef, checkForClerkElement]);
 
   return (
-    <RegistrationLayout
-      asideSlot={
-        <OakBox $maxWidth="all-spacing-21">
-          <CMSImage
-            image={getIllustrationAsset("auth-acorn")}
-            $width="100%"
-            $objectFit="contain"
-          />
-        </OakBox>
-      }
-    >
+    <RegistrationLayout asideSlot={asideSlot}>
       <OakFlex
         $flexDirection="column"
         $alignItems="center"
@@ -107,6 +101,4 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-const LayoutWithFF = withFeatureFlag(Layout, "use-auth-owa");
-
-export default LayoutWithFF;
+export const AuthLayout = withFeatureFlag(BaseAuthLayout, "use-auth-owa");
