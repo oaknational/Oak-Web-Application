@@ -47,9 +47,11 @@ const TermsAndConditions = () => {
 function BaseAuthLayout({
   children,
   asideSlot,
+  headerSlot,
 }: {
   children: React.ReactNode;
   asideSlot: React.ReactNode;
+  headerSlot?: React.ReactNode;
 }) {
   const clerkRef = useRef<null | HTMLDivElement>(null);
   const [clerkRendered, setClerkRendered] = useState(false);
@@ -80,6 +82,7 @@ function BaseAuthLayout({
 
   return (
     <RegistrationLayout asideSlot={asideSlot}>
+      {headerSlot}
       <OakFlex
         $flexDirection="column"
         $alignItems="center"

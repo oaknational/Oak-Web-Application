@@ -7,6 +7,7 @@ import {
   OakFlex,
   OakHeading,
   OakIcon,
+  OakInlineBanner,
   OakLI,
   OakUL,
 } from "@oaknational/oak-components";
@@ -17,7 +18,6 @@ import { AuthLayout } from "../../auth-layout";
 
 import { getIllustrationAsset } from "@/image-data";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-
 
 function ListItem({ children }: PropsWithChildren) {
   return (
@@ -37,6 +37,18 @@ function ListItem({ children }: PropsWithChildren) {
 export default function SignUpPage() {
   return (
     <AuthLayout
+      headerSlot={
+        <OakInlineBanner
+          isOpen
+          message={
+            <>
+              No <strong>pupil accounts</strong>, sorry.
+            </>
+          }
+          $mt={["space-between-m", "space-between-none"]}
+          $mb={["space-between-none", "space-between-m"]}
+        />
+      }
       asideSlot={
         <OakBox
           $width="min-content"
