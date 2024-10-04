@@ -14,7 +14,10 @@ import {
 } from "@oaknational/oak-components";
 
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
-import { BrowseFactorSelector } from "@/components/PupilComponents/BrowseFactorSelector";
+import {
+  BrowseFactorSelector,
+  Factors,
+} from "@/components/PupilComponents/BrowseFactorSelector";
 import { resolveOakHref } from "@/common-lib/urls";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -41,56 +44,43 @@ export const PupilViewsProgrammeListing = ({
   tiers,
   pathways,
 }: PupilViewsProgrammeListingProps) => {
-  const orderedFactors = ["pathway", "examboard", "tier"];
+  const orderedFactors: ("pathway" | "examboard" | "tier")[] = [
+    "pathway",
+    "examboard",
+    "tier",
+  ];
 
-  const [chosenPathway, setChosenPathway] = useState<FactorData | null>(null);
-
-  // TODO this filtering could potentially be abstracted to allow for further program factors
-  const filteredExamboards = examboards.filter((examboard) => {
-    return programmes.find(
-      (p) =>
-        p.programmeFields.examboardSlug === examboard.factorSlug &&
-        (!chosenPathway ||
-          p.programmeFields.pathwaySlug === chosenPathway.factorSlug),
-    );
+  const [chosenFactors, setChosenFactors] = useState<Factors>({
+    pathway: null,
+    examboard:
+      examboardSlug && examboards.length >= 1
+        ? getFactorDataFromSlug({
+            factorSlug: examboardSlug,
+            availableFactors: examboards,
+          })
+        : null,
+    tier: null,
   });
 
-  const [chosenExamboard, setChosenExamboard] = useState<FactorData | null>(
-    examboardSlug && filteredExamboards.length >= 1
-      ? getFactorDataFromSlug({
-          factorSlug: examboardSlug,
-          availableFactors: filteredExamboards,
-        })
-      : null,
-  );
-
-  // TODO: this potentially might be set from a slug in future
-  const [chosenTier, setChosenTier] = useState<FactorData | null>(null);
-
-  const filteredTiers = tiers.filter((tier) => {
-    return programmes.find(
-      (p) =>
-        p.programmeFields.tierSlug === tier.factorSlug &&
-        (!chosenPathway ||
-          p.programmeFields.pathwaySlug === chosenPathway.factorSlug) &&
-        (!chosenExamboard ||
-          p.programmeFields.examboardSlug === chosenExamboard.factorSlug),
-    );
-  });
+  const allFactors = {
+    pathway: pathways,
+    examboard: examboards,
+    tier: tiers,
+  };
 
   const availableFactors = orderedFactors.filter(
     (f) =>
       (f === "pathway" && pathways.length > 1) ||
-      (f === "tier" && filteredTiers.length > 1) ||
-      (f === "examboard" && filteredExamboards.length > 1),
+      (f === "tier" && tiers.length > 1) ||
+      (f === "examboard" && examboards.length > 1),
   );
 
   const currentFactor =
     availableFactors.filter(
       (f) =>
-        (f === "pathway" && chosenPathway === null) ||
-        (f === "examboard" && chosenExamboard === null) ||
-        (f === "tier" && chosenTier === null),
+        (f === "pathway" && chosenFactors.pathway === null) ||
+        (f === "examboard" && chosenFactors.examboard === null) ||
+        (f === "tier" && chosenFactors.tier === null),
     )[0] || "none";
 
   if (!programmes[0]) {
@@ -107,13 +97,6 @@ export const PupilViewsProgrammeListing = ({
   const subjectDescription = programmes[0]?.programmeFields.subject;
   const yearDescriptions = programmes[0]?.programmeFields.yearDescription;
 
-  // TODO : replace this with an array of chosen factors
-  const currentSlug = `${baseSlug}${
-    chosenPathway ? `-${chosenPathway.factorSlug}` : ""
-  }${chosenExamboard ? `-${chosenExamboard.factorSlug}` : ""}${
-    chosenTier ? `-${chosenTier.factorSlug}` : ""
-  }`;
-
   const topNavSlot = () => {
     const currentIndex = availableFactors.indexOf(currentFactor);
     const prevIndex = currentIndex - 1;
@@ -121,31 +104,16 @@ export const PupilViewsProgrammeListing = ({
 
     switch (option) {
       case "examboard":
-        return (
-          <OakTertiaryButton
-            iconName="arrow-left"
-            onClick={() => setChosenExamboard(null)}
-          >
-            Change examboard
-          </OakTertiaryButton>
-        );
-
       case "tier":
-        return (
-          <OakTertiaryButton
-            iconName="arrow-left"
-            onClick={() => setChosenTier(null)}
-          >
-            Change tier
-          </OakTertiaryButton>
-        );
       case "pathway":
         return (
           <OakTertiaryButton
             iconName="arrow-left"
-            onClick={() => setChosenPathway(null)}
+            onClick={() =>
+              setChosenFactors({ ...chosenFactors, [option]: null })
+            }
           >
-            Change pathway
+            Change {option}
           </OakTertiaryButton>
         );
       default:
@@ -165,55 +133,33 @@ export const PupilViewsProgrammeListing = ({
   };
 
   const breadcrumbs: string[] = [yearDescriptions];
-  if (chosenExamboard?.factor && tiers.length > 1) {
-    breadcrumbs.push(chosenExamboard.factor);
-  }
+
+  orderedFactors.forEach((f) => {
+    if (chosenFactors[f]) {
+      breadcrumbs.push(chosenFactors[f].factor);
+    }
+  });
 
   const BrowseOptions = () => {
     if (currentFactor === "none") {
       return <OakBox>No programme factors to be selected</OakBox>;
     }
 
-    const currentIndex = availableFactors.indexOf(currentFactor);
-    const nextIndex = currentIndex + 1;
-    const nextFactor = availableFactors[nextIndex] || "none";
-
     switch (currentFactor) {
       case "pathway":
-        return (
-          <BrowseFactorSelector
-            factors={pathways}
-            baseSlug={currentSlug}
-            onClick={
-              nextFactor !== "none"
-                ? (pathway) => setChosenPathway(pathway)
-                : undefined
-            }
-            phaseSlug={phaseSlug}
-          />
-        );
       case "tier":
-        return (
-          <BrowseFactorSelector
-            factors={filteredTiers}
-            baseSlug={currentSlug}
-            phaseSlug={phaseSlug}
-            onClick={
-              nextFactor !== "none" ? (tier) => setChosenTier(tier) : undefined
-            }
-          />
-        );
       case "examboard":
         return (
           <BrowseFactorSelector
-            factors={filteredExamboards}
-            baseSlug={currentSlug}
-            phaseSlug={phaseSlug}
-            onClick={
-              nextFactor !== "none"
-                ? (examboard) => setChosenExamboard(examboard)
-                : undefined
+            factorType={currentFactor}
+            factors={allFactors[currentFactor]}
+            baseSlug={baseSlug}
+            chosenFactors={chosenFactors}
+            programmes={programmes}
+            onClick={(f) =>
+              setChosenFactors({ ...chosenFactors, [currentFactor]: f })
             }
+            phaseSlug={phaseSlug}
           />
         );
       default:
