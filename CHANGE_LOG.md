@@ -1,3 +1,18 @@
+## [1.576.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.1...v1.576.2) (2024-10-04)
+
+
+### Bug Fixes
+
+* **printble:** review page stores results locally button is a link ([581746d](https://github.com/oaknational/Oak-Web-Application/commit/581746db1e09ab739c85624f4517de56bbde3adf))
+* **printble:** review page stores results locally button is a link ([6ec3ddf](https://github.com/oaknational/Oak-Web-Application/commit/6ec3ddfc860f1cb6bbc96b0441cec2d498ac9620))
+* **printble:** review page stores results locally button is a link ([7671086](https://github.com/oaknational/Oak-Web-Application/commit/7671086740436f1df38f13c71c04314a511a5240))
+* **printble:** review page stores results locally button is a link ([c9e6c1a](https://github.com/oaknational/Oak-Web-Application/commit/c9e6c1a4206132676bb8ea189b044934b83679fb))
+* **printble:** review page stores results locally button is a link ([2b817ee](https://github.com/oaknational/Oak-Web-Application/commit/2b817ee9eb2bff08b9cf5bba2a2cd5de999cecd1))
+* **printble:** review page stores results locally button is a link ([d2b4b26](https://github.com/oaknational/Oak-Web-Application/commit/d2b4b26fa44accfb7d6765b128209523edc3e653))
+* **review:** remove useeffect ([03a3daf](https://github.com/oaknational/Oak-Web-Application/commit/03a3daf42e740ee1132b9ba24523aa7551df2f0b))
+* **review:** remove useeffect ([6513d82](https://github.com/oaknational/Oak-Web-Application/commit/6513d823a1688c62bcd9e360ea9bf39c281f8db8))
+* **review:** remove useeffect ([60a9977](https://github.com/oaknational/Oak-Web-Application/commit/60a997759566bfdca45c41ddb001a66c62c6c6ac))
+
 ## [1.576.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.0...v1.576.1) (2024-10-04)
 
 
