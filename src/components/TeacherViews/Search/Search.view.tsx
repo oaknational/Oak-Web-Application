@@ -12,6 +12,7 @@ import {
   OakSearchFilterCheckBox,
   OakSearchFilterCheckBoxProps,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { SearchProps } from "./search.view.types";
 import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
@@ -27,6 +28,10 @@ import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+
+const CustomWidthFlex = styled(OakFlex)`
+  width: 308px;
+`;
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -278,7 +283,7 @@ const Search: FC<SearchProps> = (props) => {
             $rowStart={2}
             $pr={"inner-padding-m"}
           >
-            <OakFlex
+            <CustomWidthFlex
               $flexDirection="column"
               $mb="space-between-m2"
               $display={["none", "flex"]}
@@ -306,7 +311,7 @@ const Search: FC<SearchProps> = (props) => {
                 </OakSecondaryButton>
               </OakFlex>
               <SearchFilters {...searchFilters} />
-            </OakFlex>
+            </CustomWidthFlex>
           </OakGridArea>
           <OakGridArea
             $colSpan={[12, 9]}

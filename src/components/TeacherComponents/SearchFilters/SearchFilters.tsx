@@ -8,6 +8,7 @@ import {
   OakThemeProvider,
   isValidIconName,
   OakBox,
+  OakPromoTag,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -36,6 +37,35 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
           $bb={"border-solid-s"}
           $borderColor={"grey40"}
         >
+          <StyledFieldset>
+            <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+              Curriculum{" "}
+            </OakP>
+            <OakFlex
+              $gap={"space-between-xs"}
+              $mb="space-between-m2"
+              $flexDirection={"column"}
+              $flexWrap={"wrap"}
+            >
+              <OakSearchFilterCheckBox
+                name={"showNewContent"}
+                displayValue={"Show new only"}
+                key={`search-filters-ShowNewContent-filter`}
+                aria-label={`Show new content filter`}
+                id={`search-filters-showNewContent:mobile:${isMobileFilter}`}
+                value="Key stage filter"
+                onChange={() => {
+                  console.log("Show new content filter");
+                }}
+              />
+              <OakFlex $alignItems={"flex-start"} $gap={"all-spacing-1"}>
+                <OakPromoTag width={"all-spacing-8"} />
+                <OakP $font={"body-3"} $color={"text-subdued"}>
+                  Resources designed for the classroom
+                </OakP>
+              </OakFlex>
+            </OakFlex>
+          </StyledFieldset>
           <StyledFieldset>
             <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
               Key stages
