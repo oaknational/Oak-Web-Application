@@ -25,7 +25,7 @@ export const BrowseFactorSelector = ({
   phaseSlug: PupilProgrammeListingData["programmeFields"]["phaseSlug"];
   chosenFactors: Factors;
   programmes: PupilProgrammeListingData[];
-  onClick?: (factor: FactorData) => void;
+  onClick: (factor: FactorData) => void;
 }) => {
   const orderedFactors = factors.sort((a, b) => {
     return (a.factorDisplayOrder ?? 0) - (b.factorDisplayOrder ?? 0);
@@ -76,9 +76,7 @@ export const BrowseFactorSelector = ({
   return (
     <>
       {filteredFactors.map((factor) => {
-        console.log(getOptionsAvailable(factor), factor);
-
-        if (!!onClick && getOptionsAvailable(factor)) {
+        if (getOptionsAvailable(factor)) {
           return (
             <OakPupilJourneyYearButton
               phase={phaseSlug}

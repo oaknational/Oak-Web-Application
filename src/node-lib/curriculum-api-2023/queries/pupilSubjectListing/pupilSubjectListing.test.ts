@@ -1,13 +1,12 @@
-import { syntheticProgrammesByYearFixture } from "@oaknational/oak-curriculum-schema";
-
 import { pupilSubjectListingQuery } from "./pupilSubjectListing.query";
 
+import { syntheticProgrammesByYearFixture } from "@oaknational/oak-curriculum-schema";
 import { PupilSubjectListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 
 describe("pupilSubjectListing()", () => {
   const s = syntheticProgrammesByYearFixture();
-  const pupilProgrammeListingFixture = {
+  const pupilProgrammeListingFixtureEBs = {
     programme_slug: s.programme_slug,
     programme_fields: s.programme_fields,
     year_slug: s.year_slug,
@@ -21,7 +20,7 @@ describe("pupilSubjectListing()", () => {
       pupilSubjectListing: jest.fn(
         () =>
           Promise.resolve({
-            data: [pupilProgrammeListingFixture],
+            data: [pupilProgrammeListingFixtureEBs],
           }) as Promise<PupilSubjectListingQuery>, // Add the correct return type
       ),
     })({
@@ -51,7 +50,7 @@ describe("pupilSubjectListing()", () => {
     const mock = jest.fn(
       () =>
         Promise.resolve({
-          data: [pupilProgrammeListingFixture],
+          data: [pupilProgrammeListingFixtureEBs],
         }) as Promise<PupilSubjectListingQuery>, // Add the correct return type
     );
 

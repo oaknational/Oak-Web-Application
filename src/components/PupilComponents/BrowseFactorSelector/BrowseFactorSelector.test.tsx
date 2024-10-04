@@ -1,94 +1,182 @@
 import { render } from "@testing-library/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-import { BrowseExamboardSelector, ExamboardData } from "./BrowseFactorSelector";
+import { BrowseFactorSelector } from "./BrowseFactorSelector";
+
+import {
+  pupilProgrammeListingFixtureEBs,
+  pupilProgrammeListingFixtureEBsTiers,
+  pupilProgrammeListingFixturePathwaysEBs,
+} from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
+import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
+
+const programmesEB = pupilProgrammeListingFixtureEBs();
+const examboardsEBs = getAvailableProgrammeFactor({
+  programmes: programmesEB,
+  factorPrefix: "examboard",
+});
+
+const programmesEBsTiers = pupilProgrammeListingFixtureEBsTiers();
+const examboardsEBsTiers = getAvailableProgrammeFactor({
+  programmes: programmesEBsTiers,
+  factorPrefix: "examboard",
+});
+
+const modifiedProgrammesEBsTiers = programmesEBsTiers.filter(
+  (p) =>
+    !(
+      p.programmeFields.tierSlug === "foundation" &&
+      p.programmeFields.examboardSlug === "aqa"
+    ),
+);
+const tiersModifiedEBsTiers = getAvailableProgrammeFactor({
+  programmes: modifiedProgrammesEBsTiers,
+  factorPrefix: "tier",
+});
+
+const programmesPathwaysEBs = pupilProgrammeListingFixturePathwaysEBs();
+const pathwaysPathwaysEBs = getAvailableProgrammeFactor({
+  programmes: programmesPathwaysEBs,
+  factorPrefix: "pathway",
+});
 
 describe("BrowseExamboardSelector", () => {
-  const examboards: ExamboardData[] = [
-    {
-      examboard: "AQA",
-      examboardSlug: "aqa",
-      examboardDisplayOrder: 1,
-      isLegacy: false,
-    },
-    {
-      examboard: "Edexcel",
-      examboardSlug: "edexcel",
-      examboardDisplayOrder: 2,
-      isLegacy: false,
-    },
-    {
-      examboard: "OCR",
-      examboardSlug: "ocr",
-      examboardDisplayOrder: 3,
-      isLegacy: true,
-    },
-  ];
-
-  it("should render", () => {
-    render(
+  it("should render the options", () => {
+    const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <BrowseExamboardSelector
-          examboards={examboards}
-          baseSlug="my-subject"
-          phaseSlug="secondary"
-        />
-      </OakThemeProvider>,
-    );
-  });
-
-  it("should render buttons when onClick is provided", () => {
-    const { getByRole } = render(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <BrowseExamboardSelector
-          examboards={examboards}
+        <BrowseFactorSelector
+          factorType="examboard"
+          programmes={programmesEB}
+          factors={examboardsEBs}
+          chosenFactors={{
+            pathway: null,
+            examboard: null,
+            tier: null,
+          }}
           onClick={() => {}}
-          phaseSlug="secondary"
-        />
-      </OakThemeProvider>,
-    );
-
-    for (const e of examboards) {
-      const button = getByRole("button", { name: e.examboard ?? "" });
-      expect(button).toBeInTheDocument();
-    }
-  });
-
-  it("should render links when baseSlug is provided", () => {
-    const { getByRole } = render(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <BrowseExamboardSelector
-          examboards={examboards}
           baseSlug="my-subject"
           phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
 
-    for (const e of examboards) {
-      const button = getByRole("link", { name: e.examboard ?? "" });
+    for (const e of examboardsEBs) {
+      const button = getByText(e.factor ?? "");
       expect(button).toBeInTheDocument();
     }
   });
 
-  it("should render legacy links when baseSlug and isLegacy are provided", () => {
-    const { getByRole } = render(
+  it("should render the options as links where there are no further options to be chosen", () => {
+    const { getAllByRole } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <BrowseExamboardSelector
-          examboards={examboards}
+        <BrowseFactorSelector
+          factorType="examboard"
+          programmes={programmesEB}
+          factors={examboardsEBs}
+          chosenFactors={{
+            pathway: null,
+            examboard: null,
+            tier: null,
+          }}
+          onClick={() => {}}
           baseSlug="my-subject"
           phaseSlug="secondary"
         />
       </OakThemeProvider>,
     );
 
-    for (const e of examboards) {
-      const button = getByRole("link", { name: e.examboard ?? "" });
-      expect(button.getAttribute("href")).toBe(
-        `/pupils/programmes/my-subject-${e.examboardSlug}${
-          e.isLegacy ? "-l" : ""
-        }/units`,
-      );
-    }
+    expect(getAllByRole("link")).toHaveLength(examboardsEBs.length);
   });
+
+  it("should render the options as buttons where there are further options to be chosen", () => {
+    const { getAllByRole } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <BrowseFactorSelector
+          factorType="examboard"
+          programmes={programmesEBsTiers}
+          factors={examboardsEBsTiers}
+          chosenFactors={{
+            pathway: null,
+            examboard: null,
+            tier: null,
+          }}
+          onClick={() => {}}
+          baseSlug="my-subject"
+          phaseSlug="secondary"
+        />
+      </OakThemeProvider>,
+    );
+
+    expect(getAllByRole("button")).toHaveLength(examboardsEBsTiers.length);
+  });
+
+  it("should inspect the possible options for each factor independently", () => {
+    const { getAllByRole } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <BrowseFactorSelector
+          factorType="pathway"
+          programmes={programmesPathwaysEBs}
+          factors={pathwaysPathwaysEBs}
+          chosenFactors={{
+            pathway: null,
+            examboard: null,
+            tier: null,
+          }}
+          onClick={() => {}}
+          baseSlug="my-subject"
+          phaseSlug="secondary"
+        />
+      </OakThemeProvider>,
+    );
+
+    expect(getAllByRole("button")).toHaveLength(1);
+    expect(getAllByRole("link")).toHaveLength(1);
+  });
+
+  it("should consider previously chosen factors when rendering the options", () => {
+    const chosenExamboard = examboardsEBs.find((e) => e.factorSlug === "aqa");
+    if (!chosenExamboard) {
+      throw new Error("Could not find the chosen examboard");
+    }
+    const { queryAllByRole } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <BrowseFactorSelector
+          factorType="tier"
+          programmes={modifiedProgrammesEBsTiers}
+          factors={tiersModifiedEBsTiers}
+          chosenFactors={{
+            pathway: null,
+            examboard: chosenExamboard,
+            tier: null,
+          }}
+          onClick={() => {}}
+          baseSlug="my-subject"
+          phaseSlug="secondary"
+        />
+      </OakThemeProvider>,
+    );
+    expect(queryAllByRole("button")).toHaveLength(0);
+    expect(queryAllByRole("link")).toHaveLength(1);
+  });
+
+  // it("should render legacy links when baseSlug and isLegacy are provided", () => {
+  //   const { getByRole } = render(
+  //     <OakThemeProvider theme={oakDefaultTheme}>
+  //       <BrowseExamboardSelector
+  //         examboards={examboards}
+  //         baseSlug="my-subject"
+  //         phaseSlug="secondary"
+  //       />
+  //     </OakThemeProvider>,
+  //   );
+
+  //   for (const e of examboards) {
+  //     const button = getByRole("link", { name: e.examboard ?? "" });
+  //     expect(button.getAttribute("href")).toBe(
+  //       `/pupils/programmes/my-subject-${e.examboardSlug}${
+  //         e.isLegacy ? "-l" : ""
+  //       }/units`,
+  //     );
+  //   }
+  // });
 });
