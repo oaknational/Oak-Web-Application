@@ -22,6 +22,7 @@ describe("SearchFilters", () => {
       />,
     );
     const searchFilters = getAllByRole("checkbox");
+    // 1 for each filter + 1 for the 'show new only' filter
     expect(searchFilters).toHaveLength(
       props.keyStageFilters.length +
         props.subjectFilters.length +
