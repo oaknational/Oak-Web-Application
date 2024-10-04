@@ -1,14 +1,14 @@
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
-import {
-  getHubspotOnboardingFormPayload,
-  OnboardingHubspotFormData,
-} from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
-import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
+import useLocalStorageForDownloads from "../hooks/downloadAndShareHooks/useLocalStorageForDownloads";
+
+import { OnboardingFormProps } from "./OnboardingForm.schema";
+
+import { getHubspotOnboardingFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 import errorReporter from "@/common-lib/error-reporter";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 import OakError from "@/errors/OakError";
 import { subscriptionResponseSchema } from "@/pages/api/hubspot/subscription";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { hubspotSubmitForm } from "@/browser-lib/hubspot/forms";
 
 const onboardingApiRoute = "/api/auth/onboarding";
 
@@ -56,7 +56,7 @@ export async function onboardUser(
 
 export async function getSubscriptionStatus(
   email: string,
-  callback: (status: boolean) => void,
+  callback?: (status: boolean) => void,
 ) {
   try {
     const response = await fetch("/api/hubspot/subscription", {
@@ -70,7 +70,10 @@ export async function getSubscriptionStatus(
       }),
     });
     const result = subscriptionResponseSchema.parse(await response.json());
-    callback(result);
+    if (callback) {
+      callback(result);
+    }
+    return result;
   } catch (err) {
     if (err instanceof OakError) {
       throw err;
@@ -82,14 +85,40 @@ export async function getSubscriptionStatus(
   }
 }
 
-/**
- * Sends onboarding data to hubspot
- */
-export async function onboardUserToHubspot(data: OnboardingHubspotFormData) {
+interface OnboardingHubspotData {
+  hutk: string | undefined;
+  utmParams: Partial<
+    Record<
+      "utm_source" | "utm_medium" | "utm_campaign" | "utm_term" | "utm_content",
+      string
+    >
+  >;
+  data: OnboardingFormProps;
+  userSubscribed: boolean;
+  posthogDistinctId: string | null;
+  userEmail: string | undefined;
+}
+
+export async function submitOnboardingHubspotData({
+  hutk,
+  utmParams,
+  data,
+  userSubscribed,
+  posthogDistinctId,
+  userEmail,
+}: OnboardingHubspotData) {
   const hubspotFormId = getBrowserConfig("hubspotOnboardingFormId");
+
   const hubspotFormPayload = getHubspotOnboardingFormPayload({
-    hutk: getHubspotUserToken(),
-    data,
+    hutk,
+    data: {
+      ...utmParams,
+      ...data,
+      role: "role" in data ? data.role : "",
+      newsletterSignUp: userSubscribed,
+      oakUserId: posthogDistinctId,
+      email: userEmail,
+    },
   });
 
   try {
@@ -109,4 +138,43 @@ export async function onboardUserToHubspot(data: OnboardingHubspotFormData) {
       );
     }
   }
+}
+
+interface OnboardingData {
+  localStorageForDownloads: ReturnType<typeof useLocalStorageForDownloads>;
+  userSubscribed: boolean;
+  data: OnboardingFormProps;
+  userEmail?: string;
+}
+
+export async function setOnboardingLocalStorage({
+  localStorageForDownloads,
+  data,
+  userEmail,
+  userSubscribed,
+}: OnboardingData) {
+  if ("school" in data) {
+    localStorageForDownloads.setSchoolInLocalStorage({
+      schoolName: data.schoolName || data.school,
+      schoolId: data.school,
+    });
+  } else if ("manualSchoolName" in data) {
+    localStorageForDownloads.setSchoolInLocalStorage({
+      schoolName: data.manualSchoolName,
+      schoolId: data.manualSchoolName,
+    });
+  } else {
+    localStorageForDownloads.setSchoolInLocalStorage({
+      schoolName: "",
+      schoolId: "",
+    });
+  }
+
+  if (userEmail && userSubscribed) {
+    localStorageForDownloads.setEmailInLocalStorage(userEmail);
+  } else {
+    localStorageForDownloads.setEmailInLocalStorage(""); // on download they subscribe by adding email, so this is empty if unsubscribed
+  }
+
+  localStorageForDownloads.setTermsInLocalStorage(true); // on sign up they are accepting terms so this is true
 }
