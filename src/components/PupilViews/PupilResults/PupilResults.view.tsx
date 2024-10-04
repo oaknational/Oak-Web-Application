@@ -1,4 +1,5 @@
 import {
+  isValidIconName,
   oakDefaultTheme,
   OakFlex,
   OakHandDrawnHR,
@@ -90,6 +91,8 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
       ? Math.ceil((video.timeElapsed / video.duration) * 100)
       : 0;
 
+  const iconSlug = `subject-${subjectSlug}`;
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <MathJaxWrap>
@@ -102,7 +105,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
           <OakQuizPrintableHeader
             alt="icon"
             breadcrumbs={[yearDescription, subject]}
-            iconName={`subject-${subjectSlug}`}
+            iconName={isValidIconName(iconSlug) ? iconSlug : "question-mark"}
             title={title}
             videoPercentage={percentageVideoWatched}
             worksheetDownloaded={worksheetDownloaded}

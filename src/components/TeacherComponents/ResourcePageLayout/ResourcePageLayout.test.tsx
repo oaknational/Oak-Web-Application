@@ -30,6 +30,7 @@ const props: PropsWithoutForm = {
   resourcesHeader: "Lesson downloads",
   updatedAt: "2022-01-01T00:00:00Z",
   withHomeschool: true,
+  hasOnboardingDownloadDetails: true,
 };
 
 const ComponentWrapper = (props: PropsWithoutForm) => {
