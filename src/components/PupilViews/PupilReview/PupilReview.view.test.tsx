@@ -390,11 +390,6 @@ describe("PupilReview", () => {
     });
   });
   describe("Printable results button", () => {
-    beforeEach(() => {
-      jest.useFakeTimers();
-      // @ts-expect-error - unable to mock setTimeout with jest.runOnlyPendingTimers
-      jest.spyOn(global, "setTimeout").mockImplementation((fn) => fn());
-    });
     it("should display the print button and log attempt after timeout", () => {
       // Mock the logAttempt function
       const logAttemptSpy = jest.fn(() => "attempt-id");
@@ -437,17 +432,12 @@ describe("PupilReview", () => {
 
       // Check that the print button is displayed
       expect(getByText("Printable results")).toBeInTheDocument();
-
-      // Clean up and restore real timers
-      jest.useRealTimers();
     });
 
-    it("logAttempt function is called when button is clicked", async () => {
-      //spy on the track function
+    it("Printable results link takes you to correct printable results page", async () => {
       const logAttemptSpy = jest.fn(() => "attempt-id");
       (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
-
-      const { getByTestId } = renderWithTheme(
+      const { getByText } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider
             value={createLessonEngineContext({
@@ -474,10 +464,12 @@ describe("PupilReview", () => {
           </LessonEngineContext.Provider>
         </OakThemeProvider>,
       );
-      const button = getByTestId("printable-results-button");
-      await userEvent.click(button).then(() => {
-        expect(logAttemptSpy).toHaveBeenCalledTimes(1);
-      });
+
+      expect(logAttemptSpy).toHaveBeenCalledTimes(1);
+      expect(getByText("Printable results").closest("a")).toHaveAttribute(
+        "href",
+        "/pupils/lessons/lesson-slug/results/attempt-id/printable",
+      );
     });
   });
 });

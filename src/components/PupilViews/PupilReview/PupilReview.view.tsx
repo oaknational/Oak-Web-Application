@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   OakFlex,
   OakGrid,
@@ -78,40 +78,25 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     attemptId: string;
   }>({ stored: false, attemptId: "" });
 
-  useEffect(() => {
-    const storeResultsInLocalStorage = () => {
-      const attemptData = {
-        lessonData: { slug: lessonSlug, title: lessonTitle },
-        browseData: {
-          subject: subject,
-          yearDescription: yearDescription ?? "",
-        },
-        sectionResults: sectionResults,
-      };
-      const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
-      const attemptId = logAttempt(parsedAttemptData, true);
-      if (typeof attemptId === "string") {
-        setStoredAttemptLocally({ stored: true, attemptId });
-      }
+  const storeResultsInLocalStorage = () => {
+    const attemptData = {
+      lessonData: { slug: lessonSlug, title: lessonTitle },
+      browseData: {
+        subject: subject,
+        yearDescription: yearDescription ?? "",
+      },
+      sectionResults: sectionResults,
     };
-    if (isLessonComplete) {
-      const timeout = setTimeout(() => {
-        storeResultsInLocalStorage();
-      }, 0);
-
-      return () => {
-        clearTimeout(timeout);
-      };
+    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+    const attemptId = logAttempt(parsedAttemptData, true);
+    if (typeof attemptId === "string") {
+      setStoredAttemptLocally({ stored: true, attemptId });
     }
-  }, [
-    isLessonComplete,
-    lessonSlug,
-    lessonTitle,
-    logAttempt,
-    sectionResults,
-    subject,
-    yearDescription,
-  ]);
+  };
+
+  if (storedAttemptLocally.stored === false && isLessonComplete) {
+    storeResultsInLocalStorage();
+  }
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
