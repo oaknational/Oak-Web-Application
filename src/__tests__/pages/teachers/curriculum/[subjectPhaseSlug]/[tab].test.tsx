@@ -1,6 +1,5 @@
 import { screen } from "@testing-library/react";
 import { useRouter } from "next/router";
-import { MockedFunction } from "jest-mock";
 
 import CMSClient from "@/node-lib/cms";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
@@ -540,14 +539,8 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumUnits: jest.fn(),
   refreshedMVTime: jest.fn(),
 }));
-const mockedCurriculumOverview =
-  curriculumApi.curriculumOverview as MockedFunction<
-    typeof curriculumApi.curriculumOverview
-  >;
-const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as MockedFunction<
-  typeof curriculumApi.refreshedMVTime
->;
-
+const mockedCurriculumOverview = curriculumApi.curriculumOverview as jest.Mock;
+const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as jest.Mock;
 jest.mock("@/node-lib/cms");
 
 jest.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
@@ -565,13 +558,9 @@ jest.mock("next-sanity-image", () => ({
     height: 400,
   }),
 }));
-const mockedCurriculumUnits = curriculumApi.curriculumUnits as MockedFunction<
-  typeof curriculumApi.curriculumUnits
->;
+const mockedCurriculumUnits = curriculumApi.curriculumUnits as jest.Mock;
 const mockedFetchSubjectPhasePickerData =
-  fetchSubjectPhasePickerData as MockedFunction<
-    typeof fetchSubjectPhasePickerData
-  >;
+  fetchSubjectPhasePickerData as jest.Mock;
 
 jest.mock("@/pages/teachers/curriculum/index", () => ({
   fetchSubjectPhasePickerData: jest.fn(),

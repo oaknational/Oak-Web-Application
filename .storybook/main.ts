@@ -25,31 +25,52 @@ export default {
     NEXT_PUBLIC_OAK_ASSETS_HOST: process.env.NEXT_PUBLIC_OAK_ASSETS_HOST,
     NEXT_PUBLIC_OAK_ASSETS_PATH: process.env.NEXT_PUBLIC_OAK_ASSETS_PATH,
   }),
+
   stories: [
-    "../src/components/Intro.stories.mdx",
+    "../src/components/introduction.mdx",
     "../src/**/*.stories.@(js|jsx|ts|tsx)",
   ],
+
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "storybook-css-modules-preset",
-    "storybook-addon-themes",
     "@storybook/addon-storysource",
     "@storybook/addon-a11y",
-    "@storybook/addon-mdx-gfm",
+    "@storybook/addon-docs",
   ],
+
   framework: {
     name: "@storybook/nextjs",
-    options: {},
+    options: {
+      builder: {
+        lazyCompilation: true,
+      },
+    },
   },
+
+  core: {
+    disableWhatsNewNotifications: true,
+  },
+
   staticDirs: ["../public"],
+
   webpackFinal: async (config) => {
     config.module.rules = [
       ...config.module.rules.map((rule) => {
-        if (/svg/.test(rule.test)) {
-          // Silence the Storybook loaders for SVG files
-          return { ...rule, exclude: /\.svg$/i };
+        if (rule.test instanceof RegExp) {
+          if (/svg/.test(rule.test.source)) {
+            // Silence the Storybook loaders for SVG files
+            return { ...rule, exclude: /\.svg$/i };
+          }
+        } else if (typeof rule.test === "string") {
+          if (/svg/.test(rule.test)) {
+            // Silence the Storybook loaders for SVG files
+            return { ...rule, exclude: /\.svg$/i };
+          }
+        } else {
+          console.warn("Confusing Storybook rule");
         }
 
         return rule;
@@ -63,18 +84,10 @@ export default {
 
     return config;
   },
-  fallback: {
-    querystring: require.resolve("querystring-es3"),
-    path: require.resolve("path-browserify"),
-    buffer: require.resolve("buffer/"),
-    crypto: require.resolve("crypto-browserify"),
-    http: require.resolve("stream-http"),
-    stream: require.resolve("stream-browserify"),
-    url: require.resolve("url/"),
-    util: require.resolve("util/"),
-  },
 
-  docs: {
-    autodocs: false,
+  docs: {},
+
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
   },
 };

@@ -1,7 +1,8 @@
-import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
 import { kebabCase } from "lodash";
 
-type Category = {
+import { RawSuvLessons } from "../rawSuvLessons.schema";
+
+export type Category = {
   label: string;
   iconName: string;
   slug: string;
@@ -21,7 +22,7 @@ const categoryIconMap = {
 export type CategoryKeys = keyof typeof categoryIconMap;
 
 const filterUniqueCategories = (
-  parsedRawUnits: SyntheticUnitvariantLessons[],
+  parsedRawUnits: RawSuvLessons[],
 ): Set<string> => {
   const uniqueCategories = new Set<string>();
   parsedRawUnits.forEach((unit) => {
@@ -52,7 +53,7 @@ const generateCategoryObjects = (uniqueCategories: Set<string>): Category[] => {
 };
 
 export const getAllCategories = (
-  parsedRawUnits: SyntheticUnitvariantLessons[],
+  parsedRawUnits: RawSuvLessons[],
 ): Category[] => {
   const uniqueCategories = filterUniqueCategories(parsedRawUnits);
   const categories = generateCategoryObjects(uniqueCategories);

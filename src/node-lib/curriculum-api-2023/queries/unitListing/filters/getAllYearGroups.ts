@@ -6,7 +6,7 @@ import { z } from "zod";
 
 import { UnitsForProgramme } from "../units/units.schema";
 
-type YearGroup = {
+export type YearGroup = {
   yearTitle: z.infer<typeof yearDescriptions>;
   year: z.infer<typeof yearSlugs>;
 };

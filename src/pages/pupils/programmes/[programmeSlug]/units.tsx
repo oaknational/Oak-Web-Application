@@ -3,6 +3,7 @@ import { groupBy, uniq } from "lodash";
 import {
   OakIconProps,
   OakThemeProvider,
+  isValidIconName,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
@@ -182,10 +183,12 @@ export const getStaticProps: GetStaticProps<
 
       const secondSectionLength = secondUnitSection.units.length;
 
+      const iconSlug = `subject-${subjectSlug}`;
+
       const firstUnitSection: UnitsSectionData = {
         units: optionalityUnits,
         phase,
-        icon: `subject-${subjectSlug}`,
+        icon: isValidIconName(iconSlug) ? iconSlug : undefined,
         breadcrumbs,
         counterText:
           secondSectionLength > 0 && isLegacy

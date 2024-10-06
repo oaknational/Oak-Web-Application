@@ -39,7 +39,7 @@ describe("pages/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[
 
 describe("when downloads are region restricted", () => {
   const curriculumData = SpecialistLessonDownloadFixture({
-    isDownloadRegionRestricted: true,
+    geoRestricted: true,
   });
 
   describe("and the user has access", () => {

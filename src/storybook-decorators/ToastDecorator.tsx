@@ -1,9 +1,9 @@
-import { Story } from "@storybook/react";
+import { StoryFn } from "@storybook/react";
 
 import { toastContext, ToastRole } from "../context/Toast/ToastProvider";
 import noop from "../__tests__/__helpers__/noop";
 
-export default function ToastDecorator(Story: Story) {
+export default function ToastDecorator(Story: StoryFn) {
   const value = {
     message: "Something important but fleeting",
     shown: false,

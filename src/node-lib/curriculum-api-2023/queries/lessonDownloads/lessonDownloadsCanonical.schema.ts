@@ -11,8 +11,5 @@ export const lessonDownloadsCanonicalSchema = baseLessonDownloadsSchema.extend({
 
 export type LessonDownloadsCanonical = z.infer<
   typeof lessonDownloadsCanonicalSchema
-> & {
-  isDownloadRegionRestricted: boolean;
-};
-
+>;
 export default lessonDownloadsCanonicalSchema;

@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { OakFlex } from "@oaknational/oak-components";
 
 import Component from ".";
@@ -18,9 +18,9 @@ export default {
       defaultValue: "brush",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
+const Template: StoryFn<typeof Component> = (args) => (
   <OakFlex>
     <Component {...args} background="black" $mr={24} />
     <Component {...args} background="blue" $mr={24} />
@@ -28,4 +28,6 @@ const Template: ComponentStory<typeof Component> = (args) => (
   </OakFlex>
 );
 
-export const IconButton = Template.bind({});
+export const IconButton = {
+  render: Template,
+};

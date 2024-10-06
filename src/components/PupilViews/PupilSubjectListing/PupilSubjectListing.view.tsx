@@ -1,5 +1,6 @@
 import { groupBy } from "lodash";
 import {
+  isValidIconName,
   OakFlex,
   OakGrid,
   OakGridArea,
@@ -113,13 +114,16 @@ export const PupilViewsSubjectListing = ({
                 }),
               };
 
+              const iconSlug = `subject-${subject.programmeFields.subjectSlug}`;
               return (
                 <OakGridArea $colSpan={1} key={subjectSlug} role="listitem">
                   <OakFlex $height={"100%"}>
                     <OakPupilJourneySubjectButton
                       key={subjectSlug}
                       element="a"
-                      subjectIconName={`subject-${subject.programmeFields.subjectSlug}`}
+                      subjectIconName={
+                        isValidIconName(iconSlug) ? iconSlug : "question-mark"
+                      }
                       href={resolveOakHref(urlOptions as ResolveOakHrefProps)}
                       phase={
                         subject.programmeFields.phaseSlug as
