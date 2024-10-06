@@ -102,7 +102,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   ];
 
   return (
-    <Box $mb={[62, 40]}>
+    <Box $mb={40}>
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
       <Flex $background={color1} $pv={[20]}>
         <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
@@ -151,8 +151,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               >
                 <SubjectIcon
                   subjectSlug={subject.slug}
-                  $color="white"
-                  $borderColor="white"
                   $width={80}
                   data-testid="subjectIcon"
                 />
@@ -192,7 +190,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           $height={[64, 66]}
           $maxWidth={1280}
           $mh={"auto"}
-          $ph={18}
         />
       </Box>
     </Box>
