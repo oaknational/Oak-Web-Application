@@ -43,6 +43,8 @@ export type ButtonStylesProps = OpacityProps &
     $focusStyles?: [];
     $hoverStyles?: ButtonHoverStyle[];
     "aria-disabled"?: boolean;
+    "aria-current"?: string;
+    isCurrent?: boolean;
   };
 export const getButtonStylesProps = (
   props: CommonButtonProps,
