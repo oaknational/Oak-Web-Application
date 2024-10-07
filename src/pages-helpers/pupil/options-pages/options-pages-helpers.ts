@@ -1,9 +1,9 @@
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
-
 import {
   ProgrammeFields,
   examboardSlugs,
 } from "@oaknational/oak-curriculum-schema";
+
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
