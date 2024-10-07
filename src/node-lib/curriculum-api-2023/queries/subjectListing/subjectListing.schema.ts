@@ -36,7 +36,9 @@ const subjectListingSchema = z.object({
 });
 
 export const subjectLisitingRawSchema = z.object({
-  subjectLessons: z.array(syntheticUnitvariantLessonsSchema),
+  subjectLessons: z.array(
+    syntheticUnitvariantLessonsSchema.omit({ null_unitvariant_id: true }),
+  ),
   key_stages: z.array(keyStageDataRaw),
 });
 
