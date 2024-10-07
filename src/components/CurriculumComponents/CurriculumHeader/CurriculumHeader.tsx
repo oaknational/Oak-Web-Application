@@ -187,6 +187,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               links={links}
               variant="flat"
               $alignItems={"center"}
+              $height={[64, 66]}
             />
           </Box>
         </Flex>
