@@ -2,6 +2,7 @@ import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 import {
   ProgrammeFields,
   examboardSlugs,
+  pathwaySlugs,
 } from "@oaknational/oak-curriculum-schema";
 
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
@@ -14,6 +15,7 @@ import { PupilViewsProgrammeListingProps } from "@/components/PupilViews/PupilPr
 export type OptionsURLParams = {
   programmeSlug: string;
   examboardSlug?: string;
+  pathwaySlug?: string;
 };
 
 export const getPupilOptionData = async (
@@ -25,9 +27,17 @@ export const getPupilOptionData = async (
 
   // For the options route we rename programmeSlug to baseSlug as this is the accurate usage of the options page.
   // I would have created a new folder [baseSlug] but multiple dynamic params on the same segment is not allowed.
-  const { programmeSlug: baseSlug, examboardSlug = null } = context.params;
+  const {
+    programmeSlug: baseSlug,
+    examboardSlug = null,
+    pathwaySlug = null,
+  } = context.params;
 
   if (examboardSlug !== null && !isExamboardSlug(examboardSlug)) {
+    throw new OakError({ code: "curriculum-api/params-incorrect" });
+  }
+
+  if (pathwaySlug !== null && !isPathwaySlug(pathwaySlug)) {
     throw new OakError({ code: "curriculum-api/params-incorrect" });
   }
 
@@ -78,6 +88,7 @@ export const getPupilOptionData = async (
       examboards,
       tiers,
       pathways,
+      pathwaySlug,
     },
   };
 };
@@ -102,3 +113,8 @@ export const isExamboardSlug = (
   examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
 ): examboardSlug is ProgrammeFields["examboard_slug"] =>
   Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
+
+export const isPathwaySlug = (
+  pathwaySlug: ProgrammeFields["pathway_slug"] | string | null,
+): pathwaySlug is ProgrammeFields["pathway_slug"] =>
+  Object.keys(pathwaySlugs.Values).includes(pathwaySlug ?? "");

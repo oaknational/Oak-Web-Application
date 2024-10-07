@@ -32,6 +32,7 @@ export type PupilViewsProgrammeListingProps = {
   examboardSlug?: PupilProgrammeListingData["programmeFields"]["examboardSlug"];
   examboards: FactorData[];
   tiers: FactorData[];
+  pathwaySlug?: PupilProgrammeListingData["programmeFields"]["pathwaySlug"];
   pathways: FactorData[];
 };
 
@@ -42,6 +43,7 @@ export const PupilViewsProgrammeListing = ({
   examboardSlug,
   examboards,
   tiers,
+  pathwaySlug,
   pathways,
 }: PupilViewsProgrammeListingProps) => {
   const orderedFactors: ("pathway" | "examboard" | "tier")[] = [
@@ -51,7 +53,13 @@ export const PupilViewsProgrammeListing = ({
   ];
 
   const [chosenFactors, setChosenFactors] = useState<Factors>({
-    pathway: null,
+    pathway:
+      pathwaySlug && pathways.length >= 1
+        ? getFactorDataFromSlug({
+            factorSlug: pathwaySlug,
+            availableFactors: pathways,
+          })
+        : null,
     examboard:
       examboardSlug && examboards.length >= 1
         ? getFactorDataFromSlug({
