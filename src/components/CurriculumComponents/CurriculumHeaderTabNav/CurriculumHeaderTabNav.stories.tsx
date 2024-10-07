@@ -1,25 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import CurriculumHeaderTabNav from "./index";
 
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
-
-export default {
-  title: "Components/Curriculum/CurriculumHeaderTabNav",
-  component: CurriculumHeaderTabNav,
-  argTypes: {
-    variant: {
-      control: {
-        type: "select",
-        options: ["flat", "brush", "minimal", "buttonStyledAsLink"],
-      },
-    },
-  },
-} as ComponentMeta<typeof CurriculumHeaderTabNav>;
-
-const Template: ComponentStory<typeof CurriculumHeaderTabNav> = (args) => (
-  <CurriculumHeaderTabNav {...args} />
-);
 
 const mockLinks: ButtonAsLinkProps[] = [
   {
@@ -48,15 +31,34 @@ const mockLinks: ButtonAsLinkProps[] = [
   },
 ];
 
-export const Default = Template.bind({});
-Default.args = {
-  label: "Curriculum Navigation",
-  links: mockLinks,
-  variant: "flat",
+const meta: Meta<typeof CurriculumHeaderTabNav> = {
+  title: "Components/Curriculum/CurriculumHeaderTabNav",
+  component: CurriculumHeaderTabNav,
+  argTypes: {
+    variant: {
+      control: {
+        type: "select",
+        options: ["flat", "brush", "minimal", "buttonStyledAsLink"],
+      },
+    },
+  },
 };
 
-export const AllTabsInactive = Template.bind({});
-AllTabsInactive.args = {
-  ...Default.args,
-  links: mockLinks.map((link) => ({ ...link, isCurrent: false })),
+export default meta;
+
+type Story = StoryObj<typeof CurriculumHeaderTabNav>;
+
+export const Default: Story = {
+  args: {
+    label: "Curriculum Navigation",
+    links: mockLinks,
+    variant: "flat",
+  },
+};
+
+export const AllTabsInactive: Story = {
+  args: {
+    ...Default.args,
+    links: mockLinks.map((link) => ({ ...link, isCurrent: false })),
+  },
 };
