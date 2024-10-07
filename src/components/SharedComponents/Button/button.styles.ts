@@ -197,6 +197,11 @@ const buttonStyles = css<ButtonStylesProps>`
       background-color: ${props.theme.colors.mint};
       color: ${props.theme.colors.grey60};
       transition: none;
+      height: 60px;
+
+      @media (min-width: 750px) {
+        height: 64px;
+      }
 
       &:hover {
         background-color: ${props.theme.colors.mint30};

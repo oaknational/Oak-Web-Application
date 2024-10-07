@@ -72,12 +72,6 @@ const BUTTON_CONFIGS: Record<
     iconInnerHeight: 30,
     paddingH: 0,
   },
-  "small-flat-button": {
-    height: 44,
-    iconOuterHeight: 40,
-    iconInnerHeight: 30,
-    paddingH: 16,
-  },
   "large-flat-button": {
     height: 64,
     iconOuterHeight: 48,
@@ -209,6 +203,7 @@ const BUTTON_CONFIGS: Record<
   "xs-buttonStyledAsLink-icon-button": DEFAULT_BUTTON_CONFIG,
   "xs-flat-button": DEFAULT_BUTTON_CONFIG,
   "xs-flat-icon-button": DEFAULT_BUTTON_CONFIG,
+  "small-flat-button": DEFAULT_BUTTON_CONFIG,
   "small-flat-icon-button": DEFAULT_BUTTON_CONFIG,
   "large-flat-icon-button": DEFAULT_BUTTON_CONFIG,
 };
