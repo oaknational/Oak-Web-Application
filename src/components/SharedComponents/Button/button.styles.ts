@@ -1,4 +1,5 @@
 import { css } from "styled-components";
+import { AriaAttributes } from "react";
 
 import {
   ButtonFocusUnderline,
@@ -43,7 +44,7 @@ export type ButtonStylesProps = OpacityProps &
     $focusStyles?: [];
     $hoverStyles?: ButtonHoverStyle[];
     "aria-disabled"?: boolean;
-    "aria-current"?: string;
+    "aria-current"?: AriaAttributes["aria-current"];
     isCurrent?: boolean;
   };
 export const getButtonStylesProps = (
