@@ -204,9 +204,17 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
 
   return (
     <Box>
-      <Box $maxWidth={1280} $mh={"auto"} $ph={[0, 18]} $width={"100%"}>
+      <Box
+        id="curriculum-units"
+        aria-labelledby="curriculum-unit-sequence-heading"
+        $maxWidth={1280}
+        $mh={"auto"}
+        $ph={[0, 18]}
+        $width={"100%"}
+      >
         <ScreenReaderOnly>
           <OakHeading
+            id="curriculum-unit-sequence-heading"
             tag="h2"
             $mb="space-between-m"
             $ml={["space-between-s", "space-between-none"]}

@@ -38,6 +38,7 @@ const CurriculumHeaderTabNav = ({
             size="large"
             variant={variant}
             aria-current={link.isCurrent ? "page" : undefined}
+            aria-controls={link.page}
             key={`CurriculumHeaderTabNav-${link.page}-${i}`}
             $font={["heading-7", "heading-6"]}
           />

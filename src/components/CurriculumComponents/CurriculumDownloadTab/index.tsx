@@ -323,10 +323,20 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <ScreenReaderOnly>
-        <OakHeading tag="h2">Download</OakHeading>
-      </ScreenReaderOnly>
-      <Box $maxWidth={1280} $mh={"auto"} $ph={18} $pb={[48]} $width={"100%"}>
+      <Box
+        id="curriculum-downloads"
+        aria-labelledby="curriculum-downloads-heading"
+        $maxWidth={1280}
+        $mh={"auto"}
+        $ph={18}
+        $pb={[48]}
+        $width={"100%"}
+      >
+        <ScreenReaderOnly>
+          <OakHeading id="curriculum-downloads-heading" tag="h2">
+            Download
+          </OakHeading>
+        </ScreenReaderOnly>
         {subjectTierSelectionVisible === true && (
           <OakDownloadsJourneyChildSubjectTierSelector
             tiers={tiers}

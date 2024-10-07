@@ -18,7 +18,6 @@ import Terms from "../OakComponentsKitchen/Terms";
 import { submitSchema } from "./schema";
 import { School, runSchema } from "./helper";
 
-import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly/";
 import Box from "@/components/SharedComponents/Box";
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
@@ -140,11 +139,6 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
 
   return (
     <OakBox $color="black">
-      <ScreenReaderOnly>
-        <OakHeading aria-role={"heading"} tag="h2">
-          Download
-        </OakHeading>
-      </ScreenReaderOnly>
       {onBackToKs4Options && (
         <Box $mb={24}>
           <Button

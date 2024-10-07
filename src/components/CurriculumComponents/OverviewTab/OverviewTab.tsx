@@ -250,9 +250,27 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </OakBox>
         </Box>
       )}
-      <Box $maxWidth={1280} $mh={"auto"} $ph={16} $width={"100%"}>
+      <Box
+        id="curriculum-overview"
+        aria-labelledby="curriculum-overview-heading"
+        $maxWidth={1280}
+        $mh={"auto"}
+        $ph={16}
+        $width={"100%"}
+      >
         {isCycleTwoEnabled && (
           <OakFlex $gap={"all-spacing-16"} $alignItems={"flex-start"}>
+            <ScreenReaderOnly>
+              <OakHeading
+                tag="h2"
+                $font={["heading-5", "heading-4"]}
+                $mb="space-between-m"
+                data-testid="overview-heading"
+                id="curriculum-overview-heading"
+              >
+                Overview
+              </OakHeading>
+            </ScreenReaderOnly>
             <Box
               $minWidth={300}
               $position={["static", "static", "sticky"]}
@@ -305,16 +323,6 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 $maxWidth={["100%", "100%", "65%"]}
                 $textAlign={"left"}
               >
-                <ScreenReaderOnly>
-                  <OakHeading
-                    tag="h2"
-                    $font={["heading-5", "heading-4"]}
-                    $mb="space-between-m"
-                    data-testid="overview-heading"
-                  >
-                    Overview
-                  </OakHeading>
-                </ScreenReaderOnly>
                 <OakHeading
                   tag="h3"
                   $font={["heading-6", "heading-5"]}
