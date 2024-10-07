@@ -98,7 +98,8 @@ export const PupilViewsProgrammeListing = ({
   const yearDescriptions = programmes[0]?.programmeFields.yearDescription;
 
   const topNavSlot = () => {
-    const currentIndex = availableFactors.indexOf(currentFactor);
+    const currentIndex =
+      currentFactor !== "none" ? availableFactors.indexOf(currentFactor) : -1;
     const prevIndex = currentIndex - 1;
     const option = availableFactors[prevIndex] || "none";
 
@@ -135,7 +136,7 @@ export const PupilViewsProgrammeListing = ({
   const breadcrumbs: string[] = [yearDescriptions];
 
   orderedFactors.forEach((f) => {
-    if (chosenFactors[f]) {
+    if (chosenFactors[f]?.factor) {
       breadcrumbs.push(chosenFactors[f].factor);
     }
   });
@@ -145,26 +146,23 @@ export const PupilViewsProgrammeListing = ({
       return <OakBox>No programme factors to be selected</OakBox>;
     }
 
-    switch (currentFactor) {
-      case "pathway":
-      case "tier":
-      case "examboard":
-        return (
-          <BrowseFactorSelector
-            factorType={currentFactor}
-            factors={allFactors[currentFactor]}
-            baseSlug={baseSlug}
-            chosenFactors={chosenFactors}
-            programmes={programmes}
-            onClick={(f) =>
-              setChosenFactors({ ...chosenFactors, [currentFactor]: f })
-            }
-            phaseSlug={phaseSlug}
-          />
-        );
-      default:
-        return <OakBox>No programme factors to be selected</OakBox>;
+    if (currentFactor) {
+      return (
+        <BrowseFactorSelector
+          factorType={currentFactor}
+          factors={allFactors[currentFactor]}
+          baseSlug={baseSlug}
+          chosenFactors={chosenFactors}
+          programmes={programmes}
+          onClick={(f) =>
+            setChosenFactors({ ...chosenFactors, [currentFactor]: f })
+          }
+          phaseSlug={phaseSlug}
+        />
+      );
     }
+
+    return <OakBox>No programme factors to be selected</OakBox>;
   };
 
   const optionTitles = (): { hint: string; title: string } => {

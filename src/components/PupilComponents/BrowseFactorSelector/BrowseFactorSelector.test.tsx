@@ -159,24 +159,33 @@ describe("BrowseExamboardSelector", () => {
     expect(queryAllByRole("link")).toHaveLength(1);
   });
 
-  // it("should render legacy links when baseSlug and isLegacy are provided", () => {
-  //   const { getByRole } = render(
-  //     <OakThemeProvider theme={oakDefaultTheme}>
-  //       <BrowseExamboardSelector
-  //         examboards={examboards}
-  //         baseSlug="my-subject"
-  //         phaseSlug="secondary"
-  //       />
-  //     </OakThemeProvider>,
-  //   );
+  it("should append the legacy suffix to the slug if the isLegacy flag is set", () => {
+    const legacyFactors = examboardsEBs.map((e) => ({
+      ...e,
+      isLegacy: true,
+    }));
 
-  //   for (const e of examboards) {
-  //     const button = getByRole("link", { name: e.examboard ?? "" });
-  //     expect(button.getAttribute("href")).toBe(
-  //       `/pupils/programmes/my-subject-${e.examboardSlug}${
-  //         e.isLegacy ? "-l" : ""
-  //       }/units`,
-  //     );
-  //   }
-  // });
+    const { getAllByRole } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <BrowseFactorSelector
+          factorType="examboard"
+          programmes={programmesEB}
+          factors={legacyFactors}
+          chosenFactors={{
+            pathway: null,
+            examboard: null,
+            tier: null,
+          }}
+          onClick={() => {}}
+          baseSlug="my-subject"
+          phaseSlug="secondary"
+        />
+      </OakThemeProvider>,
+    );
+
+    const button = getAllByRole("link");
+    button.forEach((b) => {
+      expect(b).toHaveAttribute("href", expect.stringContaining("-l"));
+    });
+  });
 });
