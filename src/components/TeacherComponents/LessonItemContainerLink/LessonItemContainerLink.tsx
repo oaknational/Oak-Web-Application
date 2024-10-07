@@ -1,4 +1,4 @@
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import ButtonAsLink, {
   ButtonAsLinkProps,
@@ -86,9 +86,10 @@ export function LessonItemContainerLink({
               : undefined,
           };
 
-  const downloads = useFeatureFlagEnabled("use-auth-owa")
-    ? "downloads-auth"
-    : "downloads";
+  const downloads =
+    useFeatureFlagVariantKey("teacher-download-auth") === "with-login"
+      ? "downloads-auth"
+      : "downloads";
 
   const downloadLinkProps:
     | LessonDownloadsLinkProps

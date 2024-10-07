@@ -1,4 +1,4 @@
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
@@ -21,7 +21,8 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
   } = useLocalStorageForDownloads();
 
   const auth = useFeatureFlaggedClerk().useAuth();
-  const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa") || false;
+  const authFlagEnabled =
+    useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
 
   const onSubmit = async (data: ResourceFormProps, slug: string) => {
     if (props.onSubmit) {

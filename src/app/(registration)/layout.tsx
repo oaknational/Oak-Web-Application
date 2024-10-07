@@ -107,6 +107,10 @@ function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-const LayoutWithFF = withFeatureFlag(Layout, "use-auth-owa");
+const LayoutWithFF = withFeatureFlag(
+  Layout,
+  "teacher-download-auth",
+  "with-login",
+);
 
 export default LayoutWithFF;

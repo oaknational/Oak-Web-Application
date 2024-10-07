@@ -12,8 +12,8 @@ jest.mock("posthog-js/react");
 describe(FeatureFlaggedClerkProvider, () => {
   it("provides the real API when the feature flag is enabled", () => {
     const flagSpy = jest
-      .spyOn(posthog, "useFeatureFlagEnabled")
-      .mockReturnValue(true);
+      .spyOn(posthog, "useFeatureFlagVariantKey")
+      .mockReturnValue("with-login");
 
     const { rerender, result } = renderHook(() => useFeatureFlaggedClerk(), {
       wrapper: FeatureFlaggedClerkProvider,

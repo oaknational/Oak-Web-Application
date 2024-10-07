@@ -7,7 +7,7 @@ import OnboardingView from "./Onboarding.view";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: () => true,
+  useFeatureFlagVariantKey: () => "with-login",
 }));
 describe("Onboarding view", () => {
   it("renders a Continue button", async () => {

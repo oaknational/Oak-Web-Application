@@ -1,6 +1,6 @@
 import { FC, useRef } from "react";
 import { oakColorTokens, OakFlex } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { UserButton } from "@clerk/nextjs";
 
 import Logo from "@/components/AppComponents/Logo";
@@ -38,7 +38,8 @@ const AppHeader: FC<HeaderProps> = () => {
   const { track } = useAnalytics();
   const selectedArea = useSelectedArea();
   const { useUser } = useFeatureFlaggedClerk();
-  const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
+  const authFlagEnabled =
+    useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
   const { isSignedIn } = useUser();
 
   return (

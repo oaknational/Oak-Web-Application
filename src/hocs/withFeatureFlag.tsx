@@ -1,23 +1,26 @@
 "use client";
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 const withFeatureFlag = <P extends object>(
   WrappedComponent: React.ComponentType<P>,
   featureFlag: string,
+  featureFlagVariant: string | true = true,
 ) => {
   const WithFeatureFlag: React.FC<P> = (props) => {
-    const ffEnabled = useFeatureFlagEnabled(featureFlag);
+    const flagValue = useFeatureFlagVariantKey(featureFlag);
+    const flagLoaded = flagValue !== undefined;
+    const ffEnabled = flagValue === featureFlagVariant;
     const router = useRouter();
 
     useEffect(() => {
-      if (ffEnabled === false) {
+      if (flagLoaded && !ffEnabled) {
         router.replace("/404");
       }
-    }, [ffEnabled, router]);
+    }, [flagLoaded, ffEnabled, router]);
 
-    if (!ffEnabled) {
+    if (!flagLoaded || !ffEnabled) {
       return null;
     }
 

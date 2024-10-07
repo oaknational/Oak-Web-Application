@@ -8,7 +8,7 @@ import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: () => true,
+  useFeatureFlagVariantKey: () => "with-login",
 }));
 
 jest.mock("next/navigation", () => require("next-router-mock"));

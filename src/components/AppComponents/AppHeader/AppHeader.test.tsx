@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { screen } from "@testing-library/react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import AppHeader from ".";
 
@@ -23,7 +23,7 @@ jest.mock("@clerk/nextjs", () => ({
 }));
 
 jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: jest.fn(() => true),
+  useFeatureFlagVariantKey: jest.fn(() => "with-login"),
 }));
 
 describe("components/AppHeader", () => {
@@ -114,12 +114,12 @@ describe("components/AppHeader", () => {
 
   it("renders a sign out button when a user is logged in and feature flag is on", async () => {
     renderWithProviders()(<AppHeader />);
-    (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("with-login");
     const signOutButton = screen.getByText("Mocked User Button");
     expect(signOutButton).toBeInTheDocument();
   });
   it("does not render a sign out button when feature flag is off", () => {
-    (useFeatureFlagEnabled as jest.Mock).mockReturnValue(false);
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("control");
     (useFeatureFlaggedClerk as jest.Mock).mockImplementationOnce(() => ({
       useUser: () => ({
         isSignedIn: true, // Override for this test
