@@ -66,7 +66,9 @@ export const BrowseFactorSelector = ({
 
   const getOptionsAvailable = (factor: FactorData) =>
     filteredProgrammes.filter(
-      (p) => p.programmeFields[`${factorType}Slug`] === factor.factorSlug,
+      (p) =>
+        p.programmeFields[`${factorType}Slug`] === factor.factorSlug &&
+        Boolean(p.programmeFields.legacy) === factor.isLegacy,
     ).length > 1;
 
   //annoyingly tiers use the factorDescription and not the factor !
