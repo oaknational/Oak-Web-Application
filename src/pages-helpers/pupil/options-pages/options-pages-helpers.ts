@@ -1,17 +1,14 @@
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
+
 import {
   ProgrammeFields,
   examboardSlugs,
 } from "@oaknational/oak-curriculum-schema";
-
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { resolveOakHref } from "@/common-lib/urls";
-import {
-  FactorData,
-  getAvailableProgrammeFactor,
-} from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
+import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 import { PupilViewsProgrammeListingProps } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 
 export type OptionsURLParams = {
