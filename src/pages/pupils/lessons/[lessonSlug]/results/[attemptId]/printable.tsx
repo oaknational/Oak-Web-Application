@@ -53,7 +53,7 @@ export const InnerRender = (props: CanonicalResultsPrintablePageProps) => {
 
   useEffect(() => {
     const setData = async (attemptId: string) => {
-      const attemptData = await getAttempt(attemptId);
+      const attemptData = await getAttempt(attemptId, true);
       setAttemptData(attemptData);
     };
     setData(attemptId);
