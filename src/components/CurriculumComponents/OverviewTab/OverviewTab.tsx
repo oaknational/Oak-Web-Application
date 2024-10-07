@@ -186,19 +186,33 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     ? [curriculumPartner, curriculumPartner]
     : [curriculumPartner];
 
+  const partnerTitle = `Our curriculum partner${
+    curriculumPartners.length > 1 ? "s" : ""
+  }`;
+
+  const isVideoEnabled = video && videoExplainer;
+
   const h1Headings = (curriculumExplainer.explainerRaw ?? []).filter(
     (block) => {
       return block.style === "heading1";
     },
   );
 
+  if (isVideoEnabled) {
+    h1Headings.push({
+      _key: "video-guide",
+      children: [{ text: "Video Guide" }],
+    });
+  }
+
+  h1Headings.push({
+    _key: "curriculum-partner",
+    children: [{ text: partnerTitle }],
+  });
+
   const goToAnchor = (selector: string) => {
     document.querySelector(`#header-${selector}`)?.scrollIntoView();
   };
-
-  const partnerTitle = `Our curriculum partner${
-    curriculumPartners.length > 1 ? "s" : ""
-  }`;
 
   const contents = (
     <OakFlex $gap={"space-between-m"} $flexDirection={"column"}>
@@ -378,7 +392,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             </Card>
           </>
         )}
-        {video && videoExplainer && (
+        {isVideoEnabled && (
           <OakFlex
             $alignItems={"center"}
             $justifyContent={"flex-start"}
@@ -396,7 +410,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               $alignItems={"flex-start"}
               $gap={[16, 24]}
             >
-              <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
+              <OakHeading
+                tag="h3"
+                $font={["heading-6", "heading-5"]}
+                id="header-video-guide"
+              >
                 Video guide
               </OakHeading>
               <OakP $font={"body-1"}>{videoExplainer}</OakP>
@@ -442,6 +460,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                   tag="h3"
                   $font={["heading-6", "heading-5"]}
                   $mb="space-between-s"
+                  id="curriculum-partner"
                 >
                   {partnerTitle}
                 </OakHeading>
@@ -502,7 +521,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                         >
                           {curriculumPartnerIndex === 0 && (
                             <OakBox $display={["none", "block"]}>
-                              <OakHeading tag="h3" $font={["heading-5"]}>
+                              <OakHeading
+                                tag="h3"
+                                $font={["heading-5"]}
+                                id="header-curriculum-partner"
+                              >
                                 {partnerTitle}
                               </OakHeading>
                             </OakBox>
