@@ -179,18 +179,17 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             </OakFlex>
           </Box>
         </Flex>
-        <CurriculumHeaderTabNav
-          data-testid="tabularNav"
-          label="Curriculum Selection"
-          links={links}
-          variant="flat"
-          $alignItems={"center"}
-          $borderColor="mint30"
-          $bt={2}
-          $height={[64, 66]}
-          $maxWidth={1280}
-          $mh={"auto"}
-        />
+        <Flex $borderColor="mint30" $bt={2}>
+          <Box $maxWidth={1280} $mh={"auto"} $width={"100%"}>
+            <CurriculumHeaderTabNav
+              data-testid="tabularNav"
+              label="Curriculum Selection"
+              links={links}
+              variant="flat"
+              $alignItems={"center"}
+            />
+          </Box>
+        </Flex>
       </Box>
     </Box>
   );
