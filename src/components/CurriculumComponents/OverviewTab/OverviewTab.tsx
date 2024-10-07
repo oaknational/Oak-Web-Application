@@ -460,7 +460,6 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                   tag="h3"
                   $font={["heading-6", "heading-5"]}
                   $mb="space-between-s"
-                  id="curriculum-partner"
                 >
                   {partnerTitle}
                 </OakHeading>
@@ -479,7 +478,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               $flexDirection={"column"}
             >
               <OakBox $display={["block", "none"]}>
-                <OakHeading tag="h3" $font={["heading-5"]}>
+                <OakHeading
+                  tag="h3"
+                  $font={["heading-5"]}
+                  id="header-curriculum-partner"
+                >
                   {partnerTitle}
                 </OakHeading>
               </OakBox>
