@@ -1,7 +1,5 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { act } from "react-dom/test-utils";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import UnitsLearningThemeFilters from "./UnitsLearningThemeFilters";
 
@@ -18,6 +16,12 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 describe("UnitsLearningThemeFilters", () => {
+  beforeAll(() => {
+    // Mock window.history.state
+    jest.spyOn(window.history, "state", "get").mockReturnValue({
+      url: "https://example.com/some-path",
+    });
+  });
   test("should render threads with no theme last", async () => {
     renderWithProviders()(
       <UnitsLearningThemeFilters
@@ -41,8 +45,10 @@ describe("UnitsLearningThemeFilters", () => {
           page: "unit-index",
           programmeSlug: "maths-secondary-ks3",
         }}
-        idSuffix="test"
+        idSuffix="desktop"
         onChangeCallback={jest.fn}
+        programmeSlug="maths-secondary-ks3"
+        browseRefined={browseRefined}
       />,
     );
     const themes = await screen.findAllByRole("radio");
@@ -66,8 +72,10 @@ describe("UnitsLearningThemeFilters", () => {
           page: "unit-index",
           programmeSlug: "maths-secondary-ks3",
         }}
-        idSuffix="test"
+        idSuffix="desktop"
         onChangeCallback={onChangeCallback}
+        programmeSlug="maths-secondary-ks3"
+        browseRefined={browseRefined}
       />,
     );
     const algebraFilter = screen.getByLabelText("Algebra");
@@ -80,6 +88,7 @@ describe("UnitsLearningThemeFilters", () => {
   test("should call tracking browse refined with correct args", async () => {
     renderWithProviders()(
       <UnitsLearningThemeFilters
+        programmeSlug="maths-secondary-ks3"
         labelledBy={"Learning Theme Filter"}
         learningThemes={[
           {
@@ -87,7 +96,7 @@ describe("UnitsLearningThemeFilters", () => {
             themeSlug: "grammar",
           },
         ]}
-        idSuffix="test"
+        idSuffix="desktop"
         selectedThemeSlug={"all"}
         linkProps={{
           page: "unit-index",
@@ -99,6 +108,7 @@ describe("UnitsLearningThemeFilters", () => {
           subjectSlug: "english",
           subjectTitle: "English",
         }}
+        browseRefined={browseRefined}
         onChangeCallback={jest.fn}
       />,
     );
@@ -117,50 +127,41 @@ describe("UnitsLearningThemeFilters", () => {
       activeFilters: { keyStage: ["ks3"], subject: ["english"] },
     });
   });
-  test("skip filters button becomes visible when focussed", async () => {
-    const { getByText } = renderWithProviders()(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <UnitsLearningThemeFilters
-          labelledBy={"Learning Theme Filter"}
-          learningThemes={[
-            {
-              themeTitle: "Grammar",
-              themeSlug: "grammar",
-            },
-          ]}
-          selectedThemeSlug={"all"}
-          linkProps={{
-            page: "unit-index",
-            programmeSlug: "maths-secondary-ks3",
-          }}
-          idSuffix="test"
-          trackingProps={{
-            keyStageSlug: "ks3",
-            keyStageTitle: "Key stage 3",
-            subjectSlug: "english",
-            subjectTitle: "English",
-          }}
-          onChangeCallback={jest.fn}
-        />
-        ,
-      </OakThemeProvider>,
+
+  test("on mobile, invokes setMobileFilter with correct value", async () => {
+    const setMobileFilter = jest.fn();
+    renderWithProviders()(
+      <UnitsLearningThemeFilters
+        programmeSlug="maths-secondary-ks3"
+        labelledBy={"Learning Theme Filter"}
+        learningThemes={[
+          {
+            themeTitle: "Grammar",
+            themeSlug: "grammar",
+          },
+        ]}
+        idSuffix="mobile"
+        selectedThemeSlug={"all"}
+        setMobileFilter={setMobileFilter}
+        linkProps={{
+          page: "unit-index",
+          programmeSlug: "maths-secondary-ks3",
+        }}
+        trackingProps={{
+          keyStageSlug: "ks3",
+          keyStageTitle: "Key stage 3",
+          subjectSlug: "english",
+          subjectTitle: "English",
+        }}
+        browseRefined={browseRefined}
+        onChangeCallback={jest.fn}
+      />,
     );
 
-    const skipUnits = getByText("Skip to units").closest("a");
+    const user = userEvent.setup();
+    const grammarThread = screen.getByText("Grammar");
+    await user.click(grammarThread);
 
-    if (!skipUnits) {
-      throw new Error("Could not find filter button");
-    }
-
-    act(() => {
-      skipUnits.focus();
-    });
-    expect(skipUnits).toHaveFocus();
-    expect(skipUnits).not.toHaveStyle("position: absolute");
-
-    act(() => {
-      skipUnits.blur();
-    });
-    expect(skipUnits).not.toHaveFocus();
+    expect(setMobileFilter).toHaveBeenCalledWith("grammar");
   });
 });

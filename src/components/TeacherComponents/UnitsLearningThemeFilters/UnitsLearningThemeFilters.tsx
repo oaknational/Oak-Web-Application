@@ -1,19 +1,20 @@
 import { useState } from "react";
 import {
-  OakBox,
   OakFlex,
-  OakSecondaryButton,
   TileItem,
   isTileItem,
   OakRadioTile,
 } from "@oaknational/oak-components";
+import { useRouter } from "next/router";
+
+import { generateUrl } from "./generateUrl";
 
 import {
   SpecialistUnitListingLinkProps,
   UnitListingLinkProps,
 } from "@/common-lib/urls";
 import { LearningThemeSelectedTrackingProps } from "@/components/SharedComponents/CategoryFilterList";
-import useAnalytics from "@/context/Analytics/useAnalytics";
+import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 export type LearningTheme = {
   themeSlug?: string | null;
@@ -26,19 +27,27 @@ export type UnitsLearningThemeFiltersProps = {
   learningThemes: LearningTheme[] | null;
   linkProps: UnitListingLinkProps | SpecialistUnitListingLinkProps;
   trackingProps?: LearningThemeSelectedTrackingProps;
-  idSuffix: string;
+  idSuffix: "desktop" | "mobile";
   onChangeCallback: (theme: string | undefined) => void;
+  categorySlug?: string;
+  yearGroupSlug?: string;
+  programmeSlug: string;
+  setMobileFilter?: React.Dispatch<React.SetStateAction<string | undefined>>;
+  activeMobileFilter?: string;
+  browseRefined: TrackFns["browseRefined"];
 };
 
 const UnitsLearningThemeFilters = ({
   learningThemes = [],
   selectedThemeSlug,
-  linkProps,
   trackingProps,
   idSuffix,
   onChangeCallback,
+  programmeSlug,
+  setMobileFilter,
+  activeMobileFilter,
+  browseRefined,
 }: UnitsLearningThemeFiltersProps) => {
-  const [skipFiltersButton, setSkipFiltersButton] = useState(false);
   const themeTileItems: Array<TileItem> = learningThemes
     ? learningThemes
         .map((learningTheme) => {
@@ -58,54 +67,50 @@ const UnitsLearningThemeFilters = ({
           }
         })
     : [];
+  const router = useRouter();
+  const isMobile = idSuffix === "mobile";
 
-  const { track } = useAnalytics();
+  const categorySlug = router.query["category"]?.toString();
+  const yearGroupSlug = router.query["year"]?.toString();
 
   const [activeThemeSlug, setActiveThemeSlug] = useState(selectedThemeSlug);
 
   const onChange = (theme: TileItem) => {
-    setActiveThemeSlug(theme.id);
-
     const callbackValue = theme.id === "all" ? undefined : theme.id;
-    onChangeCallback(callbackValue);
+    setActiveThemeSlug(theme.id);
+    if (!isMobile) {
+      onChangeCallback(callbackValue);
+      if (trackingProps) {
+        const { keyStageSlug, subjectSlug } = trackingProps;
+        browseRefined({
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "refine",
+          componentType: "filter_link",
+          eventVersion: "2.0.0",
+          analyticsUseCase: "Teacher",
+          filterType: "Learning theme filter",
+          filterValue: theme.label,
+          activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
+        });
+      }
 
-    if (trackingProps) {
-      const { keyStageSlug, subjectSlug } = trackingProps;
+      const newUrl = generateUrl(
+        { slug: theme.id },
+        programmeSlug,
+        yearGroupSlug,
+        categorySlug,
+      );
 
-      track.browseRefined({
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "refine",
-        componentType: "filter_link",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-        filterType: "Learning theme filter",
-        filterValue: theme.label,
-        activeFilters: { keyStage: [keyStageSlug], subject: [subjectSlug] },
-      });
+      window.history.replaceState(window.history.state, "", newUrl);
+    } else {
+      setMobileFilter?.(callbackValue);
+      setActiveThemeSlug(theme.id);
     }
-
-    const query = theme.id === "all" ? "" : `?learning-theme=${theme.id}`;
-    const newUrl = `/teachers/programmes/${linkProps.programmeSlug}/units${query}`;
-    window.history.replaceState(window.history.state, "", newUrl);
   };
 
   return (
     <OakFlex $flexDirection={"column"}>
-      <OakBox $mb={skipFiltersButton ? "space-between-xs" : "auto"}>
-        <OakSecondaryButton
-          element="a"
-          aria-label="Skip to units"
-          href="#unit-list"
-          onFocus={() => setSkipFiltersButton(true)}
-          onBlur={() => setSkipFiltersButton(false)}
-          style={
-            skipFiltersButton ? {} : { position: "absolute", top: "-600px" }
-          }
-        >
-          Skip to units
-        </OakSecondaryButton>
-      </OakBox>
       <OakFlex
         $flexDirection="column"
         $gap="space-between-ssx"
@@ -113,7 +118,13 @@ const UnitsLearningThemeFilters = ({
         $pb="inner-padding-xl2"
       >
         {[{ id: "all", label: "All" }, ...themeTileItems].map((theme) => {
-          const isChecked = activeThemeSlug === theme.id;
+          const activeMobTheme =
+            activeMobileFilter === undefined || activeMobileFilter === ""
+              ? "all"
+              : activeMobileFilter;
+          const isChecked = !isMobile
+            ? activeThemeSlug === theme.id
+            : activeMobTheme === theme.id;
           return (
             <OakRadioTile
               tileItem={theme}

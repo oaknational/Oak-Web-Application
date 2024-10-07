@@ -95,22 +95,15 @@ export const getProps = ({
           })
         : resolveOakHref({ page: "pupil-year-index" });
 
-    const { transcriptSentences, hasWorksheet } = await (async () => {
-      try {
-        const { transcriptSentences, hasWorksheet } =
-          await requestLessonResources({
-            lessonContent: content,
-          });
-
-        return { transcriptSentences, hasWorksheet };
-      } catch (e) {
-        if (page === "preview") {
-          return { transcriptSentences: [], hasWorksheet: false };
-        } else {
-          throw e;
-        }
+    const transcriptSentences = await requestLessonResources({
+      lessonContent: content,
+    }).catch((e) => {
+      if (page === "preview") {
+        return [];
+      } else {
+        throw e;
       }
-    })();
+    });
 
     const results: GetStaticPropsResult<PupilExperienceViewProps> = {
       props: {
@@ -119,7 +112,7 @@ export const getProps = ({
           transcriptSentences: transcriptSentences ?? [],
         },
         browseData,
-        hasWorksheet,
+        hasWorksheet: content.hasWorksheetAssetObject ? true : false,
         initialSection: section,
         backUrl,
         pageType: page,

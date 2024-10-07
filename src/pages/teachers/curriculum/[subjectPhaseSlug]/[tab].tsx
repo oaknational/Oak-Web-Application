@@ -7,7 +7,7 @@ import {
 import React, { MutableRefObject } from "react";
 import { useRouter } from "next/router";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { uniq } from "lodash";
+import { isEqual, uniq } from "lodash";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
@@ -41,11 +41,13 @@ import {
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { YearSelection } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+import { getUnitFeatures } from "@/utils/curriculum/features";
+import { sortYears } from "@/utils/curriculum/sorting";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
   subjectSlug: string;
-  examboardSlug: string | null;
+  ks4OptionSlug: string | null;
 };
 
 export type CurriculumUnitsYearGroup = {
@@ -68,6 +70,8 @@ export type CurriculumUnitsYearData<T = Unit> = {
     subjectCategories: SubjectCategory[];
     tiers: Tier[];
     pathways: Pathway[];
+    labels: string[];
+    groupAs: string | null;
     ref?: MutableRefObject<HTMLDivElement>;
   };
 };
@@ -116,12 +120,12 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
   const { tiers, child_subjects } = curriculumDownloadsTabData;
-  const { subjectSlug, examboardSlug, phaseSlug } = curriculumSelectionSlugs;
+  const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
     subjectSlug,
     phaseSlug,
     subjectTitle: curriculumOverviewTabData.subjectTitle,
-    examboardSlug: examboardSlug,
+    examboardSlug: ks4OptionSlug,
   };
 
   const keyStages = uniq(
@@ -175,14 +179,14 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
             title: buildCurriculumMetadata({
               metadataType: "title",
               subjectSlug: subjectSlug,
-              examboardSlug: examboardSlug,
+              examboardSlug: ks4OptionSlug,
               keyStages: keyStages,
               tab: tab,
             }),
             description: buildCurriculumMetadata({
               metadataType: "description",
               subjectSlug: subjectSlug,
-              examboardSlug: examboardSlug,
+              examboardSlug: ks4OptionSlug,
               keyStages: keyStages,
               tab: tab,
             }),
@@ -224,13 +228,13 @@ export const getStaticPaths = async () => {
 export const parseSubjectPhaseSlug = (slug: string) => {
   const parts = slug.split("-");
   const lastSlug = parts.pop() ?? null;
-  let phaseSlug: string | null, examboardSlug: string | null;
+  let phaseSlug: string | null, ks4OptionSlug: string | null;
   // Use phase to determine if examboard is present
   if (lastSlug && ["primary", "secondary"].includes(lastSlug)) {
-    examboardSlug = null;
+    ks4OptionSlug = null;
     phaseSlug = lastSlug;
   } else {
-    examboardSlug = lastSlug;
+    ks4OptionSlug = lastSlug;
     phaseSlug = parts.pop() ?? null;
   }
   const subjectSlug = parts.join("-");
@@ -242,7 +246,7 @@ export const parseSubjectPhaseSlug = (slug: string) => {
   return {
     phaseSlug: phaseSlug,
     subjectSlug: subjectSlug,
-    examboardSlug: examboardSlug,
+    ks4OptionSlug: ks4OptionSlug,
   };
 };
 
@@ -281,12 +285,14 @@ export function createYearOptions(units: Unit[]): string[] {
 
   units.forEach((unit: Unit) => {
     // Populate years object
-    if (yearOptions.every((yo) => yo !== unit.year)) {
-      yearOptions.push(unit.year);
+    const year =
+      getUnitFeatures(unit)?.programmes_fields_overrides.year ?? unit.year;
+    if (yearOptions.every((yo) => yo !== year)) {
+      yearOptions.push(year);
     }
   });
   // Sort year data
-  yearOptions.sort((a, b) => Number(a) - Number(b));
+  yearOptions.sort(sortYears);
 
   return yearOptions;
 }
@@ -332,7 +338,10 @@ export function createUnitsListingByYear(
     // Check if the yearData object has an entry for the unit's year
     // If not, initialize it with default values
 
-    let currentYearData = yearData[unit.year];
+    const year =
+      getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year;
+
+    let currentYearData = yearData[year];
     if (!currentYearData) {
       currentYearData = {
         units: [],
@@ -340,8 +349,10 @@ export function createUnitsListingByYear(
         subjectCategories: [],
         tiers: [],
         pathways: [],
+        labels: [],
+        groupAs: null,
       };
-      yearData[unit.year] = currentYearData;
+      yearData[year] = currentYearData;
     }
 
     // Add the current unit
@@ -402,6 +413,33 @@ export function createUnitsListingByYear(
       }
     });
   });
+
+  for (const year of Object.keys(yearData)) {
+    const data = yearData[year]!;
+    if (data.units.length > 0) {
+      const labels = getUnitFeatures(data.units[0]!)?.labels ?? [];
+      if (
+        data.units.every((unit) =>
+          isEqual(getUnitFeatures(unit)?.labels, labels),
+        )
+      ) {
+        data.labels = data.labels.concat(labels);
+      }
+    }
+
+    if (data.units.length > 0) {
+      const groupAs = getUnitFeatures(data.units[0]!)?.group_as;
+      if (groupAs) {
+        if (
+          data.units.every(
+            (unit) => getUnitFeatures(unit)?.group_as === groupAs,
+          )
+        ) {
+          data.groupAs = groupAs;
+        }
+      }
+    }
+  }
 
   return yearData;
 }
@@ -465,13 +503,65 @@ export function createDownloadsData(
   return downloadsData;
 }
 
+function sanatiseUnits(units: Unit[]): Unit[] {
+  return units.filter((unit, index) => {
+    // Find all units that have the same slug and year
+    const similarUnits = units.filter(
+      (u, i) =>
+        i !== index && // Exclude the current unit itself
+        u.slug === unit.slug &&
+        u.year === unit.year &&
+        u.subject_slug === unit.subject_slug &&
+        u.subject_parent_slug === unit.subject_parent_slug,
+    );
+
+    // Check if there is a more specific unit and remove if so
+    const isMoreSpecific = similarUnits.some((u) => {
+      // Define an array of the optional fields (keys) that we want to check
+      // These fields are considered "specific" if they are not null
+      const fieldsToCheck: (keyof Unit)[] = [
+        "tier_slug",
+        "examboard_slug",
+        "pathway_slug",
+      ];
+
+      return fieldsToCheck.some(
+        (field) =>
+          unit[field] === null &&
+          u[field] !== null &&
+          // We want to only consider the unit `u` more specific if all other fields are identical.
+          fieldsToCheck.every((f) => f === field || unit[f] === u[f]),
+      );
+    });
+    if (isMoreSpecific) {
+      return false;
+    }
+
+    // If this is the first occurrence of the unit in the array, keep it
+    const firstOccurrenceIndex = units.findIndex(
+      (u) =>
+        u.slug === unit.slug &&
+        u.year === unit.year &&
+        u.subject_slug === unit.subject_slug &&
+        u.subject_parent_slug === unit.subject_parent_slug &&
+        u.tier_slug === unit.tier_slug &&
+        u.examboard_slug === unit.examboard_slug &&
+        u.pathway_slug === unit.pathway_slug,
+    );
+
+    return index === firstOccurrenceIndex;
+  });
+}
+
 export function formatCurriculumUnitsData(
   data: CurriculumUnitsTabData,
 ): CurriculumUnitsFormattedData {
   const { units } = data;
-  const yearData = createUnitsListingByYear(units);
-  const threadOptions = createThreadOptions(units);
-  const yearOptions = createYearOptions(units);
+  // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
+  const filteredUnits = sanatiseUnits(units);
+  const yearData = createUnitsListingByYear(filteredUnits);
+  const threadOptions = createThreadOptions(filteredUnits);
+  const yearOptions = createYearOptions(filteredUnits);
   const initialYearSelection = createInitialYearFilterSelection(yearData);
   const formattedDataCurriculumUnits = {
     yearData,

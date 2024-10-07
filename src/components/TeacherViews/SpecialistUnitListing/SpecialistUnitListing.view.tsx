@@ -18,9 +18,10 @@ import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import LearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
-import MobileFilters from "@/components/SharedComponents/MobileFilters";
-import filterLearningTheme from "@/utils/filterLearningTheme/filterLearningTheme";
+import filterUnits from "@/utils/filterUnits/filterUnits";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters";
 
 type SpecialistPageData = {
   curriculumData: SpecialistUnitListingData;
@@ -41,15 +42,18 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
 
   const router = useRouter();
   const themeSlug = router.query["learning-theme"]?.toString();
-
+  const categorySlug = router.query["category"]?.toString();
+  const year = router.query["year"]?.toString();
   const [selectedThemeSlug, setSelectedThemeSlug] = useState<
     string | undefined
   >(themeSlug);
-
-  const unitsFilteredByLearningTheme = filterLearningTheme(
-    selectedThemeSlug,
+  const { track } = useAnalytics();
+  const unitsFilteredByLearningTheme = filterUnits({
+    themeSlug: selectedThemeSlug,
+    categorySlug,
+    yearGroup: year,
     units,
-  );
+  });
 
   const theme = useTheme();
 
@@ -99,18 +103,21 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
         <OakGrid data-testid="specialist-unit-grid">
           <OakGridArea
             $order={[0, 2]}
-            $colSpan={[12, 4, 3]}
-            $pl={["inner-padding-xl"]}
+            $colSpan={[12, 12, 3]}
+            $display={["block", "none", "block"]}
+            $pl={[undefined, "inner-padding-xl"]}
           >
             <Box
-              $display={["none", "block"]}
               $position={[null, "sticky"]}
               $top={[null, HEADER_HEIGHT]}
-              $mt={[0, 32]}
-              $pt={[48]}
+              $mt={[0, 0, 32]}
+              $pt={[24, 48]}
             >
               {learningThemes?.length > 1 && (
-                <OakFlex $flexDirection={"column"}>
+                <OakFlex
+                  $display={["none", "none", "block"]}
+                  $flexDirection={"column"}
+                >
                   <OakP
                     id={themeId}
                     $color={"black"}
@@ -121,6 +128,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   </OakP>
                   <LearningThemeFilters
                     labelledBy={learningThemesId}
+                    programmeSlug={programmeSlug}
                     learningThemes={learningThemes}
                     selectedThemeSlug={themeSlug ? themeSlug : "all"}
                     linkProps={{
@@ -129,21 +137,53 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                     }}
                     idSuffix="desktop"
                     onChangeCallback={setSelectedThemeSlug}
+                    browseRefined={track.browseRefined}
                   />
                 </OakFlex>
               )}
+              <OakFlex $justifyContent={["flex-end", undefined]}>
+                {learningThemes.length > 1 && (
+                  <OakFlex $display={["auto", "auto", "none"]}>
+                    <MobileUnitFilters
+                      {...curriculumData}
+                      numberOfUnits={unitsFilteredByLearningTheme.length}
+                      browseRefined={track.browseRefined}
+                      learningThemesFilterId={learningThemesId}
+                      setSelectedThemeSlug={setSelectedThemeSlug}
+                      isSpecialist={true}
+                    />
+                  </OakFlex>
+                )}
+              </OakFlex>
             </Box>
           </OakGridArea>
-          <OakGridArea $order={[1, 0]} $colSpan={[12, 8, 9]}>
-            <Flex $flexDirection={["column-reverse", "column"]} $pt={[48]}>
+          <OakGridArea $order={[1, 0]} $colSpan={[12, 12, 9]}>
+            <Flex $flexDirection={["column-reverse", "column"]} $pt={[24, 48]}>
               <OakFlex
                 $minWidth="all-spacing-16"
                 $mb="space-between-m"
                 $position={"relative"}
+                $justifyContent={[
+                  "space-between",
+                  "space-between",
+                  "flex-start",
+                ]}
               >
                 <OakHeading $font={"heading-5"} tag={"h2"}>
                   {`Units`}
                 </OakHeading>
+                {learningThemes.length > 1 && (
+                  <OakFlex $display={["none", "block", "none"]}>
+                    <MobileUnitFilters
+                      {...curriculumData}
+                      numberOfUnits={unitsFilteredByLearningTheme.length}
+                      browseRefined={track.browseRefined}
+                      learningThemesFilterId={learningThemesId}
+                      setSelectedThemeSlug={setSelectedThemeSlug}
+                      isSpecialist={true}
+                    />
+                  </OakFlex>
+                )}
               </OakFlex>
               {developmentStage.length > 0 && (
                 <nav
@@ -167,28 +207,8 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   />
                 </nav>
               )}
-              {learningThemes.length > 1 && (
-                <MobileFilters
-                  providedId={learningThemesId}
-                  label="Filter by thread"
-                  $mt={0}
-                  $mb={[16, 0]}
-                  iconBackground="white"
-                >
-                  <LearningThemeFilters
-                    labelledBy={learningThemesId}
-                    learningThemes={learningThemes}
-                    selectedThemeSlug={themeSlug ? themeSlug : "all"}
-                    linkProps={{
-                      page: "specialist-unit-index",
-                      programmeSlug: programmeSlug,
-                    }}
-                    idSuffix="mobile"
-                    onChangeCallback={setSelectedThemeSlug}
-                  />
-                </MobileFilters>
-              )}
             </Flex>
+
             <UnitList
               {...curriculumData}
               currentPageItems={currentPageItems}

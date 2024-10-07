@@ -1,7 +1,9 @@
 import { fireEvent, screen, waitFor } from "@testing-library/dom";
 import { DefaultValues, useForm } from "react-hook-form";
 import { renderHook } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import userEvent, {
+  PointerEventsCheckLevel,
+} from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 import fetchMock from "jest-fetch-mock";
 
@@ -13,12 +15,30 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 
+const setEmailInLocalStorage = jest.fn();
+const setSchoolInLocalStorage = jest.fn();
+const setTermsInLocalStorage = jest.fn();
+
+jest.mock("../hooks/downloadAndShareHooks/useLocalStorageForDownloads", () => {
+  return jest.fn(() => ({
+    setEmailInLocalStorage,
+    setSchoolInLocalStorage,
+    setTermsInLocalStorage,
+  }));
+});
+
 jest.mock("@/browser-lib/hubspot/forms");
 jest.mock("./onboardingActions", () => {
   const actual = jest.requireActual("./onboardingActions");
   return {
     ...actual,
     onboardUser: jest.fn(),
+    setSubscriptionStatus: jest.fn((email, callback) => {
+      if (callback) {
+        callback(true);
+      }
+      return true;
+    }),
   };
 });
 jest.mock("@clerk/nextjs", () => {
@@ -102,9 +122,23 @@ describe("Onboarding form", () => {
       mockRouter.setCurrentUrl("/onboarding?returnTo=/downloads");
     });
 
-    it("onboards the user through Clerk", async () => {
-      jest.spyOn(onboardingActions, "onboardUser");
+    afterEach(() => {
+      jest.spyOn(onboardingActions, "onboardUser").mockReset();
+    });
 
+    it("only allows the form to be submitted once", async () => {
+      renderForm(formState);
+
+      const continueButton = screen.getByText("Continue");
+      await userEvent.click(continueButton);
+      await userEvent.click(continueButton, {
+        pointerEventsCheck: PointerEventsCheckLevel.EachTarget,
+      });
+
+      expect(onboardingActions.onboardUser).toHaveBeenCalledTimes(1);
+    });
+
+    it("onboards the user through Clerk", async () => {
       await submitForm(formState);
 
       expect(onboardingActions.onboardUser).toHaveBeenCalledWith(
@@ -125,16 +159,55 @@ describe("Onboarding form", () => {
     });
 
     describe("when Clerk onboarding fails", () => {
-      it("displays an error", async () => {
+      beforeEach(() => {
         jest
           .spyOn(onboardingActions, "onboardUser")
           .mockRejectedValue(new Error());
+      });
 
+      it("displays an error", async () => {
         await submitForm(formState);
 
         expect(
           screen.getByText("Something went wrong. Please try again."),
         ).toBeInTheDocument();
+      });
+
+      it("allows the form to be submitted again", async () => {
+        await submitForm(formState);
+
+        expect(screen.getByRole("button", { name: /Continue/ })).toBeEnabled();
+      });
+    });
+    describe("local storage is updated with onboarding data", () => {
+      it("email and terms is set in local storage if ", async () => {
+        fetchMock.mockResponse(JSON.stringify(true));
+
+        jest
+          .spyOn(onboardingActions, "onboardUser")
+          .mockResolvedValue({ owa: { isTeacher: true, isOnboarded: true } });
+
+        await submitForm(formState, false);
+
+        await waitFor(() =>
+          expect(setEmailInLocalStorage).toHaveBeenCalledWith("test-email"),
+        );
+        await waitFor(() =>
+          expect(setTermsInLocalStorage).toHaveBeenCalledWith(true),
+        );
+      });
+      it("school is set in local storage", async () => {
+        fetchMock.mockResponse(JSON.stringify(true));
+        jest
+          .spyOn(onboardingActions, "onboardUser")
+          .mockResolvedValue({ owa: { isTeacher: true, isOnboarded: true } });
+
+        await submitForm(formState, false);
+
+        expect(setSchoolInLocalStorage).toHaveBeenCalledWith({
+          schoolId: "Grange Hill",
+          schoolName: "Grange Hill",
+        });
       });
     });
   });
@@ -165,8 +238,11 @@ function renderForm(
   );
 }
 
-async function submitForm(formState: OnboardingFormState) {
-  renderForm(formState);
+async function submitForm(
+  formState: OnboardingFormState,
+  forceHideNewsletterSignUp?: boolean,
+) {
+  renderForm(formState, forceHideNewsletterSignUp);
 
   await userEvent.setup().click(screen.getByText("Continue"));
 }

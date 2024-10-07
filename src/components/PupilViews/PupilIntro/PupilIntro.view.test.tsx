@@ -206,7 +206,7 @@ describe("PupilIntro", () => {
   });
 
   it("updates the section results when the worksheet is available", async () => {
-    const context = createLessonEngineContext();
+    const context = createLessonEngineContext({ currentSection: "intro" });
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={context}>

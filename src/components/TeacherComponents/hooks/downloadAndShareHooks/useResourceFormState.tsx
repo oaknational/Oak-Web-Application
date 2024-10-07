@@ -2,6 +2,10 @@ import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+
+import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
+import { getSubscriptionStatus } from "../../OnboardingForm/onboardingActions";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
@@ -27,6 +31,7 @@ import {
 import { CurriculumDownload } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
@@ -53,6 +58,114 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   const [schoolUrn, setSchoolUrn] = useState(0);
+  const { useUser } = useFeatureFlaggedClerk();
+  const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
+  const { isSignedIn, user } = useUser();
+
+  const [hasOnboardingDownloadDetails, setHasOnboardingDownloadDetails] =
+    useState(false);
+
+  useEffect(() => {
+    if (user != null) {
+      // as user has signed in with full onboarding journey on OWA
+      const hasOnboardingDownloadDetails = Boolean(
+        authFlagEnabled && isSignedIn && user.publicMetadata?.owa?.isOnboarded,
+      );
+      setHasOnboardingDownloadDetails(hasOnboardingDownloadDetails);
+    }
+  }, [authFlagEnabled, isSignedIn, user, user?.publicMetadata?.owa?.isTeacher]);
+
+  const {
+    schoolFromLocalStorage,
+    emailFromLocalStorage,
+    termsFromLocalStorage,
+    hasDetailsFromLocalStorage,
+    setEmailInLocalStorage,
+    setSchoolInLocalStorage,
+    setTermsInLocalStorage,
+  } = useLocalStorageForDownloads();
+
+  const {
+    schoolName: schoolNameFromLocalStorage,
+    schoolId: schoolIdFromLocalStorage,
+  } = schoolFromLocalStorage;
+
+  useEffect(() => {
+    const userEmail = user?.emailAddresses?.[0]?.emailAddress;
+
+    const updateUserDetailsFromHubspot = async (email: string) => {
+      const hubspotContact = await fetchHubspotContactDetails(email);
+      const subscriptionStatus = await getSubscriptionStatus(email);
+      setTermsInLocalStorage(true);
+      setValue("terms", true);
+      if (subscriptionStatus) {
+        setEmailInLocalStorage(email);
+        setValue("email", email);
+      } else {
+        setEmailInLocalStorage("");
+      }
+
+      if (hubspotContact) {
+        const schoolId = hubspotContact.schoolId;
+        const schoolName = hubspotContact.schoolName;
+
+        setSchoolInLocalStorage({
+          schoolId: schoolId ?? "notListed",
+          schoolName: schoolName ?? "notListed",
+        });
+
+        if (schoolName) {
+          setValue("schoolName", schoolName);
+        }
+
+        if (schoolId) {
+          setValue("school", schoolId);
+        }
+      } else {
+        setSchoolInLocalStorage({
+          schoolId: "",
+          schoolName: "",
+        });
+      }
+    };
+
+    if (userEmail && authFlagEnabled && isSignedIn) {
+      updateUserDetailsFromHubspot(userEmail);
+    }
+  }, [
+    authFlagEnabled,
+    isSignedIn,
+    setEmailInLocalStorage,
+    setSchoolInLocalStorage,
+    setTermsInLocalStorage,
+    setValue,
+    user?.emailAddresses,
+  ]);
+
+  useEffect(() => {
+    if (emailFromLocalStorage) {
+      setValue("email", emailFromLocalStorage);
+    }
+
+    if (termsFromLocalStorage) {
+      setValue("terms", termsFromLocalStorage);
+    }
+
+    if (schoolIdFromLocalStorage) {
+      setValue("school", schoolIdFromLocalStorage);
+
+      const schoolUrn = getSchoolUrn(
+        schoolIdFromLocalStorage,
+        getSchoolOption(schoolIdFromLocalStorage),
+      );
+      setSchoolUrn(schoolUrn);
+    }
+  }, [
+    emailFromLocalStorage,
+    schoolIdFromLocalStorage,
+    setValue,
+    termsFromLocalStorage,
+  ]);
 
   const resources = (() => {
     switch (props.type) {
@@ -83,47 +196,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     }
   }, [resources, props.type]);
 
-  const {
-    schoolFromLocalStorage,
-    emailFromLocalStorage,
-    termsFromLocalStorage,
-    hasDetailsFromLocalStorage,
-    setEmailInLocalStorage,
-  } = useLocalStorageForDownloads();
-
-  const {
-    schoolName: schoolNameFromLocalStorage,
-    schoolId: schoolIdFromLocalStorage,
-  } = schoolFromLocalStorage;
-
   useEffect(() => {
     setIsLocalStorageLoading(false);
   }, [hasDetailsFromLocalStorage]);
-
-  // use values from local storage if available (initial value on School Picker is set within that component)
-  useEffect(() => {
-    if (emailFromLocalStorage) {
-      setValue("email", emailFromLocalStorage);
-    }
-
-    if (termsFromLocalStorage) {
-      setValue("terms", termsFromLocalStorage);
-    }
-
-    if (schoolIdFromLocalStorage) {
-      setValue("school", schoolIdFromLocalStorage);
-      const schoolUrn = getSchoolUrn(
-        schoolIdFromLocalStorage,
-        getSchoolOption(schoolIdFromLocalStorage),
-      );
-      setSchoolUrn(schoolUrn);
-    }
-  }, [
-    setValue,
-    emailFromLocalStorage,
-    termsFromLocalStorage,
-    schoolIdFromLocalStorage,
-  ]);
 
   const [editDetailsClicked, setEditDetailsClicked] = useState(false);
 
@@ -256,6 +331,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     schoolUrn,
     hasFormErrors,
     setEmailInLocalStorage,
+    setSchoolInLocalStorage,
+    setTermsInLocalStorage,
     localStorageDetails,
     editDetailsClicked,
     setEditDetailsClicked,
@@ -263,6 +340,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setActiveResources,
     handleToggleSelectAll,
     selectAllChecked,
+    hasOnboardingDownloadDetails,
     form: {
       trigger,
       setValue,

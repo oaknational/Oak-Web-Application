@@ -86,25 +86,21 @@ function Layout({ children }: { children: React.ReactNode }) {
         </OakBox>
       }
     >
-      <OakBox $display={["none", "block"]}>
+      <OakFlex
+        $flexDirection="column"
+        $alignItems="center"
+        $gap="space-between-m"
+        $display={["flex", "block"]}
+      >
         <OakBox
-          $dropShadow="drop-shadow-standard"
+          $dropShadow={[null, "drop-shadow-standard"]}
           $borderRadius="border-radius-m2"
-          $width="max-content"
-          $mb="space-between-m"
+          $width={["auto", "max-content"]}
+          $mb={["space-between-none", "space-between-m"]}
           ref={clerkRef}
         >
           {children}
         </OakBox>
-        {clerkRendered && <TermsAndConditions />}
-      </OakBox>
-      <OakFlex
-        $flexDirection="column"
-        $alignItems="center"
-        $display={["flex", "none"]}
-        $gap="space-between-m"
-      >
-        {children}
         {clerkRendered && <TermsAndConditions />}
       </OakFlex>
     </RegistrationLayout>

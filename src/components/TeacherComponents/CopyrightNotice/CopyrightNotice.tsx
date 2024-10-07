@@ -11,6 +11,7 @@ type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;
   openLinksExternally: boolean;
   copyrightYear: string;
+  fullWidth?: boolean;
 };
 
 const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
@@ -96,9 +97,10 @@ const CopyrightNotice: FC<CopyrightNoticeProps> = ({
   showPostAlbCopyright,
   openLinksExternally,
   copyrightYear,
+  fullWidth,
   ...fontProps
 }) => (
-  <Box $maxWidth={[null, 420, 420]}>
+  <Box $maxWidth={fullWidth ? null : [null, 420, 420]}>
     {showPostAlbCopyright ? (
       <PostAlbCopyright
         {...fontProps}

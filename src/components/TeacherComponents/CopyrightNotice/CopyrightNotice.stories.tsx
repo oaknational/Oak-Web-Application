@@ -1,6 +1,3 @@
-import React from "react";
-import { ComponentStory } from "@storybook/react";
-
 import Component from ".";
 
 export default {
@@ -10,8 +7,4 @@ export default {
   },
 };
 
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
-
-export const CopyrightNotice = Template.bind({});
+export const CopyrightNotice = {};

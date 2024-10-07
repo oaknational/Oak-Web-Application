@@ -9,6 +9,7 @@ import {
   OakPupilJourneyProgrammeOptions,
   OakTertiaryButton,
   OakThemeProvider,
+  isValidIconName,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
@@ -142,6 +143,8 @@ export const PupilViewsProgrammeListing = ({
     };
   };
 
+  const iconSlug = `subject-${subjectSlug}`;
+
   const optionTitleSlot = (
     <OakFlex $alignItems={"center"} $gap={"space-between-xs"}>
       <OakInfo
@@ -179,7 +182,9 @@ export const PupilViewsProgrammeListing = ({
                 titleSlot={
                   <OakPupilJourneyHeader
                     iconBackground={phaseSlug}
-                    iconName={`subject-${subjectSlug}`}
+                    iconName={
+                      isValidIconName(iconSlug) ? iconSlug : "question-mark"
+                    }
                     title={subjectDescription}
                     breadcrumbs={breadcrumbs}
                   />

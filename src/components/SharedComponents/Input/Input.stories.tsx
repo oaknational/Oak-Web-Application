@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 import { ChangeEvent, useState } from "react";
 
 import Component from ".";
@@ -10,9 +10,9 @@ export default {
       defaultValue: "Placeholder",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   const [value, setValue] = useState("");
   return (
     <Component
@@ -23,10 +23,21 @@ const Template: ComponentStory<typeof Component> = (args) => {
   );
 };
 
-export const Input = Template.bind({});
-export const WithIcon = Template.bind({});
-WithIcon.args = { icon: "search" };
-export const WithLabel = Template.bind({});
-WithLabel.args = { label: "Password" };
-export const WithError = Template.bind({});
-WithError.args = { error: "Password should contain at least 8 characters" };
+export const Input = {
+  render: Template,
+};
+
+export const WithIcon = {
+  render: Template,
+  args: { icon: "search" },
+};
+
+export const WithLabel = {
+  render: Template,
+  args: { label: "Password" },
+};
+
+export const WithError = {
+  render: Template,
+  args: { error: "Password should contain at least 8 characters" },
+};

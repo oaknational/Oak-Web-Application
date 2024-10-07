@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const basePath = "teachers/curriculum";
 
   const curriculumResult = await curriculumApi2023.subjectPhaseOptions({
-    cycles: isCycleTwoEnabled() ? ["1", "2"] : ["1"],
+    cycle: isCycleTwoEnabled() ? "2" : "1",
   });
 
   const curriculumPathSlugs: string[] = [];
@@ -27,19 +27,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         curriculumPathSlugs.push(`${curriculum.slug}-primary`);
       } else if (
         curriculumPhase.slug === "secondary" &&
-        !curriculum.examboards
+        !curriculum.ks4_options
       ) {
         curriculumPathSlugs.push(`${curriculum.slug}-secondary`);
       } else if (
         curriculumPhase.slug === "secondary" &&
-        curriculum.examboards
+        curriculum.ks4_options
       ) {
-        const examboardSlugs = curriculum.examboards.map(
-          (examboard) => examboard.slug,
+        const ks4OptionsSlugs = curriculum.ks4_options.map(
+          (ks4_option) => ks4_option.slug,
         );
-        for (const examboardSlug of examboardSlugs) {
+        for (const ks4OptionsSlug of ks4OptionsSlugs) {
           curriculumPathSlugs.push(
-            `${curriculum.slug}-secondary-${examboardSlug}`,
+            `${curriculum.slug}-secondary-${ks4OptionsSlug}`,
           );
         }
       }

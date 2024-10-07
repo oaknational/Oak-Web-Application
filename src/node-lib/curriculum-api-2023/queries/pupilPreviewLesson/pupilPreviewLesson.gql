@@ -1,5 +1,5 @@
 query pupilPreviewLesson($lessonSlug: String!) {
-  content: published_mv_lesson_content_new_2_0_0(
+  content: published_mv_lesson_content_new_2_0_1(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id

@@ -48,6 +48,9 @@ const secondaryScienceUnits = {
       title: "Aerobic and anaerobic cellular respiration",
       unit_options: [],
       year: "11",
+      cycle: "1",
+      why_this_why_now: null,
+      description: null,
     },
     {
       connection_future_unit_description: null,
@@ -77,6 +80,9 @@ const secondaryScienceUnits = {
       title: "Nuclear Physics",
       unit_options: [],
       year: "11",
+      cycle: "1",
+      why_this_why_now: null,
+      description: null,
     },
   ],
 };
@@ -123,6 +129,9 @@ const primaryEnglishData = {
       title: "Using five sentence types",
       unit_options: [],
       year: "6",
+      cycle: "1",
+      why_this_why_now: null,
+      description: null,
     },
     {
       connection_future_unit_description: null,
@@ -165,6 +174,8 @@ const primaryEnglishData = {
           lessons: [],
           title: "Antarctic Animals",
           unitvariant_id: 774,
+          why_this_why_now: null,
+          description: null,
         },
         {
           connection_future_unit_description: null,
@@ -174,9 +185,14 @@ const primaryEnglishData = {
           lessons: [],
           title: "Pandas",
           unitvariant_id: 773,
+          why_this_why_now: null,
+          description: null,
         },
       ],
       year: "6",
+      cycle: "1",
+      why_this_why_now: null,
+      description: null,
     },
   ],
 };
@@ -223,11 +239,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       />,
     );
     const unitCards = await findAllByTestId("unit-card");
-    // Find all combined science units as these are displayed by default
-    // const combinedScienceUnits = curriculumUnitsTabFixture().units.filter(
-    //   ({ subject_slug }) => subject_slug === "combined-science",
-    // );
-    // Hard coding this figure for now - as multiple units with the same name
+
+    // Not sure if this number hasn't been properly checked. It's a bit like a snapshot, I'm going to leave it as is so that if it changes unexpectedly it is picked up.
     const VISIBLE_UNITS = 87;
     expect(unitCards).toHaveLength(VISIBLE_UNITS);
   });
@@ -287,6 +300,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           title: "Word Class",
           unit_options: [],
           year: "1",
+          cycle: "1",
+          why_this_why_now: null,
+          description: null,
         },
         {
           planned_number_of_lessons: 8,
@@ -327,6 +343,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           title: "’A Superhero Like You!’: Reading and Writing",
           unit_options: [],
           year: "1",
+          cycle: "1",
+          why_this_why_now: null,
+          description: null,
         },
       ],
     };
@@ -435,6 +454,8 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
               lessons: [],
               title: "Animal Farm: the pigs and power",
               unitvariant_id: 774,
+              why_this_why_now: null,
+              description: null,
             },
             {
               connection_future_unit_description: null,
@@ -444,9 +465,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
               lessons: [],
               title: "Leave Taking: a sense of belonging",
               unitvariant_id: 773,
+              why_this_why_now: null,
+              description: null,
             },
           ],
           year: "10",
+          cycle: "1",
+          why_this_why_now: null,
+          description: null,
         },
         {
           planned_number_of_lessons: 8,
@@ -483,9 +509,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
               lessons: [],
               title: "Animal Farm: the pigs and power",
               unitvariant_id: 774,
+              why_this_why_now: null,
+              description: null,
             },
           ],
           year: "10",
+          cycle: "1",
+          why_this_why_now: null,
+          description: null,
         },
       ],
     };
@@ -678,6 +709,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           title: "Aerobic and anaerobic cellular respiration",
           unit_options: [],
           year: "11",
+          cycle: "1",
+          why_this_why_now: null,
+          description: null,
         },
         {
           connection_future_unit_description: null,
@@ -738,6 +772,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           title: "Nuclear Physics",
           unit_options: [],
           year: "11",
+          cycle: "1",
+          why_this_why_now: null,
+          description: null,
         },
         {
           connection_future_unit_description: null,
@@ -767,6 +804,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           title: "Industrial Chemistry",
           unit_options: [],
           year: "11",
+          cycle: "1",
+          why_this_why_now: null,
+          description: null,
         },
       ],
     };
@@ -833,6 +873,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         title: "Aerobic and anaerobic cellular respiration",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       };
       expect(createProgrammeSlug(unitData)).toEqual("science-primary-ks2");
     });
@@ -865,6 +908,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         title: "Aerobic and anaerobic cellular respiration",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       };
       expect(createProgrammeSlug(unitData)).toEqual("science-primary-ks4");
     });
@@ -897,6 +943,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         title: "Aerobic and anaerobic cellular respiration",
         unit_options: [],
         year: "11",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       };
       expect(createProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
         "combined-science-secondary-ks4-foundation-aqa",
@@ -931,6 +980,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         title: "Aerobic and anaerobic cellular respiration",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       };
       expect(createProgrammeSlug(unitData, "aqa")).toEqual(
         "combined-science-secondary-ks3",
@@ -966,6 +1018,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         title: "Aerobic and anaerobic cellular respiration",
         unit_options: [],
         year: "9",
+        cycle: "1",
+        why_this_why_now: null,
+        description: null,
       };
       expect(createProgrammeSlug(unitData, "aqa")).toEqual(
         "combined-science-secondary-ks3",
@@ -1010,6 +1065,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       expect(highlightedThreadsBox).toHaveTextContent(
         "BQ01 Biology: What are living things and what are they made of?",
       );
+      // Not sure if this number hasn't been properly checked. It's a bit like a snapshot, I'm going to leave it as is so that if it changes unexpectedly it is picked up.
       expect(highlightedUnitsBox).toHaveTextContent("16 units highlighted");
     }
   });

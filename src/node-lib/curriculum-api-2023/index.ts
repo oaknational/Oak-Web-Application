@@ -58,7 +58,12 @@ const phaseSchema = z.object({
   slug: z.string(),
   displayOrder: z.number().optional(),
 });
-export const examboardSchema = z.object({
+export const ks4OptionSchema = z.object({
+  title: z.string(),
+  slug: z.string(),
+  displayOrder: z.number().optional(),
+});
+export const keystagesSchema = z.object({
   title: z.string(),
   slug: z.string(),
   displayOrder: z.number().optional(),
@@ -73,13 +78,14 @@ export const searchPageSchema = z.object({
   keyStages: z.array(keyStageSchema),
   subjects: z.array(subjectSchema),
   contentTypes: z.array(contentTypesSchema),
-  examBoards: z.array(examboardSchema),
+  examBoards: z.array(ks4OptionSchema),
 });
 
 export const subjectPhaseOptionSchema = subjectSchema.extend({
   phases: z.array(phaseSchema),
-  examboards: z.array(examboardSchema).optional().nullable(),
+  keystages: z.array(keystagesSchema).optional().nullable(),
   cycle: z.string(),
+  ks4_options: z.array(ks4OptionSchema).optional().nullable(),
 });
 
 const curriculumHeaderData = z.object({
@@ -97,7 +103,7 @@ const curriculumDownloadsTabData = z.object({
 
 export type Phase = z.infer<typeof phaseSchema>;
 export type Subject = z.infer<typeof subjectSchema>;
-export type Examboard = z.infer<typeof examboardSchema>;
+export type KS4Option = z.infer<typeof ks4OptionSchema>;
 export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type CurriculumOverviewMVData = z.infer<typeof curriculumOverviewSchema>;
