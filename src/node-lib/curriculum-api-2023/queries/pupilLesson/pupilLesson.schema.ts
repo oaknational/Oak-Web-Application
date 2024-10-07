@@ -47,7 +47,6 @@ export const lessonContentSchema = lessonContentSchemaFull.omit({
   slide_deck_asset_id: true,
   has_slide_deck_asset_object: true,
   worksheet_asset_id: true,
-  has_worksheet_asset_object: true,
   worksheet_answers_asset_id: true,
   has_worksheet_answers_asset_object: true,
   supplementary_asset_id: true,
@@ -55,6 +54,8 @@ export const lessonContentSchema = lessonContentSchemaFull.omit({
   supplementary_asset_object_url: true,
   worksheet_asset_object_url: true,
   slide_deck_asset_object_url: true,
+  geo_restricted: true,
+  login_required: true,
 });
 
 export type LessonContent = Omit<
@@ -67,7 +68,7 @@ export type LessonContent = Omit<
 };
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
-  null_unitvariant: true,
+  null_unitvariant_id: true,
 });
 
 export type LessonBrowseData = ConvertKeysToCamelCase<

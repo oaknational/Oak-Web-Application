@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import AnalyticsDecorator from "../../../storybook-decorators/AnalyticsDecorator";
 
@@ -105,33 +105,48 @@ const callout = {
 export default {
   decorators: [AnalyticsDecorator],
   component: Component,
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const PostSectionHeading = Template.bind({});
-PostSectionHeading.args = {
-  portableText: [sectionHeading],
+export const PostSectionHeading = {
+  render: Template,
+
+  args: {
+    portableText: [sectionHeading],
+  },
 };
 
-export const PostVideo = Template.bind({});
-PostVideo.args = {
-  portableText: [video],
+export const PostVideo = {
+  render: Template,
+
+  args: {
+    portableText: [video],
+  },
 };
 
-export const PostQuote = Template.bind({});
-PostQuote.args = {
-  portableText: [quote],
+export const PostQuote = {
+  render: Template,
+
+  args: {
+    portableText: [quote],
+  },
 };
 
-export const PostTextAndMedia = Template.bind({});
-PostTextAndMedia.args = {
-  portableText: [textAndMedia],
+export const PostTextAndMedia = {
+  render: Template,
+
+  args: {
+    portableText: [textAndMedia],
+  },
 };
 
-export const PostCallout = Template.bind({});
-PostCallout.args = {
-  portableText: [callout],
+export const PostCallout = {
+  render: Template,
+
+  args: {
+    portableText: [callout],
+  },
 };

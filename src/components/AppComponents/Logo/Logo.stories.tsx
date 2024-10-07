@@ -1,5 +1,4 @@
-import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import Component from ".";
 
@@ -8,10 +7,6 @@ export default {
   argTypes: {
     title: { defaultValue: "Oak Nayional Academy" },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
-  <Component {...args} />
-);
-
-export const Logo = Template.bind({});
+export const Logo = {};

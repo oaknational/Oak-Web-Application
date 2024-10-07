@@ -44,7 +44,7 @@ describe("LessonDownloadsCanonicalPage", () => {
   describe("when downloads are region restricted", () => {
     const curriculumData = {
       ...lesson,
-      isDownloadRegionRestricted: true,
+      geoRestricted: true,
       pathways: [],
     };
 

@@ -1,5 +1,3 @@
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
-
 import {
   InputMaybe,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
@@ -11,6 +9,7 @@ import lessonDownloadsSchema, {
 import { constructDownloadsArray } from "./downloadUtils";
 import constructCanonicalLessonDownloads from "./constructCanonicalLessonDownloads";
 import constructLessonDownloads from "./constructLessonDownloads";
+import { rawSyntheticUVLessonSchema } from "./rawSyntheticUVLesson.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -78,6 +77,8 @@ const lessonDownloadsQuery =
       exit_quiz,
       is_legacy,
       expired,
+      geo_restricted,
+      login_required,
     } = downloadsAssetData.parse(download_assets[0]);
 
     const downloadsData = {
@@ -103,10 +104,8 @@ const lessonDownloadsQuery =
       : null;
 
     const parsedBrowseData = browse_data.map((bd) =>
-      syntheticUnitvariantLessonsSchema.parse(bd),
+      rawSyntheticUVLessonSchema.parse(bd),
     );
-
-    let lessonData: T;
 
     if (canonicalLesson) {
       const canonicalLessonDownloads = constructCanonicalLessonDownloads(
@@ -115,8 +114,9 @@ const lessonDownloadsQuery =
         parsedBrowseData,
         is_legacy,
         copyright,
+        { geoRestricted: geo_restricted, loginRequired: login_required },
       );
-      lessonData = lessonDownloadsCanonicalSchema.parse(
+      return lessonDownloadsCanonicalSchema.parse(
         canonicalLessonDownloads,
       ) as T;
     } else {
@@ -128,17 +128,14 @@ const lessonDownloadsQuery =
         expired,
       );
 
-      lessonData = lessonDownloadsSchema.parse({
+      return lessonDownloadsSchema.parse({
         ...lessonDownloads,
         isLegacy: false,
         isSpecialist: false,
+        geoRestricted: geo_restricted,
+        loginRequired: login_required,
       }) as T;
     }
-
-    return {
-      ...lessonData,
-      isDownloadRegionRestricted: true,
-    };
   };
 
 export type LessonDownloadsQuery = ReturnType<typeof lessonDownloadsQuery>;

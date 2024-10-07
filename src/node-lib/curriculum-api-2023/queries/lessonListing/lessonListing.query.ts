@@ -1,7 +1,5 @@
-import {
-  SyntheticUnitvariantLessons,
-  syntheticUnitvariantLessonsSchema,
-} from "@oaknational/oak-curriculum-schema";
+import { z } from "zod";
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 
 import { Sdk } from "../../sdk";
 import OakError from "../../../../errors/OakError";
@@ -13,10 +11,17 @@ import lessonListingSchema, {
   LessonListingPageData,
 } from "./lessonListing.schema";
 
+const partialSyntheticUnitvariantLessonsSchema =
+  syntheticUnitvariantLessonsSchema.omit({ null_unitvariant_id: true });
+
+type PartialSyntheticUnitvariantLessons = z.infer<
+  typeof partialSyntheticUnitvariantLessonsSchema
+>;
+
 export const getTransformedLessons = (res: LessonListingQuery) => {
   return res.unit
     .map((l) => {
-      const lesson = syntheticUnitvariantLessonsSchema.parse(l);
+      const lesson = partialSyntheticUnitvariantLessonsSchema.parse(l);
       const hasCopyrightMaterial =
         l.lesson_data.copyright_content?.find(
           (c: { copyright_info: string }) =>
@@ -47,7 +52,7 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
 };
 
 export const getTransformedUnit = (
-  unit: SyntheticUnitvariantLessons,
+  unit: PartialSyntheticUnitvariantLessons,
   parsedLessons: LessonListingPageData["lessons"],
 ): LessonListingPageData => {
   const unitTitle = unit.programme_fields.optionality ?? unit.unit_data.title;
@@ -80,7 +85,7 @@ const lessonListingQuery =
     }
     const unitLessons = getTransformedLessons(res);
     const parsedLessons = lessonListSchema.parse(unitLessons);
-    const parsedUnit = syntheticUnitvariantLessonsSchema.parse(unit);
+    const parsedUnit = partialSyntheticUnitvariantLessonsSchema.parse(unit);
     const transformedUnit = getTransformedUnit(parsedUnit, parsedLessons);
     return lessonListingSchema.parse(transformedUnit);
   };
