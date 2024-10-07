@@ -5,6 +5,7 @@ import {
   examboardSlugs,
   keystageSlugs,
   tierSlugs,
+  pathwaySlugs,
 } from "@oaknational/oak-curriculum-schema";
 
 export const validateProgrammeSlug = (programmeSlug: string) => {
@@ -29,7 +30,16 @@ export const validateProgrammeSlug = (programmeSlug: string) => {
   phaseSlugs.parse(phaseSlug);
 
   // Now programme factors
-  // TODO: add pathways when released
+
+  //NB. maths core tier will be accidentally parsed as a pathway but it doesn't effect the output
+  const pathwayIndex = parts.findIndex((part) =>
+    pathwaySlugs._def.values.find((slug) => slug === part),
+  );
+
+  if (pathwayIndex > -1) {
+    const pathwaySlug = parts.splice(pathwayIndex, 1).join();
+    pathwaySlugs.parse(pathwaySlug);
+  }
 
   const tierIndex = parts.findIndex((part) =>
     tierSlugs._def.values.find((slug) => slug === part),
