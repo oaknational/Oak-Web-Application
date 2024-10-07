@@ -1,3 +1,10 @@
+## [1.576.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.2...v1.576.3) (2024-10-07)
+
+
+### Bug Fixes
+
+* throw the right error ([fae71aa](https://github.com/oaknational/Oak-Web-Application/commit/fae71aa4b200f53e21b4e6088d62873d182da6eb))
+
 ## [1.576.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.1...v1.576.2) (2024-10-04)
 
 
