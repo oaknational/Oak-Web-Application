@@ -201,7 +201,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   if (isVideoEnabled) {
     h1Headings.push({
       _key: "video-guide",
-      children: [{ text: "Video Guide" }],
+      children: [{ text: "Video guide" }],
     });
   }
 
