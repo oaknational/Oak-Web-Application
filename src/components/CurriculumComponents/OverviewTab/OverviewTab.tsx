@@ -7,7 +7,7 @@ import {
   OakTypography,
   OakFlex,
   OakBox,
-  OakTertiaryButton,
+  OakTertiaryOLNav,
 } from "@oaknational/oak-components";
 import {
   PortableText,
@@ -15,6 +15,8 @@ import {
   PortableTextComponents,
 } from "@portabletext/react";
 import styled from "styled-components";
+import slugify from "@sindresorhus/slugify";
+import { useRouter } from "next/router";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -121,7 +123,9 @@ const PrincipleBullet = ({
 
 const blockHeadingComponents: PortableTextComponents["block"] = {
   heading1: (props) => (
-    <h3 id={`header-${props.value._key}`}>{props.children}</h3>
+    <h3 id={`header-${slugify(props.value.children[0]?.text ?? "unknown")}`}>
+      {props.children}
+    </h3>
   ),
   heading2: (props) => <h4>{props.children}</h4>,
   heading3: (props) => <h5>{props.children}</h5>,
@@ -129,6 +133,7 @@ const blockHeadingComponents: PortableTextComponents["block"] = {
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
+  const router = useRouter();
   const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
     props.data;
   const {
@@ -198,53 +203,60 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     },
   );
 
-  if (isVideoEnabled) {
-    h1Headings.push({
-      _key: "video-guide",
-      children: [{ text: "Video Guide" }],
-    });
-  }
-
-  h1Headings.push({
-    _key: "curriculum-partner",
-    children: [{ text: partnerTitle }],
-  });
-
   const goToAnchor = (selector: string) => {
-    Array.from(document.querySelectorAll(`#header-${selector}`))
+    Array.from(document.querySelectorAll(selector))
       .find((el: Element) => el.checkVisibility())
       ?.scrollIntoView();
   };
 
+  const navItems = h1Headings.map((heading) => {
+    return {
+      title: heading.children[0].text,
+      href: `#header-${slugify(heading.children[0].text)}`,
+    };
+  });
+
+  if (isVideoEnabled) {
+    navItems.push({
+      href: "#header-video-guide",
+      title: "Video guide",
+    });
+  }
+
+  navItems.push({
+    href: "#header-our-curriculum-partner",
+    title: partnerTitle,
+  });
+
+  const findAnchor = (element: HTMLElement) => {
+    let node: null | HTMLElement = element;
+    while (node && node.tagName !== "A" && node.parentNode) {
+      node = node.parentElement;
+    }
+    if (node instanceof HTMLAnchorElement) {
+      return node;
+    }
+  };
+
+  const onClickNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (e.target instanceof HTMLElement) {
+      const anchor = findAnchor(e.target);
+      if (anchor) {
+        const url = new URL(anchor.href);
+        router.replace(url.hash);
+        goToAnchor(url.hash);
+      }
+    }
+  };
+
   const contents = (
     <OakFlex $gap={"space-between-m"} $flexDirection={"column"}>
-      <OakP>Contents</OakP>
-      <OakFlex $gap={"space-between-xs"} $flexDirection={"column"}>
-        {h1Headings.map((heading, headingIndex) => {
-          return (
-            <OakFlex
-              key={heading._key}
-              $gap={"space-between-xs"}
-              $alignItems="center"
-            >
-              <OakFlex
-                $alignItems="center"
-                $justifyContent="center"
-                $minWidth="all-spacing-7"
-                $minHeight="all-spacing-7"
-                $borderRadius="border-radius-circle"
-                $background={"black"}
-                $color={"white"}
-              >
-                {headingIndex + 1}
-              </OakFlex>
-              <OakTertiaryButton onClick={() => goToAnchor(heading._key)}>
-                {heading.children[0].text}
-              </OakTertiaryButton>
-            </OakFlex>
-          );
-        })}
-      </OakFlex>
+      <OakTertiaryOLNav
+        items={navItems}
+        title={"Contents"}
+        onClick={onClickNavItem}
+      />
     </OakFlex>
   );
 
@@ -483,7 +495,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 <OakHeading
                   tag="h3"
                   $font={["heading-5"]}
-                  id="header-curriculum-partner"
+                  id="header-our-curriculum-partner"
                 >
                   {partnerTitle}
                 </OakHeading>
@@ -529,7 +541,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                               <OakHeading
                                 tag="h3"
                                 $font={["heading-5"]}
-                                id="header-curriculum-partner"
+                                id="header-our-curriculum-partner"
                               >
                                 {partnerTitle}
                               </OakHeading>
