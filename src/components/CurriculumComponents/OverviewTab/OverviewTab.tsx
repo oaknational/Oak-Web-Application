@@ -211,7 +211,9 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   });
 
   const goToAnchor = (selector: string) => {
-    document.querySelector(`#header-${selector}`)?.scrollIntoView();
+    Array.from(document.querySelectorAll(`#header-${selector}`))
+      .find((el: Element) => el.checkVisibility())
+      ?.scrollIntoView();
   };
 
   const contents = (
