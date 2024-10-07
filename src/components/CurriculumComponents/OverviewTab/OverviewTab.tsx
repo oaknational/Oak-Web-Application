@@ -15,7 +15,7 @@ import {
   PortableTextComponents,
 } from "@portabletext/react";
 import styled from "styled-components";
-import slugify from "@sindresorhus/slugify";
+import slugify from "slugify";
 import { useRouter } from "next/router";
 
 import Box from "@/components/SharedComponents/Box";
