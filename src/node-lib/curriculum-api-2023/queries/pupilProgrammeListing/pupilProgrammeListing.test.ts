@@ -1,6 +1,7 @@
+import { syntheticProgrammesByYearFixture } from "@oaknational/oak-curriculum-schema";
+
 import { pupilProgrammeListingQuery } from "./pupilProgrammeListing.query";
 
-import { syntheticProgrammesByYearFixture } from "@oaknational/oak-curriculum-schema";
 import { PupilProgrammeListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
 
