@@ -207,6 +207,8 @@ const BUTTON_CONFIGS: Record<
   "xs-minimalNav-icon-button": DEFAULT_BUTTON_CONFIG,
   "xs-buttonStyledAsLink-button": DEFAULT_BUTTON_CONFIG,
   "xs-buttonStyledAsLink-icon-button": DEFAULT_BUTTON_CONFIG,
+  "xs-flat-button": DEFAULT_BUTTON_CONFIG,
+  "xs-flat-icon-button": DEFAULT_BUTTON_CONFIG,
   "small-flat-icon-button": DEFAULT_BUTTON_CONFIG,
   "large-flat-icon-button": DEFAULT_BUTTON_CONFIG,
 };
