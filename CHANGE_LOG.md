@@ -1,3 +1,16 @@
+# [1.577.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.3...v1.577.0) (2024-10-08)
+
+
+### Bug Fixes
+
+* remove expectation on non-existent heading ([77701a9](https://github.com/oaknational/Oak-Web-Application/commit/77701a9ecf2e6ac5d07604f4490a077bbe5f946f))
+
+
+### Features
+
+* **LESQ-1088:** add a banenr to the top of the sign-up page ([9f0ffe9](https://github.com/oaknational/Oak-Web-Application/commit/9f0ffe9cfb2f092d2eca761bd9e5d81d007df083))
+* **LESQ-1088:** add some aside copy to the sign-up page ([4e45cd1](https://github.com/oaknational/Oak-Web-Application/commit/4e45cd1b98bdd37956b5ee66124384dd54814a1d))
+
 ## [1.576.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.2...v1.576.3) (2024-10-07)
 
 
