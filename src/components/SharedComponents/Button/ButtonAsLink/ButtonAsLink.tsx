@@ -64,11 +64,20 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
   const defaultTitle =
     ariaLabel ?? (labelSuffixA11y ? `${label} ${labelSuffixA11y}` : label);
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (disabled) {
+      e.preventDefault();
+    } else {
+      linkProps.onClick?.(e);
+      e.currentTarget.blur();
+    }
+  };
+
   return (
     <Link {...nextLinkProps} passHref legacyBehavior>
       <StyledNextLink
         {...linkProps}
-        onClick={disabled ? (e) => e.preventDefault() : linkProps.onClick}
+        onClick={handleClick}
         {...useButtonAsLinkProps()}
         title={linkProps.title || defaultTitle}
         aria-label={ariaLabel}

@@ -208,6 +208,19 @@ const buttonStyles = css<ButtonStylesProps>`
         box-shadow: unset;
       }
 
+      &:focus:active {
+        background-color: ${props.theme.colors.mint};
+        box-shadow: inset 0 4.5px 0 0 ${props.theme.colors.lemon};
+        color: ${props.theme.colors.grey60};
+        border-top: 4.5px solid ${props.theme.colors.grey60};
+        outline: none;
+
+        @media (min-width: 750px) {
+          box-shadow: inset 0 4px 0 0 ${props.theme.colors.lemon};
+          border-top: 4px solid ${props.theme.colors.grey60};
+        }
+      }
+
       &:focus {
         box-shadow:
           inset 0 0 0 5px ${props.theme.colors.lemon},
@@ -223,8 +236,16 @@ const buttonStyles = css<ButtonStylesProps>`
         box-shadow: inset 0 9px 0 0 ${props.theme.colors.black};
         color: ${props.theme.colors.black};
 
+        &:hover {
+          box-shadow: inset 0 9px 0 0 ${props.theme.colors.black};
+        }
+
         @media (min-width: 750px) {
           box-shadow: inset 0 8px 0 0 ${props.theme.colors.black};
+
+          &:hover {
+            box-shadow: inset 0 8px 0 0 ${props.theme.colors.black};
+          }
         }
       `}
     `}

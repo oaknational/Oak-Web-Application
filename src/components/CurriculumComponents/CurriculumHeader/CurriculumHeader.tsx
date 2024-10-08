@@ -177,7 +177,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           </Box>
         </Flex>
         <Flex $borderColor="mint30" $bt={2}>
-          <Box $maxWidth={1280} $mh={"auto"} $width={"100%"}>
+          <Box $maxWidth={1280} $ph={[0, 20]} $mh={"auto"} $width={"100%"}>
             <CurriculumHeaderTabNav
               data-testid="tabularNav"
               label="Curriculum Selection"
