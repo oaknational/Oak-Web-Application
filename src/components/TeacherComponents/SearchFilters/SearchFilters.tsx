@@ -8,12 +8,12 @@ import {
   OakThemeProvider,
   isValidIconName,
   OakBox,
-  OakPromoTag,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
+import TagPromotional from "@/components/SharedComponents/TagPromotional";
 
 type SearchFiltersProps = UseSearchFiltersReturnType & {
   isMobileFilter?: boolean;
@@ -37,14 +37,14 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <OakBox>
-        <OakBox
-          $mb="space-between-m2"
-          $bb={"border-solid-s"}
-          $borderColor={"grey40"}
-        >
-          <StyledFieldset>
+        <StyledFieldset>
+          <OakBox
+            $mb="space-between-m2"
+            $bb={"border-solid-s"}
+            $borderColor={"grey40"}
+          >
             <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
-              Curriculum{" "}
+              Curriculum
             </OakP>
             <OakFlex
               $gap={"space-between-xs"}
@@ -64,14 +64,20 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                   legacyFilter.onChange();
                 }}
               />
-              <OakFlex $alignItems={"flex-start"} $gap={"all-spacing-1"}>
-                <OakPromoTag width={"all-spacing-8"} />
+              <OakFlex $alignItems={"flex-start"} $gap={"all-spacing-4"}>
+                <TagPromotional size="small" />
                 <OakP $font={"body-3"} $color={"text-subdued"}>
                   Resources designed for the classroom
                 </OakP>
               </OakFlex>
             </OakFlex>
-          </StyledFieldset>
+          </OakBox>
+        </StyledFieldset>
+        <OakBox
+          $mb="space-between-m2"
+          $bb={"border-solid-s"}
+          $borderColor={"grey40"}
+        >
           <StyledFieldset>
             <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
               Key stages
