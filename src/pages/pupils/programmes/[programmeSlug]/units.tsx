@@ -121,7 +121,7 @@ export const getStaticProps: GetStaticProps<
         (unit) => unit.programmeSlug === programmeSlug,
       );
       if (!selectedProgramme) {
-        throw new Error("No curriculum data");
+        throw new OakError({ code: "curriculum-api/not-found" });
       }
 
       const { programmeFields, isLegacy } = selectedProgramme;
