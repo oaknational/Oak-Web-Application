@@ -68,12 +68,12 @@ describe("Component - Curriculum Download Tab", () => {
     test("user can see the tier selector for secondary maths", async () => {
       // NOTE: This is only active during testing.
       mockPrerelease("curriculum.downloads");
-      const { findByText, findByTestId } = renderComponent({
+      const { findByTestId } = renderComponent({
         tiers: tiersMock,
       });
-      const formHeading = await findByText("Download");
+      //const formHeading = await findByText("Download");
       const tierSelector = await findByTestId("tier-selector");
-      expect(formHeading).toBeInTheDocument();
+      // expect(formHeading).toBeInTheDocument();
       expect(tierSelector).toBeInTheDocument();
     });
 

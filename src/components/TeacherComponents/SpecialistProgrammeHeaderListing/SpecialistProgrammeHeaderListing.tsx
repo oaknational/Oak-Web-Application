@@ -56,10 +56,7 @@ const SpecialistHeaderListing: FC<SpecialistHeaderListingProps> = (props) => {
               ]}
             >
               <SubjectIconBrushBorders
-                $pa={16}
                 subjectSlug={subjectSlug}
-                containerMinWidth={[80, 80, 140]}
-                $ma={"auto"}
                 isNew={false}
                 color={subjectIconBackgroundColor}
               />
