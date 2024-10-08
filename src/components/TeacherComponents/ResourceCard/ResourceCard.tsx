@@ -1,16 +1,20 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { useHover } from "react-aria";
-import { OakP } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakIcon,
+  OakIconName,
+  OakP,
+  isValidIconName,
+} from "@oaknational/oak-components";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Checkbox from "@/components/SharedComponents/Checkbox";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
-import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import zIndex from "@/styles/utils/zIndex";
 import { LessonShareResourceData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
@@ -30,7 +34,7 @@ type ResourceCardLabelProps = ResourceCardProps & {
 
 const RESOURCE_TYPE_ICON_MAP: Record<
   DownloadResourceType | LessonShareResourceData["type"],
-  IconName
+  OakIconName
 > = {
   presentation: "slide-deck",
   "intro-quiz-questions": "quiz",
@@ -80,34 +84,25 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
   subtitle,
   subjectIcon,
 }) => {
+  const isCurriculumIcon = resourceType === "curriculum-pdf";
+  const iconName = isCurriculumIcon
+    ? `subject-${subjectIcon}`
+    : RESOURCE_TYPE_ICON_MAP[resourceType];
   return (
     <BoxWithFocusState>
-      <Flex
+      <OakFlex
         $alignItems={"center"}
         $justifyContent={"center"}
-        $pa={6}
+        $pa={isCurriculumIcon ? "inner-padding-ssx" : "inner-padding-m"}
         $background={"lemon"}
-        $width={66}
+        $width={"all-spacing-12"}
       >
-        {resourceType == "curriculum-pdf" && subjectIcon ? (
-          <SubjectIcon
-            subjectSlug={subjectIcon}
-            $display={"flex"}
-            $minWidth={50}
-            $minHeight={50}
-            $objectPosition={"center"}
-          />
-        ) : (
-          <Icon
-            name={RESOURCE_TYPE_ICON_MAP[resourceType]}
-            $display={"flex"}
-            $pa={8}
-            height={50}
-            $width={50}
-            $objectPosition={"center"}
-          />
-        )}
-      </Flex>
+        <OakIcon
+          iconName={isValidIconName(iconName) ? iconName : "error"}
+          $width={"100%"}
+          $height={"100%"}
+        />
+      </OakFlex>
 
       <BoxBorders gapPosition="rightTop" />
       <Flex
