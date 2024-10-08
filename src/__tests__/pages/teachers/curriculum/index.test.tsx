@@ -134,7 +134,7 @@ describe("pages/curriculum/index", () => {
   });
 
   describe("filterValidSubjectPhaseOptions", () => {
-    describe("returns the same options when no filters apply (only examboards)", () => {
+    it("returns the same options when no filters apply (only examboards)", () => {
       const options = [
         {
           title: "English",
@@ -151,7 +151,7 @@ describe("pages/curriculum/index", () => {
       expect(filterValidSubjectPhaseOptions(options)).toBe(options);
     });
 
-    describe("returns the same options when no filters apply (core & gcse)", () => {
+    it("returns the same options when no filters apply (core & gcse)", () => {
       const options = [
         {
           title: "English",
@@ -168,7 +168,7 @@ describe("pages/curriculum/index", () => {
       expect(filterValidSubjectPhaseOptions(options)).toBe(options);
     });
 
-    describe("returns no options when none are present", () => {
+    it("returns no options when none are present", () => {
       const options = [
         {
           title: "English",
@@ -182,7 +182,7 @@ describe("pages/curriculum/index", () => {
       expect(filterValidSubjectPhaseOptions(options)).toBe(options);
     });
 
-    describe("returns filtered options when gcse is present", () => {
+    it("returns filtered options when gcse is present", () => {
       const options = [
         {
           title: "English",
