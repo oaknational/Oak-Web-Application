@@ -2,6 +2,12 @@ import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 
 export const mockOnChange = jest.fn();
 export const searchFilters: UseSearchFiltersReturnType = {
+  legacyFilter: {
+    slug: "new",
+    onChange: mockOnChange,
+    checked: false,
+  },
+
   keyStageFilters: [
     {
       slug: "ks2",

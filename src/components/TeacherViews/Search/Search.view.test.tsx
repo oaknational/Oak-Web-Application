@@ -104,6 +104,11 @@ const props: SearchProps = {
   query: validQuery,
   setQuery: jest.fn(),
   searchFilters: {
+    legacyFilter: {
+      slug: "new",
+      onChange: jest.fn(),
+      checked: false,
+    },
     keyStageFilters: [
       {
         slug: "ks1",

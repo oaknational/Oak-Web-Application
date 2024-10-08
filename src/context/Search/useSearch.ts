@@ -19,29 +19,19 @@ type UseSearchQueryReturnType = {
   query: SearchQuery;
   setQuery: SetSearchQuery;
 };
-export const createSearchQuery = (
-  partialQuery: Partial<SearchQuery>,
-): SearchQuery => {
-  const {
-    term = "",
-    keyStages = [],
-    subjects = [],
-    contentTypes = [],
-    examBoards = [],
-  } = partialQuery;
-  return { term, keyStages, subjects, contentTypes, examBoards };
-};
 
 const useSearchQuery = ({
   allKeyStages,
   allSubjects,
   allContentTypes,
   allExamBoards,
+  legacy,
 }: {
   allKeyStages?: KeyStage[];
   allSubjects?: SearchPageData["subjects"];
   allContentTypes?: ContentType[];
   allExamBoards?: SearchPageData["examBoards"];
+  legacy?: { slug: string; title: string }[];
 }): UseSearchQueryReturnType => {
   const {
     query: {
@@ -50,6 +40,7 @@ const useSearchQuery = ({
       subjects = "",
       contentTypes = "",
       examBoards = "",
+      curriculum = "",
     },
     push,
   } = useRouter();
@@ -61,7 +52,6 @@ const useSearchQuery = ({
   ]);
 
   const termString = term?.toString() || "";
-
   const query = useMemo(() => {
     return {
       term: termString,
@@ -80,7 +70,9 @@ const useSearchQuery = ({
       examBoards: allExamBoards
         ? getFilterForQueryCallback(examBoards, allExamBoards)
         : [],
+      curriculum: legacy ? getFilterForQueryCallback(curriculum, legacy) : [],
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     termString,
     allKeyStages,
@@ -92,6 +84,7 @@ const useSearchQuery = ({
     examBoards,
     allExamBoards,
     subjects,
+    curriculum,
   ]);
 
   const setQuery: SetSearchQuery = useStableCallback((arg) => {
@@ -122,7 +115,7 @@ type UseSearchProps = {
   allSubjects?: SearchPageData["subjects"];
   allContentTypes?: ContentType[];
   allExamBoards?: SearchPageData["examBoards"];
-  legacy?: SearchQuery["legacy"];
+  legacy?: { slug: string; title: string }[];
 };
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const { allKeyStages, allSubjects, allContentTypes, allExamBoards, legacy } =
@@ -132,12 +125,15 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
     allSubjects,
     allContentTypes,
     allExamBoards,
+    legacy,
   });
   const [searchStartTime, setSearchStartTime] = useState<null | number>(null);
 
   const [results, setResults] = useState<SearchHit[]>([]);
   const [status, setStatus] = useState<RequestStatus>("not-asked");
 
+  const legacyVal =
+    query.curriculum?.[0] === "new" ? "filterOutAll" : "filterOutEYFS";
   const fetchResults = useStableCallback(async () => {
     /**
      * Searches both 2020 and 2023 content, and merges the results
@@ -145,7 +141,7 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
     performSearch({
       query: {
         ...query,
-        legacy: legacy,
+        legacy: legacyVal,
       },
       onStart: () => {
         setStatus("loading");

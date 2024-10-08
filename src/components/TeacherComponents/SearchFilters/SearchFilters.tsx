@@ -26,8 +26,13 @@ const StyledFieldset = styled.fieldset`
 `;
 
 const SearchFilters: FC<SearchFiltersProps> = (props) => {
-  const { keyStageFilters, subjectFilters, examBoardFilters, isMobileFilter } =
-    props;
+  const {
+    keyStageFilters,
+    subjectFilters,
+    examBoardFilters,
+    isMobileFilter,
+    legacyFilter,
+  } = props;
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -48,14 +53,15 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
               $flexWrap={"wrap"}
             >
               <OakSearchFilterCheckBox
-                name={"showNewContent"}
+                name={"new"}
                 displayValue={"Show new only"}
-                key={`search-filters-ShowNewContent-filter`}
+                key={`search-filters-curriculum-filter`}
                 aria-label={`Show new content filter`}
+                {...legacyFilter}
                 id={`search-filters-showNewContent:mobile:${isMobileFilter}`}
-                value="Key stage filter"
+                value="new"
                 onChange={() => {
-                  console.log("Show new content filter");
+                  legacyFilter.onChange();
                 }}
               />
               <OakFlex $alignItems={"flex-start"} $gap={"all-spacing-1"}>

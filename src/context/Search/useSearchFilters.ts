@@ -9,19 +9,31 @@ const getCheckboxFilters = <T extends { slug: string }>(
   filterProps: T,
   filterQueryItems: string[],
   setQuery: SetSearchQuery,
-  name: "keyStages" | "subjects" | "contentTypes" | "examBoards",
+  name: "keyStages" | "subjects" | "contentTypes" | "examBoards" | "curriculum",
 ) => {
   const { slug } = filterProps;
   const checked = filterQueryItems.includes(slug);
-  const onChange = () => {
-    const partialSearchQuery: Partial<SearchQuery> = {
-      [name]: checked
-        ? filterQueryItems.filter((filterItem) => filterItem !== slug)
-        : [filterQueryItems, slug].flat(),
-    };
 
+  const handleChange = (partialSearchQuery: Partial<SearchQuery>) => {
     setQuery((oldQuery) => ({ ...oldQuery, ...partialSearchQuery }));
   };
+
+  const onChange = () => {
+    if (name !== "curriculum") {
+      const partialSearchQuery: Partial<SearchQuery> = {
+        [name]: checked
+          ? filterQueryItems.filter((filterItem) => filterItem !== slug)
+          : [filterQueryItems, slug].flat(),
+      };
+      handleChange(partialSearchQuery);
+    } else {
+      const partialSearchQuery: Partial<SearchQuery> = {
+        curriculum: !checked ? ["new"] : [],
+      };
+      handleChange(partialSearchQuery);
+    }
+  };
+
   return {
     ...filterProps,
     checked,
@@ -40,6 +52,12 @@ const useSearchFilters = (
     query,
     setQuery,
   } = props;
+  const legacyFilter = getCheckboxFilters(
+    { slug: "new", title: "Show new only" },
+    query.curriculum || [],
+    setQuery,
+    "curriculum",
+  );
 
   const keyStageCheckboxFilters = allKeyStages.map((keyStage) => {
     const filters = getCheckboxFilters(
@@ -86,6 +104,7 @@ const useSearchFilters = (
     keyStageFilters: keyStageCheckboxFilters,
     contentTypeFilters: contentTypeCheckboxFilters,
     examBoardFilters: examBoardCheckboxFilters,
+    legacyFilter,
   };
 };
 
