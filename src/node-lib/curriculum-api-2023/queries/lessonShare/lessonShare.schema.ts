@@ -1,7 +1,7 @@
 import { z } from "zod";
 import {
   lessonContentSchema,
-  syntheticUnitvariantLessonsSchema,
+  syntheticUnitvariantLessonsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 import { lessonShareResourceSchema } from "../../shared.schema";
@@ -20,7 +20,7 @@ export const rawLessonShareSchema = z.object({
 
 export const rawShareBrowseData = z.object({
   unit_title: z.string(),
-  ...syntheticUnitvariantLessonsSchema.pick({
+  ...syntheticUnitvariantLessonsByKsSchema.pick({
     is_legacy: true,
     programme_fields: true,
   }).shape,
