@@ -10,6 +10,14 @@ import SpecialistLessonOverviewPage, {
   SpecialistLessonOverviewPageProps,
   URLParams,
 } from "@/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
+import {
+  enableMockClerk,
+  setUseUserReturn,
+} from "@/__tests__/__helpers__/mockClerk";
+import {
+  mockLoggedIn,
+  mockUserWithDownloadAccess,
+} from "@/__tests__/__helpers__/mockUser";
 
 const props = {
   curriculumData: specialistLessonOverviewFixture(),
@@ -29,9 +37,19 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
+
 const render = renderWithProviders();
 
 describe("pages/teachers/specialist/programmes/units/[unitSlug]/lessons/[lessonSlug]", () => {
+  beforeEach(() => {
+    enableMockClerk();
+    setUseUserReturn({
+      ...mockLoggedIn,
+      user: mockUserWithDownloadAccess,
+    });
+  });
+
   it("Renders title from the props", async () => {
     render(<SpecialistLessonOverviewPage {...props} />);
 

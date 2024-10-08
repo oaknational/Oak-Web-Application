@@ -12,6 +12,7 @@ import {
   OakBox,
   OakInlineBanner,
   OakSecondaryLink,
+  isValidIconName,
 } from "@oaknational/oak-components";
 import { useState } from "react";
 
@@ -60,10 +61,12 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
 
   const optionality = programmeFields?.optionality;
 
+  const iconSlug = `subject-${subjectSlug}`;
+
   const LessonListingTitle = (
     <OakPupilJourneyHeader
       iconBackground={phaseSlug}
-      iconName={`subject-${subjectSlug}`}
+      iconName={isValidIconName(iconSlug) ? iconSlug : "question-mark"}
       title={optionality ?? unitData?.title}
       breadcrumbs={breadcrumb}
       optionalityTitle={optionality && unitData?.title}

@@ -1,16 +1,15 @@
-import {
-  SyntheticUnitvariantLessons,
-  syntheticUnitvariantLessonsSchema,
-} from "@oaknational/oak-curriculum-schema";
-
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
+import {
+  RawSyntheticUVLesson,
+  rawSyntheticUVLessonSchema,
+} from "./rawSyntheticUVLesson.schema";
 
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 
 const constructLessonDownloads = (
   downloads: LessonDownloadsListSchema,
   lessonSlug: string,
-  parsedBrowseData: SyntheticUnitvariantLessons[],
+  parsedBrowseData: RawSyntheticUVLesson[],
   lessonCopyRight: { copyrightInfo: string }[] | null,
   expired?: boolean | null,
 ) => {
@@ -18,8 +17,7 @@ const constructLessonDownloads = (
     (lesson) => lesson.lesson_slug === lessonSlug,
   );
 
-  const parsedCurrentLesson =
-    syntheticUnitvariantLessonsSchema.parse(currentLesson);
+  const parsedCurrentLesson = rawSyntheticUVLessonSchema.parse(currentLesson);
   const unitTitle =
     parsedCurrentLesson.programme_fields.optionality ??
     parsedCurrentLesson.unit_data.title;
