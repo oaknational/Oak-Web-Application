@@ -204,7 +204,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
   );
 };
 
-const filterValidSubjectPhaseOptions = (subjects: SubjectPhaseOption[]) => {
+export const filterValidSubjectPhaseOptions = (
+  subjects: SubjectPhaseOption[],
+) => {
   subjects.forEach(({ ks4_options }) => {
     if (
       ks4_options &&
