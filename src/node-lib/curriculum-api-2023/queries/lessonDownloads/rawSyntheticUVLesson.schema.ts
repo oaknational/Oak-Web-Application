@@ -4,6 +4,7 @@ import { syntheticUnitvariantLessonsByKsSchema } from "@oaknational/oak-curricul
 export const rawSyntheticUVLessonSchema =
   syntheticUnitvariantLessonsByKsSchema.omit({
     unitvariant_id: true,
+    null_unitvariant: true,
   });
 
 export type RawSyntheticUVLesson = z.infer<typeof rawSyntheticUVLessonSchema>;
