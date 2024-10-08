@@ -14,24 +14,14 @@ const getCheckboxFilters = <T extends { slug: string }>(
   const { slug } = filterProps;
   const checked = filterQueryItems.includes(slug);
 
-  const handleChange = (partialSearchQuery: Partial<SearchQuery>) => {
-    setQuery((oldQuery) => ({ ...oldQuery, ...partialSearchQuery }));
-  };
-
   const onChange = () => {
-    if (name !== "curriculum") {
-      const partialSearchQuery: Partial<SearchQuery> = {
-        [name]: checked
-          ? filterQueryItems.filter((filterItem) => filterItem !== slug)
-          : [filterQueryItems, slug].flat(),
-      };
-      handleChange(partialSearchQuery);
-    } else {
-      const partialSearchQuery: Partial<SearchQuery> = {
-        curriculum: !checked ? ["new"] : [],
-      };
-      handleChange(partialSearchQuery);
-    }
+    const partialSearchQuery: Partial<SearchQuery> = {
+      [name]: checked
+        ? filterQueryItems.filter((filterItem) => filterItem !== slug)
+        : [filterQueryItems, slug].flat(),
+    };
+
+    setQuery((oldQuery) => ({ ...oldQuery, ...partialSearchQuery }));
   };
 
   return {

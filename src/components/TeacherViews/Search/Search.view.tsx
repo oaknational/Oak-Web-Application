@@ -30,7 +30,7 @@ import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
 
 const CustomWidthFlex = styled(OakFlex)`
-  width: 308px;
+  max-width: 300px;
 `;
 
 const Search: FC<SearchProps> = (props) => {
@@ -281,7 +281,7 @@ const Search: FC<SearchProps> = (props) => {
             $colSpan={[12, 3]}
             $colStart={[1, 10]}
             $rowStart={2}
-            $pr={"inner-padding-m"}
+            // $pr={"inner-padding-m"}
           >
             <CustomWidthFlex
               $flexDirection="column"
