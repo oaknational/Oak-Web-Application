@@ -277,12 +277,7 @@ const Search: FC<SearchProps> = (props) => {
               <SearchActiveFilters searchFilters={searchFilters} />
             </OakBox>
           </OakGridArea>
-          <OakGridArea
-            $colSpan={[12, 3]}
-            $colStart={[1, 10]}
-            $rowStart={2}
-            // $pr={"inner-padding-m"}
-          >
+          <OakGridArea $colSpan={[12, 3]} $colStart={[1, 10]} $rowStart={2}>
             <CustomWidthFlex
               $flexDirection="column"
               $mb="space-between-m2"

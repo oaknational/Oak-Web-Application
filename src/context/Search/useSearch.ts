@@ -132,7 +132,7 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
   const [results, setResults] = useState<SearchHit[]>([]);
   const [status, setStatus] = useState<RequestStatus>("not-asked");
 
-  const legacyVal =
+  const legacyQueryVal =
     query.curriculum?.[0] === "new" ? "filterOutAll" : "filterOutEYFS";
   const fetchResults = useStableCallback(async () => {
     /**
@@ -141,7 +141,7 @@ const useSearch = (props: UseSearchProps): UseSearchReturnType => {
     performSearch({
       query: {
         ...query,
-        legacy: legacyVal,
+        legacy: legacyQueryVal,
       },
       onStart: () => {
         setStatus("loading");
