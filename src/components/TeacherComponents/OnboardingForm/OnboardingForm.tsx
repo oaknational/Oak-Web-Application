@@ -30,6 +30,8 @@ import {
   onboardUser,
   setOnboardingLocalStorage,
   submitOnboardingHubspotData,
+  trackUserOnboardingProgressed,
+  trackUserOnboardingCompleted,
 } from "./onboardingActions";
 import { getQueryParamsFromOnboardingFormData } from "./getQueryParamsFromOnboardingFormData";
 
@@ -66,6 +68,7 @@ const OnboardingForm = ({
   const [userSubscribedInHubspot, setUserSubscribedInHubspot] = useState<
     boolean | undefined
   >(undefined);
+  const { track } = useAnalytics();
 
   useEffect(() => {
     if (forceHideNewsletterSignUp) {
@@ -86,6 +89,12 @@ const OnboardingForm = ({
     }
 
     if ("worksInSchool" in data) {
+      user &&
+        trackUserOnboardingProgressed(
+          track.userOnboardingProgressed,
+          user,
+          data,
+        );
       router.push({
         pathname: resolveOakHref({
           page: data.worksInSchool
@@ -95,6 +104,12 @@ const OnboardingForm = ({
         query: router.query,
       });
     } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
+      user &&
+        trackUserOnboardingProgressed(
+          track.userOnboardingProgressed,
+          user,
+          data,
+        );
       const encodedQueryData = getQueryParamsFromOnboardingFormData(
         data,
         router.query,
@@ -140,6 +155,10 @@ const OnboardingForm = ({
         posthogDistinctId,
         userEmail,
       });
+
+      user &&
+        trackUserOnboardingCompleted(track.userOnboardingCompleted, user, data);
+
       // Return the user to the page they originally arrived from
       // or to the home page as a fallback
       router.push(

@@ -13,6 +13,8 @@ export const mockUser = {
   publicMetadata: {},
   reload: jest.fn(),
   emailAddresses: [{ emailAddress: "test-email" }],
+  createdAt: new Date("2024-10-07T15:00:00Z"),
+  updatedAt: new Date("2024-10-08T16:00:00Z"),
 } as unknown as UserResource;
 
 export const mockUserWithDownloadAccess: UserResource = {
