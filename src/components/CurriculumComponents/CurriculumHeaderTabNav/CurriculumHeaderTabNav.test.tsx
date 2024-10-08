@@ -15,7 +15,6 @@ describe("CurriculumHeaderTabNav Component", () => {
       page: "curriculum-units",
       subjectPhaseSlug: "maths-secondary",
       isCurrent: true,
-      currentStyles: ["border-top"],
       scroll: false,
     },
     {
@@ -23,7 +22,6 @@ describe("CurriculumHeaderTabNav Component", () => {
       page: "curriculum-overview",
       subjectPhaseSlug: "maths-secondary",
       isCurrent: false,
-      currentStyles: ["border-top"],
       scroll: false,
     },
     {
@@ -31,7 +29,6 @@ describe("CurriculumHeaderTabNav Component", () => {
       page: "curriculum-downloads",
       subjectPhaseSlug: "maths-secondary",
       isCurrent: false,
-      currentStyles: ["border-top"],
       scroll: false,
     },
   ];

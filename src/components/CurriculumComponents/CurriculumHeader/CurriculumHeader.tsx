@@ -80,7 +80,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       page: "curriculum-units",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "units",
-      currentStyles: ["border-top"],
       scroll: false,
     },
     {
@@ -88,7 +87,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       page: "curriculum-overview",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "overview",
-      currentStyles: ["border-top"],
       scroll: false,
     },
     {
@@ -96,7 +94,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       page: "curriculum-downloads",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "downloads",
-      currentStyles: ["border-top"],
       scroll: false,
     },
   ];

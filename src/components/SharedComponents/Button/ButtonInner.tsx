@@ -53,7 +53,6 @@ export type ButtonCurrentStyles = (
   | "color"
   | "text-underline"
   | "underline"
-  | "border-top"
 )[];
 
 export type ButtonInnerProps = {
