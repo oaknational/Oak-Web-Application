@@ -37,7 +37,17 @@ const curriculumUnitsQuery =
       ? {
           _or: [
             { examboard_slug: { _eq: examboardSlug } },
-            { examboard_slug: { _is_null: true } },
+            {
+              _and: [
+                { examboard_slug: { _is_null: true } },
+                {
+                  _or: [
+                    { pathway_slug: { _neq: "core" } },
+                    { pathway_slug: { _is_null: true } },
+                  ],
+                },
+              ],
+            },
           ],
         }
       : { examboard_slug: { _is_null: true } };
