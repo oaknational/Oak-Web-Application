@@ -4,11 +4,13 @@ import CurriculumHomePage, {
   CurriculumHomePageProps,
   fetchCurriculumPageBlogs,
   Client,
+  filterValidSubjectPhaseOptions,
 } from "@/pages/teachers/curriculum";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
+import { SubjectPhaseOption } from "@/node-lib/curriculum-api-2023";
 
 const render = renderWithProviders();
 
@@ -128,6 +130,88 @@ describe("pages/curriculum/index", () => {
           fetchCurriculumPageBlogs(mockCMS(true) as unknown as Client),
         ).rejects.toThrow("Missing blog post");
       });
+    });
+  });
+
+  describe("filterValidSubjectPhaseOptions", () => {
+    describe("returns the same options when no filters apply (only examboards)", () => {
+      const options = [
+        {
+          title: "English",
+          phases: [],
+          keystages: [],
+          ks4_options: [
+            { title: "OCR", slug: "ocr" },
+            { title: "Edexcel", slug: "edexcel" },
+          ],
+          slug: "english",
+          cycle: "2",
+        },
+      ] as SubjectPhaseOption[];
+      expect(filterValidSubjectPhaseOptions(options)).toBe(options);
+    });
+
+    describe("returns the same options when no filters apply (core & gcse)", () => {
+      const options = [
+        {
+          title: "English",
+          phases: [],
+          keystages: [],
+          ks4_options: [
+            { title: "Core", slug: "core" },
+            { title: "GCSE", slug: "gcse" },
+          ],
+          slug: "english",
+          cycle: "2",
+        },
+      ] as SubjectPhaseOption[];
+      expect(filterValidSubjectPhaseOptions(options)).toBe(options);
+    });
+
+    describe("returns no options when none are present", () => {
+      const options = [
+        {
+          title: "English",
+          phases: [],
+          keystages: [],
+          ks4_options: null,
+          slug: "english",
+          cycle: "2",
+        },
+      ] as SubjectPhaseOption[];
+      expect(filterValidSubjectPhaseOptions(options)).toBe(options);
+    });
+
+    describe("returns filtered options when gcse is present", () => {
+      const options = [
+        {
+          title: "English",
+          phases: [],
+          keystages: [],
+          ks4_options: [
+            { title: "Core", slug: "core" },
+            { title: "GCSE", slug: "gcse" },
+            { title: "OCR", slug: "ocr" },
+            { title: "Edexcel", slug: "edexcel" },
+          ],
+          slug: "english",
+          cycle: "2",
+        },
+      ] as SubjectPhaseOption[];
+      expect(filterValidSubjectPhaseOptions(options)).toEqual([
+        {
+          title: "English",
+          phases: [],
+          keystages: [],
+          ks4_options: [
+            { title: "Core", slug: "core" },
+            { title: "OCR", slug: "ocr" },
+            { title: "Edexcel", slug: "edexcel" },
+          ],
+          slug: "english",
+          cycle: "2",
+        },
+      ] as SubjectPhaseOption[]);
     });
   });
 });
