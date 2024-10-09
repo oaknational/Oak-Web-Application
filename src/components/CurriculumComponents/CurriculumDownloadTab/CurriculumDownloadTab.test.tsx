@@ -79,7 +79,6 @@ describe("Component - Curriculum Download Tab", () => {
       });
       expect(formHeading).toBeInTheDocument();
       const tierSelector = await findByTestId("tier-selector");
-      expect(formHeading).toBeInTheDocument();
       expect(tierSelector).toBeInTheDocument();
     });
 

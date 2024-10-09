@@ -142,15 +142,14 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
           }),
         ]);
 
-        expect.assertions(2);
-        try {
-          await getStaticProps({
-            params: { programmeSlug: "english-secondary-year-11" },
-          });
-        } catch (error) {
-          expect(error).toBeInstanceOf(Error);
-          expect(error).toMatchObject({ message: "No curriculum data" });
-        }
+        expect.assertions(1);
+
+        const res = await getStaticProps({
+          params: { programmeSlug: "english-secondary-year-11" },
+        });
+        expect(res).toEqual({
+          notFound: true,
+        });
       });
       it("should throw error is phase is foundation", async () => {
         const programmeFieldsSnake = programmeFieldsFixture({
