@@ -1,8 +1,4 @@
-import {
-  CURRIC_PARTNER_HACK,
-  ENABLE_CYCLE_2,
-  SWIMMING_HACK,
-} from "./constants";
+import { ENABLE_CYCLE_2, SWIMMING_HACK } from "./constants";
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
@@ -16,10 +12,6 @@ export function useCycleTwoEnabled() {
 
 export function isSwimmingHackEnabled() {
   return ENABLE_CYCLE_2 && SWIMMING_HACK;
-}
-
-export function isCurricPartnerHackEnabled() {
-  return ENABLE_CYCLE_2 && CURRIC_PARTNER_HACK;
 }
 
 export function getUnitFeatures(unit?: Unit | null) {
