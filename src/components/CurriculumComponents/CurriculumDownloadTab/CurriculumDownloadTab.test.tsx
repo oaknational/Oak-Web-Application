@@ -71,9 +71,7 @@ describe("Component - Curriculum Download Tab", () => {
       const { findByTestId } = renderComponent({
         tiers: tiersMock,
       });
-      //const formHeading = await findByText("Download");
       const tierSelector = await findByTestId("tier-selector");
-      // expect(formHeading).toBeInTheDocument();
       expect(tierSelector).toBeInTheDocument();
     });
 

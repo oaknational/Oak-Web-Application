@@ -6,6 +6,8 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
+import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
+import { z } from "zod";
 import {
   OakBox,
   OakGrid,
@@ -16,8 +18,6 @@ import {
   oakDefaultTheme,
   OakFlex,
 } from "@oaknational/oak-components";
-import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
-import { z } from "zod";
 import styled from "styled-components";
 
 import {

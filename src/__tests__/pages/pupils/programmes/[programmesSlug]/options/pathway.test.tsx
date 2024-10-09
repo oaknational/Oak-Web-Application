@@ -1,11 +1,11 @@
 import PupilProgrammeListingPage, {
   getStaticProps,
-} from "@/pages/pupils/programmes/[programmeSlug]/options/examboard/[examboardSlug]";
+} from "@/pages/pupils/programmes/[programmeSlug]/options/pathway/[pathwaySlug]";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import { PupilViewsProgrammeListing } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
-import { pupilProgrammeListingFixtureEBs } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
+import { pupilProgrammeListingFixturePathwaysEBs } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
 
 const render = renderWithProviders();
 
@@ -16,10 +16,14 @@ jest.mock(
   }),
 );
 
-const programmesEBs = pupilProgrammeListingFixtureEBs();
-const examboardsEBs = getAvailableProgrammeFactor({
+const programmes = pupilProgrammeListingFixturePathwaysEBs();
+const examboards = getAvailableProgrammeFactor({
   factorPrefix: "examboard",
-  programmes: programmesEBs,
+  programmes: programmes,
+});
+const pathways = getAvailableProgrammeFactor({
+  factorPrefix: "pathway",
+  programmes: programmes,
 });
 
 describe("pages/pupils/programmes/[programmeSlug]/options/examboard/aqa", () => {
@@ -27,13 +31,13 @@ describe("pages/pupils/programmes/[programmeSlug]/options/examboard/aqa", () => 
     it("should call PupilViewsProgrammeListing with correct props", () => {
       render(
         <PupilProgrammeListingPage
-          programmes={programmesEBs}
+          programmes={programmes}
           baseSlug="physics-secondary-year-11"
           yearSlug="year-11"
-          examboardSlug={"aqa"}
-          examboards={examboardsEBs}
+          pathwaySlug={"gcse"}
+          examboards={examboards}
           tiers={[]}
-          pathways={[]}
+          pathways={pathways}
         />,
       );
       expect(PupilViewsProgrammeListing).toHaveBeenCalled();
@@ -45,7 +49,7 @@ describe("pages/pupils/programmes/[programmeSlug]/options/examboard/aqa", () => 
       await getStaticProps({
         params: {
           programmeSlug: "physics-secondary-year-11",
-          examboardSlug: "aqa",
+          pathwaySlug: "gcse",
         },
       });
 
@@ -59,21 +63,21 @@ describe("pages/pupils/programmes/[programmeSlug]/options/examboard/aqa", () => 
       await expect(
         getStaticProps({
           params: {
-            examboardSlug: "aqa",
+            pathwaySlug: "gcse",
             programmeSlug: "",
           },
         }),
-      ).rejects.toThrowError();
+      ).rejects.toThrow();
     });
     it("Should throw erro oak error if examboardSlug is not provided", async () => {
       await expect(
         getStaticProps({
           params: {
-            examboardSlug: "fake-examboard",
+            pathwaySlug: "fake-pathway",
             programmeSlug: "physics-secondary-year-11",
           },
         }),
-      ).rejects.toThrowError();
+      ).rejects.toThrow();
     });
   });
 });
