@@ -41,7 +41,9 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
   const { user, isLoaded } = useUser();
 
   const displaySignInMessage =
-    isLoaded && !user?.publicMetadata?.owa?.isOnboarded;
+    isLoaded &&
+    downloads === "downloads-auth" &&
+    !user?.publicMetadata?.owa?.isOnboarded;
 
   if (expired || !showDownloadAll) {
     return null;
