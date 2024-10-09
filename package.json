@@ -72,7 +72,7 @@
     "@mdx-js/loader": "^3.0.1",
     "@mux/mux-node": "^8.8.0",
     "@mux/mux-player-react": "2.7.0-canary.0-7c57cdd",
-    "@oaknational/oak-components": "^1.38.0",
+    "@oaknational/oak-components": "^1.38.2",
     "@oaknational/oak-consent-client": "^2.1.0",
     "@oaknational/oak-curriculum-schema": "^1.25.1",
     "@oaknational/oak-pupil-client": "^2.12.1",
