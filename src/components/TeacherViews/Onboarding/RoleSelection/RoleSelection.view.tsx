@@ -16,7 +16,10 @@ import {
   roleSelectFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import FieldError from "@/components/SharedComponents/FieldError";
-import { onboardingRoleOptions } from "@/components/TeacherComponents/OnboardingForm/onboardingActions/onboardingRoleOptions";
+import {
+  onboardingRoleOptions,
+  OnboardingRoleType,
+} from "@/components/TeacherComponents/OnboardingForm/onboardingActions/onboardingRoleOptions";
 
 const RoleSelectionView = () => {
   const {
@@ -108,6 +111,6 @@ export default RoleSelectionView;
 
 function getRoleValue(role: string) {
   if (role in onboardingRoleOptions) {
-    return onboardingRoleOptions[role as keyof typeof onboardingRoleOptions];
+    return onboardingRoleOptions[role as OnboardingRoleType];
   }
 }
