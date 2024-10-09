@@ -1,11 +1,16 @@
 import React, { FC } from "react";
 import { useRouter } from "next/router";
-import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  OakFlex,
+  OakIcon,
+  isValidIconName,
+} from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { Hr } from "@/components/SharedComponents/Typography";
-import SubjectIcon from "@/components/SharedComponents/SubjectIcon/SubjectIcon";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import SubjectPhasePicker, {
@@ -100,6 +105,8 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     },
   ];
 
+  const subjectIconName = `subject-${subject.slug}`;
+
   return (
     <Box $mb={40}>
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
@@ -148,11 +155,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 $mr={12}
                 $mv={"auto"}
               >
-                <SubjectIcon
-                  subjectSlug={subject.slug}
-                  $color="white"
-                  $borderColor="white"
-                  $width={64}
+                <OakIcon
+                  iconName={
+                    isValidIconName(subjectIconName) ? subjectIconName : "error"
+                  }
+                  $width="all-spacing-11"
+                  $height="all-spacing-11"
                   data-testid="subjectIcon"
                 />
               </Box>
