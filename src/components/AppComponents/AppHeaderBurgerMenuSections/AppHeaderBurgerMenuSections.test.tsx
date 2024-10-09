@@ -6,8 +6,6 @@ import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 describe("AppHeaderBurgerburgerMenuSections", () => {
-  beforeEach(() => {});
-
   it("renders 3 burger menu sections", () => {
     renderWithProviders()(
       <AppHeaderBurgerMenuSections burgerMenuSections={burgerMenuSections} />,
