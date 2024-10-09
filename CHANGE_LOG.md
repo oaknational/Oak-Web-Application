@@ -1,3 +1,12 @@
+# [1.581.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.580.0...v1.581.0) (2024-10-09)
+
+
+### Features
+
+* **refactor:** refactor hooks into own file ([e6e7432](https://github.com/oaknational/Oak-Web-Application/commit/e6e7432f8a5c64a4b2532093ba6d22da5d7ae7c0))
+* **refactor:** refactor hooks into own file ([e455295](https://github.com/oaknational/Oak-Web-Application/commit/e455295cb974801c39c6489ebf9a6617d270decd))
+* **refactor:** refactor tracking events into respective views ([a4db528](https://github.com/oaknational/Oak-Web-Application/commit/a4db528cbaa0c4bf0e38656c1c17911f06f108b2))
+
 # [1.580.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.579.0...v1.580.0) (2024-10-09)
 
 
