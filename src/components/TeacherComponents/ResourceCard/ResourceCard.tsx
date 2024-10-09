@@ -6,7 +6,6 @@ import {
   OakIcon,
   OakIconName,
   OakP,
-  isValidIconName,
 } from "@oaknational/oak-components";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -17,6 +16,7 @@ import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
 import zIndex from "@/styles/utils/zIndex";
 import { LessonShareResourceData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type ResourceCardProps = CheckboxProps & {
   label: string;
@@ -85,9 +85,10 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
   subjectIcon,
 }) => {
   const isCurriculumIcon = resourceType === "curriculum-pdf";
-  const iconName = isCurriculumIcon
-    ? `subject-${subjectIcon}`
-    : RESOURCE_TYPE_ICON_MAP[resourceType];
+  const iconName =
+    isCurriculumIcon && subjectIcon
+      ? getValidSubjectIconName(subjectIcon)
+      : RESOURCE_TYPE_ICON_MAP[resourceType];
   return (
     <BoxWithFocusState>
       <OakFlex
@@ -97,11 +98,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
         $background={"lemon"}
         $width={"all-spacing-12"}
       >
-        <OakIcon
-          iconName={isValidIconName(iconName) ? iconName : "error"}
-          $width={"100%"}
-          $height={"100%"}
-        />
+        <OakIcon iconName={iconName} $width={"100%"} $height={"100%"} />
       </OakFlex>
 
       <BoxBorders gapPosition="rightTop" />
