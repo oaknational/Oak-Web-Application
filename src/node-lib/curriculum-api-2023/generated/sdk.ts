@@ -31863,6 +31863,194 @@ export type Published_Mv_Subject_Phase_Options_0_10_Variance_Fields = {
   display_order?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.mv_subject_phase_options_0_11" */
+export type Published_Mv_Subject_Phase_Options_0_11 = {
+  __typename?: 'published_mv_subject_phase_options_0_11';
+  cycle?: Maybe<Scalars['String']['output']>;
+  display_order?: Maybe<Scalars['Int']['output']>;
+  keystages?: Maybe<Scalars['jsonb']['output']>;
+  ks4_options?: Maybe<Scalars['jsonb']['output']>;
+  phases?: Maybe<Scalars['jsonb']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_subject_phase_options_0_11" */
+export type Published_Mv_Subject_Phase_Options_0_11KeystagesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_subject_phase_options_0_11" */
+export type Published_Mv_Subject_Phase_Options_0_11Ks4_OptionsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_subject_phase_options_0_11" */
+export type Published_Mv_Subject_Phase_Options_0_11PhasesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_subject_phase_options_0_11" */
+export type Published_Mv_Subject_Phase_Options_0_11_Aggregate = {
+  __typename?: 'published_mv_subject_phase_options_0_11_aggregate';
+  aggregate?: Maybe<Published_Mv_Subject_Phase_Options_0_11_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Subject_Phase_Options_0_11>;
+};
+
+/** aggregate fields of "published.mv_subject_phase_options_0_11" */
+export type Published_Mv_Subject_Phase_Options_0_11_Aggregate_Fields = {
+  __typename?: 'published_mv_subject_phase_options_0_11_aggregate_fields';
+  avg?: Maybe<Published_Mv_Subject_Phase_Options_0_11_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Subject_Phase_Options_0_11_Max_Fields>;
+  min?: Maybe<Published_Mv_Subject_Phase_Options_0_11_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Subject_Phase_Options_0_11_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Subject_Phase_Options_0_11_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Subject_Phase_Options_0_11_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Subject_Phase_Options_0_11_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Subject_Phase_Options_0_11_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Subject_Phase_Options_0_11_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Subject_Phase_Options_0_11_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_subject_phase_options_0_11" */
+export type Published_Mv_Subject_Phase_Options_0_11_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_11_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Subject_Phase_Options_0_11_Avg_Fields = {
+  __typename?: 'published_mv_subject_phase_options_0_11_avg_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_subject_phase_options_0_11". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Subject_Phase_Options_0_11_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_11_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Subject_Phase_Options_0_11_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_11_Bool_Exp>>;
+  cycle?: InputMaybe<String_Comparison_Exp>;
+  display_order?: InputMaybe<Int_Comparison_Exp>;
+  keystages?: InputMaybe<Jsonb_Comparison_Exp>;
+  ks4_options?: InputMaybe<Jsonb_Comparison_Exp>;
+  phases?: InputMaybe<Jsonb_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  title?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Subject_Phase_Options_0_11_Max_Fields = {
+  __typename?: 'published_mv_subject_phase_options_0_11_max_fields';
+  cycle?: Maybe<Scalars['String']['output']>;
+  display_order?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Subject_Phase_Options_0_11_Min_Fields = {
+  __typename?: 'published_mv_subject_phase_options_0_11_min_fields';
+  cycle?: Maybe<Scalars['String']['output']>;
+  display_order?: Maybe<Scalars['Int']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_subject_phase_options_0_11". */
+export type Published_Mv_Subject_Phase_Options_0_11_Order_By = {
+  cycle?: InputMaybe<Order_By>;
+  display_order?: InputMaybe<Order_By>;
+  keystages?: InputMaybe<Order_By>;
+  ks4_options?: InputMaybe<Order_By>;
+  phases?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  title?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_subject_phase_options_0_11" */
+export enum Published_Mv_Subject_Phase_Options_0_11_Select_Column {
+  /** column name */
+  Cycle = 'cycle',
+  /** column name */
+  DisplayOrder = 'display_order',
+  /** column name */
+  Keystages = 'keystages',
+  /** column name */
+  Ks4Options = 'ks4_options',
+  /** column name */
+  Phases = 'phases',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  Title = 'title'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Subject_Phase_Options_0_11_Stddev_Fields = {
+  __typename?: 'published_mv_subject_phase_options_0_11_stddev_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Subject_Phase_Options_0_11_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_subject_phase_options_0_11_stddev_pop_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Subject_Phase_Options_0_11_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_subject_phase_options_0_11_stddev_samp_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_subject_phase_options_0_11" */
+export type Published_Mv_Subject_Phase_Options_0_11_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Subject_Phase_Options_0_11_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Subject_Phase_Options_0_11_Stream_Cursor_Value_Input = {
+  cycle?: InputMaybe<Scalars['String']['input']>;
+  display_order?: InputMaybe<Scalars['Int']['input']>;
+  keystages?: InputMaybe<Scalars['jsonb']['input']>;
+  ks4_options?: InputMaybe<Scalars['jsonb']['input']>;
+  phases?: InputMaybe<Scalars['jsonb']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Subject_Phase_Options_0_11_Sum_Fields = {
+  __typename?: 'published_mv_subject_phase_options_0_11_sum_fields';
+  display_order?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Subject_Phase_Options_0_11_Var_Pop_Fields = {
+  __typename?: 'published_mv_subject_phase_options_0_11_var_pop_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Subject_Phase_Options_0_11_Var_Samp_Fields = {
+  __typename?: 'published_mv_subject_phase_options_0_11_var_samp_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Subject_Phase_Options_0_11_Variance_Fields = {
+  __typename?: 'published_mv_subject_phase_options_0_11_variance_fields';
+  display_order?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.mv_subject_phase_options_1" */
 export type Published_Mv_Subject_Phase_Options_1 = {
   __typename?: 'published_mv_subject_phase_options_1';
@@ -38603,6 +38791,10 @@ export type Query_Root = {
   published_mv_subject_phase_options_0_10: Array<Published_Mv_Subject_Phase_Options_0_10>;
   /** fetch aggregated fields from the table: "published.mv_subject_phase_options_0_10" */
   published_mv_subject_phase_options_0_10_aggregate: Published_Mv_Subject_Phase_Options_0_10_Aggregate;
+  /** fetch data from the table: "published.mv_subject_phase_options_0_11" */
+  published_mv_subject_phase_options_0_11: Array<Published_Mv_Subject_Phase_Options_0_11>;
+  /** fetch aggregated fields from the table: "published.mv_subject_phase_options_0_11" */
+  published_mv_subject_phase_options_0_11_aggregate: Published_Mv_Subject_Phase_Options_0_11_Aggregate;
   /** fetch data from the table: "published.mv_subject_phase_options_1" */
   published_mv_subject_phase_options_1: Array<Published_Mv_Subject_Phase_Options_1>;
   /** fetch aggregated fields from the table: "published.mv_subject_phase_options_1" */
@@ -40385,6 +40577,24 @@ export type Query_RootPublished_Mv_Subject_Phase_Options_0_10_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_10_Order_By>>;
   where?: InputMaybe<Published_Mv_Subject_Phase_Options_0_10_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Subject_Phase_Options_0_11Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_11_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_11_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_0_11_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Subject_Phase_Options_0_11_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_11_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_11_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_0_11_Bool_Exp>;
 };
 
 
@@ -43690,6 +43900,12 @@ export type Subscription_Root = {
   published_mv_subject_phase_options_0_10_aggregate: Published_Mv_Subject_Phase_Options_0_10_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_subject_phase_options_0_10" */
   published_mv_subject_phase_options_0_10_stream: Array<Published_Mv_Subject_Phase_Options_0_10>;
+  /** fetch data from the table: "published.mv_subject_phase_options_0_11" */
+  published_mv_subject_phase_options_0_11: Array<Published_Mv_Subject_Phase_Options_0_11>;
+  /** fetch aggregated fields from the table: "published.mv_subject_phase_options_0_11" */
+  published_mv_subject_phase_options_0_11_aggregate: Published_Mv_Subject_Phase_Options_0_11_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_subject_phase_options_0_11" */
+  published_mv_subject_phase_options_0_11_stream: Array<Published_Mv_Subject_Phase_Options_0_11>;
   /** fetch data from the table: "published.mv_subject_phase_options_1" */
   published_mv_subject_phase_options_1: Array<Published_Mv_Subject_Phase_Options_1>;
   /** fetch aggregated fields from the table: "published.mv_subject_phase_options_1" */
@@ -46116,6 +46332,31 @@ export type Subscription_RootPublished_Mv_Subject_Phase_Options_0_10_StreamArgs 
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Subject_Phase_Options_0_10_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Subject_Phase_Options_0_10_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Subject_Phase_Options_0_11Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_11_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_11_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_0_11_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Subject_Phase_Options_0_11_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_11_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Subject_Phase_Options_0_11_Order_By>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_0_11_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Subject_Phase_Options_0_11_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Subject_Phase_Options_0_11_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Subject_Phase_Options_0_11_Bool_Exp>;
 };
 
 
@@ -55533,7 +55774,7 @@ export type SubjectListingQuery = { __typename?: 'query_root', subjectLessons: A
 export type SubjectPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SubjectPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_subject_phase_options_0_10', title?: string | null, slug?: string | null, phases?: any | null, keystages?: any | null, ks4_options?: any | null, cycle?: string | null }> };
+export type SubjectPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_subject_phase_options_0_11', title?: string | null, slug?: string | null, phases?: any | null, keystages?: any | null, ks4_options?: any | null, cycle?: string | null }> };
 
 export type SubjectPhaseOptionsIncludeNewQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -56272,7 +56513,7 @@ export const SubjectListingDocument = gql`
     `;
 export const SubjectPhaseOptionsDocument = gql`
     query subjectPhaseOptions {
-  options: published_mv_subject_phase_options_0_10 {
+  options: published_mv_subject_phase_options_0_11 {
     title
     slug
     phases
