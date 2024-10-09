@@ -30,10 +30,12 @@ import {
   onboardUser,
   setOnboardingLocalStorage,
   submitOnboardingHubspotData,
-  trackUserOnboardingProgressed,
-  trackUserOnboardingCompleted,
+  collectOnboardingTrackingProps,
 } from "./onboardingActions";
-import { getQueryParamsFromOnboardingFormData } from "./getQueryParamsFromOnboardingFormData";
+import {
+  decodeOnboardingDataQueryParam,
+  encodeOnboardingDataQueryParam,
+} from "./onboardingDataQueryParam";
 
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -69,6 +71,8 @@ const OnboardingForm = ({
     boolean | undefined
   >(undefined);
   const { track } = useAnalytics();
+  // Accumulate onboarding data from all steps
+  const collectedOnboardingData = decodeOnboardingDataQueryParam(router.query);
 
   useEffect(() => {
     if (forceHideNewsletterSignUp) {
@@ -88,12 +92,21 @@ const OnboardingForm = ({
       return;
     }
 
+    // Merge the incoming data into our accumlated onboarding data
+    // we'll use this to update the tracking state
+    const latestOnboardingData = {
+      ...collectedOnboardingData,
+      ...data,
+    };
+    const newQuery = encodeOnboardingDataQueryParam(
+      router.query,
+      latestOnboardingData,
+    );
+
     if ("worksInSchool" in data) {
       user &&
-        trackUserOnboardingProgressed(
-          track.userOnboardingProgressed,
-          user,
-          data,
+        track.userOnboardingProgressed(
+          collectOnboardingTrackingProps(user, latestOnboardingData),
         );
       router.push({
         pathname: resolveOakHref({
@@ -101,25 +114,18 @@ const OnboardingForm = ({
             ? "onboarding-school-selection"
             : "onboarding-role-selection",
         }),
-        query: router.query,
+        query: newQuery,
       });
     } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
       user &&
-        trackUserOnboardingProgressed(
-          track.userOnboardingProgressed,
-          user,
-          data,
+        track.userOnboardingProgressed(
+          collectOnboardingTrackingProps(user, latestOnboardingData),
         );
-      const encodedQueryData = getQueryParamsFromOnboardingFormData(
-        data,
-        router.query,
-      );
-
       router.push({
         pathname: resolveOakHref({
           page: "onboarding-use-of-oak",
         }),
-        query: encodedQueryData,
+        query: newQuery,
       });
     } else {
       setIsSubmitting(true);
@@ -157,7 +163,9 @@ const OnboardingForm = ({
       });
 
       user &&
-        trackUserOnboardingCompleted(track.userOnboardingCompleted, user, data);
+        track.userOnboardingCompleted(
+          collectOnboardingTrackingProps(user, latestOnboardingData),
+        );
 
       // Return the user to the page they originally arrived from
       // or to the home page as a fallback
