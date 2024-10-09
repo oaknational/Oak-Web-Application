@@ -20,6 +20,8 @@ import VideoPlayer, {
   VideoEventCallbackArgs,
 } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
+import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
+import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 
 type PupilViewsVideoProps = {
   lessonTitle: string;
@@ -41,8 +43,13 @@ export const PupilViewsVideo = ({
     updateCurrentSection,
     updateSectionResult,
     sectionResults,
+    proceedToNextSection,
+    lessonReviewSections,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+  const { track } = usePupilAnalytics();
+  const { trackSectionStarted, getVideoTrackingData } =
+    useTrackSectionStarted();
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const playbackId =
     signLanguageOn && videoWithSignLanguageMuxPlaybackId
@@ -76,6 +83,29 @@ export const PupilViewsVideo = ({
     }
   };
 
+  const handleBackLinkClick = () => {
+    if (track.lessonActivityAbandonedLessonVideo) {
+      track.lessonActivityAbandonedLessonVideo(getVideoTrackingData());
+    }
+    updateCurrentSection("overview");
+  };
+
+  const handleBottomButtonClick = () => {
+    if (sectionResults.video?.isComplete) {
+      const nextSection =
+        lessonReviewSections.find(
+          (section) => !sectionResults[section]?.isComplete,
+        ) ?? "review";
+      trackSectionStarted(nextSection);
+      proceedToNextSection();
+    } else {
+      completeActivity("video");
+      if (track.lessonActivityCompletedLessonVideo) {
+        track.lessonActivityCompletedLessonVideo(getVideoTrackingData());
+      }
+    }
+  };
+
   return (
     <OakLessonLayout
       lessonSectionName="video"
@@ -83,7 +113,7 @@ export const PupilViewsVideo = ({
         <OakLessonTopNav
           backLinkSlot={
             <OakBackLink
-              {...getSectionLinkProps("overview", updateCurrentSection)}
+              {...getSectionLinkProps("overview", handleBackLinkClick)}
             />
           }
           heading="Lesson video"
@@ -95,14 +125,14 @@ export const PupilViewsVideo = ({
         <OakLessonBottomNav>
           <OakPrimaryButton
             element="a"
-            {...getSectionLinkProps("overview", () =>
-              completeActivity("video"),
-            )}
+            {...getSectionLinkProps("overview", handleBottomButtonClick)}
             width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon
           >
-            I've finished the video
+            {sectionResults.video?.isComplete
+              ? "Continue lesson"
+              : "I've finished the video"}
           </OakPrimaryButton>
         </OakLessonBottomNav>
       }
