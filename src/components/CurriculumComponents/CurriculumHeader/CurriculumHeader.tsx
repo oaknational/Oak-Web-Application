@@ -105,8 +105,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     },
   ];
 
-  const subjectIconName = getValidSubjectIconName(subject.slug);
-
   return (
     <Box $mb={40}>
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
@@ -156,7 +154,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 $mv={"auto"}
               >
                 <OakIcon
-                  iconName={subjectIconName}
+                  iconName={getValidSubjectIconName(subject.slug)}
                   $width="all-spacing-11"
                   $height="all-spacing-11"
                   data-testid="subjectIcon"

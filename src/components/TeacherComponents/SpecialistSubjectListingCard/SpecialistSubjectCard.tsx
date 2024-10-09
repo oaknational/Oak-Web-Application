@@ -44,8 +44,6 @@ const SpecialistSubjectCard = (props: {
   subject: SpecialistSubject;
   backgroundColour: OakColorName;
 }) => {
-  const subjectIconName = getValidSubjectIconName(props.subject.subjectSlug);
-
   return (
     <Card
       $background={props.backgroundColour}
@@ -68,7 +66,7 @@ const SpecialistSubjectCard = (props: {
           $gap={["space-between-ssx", "space-between-none"]}
         >
           <OakIcon
-            iconName={subjectIconName}
+            iconName={getValidSubjectIconName(props.subject.subjectSlug)}
             $width={["all-spacing-11", "all-spacing-13"]}
             $height={["all-spacing-11", "all-spacing-13"]}
           />

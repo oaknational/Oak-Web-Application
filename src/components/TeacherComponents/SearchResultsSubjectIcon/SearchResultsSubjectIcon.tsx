@@ -14,11 +14,10 @@ export type SearchResultsSubjectIconProps = {
  */
 const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
   const { type, subjectSlug } = props;
-  const subjectIconName = getValidSubjectIconName(subjectSlug);
   return type === "lesson" ? (
     <Circle $background={"pink"} size={56}>
       <OakIcon
-        iconName={subjectIconName}
+        iconName={getValidSubjectIconName(subjectSlug)}
         $height="all-spacing-8"
         $width="all-spacing-8"
       />
@@ -33,7 +32,7 @@ const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
       $width="all-spacing-10"
     >
       <OakIcon
-        iconName={subjectIconName}
+        iconName={getValidSubjectIconName(subjectSlug)}
         $height="all-spacing-8"
         $width="all-spacing-8"
       />{" "}

@@ -27,7 +27,6 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
   keyStageTitle,
   subjectSlug,
 }) => {
-  const subjectIconName = getValidSubjectIconName(subjectSlug);
   return (
     <Card
       $flexDirection={"column"}
@@ -52,7 +51,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
           $minWidth={["all-spacing-10", "all-spacing-12"]}
         >
           <OakIcon
-            iconName={subjectIconName}
+            iconName={getValidSubjectIconName(subjectSlug)}
             $width={"100%"}
             $height={"100%"}
           />
