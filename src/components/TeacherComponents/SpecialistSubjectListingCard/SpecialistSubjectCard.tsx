@@ -3,7 +3,6 @@ import {
   OakSpan,
   OakFlex,
   OakIcon,
-  isValidIconName,
 } from "@oaknational/oak-components";
 
 import Card from "@/components/SharedComponents/Card";
@@ -15,6 +14,7 @@ import {
 } from "@/common-lib/urls";
 import { OakColorName } from "@/styles/theme";
 import { SpecialistSubject } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 const getOakLinkProps = (
   subject: SpecialistSubject,
@@ -44,7 +44,7 @@ const SpecialistSubjectCard = (props: {
   subject: SpecialistSubject;
   backgroundColour: OakColorName;
 }) => {
-  const subjectIconName = `subject-${props.subject.subjectSlug}`;
+  const subjectIconName = getValidSubjectIconName(props.subject.subjectSlug);
 
   return (
     <Card
@@ -68,9 +68,7 @@ const SpecialistSubjectCard = (props: {
           $gap={["space-between-ssx", "space-between-none"]}
         >
           <OakIcon
-            iconName={
-              isValidIconName(subjectIconName) ? subjectIconName : "error"
-            }
+            iconName={subjectIconName}
             $width={["all-spacing-11", "all-spacing-13"]}
             $height={["all-spacing-11", "all-spacing-13"]}
           />

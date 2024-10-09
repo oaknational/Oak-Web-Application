@@ -1,19 +1,13 @@
 import { FC } from "react";
-import {
-  OakBox,
-  OakFlex,
-  OakIcon,
-  isValidIconName,
-} from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakIcon } from "@oaknational/oak-components";
 
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import { OakColorName } from "@/styles/theme/types";
 import Svg from "@/components/SharedComponents/Svg";
-import OakError from "@/errors/OakError";
-import errorReporter from "@/common-lib/error-reporter";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 type SubjectIconBrushBoardersProps = {
-  subjectSlug: string | null;
+  subjectSlug: string;
   isNew: boolean;
   color: OakColorName;
 };
@@ -23,17 +17,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
   color,
   isNew,
 }) => {
-  const iconName = `subject-${subjectSlug}`;
-
-  if (!isValidIconName(iconName)) {
-    const reportError = errorReporter("SubjectIconBrushBoarders");
-    reportError(
-      new OakError({
-        code: "oak-components/invalid-icon-name",
-        meta: { iconName },
-      }),
-    );
-  }
+  const iconName = getValidSubjectIconName(subjectSlug);
 
   return (
     <OakFlex
@@ -55,11 +39,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
         $maxWidth={["all-spacing-13", "all-spacing-16"]}
         $maxHeight={["all-spacing-13", "all-spacing-16"]}
       >
-        <OakIcon
-          iconName={isValidIconName(iconName) ? iconName : "error"}
-          $width={"100%"}
-          $height={"100%"}
-        />
+        <OakIcon iconName={iconName} $width={"100%"} $height={"100%"} />
       </OakBox>
 
       {isNew && (

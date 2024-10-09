@@ -9,7 +9,6 @@ import {
   OakBox,
   OakTertiaryButton,
   OakIcon,
-  isValidIconName,
 } from "@oaknational/oak-components";
 import {
   PortableText,
@@ -34,6 +33,7 @@ import {
   isCurricPartnerHackEnabled,
   useCycleTwoEnabled,
 } from "@/utils/curriculum/features";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type OverviewTabProps = {
   data: {
@@ -201,7 +201,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     curriculumPartners.length > 1 ? "s" : ""
   }`;
 
-  const subjectIconName = `subject-${subjectSlug}`;
+  const subjectIconName = getValidSubjectIconName(subjectSlug);
 
   const contents = (
     <OakFlex $gap={"space-between-m"} $flexDirection={"column"}>
@@ -350,9 +350,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 <BrushBorders color="lemon50" />
 
                 <OakIcon
-                  iconName={
-                    isValidIconName(subjectIconName) ? subjectIconName : "error"
-                  }
+                  iconName={subjectIconName}
                   $height="100%"
                   $width="100%"
                   $transform={["rotate(-2.179deg)", "scale(1.25, 1.25)"]}

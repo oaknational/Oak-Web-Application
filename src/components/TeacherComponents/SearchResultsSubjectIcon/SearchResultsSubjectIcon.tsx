@@ -1,7 +1,8 @@
 import { FC } from "react";
-import { OakFlex, OakIcon, isValidIconName } from "@oaknational/oak-components";
+import { OakFlex, OakIcon } from "@oaknational/oak-components";
 
 import Circle from "@/components/SharedComponents/Circle";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type SearchResultsSubjectIconProps = {
   type: "unit" | "lesson";
@@ -13,11 +14,11 @@ export type SearchResultsSubjectIconProps = {
  */
 const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
   const { type, subjectSlug } = props;
-  const subjectIconName = `subject-${subjectSlug}`;
+  const subjectIconName = getValidSubjectIconName(subjectSlug);
   return type === "lesson" ? (
     <Circle $background={"pink"} size={56}>
       <OakIcon
-        iconName={isValidIconName(subjectIconName) ? subjectIconName : "error"}
+        iconName={subjectIconName}
         $height="all-spacing-8"
         $width="all-spacing-8"
       />
@@ -32,7 +33,7 @@ const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
       $width="all-spacing-10"
     >
       <OakIcon
-        iconName={isValidIconName(subjectIconName) ? subjectIconName : "error"}
+        iconName={subjectIconName}
         $height="all-spacing-8"
         $width="all-spacing-8"
       />{" "}

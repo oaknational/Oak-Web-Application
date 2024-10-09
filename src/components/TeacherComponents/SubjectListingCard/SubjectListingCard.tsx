@@ -4,12 +4,12 @@ import {
   OakHeading,
   OakHeadingTag,
   OakIcon,
-  isValidIconName,
 } from "@oaknational/oak-components";
 
 import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/SubjectListingCardCountCard";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type SubjectListingCardProps = Omit<CardProps, "children"> & {
   titleTag?: OakHeadingTag;
@@ -27,7 +27,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
   keyStageTitle,
   subjectSlug,
 }) => {
-  const subjectIconName = `subject-${subjectSlug}`;
+  const subjectIconName = getValidSubjectIconName(subjectSlug);
   return (
     <Card
       $flexDirection={"column"}
@@ -52,9 +52,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
           $minWidth={["all-spacing-10", "all-spacing-12"]}
         >
           <OakIcon
-            iconName={
-              isValidIconName(subjectIconName) ? subjectIconName : "error"
-            }
+            iconName={subjectIconName}
             $width={"100%"}
             $height={"100%"}
           />

@@ -5,7 +5,6 @@ import {
   OakP,
   OakFlex,
   OakIcon,
-  isValidIconName,
 } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
@@ -23,6 +22,7 @@ import {
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import { isCycleTwoEnabled } from "@/utils/curriculum/features";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -105,7 +105,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     },
   ];
 
-  const subjectIconName = `subject-${subject.slug}`;
+  const subjectIconName = getValidSubjectIconName(subject.slug);
 
   return (
     <Box $mb={40}>
@@ -156,9 +156,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 $mv={"auto"}
               >
                 <OakIcon
-                  iconName={
-                    isValidIconName(subjectIconName) ? subjectIconName : "error"
-                  }
+                  iconName={subjectIconName}
                   $width="all-spacing-11"
                   $height="all-spacing-11"
                   data-testid="subjectIcon"
