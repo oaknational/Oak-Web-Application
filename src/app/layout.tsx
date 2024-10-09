@@ -33,6 +33,14 @@ export default function RootLayout({
             <OakThemeProvider theme={oakDefaultTheme}>
               <CookieConsentProvider>
                 <ClerkProvider
+                  localization={{
+                    signUp: {
+                      start: {
+                        subtitle: "Sign up to Oak to continue",
+                        title: "Create a free account",
+                      },
+                    },
+                  }}
                   appearance={{
                     variables: {
                       colorPrimary: "#222222",

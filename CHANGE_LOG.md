@@ -1,3 +1,44 @@
+# [1.578.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.577.1...v1.578.0) (2024-10-09)
+
+
+### Bug Fixes
+
+* test indices ([fe21d9a](https://github.com/oaknational/Oak-Web-Application/commit/fe21d9a94edca3ff57d0ed695c125e31806af5a4))
+
+
+### Features
+
+* use radio tile from component library ([52dd68f](https://github.com/oaknational/Oak-Web-Application/commit/52dd68fea53e688e95e5029648fe4cea33505a9a))
+
+## [1.577.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.577.0...v1.577.1) (2024-10-08)
+
+
+### Bug Fixes
+
+* filter out only core / examboard units when option selected ([4c63a38](https://github.com/oaknational/Oak-Web-Application/commit/4c63a3818119ffbe7ebaf0351f9bb40a3b0c217c))
+* filtered subject phase options 'gcse' if examboards present ([2a37ac3](https://github.com/oaknational/Oak-Web-Application/commit/2a37ac398fcc69c82c5b0fba2915542628854ac6))
+* only cut off gcse option if present ([3db628b](https://github.com/oaknational/Oak-Web-Application/commit/3db628bd60a4a4ef21dafd933b9b03e25106cf41))
+
+# [1.577.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.3...v1.577.0) (2024-10-08)
+
+
+### Bug Fixes
+
+* remove expectation on non-existent heading ([77701a9](https://github.com/oaknational/Oak-Web-Application/commit/77701a9ecf2e6ac5d07604f4490a077bbe5f946f))
+
+
+### Features
+
+* **LESQ-1088:** add a banenr to the top of the sign-up page ([9f0ffe9](https://github.com/oaknational/Oak-Web-Application/commit/9f0ffe9cfb2f092d2eca761bd9e5d81d007df083))
+* **LESQ-1088:** add some aside copy to the sign-up page ([4e45cd1](https://github.com/oaknational/Oak-Web-Application/commit/4e45cd1b98bdd37956b5ee66124384dd54814a1d))
+
+## [1.576.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.2...v1.576.3) (2024-10-07)
+
+
+### Bug Fixes
+
+* throw the right error ([fae71aa](https://github.com/oaknational/Oak-Web-Application/commit/fae71aa4b200f53e21b4e6088d62873d182da6eb))
+
 ## [1.576.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.1...v1.576.2) (2024-10-04)
 
 

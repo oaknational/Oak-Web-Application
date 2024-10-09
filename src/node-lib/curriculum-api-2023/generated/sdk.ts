@@ -55926,7 +55926,7 @@ export type SubjectListingQuery = { __typename?: 'query_root', subjectLessons: A
 export type SubjectPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SubjectPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_subject_phase_options_0_10', title?: string | null, slug?: string | null, phases?: any | null, keystages?: any | null, ks4_options?: any | null, cycle?: string | null }> };
+export type SubjectPhaseOptionsQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_subject_phase_options_0_11', title?: string | null, slug?: string | null, phases?: any | null, keystages?: any | null, ks4_options?: any | null, cycle?: string | null }> };
 
 export type SubjectPhaseOptionsIncludeNewQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -56665,7 +56665,7 @@ export const SubjectListingDocument = gql`
     `;
 export const SubjectPhaseOptionsDocument = gql`
     query subjectPhaseOptions {
-  options: published_mv_subject_phase_options_0_10 {
+  options: published_mv_subject_phase_options_0_11 {
     title
     slug
     phases
