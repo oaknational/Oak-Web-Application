@@ -158,6 +158,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   $width="all-spacing-11"
                   $height="all-spacing-11"
                   data-testid="subjectIcon"
+                  alt=""
                 />
               </Box>
               <OakFlex $justifyContent={"center"} $flexDirection={"column"}>

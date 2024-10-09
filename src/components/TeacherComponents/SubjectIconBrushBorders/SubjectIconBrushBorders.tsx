@@ -40,6 +40,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
         iconName={subjectSlug ? getValidSubjectIconName(subjectSlug) : "error"}
         $width={"100%"}
         $height={"100%"}
+        alt=""
       />
     </OakBox>
 

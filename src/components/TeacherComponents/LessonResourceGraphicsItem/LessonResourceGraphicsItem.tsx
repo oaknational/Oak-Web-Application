@@ -41,6 +41,7 @@ const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = (
         iconName={icon}
         $mr={["space-between-none", "space-between-ssx"]}
         $mb={["space-between-ssx", "space-between-none"]}
+        alt=""
       />
       <OakFlex>
         <OakSpan $font={"body-3"}>

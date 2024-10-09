@@ -43,6 +43,7 @@ const TeachersTabResourceSelectorCard: FC<
             $height="all-spacing-9"
             $width="all-spacing-9"
             $colorFilter={"white"}
+            alt=""
           />
         </OakFlex>
         <OakFlex $height={"100%"} $alignItems={"center"}>

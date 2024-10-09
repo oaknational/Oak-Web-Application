@@ -354,6 +354,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                   $height="100%"
                   $width="100%"
                   $transform={["rotate(-2.179deg)", "scale(1.25, 1.25)"]}
+                  alt=""
                 />
               </Card>
             </OakFlex>

@@ -69,6 +69,7 @@ const SpecialistSubjectCard = (props: {
             iconName={getValidSubjectIconName(props.subject.subjectSlug)}
             $width={["all-spacing-11", "all-spacing-13"]}
             $height={["all-spacing-11", "all-spacing-13"]}
+            alt=""
           />
 
           <OakHeading

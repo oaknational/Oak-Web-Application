@@ -98,7 +98,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
         $background={"lemon"}
         $width={"all-spacing-12"}
       >
-        <OakIcon iconName={iconName} $width={"100%"} $height={"100%"} />
+        <OakIcon iconName={iconName} $width={"100%"} $height={"100%"} alt="" />
       </OakFlex>
 
       <BoxBorders gapPosition="rightTop" />

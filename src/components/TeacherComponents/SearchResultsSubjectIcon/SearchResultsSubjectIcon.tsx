@@ -20,6 +20,7 @@ const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
         iconName={getValidSubjectIconName(subjectSlug)}
         $height="all-spacing-8"
         $width="all-spacing-8"
+        alt=""
       />
     </Circle>
   ) : (
@@ -35,7 +36,8 @@ const SearchResultsSubjectIcon: FC<SearchResultsSubjectIconProps> = (props) => {
         iconName={getValidSubjectIconName(subjectSlug)}
         $height="all-spacing-8"
         $width="all-spacing-8"
-      />{" "}
+        alt=""
+      />
     </OakFlex>
   );
 };

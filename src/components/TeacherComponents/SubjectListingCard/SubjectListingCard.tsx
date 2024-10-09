@@ -54,6 +54,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
             iconName={getValidSubjectIconName(subjectSlug)}
             $width={"100%"}
             $height={"100%"}
+            alt=""
           />
         </OakFlex>
         <OakFlex
