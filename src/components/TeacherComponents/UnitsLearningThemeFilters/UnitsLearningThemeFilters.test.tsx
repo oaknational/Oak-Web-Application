@@ -22,6 +22,69 @@ describe("UnitsLearningThemeFilters", () => {
       url: "https://example.com/some-path",
     });
   });
+  test("should render threads with no theme last", async () => {
+    renderWithProviders()(
+      <UnitsLearningThemeFilters
+        labelledBy={"Learning Theme Filter"}
+        learningThemes={[
+          {
+            themeTitle: "No theme 1",
+            themeSlug: "no-theme",
+          },
+          {
+            themeTitle: "Algebra",
+            themeSlug: "algebra",
+          },
+          {
+            themeTitle: "No theme 2",
+            themeSlug: "no-theme",
+          },
+        ]}
+        selectedThemeSlug={"all"}
+        linkProps={{
+          page: "unit-index",
+          programmeSlug: "maths-secondary-ks3",
+        }}
+        idSuffix="desktop"
+        onChangeCallback={jest.fn}
+        programmeSlug="maths-secondary-ks3"
+        browseRefined={browseRefined}
+      />,
+    );
+    const themes = await screen.findAllByRole("radio");
+    expect(themes[0]).toBe(screen.getByLabelText("All"));
+    expect(themes[1]).toBe(screen.getByLabelText("Algebra"));
+    expect(themes[2]).toBe(screen.getByLabelText("No theme 1"));
+  });
+  test("should call callback method with correct value", async () => {
+    const onChangeCallback = jest.fn();
+    renderWithProviders()(
+      <UnitsLearningThemeFilters
+        labelledBy={"Learning Theme Filter"}
+        learningThemes={[
+          {
+            themeTitle: "Algebra",
+            themeSlug: "algebra",
+          },
+        ]}
+        selectedThemeSlug={"all"}
+        linkProps={{
+          page: "unit-index",
+          programmeSlug: "maths-secondary-ks3",
+        }}
+        idSuffix="desktop"
+        onChangeCallback={onChangeCallback}
+        programmeSlug="maths-secondary-ks3"
+        browseRefined={browseRefined}
+      />,
+    );
+    const algebraFilter = screen.getByLabelText("Algebra");
+    await userEvent.click(algebraFilter);
+    expect(onChangeCallback).toHaveBeenCalledWith("algebra");
+    const allFilter = screen.getByLabelText("All");
+    await userEvent.click(allFilter);
+    expect(onChangeCallback).toHaveBeenCalledWith(undefined);
+  });
   test("should call tracking browse refined with correct args", async () => {
     renderWithProviders()(
       <UnitsLearningThemeFilters
