@@ -210,4 +210,130 @@ describe("Component - subject phase picker", () => {
       "/teachers/curriculum/previous-downloads",
     );
   });
+
+  describe("Pathways are shown correctly", () => {
+    test("user clicks English, secondary and two KS4 options are shown", async () => {
+      const {
+        findByText,
+        findByTitle,
+        getByTitle,
+        findAllByTitle,
+        findAllByTestId,
+      } = render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("English"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+      await userEvent.click(button);
+      await userEvent.click(await findByTitle("Secondary"));
+      const examboardTitle = await findByText("Choose an option for KS4");
+      expect(examboardTitle).toBeTruthy();
+
+      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      if (!ks4Options) {
+        throw new Error("Could not find buttons");
+      }
+      expect(ks4Options).toHaveLength(2);
+    });
+
+    test("user clicks PE, secondary and correct examboards are shown in alphabetical order", async () => {
+      const {
+        findByText,
+        findByTitle,
+        getByTitle,
+        findAllByTitle,
+        findAllByTestId,
+      } = render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("Physical education"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+      await userEvent.click(button);
+      await userEvent.click(await findByTitle("Secondary"));
+      const examboardTitle = await findByText("Choose an option for KS4");
+      expect(examboardTitle).toBeTruthy();
+
+      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      if (!ks4Options) {
+        throw new Error("Could not find buttons");
+      }
+      expect(ks4Options[0]).toHaveTextContent("AQA");
+      expect(ks4Options[1]).toHaveTextContent("Edexcel");
+      expect(ks4Options[2]).toHaveTextContent("OCR");
+      expect(ks4Options).toHaveLength(3);
+    });
+
+    test("Computing has correct titles and no GCSE option present", async () => {
+      const {
+        findByText,
+        findByTitle,
+        getByTitle,
+        findAllByTitle,
+        findAllByTestId,
+      } = render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("Computing"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+      await userEvent.click(button);
+      await userEvent.click(await findByTitle("Secondary"));
+      const examboardTitle = await findByText("Choose an option for KS4");
+      expect(examboardTitle).toBeTruthy();
+
+      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      if (!ks4Options) {
+        throw new Error("Could not find buttons");
+      }
+      expect(ks4Options[0]).toHaveTextContent("Core");
+      expect(ks4Options[1]).toHaveTextContent("AQA (Computer Science)");
+      expect(ks4Options[2]).toHaveTextContent("OCR (Computer Science)");
+    });
+
+    test("Citizenship has both Core and GCSE", async () => {
+      const {
+        findByText,
+        findByTitle,
+        getByTitle,
+        findAllByTitle,
+        findAllByTestId,
+      } = render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("Citizenship"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+      await userEvent.click(button);
+      await userEvent.click(await findByTitle("Secondary"));
+      const examboardTitle = await findByText("Choose an option for KS4");
+      expect(examboardTitle).toBeTruthy();
+
+      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      if (!ks4Options) {
+        throw new Error("Could not find buttons");
+      }
+      expect(ks4Options[0]).toHaveTextContent("Core");
+      expect(ks4Options[1]).toHaveTextContent("GCSE");
+    });
+
+    test("No KS4 options displayed", async () => {
+      const { queryByText, findByTitle, getByTitle, findAllByTitle } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("Geography"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+      await userEvent.click(button);
+      await userEvent.click(await findByTitle("Secondary"));
+      expect(queryByText("Choose an option for KS4")).not.toBeInTheDocument();
+    });
+  });
 });

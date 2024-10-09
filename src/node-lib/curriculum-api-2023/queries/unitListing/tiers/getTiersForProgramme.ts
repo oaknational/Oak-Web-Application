@@ -22,6 +22,7 @@ export const getTiersForProgramme = async (
   const response = await sdk.tiers({ _contains: contains, isLegacy: isLegacy });
 
   const rawTiers = response.tiers;
+
   if (!rawTiers || rawTiers.length === 0) {
     throw new OakError({
       code: "curriculum-api/not-found",

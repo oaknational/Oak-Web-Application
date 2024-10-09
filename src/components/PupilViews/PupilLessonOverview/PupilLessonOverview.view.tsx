@@ -27,6 +27,7 @@ import {
 import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 
 type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
@@ -66,6 +67,7 @@ export const PupilViewsLessonOverview = ({
     updateCurrentSection,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+  const { trackSectionStarted } = useTrackSectionStarted();
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
@@ -86,6 +88,15 @@ export const PupilViewsLessonOverview = ({
     return "not-started";
   }
 
+  const handleProceedToNextSectionClick = () => {
+    const nextSection =
+      lessonReviewSections.find(
+        (section) => !sectionResults[section]?.isComplete,
+      ) ?? "review";
+    trackSectionStarted(nextSection);
+    proceedToNextSection();
+  };
+
   return (
     <OakLessonLayout
       lessonSectionName={"overview"}
@@ -94,7 +105,7 @@ export const PupilViewsLessonOverview = ({
       bottomNavSlot={
         <OakLessonBottomNav>
           <OakPrimaryButton
-            onClick={proceedToNextSection}
+            onClick={handleProceedToNextSectionClick}
             width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon
@@ -247,14 +258,20 @@ export const PupilViewsLessonOverview = ({
             <OakFlex $gap="space-between-s" $flexDirection="column">
               {lessonReviewSections.includes("intro") && (
                 <OakLessonNavItem
-                  {...getSectionLinkProps("intro", updateCurrentSection)}
+                  {...getSectionLinkProps("intro", () => {
+                    trackSectionStarted("intro");
+                    updateCurrentSection("intro");
+                  })}
                   lessonSectionName="intro"
                   progress={pickProgressForSection("intro")}
                 />
               )}
               {lessonReviewSections.includes("starter-quiz") && (
                 <OakLessonNavItem
-                  {...getSectionLinkProps("starter-quiz", updateCurrentSection)}
+                  {...getSectionLinkProps("starter-quiz", () => {
+                    trackSectionStarted("starter-quiz");
+                    updateCurrentSection("starter-quiz");
+                  })}
                   lessonSectionName="starter-quiz"
                   progress={pickProgressForSection("starter-quiz")}
                   numQuestions={starterQuizNumQuestions}
@@ -264,14 +281,20 @@ export const PupilViewsLessonOverview = ({
               )}
               {lessonReviewSections.includes("video") && (
                 <OakLessonNavItem
-                  {...getSectionLinkProps("video", updateCurrentSection)}
+                  {...getSectionLinkProps("video", () => {
+                    trackSectionStarted("video");
+                    updateCurrentSection("video");
+                  })}
                   lessonSectionName="video"
                   progress={pickProgressForSection("video")}
                 />
               )}
               {lessonReviewSections.includes("exit-quiz") && (
                 <OakLessonNavItem
-                  {...getSectionLinkProps("exit-quiz", updateCurrentSection)}
+                  {...getSectionLinkProps("exit-quiz", () => {
+                    trackSectionStarted("exit-quiz");
+                    updateCurrentSection("exit-quiz");
+                  })}
                   lessonSectionName="exit-quiz"
                   progress={pickProgressForSection("exit-quiz")}
                   numQuestions={exitQuizNumQuestions}

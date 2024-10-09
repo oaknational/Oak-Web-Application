@@ -18,6 +18,59 @@ const subjectPhaseOptions = {
       cycle: "1",
     },
     {
+      title: "Physical education",
+      slug: "Physical education",
+      phases: [
+        { title: "Primary", slug: "primary" },
+        { title: "Secondary", slug: "secondary" },
+      ],
+      ks4_options: [
+        { title: "AQA", slug: "aqa" },
+        { title: "Edexcel", slug: "edexcel" },
+        { title: "OCR", slug: "ocr" },
+      ],
+      cycle: "2",
+      keystages: [
+        { title: "KS1", slug: "ks1" },
+        { title: "KS3", slug: "ks3" },
+      ],
+    },
+    {
+      title: "Citizenship",
+      slug: "citizenship",
+      phases: [
+        { title: "Primary", slug: "primary" },
+        { title: "Secondary", slug: "secondary" },
+      ],
+      ks4_options: [
+        { title: "GCSE", slug: "gcse" },
+        { title: "Core", slug: "core" },
+      ],
+      cycle: "2",
+      keystages: [
+        { title: "KS1", slug: "ks1" },
+        { title: "KS3", slug: "ks3" },
+      ],
+    },
+    {
+      title: "Computing",
+      slug: "computing",
+      phases: [
+        { title: "Primary", slug: "primary" },
+        { title: "Secondary", slug: "secondary" },
+      ],
+      ks4_options: [
+        { title: "AQA", slug: "aqa" },
+        { title: "Core", slug: "core" },
+        { title: "OCR", slug: "ocr" },
+      ],
+      cycle: "2",
+      keystages: [
+        { title: "KS1", slug: "ks1" },
+        { title: "KS3", slug: "ks3" },
+      ],
+    },
+    {
       title: "Geography",
       slug: "geography",
       phases: [
