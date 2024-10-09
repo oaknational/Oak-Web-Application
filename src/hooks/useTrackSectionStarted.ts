@@ -1,4 +1,6 @@
-import { PupilExperienceLessonActivityValueType } from "@/browser-lib/avo/Avo";
+import { useGetQuizTrackingData } from "./useGetQuizTrackingData";
+import { useGetVideoTrackingData } from "./useGetVideoTrackingData";
+
 import {
   LessonSection,
   useLessonEngineContext,
@@ -8,27 +10,8 @@ import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsPr
 export const useTrackSectionStarted = () => {
   const { sectionResults } = useLessonEngineContext();
   const { track } = usePupilAnalytics();
-
-  const getQuizTrackingData = (section: "starter-quiz" | "exit-quiz") => ({
-    pupilExperienceLessonActivity: section,
-    pupilQuizGrade: sectionResults[section]?.grade || 0,
-    pupilQuizNumQuestions: sectionResults[section]?.numQuestions || 0,
-    // FIXME: these are still wrong. The full results should be sent
-    hintQuestion: "",
-    hintQuestionResult: "",
-    hintUsed: "",
-  });
-
-  const getVideoTrackingData = () => ({
-    pupilExperienceLessonActivity:
-      "video" as PupilExperienceLessonActivityValueType,
-    pupilVideoDurationSeconds: sectionResults.video?.duration || 0,
-    isMuted: sectionResults.video?.muted || false,
-    signedOpened: sectionResults.video?.signedOpened || false,
-    pupilVideoTimeElapsedSeconds: sectionResults.video?.timeElapsed || 0,
-    pupilVideoPlayed: sectionResults.video?.played || false,
-    transcriptOpened: sectionResults.video?.transcriptOpened || false,
-  });
+  const { getQuizTrackingData } = useGetQuizTrackingData();
+  const { getVideoTrackingData } = useGetVideoTrackingData();
 
   const trackSectionStarted = (section: LessonSection) => {
     if (
@@ -67,7 +50,5 @@ export const useTrackSectionStarted = () => {
   };
   return {
     trackSectionStarted,
-    getQuizTrackingData,
-    getVideoTrackingData,
   };
 };

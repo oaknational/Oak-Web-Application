@@ -22,6 +22,7 @@ import VideoPlayer, {
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
+import { useGetVideoTrackingData } from "@/hooks/useGetVideoTrackingData";
 
 type PupilViewsVideoProps = {
   lessonTitle: string;
@@ -48,8 +49,8 @@ export const PupilViewsVideo = ({
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
   const { track } = usePupilAnalytics();
-  const { trackSectionStarted, getVideoTrackingData } =
-    useTrackSectionStarted();
+  const { getVideoTrackingData } = useGetVideoTrackingData();
+  const { trackSectionStarted } = useTrackSectionStarted();
   const [signLanguageOn, setSignLanguageOn] = useState(false);
   const playbackId =
     signLanguageOn && videoWithSignLanguageMuxPlaybackId

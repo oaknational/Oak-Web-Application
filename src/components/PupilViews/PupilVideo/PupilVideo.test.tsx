@@ -27,12 +27,21 @@ jest.mock(
 
 const useTrackSectionStartedMock = {
   trackSectionStarted: jest.fn(),
-  getVideoTrackingData: jest.fn(),
 };
 
 jest.mock("@/hooks/useTrackSectionStarted", () => {
   return {
     useTrackSectionStarted: () => useTrackSectionStartedMock,
+  };
+});
+
+const useGetVideoTrackingDataMock = {
+  getVideoTrackingData: jest.fn(),
+};
+
+jest.mock("@/hooks/useGetVideoTrackingData", () => {
+  return {
+    useGetVideoTrackingData: () => useGetVideoTrackingDataMock,
   };
 });
 

@@ -30,7 +30,7 @@ import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupi
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { QuizCorrectAnswers } from "@/components/PupilComponents/QuizCorrectAnswers";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
-import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
+import { useGetQuizTrackingData } from "@/hooks/useGetQuizTrackingData";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -48,7 +48,7 @@ const QuizInner = () => {
   const quizEngineContext = useQuizEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
   const { track } = usePupilAnalytics();
-  const { getQuizTrackingData } = useTrackSectionStarted();
+  const { getQuizTrackingData } = useGetQuizTrackingData();
 
   if (!isQuizSection(currentSection)) {
     return null;
