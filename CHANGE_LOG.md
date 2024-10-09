@@ -1,3 +1,43 @@
+# [1.580.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.579.0...v1.580.0) (2024-10-09)
+
+
+### Features
+
+* switch curriculum visualiser to newer MV ([23bf259](https://github.com/oaknational/Oak-Web-Application/commit/23bf259ec1d4441016854a84f1004376fd2a6526))
+
+# [1.579.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.578.0...v1.579.0) (2024-10-09)
+
+
+### Bug Fixes
+
+* further options check to consider legacy as well ([ba8e9ba](https://github.com/oaknational/Oak-Web-Application/commit/ba8e9bab0a5300feaf7d6e98d5c7094ce46e104c))
+* lint errors ([d5d7966](https://github.com/oaknational/Oak-Web-Application/commit/d5d796659609d5a1c0fdd6e38e739ce38e87f1a3))
+* reinstate schema ([a2026fd](https://github.com/oaknational/Oak-Web-Application/commit/a2026fd13ed97ec7665edb3e21b2ff9d85d83144))
+* resolve conflicts ([68371a2](https://github.com/oaknational/Oak-Web-Application/commit/68371a295ae7de20ad293408b0aa082caf99f1b0))
+* resolving more type errors ([9ee24cd](https://github.com/oaknational/Oak-Web-Application/commit/9ee24cd4e1a48fbdfad334bfc378ea06af57a385))
+* types on teacher journey ([e1e38e1](https://github.com/oaknational/Oak-Web-Application/commit/e1e38e189df0c3c107c8292fb079e7ec14b0d132))
+* update schema to work with older mvs ([351a335](https://github.com/oaknational/Oak-Web-Application/commit/351a3354de62921bf858381b1983c5e3b988e4d1))
+* update schema to work with older mvs ([6d74bff](https://github.com/oaknational/Oak-Web-Application/commit/6d74bffe9186a6200ec7052b67a6edb55845407b))
+
+
+### Features
+
+* adding pre-selected pathways page ([c943d3a](https://github.com/oaknational/Oak-Web-Application/commit/c943d3a726385ec014b214f7cb1c610c129ce1da))
+* lesson listing page ([70ff3f3](https://github.com/oaknational/Oak-Web-Application/commit/70ff3f3ce3fc2f673e89cd36da779fad82fb88fc))
+* programme listing works with assymetrical options ([1d3f938](https://github.com/oaknational/Oak-Web-Application/commit/1d3f938f7c01930ad2d5c71fc7d3450140e52e1f))
+
+# [1.578.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.577.1...v1.578.0) (2024-10-09)
+
+
+### Bug Fixes
+
+* test indices ([fe21d9a](https://github.com/oaknational/Oak-Web-Application/commit/fe21d9a94edca3ff57d0ed695c125e31806af5a4))
+
+
+### Features
+
+* use radio tile from component library ([52dd68f](https://github.com/oaknational/Oak-Web-Application/commit/52dd68fea53e688e95e5029648fe4cea33505a9a))
+
 ## [1.577.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.577.0...v1.577.1) (2024-10-08)
 
 
