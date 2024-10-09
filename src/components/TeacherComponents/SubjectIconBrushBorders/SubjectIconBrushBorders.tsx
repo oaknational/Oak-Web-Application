@@ -7,7 +7,7 @@ import Svg from "@/components/SharedComponents/Svg";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 type SubjectIconBrushBoardersProps = {
-  subjectSlug: string;
+  subjectSlug: string | null;
   isNew: boolean;
   color: OakColorName;
 };
@@ -17,7 +17,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
   color,
   isNew,
 }) => {
-  const iconName = getValidSubjectIconName(subjectSlug);
+  const iconName = subjectSlug ? getValidSubjectIconName(subjectSlug) : "error";
 
   return (
     <OakFlex
