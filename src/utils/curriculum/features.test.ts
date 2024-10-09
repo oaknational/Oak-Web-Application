@@ -65,6 +65,32 @@ describe("isCurricPartnerHackEnabled", () => {
 });
 
 describe("getUnitFeatures", () => {
+  it("returns swimming rules when matching unit", () => {
+    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
+    expect(
+      getUnitFeatures({
+        subject_slug: "physical-education",
+        year: "3",
+        features: { pe_swimming: true },
+      } as Unit),
+    ).toEqual({
+      labels: ["swimming"],
+      exclusions: ["pupils"],
+      group_as: "Swimming",
+      programmes_fields_overrides: {
+        year: "all-years",
+        keystage: "All keystages",
+      },
+    });
+
+    expect(
+      getUnitFeatures({
+        subject_slug: "physical-education",
+        year: "3",
+      } as Unit),
+    ).toEqual(undefined);
+  });
+
   it("returns computer science override when matching unit", () => {
     MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
     expect(
