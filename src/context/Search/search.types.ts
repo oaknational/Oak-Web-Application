@@ -51,7 +51,7 @@ export type UseSearchFiltersReturnType = {
   keyStageFilters: (KeyStage & SearchCheckBoxProps)[];
   contentTypeFilters: (ContentType & SearchCheckBoxProps)[];
   examBoardFilters: (ExamBoard & SearchCheckBoxProps)[];
-  legacyFilter: { slug: string } & SearchCheckBoxProps;
+  legacyFilter: { slug: string; title: string } & SearchCheckBoxProps;
 };
 
 export type LessonSearchHit = z.infer<typeof lessonSearchHitSchema>;

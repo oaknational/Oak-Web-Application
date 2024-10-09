@@ -8,12 +8,12 @@ import {
   OakThemeProvider,
   isValidIconName,
   OakBox,
-  OakPromoTag,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
+import TagPromotional from "@/components/SharedComponents/TagPromotional";
 
 type SearchFiltersProps = UseSearchFiltersReturnType & {
   isMobileFilter?: boolean;
@@ -64,8 +64,10 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                   legacyFilter.onChange();
                 }}
               />
-              <OakFlex $alignItems={"flex-start"} $gap={"all-spacing-1"}>
-                <OakPromoTag width={"all-spacing-8"} />
+              <OakFlex $alignItems={"flex-start"}>
+                <OakBox>
+                  <TagPromotional size={"small"} />
+                </OakBox>
                 <OakP
                   $font={"body-3"}
                   $wordWrap={"normal"}

@@ -106,6 +106,7 @@ const props: SearchProps = {
   searchFilters: {
     legacyFilter: {
       slug: "new",
+      title: "Show new only",
       onChange: jest.fn(),
       checked: false,
     },
