@@ -1,3 +1,26 @@
+# [1.583.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.582.0...v1.583.0) (2024-10-09)
+
+
+### Features
+
+* switched over to using data from the database for swimming units ([d408177](https://github.com/oaknational/Oak-Web-Application/commit/d408177cb549a5e7529df79352c257a998026cc6))
+
+# [1.582.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.581.0...v1.582.0) (2024-10-09)
+
+
+### Bug Fixes
+
+* add comment ([9091005](https://github.com/oaknational/Oak-Web-Application/commit/90910058fd555b4be287e45bc8f9fc88fa44a362))
+* filters div width and useSearchFilters function ([a18a2c1](https://github.com/oaknational/Oak-Web-Application/commit/a18a2c12b22ecd0a2b4978f5ebb5e3bd253435a5))
+* tests for search filters ([f8ee006](https://github.com/oaknational/Oak-Web-Application/commit/f8ee006e27d0db2485a9dd360d9253a95318055e))
+
+
+### Features
+
+* add in functionality for filtering by new ([63bde2d](https://github.com/oaknational/Oak-Web-Application/commit/63bde2d748a47151363ad2c3a926b9edc4d173de))
+* add legacy to active filters and fix sizing of tag ([6dd4c9f](https://github.com/oaknational/Oak-Web-Application/commit/6dd4c9f01d6ef873b8bdfe17941372738c9ffc25))
+* **lesq-1091:** build ui for show new filter ([aa5ce6f](https://github.com/oaknational/Oak-Web-Application/commit/aa5ce6fcdb83cdabb0e899d4c84ae1825f4712f2))
+
 # [1.581.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.580.0...v1.581.0) (2024-10-09)
 
 

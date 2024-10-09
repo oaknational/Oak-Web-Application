@@ -1,22 +1,17 @@
 import {
   isCycleTwoEnabled,
   useCycleTwoEnabled,
-  isSwimmingHackEnabled,
   getUnitFeatures,
 } from "./features";
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
 const MOCK_ENABLE_CYCLE_2 = jest.fn();
-const MOCK_SWIMMING_HACK = jest.fn();
 const MOCK_CURRIC_PARTNER_HACK = jest.fn();
 jest.mock("./constants", () => ({
   __esModule: true,
   get ENABLE_CYCLE_2() {
     return MOCK_ENABLE_CYCLE_2() ?? false;
-  },
-  get SWIMMING_HACK() {
-    return MOCK_SWIMMING_HACK() ?? false;
   },
   get CURRIC_PARTNER_HACK() {
     return MOCK_CURRIC_PARTNER_HACK() ?? false;
@@ -51,29 +46,15 @@ describe("useCycleTwoEnabled", () => {
   });
 });
 
-describe("isSwimmingHackEnabled", () => {
-  it("true when ENABLE_CYCLE_2 & SWIMMING_HACK is true", () => {
-    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
-    MOCK_SWIMMING_HACK.mockReturnValue(true);
-    expect(isSwimmingHackEnabled()).toEqual(true);
-  });
-
-  it("false when neither true", () => {
-    expect(isSwimmingHackEnabled()).toEqual(false);
-  });
-
-  it("false when only SWIMMING_HACK is true", () => {
-    MOCK_SWIMMING_HACK.mockReturnValue(true);
-    expect(isSwimmingHackEnabled()).toEqual(false);
-  });
-});
-
 describe("getUnitFeatures", () => {
-  it("returns swimming rules when hack enabled and matching unit", () => {
+  it("returns swimming rules when matching unit", () => {
     MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
-    MOCK_SWIMMING_HACK.mockReturnValue(true);
     expect(
-      getUnitFeatures({ slug: "sport-psychology-skill-and-ability" } as Unit),
+      getUnitFeatures({
+        subject_slug: "physical-education",
+        year: "3",
+        features: { pe_swimming: true },
+      } as Unit),
     ).toEqual({
       labels: ["swimming"],
       exclusions: ["pupils"],
@@ -83,11 +64,17 @@ describe("getUnitFeatures", () => {
         keystage: "All keystages",
       },
     });
+
+    expect(
+      getUnitFeatures({
+        subject_slug: "physical-education",
+        year: "3",
+      } as Unit),
+    ).toEqual(undefined);
   });
 
   it("returns computer science override when matching unit", () => {
     MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
-    MOCK_SWIMMING_HACK.mockReturnValue(false);
     expect(
       getUnitFeatures({
         subject_slug: "computing",
