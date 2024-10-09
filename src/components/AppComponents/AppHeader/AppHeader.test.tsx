@@ -88,9 +88,7 @@ describe("components/AppHeader", () => {
   });
 
   it("does not render a sign out button when user is not logged in", () => {
-    setUseUserReturn({
-      ...mockLoggedOut,
-    });
+    setUseUserReturn(mockLoggedOut);
     renderWithProviders()(<AppHeader />);
 
     const signOutButton = screen.queryByTestId("clerk-user-button");
@@ -98,9 +96,7 @@ describe("components/AppHeader", () => {
   });
 
   it("renders a sign out button when a user is logged in and feature flag is on", async () => {
-    setUseUserReturn({
-      ...mockLoggedIn,
-    });
+    setUseUserReturn(mockLoggedIn);
     renderWithProviders()(<AppHeader />);
 
     const signOutButton = screen.getByTestId("clerk-user-button");
