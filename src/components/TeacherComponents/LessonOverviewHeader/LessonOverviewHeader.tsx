@@ -15,7 +15,7 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 export type LessonOverviewHeaderProps = {
   // pathway props
-  subjectSlug: string | null;
+  subjectSlug: string;
   yearTitle?: string | null;
   examBoardTitle?: string | null;
   tierTitle?: string | null;
