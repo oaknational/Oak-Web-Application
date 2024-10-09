@@ -1,3 +1,10 @@
+# [1.580.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.579.0...v1.580.0) (2024-10-09)
+
+
+### Features
+
+* switch curriculum visualiser to newer MV ([23bf259](https://github.com/oaknational/Oak-Web-Application/commit/23bf259ec1d4441016854a84f1004376fd2a6526))
+
 # [1.579.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.578.0...v1.579.0) (2024-10-09)
 
 
