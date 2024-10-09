@@ -2,7 +2,8 @@ import { currentUser } from "@clerk/nextjs/server";
 
 import { UseUserReturn } from "./mockClerk";
 
-type UserResource = NonNullable<UseUserReturn["user"]>;
+import { UserResource } from "clerk";
+
 type CurrentUser = NonNullable<Awaited<ReturnType<typeof currentUser>>>;
 
 /**
@@ -18,6 +19,10 @@ export const mockUser = {
   ],
   createdAt: new Date("2024-10-07T15:00:00Z"),
   updatedAt: new Date("2024-10-08T16:00:00Z"),
+  lastSignInAt: new Date("2024-10-07T15:00:00Z"),
+  async update() {
+    return this;
+  },
 } as unknown as UserResource;
 
 export const mockUserWithDownloadAccess: UserResource = {
