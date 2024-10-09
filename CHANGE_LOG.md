@@ -1,3 +1,56 @@
+## [1.577.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.577.0...v1.577.1) (2024-10-08)
+
+
+### Bug Fixes
+
+* filter out only core / examboard units when option selected ([4c63a38](https://github.com/oaknational/Oak-Web-Application/commit/4c63a3818119ffbe7ebaf0351f9bb40a3b0c217c))
+* filtered subject phase options 'gcse' if examboards present ([2a37ac3](https://github.com/oaknational/Oak-Web-Application/commit/2a37ac398fcc69c82c5b0fba2915542628854ac6))
+* only cut off gcse option if present ([3db628b](https://github.com/oaknational/Oak-Web-Application/commit/3db628bd60a4a4ef21dafd933b9b03e25106cf41))
+
+# [1.577.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.3...v1.577.0) (2024-10-08)
+
+
+### Bug Fixes
+
+* remove expectation on non-existent heading ([77701a9](https://github.com/oaknational/Oak-Web-Application/commit/77701a9ecf2e6ac5d07604f4490a077bbe5f946f))
+
+
+### Features
+
+* **LESQ-1088:** add a banenr to the top of the sign-up page ([9f0ffe9](https://github.com/oaknational/Oak-Web-Application/commit/9f0ffe9cfb2f092d2eca761bd9e5d81d007df083))
+* **LESQ-1088:** add some aside copy to the sign-up page ([4e45cd1](https://github.com/oaknational/Oak-Web-Application/commit/4e45cd1b98bdd37956b5ee66124384dd54814a1d))
+
+## [1.576.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.2...v1.576.3) (2024-10-07)
+
+
+### Bug Fixes
+
+* throw the right error ([fae71aa](https://github.com/oaknational/Oak-Web-Application/commit/fae71aa4b200f53e21b4e6088d62873d182da6eb))
+
+## [1.576.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.1...v1.576.2) (2024-10-04)
+
+
+### Bug Fixes
+
+* **printble:** review page stores results locally button is a link ([581746d](https://github.com/oaknational/Oak-Web-Application/commit/581746db1e09ab739c85624f4517de56bbde3adf))
+* **printble:** review page stores results locally button is a link ([6ec3ddf](https://github.com/oaknational/Oak-Web-Application/commit/6ec3ddfc860f1cb6bbc96b0441cec2d498ac9620))
+* **printble:** review page stores results locally button is a link ([7671086](https://github.com/oaknational/Oak-Web-Application/commit/7671086740436f1df38f13c71c04314a511a5240))
+* **printble:** review page stores results locally button is a link ([c9e6c1a](https://github.com/oaknational/Oak-Web-Application/commit/c9e6c1a4206132676bb8ea189b044934b83679fb))
+* **printble:** review page stores results locally button is a link ([2b817ee](https://github.com/oaknational/Oak-Web-Application/commit/2b817ee9eb2bff08b9cf5bba2a2cd5de999cecd1))
+* **printble:** review page stores results locally button is a link ([d2b4b26](https://github.com/oaknational/Oak-Web-Application/commit/d2b4b26fa44accfb7d6765b128209523edc3e653))
+* **review:** remove useeffect ([03a3daf](https://github.com/oaknational/Oak-Web-Application/commit/03a3daf42e740ee1132b9ba24523aa7551df2f0b))
+* **review:** remove useeffect ([6513d82](https://github.com/oaknational/Oak-Web-Application/commit/6513d823a1688c62bcd9e360ea9bf39c281f8db8))
+* **review:** remove useeffect ([60a9977](https://github.com/oaknational/Oak-Web-Application/commit/60a997759566bfdca45c41ddb001a66c62c6c6ac))
+
+## [1.576.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.0...v1.576.1) (2024-10-04)
+
+
+### Bug Fixes
+
+* maths KS4 tiers, removed duplicates and improved unit specificity ([b8ba2c5](https://github.com/oaknational/Oak-Web-Application/commit/b8ba2c52804e3977d6655c1779654a5d15c2e92d))
+* stop filtering out some of combined science units ([f72f37f](https://github.com/oaknational/Oak-Web-Application/commit/f72f37f423752dc8c9383bd5235539c029e70a07))
+* updating tests ([324d812](https://github.com/oaknational/Oak-Web-Application/commit/324d81232d02e244b4baf65698d372bbc9950135))
+
 # [1.576.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.575.1...v1.576.0) (2024-10-03)
 
 
