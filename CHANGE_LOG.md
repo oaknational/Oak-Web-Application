@@ -1,3 +1,12 @@
+## [1.577.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.577.0...v1.577.1) (2024-10-08)
+
+
+### Bug Fixes
+
+* filter out only core / examboard units when option selected ([4c63a38](https://github.com/oaknational/Oak-Web-Application/commit/4c63a3818119ffbe7ebaf0351f9bb40a3b0c217c))
+* filtered subject phase options 'gcse' if examboards present ([2a37ac3](https://github.com/oaknational/Oak-Web-Application/commit/2a37ac398fcc69c82c5b0fba2915542628854ac6))
+* only cut off gcse option if present ([3db628b](https://github.com/oaknational/Oak-Web-Application/commit/3db628bd60a4a4ef21dafd933b9b03e25106cf41))
+
 # [1.577.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.576.3...v1.577.0) (2024-10-08)
 
 

@@ -752,6 +752,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                   className={`lot-picker ${
                                     isSelected(ks4Option) ? "selected" : ""
                                   }`}
+                                  data-testid="ks4-option-lot-picker"
                                 >
                                   <OakSecondaryButton
                                     role="radio"
