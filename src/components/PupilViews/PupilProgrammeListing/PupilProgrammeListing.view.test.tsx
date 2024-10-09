@@ -1,60 +1,45 @@
-import { act } from "@testing-library/react";
 import {
   OakInfoProps,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
-import {
-  PupilViewsProgrammeListing,
-  PupilViewsProgrammeListingProps,
-} from "./PupilProgrammeListing.view";
+import { PupilViewsProgrammeListing } from "./PupilProgrammeListing.view";
 
-import {
-  ProgrammeFields,
-  PupilProgrammeListingData,
-} from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
-import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
+import * as BrowseFactorSelector from "@/components/PupilComponents/BrowseFactorSelector";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import {
+  pupilProgrammeListingFixtureEBs,
+  pupilProgrammeListingFixturePathwaysEBs,
+} from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
+import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 
-const examboards: PupilViewsProgrammeListingProps["examboards"] = [
-  {
-    examboard: "AQA",
-    examboardSlug: "aqa",
-    examboardDisplayOrder: 1,
-    isLegacy: false,
-  },
-  {
-    examboard: "Edexcel",
-    examboardSlug: "edexcel",
-    examboardDisplayOrder: 2,
-    isLegacy: false,
-  },
-];
+const programmesPathwaysEBs = pupilProgrammeListingFixturePathwaysEBs();
+const examboards = getAvailableProgrammeFactor({
+  factorPrefix: "examboard",
+  programmes: programmesPathwaysEBs,
+});
 
-const tiers: PupilViewsProgrammeListingProps["tiers"] = [
-  {
-    tier: "foundation",
-    tierSlug: "foundation",
-    tierDisplayOrder: 1,
-    tierDescription: "Foundation",
-    isLegacy: false,
-  },
-  {
-    tier: "core",
-    tierSlug: "core",
-    tierDisplayOrder: 2,
-    tierDescription: "Core",
-    isLegacy: true,
-  },
-  {
-    tier: "higher",
-    tierSlug: "higher",
-    tierDisplayOrder: 3,
-    tierDescription: "Higher",
-    isLegacy: false,
-  },
-];
+const programmesEBs = pupilProgrammeListingFixtureEBs();
+const examboardsEBs = getAvailableProgrammeFactor({
+  factorPrefix: "examboard",
+  programmes: programmesEBs,
+});
+
+const programmesEBsTiers = pupilProgrammeListingFixturePathwaysEBs();
+const examboardsEBsTiers = getAvailableProgrammeFactor({
+  factorPrefix: "examboard",
+  programmes: programmesEBsTiers,
+});
+const tiersEBsTiers = getAvailableProgrammeFactor({
+  factorPrefix: "tier",
+  programmes: programmesEBsTiers,
+});
+
+const pathways = getAvailableProgrammeFactor({
+  factorPrefix: "pathway",
+  programmes: programmesPathwaysEBs,
+});
 
 const render = renderWithProviders();
 
@@ -69,130 +54,97 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
-describe("PublicProgrammeListing", () => {
-  const overrides: Partial<ProgrammeFields>[] = [
-    {
-      tier: "foundation",
-      tierSlug: "foundation",
-      tierDisplayOrder: 1,
-      examboard: "AQA",
-      examboardSlug: "aqa",
-      examboardDisplayOrder: 1,
-    },
-    {
-      tier: "foundation",
-      tierSlug: "foundation",
-      tierDisplayOrder: 1,
-      examboard: "Edexcel",
-      examboardSlug: "edexcel",
-      examboardDisplayOrder: 2,
-    },
-    {
-      tier: "core",
-      tierSlug: "core",
-      tierDisplayOrder: 2,
-      tierDescription: "Core",
-      examboard: "Edexcel",
-      examboardSlug: "edexcel",
-      examboardDisplayOrder: 2,
-    },
-    {
-      tier: "core",
-      tierSlug: "core",
-      tierDescription: "Core",
-      tierDisplayOrder: 2,
-      examboard: "AQA",
-      examboardSlug: "aqa",
-      examboardDisplayOrder: 1,
-    },
-  ];
-
-  const programmeFields = overrides.map((override) =>
-    programmeFieldsFixture({ overrides: override }),
+// mock browse factor selector component
+jest.mock("@/components/PupilComponents/BrowseFactorSelector", () => {
+  const originalModule = jest.requireActual<typeof BrowseFactorSelector>(
+    "@/components/PupilComponents/BrowseFactorSelector",
   );
+  return {
+    ...originalModule,
+    BrowseFactorSelector: jest.fn(() => <div>BrowseFactorSelector</div>),
+  };
+});
 
-  it("renders BrowseExamboardSelector when there are multiple examboards and no examboard is chosen", () => {
-    const programmes: PupilProgrammeListingData[] = programmeFields.map(
-      (programmeField) => ({
-        programmeSlug: "physics-test-slug",
-        programmeFields: programmeField,
-        yearSlug: "year-11",
-      }),
-    );
-
-    const props: PupilViewsProgrammeListingProps = {
-      programmes: programmes,
-      baseSlug: "baseSlug",
-      yearSlug: "year-11",
-      examboardSlug: undefined,
-      examboards,
-      tiers: [],
-    };
-    const { getByText } = render(
+describe("PublicProgrammeListing", () => {
+  it("presents pathways before examboards", () => {
+    render(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <PupilViewsProgrammeListing {...props} />
+        <PupilViewsProgrammeListing
+          baseSlug="my-subject"
+          yearSlug="year-11"
+          programmes={programmesPathwaysEBs}
+          examboards={examboards}
+          pathways={pathways}
+          tiers={[]}
+        />
+        ,
       </OakThemeProvider>,
     );
 
+    expect(BrowseFactorSelector.BrowseFactorSelector).toHaveBeenCalledWith(
+      expect.objectContaining({
+        factorType: "pathway",
+      }),
+      {},
+    );
+  });
+
+  it("presents examboards before tiers", () => {
+    render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsProgrammeListing
+          baseSlug="my-subject"
+          yearSlug="year-11"
+          programmes={programmesPathwaysEBs}
+          examboards={examboardsEBsTiers}
+          pathways={[]}
+          tiers={tiersEBsTiers}
+        />
+        ,
+      </OakThemeProvider>,
+    );
+
+    expect(BrowseFactorSelector.BrowseFactorSelector).toHaveBeenCalledWith(
+      expect.objectContaining({
+        factorType: "examboard",
+      }),
+      {},
+    );
+  });
+
+  it("renders the correct option information", () => {
+    // render the component
+    const { getByText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsProgrammeListing
+          baseSlug="my-subject"
+          yearSlug="year-11"
+          programmes={programmesPathwaysEBs}
+          examboards={examboardsEBsTiers}
+          pathways={[]}
+          tiers={tiersEBsTiers}
+        />
+        ,
+      </OakThemeProvider>,
+    );
     expect(getByText("Choose an exam board")).toBeInTheDocument();
   });
 
-  it("renders BrowseTierSelector when there are multiple tiers and only one examboard", () => {
-    const programmes: PupilProgrammeListingData[] = programmeFields
-      .filter((p) => p.examboard === "AQA")
-      .map((programmeField) => ({
-        programmeSlug: "physics-test-slug",
-        programmeFields: programmeField,
-        yearSlug: "year-11",
-      }));
-
-    const props: PupilViewsProgrammeListingProps = {
-      programmes: programmes,
-      baseSlug: "maths-secondary-year-10",
-      yearSlug: "year-10",
-      examboardSlug: undefined,
-      examboards: [],
-      tiers,
-    };
+  it("renders the correct backlink", () => {
+    // render the component
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <PupilViewsProgrammeListing {...props} />
+        <PupilViewsProgrammeListing
+          baseSlug="my-subject"
+          yearSlug="year-11"
+          programmes={programmesEBs}
+          examboards={examboardsEBs}
+          pathways={[]}
+          tiers={[]}
+        />
+        ,
       </OakThemeProvider>,
     );
-
-    expect(getByText("Choose a tier")).toBeInTheDocument();
-  });
-
-  it("renders BrowseTierSelector when there are multiple tiers and multiple examboards and an examboard is chosen", () => {
-    const programmes: PupilProgrammeListingData[] = programmeFields.map(
-      (programmeField) => ({
-        programmeSlug: "physics-test-slug",
-        programmeFields: programmeField,
-        yearSlug: "year-11",
-      }),
-    );
-
-    const props: PupilViewsProgrammeListingProps = {
-      programmes: programmes,
-      baseSlug: "maths-secondary-year-10",
-      yearSlug: "year-10",
-      examboardSlug: undefined,
-      examboards: examboards,
-      tiers,
-    };
-
-    const { getByRole } = render(
-      <OakThemeProvider theme={oakDefaultTheme}>
-        <PupilViewsProgrammeListing {...props} />
-      </OakThemeProvider>,
-    );
-
-    expect(getByRole("button", { name: "AQA" })).toBeInTheDocument();
-
-    act(() => {
-      getByRole("button", { name: "AQA" }).click();
-    });
-
-    expect(getByRole("link", { name: "Core" })).toBeInTheDocument();
+    expect(getByText("Change subject")).toBeInTheDocument();
   });
 });
