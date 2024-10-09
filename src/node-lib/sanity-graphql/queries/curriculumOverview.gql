@@ -24,6 +24,15 @@ query curriculumOverview(
         ...Image
       }
     }
+    curriculumPartnerOverviews {
+      curriculumPartner {
+        name
+        image {
+          ...Image
+        }
+      }
+      partnerBio
+    }
     video {
       ...Video
     }
