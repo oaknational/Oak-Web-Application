@@ -1,3 +1,15 @@
+# [1.578.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.577.1...v1.578.0) (2024-10-09)
+
+
+### Bug Fixes
+
+* test indices ([fe21d9a](https://github.com/oaknational/Oak-Web-Application/commit/fe21d9a94edca3ff57d0ed695c125e31806af5a4))
+
+
+### Features
+
+* use radio tile from component library ([52dd68f](https://github.com/oaknational/Oak-Web-Application/commit/52dd68fea53e688e95e5029648fe4cea33505a9a))
+
 ## [1.577.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.577.0...v1.577.1) (2024-10-08)
 
 
