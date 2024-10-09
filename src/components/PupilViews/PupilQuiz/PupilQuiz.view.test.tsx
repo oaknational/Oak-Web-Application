@@ -50,7 +50,7 @@ const useGetQuizTrackingDataMock = {
   getQuizTrackingData: jest.fn(),
 };
 
-jest.mock("@/hooks/useGetQuizTrackingdata", () => {
+jest.mock("@/hooks/useGetQuizTrackingData", () => {
   return {
     useGetQuizTrackingData: () => useGetQuizTrackingDataMock,
   };
