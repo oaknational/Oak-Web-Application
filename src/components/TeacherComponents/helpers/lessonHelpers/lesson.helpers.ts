@@ -52,10 +52,7 @@ export const getCommonPathway = (
           acc[key] = null;
         }
       });
-      // temporary fix
-      if (pathway.programmeSlug) {
-        acc.programmeSlug = pathway.programmeSlug;
-      }
+
       return acc;
     },
     { ...nullPathway },

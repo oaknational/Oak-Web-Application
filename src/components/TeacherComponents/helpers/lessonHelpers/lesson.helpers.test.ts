@@ -50,7 +50,7 @@ describe("getCommonPathway()", () => {
     expect(result).toEqual(expected);
   });
 
-  it.skip("returns the intersection of multiple LessonPathways", () => {
+  it("returns the intersection of multiple LessonPathways", () => {
     const lessonPathways = [
       {
         keyStageTitle: "KS1",

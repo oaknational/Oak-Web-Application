@@ -190,6 +190,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     <MathJaxLessonProvider>
       <HeaderLesson
         {...lesson}
+        pathways={lesson.isCanonical ? lesson.pathways : [lesson]}
         {...commonPathway}
         breadcrumbs={
           !lessonIsSpecialist(lesson)

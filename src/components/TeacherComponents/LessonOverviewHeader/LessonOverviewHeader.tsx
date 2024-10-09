@@ -1,5 +1,7 @@
 import { FC } from "react";
 
+import { LessonPathway } from "../types/lesson.types";
+
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import { LessonOverviewHeaderMobile } from "@/components/TeacherComponents/LessonOverviewHeaderMobile";
@@ -14,6 +16,7 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
  */
 
 export type LessonOverviewHeaderProps = {
+  pathways: LessonPathway[];
   // pathway props
   subjectSlug: string | null;
   yearTitle?: string | null;
@@ -47,7 +50,6 @@ export type LessonOverviewHeaderProps = {
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
   const { breadcrumbs, background } = props;
-
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <LessonOverviewHeaderDesktop {...props} />
