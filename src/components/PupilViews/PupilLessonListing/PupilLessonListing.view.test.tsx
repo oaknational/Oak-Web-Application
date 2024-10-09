@@ -39,7 +39,7 @@ describe("PupilViewsLessonListing", () => {
       programmeFields: {
         ...lessonBrowseDataFixture({}).programmeFields,
         tierDescription: "Core",
-        examboardDescription: "Edexcel",
+        examboard: "Edexcel",
       },
       supplementaryData: { orderInUnit: 2, unitOrder: 4 },
     })["programmeFields"],

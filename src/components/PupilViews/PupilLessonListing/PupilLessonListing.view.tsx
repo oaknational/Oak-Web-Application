@@ -36,7 +36,8 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     subject,
     subjectSlug,
     tierDescription,
-    examboardDescription,
+    pathway,
+    examboard,
     phaseSlug,
   } = programmeFields;
 
@@ -52,8 +53,13 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   }
 
   const breadcrumb: string[] = [yearDescription, subject];
-  if (examboardDescription) {
-    breadcrumb.push(examboardDescription);
+
+  if (pathway) {
+    breadcrumb.push(pathway);
+  }
+
+  if (examboard) {
+    breadcrumb.push(examboard);
   }
   if (tierDescription) {
     breadcrumb.push(tierDescription);
