@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsByKsSchema } from "@oaknational/oak-curriculum-schema";
 
 import { Sdk } from "../../sdk";
 import OakError from "../../../../errors/OakError";
@@ -12,7 +12,10 @@ import lessonListingSchema, {
 } from "./lessonListing.schema";
 
 const partialSyntheticUnitvariantLessonsSchema =
-  syntheticUnitvariantLessonsSchema.omit({ null_unitvariant_id: true });
+  syntheticUnitvariantLessonsByKsSchema.omit({
+    null_unitvariant: true,
+    unitvariant_id: true,
+  });
 
 type PartialSyntheticUnitvariantLessons = z.infer<
   typeof partialSyntheticUnitvariantLessonsSchema
