@@ -3,7 +3,11 @@ import { renderHook } from "@testing-library/react";
 import { useTrackRegistration } from "./useTrackRegistration";
 
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
-import { mockLoggedIn, mockUser } from "@/__tests__/__helpers__/mockUser";
+import {
+  mockLoggedIn,
+  mockLoggedOut,
+  mockUser,
+} from "@/__tests__/__helpers__/mockUser";
 import { getMockAnalytics } from "@/context/Analytics/getMockAnalytics";
 import { UserResource } from "clerk";
 import { SingleSignOnServiceValueType } from "@/browser-lib/avo/Avo";
@@ -170,5 +174,24 @@ describe(useTrackRegistration, () => {
 
     expect(mockAnalytics.track.userSignIn).not.toHaveBeenCalled();
     expect(mockAnalytics.track.userSignUpCompleted).not.toHaveBeenCalled();
+  });
+
+  it("tracks when the user signs out", () => {
+    jest
+      .spyOn(mockAnalytics.track, "userSignOut")
+      .mockReset()
+      .mockReturnValue(undefined);
+
+    setUseUserReturn({ ...mockLoggedIn, user: mockExistingUser });
+
+    const { rerender } = renderHook(useTrackRegistration);
+
+    expect(mockAnalytics.track.userSignOut).not.toHaveBeenCalled();
+
+    setUseUserReturn(mockLoggedOut);
+
+    rerender();
+
+    expect(mockAnalytics.track.userSignOut).toHaveBeenCalled();
   });
 });

@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
+import { useEffect, useRef } from "react";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { UserResource } from "clerk";
@@ -12,6 +12,7 @@ import { SingleSignOnServiceValueType } from "@/browser-lib/avo/Avo";
 export function useTrackRegistration() {
   const { track } = useAnalytics();
   const { user } = useUser();
+  const lastUserRef = useRef(user);
 
   // Would prefer that this were dealt with in an event driven manner.
   // However Clerk only offer webhooks for this which would be a lot of
@@ -19,11 +20,15 @@ export function useTrackRegistration() {
   // the correct person in analytics. If we do decide to invest time in Clerk
   // webhooks later this would be a great candidate to be lift off the client
   useEffect(() => {
+    // If there is no user, nothing to do
+    if (!user) {
+      return;
+    }
+
     // Skip if the sign-in has already been tracked
     if (
-      !user ||
       user.unsafeMetadata.owa?.lastTrackedSignInAt ===
-        user.lastSignInAt?.valueOf()
+      user.lastSignInAt?.valueOf()
     ) {
       return;
     }
@@ -56,6 +61,14 @@ export function useTrackRegistration() {
         },
       },
     });
+  }, [user, track]);
+
+  // When the user is unset they have signed-out so we should track it
+  useEffect(() => {
+    if (!user && lastUserRef.current) {
+      track.userSignOut();
+    }
+    lastUserRef.current = user;
   }, [user, track]);
 }
 
