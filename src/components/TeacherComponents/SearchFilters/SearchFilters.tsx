@@ -3,10 +3,8 @@ import {
   OakP,
   OakFlex,
   OakSearchFilterCheckBox,
-  OakSearchFilterCheckBoxProps,
   oakDefaultTheme,
   OakThemeProvider,
-  isValidIconName,
   OakBox,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
@@ -14,6 +12,7 @@ import styled from "styled-components";
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 type SearchFiltersProps = UseSearchFiltersReturnType & {
   isMobileFilter?: boolean;
@@ -152,10 +151,6 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
             </OakP>
             <OakFlex $gap={"space-between-xs"} $flexWrap={"wrap"}>
               {subjectFilters.map((subjectFilter) => {
-                const icon = isValidIconName(`subject-${subjectFilter.slug}`)
-                  ? (`subject-${subjectFilter.slug}` as OakSearchFilterCheckBoxProps["icon"])
-                  : undefined;
-
                 return (
                   <OakSearchFilterCheckBox
                     value={"subjectFilters"}
@@ -163,7 +158,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                     aria-label={`${subjectFilter.title} filter`}
                     id={`search-filters-subject-${subjectFilter.slug}:mobile:${isMobileFilter}`}
                     displayValue={subjectFilter.title}
-                    icon={icon}
+                    icon={getValidSubjectIconName(subjectFilter.slug)}
                     {...subjectFilter}
                     onChange={() => {
                       subjectFilter.onChange();
