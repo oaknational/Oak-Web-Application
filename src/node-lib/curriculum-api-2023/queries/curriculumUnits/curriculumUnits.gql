@@ -35,5 +35,6 @@ query curriculumUnits(
     year
     pathway
     pathway_slug
+    state
   }
 }

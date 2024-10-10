@@ -65,13 +65,11 @@ async function getData(opts: {
   const dataWarnings: string[] = [];
 
   try {
-    const curriculumDataUnsorted =
-      await curriculumApi2023.curriculumUnitsIncludeNew({
-        subjectSlug,
-        phaseSlug,
-        examboardSlug: examboardSlug ?? null,
-        state,
-      });
+    const curriculumDataUnsorted = await curriculumApi2023.curriculumUnits({
+      subjectSlug,
+      phaseSlug,
+      ks4OptionSlug: examboardSlug ?? null,
+    });
 
     // HACK: This sorts by examboard to push NULLs to the bottom of the list, to fix picking up the correct `unit_options`
     curriculumData = {

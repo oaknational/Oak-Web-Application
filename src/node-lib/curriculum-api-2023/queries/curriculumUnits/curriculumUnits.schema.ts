@@ -81,9 +81,11 @@ const curriculumUnitsSchema = z.object({
               _state: z.string().optional(),
             }),
           ),
+          state: z.string(),
         }),
       ),
       year: z.string(),
+      state: z.string(),
     })
     .strict()
     .array(),

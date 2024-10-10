@@ -66,6 +66,7 @@ const unitData = [
     ],
     order: 6,
     slug: "plant-growth-and-development",
+    state: "published",
     subject: "Biology",
     subject_slug: "biology",
     subject_parent: "Science",
@@ -144,6 +145,7 @@ const unitData = [
     ],
     order: 6,
     slug: "ecosystems",
+    state: "published",
     subject: "Science",
     subject_slug: "science",
     subject_parent: null,
@@ -219,6 +221,7 @@ const unitData = [
     ],
     order: 6,
     slug: "health-and-disease",
+    state: "published",
     subject: "Combined science",
     subject_slug: "combined-science",
     subject_parent: "Science",
@@ -255,6 +258,7 @@ const unitData = [
     planned_number_of_lessons: 13,
     phase: "Secondary",
     phase_slug: "secondary",
+    state: "published",
     keystage_slug: "ks4",
     lessons: [
       {
@@ -389,6 +393,7 @@ const unitData = [
     ],
     order: 7,
     slug: "coordination-and-control-maintaining-a-constant-internal-environment",
+    state: "published",
     subject: "Biology",
     subject_slug: "biology",
     subject_parent: "Science",
@@ -476,6 +481,7 @@ const unitData = [
     ],
     order: 7,
     slug: "transport-and-exchange-surfaces-in-plants",
+    state: "published",
     subject: "Combined science",
     subject_slug: "combined-science",
     subject_parent: "Science",
@@ -889,6 +895,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
           ],
           groupAs: null,
@@ -985,6 +992,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
             {
               connection_future_unit_description:
@@ -1078,6 +1086,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
             {
               connection_future_unit_description:
@@ -1165,6 +1174,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
             {
               connection_future_unit_description:
@@ -1253,6 +1263,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
           ],
           groupAs: null,
@@ -1361,6 +1372,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
           ],
           groupAs: null,
