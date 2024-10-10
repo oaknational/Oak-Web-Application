@@ -25,6 +25,7 @@ const curriculumUnitsQuery =
           ],
         },
         { phase_slug: { _eq: phaseSlug } },
+        { state: { _eq: "published" } },
       ],
     };
 

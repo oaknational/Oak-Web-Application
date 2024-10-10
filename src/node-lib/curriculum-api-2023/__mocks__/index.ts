@@ -17,7 +17,7 @@ import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures
 import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import { subjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
-import { pupilProgrammeListingFixture } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
+import { pupilProgrammeListingFixtureEBs } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
 import { refreshedMVTimeFixture } from "@/node-lib/curriculum-api-2023/fixtures/refreshedMVTime.fixture";
 import { teachersSitemapDataFixtureCamelCase } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 import { mockedSiteMapResponse } from "@/node-lib/curriculum-api-2023/fixtures/pupilSiteMap.fixture";
@@ -91,7 +91,7 @@ const curriculumApi: Pick<
     return [subjectBrowseDataFixture({})];
   }),
   pupilProgrammeListingQuery: jest.fn(async () => {
-    return pupilProgrammeListingFixture();
+    return pupilProgrammeListingFixtureEBs();
   }),
   lessonShare: jest.fn(async () => {
     return lessonShareFixtures();

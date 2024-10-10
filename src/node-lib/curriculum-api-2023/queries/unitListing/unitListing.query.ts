@@ -13,6 +13,7 @@ import { NEW_COHORT } from "@/config/cohort";
 const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.unitListing(args);
+
     const unitsForProgramme = res.units;
 
     if (!unitsForProgramme || unitsForProgramme.length === 0) {
@@ -37,6 +38,7 @@ const unitListingQuery =
     const hasTiers = parsedRawUnits.some(
       (p) => p.programme_fields.tier_slug !== null,
     );
+
     const tiers = hasTiers
       ? await getTiersForProgramme(
           sdk,
