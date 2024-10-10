@@ -295,6 +295,12 @@ type CurriculumOverviewLinkProps = {
   page: "curriculum-overview";
   subjectPhaseSlug: string;
 };
+
+type CurriculumExplainerLinkProps = {
+  page: "curriculum-explainer";
+  subjectPhaseSlug: string;
+};
+
 type CurriculumUnitsLinkProps = {
   page: "curriculum-units";
   subjectPhaseSlug: string;
@@ -381,6 +387,7 @@ export type OakLinkProps =
   | TeacherHubLinkProps
   | CurriculumLandingPageLinkProps
   | CurriculumOverviewLinkProps
+  | CurriculumExplainerLinkProps
   | CurriculumUnitsLinkProps
   | CurriculumDownloadsLinkProps
   | CurriculumPreviousDownloadsLinkProps
@@ -851,6 +858,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Curriculum Overview",
     configType: "internal",
     pageType: "curriculum-overview",
+  }),
+  "curriculum-explainer": createOakPageConfig({
+    pathPattern: "/teachers/curriculum/:subjectPhaseSlug/explainer",
+    analyticsPageName: "Curriculum Explainer",
+    configType: "internal",
+    pageType: "curriculum-explainer",
   }),
   "curriculum-units": createOakPageConfig({
     pathPattern: "/teachers/curriculum/:subjectPhaseSlug/units",

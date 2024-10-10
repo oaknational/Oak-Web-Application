@@ -23,6 +23,7 @@ import {
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -39,6 +40,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   subjectPhaseOptions,
   keyStages,
 }) => {
+  const cycleTwoEnabled = isCycleTwoEnabled();
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
   const subject = subjectPhaseOptions.subjects.find(
@@ -86,10 +88,10 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       scroll: false,
     },
     {
-      label: "Overview",
-      page: "curriculum-overview",
+      label: cycleTwoEnabled ? "Explainer" : "Overview",
+      page: cycleTwoEnabled ? "curriculum-explainer" : "curriculum-overview",
       subjectPhaseSlug: subjectPhaseSlug,
-      isCurrent: tab === "overview",
+      isCurrent: tab === (cycleTwoEnabled ? "explainer" : "overview"),
       scroll: false,
     },
     {

@@ -105,7 +105,7 @@ export type CurriculumInfoPageProps = {
   curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
 };
 
-const VALID_TABS = ["overview", "units", "downloads"] as const;
+const VALID_TABS = ["overview", "units", "explainer", "downloads"] as const;
 export type CurriculumTab = (typeof VALID_TABS)[number];
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
@@ -148,6 +148,17 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         />
       );
 
+      break;
+    case "explainer":
+      tabContent = (
+        <OverviewTab
+          data={{
+            curriculumInfo: curriculumOverviewTabData,
+            curriculumCMSInfo: curriculumOverviewSanityData,
+            curriculumSelectionSlugs,
+          }}
+        />
+      );
       break;
     case "units":
       tabContent = (
