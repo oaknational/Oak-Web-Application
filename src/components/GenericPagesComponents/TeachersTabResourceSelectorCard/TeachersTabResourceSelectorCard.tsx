@@ -1,14 +1,18 @@
 import { FC } from "react";
-import { OakTypography, OakFlex } from "@oaknational/oak-components";
+import {
+  OakTypography,
+  OakFlex,
+  OakIcon,
+  OakIconName,
+} from "@oaknational/oak-components";
 
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Card from "@/components/SharedComponents/Card";
 import { PositionProps } from "@/styles/utils/position";
 import { DisplayProps } from "@/styles/utils/display";
 
 type TeachersTabResourceSelectorCardProps = {
-  icon: IconName;
+  icon: OakIconName;
   title: string;
   angle: number;
 } & Omit<PositionProps, "$gap"> &
@@ -34,13 +38,12 @@ const TeachersTabResourceSelectorCard: FC<
           $background={"oakGreen"}
           $pa="inner-padding-xs"
         >
-          {" "}
-          <Icon
-            $color={"white"}
-            name={icon}
-            $objectPosition={"center"}
-            size={50}
-            $pa={3}
+          <OakIcon
+            iconName={icon}
+            $height="all-spacing-9"
+            $width="all-spacing-9"
+            $colorFilter={"white"}
+            alt=""
           />
         </OakFlex>
         <OakFlex $height={"100%"} $alignItems={"center"}>

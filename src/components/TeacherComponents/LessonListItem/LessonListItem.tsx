@@ -161,11 +161,6 @@ const LessonListItem: FC<
               title={lessonTitle}
               slug={lessonSlug}
             />
-            {/* {expired && (
-                <OakP $mt="space-between-ssx" $font={["body-3", "body-2"]}>
-                  This lesson is currently unavailable.
-                </OakP>
-              )} */}
           </OakFlex>
         </OakFlex>
         <OakFlex
