@@ -1,7 +1,13 @@
+import { TextEncoder, TextDecoder } from "node:util";
+
 import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import "whatwg-fetch";
 import bugsnag from "@bugsnag/js";
+
+// TextEncoder and TextDecoder are Web APIs but not available in JSDOM
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),

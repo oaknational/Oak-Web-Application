@@ -6,6 +6,8 @@ import HowCanOakSupport, { oakSupportMap } from "./HowCanOakSupport.view";
 import renderWithProviders, {
   allProviders,
 } from "@/__tests__/__helpers__/renderWithProviders";
+import { encodeOnboardingDataQueryParam } from "@/components/TeacherComponents/OnboardingForm/onboardingDataQueryParam";
+import { OnboardingFormProps } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -27,12 +29,11 @@ describe("HowCanOakSupport", () => {
   it("renders a continue button that is enabled by default", async () => {
     mockRouter.push({
       pathname: "/onboarding/how-can-oak-support",
-      query: {
-        newsletterSignUp: "true",
-        schoolName:
-          "Jefferson%20House%2C%20Cheshire%20West%20and%20Chester%2C%20CW7%201JT",
-        school: "142332-Jefferson%20House",
-      },
+      query: encodeOnboardingDataQueryParam({}, {
+        newsletterSignUp: true,
+        schoolName: "Jefferson House, Cheshire West and Chester, CW7 1JT",
+        school: "142332-Jefferson House",
+      } as OnboardingFormProps),
     });
     renderWithProviders({ ...allProviders, router: mockRouter })(
       <HowCanOakSupport />,
