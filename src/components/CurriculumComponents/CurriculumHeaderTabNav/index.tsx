@@ -31,21 +31,19 @@ const CurriculumHeaderTabNav = ({
       $overflowX={"auto"}
       {...flexProps}
     >
-      {links.map((link, i) => {
-        return (
-          <ButtonAsLink
-            {...link}
-            size="large"
-            variant={variant}
-            aria-current={link.isCurrent ? "page" : undefined}
-            aria-controls={link.page}
-            key={`CurriculumHeaderTabNav-${link.page}-${i}`}
-            $font={["heading-7", "heading-6"]}
-            $pt={[3, 0]}
-            $ph={20}
-          />
-        );
-      })}
+      {links.map((link, i) => (
+        <ButtonAsLink
+          {...link}
+          size="large"
+          variant={variant}
+          aria-current={link.isCurrent ? "page" : undefined}
+          aria-controls={link.page}
+          key={`CurriculumHeaderTabNav-${link.page}-${i}`}
+          $font={["heading-7", "heading-6"]}
+          $pt={[3, 0]}
+          $ph={20}
+        />
+      ))}
     </Flex>
   );
 };
