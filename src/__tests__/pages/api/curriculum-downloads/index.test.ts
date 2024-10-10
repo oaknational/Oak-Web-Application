@@ -23,12 +23,11 @@ jest.mock("../../../../pages-helpers/curriculum/docx/getMvRefreshTime", () => ({
 jest.mock("../../../../node-lib/curriculum-api-2023", () => ({
   __esModule: true,
   default: {
-    curriculumUnitsIncludeNew: async (
-      opts: Parameters<
-        (typeof curriculumApi2023)["curriculumUnitsIncludeNew"]
-      >[0],
+    curriculumUnits: async (
+      opts: Parameters<(typeof curriculumApi2023)["curriculumUnits"]>[0],
     ) => {
       if (opts.subjectSlug === "english") {
+        q;
         return import("./fixtures/curriculumUnitsIncludeNew.json");
       }
       throw new Error("Missing");

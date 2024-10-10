@@ -51,7 +51,7 @@ const secondaryScienceUnits = {
       cycle: "1",
       why_this_why_now: null,
       description: null,
-      state: "",
+      state: "published",
     },
     {
       connection_future_unit_description: null,
@@ -84,7 +84,7 @@ const secondaryScienceUnits = {
       cycle: "1",
       why_this_why_now: null,
       description: null,
-      state: "",
+      state: "published",
     },
   ],
 };
@@ -134,7 +134,7 @@ const primaryEnglishData = {
       cycle: "1",
       why_this_why_now: null,
       description: null,
-      state: "",
+      state: "published",
     },
     {
       connection_future_unit_description: null,
@@ -179,7 +179,7 @@ const primaryEnglishData = {
           unitvariant_id: 774,
           why_this_why_now: null,
           description: null,
-          state: "",
+          state: "published",
         },
         {
           connection_future_unit_description: null,
@@ -191,14 +191,14 @@ const primaryEnglishData = {
           unitvariant_id: 773,
           why_this_why_now: null,
           description: null,
-          state: "",
+          state: "published",
         },
       ],
       year: "6",
       cycle: "1",
       why_this_why_now: null,
       description: null,
-      state: "",
+      state: "published",
     },
   ],
 };
@@ -309,7 +309,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           cycle: "1",
           why_this_why_now: null,
           description: null,
-          state: "",
+          state: "published",
         },
         {
           planned_number_of_lessons: 8,
@@ -353,7 +353,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           cycle: "1",
           why_this_why_now: null,
           description: null,
-          state: "",
+          state: "published",
         },
       ],
     };
@@ -464,7 +464,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
               unitvariant_id: 774,
               why_this_why_now: null,
               description: null,
-              state: "",
+              state: "published",
             },
             {
               connection_future_unit_description: null,
@@ -476,14 +476,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
               unitvariant_id: 773,
               why_this_why_now: null,
               description: null,
-              state: "",
+              state: "published",
             },
           ],
           year: "10",
           cycle: "1",
           why_this_why_now: null,
           description: null,
-          state: "",
+          state: "published",
         },
         {
           planned_number_of_lessons: 8,
@@ -522,14 +522,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
               unitvariant_id: 774,
               why_this_why_now: null,
               description: null,
-              state: "",
+              state: "published",
             },
           ],
           year: "10",
           cycle: "1",
           why_this_why_now: null,
           description: null,
-          state: "",
+          state: "published",
         },
       ],
     };
@@ -725,7 +725,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           cycle: "1",
           why_this_why_now: null,
           description: null,
-          state: "",
+          state: "published",
         },
         {
           connection_future_unit_description: null,
@@ -789,7 +789,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           cycle: "1",
           why_this_why_now: null,
           description: null,
-          state: "",
+          state: "published",
         },
         {
           connection_future_unit_description: null,
@@ -822,7 +822,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
           cycle: "1",
           why_this_why_now: null,
           description: null,
-          state: "",
+          state: "published",
         },
       ],
     };
@@ -892,7 +892,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         cycle: "1",
         why_this_why_now: null,
         description: null,
-        state: "",
+        state: "published",
       };
       expect(createProgrammeSlug(unitData)).toEqual("science-primary-ks2");
     });
@@ -928,7 +928,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         cycle: "1",
         why_this_why_now: null,
         description: null,
-        state: "",
+        state: "published",
       };
       expect(createProgrammeSlug(unitData)).toEqual("science-primary-ks4");
     });
@@ -964,7 +964,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         cycle: "1",
         why_this_why_now: null,
         description: null,
-        state: "",
+        state: "published",
       };
       expect(createProgrammeSlug(unitData, "aqa", "foundation")).toEqual(
         "combined-science-secondary-ks4-foundation-aqa",
@@ -1002,7 +1002,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         cycle: "1",
         why_this_why_now: null,
         description: null,
-        state: "",
+        state: "published",
       };
       expect(createProgrammeSlug(unitData, "aqa")).toEqual(
         "combined-science-secondary-ks3",
@@ -1041,7 +1041,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
         cycle: "1",
         why_this_why_now: null,
         description: null,
-        state: "",
+        state: "published",
       };
       expect(createProgrammeSlug(unitData, "aqa")).toEqual(
         "combined-science-secondary-ks3",
