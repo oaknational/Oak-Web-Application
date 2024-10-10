@@ -87,6 +87,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    state: "",
   },
   {
     connection_prior_unit_description:
@@ -166,6 +167,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    state: "",
   },
   {
     connection_prior_unit_description:
@@ -240,6 +242,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    state: "",
   },
   {
     connection_prior_unit_description:
@@ -329,6 +332,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    state: "",
   },
   {
     connection_prior_unit_description:
@@ -412,6 +416,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    state: "",
   },
   {
     connection_prior_unit_description:
@@ -498,6 +503,7 @@ const unitData = [
     cycle: "1",
     why_this_why_now: null,
     description: null,
+    state: "",
   },
 ];
 

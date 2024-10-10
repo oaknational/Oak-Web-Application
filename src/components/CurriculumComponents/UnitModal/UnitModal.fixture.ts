@@ -62,6 +62,7 @@ export const mockUnit: Unit = {
   cycle: "1",
   why_this_why_now: null,
   description: null,
+  state: "",
 };
 
 export const mockUnitKS4: Unit = {
@@ -106,6 +107,7 @@ export const mockUnitKS4: Unit = {
   cycle: "1",
   why_this_why_now: null,
   description: null,
+  state: "",
 };
 
 const optionalUnits = [
@@ -120,6 +122,7 @@ const optionalUnits = [
     why_this_why_now: null,
     description: null,
     lessons,
+    state: "",
   },
   {
     title: "Test optional unit 2",
@@ -132,6 +135,7 @@ const optionalUnits = [
     why_this_why_now: null,
     description: null,
     lessons,
+    state: "",
   },
   {
     title: "Test optional unit 3",
@@ -144,6 +148,7 @@ const optionalUnits = [
     why_this_why_now: null,
     description: null,
     lessons,
+    state: "",
   },
 ];
 
