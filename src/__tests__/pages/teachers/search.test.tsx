@@ -44,7 +44,7 @@ describe("pages/teachers/search.tsx", () => {
       />,
     );
 
-    expect(getAllByRole("checkbox", { hidden: true })[6]).toHaveAttribute(
+    expect(getAllByRole("checkbox", { hidden: true })[7]).toHaveAttribute(
       "aria-label",
       "AQA filter",
     );
@@ -56,7 +56,7 @@ describe("pages/teachers/search.tsx", () => {
       />,
     );
 
-    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAttribute(
+    expect(getAllByRole("checkbox", { hidden: true })[3]).toHaveAttribute(
       "aria-label",
       "Key stage 1 filter",
     );
@@ -68,7 +68,7 @@ describe("pages/teachers/search.tsx", () => {
       />,
     );
 
-    expect(getAllByRole("checkbox", { hidden: true })[11]).toHaveAttribute(
+    expect(getAllByRole("checkbox", { hidden: true })[12]).toHaveAttribute(
       "aria-label",
       "English filter",
     );

@@ -231,30 +231,6 @@ export const LessonEngineProvider = memo(
       }
     };
 
-    const getActivityTrackingData = (section: LessonReviewSection) => ({
-      pupilExperienceLessonActivity: section,
-    });
-
-    const getQuizTrackingData = (section: "starter-quiz" | "exit-quiz") => ({
-      pupilExperienceLessonActivity: section,
-      pupilQuizGrade: state.sections[section]?.grade || 0,
-      pupilQuizNumQuestions: state.sections[section]?.numQuestions || 0,
-      // FIXME: these are still wrong. The full results should be sent
-      hintQuestion: "",
-      hintQuestionResult: "",
-      hintUsed: "",
-    });
-
-    const getVideoTrackingData = (section: "video") => ({
-      pupilExperienceLessonActivity: section,
-      pupilVideoDurationSeconds: state.sections["video"]?.duration || 0,
-      isMuted: state.sections["video"]?.muted || false,
-      signedOpened: state.sections["video"]?.signedOpened || false,
-      pupilVideoTimeElapsedSeconds: state.sections["video"]?.timeElapsed || 0,
-      pupilVideoPlayed: state.sections["video"]?.played || false,
-      transcriptOpened: state.sections["video"]?.transcriptOpened || false,
-    });
-
     const completeActivity = (section: LessonReviewSection) => {
       if (state.sections[section]?.isComplete) {
         console.warn(`Section '${section}' is already complete`);
@@ -262,29 +238,6 @@ export const LessonEngineProvider = memo(
       }
 
       trackLessonStarted();
-
-      if (section === "intro" && track.lessonActivityCompletedIntroduction) {
-        track.lessonActivityCompletedIntroduction(
-          getActivityTrackingData(section),
-        );
-      }
-      if (
-        section === "starter-quiz" &&
-        track.lessonActivityCompletedStarterQuiz &&
-        state.sections["starter-quiz"] !== undefined
-      ) {
-        track.lessonActivityCompletedStarterQuiz(getQuizTrackingData(section));
-      }
-
-      if (section === "video" && state.sections["video"] !== undefined) {
-        track.lessonActivityCompletedLessonVideo(getVideoTrackingData(section));
-      }
-      if (
-        section === "exit-quiz" &&
-        state.sections["exit-quiz"] !== undefined
-      ) {
-        track.lessonActivityCompletedExitQuiz(getQuizTrackingData(section));
-      }
       if (
         state.lessonReviewSections.every(
           (s) => state.sections[s]?.isComplete || s === section, // the current section will only be marked as complete on the next render
@@ -293,101 +246,18 @@ export const LessonEngineProvider = memo(
         if (track.lessonCompleted) {
           track.lessonCompleted({});
         }
-
-        // this is the only transition that doesn't happen via the other methods
-        // so we need to ensure tracking happens
-        trackSectionStarted("review");
       }
       dispatch({ type: "completeActivity", section });
     };
 
-    const trackSectionStarted = (section: LessonSection) => {
-      if (
-        section === "intro" &&
-        track.lessonActivityStartedIntroduction &&
-        !state.sections["intro"]?.isComplete
-      ) {
-        track.lessonActivityStartedIntroduction(
-          getActivityTrackingData(section),
-        );
-      } else if (
-        section === "starter-quiz" &&
-        track.lessonActivityStartedStarterQuiz &&
-        !state.sections["starter-quiz"]?.isComplete
-      ) {
-        track.lessonActivityStartedStarterQuiz({
-          ...getQuizTrackingData(section),
-          hintAvailable: true,
-        });
-      } else if (
-        section === "exit-quiz" &&
-        track.lessonActivityStartedExitQuiz &&
-        !state.sections["exit-quiz"]?.isComplete
-      ) {
-        track.lessonActivityStartedExitQuiz({
-          ...getQuizTrackingData(section),
-          hintAvailable: true,
-        });
-      } else if (
-        section === "video" &&
-        track.lessonActivityStartedLessonVideo &&
-        !state.sections["video"]?.isComplete
-      ) {
-        track.lessonActivityStartedLessonVideo(getVideoTrackingData(section));
-      }
-    };
-
     const updateCurrentSection = (section: LessonSection) => {
-      if (
-        isLessonReviewSection(state.currentSection) &&
-        !state.sections[state.currentSection]?.isComplete
-      ) {
-        switch (state.currentSection) {
-          case "intro":
-            if (track.lessonActivityAbandonedIntroduction) {
-              track.lessonActivityAbandonedIntroduction(
-                getActivityTrackingData(state.currentSection),
-              );
-            }
-            break;
-          case "starter-quiz":
-            if (track.lessonActivityAbandonedStarterQuiz) {
-              track.lessonActivityAbandonedStarterQuiz(
-                getQuizTrackingData(state.currentSection),
-              );
-            }
-            break;
-          case "video":
-            if (track.lessonActivityAbandonedLessonVideo) {
-              track.lessonActivityAbandonedLessonVideo(
-                getVideoTrackingData(state.currentSection),
-              );
-            }
-            break;
-          case "exit-quiz":
-            if (track.lessonActivityAbandonedExitQuiz) {
-              track.lessonActivityAbandonedExitQuiz(
-                getQuizTrackingData(state.currentSection),
-              );
-            }
-            break;
-        }
-      }
-
       trackLessonStarted();
-      trackSectionStarted(section);
-
       dispatch({ type: "setCurrentSection", section });
     };
 
     const proceedToNextSection = () => {
       dispatch({ type: "proceedToNextSection" });
-      const nextSection =
-        state.lessonReviewSections.find(
-          (section) => !state.sections[section]?.isComplete,
-        ) ?? "review";
       trackLessonStarted();
-      trackSectionStarted(nextSection);
     };
 
     const updateSectionResult = (
@@ -398,9 +268,6 @@ export const LessonEngineProvider = memo(
     };
 
     const updateWorksheetDownloaded = (result: IntroResult) => {
-      if (result.worksheetDownloaded) {
-        track.lessonActivityDownloadedWorksheet({});
-      }
       dispatch({ type: "updateSectionResult", result });
     };
 

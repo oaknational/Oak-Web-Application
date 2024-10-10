@@ -10,6 +10,22 @@ import {
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+
+const usePupilAnalyticsMock = {
+  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
+  identify: jest.fn(),
+  posthogDistinctId: "123",
+};
+
+jest.mock(
+  "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
+  () => {
+    return {
+      usePupilAnalytics: () => usePupilAnalyticsMock,
+    };
+  },
+);
 
 const mockBroweData = lessonBrowseDataFixture({
   programmeFields: {
