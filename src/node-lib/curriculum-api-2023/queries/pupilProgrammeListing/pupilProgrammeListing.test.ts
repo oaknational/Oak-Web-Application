@@ -7,7 +7,7 @@ import sdk from "@/node-lib/curriculum-api-2023/sdk";
 
 describe("pupilUnitListing()", () => {
   const s = syntheticProgrammesByYearFixture();
-  const pupilProgrammeListingFixture = {
+  const pupilProgrammeListingFixtureEBs = {
     programme_slug: s.programme_slug,
     programme_fields: s.programme_fields,
     year_slug: s.year_slug,
@@ -19,7 +19,7 @@ describe("pupilUnitListing()", () => {
       pupilProgrammeListing: jest.fn(
         () =>
           Promise.resolve({
-            data: [pupilProgrammeListingFixture],
+            data: [pupilProgrammeListingFixtureEBs],
           }) as Promise<PupilProgrammeListingQuery>, // Add the correct return type
       ),
     })({
@@ -49,7 +49,7 @@ describe("pupilUnitListing()", () => {
     const mock = jest.fn(
       () =>
         Promise.resolve({
-          data: [pupilProgrammeListingFixture],
+          data: [pupilProgrammeListingFixtureEBs],
         }) as Promise<PupilProgrammeListingQuery>, // Add the correct return type
     );
 

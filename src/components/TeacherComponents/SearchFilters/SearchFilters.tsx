@@ -13,6 +13,7 @@ import styled from "styled-components";
 
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
+import TagPromotional from "@/components/SharedComponents/TagPromotional";
 
 type SearchFiltersProps = UseSearchFiltersReturnType & {
   isMobileFilter?: boolean;
@@ -25,12 +26,59 @@ const StyledFieldset = styled.fieldset`
 `;
 
 const SearchFilters: FC<SearchFiltersProps> = (props) => {
-  const { keyStageFilters, subjectFilters, examBoardFilters, isMobileFilter } =
-    props;
+  const {
+    keyStageFilters,
+    subjectFilters,
+    examBoardFilters,
+    isMobileFilter,
+    legacyFilter,
+  } = props;
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <OakBox>
+        <StyledFieldset>
+          <OakBox
+            $mb="space-between-m2"
+            $bb={"border-solid-s"}
+            $borderColor={"grey40"}
+          >
+            <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+              Curriculum
+            </OakP>
+            <OakFlex
+              $gap={"space-between-s"}
+              $mb="space-between-m2"
+              $flexDirection={"column"}
+              $flexWrap={"wrap"}
+            >
+              <OakSearchFilterCheckBox
+                name={"new"}
+                displayValue={"Show new only"}
+                key={`search-filters-curriculum-filter`}
+                aria-label={`Show new content filter`}
+                {...legacyFilter}
+                id={`search-filters-showNewContent:mobile:${isMobileFilter}`}
+                value="new"
+                onChange={() => {
+                  legacyFilter.onChange();
+                }}
+              />
+              <OakFlex $alignItems={"flex-start"}>
+                <OakBox>
+                  <TagPromotional size={"small"} />
+                </OakBox>
+                <OakP
+                  $font={"body-3"}
+                  $wordWrap={"normal"}
+                  $color={"text-subdued"}
+                >
+                  Resources designed for the classroom
+                </OakP>
+              </OakFlex>
+            </OakFlex>
+          </OakBox>
+        </StyledFieldset>
         <OakBox
           $mb="space-between-m2"
           $bb={"border-solid-s"}

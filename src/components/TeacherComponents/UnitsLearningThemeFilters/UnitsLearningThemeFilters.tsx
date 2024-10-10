@@ -1,8 +1,12 @@
-import { OakFlex } from "@oaknational/oak-components";
 import { useState } from "react";
+import {
+  OakFlex,
+  TileItem,
+  isTileItem,
+  OakRadioTile,
+} from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 
-import { RadioTheme, RadioTile, isRadioTheme } from "./RadioTile";
 import { generateUrl } from "./generateUrl";
 
 import {
@@ -44,19 +48,19 @@ const UnitsLearningThemeFilters = ({
   activeMobileFilter,
   browseRefined,
 }: UnitsLearningThemeFiltersProps) => {
-  const learningThemesMapped: Array<RadioTheme> = learningThemes
+  const themeTileItems: Array<TileItem> = learningThemes
     ? learningThemes
         .map((learningTheme) => {
           return {
             label: learningTheme?.themeTitle,
-            slug: learningTheme?.themeSlug,
+            id: learningTheme?.themeSlug,
           };
         })
-        .filter(isRadioTheme)
+        .filter(isTileItem)
         .sort((a, b) => {
-          if (a.slug === "no-theme") {
+          if (a.id === "no-theme") {
             return 0;
-          } else if (b.slug === "no-theme") {
+          } else if (b.id === "no-theme") {
             return -1;
           } else {
             return 0;
@@ -70,20 +74,14 @@ const UnitsLearningThemeFilters = ({
   const yearGroupSlug = router.query["year"]?.toString();
 
   const [activeThemeSlug, setActiveThemeSlug] = useState(selectedThemeSlug);
-  const [focussedThemeSlug, setFocussedThemeSlug] = useState<
-    string | undefined
-  >(undefined);
 
-  const onChange = (theme: { label: string; slug: string }) => {
-    const callbackValue = theme.slug === "all" ? undefined : theme.slug;
+  const onChange = (theme: TileItem) => {
+    const callbackValue = theme.id === "all" ? undefined : theme.id;
+    setActiveThemeSlug(theme.id);
     if (!isMobile) {
-      setActiveThemeSlug(theme.slug);
-
       onChangeCallback(callbackValue);
-
       if (trackingProps) {
         const { keyStageSlug, subjectSlug } = trackingProps;
-
         browseRefined({
           platform: "owa",
           product: "teacher lesson resources",
@@ -98,7 +96,7 @@ const UnitsLearningThemeFilters = ({
       }
 
       const newUrl = generateUrl(
-        theme,
+        { slug: theme.id },
         programmeSlug,
         yearGroupSlug,
         categorySlug,
@@ -107,7 +105,7 @@ const UnitsLearningThemeFilters = ({
       window.history.replaceState(window.history.state, "", newUrl);
     } else {
       setMobileFilter?.(callbackValue);
-      setActiveThemeSlug(theme.slug);
+      setActiveThemeSlug(theme.id);
     }
   };
 
@@ -119,29 +117,24 @@ const UnitsLearningThemeFilters = ({
         role="radiogroup"
         $pb="inner-padding-xl2"
       >
-        {[{ slug: "all", label: "All" }, ...learningThemesMapped].map(
-          (theme) => {
-            const activeMobTheme =
-              activeMobileFilter === undefined || activeMobileFilter === ""
-                ? "all"
-                : activeMobileFilter;
-            const isChecked = !isMobile
-              ? activeThemeSlug === theme.slug
-              : activeMobTheme === theme.slug;
-            const isFocussed = focussedThemeSlug === theme.slug;
-            return (
-              <RadioTile
-                theme={theme}
-                key={theme.slug}
-                isChecked={isChecked}
-                isFocussed={isFocussed}
-                onChange={onChange}
-                onFocus={setFocussedThemeSlug}
-                id={`${theme.slug}-${idSuffix}`}
-              />
-            );
-          },
-        )}
+        {[{ id: "all", label: "All" }, ...themeTileItems].map((theme) => {
+          const activeMobTheme =
+            activeMobileFilter === undefined || activeMobileFilter === ""
+              ? "all"
+              : activeMobileFilter;
+          const isChecked = !isMobile
+            ? activeThemeSlug === theme.id
+            : activeMobTheme === theme.id;
+          return (
+            <OakRadioTile
+              tileItem={theme}
+              key={theme.id}
+              isChecked={isChecked}
+              onChange={onChange}
+              id={`${theme.id}-${idSuffix}`}
+            />
+          );
+        })}
       </OakFlex>
     </OakFlex>
   );
