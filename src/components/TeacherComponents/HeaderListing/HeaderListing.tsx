@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakHeading, OakSpan } from "@oaknational/oak-components";
+import { OakFlex, OakHeading, OakSpan } from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -57,18 +57,22 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
 
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
-      <Flex $mb={[12, 0]} $flexDirection={"column"}>
-        <Flex>
-          <Flex $mr={[16, 32]} $height={[80, 140]} $maxWidth={[80, 140]}>
+      <OakFlex
+        $mb={["space-between-xs", "space-between-none"]}
+        $flexDirection={"column"}
+      >
+        <OakFlex>
+          <OakFlex
+            $mr={["space-between-s", "space-between-m2"]}
+            $height={["all-spacing-13", "all-spacing-17"]}
+          >
             <SubjectIconBrushBorders
-              $pa={16}
               subjectSlug={subjectSlug}
-              $ma={"auto"}
               isNew={isNew}
               color={subjectIconBackgroundColor}
             />
-          </Flex>
-          <Flex $flexDirection={"column"}>
+          </OakFlex>
+          <OakFlex $flexDirection={"column"}>
             <OakSpan
               $mb="space-between-ssx"
               $color={"grey60"}
@@ -91,9 +95,9 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
-          </Flex>
-        </Flex>
-      </Flex>
+          </OakFlex>
+        </OakFlex>
+      </OakFlex>
       <Flex $background={background} $display={["inline", "none"]}>
         {hasCurriculumDownload && isKeyStagesAvailable && (
           <HeaderListingCurriculumDownloadButton

@@ -121,7 +121,7 @@ export const getStaticProps: GetStaticProps<
         (unit) => unit.programmeSlug === programmeSlug,
       );
       if (!selectedProgramme) {
-        throw new Error("No curriculum data");
+        throw new OakError({ code: "curriculum-api/not-found" });
       }
 
       const { programmeFields, isLegacy } = selectedProgramme;
@@ -135,6 +135,8 @@ export const getStaticProps: GetStaticProps<
         yearSlug,
         examboard,
         examboardSlug,
+        pathway,
+        pathwaySlug,
       } = programmeFields;
 
       if (phase === "foundation") {
@@ -163,6 +165,10 @@ export const getStaticProps: GetStaticProps<
       );
 
       const breadcrumbs: string[] = [yearDescription];
+
+      if (pathway) {
+        breadcrumbs.push(pathway);
+      }
       if (examboard) {
         breadcrumbs.push(examboard);
       }
@@ -201,6 +207,7 @@ export const getStaticProps: GetStaticProps<
       const backHrefSlugs: UseBackHrefProps = {
         baseSlug,
         yearSlug,
+        pathwaySlug,
         tierSlug,
         examboardSlug,
       };

@@ -1,13 +1,12 @@
 import { getAvailableProgrammeFactor } from "./getAvailableProgrammeFactor";
 
-import { TierData } from "@/components/PupilComponents/BrowseTierSelector";
 import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
 import {
   ProgrammeFields,
   PupilProgrammeListingData,
 } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 
-describe("getAvailableProgrammeFactor", () => {
+describe("getAvailableProgrammeFactors", () => {
   const overrides: Partial<ProgrammeFields>[] = [
     {
       tier: "foundation",
@@ -17,6 +16,7 @@ describe("getAvailableProgrammeFactor", () => {
       examboard: "AQA",
       examboardSlug: "aqa",
       examboardDisplayOrder: 1,
+      examboardDescription: null,
     },
     {
       tier: "foundation",
@@ -26,6 +26,7 @@ describe("getAvailableProgrammeFactor", () => {
       examboard: "Edexcel",
       examboardSlug: "edexcel",
       examboardDisplayOrder: 2,
+      examboardDescription: null,
     },
     {
       tier: "core",
@@ -35,6 +36,7 @@ describe("getAvailableProgrammeFactor", () => {
       examboard: "Edexcel",
       examboardSlug: "edexcel",
       examboardDisplayOrder: 2,
+      examboardDescription: null,
     },
     {
       tier: "core",
@@ -44,6 +46,7 @@ describe("getAvailableProgrammeFactor", () => {
       examboard: "AQA",
       examboardSlug: "aqa",
       examboardDisplayOrder: 1,
+      examboardDescription: null,
     },
   ];
 
@@ -63,24 +66,24 @@ describe("getAvailableProgrammeFactor", () => {
     const result = getAvailableProgrammeFactor({
       programmes,
       factorPrefix: "tier",
-    }) as TierData[];
+    });
 
     result.sort(
-      (a, b) => (b.tierDisplayOrder ?? 0) - (a.tierDisplayOrder ?? 0),
+      (a, b) => (b.factorDisplayOrder ?? 0) - (a.factorDisplayOrder ?? 0),
     );
     expect(result).toEqual([
       {
-        tier: "core",
-        tierSlug: "core",
-        tierDisplayOrder: 2,
-        tierDescription: "Core",
+        factor: "core",
+        factorSlug: "core",
+        factorDisplayOrder: 2,
+        factorDescription: "Core",
         isLegacy: false,
       },
       {
-        tier: "foundation",
-        tierSlug: "foundation",
-        tierDisplayOrder: 1,
-        tierDescription: "Foundation",
+        factor: "foundation",
+        factorSlug: "foundation",
+        factorDisplayOrder: 1,
+        factorDescription: "Foundation",
         isLegacy: false,
       },
     ]);
@@ -90,19 +93,21 @@ describe("getAvailableProgrammeFactor", () => {
     const result = getAvailableProgrammeFactor({
       programmes,
       factorPrefix: "examboard",
-    }) as TierData[];
+    });
 
     expect(result).toEqual([
       {
-        examboard: "AQA",
-        examboardSlug: "aqa",
-        examboardDisplayOrder: 1,
+        factor: "AQA",
+        factorSlug: "aqa",
+        factorDisplayOrder: 1,
+        factorDescription: null,
         isLegacy: false,
       },
       {
-        examboard: "Edexcel",
-        examboardSlug: "edexcel",
-        examboardDisplayOrder: 2,
+        factor: "Edexcel",
+        factorSlug: "edexcel",
+        factorDisplayOrder: 2,
+        factorDescription: null,
         isLegacy: false,
       },
     ]);

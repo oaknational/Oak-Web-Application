@@ -1,9 +1,10 @@
 import { z } from "zod";
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsByKsSchema } from "@oaknational/oak-curriculum-schema";
 
 export const rawSyntheticUVLessonSchema =
-  syntheticUnitvariantLessonsSchema.omit({
-    null_unitvariant_id: true,
+  syntheticUnitvariantLessonsByKsSchema.omit({
+    unitvariant_id: true,
+    null_unitvariant: true,
   });
 
 export type RawSyntheticUVLesson = z.infer<typeof rawSyntheticUVLessonSchema>;

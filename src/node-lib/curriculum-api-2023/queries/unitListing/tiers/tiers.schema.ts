@@ -7,7 +7,13 @@ import { z } from "zod";
 
 export const rawTierResponseSchema = z.array(
   z.object({
-    programme_fields: programmeFieldsSchema,
+    programme_fields: programmeFieldsSchema.omit({
+      pathway: true,
+      pathway_description: true,
+      pathway_slug: true,
+      pathway_id: true,
+      pathway_display_order: true,
+    }),
     programme_slug: z.string(),
   }),
 );

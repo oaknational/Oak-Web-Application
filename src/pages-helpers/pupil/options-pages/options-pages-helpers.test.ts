@@ -38,6 +38,7 @@ describe("options-pages-helpers", () => {
       );
     });
   });
+
   describe("isExamboardSlug", () => {
     it("should return true if the examboardSlug is a valid examboard slug", () => {
       expect(isExamboardSlug("aqa")).toBe(true);
@@ -46,14 +47,7 @@ describe("options-pages-helpers", () => {
       expect(isExamboardSlug("invalid-examboard")).toBe(false);
     });
   });
-  describe("isExamboardSlug", () => {
-    it("should return true if the examboardSlug is a valid examboard slug", () => {
-      expect(isExamboardSlug("aqa")).toBe(true);
-    });
-    it("should return false if the examboardSlug is not a valid examboard slug", () => {
-      expect(isExamboardSlug("invalid-examboard")).toBe(false);
-    });
-  });
+
   describe("getPupilOptionData", () => {
     it("should throw an error if the params are incorrect", async () => {
       expect.assertions(2);
