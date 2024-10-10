@@ -1,3 +1,20 @@
+# [1.584.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.583.0...v1.584.0) (2024-10-10)
+
+
+### Bug Fixes
+
+* remove redundant alt text from icons ([f1ee32e](https://github.com/oaknational/Oak-Web-Application/commit/f1ee32e734811fefff34474b3a72b2a1363d2dbc))
+* remove subject null type ([fd496d3](https://github.com/oaknational/Oak-Web-Application/commit/fd496d31e11701f40d5d2c29ae340c38425af434))
+* the null value stays, handle it further down ([053d5b6](https://github.com/oaknational/Oak-Web-Application/commit/053d5b649a2d1afb3fbd1d38119660b7c7b8192f))
+
+
+### Features
+
+* update resource cards to use oakicon ([115f439](https://github.com/oaknational/Oak-Web-Application/commit/115f439cc3fc17dfaf2285f1e6c6e8a4e0cc5042))
+* update search results to use oakicon ([404e392](https://github.com/oaknational/Oak-Web-Application/commit/404e392a67dffd7602036b90f03eee94d7adf927))
+* update subject icon brushed borders in browse headers ([94f6138](https://github.com/oaknational/Oak-Web-Application/commit/94f613838612b63bf59152f37a95a74ec827df77))
+* update teachers homepage resource icons ([3c01253](https://github.com/oaknational/Oak-Web-Application/commit/3c01253d77a2a66087c4295a68b3b01efae95923))
+
 # [1.583.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.582.0...v1.583.0) (2024-10-09)
 
 
