@@ -3,12 +3,10 @@ import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import {
-  isValidIconName,
   OakBox,
   OakFlex,
   OakHeading,
   OakIcon,
-  OakIconName,
   OakP,
   OakPrimaryButton,
   OakSecondaryButton,
@@ -32,6 +30,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 import { getPhaseText } from "@/utils/curriculum/formatting";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 const DEFAULT_KEYSTAGES = [
   { slug: "ks1" },
@@ -325,10 +324,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       option.slug === selectedKS4Option?.slug
     );
   };
-  const getIconName = (slug: string) => {
-    const iconName = `subject-${slug}`;
-    return isValidIconName(iconName) ? iconName : undefined;
-  };
 
   const createKS4OptionTitle = (subject: string, option: KS4Option) => {
     const { title, slug } = option;
@@ -498,7 +493,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         hoverShadow={null}
                         iconOverride={
                           <OakIcon
-                            iconName={getIconName(subject.slug) as OakIconName}
+                            iconName={getValidSubjectIconName(subject.slug)}
                             alt=""
                           />
                         }
@@ -752,6 +747,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                   className={`lot-picker ${
                                     isSelected(ks4Option) ? "selected" : ""
                                   }`}
+                                  data-testid="ks4-option-lot-picker"
                                 >
                                   <OakSecondaryButton
                                     role="radio"

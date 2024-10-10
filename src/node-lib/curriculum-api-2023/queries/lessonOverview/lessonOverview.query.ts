@@ -3,10 +3,6 @@ import {
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
 } from "../../generated/sdk";
 import {
-  LessonBrowseData,
-  lessonBrowseDataSchema,
-} from "../pupilLesson/pupilLesson.schema";
-import {
   lessonOverviewQuizData,
   LessonPathway,
   lessonPathwaySchema,
@@ -18,6 +14,8 @@ import lessonOverviewSchema, {
   LessonOverviewContent,
   LessonOverviewDownloads,
   LessonOverviewPageData,
+  LessonBrowseDataByKs,
+  lessonBrowseDataByKsSchema,
 } from "./lessonOverview.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -103,7 +101,7 @@ export function getContentGuidance(
 
 export function getCopyrightContent(
   content:
-    | LessonBrowseData["lessonData"]["copyrightContent"]
+    | LessonBrowseDataByKs["lessonData"]["copyrightContent"]
     | { copyrightInfo: string }[]
     | null,
 ): LessonOverviewPageData["copyrightContent"] {
@@ -125,7 +123,7 @@ export function getCopyrightContent(
 
 const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   const pathways = res.browseData.map((l) => {
-    const lesson = lessonBrowseDataSchema.parse(l);
+    const lesson = lessonBrowseDataByKsSchema.parse(l);
     const unitTitle =
       lesson.programme_fields.optionality ?? lesson.unit_data.title;
     const pathway = {
@@ -148,7 +146,7 @@ const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
 };
 
 const transformedLessonOverviewData = (
-  browseData: LessonBrowseData,
+  browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
 ): LessonOverviewPageData => {
@@ -287,11 +285,11 @@ const lessonOverviewQuery =
     }
     const pathways = canonicalLesson ? getPathways(res) : [];
 
-    lessonBrowseDataSchema.parse(browseDataSnake);
+    lessonBrowseDataByKsSchema.parse(browseDataSnake);
     lessonContentSchema.parse(contentSnake);
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
-    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
     const content = keysToCamelCase(contentSnake) as LessonOverviewContent;
 
     return lessonOverviewSchema.parse(
