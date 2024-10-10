@@ -50,7 +50,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     isCurrent,
     currentStyles,
     $font,
-    variant = "minimal",
+    variant = defaultButtonProps.variant || "brush",
     ...linkProps
   } = transformedProps;
 
