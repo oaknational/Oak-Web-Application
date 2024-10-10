@@ -89,7 +89,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     labelSuffixA11y,
     shouldHideLabel,
     background,
-    variant = "minimal",
+    variant,
     isCurrent,
     currentStyles,
     $font,
