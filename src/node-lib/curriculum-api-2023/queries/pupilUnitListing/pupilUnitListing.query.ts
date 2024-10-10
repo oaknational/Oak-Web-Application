@@ -23,13 +23,26 @@ export const pupilUnitListingQuery =
     }
 
     const filteredBrowseData = browseDataSnake.filter(
-      (b) => !b.actions?.exclusions.includes("pupils"),
+      (b) => !b.actions?.exclusions?.includes("pupils"),
     );
 
-    unitBrowseDataSchema.parse(filteredBrowseData);
+    const modifiedBrowseData = filteredBrowseData.map((unit) => {
+      if (unit?.actions?.programme_field_overrides) {
+        return {
+          ...unit,
+          programme_fields: {
+            ...unit.programme_fields,
+            ...unit.actions.programme_field_overrides,
+          },
+        };
+      }
+      return unit;
+    });
+
+    unitBrowseDataSchema.parse(modifiedBrowseData);
 
     const browseData = keysToCamelCase(
-      filteredBrowseData,
+      modifiedBrowseData,
     ) as UnitListingBrowseData;
 
     return browseData;

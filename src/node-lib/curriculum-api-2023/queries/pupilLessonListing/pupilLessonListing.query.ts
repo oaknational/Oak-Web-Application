@@ -36,17 +36,30 @@ export const pupilLessonListingQuery =
     const browseDataSnake = res.browseData;
 
     const filteredBrowseData = browseDataSnake.filter(
-      (b) => !b.actions?.exclusions.includes("pupils"),
+      (b) => !b.actions?.exclusions?.includes("pupils"),
     );
 
     if (!filteredBrowseData) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    lessonBrowseDataSchema.parse(filteredBrowseData);
+    const modifiedBrowseData = filteredBrowseData.map((lesson) => {
+      if (lesson?.actions?.programme_field_overrides) {
+        return {
+          ...lesson,
+          programme_fields: {
+            ...lesson.programme_fields,
+            ...lesson.actions.programme_field_overrides,
+          },
+        };
+      }
+      return lesson;
+    });
+
+    lessonBrowseDataSchema.parse(modifiedBrowseData);
 
     const browseData = keysToCamelCase(
-      filteredBrowseData,
+      modifiedBrowseData,
     ) as LessonListingBrowseData;
 
     const backLinkData = keysToCamelCase(

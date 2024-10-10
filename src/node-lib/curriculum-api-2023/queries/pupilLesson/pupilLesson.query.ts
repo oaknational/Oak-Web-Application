@@ -48,10 +48,18 @@ export const pupilLessonQuery =
 
     if (
       !browseDataSnake ||
-      browseDataSnake.actions?.exclusions.includes("pupils")
+      browseDataSnake.actions?.exclusions?.includes("pupils")
     ) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
+
+    const modifiedBrowseData = {
+      ...browseDataSnake,
+      programme_fields: {
+        ...browseDataSnake.programme_fields,
+        ...browseDataSnake.actions.programme_field_overrides,
+      },
+    };
 
     if (res.browseData.length > 1 && unitSlug && programmeSlug) {
       const error = new OakError({
@@ -81,11 +89,11 @@ export const pupilLessonQuery =
       });
     }
 
-    lessonBrowseDataSchema.parse(browseDataSnake);
+    lessonBrowseDataSchema.parse(modifiedBrowseData);
     lessonContentSchema.parse(contentSnake);
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
-    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+    const browseData = keysToCamelCase(modifiedBrowseData) as LessonBrowseData;
     const content = keysToCamelCase(contentSnake) as LessonContent;
 
     return {
