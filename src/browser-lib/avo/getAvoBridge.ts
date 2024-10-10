@@ -11,7 +11,7 @@ import { CustomDestination } from "./Avo";
 const reportError = errorReporter("getAvoBridge");
 
 type AnalyticsServices = {
-  posthog: Pick<AnalyticsService<PosthogConfig>, "track">;
+  posthog: Pick<AnalyticsService<PosthogConfig>, "track" | "identify">;
 };
 /**
  * getAvoBridge returns the bridge between Avo and our analytics services.
@@ -50,8 +50,21 @@ const getAvoBridge = ({ posthog }: AnalyticsServices) => {
     posthog.track(eventName, eventProperties);
   };
 
+  const identify: CustomDestination["identify"] = (userId) => {
+    posthog.identify(userId, {});
+  };
+
+  const setUserProperties: CustomDestination["setUserProperties"] = (
+    userId,
+    properties,
+  ) => {
+    posthog.identify(userId, properties);
+  };
+
   return {
     logEvent,
+    identify,
+    setUserProperties,
   };
 };
 

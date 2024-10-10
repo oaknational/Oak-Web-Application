@@ -2,7 +2,8 @@ import { currentUser } from "@clerk/nextjs/server";
 
 import { UseUserReturn } from "./mockClerk";
 
-type UserResource = NonNullable<UseUserReturn["user"]>;
+import { UserResource } from "clerk";
+
 type CurrentUser = NonNullable<Awaited<ReturnType<typeof currentUser>>>;
 
 /**
@@ -11,8 +12,18 @@ type CurrentUser = NonNullable<Awaited<ReturnType<typeof currentUser>>>;
 export const mockUser = {
   id: "user-123",
   publicMetadata: {},
+  unsafeMetadata: {},
   reload: jest.fn(),
-  emailAddresses: [{ emailAddress: "test-email" }],
+  externalAccounts: [],
+  emailAddresses: [
+    { emailAddress: "test-email", verification: { status: "verified" } },
+  ],
+  createdAt: new Date("2024-10-07T15:00:00Z"),
+  updatedAt: new Date("2024-10-08T16:00:00Z"),
+  lastSignInAt: new Date("2024-10-07T15:00:00Z"),
+  async update() {
+    return this;
+  },
 } as unknown as UserResource;
 
 export const mockUserWithDownloadAccess: UserResource = {
