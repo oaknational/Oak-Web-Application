@@ -116,7 +116,7 @@ export const getHubspotDownloadsFormPayload = (props: {
 }): HubspotPayload => {
   const { hutk, data } = props;
   const snakeCaseData = getDownloadsSnakeCaseData(data);
-
+  console.log(snakeCaseData, "<<< DOWNLOADS FORM PAYLOAD");
   const payload = getPayload(snakeCaseData, hutk);
 
   return payload;
@@ -214,6 +214,7 @@ export const getHubspotOnboardingFormPayload = (props: {
     how_can_oak_support_you_: howCanOakSupportYou,
     ...getUtmSnakeCaseData(data),
   };
+  console.log(snakeCaseData, "<<< HUBSPOT ONBOARDING PAYLOAD");
 
   const payload = getPayload(snakeCaseData, hutk);
 
