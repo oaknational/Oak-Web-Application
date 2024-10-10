@@ -16,9 +16,12 @@ import {
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { getUnitFeatures } from "@/utils/curriculum/features";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import { CurriculumUnitsYearData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 type UnitModalProps = {
   unitData: Unit | null;
+  yearData: CurriculumUnitsYearData;
   displayModal: boolean;
   setUnitOptionsAvailable: (x: boolean) => void;
   setCurrentUnitLessons: (x: Lesson[]) => void;
@@ -35,6 +38,7 @@ export type Lesson = {
 
 const UnitModal: FC<UnitModalProps> = ({
   unitData,
+  yearData,
   displayModal,
   setUnitOptionsAvailable,
   setCurrentUnitLessons,
@@ -95,6 +99,14 @@ const UnitModal: FC<UnitModalProps> = ({
     getUnitFeatures(unitData)?.programmes_fields_overrides.subject ??
     unitData?.subject;
 
+  const yearTitle = unitData
+    ? getYearGroupTitle(
+        yearData,
+        getUnitFeatures(unitData)?.programmes_fields_overrides.year ??
+          unitData.year,
+      )
+    : "";
+
   return (
     <>
       {unitData && (
@@ -124,10 +136,7 @@ const UnitModal: FC<UnitModalProps> = ({
                 }}
               />
             </Box>
-            <LessonMetadata
-              subjectTitle={subjectTitle}
-              yearTitle={`Year ${unitData.year}`}
-            />
+            <LessonMetadata subjectTitle={subjectTitle} yearTitle={yearTitle} />
             <OakHeading tag="h2" $font={"heading-5"}>
               {!curriculumUnitDetails
                 ? unitData.title

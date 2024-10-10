@@ -488,6 +488,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             setCurrentUnitLessons={setCurrentUnitLessons}
             setUnitVariantID={setUnitVariantID}
             unitData={unitData}
+            yearData={yearData}
             displayModal={displayModal}
             setUnitOptionsAvailable={setUnitOptionsAvailable}
             unitOptionsAvailable={unitOptionsAvailable}
