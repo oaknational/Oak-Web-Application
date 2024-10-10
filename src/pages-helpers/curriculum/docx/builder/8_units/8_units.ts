@@ -498,7 +498,7 @@ async function buildYear(
                   </w:rPr>
                   <w:t>
                     ${cdata(
-                      "Swimming units should be selected based on the ability and experience of your pupils.",
+                      "Swimming and water safety units should be selected based on the ability and experience of your pupils.",
                     )}
                   </w:t>
                 </w:r>
