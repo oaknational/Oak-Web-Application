@@ -5,6 +5,7 @@ import { Slugs } from "..";
 import { zipToSimpleObject } from "../zip";
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
+import { getUnitFeatures } from "@/utils/curriculum/features";
 
 /**
  * Uncapitalize everything except acronyms
@@ -69,15 +70,17 @@ export function threadUnitByYear(units: Unit[], threadSlug: string) {
   const output = {} as Record<string, Unit[]>;
 
   units.forEach((unit: Unit) => {
+    const year =
+      getUnitFeatures(unit)?.programmes_fields_overrides.year ?? unit.year;
     unit.threads.forEach((thread) => {
       if (thread.slug === threadSlug) {
-        output[unit.year] = output[unit.year] ?? [];
+        output[year] = output[year] ?? [];
         if (
-          output[unit.year] &&
+          output[year] &&
           // Check if unit is not already within output
-          !output[unit.year]!.find((yearUnit) => yearUnit.slug === unit.slug)
+          !output[year]!.find((yearUnit) => yearUnit.slug === unit.slug)
         ) {
-          output[unit.year]!.push(unit);
+          output[year]!.push(unit);
         }
       }
     });
