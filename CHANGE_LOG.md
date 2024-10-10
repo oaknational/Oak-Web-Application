@@ -1,3 +1,10 @@
+# [1.587.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.586.0...v1.587.0) (2024-10-10)
+
+
+### Features
+
+* add comparison and some styling to curriculum screenshot script ([ba1f0f4](https://github.com/oaknational/Oak-Web-Application/commit/ba1f0f498a7f55317cd26d314ed6dc9164304380))
+
 # [1.586.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.585.0...v1.586.0) (2024-10-10)
 
 
