@@ -12,6 +12,7 @@ type CurrentUser = NonNullable<Awaited<ReturnType<typeof currentUser>>>;
 export const mockUser = {
   id: "user-123",
   publicMetadata: {},
+  unsafeMetadata: {},
   reload: jest.fn(),
   externalAccounts: [],
   emailAddresses: [
