@@ -1,3 +1,10 @@
+# [1.586.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.585.0...v1.586.0) (2024-10-10)
+
+
+### Features
+
+* changes lot picker text for cycle 2 ([2ed05f7](https://github.com/oaknational/Oak-Web-Application/commit/2ed05f7ce8bf1d2cc045a00099fd4840b5bfb7a1))
+
 # [1.585.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.584.2...v1.585.0) (2024-10-10)
 
 
