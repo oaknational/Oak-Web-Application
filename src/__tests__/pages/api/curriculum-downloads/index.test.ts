@@ -27,7 +27,6 @@ jest.mock("../../../../node-lib/curriculum-api-2023", () => ({
       opts: Parameters<(typeof curriculumApi2023)["curriculumUnits"]>[0],
     ) => {
       if (opts.subjectSlug === "english") {
-        q;
         return import("./fixtures/curriculumUnitsIncludeNew.json");
       }
       throw new Error("Missing");
