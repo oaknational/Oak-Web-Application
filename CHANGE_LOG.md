@@ -1,3 +1,10 @@
+# [1.585.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.584.2...v1.585.0) (2024-10-10)
+
+
+### Features
+
+* change swimming text to include "water safety" ([a6d02d3](https://github.com/oaknational/Oak-Web-Application/commit/a6d02d33af15a656f9088b70edc9c9d13b782a15))
+
 ## [1.584.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.584.1...v1.584.2) (2024-10-10)
 
 
