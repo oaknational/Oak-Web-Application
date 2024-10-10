@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import { Unit } from "../CurriculumVisualiser";
+import { Unit, YearData } from "../CurriculumVisualiser";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
@@ -17,11 +17,10 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { CurriculumUnitsYearData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 type UnitModalProps = {
   unitData: Unit | null;
-  yearData: CurriculumUnitsYearData;
+  yearData: YearData;
   displayModal: boolean;
   setUnitOptionsAvailable: (x: boolean) => void;
   setCurrentUnitLessons: (x: Lesson[]) => void;
