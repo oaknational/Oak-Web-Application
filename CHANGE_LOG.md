@@ -1,3 +1,10 @@
+## [1.584.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.584.1...v1.584.2) (2024-10-10)
+
+
+### Bug Fixes
+
+* remove order hack now data has been fixed ([ae83469](https://github.com/oaknational/Oak-Web-Application/commit/ae83469e4b4036d1ab8c129769e2f8b51ee52a17))
+
 ## [1.584.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.584.0...v1.584.1) (2024-10-10)
 
 # [1.584.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.583.0...v1.584.0) (2024-10-10)
