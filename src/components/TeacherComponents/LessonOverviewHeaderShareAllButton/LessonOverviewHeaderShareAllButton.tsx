@@ -28,10 +28,16 @@ export const LessonOverviewHeaderShareAllButton: FC<
     isShareable,
     onClickShareAll,
     isSpecialist,
+    pathways,
     ...boxProps
   } = props;
-
   const preselected = "all";
+
+  // Find the first non-null programmeSlug in pathways
+  const firstProgrammeSlug = pathways.find((pathway) => pathway.programmeSlug)
+    ?.programmeSlug;
+
+  const effectiveProgrammeSlug = programmeSlug || firstProgrammeSlug;
 
   const linkProps:
     | LessonShareLinkProps
@@ -45,12 +51,12 @@ export const LessonOverviewHeaderShareAllButton: FC<
           programmeSlug,
           query: { preselected },
         }
-      : programmeSlug && unitSlug && !isSpecialist
+      : effectiveProgrammeSlug && unitSlug && !isSpecialist
         ? {
             page: "lesson-share",
             lessonSlug,
             unitSlug,
-            programmeSlug,
+            programmeSlug: effectiveProgrammeSlug,
             query: { preselected },
           }
         : {

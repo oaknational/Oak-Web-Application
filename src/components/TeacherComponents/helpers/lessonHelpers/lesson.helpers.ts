@@ -52,6 +52,7 @@ export const getCommonPathway = (
           acc[key] = null;
         }
       });
+
       return acc;
     },
     { ...nullPathway },
