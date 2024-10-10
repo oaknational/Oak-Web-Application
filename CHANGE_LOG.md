@@ -1,3 +1,10 @@
+# [1.583.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.582.0...v1.583.0) (2024-10-09)
+
+
+### Features
+
+* switched over to using data from the database for swimming units ([d408177](https://github.com/oaknational/Oak-Web-Application/commit/d408177cb549a5e7529df79352c257a998026cc6))
+
 # [1.582.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.581.0...v1.582.0) (2024-10-09)
 
 
