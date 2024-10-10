@@ -35,14 +35,18 @@ export const pupilLessonListingQuery =
 
     const browseDataSnake = res.browseData;
 
-    if (!browseDataSnake) {
+    const filteredBrowseData = browseDataSnake.filter(
+      (b) => !b.actions?.exclusions.includes("pupils"),
+    );
+
+    if (!filteredBrowseData) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    lessonBrowseDataSchema.parse(browseDataSnake);
+    lessonBrowseDataSchema.parse(filteredBrowseData);
 
     const browseData = keysToCamelCase(
-      browseDataSnake,
+      filteredBrowseData,
     ) as LessonListingBrowseData;
 
     const backLinkData = keysToCamelCase(

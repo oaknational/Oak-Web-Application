@@ -22,10 +22,14 @@ export const pupilUnitListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    unitBrowseDataSchema.parse(browseDataSnake);
+    const filteredBrowseData = browseDataSnake.filter(
+      (b) => !b.actions?.exclusions.includes("pupils"),
+    );
+
+    unitBrowseDataSchema.parse(filteredBrowseData);
 
     const browseData = keysToCamelCase(
-      browseDataSnake,
+      filteredBrowseData,
     ) as UnitListingBrowseData;
 
     return browseData;
