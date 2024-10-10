@@ -1,3 +1,5 @@
+import { screen } from "@testing-library/react";
+
 import CurriculumDownloadTab, { createCurriculumDownloadsQuery } from ".";
 
 import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
@@ -71,6 +73,11 @@ describe("Component - Curriculum Download Tab", () => {
       const { findByTestId } = renderComponent({
         tiers: tiersMock,
       });
+      const formHeading = screen.getByRole("heading", {
+        name: "Download",
+        level: 2,
+      });
+      expect(formHeading).toBeInTheDocument();
       const tierSelector = await findByTestId("tier-selector");
       expect(tierSelector).toBeInTheDocument();
     });

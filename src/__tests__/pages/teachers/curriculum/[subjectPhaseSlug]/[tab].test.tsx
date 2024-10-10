@@ -1,3 +1,4 @@
+import { screen } from "@testing-library/react";
 import { useRouter } from "next/router";
 
 import CMSClient from "@/node-lib/cms";
@@ -622,33 +623,60 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       expect(queryByTestId("tabularNav")).toBeInTheDocument();
     });
 
-    it("renders the Curriculum Overview Tab", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "overview" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
-        asPath: "",
+    describe("Curriculum Downloads Tab: Secondary Maths", () => {
+      beforeEach(() => {
+        jest.clearAllMocks();
+        const mockIntersectionObserver = jest.fn();
+        mockIntersectionObserver.mockReturnValue({
+          observe: () => null,
+          unobserve: () => null,
+          disconnect: () => null,
+        });
+        window.IntersectionObserver = mockIntersectionObserver;
       });
-      mockCMSClient.curriculumOverviewPage.mockResolvedValue(null);
-      const slugs = parseSubjectPhaseSlug("maths-secondary");
-      const { queryByTestId } = render(
-        <CurriculumInfoPage
-          mvRefreshTime={1721314874829}
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          curriculumSelectionSlugs={slugs}
-          subjectPhaseOptions={subjectPhaseOptions}
-          curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
-          curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumDownloadsTabData={{
-            tiers: [
-              { tier: "Higher", tier_slug: " higher" },
-              { tier: "Foundation", tier_slug: "foundation" },
-            ],
-            child_subjects: [],
-          }}
-        />,
-      );
-      expect(queryByTestId("overview-heading")).toBeInTheDocument();
+
+      test("user can see the tier selector for secondary maths", async () => {
+        // Mock for prerelease behavior
+        mockPrerelease("curriculum.downloads");
+
+        // Mock for useRouter to provide the correct router query and other properties
+        (useRouter as jest.Mock).mockReturnValue({
+          query: { tab: "downloads", subjectPhaseSlug: "maths-secondary" },
+          isPreview: false,
+          pathname: "/teachers-2023/curriculum/maths-secondary/downloads",
+          asPath: "",
+        });
+
+        // Render the CurriculumInfoPage with necessary mock props
+        const slugs = parseSubjectPhaseSlug("maths-secondary");
+        const { queryByTestId } = render(
+          <CurriculumInfoPage
+            mvRefreshTime={1721314874829}
+            curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+            curriculumSelectionSlugs={slugs}
+            subjectPhaseOptions={subjectPhaseOptions}
+            curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
+            curriculumOverviewTabData={curriculumOverviewMVFixture()}
+            curriculumDownloadsTabData={{
+              tiers: [
+                { tier: "Higher", tier_slug: "higher" },
+                { tier: "Foundation", tier_slug: "foundation" },
+              ],
+              child_subjects: [],
+            }}
+          />,
+        );
+
+        const formHeading = screen.getByRole("heading", {
+          name: "Download",
+          level: 2,
+        });
+        expect(formHeading).toBeInTheDocument();
+
+        // Find and test the Tier Selector element by its test ID
+        const tierSelector = await queryByTestId("tier-selector");
+        expect(tierSelector).toBeInTheDocument();
+      });
     });
 
     it("renders the Curriculum Units Tab", () => {

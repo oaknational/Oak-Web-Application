@@ -77,6 +77,7 @@ export type ButtonInnerProps = {
   $font?: ResponsiveValues<FontVariant> | undefined;
   labelColor?: OakColorName;
 };
+
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
   let { icon } = props;
   const { subjectIcon } = props;
@@ -94,8 +95,8 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
     $font,
     labelColor,
   } = props;
-  const iconSize = buttonIconSizeMap[buttonSize];
 
+  const iconSize = buttonIconSizeMap[buttonSize];
   const theme = useTheme();
   const defaultIconBackground = getButtonIconBackground(background)({ theme });
 

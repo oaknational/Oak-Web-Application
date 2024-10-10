@@ -139,9 +139,6 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
 
   return (
     <OakBox $color="black">
-      <OakHeading tag="h2" $font={["heading-4"]} $mb={["space-between-m"]}>
-        Download
-      </OakHeading>
       {onBackToKs4Options && (
         <Box $mb={24}>
           <Button
