@@ -2,7 +2,7 @@ import { capitalize } from "lodash";
 
 type buildCurriculumMetadataProps = {
   metadataType: "title" | "description";
-  tab: "units" | "overview" | "downloads";
+  tab: "units" | "explainer" | "overview" | "downloads";
   keyStages: string[];
   subjectSlug: string;
   examboardSlug?: string | null;
@@ -35,6 +35,19 @@ export const buildCurriculumMetadata = (
       props.subjectSlug,
     )} ${examboard} Curriculum Plans`;
   } else if (props.tab === "overview" && props.metadataType === "description") {
+    return `Looking for ${keyStagesData} ${capitalize(
+      props.subjectSlug,
+    )} curriculum? We have sequenced curriculum plans, select by key stage. Our free resources are easy to browse and explore.`;
+  } else if (props.tab === "explainer" && props.metadataType === "title") {
+    const examboard = getExamboardFromSlug(props);
+
+    return `${keyStagesData} ${capitalize(
+      props.subjectSlug,
+    )} ${examboard} Curriculum Plans`;
+  } else if (
+    props.tab === "explainer" &&
+    props.metadataType === "description"
+  ) {
     return `Looking for ${keyStagesData} ${capitalize(
       props.subjectSlug,
     )} curriculum? We have sequenced curriculum plans, select by key stage. Our free resources are easy to browse and explore.`;
