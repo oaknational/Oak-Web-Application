@@ -10,7 +10,7 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import {
   InputMaybe,
-  Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_10_0_0_Bool_Exp,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_12_0_0_Bool_Exp,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
@@ -24,7 +24,7 @@ export const pupilLessonQuery =
   }): Promise<{ content: LessonContent; browseData: LessonBrowseData }> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
-    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_10_0_0_Bool_Exp> =
+    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_12_0_0_Bool_Exp> =
       { lesson_slug: { _eq: lessonSlug } };
 
     if (unitSlug) {
@@ -46,9 +46,20 @@ export const pupilLessonQuery =
 
     const [browseDataSnake] = res.browseData;
 
-    if (!browseDataSnake) {
+    if (
+      !browseDataSnake ||
+      browseDataSnake.actions?.exclusions?.includes("pupils")
+    ) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
+
+    const modifiedBrowseData = {
+      ...browseDataSnake,
+      programme_fields: {
+        ...browseDataSnake.programme_fields,
+        ...browseDataSnake.actions.programme_field_overrides,
+      },
+    };
 
     if (res.browseData.length > 1 && unitSlug && programmeSlug) {
       const error = new OakError({
@@ -78,11 +89,11 @@ export const pupilLessonQuery =
       });
     }
 
-    lessonBrowseDataSchema.parse(browseDataSnake);
+    lessonBrowseDataSchema.parse(modifiedBrowseData);
     lessonContentSchema.parse(contentSnake);
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
-    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+    const browseData = keysToCamelCase(modifiedBrowseData) as LessonBrowseData;
     const content = keysToCamelCase(contentSnake) as LessonContent;
 
     return {

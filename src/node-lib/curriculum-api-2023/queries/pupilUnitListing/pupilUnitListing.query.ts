@@ -22,10 +22,27 @@ export const pupilUnitListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    unitBrowseDataSchema.parse(browseDataSnake);
+    const filteredBrowseData = browseDataSnake.filter(
+      (b) => !b.actions?.exclusions?.includes("pupils"),
+    );
+
+    const modifiedBrowseData = filteredBrowseData.map((unit) => {
+      if (unit?.actions?.programme_field_overrides) {
+        return {
+          ...unit,
+          programme_fields: {
+            ...unit.programme_fields,
+            ...unit.actions.programme_field_overrides,
+          },
+        };
+      }
+      return unit;
+    });
+
+    unitBrowseDataSchema.parse(modifiedBrowseData);
 
     const browseData = keysToCamelCase(
-      browseDataSnake,
+      modifiedBrowseData,
     ) as UnitListingBrowseData;
 
     return browseData;
