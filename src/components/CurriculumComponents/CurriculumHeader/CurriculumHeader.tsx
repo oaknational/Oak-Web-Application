@@ -1,11 +1,15 @@
 import React, { FC } from "react";
 import { useRouter } from "next/router";
-import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  OakFlex,
+  OakIcon,
+} from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { Hr } from "@/components/SharedComponents/Typography";
-import SubjectIcon from "@/components/SharedComponents/SubjectIcon/SubjectIcon";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import SubjectPhasePicker, {
@@ -18,6 +22,7 @@ import {
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import { isCycleTwoEnabled } from "@/utils/curriculum/features";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -148,12 +153,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 $mr={12}
                 $mv={"auto"}
               >
-                <SubjectIcon
-                  subjectSlug={subject.slug}
-                  $color="white"
-                  $borderColor="white"
-                  $width={64}
+                <OakIcon
+                  iconName={getValidSubjectIconName(subject.slug)}
+                  $width="all-spacing-11"
+                  $height="all-spacing-11"
                   data-testid="subjectIcon"
+                  alt=""
                 />
               </Box>
               <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
