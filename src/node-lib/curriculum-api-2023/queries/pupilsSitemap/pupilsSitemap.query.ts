@@ -11,20 +11,34 @@ const pupilsSitemap =
   (sdk: Sdk) => async (): Promise<PupilsSitemapBrowseData> => {
     const res = await sdk.pupilsSitemap();
 
-    const DataSnake = res;
+    const { programmes, units, lessons } = res;
+
+    const filteredUnits = units.filter(
+      (unit) => !unit.actions?.exclusions.includes("pupils"),
+    );
+
+    const filteredLessons = lessons.filter(
+      (lesson) => !lesson.actions?.exclusions.includes("pupils"),
+    );
+
+    const dataSnake = {
+      programmes,
+      units: filteredUnits,
+      lessons: filteredLessons,
+    };
 
     if (
-      !DataSnake ||
-      DataSnake.programmes.length === 0 ||
-      DataSnake.units.length === 0 ||
-      DataSnake.lessons.length === 0
+      !dataSnake ||
+      dataSnake.programmes.length === 0 ||
+      dataSnake.units.length === 0 ||
+      dataSnake.lessons.length === 0
     ) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    pupilsSitemapDataSchema.parse(DataSnake);
+    pupilsSitemapDataSchema.parse(dataSnake);
 
-    const browseData = keysToCamelCase(DataSnake) as PupilsSitemapBrowseData;
+    const browseData = keysToCamelCase(dataSnake) as PupilsSitemapBrowseData;
     return browseData;
   };
 

@@ -51449,7 +51449,7 @@ export type PupilUnitListingQuery = { __typename?: 'query_root', browseData: Arr
 export type PupilsSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PupilsSitemapQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_10_0_0', programme_slug?: string | null }>, units: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0', programme_slug?: string | null, unit_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_10_0_0', programme_slug?: string | null, unit_slug?: string | null, lesson_slug?: string | null }> };
+export type PupilsSitemapQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_11_0_0', programme_slug?: string | null }>, units: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_year_12_0_0', programme_slug?: string | null, unit_slug?: string | null, actions?: any | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_12_0_0', programme_slug?: string | null, unit_slug?: string | null, lesson_slug?: string | null, actions?: any | null }> };
 
 export type RefreshedMvTimeQueryVariables = Exact<{
   viewName: Scalars['String']['input'];
@@ -51986,17 +51986,19 @@ export const PupilUnitListingDocument = gql`
     `;
 export const PupilsSitemapDocument = gql`
     query pupilsSitemap {
-  programmes: published_mv_synthetic_programmes_by_year_10_0_0 {
+  programmes: published_mv_synthetic_programmes_by_year_11_0_0 {
     programme_slug
   }
-  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_10_0_0 {
+  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_12_0_0 {
     programme_slug
     unit_slug
+    actions
   }
-  lessons: published_mv_synthetic_unitvariant_lessons_by_year_10_0_0 {
+  lessons: published_mv_synthetic_unitvariant_lessons_by_year_12_0_0 {
     programme_slug
     unit_slug
     lesson_slug
+    actions
   }
 }
     `;
