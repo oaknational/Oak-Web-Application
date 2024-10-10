@@ -14,7 +14,7 @@ export const getValidSubjectIconName = (subject: string): OakIconName => {
       }),
     );
     // fallback icon
-    return "error";
+    return "books";
   }
   return subjectIconName;
 };
