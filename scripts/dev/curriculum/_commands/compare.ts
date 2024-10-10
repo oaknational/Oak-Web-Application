@@ -114,6 +114,7 @@ export default async function compare(
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 8px;
+                padding: 0 8px;
                 border-left: 1px solid #ccc;
             ">
                 ${allFiles
@@ -127,7 +128,7 @@ export default async function compare(
                             <span class="pill">${targetpathInput}</span> ${filename}
                         </div>
                         <div class="column-header">
-                            Diff: ${filename}
+                            <span class="pill">diff</span> ${filename}
                         </div>
                     `;
                     if (baseFilesStub.includes(filename)) {

@@ -25,7 +25,7 @@ const screenshotPage = async (
   });
 
   console.log(
-    `📦 [${logOpts.id}] Page captured: ./${relative(process.cwd(), path)}`,
+    `📸 [${logOpts.id}] page captured: ./${relative(process.cwd(), path)}`,
   );
 };
 
