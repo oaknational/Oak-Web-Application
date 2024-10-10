@@ -170,26 +170,29 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const modalButtonRef = useRef<HTMLButtonElement>(null);
 
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
-  const visibleYears = useRef<Set<number>>(new Set());
   const visualiserRef = useRef<HTMLDivElement>(null);
   /* Intersection observer to update year filter selection when
   scrolling through the visualiser on mobile */
   useEffect(() => {
     const options = { rootMargin: "-50% 0px 0px 0px" };
     const yearsLoaded = Object.keys(yearData).length;
+    const visibleYears = new Map();
     // All refs have been created for year groups & data is loaded
     if (yearsLoaded > 0 && itemEls.current.length === yearsLoaded) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          const year = parseInt(entry.target.id, 10);
+          const top = entry.boundingClientRect.top;
+          const year = entry.target.id;
           if (entry.isIntersecting) {
-            visibleYears.current.add(year);
+            visibleYears.set(year, top);
           } else {
-            visibleYears.current.delete(year);
+            visibleYears.delete(year);
           }
-          if (visibleYears.current.size > 0) {
-            const lowestYear = Math.min(...visibleYears.current).toString();
-            setVisibleMobileYearRefID(lowestYear);
+          if (visibleYears.size > 0) {
+            const sortedYears = Array.from(visibleYears.entries()).sort(
+              ([, aTop], [, bTop]) => aTop - bTop,
+            );
+            setVisibleMobileYearRefID(sortedYears[0]?.[0]);
           }
         });
       }, options);
