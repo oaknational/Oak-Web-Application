@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useUser } from "@clerk/nextjs";
 
 import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -9,7 +10,6 @@ import {
   SpecialistLessonDownloadsLinkProps,
 } from "@/common-lib/urls";
 import Box, { BoxProps } from "@/components/SharedComponents/Box";
-import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 export const LessonOverviewHeaderDownloadAllButton: FC<
   LessonOverviewHeaderDownloadAllButtonProps & BoxProps
@@ -38,10 +38,12 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     ? "downloads-auth"
     : "downloads";
 
-  const { user, isLoaded } = useFeatureFlaggedClerk().useUser();
+  const { user, isLoaded } = useUser();
 
   const displaySignInMessage =
-    isLoaded && !user?.publicMetadata?.owa?.isOnboarded;
+    isLoaded &&
+    downloads === "downloads-auth" &&
+    !user?.publicMetadata?.owa?.isOnboarded;
 
   if (expired || !showDownloadAll) {
     return null;

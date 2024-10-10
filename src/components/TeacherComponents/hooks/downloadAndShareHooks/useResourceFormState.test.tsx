@@ -10,10 +10,7 @@ import {
 
 import { allResources as allDownloadResources } from "@/node-lib/curriculum-api-2023/fixtures/downloads.fixture";
 import { allResources as allShareResources } from "@/node-lib/curriculum-api-2023/fixtures/shareableResources.fixture";
-import {
-  enableMockClerk,
-  setUseUserReturn,
-} from "@/__tests__/__helpers__/mockClerk";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
   mockLoggedIn,
   mockTeacherUserWithDownloadAccess,
@@ -31,8 +28,6 @@ const shareProps: UseResourceFormStateProps = {
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
-
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: jest.fn(() => true),
@@ -65,7 +60,6 @@ jest.mock("./useLocalStorageForDownloads", () => {
 
 describe("useResourceFormState", () => {
   beforeEach(() => {
-    enableMockClerk();
     jest.clearAllMocks();
   });
   describe("download", () => {

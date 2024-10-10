@@ -11,10 +11,7 @@ import LessonOverviewPage, {
   URLParams,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
-import {
-  enableMockClerk,
-  setUseUserReturn,
-} from "@/__tests__/__helpers__/mockClerk";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
@@ -58,13 +55,10 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
-
 const render = renderWithProviders();
 
 describe("pages/teachers/lessons", () => {
   beforeEach(() => {
-    enableMockClerk();
     setUseUserReturn({
       ...mockLoggedIn,
       user: mockUserWithDownloadAccess,

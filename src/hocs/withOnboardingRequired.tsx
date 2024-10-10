@@ -1,7 +1,7 @@
 import { ComponentType, PropsWithChildren } from "react";
+import { useUser } from "@clerk/nextjs";
 
 import { useRequireOnboarding } from "@/hooks/useRequireOnboarding";
-import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 /**
  * Makes the user onboard before they can proceed to the page
@@ -11,7 +11,6 @@ export function withOnboardingRequired<P extends object>(
   FallbackComponent?: ComponentType<PropsWithChildren>,
 ) {
   function WrappedComponent(props: Readonly<P>) {
-    const { useUser } = useFeatureFlaggedClerk();
     useRequireOnboarding();
 
     if (!useUser().user?.publicMetadata?.owa?.isOnboarded) {

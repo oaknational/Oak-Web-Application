@@ -6,23 +6,14 @@ import { SpecialistLessonDownloadFixture } from "@/node-lib/curriculum-api-2023/
 import SpecialistLessonDownloadsPage, {
   getStaticProps,
 } from "@/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
-import {
-  enableMockClerk,
-  setUseUserReturn,
-} from "@/__tests__/__helpers__/mockClerk";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
   mockUserWithoutDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
 
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
-
 const render = renderWithProviders();
-
-beforeEach(() => {
-  enableMockClerk();
-});
 
 describe("pages/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads", () => {
   it("renders lessons", () => {
