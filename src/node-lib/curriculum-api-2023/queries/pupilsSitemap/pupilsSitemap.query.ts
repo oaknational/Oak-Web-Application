@@ -14,11 +14,11 @@ const pupilsSitemap =
     const { programmes, units, lessons } = res;
 
     const filteredUnits = units.filter(
-      (unit) => !unit.actions?.exclusions.includes("pupils"),
+      (unit) => !unit.actions?.exclusions?.includes("pupils"),
     );
 
     const filteredLessons = lessons.filter(
-      (lesson) => !lesson.actions?.exclusions.includes("pupils"),
+      (lesson) => !lesson.actions?.exclusions?.includes("pupils"),
     );
 
     const dataSnake = {

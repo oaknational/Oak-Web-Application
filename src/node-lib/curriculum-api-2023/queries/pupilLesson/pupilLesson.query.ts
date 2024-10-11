@@ -48,7 +48,7 @@ export const pupilLessonQuery =
 
     if (
       !browseDataSnake ||
-      browseDataSnake.actions?.exclusions.includes("pupils")
+      browseDataSnake.actions?.exclusions?.includes("pupils")
     ) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }

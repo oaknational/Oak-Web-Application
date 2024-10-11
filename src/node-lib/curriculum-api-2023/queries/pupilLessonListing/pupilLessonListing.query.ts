@@ -36,7 +36,7 @@ export const pupilLessonListingQuery =
     const browseDataSnake = res.browseData;
 
     const filteredBrowseData = browseDataSnake.filter(
-      (b) => !b.actions?.exclusions.includes("pupils"),
+      (b) => !b.actions?.exclusions?.includes("pupils"),
     );
 
     if (!filteredBrowseData) {

@@ -23,7 +23,7 @@ export const pupilUnitListingQuery =
     }
 
     const filteredBrowseData = browseDataSnake.filter(
-      (b) => !b.actions?.exclusions.includes("pupils"),
+      (b) => !b.actions?.exclusions?.includes("pupils"),
     );
 
     unitBrowseDataSchema.parse(filteredBrowseData);
