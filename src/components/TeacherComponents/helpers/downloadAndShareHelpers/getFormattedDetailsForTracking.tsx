@@ -19,9 +19,7 @@ export const getSchoolUrn = (
   schoolOption: SchoolOptionValueType,
 ) => {
   if (schoolOption === "Selected school") {
-    const output = school.replace(/(\d+)-?(\d+)?-.*/, "$1$2");
-    const schoolUrn = Number(output) || 0;
-    return schoolUrn;
+    return extractUrn(school);
   } else {
     return 0;
   }
@@ -32,12 +30,20 @@ export const getSchoolName = (
   schoolOption: SchoolOptionValueType,
 ) => {
   if (schoolOption === "Selected school") {
-    const schoolName = school.split("-")[1] || "";
-    return schoolName;
+    return extractSchool(school);
   } else {
     return "";
   }
 };
+
+function extractUrn(school: string) {
+  return /^\d{7}|^\d{6}|^\d{3}-\d{4}/.exec(school)?.at(0);
+}
+
+function extractSchool(school: string) {
+  const match = /(?:\d{7}|\d{6}|\d{3}-\d{4})-(.*)/.exec(school);
+  return match ? match[1] : "";
+}
 
 const getFormattedDetailsForTracking = ({
   school,
