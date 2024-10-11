@@ -29,7 +29,31 @@ export const pupilProgrammeListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    pupilProgrammeListingSchema.array().parse(res.data);
+    // TODO abstract this into a generic helper function
+    const filtered = res.data.filter(
+      (b) =>
+        !b.actions?.exclusions?.includes("pupils") &&
+        !b.actions?.exclusions?.includes("pupilProgrammeListingQuery"),
+    );
 
-    return keysToCamelCase(res.data) as PupilProgrammeListingData[];
+    const modified = filtered.map((p) => {
+      if (
+        p?.actions?.programme_field_overrides &&
+        !p?.actions?.opt_out.includes("pupils") &&
+        !p?.actions?.opt_out.includes("pupilProgrammeListingQuery")
+      ) {
+        return {
+          ...p,
+          programme_fields: {
+            ...p.programme_fields,
+            ...p.actions.programme_field_overrides,
+          },
+        };
+      }
+      return p;
+    });
+
+    pupilProgrammeListingSchema.array().parse(modified);
+
+    return keysToCamelCase(modified) as PupilProgrammeListingData[];
   };
