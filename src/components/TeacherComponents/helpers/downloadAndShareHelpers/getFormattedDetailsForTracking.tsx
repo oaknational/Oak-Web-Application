@@ -19,7 +19,9 @@ export const getSchoolUrn = (
   schoolOption: SchoolOptionValueType,
 ) => {
   if (schoolOption === "Selected school") {
-    return extractUrn(school);
+    const output = extractUrn(school);
+    const schoolUrn = Number(output) || 0;
+    return schoolUrn;
   } else {
     return 0;
   }
@@ -30,7 +32,8 @@ export const getSchoolName = (
   schoolOption: SchoolOptionValueType,
 ) => {
   if (schoolOption === "Selected school") {
-    return extractSchool(school);
+    const schoolName = extractSchool(school) || "";
+    return schoolName;
   } else {
     return "";
   }
