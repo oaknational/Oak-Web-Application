@@ -19,7 +19,8 @@ export const getSchoolUrn = (
   schoolOption: SchoolOptionValueType,
 ) => {
   if (schoolOption === "Selected school") {
-    const schoolUrn = Number(school.split("-")[0]) || 0;
+    const output = school.replace(/(\d+)-?(\d+)?-.*/, "$1$2");
+    const schoolUrn = Number(output) || 0;
     return schoolUrn;
   } else {
     return 0;
