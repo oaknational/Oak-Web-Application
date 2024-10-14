@@ -10,8 +10,6 @@ import {
 } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
-
 type UseUserReturn = ReturnType<typeof useUser>;
 
 describe(withOnboardingRequired, () => {
