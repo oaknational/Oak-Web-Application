@@ -20,7 +20,7 @@ query pupilLessonListing(
     actions
     features
   }
-  backLinkData: published_mv_synthetic_programmes_by_year_11_0_0(
+  backLinkData: published_mv_synthetic_programmes_by_year_11_1_0(
     where: { base_slug: { _eq: $baseSlug } }
   ) {
     programme_slug

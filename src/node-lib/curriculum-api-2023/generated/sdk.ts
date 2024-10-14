@@ -46907,7 +46907,7 @@ export type PupilLessonListingQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_12_0_0', lesson_data?: any | null, lesson_slug?: string | null, supplementary_data?: any | null, programme_fields?: any | null, unit_slug?: string | null, unit_data?: any | null, programme_slug?: string | null, is_legacy?: boolean | null, actions?: any | null, features?: any | null }>, backLinkData: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_11_0_0', programme_slug?: string | null, is_legacy?: boolean | null }> };
+export type PupilLessonListingQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_12_0_0', lesson_data?: any | null, lesson_slug?: string | null, supplementary_data?: any | null, programme_fields?: any | null, unit_slug?: string | null, unit_data?: any | null, programme_slug?: string | null, is_legacy?: boolean | null, actions?: any | null, features?: any | null }>, backLinkData: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_11_1_0', programme_slug?: string | null, is_legacy?: boolean | null }> };
 
 export type PupilPreviewLessonQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -47392,7 +47392,7 @@ export const PupilLessonListingDocument = gql`
     actions
     features
   }
-  backLinkData: published_mv_synthetic_programmes_by_year_11_0_0(
+  backLinkData: published_mv_synthetic_programmes_by_year_11_1_0(
     where: {base_slug: {_eq: $baseSlug}}
   ) {
     programme_slug
