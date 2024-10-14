@@ -2,7 +2,6 @@ import {
   isCycleTwoEnabled,
   useCycleTwoEnabled,
   getUnitFeatures,
-  isCurricPartnerHackEnabled,
 } from "./features";
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
@@ -44,23 +43,6 @@ describe("useCycleTwoEnabled", () => {
 
   it("false when ENABLE_CYCLE_2 false", () => {
     expect(useCycleTwoEnabled()).toEqual(false);
-  });
-});
-
-describe("isCurricPartnerHackEnabled", () => {
-  it("true when ENABLE_CYCLE_2 & CURRIC_PARTNER_HACK is true", () => {
-    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
-    MOCK_CURRIC_PARTNER_HACK.mockReturnValue(true);
-    expect(isCurricPartnerHackEnabled()).toEqual(true);
-  });
-
-  it("false when neither true", () => {
-    expect(isCurricPartnerHackEnabled()).toEqual(false);
-  });
-
-  it("false when only CURRIC_PARTNER_HACK is true", () => {
-    MOCK_CURRIC_PARTNER_HACK.mockReturnValue(true);
-    expect(isCurricPartnerHackEnabled()).toEqual(false);
   });
 });
 
