@@ -1,10 +1,9 @@
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
-import { constructPathwayLesson } from "../../helpers";
 import {
-  InputMaybe,
-  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
-} from "../../generated/sdk";
+  constructLessonBrowseQuery,
+  constructPathwayLesson,
+} from "../../helpers";
 import { rawSyntheticUVLessonSchema } from "../lessonDownloads/rawSyntheticUVLesson.schema";
 import { LessonPathway } from "../../shared.schema";
 
@@ -25,22 +24,12 @@ const lessonShareQuery =
     lessonSlug: string;
   }): Promise<T> => {
     const { lessonSlug, unitSlug, programmeSlug } = args;
-    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
-      {};
 
-    const canonicalLesson = !unitSlug && !programmeSlug;
-
-    if (canonicalLesson) {
-      browseDataWhere["lesson_slug"] = { _eq: lessonSlug };
-    }
-
-    if (unitSlug) {
-      browseDataWhere["unit_slug"] = { _eq: unitSlug };
-    }
-
-    if (programmeSlug) {
-      browseDataWhere["programme_slug"] = { _eq: programmeSlug };
-    }
+    const browseDataWhere = constructLessonBrowseQuery({
+      unitSlug,
+      programmeSlug,
+      lessonSlug,
+    });
 
     const res = await sdk.lessonShare({ lessonSlug, browseDataWhere });
 
@@ -68,6 +57,7 @@ const lessonShareQuery =
     );
     const shareableResources = constructShareableResources(parsedRawLesson);
 
+    const canonicalLesson = !unitSlug && !programmeSlug;
     if (canonicalLesson) {
       const parsedBrowseData = rawBrowseData.map((bd) =>
         rawSyntheticUVLessonSchema.parse(bd),

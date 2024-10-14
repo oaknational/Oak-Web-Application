@@ -1,3 +1,7 @@
+import {
+  InputMaybe,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
+} from "../generated/sdk";
 import { RawSyntheticUVLesson } from "../queries/lessonDownloads/rawSyntheticUVLesson.schema";
 import { lessonPathwaySchema } from "../shared.schema";
 
@@ -42,4 +46,34 @@ export const constructPathwayLesson = (lesson: RawSyntheticUVLesson) => {
     tierSlug: lesson.programme_fields.tier_slug,
     tierTitle: lesson.programme_fields.tier_description,
   });
+};
+
+/** Used by canonical lesson share and download queries */
+export const constructLessonBrowseQuery = ({
+  unitSlug,
+  programmeSlug,
+  lessonSlug,
+}: {
+  unitSlug?: string;
+  programmeSlug?: string;
+  lessonSlug: string;
+}) => {
+  const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
+    {};
+
+  const canonicalLesson = !unitSlug && !programmeSlug;
+
+  if (canonicalLesson) {
+    browseDataWhere["lesson_slug"] = { _eq: lessonSlug };
+  }
+
+  if (unitSlug) {
+    browseDataWhere["unit_slug"] = { _eq: unitSlug };
+  }
+
+  if (programmeSlug) {
+    browseDataWhere["programme_slug"] = { _eq: programmeSlug };
+  }
+
+  return browseDataWhere;
 };
