@@ -286,7 +286,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                     $mb="space-between-s"
                     $mr="space-between-m2"
                     type="info"
-                    message="Swimming units should be selected based on the ability and experience of your pupils."
+                    message="Swimming and water safety units should be selected based on the ability and experience of your pupils."
                   />
                 )}
                 {childSubjects.length < 1 && subjectCategories?.length > 1 && (
