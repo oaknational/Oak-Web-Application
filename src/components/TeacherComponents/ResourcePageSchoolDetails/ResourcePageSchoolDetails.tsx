@@ -74,7 +74,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
     setSchoolPickerInputValue(value);
   };
   return (
-    <OakFieldset $pa={"inner-padding-none"} $ba={"border-solid-none"}>
+    <OakFieldset>
       <OakBox
         as="legend"
         $position="absolute"
