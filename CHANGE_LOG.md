@@ -1,3 +1,22 @@
+## [1.588.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.588.0...v1.588.1) (2024-10-14)
+
+
+### Bug Fixes
+
+* added all-years logic into threads and unit-detail pages in docx ([75a26cd](https://github.com/oaknational/Oak-Web-Application/commit/75a26cd797b2a5c21a9698084ce508c10fdc1a39))
+
+# [1.588.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.587.0...v1.588.0) (2024-10-14)
+
+
+### Bug Fixes
+
+* sign in to download only on feature flag ([658d127](https://github.com/oaknational/Oak-Web-Application/commit/658d12732dab3f5ccb40eca91bc8c4d0b3882459))
+
+
+### Features
+
+* remove feature flag clerk ([327821f](https://github.com/oaknational/Oak-Web-Application/commit/327821f158cfff54edbb7d64da4ad5533959ce3b))
+
 # [1.587.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.586.0...v1.587.0) (2024-10-10)
 
 

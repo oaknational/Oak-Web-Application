@@ -5,7 +5,6 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => true,
 }));
