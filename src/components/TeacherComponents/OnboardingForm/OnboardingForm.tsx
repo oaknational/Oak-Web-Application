@@ -105,8 +105,13 @@ const OnboardingForm = ({
 
     if ("worksInSchool" in data) {
       user &&
+        posthogDistinctId &&
         track.userOnboardingProgressed(
-          collectOnboardingTrackingProps(user, latestOnboardingData),
+          collectOnboardingTrackingProps(
+            posthogDistinctId,
+            user,
+            latestOnboardingData,
+          ),
         );
       router.push({
         pathname: resolveOakHref({
@@ -118,8 +123,13 @@ const OnboardingForm = ({
       });
     } else if (isSchoolSelectData(data) && showNewsletterSignUp) {
       user &&
+        posthogDistinctId &&
         track.userOnboardingProgressed(
-          collectOnboardingTrackingProps(user, latestOnboardingData),
+          collectOnboardingTrackingProps(
+            posthogDistinctId,
+            user,
+            latestOnboardingData,
+          ),
         );
       router.push({
         pathname: resolveOakHref({
@@ -163,8 +173,13 @@ const OnboardingForm = ({
       });
 
       user &&
+        posthogDistinctId &&
         track.userOnboardingCompleted(
-          collectOnboardingTrackingProps(user, latestOnboardingData),
+          collectOnboardingTrackingProps(
+            posthogDistinctId,
+            user,
+            latestOnboardingData,
+          ),
         );
 
       // Return the user to the page they originally arrived from

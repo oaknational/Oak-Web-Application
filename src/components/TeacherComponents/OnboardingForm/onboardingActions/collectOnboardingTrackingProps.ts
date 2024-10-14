@@ -23,6 +23,7 @@ const DUMMY_URN = "000000";
  * Produces onboarding tracking properties from the user and onboarding form
  */
 export function collectOnboardingTrackingProps(
+  distinctUserId: string,
   user: NonNullable<ReturnType<typeof useUser>["user"]>,
   data: OnboardingFormProps,
 ): UserOnboardingCompletedProperties & UserOnboardingProgressedProperties {
@@ -38,7 +39,7 @@ export function collectOnboardingTrackingProps(
     componentType: "continue_button",
     eventVersion: "2.0.0",
     analyticsUseCase: "Teacher",
-    userId_: user.id,
+    userId_: distinctUserId,
     signUpDate,
     userRoleType: pickUserRole(data),
     teacherSchoolUrn: pickSchoolUrn(data),

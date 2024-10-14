@@ -28,7 +28,7 @@ describe(collectOnboardingTrackingProps, () => {
       {
         signUpDate: "2024-10-07",
         userDetailsLastModifiedDate: "2024-10-08",
-        userId_: "user-123",
+        userId_: "distinct-id-1234",
       },
     ],
     [
@@ -119,6 +119,7 @@ describe(collectOnboardingTrackingProps, () => {
     ],
   ])("tracks %s %p with props %p", (_, testFormProps, trackingProperties) => {
     const props = collectOnboardingTrackingProps(
+      "distinct-id-1234",
       mockUser,
       testFormProps as OnboardingFormProps,
     );
@@ -173,6 +174,7 @@ describe(collectOnboardingTrackingProps, () => {
     ],
   ])("tracks %s %p with props %p", (_, user, trackingProperties) => {
     const props = collectOnboardingTrackingProps(
+      "distinct-id-1234",
       user,
       {} as OnboardingFormProps,
     );
