@@ -14,6 +14,7 @@ import docx, {
   CurriculumUnitsTabDataIncludeNewWithOrder,
 } from "@/pages-helpers/curriculum/docx";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+import { logErrorMessage } from "@/utils/curriculum/unit";
 
 export const curriculumDownloadQuerySchema = z.object({
   mvRefreshTime: z.string(),
@@ -180,7 +181,7 @@ async function getData(opts: {
       };
     }
   } catch (error) {
-    console.log(error);
+    logErrorMessage(error);
     return {
       notFound: true,
     };
