@@ -1,8 +1,5 @@
 import { z } from "zod";
-import {
-  lessonContentSchema,
-  syntheticUnitvariantLessonsByKsSchema,
-} from "@oaknational/oak-curriculum-schema";
+import { lessonContentSchema } from "@oaknational/oak-curriculum-schema";
 
 import {
   lessonPathwaySchema,
@@ -18,14 +15,6 @@ export const rawLessonShareSchema = z.object({
     video_mux_playback_id: true,
     video_duration: true,
     worksheet_asset_object_url: true,
-  }).shape,
-});
-
-export const rawShareBrowseData = z.object({
-  unit_title: z.string(),
-  ...syntheticUnitvariantLessonsByKsSchema.pick({
-    is_legacy: true,
-    programme_fields: true,
   }).shape,
 });
 
