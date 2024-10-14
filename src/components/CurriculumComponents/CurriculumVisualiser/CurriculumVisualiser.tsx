@@ -23,6 +23,7 @@ import {
   getYearGroupTitle,
 } from "@/utils/curriculum/formatting";
 import { getUnitFeatures } from "@/utils/curriculum/features";
+import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 
 export type YearData = {
   [key: string]: {
@@ -176,26 +177,14 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   useEffect(() => {
     const options = { rootMargin: "-50% 0px 0px 0px" };
     const yearsLoaded = Object.keys(yearData).length;
-    const visibleYears = new Map();
     // All refs have been created for year groups & data is loaded
     if (yearsLoaded > 0 && itemEls.current.length === yearsLoaded) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          const top = entry.boundingClientRect.top;
-          const year = entry.target.id;
-          if (entry.isIntersecting) {
-            visibleYears.set(year, top);
-          } else {
-            visibleYears.delete(year);
-          }
-          if (visibleYears.size > 0) {
-            const sortedYears = Array.from(visibleYears.entries()).sort(
-              ([, aTop], [, bTop]) => aTop - bTop,
-            );
-            setVisibleMobileYearRefID(sortedYears[0]?.[0]);
-          }
-        });
-      }, options);
+      // const io = new IntersectionObserver(, options);
+      const io = new IntersectionObserver(
+        anchorIntersectionObserver(setVisibleMobileYearRefID),
+        options,
+      );
+
       itemEls.current.forEach((el) => io.observe(el as Element));
       return () => {
         io.disconnect();
