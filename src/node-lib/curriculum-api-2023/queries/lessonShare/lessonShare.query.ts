@@ -40,7 +40,11 @@ const lessonShareQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    if (rawLesson.length > 1 || rawBrowseData.length > 1) {
+    const canonicalLesson = !unitSlug && !programmeSlug;
+    if (
+      !canonicalLesson &&
+      (rawLesson.length > 1 || rawBrowseData.length > 1)
+    ) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });
@@ -57,7 +61,6 @@ const lessonShareQuery =
     );
     const shareableResources = constructShareableResources(parsedRawLesson);
 
-    const canonicalLesson = !unitSlug && !programmeSlug;
     if (canonicalLesson) {
       const parsedBrowseData = rawBrowseData.map((bd) =>
         rawSyntheticUVLessonSchema.parse(bd),
