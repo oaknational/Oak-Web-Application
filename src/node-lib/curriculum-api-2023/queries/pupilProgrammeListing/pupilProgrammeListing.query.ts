@@ -5,6 +5,8 @@ import {
 
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
+import { PupilProgrammeListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 /**
@@ -25,33 +27,17 @@ export const pupilProgrammeListingQuery =
       baseSlug,
     });
 
-    if (res.data?.length === 0) {
+    const modified = applyGenericOverridesAndExceptions<
+      PupilProgrammeListingQuery["data"][number]
+    >({
+      journey: "pupil",
+      queryName: "pupilProgrammeListingQuery",
+      browseData: res.data,
+    });
+
+    if (modified.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
-
-    // TODO abstract this into a generic helper function
-    const filtered = res.data.filter(
-      (b) =>
-        !b.actions?.exclusions?.includes("pupils") &&
-        !b.actions?.exclusions?.includes("pupilProgrammeListingQuery"),
-    );
-
-    const modified = filtered.map((p) => {
-      if (
-        p?.actions?.programme_field_overrides &&
-        !p?.actions?.opt_out.includes("pupils") &&
-        !p?.actions?.opt_out.includes("pupilProgrammeListingQuery")
-      ) {
-        return {
-          ...p,
-          programme_fields: {
-            ...p.programme_fields,
-            ...p.actions.programme_field_overrides,
-          },
-        };
-      }
-      return p;
-    });
 
     pupilProgrammeListingSchema.array().parse(modified);
 

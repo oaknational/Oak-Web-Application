@@ -8,7 +8,9 @@ import {
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import {
+  PupilLessonQuery,
   InputMaybe,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_12_0_0_Bool_Exp,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
@@ -44,23 +46,6 @@ export const pupilLessonQuery =
       lessonSlug,
     });
 
-    const [browseDataSnake] = res.browseData;
-
-    if (
-      !browseDataSnake ||
-      browseDataSnake.actions?.exclusions?.includes("pupils")
-    ) {
-      throw new OakError({ code: "curriculum-api/not-found" });
-    }
-
-    const modifiedBrowseData = {
-      ...browseDataSnake,
-      programme_fields: {
-        ...browseDataSnake.programme_fields,
-        ...browseDataSnake.actions.programme_field_overrides,
-      },
-    };
-
     if (res.browseData.length > 1 && unitSlug && programmeSlug) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
@@ -70,12 +55,6 @@ export const pupilLessonQuery =
         ...args,
         res,
       });
-    }
-
-    const [contentSnake] = res.content;
-
-    if (!contentSnake) {
-      throw new OakError({ code: "curriculum-api/not-found" });
     }
 
     if (res.content.length > 1) {
@@ -89,11 +68,31 @@ export const pupilLessonQuery =
       });
     }
 
-    lessonBrowseDataSchema.parse(modifiedBrowseData);
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      PupilLessonQuery["browseData"][number]
+    >({
+      journey: "pupil",
+      queryName: "pupilLessonListingQuery",
+      browseData: res.browseData,
+    });
+
+    if (modifiedBrowseData.length === 0) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    const [browseDataSnake] = modifiedBrowseData;
+
+    const [contentSnake] = res.content;
+
+    if (!contentSnake) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    lessonBrowseDataSchema.parse(browseDataSnake);
     lessonContentSchema.parse(contentSnake);
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
-    const browseData = keysToCamelCase(modifiedBrowseData) as LessonBrowseData;
+    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
     const content = keysToCamelCase(contentSnake) as LessonContent;
 
     return {

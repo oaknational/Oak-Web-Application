@@ -7,6 +7,8 @@ import {
 
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
+import { PupilLessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 export const pupilLessonListingQuery =
@@ -33,28 +35,17 @@ export const pupilLessonListingQuery =
       unitSlug,
     });
 
-    const browseDataSnake = res.browseData;
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      PupilLessonListingQuery["browseData"][number]
+    >({
+      journey: "pupil",
+      queryName: "pupilLessonListingQuery",
+      browseData: res.browseData,
+    });
 
-    const filteredBrowseData = browseDataSnake.filter(
-      (b) => !b.actions?.exclusions?.includes("pupils"),
-    );
-
-    if (!filteredBrowseData) {
+    if (modifiedBrowseData.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
-
-    const modifiedBrowseData = filteredBrowseData.map((lesson) => {
-      if (lesson?.actions?.programme_field_overrides) {
-        return {
-          ...lesson,
-          programme_fields: {
-            ...lesson.programme_fields,
-            ...lesson.actions.programme_field_overrides,
-          },
-        };
-      }
-      return lesson;
-    });
 
     lessonBrowseDataSchema.parse(modifiedBrowseData);
 
