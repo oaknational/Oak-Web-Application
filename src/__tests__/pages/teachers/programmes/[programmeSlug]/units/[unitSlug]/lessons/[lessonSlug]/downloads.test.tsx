@@ -164,8 +164,8 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     result.current.setEmailInLocalStorage("test@test.com");
     result.current.setTermsInLocalStorage(true);
     result.current.setSchoolInLocalStorage({
-      schoolId: "1",
-      schoolName: "name",
+      schoolId: "123456-Secondary school",
+      schoolName: "Secondary school",
     });
     render(<LessonDownloadsPage {...props} />);
     const downloadButton = screen.getByRole("button", {
@@ -191,9 +191,9 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       platform: "owa",
       product: "teacher lesson resources",
       resourceType: ["exit quiz questions", "exit quiz answers"],
-      schoolName: "",
+      schoolName: "Secondary school",
       schoolOption: "Selected school",
-      schoolUrn: 1,
+      schoolUrn: 123456,
       subjectSlug: "combined-science",
       subjectTitle: "Combined Science",
       tierName: "Foundation",
@@ -207,8 +207,8 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     result.current.setEmailInLocalStorage("test@test.com");
     result.current.setTermsInLocalStorage(true);
     result.current.setSchoolInLocalStorage({
-      schoolId: "1",
-      schoolName: "name",
+      schoolId: "123456-Secondary school",
+      schoolName: "123-name",
     });
     render(
       <LessonDownloadsPage
@@ -241,9 +241,9 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       platform: "owa",
       product: "teacher lesson resources",
       resourceType: ["exit quiz questions", "exit quiz answers"],
-      schoolName: "",
+      schoolName: "Secondary school",
       schoolOption: "Selected school",
-      schoolUrn: 1,
+      schoolUrn: 123456,
       subjectSlug: "combined-science",
       subjectTitle: "Combined Science",
       tierName: null,
