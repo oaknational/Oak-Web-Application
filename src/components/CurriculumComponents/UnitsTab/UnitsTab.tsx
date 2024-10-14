@@ -211,6 +211,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
         $mh={"auto"}
         $ph={[0, 18]}
         $width={"100%"}
+        role="region"
       >
         <ScreenReaderOnly>
           <OakHeading

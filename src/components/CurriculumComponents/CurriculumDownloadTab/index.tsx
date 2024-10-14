@@ -331,6 +331,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
         $ph={18}
         $pb={[48]}
         $width={"100%"}
+        role="region"
       >
         <ScreenReaderOnly>
           <OakHeading id="curriculum-downloads-heading" tag="h2">
