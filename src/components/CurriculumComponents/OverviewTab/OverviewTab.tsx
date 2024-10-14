@@ -8,6 +8,7 @@ import {
   OakFlex,
   OakBox,
   OakTertiaryButton,
+  OakIcon,
 } from "@oaknational/oak-components";
 import {
   PortableText,
@@ -19,7 +20,6 @@ import styled from "styled-components";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Card from "@/components/SharedComponents/Card/Card";
-import SubjectIcon from "@/components/SharedComponents/SubjectIcon/SubjectIcon";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import Icon from "@/components/SharedComponents/Icon";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
@@ -30,6 +30,7 @@ import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
 import { useCycleTwoEnabled } from "@/utils/curriculum/features";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type OverviewTabProps = {
   data: {
@@ -193,6 +194,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     curriculumPartnerOverviews?.length > 1 ? "s" : ""
   }`;
 
+  const subjectIconName = getValidSubjectIconName(subjectSlug);
+
   const contents = (
     <OakFlex $gap={"space-between-m"} $flexDirection={"column"}>
       <OakP>Contents</OakP>
@@ -327,7 +330,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
 
               <Card
                 $ml={40}
-                $maxHeight={200}
+                $height={200}
                 $maxWidth={[0, 0, 200]}
                 $ma={"auto"}
                 $zIndex={"inFront"}
@@ -338,12 +341,13 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 $background={"lemon50"}
               >
                 <BrushBorders color="lemon50" />
-                <SubjectIcon
-                  subjectSlug={subjectSlug}
-                  $maxHeight={200}
-                  $maxWidth={200}
+
+                <OakIcon
+                  iconName={subjectIconName}
+                  $height="100%"
+                  $width="100%"
                   $transform={["rotate(-2.179deg)", "scale(1.25, 1.25)"]}
-                  $background={"lemon50"}
+                  alt=""
                 />
               </Card>
             </OakFlex>

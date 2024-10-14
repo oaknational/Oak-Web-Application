@@ -1,37 +1,8 @@
-import { mkdir, unlink } from "fs/promises";
+import { mkdir } from "fs/promises";
 import { dirname, relative } from "path";
 
 import puppeteer, { Page } from "puppeteer";
-import sharp from "sharp";
 import slugify from "@sindresorhus/slugify";
-
-type Image = {
-  input: string;
-  top: number;
-  bottom: number;
-  left: number;
-};
-
-const combineScreenshots = async (
-  images: Image[],
-  outputFileName: string,
-  width: number,
-) => {
-  if (images.length > 0) {
-    const totalHeight = images[images.length - 1]!.bottom;
-
-    await sharp({
-      create: {
-        width: width,
-        height: totalHeight,
-        channels: 4,
-        background: { r: 0, g: 0, b: 0, alpha: 0 },
-      },
-    })
-      .composite(images)
-      .toFile(outputFileName);
-  }
-};
 
 const screenshotPage = async (
   page: Page,
@@ -40,70 +11,22 @@ const screenshotPage = async (
   logOpts: { id: string },
 ) => {
   await page.goto(url, {
-    waitUntil: "domcontentloaded",
+    waitUntil: "networkidle0",
   });
 
-  const viewportHeight = await page.evaluate(() => {
-    return window.innerHeight;
+  await page.evaluate(() => {
+    document.querySelector("div[data-testid=cookie-banner]")?.remove();
   });
-  const viewportWidth = await page.evaluate(() => {
-    return window.innerWidth;
+
+  await page.screenshot({
+    path: path,
+    captureBeyondViewport: true,
+    fullPage: true,
   });
-  const totalHeight = await page.evaluate(() => {
-    return document.body.scrollHeight;
-  });
-  const sections = Math.ceil(totalHeight / viewportHeight);
-
-  let imgHeight = 0;
-  const images: Image[] = [];
-  for (let i = 0; i < sections; i++) {
-    const sectionPath = `${path}_part${i + 1}.png`;
-
-    const def = {
-      input: sectionPath,
-      top: imgHeight,
-      bottom: Math.min(totalHeight, imgHeight + viewportHeight),
-      left: 0,
-    };
-
-    images.push(def);
-    imgHeight = def.bottom;
-  }
-
-  if (images.length < 1) {
-    return;
-  }
-
-  for (let i = 0; i < images.length; i++) {
-    const sectionPath = images[i]!.input;
-
-    await page.evaluate(
-      (scrollY: number) => window.scrollTo(0, scrollY),
-      i * viewportHeight,
-    );
-
-    console.log(
-      `📸 [${logOpts.id}] temp #${i + 1}: ${relative(
-        process.cwd(),
-        sectionPath,
-      )}`,
-    );
-    await page.screenshot({
-      path: sectionPath,
-      clip: {
-        x: 0,
-        y: i * viewportHeight,
-        width: viewportWidth,
-        height: Math.min(viewportHeight, totalHeight - i * viewportHeight),
-      },
-    });
-  }
 
   console.log(
-    `📦 [${logOpts.id}] combined: ./${relative(process.cwd(), path)}`,
+    `📸 [${logOpts.id}] page captured: ./${relative(process.cwd(), path)}`,
   );
-  await combineScreenshots(images, path, viewportWidth);
-  await Promise.all(images.map((img) => unlink(img.input)));
 };
 
 async function screenshotUnitsPage(
@@ -123,7 +46,7 @@ async function screenshotUnitsPage(
 
 async function loginWithUrl(page: Page, loginUrl: string) {
   await page.goto(loginUrl, {
-    waitUntil: "domcontentloaded",
+    waitUntil: "networkidle0",
   });
 }
 
@@ -131,7 +54,10 @@ export default async function screenshot(
   host: string,
   { loginUrl, label }: { loginUrl?: string; label?: string } = {},
 ) {
-  const browser = await puppeteer.launch({ headless: "new" });
+  const browser = await puppeteer.launch({
+    headless: "new",
+    args: ["--incognito"],
+  });
   const page = await browser.newPage();
   await page.setViewport({ width: 1080, height: 1024 });
 

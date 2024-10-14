@@ -14,6 +14,9 @@ import {
 
 import { createProgrammeSlug } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import { SubjectCategory } from "@/components/CurriculumComponents/CurriculumVisualiser";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import { getUnitFeatures } from "@/utils/curriculum/features";
+import { createUnitsListingByYear } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 const DISABLE_COLUMN_BREAKS = true;
 
@@ -443,6 +446,12 @@ export async function buildUnit(
     return combinedTitles !== "" ? `: ${combinedTitles}` : "";
   }
 
+  const yearData = createUnitsListingByYear([unit]);
+  const yearTitle = getYearGroupTitle(
+    yearData,
+    getUnitFeatures(unit)?.programmes_fields_overrides.year ?? unit.year,
+  );
+
   const xml = safeXml`
     <XML_FRAGMENT>
       ${
@@ -496,7 +505,7 @@ export async function buildUnit(
             <w:b />
             <w:color w:val="222222" />
           </w:rPr>
-          <w:t>Year ${cdata(unit.year)}</w:t>
+          <w:t>${cdata(yearTitle)}</w:t>
           <w:t>
             ${cdata(getSubjectCategoriesAsString(unit.subjectcategories))}
           </w:t>
