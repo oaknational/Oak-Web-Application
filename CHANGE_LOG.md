@@ -1,3 +1,10 @@
+## [1.588.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.588.0...v1.588.1) (2024-10-14)
+
+
+### Bug Fixes
+
+* added all-years logic into threads and unit-detail pages in docx ([75a26cd](https://github.com/oaknational/Oak-Web-Application/commit/75a26cd797b2a5c21a9698084ce508c10fdc1a39))
+
 # [1.588.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.587.0...v1.588.0) (2024-10-14)
 
 
