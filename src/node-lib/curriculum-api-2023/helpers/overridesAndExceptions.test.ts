@@ -45,7 +45,7 @@ describe("applyOverridesAndExceptions", () => {
       overrides: {
         actions: {
           programme_field_overrides: {
-            subject: "New Subject",
+            subject: "Art and design",
           },
         },
       },
@@ -56,7 +56,7 @@ describe("applyOverridesAndExceptions", () => {
         queryName: "pupilUnitListingQuery",
         browseData,
       })[0]?.programme_fields?.subject,
-    ).toEqual("New Subject");
+    ).toEqual("Art and design");
   });
 
   it("should not apply programme field overrides if the journey is opted out", () => {
@@ -64,7 +64,7 @@ describe("applyOverridesAndExceptions", () => {
       overrides: {
         actions: {
           programme_field_overrides: {
-            subject: "New Subject",
+            subject: "Art and design",
           },
           opt_out: ["pupil"],
         },
@@ -76,6 +76,6 @@ describe("applyOverridesAndExceptions", () => {
         queryName: "pupilUnitListingQuery",
         browseData,
       })[0]?.programme_fields?.subject,
-    ).not.toEqual("New Subject");
+    ).not.toEqual("Art and design");
   });
 });

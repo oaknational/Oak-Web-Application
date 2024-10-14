@@ -1,22 +1,19 @@
 import { z } from "zod";
-import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  programmeFieldsSchema,
+  actionsSchema,
+  queriesSchema,
+  journeysSchema,
+} from "@oaknational/oak-curriculum-schema";
 
 type ProgrammeFieldsSnake = z.infer<typeof programmeFieldsSchema>;
 
-export type JourneyNames = "pupil" | "teacher" | "curriculum";
-export type QueryNames =
-  | "pupilProgrammeListingQuery"
-  | "pupilSubjectListingQuery"
-  | "pupilUnitListingQuery"
-  | "pupilLessonListingQuery";
+export type JourneyNames = z.infer<typeof journeysSchema>;
+export type QueryNames = z.infer<typeof queriesSchema>;
 
 export type ExclusionAndOptOuts = JourneyNames | QueryNames;
 
-interface Actions {
-  exclusions?: ExclusionAndOptOuts[];
-  opt_out?: ExclusionAndOptOuts[];
-  programme_field_overrides?: Partial<ProgrammeFieldsSnake>;
-}
+export type Actions = z.infer<typeof actionsSchema>;
 
 interface SkeletonBrowseData {
   actions?: Actions | null;
