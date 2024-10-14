@@ -52,6 +52,14 @@ export function applyGenericOverridesAndExceptions<
           ...f.actions.programme_field_overrides,
         },
       };
+    } else if (
+      f?.actions?.opt_out?.includes(journey) ||
+      f?.actions?.opt_out?.includes(queryName)
+    ) {
+      return {
+        ...f,
+        actions: {},
+      };
     }
     return f;
   });

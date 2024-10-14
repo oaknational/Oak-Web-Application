@@ -72,7 +72,7 @@ export const pupilLessonQuery =
       PupilLessonQuery["browseData"][number]
     >({
       journey: "pupil",
-      queryName: "pupilLessonListingQuery",
+      queryName: "pupilLessonQuery",
       browseData: res.browseData,
     });
 
