@@ -1,3 +1,10 @@
+# [1.589.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.588.1...v1.589.0) (2024-10-14)
+
+
+### Features
+
+* added support for multiple curriculum partners from the CMS for cycle 2 ([c39fbde](https://github.com/oaknational/Oak-Web-Application/commit/c39fbde6f2046651c95e401ab8c015bd800902b2))
+
 ## [1.588.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.588.0...v1.588.1) (2024-10-14)
 
 
