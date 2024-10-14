@@ -135,7 +135,11 @@ const UnitModal: FC<UnitModalProps> = ({
                 }}
               />
             </Box>
-            <LessonMetadata subjectTitle={subjectTitle} yearTitle={yearTitle} />
+            <LessonMetadata
+              subjectTitle={subjectTitle}
+              yearTitle={yearTitle}
+              $flexWrap={"wrap"}
+            />
             <OakHeading tag="h2" $font={"heading-5"}>
               {!curriculumUnitDetails
                 ? unitData.title
