@@ -1,12 +1,13 @@
-query curriculumUnitsIncludeNew($where: published_mv_curriculum_units_including_new_0_0_14_bool_exp) {
-  units: published_mv_curriculum_units_including_new_0_0_14(where: $where) {
+query curriculumUnitsIncludeNew($where: published_mv_curriculum_units_including_new_0_0_16_bool_exp) {
+  units: published_mv_curriculum_units_including_new_0_0_16(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title
     connection_prior_unit_title
-    why_this_why_now,
-    cycle,
-    description,
+    why_this_why_now
+    cycle
+    features
+    description
     domain
     domain_id
     examboard

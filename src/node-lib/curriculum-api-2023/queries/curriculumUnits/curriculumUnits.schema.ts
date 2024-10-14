@@ -63,6 +63,7 @@ const curriculumUnitsSchema = z.object({
       description: z.string().nullable(),
       why_this_why_now: z.string().nullable(),
       cycle: z.string(),
+      features: z.any(),
       unit_options: z.array(
         z.object({
           connection_prior_unit_description: z.string().nullable(),

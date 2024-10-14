@@ -8,7 +8,6 @@ const useCycleTwoEnabled = jest.fn(() => false);
 jest.mock("@/utils/curriculum/features", () => ({
   __esModule: true,
   useCycleTwoEnabled: (...args: []) => useCycleTwoEnabled(...args),
-  isCurricPartnerHackEnabled: () => false,
   default: {},
 }));
 

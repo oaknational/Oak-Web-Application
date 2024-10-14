@@ -8,6 +8,7 @@ import {
   OakFlex,
   OakBox,
   OakTertiaryOLNav,
+  OakIcon,
 } from "@oaknational/oak-components";
 import {
   PortableText,
@@ -21,7 +22,6 @@ import { useRouter } from "next/router";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Card from "@/components/SharedComponents/Card/Card";
-import SubjectIcon from "@/components/SharedComponents/SubjectIcon/SubjectIcon";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import Icon from "@/components/SharedComponents/Icon";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
@@ -31,10 +31,8 @@ import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
-import {
-  isCurricPartnerHackEnabled,
-  useCycleTwoEnabled,
-} from "@/utils/curriculum/features";
+import { useCycleTwoEnabled } from "@/utils/curriculum/features";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type OverviewTabProps = {
   data: {
@@ -141,6 +139,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     subjectPrinciples,
     partnerBio,
     curriculumPartner,
+    curriculumPartnerOverviews,
     video,
     videoExplainer,
   } = curriculumCMSInfo;
@@ -186,16 +185,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     );
   };
 
-  // TODO: Add multiple curriculum partners here, see <https://www.notion.so/oaknationalacademy/New-curriculum-partner-design-in-overview-tab-10326cc4e1b180098542eb3b70ba270d>
-  const curriculumPartners = isCurricPartnerHackEnabled()
-    ? [curriculumPartner, curriculumPartner]
-    : [curriculumPartner];
+  const isVideoEnabled = video && videoExplainer;
 
   const partnerTitle = `Our curriculum partner${
-    curriculumPartners.length > 1 ? "s" : ""
+    curriculumPartnerOverviews?.length > 1 ? "s" : ""
   }`;
-
-  const isVideoEnabled = video && videoExplainer;
 
   const h1Headings = (curriculumExplainer.explainerRaw ?? []).filter(
     (block) => {
@@ -249,6 +243,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
       }
     }
   };
+
+  const subjectIconName = getValidSubjectIconName(subjectSlug);
 
   const contents = (
     <OakFlex $gap={"space-between-m"} $flexDirection={"column"}>
@@ -362,7 +358,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
 
               <Card
                 $ml={40}
-                $maxHeight={200}
+                $height={200}
                 $maxWidth={[0, 0, 200]}
                 $ma={"auto"}
                 $zIndex={"inFront"}
@@ -373,12 +369,13 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 $background={"lemon50"}
               >
                 <BrushBorders color="lemon50" />
-                <SubjectIcon
-                  subjectSlug={subjectSlug}
-                  $maxHeight={200}
-                  $maxWidth={200}
+
+                <OakIcon
+                  iconName={subjectIconName}
+                  $height="100%"
+                  $width="100%"
                   $transform={["rotate(-2.179deg)", "scale(1.25, 1.25)"]}
-                  $background={"lemon50"}
+                  alt=""
                 />
               </Card>
             </OakFlex>
@@ -504,8 +501,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 $gap={["space-between-l", "space-between-m2"]}
                 $flexDirection={"column"}
               >
-                {curriculumPartners.map(
-                  (curriculumPartner, curriculumPartnerIndex) => {
+                {curriculumPartnerOverviews.map(
+                  (
+                    { curriculumPartner, partnerBio },
+                    curriculumPartnerIndex,
+                  ) => {
                     return (
                       <OakFlex
                         $justifyContent={"center"}

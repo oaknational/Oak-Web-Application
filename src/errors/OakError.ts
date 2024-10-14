@@ -31,6 +31,7 @@ const ERROR_CODES = [
   "downloads/failed-to-fetch",
   "downloads/check-files-failed",
   "onboarding/request-error",
+  "oak-components/invalid-icon-name",
 ] as const;
 export type ErrorCode = (typeof ERROR_CODES)[number];
 
@@ -165,6 +166,10 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   },
   "onboarding/request-error": {
     message: "Onboarding request failed",
+    shouldNotify: true,
+  },
+  "oak-components/invalid-icon-name": {
+    message: "Invalid icon name provided to OakIcon",
     shouldNotify: true,
   },
 };

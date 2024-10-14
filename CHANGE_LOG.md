@@ -1,3 +1,129 @@
+## [1.588.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.588.0...v1.588.1) (2024-10-14)
+
+
+### Bug Fixes
+
+* added all-years logic into threads and unit-detail pages in docx ([75a26cd](https://github.com/oaknational/Oak-Web-Application/commit/75a26cd797b2a5c21a9698084ce508c10fdc1a39))
+
+# [1.588.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.587.0...v1.588.0) (2024-10-14)
+
+
+### Bug Fixes
+
+* sign in to download only on feature flag ([658d127](https://github.com/oaknational/Oak-Web-Application/commit/658d12732dab3f5ccb40eca91bc8c4d0b3882459))
+
+
+### Features
+
+* remove feature flag clerk ([327821f](https://github.com/oaknational/Oak-Web-Application/commit/327821f158cfff54edbb7d64da4ad5533959ce3b))
+
+# [1.587.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.586.0...v1.587.0) (2024-10-10)
+
+
+### Features
+
+* add comparison and some styling to curriculum screenshot script ([ba1f0f4](https://github.com/oaknational/Oak-Web-Application/commit/ba1f0f498a7f55317cd26d314ed6dc9164304380))
+
+# [1.586.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.585.0...v1.586.0) (2024-10-10)
+
+
+### Features
+
+* changes lot picker text for cycle 2 ([2ed05f7](https://github.com/oaknational/Oak-Web-Application/commit/2ed05f7ce8bf1d2cc045a00099fd4840b5bfb7a1))
+
+# [1.585.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.584.2...v1.585.0) (2024-10-10)
+
+
+### Features
+
+* change swimming text to include "water safety" ([a6d02d3](https://github.com/oaknational/Oak-Web-Application/commit/a6d02d33af15a656f9088b70edc9c9d13b782a15))
+
+## [1.584.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.584.1...v1.584.2) (2024-10-10)
+
+
+### Bug Fixes
+
+* remove order hack now data has been fixed ([ae83469](https://github.com/oaknational/Oak-Web-Application/commit/ae83469e4b4036d1ab8c129769e2f8b51ee52a17))
+
+## [1.584.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.584.0...v1.584.1) (2024-10-10)
+
+# [1.584.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.583.0...v1.584.0) (2024-10-10)
+
+
+### Bug Fixes
+
+* remove redundant alt text from icons ([f1ee32e](https://github.com/oaknational/Oak-Web-Application/commit/f1ee32e734811fefff34474b3a72b2a1363d2dbc))
+* remove subject null type ([fd496d3](https://github.com/oaknational/Oak-Web-Application/commit/fd496d31e11701f40d5d2c29ae340c38425af434))
+* the null value stays, handle it further down ([053d5b6](https://github.com/oaknational/Oak-Web-Application/commit/053d5b649a2d1afb3fbd1d38119660b7c7b8192f))
+
+
+### Features
+
+* update resource cards to use oakicon ([115f439](https://github.com/oaknational/Oak-Web-Application/commit/115f439cc3fc17dfaf2285f1e6c6e8a4e0cc5042))
+* update search results to use oakicon ([404e392](https://github.com/oaknational/Oak-Web-Application/commit/404e392a67dffd7602036b90f03eee94d7adf927))
+* update subject icon brushed borders in browse headers ([94f6138](https://github.com/oaknational/Oak-Web-Application/commit/94f613838612b63bf59152f37a95a74ec827df77))
+* update teachers homepage resource icons ([3c01253](https://github.com/oaknational/Oak-Web-Application/commit/3c01253d77a2a66087c4295a68b3b01efae95923))
+
+# [1.583.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.582.0...v1.583.0) (2024-10-09)
+
+
+### Features
+
+* switched over to using data from the database for swimming units ([d408177](https://github.com/oaknational/Oak-Web-Application/commit/d408177cb549a5e7529df79352c257a998026cc6))
+
+# [1.582.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.581.0...v1.582.0) (2024-10-09)
+
+
+### Bug Fixes
+
+* add comment ([9091005](https://github.com/oaknational/Oak-Web-Application/commit/90910058fd555b4be287e45bc8f9fc88fa44a362))
+* filters div width and useSearchFilters function ([a18a2c1](https://github.com/oaknational/Oak-Web-Application/commit/a18a2c12b22ecd0a2b4978f5ebb5e3bd253435a5))
+* tests for search filters ([f8ee006](https://github.com/oaknational/Oak-Web-Application/commit/f8ee006e27d0db2485a9dd360d9253a95318055e))
+
+
+### Features
+
+* add in functionality for filtering by new ([63bde2d](https://github.com/oaknational/Oak-Web-Application/commit/63bde2d748a47151363ad2c3a926b9edc4d173de))
+* add legacy to active filters and fix sizing of tag ([6dd4c9f](https://github.com/oaknational/Oak-Web-Application/commit/6dd4c9f01d6ef873b8bdfe17941372738c9ffc25))
+* **lesq-1091:** build ui for show new filter ([aa5ce6f](https://github.com/oaknational/Oak-Web-Application/commit/aa5ce6fcdb83cdabb0e899d4c84ae1825f4712f2))
+
+# [1.581.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.580.0...v1.581.0) (2024-10-09)
+
+
+### Features
+
+* **refactor:** refactor hooks into own file ([e6e7432](https://github.com/oaknational/Oak-Web-Application/commit/e6e7432f8a5c64a4b2532093ba6d22da5d7ae7c0))
+* **refactor:** refactor hooks into own file ([e455295](https://github.com/oaknational/Oak-Web-Application/commit/e455295cb974801c39c6489ebf9a6617d270decd))
+* **refactor:** refactor tracking events into respective views ([a4db528](https://github.com/oaknational/Oak-Web-Application/commit/a4db528cbaa0c4bf0e38656c1c17911f06f108b2))
+
+# [1.580.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.579.0...v1.580.0) (2024-10-09)
+
+
+### Features
+
+* switch curriculum visualiser to newer MV ([23bf259](https://github.com/oaknational/Oak-Web-Application/commit/23bf259ec1d4441016854a84f1004376fd2a6526))
+
+# [1.579.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.578.0...v1.579.0) (2024-10-09)
+
+
+### Bug Fixes
+
+* further options check to consider legacy as well ([ba8e9ba](https://github.com/oaknational/Oak-Web-Application/commit/ba8e9bab0a5300feaf7d6e98d5c7094ce46e104c))
+* lint errors ([d5d7966](https://github.com/oaknational/Oak-Web-Application/commit/d5d796659609d5a1c0fdd6e38e739ce38e87f1a3))
+* reinstate schema ([a2026fd](https://github.com/oaknational/Oak-Web-Application/commit/a2026fd13ed97ec7665edb3e21b2ff9d85d83144))
+* resolve conflicts ([68371a2](https://github.com/oaknational/Oak-Web-Application/commit/68371a295ae7de20ad293408b0aa082caf99f1b0))
+* resolving more type errors ([9ee24cd](https://github.com/oaknational/Oak-Web-Application/commit/9ee24cd4e1a48fbdfad334bfc378ea06af57a385))
+* types on teacher journey ([e1e38e1](https://github.com/oaknational/Oak-Web-Application/commit/e1e38e189df0c3c107c8292fb079e7ec14b0d132))
+* update schema to work with older mvs ([351a335](https://github.com/oaknational/Oak-Web-Application/commit/351a3354de62921bf858381b1983c5e3b988e4d1))
+* update schema to work with older mvs ([6d74bff](https://github.com/oaknational/Oak-Web-Application/commit/6d74bffe9186a6200ec7052b67a6edb55845407b))
+
+
+### Features
+
+* adding pre-selected pathways page ([c943d3a](https://github.com/oaknational/Oak-Web-Application/commit/c943d3a726385ec014b214f7cb1c610c129ce1da))
+* lesson listing page ([70ff3f3](https://github.com/oaknational/Oak-Web-Application/commit/70ff3f3ce3fc2f673e89cd36da779fad82fb88fc))
+* programme listing works with assymetrical options ([1d3f938](https://github.com/oaknational/Oak-Web-Application/commit/1d3f938f7c01930ad2d5c71fc7d3450140e52e1f))
+
 # [1.578.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.577.1...v1.578.0) (2024-10-09)
 
 
