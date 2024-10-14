@@ -101,7 +101,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 $display={["none", "none", "flex"]}
               />
               <TeachersTabResourceSelectorCard
-                icon={"quiz-white"}
+                icon={"quiz"}
                 title="Quizzes"
                 angle={4}
                 $bottom={60}
