@@ -16,11 +16,11 @@ import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.v
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonShareCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
-export type LessonSharePageProps = {
+export type LessonShareCanonicalPageProps = {
   curriculumData: LessonShareCanonical;
 };
 
-const LessonSharePage: NextPage<LessonSharePageProps> = ({
+const LessonShareCanonicalPage: NextPage<LessonShareCanonicalPageProps> = ({
   curriculumData,
 }) => {
   const { lessonTitle } = curriculumData;
@@ -57,11 +57,11 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  LessonSharePageProps,
+  LessonShareCanonicalPageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
-    page: "downloads::getStaticProps",
+    page: "share::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
@@ -80,7 +80,7 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const results: GetStaticPropsResult<LessonSharePageProps> = {
+      const results: GetStaticPropsResult<LessonShareCanonicalPageProps> = {
         props: {
           curriculumData,
         },
@@ -90,4 +90,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonSharePage;
+export default LessonShareCanonicalPage;
