@@ -1,6 +1,5 @@
 import { ComponentType, PropsWithChildren } from "react";
-
-import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
+import { RedirectToSignUp, useUser } from "@clerk/nextjs";
 
 /**
  * Wraps a component or page in a check for the presence
@@ -12,7 +11,6 @@ export function withPageAuthRequired<P extends object>(
   FallbackComponent?: ComponentType<PropsWithChildren>,
 ) {
   function WrappedComponent(props: P) {
-    const { useUser, RedirectToSignUp } = useFeatureFlaggedClerk();
     const { isSignedIn, isLoaded } = useUser();
 
     if (!isLoaded) {
