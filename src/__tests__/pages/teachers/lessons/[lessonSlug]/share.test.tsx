@@ -8,19 +8,12 @@ import LessonShareCanonicalPage, {
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import OakError from "@/errors/OakError";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { enableMockClerk } from "@/__tests__/__helpers__/mockClerk";
 import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
-
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
 const render = renderWithProviders();
 
 const lesson = lessonShareFixtures();
 describe("LessonShareCanonicalPage", () => {
-  beforeEach(() => {
-    enableMockClerk();
-  });
-
   it("Renders title from the props", async () => {
     const result = render(
       <LessonShareCanonicalPage curriculumData={{ ...lesson, pathways: [] }} />,
