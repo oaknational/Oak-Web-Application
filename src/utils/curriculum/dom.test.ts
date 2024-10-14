@@ -29,6 +29,19 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
+describe("createNode", () => {
+  it("basic", () => {
+    const node = createNode("span");
+    expect(node.nodeName).toEqual("SPAN");
+  });
+
+  it("with attributes", () => {
+    const node = createNode("span", { id: "test" });
+    expect(node.nodeName).toEqual("SPAN");
+    expect(node.id).toEqual("test");
+  });
+});
+
 describe("anchorIntersectionObserver", () => {
   it("when no entries does nothing", () => {
     const onSelectMock = jest.fn();
@@ -43,7 +56,7 @@ describe("anchorIntersectionObserver", () => {
     callback([
       {
         target: createNode("div", { id: "one" }),
-        isIntersecting: false,
+        isIntersecting: true,
         boundingClientRect: domRectFromRect({
           x: 0,
           y: 100,
@@ -53,7 +66,7 @@ describe("anchorIntersectionObserver", () => {
       },
       {
         target: createNode("div", { id: "two" }),
-        isIntersecting: false,
+        isIntersecting: true,
         boundingClientRect: domRectFromRect({
           x: 0,
           y: 200,
@@ -63,7 +76,7 @@ describe("anchorIntersectionObserver", () => {
       },
       {
         target: createNode("div", { id: "three" }),
-        isIntersecting: false,
+        isIntersecting: true,
         boundingClientRect: domRectFromRect({
           x: 0,
           y: 300,
@@ -72,7 +85,7 @@ describe("anchorIntersectionObserver", () => {
         }),
       },
     ]);
-    expect(onSelectMock).not.toHaveBeenCalledWith("one");
+    expect(onSelectMock).toHaveBeenCalledWith("one");
 
     callback([
       {
@@ -87,7 +100,7 @@ describe("anchorIntersectionObserver", () => {
       },
       {
         target: createNode("div", { id: "two" }),
-        isIntersecting: false,
+        isIntersecting: true,
         boundingClientRect: domRectFromRect({
           x: 0,
           y: 0,
@@ -97,7 +110,7 @@ describe("anchorIntersectionObserver", () => {
       },
       {
         target: createNode("div", { id: "three" }),
-        isIntersecting: false,
+        isIntersecting: true,
         boundingClientRect: domRectFromRect({
           x: 0,
           y: 100,
@@ -106,6 +119,6 @@ describe("anchorIntersectionObserver", () => {
         }),
       },
     ]);
-    expect(onSelectMock).not.toHaveBeenCalledWith("two");
+    expect(onSelectMock).toHaveBeenCalledWith("two");
   });
 });
