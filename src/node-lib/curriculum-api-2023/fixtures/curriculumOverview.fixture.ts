@@ -36,7 +36,7 @@ export const curriculumOverviewCMSFixture = (
             },
           ],
           _type: "block",
-          style: "heading2",
+          style: "heading1",
           _key: "82cf6558d6f8",
           markDefs: [],
         },
