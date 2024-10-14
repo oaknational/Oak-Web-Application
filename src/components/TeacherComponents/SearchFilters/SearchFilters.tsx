@@ -6,8 +6,8 @@ import {
   oakDefaultTheme,
   OakThemeProvider,
   OakBox,
+  OakFieldset,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
@@ -17,12 +17,6 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 type SearchFiltersProps = UseSearchFiltersReturnType & {
   isMobileFilter?: boolean;
 };
-
-const StyledFieldset = styled.fieldset`
-  border: 0px;
-  margin: 0;
-  padding: 0;
-`;
 
 const SearchFilters: FC<SearchFiltersProps> = (props) => {
   const {
@@ -36,7 +30,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <OakBox>
-        <StyledFieldset>
+        <OakFieldset>
           <OakBox
             $mb="space-between-m2"
             $bb={"border-solid-s"}
@@ -77,13 +71,13 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
               </OakFlex>
             </OakFlex>
           </OakBox>
-        </StyledFieldset>
+        </OakFieldset>
         <OakBox
           $mb="space-between-m2"
           $bb={"border-solid-s"}
           $borderColor={"grey40"}
         >
-          <StyledFieldset>
+          <OakFieldset>
             <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
               Key stages
             </OakP>
@@ -112,14 +106,14 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 />
               ))}
             </OakFlex>
-          </StyledFieldset>
+          </OakFieldset>
         </OakBox>
         <OakBox
           $mb="space-between-m2"
           $bb={"border-solid-s"}
           $borderColor={"grey40"}
         >
-          <StyledFieldset>
+          <OakFieldset>
             <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
               Exam boards
             </OakP>
@@ -142,10 +136,10 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 />
               ))}
             </OakFlex>
-          </StyledFieldset>
+          </OakFieldset>
         </OakBox>
         <OakBox>
-          <StyledFieldset>
+          <OakFieldset>
             <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
               Subjects
             </OakP>
@@ -167,7 +161,7 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 );
               })}
             </OakFlex>
-          </StyledFieldset>
+          </OakFieldset>
         </OakBox>
       </OakBox>
     </OakThemeProvider>

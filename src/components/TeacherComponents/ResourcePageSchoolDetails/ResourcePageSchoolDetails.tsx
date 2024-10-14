@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { FieldErrorsImpl } from "react-hook-form";
-import { OakBox, OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakFieldset } from "@oaknational/oak-components";
 
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
@@ -74,7 +74,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
     setSchoolPickerInputValue(value);
   };
   return (
-    <OakBox $pa={"inner-padding-none"} $ba={"border-solid-none"} as="fieldset">
+    <OakFieldset $pa={"inner-padding-none"} $ba={"border-solid-none"}>
       <OakBox
         as="legend"
         $position="absolute"
@@ -112,7 +112,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
           }
         />
       </OakFlex>
-    </OakBox>
+    </OakFieldset>
   );
 };
 

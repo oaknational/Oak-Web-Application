@@ -1,12 +1,12 @@
 import React, { FC, useState, useEffect } from "react";
 import {
+  OakFieldset,
   OakFilterDrawer,
   OakFlex,
   OakHeading,
   OakPrimaryButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 import { useRouter } from "next/router";
 
 import UnitsLearningThemeFilters from "../UnitsLearningThemeFilters/UnitsLearningThemeFilters";
@@ -33,13 +33,6 @@ function isUnitListingData(
 ): data is UnitListingData {
   return (data as UnitListingData).yearGroups !== undefined;
 }
-
-// fieldset component required from components lib
-const StyledFieldset = styled.fieldset`
-  border: 0px;
-  margin: 0;
-  padding: 0;
-`;
 
 const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
   const {
@@ -152,7 +145,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
           </OakFlex>
         }
       >
-        <StyledFieldset>
+        <OakFieldset>
           {isUnitListing && props.yearGroups.length > 1 && (
             <YearGroupFilters
               idSuffix="mobile"
@@ -215,7 +208,7 @@ const MobileUnitFilters: FC<MobileUnitFiltersProps> = (props) => {
               />
             </>
           )}
-        </StyledFieldset>
+        </OakFieldset>
       </OakFilterDrawer>
     </>
   );
