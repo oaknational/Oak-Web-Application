@@ -43,10 +43,23 @@ export const pupilLessonListingQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    lessonBrowseDataSchema.parse(filteredBrowseData);
+    const modifiedBrowseData = filteredBrowseData.map((lesson) => {
+      if (lesson?.actions?.programme_field_overrides) {
+        return {
+          ...lesson,
+          programme_fields: {
+            ...lesson.programme_fields,
+            ...lesson.actions.programme_field_overrides,
+          },
+        };
+      }
+      return lesson;
+    });
+
+    lessonBrowseDataSchema.parse(modifiedBrowseData);
 
     const browseData = keysToCamelCase(
-      filteredBrowseData,
+      modifiedBrowseData,
     ) as LessonListingBrowseData;
 
     const backLinkData = keysToCamelCase(
