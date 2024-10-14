@@ -103,4 +103,6 @@ const lessonShareQuery =
     }
   };
 
+export type LessonShareQuery = ReturnType<typeof lessonShareQuery>;
+
 export default lessonShareQuery;
