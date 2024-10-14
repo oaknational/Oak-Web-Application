@@ -74,12 +74,7 @@ const curriculumUnitsQuery =
       where: where,
     });
 
-    const units = res.units.map((unit) => {
-      return {
-        ...unit,
-        order: unit.order ?? 0,
-      };
-    });
+    const { units } = res;
 
     if (!units || units.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });

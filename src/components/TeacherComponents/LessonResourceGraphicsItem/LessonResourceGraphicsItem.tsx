@@ -1,7 +1,10 @@
 import { FC } from "react";
-import { OakSpan, OakFlex } from "@oaknational/oak-components";
-
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
+import {
+  OakSpan,
+  OakFlex,
+  OakIcon,
+  OakIconName,
+} from "@oaknational/oak-components";
 
 const getResourceTitle = (
   { titleSingular, titlePlural }: LessonResourceGraphicsItemProps,
@@ -17,7 +20,7 @@ const getResourceTitle = (
 export type LessonResourceGraphicsItemProps = {
   titleSingular: string;
   titlePlural: string;
-  icon: IconName;
+  icon: OakIconName;
   resourceCount: number;
 };
 
@@ -32,7 +35,14 @@ const LessonResourceGraphicsItem: FC<LessonResourceGraphicsItemProps> = (
       $flexDirection={["column", "row"]}
       $mr={["space-between-none", "space-between-m"]}
     >
-      <Icon size={32} name={icon} $mr={[0, 6]} $mb={[8, 0]} />
+      <OakIcon
+        $width="all-spacing-7"
+        $height="all-spacing-7"
+        iconName={icon}
+        $mr={["space-between-none", "space-between-ssx"]}
+        $mb={["space-between-ssx", "space-between-none"]}
+        alt=""
+      />
       <OakFlex>
         <OakSpan $font={"body-3"}>
           {resourceCount} {getResourceTitle(props, resourceCount)}
