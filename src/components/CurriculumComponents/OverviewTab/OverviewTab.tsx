@@ -33,6 +33,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
 import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { findContainingAnchor } from "@/utils/curriculum/dom";
 
 export type OverviewTabProps = {
   data: {
@@ -222,20 +223,10 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     title: partnerTitle,
   });
 
-  const findAnchor = (element: HTMLElement) => {
-    let node: null | HTMLElement = element;
-    while (node && node.tagName !== "A" && node.parentNode) {
-      node = node.parentElement;
-    }
-    if (node instanceof HTMLAnchorElement) {
-      return node;
-    }
-  };
-
   const onClickNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (e.target instanceof HTMLElement) {
-      const anchor = findAnchor(e.target);
+      const anchor = findContainingAnchor(e.target);
       if (anchor) {
         const url = new URL(anchor.href);
         router.replace(url.hash);
