@@ -1,4 +1,4 @@
-import { CURRIC_PARTNER_HACK, ENABLE_CYCLE_2 } from "./constants";
+import { ENABLE_CYCLE_2 } from "./constants";
 
 import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
@@ -8,10 +8,6 @@ export function isCycleTwoEnabled() {
 
 export function useCycleTwoEnabled() {
   return ENABLE_CYCLE_2;
-}
-
-export function isCurricPartnerHackEnabled() {
-  return ENABLE_CYCLE_2 && CURRIC_PARTNER_HACK;
 }
 
 export function getUnitFeatures(unit?: Unit | null) {

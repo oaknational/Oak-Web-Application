@@ -30,10 +30,7 @@ import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
-import {
-  isCurricPartnerHackEnabled,
-  useCycleTwoEnabled,
-} from "@/utils/curriculum/features";
+import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type OverviewTabProps = {
@@ -138,6 +135,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     subjectPrinciples,
     partnerBio,
     curriculumPartner,
+    curriculumPartnerOverviews,
     video,
     videoExplainer,
   } = curriculumCMSInfo;
@@ -183,11 +181,6 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     );
   };
 
-  // TODO: Add multiple curriculum partners here, see <https://www.notion.so/oaknationalacademy/New-curriculum-partner-design-in-overview-tab-10326cc4e1b180098542eb3b70ba270d>
-  const curriculumPartners = isCurricPartnerHackEnabled()
-    ? [curriculumPartner, curriculumPartner]
-    : [curriculumPartner];
-
   const h1Headings = (curriculumExplainer.explainerRaw ?? []).filter(
     (block) => {
       return block.style === "heading1";
@@ -199,7 +192,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   };
 
   const partnerTitle = `Our curriculum partner${
-    curriculumPartners.length > 1 ? "s" : ""
+    curriculumPartnerOverviews?.length > 1 ? "s" : ""
   }`;
 
   const subjectIconName = getValidSubjectIconName(subjectSlug);
@@ -491,8 +484,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 $gap={["space-between-l", "space-between-m2"]}
                 $flexDirection={"column"}
               >
-                {curriculumPartners.map(
-                  (curriculumPartner, curriculumPartnerIndex) => {
+                {curriculumPartnerOverviews.map(
+                  (
+                    { curriculumPartner, partnerBio },
+                    curriculumPartnerIndex,
+                  ) => {
                     return (
                       <OakFlex
                         $justifyContent={"center"}
