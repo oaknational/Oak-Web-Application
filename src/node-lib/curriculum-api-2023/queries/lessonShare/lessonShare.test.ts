@@ -1,7 +1,9 @@
 import {
   lessonContentFixture,
+  lessonDataFixture,
   multipleChoiceQuestion,
   programmeFieldsFixture,
+  unitDataFixture,
 } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
@@ -113,6 +115,12 @@ describe("lessonShare()", () => {
               unit_title: "Unit Title",
               is_legacy: true,
               programme_fields: programmeFieldsFixture(),
+              lesson_data: lessonDataFixture(),
+              programme_slug: "programme-slug",
+              lesson_slug: "lesson-slug",
+              unit_slug: "unit-slug",
+              unit_data: unitDataFixture(),
+              supplementary_data: { unit_order: 1, order_in_unit: 1 },
             },
           ],
         }),
