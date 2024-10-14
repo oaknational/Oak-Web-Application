@@ -405,6 +405,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         )}
         {isVideoEnabled && (
           <OakFlex
+            data-testid="video-guide"
             $alignItems={"center"}
             $justifyContent={"flex-start"}
             $flexDirection={["column-reverse", "row"]}
@@ -508,6 +509,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                   ) => {
                     return (
                       <OakFlex
+                        data-testid="curriculum-partner"
                         $justifyContent={"center"}
                         $alignContent={"start"}
                         $gap={["space-between-s", "space-between-m2"]}
