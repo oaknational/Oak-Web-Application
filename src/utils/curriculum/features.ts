@@ -28,7 +28,7 @@ export function getUnitFeatures(unit?: Unit | null) {
     return {
       labels: ["swimming"],
       exclusions: ["pupils"],
-      group_as: "Swimming",
+      group_as: "Swimming and water safety",
       programmes_fields_overrides: {
         year: "all-years",
         keystage: "All keystages",

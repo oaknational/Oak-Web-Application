@@ -1,3 +1,36 @@
+# [1.588.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.587.0...v1.588.0) (2024-10-14)
+
+
+### Bug Fixes
+
+* sign in to download only on feature flag ([658d127](https://github.com/oaknational/Oak-Web-Application/commit/658d12732dab3f5ccb40eca91bc8c4d0b3882459))
+
+
+### Features
+
+* remove feature flag clerk ([327821f](https://github.com/oaknational/Oak-Web-Application/commit/327821f158cfff54edbb7d64da4ad5533959ce3b))
+
+# [1.587.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.586.0...v1.587.0) (2024-10-10)
+
+
+### Features
+
+* add comparison and some styling to curriculum screenshot script ([ba1f0f4](https://github.com/oaknational/Oak-Web-Application/commit/ba1f0f498a7f55317cd26d314ed6dc9164304380))
+
+# [1.586.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.585.0...v1.586.0) (2024-10-10)
+
+
+### Features
+
+* changes lot picker text for cycle 2 ([2ed05f7](https://github.com/oaknational/Oak-Web-Application/commit/2ed05f7ce8bf1d2cc045a00099fd4840b5bfb7a1))
+
+# [1.585.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.584.2...v1.585.0) (2024-10-10)
+
+
+### Features
+
+* change swimming text to include "water safety" ([a6d02d3](https://github.com/oaknational/Oak-Web-Application/commit/a6d02d33af15a656f9088b70edc9c9d13b782a15))
+
 ## [1.584.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.584.1...v1.584.2) (2024-10-10)
 
 
