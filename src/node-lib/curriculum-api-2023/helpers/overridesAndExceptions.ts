@@ -19,7 +19,7 @@ interface Actions {
 }
 
 interface SkeletonBrowseData {
-  actions?: Actions;
+  actions?: Actions | null;
   programme_fields?: ProgrammeFieldsSnake;
 }
 
