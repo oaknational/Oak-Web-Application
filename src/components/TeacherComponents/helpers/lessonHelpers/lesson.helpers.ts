@@ -157,7 +157,7 @@ export const getLessonShareBreadCrumb = ({
         page: "lesson-share-canonical",
         lessonSlug,
       },
-      label: "Downloads",
+      label: "Share",
       disabled,
     };
   }

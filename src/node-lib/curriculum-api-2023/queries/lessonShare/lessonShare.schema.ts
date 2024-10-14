@@ -4,7 +4,10 @@ import {
   syntheticUnitvariantLessonsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
-import { lessonShareResourceSchema } from "../../shared.schema";
+import {
+  lessonPathwaySchema,
+  lessonShareResourceSchema,
+} from "../../shared.schema";
 
 export const rawLessonShareSchema = z.object({
   expired: z.boolean().nullable(),
@@ -28,13 +31,19 @@ export const rawShareBrowseData = z.object({
 
 export type RawLessonShareSchema = z.infer<typeof rawLessonShareSchema>;
 
-export const lessonShareSchema = z.object({
+const baseLessonShareSchema = z.object({
   isSpecialist: z.literal(false),
+  lessonSlug: z.string(),
+  lessonTitle: z.string(),
+  shareableResources: z.array(lessonShareResourceSchema),
+  isLegacy: z.boolean(),
+  expired: z.boolean().nullable(),
+});
+
+export const lessonShareSchema = baseLessonShareSchema.extend({
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
-  lessonSlug: z.string(),
-  lessonTitle: z.string(),
   unitSlug: z.string(),
   unitTitle: z.string(),
   subjectSlug: z.string(),
@@ -43,10 +52,13 @@ export const lessonShareSchema = z.object({
   examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
-  shareableResources: z.array(lessonShareResourceSchema),
-  isLegacy: z.boolean(),
-  expired: z.boolean().nullable(),
 });
+
+export const canonicalLessonShareSchema = baseLessonShareSchema.extend({
+  pathways: z.array(lessonPathwaySchema),
+});
+
+export type LessonShareCanonical = z.infer<typeof canonicalLessonShareSchema>;
 
 export type LessonShareData = z.infer<typeof lessonShareSchema>;
 export type LessonShareResourceData = z.infer<typeof lessonShareResourceSchema>;

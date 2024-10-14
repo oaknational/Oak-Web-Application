@@ -50929,12 +50929,11 @@ export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
-  unitSlug: Scalars['String']['input'];
-  programmeSlug: Scalars['String']['input'];
+  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp>;
 }>;
 
 
-export type LessonShareQuery = { __typename?: 'query_root', share: Array<{ __typename?: 'published_mv_lesson_content_published_2_0_0', lesson_title?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, video_mux_playback_id?: string | null, video_duration?: string | null, worksheet_asset_object_url?: string | null, expired?: any | null }>, browse: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', is_legacy?: boolean | null, programme_fields?: any | null, unit_title?: any | null }> };
+export type LessonShareQuery = { __typename?: 'query_root', share: Array<{ __typename?: 'published_mv_lesson_content_published_2_1_0', lesson_title?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, video_mux_playback_id?: string | null, video_duration?: string | null, worksheet_asset_object_url?: string | null, expired?: any | null }>, browse: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, null_unitvariant?: any | null, unit_title?: any | null }> };
 
 export type ProgrammeListingQueryVariables = Exact<{
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
@@ -51350,8 +51349,8 @@ export const LessonOverviewDocument = gql`
 }
     `;
 export const LessonShareDocument = gql`
-    query lessonShare($lessonSlug: String!, $unitSlug: String!, $programmeSlug: String!) {
-  share: published_mv_lesson_content_published_2_0_0(
+    query lessonShare($lessonSlug: String!, $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0_bool_exp) {
+  share: published_mv_lesson_content_published_2_1_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_title
@@ -51363,11 +51362,18 @@ export const LessonShareDocument = gql`
     expired: deprecated_fields(path: "expired")
   }
   browse: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
-    where: {lesson_slug: {_eq: $lessonSlug}, unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}}
+    where: $browseDataWhere
   ) {
     unit_title: unit_data(path: "title")
+    lesson_slug
+    unit_slug
+    programme_slug
     is_legacy
+    lesson_data
+    unit_data
     programme_fields
+    supplementary_data
+    null_unitvariant
   }
 }
     `;

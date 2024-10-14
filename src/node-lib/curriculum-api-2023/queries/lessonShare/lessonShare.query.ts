@@ -1,9 +1,16 @@
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 import { toSentenceCase } from "../../helpers";
+import {
+  InputMaybe,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
+} from "../../generated/sdk";
+import { rawSyntheticUVLessonSchema } from "../lessonDownloads/rawSyntheticUVLesson.schema";
+import { LessonPathway, lessonPathwaySchema } from "../../shared.schema";
 
 import {
   RawLessonShareSchema,
+  canonicalLessonShareSchema,
   lessonShareSchema,
   rawLessonShareSchema,
   rawShareBrowseData,
@@ -49,12 +56,31 @@ export const constructShareableResources = (lesson: RawLessonShareSchema) => {
 
 const lessonShareQuery =
   (sdk: Sdk) =>
-  async (args: {
-    programmeSlug: string;
-    unitSlug: string;
+  async <T>(args: {
+    programmeSlug?: string;
+    unitSlug?: string;
     lessonSlug: string;
-  }) => {
-    const res = await sdk.lessonShare(args);
+  }): Promise<T> => {
+    const { lessonSlug, unitSlug, programmeSlug } = args;
+    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
+      {};
+
+    const canonicalLesson = !unitSlug && !programmeSlug;
+
+    if (canonicalLesson) {
+      browseDataWhere["lesson_slug"] = { _eq: lessonSlug };
+    }
+
+    if (unitSlug) {
+      browseDataWhere["unit_slug"] = { _eq: unitSlug };
+    }
+
+    if (programmeSlug) {
+      browseDataWhere["programme_slug"] = { _eq: programmeSlug };
+    }
+
+    const res = await sdk.lessonShare({ lessonSlug, browseDataWhere });
+
     const rawLesson = res.share;
     const rawBrowseData = res.browse;
 
@@ -75,33 +101,77 @@ const lessonShareQuery =
 
     const parsedRawLesson = rawLessonShareSchema.parse(rawLesson[0]);
     const parsedRawBrowseData = rawShareBrowseData.parse(rawBrowseData[0]);
+    const shareableResources = constructShareableResources(parsedRawLesson);
 
-    const lesson = lessonShareSchema.parse({
-      isSpecialist: false,
-      programmeSlug: args.programmeSlug,
-      keyStageSlug: parsedRawBrowseData.programme_fields.keystage_slug,
-      keyStageTitle: toSentenceCase(
-        parsedRawBrowseData.programme_fields.keystage_description,
-      ),
-      lessonSlug: args.lessonSlug,
-      lessonTitle: parsedRawLesson.lesson_title,
-      unitSlug: args.unitSlug,
-      unitTitle:
-        parsedRawBrowseData.programme_fields.optionality ??
-        parsedRawBrowseData.unit_title,
-      subjectSlug: parsedRawBrowseData.programme_fields.subject_slug,
-      subjectTitle: parsedRawBrowseData.programme_fields.subject,
-      examBoardSlug: parsedRawBrowseData.programme_fields.examboard_slug,
-      examBoardTitle:
-        parsedRawBrowseData.programme_fields.examboard_description,
-      tierSlug: parsedRawBrowseData.programme_fields.tier_slug,
-      tierTitle: parsedRawBrowseData.programme_fields.tier_description,
-      shareableResources: constructShareableResources(parsedRawLesson),
-      isLegacy: parsedRawBrowseData.is_legacy,
-      expired: parsedRawLesson.expired,
-    });
+    if (canonicalLesson) {
+      const parsedBrowseData = rawBrowseData.map((bd) =>
+        rawSyntheticUVLessonSchema.parse(bd),
+      );
+      const pathways = parsedBrowseData.reduce((acc, lesson) => {
+        const unitTitle =
+          lesson.programme_fields.optionality ?? lesson.unit_data.title;
+        const pathwayLesson = {
+          programmeSlug: lesson.programme_slug,
+          unitSlug: lesson.unit_data.slug,
+          unitTitle,
+          keyStageSlug: lesson.programme_fields.keystage_slug,
+          keyStageTitle: toSentenceCase(
+            lesson.programme_fields.keystage_description,
+          ),
+          subjectSlug: lesson.programme_fields.subject_slug,
+          subjectTitle: lesson.programme_fields.subject,
+          lessonCohort: lesson.lesson_data._cohort,
+          examBoardSlug: lesson.programme_fields.examboard_slug,
+          examBoardTitle: lesson.programme_fields.examboard,
+          lessonSlug: lesson.lesson_slug,
+          lessonTitle: lesson.lesson_data.title,
+          tierSlug: lesson.programme_fields.tier_slug,
+          tierTitle: lesson.programme_fields.tier_description,
+        };
 
-    return lesson;
+        const pathway = lessonPathwaySchema.parse(pathwayLesson);
+        acc.push(pathway);
+        return acc;
+      }, [] as LessonPathway[]);
+
+      const lesson = canonicalLessonShareSchema.parse({
+        shareableResources,
+        isLegacy: parsedRawBrowseData.is_legacy,
+        expired: parsedRawLesson.expired,
+        pathways,
+        isSpecialist: false,
+        lessonSlug,
+        lessonTitle: parsedRawLesson.lesson_title,
+      });
+      return lesson as T;
+    } else {
+      const lesson = lessonShareSchema.parse({
+        isSpecialist: false,
+        programmeSlug: programmeSlug,
+        keyStageSlug: parsedRawBrowseData.programme_fields.keystage_slug,
+        keyStageTitle: toSentenceCase(
+          parsedRawBrowseData.programme_fields.keystage_description,
+        ),
+        lessonSlug: lessonSlug,
+        lessonTitle: parsedRawLesson.lesson_title,
+        unitSlug: args.unitSlug,
+        unitTitle:
+          parsedRawBrowseData.programme_fields.optionality ??
+          parsedRawBrowseData.unit_title,
+        subjectSlug: parsedRawBrowseData.programme_fields.subject_slug,
+        subjectTitle: parsedRawBrowseData.programme_fields.subject,
+        examBoardSlug: parsedRawBrowseData.programme_fields.examboard_slug,
+        examBoardTitle:
+          parsedRawBrowseData.programme_fields.examboard_description,
+        tierSlug: parsedRawBrowseData.programme_fields.tier_slug,
+        tierTitle: parsedRawBrowseData.programme_fields.tier_description,
+        shareableResources,
+        isLegacy: parsedRawBrowseData.is_legacy,
+        expired: parsedRawLesson.expired,
+      });
+
+      return lesson as T;
+    }
   };
 
 export default lessonShareQuery;
