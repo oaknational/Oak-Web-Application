@@ -13,14 +13,18 @@ describe("7_ourPartner", () => {
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {
-        partnerBio: "testing",
-        curriculumPartner: {
-          image: {
-            asset: {
-              url: EMPTY_PNG,
+        curriculumPartnerOverviews: [
+          {
+            curriculumPartner: {
+              image: {
+                asset: {
+                  url: EMPTY_PNG,
+                },
+              },
             },
+            partnerBio: "testing",
           },
-        },
+        ],
       } as CombinedCurriculumData,
     });
 
@@ -31,8 +35,7 @@ describe("7_ourPartner", () => {
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {
-        partnerBio: "testing",
-        curriculumPartner: {},
+        curriculumPartnerOverviews: [{ partnerBio: "" }],
       } as CombinedCurriculumData,
     });
 

@@ -257,14 +257,14 @@ exports[`7_ourPartner without partner image 1`] = `
     Target="numbering.xml"
   ></Relationship>
   <Relationship
-    Id="rId6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977"
-    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977.png"
-  ></Relationship>
-  <Relationship
     Id="rId880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
     Target="media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png"
+  ></Relationship>
+  <Relationship
+    Id="rId6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977"
+    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
+    Target="media/hash_6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977.png"
   ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
@@ -582,7 +582,7 @@ exports[`7_ourPartner without partner image 1`] = `
                   w:val="24"
                 ></w:sz>
               </w:rPr>
-              <w:t><![CDATA[testing]]></w:t>
+              <w:t></w:t>
             </w:r>
           </w:p>
         </w:tc>

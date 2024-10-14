@@ -20,8 +20,11 @@ export default async function generate(
   const partnerTitle = `Our curriculum partner${
     data.curriculumPartnerOverviews?.length > 1 ? "s" : ""
   }`;
-  const sanityUrls = data.curriculumPartnerOverviews.map(
-    ({ curriculumPartner }) => curriculumPartner.image?.asset?.url,
+  const sanityUrls = data.curriculumPartnerOverviews?.map(
+    ({ curriculumPartner }) =>
+      curriculumPartner && curriculumPartner.image
+        ? curriculumPartner.image?.asset?.url
+        : "",
   );
 
   const underline = await insertImages(zip, {
