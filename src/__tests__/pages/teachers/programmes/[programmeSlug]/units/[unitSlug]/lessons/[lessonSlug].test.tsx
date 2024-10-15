@@ -125,7 +125,7 @@ describe("pages/teachers/lessons", () => {
     const shareLabel = queryAllByText("Share activities with pupils");
 
     if (shareButton[0] !== undefined && shareButton.length > 0) {
-      expect(shareButton[0]).not.toHaveAttribute("disabled");
+      expect(shareButton[0]).not.toHaveAttribute("aria-disabled", "true");
       expect(shareLabel[0]).toBeInTheDocument();
     } else {
       throw new Error("Share all button not found");
@@ -145,7 +145,7 @@ describe("pages/teachers/lessons", () => {
     const shareLabel = queryAllByText("Share activities with pupils");
 
     if (shareButton[0] !== undefined && shareButton.length > 0) {
-      expect(shareButton[0]).not.toHaveAttribute("disabled");
+      expect(shareButton[0]).not.toHaveAttribute("aria-disabled", "true");
       expect(shareLabel[0]).toBeInTheDocument();
     } else {
       throw new Error("Share all button not found");
@@ -165,7 +165,7 @@ describe("pages/teachers/lessons", () => {
     const shareLabel = queryAllByText("Share activities with pupils");
 
     if (shareButton[0] !== undefined && shareButton.length > 0) {
-      expect(shareButton[0]).toHaveAttribute("disabled");
+      expect(shareButton[0]).toHaveAttribute("aria-disabled", "true");
       expect(shareLabel[0]).toBeInTheDocument();
     } else {
       throw new Error("Share all button not found");
