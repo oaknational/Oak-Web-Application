@@ -23,6 +23,7 @@ import {
   getYearGroupTitle,
 } from "@/utils/curriculum/formatting";
 import { getUnitFeatures } from "@/utils/curriculum/features";
+import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 
 export type YearData = {
   [key: string]: {
@@ -170,7 +171,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const modalButtonRef = useRef<HTMLButtonElement>(null);
 
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
-  const visibleYears = useRef<Set<number>>(new Set());
   const visualiserRef = useRef<HTMLDivElement>(null);
   /* Intersection observer to update year filter selection when
   scrolling through the visualiser on mobile */
@@ -179,20 +179,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     const yearsLoaded = Object.keys(yearData).length;
     // All refs have been created for year groups & data is loaded
     if (yearsLoaded > 0 && itemEls.current.length === yearsLoaded) {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          const year = parseInt(entry.target.id, 10);
-          if (entry.isIntersecting) {
-            visibleYears.current.add(year);
-          } else {
-            visibleYears.current.delete(year);
-          }
-          if (visibleYears.current.size > 0) {
-            const lowestYear = Math.min(...visibleYears.current).toString();
-            setVisibleMobileYearRefID(lowestYear);
-          }
-        });
-      }, options);
+      // const io = new IntersectionObserver(, options);
+      const io = new IntersectionObserver(
+        anchorIntersectionObserver(setVisibleMobileYearRefID),
+        options,
+      );
+
       itemEls.current.forEach((el) => io.observe(el as Element));
       return () => {
         io.disconnect();
@@ -485,6 +477,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             setCurrentUnitLessons={setCurrentUnitLessons}
             setUnitVariantID={setUnitVariantID}
             unitData={unitData}
+            yearData={yearData}
             displayModal={displayModal}
             setUnitOptionsAvailable={setUnitOptionsAvailable}
             unitOptionsAvailable={unitOptionsAvailable}
