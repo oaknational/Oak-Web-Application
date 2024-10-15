@@ -1,7 +1,6 @@
 import { FC, useRef } from "react";
 import { oakColorTokens, OakFlex } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 import Logo from "@/components/AppComponents/Logo";
 import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
@@ -17,7 +16,6 @@ import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderlin
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useSelectedArea from "@/hooks/useSelectedArea";
-import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 import { getBreakpoint } from "@/styles/utils/responsive";
 
 export const siteAreas = {
@@ -37,8 +35,6 @@ const AppHeader: FC<HeaderProps> = () => {
   const { openMenu, open } = useMenuContext();
   const { track } = useAnalytics();
   const selectedArea = useSelectedArea();
-  const { useUser } = useFeatureFlaggedClerk();
-  const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
   const { isSignedIn } = useUser();
 
   return (
@@ -71,7 +67,7 @@ const AppHeader: FC<HeaderProps> = () => {
             $gap="all-spacing-6"
             $font="heading-7"
           >
-            {isSignedIn && authFlagEnabled && (
+            {isSignedIn && (
               <UserButton
                 appearance={{
                   elements: {

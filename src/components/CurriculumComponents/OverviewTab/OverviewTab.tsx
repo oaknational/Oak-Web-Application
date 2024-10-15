@@ -7,7 +7,7 @@ import {
   OakTypography,
   OakFlex,
   OakBox,
-  OakTertiaryButton,
+  OakTertiaryOLNav,
   OakIcon,
 } from "@oaknational/oak-components";
 import {
@@ -16,7 +16,10 @@ import {
   PortableTextComponents,
 } from "@portabletext/react";
 import styled from "styled-components";
+import slugify from "slugify";
+import { useRouter } from "next/router";
 
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Card from "@/components/SharedComponents/Card/Card";
@@ -29,11 +32,9 @@ import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
-import {
-  isCurricPartnerHackEnabled,
-  useCycleTwoEnabled,
-} from "@/utils/curriculum/features";
+import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { findContainingAnchor } from "@/utils/curriculum/dom";
 
 export type OverviewTabProps = {
   data: {
@@ -96,6 +97,8 @@ const ExplainerStyles = styled("div")`
   }
 `;
 
+const slugifyHash = (input: string) => slugify(input).toLocaleLowerCase();
+
 const PrincipleBullet = ({
   bulletText,
   children,
@@ -122,7 +125,11 @@ const PrincipleBullet = ({
 
 const blockHeadingComponents: PortableTextComponents["block"] = {
   heading1: (props) => (
-    <h3 id={`header-${props.value._key}`}>{props.children}</h3>
+    <h3
+      id={`header-${slugifyHash(props.value.children[0]?.text ?? "unknown")}`}
+    >
+      {props.children}
+    </h3>
   ),
   heading2: (props) => <h4>{props.children}</h4>,
   heading3: (props) => <h5>{props.children}</h5>,
@@ -130,6 +137,7 @@ const blockHeadingComponents: PortableTextComponents["block"] = {
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
+  const router = useRouter();
   const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
     props.data;
   const {
@@ -137,6 +145,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     subjectPrinciples,
     partnerBio,
     curriculumPartner,
+    curriculumPartnerOverviews,
     video,
     videoExplainer,
   } = curriculumCMSInfo;
@@ -182,10 +191,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     );
   };
 
-  // TODO: Add multiple curriculum partners here, see <https://www.notion.so/oaknationalacademy/New-curriculum-partner-design-in-overview-tab-10326cc4e1b180098542eb3b70ba270d>
-  const curriculumPartners = isCurricPartnerHackEnabled()
-    ? [curriculumPartner, curriculumPartner]
-    : [curriculumPartner];
+  const isVideoEnabled = video && videoExplainer;
+
+  const partnerTitle = `Our curriculum partner${
+    curriculumPartnerOverviews?.length > 1 ? "s" : ""
+  }`;
 
   const h1Headings = (curriculumExplainer.explainerRaw ?? []).filter(
     (block) => {
@@ -194,44 +204,51 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   );
 
   const goToAnchor = (selector: string) => {
-    document.querySelector(`#header-${selector}`)?.scrollIntoView();
+    Array.from(document.querySelectorAll(selector))
+      .find((el: Element) => el.checkVisibility())
+      ?.scrollIntoView();
   };
 
-  const partnerTitle = `Our curriculum partner${
-    curriculumPartners.length > 1 ? "s" : ""
-  }`;
+  const navItems = h1Headings.map((heading) => {
+    return {
+      title: heading.children[0].text,
+      href: `#header-${slugifyHash(heading.children[0].text)}`,
+    };
+  });
+
+  if (isVideoEnabled) {
+    navItems.push({
+      href: "#header-video-guide",
+      title: "Video guide",
+    });
+  }
+
+  navItems.push({
+    href: "#header-our-curriculum-partner",
+    title: partnerTitle,
+  });
+
+  const onClickNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (e.target instanceof HTMLElement) {
+      const anchor = findContainingAnchor(e.target);
+      if (anchor) {
+        const url = new URL(anchor.href);
+        router.replace(url.hash);
+        goToAnchor(url.hash);
+      }
+    }
+  };
 
   const subjectIconName = getValidSubjectIconName(subjectSlug);
 
   const contents = (
     <OakFlex $gap={"space-between-m"} $flexDirection={"column"}>
-      <OakP>Contents</OakP>
-      <OakFlex $gap={"space-between-xs"} $flexDirection={"column"}>
-        {h1Headings.map((heading, headingIndex) => {
-          return (
-            <OakFlex
-              key={heading._key}
-              $gap={"space-between-xs"}
-              $alignItems="center"
-            >
-              <OakFlex
-                $alignItems="center"
-                $justifyContent="center"
-                $minWidth="all-spacing-7"
-                $minHeight="all-spacing-7"
-                $borderRadius="border-radius-circle"
-                $background={"black"}
-                $color={"white"}
-              >
-                {headingIndex + 1}
-              </OakFlex>
-              <OakTertiaryButton onClick={() => goToAnchor(heading._key)}>
-                {heading.children[0].text}
-              </OakTertiaryButton>
-            </OakFlex>
-          );
-        })}
-      </OakFlex>
+      <OakTertiaryOLNav
+        items={navItems}
+        title={"Contents"}
+        onClick={onClickNavItem}
+      />
     </OakFlex>
   );
 
@@ -252,9 +269,26 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </OakBox>
         </Box>
       )}
-      <Box $maxWidth={1280} $mh={"auto"} $ph={16} $width={"100%"}>
+      <Box
+        id="curriculum-overview"
+        aria-labelledby="curriculum-overview-heading"
+        $maxWidth={1280}
+        $mh={"auto"}
+        $ph={16}
+        $width={"100%"}
+        role="region"
+      >
         {isCycleTwoEnabled && (
           <OakFlex $gap={"all-spacing-16"} $alignItems={"flex-start"}>
+            <ScreenReaderOnly>
+              <OakHeading
+                tag="h2"
+                data-testid="overview-heading"
+                id="curriculum-overview-heading"
+              >
+                Explainer
+              </OakHeading>
+            </ScreenReaderOnly>
             <Box
               $minWidth={300}
               $position={["static", "static", "sticky"]}
@@ -307,14 +341,15 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 $maxWidth={["100%", "100%", "65%"]}
                 $textAlign={"left"}
               >
-                <OakHeading
-                  tag="h2"
-                  $font={["heading-5", "heading-4"]}
-                  $mb="space-between-m"
-                  data-testid="overview-heading"
-                >
-                  Overview
-                </OakHeading>
+                <ScreenReaderOnly>
+                  <OakHeading
+                    tag="h2"
+                    id="curriculum-overview-heading"
+                    data-testid="overview-heading"
+                  >
+                    Overview
+                  </OakHeading>
+                </ScreenReaderOnly>
                 <OakHeading
                   tag="h3"
                   $font={["heading-6", "heading-5"]}
@@ -382,8 +417,9 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             </Card>
           </>
         )}
-        {video && videoExplainer && (
+        {isVideoEnabled && (
           <OakFlex
+            data-testid="video-guide"
             $alignItems={"center"}
             $justifyContent={"flex-start"}
             $flexDirection={["column-reverse", "row"]}
@@ -400,7 +436,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               $alignItems={"flex-start"}
               $gap={[16, 24]}
             >
-              <OakHeading tag="h3" $font={["heading-6", "heading-5"]}>
+              <OakHeading
+                tag="h3"
+                $font={["heading-6", "heading-5"]}
+                id="header-video-guide"
+              >
                 Video guide
               </OakHeading>
               <OakP $font={"body-1"}>{videoExplainer}</OakP>
@@ -464,7 +504,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               $flexDirection={"column"}
             >
               <OakBox $display={["block", "none"]}>
-                <OakHeading tag="h3" $font={["heading-5"]}>
+                <OakHeading
+                  tag="h3"
+                  $font={["heading-5"]}
+                  id="header-our-curriculum-partner"
+                >
                   {partnerTitle}
                 </OakHeading>
               </OakBox>
@@ -472,10 +516,14 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 $gap={["space-between-l", "space-between-m2"]}
                 $flexDirection={"column"}
               >
-                {curriculumPartners.map(
-                  (curriculumPartner, curriculumPartnerIndex) => {
+                {curriculumPartnerOverviews.map(
+                  (
+                    { curriculumPartner, partnerBio },
+                    curriculumPartnerIndex,
+                  ) => {
                     return (
                       <OakFlex
+                        data-testid="curriculum-partner"
                         $justifyContent={"center"}
                         $alignContent={"start"}
                         $gap={["space-between-s", "space-between-m2"]}
@@ -506,7 +554,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                         >
                           {curriculumPartnerIndex === 0 && (
                             <OakBox $display={["none", "block"]}>
-                              <OakHeading tag="h3" $font={["heading-5"]}>
+                              <OakHeading
+                                tag="h3"
+                                $font={["heading-5"]}
+                                id="header-our-curriculum-partner"
+                              >
                                 {partnerTitle}
                               </OakHeading>
                             </OakBox>
