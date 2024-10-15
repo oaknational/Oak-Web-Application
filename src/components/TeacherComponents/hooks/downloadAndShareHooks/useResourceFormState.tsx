@@ -57,7 +57,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const [preselectAll, setPreselectAll] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
-  const [schoolUrn, setSchoolUrn] = useState(0);
+  const [schoolUrn, setSchoolUrn] = useState("");
   const { useUser } = useFeatureFlaggedClerk();
   const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
   const { isSignedIn, user } = useUser();

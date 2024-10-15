@@ -97,7 +97,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
     expect(lessonShared).toHaveBeenCalledWith({
       lessonName: "Islamic Geometry",
       lessonSlug: "macbeth-lesson-1",
-      schoolUrn: 123456,
+      schoolUrn: "123456",
       schoolName: "Secondary school",
       schoolOption: "Selected school",
       shareMedium: "email",

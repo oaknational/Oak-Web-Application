@@ -10,7 +10,7 @@ describe("getFormattedDetailsForTracking", () => {
     expect(schoolDetailsForTracking).toStrictEqual({
       schoolOption: "Homeschool",
       schoolName: "",
-      schoolUrn: 0,
+      schoolUrn: "",
       selectedResourcesForTracking: ["slide deck", "starter quiz questions"],
     });
   });
@@ -24,7 +24,7 @@ describe("getFormattedDetailsForTracking", () => {
     expect(schoolDetailsForTracking).toStrictEqual({
       schoolOption: "Not listed",
       schoolName: "",
-      schoolUrn: 0,
+      schoolUrn: "",
       selectedResourcesForTracking: ["slide deck", "worksheet pdf"],
     });
   });
@@ -38,7 +38,7 @@ describe("getFormattedDetailsForTracking", () => {
     expect(schoolDetailsForTracking).toStrictEqual({
       schoolOption: "Selected school",
       schoolName: "London High School",
-      schoolUrn: 123456,
+      schoolUrn: "123456",
       selectedResourcesForTracking: ["slide deck", "worksheet pdf"],
     });
   });
@@ -60,7 +60,7 @@ describe("getFormattedDetailsForTracking", () => {
     expect(schoolDetailsForTracking).toStrictEqual({
       schoolOption: "Homeschool",
       schoolName: "",
-      schoolUrn: 0,
+      schoolUrn: "",
       selectedResourcesForTracking: [
         "slide deck",
         "starter quiz questions",

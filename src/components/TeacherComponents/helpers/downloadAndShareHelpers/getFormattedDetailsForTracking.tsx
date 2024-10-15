@@ -20,10 +20,10 @@ export const getSchoolUrn = (
 ) => {
   if (schoolOption === "Selected school") {
     const output = extractUrn(school);
-    const schoolUrn = Number(output) || 0;
+    const schoolUrn = output || "";
     return schoolUrn;
   } else {
-    return 0;
+    return "";
   }
 };
 
@@ -39,7 +39,7 @@ export const getSchoolName = (
   }
 };
 
-function extractUrn(school: string) {
+export function extractUrn(school: string) {
   return /^\d{7}|^\d{6}|^\d{3}-\d{4}/.exec(school)?.at(0);
 }
 
