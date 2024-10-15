@@ -1,3 +1,90 @@
+## [1.592.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.1...v1.592.2) (2024-10-15)
+
+
+### Bug Fixes
+
+* match font sizes at breakpoints in curriculum explainers to figma designs ([3cac270](https://github.com/oaknational/Oak-Web-Application/commit/3cac27046d03494fadfb3d11616aa36d2294a891))
+
+## [1.592.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.0...v1.592.1) (2024-10-15)
+
+
+### Bug Fixes
+
+* added correct all years text for swimming in curric mobile header ([3922ea3](https://github.com/oaknational/Oak-Web-Application/commit/3922ea368853b79ed19f1a0fee2c911d0e85892b))
+* added missing all-years to <UnitModal/> header ([dadeba2](https://github.com/oaknational/Oak-Web-Application/commit/dadeba228aaa66fa7b1c425629ad6dda8847d248))
+
+# [1.592.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.591.0...v1.592.0) (2024-10-15)
+
+
+### Bug Fixes
+
+* ensure safety for no exclusions inside actions ([af3fd58](https://github.com/oaknational/Oak-Web-Application/commit/af3fd5879c1f715aa164b76c9780a2f4ff0c836c))
+* improve reliability on intersaection function ([4df6966](https://github.com/oaknational/Oak-Web-Application/commit/4df6966b3e294d826d300c3d97cfc1c9c7ad16a8))
+* more test cases ([377f09e](https://github.com/oaknational/Oak-Web-Application/commit/377f09ee10ec130ba21385febb3c030b2b9469fb))
+* remove actions from opted out entities ([5907867](https://github.com/oaknational/Oak-Web-Application/commit/5907867d791c5e9d25b6e8562d259deb4b6ba467))
+* type errors ([80069c7](https://github.com/oaknational/Oak-Web-Application/commit/80069c76a0868f2bcb9a8a4a6227dc23c980be89))
+* update to latest mv ([6b9e3ee](https://github.com/oaknational/Oak-Web-Application/commit/6b9e3ee3684cf2461eeb0147530e771df0b8ef78))
+
+
+### Features
+
+* exclusions and overrides in a generic helper ([04ca03b](https://github.com/oaknational/Oak-Web-Application/commit/04ca03bf37fdbc82ce4fc4da0e5b1dd6475f870c))
+* exclusions applied to pupil browse queries ([08c3822](https://github.com/oaknational/Oak-Web-Application/commit/08c3822194aa9cd532dad688979895727de4d30f))
+* expired banner ([1b95748](https://github.com/oaknational/Oak-Web-Application/commit/1b95748a3398b1da769a166f08a8916c01f27600))
+* implement exclusions in pupil sitemap ([d639acb](https://github.com/oaknational/Oak-Web-Application/commit/d639acb33ece2aa27a05842eb4205ef8d65b497c))
+* implemented overrides and exclusions on pupilProgrammeListingQuery ([d5c3105](https://github.com/oaknational/Oak-Web-Application/commit/d5c3105ae056b6c421b91683f4aa9922776b56f1))
+* implementing computer science override ([2c48cab](https://github.com/oaknational/Oak-Web-Application/commit/2c48cabd50625a3afc1ec4e7c20da56cf551aa54))
+* reduce actions to intersection on canonical lessons feature ([5ca98aa](https://github.com/oaknational/Oak-Web-Application/commit/5ca98aa7d71fb290c9681ba107153a541a174740))
+* unit tests ([e2ba0dc](https://github.com/oaknational/Oak-Web-Application/commit/e2ba0dc0542051bf5a6547407f3a58af731f5fda))
+
+# [1.591.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.590.0...v1.591.0) (2024-10-15)
+
+
+### Bug Fixes
+
+* moved HTML element "id" to correct header ([272e8b1](https://github.com/oaknational/Oak-Web-Application/commit/272e8b15322160b45bb8907c54b1683fcc0ba5c1))
+* scroll to first visible element ([c1d464d](https://github.com/oaknational/Oak-Web-Application/commit/c1d464d4c8b5fcdcc9d5bb807be280f2dc120193))
+
+
+### Features
+
+* added video and partner bio to curriculum overview table of contents ([e50b74c](https://github.com/oaknational/Oak-Web-Application/commit/e50b74c4a6f7bee6cb9f1386573c0c0385f62c7f))
+* use <OakTertiaryOLNav/> instead of custom component ([513ad4d](https://github.com/oaknational/Oak-Web-Application/commit/513ad4d897b71e6244613221dbb6ff3ef52c38be))
+
+# [1.590.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.589.0...v1.590.0) (2024-10-15)
+
+
+### Bug Fixes
+
+* add aria-current prop to ButtonStylesProps to suppress TSC error ([2d03ef5](https://github.com/oaknational/Oak-Web-Application/commit/2d03ef538c6392ce3e7a0d2de5ad219eb4b40026))
+* add AriaAttributes type to Button props to prevent tsc error ([ac85776](https://github.com/oaknational/Oak-Web-Application/commit/ac85776650237cc5d2ca215893f9bdfc706e3e68))
+* add missing properties BUTTON_CONFIGS ([15380e3](https://github.com/oaknational/Oak-Web-Application/commit/15380e33c1266656de8338be14872b392541870c))
+* add region attribute to curriculum page main content divs for a11y ([2e57cdb](https://github.com/oaknational/Oak-Web-Application/commit/2e57cdb105361aaf15a54aa558bd552d507684d7))
+* extend CurriculumHeaderTabNav border-top to full-width ([8cb5b35](https://github.com/oaknational/Oak-Web-Application/commit/8cb5b3572e34d36eda5f8fea71790a7cf7c5f2be))
+* fix a11y for screen reader only curriculum tab page headings ([f5c1d88](https://github.com/oaknational/Oak-Web-Application/commit/f5c1d88aa11a640ae7d669546f808f9cbe681db5))
+* fix CurriculumHeaderTabNav height range for varying screen-widths ([681f84d](https://github.com/oaknational/Oak-Web-Application/commit/681f84d3cccef5f937cbc3bb486a92197dcae954))
+* fix ScreenReaderOnly component import ([e1d2dfd](https://github.com/oaknational/Oak-Web-Application/commit/e1d2dfd203a301a35770e0b63aa5abc001630b27))
+
+
+### Features
+
+* add CurriculumHeaderTabNav component ([9e752e1](https://github.com/oaknational/Oak-Web-Application/commit/9e752e19852b940d6790430df2206eac12e29a38))
+* change Overview tab label to Explainer ([506201d](https://github.com/oaknational/Oak-Web-Application/commit/506201d02453057982d9d049c9c33f1e40e7fea2))
+* update CurriculumHeader's subject icon dimensions ([ea45f66](https://github.com/oaknational/Oak-Web-Application/commit/ea45f6689cd46d19bb03ecc49bc9ba415384b74a))
+
+
+### Reverts
+
+* reinstate removed comment to ButtonInner.tsx ([cfe38ed](https://github.com/oaknational/Oak-Web-Application/commit/cfe38eddbca467974781b49ec9a66ca55ba229c6))
+* remove redundant Pixel Spacing unit ([ecd019d](https://github.com/oaknational/Oak-Web-Application/commit/ecd019db9b673718f00fedec645b1ab44af701bc))
+
+# [1.589.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.588.1...v1.589.0) (2024-10-14)
+
+
+### Features
+
+* added support for multiple curriculum partners from the CMS for cycle 2 ([c39fbde](https://github.com/oaknational/Oak-Web-Application/commit/c39fbde6f2046651c95e401ab8c015bd800902b2))
+
 ## [1.588.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.588.0...v1.588.1) (2024-10-14)
 
 
