@@ -3,7 +3,7 @@ import { dirname, relative } from "path";
 
 import puppeteer, { Page } from "puppeteer";
 import sharp from "sharp";
-import slugify from "@sindresorhus/slugify";
+import slugify from "slugify";
 
 type Image = {
   input: string;

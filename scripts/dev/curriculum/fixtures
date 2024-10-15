@@ -1,0 +1,14 @@
+#!/usr/bin/env ./node_modules/.bin/tsx
+import "dotenv/config";
+import yargs from 'yargs/yargs';
+import { hideBin } from 'yargs/helpers';
+import {buildFixtures} from "./_commands/fixtures"
+
+yargs(hideBin(process.argv))
+  .command('generate', "fixtures generated from graphql", (yargs) => {
+    return yargs;
+  }, async () => {
+    await buildFixtures();
+  })
+  .demand(1)
+  .argv
