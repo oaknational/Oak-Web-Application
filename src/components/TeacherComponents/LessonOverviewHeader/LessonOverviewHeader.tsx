@@ -31,6 +31,7 @@ export type LessonOverviewHeaderProps = {
   lessonSlug: string;
   lessonDescription?: string;
   isSpecialist: boolean;
+  isCanonical: boolean;
   // other props
   breadcrumbs: Breadcrumb[];
   background: OakColorName;
