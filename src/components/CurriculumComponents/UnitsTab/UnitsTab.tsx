@@ -241,6 +241,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
           highlightedUnitCount={highlightedUnitCount}
           trackSelectYear={trackSelectYear}
           yearOptions={yearOptions}
+          yearData={yearData}
           visibleMobileYearRefID={visibleMobileYearRefID}
         />
         <OakGrid>
