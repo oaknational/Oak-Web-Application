@@ -80,17 +80,18 @@ const QuizInner = () => {
       numQuestions,
     );
     if (_currentQuestionIndex === numQuestions) {
-      completeActivity(currentSection);
       if (currentSection === "starter-quiz") {
         track.lessonActivityCompletedStarterQuiz(
           getQuizTrackingData(currentSection),
         );
-      }
-      if (currentSection === "exit-quiz") {
+      } else if (currentSection === "exit-quiz") {
         track.lessonActivityCompletedExitQuiz(
           getQuizTrackingData(currentSection),
         );
+      } else {
+        throw new Error(`Invalid section: ${currentSection}`);
       }
+      completeActivity(currentSection);
     } else {
       handleNextQuestion();
     }
@@ -205,6 +206,8 @@ const QuizInner = () => {
           );
         }
         break;
+      default:
+        throw new Error(`Invalid section: ${currentSection}`);
     }
     updateCurrentSection("overview");
   };

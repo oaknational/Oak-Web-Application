@@ -11,6 +11,7 @@ export function createLessonEngineContext(
     isLessonComplete: false,
     currentSection: "starter-quiz",
     sectionResults: {},
+    timeStamp: { section: "overview", time: 0 },
     lessonReviewSections: allLessonReviewSections,
     completeActivity: jest.fn(),
     updateCurrentSection: jest.fn(),
