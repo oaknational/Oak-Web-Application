@@ -204,15 +204,26 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
 
   return (
     <Box>
-      <Box $maxWidth={1280} $mh={"auto"} $ph={[0, 18]} $width={"100%"}>
-        <OakHeading
-          tag="h2"
-          $mb="space-between-m"
-          $ml={["space-between-s", "space-between-none"]}
-          $font={["heading-5", "heading-4"]}
-        >
-          Unit sequence
-        </OakHeading>
+      <Box
+        id="curriculum-units"
+        aria-labelledby="curriculum-unit-sequence-heading"
+        $maxWidth={1280}
+        $mh={"auto"}
+        $ph={[0, 18]}
+        $width={"100%"}
+        role="region"
+      >
+        <ScreenReaderOnly>
+          <OakHeading
+            id="curriculum-unit-sequence-heading"
+            tag="h2"
+            $mb="space-between-m"
+            $ml={["space-between-s", "space-between-none"]}
+            $font={["heading-5", "heading-4"]}
+          >
+            Unit sequence
+          </OakHeading>
+        </ScreenReaderOnly>
         <OakP
           $mh={["space-between-s", "space-between-none"]}
           $mb={"space-between-xl"}
@@ -230,6 +241,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
           highlightedUnitCount={highlightedUnitCount}
           trackSelectYear={trackSelectYear}
           yearOptions={yearOptions}
+          yearData={yearData}
           visibleMobileYearRefID={visibleMobileYearRefID}
         />
         <OakGrid>

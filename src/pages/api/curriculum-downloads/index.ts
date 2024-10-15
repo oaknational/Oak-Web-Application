@@ -139,6 +139,7 @@ async function getData(opts: {
           name: "Partner name is undefined for this record. Please check the CMS.",
           image: null,
         },
+        curriculumPartnerOverviews: [],
         video: {
           title:
             "Video title is undefined for this record. Please check the CMS.",

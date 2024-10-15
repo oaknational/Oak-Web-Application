@@ -5,6 +5,8 @@ import {
 
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
+import { PupilSubjectListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 /**
@@ -25,11 +27,19 @@ export const pupilSubjectListingQuery =
       yearSlug,
     });
 
-    if (res.data?.length === 0) {
+    const modified = applyGenericOverridesAndExceptions<
+      PupilSubjectListingQuery["data"][number]
+    >({
+      journey: "pupil",
+      queryName: "pupilSubjectListingQuery",
+      browseData: res.data,
+    });
+
+    if (modified.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    pupilSubjectListingSchema.array().parse(res.data);
+    pupilSubjectListingSchema.array().parse(modified);
 
-    return keysToCamelCase(res.data) as PupilSubjectListingData[];
+    return keysToCamelCase(modified) as PupilSubjectListingData[];
   };
