@@ -46,7 +46,7 @@ export async function buildFixtures() {
   await mkdir(basedir, { recursive: true });
   for (const [name, fixture] of Object.entries(fixtures)) {
     const output = await fixture();
-    const filepath = join(basedir, name + ".ts");
+    const filepath = join(basedir, name + ".fixtures.ts");
     console.log(`📦 generating: ${filepath}`);
     await writeFile(filepath, wrapFile(JSON.stringify(output, null, 2)));
   }
