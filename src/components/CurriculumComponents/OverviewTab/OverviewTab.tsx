@@ -17,6 +17,7 @@ import {
 } from "@portabletext/react";
 import styled from "styled-components";
 
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Card from "@/components/SharedComponents/Card/Card";
@@ -29,10 +30,7 @@ import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
-import {
-  isCurricPartnerHackEnabled,
-  useCycleTwoEnabled,
-} from "@/utils/curriculum/features";
+import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type OverviewTabProps = {
@@ -137,6 +135,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     subjectPrinciples,
     partnerBio,
     curriculumPartner,
+    curriculumPartnerOverviews,
     video,
     videoExplainer,
   } = curriculumCMSInfo;
@@ -182,11 +181,6 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     );
   };
 
-  // TODO: Add multiple curriculum partners here, see <https://www.notion.so/oaknationalacademy/New-curriculum-partner-design-in-overview-tab-10326cc4e1b180098542eb3b70ba270d>
-  const curriculumPartners = isCurricPartnerHackEnabled()
-    ? [curriculumPartner, curriculumPartner]
-    : [curriculumPartner];
-
   const h1Headings = (curriculumExplainer.explainerRaw ?? []).filter(
     (block) => {
       return block.style === "heading1";
@@ -198,7 +192,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   };
 
   const partnerTitle = `Our curriculum partner${
-    curriculumPartners.length > 1 ? "s" : ""
+    curriculumPartnerOverviews?.length > 1 ? "s" : ""
   }`;
 
   const subjectIconName = getValidSubjectIconName(subjectSlug);
@@ -252,9 +246,26 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
           </OakBox>
         </Box>
       )}
-      <Box $maxWidth={1280} $mh={"auto"} $ph={16} $width={"100%"}>
+      <Box
+        id="curriculum-overview"
+        aria-labelledby="curriculum-overview-heading"
+        $maxWidth={1280}
+        $mh={"auto"}
+        $ph={16}
+        $width={"100%"}
+        role="region"
+      >
         {isCycleTwoEnabled && (
           <OakFlex $gap={"all-spacing-16"} $alignItems={"flex-start"}>
+            <ScreenReaderOnly>
+              <OakHeading
+                tag="h2"
+                data-testid="overview-heading"
+                id="curriculum-overview-heading"
+              >
+                Explainer
+              </OakHeading>
+            </ScreenReaderOnly>
             <Box
               $minWidth={300}
               $position={["static", "static", "sticky"]}
@@ -307,14 +318,15 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 $maxWidth={["100%", "100%", "65%"]}
                 $textAlign={"left"}
               >
-                <OakHeading
-                  tag="h2"
-                  $font={["heading-5", "heading-4"]}
-                  $mb="space-between-m"
-                  data-testid="overview-heading"
-                >
-                  Overview
-                </OakHeading>
+                <ScreenReaderOnly>
+                  <OakHeading
+                    tag="h2"
+                    id="curriculum-overview-heading"
+                    data-testid="overview-heading"
+                  >
+                    Overview
+                  </OakHeading>
+                </ScreenReaderOnly>
                 <OakHeading
                   tag="h3"
                   $font={["heading-6", "heading-5"]}
@@ -472,8 +484,11 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 $gap={["space-between-l", "space-between-m2"]}
                 $flexDirection={"column"}
               >
-                {curriculumPartners.map(
-                  (curriculumPartner, curriculumPartnerIndex) => {
+                {curriculumPartnerOverviews.map(
+                  (
+                    { curriculumPartner, partnerBio },
+                    curriculumPartnerIndex,
+                  ) => {
                     return (
                       <OakFlex
                         $justifyContent={"center"}
