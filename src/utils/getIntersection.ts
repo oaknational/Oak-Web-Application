@@ -3,18 +3,25 @@
  * @returns {Object} - intersection of the objects
  */
 
-export function getIntersection<T>(arr: Array<Partial<T>>): Partial<T> {
-  return arr.reduce((acc, val) => {
-    if (!val) {
-      return {};
-    }
-    const o = { ...val };
-
-    for (const key in val) {
-      if (acc[key] !== val[key]) {
-        delete o[key];
+export function getIntersection<T>(arr: Array<Partial<T> | null>): Partial<T> {
+  return (
+    arr.reduce((acc, val) => {
+      if (acc === null) {
+        return val || {};
       }
-    }
-    return o;
-  });
+
+      if (!val) {
+        return {};
+      }
+
+      const o = { ...val };
+
+      for (const key in val) {
+        if (acc[key] !== val[key]) {
+          delete o[key];
+        }
+      }
+      return o;
+    }, null) || {}
+  );
 }
