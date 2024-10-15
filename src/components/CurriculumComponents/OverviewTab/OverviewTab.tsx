@@ -97,6 +97,8 @@ const ExplainerStyles = styled("div")`
   }
 `;
 
+const slugifyHash = (input: string) => slugify(input).toLocaleLowerCase();
+
 const PrincipleBullet = ({
   bulletText,
   children,
@@ -123,7 +125,9 @@ const PrincipleBullet = ({
 
 const blockHeadingComponents: PortableTextComponents["block"] = {
   heading1: (props) => (
-    <h3 id={`header-${slugify(props.value.children[0]?.text ?? "unknown")}`}>
+    <h3
+      id={`header-${slugifyHash(props.value.children[0]?.text ?? "unknown")}`}
+    >
       {props.children}
     </h3>
   ),
@@ -208,7 +212,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const navItems = h1Headings.map((heading) => {
     return {
       title: heading.children[0].text,
-      href: `#header-${slugify(heading.children[0].text).toLocaleLowerCase()}`,
+      href: `#header-${slugifyHash(heading.children[0].text)}`,
     };
   });
 
