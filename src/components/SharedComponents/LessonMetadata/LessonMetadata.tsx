@@ -14,6 +14,7 @@ const LessonMetadata: FC<
     tierTitle?: string | null;
     yearTitle?: string | null;
     metadataArray?: string[];
+    $flexWrap?: OakFlexProps["$flexWrap"];
   } & OakTypographyProps &
     OakFlexProps
 > = (props) => {
@@ -24,6 +25,7 @@ const LessonMetadata: FC<
     keyStageTitle,
     subjectTitle,
     metadataArray,
+    $flexWrap,
     ...fontProps
   } = props;
 
@@ -44,7 +46,11 @@ const LessonMetadata: FC<
     </React.Fragment>
   ));
 
-  return <OakFlex $gap="all-spacing-2">{metadataElements}</OakFlex>;
+  return (
+    <OakFlex $gap="all-spacing-2" $flexWrap={$flexWrap}>
+      {metadataElements}
+    </OakFlex>
+  );
 };
 
 export default LessonMetadata;
