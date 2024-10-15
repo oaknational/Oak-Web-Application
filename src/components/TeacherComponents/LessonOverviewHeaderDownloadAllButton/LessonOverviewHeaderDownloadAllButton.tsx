@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useUser } from "@clerk/nextjs";
 
 import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -36,6 +37,13 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
   const downloads = useFeatureFlagEnabled("use-auth-owa")
     ? "downloads-auth"
     : "downloads";
+
+  const { user, isLoaded } = useUser();
+
+  const displaySignInMessage =
+    isLoaded &&
+    downloads === "downloads-auth" &&
+    !user?.publicMetadata?.owa?.isOnboarded;
 
   if (expired || !showDownloadAll) {
     return null;
@@ -80,7 +88,11 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
         icon="arrow-right"
         size="large"
         $iconPosition="trailing"
-        label={`Download all resources`}
+        label={
+          displaySignInMessage
+            ? `Sign in to download`
+            : `Download all resources`
+        }
         onClick={onClickDownloadAll}
       />
     </Box>

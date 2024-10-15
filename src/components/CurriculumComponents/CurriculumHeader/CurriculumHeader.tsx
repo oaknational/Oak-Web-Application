@@ -1,13 +1,18 @@
 import React, { FC } from "react";
 import { useRouter } from "next/router";
-import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  OakFlex,
+  OakIcon,
+} from "@oaknational/oak-components";
+
+import CurriculumHeaderTabNav from "../CurriculumHeaderTabNav";
 
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { Hr } from "@/components/SharedComponents/Typography";
-import SubjectIcon from "@/components/SharedComponents/SubjectIcon/SubjectIcon";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
-import TabularNav from "@/components/SharedComponents/TabularNav";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -17,10 +22,13 @@ import {
   CurriculumTab,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
+  keyStages: string[];
   color1?: OakColorName;
   color2?: OakColorName;
 };
@@ -30,7 +38,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   color2 = "aqua30",
   curriculumSelectionSlugs,
   subjectPhaseOptions,
+  keyStages,
 }) => {
+  const cycleTwoEnabled = isCycleTwoEnabled();
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
   const subject = subjectPhaseOptions.subjects.find(
@@ -39,9 +49,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   const phase = subject?.phases.find(
     (phase) => phase.slug === curriculumSelectionSlugs.phaseSlug,
   );
-  const examboard =
-    subject?.examboards?.find(
-      (examboard) => examboard.slug === curriculumSelectionSlugs.examboardSlug,
+  const ks4Option =
+    subject?.ks4_options?.find(
+      (option) => option.slug === curriculumSelectionSlugs.ks4OptionSlug,
     ) ?? null;
 
   if (!subject || !phase) {
@@ -51,24 +61,22 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   const currentSelection = {
     subject: subject,
     phase: phase,
-    examboard: examboard,
+    ks4Option: ks4Option,
   };
 
   const subjectPhaseSlug = `${subject.slug}-${phase.slug}${
-    examboard ? `-${examboard.slug}` : ""
+    ks4Option ? `-${ks4Option.slug}` : ""
   }`;
 
-  let pageTitle: string;
-  switch (phase.slug) {
-    case "primary":
-      pageTitle = `KS1 & KS2 ${subject.title}`;
-      break;
-    case "secondary":
-      pageTitle = `KS3 & KS4 ${subject.title}`;
-      break;
-    default:
-      pageTitle = "";
-      break;
+  let pageTitle: string = "";
+  const keyStageStrings: string[] = [];
+  if (keyStages.includes("ks1")) keyStageStrings.push("KS1");
+  if (keyStages.includes("ks2")) keyStageStrings.push("KS2");
+  if (keyStages.includes("ks3")) keyStageStrings.push("KS3");
+  if (keyStages.includes("ks4")) keyStageStrings.push("KS4");
+  const keyStageString = keyStageStrings.join(" & ");
+  if (["primary", "secondary"].includes(phase.slug)) {
+    pageTitle = `${keyStageString} ${subject.title}`;
   }
 
   const links: ButtonAsLinkProps[] = [
@@ -77,15 +85,13 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       page: "curriculum-units",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "units",
-      currentStyles: ["underline"],
       scroll: false,
     },
     {
-      label: "Overview",
+      label: cycleTwoEnabled ? "Explainer" : "Overview",
       page: "curriculum-overview",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "overview",
-      currentStyles: ["underline"],
       scroll: false,
     },
     {
@@ -93,7 +99,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       page: "curriculum-downloads",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "downloads",
-      currentStyles: ["underline"],
       scroll: false,
     },
   ];
@@ -134,38 +139,42 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           />
         </Box>
       </Flex>
-      <Box $background={color2}>
+      <Box $background={color1}>
         {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
-        <Flex $pv={32}>
+        <Flex $pb={[24, 24]} $pt={[20, 30]}>
           <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
             <OakFlex>
               <Box
-                $background={color1}
+                $background={color2}
                 $borderRadius={6}
                 $minWidth={56}
-                $mr={12}
+                $mr={[12, 26]}
                 $mv={"auto"}
               >
-                <SubjectIcon
-                  subjectSlug={subject.slug}
-                  $color="white"
-                  $borderColor="white"
-                  $width={64}
+                <OakIcon
+                  iconName={getValidSubjectIconName(subject.slug)}
+                  $width="all-spacing-13"
+                  $height="all-spacing-13"
                   data-testid="subjectIcon"
+                  alt=""
                 />
               </Box>
-              <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
+              <OakFlex
+                $rowGap={["all-spacing-2", "all-spacing-2"]}
+                $justifyContent={"center"}
+                $flexDirection={"column"}
+              >
                 {phase.slug === "secondary" && (
                   <OakP
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}
                   >
-                    {`${examboard ? examboard.title : "All exam boards"} (KS4)`}
+                    {`${ks4Option ? ks4Option.title : "All exam boards"} (KS4)`}
                   </OakP>
                 )}
                 <OakHeading
                   tag={"h1"}
-                  $font={["heading-4", "heading-3"]}
+                  $font={["heading-5", "heading-3"]}
                   data-testid="curriculum-heading"
                 >
                   {pageTitle}
@@ -174,14 +183,18 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             </OakFlex>
           </Box>
         </Flex>
-        <TabularNav
-          $maxWidth={1280}
-          $mh={"auto"}
-          $ph={18}
-          label="Curriculum Selection"
-          links={links}
-          data-testid="tabularNav"
-        />
+        <Flex $borderColor="mint30" $bt={2}>
+          <Box $maxWidth={1280} $ph={[0, 20]} $mh={"auto"} $width={"100%"}>
+            <CurriculumHeaderTabNav
+              data-testid="tabularNav"
+              label="Curriculum Selection"
+              links={links}
+              variant="flat"
+              $alignItems={"center"}
+              $height={[60, 64]}
+            />
+          </Box>
+        </Flex>
       </Box>
     </Box>
   );

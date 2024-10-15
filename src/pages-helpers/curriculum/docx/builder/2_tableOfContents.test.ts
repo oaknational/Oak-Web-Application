@@ -9,15 +9,15 @@ describe("2_tableOfContents", () => {
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {
-        subjectTitle: "Science",
+        subjectTitle: "Physical education",
         units: [
-          { year: "7" },
-          { year: "8" },
-          { year: "9" },
-          { year: "10" },
-          { year: "11" },
+          { year: "7", threads: [] },
+          { year: "8", threads: [] },
+          { year: "9", threads: [] },
+          { year: "10", threads: [] },
+          { year: "11", threads: [] },
         ],
-      } as CombinedCurriculumData,
+      } as unknown as CombinedCurriculumData,
     });
 
     expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();

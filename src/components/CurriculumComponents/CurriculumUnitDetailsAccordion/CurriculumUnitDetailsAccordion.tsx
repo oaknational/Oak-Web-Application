@@ -13,7 +13,9 @@ import Box from "@/components/SharedComponents/Box";
 export type AccordionContainerTitles =
   | "Lessons in unit"
   | "Previous unit description"
-  | "Following unit description";
+  | "Following unit description"
+  | "Description"
+  | "Why this why now";
 
 type CurriculumUnitDetailsAccordionProps = {
   title: AccordionContainerTitles;

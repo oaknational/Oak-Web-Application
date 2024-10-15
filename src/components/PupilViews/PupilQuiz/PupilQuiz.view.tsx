@@ -29,6 +29,8 @@ import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { QuizCorrectAnswers } from "@/components/PupilComponents/QuizCorrectAnswers";
+import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
+import { useGetQuizTrackingData } from "@/hooks/useGetQuizTrackingData";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -41,9 +43,12 @@ const isQuizSection = (section: string): section is QuizSection => {
 };
 
 const QuizInner = () => {
-  const { currentSection, updateCurrentSection } = useLessonEngineContext();
+  const { currentSection, updateCurrentSection, completeActivity } =
+    useLessonEngineContext();
   const quizEngineContext = useQuizEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+  const { track } = usePupilAnalytics();
+  const { getQuizTrackingData } = useGetQuizTrackingData();
 
   if (!isQuizSection(currentSection)) {
     return null;
@@ -55,6 +60,7 @@ const QuizInner = () => {
     currentQuestionDisplayIndex,
     questionState,
     handleNextQuestion,
+    updateHintOffered,
     numQuestions,
     numInteractiveQuestions,
   } = quizEngineContext;
@@ -67,6 +73,28 @@ const QuizInner = () => {
   const grade = currentQuestionState?.grade;
   const isPartiallyCorrect = currentQuestionState?.isPartiallyCorrect;
   const isCorrect = grade === 1;
+
+  const handleNextQuestionClick = () => {
+    const _currentQuestionIndex = Math.min(
+      currentQuestionIndex + 1,
+      numQuestions,
+    );
+    if (_currentQuestionIndex === numQuestions) {
+      completeActivity(currentSection);
+      if (currentSection === "starter-quiz") {
+        track.lessonActivityCompletedStarterQuiz(
+          getQuizTrackingData(currentSection),
+        );
+      }
+      if (currentSection === "exit-quiz") {
+        track.lessonActivityCompletedExitQuiz(
+          getQuizTrackingData(currentSection),
+        );
+      }
+    } else {
+      handleNextQuestion();
+    }
+  };
 
   const correctFeedback = (
     <OakSpan $color={"text-primary"} $font={"body-2"}>
@@ -114,6 +142,11 @@ const QuizInner = () => {
           <MathJaxWrap>{currentQuestionData.hint}</MathJaxWrap>
         )
       }
+      hintToggled={({ isOpen }: { isOpen: boolean }) => {
+        if (isOpen) {
+          updateHintOffered(true);
+        }
+      }}
       feedback={
         isFeedbackMode ? pickFeedback(isCorrect, isPartiallyCorrect) : null
       }
@@ -146,7 +179,7 @@ const QuizInner = () => {
       {(isFeedbackMode || isExplanatoryText) && (
         <OakPrimaryButton
           width={["100%", "max-content"]}
-          onClick={handleNextQuestion}
+          onClick={handleNextQuestionClick}
           isTrailingIcon
           iconName="arrow-right"
         >
@@ -156,11 +189,31 @@ const QuizInner = () => {
     </OakLessonBottomNav>
   );
 
+  const handleBackLinkClick = () => {
+    switch (currentSection) {
+      case "starter-quiz":
+        if (track.lessonActivityAbandonedStarterQuiz) {
+          track.lessonActivityAbandonedStarterQuiz(
+            getQuizTrackingData(currentSection),
+          );
+        }
+        break;
+      case "exit-quiz":
+        if (track.lessonActivityAbandonedExitQuiz) {
+          track.lessonActivityAbandonedExitQuiz(
+            getQuizTrackingData(currentSection),
+          );
+        }
+        break;
+    }
+    updateCurrentSection("overview");
+  };
+
   const topNavSlot = (
     <OakLessonTopNav
       backLinkSlot={
         <OakBackLink
-          {...getSectionLinkProps("overview", updateCurrentSection)}
+          {...getSectionLinkProps("overview", handleBackLinkClick)}
         />
       }
       counterSlot={

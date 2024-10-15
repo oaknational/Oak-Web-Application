@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import { SupportYourTeamTextBlockCard as Component } from "./SupportYourTeamTextBlockCard";
 
@@ -43,15 +43,18 @@ export default {
       defaultValue: "lemon50",
     },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => {
+const Template: StoryFn<typeof Component> = (args) => {
   return <Component {...args} />;
 };
 
-export const SupportYourTeamTextBlockCard = Template.bind({});
-SupportYourTeamTextBlockCard.args = {
-  background: "lemon50",
-  title: "Card title",
-  bodyPortableText: bodyPortableText,
+export const SupportYourTeamTextBlockCard = {
+  render: Template,
+
+  args: {
+    background: "lemon50",
+    title: "Card title",
+    bodyPortableText: bodyPortableText,
+  },
 };

@@ -20,6 +20,28 @@ export const mockUserWithDownloadAccess: UserResource = {
   publicMetadata: {
     owa: {
       isRegionAuthorised: true,
+      isOnboarded: true,
+    },
+  },
+};
+
+export const mockUserWithDownloadAccessNotOnboarded: UserResource = {
+  ...mockUser,
+  publicMetadata: {
+    owa: {
+      isRegionAuthorised: true,
+      isOnboarded: false,
+    },
+  },
+};
+
+export const mockTeacherUserWithDownloadAccess: UserResource = {
+  ...mockUser,
+  publicMetadata: {
+    owa: {
+      isRegionAuthorised: true,
+      isTeacher: true,
+      isOnboarded: true,
     },
   },
 };
@@ -104,4 +126,5 @@ export const mockCurrentUser: CurrentUser = {
   primaryPhoneNumber: null,
   primaryWeb3Wallet: null,
   fullName: null,
+  deleteSelfEnabled: false,
 };

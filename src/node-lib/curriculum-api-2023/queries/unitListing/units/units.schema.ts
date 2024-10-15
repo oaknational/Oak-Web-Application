@@ -8,7 +8,7 @@ import {
   yearSlugs,
 } from "@oaknational/oak-curriculum-schema";
 
-import { learningThemesSchema } from "../threads/threads.schema";
+import { learningThemesSchema } from "../filters/threads.schema";
 
 const unitData = z.object({
   slug: z.string(),
@@ -28,6 +28,9 @@ const unitData = z.object({
   yearOrder: z.number(),
   cohort: z.string().nullish(),
   learningThemes: z.array(learningThemesSchema).nullable(),
+  subjectCategories: z
+    .array(z.object({ label: z.string(), slug: z.string() }))
+    .nullish(),
 });
 
 export type UnitData = z.infer<typeof unitData>;

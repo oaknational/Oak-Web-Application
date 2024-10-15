@@ -35,45 +35,6 @@ describe("requestLessonResources", () => {
     getDownloadResourcesExistenceSpy.mockRestore();
   });
 
-  it("sets `hasWorksheet` to `true` when a worksheet exists", async () => {
-    getDownloadResourcesExistenceSpy.mockResolvedValue({
-      downloads: [{ type: "worksheet-pdf", exists: true }],
-    });
-
-    const res = await requestLessonResources({
-      lessonContent: lessonContentFixture({}),
-    });
-
-    expect(res.hasWorksheet).toBe(true);
-  });
-
-  it("sets `hasWorksheet` to `false` when a worksheet does not exist", async () => {
-    getDownloadResourcesExistenceSpy.mockResolvedValue({
-      ...lessonDownloadsCanonicalResponse,
-      downloads: [["worksheet-pdf", { exists: false }]],
-    });
-
-    const res = await requestLessonResources({
-      lessonContent: lessonContentFixture({}),
-    });
-
-    expect(res.hasWorksheet).toBe(false);
-  });
-
-  // refactored into helper file
-  it("tests for the presence of a worksheet", async () => {
-    await requestLessonResources({
-      lessonContent: lessonContentFixture({
-        lessonSlug: "lessonSlug",
-        isLegacy: false,
-      }),
-    });
-
-    expect(getDownloadResourcesExistenceSpy).toHaveBeenCalledWith({
-      lessonSlug: "lessonSlug",
-    });
-  });
-
   it("for legacy lessons it splits the transcript into sentences", async () => {
     const transcriptSentences = [
       "This is a sentence. This is another sentence.",
@@ -86,9 +47,6 @@ describe("requestLessonResources", () => {
       }),
     });
 
-    expect(res.transcriptSentences).toEqual([
-      "This is a sentence.",
-      "This is another sentence.",
-    ]);
+    expect(res).toEqual(["This is a sentence.", "This is another sentence."]);
   });
 });

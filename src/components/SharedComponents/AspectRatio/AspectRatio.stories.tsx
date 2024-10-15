@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component, { ASPECT_RATIOS } from "./AspectRatio";
 
@@ -9,16 +9,18 @@ export default {
   argTypes: {
     ratio: { control: { type: "select", options: ASPECT_RATIOS } },
   },
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
+const Template: StoryFn<typeof Component> = (args) => (
   <Box $background="black" $width={120} $position="relative">
     <Component {...args} />
   </Box>
 );
 
-export const AspectRatio = Template.bind({});
+export const AspectRatio = {
+  render: Template,
 
-AspectRatio.args = {
-  ratio: "1:1",
+  args: {
+    ratio: "1:1",
+  },
 };

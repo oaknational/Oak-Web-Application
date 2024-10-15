@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import {
+  OakHeading,
   OakDownloadsJourneyChildSubjectTierSelector,
   OakThemeProvider,
   oakDefaultTheme,
@@ -26,6 +27,7 @@ import {
   useDownloadsLocalStorage,
 } from "./helper";
 
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly/ScreenReaderOnly";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Box from "@/components/SharedComponents/Box";
@@ -259,7 +261,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       childSubjectName: subject,
       childSubjectSlug: child_subjects?.find((s) => s.subject_slug === subject)
         ?.subject,
-      examBoardSlug: slugs.examboardSlug,
+      examBoardSlug: slugs.ks4OptionSlug,
     });
   }
 
@@ -271,7 +273,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       mvRefreshTime,
       slugs.subjectSlug,
       slugs.phaseSlug,
-      slugs.examboardSlug,
+      slugs.ks4OptionSlug,
       tierSelected,
       childSubjectSelected,
     );
@@ -321,7 +323,21 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
-      <Box $maxWidth={1280} $mh={"auto"} $ph={18} $pb={[48]} $width={"100%"}>
+      <Box
+        id="curriculum-downloads"
+        aria-labelledby="curriculum-downloads-heading"
+        $maxWidth={1280}
+        $mh={"auto"}
+        $ph={18}
+        $pb={[48]}
+        $width={"100%"}
+        role="region"
+      >
+        <ScreenReaderOnly>
+          <OakHeading id="curriculum-downloads-heading" tag="h2">
+            Download
+          </OakHeading>
+        </ScreenReaderOnly>
         {subjectTierSelectionVisible === true && (
           <OakDownloadsJourneyChildSubjectTierSelector
             tiers={tiers}

@@ -21,6 +21,7 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
     subjectFilters,
     contentTypeFilters,
     examBoardFilters,
+    legacyFilter,
   } = searchFilters;
 
   const activeFilters = [
@@ -28,10 +29,16 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
     ...subjectFilters.filter((subject) => subject.checked),
     ...contentTypeFilters.filter((contentType) => contentType.checked),
     ...examBoardFilters.filter((examBoard) => examBoard.checked),
+    ...[legacyFilter].filter((legacy) => legacy.checked),
   ];
 
   const maxActiveFilters = 4;
-  const slicedActiveFilters: ((Subject | KeyStage | ContentType) &
+  const slicedActiveFilters: ((
+    | Subject
+    | KeyStage
+    | ContentType
+    | { slug: string; title: string }
+  ) &
     SearchCheckBoxProps)[] = activeFilters.slice(0, maxActiveFilters);
 
   return (

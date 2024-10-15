@@ -5,6 +5,8 @@ import {
 
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
+import { PupilUnitListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 export const pupilUnitListingQuery =
@@ -16,16 +18,23 @@ export const pupilUnitListingQuery =
       baseSlug,
     });
 
-    const browseDataSnake = res.browseData;
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      PupilUnitListingQuery["browseData"][number]
+    >({
+      journey: "pupil",
+      queryName: "pupilUnitListingQuery",
+      browseData: res.browseData,
+    });
 
-    if (!browseDataSnake) {
+    if (modifiedBrowseData.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    unitBrowseDataSchema.parse(browseDataSnake);
+    unitBrowseDataSchema.parse(modifiedBrowseData);
 
     const browseData = keysToCamelCase(
-      browseDataSnake,
+      modifiedBrowseData,
     ) as UnitListingBrowseData;
+
     return browseData;
   };

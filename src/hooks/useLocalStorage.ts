@@ -24,7 +24,7 @@ declare global {
   }
 }
 
-type SetValue<T> = Dispatch<SetStateAction<T>>;
+export type SetValue<T> = Dispatch<SetStateAction<T>>;
 
 export const dispatchLocalStorageEvent = () => {
   window.dispatchEvent(new Event(LOCAL_STORAGE_EVENT));

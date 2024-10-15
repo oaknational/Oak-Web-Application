@@ -23,12 +23,7 @@ import {
   mockUserWithDownloadAccess,
   mockUserWithoutDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
-import {
-  enableMockClerk,
-  setUseUserReturn,
-} from "@/__tests__/__helpers__/mockClerk";
-
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
@@ -90,7 +85,6 @@ jest.mock(
 );
 
 beforeEach(() => {
-  enableMockClerk();
   renderHook(() => useForm());
   localStorage.clear();
 });
@@ -557,7 +551,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
   describe("when downloads are region restricted", () => {
     const curriculumData = lessonDownloadsFixtures({
-      isDownloadRegionRestricted: true,
+      geoRestricted: true,
     });
 
     describe("and the user has access", () => {

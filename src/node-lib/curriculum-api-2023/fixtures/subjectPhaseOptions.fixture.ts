@@ -8,9 +8,14 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Primary", slug: "primary" },
       { title: "Secondary", slug: "secondary" },
     ],
-    examboards: [
+    ks4_options: [
       { title: "AQA", slug: "aqa" },
       { title: "Edexcel", slug: "edexcel" },
+    ],
+    cycle: "1",
+    keystages: [
+      { title: "KS1", slug: "ks1" },
+      { title: "KS3", slug: "ks3" },
     ],
   },
   {
@@ -20,7 +25,12 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Primary", slug: "primary" },
       { title: "Secondary", slug: "secondary" },
     ],
-    examboards: null,
+    ks4_options: null,
+    cycle: "1",
+    keystages: [
+      { title: "KS1", slug: "ks1" },
+      { title: "KS3", slug: "ks3" },
+    ],
   },
   {
     title: "History",
@@ -29,9 +39,14 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Primary", slug: "primary" },
       { title: "Secondary", slug: "secondary" },
     ],
-    examboards: [
+    ks4_options: [
       { title: "AQA", slug: "aqa" },
       { title: "Edexcel", slug: "edexcel" },
+    ],
+    cycle: "1",
+    keystages: [
+      { title: "KS1", slug: "ks1" },
+      { title: "KS3", slug: "ks3" },
     ],
   },
   {
@@ -41,13 +56,23 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Primary", slug: "primary" },
       { title: "Secondary", slug: "secondary" },
     ],
-    examboards: null,
+    ks4_options: null,
+    cycle: "1",
+    keystages: [
+      { title: "KS1", slug: "ks1" },
+      { title: "KS3", slug: "ks3" },
+    ],
   },
   {
     title: "Music",
     slug: "music",
     phases: [{ title: "Secondary", slug: "secondary" }],
-    examboards: null,
+    ks4_options: null,
+    cycle: "1",
+    keystages: [
+      { title: "KS1", slug: "ks1" },
+      { title: "KS3", slug: "ks3" },
+    ],
   },
   {
     title: "Science",
@@ -56,7 +81,12 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Primary", slug: "primary" },
       { title: "Secondary", slug: "secondary" },
     ],
-    examboards: null,
+    ks4_options: null,
+    cycle: "1",
+    keystages: [
+      { title: "KS1", slug: "ks1" },
+      { title: "KS3", slug: "ks3" },
+    ],
   },
 ];
 export default subjectPhaseOptionsFixture;

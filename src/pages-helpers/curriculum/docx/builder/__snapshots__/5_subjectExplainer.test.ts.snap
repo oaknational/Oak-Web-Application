@@ -339,11 +339,20 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         w:id="20002"
       ></w:bookmarkEnd>
     </w:p>
+    <w:p></w:p>
+    <w:p></w:p>
     <w:p>
       <w:pPr>
         <w:pStyle
           w:val="Heading3"
         ></w:pStyle>
+        <w:keepNext></w:keepNext>
+        <w:spacing
+          w:lineRule="auto"
+          w:line="240"
+          w:before="0"
+          w:after="120"
+        ></w:spacing>
       </w:pPr>
       <w:r>
         <w:rPr>
@@ -353,6 +362,9 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:b></w:b>
+          <w:i
+            w:val="0"
+          ></w:i>
           <w:color
             w:val="222222"
           ></w:color>
@@ -360,10 +372,166 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:val="36"
           ></w:sz>
         </w:rPr>
-        <w:r>
-          <w:rPr></w:rPr>
-          <w:t><![CDATA[Aims and purpose]]></w:t>
-        </w:r>
+        <w:t><![CDATA[Heading 1]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing
+          w:lineRule="auto"
+          w:line="240"
+          w:before="0"
+          w:after="0"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[test]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle
+          w:val="Heading4"
+        ></w:pStyle>
+        <w:keepNext></w:keepNext>
+        <w:spacing
+          w:lineRule="auto"
+          w:line="240"
+          w:before="480"
+          w:after="192"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:i
+            w:val="0"
+          ></w:i>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="28"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Heading 2]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing
+          w:lineRule="auto"
+          w:line="240"
+          w:before="0"
+          w:after="0"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[test]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle
+          w:val="Heading5"
+        ></w:pStyle>
+        <w:keepNext></w:keepNext>
+        <w:spacing
+          w:lineRule="auto"
+          w:line="240"
+          w:before="240"
+          w:after="192"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:i
+            w:val="0"
+          ></w:i>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Heading 3]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing
+          w:lineRule="auto"
+          w:line="240"
+          w:before="0"
+          w:after="0"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[test]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:pStyle
+          w:val="Heading6"
+        ></w:pStyle>
+        <w:keepNext></w:keepNext>
+        <w:spacing
+          w:lineRule="auto"
+          w:line="240"
+          w:before="0"
+          w:after="240"
+          w:beforeAutospacing="48"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+          <w:b></w:b>
+          <w:i
+            w:val="0"
+          ></w:i>
+          <w:color
+            w:val="222222"
+          ></w:color>
+          <w:sz
+            w:val="24"
+          ></w:sz>
+        </w:rPr>
+        <w:t><![CDATA[Heading 4]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:spacing
+          w:lineRule="auto"
+          w:line="240"
+          w:before="0"
+          w:after="0"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -380,11 +548,6 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
           w:line="276"
           w:lineRule="auto"
         ></w:spacing>
-        <w:ind
-          w:left="425"
-          w:right="-17"
-          w:hanging="360"
-        ></w:ind>
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
@@ -395,7 +558,7 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       <w:pPr>
         <w:numPr>
           <w:ilvl
-            w:val="0"
+            w:val="1"
           ></w:ilvl>
           <w:numId
             w:val="10001"
@@ -405,15 +568,50 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
           w:line="276"
           w:lineRule="auto"
         ></w:spacing>
-        <w:ind
-          w:left="425"
-          w:right="-17"
-          w:hanging="360"
-        ></w:ind>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[one]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:numPr>
+          <w:ilvl
+            w:val="1"
+          ></w:ilvl>
+          <w:numId
+            w:val="10001"
+          ></w:numId>
+        </w:numPr>
+        <w:spacing
+          w:line="276"
+          w:lineRule="auto"
+        ></w:spacing>
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
         <w:t><![CDATA[two]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:numPr>
+          <w:ilvl
+            w:val="1"
+          ></w:ilvl>
+          <w:numId
+            w:val="10001"
+          ></w:numId>
+        </w:numPr>
+        <w:spacing
+          w:line="276"
+          w:lineRule="auto"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[three]]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -430,17 +628,156 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
           w:line="276"
           w:lineRule="auto"
         ></w:spacing>
-        <w:ind
-          w:left="425"
-          w:right="-17"
-          w:hanging="360"
-        ></w:ind>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[two]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:numPr>
+          <w:ilvl
+            w:val="1"
+          ></w:ilvl>
+          <w:numId
+            w:val="10001"
+          ></w:numId>
+        </w:numPr>
+        <w:spacing
+          w:line="276"
+          w:lineRule="auto"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[one]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:numPr>
+          <w:ilvl
+            w:val="1"
+          ></w:ilvl>
+          <w:numId
+            w:val="10001"
+          ></w:numId>
+        </w:numPr>
+        <w:spacing
+          w:line="276"
+          w:lineRule="auto"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[two]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:numPr>
+          <w:ilvl
+            w:val="1"
+          ></w:ilvl>
+          <w:numId
+            w:val="10001"
+          ></w:numId>
+        </w:numPr>
+        <w:spacing
+          w:line="276"
+          w:lineRule="auto"
+        ></w:spacing>
       </w:pPr>
       <w:r>
         <w:rPr></w:rPr>
         <w:t><![CDATA[three]]></w:t>
       </w:r>
     </w:p>
+    <w:p>
+      <w:pPr>
+        <w:numPr>
+          <w:ilvl
+            w:val="0"
+          ></w:ilvl>
+          <w:numId
+            w:val="10001"
+          ></w:numId>
+        </w:numPr>
+        <w:spacing
+          w:line="276"
+          w:lineRule="auto"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[three]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:numPr>
+          <w:ilvl
+            w:val="1"
+          ></w:ilvl>
+          <w:numId
+            w:val="10001"
+          ></w:numId>
+        </w:numPr>
+        <w:spacing
+          w:line="276"
+          w:lineRule="auto"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[one]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:numPr>
+          <w:ilvl
+            w:val="1"
+          ></w:ilvl>
+          <w:numId
+            w:val="10001"
+          ></w:numId>
+        </w:numPr>
+        <w:spacing
+          w:line="276"
+          w:lineRule="auto"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[two]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p>
+      <w:pPr>
+        <w:numPr>
+          <w:ilvl
+            w:val="1"
+          ></w:ilvl>
+          <w:numId
+            w:val="10001"
+          ></w:numId>
+        </w:numPr>
+        <w:spacing
+          w:line="276"
+          w:lineRule="auto"
+        ></w:spacing>
+      </w:pPr>
+      <w:r>
+        <w:rPr></w:rPr>
+        <w:t><![CDATA[three]]></w:t>
+      </w:r>
+    </w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
+    <w:p></w:p>
   </w:body>
 </w:document>",
   "word/endnotes.xml": "<?xml
@@ -727,7 +1064,38 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
       ></w:lvlJc>
       <w:pPr>
         <w:ind
-          w:left="360"
+          w:left="425"
+          w:right="-17"
+          w:hanging="360"
+        ></w:ind>
+      </w:pPr>
+      <w:rPr>
+        <w:rFonts
+          w:ascii="Arial"
+          w:hAnsi="Arial"
+          w:cs="Arial"
+        ></w:rFonts>
+      </w:rPr>
+    </w:lvl>
+    <w:lvl
+      w:ilvl="1"
+    >
+      <w:start
+        w:val="1"
+      ></w:start>
+      <w:numFmt
+        w:val="decimal"
+      ></w:numFmt>
+      <w:lvlText
+        w:val="%1."
+      ></w:lvlText>
+      <w:lvlJc
+        w:val="left"
+      ></w:lvlJc>
+      <w:pPr>
+        <w:ind
+          w:left="850"
+          w:right="-17"
           w:hanging="360"
         ></w:ind>
       </w:pPr>
@@ -770,8 +1138,45 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
           ></w:tab>
         </w:tabs>
         <w:ind
-          w:left="720"
-          w:hanging="720"
+          w:left="425"
+          w:right="-50"
+          w:hanging="360"
+        ></w:ind>
+      </w:pPr>
+      <w:rPr>
+        <w:rFonts
+          w:ascii="Symbol"
+          w:hAnsi="Symbol"
+          w:hint="default"
+        ></w:rFonts>
+      </w:rPr>
+    </w:lvl>
+    <w:lvl
+      w:ilvl="1"
+    >
+      <w:start
+        w:val="1"
+      ></w:start>
+      <w:numFmt
+        w:val="bullet"
+      ></w:numFmt>
+      <w:lvlText
+        w:val=""
+      ></w:lvlText>
+      <w:lvlJc
+        w:val="left"
+      ></w:lvlJc>
+      <w:pPr>
+        <w:tabs>
+          <w:tab
+            w:val="num"
+            w:pos="1440"
+          ></w:tab>
+        </w:tabs>
+        <w:ind
+          w:left="850"
+          w:right="-50"
+          w:hanging="360"
         ></w:ind>
       </w:pPr>
       <w:rPr>

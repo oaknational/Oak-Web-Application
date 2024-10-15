@@ -11,6 +11,11 @@ import LessonOverviewPage, {
   URLParams,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import {
+  mockLoggedIn,
+  mockUserWithDownloadAccess,
+} from "@/__tests__/__helpers__/mockUser";
 
 const props = {
   curriculumData: lessonOverviewFixture({
@@ -53,6 +58,12 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 const render = renderWithProviders();
 
 describe("pages/teachers/lessons", () => {
+  beforeEach(() => {
+    setUseUserReturn({
+      ...mockLoggedIn,
+      user: mockUserWithDownloadAccess,
+    });
+  });
   it("Renders title from the props", async () => {
     render(<LessonOverviewPage {...props} />);
 

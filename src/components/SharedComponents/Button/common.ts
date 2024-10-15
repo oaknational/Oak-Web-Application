@@ -4,6 +4,8 @@ import {
   AnchorHTMLAttributes,
 } from "react";
 
+import { ResponsiveValues } from "@/styles/utils/responsive";
+import { FontVariant } from "@/styles/utils/typography";
 import { OakColorName } from "@/styles/theme";
 import { PixelSpacing, PropsWithTheme } from "@/styles/theme/types";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
@@ -19,7 +21,8 @@ export type ButtonVariant =
   | "brushNav"
   | "minimal"
   | "minimalNav"
-  | "buttonStyledAsLink";
+  | "buttonStyledAsLink"
+  | "flat";
 export type ButtonBackground = OakColorName;
 export type IconPosition = "leading" | "trailing";
 export type ButtonSize = "small" | "large" | "xs";
@@ -192,6 +195,12 @@ const BUTTON_CONFIGS: Record<
   "xs-minimalNav-icon-button": DEFAULT_BUTTON_CONFIG,
   "xs-buttonStyledAsLink-button": DEFAULT_BUTTON_CONFIG,
   "xs-buttonStyledAsLink-icon-button": DEFAULT_BUTTON_CONFIG,
+  "xs-flat-button": DEFAULT_BUTTON_CONFIG,
+  "xs-flat-icon-button": DEFAULT_BUTTON_CONFIG,
+  "large-flat-button": DEFAULT_BUTTON_CONFIG,
+  "small-flat-button": DEFAULT_BUTTON_CONFIG,
+  "small-flat-icon-button": DEFAULT_BUTTON_CONFIG,
+  "large-flat-icon-button": DEFAULT_BUTTON_CONFIG,
 };
 
 const getButtonConfig = (
@@ -301,6 +310,7 @@ export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
     $iconPosition?: IconPosition;
     iconBackground?: OakColorName;
     size?: ButtonSize;
+    $font?: ResponsiveValues<FontVariant>;
     "aria-label"?: string;
     $fullWidth?: boolean;
     $focusStyles?: [];

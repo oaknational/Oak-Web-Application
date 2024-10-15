@@ -1,5 +1,6 @@
 import { groupBy } from "lodash";
 import {
+  isValidIconName,
   OakFlex,
   OakGrid,
   OakGridArea,
@@ -92,9 +93,15 @@ export const PupilViewsSubjectListing = ({
                 subjectData,
                 (subject) => subject.programmeFields.tierSlug,
               );
-              const hasTierOrExamOptions =
+              const pathwayOptions = groupBy(
+                subjectData,
+                (subject) => subject.programmeFields.pathwaySlug,
+              );
+
+              const hasOptions =
                 Object.keys(examOptions).length > 1 ||
-                Object.keys(tierOptions).length > 1;
+                Object.keys(tierOptions).length > 1 ||
+                Object.keys(pathwayOptions).length > 1;
 
               // If there are multiple matches on subjectSlug, show the non-legacy one.
               const cycle1Subject = subjectData.find(
@@ -104,22 +111,25 @@ export const PupilViewsSubjectListing = ({
 
               const urlOptions: Partial<ResolveOakHrefProps> = {
                 page: "pupil-unit-index",
-                programmeSlug: hasTierOrExamOptions
+                programmeSlug: hasOptions
                   ? subject.baseSlug
                   : subject.programmeSlug,
-                ...(hasTierOrExamOptions && {
+                ...(hasOptions && {
                   page: "pupil-programme-index",
                   optionSlug: "options",
                 }),
               };
 
+              const iconSlug = `subject-${subject.programmeFields.subjectSlug}`;
               return (
                 <OakGridArea $colSpan={1} key={subjectSlug} role="listitem">
                   <OakFlex $height={"100%"}>
                     <OakPupilJourneySubjectButton
                       key={subjectSlug}
                       element="a"
-                      subjectIconName={`subject-${subject.programmeFields.subjectSlug}`}
+                      subjectIconName={
+                        isValidIconName(iconSlug) ? iconSlug : "question-mark"
+                      }
                       href={resolveOakHref(urlOptions as ResolveOakHrefProps)}
                       phase={
                         subject.programmeFields.phaseSlug as

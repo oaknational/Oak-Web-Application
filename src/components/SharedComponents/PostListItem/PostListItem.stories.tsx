@@ -1,4 +1,4 @@
-// import { ComponentStory, ComponentMeta } from "@storybook/react";
+// import { StoryFn, Meta } from "@storybook/react";
 // import type {Meta} from "@storybook/react";
 
 // import Component from "./PostListItem";
@@ -6,7 +6,7 @@
 // export default {
 //
 //   component: Component,
-// } as ComponentMeta<typeof Component>;
+// } as Meta<typeof Component>;
 
 // const Template: Meta<typeof Component> = (args) => {
 //   return <Component {...args} />;

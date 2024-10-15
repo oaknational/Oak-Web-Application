@@ -43,9 +43,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
         render={({ field: { onChange, onBlur, value } }) => {
           const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
-            if (e.target.value.length > 2) {
-              onManualSchoolInputChange(true, e.target.value);
-            }
+            onManualSchoolInputChange(true, e.target.value);
           };
           const onBlurHandler = () => {
             onBlur();
@@ -56,8 +54,9 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
             <Input
               label="School name"
               placeholder="Type school name"
-              value={value}
+              value={value ?? ""}
               isRequired
+              required
               id={"school-name"}
               onBlur={onBlurHandler}
               onChange={onChangeHandler}
@@ -78,9 +77,7 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
         render={({ field: { onChange, onBlur, value } }) => {
           const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             onChange(e.target.value);
-            if (e.target.value.length > 2) {
-              onManualSchoolInputChange(false, e.target.value);
-            }
+            onManualSchoolInputChange(false, e.target.value);
           };
 
           const onBlurHandler = () => {
@@ -92,8 +89,9 @@ const ManualEntrySchoolDetails: FC<ManualEntrySchoolDetailsProps> = ({
             <Input
               label="School address"
               placeholder="Type school address"
-              value={value}
+              value={value ?? ""}
               isRequired
+              required
               id={"school-address"}
               onBlur={onBlurHandler}
               onChange={onChangeHandler}

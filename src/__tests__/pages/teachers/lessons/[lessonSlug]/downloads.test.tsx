@@ -14,12 +14,7 @@ import {
   mockUserWithDownloadAccess,
   mockUserWithoutDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
-import {
-  enableMockClerk,
-  setUseUserReturn,
-} from "@/__tests__/__helpers__/mockClerk";
-
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 const render = renderWithProviders();
 
@@ -27,10 +22,6 @@ const lesson = lessonDownloadsFixture({
   lessonTitle: "The meaning of time",
 });
 describe("LessonDownloadsCanonicalPage", () => {
-  beforeEach(() => {
-    enableMockClerk();
-  });
-
   it("Renders title from the props", async () => {
     const result = render(
       <LessonDownloadsCanonicalPage
@@ -44,7 +35,7 @@ describe("LessonDownloadsCanonicalPage", () => {
   describe("when downloads are region restricted", () => {
     const curriculumData = {
       ...lesson,
-      isDownloadRegionRestricted: true,
+      geoRestricted: true,
       pathways: [],
     };
 

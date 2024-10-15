@@ -1,4 +1,5 @@
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+import { LessonAttemptCamelCase } from "@oaknational/oak-pupil-client";
 
 import { PupilViewsResults } from "./PupilResults.view";
 
@@ -10,6 +11,7 @@ import {
   quizQuestions,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
 describe("PupilResults", () => {
   it("displays the title Results Page", () => {
@@ -17,9 +19,12 @@ describe("PupilResults", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsResults
+            browseData={lessonBrowseDataFixture({})}
             starterQuizQuestionsArray={quizQuestions}
             exitQuizQuestionsArray={exitQuizQuestions}
             attemptData={{
+              attemptId: "efwef",
+              createdAt: "efwef",
               browseData: {
                 subject: "ewfw",
                 yearDescription: "efwef",
@@ -28,12 +33,13 @@ describe("PupilResults", () => {
                 slug: "efwef",
                 title: "efwef",
               },
-              sectionResults: sectionResultsFixture,
+              sectionResults:
+                sectionResultsFixture as LessonAttemptCamelCase["sectionResults"],
             }}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
-    expect(getByText("Results Page")).toBeInTheDocument();
+    expect(getByText("Results")).toBeInTheDocument();
   });
 });

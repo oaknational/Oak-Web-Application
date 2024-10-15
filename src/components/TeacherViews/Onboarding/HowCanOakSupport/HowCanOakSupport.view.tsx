@@ -87,11 +87,14 @@ const HowCanOakSupport = () => {
         trigger={trigger as UseFormTrigger<OnboardingFormProps>}
         forceHideNewsletterSignUp={true}
         subheading="Select all that apply"
-        secondaryButton={
-          <OakSecondaryButton width="100%" disabled={hasMissingFormData}>
+        secondaryButton={(isSubmitting) => (
+          <OakSecondaryButton
+            width="100%"
+            disabled={hasMissingFormData || isSubmitting}
+          >
             Skip
           </OakSecondaryButton>
-        }
+        )}
       >
         <OakFlex $flexDirection="column" $gap="space-between-s">
           {Object.entries(oakSupportMap).map(([key, value]) => (

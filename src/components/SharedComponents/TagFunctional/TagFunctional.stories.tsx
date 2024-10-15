@@ -1,5 +1,4 @@
-import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 
 import { TagFunctional as Component } from "./TagFunctional";
 
@@ -8,9 +7,8 @@ export default {
   argTypes: {},
 } as Meta<typeof Component>;
 
-const Template: StoryFn<typeof Component> = (args) => <Component {...args} />;
-
-export const TagFunctional = Template.bind({});
-TagFunctional.args = {
-  text: "AQA",
+export const TagFunctional = {
+  args: {
+    text: "AQA",
+  },
 };

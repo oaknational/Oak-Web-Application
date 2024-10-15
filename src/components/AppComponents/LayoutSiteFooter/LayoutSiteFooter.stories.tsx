@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { StoryFn, Meta } from "@storybook/react";
 
 import Component from "./LayoutSiteFooter";
 
@@ -10,12 +10,14 @@ export default {
   decorators: [CookieConsentDecorator, AnalyticsDecorator],
   component: Component,
   argTypes: {},
-} as ComponentMeta<typeof Component>;
+} as Meta<typeof Component>;
 
-const Template: ComponentStory<typeof Component> = (args) => (
+const Template: StoryFn<typeof Component> = (args) => (
   <div style={{ background: "lightGrey", padding: "100px" }}>
     <Component {...args} />
   </div>
 );
 
-export const LayoutSiteFooter = Template.bind({});
+export const LayoutSiteFooter = {
+  render: Template,
+};

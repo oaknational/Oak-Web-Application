@@ -1,4 +1,7 @@
-import { renderHook } from "@testing-library/react";
+import { renderHook, waitFor } from "@testing-library/react";
+
+import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
+import * as onboardingActions from "../../OnboardingForm/onboardingActions";
 
 import {
   UseResourceFormStateProps,
@@ -7,6 +10,11 @@ import {
 
 import { allResources as allDownloadResources } from "@/node-lib/curriculum-api-2023/fixtures/downloads.fixture";
 import { allResources as allShareResources } from "@/node-lib/curriculum-api-2023/fixtures/shareableResources.fixture";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import {
+  mockLoggedIn,
+  mockTeacherUserWithDownloadAccess,
+} from "@/__tests__/__helpers__/mockUser";
 
 const downloadProps: UseResourceFormStateProps = {
   downloadResources: allDownloadResources,
@@ -20,6 +28,35 @@ const shareProps: UseResourceFormStateProps = {
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(() => true),
+}));
+
+jest.mock("../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails");
+jest.mock("../../OnboardingForm/onboardingActions");
+
+const mockSetEmailInLocalStorageFn = jest.fn();
+const mockSetSchoolInLocalStorageFn = jest.fn();
+const mockSetTermsInLocalStorageFn = jest.fn();
+
+const mockSetValue = jest.fn();
+
+const actualUseForm = jest.requireActual("react-hook-form").useForm;
+
+jest.mock("./useLocalStorageForDownloads", () => {
+  return jest.fn(() => ({
+    setEmailInLocalStorage: mockSetEmailInLocalStorageFn,
+    setSchoolInLocalStorage: mockSetSchoolInLocalStorageFn,
+    setTermsInLocalStorage: mockSetTermsInLocalStorageFn,
+    schoolFromLocalStorage: {
+      schoolName: "test-school-local",
+      schoolId: "1-local",
+    },
+    emailFromLocalStorage: "test-email-local",
+    termsFromLocalStorage: true,
+  }));
+});
 
 describe("useResourceFormState", () => {
   beforeEach(() => {
@@ -155,6 +192,80 @@ describe("useResourceFormState", () => {
 
         expect(result.current.selectedResources).toEqual(["worksheet-pdf"]);
       });
+    });
+  });
+  describe("State local storage and auth", () => {
+    test("should set email, school and terms from local storage if not logged in ", async () => {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const useFormSpy = jest.spyOn(require("react-hook-form"), "useForm");
+
+      useFormSpy.mockImplementation(() => {
+        const result = actualUseForm(); // Use the actual useForm without recursion
+        return {
+          ...result,
+          setValue: mockSetValue, // Mock only setValue
+        };
+      });
+      const { result } = renderHook(() =>
+        useResourceFormState({ ...downloadProps }),
+      );
+      expect(mockSetValue).toHaveBeenCalledWith("email", "test-email-local");
+      expect(result.current.emailFromLocalStorage).toEqual("test-email-local");
+      expect(mockSetValue).toHaveBeenCalledWith("school", "1-local");
+      expect(result.current.schoolIdFromLocalStorage).toEqual("1-local");
+      expect(mockSetValue).toHaveBeenCalledWith("terms", true);
+    });
+    test("should set email, school and terms from hubspot and clerk user if logged in ", async () => {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const useFormSpy = jest.spyOn(require("react-hook-form"), "useForm");
+      setUseUserReturn({
+        ...mockLoggedIn,
+        user: mockTeacherUserWithDownloadAccess,
+      });
+
+      (fetchHubspotContactDetails as jest.Mock).mockResolvedValue({
+        schoolName: "test-school",
+        schoolId: "1",
+      });
+      (onboardingActions.getSubscriptionStatus as jest.Mock).mockResolvedValue(
+        true,
+      );
+
+      useFormSpy.mockImplementation(() => {
+        const result = actualUseForm();
+        return {
+          ...result,
+          setValue: mockSetValue,
+        };
+      });
+      renderHook(() => useResourceFormState({ ...downloadProps }));
+
+      await waitFor(() => {
+        expect(mockSetValue).toHaveBeenCalledWith("email", "test-email");
+      });
+
+      await waitFor(() =>
+        expect(mockSetEmailInLocalStorageFn).toHaveBeenCalledWith("test-email"),
+      );
+
+      await waitFor(() => {
+        expect(mockSetValue).toHaveBeenCalledWith("school", "1");
+      });
+
+      await waitFor(() =>
+        expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
+          schoolId: "1",
+          schoolName: "test-school",
+        }),
+      );
+
+      await waitFor(() => {
+        expect(mockSetValue).toHaveBeenCalledWith("terms", true);
+      });
+
+      await waitFor(() =>
+        expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith(true),
+      );
     });
   });
 });

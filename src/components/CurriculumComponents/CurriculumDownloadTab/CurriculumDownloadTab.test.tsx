@@ -1,3 +1,5 @@
+import { screen } from "@testing-library/react";
+
 import CurriculumDownloadTab, { createCurriculumDownloadsQuery } from ".";
 
 import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
@@ -68,12 +70,15 @@ describe("Component - Curriculum Download Tab", () => {
     test("user can see the tier selector for secondary maths", async () => {
       // NOTE: This is only active during testing.
       mockPrerelease("curriculum.downloads");
-      const { findByText, findByTestId } = renderComponent({
+      const { findByTestId } = renderComponent({
         tiers: tiersMock,
       });
-      const formHeading = await findByText("Download");
-      const tierSelector = await findByTestId("tier-selector");
+      const formHeading = screen.getByRole("heading", {
+        name: "Download",
+        level: 2,
+      });
       expect(formHeading).toBeInTheDocument();
+      const tierSelector = await findByTestId("tier-selector");
       expect(tierSelector).toBeInTheDocument();
     });
 

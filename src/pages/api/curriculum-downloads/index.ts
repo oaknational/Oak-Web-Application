@@ -140,6 +140,7 @@ async function getData(opts: {
           name: "Partner name is undefined for this record. Please check the CMS.",
           image: null,
         },
+        curriculumPartnerOverviews: [],
         video: {
           title:
             "Video title is undefined for this record. Please check the CMS.",
@@ -195,9 +196,9 @@ async function getData(opts: {
   const subject = subjectPhaseOptions.subjects.find((subject) => {
     return subject.slug === subjectSlug && subject.state === state;
   }) as SubjectPhasePickerData["subjects"][number] | undefined;
-  const examboard =
-    subject?.examboards?.find(
-      (examboard) => examboard.slug === examboardSlug,
+  const ks4Option =
+    subject?.ks4_options?.find(
+      (ks4_option) => ks4_option.slug === examboardSlug,
     ) ?? null;
 
   const combinedCurriculumData: CombinedCurriculumData = {
@@ -205,7 +206,7 @@ async function getData(opts: {
     ...curriculumOverviewTabData,
     ...curriculumOverviewSanityData,
     ...{ state },
-    examboardTitle: examboard?.title ?? null,
+    examboardTitle: ks4Option?.title ?? null,
   };
 
   return {

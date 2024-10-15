@@ -3,7 +3,9 @@ import { VisuallyHidden } from "react-aria";
 import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import { createProgrammeSlug } from "../UnitsTab/UnitsTab";
+import Alert from "../OakComponentsKitchen/Alert";
 
+import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import Box from "@/components/SharedComponents/Box";
 import Card from "@/components/SharedComponents/Card/Card";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
@@ -16,6 +18,11 @@ import UnitModal, {
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
+import {
+  getSuffixFromFeatures,
+  getYearGroupTitle,
+} from "@/utils/curriculum/formatting";
+import { getUnitFeatures } from "@/utils/curriculum/features";
 
 export type YearData = {
   [key: string]: {
@@ -23,6 +30,8 @@ export type YearData = {
     childSubjects: Subject[];
     tiers: Tier[];
     subjectCategories: SubjectCategory[];
+    labels: string[];
+    groupAs: string | null;
   };
 };
 
@@ -81,7 +90,7 @@ type CurriculumVisualiserProps = {
   setVisibleMobileYearRefID: (refID: string) => void;
 };
 
-function dedupUnits(units: Unit[]) {
+export function dedupUnits(units: Unit[]) {
   const unitLookup = new Set();
   return units.filter((unit) => {
     if (!unitLookup.has(unit.slug)) {
@@ -90,31 +99,6 @@ function dedupUnits(units: Unit[]) {
     }
     return false;
   });
-}
-
-export function isVisibleUnit(
-  yearSelection: YearSelection,
-  year: string,
-  unit: Unit,
-) {
-  const s = yearSelection[year];
-  if (!s) {
-    return false;
-  }
-  const filterBySubject =
-    !s.subject || s.subject.subject_slug === unit.subject_slug;
-  const filterBySubjectCategory =
-    s.subjectCategory?.id == -1 ||
-    unit.subjectcategories?.findIndex(
-      (subjectcategory) => subjectcategory.id === s.subjectCategory?.id,
-    ) !== -1;
-  const filterByTier =
-    !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
-
-  // Look for duplicates that don't have an examboard, tier or subject parent
-  // (i.e. aren't handled by other filters)
-
-  return filterBySubject && filterBySubjectCategory && filterByTier;
 }
 
 function isSelectedSubject(
@@ -188,7 +172,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
   const visibleYears = useRef<Set<number>>(new Set());
   const visualiserRef = useRef<HTMLDivElement>(null);
-  /* Intersection observer to update year filter selection when 
+  /* Intersection observer to update year filter selection when
   scrolling through the visualiser on mobile */
   useEffect(() => {
     const options = { rootMargin: "-50% 0px 0px 0px" };
@@ -244,10 +228,17 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
       {yearData &&
         Object.keys(yearData)
           .filter((year) => !selectedYear || selectedYear === year)
+          .sort((a, b) => {
+            if (a === "all-years") {
+              return -1;
+            }
+            const aNum = parseInt(a);
+            const bNum = parseInt(b);
+            return aNum - bNum;
+          })
           .map((year, index) => {
-            const { units, childSubjects, tiers, subjectCategories } = yearData[
-              year
-            ] as YearData[string];
+            const { units, childSubjects, tiers, subjectCategories, labels } =
+              yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
@@ -256,6 +247,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
               isVisibleUnit(yearSelection, year, unit),
             );
             const dedupedUnits = dedupUnits(filteredUnits);
+
+            const features = getUnitFeatures(units[0]);
+            const yearTitle = getYearGroupTitle(
+              yearData,
+              year,
+              getSuffixFromFeatures(features),
+            );
 
             return (
               <Box
@@ -278,11 +276,19 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 <OakHeading
                   tag="h3"
                   $font={["heading-6", "heading-5"]}
-                  $mb="space-between-m2"
+                  $mb="space-between-s"
                   data-testid="year-heading"
                 >
-                  Year {year}
+                  {yearTitle}
                 </OakHeading>
+                {labels.includes("swimming") && (
+                  <Alert
+                    $mb="space-between-s"
+                    $mr="space-between-m2"
+                    type="info"
+                    message="Swimming and water safety units should be selected based on the ability and experience of your pupils."
+                  />
+                )}
                 {childSubjects.length < 1 && subjectCategories?.length > 1 && (
                   <Box role="group" aria-label="Categories">
                     {subjectCategories.map((subjectCategory, index) => {
@@ -366,7 +372,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 )}
                 <OakFlex
                   $flexWrap={"wrap"}
-                  $mt="space-between-xs"
+                  $pt="inner-padding-s"
                   data-testid="unit-cards"
                 >
                   {dedupedUnits.map((unit: Unit, index: number) => {

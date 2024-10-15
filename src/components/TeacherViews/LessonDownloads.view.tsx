@@ -1,8 +1,10 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   examboards,
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useUser } from "@clerk/nextjs";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
@@ -47,7 +49,6 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
 import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -59,7 +60,8 @@ type BaseLessonDownload = {
   copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
-  isDownloadRegionRestricted: boolean;
+  geoRestricted: boolean | null;
+  loginRequired: boolean | null;
 };
 
 type CanonicalLesson = BaseLessonDownload & {
@@ -100,6 +102,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     copyrightContent,
     updatedAt,
   } = lesson;
+
+  const { user } = useUser();
 
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical
@@ -167,6 +171,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     handleToggleSelectAll,
     selectAllChecked,
     setEmailInLocalStorage,
+    hasOnboardingDownloadDetails,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
     type: "download",
@@ -181,8 +186,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const [apiError, setApiError] = useState<string | null>(null);
 
   const { onSubmit } = useResourceFormSubmit({
-    isLegacyDownload: isLegacyDownload,
     type: "download",
+    isLegacyDownload,
   });
 
   const { onHubspotSubmit } = useHubspotSubmit();
@@ -269,7 +274,17 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     Boolean(expired) ||
     downloadsFilteredByCopyright.length === 0;
 
-  const { user } = useFeatureFlaggedClerk().useUser();
+  // TODO remove once we're confident that restrictions are being
+  // applied correctly in production
+  const useAuthOwaEnabled = useFeatureFlagEnabled("use-auth-owa");
+  useEffect(() => {
+    if (useAuthOwaEnabled) {
+      console.log("restrictions", {
+        geoRestricted: lesson.geoRestricted,
+        loginRequired: lesson.loginRequired,
+      });
+    }
+  }, [lesson.geoRestricted, lesson.loginRequired, useAuthOwaEnabled]);
 
   return (
     <Box $ph={[16, null]} $background={"grey20"}>
@@ -311,7 +326,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         {(() => {
           if (
             user &&
-            lesson.isDownloadRegionRestricted &&
+            lesson.geoRestricted &&
             !user.publicMetadata.owa?.isRegionAuthorised
           ) {
             return <LessonDownloadRegionBlocked />;
@@ -358,6 +373,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               hideSelectAll={Boolean(expired)}
               updatedAt={updatedAt}
               withHomeschool={true}
+              hasOnboardingDownloadDetails={hasOnboardingDownloadDetails}
               cardGroup={
                 !showNoResources && (
                   <DownloadCardGroup

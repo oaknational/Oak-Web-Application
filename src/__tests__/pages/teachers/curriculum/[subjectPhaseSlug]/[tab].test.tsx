@@ -1,5 +1,5 @@
+import { screen } from "@testing-library/react";
 import { useRouter } from "next/router";
-import { MockedFunction } from "jest-mock";
 
 import CMSClient from "@/node-lib/cms";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
@@ -85,6 +85,9 @@ const unitData = [
     title: "Plant growth and development",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -161,6 +164,9 @@ const unitData = [
     title: "Ecosystems",
     unit_options: [],
     year: "7",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -232,6 +238,9 @@ const unitData = [
     title: "Health and disease",
     unit_options: [],
     year: "10",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -318,6 +327,9 @@ const unitData = [
       "Coordination and control: maintaining a constant internal environment",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -398,6 +410,9 @@ const unitData = [
       "Coordination and control: maintaining a constant internal environment",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -481,6 +496,9 @@ const unitData = [
     title: "Transport and exchange surfaces in plants",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
 ];
 
@@ -521,14 +539,8 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumUnits: jest.fn(),
   refreshedMVTime: jest.fn(),
 }));
-const mockedCurriculumOverview =
-  curriculumApi.curriculumOverview as MockedFunction<
-    typeof curriculumApi.curriculumOverview
-  >;
-const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as MockedFunction<
-  typeof curriculumApi.refreshedMVTime
->;
-
+const mockedCurriculumOverview = curriculumApi.curriculumOverview as jest.Mock;
+const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as jest.Mock;
 jest.mock("@/node-lib/cms");
 
 jest.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
@@ -546,13 +558,9 @@ jest.mock("next-sanity-image", () => ({
     height: 400,
   }),
 }));
-const mockedCurriculumUnits = curriculumApi.curriculumUnits as MockedFunction<
-  typeof curriculumApi.curriculumUnits
->;
+const mockedCurriculumUnits = curriculumApi.curriculumUnits as jest.Mock;
 const mockedFetchSubjectPhasePickerData =
-  fetchSubjectPhasePickerData as MockedFunction<
-    typeof fetchSubjectPhasePickerData
-  >;
+  fetchSubjectPhasePickerData as jest.Mock;
 
 jest.mock("@/pages/teachers/curriculum/index", () => ({
   fetchSubjectPhasePickerData: jest.fn(),
@@ -579,7 +587,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       expect(parsed).toEqual({
         subjectSlug: "english",
         phaseSlug: "secondary",
-        examboardSlug: "aqa",
+        ks4OptionSlug: "aqa",
       });
     });
 
@@ -615,34 +623,60 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       expect(queryByTestId("tabularNav")).toBeInTheDocument();
     });
 
-    it("renders the Curriculum Overview Tab", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "overview" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
-        asPath: "",
+    describe("Curriculum Downloads Tab: Secondary Maths", () => {
+      beforeEach(() => {
+        jest.clearAllMocks();
+        const mockIntersectionObserver = jest.fn();
+        mockIntersectionObserver.mockReturnValue({
+          observe: () => null,
+          unobserve: () => null,
+          disconnect: () => null,
+        });
+        window.IntersectionObserver = mockIntersectionObserver;
       });
-      mockCMSClient.curriculumOverviewPage.mockResolvedValue(null);
-      const slugs = parseSubjectPhaseSlug("maths-secondary");
-      const { queryByTestId, queryAllByTestId } = render(
-        <CurriculumInfoPage
-          mvRefreshTime={1721314874829}
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          curriculumSelectionSlugs={slugs}
-          subjectPhaseOptions={subjectPhaseOptions}
-          curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
-          curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumDownloadsTabData={{
-            tiers: [
-              { tier: "Higher", tier_slug: " higher" },
-              { tier: "Foundation", tier_slug: "foundation" },
-            ],
-            child_subjects: [],
-          }}
-        />,
-      );
-      expect(queryByTestId("intent-heading")).toBeInTheDocument();
-      expect(queryAllByTestId("subject-principles")).toHaveLength(4);
+
+      test("user can see the tier selector for secondary maths", async () => {
+        // Mock for prerelease behavior
+        mockPrerelease("curriculum.downloads");
+
+        // Mock for useRouter to provide the correct router query and other properties
+        (useRouter as jest.Mock).mockReturnValue({
+          query: { tab: "downloads", subjectPhaseSlug: "maths-secondary" },
+          isPreview: false,
+          pathname: "/teachers-2023/curriculum/maths-secondary/downloads",
+          asPath: "",
+        });
+
+        // Render the CurriculumInfoPage with necessary mock props
+        const slugs = parseSubjectPhaseSlug("maths-secondary");
+        const { queryByTestId } = render(
+          <CurriculumInfoPage
+            mvRefreshTime={1721314874829}
+            curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+            curriculumSelectionSlugs={slugs}
+            subjectPhaseOptions={subjectPhaseOptions}
+            curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
+            curriculumOverviewTabData={curriculumOverviewMVFixture()}
+            curriculumDownloadsTabData={{
+              tiers: [
+                { tier: "Higher", tier_slug: "higher" },
+                { tier: "Foundation", tier_slug: "foundation" },
+              ],
+              child_subjects: [],
+            }}
+          />,
+        );
+
+        const formHeading = screen.getByRole("heading", {
+          name: "Download",
+          level: 2,
+        });
+        expect(formHeading).toBeInTheDocument();
+
+        // Find and test the Tier Selector element by its test ID
+        const tierSelector = await queryByTestId("tier-selector");
+        expect(tierSelector).toBeInTheDocument();
+      });
     });
 
     it("renders the Curriculum Units Tab", () => {
@@ -880,8 +914,13 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Health and disease",
               unit_options: [],
               year: "10",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
           ],
+          groupAs: null,
+          labels: [],
         },
         "11": {
           childSubjects: [
@@ -971,6 +1010,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Plant growth and development",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
             {
               connection_future_unit_description:
@@ -1061,6 +1103,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                 "Coordination and control: maintaining a constant internal environment",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
             {
               connection_future_unit_description:
@@ -1145,6 +1190,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                 "Coordination and control: maintaining a constant internal environment",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
             {
               connection_future_unit_description:
@@ -1230,8 +1278,13 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Transport and exchange surfaces in plants",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
           ],
+          groupAs: null,
+          labels: [],
         },
         "7": {
           childSubjects: [],
@@ -1333,8 +1386,13 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Ecosystems",
               unit_options: [],
               year: "7",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
             },
           ],
+          groupAs: null,
+          labels: [],
         },
       };
       expect(createUnitsListingByYear(unitData)).toEqual(unitListingByYear);

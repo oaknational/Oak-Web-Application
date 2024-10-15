@@ -12,7 +12,6 @@ import CurriculumVisualiser, {
   Subject,
   Tier,
   Unit,
-  isVisibleUnit,
   SubjectCategory,
 } from "../CurriculumVisualiser/CurriculumVisualiser";
 import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
@@ -20,7 +19,10 @@ import SkipLink from "../OakComponentsKitchen/SkipLink";
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 
+import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
+import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import Box from "@/components/SharedComponents/Box";
+import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -29,6 +31,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 
 // Types and interfaces
 
@@ -77,18 +80,24 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
   const [yearSelection, setYearSelection] = useState<YearSelection>({
     ...initialYearSelection,
   });
+
   // This useLayoutEffect hook should be deprecated once the url structure of the visualiser should be updated
   useLayoutEffect(() => {
     setYearSelection(initialYearSelection);
   }, [initialYearSelection]);
 
   const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
+  const [selectedYear, setSelectedYear] = useState<string>("");
   const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
     useState<number>(0);
   const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
     string | null
   >(null);
+  const unitCount = getNumberOfSelectedUnits(
+    yearData,
+    selectedYear,
+    yearSelection,
+  );
 
   // Filter interaction handlers
 
@@ -195,15 +204,26 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
 
   return (
     <Box>
-      <Box $maxWidth={1280} $mh={"auto"} $ph={[0, 18]} $width={"100%"}>
-        <OakHeading
-          tag="h2"
-          $mb="space-between-m"
-          $ml={["space-between-s", "space-between-none"]}
-          $font={["heading-5", "heading-4"]}
-        >
-          Unit sequence
-        </OakHeading>
+      <Box
+        id="curriculum-units"
+        aria-labelledby="curriculum-unit-sequence-heading"
+        $maxWidth={1280}
+        $mh={"auto"}
+        $ph={[0, 18]}
+        $width={"100%"}
+        role="region"
+      >
+        <ScreenReaderOnly>
+          <OakHeading
+            id="curriculum-unit-sequence-heading"
+            tag="h2"
+            $mb="space-between-m"
+            $ml={["space-between-s", "space-between-none"]}
+            $font={["heading-5", "heading-4"]}
+          >
+            Unit sequence
+          </OakHeading>
+        </ScreenReaderOnly>
         <OakP
           $mh={["space-between-s", "space-between-none"]}
           $mb={"space-between-xl"}
@@ -310,18 +330,29 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                 onChange={handleSelectYear}
               >
                 <Box $mb={16}>
-                  <RadioButton value={""} data-testid={"all-years-radio"}>
+                  <RadioButton
+                    aria-label="All year groups"
+                    value={""}
+                    data-testid={"all-years-radio"}
+                  >
                     All
                   </RadioButton>
                 </Box>
                 {yearOptions.map((yearOption) => (
                   <Box key={yearOption} $mb={16}>
-                    <RadioButton value={yearOption} data-testid={"year-radio"}>
-                      Year {yearOption}
+                    <RadioButton
+                      value={yearOption}
+                      data-testid={"year-radio"}
+                      aria-label={getYearGroupTitle(yearData, yearOption)}
+                    >
+                      {getYearGroupTitle(yearData, yearOption)}
                     </RadioButton>
                   </Box>
                 ))}
               </RadioGroup>
+              <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+                Showing {unitCount} {unitCount === 1 ? "unit" : "units"}
+              </ScreenReaderOnly>
             </Fieldset>
           </OakGridArea>
           <CurriculumVisualiser

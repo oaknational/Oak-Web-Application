@@ -17,6 +17,7 @@ import {
   OakSpan,
   OakStaticMessageCard,
 } from "@oaknational/oak-components";
+import { useEffect } from "react";
 
 import { useWorksheetDownload } from "./useWorksheetDownload";
 
@@ -24,6 +25,8 @@ import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngin
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
+import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 
 export type PupilViewsIntroProps = LessonContent & {
   hasWorksheet: boolean;
@@ -42,36 +45,60 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     completeActivity,
     updateCurrentSection,
     updateWorksheetDownloaded,
+    currentSection,
     updateSectionResult,
     sectionResults,
+    proceedToNextSection,
+    lessonReviewSections,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+  const { trackSectionStarted } = useTrackSectionStarted();
   const { startDownload, isDownloading } = useWorksheetDownload(
     lessonSlug,
     isLegacy ?? false,
   );
+  const { track } = usePupilAnalytics();
+
+  useEffect(() => {
+    if (
+      sectionResults.intro?.worksheetAvailable === undefined &&
+      currentSection === "intro"
+    ) {
+      sectionResults.intro?.worksheetDownloaded ||
+        updateSectionResult({
+          worksheetDownloaded:
+            sectionResults.intro?.worksheetDownloaded || false,
+          worksheetAvailable: hasWorksheet ? true : false,
+        });
+    }
+  }, [hasWorksheet, sectionResults.intro, updateSectionResult, currentSection]);
 
   const handleDownloadClicked = () => {
     updateWorksheetDownloaded({
       worksheetDownloaded: true,
       worksheetAvailable: true,
     });
-    startDownload();
+    startDownload().then(() => {
+      if (track.lessonActivityDownloadedWorksheet) {
+        track.lessonActivityDownloadedWorksheet({});
+      }
+    });
   };
 
-  if (!sectionResults.intro?.worksheetAvailable && hasWorksheet) {
-    sectionResults.intro?.worksheetDownloaded ||
-      updateSectionResult({
-        worksheetDownloaded: sectionResults.intro?.worksheetDownloaded || false,
-        worksheetAvailable: true,
+  const handleBackLinkClick = () => {
+    if (track.lessonActivityAbandonedIntroduction) {
+      track.lessonActivityAbandonedIntroduction({
+        pupilExperienceLessonActivity: "intro",
       });
-  }
+    }
+    updateCurrentSection("overview");
+  };
 
   const topNavSlot = (
     <OakLessonTopNav
       backLinkSlot={
         <OakBackLink
-          {...getSectionLinkProps("overview", updateCurrentSection)}
+          {...getSectionLinkProps("overview", handleBackLinkClick)}
         />
       }
       heading={"Introduction"}
@@ -84,16 +111,34 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     />
   );
 
+  const handleBottomButtonClick = () => {
+    if (sectionResults.intro?.isComplete) {
+      const nextSection =
+        lessonReviewSections.find(
+          (section) => !sectionResults[section]?.isComplete,
+        ) ?? "review";
+      trackSectionStarted(nextSection);
+      proceedToNextSection();
+    } else {
+      completeActivity("intro");
+      if (track.lessonActivityCompletedIntroduction) {
+        track.lessonActivityCompletedIntroduction({
+          pupilExperienceLessonActivity: "intro",
+        });
+      }
+    }
+  };
+
   const bottomNavSlot = (
     <OakLessonBottomNav>
       <OakPrimaryButton
         element="a"
-        {...getSectionLinkProps("overview", () => completeActivity("intro"))}
+        {...getSectionLinkProps("overview", handleBottomButtonClick)}
         width={["100%", "max-content"]}
         isTrailingIcon
         iconName="arrow-right"
       >
-        I'm ready
+        {sectionResults.intro?.isComplete ? "Continue lesson" : "I'm ready"}
       </OakPrimaryButton>
     </OakLessonBottomNav>
   );
