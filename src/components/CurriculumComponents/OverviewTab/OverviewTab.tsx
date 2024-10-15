@@ -51,23 +51,19 @@ const ExplainerStyles = styled("div")`
   h3 {
     font-weight: 600;
     margin-top: 1rem;
-    font-size: 2rem;
   }
   h4 {
     font-weight: 600;
     margin-top: 1rem;
-    font-size: 1.25rem;
   }
   h5 {
     font-weight: 600;
     margin-top: 0.5rem;
-    font-size: 1rem;
   }
   h6 {
     font-weight: 600;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
-    font-size: 1rem;
   }
   ul + h3,
   p + h3 {
@@ -125,15 +121,29 @@ const PrincipleBullet = ({
 
 const blockHeadingComponents: PortableTextComponents["block"] = {
   heading1: (props) => (
-    <h3
+    <OakHeading
+      tag="h3"
       id={`header-${slugifyHash(props.value.children[0]?.text ?? "unknown")}`}
+      $font={["heading-5", "heading-5", "heading-4"]}
     >
       {props.children}
-    </h3>
+    </OakHeading>
   ),
-  heading2: (props) => <h4>{props.children}</h4>,
-  heading3: (props) => <h5>{props.children}</h5>,
-  heading4: (props) => <h6>{props.children}</h6>,
+  heading2: (props) => (
+    <OakHeading tag="h4" $font={["body-2", "body-2", "heading-6"]}>
+      {props.children}
+    </OakHeading>
+  ),
+  heading3: (props) => (
+    <OakHeading tag="h5" $font={["body-2"]}>
+      {props.children}
+    </OakHeading>
+  ),
+  heading4: (props) => (
+    <OakHeading tag="h6" $font={["body-2"]}>
+      {props.children}
+    </OakHeading>
+  ),
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {

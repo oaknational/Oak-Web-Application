@@ -1,3 +1,10 @@
+## [1.592.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.1...v1.592.2) (2024-10-15)
+
+
+### Bug Fixes
+
+* match font sizes at breakpoints in curriculum explainers to figma designs ([3cac270](https://github.com/oaknational/Oak-Web-Application/commit/3cac27046d03494fadfb3d11616aa36d2294a891))
+
 ## [1.592.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.0...v1.592.1) (2024-10-15)
 
 
