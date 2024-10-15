@@ -9,4 +9,14 @@ describe("getIntersection", () => {
     ];
     expect(getIntersection(arr)).toEqual({ a: 1 });
   });
+
+  it("should handle null values", () => {
+    const arr = [{ a: 1, b: 1, c: 3 }, { a: 1, b: 2, c: 3 }, null];
+    expect(getIntersection(arr)).toEqual({});
+  });
+
+  it("should handle null values in the initial position", () => {
+    const arr = [null, { a: 1, b: 1, c: 3 }, { a: 1, b: 2, c: 3 }];
+    expect(getIntersection(arr)).toEqual({});
+  });
 });
