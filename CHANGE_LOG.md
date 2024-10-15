@@ -1,3 +1,17 @@
+# [1.591.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.590.0...v1.591.0) (2024-10-15)
+
+
+### Bug Fixes
+
+* moved HTML element "id" to correct header ([272e8b1](https://github.com/oaknational/Oak-Web-Application/commit/272e8b15322160b45bb8907c54b1683fcc0ba5c1))
+* scroll to first visible element ([c1d464d](https://github.com/oaknational/Oak-Web-Application/commit/c1d464d4c8b5fcdcc9d5bb807be280f2dc120193))
+
+
+### Features
+
+* added video and partner bio to curriculum overview table of contents ([e50b74c](https://github.com/oaknational/Oak-Web-Application/commit/e50b74c4a6f7bee6cb9f1386573c0c0385f62c7f))
+* use <OakTertiaryOLNav/> instead of custom component ([513ad4d](https://github.com/oaknational/Oak-Web-Application/commit/513ad4d897b71e6244613221dbb6ff3ef52c38be))
+
 # [1.590.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.589.0...v1.590.0) (2024-10-15)
 
 
