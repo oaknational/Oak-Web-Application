@@ -8,13 +8,17 @@ import {
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
-import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
+import {
+  Actions,
+  applyGenericOverridesAndExceptions,
+} from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import {
   PupilLessonQuery,
   InputMaybe,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_12_0_0_Bool_Exp,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { getIntersection } from "@/utils/getIntersection";
 
 export const pupilLessonQuery =
   (sdk: Sdk) =>
@@ -66,6 +70,30 @@ export const pupilLessonQuery =
         ...args,
         res,
       });
+    }
+
+    if (res.browseData.length > 1 && !unitSlug && !programmeSlug) {
+      // calculate the intersection of the actions
+      const actionsIntersection = getIntersection<Actions>(
+        res.browseData.map((bd) => bd.actions),
+      );
+
+      // replace actions with the intersection in all browseData meaning that only the common actions are applied
+      // this is helpful with canonical urls
+      res.browseData = res.browseData.map((bd) => ({
+        ...bd,
+        actions: actionsIntersection,
+      }));
+
+      const featuresIntersection = getIntersection<Record<string, unknown>>(
+        res.browseData.map((bd) => bd.features),
+      );
+
+      // do the same for features
+      res.browseData = res.browseData.map((bd) => ({
+        ...bd,
+        features: featuresIntersection,
+      }));
     }
 
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
