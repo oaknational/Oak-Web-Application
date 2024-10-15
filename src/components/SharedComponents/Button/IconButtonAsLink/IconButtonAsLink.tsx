@@ -48,7 +48,6 @@ const IconButtonAsLink: FC<IconButtonAsLinkProps> = (props) => {
         size={size}
         variant={variant}
         background={background}
-        disabled={disabled}
         aria-disabled={disabled}
       >
         <IconButtonInner
