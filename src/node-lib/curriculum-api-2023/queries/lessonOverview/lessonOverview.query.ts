@@ -229,8 +229,7 @@ const lessonOverviewQuery =
       browseDataWhere,
       lessonSlug,
     });
-
-    if (res.browseData.length > 1 && unitSlug && programmeSlug) {
+    if (res.browseData.length > 1 && !canonicalLesson) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });

@@ -61,11 +61,7 @@ export const constructLessonBrowseQuery = ({
   const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
     {};
 
-  const canonicalLesson = !unitSlug && !programmeSlug;
-
-  if (canonicalLesson) {
-    browseDataWhere["lesson_slug"] = { _eq: lessonSlug };
-  }
+  browseDataWhere["lesson_slug"] = { _eq: lessonSlug };
 
   if (unitSlug) {
     browseDataWhere["unit_slug"] = { _eq: unitSlug };
