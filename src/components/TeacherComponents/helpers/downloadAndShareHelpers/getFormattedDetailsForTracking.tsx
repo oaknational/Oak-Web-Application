@@ -19,9 +19,8 @@ export const getSchoolUrn = (
   schoolOption: SchoolOptionValueType,
 ) => {
   if (schoolOption === "Selected school") {
-    const output = extractUrn(school);
-    const schoolUrn = output || "";
-    return schoolUrn;
+    const { urn } = extractUrnAndSchool(school);
+    return urn || "";
   } else {
     return "";
   }
@@ -32,20 +31,20 @@ export const getSchoolName = (
   schoolOption: SchoolOptionValueType,
 ) => {
   if (schoolOption === "Selected school") {
-    const schoolName = extractSchool(school) || "";
-    return schoolName;
+    const { schoolName } = extractUrnAndSchool(school);
+    return schoolName || "";
   } else {
     return "";
   }
 };
 
-export function extractUrn(school: string) {
-  return /^\d{7}|^\d{6}|^\d{3}-\d{4}/.exec(school)?.at(0);
-}
-
-function extractSchool(school: string) {
-  const match = /(?:\d{7}|\d{6}|\d{3}-\d{4})-(.*)/.exec(school);
-  return match ? match[1] : "";
+// Regex to extract URN and school name from schoolId string
+export function extractUrnAndSchool(school: string) {
+  const match = /^(?:(\d{7}|\d{6}|\d{3}-\d{4}))-(.*)/.exec(school);
+  return {
+    urn: match ? match[1] : null,
+    schoolName: match ? match[2] : "",
+  };
 }
 
 const getFormattedDetailsForTracking = ({

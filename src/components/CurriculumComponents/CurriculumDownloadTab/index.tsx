@@ -39,7 +39,7 @@ import {
 } from "@/browser-lib/avo/Avo";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { unionOrNull } from "@/utils/narrowToUnion";
-import { extractUrn } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
+import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -252,7 +252,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       schoolUrn:
         !schoolId || schoolId === "homeschool"
           ? ""
-          : extractUrn(schoolId) || "",
+          : extractUrnAndSchool(schoolId).urn || "",
       schoolName: dataSchoolName || "",
       resourceFileType: resourceFileType,
       tierName: unionOrNull<TierNameValueType>(
