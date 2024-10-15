@@ -1,3 +1,5 @@
+import { act } from "@testing-library/react";
+
 import OverviewTab from "./OverviewTab";
 
 import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
@@ -12,10 +14,26 @@ jest.mock("@/utils/curriculum/features", () => ({
   default: {},
 }));
 
+const routeReplaceMock = jest.fn((url: string) => {
+  console.log(url);
+});
+jest.mock("next/router", () => ({
+  __esModule: true,
+  ...jest.requireActual("next/router"),
+  useRouter: () => ({
+    ...jest.requireActual("next/router").useRouter,
+    replace: (url: string) => routeReplaceMock(url),
+  }),
+}));
+
 describe("Component - Overview Tab", () => {
   beforeEach(() => {
     jest.resetAllMocks();
     jest.clearAllMocks();
+
+    // Not supported in jsdom
+    Element.prototype.checkVisibility = jest.fn(() => true) as jest.Mock;
+    Element.prototype.scrollIntoView = jest.fn(() => {}) as jest.Mock;
   });
 
   test("user can see the correct number of subject principles", async () => {
@@ -98,5 +116,27 @@ describe("Component - Overview Tab", () => {
     const explainer = getByTestId("explainer");
     expect(explainer).toHaveTextContent("Aims and purpose");
     expect(queryByTestId("video-guide")).toBeInTheDocument();
+  });
+
+  test("click heading links", async () => {
+    useCycleTwoEnabled.mockReturnValue(true);
+    const fixture = curriculumOverviewTabFixture();
+    const render = renderWithProviders();
+    const { getAllByRole } = render(<OverviewTab data={fixture} />);
+    const links = getAllByRole("link");
+    expect(links[0]).toHaveTextContent("Aims and purpose");
+    act(() => {
+      links[0]!.click();
+    });
+    expect(routeReplaceMock).toHaveBeenCalledWith("#header-aims-and-purpose");
+    routeReplaceMock.mockClear();
+    (Element.prototype.checkVisibility as jest.Mock).mockClear();
+
+    act(() => {
+      links[1]!.click();
+    });
+    expect(routeReplaceMock).toHaveBeenCalledWith("#header-heading-1");
+    routeReplaceMock.mockClear();
+    (Element.prototype.checkVisibility as jest.Mock).mockClear();
   });
 });

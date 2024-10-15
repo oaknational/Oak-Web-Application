@@ -207,7 +207,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const navItems = h1Headings.map((heading) => {
     return {
       title: heading.children[0].text,
-      href: `#header-${slugify(heading.children[0].text)}`,
+      href: `#header-${slugify(heading.children[0].text).toLocaleLowerCase()}`,
     };
   });
 
