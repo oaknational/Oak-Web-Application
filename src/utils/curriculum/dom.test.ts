@@ -1,4 +1,8 @@
-import { anchorIntersectionObserver, createNode , findContainingAnchor } from "./dom";
+import {
+  anchorIntersectionObserver,
+  createNode,
+  findContainingAnchor,
+} from "./dom";
 
 // Polyfill for domRectFromRect(...)
 export function domRectFromRect({
