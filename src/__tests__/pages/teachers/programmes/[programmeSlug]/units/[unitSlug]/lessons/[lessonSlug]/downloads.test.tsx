@@ -23,12 +23,7 @@ import {
   mockUserWithDownloadAccess,
   mockUserWithoutDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
-import {
-  enableMockClerk,
-  setUseUserReturn,
-} from "@/__tests__/__helpers__/mockClerk";
-
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
@@ -90,7 +85,6 @@ jest.mock(
 );
 
 beforeEach(() => {
-  enableMockClerk();
   renderHook(() => useForm());
   localStorage.clear();
 });

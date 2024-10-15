@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
 import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useUser } from "@clerk/nextjs";
 
 import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
 import { getSubscriptionStatus } from "../../OnboardingForm/onboardingActions";
@@ -31,7 +32,6 @@ import {
 import { CurriculumDownload } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
@@ -58,7 +58,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   const [schoolUrn, setSchoolUrn] = useState("");
-  const { useUser } = useFeatureFlaggedClerk();
   const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
   const { isSignedIn, user } = useUser();
 

@@ -64,6 +64,18 @@ export const mockUnit: Unit = {
   description: null,
 };
 
+export const mockYearData = {
+  "1": {
+    units: [mockUnit],
+    childSubjects: [],
+    subjectCategories: [],
+    tiers: [],
+    pathways: [],
+    labels: [],
+    groupAs: null,
+  },
+};
+
 export const mockUnitKS4: Unit = {
   connection_future_unit_description: "Test connection future unit description",
   connection_prior_unit_description: "Test connection prior unit description",

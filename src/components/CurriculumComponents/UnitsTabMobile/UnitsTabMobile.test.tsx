@@ -19,6 +19,16 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+const emptyMockYearData = {
+  units: [],
+  childSubjects: [],
+  subjectCategories: [],
+  tiers: [],
+  pathways: [],
+  labels: [],
+  groupAs: null,
+};
+
 const unitsTabMobileFixture = {
   updateMobileHeaderScroll: jest.fn(() => {}),
   handleSelectThread: jest.fn(() => {}),
@@ -60,6 +70,13 @@ const unitsTabMobileFixture = {
   ],
   yearOptions: ["7", "8", "9", "10", "11"],
   visibleMobileYearRefID: "8",
+  yearData: {
+    "7": emptyMockYearData,
+    "8": emptyMockYearData,
+    "9": emptyMockYearData,
+    "10": emptyMockYearData,
+    "11": emptyMockYearData,
+  },
 };
 
 describe("components/pages/CurriculumInfo/tabs/UnitsTabMobile", () => {

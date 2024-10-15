@@ -7,11 +7,12 @@ import {
   OakIcon,
 } from "@oaknational/oak-components";
 
+import CurriculumHeaderTabNav from "../CurriculumHeaderTabNav";
+
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { Hr } from "@/components/SharedComponents/Typography";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
-import TabularNav from "@/components/SharedComponents/TabularNav";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -21,8 +22,8 @@ import {
   CurriculumTab,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
-import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -84,15 +85,13 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       page: "curriculum-units",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "units",
-      currentStyles: ["underline"],
       scroll: false,
     },
     {
-      label: "Overview",
+      label: cycleTwoEnabled ? "Explainer" : "Overview",
       page: "curriculum-overview",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "overview",
-      currentStyles: ["underline"],
       scroll: false,
     },
     {
@@ -100,7 +99,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       page: "curriculum-downloads",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "downloads",
-      currentStyles: ["underline"],
       scroll: false,
     },
   ];
@@ -141,27 +139,31 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           />
         </Box>
       </Flex>
-      <Box $background={cycleTwoEnabled ? color1 : color2}>
+      <Box $background={color1}>
         {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
-        <Flex $pv={32}>
+        <Flex $pb={[24, 24]} $pt={[20, 30]}>
           <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
             <OakFlex>
               <Box
-                $background={cycleTwoEnabled ? color2 : color1}
+                $background={color2}
                 $borderRadius={6}
                 $minWidth={56}
-                $mr={12}
+                $mr={[12, 26]}
                 $mv={"auto"}
               >
                 <OakIcon
                   iconName={getValidSubjectIconName(subject.slug)}
-                  $width="all-spacing-11"
-                  $height="all-spacing-11"
+                  $width="all-spacing-13"
+                  $height="all-spacing-13"
                   data-testid="subjectIcon"
                   alt=""
                 />
               </Box>
-              <OakFlex $justifyContent={"center"} $flexDirection={"column"}>
+              <OakFlex
+                $rowGap={["all-spacing-2", "all-spacing-2"]}
+                $justifyContent={"center"}
+                $flexDirection={"column"}
+              >
                 {phase.slug === "secondary" && (
                   <OakP
                     $font={"heading-light-7"}
@@ -172,7 +174,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 )}
                 <OakHeading
                   tag={"h1"}
-                  $font={["heading-4", "heading-3"]}
+                  $font={["heading-5", "heading-3"]}
                   data-testid="curriculum-heading"
                 >
                   {pageTitle}
@@ -181,14 +183,18 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             </OakFlex>
           </Box>
         </Flex>
-        <TabularNav
-          $maxWidth={1280}
-          $mh={"auto"}
-          $ph={18}
-          label="Curriculum Selection"
-          links={links}
-          data-testid="tabularNav"
-        />
+        <Flex $borderColor="mint30" $bt={2}>
+          <Box $maxWidth={1280} $ph={[0, 20]} $mh={"auto"} $width={"100%"}>
+            <CurriculumHeaderTabNav
+              data-testid="tabularNav"
+              label="Curriculum Selection"
+              links={links}
+              variant="flat"
+              $alignItems={"center"}
+              $height={[60, 64]}
+            />
+          </Box>
+        </Flex>
       </Box>
     </Box>
   );

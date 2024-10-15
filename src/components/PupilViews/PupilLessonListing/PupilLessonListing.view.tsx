@@ -42,7 +42,10 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   } = programmeFields;
 
   const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(unitData.expirationDate !== null);
+    useState<boolean>(
+      unitData.expirationDate !== null ||
+        orderedCurriculumData.some((c) => c.actions?.displayExpiringBanner),
+    );
 
   const noneExpiredLessons = orderedCurriculumData.filter(
     (lesson) => !lesson.lessonData?.deprecatedFields?.expired,
