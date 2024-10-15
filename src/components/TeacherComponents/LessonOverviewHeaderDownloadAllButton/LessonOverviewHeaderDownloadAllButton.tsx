@@ -30,6 +30,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     analyticsUseCase,
     onClickDownloadAll,
     isSpecialist,
+    isCanonical,
     ...boxProps
   } = props;
 
@@ -62,7 +63,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
           downloads,
           query: { preselected },
         }
-      : programmeSlug && unitSlug && !isSpecialist
+      : programmeSlug && unitSlug && !isSpecialist && !isCanonical
         ? {
             page: "lesson-downloads",
             lessonSlug,
