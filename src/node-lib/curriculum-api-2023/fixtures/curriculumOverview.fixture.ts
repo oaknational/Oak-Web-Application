@@ -60,6 +60,7 @@ export const curriculumOverviewCMSFixture = (
         hotspot: null,
       },
     },
+    curriculumPartnerOverviews: [],
     ...partial,
   };
 };

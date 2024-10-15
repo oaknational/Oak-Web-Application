@@ -1,4 +1,5 @@
 import { css } from "styled-components";
+import { AriaAttributes } from "react";
 
 import {
   ButtonFocusUnderline,
@@ -43,6 +44,8 @@ export type ButtonStylesProps = OpacityProps &
     $focusStyles?: [];
     $hoverStyles?: ButtonHoverStyle[];
     "aria-disabled"?: boolean;
+    "aria-current"?: AriaAttributes["aria-current"];
+    isCurrent?: boolean;
   };
 export const getButtonStylesProps = (
   props: CommonButtonProps,
@@ -94,6 +97,7 @@ const buttonStyles = css<ButtonStylesProps>`
       color: ${getButtonColor(props.background, props.variant, props.disabled)};
     `;
   }}
+
   transition: ${HOVER_SHADOW_TRANSITION};
 
   :focus {
@@ -185,6 +189,65 @@ const buttonStyles = css<ButtonStylesProps>`
       :hover:not(:focus) ${ButtonLabel} {
         text-decoration: underline;
       }
+    `}
+
+  ${(props) =>
+    props.variant === "flat" &&
+    css`
+      background-color: ${props.theme.colors.mint};
+      color: ${props.theme.colors.grey60};
+      transition: none;
+      height: 60px;
+
+      @media (min-width: 750px) {
+        height: 64px;
+      }
+
+      &:hover {
+        background-color: ${props.theme.colors.mint30};
+        box-shadow: unset;
+      }
+
+      &:focus:active {
+        background-color: ${props.theme.colors.mint};
+        box-shadow: inset 0 4.5px 0 0 ${props.theme.colors.lemon};
+        color: ${props.theme.colors.grey60};
+        border-top: 4.5px solid ${props.theme.colors.grey60};
+        outline: none;
+
+        @media (min-width: 750px) {
+          box-shadow: inset 0 4px 0 0 ${props.theme.colors.lemon};
+          border-top: 4px solid ${props.theme.colors.grey60};
+        }
+      }
+
+      &:focus {
+        box-shadow:
+          inset 0 0 0 5px ${props.theme.colors.lemon},
+          inset 0 -5px 0 0 ${props.theme.colors.lemon};
+        color: ${props.theme.colors.grey60};
+        outline: 2.5px solid ${props.theme.colors.grey60};
+        outline-offset: -2.5px;
+      }
+
+      ${(props["aria-current"] === "page" || props.isCurrent) &&
+      css`
+        background-color: ${props.theme.colors.mint30};
+        box-shadow: inset 0 9px 0 0 ${props.theme.colors.black};
+        color: ${props.theme.colors.black};
+
+        &:hover {
+          box-shadow: inset 0 9px 0 0 ${props.theme.colors.black};
+        }
+
+        @media (min-width: 750px) {
+          box-shadow: inset 0 8px 0 0 ${props.theme.colors.black};
+
+          &:hover {
+            box-shadow: inset 0 8px 0 0 ${props.theme.colors.black};
+          }
+        }
+      `}
     `}
 
   ${(props) =>

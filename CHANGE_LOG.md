@@ -1,3 +1,37 @@
+# [1.590.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.589.0...v1.590.0) (2024-10-15)
+
+
+### Bug Fixes
+
+* add aria-current prop to ButtonStylesProps to suppress TSC error ([2d03ef5](https://github.com/oaknational/Oak-Web-Application/commit/2d03ef538c6392ce3e7a0d2de5ad219eb4b40026))
+* add AriaAttributes type to Button props to prevent tsc error ([ac85776](https://github.com/oaknational/Oak-Web-Application/commit/ac85776650237cc5d2ca215893f9bdfc706e3e68))
+* add missing properties BUTTON_CONFIGS ([15380e3](https://github.com/oaknational/Oak-Web-Application/commit/15380e33c1266656de8338be14872b392541870c))
+* add region attribute to curriculum page main content divs for a11y ([2e57cdb](https://github.com/oaknational/Oak-Web-Application/commit/2e57cdb105361aaf15a54aa558bd552d507684d7))
+* extend CurriculumHeaderTabNav border-top to full-width ([8cb5b35](https://github.com/oaknational/Oak-Web-Application/commit/8cb5b3572e34d36eda5f8fea71790a7cf7c5f2be))
+* fix a11y for screen reader only curriculum tab page headings ([f5c1d88](https://github.com/oaknational/Oak-Web-Application/commit/f5c1d88aa11a640ae7d669546f808f9cbe681db5))
+* fix CurriculumHeaderTabNav height range for varying screen-widths ([681f84d](https://github.com/oaknational/Oak-Web-Application/commit/681f84d3cccef5f937cbc3bb486a92197dcae954))
+* fix ScreenReaderOnly component import ([e1d2dfd](https://github.com/oaknational/Oak-Web-Application/commit/e1d2dfd203a301a35770e0b63aa5abc001630b27))
+
+
+### Features
+
+* add CurriculumHeaderTabNav component ([9e752e1](https://github.com/oaknational/Oak-Web-Application/commit/9e752e19852b940d6790430df2206eac12e29a38))
+* change Overview tab label to Explainer ([506201d](https://github.com/oaknational/Oak-Web-Application/commit/506201d02453057982d9d049c9c33f1e40e7fea2))
+* update CurriculumHeader's subject icon dimensions ([ea45f66](https://github.com/oaknational/Oak-Web-Application/commit/ea45f6689cd46d19bb03ecc49bc9ba415384b74a))
+
+
+### Reverts
+
+* reinstate removed comment to ButtonInner.tsx ([cfe38ed](https://github.com/oaknational/Oak-Web-Application/commit/cfe38eddbca467974781b49ec9a66ca55ba229c6))
+* remove redundant Pixel Spacing unit ([ecd019d](https://github.com/oaknational/Oak-Web-Application/commit/ecd019db9b673718f00fedec645b1ab44af701bc))
+
+# [1.589.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.588.1...v1.589.0) (2024-10-14)
+
+
+### Features
+
+* added support for multiple curriculum partners from the CMS for cycle 2 ([c39fbde](https://github.com/oaknational/Oak-Web-Application/commit/c39fbde6f2046651c95e401ab8c015bd800902b2))
+
 ## [1.588.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.588.0...v1.588.1) (2024-10-14)
 
 

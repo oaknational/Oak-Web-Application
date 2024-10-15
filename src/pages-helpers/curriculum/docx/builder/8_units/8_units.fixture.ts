@@ -7601,6 +7601,7 @@ export const data: CombinedCurriculumData = {
   ],
   partnerBio:
     "Twyford Church of England Academies Trust is a multi-academy trust comprising of four high-achieving schools and the Teach West London teaching school hub, one of 87 across the country acting as a local centre of excellence for teacher training and development. Their existing curriculum is built on a solid foundation of the most up to date research into reading and writing. Twyford have a firm commitment that their curriculum should be accessible to all students. ",
+  curriculumPartnerOverviews: [],
   curriculumPartner: {
     name: "Twyford Church of England Academies Trust",
     image: {
