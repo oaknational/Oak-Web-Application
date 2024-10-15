@@ -51,6 +51,7 @@ export type PupilUnitsSectionProps = {
   counterText: string | null;
   counterLength: number | null;
   titleSlot: JSX.Element | null;
+  expiredSlot?: React.ReactNode | null;
   subjectCategories: string[];
   labels?: string[] | undefined;
   filterItems: string[];
@@ -69,6 +70,7 @@ export const PupilUnitsSection = ({
   filterItems,
   applyFilter,
   showTooltip = true,
+  expiredSlot,
   id = "0",
 }: PupilUnitsSectionProps) => {
   const indexedUnits = units.map((unit, i) =>
@@ -104,7 +106,11 @@ export const PupilUnitsSection = ({
       titleSlot={titleSlot}
       filterSlot={filterSlot}
       subheadingSlot={
-        <OakFlex $flexDirection={"column"} $width={"100%"}>
+        <OakFlex
+          $flexDirection={"column"}
+          $width={"100%"}
+          $gap={"space-between-s"}
+        >
           <OakFlex
             $gap="space-between-xs"
             $alignItems={"center"}
@@ -144,6 +150,7 @@ export const PupilUnitsSection = ({
               )}
             </OakFlex>
           </OakFlex>
+          {expiredSlot}
         </OakFlex>
       }
     >
