@@ -1,3 +1,11 @@
+## [1.592.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.0...v1.592.1) (2024-10-15)
+
+
+### Bug Fixes
+
+* added correct all years text for swimming in curric mobile header ([3922ea3](https://github.com/oaknational/Oak-Web-Application/commit/3922ea368853b79ed19f1a0fee2c911d0e85892b))
+* added missing all-years to <UnitModal/> header ([dadeba2](https://github.com/oaknational/Oak-Web-Application/commit/dadeba228aaa66fa7b1c425629ad6dda8847d248))
+
 # [1.592.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.591.0...v1.592.0) (2024-10-15)
 
 
