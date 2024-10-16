@@ -1,3 +1,16 @@
+# [1.593.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.5...v1.593.0) (2024-10-16)
+
+
+### Bug Fixes
+
+* network errors ([110393d](https://github.com/oaknational/Oak-Web-Application/commit/110393d1e0bc0f0a8ab4f81bdac724f16f9d92b2))
+* updated examboard to ks4 optionSlug for metadata ([8dde3c6](https://github.com/oaknational/Oak-Web-Application/commit/8dde3c6522785fc6c70a10aa778a9586ed8d2d11))
+
+
+### Features
+
+* added multiple curric partners to docx ([38aa439](https://github.com/oaknational/Oak-Web-Application/commit/38aa4397821f8073512d7a49966cee52e043432d))
+
 ## [1.592.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.4...v1.592.5) (2024-10-16)
 
 
