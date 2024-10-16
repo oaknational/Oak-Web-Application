@@ -243,10 +243,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       onSubmit: async () => {},
     });
 
-    function extractUrn(school: string) {
-      return /^\d{7}|^\d{6}|^\d{3}-\d{4}/.exec(school)?.at(0);
-    }
-
     track.curriculumResourcesDownloadedCurriculumDocument({
       subjectTitle: curriculumInfo.subjectTitle,
       subjectSlug: slugs.subjectSlug,
@@ -254,10 +250,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       analyticsUseCase: analyticsUseCase,
       emailSupplied: email != null,
       schoolOption: schoolOption,
-      schoolUrn:
-        !schoolId || schoolId === "homeschool"
-          ? ""
-          : extractUrn(schoolId) ?? "",
+      schoolUrn: !schoolId || schoolId === "homeschool" ? "" : "",
       schoolName: dataSchoolName || "",
       resourceFileType: resourceFileType,
       tierName: unionOrNull<TierNameValueType>(
