@@ -71,6 +71,11 @@ function getDeploymentTestUrls() {
     "/teachers/curriculum/english-secondary-aqa/units",
     "/teachers/curriculum/english-secondary-aqa/overview",
     "/teachers/curriculum/english-secondary-aqa/downloads",
+    "/teachers/curriculum/science-secondary-aqa/units",
+    "/teachers/curriculum/science-secondary-aqa/overview",
+    "/teachers/curriculum/science-secondary-aqa/downloads",
+    "/teachers/curriculum/previous-downloads",
+    "/teachers/curriculum",
   ];
 }
 
