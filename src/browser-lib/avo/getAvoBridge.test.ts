@@ -1,8 +1,12 @@
 import getAvoBridge from "./getAvoBridge";
 
-const posthog = {
-  track: jest.fn(),
-};
+function getMockPosthog() {
+  return {
+    track: jest.fn(),
+    identify: jest.fn(),
+    setUserProperties: jest.fn(),
+  };
+}
 
 const testEventName = "test-event";
 const testEventProperties = {
@@ -11,6 +15,7 @@ const testEventProperties = {
 
 describe("getAvoBridge", () => {
   test("logEvent", () => {
+    const posthog = getMockPosthog();
     const avoBridge = getAvoBridge({ posthog });
     avoBridge.logEvent(testEventName, testEventProperties);
 
@@ -18,5 +23,21 @@ describe("getAvoBridge", () => {
       testEventName,
       testEventProperties,
     );
+  });
+
+  test("identity", () => {
+    const posthog = getMockPosthog();
+    const avoBridge = getAvoBridge({ posthog });
+    avoBridge.identify("123");
+
+    expect(posthog.identify).toHaveBeenCalledWith("123", {});
+  });
+
+  test("setUserProperties", () => {
+    const posthog = getMockPosthog();
+    const avoBridge = getAvoBridge({ posthog });
+    avoBridge.setUserProperties("123", { foo: "bar " });
+
+    expect(posthog.identify).toHaveBeenCalledWith("123", { foo: "bar " });
   });
 });
