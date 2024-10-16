@@ -41,7 +41,6 @@ import {
 } from "@/browser-lib/avo/Avo";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { unionOrNull } from "@/utils/narrowToUnion";
-import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -244,6 +243,10 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       onSubmit: async () => {},
     });
 
+    function extractUrn(school: string) {
+      return /^\d{7}|^\d{6}|^\d{3}-\d{4}/.exec(school)?.at(0);
+    }
+
     track.curriculumResourcesDownloadedCurriculumDocument({
       subjectTitle: curriculumInfo.subjectTitle,
       subjectSlug: slugs.subjectSlug,
@@ -254,7 +257,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       schoolUrn:
         !schoolId || schoolId === "homeschool"
           ? ""
-          : extractUrnAndSchool(schoolId).urn ?? "",
+          : extractUrn(schoolId) ?? "",
       schoolName: dataSchoolName || "",
       resourceFileType: resourceFileType,
       tierName: unionOrNull<TierNameValueType>(
