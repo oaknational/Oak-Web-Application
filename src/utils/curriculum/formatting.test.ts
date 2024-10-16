@@ -2,6 +2,7 @@ import {
   getYearGroupTitle,
   getPhaseText,
   getShortPhaseText,
+  getSuffixFromFeatures,
 } from "./formatting";
 
 describe("getYearGroupTitle", () => {
@@ -207,5 +208,21 @@ describe("getShortPhaseText", () => {
   it("missing", () => {
     expect(getShortPhaseText({ slug: "secondary" }, [])).toEqual("");
     expect(getShortPhaseText({ slug: "primary" }, [])).toEqual("");
+  });
+});
+
+describe("getSuffixFromFeatures", () => {
+  it("value if override present", () => {
+    expect(
+      getSuffixFromFeatures({
+        programmes_fields_overrides: {
+          subject: "test",
+        },
+      }),
+    ).toBe("(test)");
+  });
+
+  it("undefined if override not present", () => {
+    expect(getSuffixFromFeatures(undefined)).toBe(undefined);
   });
 });
