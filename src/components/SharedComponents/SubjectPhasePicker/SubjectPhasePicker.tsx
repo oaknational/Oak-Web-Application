@@ -12,6 +12,7 @@ import {
   OakSecondaryButton,
   OakSpan,
 } from "@oaknational/oak-components";
+import { sortBy } from "lodash";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
@@ -481,7 +482,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   $flexWrap={"wrap"}
                   $mt={"space-between-none"}
                 >
-                  {subjects.map((subject) => (
+                  {sortBy(subjects, "title").map((subject) => (
                     <ButtonContainer
                       className={`lot-picker subject-selection ${
                         isSelected(subject) ? "selected" : ""
