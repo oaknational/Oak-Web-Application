@@ -388,7 +388,7 @@ export const getPupilPathwayData = (
   }
 
   return {
-    unitName: browseData.unitData.description ?? "",
+    unitName: browseData.unitData.title ?? "",
     unitSlug: browseData.unitData.slug,
     lessonSlug: browseData.lessonData.slug,
     lessonName: browseData.lessonData.title,

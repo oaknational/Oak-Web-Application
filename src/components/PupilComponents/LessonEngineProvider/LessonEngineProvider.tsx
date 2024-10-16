@@ -232,7 +232,6 @@ export const LessonEngineProvider = memo(
 
     // Sync the currentSection when the user navigates back/forward
     useLessonPopStateHandler((section) => {
-      console.log("useLessonPopStateHandler", section);
       dispatch({ type: "setCurrentSection", section });
     });
 
@@ -250,7 +249,6 @@ export const LessonEngineProvider = memo(
     };
 
     const completeActivity = (section: LessonReviewSection) => {
-      console.log(`Completing section '${section}'`);
       if (state.sections[section]?.isComplete) {
         console.warn(`Section '${section}' is already complete`);
         return;
@@ -270,13 +268,11 @@ export const LessonEngineProvider = memo(
     };
 
     const updateCurrentSection = (section: LessonSection) => {
-      console.log("updateCurrentSection", section);
       trackLessonStarted();
       dispatch({ type: "setCurrentSection", section });
     };
 
     const proceedToNextSection = () => {
-      console.log("proceedToNextSection");
       dispatch({ type: "proceedToNextSection" });
       trackLessonStarted();
     };

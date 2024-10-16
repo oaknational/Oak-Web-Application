@@ -53,6 +53,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     browseData: { programmeFields, lessonSlug, isLegacy },
   } = props;
   const { phase = "primary", yearDescription, subject } = programmeFields;
+  const [renderCount, setRenderCount] = useState<number>(0);
   const {
     updateCurrentSection,
     sectionResults,
@@ -168,20 +169,24 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     throw new Error("Foundation phase is not supported");
   }
 
-  track.lessonSummaryReviewed({
-    pupilWorksheetAvailable: sectionResults.intro?.worksheetAvailable ?? false,
-    pupilWorksheetDownloaded:
-      sectionResults.intro?.worksheetDownloaded ?? false,
-    pupilExitQuizGrade: sectionResults["exit-quiz"]?.grade ?? null,
-    pupilExitQuizNumQuestions:
-      sectionResults["exit-quiz"]?.numQuestions ?? null,
-    pupilStarterQuizGrade: sectionResults["starter-quiz"]?.grade ?? null,
-    pupilStarterQuizNumQuesions:
-      sectionResults["starter-quiz"]?.numQuestions ?? null,
-    pupilVideoPlayed: sectionResults.video?.played ?? false,
-    pupilVideoDurationSeconds: sectionResults.video?.duration ?? 0,
-    pupilVideoTimeElapsedSeconds: sectionResults.video?.timeElapsed ?? 0,
-  });
+  if (renderCount === 0) {
+    track.lessonSummaryReviewed({
+      pupilWorksheetAvailable:
+        sectionResults.intro?.worksheetAvailable ?? false,
+      pupilWorksheetDownloaded:
+        sectionResults.intro?.worksheetDownloaded ?? false,
+      pupilExitQuizGrade: sectionResults["exit-quiz"]?.grade ?? null,
+      pupilExitQuizNumQuestions:
+        sectionResults["exit-quiz"]?.numQuestions ?? null,
+      pupilStarterQuizGrade: sectionResults["starter-quiz"]?.grade ?? null,
+      pupilStarterQuizNumQuesions:
+        sectionResults["starter-quiz"]?.numQuestions ?? null,
+      pupilVideoPlayed: sectionResults.video?.played ?? false,
+      pupilVideoDurationSeconds: sectionResults.video?.duration ?? 0,
+      pupilVideoTimeElapsedSeconds: sectionResults.video?.timeElapsed ?? 0,
+    });
+    setRenderCount(1);
+  }
 
   return (
     <OakLessonLayout
