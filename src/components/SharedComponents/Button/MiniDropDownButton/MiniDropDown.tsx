@@ -1,4 +1,4 @@
-import { forwardRef, MouseEventHandler, useState } from "react";
+import { forwardRef, MouseEventHandler, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useFocusRing } from "react-aria";
 
@@ -54,14 +54,26 @@ type MiniDropDownProps = CommonButtonProps & {
   ariaLabel?: string;
   htmlButtonProps?: HTMLButtonProps;
   isExpanded: boolean;
+  isHovered: boolean;
 };
 
 const MiniDropDown = forwardRef<HTMLButtonElement, MiniDropDownProps>(
   (props, ref) => {
-    const { onClick, icon, label, htmlButtonProps, isExpanded, ariaLabel } =
-      props;
+    const {
+      onClick,
+      icon,
+      label,
+      htmlButtonProps,
+      isExpanded,
+      ariaLabel,
+      isHovered,
+    } = props;
     const [textUnderline, setTextUnderline] = useState<boolean>(false);
     const { isFocusVisible, focusProps } = useFocusRing();
+
+    useEffect(() => {
+      setTextUnderline(isHovered);
+    }, [isHovered]);
 
     return (
       <BoxWithFocusState

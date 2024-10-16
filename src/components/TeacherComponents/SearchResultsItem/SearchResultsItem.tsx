@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import {
   OakHeading,
   OakP,
@@ -70,6 +70,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     subjectSlug,
     firstItemRef,
     pathways,
+    onToggleClick,
   } = props;
 
   const { primaryTargetProps, containerProps } =
@@ -81,6 +82,8 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
 
   const isPathwaySearchHit = pathways.length > 1;
   const searchHitDescription = description || pupilLessonOutcome || "";
+  const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
     <Flex
@@ -90,6 +93,13 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
       {...(!isPathwaySearchHit ? containerProps : null)}
       $mb={56}
       $maxWidth={734}
+      onClick={() => {
+        const toggleOpen = !isToggleOpen;
+        setToggleOpen(toggleOpen);
+        onToggleClick?.({ ...props, isToggleOpen: toggleOpen });
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <OakFlex $mb="space-between-s" $alignItems={"center"}>
         <SearchResultsSubjectIcon subjectSlug={subjectSlug} type={type} />
@@ -123,7 +133,11 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
       </OakFlex>
       <OakFlex $mb="space-between-m">
         {isPathwaySearchHit ? (
-          <SearchDropdown {...props} />
+          <SearchDropdown
+            {...props}
+            isToggleOpen={isToggleOpen}
+            isHovered={isHovered}
+          />
         ) : (
           <OwaLink
             aria-label={`See ${type}: ${title}`}

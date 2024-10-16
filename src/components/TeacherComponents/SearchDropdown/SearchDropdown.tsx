@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { OakLI, OakFlex } from "@oaknational/oak-components";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
@@ -8,9 +8,10 @@ import Box from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { PathwaySchemaCamel } from "@/context/Search/search.types";
 
-const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
-  const { pathways, onClick, onToggleClick, type } = props;
-  const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
+const SearchDropdown: FC<
+  SearchResultsItemProps & { isToggleOpen: boolean; isHovered: boolean }
+> = (props) => {
+  const { pathways, onClick, type, isToggleOpen, isHovered } = props;
 
   const getSlug = (item: string | null | undefined) => item || "";
 
@@ -65,11 +66,8 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
         ariaLabel={ariaLabel}
         title={label}
         icon={isToggleOpen ? "chevron-up" : "chevron-down"}
-        onClick={() => {
-          setToggleOpen(!isToggleOpen);
-          onToggleClick?.({ ...props, isToggleOpen: !isToggleOpen });
-        }}
         isExpanded={isToggleOpen}
+        isHovered={isHovered && !isToggleOpen}
       />
       <Box
         $display={isToggleOpen ? "block" : "none"}
@@ -101,8 +99,9 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
                     {...props.buttonLinkProps}
                     programmeSlug={item.programmeSlug}
                     unitSlug={item.unitSlug}
-                    onClick={() => {
+                    onClick={(e) => {
                       onClick?.({ ...props, isToggleOpen });
+                      e.stopPropagation();
                     }}
                   >
                     {buttonTitle}
