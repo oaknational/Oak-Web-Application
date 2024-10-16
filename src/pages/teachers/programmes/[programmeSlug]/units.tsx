@@ -17,8 +17,8 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
   OakFlex,
+  OakFieldset,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import {
   getFallbackBlockingConfig,
@@ -54,12 +54,6 @@ import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters"
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
 };
-
-const StyledFieldset = styled.fieldset`
-  border: 0px;
-  margin: 0;
-  padding: 0;
-`;
 
 const UnitListingPage: NextPage<UnitListingPageProps> = ({
   curriculumData,
@@ -239,7 +233,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 $pt={["inner-padding-xl4"]}
                 $maxWidth={"all-spacing-20"}
               >
-                <StyledFieldset>
+                <OakFieldset>
                   {isFiltersAvailable && (
                     <OakBox $mb={"space-between-m2"}>
                       <OakHeading
@@ -326,7 +320,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                       />
                     </OakFlex>
                   )}
-                </StyledFieldset>
+                </OakFieldset>
               </OakBox>
             </OakGridArea>
 

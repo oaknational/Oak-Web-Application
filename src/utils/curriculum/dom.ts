@@ -1,3 +1,41 @@
+export function createNode(
+  nodeName: string,
+  attributes: Record<string, string> = {},
+) {
+  const node = document.createElement(nodeName);
+  for (const [attributeName, attributeValue] of Object.entries(attributes)) {
+    node.setAttribute(attributeName, attributeValue);
+  }
+  return node;
+}
+
+export function anchorIntersectionObserver(callback: (id: string) => void) {
+  const visibleAnchors = new Map();
+
+  return (
+    entries: Pick<
+      IntersectionObserverEntry,
+      "boundingClientRect" | "target" | "isIntersecting"
+    >[],
+  ) => {
+    entries.forEach((entry) => {
+      const top = entry.boundingClientRect.top;
+      const year = entry.target.id;
+      if (entry.isIntersecting) {
+        visibleAnchors.set(year, top);
+      } else {
+        visibleAnchors.delete(year);
+      }
+      if (visibleAnchors.size > 0) {
+        const sortedAnchors = Array.from(visibleAnchors.entries()).sort(
+          ([, aTop], [, bTop]) => aTop - bTop,
+        );
+        callback(sortedAnchors[0]?.[0]);
+      }
+    });
+  };
+}
+
 export function findContainingAnchor(root: Element) {
   let node: null | Element = root;
   while (node && node.tagName !== "A" && node.parentNode) {

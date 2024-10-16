@@ -1,3 +1,51 @@
+## [1.592.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.3...v1.592.4) (2024-10-16)
+
+## [1.592.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.2...v1.592.3) (2024-10-16)
+
+
+### Bug Fixes
+
+* increase character count limit for teacher tips ([4d2d0d5](https://github.com/oaknational/Oak-Web-Application/commit/4d2d0d57c214ef52d0477c1f8fbd32d47551e9c4))
+
+## [1.592.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.1...v1.592.2) (2024-10-15)
+
+
+### Bug Fixes
+
+* match font sizes at breakpoints in curriculum explainers to figma designs ([3cac270](https://github.com/oaknational/Oak-Web-Application/commit/3cac27046d03494fadfb3d11616aa36d2294a891))
+
+## [1.592.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.0...v1.592.1) (2024-10-15)
+
+
+### Bug Fixes
+
+* added correct all years text for swimming in curric mobile header ([3922ea3](https://github.com/oaknational/Oak-Web-Application/commit/3922ea368853b79ed19f1a0fee2c911d0e85892b))
+* added missing all-years to <UnitModal/> header ([dadeba2](https://github.com/oaknational/Oak-Web-Application/commit/dadeba228aaa66fa7b1c425629ad6dda8847d248))
+
+# [1.592.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.591.0...v1.592.0) (2024-10-15)
+
+
+### Bug Fixes
+
+* ensure safety for no exclusions inside actions ([af3fd58](https://github.com/oaknational/Oak-Web-Application/commit/af3fd5879c1f715aa164b76c9780a2f4ff0c836c))
+* improve reliability on intersaection function ([4df6966](https://github.com/oaknational/Oak-Web-Application/commit/4df6966b3e294d826d300c3d97cfc1c9c7ad16a8))
+* more test cases ([377f09e](https://github.com/oaknational/Oak-Web-Application/commit/377f09ee10ec130ba21385febb3c030b2b9469fb))
+* remove actions from opted out entities ([5907867](https://github.com/oaknational/Oak-Web-Application/commit/5907867d791c5e9d25b6e8562d259deb4b6ba467))
+* type errors ([80069c7](https://github.com/oaknational/Oak-Web-Application/commit/80069c76a0868f2bcb9a8a4a6227dc23c980be89))
+* update to latest mv ([6b9e3ee](https://github.com/oaknational/Oak-Web-Application/commit/6b9e3ee3684cf2461eeb0147530e771df0b8ef78))
+
+
+### Features
+
+* exclusions and overrides in a generic helper ([04ca03b](https://github.com/oaknational/Oak-Web-Application/commit/04ca03bf37fdbc82ce4fc4da0e5b1dd6475f870c))
+* exclusions applied to pupil browse queries ([08c3822](https://github.com/oaknational/Oak-Web-Application/commit/08c3822194aa9cd532dad688979895727de4d30f))
+* expired banner ([1b95748](https://github.com/oaknational/Oak-Web-Application/commit/1b95748a3398b1da769a166f08a8916c01f27600))
+* implement exclusions in pupil sitemap ([d639acb](https://github.com/oaknational/Oak-Web-Application/commit/d639acb33ece2aa27a05842eb4205ef8d65b497c))
+* implemented overrides and exclusions on pupilProgrammeListingQuery ([d5c3105](https://github.com/oaknational/Oak-Web-Application/commit/d5c3105ae056b6c421b91683f4aa9922776b56f1))
+* implementing computer science override ([2c48cab](https://github.com/oaknational/Oak-Web-Application/commit/2c48cabd50625a3afc1ec4e7c20da56cf551aa54))
+* reduce actions to intersection on canonical lessons feature ([5ca98aa](https://github.com/oaknational/Oak-Web-Application/commit/5ca98aa7d71fb290c9681ba107153a541a174740))
+* unit tests ([e2ba0dc](https://github.com/oaknational/Oak-Web-Application/commit/e2ba0dc0542051bf5a6547407f3a58af731f5fda))
+
 # [1.591.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.590.0...v1.591.0) (2024-10-15)
 
 

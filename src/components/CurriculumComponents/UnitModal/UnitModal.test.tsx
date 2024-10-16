@@ -1,7 +1,11 @@
 import userEvent from "@testing-library/user-event";
 
 import UnitModal from "./UnitModal";
-import { mockUnit, mockOptionalityUnit } from "./UnitModal.fixture";
+import {
+  mockUnit,
+  mockOptionalityUnit,
+  mockYearData,
+} from "./UnitModal.fixture";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
@@ -32,6 +36,7 @@ describe("Unit modal", () => {
         setUnitOptionsAvailable={stateFn}
         isHighlighted={false}
         setUnitVariantID={stateFn}
+        yearData={mockYearData}
       />,
     );
     expect(getByText("Composition of numbers 6 to 10")).toBeInTheDocument();
@@ -47,6 +52,7 @@ describe("Unit modal", () => {
         setUnitOptionsAvailable={stateFn}
         isHighlighted={false}
         setUnitVariantID={stateFn}
+        yearData={mockYearData}
       />,
     );
     const testThread = getByText("Number: Addition and Subtraction");
@@ -67,6 +73,7 @@ describe("Unit modal", () => {
         setUnitOptionsAvailable={stateFn}
         isHighlighted={false}
         setUnitVariantID={stateFn}
+        yearData={mockYearData}
       />,
     );
 
@@ -85,6 +92,7 @@ describe("Unit modal", () => {
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
           setUnitVariantID={stateFn}
+          yearData={mockYearData}
         />,
       );
 
@@ -101,6 +109,7 @@ describe("Unit modal", () => {
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
           setUnitVariantID={stateFn}
+          yearData={mockYearData}
         />,
       );
 
@@ -119,6 +128,7 @@ describe("Unit modal", () => {
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
           setUnitVariantID={stateFn}
+          yearData={mockYearData}
         />,
       );
 
@@ -136,6 +146,7 @@ describe("Unit modal", () => {
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
           setUnitVariantID={stateFn}
+          yearData={mockYearData}
         />,
       );
 
@@ -152,6 +163,7 @@ describe("Unit modal", () => {
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
           setUnitVariantID={stateFn}
+          yearData={mockYearData}
         />,
       );
 
@@ -168,6 +180,7 @@ describe("Unit modal", () => {
           setUnitOptionsAvailable={stateFn}
           isHighlighted={false}
           setUnitVariantID={stateFn}
+          yearData={mockYearData}
         />,
       );
 
@@ -187,6 +200,7 @@ describe("Unit modal", () => {
             setUnitOptionsAvailable={stateFn}
             isHighlighted={false}
             setUnitVariantID={stateFn}
+            yearData={mockYearData}
           />,
         );
 
@@ -215,6 +229,7 @@ describe("Unit modal", () => {
         setUnitOptionsAvailable={stateFn}
         setUnitVariantID={stateFn}
         isHighlighted={false}
+        yearData={mockYearData}
       />,
     );
 
