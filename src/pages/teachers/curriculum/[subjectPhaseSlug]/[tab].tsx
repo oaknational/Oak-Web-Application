@@ -46,13 +46,11 @@ import {
   isCycleTwoEnabled,
 } from "@/utils/curriculum/features";
 import { sortYears } from "@/utils/curriculum/sorting";
-import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
-
-export type CurriculumSelectionSlugs = {
-  phaseSlug: string;
-  subjectSlug: string;
-  ks4OptionSlug: string | null;
-};
+import {
+  CurriculumSelectionSlugs,
+  isValidSubjectPhaseSlug,
+  parseSubjectPhaseSlug,
+} from "@/utils/curriculum/slugs";
 
 export type CurriculumUnitsYearGroup = {
   units: Unit[];
@@ -580,20 +578,7 @@ export const getStaticProps: GetStaticProps<
         cycle: isCycleTwoEnabled() ? "2" : "1",
       });
 
-      // Check if valid slug
-      const isValid = validSubjectPhases.find((sp) => {
-        const isValidSubjectSlug = sp.slug === slugs.subjectSlug;
-        const hasMatchingPhase = sp.phases.find(
-          (p) => p.slug === slugs.phaseSlug,
-        );
-        const isValidKs4Option =
-          slugs.phaseSlug === "primary" ||
-          !sp.ks4_options ||
-          sp.ks4_options.length === 0 ||
-          sp.ks4_options.find((o) => o.slug === slugs.ks4OptionSlug);
-        return isValidSubjectSlug && hasMatchingPhase && isValidKs4Option;
-      });
-
+      const isValid = isValidSubjectPhaseSlug(validSubjectPhases, slugs);
       if (!isValid) {
         throw new OakError({
           code: "curriculum-api/not-found",

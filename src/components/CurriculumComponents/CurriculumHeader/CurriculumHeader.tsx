@@ -17,13 +17,11 @@ import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { OakColorName } from "@/styles/theme/types";
-import {
-  CurriculumSelectionSlugs,
-  CurriculumTab,
-} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { isCycleTwoEnabled } from "@/utils/curriculum/features";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;

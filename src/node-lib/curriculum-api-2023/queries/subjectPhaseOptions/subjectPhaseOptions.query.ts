@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 import subjectPhaseOptionsSchema from "./subjectPhaseOptions.schema";
 
 import OakError from "@/errors/OakError";
@@ -18,5 +20,7 @@ const subjectPhaseOptionsQuery =
       return result.cycle === cycle;
     });
   };
+
+export type SubjectPhaseOptions = z.infer<typeof subjectPhaseOptionsSchema>;
 
 export default subjectPhaseOptionsQuery;
