@@ -1,3 +1,12 @@
+## [1.592.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.3...v1.592.4) (2024-10-16)
+
+## [1.592.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.2...v1.592.3) (2024-10-16)
+
+
+### Bug Fixes
+
+* increase character count limit for teacher tips ([4d2d0d5](https://github.com/oaknational/Oak-Web-Application/commit/4d2d0d57c214ef52d0477c1f8fbd32d47551e9c4))
+
 ## [1.592.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.1...v1.592.2) (2024-10-15)
 
 
