@@ -179,14 +179,14 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
             title: buildCurriculumMetadata({
               metadataType: "title",
               subjectSlug: subjectSlug,
-              examboardSlug: ks4OptionSlug,
+              ks4OptionSlug: ks4OptionSlug,
               keyStages: keyStages,
               tab: tab,
             }),
             description: buildCurriculumMetadata({
               metadataType: "description",
               subjectSlug: subjectSlug,
-              examboardSlug: ks4OptionSlug,
+              ks4OptionSlug: ks4OptionSlug,
               keyStages: keyStages,
               tab: tab,
             }),

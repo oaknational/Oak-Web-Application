@@ -5,14 +5,14 @@ type buildCurriculumMetadataProps = {
   tab: "units" | "overview" | "downloads";
   keyStages: string[];
   subjectSlug: string;
-  examboardSlug?: string | null;
+  ks4OptionSlug?: string | null;
 };
 
 function getExamboardFromSlug(props: buildCurriculumMetadataProps) {
-  return props.examboardSlug && props.examboardSlug === "aqa"
+  return props.ks4OptionSlug && props.ks4OptionSlug === "aqa"
     ? "AQA"
-    : props.examboardSlug
-      ? `${capitalize(props.examboardSlug)}`
+    : props.ks4OptionSlug
+      ? `${capitalize(props.ks4OptionSlug)}`
       : "";
 }
 
