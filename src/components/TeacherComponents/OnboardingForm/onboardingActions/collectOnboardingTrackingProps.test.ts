@@ -13,6 +13,8 @@ import { UserResource } from "clerk";
 type EmailAddressResource = UserResource["emailAddresses"][0];
 
 describe(collectOnboardingTrackingProps, () => {
+  const submitEvent = new SubmitEvent("submit");
+
   it.each<
     [
       string,
@@ -122,6 +124,7 @@ describe(collectOnboardingTrackingProps, () => {
       "distinct-id-1234",
       mockUser,
       testFormProps as OnboardingFormProps,
+      submitEvent,
     );
 
     expect(props).toEqual(expect.objectContaining(trackingProperties));
@@ -177,8 +180,36 @@ describe(collectOnboardingTrackingProps, () => {
       "distinct-id-1234",
       user,
       {} as OnboardingFormProps,
+      submitEvent,
     );
 
     expect(props).toEqual(expect.objectContaining(trackingProperties));
+  });
+
+  it("sets the componentType accordingly", () => {
+    const submitter = document.createElement("button");
+    const submitEvent = new SubmitEvent("submit", {
+      submitter,
+    });
+
+    expect(
+      collectOnboardingTrackingProps(
+        "distinct-id-1234",
+        mockUser,
+        {} as OnboardingFormProps,
+        submitEvent,
+      ),
+    ).toEqual(expect.objectContaining({ componentType: "continue_button" }));
+
+    submitter.name = "skip";
+
+    expect(
+      collectOnboardingTrackingProps(
+        "distinct-id-1234",
+        mockUser,
+        {} as OnboardingFormProps,
+        submitEvent,
+      ),
+    ).toEqual(expect.objectContaining({ componentType: "skip_button" }));
   });
 });

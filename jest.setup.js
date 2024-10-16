@@ -8,7 +8,15 @@ import bugsnag from "@bugsnag/js";
 // TextEncoder and TextDecoder are Web APIs but not available in JSDOM
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
-
+// JSDOM does not implement SubmitEvent
+global.SubmitEvent =
+  global.SubmitEvent ||
+  class MockSubmitEvent extends Event {
+    constructor(name, options) {
+      super(name, options);
+      this.submitter = options?.submitter ?? null;
+    }
+  };
 jest.mock("react", () => ({
   ...jest.requireActual("react"),
   useId: () => "react-use-id-test-result",

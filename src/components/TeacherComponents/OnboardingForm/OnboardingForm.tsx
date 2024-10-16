@@ -5,7 +5,7 @@ import {
   UseFormStateReturn,
   UseFormTrigger,
 } from "react-hook-form";
-import { ChangeEvent, useEffect, useState } from "react";
+import { BaseSyntheticEvent, ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
 import {
@@ -87,7 +87,10 @@ const OnboardingForm = ({
   const showNewsletterSignUp =
     userSubscribedInHubspot === false && forceHideNewsletterSignUp !== true;
 
-  const onFormSubmit = async (data: OnboardingFormProps) => {
+  const onFormSubmit = async (
+    data: OnboardingFormProps,
+    event?: BaseSyntheticEvent,
+  ) => {
     if (isSubmitting) {
       return;
     }
@@ -111,6 +114,7 @@ const OnboardingForm = ({
             posthogDistinctId,
             user,
             latestOnboardingData,
+            event?.nativeEvent,
           ),
         );
       router.push({
@@ -129,6 +133,7 @@ const OnboardingForm = ({
             posthogDistinctId,
             user,
             latestOnboardingData,
+            event?.nativeEvent,
           ),
         );
       router.push({
@@ -179,6 +184,7 @@ const OnboardingForm = ({
             posthogDistinctId,
             user,
             latestOnboardingData,
+            event?.nativeEvent,
           ),
         );
 
@@ -258,6 +264,7 @@ const OnboardingForm = ({
               width="100%"
               type="submit"
               onClick={props.onSubmit}
+              name="continue"
               aria-description={submitError ?? undefined}
             >
               Continue

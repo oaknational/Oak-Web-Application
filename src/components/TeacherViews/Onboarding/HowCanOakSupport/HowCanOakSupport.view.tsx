@@ -90,6 +90,7 @@ const HowCanOakSupport = () => {
           <OakSecondaryButton
             width="100%"
             disabled={hasMissingFormData || isSubmitting}
+            name="skip"
           >
             Skip
           </OakSecondaryButton>

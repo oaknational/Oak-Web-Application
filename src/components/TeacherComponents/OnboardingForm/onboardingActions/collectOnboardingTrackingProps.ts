@@ -8,6 +8,7 @@ import {
 } from "./onboardingRoleOptions";
 
 import {
+  ComponentTypeValueType,
   UserAccountVerificationStatusValueType,
   UserOnboardingCompletedProperties,
   UserOnboardingProgressedProperties,
@@ -26,6 +27,7 @@ export function collectOnboardingTrackingProps(
   distinctUserId: string,
   user: NonNullable<ReturnType<typeof useUser>["user"]>,
   data: OnboardingFormProps,
+  nativeEvent: object | undefined,
 ): UserOnboardingCompletedProperties & UserOnboardingProgressedProperties {
   const signUpDate = (user.createdAt ?? new Date())?.toISOString().slice(0, 10);
   const userDetailsLastModifiedDate = (user.updatedAt ?? new Date())
@@ -36,7 +38,7 @@ export function collectOnboardingTrackingProps(
     platform: "owa",
     product: "user account management",
     engagementIntent: "explore",
-    componentType: "continue_button",
+    componentType: pickComponentType(nativeEvent),
     eventVersion: "2.0.0",
     analyticsUseCase: "Teacher",
     userId_: distinctUserId,
@@ -141,4 +143,26 @@ function pickSchoolUrn(data: OnboardingFormProps) {
  */
 function extractUrn(school: string) {
   return /^\d{6,7}|^\d{3}-\d{4}/.exec(school)?.at(0);
+}
+
+/**
+ * Maps the form submitter element's name to an event component type
+ */
+function pickComponentType(
+  nativeEvent: object | undefined,
+): ComponentTypeValueType {
+  let buttonName = "continue";
+
+  if (
+    nativeEvent instanceof SubmitEvent &&
+    nativeEvent.submitter instanceof HTMLButtonElement
+  ) {
+    buttonName = nativeEvent.submitter.name;
+  }
+
+  if (buttonName === "skip") {
+    return "skip_button";
+  }
+
+  return "continue_button";
 }
