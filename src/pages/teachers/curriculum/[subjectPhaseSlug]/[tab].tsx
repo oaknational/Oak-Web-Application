@@ -41,8 +41,12 @@ import {
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { YearSelection } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
-import { getUnitFeatures } from "@/utils/curriculum/features";
+import {
+  getUnitFeatures,
+  isCycleTwoEnabled,
+} from "@/utils/curriculum/features";
 import { sortYears } from "@/utils/curriculum/sorting";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
@@ -223,31 +227,6 @@ export const getStaticPaths = async () => {
     paths: [],
   };
   return config;
-};
-
-export const parseSubjectPhaseSlug = (slug: string) => {
-  const parts = slug.split("-");
-  const lastSlug = parts.pop() ?? null;
-  let phaseSlug: string | null, ks4OptionSlug: string | null;
-  // Use phase to determine if examboard is present
-  if (lastSlug && ["primary", "secondary"].includes(lastSlug)) {
-    ks4OptionSlug = null;
-    phaseSlug = lastSlug;
-  } else {
-    ks4OptionSlug = lastSlug;
-    phaseSlug = parts.pop() ?? null;
-  }
-  const subjectSlug = parts.join("-");
-  if (!subjectSlug || !phaseSlug) {
-    throw new OakError({
-      code: "curriculum-api/params-incorrect",
-    });
-  }
-  return {
-    phaseSlug: phaseSlug,
-    subjectSlug: subjectSlug,
-    ks4OptionSlug: ks4OptionSlug,
-  };
 };
 
 export function createThreadOptions(units: Unit[]): Thread[] {
@@ -591,6 +570,36 @@ export const getStaticProps: GetStaticProps<
         });
       }
       const slugs = parseSubjectPhaseSlug(context.params.subjectPhaseSlug);
+      if (!slugs) {
+        throw new OakError({
+          code: "curriculum-api/params-incorrect",
+        });
+      }
+
+      const validSubjectPhases = await curriculumApi.subjectPhaseOptions({
+        cycle: isCycleTwoEnabled() ? "2" : "1",
+      });
+
+      // Check if valid slug
+      const isValid = validSubjectPhases.find((sp) => {
+        const isValidSubjectSlug = sp.slug === slugs.subjectSlug;
+        const hasMatchingPhase = sp.phases.find(
+          (p) => p.slug === slugs.phaseSlug,
+        );
+        const isValidKs4Option =
+          slugs.phaseSlug === "primary" ||
+          !sp.ks4_options ||
+          sp.ks4_options.length === 0 ||
+          sp.ks4_options.find((o) => o.slug === slugs.ks4OptionSlug);
+        return isValidSubjectSlug && hasMatchingPhase && isValidKs4Option;
+      });
+
+      if (!isValid) {
+        throw new OakError({
+          code: "curriculum-api/not-found",
+        });
+      }
+
       const curriculumOverviewTabData = await curriculumApi.curriculumOverview({
         subjectSlug: slugs.subjectSlug,
         phaseSlug: slugs.phaseSlug,
