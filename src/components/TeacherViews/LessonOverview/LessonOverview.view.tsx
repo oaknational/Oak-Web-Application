@@ -90,6 +90,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     copyrightContent,
     isSpecialist,
     updatedAt,
+    isCanonical,
   } = lesson;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -201,6 +202,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   unitSlug,
                   programmeSlug,
                   disabled: true,
+                  isCanonical,
                 }),
               ]
             : [

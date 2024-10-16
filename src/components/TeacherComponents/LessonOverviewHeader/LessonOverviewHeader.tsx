@@ -48,7 +48,6 @@ export type LessonOverviewHeaderProps = {
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
   const { breadcrumbs, background } = props;
-
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <LessonOverviewHeaderDesktop {...props} />

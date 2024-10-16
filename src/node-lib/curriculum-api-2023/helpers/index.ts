@@ -32,7 +32,7 @@ export const isTierValid = (
 export const constructPathwayLesson = (lesson: RawSyntheticUVLesson) => {
   return lessonPathwaySchema.parse({
     programmeSlug: lesson.programme_slug,
-    unitSlug: lesson.unit_data.slug,
+    unitSlug: lesson.unit_slug,
     unitTitle: lesson.programme_fields.optionality ?? lesson.unit_data.title,
     keyStageSlug: lesson.programme_fields.keystage_slug,
     keyStageTitle: toSentenceCase(lesson.programme_fields.keystage_description),

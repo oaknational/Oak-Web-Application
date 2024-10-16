@@ -64,14 +64,16 @@ export const getLessonOverviewBreadCrumb = ({
   programmeSlug,
   unitSlug,
   disabled,
+  isCanonical,
 }: {
   lessonSlug: string;
   lessonTitle: string;
   programmeSlug: string | null;
   unitSlug: string | null;
   disabled?: boolean;
+  isCanonical: boolean;
 }): Breadcrumb => {
-  if (programmeSlug && unitSlug) {
+  if (programmeSlug && unitSlug && !isCanonical) {
     return {
       oakLinkProps: {
         page: "lesson-overview",
