@@ -19,7 +19,7 @@ describe("LessonOverviewSpeechBubble", () => {
         data-testid={"speech-bubble"}
         label="Teacher tip"
         text={
-          "This is greater that 250 char - Encourage students to ask 'why' questions, fostering curiosity and critical thinking. Emphasize that no question is silly and every inquiry is an opportunity to learn and promote active learning by incorporating group discussions, hands-on activities."
+          "This is greater that 300 char - Encourage students to ask 'why' questions, fostering curiosity and critical thinking. Emphasize that no question is silly and every inquiry is an opportunity to learn and promote active learning by incorporating group discussions, hands-on activities. Add some extra characters to the tip to make sure it's too long."
         }
       />,
     );

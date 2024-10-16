@@ -2,10 +2,10 @@ import {
   OakFlex,
   OakHeading,
   OakSearchFilterCheckBox,
+  OakFieldset,
 } from "@oaknational/oak-components";
 import React, { FC } from "react";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { YearGroup } from "@/node-lib/curriculum-api-2023/queries/unitListing/filters/getAllYearGroups";
@@ -19,12 +19,6 @@ type YearGroupFiltersProps = {
   activeMobileFilter?: string;
   setYear?: React.Dispatch<React.SetStateAction<string>>;
 };
-
-const StyledFieldset = styled.fieldset`
-  border: 0px;
-  margin: 0;
-  padding: 0;
-`;
 
 const YearGroupFilters: FC<YearGroupFiltersProps> = ({
   yearGroups,
@@ -47,7 +41,7 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
       $borderColor={isMobile ? undefined : "border-neutral-lighter"}
       $flexGrow={1}
     >
-      <StyledFieldset>
+      <OakFieldset>
         <OakHeading
           as={"legend"}
           tag="h3"
@@ -159,7 +153,7 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
             />
           ))}
         </OakFlex>
-      </StyledFieldset>
+      </OakFieldset>
     </OakFlex>
   );
 };
