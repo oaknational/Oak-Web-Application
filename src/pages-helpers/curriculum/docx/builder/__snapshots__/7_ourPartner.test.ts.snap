@@ -255,14 +255,19 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
     Target="numbering.xml"
   ></Relationship>
   <Relationship
-    Id="rId6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977"
-    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977.png"
-  ></Relationship>
-  <Relationship
     Id="rId880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
     Target="media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png"
+  ></Relationship>
+  <Relationship
+    Id="rIdd16ae5d51dda6f58995171aa23c0fa5e6dcd9c777cf9c251c4be3b1d62fdf670"
+    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
+    Target="media/hash_d16ae5d51dda6f58995171aa23c0fa5e6dcd9c777cf9c251c4be3b1d62fdf670gif"
+  ></Relationship>
+  <Relationship
+    Id="rIdd16ae5d51dda6f58995171aa23c0fa5e6dcd9c777cf9c251c4be3b1d62fdf670"
+    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
+    Target="media/hash_d16ae5d51dda6f58995171aa23c0fa5e6dcd9c777cf9c251c4be3b1d62fdf670gif"
   ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
@@ -346,7 +351,7 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
             w:val="36"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[Our curriculum partner]]></w:t>
+        <w:t><![CDATA[Our curriculum partners]]></w:t>
         <w:drawing>
           <wp:anchor
             distT="0"
@@ -580,7 +585,7 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
                   w:val="24"
                 ></w:sz>
               </w:rPr>
-              <w:t><![CDATA[testing]]></w:t>
+              <w:t></w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -658,7 +663,225 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
                         </pic:nvPicPr>
                         <pic:blipFill>
                           <a:blip
-                            r:embed="rId6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977"
+                            r:embed="rIdd16ae5d51dda6f58995171aa23c0fa5e6dcd9c777cf9c251c4be3b1d62fdf670"
+                          >
+                            <a:extLst>
+                              <a:ext
+                                uri="{28A0092B-C50C-407E-A947-70E740481C1C}"
+                              >
+                                <a14:useLocalDpi
+                                  xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main"
+                                  val="0"
+                                ></a14:useLocalDpi>
+                              </a:ext>
+                            </a:extLst>
+                          </a:blip>
+                          <a:stretch>
+                            <a:fillRect></a:fillRect>
+                          </a:stretch>
+                        </pic:blipFill>
+                        <pic:spPr>
+                          <a:xfrm
+                            rot="0"
+                          >
+                            <a:off
+                              x="0"
+                              y="0"
+                            ></a:off>
+                            <a:ext
+                              cx="2862000"
+                              cy="2862000"
+                            ></a:ext>
+                          </a:xfrm>
+                          <a:prstGeom
+                            prst="rect"
+                          >
+                            <a:avLst></a:avLst>
+                          </a:prstGeom>
+                        </pic:spPr>
+                      </pic:pic>
+                    </a:graphicData>
+                  </a:graphic>
+                </wp:inline>
+              </w:drawing>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblW
+          w:type="pct"
+          w:w="100%"
+        ></w:tblW>
+        <w:tblBorders>
+          <w:top
+            w:val="single"
+            w:color="FFFFFF"
+            w:sz="0"
+          ></w:top>
+          <w:left
+            w:val="single"
+            w:color="FFFFFF"
+            w:sz="0"
+          ></w:left>
+          <w:bottom
+            w:val="single"
+            w:color="FFFFFF"
+            w:sz="0"
+          ></w:bottom>
+          <w:right
+            w:val="single"
+            w:color="FFFFFF"
+            w:sz="0"
+          ></w:right>
+          <w:insideH
+            w:val="single"
+            w:color="FFFFFF"
+            w:sz="0"
+          ></w:insideH>
+          <w:insideV
+            w:val="single"
+            w:color="FFFFFF"
+            w:sz="0"
+          ></w:insideV>
+        </w:tblBorders>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol
+          w:w="5100"
+        ></w:gridCol>
+        <w:gridCol
+          w:w="5100"
+        ></w:gridCol>
+      </w:tblGrid>
+      <w:tr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcMar>
+              <w:start
+                w:type="dxa"
+                w:w="0"
+              ></w:start>
+              <w:end
+                w:type="dxa"
+                w:w="567"
+              ></w:end>
+            </w:tcMar>
+            <w:vAlign
+              w:val="top"
+            ></w:vAlign>
+          </w:tcPr>
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:hAnsi="Arial"
+                  w:cs="Arial"
+                ></w:rFonts>
+                <w:sz
+                  w:val="36"
+                ></w:sz>
+              </w:rPr>
+              <w:t></w:t>
+            </w:r>
+          </w:p>
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:rFonts
+                  w:ascii="Arial"
+                  w:hAnsi="Arial"
+                  w:cs="Arial"
+                ></w:rFonts>
+                <w:color
+                  w:val="222222"
+                ></w:color>
+                <w:sz
+                  w:val="24"
+                ></w:sz>
+              </w:rPr>
+              <w:t></w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:p>
+            <w:r>
+              <w:drawing>
+                <wp:inline
+                  distT="0"
+                  distB="0"
+                  distL="0"
+                  distR="0"
+                >
+                  <wp:extent
+                    cx="2862000"
+                    cy="2862000"
+                  ></wp:extent>
+                  <wp:effectExtent
+                    l="0"
+                    t="0"
+                    r="0"
+                    b="0"
+                  ></wp:effectExtent>
+                  <wp:docPr
+                    id="30006"
+                    name=""
+                    descr=""
+                  >
+                    <a:extLst
+                      xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
+                    >
+                      <a:ext
+                        uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}"
+                      >
+                        <adec:decorative
+                          xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative"
+                          val="1"
+                        ></adec:decorative>
+                      </a:ext>
+                    </a:extLst>
+                  </wp:docPr>
+                  <wp:cNvGraphicFramePr>
+                    <a:graphicFrameLocks
+                      xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
+                      noChangeAspect="1"
+                    ></a:graphicFrameLocks>
+                  </wp:cNvGraphicFramePr>
+                  <a:graphic
+                    xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
+                  >
+                    <a:graphicData
+                      uri="http://schemas.openxmlformats.org/drawingml/2006/picture"
+                    >
+                      <pic:pic
+                        xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"
+                      >
+                        <pic:nvPicPr>
+                          <pic:cNvPr
+                            id="30006"
+                            name=""
+                            descr=""
+                          >
+                            <a:extLst>
+                              <a:ext
+                                uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}"
+                              >
+                                <adec:decorative
+                                  xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative"
+                                  val="1"
+                                ></adec:decorative>
+                              </a:ext>
+                            </a:extLst>
+                          </pic:cNvPr>
+                          <pic:cNvPicPr></pic:cNvPicPr>
+                        </pic:nvPicPr>
+                        <pic:blipFill>
+                          <a:blip
+                            r:embed="rIdd16ae5d51dda6f58995171aa23c0fa5e6dcd9c777cf9c251c4be3b1d62fdf670"
                           >
                             <a:extLst>
                               <a:ext
@@ -933,8 +1156,8 @@ exports[`7_ourPartner renders multiple curriculum partners from curriculum partn
   </w:footnote>
 </w:footnotes>",
   "word/media/": "",
-  "word/media/hash_6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977.png": "4a5204e50a2367de974264a2056566e7af61af9d192b8699883d11491a37b599",
   "word/media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png": "d36df0472cd373f0a7cd5fdfb58745287ab7abb75b5c36e1aba96855c0dba86f",
+  "word/media/hash_d16ae5d51dda6f58995171aa23c0fa5e6dcd9c777cf9c251c4be3b1d62fdf670gif": "bb229a48bee31f5d54ca12dc9bd960c63a671f0d4be86a054c1d324a44499d96",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"
@@ -4589,14 +4812,14 @@ exports[`7_ourPartner renders with one partner from curriculum partner overview 
     Target="numbering.xml"
   ></Relationship>
   <Relationship
-    Id="rId6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977"
-    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977.png"
-  ></Relationship>
-  <Relationship
     Id="rId880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b"
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
     Target="media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png"
+  ></Relationship>
+  <Relationship
+    Id="rIdd16ae5d51dda6f58995171aa23c0fa5e6dcd9c777cf9c251c4be3b1d62fdf670"
+    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
+    Target="media/hash_d16ae5d51dda6f58995171aa23c0fa5e6dcd9c777cf9c251c4be3b1d62fdf670gif"
   ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
@@ -4914,7 +5137,7 @@ exports[`7_ourPartner renders with one partner from curriculum partner overview 
                   w:val="24"
                 ></w:sz>
               </w:rPr>
-              <w:t><![CDATA[testing]]></w:t>
+              <w:t></w:t>
             </w:r>
           </w:p>
         </w:tc>
@@ -4992,7 +5215,7 @@ exports[`7_ourPartner renders with one partner from curriculum partner overview 
                         </pic:nvPicPr>
                         <pic:blipFill>
                           <a:blip
-                            r:embed="rId6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977"
+                            r:embed="rIdd16ae5d51dda6f58995171aa23c0fa5e6dcd9c777cf9c251c4be3b1d62fdf670"
                           >
                             <a:extLst>
                               <a:ext
@@ -5267,8 +5490,8 @@ exports[`7_ourPartner renders with one partner from curriculum partner overview 
   </w:footnote>
 </w:footnotes>",
   "word/media/": "",
-  "word/media/hash_6b6b9fcc9d79fdf3ac77a5e3aaeff0f0645b4211afe95fd4869a9f552e6cb977.png": "4a5204e50a2367de974264a2056566e7af61af9d192b8699883d11491a37b599",
   "word/media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png": "d36df0472cd373f0a7cd5fdfb58745287ab7abb75b5c36e1aba96855c0dba86f",
+  "word/media/hash_d16ae5d51dda6f58995171aa23c0fa5e6dcd9c777cf9c251c4be3b1d62fdf670gif": "bb229a48bee31f5d54ca12dc9bd960c63a671f0d4be86a054c1d324a44499d96",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"
