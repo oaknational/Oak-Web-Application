@@ -35,7 +35,7 @@ jest.mock("../../../../node-lib/curriculum-api-2023", () => ({
     },
     curriculumOverview: async () =>
       import("./fixtures/curriculumOverview.json"),
-    subjectPhaseOptionsIncludeNew: async () =>
+    subjectPhaseOptions: async () =>
       (await import("./fixtures/subjectPhaseOptionsIncludeNew.json")).subjects,
   },
 }));
