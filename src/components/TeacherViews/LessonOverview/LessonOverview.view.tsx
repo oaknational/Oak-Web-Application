@@ -226,6 +226,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           keyLearningPoints,
         )}
         showDownloadAll={showDownloadAll}
+        isEYFS={keyStageSlug === "early-years-foundation-stage"}
       />
       <MaxWidth $ph={16} $pb={80}>
         <NewContentBanner
