@@ -1,3 +1,22 @@
+# [1.594.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.593.0...v1.594.0) (2024-10-16)
+
+
+### Bug Fixes
+
+* posthog distinct id missing from state ([2ac7741](https://github.com/oaknational/Oak-Web-Application/commit/2ac7741b66e5e0dfa662b8c0e456978baee35085))
+* remove identify on onboarding events and add it to sign-up ([1aed6de](https://github.com/oaknational/Oak-Web-Application/commit/1aed6ded4988ec9065749710c6aab236d4523b91))
+* users being thrown out of the feature flag when signing up/in ([906b9de](https://github.com/oaknational/Oak-Web-Application/commit/906b9de5657e59252796613a06828f58894a134a))
+
+
+### Features
+
+* **LESQ-1084:** add tracking for onboarding ([6f70d04](https://github.com/oaknational/Oak-Web-Application/commit/6f70d04f97b255703131a6d9b6c5a428276365c9))
+* **LESQ-1084:** add tracking for onboarding progress ([a6b23c8](https://github.com/oaknational/Oak-Web-Application/commit/a6b23c869138038402bbf35e005b157d4da683f8))
+* **LESQ-1084:** add tracking for sign-ups and sign-ins ([a427e4f](https://github.com/oaknational/Oak-Web-Application/commit/a427e4fff0683c9726d62f0a21284e72f118832f))
+* **LESQ-1084:** track sign-outs ([e98846c](https://github.com/oaknational/Oak-Web-Application/commit/e98846c70b5ac468331c85e80d023f37b1ef72fc))
+* **LESQ-1084:** update Avo codegen ([30964be](https://github.com/oaknational/Oak-Web-Application/commit/30964be47d5e8241671154823b7203732da2e2fe))
+* **LESQ:** set a componentType when the user clicks "Skip" while onboarding ([408a94d](https://github.com/oaknational/Oak-Web-Application/commit/408a94d3b7385e66d971da591e07d05e8ca64c80))
+
 # [1.593.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.5...v1.593.0) (2024-10-16)
 
 
