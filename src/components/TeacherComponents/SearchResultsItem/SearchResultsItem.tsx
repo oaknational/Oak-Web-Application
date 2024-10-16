@@ -4,6 +4,7 @@ import {
   OakP,
   OakSpan,
   OakFlex,
+  OakColorToken,
 } from "@oaknational/oak-components";
 
 import SearchResultsSubjectIcon from "@/components/TeacherComponents/SearchResultsSubjectIcon";
@@ -12,7 +13,6 @@ import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import SearchDropdown from "@/components/TeacherComponents/SearchDropdown";
 import Icon from "@/components/SharedComponents/Icon";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import useClickableCard from "@/hooks/useClickableCard";
 import {
   LessonListingLinkProps,
@@ -84,15 +84,13 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   const searchHitDescription = description || pupilLessonOutcome || "";
   const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
-
+  const backgroundColour: OakColorToken =
+    type === "unit" ? "lavender30" : "pink30";
   return (
-    <Flex
-      $bb={1}
-      $borderColor={"grey40"}
+    <OakFlex
       $flexDirection={"column"}
       {...(!isPathwaySearchHit ? containerProps : null)}
-      $mb={56}
-      $maxWidth={734}
+      $pa="inner-padding-xl"
       onClick={() => {
         const toggleOpen = !isToggleOpen;
         setToggleOpen(toggleOpen);
@@ -100,6 +98,9 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      $background={isHovered || isToggleOpen ? backgroundColour : "white"}
+      $mb="space-between-m2"
+      $borderRadius="border-radius-m2"
     >
       <OakFlex $mb="space-between-s" $alignItems={"center"}>
         <SearchResultsSubjectIcon subjectSlug={subjectSlug} type={type} />
@@ -158,7 +159,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
           </OwaLink>
         )}
       </OakFlex>
-    </Flex>
+    </OakFlex>
   );
 };
 
