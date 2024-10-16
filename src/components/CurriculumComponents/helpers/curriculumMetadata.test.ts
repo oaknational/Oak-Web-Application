@@ -7,7 +7,7 @@ describe("buildCurriculumMetadata", () => {
       tab: "overview",
       keyStages: ["ks3", "ks4"],
       subjectSlug: "Math",
-      examboardSlug: "aqa",
+      ks4OptionSlug: "aqa",
     });
     expect(result).toBe("KS3-4 Math AQA Curriculum Plans");
   });
@@ -30,7 +30,7 @@ describe("buildCurriculumMetadata", () => {
       tab: "units",
       keyStages: ["ks3", "ks4"],
       subjectSlug: "English",
-      examboardSlug: "edexcel",
+      ks4OptionSlug: "edexcel",
     });
     expect(result).toBe("KS3-4 English Edexcel Curriculum Unit Sequence");
   });
@@ -65,7 +65,7 @@ describe("buildCurriculumMetadata", () => {
       tab: "downloads",
       keyStages: ["ks3", "ks4"],
       subjectSlug: "English",
-      examboardSlug: "edexcel",
+      ks4OptionSlug: "edexcel",
     });
     expect(result).toBe("KS3-4 English Edexcel Curriculum Downloads");
   });

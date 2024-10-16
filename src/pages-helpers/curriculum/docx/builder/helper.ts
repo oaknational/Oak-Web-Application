@@ -95,6 +95,9 @@ export function cmToPxDpi(cm: number) {
 
 export function makeTransparentIfSanity(input: string, height?: number) {
   const url = new URL(input);
+  if (url.protocol === "data:") {
+    return url.href;
+  }
   url.searchParams.set("fm", "png");
   url.searchParams.set("bg", "00FFFFFF");
   if (height) {
