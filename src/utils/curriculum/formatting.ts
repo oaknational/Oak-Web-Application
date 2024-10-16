@@ -47,6 +47,35 @@ export function getPhaseText(
   return "";
 }
 
+export function getShortPhaseText(
+  phase: Pick<Phase, "slug">,
+  keystages: { slug: string }[],
+) {
+  if (phase.slug === "primary") {
+    const hasKs1 = keystages.find((k) => k.slug === "ks1");
+    const hasKs2 = keystages.find((k) => k.slug === "ks2");
+    if (hasKs1 && hasKs2) {
+      return "KS1 & KS2";
+    } else if (hasKs1) {
+      return "KS1";
+    } else if (hasKs2) {
+      return "KS2";
+    }
+  }
+  if (phase.slug === "secondary") {
+    const hasKs3 = keystages.find((k) => k.slug === "ks3");
+    const hasKs4 = keystages.find((k) => k.slug === "ks4");
+    if (hasKs3 && hasKs4) {
+      return "KS3 & KS4";
+    } else if (hasKs3) {
+      return "KS3";
+    } else if (hasKs4) {
+      return "KS4";
+    }
+  }
+  return "";
+}
+
 export function getSuffixFromFeatures(
   features: ReturnType<typeof getUnitFeatures>,
 ) {
