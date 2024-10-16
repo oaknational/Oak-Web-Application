@@ -38,7 +38,13 @@ export const getSchoolName = (
   }
 };
 
-// Regex to extract URN and school name from schoolId string
+/**
+ * Regex to extract URN and school name from schoolId string
+ * ! - English and Welsh schools 6 digits
+ * ! - Scottish school 7 digits
+ * ! - Northern Irish school 3 digits followed by a hyphen and 4 digits
+ */
+
 export function extractUrnAndSchool(school: string) {
   const match = /^(?:(\d{7}|\d{6}|\d{3}-\d{4}))-(.*)/.exec(school);
   return {
