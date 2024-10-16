@@ -69,6 +69,7 @@ describe(useTrackRegistration, () => {
 
       expect(mockAnalytics.track.userSignUpCompleted).toHaveBeenCalledWith(
         expect.objectContaining({
+          userId_: "mock-distinct-id",
           singleSignOnService: "Email",
         }),
       );
@@ -146,7 +147,7 @@ describe(useTrackRegistration, () => {
       renderHook(useTrackRegistration);
 
       expect(mockAnalytics.track.userSignIn).toHaveBeenCalledWith({
-        userId_: user.id,
+        userId_: "mock-distinct-id",
       });
     });
 

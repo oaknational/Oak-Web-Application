@@ -10,7 +10,7 @@ import { SingleSignOnServiceValueType } from "@/browser-lib/avo/Avo";
  * signing up through OWA
  */
 export function useTrackRegistration() {
-  const { track } = useAnalytics();
+  const { track, posthogDistinctId } = useAnalytics();
   const { user } = useUser();
   const lastUserRef = useRef(user);
 
@@ -21,7 +21,7 @@ export function useTrackRegistration() {
   // webhooks later this would be a great candidate to be lift off the client
   useEffect(() => {
     // If there is no user, nothing to do
-    if (!user) {
+    if (!user || !posthogDistinctId) {
       return;
     }
 
@@ -45,9 +45,10 @@ export function useTrackRegistration() {
         eventVersion: "2.0.0",
         analyticsUseCase: null,
         singleSignOnService: pickSingleSignOnService(user),
+        userId_: posthogDistinctId,
       });
     } else {
-      track.userSignIn({ userId_: user.id });
+      track.userSignIn({ userId_: posthogDistinctId });
     }
 
     // Set `lastTrackedSignInAt` to `lastSignInAt` so that we
@@ -61,7 +62,7 @@ export function useTrackRegistration() {
         },
       },
     });
-  }, [user, track]);
+  }, [user, track, posthogDistinctId]);
 
   // When the user is unset they have signed-out so we should track it
   useEffect(() => {
