@@ -45,13 +45,13 @@ export const getSchoolName = (
  * ! - Northern Irish school 3 digits followed by a hyphen and 4 digits
  */
 
-export function extractUrnAndSchool(school: string) {
+export const extractUrnAndSchool = (school: string) => {
   const match = /^(?:(\d{7}|\d{6}|\d{3}-\d{4}))-(.*)/.exec(school);
   return {
     urn: match ? match[1] : null,
     schoolName: match ? match[2] : "",
   };
-}
+};
 
 const getFormattedDetailsForTracking = ({
   school,
