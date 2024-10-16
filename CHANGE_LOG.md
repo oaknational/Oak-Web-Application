@@ -1,3 +1,12 @@
+## [1.592.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.4...v1.592.5) (2024-10-16)
+
+
+### Bug Fixes
+
+* sort subjects alphabetically in curriculum picker ([993c63e](https://github.com/oaknational/Oak-Web-Application/commit/993c63ea5871de99464cd3f0ef1b15071499ce9f))
+
+## [1.592.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.3...v1.592.4) (2024-10-16)
+
 ## [1.592.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.592.2...v1.592.3) (2024-10-16)
 
 
