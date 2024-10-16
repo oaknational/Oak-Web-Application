@@ -9,10 +9,23 @@ const EMPTY_PNG =
   "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 
 describe("7_ourPartner", () => {
-  it.skip("with partner image", async () => {
+  it("without partner image", async () => {
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {
+        curriculumPartnerOverviews: [{ partnerBio: "" }],
+      } as CombinedCurriculumData,
+    });
+
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
+  });
+
+  it("renders with one partner from curriculum partner overview", async () => {
+    const zip = await generateEmptyDocx();
+    await generate(zip, {
+      data: {
+        partnerBio: "testing",
+        curriculumPartner: {},
         curriculumPartnerOverviews: [
           {
             curriculumPartner: {
@@ -22,7 +35,8 @@ describe("7_ourPartner", () => {
                 },
               },
             },
-            partnerBio: "testing",
+
+            partnerBio: "",
           },
         ],
       } as CombinedCurriculumData,
@@ -31,11 +45,37 @@ describe("7_ourPartner", () => {
     expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
   });
 
-  it("without partner image", async () => {
+  it("renders multiple curriculum partners from curriculum partner overview", async () => {
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {
-        curriculumPartnerOverviews: [{ partnerBio: "" }],
+        partnerBio: "testing",
+        curriculumPartner: {},
+        curriculumPartnerOverviews: [
+          {
+            curriculumPartner: {
+              image: {
+                asset: {
+                  url: EMPTY_PNG,
+                },
+              },
+            },
+
+            partnerBio: "",
+          },
+
+          {
+            curriculumPartner: {
+              image: {
+                asset: {
+                  url: EMPTY_PNG,
+                },
+              },
+            },
+
+            partnerBio: "",
+          },
+        ],
       } as CombinedCurriculumData,
     });
 
