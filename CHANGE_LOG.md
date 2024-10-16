@@ -1,3 +1,10 @@
+## [1.594.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.594.0...v1.594.1) (2024-10-16)
+
+
+### Bug Fixes
+
+* remove aria-controls from <CurriculumHeaderTabNav/> (pa11y error) ([df336e2](https://github.com/oaknational/Oak-Web-Application/commit/df336e24e4ae845d4c66169fe8aa0e4c29feb259))
+
 # [1.594.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.593.0...v1.594.0) (2024-10-16)
 
 
