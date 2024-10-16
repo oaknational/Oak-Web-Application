@@ -2,7 +2,7 @@ import { mkdir } from "fs/promises";
 import { dirname, relative } from "path";
 
 import puppeteer, { Page } from "puppeteer";
-import slugify from "@sindresorhus/slugify";
+import slugify from "slugify";
 
 const screenshotPage = async (
   page: Page,

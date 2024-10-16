@@ -1,4 +1,5 @@
 import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useAuth } from "@clerk/nextjs";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
@@ -7,7 +8,6 @@ import type {
   ResourceFormProps,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
-import { useFeatureFlaggedClerk } from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 
 type UseResourceFormProps = {
   onSubmit?: () => void;
@@ -20,7 +20,7 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
     setTermsInLocalStorage,
   } = useLocalStorageForDownloads();
 
-  const auth = useFeatureFlaggedClerk().useAuth();
+  const auth = useAuth();
   const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa") || false;
 
   const onSubmit = async (data: ResourceFormProps, slug: string) => {
