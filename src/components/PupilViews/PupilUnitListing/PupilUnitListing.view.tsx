@@ -4,6 +4,8 @@ import {
   OakTertiaryButton,
   OakPupilJourneyHeader,
   OakBox,
+  OakInlineBanner,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import { UseBackHrefProps, useBackHref } from "./useBackHref";
@@ -32,6 +34,36 @@ export const PupilViewsUnitListing = ({
   const applyFilter = (subjectCategory: string) => {
     setFilterItems([subjectCategory]);
   };
+
+  const [displayExpiringBanner, setDisplayExpiringBanner] = useState<boolean[]>(
+    unitSections.map((unitSection) =>
+      unitSection.units.some((section) =>
+        section.some((unit) => unit.actions?.displayExpiringBanner),
+      ),
+    ),
+  );
+
+  const expiringBanner = displayExpiringBanner.map((b) => (
+    <OakInlineBanner
+      canDismiss
+      cta={
+        <OakSecondaryLink
+          href="https://support.thenational.academy/lesson-unavailable"
+          iconName="chevron-right"
+          isTrailingIcon
+        >
+          Read the help article
+        </OakSecondaryLink>
+      }
+      isOpen={b}
+      message="We've made brand new and improved units for you."
+      onDismiss={() => {
+        setDisplayExpiringBanner(displayExpiringBanner.map(() => false)); // closing one closes all
+      }}
+      title="Some of these units will soon be taken down."
+      type="alert"
+    />
+  ));
 
   return (
     <OakPupilJourneyLayout
@@ -83,6 +115,7 @@ export const PupilViewsUnitListing = ({
               counterLength={unitSection.counterLength}
               labels={labelsArray.length ? labelsArray : undefined}
               showTooltip={i === 0}
+              expiredSlot={expiringBanner[i]}
               id={`section-${i}`}
             />
           );

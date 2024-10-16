@@ -1,7 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import { Unit } from "../CurriculumVisualiser";
+import { Unit, YearData } from "../CurriculumVisualiser";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
@@ -16,9 +16,11 @@ import {
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { getUnitFeatures } from "@/utils/curriculum/features";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 
 type UnitModalProps = {
   unitData: Unit | null;
+  yearData: YearData;
   displayModal: boolean;
   setUnitOptionsAvailable: (x: boolean) => void;
   setCurrentUnitLessons: (x: Lesson[]) => void;
@@ -35,6 +37,7 @@ export type Lesson = {
 
 const UnitModal: FC<UnitModalProps> = ({
   unitData,
+  yearData,
   displayModal,
   setUnitOptionsAvailable,
   setCurrentUnitLessons,
@@ -95,6 +98,14 @@ const UnitModal: FC<UnitModalProps> = ({
     getUnitFeatures(unitData)?.programmes_fields_overrides.subject ??
     unitData?.subject;
 
+  const yearTitle = unitData
+    ? getYearGroupTitle(
+        yearData,
+        getUnitFeatures(unitData)?.programmes_fields_overrides.year ??
+          unitData.year,
+      )
+    : "";
+
   return (
     <>
       {unitData && (
@@ -126,7 +137,8 @@ const UnitModal: FC<UnitModalProps> = ({
             </Box>
             <LessonMetadata
               subjectTitle={subjectTitle}
-              yearTitle={`Year ${unitData.year}`}
+              yearTitle={yearTitle}
+              $flexWrap={"wrap"}
             />
             <OakHeading tag="h2" $font={"heading-5"}>
               {!curriculumUnitDetails
