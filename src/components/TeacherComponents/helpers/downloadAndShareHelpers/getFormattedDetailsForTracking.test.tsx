@@ -1,4 +1,6 @@
-import getFormattedDetailsForTracking, { extractUrnAndSchool } from "./getFormattedDetailsForTracking";
+import getFormattedDetailsForTracking, {
+  extractUrnAndSchool,
+} from "./getFormattedDetailsForTracking";
 
 describe("getFormattedDetailsForTracking", () => {
   it("should return correct school details for homeschool option", () => {
