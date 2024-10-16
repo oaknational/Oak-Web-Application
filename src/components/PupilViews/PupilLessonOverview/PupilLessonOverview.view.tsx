@@ -74,7 +74,10 @@ export const PupilViewsLessonOverview = ({
     setIsMounted(true);
   }, []);
   const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(expirationDate !== null);
+    useState<boolean>(
+      expirationDate !== null ||
+        browseData.actions?.displayExpiringBanner === true,
+    );
 
   function pickProgressForSection(section: LessonReviewSection) {
     if (sectionResults[section]?.isComplete) {

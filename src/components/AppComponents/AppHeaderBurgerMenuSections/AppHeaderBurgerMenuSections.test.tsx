@@ -4,15 +4,8 @@ import AppHeaderBurgerMenuSections from "./AppHeaderBurgerMenuSections";
 
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { enableMockClerk } from "@/__tests__/__helpers__/mockClerk";
-
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 
 describe("AppHeaderBurgerburgerMenuSections", () => {
-  beforeEach(() => {
-    enableMockClerk();
-  });
-
   it("renders 3 burger menu sections", () => {
     renderWithProviders()(
       <AppHeaderBurgerMenuSections burgerMenuSections={burgerMenuSections} />,
