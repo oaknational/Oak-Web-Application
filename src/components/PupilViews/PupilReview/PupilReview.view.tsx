@@ -53,7 +53,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     browseData: { programmeFields, lessonSlug, isLegacy },
   } = props;
   const { phase = "primary", yearDescription, subject } = programmeFields;
-  const [renderCount, setRenderCount] = useState<number>(0);
+  const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
     updateCurrentSection,
     sectionResults,
@@ -165,7 +165,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     throw new Error("Foundation phase is not supported");
   }
 
-  if (renderCount === 0) {
+  if (trackingSent === false) {
     track.lessonSummaryReviewed({
       pupilWorksheetAvailable:
         sectionResults.intro?.worksheetAvailable ?? false,
@@ -181,7 +181,7 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       pupilVideoDurationSeconds: sectionResults.video?.duration ?? 0,
       pupilVideoTimeElapsedSeconds: sectionResults.video?.timeElapsed ?? 0,
     });
-    setRenderCount(1);
+    setTrackingSent(true);
   }
 
   return (
