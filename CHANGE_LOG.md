@@ -1,3 +1,45 @@
+## [1.597.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.597.0...v1.597.1) (2024-10-17)
+
+
+### Bug Fixes
+
+* examboard changed ks4_option and switch to subjectPhaseOptions ([d6479a6](https://github.com/oaknational/Oak-Web-Application/commit/d6479a62c4a4c1d27bbce3ec144c1430b9450fd8))
+
+# [1.597.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.596.0...v1.597.0) (2024-10-17)
+
+
+### Features
+
+* **avo:** update avo tracking events ([1de60e5](https://github.com/oaknational/Oak-Web-Application/commit/1de60e5fe7ec421652bf4a28d2654cc0346453cf))
+* **avo:** update avo tracking events ([c4311b2](https://github.com/oaknational/Oak-Web-Application/commit/c4311b238a47131e4045e36493df857d6f2c391e))
+* **revew:** a few comments from reviewers fixed ([a153609](https://github.com/oaknational/Oak-Web-Application/commit/a153609a6148955b956e1d7786599fd3273f03dc))
+* **revew:** a few comments from reviewers fixed ([ac0c422](https://github.com/oaknational/Oak-Web-Application/commit/ac0c422278562e18049a14be8634cbcbb3e6ec3a))
+* **revew:** make share a single event ([05aa6ad](https://github.com/oaknational/Oak-Web-Application/commit/05aa6add51651faf7d95c61e7426100c889cd11d))
+* **revew:** make share a single event ([04db7b1](https://github.com/oaknational/Oak-Web-Application/commit/04db7b133b7435158bcb3790373f6293b02ccc65))
+* **revew:** set tracking true ([a08a7b6](https://github.com/oaknational/Oak-Web-Application/commit/a08a7b62fc4c1c80adbf751ef24837e33493d69d))
+* **revew:** set tracking true ([d3e7078](https://github.com/oaknational/Oak-Web-Application/commit/d3e7078e238e63bb314cb23293a7362579ca8408))
+
+# [1.596.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.595.0...v1.596.0) (2024-10-17)
+
+
+### Features
+
+* changed gql to use new units query ([5a79505](https://github.com/oaknational/Oak-Web-Application/commit/5a795055929d876a7abbcceafa072407d917aec5))
+
+# [1.595.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.594.1...v1.595.0) (2024-10-17)
+
+
+### Features
+
+* **LESQ-1084:** point the lesson downloads at the experiment feature flag ([894f8c0](https://github.com/oaknational/Oak-Web-Application/commit/894f8c06cc9aa7ea2607faa7dbb932aa8a347646))
+
+## [1.594.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.594.0...v1.594.1) (2024-10-16)
+
+
+### Bug Fixes
+
+* remove aria-controls from <CurriculumHeaderTabNav/> (pa11y error) ([df336e2](https://github.com/oaknational/Oak-Web-Application/commit/df336e24e4ae845d4c66169fe8aa0e4c29feb259))
+
 # [1.594.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.593.0...v1.594.0) (2024-10-16)
 
 
