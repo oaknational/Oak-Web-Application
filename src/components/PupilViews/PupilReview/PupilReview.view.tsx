@@ -147,19 +147,15 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       })}`;
       navigator.clipboard.writeText(shareUrl);
       setIsAttemptingShare("shared");
-      if (sectionResults["starter-quiz"]?.isComplete) {
-        track.activityResultsSharedStarterQuiz({
-          shareMedium: "copy-link",
-          pupilQuizGrade: sectionResults["starter-quiz"]?.grade ?? 0,
-          pupilQuizNumQuestions:
-            sectionResults["starter-quiz"]?.numQuestions ?? 0,
-        });
-      }
       if (sectionResults["exit-quiz"]?.isComplete) {
-        track.activityResultsSharedExitQuiz({
+        track.activityResultsShared({
           shareMedium: "copy-link",
-          pupilQuizGrade: sectionResults["exit-quiz"]?.grade ?? 0,
-          pupilQuizNumQuestions: sectionResults["exit-quiz"]?.numQuestions ?? 0,
+          pupilExitQuizGrade: sectionResults["exit-quiz"]?.grade ?? 0,
+          pupilExitQuizNumQuestions:
+            sectionResults["exit-quiz"]?.numQuestions ?? 0,
+          pupilStarterQuizGrade: sectionResults["starter-quiz"]?.grade ?? 0,
+          pupilStarterQuizNumQuesions:
+            sectionResults["starter-quiz"]?.numQuestions ?? 0,
         });
       }
     }

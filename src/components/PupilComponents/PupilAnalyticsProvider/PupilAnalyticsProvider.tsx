@@ -82,8 +82,6 @@ export const trackingEvents = [
   "contentGuidanceAccepted",
   "contentGuidanceDeclined",
   "activityResultsShared",
-  "activityResultsSharedStarterQuiz",
-  "activityResultsSharedExitQuiz",
   "lessonSummaryReviewed",
   "lessonAccessed",
 ] as const;
@@ -324,16 +322,6 @@ export const PupilAnalyticsProvider = ({
       }),
     activityResultsShared: (args) =>
       track.activityResultsShared({
-        ...additionalArgs,
-        ...args,
-      }),
-    activityResultsSharedStarterQuiz: (args) =>
-      track.activityResultsSharedStarterQuiz({
-        ...additionalArgs,
-        ...args,
-      }),
-    activityResultsSharedExitQuiz: (args) =>
-      track.activityResultsSharedExitQuiz({
         ...additionalArgs,
         ...args,
       }),
