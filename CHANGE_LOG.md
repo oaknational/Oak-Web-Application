@@ -1,3 +1,10 @@
+## [1.598.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.3...v1.598.4) (2024-10-17)
+
+
+### Bug Fixes
+
+* focus -> focus-visible for focus state in lot picker ([20e5b20](https://github.com/oaknational/Oak-Web-Application/commit/20e5b2061a6a731b9b4045b857578f65e27fd348))
+
 ## [1.598.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.2...v1.598.3) (2024-10-17)
 
 
