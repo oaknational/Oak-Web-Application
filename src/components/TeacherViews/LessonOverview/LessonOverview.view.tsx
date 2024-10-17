@@ -185,6 +185,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   );
 
   const showDownloadAll = downloadsFilteredByCopyright.length > 0;
+  const showShare =
+    !isSpecialist && keyStageSlug !== "early-years-foundation-stage";
 
   return (
     <MathJaxLessonProvider>
@@ -226,7 +228,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           keyLearningPoints,
         )}
         showDownloadAll={showDownloadAll}
-        isEYFS={keyStageSlug === "early-years-foundation-stage"}
+        showShare={showShare}
       />
       <MaxWidth $ph={16} $pb={80}>
         <NewContentBanner

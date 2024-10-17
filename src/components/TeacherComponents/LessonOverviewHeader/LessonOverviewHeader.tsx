@@ -43,7 +43,7 @@ export type LessonOverviewHeaderProps = {
   onClickDownloadAll: () => void;
   onClickShareAll: () => void;
   showDownloadAll: boolean;
-  isEYFS: boolean;
+  showShare: boolean;
 };
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
