@@ -1,3 +1,10 @@
+## [1.598.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.2...v1.598.3) (2024-10-17)
+
+
+### Bug Fixes
+
+* added isFocusVisible to isFocused condition so only applies for keyboard users ([4e7b02e](https://github.com/oaknational/Oak-Web-Application/commit/4e7b02ed19c27f0176e9d8aa2c30290cc4d955f3))
+
 ## [1.598.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.1...v1.598.2) (2024-10-17)
 
 
