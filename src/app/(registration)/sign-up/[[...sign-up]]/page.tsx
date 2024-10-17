@@ -77,7 +77,10 @@ export default function SignUpPage() {
         </OakBox>
       }
     >
-      <SignUp appearance={formAppearanceStyles} />
+      <SignUp
+        appearance={formAppearanceStyles}
+        unsafeMetadata={{ owa: { lastTrackedSignInAt: null } }}
+      />
     </AuthLayout>
   );
 }
