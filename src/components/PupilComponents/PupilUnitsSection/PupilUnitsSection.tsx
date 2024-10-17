@@ -58,7 +58,7 @@ export type PupilUnitsSectionProps = {
   applyFilter: (subjectCategory: string) => void;
   showTooltip?: boolean;
   id?: string;
-  onCallback: (unit: UnitListingBrowseData[number]) => void;
+  onCallback?: (unit: UnitListingBrowseData[number]) => void;
 };
 
 export const PupilUnitsSection = ({
@@ -187,7 +187,9 @@ export const PupilUnitsSection = ({
                               programmeSlug: unit.programmeSlug,
                               unitSlug: unit.unitSlug,
                             })}
-                            onClick={() => onCallback(unit)}
+                            onClick={() => {
+                              if (onCallback) onCallback(unit);
+                            }}
                             unavailable={unit.expired}
                           />
                         ),
@@ -204,7 +206,7 @@ export const PupilUnitsSection = ({
 const renderListItem = (
   unit: UnitListingBrowseData[number],
   index: number,
-  onCallback: (unit: UnitListingBrowseData[number]) => void,
+  onCallback?: (unit: UnitListingBrowseData[number]) => void,
 ) => (
   <OakPupilJourneyListItem
     key={index}

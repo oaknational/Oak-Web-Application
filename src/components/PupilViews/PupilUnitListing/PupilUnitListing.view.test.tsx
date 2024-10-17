@@ -122,6 +122,8 @@ const backHrefSlugs = {
   examboardSlug: null,
 };
 
+const programmeFields = unitBrowseDataFixture({}).programmeFields;
+
 describe("PupilViewsUnitListing", () => {
   it("should render the subjectTitle, unitTitle, and yearDescription", () => {
     const { getByText } = renderWithTheme(
@@ -131,6 +133,7 @@ describe("PupilViewsUnitListing", () => {
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
           subjectCategories={[]}
+          programmeFields={programmeFields}
         />
       </OakThemeProvider>,
     );
@@ -146,6 +149,7 @@ describe("PupilViewsUnitListing", () => {
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
           subjectCategories={[]}
+          programmeFields={programmeFields}
         />
       </OakThemeProvider>,
     );
@@ -172,6 +176,7 @@ describe("PupilViewsUnitListing", () => {
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
           subjectCategories={[]}
+          programmeFields={programmeFields}
         />
       </OakThemeProvider>,
     );
@@ -189,6 +194,7 @@ describe("PupilViewsUnitListing", () => {
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
           subjectCategories={[]}
+          programmeFields={programmeFields}
         />
       </OakThemeProvider>,
     );
@@ -203,6 +209,7 @@ describe("PupilViewsUnitListing", () => {
           phase="secondary"
           backHrefSlugs={backHrefSlugs}
           subjectCategories={[]}
+          programmeFields={programmeFields}
         />
       </OakThemeProvider>,
     );
