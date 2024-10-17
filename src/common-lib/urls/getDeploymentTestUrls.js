@@ -67,6 +67,14 @@ function getDeploymentTestUrls() {
     // "/pupils/programmes/maths-secondary-year-7/units/expressions-and-equations/lessons/highest-common-factor-with-algebraic-terms/starter-quiz",
     // "/pupils/programmes/biology-secondary-year-11-foundation-edexcel/units/classification-in-modern-biology/lessons/electron-microscopy-and-the-size-and-scale-of-cells/video",
     // "/pupils/programmes/maths-secondary-year-7/units/expressions-and-equations/lessons/simplifying-before-multiplying-with-multiple-expressions/exit-quiz",
+    // Curriculum pages
+    "/teachers/curriculum/english-secondary-aqa/units",
+    "/teachers/curriculum/english-secondary-aqa/overview",
+    "/teachers/curriculum/english-secondary-aqa/downloads",
+    "/teachers/curriculum/science-secondary-ocr/units",
+    "/teachers/curriculum/science-secondary-ocr/downloads",
+    "/teachers/curriculum/previous-downloads",
+    "/teachers/curriculum",
   ];
 }
 

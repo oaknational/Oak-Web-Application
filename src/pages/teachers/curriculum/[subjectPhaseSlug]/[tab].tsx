@@ -179,14 +179,14 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
             title: buildCurriculumMetadata({
               metadataType: "title",
               subjectSlug: subjectSlug,
-              examboardSlug: ks4OptionSlug,
+              ks4OptionSlug: ks4OptionSlug,
               keyStages: keyStages,
               tab: tab,
             }),
             description: buildCurriculumMetadata({
               metadataType: "description",
               subjectSlug: subjectSlug,
-              examboardSlug: ks4OptionSlug,
+              ks4OptionSlug: ks4OptionSlug,
               keyStages: keyStages,
               tab: tab,
             }),
@@ -199,7 +199,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           keyStages={keyStages}
           color1="mint"
-          color2="mint30"
+          color2="mint"
         />
 
         <Box $background={"white"}>{tabContent}</Box>
