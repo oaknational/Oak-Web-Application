@@ -26,6 +26,15 @@ export const mockUser = {
   },
 } as unknown as UserResource;
 
+export const mockOnboardedUser: UserResource = {
+  ...mockUser,
+  publicMetadata: {
+    owa: {
+      isOnboarded: true,
+    },
+  },
+};
+
 export const mockUserWithDownloadAccess: UserResource = {
   ...mockUser,
   publicMetadata: {

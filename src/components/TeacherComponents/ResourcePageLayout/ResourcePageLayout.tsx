@@ -52,7 +52,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     triggerForm: UseFormTrigger<ResourceFormProps>;
     apiError?: string | null;
     updatedAt: string;
-    hasOnboardingDownloadDetails: boolean | undefined;
+    showTermsAgreement: boolean;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -113,7 +113,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                 </Box>
               )}
               {props.cardGroup}
-              {props.hasOnboardingDownloadDetails && (
+              {!props.showTermsAgreement && (
                 <>
                   <OakBox
                     $pb={"inner-padding-xl3"}
@@ -148,24 +148,25 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
               ))}
             {!props.showNoResources && (
               <>
-                <TermsAgreementForm
-                  form={{
-                    control: props.control,
-                    register: props.register,
-                    errors: props.errors,
-                    trigger: props.triggerForm,
-                  }}
-                  isLoading={props.showLoading}
-                  email={props.email}
-                  schoolId={props.schoolId}
-                  schoolName={props.school}
-                  setSchool={props.setSchool}
-                  showSavedDetails={props.showSavedDetails}
-                  handleEditDetailsCompletedClick={props.onEditClick}
-                  showPostAlbCopyright={props.showPostAlbCopyright}
-                  copyrightYear={props.updatedAt}
-                  hideDetails={props.hasOnboardingDownloadDetails}
-                />
+                {props.showTermsAgreement && (
+                  <TermsAgreementForm
+                    form={{
+                      control: props.control,
+                      register: props.register,
+                      errors: props.errors,
+                      trigger: props.triggerForm,
+                    }}
+                    isLoading={props.showLoading}
+                    email={props.email}
+                    schoolId={props.schoolId}
+                    schoolName={props.school}
+                    setSchool={props.setSchool}
+                    showSavedDetails={props.showSavedDetails}
+                    handleEditDetailsCompletedClick={props.onEditClick}
+                    showPostAlbCopyright={props.showPostAlbCopyright}
+                    copyrightYear={props.updatedAt}
+                  />
+                )}
                 {hasFormErrors && (
                   <OakFlex $flexDirection={"row"}>
                     <Icon name="content-guidance" $color={"red"} />
@@ -185,7 +186,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
                     </OakFlex>
                   </OakFlex>
                 )}
-                {!props.hasOnboardingDownloadDetails && props.cta}
+                {props.showTermsAgreement && props.cta}
 
                 {props.apiError && !hasFormErrors && (
                   <FieldError
