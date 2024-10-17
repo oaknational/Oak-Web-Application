@@ -560,7 +560,7 @@ exports[`1_frontCover simple 1`] = `
             w:val="80"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[  curriculum plan]]></w:t>
+        <w:t><![CDATA[KS3 Cooking and nutrition curriculum plan]]></w:t>
       </w:r>
     </w:p>
     <w:p>

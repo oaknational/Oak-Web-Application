@@ -12,13 +12,10 @@ import {
   JSZipCached,
 } from "../docx";
 
-import {
-  cmToPxDpi,
-  keyStageFromPhaseTitle,
-  makeTransparentIfSanity,
-} from "./helper";
+import { cmToPxDpi, makeTransparentIfSanity } from "./helper";
 
 import { getSubjectIconAsset } from "@/image-data";
+import { getShortPhaseText } from "@/utils/curriculum/formatting";
 
 export default async function generate(
   zip: JSZipCached,
@@ -44,7 +41,10 @@ export default async function generate(
     ),
   });
 
-  const phaseTitle = keyStageFromPhaseTitle(data.phaseTitle);
+  const phaseTitle = getShortPhaseText(
+    { slug: slugs.phaseSlug ?? "primary" },
+    data.units.map((u) => ({ slug: u.keystage_slug })),
+  );
   const subjectTitle = data.subjectTitle;
 
   const examboardTitle = data.examboardTitle ? `${data.examboardTitle}` : "";

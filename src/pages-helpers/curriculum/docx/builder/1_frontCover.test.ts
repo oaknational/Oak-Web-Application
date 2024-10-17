@@ -9,12 +9,13 @@ describe("1_frontCover", () => {
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {
-        subjectTitle: "",
-        phaseTitle: "",
-        examboardTitle: "",
+        subjectTitle: "Cooking and nutrition",
+        phaseTitle: "Secondary",
+        examboardTitle: null,
+        units: [{ keystage_slug: "ks3" }],
       } as CombinedCurriculumData,
       slugs: {
-        subjectSlug: "",
+        phaseSlug: "secondary",
       } as Slugs,
     });
 

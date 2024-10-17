@@ -18,13 +18,17 @@ export function getYearGroupTitle(
   return `Year ${year}${suffixStr}`;
 }
 
+function hasKs(keystages: { slug: string }[], num: number) {
+  return keystages.find((k) => k.slug === `ks${num}`);
+}
+
 export function getPhaseText(
   phase: Pick<Phase, "slug">,
   keystages: { slug: string }[],
 ) {
   if (phase.slug === "primary") {
-    const hasKs1 = keystages.find((k) => k.slug === "ks1");
-    const hasKs2 = keystages.find((k) => k.slug === "ks2");
+    const hasKs1 = hasKs(keystages, 1);
+    const hasKs2 = hasKs(keystages, 2);
     if (hasKs1 && hasKs2) {
       return "Key stage 1 and 2";
     } else if (hasKs1) {
@@ -34,14 +38,43 @@ export function getPhaseText(
     }
   }
   if (phase.slug === "secondary") {
-    const hasKs3 = keystages.find((k) => k.slug === "ks3");
-    const hasKs4 = keystages.find((k) => k.slug === "ks4");
+    const hasKs3 = hasKs(keystages, 3);
+    const hasKs4 = hasKs(keystages, 4);
     if (hasKs3 && hasKs4) {
       return "Key stage 3 and 4";
     } else if (hasKs3) {
       return "Key stage 3";
     } else if (hasKs4) {
       return "Key stage 4";
+    }
+  }
+  return "";
+}
+
+export function getShortPhaseText(
+  phase: Pick<Phase, "slug">,
+  keystages: { slug: string }[],
+) {
+  if (phase.slug === "primary") {
+    const hasKs1 = hasKs(keystages, 1);
+    const hasKs2 = hasKs(keystages, 2);
+    if (hasKs1 && hasKs2) {
+      return "KS1 & KS2";
+    } else if (hasKs1) {
+      return "KS1";
+    } else if (hasKs2) {
+      return "KS2";
+    }
+  }
+  if (phase.slug === "secondary") {
+    const hasKs3 = hasKs(keystages, 3);
+    const hasKs4 = hasKs(keystages, 4);
+    if (hasKs3 && hasKs4) {
+      return "KS3 & KS4";
+    } else if (hasKs3) {
+      return "KS3";
+    } else if (hasKs4) {
+      return "KS4";
     }
   }
   return "";
