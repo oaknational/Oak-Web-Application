@@ -21,6 +21,7 @@ const posthog = posthogToAnalyticsServiceWithoutQueue(posthogJs);
 const textDistinctId = "test-distinct-id";
 
 jest.mock("posthog-js", () => ({
+  __loaded: false,
   init: (key: unknown, config: unknown) => init(key, config),
   identify: (...args: unknown[]) => identify(...args),
   capture: (...args: unknown[]) => capture(...args),
@@ -61,6 +62,27 @@ describe("posthog.ts", () => {
       legacy_anonymous_id: "test legacy anonymous id",
     });
   });
+
+  describe("when the client is already initialised", () => {
+    beforeEach(() => {
+      posthogJs.__loaded = true;
+    });
+
+    afterEach(() => {
+      posthogJs.__loaded = false;
+    });
+
+    test("init resolves with the distinct id", async () => {
+      const distinctId = await posthog.init({
+        apiKey: "12",
+        apiHost: "https://test.thenational.academy",
+      });
+
+      expect(distinctId).toEqual(textDistinctId);
+    });
+  });
+
+  test("when the client is already loaded epeated calls to `init` resolve to the distinct id", () => {});
 
   test("identify", () => {
     posthog.identify("123", { email: "abc" });

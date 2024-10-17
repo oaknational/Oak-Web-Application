@@ -9,7 +9,6 @@ import {
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { RegistrationLayout } from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
-import withFeatureFlag from "@/hocs/withFeatureFlag";
 import { OakBox, OakFlex, OakLink, OakP } from "@/styles/oakThemeApp";
 
 const TermsAndConditions = () => {
@@ -44,7 +43,7 @@ const TermsAndConditions = () => {
   );
 };
 
-function BaseAuthLayout({
+export function AuthLayout({
   children,
   asideSlot,
   headerSlot,
@@ -103,5 +102,3 @@ function BaseAuthLayout({
     </RegistrationLayout>
   );
 }
-
-export const AuthLayout = withFeatureFlag(BaseAuthLayout, "use-auth-owa");

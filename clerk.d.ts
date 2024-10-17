@@ -1,4 +1,4 @@
-export {};
+import type { useUser } from "@clerk/nextjs";
 
 declare global {
   /**
@@ -40,4 +40,19 @@ declare global {
      */
     region?: string;
   }
+
+  interface UserUnsafeMetadata {
+    owa?: {
+      /**
+       * Date (in milliseconds) for the last tracked sign-in
+       * This can be compared to `user.lastSignInAt.toValue()` to determine
+       * if the last sign-in has been tracked for analytics
+       *
+       * Is set to `null` at sign-up which we use to track the sign-up event
+       */
+      lastTrackedSignInAt?: number | null;
+    };
+  }
 }
+
+export type UserResource = NonNullable<ReturnType<typeof useUser>["user"]>;
