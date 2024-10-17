@@ -38,6 +38,7 @@ import {
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
+import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 
 export type LessonShareProps =
   | {
@@ -128,11 +129,11 @@ export function LessonShare(props: LessonShareProps) {
     selectAllChecked,
     editDetailsClicked,
     setEmailInLocalStorage,
-    hasOnboardingDownloadDetails,
   } = useResourceFormState({
     shareResources: shareableResources,
     type: "share",
   });
+  const onboardingStatus = useOnboardingStatus();
 
   const { onSubmit } = useResourceFormSubmit({
     type: "share",
@@ -225,7 +226,10 @@ export function LessonShare(props: LessonShareProps) {
           schoolId={schoolIdFromLocalStorage}
           setSchool={setSchool}
           showSavedDetails={shouldDisplayDetailsCompleted}
-          hasOnboardingDownloadDetails={hasOnboardingDownloadDetails}
+          showTermsAgreement={
+            onboardingStatus === "not-onboarded" ||
+            onboardingStatus === "unknown"
+          }
           onEditClick={handleEditDetailsCompletedClick}
           register={form.register}
           control={form.control}
