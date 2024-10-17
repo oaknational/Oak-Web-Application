@@ -1,4 +1,9 @@
-import { isValidSubjectPhaseSlug, parseSubjectPhaseSlug } from "./slugs";
+import {
+  getKs4RedirectSlug,
+  isValidSubjectPhaseSlug,
+  KS4_EXAMBOARD_PREFERENCE,
+  parseSubjectPhaseSlug,
+} from "./slugs";
 
 import { SubjectPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/subjectPhaseOptions/subjectPhaseOptions.query";
 
@@ -20,27 +25,27 @@ describe("parseSubjectPhaseSlug", () => {
   });
 });
 
-describe("isValidSubjectPhaseSlug", () => {
-  const testSubjectPhaseOptions: SubjectPhaseOptions = [
-    {
-      title: "English",
-      slug: "english",
-      phases: [
-        { title: "Primary", slug: "primary" },
-        { title: "Secondary", slug: "secondary" },
-      ],
-      ks4_options: [
-        { title: "AQA", slug: "aqa" },
-        { title: "Edexcel", slug: "edexcel" },
-      ],
-      keystages: [
-        { title: "KS1", slug: "ks1" },
-        { title: "KS3", slug: "ks3" },
-      ],
-      cycle: "1",
-    },
-  ];
+const testSubjectPhaseOptions: SubjectPhaseOptions = [
+  {
+    title: "English",
+    slug: "english",
+    phases: [
+      { title: "Primary", slug: "primary" },
+      { title: "Secondary", slug: "secondary" },
+    ],
+    ks4_options: [
+      { title: "AQA", slug: "aqa" },
+      { title: "Edexcel", slug: "edexcel" },
+    ],
+    keystages: [
+      { title: "KS1", slug: "ks1" },
+      { title: "KS3", slug: "ks3" },
+    ],
+    cycle: "1",
+  },
+];
 
+describe("isValidSubjectPhaseSlug", () => {
   it("valid to return true", () => {
     expect(
       isValidSubjectPhaseSlug(testSubjectPhaseOptions, {
@@ -75,5 +80,41 @@ describe("isValidSubjectPhaseSlug", () => {
         ks4OptionSlug: null,
       }),
     ).toEqual(false);
+  });
+});
+
+describe("getKs4RedirectSlug", () => {
+  it("return undefined if ks4OptionSlug specified", () => {
+    expect(
+      getKs4RedirectSlug(testSubjectPhaseOptions, {
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        ks4OptionSlug: "aqa",
+      }),
+    ).toEqual(undefined);
+  });
+
+  it("return undefined if no match", () => {
+    expect(
+      getKs4RedirectSlug(testSubjectPhaseOptions, {
+        subjectSlug: "test",
+        phaseSlug: "secondary",
+        ks4OptionSlug: null,
+      }),
+    ).toEqual(undefined);
+  });
+
+  it("return correct default when specified", () => {
+    expect(
+      getKs4RedirectSlug(testSubjectPhaseOptions, {
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        ks4OptionSlug: null,
+      }),
+    ).toEqual({
+      subjectSlug: "english",
+      phaseSlug: "secondary",
+      ks4OptionSlug: KS4_EXAMBOARD_PREFERENCE["english"],
+    });
   });
 });

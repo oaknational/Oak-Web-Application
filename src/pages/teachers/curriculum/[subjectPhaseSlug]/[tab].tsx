@@ -48,6 +48,7 @@ import {
 import { sortYears } from "@/utils/curriculum/sorting";
 import {
   CurriculumSelectionSlugs,
+  getKs4RedirectSlug,
   isValidSubjectPhaseSlug,
   parseSubjectPhaseSlug,
 } from "@/utils/curriculum/slugs";
@@ -580,9 +581,20 @@ export const getStaticProps: GetStaticProps<
 
       const isValid = isValidSubjectPhaseSlug(validSubjectPhases, slugs);
       if (!isValid) {
-        throw new OakError({
-          code: "curriculum-api/not-found",
-        });
+        const redirect = getKs4RedirectSlug(validSubjectPhases, slugs);
+        if (redirect) {
+          const { subjectSlug, phaseSlug, ks4OptionSlug } = redirect;
+          return {
+            redirect: {
+              destination: `/teachers/curriculum/${subjectSlug}-${phaseSlug}-${ks4OptionSlug}/${tab}`,
+              permanent: false,
+            },
+          };
+        } else {
+          throw new OakError({
+            code: "curriculum-api/not-found",
+          });
+        }
       }
 
       const curriculumOverviewTabData = await curriculumApi.curriculumOverview({
