@@ -127,6 +127,7 @@ const curriculumVisualiserFixture = {
           cycle: "1",
           why_this_why_now: null,
           description: null,
+          state: "published",
         },
       ],
       childSubjects: [],

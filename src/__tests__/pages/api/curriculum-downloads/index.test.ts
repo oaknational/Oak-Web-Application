@@ -1,42 +1,51 @@
-import handler, {
-  curriculumDownloadQueryProps,
-} from "../../../../pages/api/curriculum-downloads/index";
+import handler from "../../../../pages/api/curriculum-downloads/index";
 import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
+
+import curriculumUnitsTabFixture from "./fixtures/curriculumUnitsIncludeNew.json";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 const fetch = jest.spyOn(global, "fetch") as jest.Mock;
 
-const createReqRes = (slugs: curriculumDownloadQueryProps) => {
-  const { req, res } = createNextApiMocks({
-    query: slugs,
-  });
+const LAST_REFRESH = new Date();
+const LAST_REFRESH_AS_TIME = new Date().getTime();
 
-  return { req, res };
-};
+const curriculumUnitsMock = jest.fn<
+  ReturnType<typeof curriculumApi2023.curriculumUnits>,
+  []
+>(async () => {
+  throw new Error("missing");
+});
+const curriculumOverviewMock = jest.fn<
+  ReturnType<typeof curriculumApi2023.curriculumOverview>,
+  []
+>(async () => import("./fixtures/curriculumOverview.json"));
+const refreshedMVTimeMock = jest.fn<
+  ReturnType<typeof curriculumApi2023.refreshedMVTime>,
+  []
+>(async () => {
+  return {
+    data: [
+      {
+        last_refresh_finish: LAST_REFRESH.toISOString(),
+        materializedview_name: "mv_curriculum_units_including_new_0_0_16",
+      },
+    ],
+  };
+});
 
-jest.mock("../../../../pages-helpers/curriculum/docx/getMvRefreshTime", () => ({
-  __esModule: true,
-  getMvRefreshTime: async () => 1721260802871,
-}));
+const subjectPhaseOptionsIncludeNewMock = jest.fn(
+  async () =>
+    (await import("./fixtures/subjectPhaseOptionsIncludeNew.json")).subjects,
+);
 
 jest.mock("../../../../node-lib/curriculum-api-2023", () => ({
   __esModule: true,
   default: {
-    curriculumUnitsIncludeNew: async (
-      opts: Parameters<
-        (typeof curriculumApi2023)["curriculumUnitsIncludeNew"]
-      >[0],
-    ) => {
-      if (opts.subjectSlug === "english") {
-        return import("./fixtures/curriculumUnitsIncludeNew.json");
-      }
-      throw new Error("Missing");
-    },
-    curriculumOverview: async () =>
-      import("./fixtures/curriculumOverview.json"),
-    subjectPhaseOptionsIncludeNew: async () =>
-      (await import("./fixtures/subjectPhaseOptionsIncludeNew.json")).subjects,
+    curriculumUnits: () => curriculumUnitsMock(),
+    curriculumOverview: () => curriculumOverviewMock(),
+    refreshedMVTime: () => refreshedMVTimeMock(),
+    subjectPhaseOptions: () => subjectPhaseOptionsIncludeNewMock(),
   },
 }));
 
@@ -56,41 +65,116 @@ describe("/api/preview/[[...path]]", () => {
   });
 
   it("redirect if old cache slug", async () => {
-    const { req, res } = createReqRes({
-      mvRefreshTime: "1721260802872",
-      subjectSlug: "english",
-      phaseSlug: "secondary",
-      state: "published",
-      examboardSlug: "aqa",
+    const { req, res } = createNextApiMocks({
+      query: {
+        mvRefreshTime: (LAST_REFRESH.getTime() - 1000).toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+        examboardSlug: "aqa",
+      },
     });
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(307);
   });
 
-  it("error is invalid", async () => {
-    const { req, res } = createReqRes({
-      mvRefreshTime: "1721260802871",
-      subjectSlug: "INVALID",
-      phaseSlug: "INVALID",
-      state: "published",
-      examboardSlug: "aqa",
+  describe("missing", () => {
+    it("error is invalid", async () => {
+      const { req, res } = createNextApiMocks({
+        query: {
+          mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+          subjectSlug: "INVALID",
+          phaseSlug: "INVALID",
+          state: "published",
+          examboardSlug: "aqa",
+        },
+      });
+      await handler(req, res);
+
+      expect(res._getStatusCode()).toBe(404);
+    });
+  });
+
+  it("return 200 if correct cache slug", async () => {
+    curriculumUnitsMock.mockResolvedValue(curriculumUnitsTabFixture);
+    const { req, res } = createNextApiMocks({
+      query: {
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+        examboardSlug: "aqa",
+      },
+    });
+    await handler(req, res);
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(res._getStatusCode()).toBe(200);
+  });
+
+  it("return 200 if correct cache slug", async () => {
+    curriculumUnitsMock.mockResolvedValue(curriculumUnitsTabFixture);
+    const { req, res } = createNextApiMocks({
+      query: {
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+        examboardSlug: "wjec",
+      },
+    });
+    await handler(req, res);
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(res._getStatusCode()).toBe(200);
+  });
+
+  it("returns 404 if units is not present", async () => {
+    // @ts-expect-error undefined to ensure test is failing properly
+    curriculumUnitsMock.mockResolvedValue(undefined);
+    const { req, res } = createNextApiMocks({
+      query: {
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+        examboardSlug: "aqa",
+      },
     });
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(404);
   });
 
-  it("return 200 if correct cache slug", async () => {
-    const { req, res } = createReqRes({
-      mvRefreshTime: "1721260802871",
-      subjectSlug: "english",
-      phaseSlug: "secondary",
-      state: "published",
-      examboardSlug: "aqa",
+  it("returns 200 if examboard not present", async () => {
+    // @ts-expect-error undefined to ensure test is failing properly
+    curriculumUnitsMock.mockResolvedValue(undefined);
+    const { req, res } = createNextApiMocks({
+      query: {
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "primary",
+        state: "published",
+      },
     });
     await handler(req, res);
 
-    expect(res._getStatusCode()).toBe(200);
+    expect(res._getStatusCode()).toBe(404);
+  });
+
+  it("returns 404 if state is new", async () => {
+    const { req, res } = createNextApiMocks({
+      query: {
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "new",
+        examboardSlug: "aqa",
+      },
+    });
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(404);
   });
 });

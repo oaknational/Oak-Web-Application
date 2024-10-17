@@ -96,8 +96,8 @@ export const PupilViewsLessonOverview = ({
       lessonReviewSections.find(
         (section) => !sectionResults[section]?.isComplete,
       ) ?? "review";
-    trackSectionStarted(nextSection);
     proceedToNextSection();
+    trackSectionStarted(nextSection);
   };
 
   return (
