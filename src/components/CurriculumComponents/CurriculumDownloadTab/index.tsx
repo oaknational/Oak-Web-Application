@@ -32,7 +32,6 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
-import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import {
   PhaseValueType,
@@ -41,6 +40,7 @@ import {
 } from "@/browser-lib/avo/Avo";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { unionOrNull } from "@/utils/narrowToUnion";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 function ScrollIntoViewWhenVisisble({
   children,

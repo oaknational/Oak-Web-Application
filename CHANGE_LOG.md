@@ -1,3 +1,50 @@
+# [1.600.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.599.0...v1.600.0) (2024-10-17)
+
+
+### Bug Fixes
+
+* only report uniqueness error on non canonical pages ([13d5be7](https://github.com/oaknational/Oak-Web-Application/commit/13d5be789eab1b6ca23d553c3372aad5c63ddd49))
+* remove outdated mocks ([a2d10cb](https://github.com/oaknational/Oak-Web-Application/commit/a2d10cb7fcf9f15ac467fbee8ab26f122e05db4f))
+* update mock and test types ([8a857d6](https://github.com/oaknational/Oak-Web-Application/commit/8a857d68baed3aed183d0fb328cd16b9bb13c5dc))
+* use correct fallback icon on canonical lesson header ([217e332](https://github.com/oaknational/Oak-Web-Application/commit/217e332f275573bbf26721a1f2fea2ac63c0d120))
+* use lesson slug for non canonical browse queries as well ([4e76d8d](https://github.com/oaknational/Oak-Web-Application/commit/4e76d8dbb2659482f8aa17f1acbc00e571c84c3b))
+* use non null variant unit title when constructing breadcrumbs and enforce canonical page type ([7ea2ad6](https://github.com/oaknational/Oak-Web-Application/commit/7ea2ad663c064b7df5aeb0f0697b9076a7927d47))
+
+
+### Features
+
+* add canonical share page ([1e0ecc7](https://github.com/oaknational/Oak-Web-Application/commit/1e0ecc73a97781249339206ae5cc12d687deb3b0))
+* also redirect downloads to canonical page ([d8112dc](https://github.com/oaknational/Oak-Web-Application/commit/d8112dc792b75f17b15d71f41c4ec97d1f9347b0))
+* use canonical data for share link props ([9605c20](https://github.com/oaknational/Oak-Web-Application/commit/9605c2030bc8e9361c7ba189d5776cc0c015b748))
+
+# [1.599.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.4...v1.599.0) (2024-10-17)
+
+
+### Features
+
+* added fixture generation via script and updated some tests to use them ([3f27ff5](https://github.com/oaknational/Oak-Web-Application/commit/3f27ff531cfd7531ca0f3f997202a6253de54a34))
+
+## [1.598.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.3...v1.598.4) (2024-10-17)
+
+
+### Bug Fixes
+
+* focus -> focus-visible for focus state in lot picker ([20e5b20](https://github.com/oaknational/Oak-Web-Application/commit/20e5b2061a6a731b9b4045b857578f65e27fd348))
+
+## [1.598.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.2...v1.598.3) (2024-10-17)
+
+
+### Bug Fixes
+
+* added isFocusVisible to isFocused condition so only applies for keyboard users ([4e7b02e](https://github.com/oaknational/Oak-Web-Application/commit/4e7b02ed19c27f0176e9d8aa2c30290cc4d955f3))
+
+## [1.598.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.1...v1.598.2) (2024-10-17)
+
+
+### Bug Fixes
+
+* simplify and fix tracking event for opening unit modal in curriculum visualiser ([4467776](https://github.com/oaknational/Oak-Web-Application/commit/4467776b8a7a8ad4d7b1c4c5291562de9a831767))
+
 ## [1.598.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.0...v1.598.1) (2024-10-17)
 
 

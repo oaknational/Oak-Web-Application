@@ -1,13 +1,16 @@
 import {
   lessonContentFixture,
+  lessonDataFixture,
   multipleChoiceQuestion,
   programmeFieldsFixture,
+  unitDataFixture,
 } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
 
-import lessonShare, { constructShareableResources } from "./lessonShare.query";
+import lessonShare from "./lessonShare.query";
 import { lessonShareSchema } from "./lessonShare.schema";
+import { constructShareableResources } from "./constructShareableResources";
 
 describe("lessonShare()", () => {
   test("throws a not found error if no lesson is found", async () => {
@@ -112,6 +115,12 @@ describe("lessonShare()", () => {
               unit_title: "Unit Title",
               is_legacy: true,
               programme_fields: programmeFieldsFixture(),
+              lesson_data: lessonDataFixture(),
+              programme_slug: "programme-slug",
+              lesson_slug: "lesson-slug",
+              unit_slug: "unit-slug",
+              unit_data: unitDataFixture(),
+              supplementary_data: { unit_order: 1, order_in_unit: 1 },
             },
           ],
         }),
@@ -121,10 +130,10 @@ describe("lessonShare()", () => {
       unitSlug: "unit-slug",
       programmeSlug: "programme-slug",
     });
-
-    expect(lessonShareSchema.parse(res)).toEqual(res);
-    expect(res.shareableResources).toHaveLength(4);
-    const starterQuiz = res.shareableResources.find(
+    const parsed = lessonShareSchema.parse(res);
+    expect(parsed).toEqual(res);
+    expect(parsed.shareableResources).toHaveLength(4);
+    const starterQuiz = parsed.shareableResources.find(
       (r) => r.type === "intro-quiz-questions",
     );
     expect(starterQuiz?.metadata).toBe("1 question");
