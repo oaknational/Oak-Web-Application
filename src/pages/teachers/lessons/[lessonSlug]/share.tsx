@@ -14,42 +14,34 @@ import {
 import getPageProps from "@/node-lib/getPageProps";
 import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.view";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { LessonShareCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 
-export type LessonSharePageProps = {
-  curriculumData: LessonShareData;
+export type LessonShareCanonicalPageProps = {
+  curriculumData: LessonShareCanonical;
 };
 
-const LessonSharePage: NextPage<LessonSharePageProps> = ({
+const LessonShareCanonicalPage: NextPage<LessonShareCanonicalPageProps> = ({
   curriculumData,
 }) => {
-  const { lessonTitle, keyStageSlug, subjectTitle } = curriculumData;
+  const { lessonTitle } = curriculumData;
 
   return (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson Share: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
+          title: `Lesson Share: ${lessonTitle}`,
           description:
             "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
-          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${
-            curriculumData.programmeSlug
-          }/units/${curriculumData.unitSlug}/lessons/${
-            curriculumData.lessonSlug
-          }`,
         }),
       }}
     >
-      <LessonShare isCanonical={false} lesson={curriculumData} />
+      <LessonShare isCanonical={true} lesson={curriculumData} />
     </AppLayout>
   );
 };
 
 export type URLParams = {
   lessonSlug: string;
-  programmeSlug: string;
-  unitSlug: string;
 };
 
 export const getStaticPaths = async () => {
@@ -65,22 +57,20 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  LessonSharePageProps,
+  LessonShareCanonicalPageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
-    page: "downloads::getStaticProps",
+    page: "share::getStaticProps",
     context,
     getProps: async () => {
       if (!context.params) {
         throw new Error("No context.params");
       }
-      const { lessonSlug, programmeSlug, unitSlug } = context.params;
+      const { lessonSlug } = context.params;
 
       const curriculumData =
-        await curriculumApi2023.lessonShare<LessonShareData>({
-          programmeSlug,
-          unitSlug,
+        await curriculumApi2023.lessonShare<LessonShareCanonical>({
           lessonSlug,
         });
 
@@ -90,7 +80,7 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const results: GetStaticPropsResult<LessonSharePageProps> = {
+      const results: GetStaticPropsResult<LessonShareCanonicalPageProps> = {
         props: {
           curriculumData,
         },
@@ -100,4 +90,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonSharePage;
+export default LessonShareCanonicalPage;

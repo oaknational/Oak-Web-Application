@@ -1,7 +1,4 @@
-import {
-  InputMaybe,
-  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
-} from "../../generated/sdk";
+import { constructLessonBrowseQuery } from "../../helpers";
 
 import lessonDownloadsSchema, {
   downloadsAssetData,
@@ -26,22 +23,11 @@ const lessonDownloadsQuery =
   }): Promise<T> => {
     const { lessonSlug, unitSlug, programmeSlug } = args;
 
-    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
-      {};
-
-    const canonicalLesson = !unitSlug && !programmeSlug;
-
-    if (canonicalLesson) {
-      browseDataWhere["lesson_slug"] = { _eq: lessonSlug };
-    }
-
-    if (unitSlug) {
-      browseDataWhere["unit_slug"] = { _eq: unitSlug };
-    }
-
-    if (programmeSlug) {
-      browseDataWhere["programme_slug"] = { _eq: programmeSlug };
-    }
+    const browseDataWhere = constructLessonBrowseQuery({
+      programmeSlug,
+      unitSlug,
+      lessonSlug,
+    });
 
     const res = await sdk.lessonDownloads({ lessonSlug, browseDataWhere });
 
@@ -107,6 +93,7 @@ const lessonDownloadsQuery =
       rawSyntheticUVLessonSchema.parse(bd),
     );
 
+    const canonicalLesson = !unitSlug && !programmeSlug;
     if (canonicalLesson) {
       const canonicalLessonDownloads = constructCanonicalLessonDownloads(
         downloads,
