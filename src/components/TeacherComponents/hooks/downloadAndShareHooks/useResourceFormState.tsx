@@ -57,7 +57,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const [preselectAll, setPreselectAll] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
-  const [schoolUrn, setSchoolUrn] = useState(0);
+  const [schoolUrn, setSchoolUrn] = useState("");
   const authFlagEnabled =
     useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
   const { isSignedIn, user } = useUser();

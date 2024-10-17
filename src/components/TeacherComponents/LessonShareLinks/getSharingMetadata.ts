@@ -17,7 +17,7 @@ const pupilsPath = (lessonSlug: string) =>
 export type GetSharingMetadataParams = {
   lessonSlug: string;
   selectedActivities?: Array<ResourceType>;
-  schoolUrn?: number;
+  schoolUrn?: string;
   linkConfig: ShareLinkConfig;
 };
 
