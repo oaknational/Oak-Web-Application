@@ -1,3 +1,10 @@
+## [1.598.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.0...v1.598.1) (2024-10-17)
+
+
+### Bug Fixes
+
+* amend test file ([b05e4e0](https://github.com/oaknational/Oak-Web-Application/commit/b05e4e0fbcdd00e90bb592d8e7be511fba9249d4))
+
 # [1.598.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.597.1...v1.598.0) (2024-10-17)
 
 
