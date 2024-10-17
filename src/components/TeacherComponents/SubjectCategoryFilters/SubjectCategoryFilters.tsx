@@ -5,8 +5,8 @@ import {
   OakHeading,
   OakIconProps,
   OakSearchFilterCheckBox,
+  OakFieldset,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import { Category } from "@/node-lib/curriculum-api-2023/queries/unitListing/filters/getAllCategories";
@@ -21,12 +21,6 @@ type SubjectCategoryFiltersProps = {
   activeMobileFilter?: string;
   setCategory?: React.Dispatch<React.SetStateAction<string>>;
 };
-
-const StyledFieldset = styled.fieldset`
-  border: 0px;
-  margin: 0;
-  padding: 0;
-`;
 
 const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
   subjectCategories,
@@ -50,7 +44,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
       $borderColor={isMobile ? undefined : "border-neutral-lighter"}
       $flexGrow={1}
     >
-      <StyledFieldset>
+      <OakFieldset>
         <OakHeading
           tag="h3"
           as={"legend"}
@@ -162,7 +156,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
             />
           ))}
         </OakFlex>
-      </StyledFieldset>
+      </OakFieldset>
     </OakFlex>
   );
 };
