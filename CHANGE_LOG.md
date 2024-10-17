@@ -1,3 +1,10 @@
+# [1.596.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.595.0...v1.596.0) (2024-10-17)
+
+
+### Features
+
+* changed gql to use new units query ([5a79505](https://github.com/oaknational/Oak-Web-Application/commit/5a795055929d876a7abbcceafa072407d917aec5))
+
 # [1.595.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.594.1...v1.595.0) (2024-10-17)
 
 
