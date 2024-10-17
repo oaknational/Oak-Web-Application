@@ -7,10 +7,8 @@ import {
   OakSpan,
 } from "@oaknational/oak-components";
 import { Control, UseFormTrigger, useForm } from "react-hook-form";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
-
-import { setQueryParamsInOnboardingForm } from "./setQueryParams";
+import { useEffect } from "react";
 
 import OnboardingForm from "@/components/TeacherComponents/OnboardingForm/OnboardingForm";
 import {
@@ -21,6 +19,7 @@ import {
 import { OnboardingLayout } from "@/components/TeacherComponents/OnboardingLayout/OnboardingLayout";
 import FieldError from "@/components/SharedComponents/FieldError";
 import { resolveOakHref } from "@/common-lib/urls";
+import { decodeOnboardingDataQueryParam } from "@/components/TeacherComponents/OnboardingForm/onboardingDataQueryParam";
 
 export const oakSupportMap = {
   curriculumDesign: "To help with our curriculum design",
@@ -36,6 +35,8 @@ export const oakSupportMap = {
 export type OakSupportKey = keyof typeof oakSupportMap;
 
 const HowCanOakSupport = () => {
+  const router = useRouter();
+  const onboardingState = decodeOnboardingDataQueryParam(router.query);
   const {
     formState,
     setValue,
@@ -48,6 +49,7 @@ const HowCanOakSupport = () => {
     resolver: zodResolver(extendedUseOfOakSchema),
     mode: "onBlur",
     defaultValues: {
+      ...onboardingState,
       curriculumDesign: false,
       departmentResources: false,
       enhanceSkills: false,
@@ -55,19 +57,16 @@ const HowCanOakSupport = () => {
       disruptionLearning: false,
     },
   });
-  const router = useRouter();
+
+  useEffect(() => {
+    trigger();
+  }, [trigger]);
 
   const handleToggleCheckbox = (key: OakSupportKey) => {
     const currentValue = getValues(key);
     setValue(key, !currentValue);
     clearErrors(key);
   };
-
-  useEffect(() => {
-    const queryData = router.query;
-    setQueryParamsInOnboardingForm(queryData, setValue);
-    trigger();
-  }, [router.query, setValue, trigger]);
 
   const hasMissingFormData = Object.values(formState.errors).some(
     (error) => error.message !== undefined,
@@ -91,6 +90,7 @@ const HowCanOakSupport = () => {
           <OakSecondaryButton
             width="100%"
             disabled={hasMissingFormData || isSubmitting}
+            name="skip"
           >
             Skip
           </OakSecondaryButton>

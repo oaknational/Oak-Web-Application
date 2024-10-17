@@ -31,8 +31,63 @@ describe("7_ourPartner", () => {
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {
+        curriculumPartnerOverviews: [{ curriculumPartner: {}, partnerBio: "" }],
+      } as CombinedCurriculumData,
+    });
+
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
+  });
+
+  it("renders with one partner from curriculum partner overview", async () => {
+    const zip = await generateEmptyDocx();
+    await generate(zip, {
+      data: {
         partnerBio: "testing",
-        curriculumPartner: {},
+        curriculumPartnerOverviews: [
+          {
+            curriculumPartner: {
+              image: {
+                asset: {
+                  url: EMPTY_PNG,
+                },
+              },
+            },
+            partnerBio: "",
+          },
+        ],
+      } as CombinedCurriculumData,
+    });
+
+    expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
+  });
+
+  it("renders multiple curriculum partners from curriculum partner overview", async () => {
+    const zip = await generateEmptyDocx();
+    await generate(zip, {
+      data: {
+        partnerBio: "testing",
+        curriculumPartnerOverviews: [
+          {
+            curriculumPartner: {
+              image: {
+                asset: {
+                  url: EMPTY_PNG,
+                },
+              },
+            },
+            partnerBio: "",
+          },
+          {
+            curriculumPartner: {
+              image: {
+                asset: {
+                  url: EMPTY_PNG,
+                },
+              },
+            },
+            partnerBio: "",
+          },
+        ],
       } as CombinedCurriculumData,
     });
 
