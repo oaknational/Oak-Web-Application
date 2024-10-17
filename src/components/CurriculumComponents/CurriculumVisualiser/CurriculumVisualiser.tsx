@@ -345,7 +345,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                       );
                       return (
                         <Button
-                          $font={"heading-6"}
                           $mb={20}
                           $mr={24}
                           key={tier.tier_slug}
