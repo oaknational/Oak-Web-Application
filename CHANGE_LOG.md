@@ -1,3 +1,10 @@
+## [1.597.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.597.0...v1.597.1) (2024-10-17)
+
+
+### Bug Fixes
+
+* examboard changed ks4_option and switch to subjectPhaseOptions ([d6479a6](https://github.com/oaknational/Oak-Web-Application/commit/d6479a62c4a4c1d27bbce3ec144c1430b9450fd8))
+
 # [1.597.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.596.0...v1.597.0) (2024-10-17)
 
 
