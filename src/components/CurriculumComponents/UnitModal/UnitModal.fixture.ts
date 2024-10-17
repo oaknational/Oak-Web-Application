@@ -62,6 +62,7 @@ export const mockUnit: Unit = {
   cycle: "1",
   why_this_why_now: null,
   description: null,
+  state: "published",
 };
 
 export const mockYearData = {
@@ -118,6 +119,7 @@ export const mockUnitKS4: Unit = {
   cycle: "1",
   why_this_why_now: null,
   description: null,
+  state: "published",
 };
 
 const optionalUnits = [
@@ -132,6 +134,7 @@ const optionalUnits = [
     why_this_why_now: null,
     description: null,
     lessons,
+    state: "published",
   },
   {
     title: "Test optional unit 2",
@@ -144,6 +147,7 @@ const optionalUnits = [
     why_this_why_now: null,
     description: null,
     lessons,
+    state: "published",
   },
   {
     title: "Test optional unit 3",
@@ -156,6 +160,7 @@ const optionalUnits = [
     why_this_why_now: null,
     description: null,
     lessons,
+    state: "published",
   },
 ];
 
