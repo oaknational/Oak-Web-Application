@@ -62,6 +62,7 @@ export const Default: Story = {
         {" "}
         <LessonEngineContext.Provider
           value={{
+            timeStamp: { section: "review", time: 0 },
             currentSection: "review",
             sectionResults: {
               "exit-quiz": {

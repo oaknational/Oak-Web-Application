@@ -106,6 +106,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -199,6 +200,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -273,6 +275,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -355,6 +358,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -437,6 +441,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -523,6 +528,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -609,6 +615,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -710,6 +717,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -811,6 +819,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -874,6 +883,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -941,6 +951,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -1063,6 +1074,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -1175,6 +1187,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -1233,6 +1246,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -1295,6 +1309,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -1392,6 +1407,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -1500,6 +1516,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -1588,6 +1605,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -1690,6 +1708,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -1792,6 +1811,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -1853,6 +1873,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -1935,6 +1956,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -2072,6 +2094,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -2219,6 +2242,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -2301,6 +2325,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -2383,6 +2408,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -2489,6 +2515,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -2590,6 +2617,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -2651,6 +2679,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -2723,6 +2752,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -2790,6 +2820,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -2907,6 +2938,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -3018,6 +3050,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -3130,6 +3163,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -3218,6 +3252,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -3320,6 +3355,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -3423,6 +3459,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -3506,6 +3543,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -3587,6 +3625,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -3663,6 +3702,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -3759,6 +3799,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -3855,6 +3896,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -3946,6 +3988,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -4039,6 +4082,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -4120,6 +4164,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -4207,6 +4252,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -4299,6 +4345,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -4360,6 +4407,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -4435,6 +4483,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -4520,6 +4569,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -4622,6 +4672,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -4695,6 +4746,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -4789,6 +4841,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -4875,6 +4928,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -5011,6 +5065,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -5067,6 +5122,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -5123,6 +5179,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -5224,6 +5281,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -5315,6 +5373,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -5402,6 +5461,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -5523,6 +5583,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -5639,6 +5700,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -5721,6 +5783,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -5802,6 +5865,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -5924,6 +5988,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -6051,6 +6116,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -6159,6 +6225,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -6239,6 +6306,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -6342,6 +6410,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -6427,6 +6496,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -6543,6 +6613,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -6609,6 +6680,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -6690,6 +6762,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -6766,6 +6839,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -6854,6 +6928,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -6941,6 +7016,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7008,6 +7084,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7064,6 +7141,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7144,6 +7222,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7219,6 +7298,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7275,6 +7355,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7331,6 +7412,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7438,6 +7520,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7533,6 +7616,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7631,6 +7715,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7734,6 +7819,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7836,6 +7922,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -7920,6 +8007,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -8004,6 +8092,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -8132,6 +8221,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -8290,6 +8380,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -8373,6 +8464,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -8476,6 +8568,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -8578,6 +8671,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -8651,6 +8745,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -8718,6 +8813,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -8798,6 +8894,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -8888,6 +8985,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9010,6 +9108,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9122,6 +9221,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9198,6 +9298,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9273,6 +9374,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9375,6 +9477,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9477,6 +9580,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9574,6 +9678,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9640,6 +9745,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9706,6 +9812,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9802,6 +9909,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9898,6 +10006,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -9999,6 +10108,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -10100,6 +10210,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -10192,6 +10303,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -10277,6 +10389,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -10389,6 +10502,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -10491,6 +10605,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -10578,6 +10693,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -10665,6 +10781,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -10757,6 +10874,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -10849,6 +10967,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -10914,6 +11033,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -10978,6 +11098,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -11054,6 +11175,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -11125,6 +11247,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -11211,6 +11334,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -11304,6 +11428,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -11392,6 +11517,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -11499,6 +11625,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -11605,6 +11732,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -11693,6 +11821,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -11795,6 +11924,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -11898,6 +12028,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -11979,6 +12110,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -12060,6 +12192,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -12177,6 +12310,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -12314,6 +12448,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -12456,6 +12591,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -12518,6 +12654,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -12579,6 +12716,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -12646,6 +12784,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -12702,6 +12841,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -12775,6 +12915,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -12877,6 +13018,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -12969,6 +13111,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13035,6 +13178,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13101,6 +13245,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13186,6 +13331,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13270,6 +13416,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13354,6 +13501,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13426,6 +13574,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13493,6 +13642,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13597,6 +13747,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13694,6 +13845,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13766,6 +13918,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13852,6 +14005,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -13940,6 +14094,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14003,6 +14158,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14067,6 +14223,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14136,6 +14293,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14210,6 +14368,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14312,6 +14471,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14397,6 +14557,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14482,6 +14643,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14556,6 +14718,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14622,6 +14785,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14688,6 +14852,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14763,6 +14928,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14838,6 +15004,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -14916,6 +15083,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -15018,6 +15186,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -15112,6 +15281,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -15206,6 +15376,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -15342,6 +15513,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -15435,6 +15607,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -15523,6 +15696,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -15625,6 +15799,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -15719,6 +15894,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -15785,6 +15961,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -15851,6 +16028,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -15943,6 +16121,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16044,6 +16223,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16135,6 +16315,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16191,6 +16372,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16247,6 +16429,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16312,6 +16495,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16376,6 +16560,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16478,6 +16663,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16585,6 +16771,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16696,6 +16883,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16762,6 +16950,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16840,6 +17029,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16918,6 +17108,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -16994,6 +17185,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17070,6 +17262,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17135,6 +17328,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17205,6 +17399,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17292,6 +17487,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17380,6 +17576,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17444,6 +17641,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17507,6 +17705,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17573,6 +17772,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17639,6 +17839,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17734,6 +17935,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17831,6 +18033,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -17949,6 +18152,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -18087,6 +18291,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -18153,6 +18358,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -18219,6 +18425,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -18291,6 +18498,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -18393,6 +18601,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -18485,6 +18694,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -18587,6 +18797,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -18690,6 +18901,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -18769,6 +18981,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -18848,6 +19061,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -18934,6 +19148,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -19020,6 +19235,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -19104,6 +19320,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -19188,6 +19405,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -19289,6 +19507,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -19390,6 +19609,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -19461,6 +19681,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
       {
         connection_prior_unit_description:
@@ -19537,6 +19758,7 @@ const curriculumUnitsTabFixture = (
         cycle: "1",
         why_this_why_now: null,
         description: null,
+        state: "published",
       },
     ],
     ...partial,
