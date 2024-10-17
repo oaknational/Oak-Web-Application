@@ -41,6 +41,7 @@ import {
 } from "@/browser-lib/avo/Avo";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { unionOrNull } from "@/utils/narrowToUnion";
+import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -251,7 +252,9 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       emailSupplied: email != null,
       schoolOption: schoolOption,
       schoolUrn:
-        !schoolId || schoolId === "homeschool" ? 0 : parseInt(schoolId),
+        !schoolId || schoolId === "homeschool"
+          ? ""
+          : extractUrnAndSchool(schoolId).urn || "",
       schoolName: dataSchoolName || "",
       resourceFileType: resourceFileType,
       tierName: unionOrNull<TierNameValueType>(
