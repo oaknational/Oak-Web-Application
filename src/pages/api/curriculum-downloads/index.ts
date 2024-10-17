@@ -14,6 +14,7 @@ import docx, {
   CurriculumUnitsTabDataIncludeNewWithOrder,
 } from "@/pages-helpers/curriculum/docx";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 
 export const curriculumDownloadQuerySchema = z.object({
   mvRefreshTime: z.string(),
@@ -176,11 +177,13 @@ async function getData(opts: {
   }
 
   const subjectPhaseOptions = {
-    subjects: await curriculumApi2023.subjectPhaseOptionsIncludeNew(),
+    subjects: await curriculumApi2023.subjectPhaseOptions({
+      cycle: isCycleTwoEnabled() ? "2" : "1",
+    }),
   };
 
   const subject = subjectPhaseOptions.subjects.find((subject) => {
-    return subject.slug === subjectSlug && subject.state === state;
+    return subject.slug === subjectSlug;
   }) as SubjectPhasePickerData["subjects"][number] | undefined;
   const ks4Option =
     subject?.ks4_options?.find(

@@ -31,6 +31,7 @@ import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider"
 import { QuizResults } from "@/components/PupilComponents/QuizResults";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
+import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -52,12 +53,14 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     browseData: { programmeFields, lessonSlug, isLegacy },
   } = props;
   const { phase = "primary", yearDescription, subject } = programmeFields;
+  const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
     updateCurrentSection,
     sectionResults,
     isLessonComplete,
     lessonReviewSections,
   } = useLessonEngineContext();
+  const { track } = usePupilAnalytics();
   const getSectionLinkProps = useGetSectionLinkProps();
 
   const { finalFeedback } = useLessonReviewFeedback(
@@ -144,11 +147,41 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       })}`;
       navigator.clipboard.writeText(shareUrl);
       setIsAttemptingShare("shared");
+      if (sectionResults["exit-quiz"]?.isComplete) {
+        track.activityResultsShared({
+          shareMedium: "copy-link",
+          pupilExitQuizGrade: sectionResults["exit-quiz"]?.grade ?? 0,
+          pupilExitQuizNumQuestions:
+            sectionResults["exit-quiz"]?.numQuestions ?? 0,
+          pupilStarterQuizGrade: sectionResults["starter-quiz"]?.grade ?? 0,
+          pupilStarterQuizNumQuesions:
+            sectionResults["starter-quiz"]?.numQuestions ?? 0,
+        });
+      }
     }
   };
 
   if (phase === "foundation") {
     throw new Error("Foundation phase is not supported");
+  }
+
+  if (trackingSent === false) {
+    track.lessonSummaryReviewed({
+      pupilWorksheetAvailable:
+        sectionResults.intro?.worksheetAvailable ?? false,
+      pupilWorksheetDownloaded:
+        sectionResults.intro?.worksheetDownloaded ?? false,
+      pupilExitQuizGrade: sectionResults["exit-quiz"]?.grade ?? null,
+      pupilExitQuizNumQuestions:
+        sectionResults["exit-quiz"]?.numQuestions ?? null,
+      pupilStarterQuizGrade: sectionResults["starter-quiz"]?.grade ?? null,
+      pupilStarterQuizNumQuesions:
+        sectionResults["starter-quiz"]?.numQuestions ?? null,
+      pupilVideoPlayed: sectionResults.video?.played ?? false,
+      pupilVideoDurationSeconds: sectionResults.video?.duration ?? 0,
+      pupilVideoTimeElapsedSeconds: sectionResults.video?.timeElapsed ?? 0,
+    });
+    setTrackingSent(true);
   }
 
   return (

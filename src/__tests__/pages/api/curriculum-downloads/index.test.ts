@@ -45,7 +45,7 @@ jest.mock("../../../../node-lib/curriculum-api-2023", () => ({
     curriculumUnits: () => curriculumUnitsMock(),
     curriculumOverview: () => curriculumOverviewMock(),
     refreshedMVTime: () => refreshedMVTimeMock(),
-    subjectPhaseOptionsIncludeNew: () => subjectPhaseOptionsIncludeNewMock(),
+    subjectPhaseOptions: () => subjectPhaseOptionsIncludeNewMock(),
   },
 }));
 

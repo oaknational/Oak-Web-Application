@@ -93,6 +93,7 @@ type LessonEngineState = {
     intro: { isComplete: boolean } & IntroResult;
   }>;
   lessonStarted: boolean;
+  timeStamp: { section: LessonSection; time: number };
 };
 
 const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
@@ -105,6 +106,10 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
         ...currentState,
         currentSection: action.section,
         lessonStarted: true,
+        timeStamp: {
+          section: action.section,
+          time: new Date().getTime(),
+        },
       };
     case "completeActivity": {
       const newState = {
@@ -116,6 +121,10 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
             ...currentState.sections[action.section],
             isComplete: true,
           },
+        },
+        timeStamp: {
+          section: currentState.currentSection,
+          time: new Date().getTime(),
         },
       };
 
@@ -139,6 +148,10 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
         ...currentState,
         currentSection: nextSection,
         lessonStarted: true,
+        timeStamp: {
+          section: nextSection,
+          time: new Date().getTime(),
+        },
       };
     }
     case "updateSectionResult": {
@@ -147,7 +160,6 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
           `Cannot update result for non-review section '${currentState.currentSection}'`,
         );
       }
-
       return {
         ...currentState,
         lessonStarted: true,
@@ -171,6 +183,7 @@ export type LessonSectionResults = LessonEngineState["sections"];
 export type LessonEngineContextType = {
   currentSection: LessonSection;
   sectionResults: LessonSectionResults;
+  timeStamp: { section: LessonSection; time: number };
   isLessonComplete: boolean;
   completeActivity: (section: LessonReviewSection) => void;
   updateCurrentSection: (section: LessonSection) => void;
@@ -210,6 +223,10 @@ export const LessonEngineProvider = memo(
       currentSection: initialSection,
       lessonStarted: false,
       sections: {},
+      timeStamp: {
+        section: initialSection,
+        time: new Date().getTime(),
+      },
     });
     const navigateToSection = useNavigateToSection();
 
@@ -280,6 +297,7 @@ export const LessonEngineProvider = memo(
         value={{
           currentSection: state.currentSection,
           sectionResults: state.sections,
+          timeStamp: state.timeStamp,
           isLessonComplete,
           completeActivity,
           updateCurrentSection,
