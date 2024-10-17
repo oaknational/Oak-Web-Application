@@ -33,6 +33,7 @@ const refreshedMVTimeMock = jest.fn<
     ],
   };
 });
+
 const subjectPhaseOptionsIncludeNewMock = jest.fn(
   async () =>
     (await import("./fixtures/subjectPhaseOptionsIncludeNew.json")).subjects,
@@ -112,6 +113,23 @@ describe("/api/preview/[[...path]]", () => {
     expect(res._getStatusCode()).toBe(200);
   });
 
+  it("return 200 if correct cache slug", async () => {
+    curriculumUnitsMock.mockResolvedValue(curriculumUnitsTabFixture);
+    const { req, res } = createNextApiMocks({
+      query: {
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+        examboardSlug: "wjec",
+      },
+    });
+    await handler(req, res);
+
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(res._getStatusCode()).toBe(200);
+  });
+
   it("returns 404 if units is not present", async () => {
     // @ts-expect-error undefined to ensure test is failing properly
     curriculumUnitsMock.mockResolvedValue(undefined);
@@ -129,16 +147,15 @@ describe("/api/preview/[[...path]]", () => {
     expect(res._getStatusCode()).toBe(404);
   });
 
-  it("returns 404 if overview is not present", async () => {
+  it("returns 200 if examboard not present", async () => {
     // @ts-expect-error undefined to ensure test is failing properly
-    curriculumOverviewMock.mockResolvedValue(undefined);
+    curriculumUnitsMock.mockResolvedValue(undefined);
     const { req, res } = createNextApiMocks({
       query: {
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
         subjectSlug: "english",
-        phaseSlug: "secondary",
+        phaseSlug: "primary",
         state: "published",
-        examboardSlug: "aqa",
       },
     });
     await handler(req, res);

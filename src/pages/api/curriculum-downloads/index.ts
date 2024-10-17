@@ -102,23 +102,11 @@ async function getData(opts: {
           return a.order - b.order;
         }),
     };
-    try {
-      curriculumOverviewTabData = await curriculumApi2023.curriculumOverview({
-        subjectSlug,
-        phaseSlug,
-      });
-    } catch (error) {
-      dataWarnings.push("Overview data is missing, dummy data will be used.");
-      curriculumOverviewTabData = {
-        curriculaDesc:
-          "Curricula description is undefined for this record. Please check the CMS.",
-        subjectTitle:
-          "Subject title is undefined for this record. Please check the CMS.",
-        phaseTitle:
-          "Phase title is undefined for this record. Please check the CMS.",
-        examboardTitle: null,
-      };
-    }
+
+    curriculumOverviewTabData = await curriculumApi2023.curriculumOverview({
+      subjectSlug,
+      phaseSlug,
+    });
 
     curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage({
       previewMode: false,
