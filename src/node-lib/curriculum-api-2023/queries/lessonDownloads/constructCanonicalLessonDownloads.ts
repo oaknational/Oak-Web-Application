@@ -3,7 +3,7 @@ import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
 import { RawSyntheticUVLesson } from "./rawSyntheticUVLesson.schema";
 
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
+import { constructPathwayLesson } from "@/node-lib/curriculum-api-2023/helpers";
 
 const constructCanonicalLessonDownloads = (
   downloads: LessonDownloadsListSchema,
@@ -29,26 +29,7 @@ const constructCanonicalLessonDownloads = (
 
   return browseData.reduce(
     (acc, lesson) => {
-      const unitTitle =
-        lesson.programme_fields.optionality ?? lesson.unit_data.title;
-      const pathwayLesson = {
-        programmeSlug: lesson.programme_slug,
-        unitSlug: lesson.unit_data.slug,
-        unitTitle,
-        keyStageSlug: lesson.programme_fields.keystage_slug,
-        keyStageTitle: toSentenceCase(
-          lesson.programme_fields.keystage_description,
-        ),
-        subjectSlug: lesson.programme_fields.subject_slug,
-        subjectTitle: lesson.programme_fields.subject,
-        lessonCohort: lesson.lesson_data._cohort,
-        examBoardSlug: lesson.programme_fields.examboard_slug,
-        examBoardTitle: lesson.programme_fields.examboard,
-        lessonSlug: lesson.lesson_slug,
-        lessonTitle: lesson.lesson_data.title,
-        tierSlug: lesson.programme_fields.tier_slug,
-        tierTitle: lesson.programme_fields.tier_description,
-      };
+      const pathwayLesson = constructPathwayLesson(lesson);
 
       const pathway = lessonPathwaySchema.parse(pathwayLesson);
       return {
