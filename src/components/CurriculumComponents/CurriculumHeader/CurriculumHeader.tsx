@@ -4,7 +4,7 @@ import {
   OakHeading,
   OakP,
   OakFlex,
-  OakIcon,
+  OakHandDrawnCardWithIcon,
 } from "@oaknational/oak-components";
 
 import CurriculumHeaderTabNav from "../CurriculumHeaderTabNav";
@@ -32,8 +32,8 @@ export type CurriculumHeaderPageProps = {
 };
 
 const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
-  color1 = "aqua",
-  color2 = "aqua30",
+  color1,
+  color2,
   curriculumSelectionSlugs,
   subjectPhaseOptions,
   keyStages,
@@ -137,26 +137,24 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
           />
         </Box>
       </Flex>
-      <Box $background={color1}>
+      <Box $background={color2}>
         {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
         <Flex $pb={[24, 24]} $pt={[20, 30]}>
           <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
             <OakFlex>
-              <Box
-                $background={color2}
-                $borderRadius={6}
-                $minWidth={56}
-                $mr={[12, 26]}
-                $mv={"auto"}
-              >
-                <OakIcon
+              <Box $minWidth={80} $mr={[12, 26]} $mv={"auto"}>
+                <OakHandDrawnCardWithIcon
                   iconName={getValidSubjectIconName(subject.slug)}
+                  fill={"mint50"}
+                  iconWidth={["all-spacing-13", "all-spacing-11"]}
+                  iconHeight={["all-spacing-13", "all-spacing-11"]}
                   $width="all-spacing-13"
                   $height="all-spacing-13"
                   data-testid="subjectIcon"
                   alt=""
                 />
               </Box>
+
               <OakFlex
                 $rowGap={["all-spacing-2", "all-spacing-2"]}
                 $justifyContent={"center"}

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BulletList render 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-eldPxv bjeqlm jsxtWU"
+    >
+      one
+    </div>
+    <div
+      aria-hidden="true"
+      class="sc-fqkvVR sc-eldPxv bjeqlm jsxtWU"
+    >
+      •
+    </div>
+    <div
+      class="sc-fqkvVR sc-eldPxv bjeqlm jsxtWU"
+    >
+      two
+    </div>
+    <div
+      aria-hidden="true"
+      class="sc-fqkvVR sc-eldPxv bjeqlm jsxtWU"
+    >
+      •
+    </div>
+    <div
+      class="sc-fqkvVR sc-eldPxv bjeqlm jsxtWU"
+    >
+      three
+    </div>
+    <div
+      class="sc-fqkvVR sc-eldPxv bjeqlm jsxtWU"
+    >
+      single
+    </div>
+  </div>
+</body>
+`;

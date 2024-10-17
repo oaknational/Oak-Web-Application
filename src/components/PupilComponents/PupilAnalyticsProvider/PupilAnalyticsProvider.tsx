@@ -82,8 +82,6 @@ export const trackingEvents = [
   "contentGuidanceAccepted",
   "contentGuidanceDeclined",
   "activityResultsShared",
-  "activityResultsSharedStarterQuiz",
-  "activityResultsSharedExitQuiz",
   "lessonSummaryReviewed",
   "lessonAccessed",
 ] as const;
@@ -327,16 +325,6 @@ export const PupilAnalyticsProvider = ({
         ...additionalArgs,
         ...args,
       }),
-    activityResultsSharedStarterQuiz: (args) =>
-      track.activityResultsSharedStarterQuiz({
-        ...additionalArgs,
-        ...args,
-      }),
-    activityResultsSharedExitQuiz: (args) =>
-      track.activityResultsSharedExitQuiz({
-        ...additionalArgs,
-        ...args,
-      }),
     lessonSummaryReviewed: (args) =>
       track.lessonSummaryReviewed({
         ...additionalArgs,
@@ -388,7 +376,7 @@ export const getPupilPathwayData = (
   }
 
   return {
-    unitName: browseData.unitData.description ?? "",
+    unitName: browseData.unitData.title ?? "",
     unitSlug: browseData.unitData.slug,
     lessonSlug: browseData.lessonData.slug,
     lessonName: browseData.lessonData.title,
