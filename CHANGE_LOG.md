@@ -1,3 +1,10 @@
+# [1.598.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.597.1...v1.598.0) (2024-10-17)
+
+
+### Features
+
+* added <BulletList/> into <UnitModal/> and changed 'year group' and 'subject' order ([a3b057a](https://github.com/oaknational/Oak-Web-Application/commit/a3b057a247c4ae6f9dce8e66beeba7618bb2f511))
+
 ## [1.597.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.597.0...v1.597.1) (2024-10-17)
 
 
