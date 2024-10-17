@@ -83,7 +83,7 @@ export function createCurriculumDownloadsQuery(
   return query;
 }
 
-export async function trackCurriculumDownload(
+export const trackCurriculumDownload = async (
   data: CurriculumDownloadViewData,
   resourceFileType: ResourceFileTypeValueType,
   slugs: CurriculumSelectionSlugs,
@@ -93,7 +93,7 @@ export async function trackCurriculumDownload(
   analyticsUseCase: AnalyticsUseCaseValueType,
   tierSelected: string | null,
   child_subjects?: { subject: string; subject_slug: string }[],
-) {
+) => {
   const { schoolId, schoolName: dataSchoolName, email, schoolNotListed } = data;
 
   if (!data.termsAndConditions) return;
@@ -134,7 +134,7 @@ export async function trackCurriculumDownload(
     )?.subject,
     examBoardSlug: slugs.ks4OptionSlug,
   });
-}
+};
 
 export type CurriculumDownloadTabProps = {
   mvRefreshTime: number;
@@ -298,7 +298,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     try {
       await downloadFileFromUrl(downloadPath);
     } finally {
-      trackCurriculumDownload(
+      await trackCurriculumDownload(
         data,
         "docx",
         slugs,
