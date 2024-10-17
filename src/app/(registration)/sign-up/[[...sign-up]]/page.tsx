@@ -18,6 +18,7 @@ import { AuthLayout } from "../../auth-layout";
 
 import { getIllustrationAsset } from "@/image-data";
 import CMSImage from "@/components/SharedComponents/CMSImage";
+import withFeatureFlag from "@/hocs/withFeatureFlag";
 
 function ListItem({ children }: PropsWithChildren) {
   return (
@@ -34,7 +35,7 @@ function ListItem({ children }: PropsWithChildren) {
   );
 }
 
-export default function SignUpPage() {
+function SignUpPage() {
   return (
     <AuthLayout
       headerSlot={
@@ -84,3 +85,11 @@ export default function SignUpPage() {
     </AuthLayout>
   );
 }
+
+const SignupPageWithFeatureFlag = withFeatureFlag(
+  SignUpPage,
+  "teacher-download-auth",
+  "with-login",
+);
+
+export default SignupPageWithFeatureFlag;

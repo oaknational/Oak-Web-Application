@@ -15,7 +15,8 @@ const RoleSelectionComponent: NextPage = () => {
 
 const HowCanOakSupportPage = withFeatureFlag(
   withPageAuthRequired(RoleSelectionComponent),
-  "use-auth-owa",
+  "teacher-download-auth",
+  "with-login",
 );
 
 export default HowCanOakSupportPage;

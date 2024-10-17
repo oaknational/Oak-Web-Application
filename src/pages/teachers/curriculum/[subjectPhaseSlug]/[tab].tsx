@@ -199,7 +199,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           keyStages={keyStages}
           color1="mint"
-          color2="mint30"
+          color2="mint"
         />
 
         <Box $background={"white"}>{tabContent}</Box>

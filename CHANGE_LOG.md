@@ -1,3 +1,10 @@
+# [1.595.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.594.1...v1.595.0) (2024-10-17)
+
+
+### Features
+
+* **LESQ-1084:** point the lesson downloads at the experiment feature flag ([894f8c0](https://github.com/oaknational/Oak-Web-Application/commit/894f8c06cc9aa7ea2607faa7dbb932aa8a347646))
+
 ## [1.594.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.594.0...v1.594.1) (2024-10-16)
 
 

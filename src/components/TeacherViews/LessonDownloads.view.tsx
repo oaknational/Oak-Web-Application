@@ -3,8 +3,8 @@ import {
   examboards,
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import { useUser } from "@clerk/nextjs";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
@@ -276,7 +276,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   // TODO remove once we're confident that restrictions are being
   // applied correctly in production
-  const useAuthOwaEnabled = useFeatureFlagEnabled("use-auth-owa");
+  const useAuthOwaEnabled =
+    useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
   useEffect(() => {
     if (useAuthOwaEnabled) {
       console.log("restrictions", {
