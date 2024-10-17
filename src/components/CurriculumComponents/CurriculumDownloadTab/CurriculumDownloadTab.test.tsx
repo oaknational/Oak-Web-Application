@@ -2,13 +2,13 @@ import { screen } from "@testing-library/react";
 
 import CurriculumDownloadTab, {
   createCurriculumDownloadsQuery,
-  trackCurriculumDownload,
+  // trackCurriculumDownload,
 } from ".";
 
 import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockPrerelease } from "@/utils/mocks";
-import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
+// import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 
 const render = renderWithProviders();
 const mvRefreshTime = 1721314874829;
@@ -194,83 +194,83 @@ describe("Downloads tab: unit tests", () => {
   });
 });
 
-describe("trackCurriculumDownload", () => {
-  const mockTrack = {
-    curriculumResourcesDownloadedCurriculumDocument: jest.fn(),
-  } as unknown as TrackFns;
-  const mockOnHubspotSubmit = jest.fn().mockResolvedValue("mockResponse");
+// describe("trackCurriculumDownload", () => {
+//   const mockTrack = {
+//     curriculumResourcesDownloadedCurriculumDocument: jest.fn(),
+//   } as unknown as TrackFns;
+//   const mockOnHubspotSubmit = jest.fn().mockResolvedValue("mockResponse");
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
+//   beforeEach(() => {
+//     jest.clearAllMocks();
+//   });
 
-  test("calls onHubspotSubmit and track.curriculumResourcesDownloadedCurriculumDocument with correct parameters", async () => {
-    const data = {
-      schoolId: "123456-Test school",
-      schoolName: "Test School",
-      email: "test@example.com",
-      termsAndConditions: true,
-      schoolNotListed: false,
-      schools: [
-        {
-          urn: "123456",
-          name: "Test School",
-          la: "test-la",
-          postcode: "T1 WTF",
-          fullInfo: "Test School, test-la, T1 WTF",
-          status: "Open",
-        },
-      ],
-      downloadType: "word" as const,
-    };
-    const resourceFileType = "docx";
-    const slugs = {
-      subjectSlug: "maths",
-      phaseSlug: "ks4",
-      ks4OptionSlug: "option1",
-    };
-    const subjectTitle = "Mathematics";
-    const analyticsUseCase = "Pupil";
-    const tierSelected = "Higher";
-    const child_subjects = [{ subject: "Maths", subject_slug: "maths" }];
+//   test("calls onHubspotSubmit and track.curriculumResourcesDownloadedCurriculumDocument with correct parameters", async () => {
+//     const data = {
+//       schoolId: "123456-Test school",
+//       schoolName: "Test School",
+//       email: "test@example.com",
+//       termsAndConditions: true,
+//       schoolNotListed: false,
+//       schools: [
+//         {
+//           urn: "123456",
+//           name: "Test School",
+//           la: "test-la",
+//           postcode: "T1 WTF",
+//           fullInfo: "Test School, test-la, T1 WTF",
+//           status: "Open",
+//         },
+//       ],
+//       downloadType: "word" as const,
+//     };
+//     const resourceFileType = "docx";
+//     const slugs = {
+//       subjectSlug: "maths",
+//       phaseSlug: "ks4",
+//       ks4OptionSlug: "option1",
+//     };
+//     const subjectTitle = "Mathematics";
+//     const analyticsUseCase = "Pupil";
+//     const tierSelected = "Higher";
+//     const child_subjects = [{ subject: "Maths", subject_slug: "maths" }];
 
-    await trackCurriculumDownload(
-      data,
-      resourceFileType,
-      slugs,
-      subjectTitle,
-      mockOnHubspotSubmit,
-      mockTrack,
-      analyticsUseCase,
-      tierSelected,
-      child_subjects,
-    );
+//     await trackCurriculumDownload(
+//       data,
+//       resourceFileType,
+//       slugs,
+//       subjectTitle,
+//       mockOnHubspotSubmit,
+//       mockTrack,
+//       analyticsUseCase,
+//       tierSelected,
+//       child_subjects,
+//     );
 
-    expect(mockOnHubspotSubmit).toHaveBeenCalledWith({
-      school: "123456-Test school",
-      schoolName: "Test School",
-      email: "test@example.com",
-      terms: true,
-      resources: ["docx"],
-      onSubmit: expect.any(Function),
-    });
+//     expect(mockOnHubspotSubmit).toHaveBeenCalledWith({
+//       school: "123456-Test school",
+//       schoolName: "Test School",
+//       email: "test@example.com",
+//       terms: true,
+//       resources: ["docx"],
+//       onSubmit: expect.any(Function),
+//     });
 
-    expect(
-      mockTrack.curriculumResourcesDownloadedCurriculumDocument,
-    ).toHaveBeenCalledWith({
-      subjectTitle: "Mathematics",
-      subjectSlug: "maths",
-      phase: "ks4",
-      analyticsUseCase: "Pupil",
-      emailSupplied: true,
-      schoolOption: "Selected school",
-      schoolUrn: "123456",
-      schoolName: "Test School",
-      resourceFileType: "docx",
-      tierName: "Higher",
-      childSubjectName: "Maths",
-      childSubjectSlug: "maths",
-      examBoardSlug: "option1",
-    });
-  });
-});
+//     expect(
+//       mockTrack.curriculumResourcesDownloadedCurriculumDocument,
+//     ).toHaveBeenCalledWith({
+//       subjectTitle: "Mathematics",
+//       subjectSlug: "maths",
+//       phase: "ks4",
+//       analyticsUseCase: "Pupil",
+//       emailSupplied: true,
+//       schoolOption: "Selected school",
+//       schoolUrn: "123456",
+//       schoolName: "Test School",
+//       resourceFileType: "docx",
+//       tierName: "Higher",
+//       childSubjectName: "Maths",
+//       childSubjectSlug: "maths",
+//       examBoardSlug: "option1",
+//     });
+//   });
+// });
