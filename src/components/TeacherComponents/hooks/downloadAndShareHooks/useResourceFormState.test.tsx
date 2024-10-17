@@ -30,7 +30,7 @@ const shareProps: UseResourceFormStateProps = {
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: jest.fn(() => true),
+  useFeatureFlagVariantKey: jest.fn(() => "with-login"),
 }));
 
 jest.mock("../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails");
