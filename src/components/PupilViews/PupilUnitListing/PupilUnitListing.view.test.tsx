@@ -11,6 +11,12 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { unitBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/unitBrowseData.fixture";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 
+// Mock the useAnalytics hook
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: jest.fn(() => ({ track: jest.fn() })),
+}));
+
 jest.mock("@oaknational/oak-components", () => {
   return {
     ...jest.requireActual("@oaknational/oak-components"),
@@ -111,9 +117,6 @@ const unitsWithOptionality: UnitsSectionData[] = [
     breadcrumbs: ["Maths", "Year 10"],
   },
 ];
-
-// const unitsWithOptionality = unitSections;
-// unitsWithOptionality[1].units[].push([
 
 const backHrefSlugs = {
   baseSlug: "maths-secondary-year-10",
