@@ -2,11 +2,11 @@ import { FC, useState, useEffect } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import { Unit, YearData } from "../CurriculumVisualiser";
+import BulletList from "../OakComponentsKitchen/BulletList";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button";
-import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/SharedComponents/Card";
 import {
@@ -17,6 +17,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import { notUndefined } from "@/utils/curriculum/types";
 
 type UnitModalProps = {
   unitData: Unit | null;
@@ -135,11 +136,13 @@ const UnitModal: FC<UnitModalProps> = ({
                 }}
               />
             </Box>
-            <LessonMetadata
-              subjectTitle={subjectTitle}
-              yearTitle={yearTitle}
-              $flexWrap={"wrap"}
-            />
+            <OakFlex $gap="all-spacing-2" $flexWrap={"wrap"}>
+              <BulletList
+                items={[subjectTitle, yearTitle]
+                  .filter(notUndefined)
+                  .map((text) => ({ text }))}
+              />
+            </OakFlex>
             <OakHeading tag="h2" $font={"heading-5"}>
               {!curriculumUnitDetails
                 ? unitData.title
