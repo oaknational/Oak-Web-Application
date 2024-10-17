@@ -1,6 +1,7 @@
 import { join } from "path";
 
 import { capitalize } from "lodash";
+import { isValidIconName } from "@oaknational/oak-components";
 
 import { CombinedCurriculumData, Slugs } from "..";
 import { cdata, safeXml, xmlElementToJson } from "../xml";
@@ -26,14 +27,21 @@ export default async function generate(
 ) {
   const iconKey = data.subjectTitle.toLowerCase();
 
+  const iconName = isValidIconName(`subject-${slugs.subjectSlug}`)
+    ? slugs.subjectSlug
+    : "books";
+
   const sanityUrl = getSubjectIconAsset(iconKey)?.url;
+
+  const oakIconURL = `https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/subject-icons/${iconName}.svg`;
+
   const images = await insertImages(zip, {
-    icon: sanityUrl
-      ? makeTransparentIfSanity(sanityUrl, cmToPxDpi(13))
-      : join(
-          process.cwd(),
-          "src/pages-helpers/curriculum/docx/builder/images/icon.png",
-        ),
+    icon: {
+      url: sanityUrl
+        ? makeTransparentIfSanity(sanityUrl, cmToPxDpi(13))
+        : oakIconURL,
+      width: 1000,
+    },
     arrow: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/arrow.png",
@@ -43,6 +51,8 @@ export default async function generate(
       "src/pages-helpers/curriculum/docx/builder/images/logo.png",
     ),
   });
+
+  console.log(images);
 
   const phaseTitle = keyStageFromPhaseTitle(data.phaseTitle);
   const subjectTitle = data.subjectTitle;

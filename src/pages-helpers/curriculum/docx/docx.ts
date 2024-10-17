@@ -2,6 +2,7 @@ import { extname, join, relative } from "path";
 import { readFile, stat } from "fs/promises";
 import { createHash } from "crypto";
 
+import sharp from "sharp";
 import { glob } from "glob";
 import JSZip from "jszip";
 import { ElementCompact, type Element } from "xml-js";
@@ -80,11 +81,14 @@ function extnameWithoutQuery(urlOrFilepath: string) {
   return extname(url.pathname);
 }
 
-export async function insertImages<T extends Record<string, string>>(
-  zip: JSZipCached,
-  images: T,
-  file = "document.xml",
-) {
+export type SVGImageDocx = {
+  url: string;
+  width: number;
+};
+
+export async function insertImages<
+  T extends Record<string, string | SVGImageDocx>,
+>(zip: JSZipCached, images: T, file = "document.xml") {
   const DOC_RELS = `word/_rels/${file}.rels`;
   const json = zip.exists(DOC_RELS)
     ? await zip.readJson(DOC_RELS)
@@ -103,7 +107,8 @@ export async function insertImages<T extends Record<string, string>>(
   >;
   const elements = await Promise.all(
     Object.entries(images).map(
-      async ([key, filePathOrUrl]: [keyof typeof images, string]) => {
+      async ([key, args]: [keyof typeof images, string | SVGImageDocx]) => {
+        const filePathOrUrl = typeof args === "string" ? args : args.url;
         const hashUrl = filePathOrUrl.match(/^(data|https?):/)
           ? filePathOrUrl
           : relative(process.cwd(), filePathOrUrl);
@@ -125,17 +130,32 @@ export async function insertImages<T extends Record<string, string>>(
             filePathOrUrl.match(/^data:image\/([^;]+);base64/)?.[1] ??
             "unknown";
         } else if (filePathOrUrl.match(/^(https?):/)) {
+          const width = typeof args === "object" ? args.width : 1000;
           const res = await fetch(filePathOrUrl);
-          const headerExt = res.headers.get("content-type")?.split("/")[1];
+
+          const headerExt = res.headers
+            .get("content-type")
+            ?.split("/")[1]
+            ?.replace("+xml", "");
           ext = `.${headerExt ?? "unknown"}`;
-          file = Buffer.from(await res.arrayBuffer());
+
+          if (headerExt === "svg") {
+            file = Buffer.from(
+              await sharp(await res.arrayBuffer())
+                .png()
+                .resize(width)
+                .toBuffer(),
+            );
+            ext = ".png";
+          } else {
+            file = Buffer.from(await res.arrayBuffer());
+          }
         } else {
           file = await readFile(filePathOrUrl);
           ext = extnameWithoutQuery(filePathOrUrl);
         }
 
         const filepath = `media/hash_${imagePathHash}${ext}`;
-
         zip.writeBinary(join("word", filepath), file);
         return xmlElementToJson(safeXml`
           <Relationship
