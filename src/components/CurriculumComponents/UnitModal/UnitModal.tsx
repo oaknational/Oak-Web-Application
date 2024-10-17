@@ -13,8 +13,6 @@ import {
   CurriculumUnitDetailsProps,
   CurriculumUnitDetails,
 } from "@/components/CurriculumComponents/CurriculumUnitDetails";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 
@@ -26,7 +24,6 @@ type UnitModalProps = {
   setCurrentUnitLessons: (x: Lesson[]) => void;
   setUnitVariantID: (x: number | null) => void;
   unitOptionsAvailable: boolean;
-  isHighlighted: boolean;
 };
 
 export type Lesson = {
@@ -43,10 +40,7 @@ const UnitModal: FC<UnitModalProps> = ({
   setCurrentUnitLessons,
   setUnitVariantID,
   unitOptionsAvailable,
-  isHighlighted,
 }) => {
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
   const [optionalityModalOpen, setOptionalityModalOpen] =
     useState<boolean>(false);
 
@@ -74,25 +68,6 @@ const UnitModal: FC<UnitModalProps> = ({
     optionalityModalOpen,
     setUnitVariantID,
   ]);
-
-  useEffect(() => {
-    // For tracking open model events
-    if (displayModal === true) {
-      if (unitData) {
-        track.unitInformationViewed({
-          unitName: unitData.title,
-          unitSlug: unitData.slug,
-          subjectTitle: unitData.subject,
-          subjectSlug: unitData.subject_slug,
-          yearGroupName: unitData.year,
-          yearGroupSlug: unitData.year,
-          unitHighlighted: isHighlighted,
-          analyticsUseCase: analyticsUseCase,
-          //update to include optionality units
-        });
-      }
-    }
-  });
 
   const subjectTitle =
     getUnitFeatures(unitData)?.programmes_fields_overrides.subject ??

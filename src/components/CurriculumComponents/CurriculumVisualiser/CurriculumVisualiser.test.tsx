@@ -1,5 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/dom";
+import { act } from "@testing-library/react";
 
 import CurriculumVisualiser from "./CurriculumVisualiser";
 
@@ -8,6 +9,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 const curriculumThreadHighlighted = jest.fn();
 const yearGroupSelected = jest.fn();
+const unitInformationViewed = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -16,6 +18,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       curriculumThreadHighlighted: (...args: unknown[]) =>
         curriculumThreadHighlighted(...args),
       yearGroupSelected: (...args: unknown[]) => yearGroupSelected(...args),
+      unitInformationViewed: (...args: unknown[]) =>
+        unitInformationViewed(...args),
     },
   }),
 }));
@@ -193,14 +197,27 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTabMobile", () => {
     );
 
     const units = await findAllByTestId("unit-cards");
-    const unit = units[0];
+    const unit = units[0]!;
 
-    if (unit) {
-      waitFor(async () => {
-        await userEvent.click(unit);
-        const sidebar = await findByTestId("sidebar-modal-wrapper");
-        expect(sidebar).toBeInTheDocument();
-      });
-    }
+    await act(async () => {
+      await userEvent.click(unit.querySelector("button")!);
+    });
+
+    await waitFor(async () => {
+      const sidebar = await findByTestId("sidebar-modal-wrapper");
+      expect(sidebar).toBeInTheDocument();
+    });
+
+    expect(unitInformationViewed).toHaveBeenCalledTimes(1);
+    expect(unitInformationViewed).toHaveBeenCalledWith({
+      unitName: "Step into the unknown: fiction reading and creative writing",
+      unitSlug: "step-into-the-unknown-fiction-reading-and-creative-writing",
+      yearGroupName: "7",
+      yearGroupSlug: "7",
+      subjectSlug: "english",
+      subjectTitle: "English",
+      unitHighlighted: false,
+      analyticsUseCase: null,
+    });
   });
 });
