@@ -92,7 +92,7 @@ type LessonDownloadsProps =
     };
 
 export function LessonDownloads(props: LessonDownloadsProps) {
-  const { lesson } = props;
+  const { isCanonical, lesson } = props;
   const {
     lessonTitle,
     lessonSlug,
@@ -301,6 +301,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                       lessonSlug,
                       programmeSlug,
                       unitSlug,
+                      isCanonical,
                     }),
                     getLessonDownloadsBreadCrumb({
                       lessonSlug,
