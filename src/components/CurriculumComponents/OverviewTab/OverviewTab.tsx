@@ -324,7 +324,18 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                       value={curriculumExplainer.explainerRaw}
                       components={{
                         ...basePortableTextComponents.list,
-                        ...basePortableTextComponents.listItem,
+                        listItem: {
+                          bullet: (props) => (
+                            <OakLI $font={["list-item-2", "list-item-1"]}>
+                              {props.children}
+                            </OakLI>
+                          ),
+                          number: (props) => (
+                            <OakLI $font={["list-item-2", "list-item-1"]}>
+                              {props.children}
+                            </OakLI>
+                          ),
+                        },
                         block: {
                           ...basePortableTextComponents.block,
                           ...blockHeadingComponents,

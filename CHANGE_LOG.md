@@ -1,3 +1,31 @@
+## [1.598.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.2...v1.598.3) (2024-10-17)
+
+
+### Bug Fixes
+
+* added isFocusVisible to isFocused condition so only applies for keyboard users ([4e7b02e](https://github.com/oaknational/Oak-Web-Application/commit/4e7b02ed19c27f0176e9d8aa2c30290cc4d955f3))
+
+## [1.598.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.1...v1.598.2) (2024-10-17)
+
+
+### Bug Fixes
+
+* simplify and fix tracking event for opening unit modal in curriculum visualiser ([4467776](https://github.com/oaknational/Oak-Web-Application/commit/4467776b8a7a8ad4d7b1c4c5291562de9a831767))
+
+## [1.598.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.0...v1.598.1) (2024-10-17)
+
+
+### Bug Fixes
+
+* amend test file ([b05e4e0](https://github.com/oaknational/Oak-Web-Application/commit/b05e4e0fbcdd00e90bb592d8e7be511fba9249d4))
+
+# [1.598.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.597.1...v1.598.0) (2024-10-17)
+
+
+### Features
+
+* added <BulletList/> into <UnitModal/> and changed 'year group' and 'subject' order ([a3b057a](https://github.com/oaknational/Oak-Web-Application/commit/a3b057a247c4ae6f9dce8e66beeba7618bb2f511))
+
 ## [1.597.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.597.0...v1.597.1) (2024-10-17)
 
 
