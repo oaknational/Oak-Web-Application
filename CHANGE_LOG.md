@@ -1,3 +1,10 @@
+# [1.599.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.4...v1.599.0) (2024-10-17)
+
+
+### Features
+
+* added fixture generation via script and updated some tests to use them ([3f27ff5](https://github.com/oaknational/Oak-Web-Application/commit/3f27ff531cfd7531ca0f3f997202a6253de54a34))
+
 ## [1.598.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.3...v1.598.4) (2024-10-17)
 
 
