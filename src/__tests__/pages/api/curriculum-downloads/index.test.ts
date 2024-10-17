@@ -113,6 +113,7 @@ describe("/api/preview/[[...path]]", () => {
   });
 
   it("returns 404 if either units, overview, or subjectPhaseOptions is not present", async () => {
+    // @ts-expect-error undefined to ensure test is failing properly
     curriculumUnitsMock.mockResolvedValue(undefined);
     const { req, res } = createNextApiMocks({
       query: {
