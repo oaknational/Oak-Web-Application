@@ -1,3 +1,10 @@
+## [1.600.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.1...v1.600.2) (2024-10-17)
+
+
+### Bug Fixes
+
+* text size on learning tiers in curriculum visualiser ([6cd3972](https://github.com/oaknational/Oak-Web-Application/commit/6cd3972b3b455efe0bfdff66dc51a5c857684dbb))
+
 ## [1.600.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.0...v1.600.1) (2024-10-17)
 
 
