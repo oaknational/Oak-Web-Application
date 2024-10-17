@@ -9,7 +9,9 @@ import { LessonEngineContext } from "@/components/PupilComponents/LessonEnginePr
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
+const MockBrowseData = lessonBrowseDataFixture({});
 const usePupilAnalyticsMock = {
   track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
   identify: jest.fn(),
@@ -74,6 +76,7 @@ describe(PupilViewsVideo, () => {
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={[]}
             isLegacy={false}
+            browseData={MockBrowseData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -92,6 +95,7 @@ describe(PupilViewsVideo, () => {
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
             isLegacy={false}
+            browseData={MockBrowseData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -117,6 +121,7 @@ describe(PupilViewsVideo, () => {
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
             isLegacy={false}
+            browseData={MockBrowseData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -140,6 +145,7 @@ describe(PupilViewsVideo, () => {
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
             isLegacy={false}
+            browseData={MockBrowseData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -162,6 +168,7 @@ describe(PupilViewsVideo, () => {
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
             isLegacy
+            browseData={MockBrowseData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -182,6 +189,7 @@ describe(PupilViewsVideo, () => {
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
             isLegacy={false}
+            browseData={MockBrowseData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -206,6 +214,7 @@ describe(PupilViewsVideo, () => {
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
             isLegacy={false}
+            browseData={MockBrowseData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -236,6 +245,7 @@ describe(PupilViewsVideo, () => {
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
             isLegacy={false}
+            browseData={MockBrowseData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -261,6 +271,7 @@ describe(PupilViewsVideo, () => {
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
             isLegacy={false}
+            browseData={MockBrowseData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -298,6 +309,7 @@ describe(PupilViewsVideo, () => {
             lessonTitle="Introduction to The Canterbury Tales"
             transcriptSentences={["hello there"]}
             isLegacy={false}
+            browseData={MockBrowseData}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,

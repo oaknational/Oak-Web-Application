@@ -37,6 +37,23 @@ const Page = () => {
         return;
       }
     }
+    const pathwayData = {
+      lessonName: undefined,
+      lessonSlug: undefined,
+      subjectTitle: undefined,
+      subjectSlug: undefined,
+      unitName: undefined,
+      unitSlug: undefined,
+      keyStageTitle: undefined,
+      keyStageSlug: undefined,
+      yearGroupName: undefined,
+      yearGroupSlug: undefined,
+      tierName: undefined,
+      examBoard: undefined,
+      pathway: undefined,
+      releaseGroup: undefined,
+      phase: undefined,
+    };
 
     // record success event
     track.videoPlayed({
@@ -47,6 +64,7 @@ const Page = () => {
       isMuted: false,
       timeElapsedSeconds: 0,
       videoLocation: null,
+      ...pathwayData,
     });
 
     // display success message
