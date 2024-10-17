@@ -1,3 +1,11 @@
+## [1.600.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.0...v1.600.1) (2024-10-17)
+
+
+### Bug Fixes
+
+* added redirect logic to curriculum tabs slugs + 404 logic ([86aba79](https://github.com/oaknational/Oak-Web-Application/commit/86aba796ae3df37867ba0a9b4cb1a4fa0c62f103))
+* don't render non valid examboardless variants ([5159ec4](https://github.com/oaknational/Oak-Web-Application/commit/5159ec44b7d7c4544b4c2b24056382865922af49))
+
 # [1.600.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.599.0...v1.600.0) (2024-10-17)
 
 
