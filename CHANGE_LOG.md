@@ -1,3 +1,10 @@
+## [1.598.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.1...v1.598.2) (2024-10-17)
+
+
+### Bug Fixes
+
+* simplify and fix tracking event for opening unit modal in curriculum visualiser ([4467776](https://github.com/oaknational/Oak-Web-Application/commit/4467776b8a7a8ad4d7b1c4c5291562de9a831767))
+
 ## [1.598.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.598.0...v1.598.1) (2024-10-17)
 
 
