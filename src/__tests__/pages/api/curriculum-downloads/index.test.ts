@@ -1,8 +1,11 @@
 import handler from "../../../../pages/api/curriculum-downloads/index";
 import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 
-import curriculumUnitsTabFixture from "./fixtures/curriculumUnitsIncludeNew.json";
-
+import {
+  curriculumOverviewEnglishSecondary,
+  curriculumUnitsEnglishSecondary,
+  subjectPhaseOptions,
+} from "@/utils/curriculum/fixtures";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 const fetch = jest.spyOn(global, "fetch") as jest.Mock;
@@ -19,7 +22,7 @@ const curriculumUnitsMock = jest.fn<
 const curriculumOverviewMock = jest.fn<
   ReturnType<typeof curriculumApi2023.curriculumOverview>,
   []
->(async () => import("./fixtures/curriculumOverview.json"));
+>(async () => curriculumOverviewEnglishSecondary.curriculumOverview[0]!);
 const refreshedMVTimeMock = jest.fn<
   ReturnType<typeof curriculumApi2023.refreshedMVTime>,
   []
@@ -34,9 +37,8 @@ const refreshedMVTimeMock = jest.fn<
   };
 });
 
-const subjectPhaseOptionsIncludeNewMock = jest.fn(
-  async () =>
-    (await import("./fixtures/subjectPhaseOptionsIncludeNew.json")).subjects,
+const subjectPhaseOptionsMock = jest.fn(
+  async () => subjectPhaseOptions.options,
 );
 
 jest.mock("../../../../node-lib/curriculum-api-2023", () => ({
@@ -45,7 +47,7 @@ jest.mock("../../../../node-lib/curriculum-api-2023", () => ({
     curriculumUnits: () => curriculumUnitsMock(),
     curriculumOverview: () => curriculumOverviewMock(),
     refreshedMVTime: () => refreshedMVTimeMock(),
-    subjectPhaseOptions: () => subjectPhaseOptionsIncludeNewMock(),
+    subjectPhaseOptions: () => subjectPhaseOptionsMock(),
   },
 }));
 
@@ -97,7 +99,7 @@ describe("/api/preview/[[...path]]", () => {
   });
 
   it("return 200 if correct cache slug", async () => {
-    curriculumUnitsMock.mockResolvedValue(curriculumUnitsTabFixture);
+    curriculumUnitsMock.mockResolvedValue(curriculumUnitsEnglishSecondary);
     const { req, res } = createNextApiMocks({
       query: {
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
@@ -114,7 +116,7 @@ describe("/api/preview/[[...path]]", () => {
   });
 
   it("return 200 if correct cache slug", async () => {
-    curriculumUnitsMock.mockResolvedValue(curriculumUnitsTabFixture);
+    curriculumUnitsMock.mockResolvedValue(curriculumUnitsEnglishSecondary);
     const { req, res } = createNextApiMocks({
       query: {
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
@@ -131,8 +133,7 @@ describe("/api/preview/[[...path]]", () => {
   });
 
   it("returns 404 if units is not present", async () => {
-    // @ts-expect-error undefined to ensure test is failing properly
-    curriculumUnitsMock.mockResolvedValue(undefined);
+    curriculumUnitsMock.mockRejectedValue(new Error("Missing"));
     const { req, res } = createNextApiMocks({
       query: {
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
@@ -148,8 +149,7 @@ describe("/api/preview/[[...path]]", () => {
   });
 
   it("returns 200 if examboard not present", async () => {
-    // @ts-expect-error undefined to ensure test is failing properly
-    curriculumUnitsMock.mockResolvedValue(undefined);
+    curriculumUnitsMock.mockRejectedValue(new Error("Missing"));
     const { req, res } = createNextApiMocks({
       query: {
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
