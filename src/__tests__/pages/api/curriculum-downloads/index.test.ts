@@ -112,9 +112,26 @@ describe("/api/preview/[[...path]]", () => {
     expect(res._getStatusCode()).toBe(200);
   });
 
-  it("returns 404 if either units, overview, or subjectPhaseOptions is not present", async () => {
+  it("returns 404 if units is not present", async () => {
     // @ts-expect-error undefined to ensure test is failing properly
     curriculumUnitsMock.mockResolvedValue(undefined);
+    const { req, res } = createNextApiMocks({
+      query: {
+        mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
+        subjectSlug: "english",
+        phaseSlug: "secondary",
+        state: "published",
+        examboardSlug: "aqa",
+      },
+    });
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(404);
+  });
+
+  it("returns 404 if overview is not present", async () => {
+    // @ts-expect-error undefined to ensure test is failing properly
+    curriculumOverviewMock.mockResolvedValue(undefined);
     const { req, res } = createNextApiMocks({
       query: {
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
