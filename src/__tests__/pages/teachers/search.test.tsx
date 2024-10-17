@@ -13,6 +13,7 @@ const contentTypes = fixture.contentTypes;
 const examBoards = fixture.examBoards;
 
 jest.mock("posthog-js/react", () => ({
+  ...jest.requireActual("posthog-js/react"),
   useFeatureFlagEnabled: () => false,
 }));
 
