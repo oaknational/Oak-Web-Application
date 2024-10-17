@@ -204,7 +204,7 @@ describe("trackCurriculumDownload", () => {
     jest.clearAllMocks();
   });
 
-  test.only("calls onHubspotSubmit and track.curriculumResourcesDownloadedCurriculumDocument with correct parameters", async () => {
+  test("calls onHubspotSubmit and track.curriculumResourcesDownloadedCurriculumDocument with correct parameters", async () => {
     const data = {
       schoolId: "123456-Test school",
       schoolName: "Test School",
