@@ -54,7 +54,7 @@ export default async function generate(
     : "";
 
   const subtitle =
-    examboardTitle !== "" || tierTitle !== "" || childSubjectTitle || ""
+    examboardTitle !== "" || tierTitle !== "" || childSubjectTitle !== ""
       ? [examboardTitle, childSubjectTitle, tierTitle]
           .filter(Boolean)
           .join(", ") + " (KS4)"
