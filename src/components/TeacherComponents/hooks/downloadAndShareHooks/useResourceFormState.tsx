@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { useUser } from "@clerk/nextjs";
 
 import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
@@ -58,7 +58,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   const [schoolUrn, setSchoolUrn] = useState(0);
-  const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
+  const authFlagEnabled =
+    useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
   const { isSignedIn, user } = useUser();
 
   const [hasOnboardingDownloadDetails, setHasOnboardingDownloadDetails] =

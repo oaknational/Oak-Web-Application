@@ -10,7 +10,7 @@ import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 const render = renderWithProviders();
 
 jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: jest.fn(() => true),
+  useFeatureFlagVariantKey: jest.fn(() => "with-login"),
 }));
 
 describe("components/AppHeader", () => {
@@ -95,7 +95,7 @@ describe("components/AppHeader", () => {
     expect(signOutButton).not.toBeInTheDocument();
   });
 
-  it("renders a sign out button when a user is logged in and feature flag is on", async () => {
+  it("renders a sign out button when a user is logged in", async () => {
     setUseUserReturn(mockLoggedIn);
     renderWithProviders()(<AppHeader />);
 
