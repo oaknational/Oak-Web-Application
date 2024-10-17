@@ -18,6 +18,7 @@ export const BrowseFactorSelector = ({
   onClick,
   chosenFactors,
   programmes,
+  onCallback,
 }: {
   factorType: "pathway" | "examboard" | "tier";
   factors: FactorData[];
@@ -26,6 +27,7 @@ export const BrowseFactorSelector = ({
   chosenFactors: Factors;
   programmes: PupilProgrammeListingData[];
   onClick: (factor: FactorData) => void;
+  onCallback?: (factor: FactorData) => void;
 }) => {
   const orderedFactors = factors.sort((a, b) => {
     return (a.factorDisplayOrder ?? 0) - (b.factorDisplayOrder ?? 0);
@@ -83,14 +85,18 @@ export const BrowseFactorSelector = ({
             <OakPupilJourneyYearButton
               phase={phaseSlug}
               key={factor.factorSlug}
-              onClick={() => onClick(factor)}
+              onClick={() => {
+                onClick(factor);
+                if (onCallback) {
+                  onCallback(factor);
+                }
+              }}
               role="button"
             >
               {factor[buttonInnerProp]}
             </OakPupilJourneyYearButton>
           );
         }
-
         return (
           <OakPupilJourneyYearButton
             role="link"
@@ -101,6 +107,11 @@ export const BrowseFactorSelector = ({
               page: "pupil-unit-index",
               programmeSlug: getSlug(factor),
             })}
+            onClick={() => {
+              if (onCallback) {
+                onCallback(factor);
+              }
+            }}
           >
             {factor[buttonInnerProp]}
           </OakPupilJourneyYearButton>

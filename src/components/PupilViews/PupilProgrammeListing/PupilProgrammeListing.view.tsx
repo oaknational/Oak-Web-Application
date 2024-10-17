@@ -24,6 +24,7 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
 import { FactorData } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 import { getFactorDataFromSlug } from "@/pages-helpers/pupil/options-pages/getFactorDataFromSlug";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type PupilViewsProgrammeListingProps = {
   programmes: PupilProgrammeListingData[];
@@ -46,6 +47,7 @@ export const PupilViewsProgrammeListing = ({
   pathwaySlug,
   pathways,
 }: PupilViewsProgrammeListingProps) => {
+  const { track } = useAnalytics();
   const orderedFactors: ("pathway" | "examboard" | "tier")[] = [
     "pathway",
     "examboard",
@@ -162,9 +164,29 @@ export const PupilViewsProgrammeListing = ({
           baseSlug={baseSlug}
           chosenFactors={chosenFactors}
           programmes={programmes}
-          onClick={(f) =>
-            setChosenFactors({ ...chosenFactors, [currentFactor]: f })
-          }
+          onClick={(f) => {
+            setChosenFactors({
+              ...chosenFactors,
+              [currentFactor]: f,
+            });
+          }}
+          onCallback={(f) => {
+            track.browseRefined({
+              platform: "owa",
+              product: "pupil lesson activities",
+              engagementIntent: "use",
+              eventVersion: "2.0.0",
+              componentType: "programme_card",
+              analyticsUseCase: "Pupil",
+              filterType: "Exam board / tier filter",
+              filterValue:
+                {
+                  ...chosenFactors,
+                  [currentFactor]: f,
+                }[currentFactor]?.factor || "",
+              activeFilters: { yearDescriptions, subjectDescription },
+            });
+          }}
           phaseSlug={phaseSlug}
         />
       );
