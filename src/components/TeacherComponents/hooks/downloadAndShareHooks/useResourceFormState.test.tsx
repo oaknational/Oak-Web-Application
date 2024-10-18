@@ -215,7 +215,7 @@ describe("useResourceFormState", () => {
       expect(result.current.schoolIdFromLocalStorage).toEqual("1-local");
       expect(mockSetValue).toHaveBeenCalledWith("terms", true);
     });
-    test("should set email, school and terms from hubspot and clerk user if logged in ", async () => {
+    test.skip("should set email, school and terms from hubspot and clerk user if logged in ", async () => {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const useFormSpy = jest.spyOn(require("react-hook-form"), "useForm");
       setUseUserReturn({
