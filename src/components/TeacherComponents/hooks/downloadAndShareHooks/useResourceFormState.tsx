@@ -11,6 +11,7 @@ import { getSubscriptionStatus } from "../../OnboardingForm/onboardingActions";
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
 import {
+  extractUrnAndSchool,
   getSchoolOption,
   getSchoolUrn,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
@@ -106,21 +107,14 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       }
 
       if (hubspotContact) {
-        const schoolId = hubspotContact.schoolId;
         const schoolName = hubspotContact.schoolName;
 
+        const schoolUrn = extractUrnAndSchool(schoolIdFromLocalStorage).urn;
+
         setSchoolInLocalStorage({
-          schoolId: schoolId ?? "notListed",
+          schoolId: schoolUrn ?? "notListed",
           schoolName: schoolName ?? "notListed",
         });
-
-        if (schoolName) {
-          setValue("schoolName", schoolName);
-        }
-
-        if (schoolId) {
-          setValue("school", schoolId);
-        }
       } else {
         setSchoolInLocalStorage({
           schoolId: "",
@@ -132,6 +126,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     if (userEmail && authFlagEnabled && isSignedIn) {
       updateUserDetailsFromHubspot(userEmail);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     authFlagEnabled,
     isSignedIn,
@@ -153,7 +148,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
     if (schoolIdFromLocalStorage) {
       setValue("school", schoolIdFromLocalStorage);
-
       const schoolUrn = getSchoolUrn(
         schoolIdFromLocalStorage,
         getSchoolOption(schoolIdFromLocalStorage),

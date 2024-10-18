@@ -48,7 +48,7 @@ export const getSchoolName = (
 export const extractUrnAndSchool = (school: string) => {
   const match = /^(?:(\d{7}|\d{6}|\d{3}-\d{4}))-(.*)/.exec(school);
   return {
-    urn: match ? match[1] : null,
+    urn: match ? match[1] : "",
     schoolName: match ? match[2] : "",
   };
 };
@@ -60,6 +60,7 @@ const getFormattedDetailsForTracking = ({
   school: string;
   selectedResources: ResourceType[];
 }) => {
+  console.log(school, "<<< school in getFormattedDetailsForTracking");
   const schoolOption: SchoolOptionValueType = getSchoolOption(school);
 
   const selectedResourcesForTracking = selectedResources.map((resource) => {
