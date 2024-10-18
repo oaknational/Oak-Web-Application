@@ -60,7 +60,6 @@ const getFormattedDetailsForTracking = ({
   school: string;
   selectedResources: ResourceType[];
 }) => {
-  console.log(school, "<<< school in getFormattedDetailsForTracking");
   const schoolOption: SchoolOptionValueType = getSchoolOption(school);
 
   const selectedResourcesForTracking = selectedResources.map((resource) => {
