@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { act, render } from "@testing-library/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { BrowseFactorSelector } from "./BrowseFactorSelector";
@@ -187,5 +187,70 @@ describe("BrowseExamboardSelector", () => {
     button.forEach((b) => {
       expect(b).toHaveAttribute("href", expect.stringContaining("-l"));
     });
+  });
+  it("should fire the onClick callback when a factor link is clicked", () => {
+    const onClick = jest.fn();
+    const onClickCallback = jest.fn();
+
+    const { getByText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <BrowseFactorSelector
+          factorType="examboard"
+          programmes={programmesEB}
+          factors={examboardsEBs}
+          chosenFactors={{
+            pathway: null,
+            examboard: null,
+            tier: null,
+          }}
+          onClick={onClick}
+          baseSlug="my-subject"
+          phaseSlug="secondary"
+          onCallback={onClickCallback}
+        />
+      </OakThemeProvider>,
+    );
+    // Find the button and log its presence
+    const button = getByText(examboardsEBs[0]?.factor ?? "");
+    expect(button).toBeInTheDocument(); // Ensure the button exists
+    expect(button).toHaveTextContent("AQA"); // Ensure the button has the correct text
+
+    // Simulate the button click
+    act(() => {
+      button.click(); // Manually trigger click
+    });
+    expect(onClickCallback).toHaveBeenCalled();
+  });
+  it("should fire the onClick callback when a factor button is clicked", () => {
+    const onClickCallback = jest.fn();
+
+    const { getByText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <BrowseFactorSelector
+          factorType="examboard"
+          programmes={programmesEBsTiers}
+          factors={examboardsEBsTiers}
+          chosenFactors={{
+            pathway: null,
+            examboard: null,
+            tier: null,
+          }}
+          onClick={() => {}}
+          baseSlug="my-subject"
+          phaseSlug="secondary"
+          onCallback={onClickCallback}
+        />
+      </OakThemeProvider>,
+    );
+    // Find the button and log its presence
+    const button = getByText(examboardsEBs[0]?.factor ?? "");
+    expect(button).toBeInTheDocument(); // Ensure the button exists
+    expect(button).toHaveTextContent("AQA"); // Ensure the button has the correct text
+
+    // Simulate the button click
+    act(() => {
+      button.click(); // Manually trigger click
+    });
+    expect(onClickCallback).toHaveBeenCalled();
   });
 });
