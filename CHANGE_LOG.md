@@ -1,3 +1,10 @@
+## [1.600.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.2...v1.600.3) (2024-10-18)
+
+
+### Bug Fixes
+
+* missing Hubpost contacts throwing errors on download page ([b494f6e](https://github.com/oaknational/Oak-Web-Application/commit/b494f6e562b91eaa5fb9969b0ac02f83178590b8))
+
 ## [1.600.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.1...v1.600.2) (2024-10-17)
 
 
