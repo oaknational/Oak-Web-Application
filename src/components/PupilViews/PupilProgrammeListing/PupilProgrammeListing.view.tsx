@@ -171,6 +171,18 @@ export const PupilViewsProgrammeListing = ({
             });
           }}
           onCallback={(f) => {
+            const activeFilters: {
+              yearDescriptions: string;
+              subjectDescription: string;
+              examboard?: string;
+            } = {
+              yearDescriptions,
+              subjectDescription,
+            };
+            if (chosenFactors["examboard"]) {
+              activeFilters.examboard =
+                chosenFactors["examboard"].factor || undefined;
+            }
             track.browseRefined({
               platform: "owa",
               product: "pupil lesson activities",
@@ -184,7 +196,7 @@ export const PupilViewsProgrammeListing = ({
                   ...chosenFactors,
                   [currentFactor]: f,
                 }[currentFactor]?.factor || "",
-              activeFilters: { yearDescriptions, subjectDescription },
+              activeFilters,
             });
           }}
           phaseSlug={phaseSlug}
