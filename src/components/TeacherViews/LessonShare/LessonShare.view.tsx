@@ -79,7 +79,7 @@ const classroomActivityMap: Partial<
 };
 
 export function LessonShare(props: LessonShareProps) {
-  const { lesson } = props;
+  const { isCanonical, lesson } = props;
   const {
     lessonTitle,
     lessonSlug,
@@ -187,6 +187,7 @@ export function LessonShare(props: LessonShareProps) {
                       lessonSlug,
                       programmeSlug,
                       unitSlug,
+                      isCanonical,
                     }),
                     getLessonShareBreadCrumb({
                       lessonSlug,

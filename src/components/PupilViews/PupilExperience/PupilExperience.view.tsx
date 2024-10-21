@@ -119,6 +119,7 @@ export const PupilPageContent = ({
             lessonContent.transcriptSentences,
           )}
           isLegacy={isLegacy ?? false}
+          browseData={browseData}
         />
       );
     case "exit-quiz":

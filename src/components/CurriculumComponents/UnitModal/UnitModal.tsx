@@ -2,21 +2,20 @@ import { FC, useState, useEffect } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import { Unit, YearData } from "../CurriculumVisualiser";
+import BulletList from "../OakComponentsKitchen/BulletList";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button";
-import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/SharedComponents/Card";
 import {
   CurriculumUnitDetailsProps,
   CurriculumUnitDetails,
 } from "@/components/CurriculumComponents/CurriculumUnitDetails";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import { notUndefined } from "@/utils/curriculum/types";
 
 type UnitModalProps = {
   unitData: Unit | null;
@@ -26,7 +25,6 @@ type UnitModalProps = {
   setCurrentUnitLessons: (x: Lesson[]) => void;
   setUnitVariantID: (x: number | null) => void;
   unitOptionsAvailable: boolean;
-  isHighlighted: boolean;
 };
 
 export type Lesson = {
@@ -43,10 +41,7 @@ const UnitModal: FC<UnitModalProps> = ({
   setCurrentUnitLessons,
   setUnitVariantID,
   unitOptionsAvailable,
-  isHighlighted,
 }) => {
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
   const [optionalityModalOpen, setOptionalityModalOpen] =
     useState<boolean>(false);
 
@@ -74,25 +69,6 @@ const UnitModal: FC<UnitModalProps> = ({
     optionalityModalOpen,
     setUnitVariantID,
   ]);
-
-  useEffect(() => {
-    // For tracking open model events
-    if (displayModal === true) {
-      if (unitData) {
-        track.unitInformationViewed({
-          unitName: unitData.title,
-          unitSlug: unitData.slug,
-          subjectTitle: unitData.subject,
-          subjectSlug: unitData.subject_slug,
-          yearGroupName: unitData.year,
-          yearGroupSlug: unitData.year,
-          unitHighlighted: isHighlighted,
-          analyticsUseCase: analyticsUseCase,
-          //update to include optionality units
-        });
-      }
-    }
-  });
 
   const subjectTitle =
     getUnitFeatures(unitData)?.programmes_fields_overrides.subject ??
@@ -135,11 +111,13 @@ const UnitModal: FC<UnitModalProps> = ({
                 }}
               />
             </Box>
-            <LessonMetadata
-              subjectTitle={subjectTitle}
-              yearTitle={yearTitle}
-              $flexWrap={"wrap"}
-            />
+            <OakFlex $gap="all-spacing-2" $flexWrap={"wrap"}>
+              <BulletList
+                items={[subjectTitle, yearTitle]
+                  .filter(notUndefined)
+                  .map((text) => ({ text }))}
+              />
+            </OakFlex>
             <OakHeading tag="h2" $font={"heading-5"}>
               {!curriculumUnitDetails
                 ? unitData.title

@@ -27,7 +27,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     pupilLessonOutcome,
     isNew,
     subjectIconBackgroundColor,
-    isSpecialist,
+    showShare,
   } = props;
 
   return (
@@ -62,7 +62,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
         </Box>
       )}
       <LessonOverviewHeaderDownloadAllButton {...props} />
-      {!isSpecialist && <LessonOverviewHeaderShareAllButton {...props} />}
+      {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
     </Flex>
   );
 };
