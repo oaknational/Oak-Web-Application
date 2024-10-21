@@ -5,10 +5,10 @@ import CurriculumDownloadTab, {
   trackCurriculumDownload,
 } from ".";
 
-import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockPrerelease } from "@/utils/mocks";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 const render = renderWithProviders();
 const mvRefreshTime = 1721314874829;
@@ -44,7 +44,7 @@ describe("Component - Curriculum Download Tab", () => {
 
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
-      slugs: parseSubjectPhaseSlug("english-secondary-aqa"),
+      slugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
       mvRefreshTime,
       tiers: [],
       childSubjects: [],

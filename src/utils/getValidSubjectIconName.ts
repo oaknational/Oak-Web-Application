@@ -3,7 +3,9 @@ import { OakIconName, isValidIconName } from "@oaknational/oak-components";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 
-export const getValidSubjectIconName = (subject: string): OakIconName => {
+export const getValidSubjectIconName = (
+  subject: string | null,
+): OakIconName => {
   const subjectIconName = `subject-${subject}`;
   if (!isValidIconName(subjectIconName)) {
     const reportError = errorReporter("generateSubjectIconName");

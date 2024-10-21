@@ -1,12 +1,15 @@
 import { z } from "zod";
 
 import OakError from "@/errors/OakError";
+import errorReporter from "@/common-lib/error-reporter";
 
 const contactDetails = z.object({
   email: z.string(),
   schoolName: z.string().nullish(),
   schoolId: z.string().nullish(),
 });
+
+const reportError = errorReporter("fetchHubspotContactDetails");
 
 export async function fetchHubspotContactDetails(email: string) {
   try {
@@ -21,16 +24,24 @@ export async function fetchHubspotContactDetails(email: string) {
       throw new Error("Failed to fetch contact details");
     }
 
+    if (response.status === 204) {
+      return null;
+    }
+
     const result = contactDetails.parse(await response.json());
 
     return result;
   } catch (err) {
-    if (err instanceof OakError) {
-      throw err;
-    }
-    throw new OakError({
-      code: "hubspot/unknown",
-      originalError: err,
-    });
+    const error =
+      err instanceof OakError
+        ? err
+        : new OakError({
+            code: "hubspot/unknown",
+            originalError: err,
+          });
+
+    reportError(error);
+
+    throw error;
   }
 }

@@ -32,7 +32,6 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
-import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import {
   AnalyticsUseCaseValueType,
@@ -44,6 +43,7 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import { unionOrNull } from "@/utils/narrowToUnion";
 import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 function ScrollIntoViewWhenVisisble({
   children,
