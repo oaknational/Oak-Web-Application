@@ -1,3 +1,13 @@
+## [1.600.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.3...v1.600.4) (2024-10-21)
+
+
+### Bug Fixes
+
+* add regex that gets all school urns ([9039394](https://github.com/oaknational/Oak-Web-Application/commit/9039394dececb69a4d0ccccb0c12c3bffc1497fc))
+* amend functions ([67b651e](https://github.com/oaknational/Oak-Web-Application/commit/67b651e6e785415a9fe91f7e3e1496ff0100c3ba))
+* merge conflicts ([3d86341](https://github.com/oaknational/Oak-Web-Application/commit/3d86341ade65c247547407fd11dc91fd93ae78f3))
+* remove hubspot schoolid ([1a9e053](https://github.com/oaknational/Oak-Web-Application/commit/1a9e053b89d961bd7092b68520119daa332461a9))
+
 ## [1.600.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.2...v1.600.3) (2024-10-18)
 
 
