@@ -1,15 +1,21 @@
 import { FC } from "react";
-import { OakLI, OakFlex } from "@oaknational/oak-components";
+import {
+  OakLI,
+  OakFlex,
+  OakP,
+  OakIcon,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
-import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButton/MiniDropDown";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Box from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { PathwaySchemaCamel } from "@/context/Search/search.types";
 
 const SearchDropdown: FC<
-  SearchResultsItemProps & { isToggleOpen: boolean; isHovered: boolean }
+  SearchResultsItemProps & {
+    isToggleOpen: boolean;
+    isHovered: boolean;
+  }
 > = (props) => {
   const { pathways, onClick, type, isToggleOpen, isHovered } = props;
 
@@ -60,18 +66,25 @@ const SearchDropdown: FC<
   };
 
   return (
-    <Flex $ml={-8} $flexDirection={"column"} $justifyContent={"center"}>
-      <MiniDropDown
-        label={label}
-        ariaLabel={ariaLabel}
-        title={label}
-        icon={isToggleOpen ? "chevron-up" : "chevron-down"}
-        isExpanded={isToggleOpen}
-        isHovered={isHovered && !isToggleOpen}
-      />
-      <Box
+    <OakFlex $flexDirection={"column"} $justifyContent={"center"}>
+      <OakFlex $alignItems="center">
+        <OakP
+          $font="heading-7"
+          $color="navy"
+          $textDecoration={isHovered && !isToggleOpen ? "underline" : "none"}
+          aria-label={ariaLabel}
+        >
+          {label}
+        </OakP>
+        <OakIcon
+          iconName={isToggleOpen ? "chevron-up" : "chevron-down"}
+          $colorFilter="navy"
+          $width="all-spacing-6"
+        />
+      </OakFlex>
+      <OakBox
         $display={isToggleOpen ? "block" : "none"}
-        $transition={"all 0.3s ease"}
+        $transition="standard-ease"
       >
         {dropDownContent.length > 0 && (
           <OakFlex
@@ -111,8 +124,8 @@ const SearchDropdown: FC<
             })}
           </OakFlex>
         )}
-      </Box>
-    </Flex>
+      </OakBox>
+    </OakFlex>
   );
 };
 
