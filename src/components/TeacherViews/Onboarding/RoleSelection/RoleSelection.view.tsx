@@ -16,17 +16,10 @@ import {
   roleSelectFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import FieldError from "@/components/SharedComponents/FieldError";
-
-const roleOptions: Record<string, string> = {
-  "teacher-training": "Training to become a teacher",
-  "teacher-trainer": "Teacher trainer",
-  "private-tutor": "Private tutor",
-  "adult-helping-child":
-    "Adult helping a child, e.g. with revision, homeschooling",
-  "mat-or-lea": "Working at multi-academy trust or local educational authority",
-  nonprofit: "Working at an educational nonprofit",
-  other: "Other",
-};
+import {
+  onboardingRoleOptions,
+  OnboardingRoleType,
+} from "@/components/TeacherComponents/OnboardingForm/onboardingActions/onboardingRoleOptions";
 
 const RoleSelectionView = () => {
   const {
@@ -77,12 +70,12 @@ const RoleSelectionView = () => {
           $alignItems="flex-start"
           $gap="space-between-s"
           onChange={(event) => {
-            handleChange("role", roleOptions[event.target.value] || "");
+            handleChange("role", getRoleValue(event.target.value) ?? "");
             clearErrors();
           }}
           aria-describedby={formState.errors.role ? "role-error" : undefined}
         >
-          {Object.entries(roleOptions).map(([value, label]) => (
+          {Object.entries(onboardingRoleOptions).map(([value, label]) => (
             <OakRadioButton
               key={value}
               id={value}
@@ -115,3 +108,9 @@ const RoleSelectionView = () => {
 };
 
 export default RoleSelectionView;
+
+function getRoleValue(role: string) {
+  if (role in onboardingRoleOptions) {
+    return onboardingRoleOptions[role as OnboardingRoleType];
+  }
+}

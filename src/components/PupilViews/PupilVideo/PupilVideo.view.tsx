@@ -23,6 +23,8 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 import { useGetVideoTrackingData } from "@/hooks/useGetVideoTrackingData";
+import { getPupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 type PupilViewsVideoProps = {
   lessonTitle: string;
@@ -30,6 +32,7 @@ type PupilViewsVideoProps = {
   videoWithSignLanguageMuxPlaybackId?: string;
   transcriptSentences: string[];
   isLegacy: boolean;
+  browseData: LessonBrowseData;
 };
 
 export const PupilViewsVideo = ({
@@ -38,6 +41,7 @@ export const PupilViewsVideo = ({
   videoWithSignLanguageMuxPlaybackId,
   transcriptSentences,
   isLegacy,
+  browseData,
 }: PupilViewsVideoProps) => {
   const {
     completeActivity,
@@ -156,6 +160,7 @@ export const PupilViewsVideo = ({
               location="pupil"
               isLegacy={isLegacy}
               userEventCallback={handleVideoEvent}
+              pathwayData={{ ...getPupilPathwayData(browseData) }}
             />
           ) : (
             "This lesson does not contain a video"

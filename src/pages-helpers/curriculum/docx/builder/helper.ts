@@ -54,12 +54,6 @@ export function uncapitalizeSubject(input: string) {
   return uncapitalize(input, ["english", "french", "spanish", "german"]);
 }
 
-export function notUndefined<TValue>(
-  value: TValue | undefined,
-): value is TValue {
-  return value !== undefined;
-}
-
 export function createCurriculumSlug(slugs: Slugs) {
   return `${slugs.subjectSlug}-${slugs.phaseSlug}${
     slugs.examboardSlug ? `-${slugs.examboardSlug}` : ""
@@ -104,6 +98,9 @@ export function cmToPxDpi(cm: number) {
 
 export function makeTransparentIfSanity(input: string, height?: number) {
   const url = new URL(input);
+  if (url.protocol === "data:") {
+    return url.href;
+  }
   url.searchParams.set("fm", "png");
   url.searchParams.set("bg", "00FFFFFF");
   if (height) {
