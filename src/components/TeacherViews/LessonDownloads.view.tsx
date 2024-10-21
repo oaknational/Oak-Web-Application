@@ -219,7 +219,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
         schoolUrn,
         selectedResourcesForTracking,
       } = getFormattedDetailsForTracking({
-        school: data.school,
+        school: schoolIdFromLocalStorage,
         selectedResources,
       });
 
