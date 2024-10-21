@@ -31,6 +31,7 @@ export type LessonOverviewHeaderProps = {
   lessonSlug: string;
   lessonDescription?: string;
   isSpecialist: boolean;
+  isCanonical: boolean;
   // other props
   breadcrumbs: Breadcrumb[];
   background: OakColorName;
@@ -43,12 +44,11 @@ export type LessonOverviewHeaderProps = {
   onClickDownloadAll: () => void;
   onClickShareAll: () => void;
   showDownloadAll: boolean;
-  isEYFS: boolean;
+  showShare: boolean;
 };
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
   const { breadcrumbs, background } = props;
-
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <LessonOverviewHeaderDesktop {...props} />
