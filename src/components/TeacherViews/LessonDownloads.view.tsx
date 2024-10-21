@@ -380,6 +380,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 onboardingStatus === "not-onboarded" ||
                 onboardingStatus === "unknown"
               }
+              isLoading={onboardingStatus === "loading"}
               cardGroup={
                 !showNoResources && (
                   <DownloadCardGroup

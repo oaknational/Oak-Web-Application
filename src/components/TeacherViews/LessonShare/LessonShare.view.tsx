@@ -230,6 +230,7 @@ export function LessonShare(props: LessonShareProps) {
             onboardingStatus === "not-onboarded" ||
             onboardingStatus === "unknown"
           }
+          isLoading={onboardingStatus === "loading"}
           onEditClick={handleEditDetailsCompletedClick}
           register={form.register}
           control={form.control}
