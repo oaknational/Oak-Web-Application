@@ -71,7 +71,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
         </OakHeading>
         {props.isLoading ? (
           <OakBox $minHeight="all-spacing-21">
-            <DelayedLoadingSpinner $delay={300} />
+            <DelayedLoadingSpinner $delay={300} data-testid="loading" />
           </OakBox>
         ) : (
           <ResourcePageContent {...props} />

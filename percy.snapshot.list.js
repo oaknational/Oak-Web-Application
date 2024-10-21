@@ -19,7 +19,7 @@ const snapshotRelativeUrls = getDeploymentTestUrls().map((url) => {
   const snapshotConfig = {
     url,
     // Wait for the Next app to load.
-    waitForSelector: "#__next",
+    waitForSelector: `#__next:not(:has([data-testid="loading"]))`,
     // waitForTimeout: 3000,
   };
   return snapshotConfig;
