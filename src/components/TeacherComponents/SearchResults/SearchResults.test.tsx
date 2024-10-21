@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import React from "react";
-import { act } from "react-dom/test-utils";
+import { screen } from "@testing-library/dom";
 
 import SearchResults from "./SearchResults";
 
@@ -61,9 +61,9 @@ describe("<SearchResults />", () => {
       "/teachers/programmes/english-secondary-ks4-eduqas/units/macbeth-lady-macbeth-as-a-machiavellian-villain/lessons/the-relationship-between-macbeth-and-lady-macbeth",
     );
   });
-  // @todo when we have programme_slug in search index
-  test("A unit search result links to the unit listing page", () => {
-    const { getByRole } = render(
+
+  test("A unit search result links to the unit listing page", async () => {
+    render(
       <SearchResults
         searchResultOpened={searchResultOpened}
         searchResultExpanded={searchResultExpanded}
@@ -71,11 +71,11 @@ describe("<SearchResults />", () => {
         hits={props.hits.filter((hit) => hit._source.type === "unit")}
       />,
     );
-    expect(
-      getByRole("link", {
-        name: "See unit: Macbeth: Lady Macbeth as a machiavellian villain",
-      }),
-    ).toHaveAttribute(
+
+    const link = await screen.findByRole("link", {
+      name: "See unit: Macbeth: Lady Macbeth as a machiavellian villain",
+    });
+    expect(link).toHaveAttribute(
       "href",
       "/teachers/programmes/english-secondary-ks4-eduqas/units/macbeth-lady-macbeth-as-a-machiavellian-villain/lessons",
     );
@@ -127,7 +127,7 @@ describe("<SearchResults />", () => {
   });
   test("search results clicked is called when a search result is clicked", () => {
     const hits = getNHits(1);
-    const { getByRole } = render(
+    render(
       <SearchResults
         searchResultExpanded={searchResultExpanded}
         searchResultOpened={searchResultOpened}
@@ -135,12 +135,11 @@ describe("<SearchResults />", () => {
         hits={hits}
       />,
     );
-    const searchHit = getByRole("link", {
-      name: "See lesson: The relationship between Macbeth and Lady Macbeth",
-    });
-    act(() => {
-      searchHit.click();
-    });
+    const searchHit = screen.getByText(
+      "The relationship between Macbeth and Lady Macbeth",
+    );
+
+    searchHit.click();
 
     expect(searchResultOpened).toHaveBeenCalled();
   });

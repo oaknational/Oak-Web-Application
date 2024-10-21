@@ -1,4 +1,4 @@
-import { act } from "@testing-library/react";
+import { act, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import mockRouter from "next-router-mock";
@@ -199,6 +199,7 @@ const SearchComponent = (props: SearchProps) => (
 describe("Search.page.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockRouter.setCurrentUrl("/teachers/search");
   });
 
   test("status: error message displayed status is fail", () => {
@@ -335,12 +336,11 @@ describe("Search.page.tsx", () => {
       <SearchComponent {...props} {...resultsProps} />,
     );
     const description = getByText("lesson title");
-    const user = userEvent.setup();
-    await user.click(description);
+    fireEvent.click(description);
 
     expect(searchResultOpened).toHaveBeenCalledTimes(1);
     expect(searchResultOpened).toHaveBeenCalledWith({
-      analyticsUseCase: null,
+      analyticsUseCase: "Teacher",
       keyStageSlug: "ks1",
       keyStageTitle: "Key stage 1",
       lessonName: "lesson title",
@@ -390,8 +390,7 @@ describe("Search.page.tsx", () => {
       <SearchComponent {...props} {...resultsPropsPathWays} />,
     );
     const dropdown = getByText("Select exam board");
-    const user = userEvent.setup();
-    await user.click(dropdown);
+    fireEvent.click(dropdown);
 
     expect(searchResultExpanded).toHaveBeenCalledTimes(1);
     expect(searchResultExpanded).toHaveBeenCalledWith({

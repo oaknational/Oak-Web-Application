@@ -64,9 +64,9 @@ const SearchResults = (props: SearchResultsProps) => {
                   onClick={(props) => {
                     searchResultOpened(props, searchRank(index));
                   }}
-                  onToggleClick={(props) => {
-                    searchResultExpanded(props, searchRank(index));
-                  }}
+                  onToggleClick={(props) =>
+                    searchResultExpanded(props, searchRank(index))
+                  }
                 />
               </OakLI>
             );

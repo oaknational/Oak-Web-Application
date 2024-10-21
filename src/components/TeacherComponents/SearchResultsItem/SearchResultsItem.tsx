@@ -196,6 +196,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         as="a"
         href={resolveOakHref(buttonLinkProps)}
         onClick={() => onClick?.(props)}
+        aria-label={`See ${type}: ${title}`}
       >
         <CardContent />
         <OakFlex $alignItems="center">
