@@ -4,13 +4,13 @@ import { appendBodyElements, insertNumbering, JSZipCached } from "../docx";
 
 import { threadUnitByYear } from "./helper";
 
-import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import {
   createThreadOptions,
   createUnitsListingByYear,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { sortYears } from "@/utils/curriculum/sorting";
+import { Unit } from "@/utils/curriculum/types";
 
 function sortByOrder(units: Unit[]) {
   return [...units].sort((a, b) => a.order - b.order);
