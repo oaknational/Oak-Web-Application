@@ -9,17 +9,6 @@ import {
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const unitInformationViewed = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
-      unitInformationViewed: (...args: unknown[]) =>
-        unitInformationViewed(...args),
-    },
-  }),
-}));
-
 describe("Unit modal", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -34,7 +23,6 @@ describe("Unit modal", () => {
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
-        isHighlighted={false}
         setUnitVariantID={stateFn}
         yearData={mockYearData}
       />,
@@ -50,7 +38,6 @@ describe("Unit modal", () => {
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
-        isHighlighted={false}
         setUnitVariantID={stateFn}
         yearData={mockYearData}
       />,
@@ -71,7 +58,6 @@ describe("Unit modal", () => {
         unitData={mockUnit}
         unitOptionsAvailable={false}
         setUnitOptionsAvailable={stateFn}
-        isHighlighted={false}
         setUnitVariantID={stateFn}
         yearData={mockYearData}
       />,
@@ -90,7 +76,6 @@ describe("Unit modal", () => {
           unitData={mockUnit}
           unitOptionsAvailable={false}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
           setUnitVariantID={stateFn}
           yearData={mockYearData}
         />,
@@ -107,7 +92,6 @@ describe("Unit modal", () => {
           unitData={mockUnit}
           unitOptionsAvailable={false}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
           setUnitVariantID={stateFn}
           yearData={mockYearData}
         />,
@@ -126,7 +110,6 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
           setUnitVariantID={stateFn}
           yearData={mockYearData}
         />,
@@ -144,7 +127,6 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
           setUnitVariantID={stateFn}
           yearData={mockYearData}
         />,
@@ -161,7 +143,6 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
           setUnitVariantID={stateFn}
           yearData={mockYearData}
         />,
@@ -178,7 +159,6 @@ describe("Unit modal", () => {
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
           setUnitOptionsAvailable={stateFn}
-          isHighlighted={false}
           setUnitVariantID={stateFn}
           yearData={mockYearData}
         />,
@@ -198,7 +178,6 @@ describe("Unit modal", () => {
             unitData={mockOptionalityUnit}
             unitOptionsAvailable={true}
             setUnitOptionsAvailable={stateFn}
-            isHighlighted={false}
             setUnitVariantID={stateFn}
             yearData={mockYearData}
           />,
@@ -217,32 +196,6 @@ describe("Unit modal", () => {
       } else {
         throw new Error("Optionality button not found");
       }
-    });
-  });
-  test("calls tracking.unitInformationViewed once, with correct props", async () => {
-    renderWithTheme(
-      <UnitModal
-        setCurrentUnitLessons={stateFn}
-        displayModal={true}
-        unitData={mockOptionalityUnit}
-        unitOptionsAvailable={true}
-        setUnitOptionsAvailable={stateFn}
-        setUnitVariantID={stateFn}
-        isHighlighted={false}
-        yearData={mockYearData}
-      />,
-    );
-
-    expect(unitInformationViewed).toHaveBeenCalledTimes(1);
-    expect(unitInformationViewed).toHaveBeenCalledWith({
-      unitName: "Composition of numbers 6 to 10",
-      unitSlug: "composition-of-numbers-6-to-10",
-      subjectTitle: "Maths",
-      subjectSlug: "maths",
-      yearGroupName: "1",
-      yearGroupSlug: "1",
-      unitHighlighted: false,
-      analyticsUseCase: null,
     });
   });
 });

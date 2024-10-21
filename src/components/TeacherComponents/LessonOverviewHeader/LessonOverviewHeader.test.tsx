@@ -11,6 +11,7 @@ const props = {
   background: "pink30",
   isLegacyLesson: false,
   subjectIconBackgroundColor: "pink",
+  showShare: true,
 } as unknown as LessonOverviewHeaderProps;
 
 describe("LessonOverviewHeader", () => {

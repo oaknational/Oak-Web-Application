@@ -24,6 +24,8 @@ import {
 } from "@/utils/curriculum/formatting";
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type YearData = {
   [key: string]: {
@@ -162,6 +164,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   selectedThread,
   setVisibleMobileYearRefID,
 }) => {
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
+
   // Selection state helpers
   const [displayModal, setDisplayModal] = useState(false);
   const [unitOptionsAvailable, setUnitOptionsAvailable] =
@@ -192,8 +197,25 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     }
   }, [setVisibleMobileYearRefID, yearData]);
 
+  const trackModalOpenEvent = (isOpen: boolean, unitData: Unit) => {
+    if (isOpen && unitData) {
+      track.unitInformationViewed({
+        unitName: unitData.title,
+        unitSlug: unitData.slug,
+        subjectTitle: unitData.subject,
+        subjectSlug: unitData.subject_slug,
+        yearGroupName: unitData.year,
+        yearGroupSlug: unitData.year,
+        unitHighlighted: isHighlightedUnit(unitData, selectedThread),
+        analyticsUseCase: analyticsUseCase,
+      });
+    }
+  };
+
   const handleOpenModal = (unitOptions: boolean, unit: Unit) => {
-    setDisplayModal((prev) => !prev);
+    const newDisplayModal = !displayModal;
+    setDisplayModal(newDisplayModal);
+    trackModalOpenEvent(newDisplayModal, unit);
     setUnitOptionsAvailable(unitOptions);
     setUnitData({ ...unit });
     setCurrentUnitLessons(unit.lessons ?? []);
@@ -345,7 +367,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                       );
                       return (
                         <Button
-                          $font={"heading-6"}
                           $mb={20}
                           $mr={24}
                           key={tier.tier_slug}
@@ -481,9 +502,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             displayModal={displayModal}
             setUnitOptionsAvailable={setUnitOptionsAvailable}
             unitOptionsAvailable={unitOptionsAvailable}
-            isHighlighted={
-              unitData ? isHighlightedUnit(unitData, selectedThread) : false
-            }
           />
         </UnitsTabSidebar>
       )}

@@ -37,7 +37,7 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
       $maxHeight={["all-spacing-13", "all-spacing-16"]}
     >
       <OakIcon
-        iconName={subjectSlug ? getValidSubjectIconName(subjectSlug) : "error"}
+        iconName={getValidSubjectIconName(subjectSlug)}
         $width={"100%"}
         $height={"100%"}
         alt=""

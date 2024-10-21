@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
 import CurriculumInfoPage, {
-  parseSubjectPhaseSlug,
   getStaticProps,
   getStaticPaths,
   formatCurriculumUnitsData,
@@ -22,6 +21,7 @@ import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/c
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import { mockPrerelease } from "@/utils/mocks";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 const render = renderWithProviders();
 
@@ -544,6 +544,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumOverview: jest.fn(),
   curriculumUnits: jest.fn(),
   refreshedMVTime: jest.fn(),
+  subjectPhaseOptions: jest.fn(() => subjectPhaseOptions.subjects),
 }));
 const mockedCurriculumOverview = curriculumApi.curriculumOverview as jest.Mock;
 const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as jest.Mock;
@@ -586,24 +587,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     });
     window.IntersectionObserver = mockIntersectionObserver;
   });
-  describe("parses the subject / phase / examboard slug correctly", () => {
-    it("should extract from a valid slug", () => {
-      const slug = "english-secondary-aqa";
-      const parsed = parseSubjectPhaseSlug(slug);
-      expect(parsed).toEqual({
-        subjectSlug: "english",
-        phaseSlug: "secondary",
-        ks4OptionSlug: "aqa",
-      });
-    });
-
-    it("should reject an invalid slug", () => {
-      const slug = "not_a_valid_slug";
-      expect(() => parseSubjectPhaseSlug(slug)).toThrow(
-        "The params provided are incorrect",
-      );
-    });
-  });
 
   describe("components rendering on page", () => {
     it("renders the Curriculum Header", () => {
@@ -614,7 +597,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         asPath: "",
       });
 
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
+      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
       const { queryByTestId } = render(
         <CurriculumInfoPage
           mvRefreshTime={1721314874829}
@@ -654,7 +637,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         });
 
         // Render the CurriculumInfoPage with necessary mock props
-        const slugs = parseSubjectPhaseSlug("maths-secondary");
+        const slugs = parseSubjectPhaseSlug("maths-secondary")!;
         const { queryByTestId } = render(
           <CurriculumInfoPage
             mvRefreshTime={1721314874829}
@@ -692,7 +675,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
         asPath: "",
       });
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
+      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
           mvRefreshTime={1721314874829}
@@ -715,7 +698,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         isPreview: false,
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/downloads",
       });
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
+      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
       const { queryByTestId } = render(
         <CurriculumInfoPage
           mvRefreshTime={1721314874829}

@@ -4,9 +4,9 @@ import CurriculumHeader from "./CurriculumHeader";
 
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
 import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
-import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockPrerelease } from "@/utils/mocks";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 const render = renderWithProviders();
 
@@ -16,7 +16,7 @@ describe("Component - Curriculum Header", () => {
   });
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
-      curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa"),
+      curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
       keyStages: ["ks3", "ks4"],
       subjectPhaseOptions: { subjects: subjectPhaseOptionsFixture() },
       pageSlug: "test-slug",
