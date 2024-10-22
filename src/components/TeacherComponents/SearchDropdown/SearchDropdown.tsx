@@ -94,14 +94,15 @@ const SearchDropdown: FC<
             $flexDirection="column"
             $width="fit-content"
             $gap="all-spacing-4"
+            $pa="inner-padding-none"
+            style={{ listStyleType: "none" }}
           >
             {dropDownContent.map((item, index) => {
               const buttonTitle = getDropdownButtonTitle(item);
               return (
                 <OakLI
-                  $pl="inner-padding-xs"
                   key={`${index}-${item.programmeSlug}`}
-                  $mb="space-between-s"
+                  $mb="space-between-none"
                 >
                   <OwaLink
                     $color={"navy"}
