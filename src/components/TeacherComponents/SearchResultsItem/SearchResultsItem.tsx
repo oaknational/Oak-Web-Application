@@ -19,6 +19,7 @@ import {
 } from "@/common-lib/urls";
 import { PathwaySchemaCamel } from "@/context/Search/search.types";
 import { NEW_COHORT } from "@/config/cohort";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 export type SearchResultsItemProps = {
   subjectSlug: string;
@@ -108,6 +109,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
   };
 
   const ClickableSearchCard = (props: ButtonProps | LinkProps) => {
+    const isDesktop = useMediaQuery("desktop");
     return (
       <StyledFlexWithFocusState
         {...props}
@@ -115,7 +117,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         $mb="space-between-m2"
         $borderRadius="border-radius-m2"
         $flexDirection="column"
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={() => isDesktop && setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         $background={isHovered || isToggleOpen ? backgroundColour : "white"}
         $width="100%"
@@ -190,6 +192,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
       </ClickableSearchCard>
     );
   };
+
   const SingleResultCard = () => {
     return (
       <ClickableSearchCard
