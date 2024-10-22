@@ -203,26 +203,32 @@ const Search: FC<SearchProps> = (props) => {
             $colSpan={[12, 12, 7]}
             $colStart={1}
             $rowStart={1}
-            $mt={"space-between-m"}
+            $mt={["space-between-none", "space-between-m"]}
             $mb={"space-between-ssx"}
           >
             <OakFlex
               $flexDirection={["column"]}
               $mb={["space-between-m", "space-between-m2"]}
+              $pa={["inner-padding-none", "inner-padding-xl"]}
             >
-              <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
-                Search
-              </OakHeading>
-              <SearchForm
-                searchContext="search"
-                searchTerm={query.term}
-                placeholderText="Search by keyword or topic"
-                handleSubmit={(value) => {
-                  setSearchTerm(value);
-                }}
-                analyticsSearchSource={"search page search box"}
-              />
-              <OakBox $mt={"space-between-m2"}>
+              <OakBox $display={["none", "block"]}>
+                <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
+                  Search
+                </OakHeading>
+              </OakBox>
+              <OakBox $pv={["inner-padding-xl5", "inner-padding-none"]}>
+                <SearchForm
+                  searchContext="search"
+                  searchTerm={query.term}
+                  placeholderText="Search by keyword or topic"
+                  handleSubmit={(value) => {
+                    setSearchTerm(value);
+                  }}
+                  analyticsSearchSource={"search page search box"}
+                />
+              </OakBox>
+
+              <OakBox $mt={["space-between-none", "space-between-m2"]}>
                 <OakFlex
                   $gap={"space-between-xs"}
                   $flexWrap={"wrap"}
@@ -273,9 +279,7 @@ const Search: FC<SearchProps> = (props) => {
                 </OakFlex>
               </OakBox>
             </OakFlex>
-            <OakBox $height={"space-between-l"}>
-              <SearchActiveFilters searchFilters={searchFilters} />
-            </OakBox>
+            <SearchActiveFilters searchFilters={searchFilters} />
           </OakGridArea>
           <OakGridArea $colSpan={[12, 3]} $colStart={[1, 10]} $rowStart={2}>
             <CustomWidthFlex
@@ -314,7 +318,7 @@ const Search: FC<SearchProps> = (props) => {
             $rowStart={2}
             $pr={"inner-padding-m"}
           >
-            <div role="status" aria-live="polite">
+            <OakBox role="status" aria-live="polite" $pl="inner-padding-xl">
               {shouldShowError && (
                 <p>There was an error fetching search results</p>
               )}
@@ -323,12 +327,14 @@ const Search: FC<SearchProps> = (props) => {
                 <NoSearchResults searchTerm={query.term} />
               )}
               {shouldShowResults && (
-                <OakP $mb={"space-between-xxl"}>
-                  Showing {results.length} result
-                  {results.length === 1 ? "" : "s"}
-                </OakP>
+                <OakBox $display={["none", "block"]}>
+                  <OakP $mb={"space-between-xxl"}>
+                    Showing {results.length} result
+                    {results.length === 1 ? "" : "s"}
+                  </OakP>
+                </OakBox>
               )}
-            </div>
+            </OakBox>
 
             {shouldShowResults && (
               <SearchResults
