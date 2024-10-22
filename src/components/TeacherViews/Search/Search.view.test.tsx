@@ -188,6 +188,13 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
 
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
+jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+  __esModule: true,
+  default: () => ({
+    isMobile: false,
+  }),
+}));
+
 const render = renderWithProviders();
 
 const SearchComponent = (props: SearchProps) => (
@@ -439,28 +446,28 @@ describe("Search.page.tsx", () => {
       filterValue: null,
     });
   });
-  test("filter button becomes visible when focussed", async () => {
+  test("skip button becomes visible when focussed", async () => {
     const { getByText } = render(
       <SearchComponent {...props} {...resultsPropsPathWays} />,
     );
 
-    const filterButton = getByText("Skip to results").closest("a");
+    const skipButton = getByText("Skip to results").closest("a");
 
-    if (!filterButton) {
+    if (!skipButton) {
       throw new Error("Could not find filter button");
     }
-    expect(filterButton).not.toBeVisible();
+    expect(skipButton).not.toBeVisible();
 
     act(() => {
-      filterButton.focus();
+      skipButton.focus();
     });
-    expect(filterButton).toHaveFocus();
-    expect(filterButton).not.toHaveStyle("position: absolute");
+    expect(skipButton).toHaveFocus();
+    expect(skipButton).not.toHaveStyle("position: absolute");
 
     act(() => {
-      filterButton.blur();
+      skipButton.blur();
     });
-    expect(filterButton).not.toHaveFocus();
-    expect(filterButton).not.toBeVisible();
+    expect(skipButton).not.toHaveFocus();
+    expect(skipButton).not.toBeVisible();
   });
 });

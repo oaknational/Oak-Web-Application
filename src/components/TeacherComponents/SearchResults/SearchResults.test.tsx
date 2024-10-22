@@ -11,6 +11,13 @@ import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPag
 import truthy from "@/utils/truthy";
 import { hitsFixture } from "@/context/Search/search-api/2023/searchResults.fixture";
 
+jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+  __esModule: true,
+  default: () => ({
+    isMobile: false,
+  }),
+}));
+
 const getNHits = (n: number) => {
   const [hit] = hitsFixture.map((hit) => {
     return {
