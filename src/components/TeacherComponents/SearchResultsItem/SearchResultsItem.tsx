@@ -122,6 +122,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
         $background={isHovered || isToggleOpen ? backgroundColour : "white"}
         $width="100%"
         $ba="border-solid-none"
+        $color="black"
       >
         {props.children}
       </StyledFlexWithFocusState>
@@ -156,7 +157,11 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
           $flexDirection="column"
           $alignItems="baseline"
         >
-          <OakHeading tag={"h2"} $font={["heading-6", "heading-5"]}>
+          <OakHeading
+            tag={"h2"}
+            $font={["heading-6", "heading-5"]}
+            $textAlign="left"
+          >
             {title}
           </OakHeading>
           {searchHitDescription && (
@@ -166,6 +171,7 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
               }}
               $mt="space-between-s"
               $font={"body-2"}
+              $textAlign="left"
             />
           )}
         </OakFlex>
