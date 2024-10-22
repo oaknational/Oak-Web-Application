@@ -6,7 +6,9 @@ import {
   OakIcon,
   OakTypography,
   OakBox,
+  OakSpan,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
@@ -28,7 +30,7 @@ import {
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
-import { sortYears } from "@/utils/curriculum/sorting";
+import { sortChildSubjects, sortYears } from "@/utils/curriculum/sorting";
 import { createProgrammeSlug } from "@/utils/curriculum/slugs";
 import {
   Subject,
@@ -38,6 +40,39 @@ import {
   YearData,
   YearSelection,
 } from "@/utils/curriculum/types";
+
+const UnitList = styled("ol")`
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+`;
+
+const UnitListItem = styled("li")`
+  margin: 0;
+  liststyle: none;
+  padding: 0;
+  display: flex;
+  width: 240px;
+  flex-grow: 1;
+  position: relative;
+`;
+
+const UnstyledButton = styled("button")`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+  text-align: left;
+  outline: none;
+  cursor: pointer;
+`;
 
 type CurriculumVisualiserProps = {
   unitData: Unit | null;
@@ -97,19 +132,6 @@ function isHighlightedUnit(unit: Unit, selectedThread: string | null) {
     return false;
   }
   return unit.threads.some((t) => t.slug === selectedThread);
-}
-
-function sortChildSubjects(subjects: Subject[]) {
-  return [...subjects].sort((a, b) => {
-    // Special logic we always want combined-science first.
-    if (a.subject_slug === "combined-science") return -10;
-    if (b.subject_slug === "combined-science") return 10;
-
-    // Alphabetical
-    if (a.subject_slug < b.subject_slug) return -1;
-    if (a.subject_slug > b.subject_slug) return 1;
-    return 0;
-  });
 }
 
 // Function component
@@ -282,8 +304,9 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 )}
                 {childSubjects.length > 0 && (
                   <OakBox role="group" aria-label="Child Subjects">
-                    {sortChildSubjects(childSubjects).map(
-                      (subject: Subject) => {
+                    {[...childSubjects]
+                      .sort(sortChildSubjects)
+                      .map((subject: Subject) => {
                         const isSelected = isSelectedSubject(
                           yearSelection,
                           year,
@@ -303,8 +326,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                             aria-pressed={isSelected}
                           />
                         );
-                      },
-                    )}
+                      })}
                   </OakBox>
                 )}
                 {tiers.length > 0 && (
@@ -343,136 +365,121 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                     marginBottom: "-1rem",
                   }}
                 >
-                  {dedupedUnits.map((unit: Unit, index: number) => {
-                    const isHighlighted = isHighlightedUnit(
-                      unit,
-                      selectedThread,
-                    );
-                    const unitOptions = unit.unit_options.length >= 1;
+                  <UnitList role="list">
+                    {dedupedUnits.map((unit: Unit, index: number) => {
+                      const isHighlighted = isHighlightedUnit(
+                        unit,
+                        selectedThread,
+                      );
+                      const unitOptions = unit.unit_options.length >= 1;
 
-                    return (
-                      <OakFlex
-                        $width={"all-spacing-19"}
-                        $flexGrow={1}
-                        $position={"relative"}
-                      >
-                        <FocusIndicator
-                          key={unit.slug + index}
-                          $height={"100%"}
-                          $width={"100%"}
-                          $borderRadius={"border-radius-m"}
-                          $overflow={"hidden"}
-                          disableMouseHover={true}
-                        >
-                          <button
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              overflow: "hidden",
-                              background: "none",
-                              border: "none",
-                              padding: 0,
-                              margin: 0,
-                              display: "block",
-                              textAlign: "left",
-                              outline: "none",
-                              cursor: "pointer",
-                            }}
-                            onClick={() => {
-                              handleOpenModal(unitOptions, unit);
-                            }}
-                          >
-                            <OakFlex
-                              $pv={"inner-padding-s"}
-                              $ph={"inner-padding-m"}
-                              $height={"100%"}
-                              $width={"100%"}
-                              $background={isHighlighted ? "black" : "white"}
-                              $color={isHighlighted ? "white" : "black"}
-                              data-testid={
-                                isHighlighted
-                                  ? "highlighted-unit-card"
-                                  : "unit-card"
-                              }
-                              $flexDirection={"column"}
-                            >
-                              <OakBox>
-                                <OutlineHeading
-                                  tag={"div"}
-                                  $font={"heading-5"}
-                                  $fontSize={24}
-                                  $mb={12}
-                                >
-                                  {index + 1}
-                                </OutlineHeading>
-                                <OakHeading tag={"h4"} $font={"heading-7"}>
-                                  {isHighlighted && (
-                                    <VisuallyHidden>
-                                      Highlighted:&nbsp;
-                                    </VisuallyHidden>
-                                  )}
-                                  {unit.title}
-                                </OakHeading>
-                                {unit.unit_options.length > 1 && (
-                                  <OakBox
-                                    $mt={"space-between-xs"}
-                                    $mb={"space-between-m"}
-                                    $zIndex={"neutral"}
-                                    data-testid="options-tag"
-                                    $position={"relative"}
-                                  >
-                                    <TagFunctional
-                                      color="lavender"
-                                      text={`${unit.unit_options.length} unit options`}
-                                    />
-                                  </OakBox>
-                                )}
-                              </OakBox>
-
-                              <OakFlex
-                                $flexDirection={"row"}
-                                $justifyContent={"flex-end"}
-                                $mt={"space-between-s"}
-                                $flexGrow={1}
-                                $alignItems={"flex-end"}
-                              >
-                                <OakFlex
-                                  $alignItems={"center"}
-                                  $gap={"space-between-sssx"}
-                                >
-                                  <OakTypography $font={"heading-7"}>
-                                    Unit info
-                                  </OakTypography>
-
-                                  <OakIcon
-                                    $width="all-spacing-6"
-                                    $height="all-spacing-6"
-                                    $colorFilter={
-                                      isHighlighted ? "white" : "black"
-                                    }
-                                    alt=""
-                                    iconName="chevron-right"
-                                  />
-                                </OakFlex>
-                              </OakFlex>
-                            </OakFlex>
-                          </button>
-                        </FocusIndicator>
-                      </OakFlex>
-                    );
-                  })}
-                  {/* Empty tiles for correct flex wrapping */}
-                  {Array(3)
-                    .fill(true)
-                    .map(() => {
                       return (
-                        <OakFlex
-                          $width={"all-spacing-19"}
-                          $flexGrow={1}
-                          $position={"relative"}
-                        />
+                        <UnitListItem>
+                          <FocusIndicator
+                            key={unit.slug + index}
+                            $height={"100%"}
+                            $width={"100%"}
+                            $borderRadius={"border-radius-m"}
+                            $overflow={"hidden"}
+                            disableMouseHover={true}
+                          >
+                            <UnstyledButton
+                              onClick={() => {
+                                handleOpenModal(unitOptions, unit);
+                              }}
+                            >
+                              <OakFlex
+                                $pv={"inner-padding-s"}
+                                $ph={"inner-padding-m"}
+                                $height={"100%"}
+                                $width={"100%"}
+                                $background={isHighlighted ? "black" : "white"}
+                                $color={isHighlighted ? "white" : "black"}
+                                data-testid={
+                                  isHighlighted
+                                    ? "highlighted-unit-card"
+                                    : "unit-card"
+                                }
+                                $flexDirection={"column"}
+                              >
+                                <OakBox>
+                                  <OutlineHeading
+                                    tag={"div"}
+                                    $font={"heading-5"}
+                                    $fontSize={24}
+                                    $mb={12}
+                                  >
+                                    <span aria-hidden={true}>{index + 1}</span>
+                                  </OutlineHeading>
+                                  <OakSpan $font={"heading-7"}>
+                                    {unit.title}
+                                  </OakSpan>
+                                  {unit.unit_options.length > 1 && (
+                                    <OakBox
+                                      $mt={"space-between-xs"}
+                                      $mb={"space-between-m"}
+                                      $zIndex={"neutral"}
+                                      data-testid="options-tag"
+                                      $position={"relative"}
+                                    >
+                                      <TagFunctional
+                                        color="lavender"
+                                        text={`${unit.unit_options.length} unit options`}
+                                      />
+                                    </OakBox>
+                                  )}
+                                </OakBox>
+
+                                <OakFlex
+                                  $flexDirection={"row"}
+                                  $justifyContent={"flex-end"}
+                                  $mt={"space-between-s"}
+                                  $flexGrow={1}
+                                  $alignItems={"flex-end"}
+                                >
+                                  <OakFlex
+                                    $alignItems={"center"}
+                                    $gap={"space-between-sssx"}
+                                  >
+                                    <OakTypography $font={"heading-7"}>
+                                      Unit info
+                                    </OakTypography>
+
+                                    <OakIcon
+                                      $width="all-spacing-6"
+                                      $height="all-spacing-6"
+                                      $colorFilter={
+                                        isHighlighted ? "white" : "black"
+                                      }
+                                      alt=""
+                                      iconName="chevron-right"
+                                    />
+                                  </OakFlex>
+                                </OakFlex>
+                                {isHighlighted && (
+                                  <VisuallyHidden>
+                                    &nbsp;(highlighted)
+                                  </VisuallyHidden>
+                                )}
+                              </OakFlex>
+                            </UnstyledButton>
+                          </FocusIndicator>
+                        </UnitListItem>
                       );
                     })}
+                    {/* Empty tiles for correct flex wrapping */}
+                    {Array(3)
+                      .fill(true)
+                      .map(() => {
+                        return (
+                          <OakFlex
+                            $width={"all-spacing-19"}
+                            $flexGrow={1}
+                            $position={"relative"}
+                          />
+                        );
+                      })}
+                  </UnitList>
                 </OakFlex>
               </OakBox>
             );

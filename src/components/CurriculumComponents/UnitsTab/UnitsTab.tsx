@@ -1,11 +1,11 @@
-import React, { FC, useState, useLayoutEffect } from "react";
-import { OakP, OakHeading } from "@oaknational/oak-components";
+import React, { useState, useLayoutEffect } from "react";
+import { OakP, OakHeading, OakBox } from "@oaknational/oak-components";
 
 import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
 import CurriculumVisualiserLayout from "../CurriculumVisualiserLayout/CurriculumVisualiserLayout";
 import CurriculumVisualiserFiltersMobile from "../CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile";
 import CurriculumVisualiserFilters from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
-import { HeightMonitor } from "../OakComponentsKitchen/HeightMonitor";
+import SizeMonitor from "../OakComponentsKitchen/SizeMonitor";
 
 import {
   Thread,
@@ -15,7 +15,6 @@ import {
   SubjectCategory,
   YearSelection,
 } from "@/utils/curriculum/types";
-import Box from "@/components/SharedComponents/Box";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import {
@@ -23,16 +22,15 @@ import {
   CurriculumUnitsTrackingData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
-// Types and interfaces
-
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
   formattedData: CurriculumUnitsFormattedData;
 };
 
-// Function component
-
-const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
+export default function UnitsTab({
+  trackingData,
+  formattedData,
+}: UnitsTabProps) {
   // Initialize constants
   const { yearData, initialYearSelection } = formattedData;
   const { examboardSlug } = trackingData;
@@ -51,6 +49,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
     null,
   );
   const [selectedYear, setSelectedYear] = useState<string>("");
+  const [selectedYearMobile, setSelectedYearMobile] = useState<string>("");
   const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
     useState<number>(0);
   const [, /*visibleMobileYearRefID*/ setVisibleMobileYearRefID] = useState<
@@ -79,13 +78,13 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
   }
 
   return (
-    <Box>
-      <Box
+    <OakBox>
+      <OakBox
         id="curriculum-units"
         aria-labelledby="curriculum-unit-sequence-heading"
-        $maxWidth={1280}
+        $maxWidth={"all-spacing-24"}
         $mh={"auto"}
-        $ph={[0, 18]}
+        $ph={["inner-padding-none", "inner-padding-l"]}
         $width={"100%"}
         role="region"
       >
@@ -108,17 +107,17 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
           Units that make up our curricula are fully sequenced, and aligned to
           the national curriculum.
         </OakP>
-        <HeightMonitor onChange={setMobileHeaderScrollOffset}>
+        <SizeMonitor onChange={(b) => setMobileHeaderScrollOffset(b.height)}>
           <CurriculumVisualiserFiltersMobile
             selectedThread={selectedThread}
             onSelectThread={setSelectedThread}
-            selectedYear={selectedYear}
-            onSelectYear={setSelectedYear}
+            selectedYear={selectedYearMobile}
+            onSelectYear={setSelectedYearMobile}
             data={formattedData}
             yearSelection={yearSelection}
             trackingData={trackingData}
           />
-        </HeightMonitor>
+        </SizeMonitor>
         <CurriculumVisualiserLayout
           filters={
             <CurriculumVisualiserFilters
@@ -148,9 +147,8 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
             />
           }
         />
-      </Box>
+      </OakBox>
       <UnitTabBanner />
-    </Box>
+    </OakBox>
   );
-};
-export default UnitsTab;
+}
