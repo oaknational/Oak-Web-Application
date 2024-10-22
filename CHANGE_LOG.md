@@ -1,3 +1,42 @@
+# [1.602.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.601.0...v1.602.0) (2024-10-22)
+
+
+### Bug Fixes
+
+* dropdown text colour when open ([8679273](https://github.com/oaknational/Oak-Web-Application/commit/867927304c27a0b0aac9ef0ea67acbaf62369e1a))
+* explicitly set colour and text alignment on button for iOS safari ([65084fa](https://github.com/oaknational/Oak-Web-Application/commit/65084fa4b0e65f49901ffeca69b9308386efe58b))
+* left align links in dropdown ([f8ed21c](https://github.com/oaknational/Oak-Web-Application/commit/f8ed21c3ae1eda0f44034e4dc95153b1077728cd))
+* remove bullets and extra padding from list items in dropdown ([f98dcef](https://github.com/oaknational/Oak-Web-Application/commit/f98dcef469d2228654ba79283c120588cc15567c))
+
+
+### Features
+
+* make whole dropdown card clickable ([ed27b26](https://github.com/oaknational/Oak-Web-Application/commit/ed27b26772c2acfc33cdd55d23230a019d8f8dc0))
+* update search item card styling and layout ([4644545](https://github.com/oaknational/Oak-Web-Application/commit/4644545af1af98fffd8d0972a7d6e400c9e9ba2e))
+* use media query to set highlight on mouse over on desktop only ([95573fa](https://github.com/oaknational/Oak-Web-Application/commit/95573fade5e2b42e1c6ca7c737ff5717e04f37aa))
+
+# [1.601.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.4...v1.601.0) (2024-10-22)
+
+
+### Bug Fixes
+
+* **LESQ-1115:** remove the flicker of the "your details" section ([e4489fb](https://github.com/oaknational/Oak-Web-Application/commit/e4489fbbb565d1d8c5df2830215a9e2a85b1c87f))
+
+
+### Features
+
+* **LESQ-1115:** add a loader around the downloads page form ([4e82b24](https://github.com/oaknational/Oak-Web-Application/commit/4e82b2438c3bc395383fba7282316ec3021a4a44))
+
+## [1.600.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.3...v1.600.4) (2024-10-21)
+
+
+### Bug Fixes
+
+* add regex that gets all school urns ([9039394](https://github.com/oaknational/Oak-Web-Application/commit/9039394dececb69a4d0ccccb0c12c3bffc1497fc))
+* amend functions ([67b651e](https://github.com/oaknational/Oak-Web-Application/commit/67b651e6e785415a9fe91f7e3e1496ff0100c3ba))
+* merge conflicts ([3d86341](https://github.com/oaknational/Oak-Web-Application/commit/3d86341ade65c247547407fd11dc91fd93ae78f3))
+* remove hubspot schoolid ([1a9e053](https://github.com/oaknational/Oak-Web-Application/commit/1a9e053b89d961bd7092b68520119daa332461a9))
+
 ## [1.600.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.2...v1.600.3) (2024-10-18)
 
 
