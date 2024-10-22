@@ -1,5 +1,6 @@
 import { GetStaticProps, NextPage } from "next";
 
+import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
@@ -12,14 +13,18 @@ import {
   HomePageProps,
 } from "@/pages-helpers/home/getBlogPosts";
 
+const cycleTwoEnabled = isCycleTwoEnabled();
+
 const Curriculum: NextPage<HomePageProps> = (props) => (
   <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
-    <HomePageBanner
-      background="lemon"
-      newText="Subjects added"
-      ctaText="See curriculum plans"
-      page="curriculum-landing-page"
-    />
+    {cycleTwoEnabled ? (
+      <HomePageBanner
+        background="lemon"
+        newText="Subjects added"
+        ctaText="See curriculum plans"
+        page="curriculum-landing-page"
+      />
+    ) : null}
     <HomePageTabImageNav current={"curriculum"} />
     <CurriculumTab aria-current="page" />
     <HomePageLowerView posts={props.posts} />
