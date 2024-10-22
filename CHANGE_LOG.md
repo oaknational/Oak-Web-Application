@@ -1,3 +1,15 @@
+# [1.601.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.4...v1.601.0) (2024-10-22)
+
+
+### Bug Fixes
+
+* **LESQ-1115:** remove the flicker of the "your details" section ([e4489fb](https://github.com/oaknational/Oak-Web-Application/commit/e4489fbbb565d1d8c5df2830215a9e2a85b1c87f))
+
+
+### Features
+
+* **LESQ-1115:** add a loader around the downloads page form ([4e82b24](https://github.com/oaknational/Oak-Web-Application/commit/4e82b2438c3bc395383fba7282316ec3021a4a44))
+
 ## [1.600.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.3...v1.600.4) (2024-10-21)
 
 
