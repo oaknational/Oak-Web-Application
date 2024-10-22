@@ -103,6 +103,7 @@ const SearchDropdown: FC<
                 <OakLI
                   key={`${index}-${item.programmeSlug}`}
                   $mb="space-between-none"
+                  $textAlign="left"
                 >
                   <OwaLink
                     $color={"navy"}
