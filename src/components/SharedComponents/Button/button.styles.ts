@@ -250,7 +250,7 @@ const buttonStyles = css<ButtonStylesProps>`
       `}
     `}
 
-  ${(props) =>
+    ${(props) =>
     props.variant === "buttonStyledAsLink" &&
     css`
       &:focus {
@@ -258,9 +258,24 @@ const buttonStyles = css<ButtonStylesProps>`
           display: block;
         }
       }
-
       :hover:not(:focus) ${ButtonLabel} {
         text-decoration: underline;
+      }
+    `}
+
+
+    ${(props) =>
+    props.variant === "buttonStyledAsLink" &&
+    props.size === "medium" &&
+    css`
+      & svg[name="underline-1"] {
+        top: 27px;
+        width: 96%;
+      }
+
+      & div {
+        margin-left: 0;
+        font-weight: 600;
       }
     `}
 
