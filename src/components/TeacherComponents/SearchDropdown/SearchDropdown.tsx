@@ -70,7 +70,7 @@ const SearchDropdown: FC<
       <OakFlex $alignItems="center">
         <OakP
           $font="heading-7"
-          $color="navy"
+          $color={isToggleOpen ? "navy120" : "navy"}
           $textDecoration={isHovered && !isToggleOpen ? "underline" : "none"}
           aria-label={ariaLabel}
         >
@@ -78,7 +78,7 @@ const SearchDropdown: FC<
         </OakP>
         <OakIcon
           iconName={isToggleOpen ? "chevron-up" : "chevron-down"}
-          $colorFilter="navy"
+          $colorFilter={isToggleOpen ? "navy120" : "navy"}
           $width="all-spacing-6"
         />
       </OakFlex>
