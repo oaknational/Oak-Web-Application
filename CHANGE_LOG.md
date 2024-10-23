@@ -1,3 +1,5 @@
+## [1.602.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.1...v1.602.2) (2024-10-23)
+
 ## [1.602.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.0...v1.602.1) (2024-10-23)
 
 
