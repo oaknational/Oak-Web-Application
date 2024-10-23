@@ -19,10 +19,10 @@ export const getSchoolUrn = (
   schoolOption: SchoolOptionValueType,
 ) => {
   if (schoolOption === "Selected school") {
-    const schoolUrn = Number(school.split("-")[0]) || 0;
-    return schoolUrn;
+    const { urn } = extractUrnAndSchool(school);
+    return urn || "";
   } else {
-    return 0;
+    return "";
   }
 };
 
@@ -31,11 +31,26 @@ export const getSchoolName = (
   schoolOption: SchoolOptionValueType,
 ) => {
   if (schoolOption === "Selected school") {
-    const schoolName = school.split("-")[1] || "";
-    return schoolName;
+    const { schoolName } = extractUrnAndSchool(school);
+    return schoolName || "";
   } else {
     return "";
   }
+};
+
+/**
+ * Regex to extract URN and school name from schoolId string
+ * ! - English and Welsh schools 6 digits
+ * ! - Scottish school 7 digits
+ * ! - Northern Irish school 3 digits followed by a hyphen and 4 digits
+ */
+
+export const extractUrnAndSchool = (school: string) => {
+  const match = /^(?:(\d{7}|\d{6}|\d{3}-\d{4}))-(.*)/.exec(school);
+  return {
+    urn: match ? match[1] : "",
+    schoolName: match ? match[2] : "",
+  };
 };
 
 const getFormattedDetailsForTracking = ({

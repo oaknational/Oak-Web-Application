@@ -90,6 +90,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     copyrightContent,
     isSpecialist,
     updatedAt,
+    isCanonical,
   } = lesson;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -185,6 +186,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   );
 
   const showDownloadAll = downloadsFilteredByCopyright.length > 0;
+  const showShare =
+    !isSpecialist && keyStageSlug !== "early-years-foundation-stage";
 
   return (
     <MathJaxLessonProvider>
@@ -201,6 +204,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   unitSlug,
                   programmeSlug,
                   disabled: true,
+                  isCanonical,
                 }),
               ]
             : [
@@ -226,6 +230,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
           keyLearningPoints,
         )}
         showDownloadAll={showDownloadAll}
+        showShare={showShare}
       />
       <MaxWidth $ph={16} $pb={80}>
         <NewContentBanner
@@ -326,7 +331,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   <LessonItemContainer
                     isSpecialist={isSpecialist}
                     ref={videoSectionRef}
-                    shareable={isLegacyLicense && !isSpecialist}
+                    shareable={isLegacyLicense && showShare}
                     slugs={slugs}
                     title={"Video"}
                     anchorId="video"
@@ -364,7 +369,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         copyrightContent,
                       )
                     }
-                    shareable={isLegacyLicense && !isSpecialist}
+                    shareable={isLegacyLicense && showShare}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "worksheet",
@@ -389,7 +394,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     isSpecialist={isSpecialist}
                     ref={starterQuizSectionRef}
                     title={"Starter quiz"}
-                    shareable={isLegacyLicense && !isSpecialist}
+                    shareable={isLegacyLicense && showShare}
                     anchorId="starter-quiz"
                     pageLinks={pageLinks}
                     downloadable={
@@ -443,7 +448,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         copyrightContent,
                       )
                     }
-                    shareable={isLegacyLicense && !isSpecialist}
+                    shareable={isLegacyLicense && showShare}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "exit quiz",
@@ -483,7 +488,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         copyrightContent,
                       )
                     }
-                    shareable={isLegacyLicense && !isSpecialist}
+                    shareable={isLegacyLicense && showShare}
                     onDownloadButtonClick={() => {
                       trackDownloadResourceButtonClicked({
                         downloadResourceButtonName: "additional material",

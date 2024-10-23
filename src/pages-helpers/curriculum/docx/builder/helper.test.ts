@@ -3,7 +3,6 @@ import { xmlRootToJson } from "../xml";
 import {
   generateGridCols,
   keyStageFromPhaseTitle,
-  notUndefined,
   uncapitalize,
   uncapitalizeSubject,
 } from "./helper";
@@ -30,18 +29,6 @@ describe("helper", () => {
     ] as const) {
       expect(uncapitalizeSubject(input)).toEqual(output);
     }
-  });
-
-  describe("notUndefined", () => {
-    it("true", () => {
-      expect(notUndefined(undefined)).toEqual(false);
-    });
-
-    it("false", () => {
-      expect(notUndefined(0)).toEqual(true);
-      expect(notUndefined("")).toEqual(true);
-      expect(notUndefined(false)).toEqual(true);
-    });
   });
 
   it("keyStageFromPhaseTitle", () => {

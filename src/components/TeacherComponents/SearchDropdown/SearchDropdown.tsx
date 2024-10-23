@@ -1,16 +1,23 @@
-import { FC, useState } from "react";
-import { OakLI, OakFlex } from "@oaknational/oak-components";
+import { FC } from "react";
+import {
+  OakLI,
+  OakFlex,
+  OakP,
+  OakIcon,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
-import MiniDropDown from "@/components/SharedComponents/Button/MiniDropDownButton/MiniDropDown";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Box from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { PathwaySchemaCamel } from "@/context/Search/search.types";
 
-const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
-  const { pathways, onClick, onToggleClick, type } = props;
-  const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
+const SearchDropdown: FC<
+  SearchResultsItemProps & {
+    isToggleOpen: boolean;
+    isHovered: boolean;
+  }
+> = (props) => {
+  const { pathways, onClick, type, isToggleOpen, isHovered } = props;
 
   const getSlug = (item: string | null | undefined) => item || "";
 
@@ -59,21 +66,25 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
   };
 
   return (
-    <Flex $ml={-8} $flexDirection={"column"} $justifyContent={"center"}>
-      <MiniDropDown
-        label={label}
-        ariaLabel={ariaLabel}
-        title={label}
-        icon={isToggleOpen ? "chevron-up" : "chevron-down"}
-        onClick={() => {
-          setToggleOpen(!isToggleOpen);
-          onToggleClick?.({ ...props, isToggleOpen: !isToggleOpen });
-        }}
-        isExpanded={isToggleOpen}
-      />
-      <Box
+    <OakFlex $flexDirection={"column"} $justifyContent={"center"}>
+      <OakFlex $alignItems="center">
+        <OakP
+          $font="heading-7"
+          $color={isToggleOpen ? "navy120" : "navy"}
+          $textDecoration={isHovered && !isToggleOpen ? "underline" : "none"}
+          aria-label={ariaLabel}
+        >
+          {label}
+        </OakP>
+        <OakIcon
+          iconName={isToggleOpen ? "chevron-up" : "chevron-down"}
+          $colorFilter={isToggleOpen ? "navy120" : "navy"}
+          $width="all-spacing-6"
+        />
+      </OakFlex>
+      <OakBox
         $display={isToggleOpen ? "block" : "none"}
-        $transition={"all 0.3s ease"}
+        $transition="standard-ease"
       >
         {dropDownContent.length > 0 && (
           <OakFlex
@@ -83,14 +94,16 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
             $flexDirection="column"
             $width="fit-content"
             $gap="all-spacing-4"
+            $pa="inner-padding-none"
+            style={{ listStyleType: "none" }}
           >
             {dropDownContent.map((item, index) => {
               const buttonTitle = getDropdownButtonTitle(item);
               return (
                 <OakLI
-                  $pl="inner-padding-xs"
                   key={`${index}-${item.programmeSlug}`}
-                  $mb="space-between-s"
+                  $mb="space-between-none"
+                  $textAlign="left"
                 >
                   <OwaLink
                     $color={"navy"}
@@ -101,8 +114,9 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
                     {...props.buttonLinkProps}
                     programmeSlug={item.programmeSlug}
                     unitSlug={item.unitSlug}
-                    onClick={() => {
+                    onClick={(e) => {
                       onClick?.({ ...props, isToggleOpen });
+                      e.stopPropagation();
                     }}
                   >
                     {buttonTitle}
@@ -112,8 +126,8 @@ const SearchDropdown: FC<SearchResultsItemProps> = (props) => {
             })}
           </OakFlex>
         )}
-      </Box>
-    </Flex>
+      </OakBox>
+    </OakFlex>
   );
 };
 
