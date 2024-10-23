@@ -10,7 +10,7 @@ import Box from "@/components/SharedComponents/Box";
 import Tag from "@/components/SharedComponents/TagPromotional";
 
 // Page types that will likely go in the banner and that do not require additional props
-type SimplePageType =
+export type SimplePageType =
   | "careers"
   | "classroom"
   | "contact"
