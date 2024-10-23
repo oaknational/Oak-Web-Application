@@ -8,7 +8,7 @@ describe("curriculum Downloads query", () => {
       await curriculumDownloadsQuery()({
         subjectSlug: "",
         phaseSlug: "",
-        examboardSlug: null,
+        ks4OptionSlug: null,
       });
     }).rejects.toThrow(`The params provided are incorrect`);
   });
@@ -17,7 +17,7 @@ describe("curriculum Downloads query", () => {
     const result = await curriculumDownloadsQuery()({
       subjectSlug: "geography",
       phaseSlug: "primary",
-      examboardSlug: null,
+      ks4OptionSlug: null,
     });
     expect(result).toEqual(curriculumDownloadsTabFixture());
   });
