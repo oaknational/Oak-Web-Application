@@ -66,19 +66,58 @@ export type WorksInSchoolFormProps = WorksInSchoolFormValues & {
   onSubmit: (values: WorksInSchoolFormValues) => Promise<void>;
 };
 
+const oakSupportKeys = [
+  "curriculumDesign",
+  "departmentResources",
+  "enhanceSkills",
+  "resourcesInspiration",
+  "disruptionLearning",
+] as const;
+export type OakSupportKey = (typeof oakSupportKeys)[number];
+
 export const useOfOakSchema = z.object({
   curriculumDesign: z.boolean().optional(),
   departmentResources: z.boolean().optional(),
   enhanceSkills: z.boolean().optional(),
   resourcesInspiration: z.boolean().optional(),
   disruptionLearning: z.boolean().optional(),
+  submitMode: z.union([z.literal("continue"), z.literal("skip")]).nullish(),
 });
 
 export const extendedUseOfOakSchema = useOfOakSchema
   .merge(ukSchoolSchema)
-  .or(useOfOakSchema.merge(manualSchoolSchema));
+  .or(useOfOakSchema.merge(manualSchoolSchema))
+  .refine(
+    (input) => {
+      if (input.submitMode === "continue") {
+        // If continuing then we require at least one
+        // option to have been selected
+        return oakSupportKeys.some((key) => input[key]);
+      }
 
-export type UseOfOakFormSchema = z.infer<typeof extendedUseOfOakSchema>;
+      return true;
+    },
+    {
+      message: "Please tell us how Oak can support you",
+      path: ["root"],
+    },
+  )
+  .transform((input) => {
+    if (input.submitMode === "skip") {
+      // If skipping then we omit any options the user may
+      // have selected
+      const output = { ...input };
+      for (const key of oakSupportKeys) {
+        delete output[key];
+      }
+
+      return output;
+    }
+
+    return input;
+  });
+
+export type UseOfOakFormSchema = z.input<typeof extendedUseOfOakSchema>;
 export type UseOfOakFormProps = UseOfOakFormSchema & {
   onSubmit: (values: UseOfOakFormSchema) => Promise<void>;
 };
