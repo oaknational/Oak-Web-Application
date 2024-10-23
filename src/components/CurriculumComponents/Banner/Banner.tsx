@@ -60,7 +60,7 @@ const HomePageBanner: FC<HomePageBannerProps> = ({
         <Flex $alignItems={"center"} $gap={[0, 4]} $minWidth={["fit-content"]}>
           <Tag aria-hidden="true" size={"small"} />
           <OakTypography $font={["body-3", "body-2"]}>
-            <ScreenReaderOnly>New</ScreenReaderOnly> {newText}
+            <ScreenReaderOnly>New&nbsp;</ScreenReaderOnly> {newText}
           </OakTypography>
         </Flex>
         <ButtonAsLink
