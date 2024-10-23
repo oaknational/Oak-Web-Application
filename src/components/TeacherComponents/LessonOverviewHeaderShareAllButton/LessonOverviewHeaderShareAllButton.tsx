@@ -19,8 +19,6 @@ export const LessonOverviewHeaderShareAllButton: FC<
     programmeSlug,
     lessonSlug,
     unitSlug,
-    keyStageSlug,
-    keyStageTitle,
     unitTitle,
     subjectTitle,
     track,
@@ -28,6 +26,7 @@ export const LessonOverviewHeaderShareAllButton: FC<
     isShareable,
     onClickShareAll,
     isSpecialist,
+    isCanonical,
     ...boxProps
   } = props;
 
@@ -36,28 +35,27 @@ export const LessonOverviewHeaderShareAllButton: FC<
   const linkProps:
     | LessonShareLinkProps
     | LessonShareCanonicalLinkProps
-    | SpecialistLessonShareLinkProps =
-    programmeSlug && unitSlug && isSpecialist
-      ? {
+    | SpecialistLessonShareLinkProps = isCanonical
+    ? ({
+        page: "lesson-share-canonical",
+        lessonSlug,
+        query: { preselected },
+      } as LessonShareCanonicalLinkProps)
+    : isSpecialist
+      ? ({
           page: "specialist-lesson-share",
           lessonSlug,
           unitSlug,
           programmeSlug,
           query: { preselected },
-        }
-      : programmeSlug && unitSlug && !isSpecialist
-        ? {
-            page: "lesson-share",
-            lessonSlug,
-            unitSlug,
-            programmeSlug,
-            query: { preselected },
-          }
-        : {
-            page: "lesson-share-canonical",
-            lessonSlug,
-            query: { preselected },
-          };
+        } as SpecialistLessonShareLinkProps)
+      : ({
+          page: "lesson-share",
+          lessonSlug,
+          unitSlug,
+          programmeSlug,
+          query: { preselected },
+        } as LessonShareLinkProps);
 
   return (
     <Flex

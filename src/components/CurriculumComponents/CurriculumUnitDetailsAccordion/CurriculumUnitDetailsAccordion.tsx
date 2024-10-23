@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { useFocusWithin } from "react-aria";
+import { useFocusVisible, useFocusWithin } from "react-aria";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import Card from "@/components/SharedComponents/Card";
@@ -31,6 +31,7 @@ const CurriculumUnitDetailsAccordion: FC<
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
 
+  const { isFocusVisible } = useFocusVisible();
   const { focusWithinProps } = useFocusWithin({
     onFocusWithinChange: setIsFocused,
   });
@@ -80,7 +81,7 @@ const CurriculumUnitDetailsAccordion: FC<
       </Flex>
       <BoxBorders hideLeft hideRight hideBottom={!lastAccordion || isFocused} />
 
-      {isFocused && (
+      {isFocused && isFocusVisible && (
         <Box
           $position={"absolute"}
           $height={4}

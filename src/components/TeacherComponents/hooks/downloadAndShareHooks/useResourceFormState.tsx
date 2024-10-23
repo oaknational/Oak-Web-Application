@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { useUser } from "@clerk/nextjs";
 
 import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
@@ -57,22 +57,10 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const [preselectAll, setPreselectAll] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
-  const [schoolUrn, setSchoolUrn] = useState(0);
-  const authFlagEnabled = useFeatureFlagEnabled("use-auth-owa");
+  const [schoolUrn, setSchoolUrn] = useState("");
+  const authFlagEnabled =
+    useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
   const { isSignedIn, user } = useUser();
-
-  const [hasOnboardingDownloadDetails, setHasOnboardingDownloadDetails] =
-    useState(false);
-
-  useEffect(() => {
-    if (user != null) {
-      // as user has signed in with full onboarding journey on OWA
-      const hasOnboardingDownloadDetails = Boolean(
-        authFlagEnabled && isSignedIn && user.publicMetadata?.owa?.isOnboarded,
-      );
-      setHasOnboardingDownloadDetails(hasOnboardingDownloadDetails);
-    }
-  }, [authFlagEnabled, isSignedIn, user, user?.publicMetadata?.owa?.isTeacher]);
 
   const {
     schoolFromLocalStorage,
@@ -109,7 +97,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         const schoolName = hubspotContact.schoolName;
 
         setSchoolInLocalStorage({
-          schoolId: schoolId ?? "notListed",
+          schoolId: schoolIdFromLocalStorage ?? "notListed",
           schoolName: schoolName ?? "notListed",
         });
 
@@ -118,7 +106,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         }
 
         if (schoolId) {
-          setValue("school", schoolId);
+          setValue("school", schoolIdFromLocalStorage);
         }
       } else {
         setSchoolInLocalStorage({
@@ -131,6 +119,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     if (userEmail && authFlagEnabled && isSignedIn) {
       updateUserDetailsFromHubspot(userEmail);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     authFlagEnabled,
     isSignedIn,
@@ -152,7 +141,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
     if (schoolIdFromLocalStorage) {
       setValue("school", schoolIdFromLocalStorage);
-
       const schoolUrn = getSchoolUrn(
         schoolIdFromLocalStorage,
         getSchoolOption(schoolIdFromLocalStorage),
@@ -339,7 +327,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setActiveResources,
     handleToggleSelectAll,
     selectAllChecked,
-    hasOnboardingDownloadDetails,
     form: {
       trigger,
       setValue,

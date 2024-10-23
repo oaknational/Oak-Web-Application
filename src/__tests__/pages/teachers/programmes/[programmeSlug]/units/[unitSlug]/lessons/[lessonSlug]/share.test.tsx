@@ -82,8 +82,8 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
     result.current.setEmailInLocalStorage("test@test.com");
     result.current.setTermsInLocalStorage(true);
     result.current.setSchoolInLocalStorage({
-      schoolId: "1",
-      schoolName: "name",
+      schoolId: "123456-Secondary school",
+      schoolName: "Secondary school",
     });
 
     render(<LessonSharePage {...props} />);
@@ -97,8 +97,8 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
     expect(lessonShared).toHaveBeenCalledWith({
       lessonName: "Islamic Geometry",
       lessonSlug: "macbeth-lesson-1",
-      schoolUrn: 1,
-      schoolName: "",
+      schoolUrn: "123456",
+      schoolName: "Secondary school",
       schoolOption: "Selected school",
       shareMedium: "email",
       emailSupplied: true,

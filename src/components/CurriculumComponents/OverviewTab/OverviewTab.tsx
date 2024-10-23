@@ -27,7 +27,6 @@ import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/Br
 import Icon from "@/components/SharedComponents/Icon";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -35,6 +34,7 @@ import { basePortableTextComponents } from "@/components/SharedComponents/Portab
 import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { findContainingAnchor } from "@/utils/curriculum/dom";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 export type OverviewTabProps = {
   data: {
@@ -324,7 +324,18 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                       value={curriculumExplainer.explainerRaw}
                       components={{
                         ...basePortableTextComponents.list,
-                        ...basePortableTextComponents.listItem,
+                        listItem: {
+                          bullet: (props) => (
+                            <OakLI $font={["list-item-2", "list-item-1"]}>
+                              {props.children}
+                            </OakLI>
+                          ),
+                          number: (props) => (
+                            <OakLI $font={["list-item-2", "list-item-1"]}>
+                              {props.children}
+                            </OakLI>
+                          ),
+                        },
                         block: {
                           ...basePortableTextComponents.block,
                           ...blockHeadingComponents,
