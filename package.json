@@ -66,7 +66,7 @@
     "@bugsnag/js": "^7.25.0",
     "@bugsnag/plugin-react": "^7.25.0",
     "@clerk/nextjs": "^5.7.3",
-    "@google-cloud/storage": "^7.12.1",
+    "@google-cloud/storage": "^7.13.0",
     "@hookform/resolvers": "^3.7.0",
     "@hubspot/api-client": "^11.1.0",
     "@mdx-js/loader": "^3.0.1",
