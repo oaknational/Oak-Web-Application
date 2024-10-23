@@ -16,7 +16,7 @@ export const iconFocusUnderline = css`
     display: none;
   }
 
-  :focus ${IconFocusUnderline} {
+  :focus-visible ${IconFocusUnderline} {
     display: block;
     bottom: 0;
     left: 0;
