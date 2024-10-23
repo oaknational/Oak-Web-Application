@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import CMSClient from "@/node-lib/cms";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
 import CurriculumInfoPage, {
-  parseSubjectPhaseSlug,
   getStaticProps,
   getStaticPaths,
   formatCurriculumUnitsData,
@@ -22,6 +21,7 @@ import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/c
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import { mockPrerelease } from "@/utils/mocks";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 const render = renderWithProviders();
 
@@ -67,6 +67,7 @@ const unitData = [
     ],
     order: 6,
     slug: "plant-growth-and-development",
+    state: "published",
     subject: "Biology",
     subject_slug: "biology",
     subject_parent: "Science",
@@ -145,6 +146,7 @@ const unitData = [
     ],
     order: 6,
     slug: "ecosystems",
+    state: "published",
     subject: "Science",
     subject_slug: "science",
     subject_parent: null,
@@ -220,6 +222,7 @@ const unitData = [
     ],
     order: 6,
     slug: "health-and-disease",
+    state: "published",
     subject: "Combined science",
     subject_slug: "combined-science",
     subject_parent: "Science",
@@ -256,6 +259,7 @@ const unitData = [
     planned_number_of_lessons: 13,
     phase: "Secondary",
     phase_slug: "secondary",
+    state: "published",
     keystage_slug: "ks4",
     lessons: [
       {
@@ -390,6 +394,7 @@ const unitData = [
     ],
     order: 7,
     slug: "coordination-and-control-maintaining-a-constant-internal-environment",
+    state: "published",
     subject: "Biology",
     subject_slug: "biology",
     subject_parent: "Science",
@@ -477,6 +482,7 @@ const unitData = [
     ],
     order: 7,
     slug: "transport-and-exchange-surfaces-in-plants",
+    state: "published",
     subject: "Combined science",
     subject_slug: "combined-science",
     subject_parent: "Science",
@@ -538,6 +544,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumOverview: jest.fn(),
   curriculumUnits: jest.fn(),
   refreshedMVTime: jest.fn(),
+  subjectPhaseOptions: jest.fn(() => subjectPhaseOptions.subjects),
 }));
 const mockedCurriculumOverview = curriculumApi.curriculumOverview as jest.Mock;
 const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as jest.Mock;
@@ -580,24 +587,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     });
     window.IntersectionObserver = mockIntersectionObserver;
   });
-  describe("parses the subject / phase / examboard slug correctly", () => {
-    it("should extract from a valid slug", () => {
-      const slug = "english-secondary-aqa";
-      const parsed = parseSubjectPhaseSlug(slug);
-      expect(parsed).toEqual({
-        subjectSlug: "english",
-        phaseSlug: "secondary",
-        ks4OptionSlug: "aqa",
-      });
-    });
-
-    it("should reject an invalid slug", () => {
-      const slug = "not_a_valid_slug";
-      expect(() => parseSubjectPhaseSlug(slug)).toThrow(
-        "The params provided are incorrect",
-      );
-    });
-  });
 
   describe("components rendering on page", () => {
     it("renders the Curriculum Header", () => {
@@ -608,7 +597,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         asPath: "",
       });
 
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
+      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
       const { queryByTestId } = render(
         <CurriculumInfoPage
           mvRefreshTime={1721314874829}
@@ -648,7 +637,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         });
 
         // Render the CurriculumInfoPage with necessary mock props
-        const slugs = parseSubjectPhaseSlug("maths-secondary");
+        const slugs = parseSubjectPhaseSlug("maths-secondary")!;
         const { queryByTestId } = render(
           <CurriculumInfoPage
             mvRefreshTime={1721314874829}
@@ -686,7 +675,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
         asPath: "",
       });
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
+      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
           mvRefreshTime={1721314874829}
@@ -709,7 +698,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         isPreview: false,
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/downloads",
       });
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
+      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
       const { queryByTestId } = render(
         <CurriculumInfoPage
           mvRefreshTime={1721314874829}
@@ -917,6 +906,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
           ],
           groupAs: null,
@@ -1013,6 +1003,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
             {
               connection_future_unit_description:
@@ -1106,6 +1097,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
             {
               connection_future_unit_description:
@@ -1193,6 +1185,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
             {
               connection_future_unit_description:
@@ -1281,6 +1274,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
           ],
           groupAs: null,
@@ -1389,6 +1383,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               cycle: "1",
               description: null,
               why_this_why_now: null,
+              state: "published",
             },
           ],
           groupAs: null,

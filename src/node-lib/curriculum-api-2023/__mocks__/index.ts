@@ -1,6 +1,7 @@
 import unitListingFixture from "../fixtures/unitListing.fixture";
 import { unitBrowseDataFixture } from "../fixtures/unitBrowseData.fixture";
 import { subjectBrowseDataFixture } from "../fixtures/subjectBrowseData.fixture";
+import { LessonShareQuery } from "../queries/lessonShare/lessonShare.query";
 
 import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";
 import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
@@ -95,7 +96,7 @@ const curriculumApi: Pick<
   }),
   lessonShare: jest.fn(async () => {
     return lessonShareFixtures();
-  }),
+  }) as jest.Mocked<LessonShareQuery>,
   lessonOverview: jest.fn(async () => {
     return lessonOverviewFixture();
   }),

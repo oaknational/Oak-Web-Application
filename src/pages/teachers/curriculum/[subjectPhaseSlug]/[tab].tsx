@@ -41,14 +41,17 @@ import {
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { YearSelection } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
-import { getUnitFeatures } from "@/utils/curriculum/features";
+import {
+  getUnitFeatures,
+  isCycleTwoEnabled,
+} from "@/utils/curriculum/features";
 import { sortYears } from "@/utils/curriculum/sorting";
-
-export type CurriculumSelectionSlugs = {
-  phaseSlug: string;
-  subjectSlug: string;
-  ks4OptionSlug: string | null;
-};
+import {
+  CurriculumSelectionSlugs,
+  getKs4RedirectSlug,
+  isValidSubjectPhaseSlug,
+  parseSubjectPhaseSlug,
+} from "@/utils/curriculum/slugs";
 
 export type CurriculumUnitsYearGroup = {
   units: Unit[];
@@ -199,7 +202,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           keyStages={keyStages}
           color1="mint"
-          color2="mint30"
+          color2="mint"
         />
 
         <Box $background={"white"}>{tabContent}</Box>
@@ -223,31 +226,6 @@ export const getStaticPaths = async () => {
     paths: [],
   };
   return config;
-};
-
-export const parseSubjectPhaseSlug = (slug: string) => {
-  const parts = slug.split("-");
-  const lastSlug = parts.pop() ?? null;
-  let phaseSlug: string | null, ks4OptionSlug: string | null;
-  // Use phase to determine if examboard is present
-  if (lastSlug && ["primary", "secondary"].includes(lastSlug)) {
-    ks4OptionSlug = null;
-    phaseSlug = lastSlug;
-  } else {
-    ks4OptionSlug = lastSlug;
-    phaseSlug = parts.pop() ?? null;
-  }
-  const subjectSlug = parts.join("-");
-  if (!subjectSlug || !phaseSlug) {
-    throw new OakError({
-      code: "curriculum-api/params-incorrect",
-    });
-  }
-  return {
-    phaseSlug: phaseSlug,
-    subjectSlug: subjectSlug,
-    ks4OptionSlug: ks4OptionSlug,
-  };
 };
 
 export function createThreadOptions(units: Unit[]): Thread[] {
@@ -591,6 +569,34 @@ export const getStaticProps: GetStaticProps<
         });
       }
       const slugs = parseSubjectPhaseSlug(context.params.subjectPhaseSlug);
+      if (!slugs) {
+        throw new OakError({
+          code: "curriculum-api/params-incorrect",
+        });
+      }
+
+      const validSubjectPhases = await curriculumApi.subjectPhaseOptions({
+        cycle: isCycleTwoEnabled() ? "2" : "1",
+      });
+
+      const isValid = isValidSubjectPhaseSlug(validSubjectPhases, slugs);
+      if (!isValid) {
+        const redirect = getKs4RedirectSlug(validSubjectPhases, slugs);
+        if (redirect) {
+          const { subjectSlug, phaseSlug, ks4OptionSlug } = redirect;
+          return {
+            redirect: {
+              destination: `/teachers/curriculum/${subjectSlug}-${phaseSlug}-${ks4OptionSlug}/${tab}`,
+              permanent: false,
+            },
+          };
+        } else {
+          throw new OakError({
+            code: "curriculum-api/not-found",
+          });
+        }
+      }
+
       const curriculumOverviewTabData = await curriculumApi.curriculumOverview({
         subjectSlug: slugs.subjectSlug,
         phaseSlug: slugs.phaseSlug,

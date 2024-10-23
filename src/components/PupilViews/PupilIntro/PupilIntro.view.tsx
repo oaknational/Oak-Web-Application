@@ -46,6 +46,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     updateCurrentSection,
     updateWorksheetDownloaded,
     currentSection,
+    timeStamp,
     updateSectionResult,
     sectionResults,
     proceedToNextSection,
@@ -89,6 +90,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     if (track.lessonActivityAbandonedIntroduction) {
       track.lessonActivityAbandonedIntroduction({
         pupilExperienceLessonActivity: "intro",
+        activityTimeSpent: new Date().getTime() - timeStamp.time,
       });
     }
     updateCurrentSection("overview");
@@ -124,6 +126,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
       if (track.lessonActivityCompletedIntroduction) {
         track.lessonActivityCompletedIntroduction({
           pupilExperienceLessonActivity: "intro",
+          activityTimeSpent: new Date().getTime() - timeStamp.time,
         });
       }
     }

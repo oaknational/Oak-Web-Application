@@ -15,6 +15,7 @@ import { LessonEngineContext } from "@/components/PupilComponents/LessonEnginePr
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const writeText = jest.fn();
 
@@ -43,6 +44,21 @@ const mockBroweData = lessonBrowseDataFixture({
     yearDescription: "Year 1",
   },
 });
+
+const usePupilAnalyticsMock = {
+  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
+  identify: jest.fn(),
+  posthogDistinctId: "123",
+};
+
+jest.mock(
+  "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
+  () => {
+    return {
+      usePupilAnalytics: () => usePupilAnalyticsMock,
+    };
+  },
+);
 
 describe("PupilReview", () => {
   it("error messages when the phase is foundation", () => {

@@ -48,32 +48,30 @@ const SearchResults = (props: SearchResultsProps) => {
   return (
     <OakFlex $background={"white"} $flexDirection="column" id="search-results">
       {hitCount ? (
-        <>
-          <OakUL $reset>
-            {currentPageItems.map((hit, index) => {
-              const searchHitObject = getSearchHitObject(hit, allKeyStages);
-              if (!searchHitObject) {
-                return null;
-              }
-              return (
-                <OakLI
-                  key={`SearchList-SearchListItem-${index}${hit._source.slug}`}
-                >
-                  <SearchResultsItem
-                    {...searchHitObject}
-                    firstItemRef={index === 0 ? firstItemRef : null} // this is for pagination focus
-                    onClick={(props) => {
-                      searchResultOpened(props, searchRank(index));
-                    }}
-                    onToggleClick={(props) => {
-                      searchResultExpanded(props, searchRank(index));
-                    }}
-                  />
-                </OakLI>
-              );
-            })}
-          </OakUL>
-        </>
+        <OakUL $reset>
+          {currentPageItems.map((hit, index) => {
+            const searchHitObject = getSearchHitObject(hit, allKeyStages);
+            if (!searchHitObject) {
+              return null;
+            }
+            return (
+              <OakLI
+                key={`SearchList-SearchListItem-${index}${hit._source.slug}`}
+              >
+                <SearchResultsItem
+                  {...searchHitObject}
+                  firstItemRef={index === 0 ? firstItemRef : null} // this is for pagination focus
+                  onClick={(props) => {
+                    searchResultOpened(props, searchRank(index));
+                  }}
+                  onToggleClick={(props) =>
+                    searchResultExpanded(props, searchRank(index))
+                  }
+                />
+              </OakLI>
+            );
+          })}
+        </OakUL>
       ) : null}
 
       {hits.length > RESULTS_PER_PAGE && (

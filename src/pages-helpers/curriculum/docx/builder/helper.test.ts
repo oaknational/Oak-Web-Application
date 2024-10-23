@@ -1,11 +1,6 @@
 import { xmlRootToJson } from "../xml";
 
-import {
-  generateGridCols,
-  notUndefined,
-  uncapitalize,
-  uncapitalizeSubject,
-} from "./helper";
+import { generateGridCols, uncapitalize, uncapitalizeSubject } from "./helper";
 
 describe("helper", () => {
   it("uncapitalize", async () => {
@@ -29,18 +24,6 @@ describe("helper", () => {
     ] as const) {
       expect(uncapitalizeSubject(input)).toEqual(output);
     }
-  });
-
-  describe("notUndefined", () => {
-    it("true", () => {
-      expect(notUndefined(undefined)).toEqual(false);
-    });
-
-    it("false", () => {
-      expect(notUndefined(0)).toEqual(true);
-      expect(notUndefined("")).toEqual(true);
-      expect(notUndefined(false)).toEqual(true);
-    });
   });
 
   describe("generateGridCols", () => {
