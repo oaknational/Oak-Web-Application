@@ -8,6 +8,8 @@ import { RadioButton, RadioGroup } from "../OakComponentsKitchen/SimpleRadio";
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button/Button";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import { CurriculumUnitsYearData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 // Types and interfaces
 
@@ -19,6 +21,7 @@ type UnitsTabMobileProps = {
   highlightedUnitCount: () => number;
   trackSelectYear: (year: string) => void;
   yearOptions: string[];
+  yearData: CurriculumUnitsYearData;
   updateMobileHeaderScroll: (height: number) => void;
   visibleMobileYearRefID: string | null;
 };
@@ -34,6 +37,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
   highlightedUnitCount,
   trackSelectYear,
   yearOptions,
+  yearData,
   visibleMobileYearRefID,
 }) => {
   // Initialize constants
@@ -105,7 +109,13 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
           onChange={(e) => handleSelectThread(e.target.value)}
         >
           <Box>
-            <Box $mv={16} $position={"relative"}>
+            <Box
+              $mv={16}
+              $pl={12}
+              $position={"relative"}
+              $bl={1}
+              $borderColor="transparent"
+            >
               <RadioButton
                 aria-label={"None highlighted"}
                 value={""}
@@ -247,7 +257,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                       }
                       isCurrent={yearOption === mobileYearSelection}
                       key={yearOption}
-                      label={`Year ${yearOption}`}
+                      label={getYearGroupTitle(yearData, yearOption)}
                       onClick={() => {
                         // Scroll into view used also in Lesson Overview - prevents rerender
                         document

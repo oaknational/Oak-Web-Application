@@ -1,17 +1,20 @@
-import { SyntheticUnitvariantLessons } from "@oaknational/oak-curriculum-schema";
-
 import { LessonDownloadsCanonical } from "./lessonDownloadsCanonical.schema";
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
+import { RawSyntheticUVLesson } from "./rawSyntheticUVLesson.schema";
 
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
+import { constructPathwayLesson } from "@/node-lib/curriculum-api-2023/helpers";
 
 const constructCanonicalLessonDownloads = (
   downloads: LessonDownloadsListSchema,
   lessonSlug: string,
-  browseData: SyntheticUnitvariantLessons[],
+  browseData: RawSyntheticUVLesson[],
   isLegacy: boolean,
   lessonCopyRight: { copyrightInfo: string }[] | null,
+  restrictions: {
+    geoRestricted: boolean | null;
+    loginRequired: boolean | null;
+  },
 ): LessonDownloadsCanonical => {
   const baseDownloads = {
     downloads: downloads,
@@ -26,24 +29,7 @@ const constructCanonicalLessonDownloads = (
 
   return browseData.reduce(
     (acc, lesson) => {
-      const pathwayLesson = {
-        programmeSlug: lesson.programme_slug,
-        unitSlug: lesson.unit_data.slug,
-        unitTitle: lesson.unit_data.title,
-        keyStageSlug: lesson.programme_fields.keystage_slug,
-        keyStageTitle: toSentenceCase(
-          lesson.programme_fields.keystage_description,
-        ),
-        subjectSlug: lesson.programme_fields.subject_slug,
-        subjectTitle: lesson.programme_fields.subject,
-        lessonCohort: lesson.lesson_data._cohort,
-        examBoardSlug: lesson.programme_fields.examboard_slug,
-        examBoardTitle: lesson.programme_fields.examboard,
-        lessonSlug: lesson.lesson_slug,
-        lessonTitle: lesson.lesson_data.title,
-        tierSlug: lesson.programme_fields.tier_slug,
-        tierTitle: lesson.programme_fields.tier_description,
-      };
+      const pathwayLesson = constructPathwayLesson(lesson);
 
       const pathway = lessonPathwaySchema.parse(pathwayLesson);
       return {
@@ -53,6 +39,7 @@ const constructCanonicalLessonDownloads = (
     },
     {
       ...baseDownloads,
+      ...restrictions,
       pathways: [],
       isLegacy: false,
       isSpecialist: false,

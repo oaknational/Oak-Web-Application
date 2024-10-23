@@ -57,17 +57,14 @@ export type VideoResult = {
   played: boolean;
   duration: number;
   timeElapsed: number;
+  muted: boolean;
+  signedOpened: boolean;
+  transcriptOpened: boolean;
 };
-export type IntroResult = {
+export type IntroResult = Partial<{
   worksheetAvailable: boolean;
   worksheetDownloaded: boolean;
-};
-
-type LessonSectionState = {
-  isComplete: boolean;
-} & Partial<QuizResult> &
-  Partial<VideoResult> &
-  Partial<IntroResult>;
+}>;
 
 type LessonEngineAction =
   | {
@@ -75,7 +72,7 @@ type LessonEngineAction =
       section: LessonSection;
     }
   | {
-      type: "completeSection";
+      type: "completeActivity";
       section: LessonReviewSection;
     }
   | {
@@ -89,8 +86,14 @@ type LessonEngineAction =
 type LessonEngineState = {
   currentSection: LessonSection;
   lessonReviewSections: Readonly<LessonReviewSection[]>;
-  sections: Partial<Record<LessonReviewSection, LessonSectionState>>;
+  sections: Partial<{
+    "starter-quiz": { isComplete: boolean } & QuizResult;
+    "exit-quiz": { isComplete: boolean } & QuizResult;
+    video: { isComplete: boolean } & VideoResult;
+    intro: { isComplete: boolean } & IntroResult;
+  }>;
   lessonStarted: boolean;
+  timeStamp: { section: LessonSection; time: number };
 };
 
 const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
@@ -103,8 +106,12 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
         ...currentState,
         currentSection: action.section,
         lessonStarted: true,
+        timeStamp: {
+          section: action.section,
+          time: new Date().getTime(),
+        },
       };
-    case "completeSection": {
+    case "completeActivity": {
       const newState = {
         ...currentState,
         lessonStarted: true,
@@ -114,6 +121,10 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
             ...currentState.sections[action.section],
             isComplete: true,
           },
+        },
+        timeStamp: {
+          section: currentState.currentSection,
+          time: new Date().getTime(),
         },
       };
 
@@ -137,15 +148,18 @@ const lessonEngineReducer: Reducer<LessonEngineState, LessonEngineAction> = (
         ...currentState,
         currentSection: nextSection,
         lessonStarted: true,
+        timeStamp: {
+          section: nextSection,
+          time: new Date().getTime(),
+        },
       };
     }
     case "updateSectionResult": {
       if (!isLessonReviewSection(currentState.currentSection)) {
         throw new Error(
-          `Cannot update quiz result for non-review section '${currentState.currentSection}'`,
+          `Cannot update result for non-review section '${currentState.currentSection}'`,
         );
       }
-
       return {
         ...currentState,
         lessonStarted: true,
@@ -169,11 +183,13 @@ export type LessonSectionResults = LessonEngineState["sections"];
 export type LessonEngineContextType = {
   currentSection: LessonSection;
   sectionResults: LessonSectionResults;
+  timeStamp: { section: LessonSection; time: number };
   isLessonComplete: boolean;
-  completeSection: (section: LessonReviewSection) => void;
+  completeActivity: (section: LessonReviewSection) => void;
   updateCurrentSection: (section: LessonSection) => void;
   proceedToNextSection: () => void;
   updateSectionResult: (vals: QuizResult | VideoResult | IntroResult) => void;
+  updateWorksheetDownloaded: (result: IntroResult) => void;
   lessonReviewSections: Readonly<LessonReviewSection[]>;
   lessonStarted: boolean;
 } | null;
@@ -200,11 +216,17 @@ export const LessonEngineProvider = memo(
     initialLessonReviewSections,
     initialSection,
   }: LessonEngineProviderProps) => {
-    const [state, dispatch] = useReducer(lessonEngineReducer, {
+    const [state, dispatch] = useReducer<
+      Reducer<LessonEngineState, LessonEngineAction>
+    >(lessonEngineReducer, {
       lessonReviewSections: initialLessonReviewSections,
       currentSection: initialSection,
       lessonStarted: false,
       sections: {},
+      timeStamp: {
+        section: initialSection,
+        time: new Date().getTime(),
+      },
     });
     const navigateToSection = useNavigateToSection();
 
@@ -226,23 +248,13 @@ export const LessonEngineProvider = memo(
       }
     };
 
-    const getSectionTrackingData = (section: LessonReviewSection) => ({
-      pupilExperienceLessonSection: section,
-      pupilQuizGrade: state.sections[section]?.grade,
-      pupilQuizNumQuestions: state.sections[section]?.numQuestions,
-      pupilVideoPlayed: state.sections[section]?.played,
-      pupilVideoDurationSeconds: state.sections[section]?.duration,
-      pupilVideoTimeEllapsedSeconds: state.sections[section]?.timeElapsed,
-      pupilWorksheetAvailable: state.sections[section]?.worksheetAvailable,
-      pupilWorksheetDownloaded: state.sections[section]?.worksheetDownloaded,
-    });
-
-    const completeSection = (section: LessonReviewSection) => {
-      trackLessonStarted();
-      if (track.lessonSectionCompleted) {
-        track.lessonSectionCompleted(getSectionTrackingData(section));
+    const completeActivity = (section: LessonReviewSection) => {
+      if (state.sections[section]?.isComplete) {
+        console.warn(`Section '${section}' is already complete`);
+        return;
       }
 
+      trackLessonStarted();
       if (
         state.lessonReviewSections.every(
           (s) => state.sections[s]?.isComplete || s === section, // the current section will only be marked as complete on the next render
@@ -251,53 +263,28 @@ export const LessonEngineProvider = memo(
         if (track.lessonCompleted) {
           track.lessonCompleted({});
         }
-
-        // this is the only transition that doesn't happen via the other methods
-        // so we need to ensure tracking happens
-        trackSectionStarted("review");
       }
-      dispatch({ type: "completeSection", section });
-    };
-
-    const trackSectionStarted = (section: LessonSection) => {
-      trackLessonStarted();
-      // confusingly review is not a review section as it does not have stored results
-      if (isLessonReviewSection(section) || section === "review") {
-        if (track.lessonSectionStarted) {
-          track.lessonSectionStarted({
-            pupilExperienceLessonSection: section,
-          });
-        }
-      }
+      dispatch({ type: "completeActivity", section });
     };
 
     const updateCurrentSection = (section: LessonSection) => {
       trackLessonStarted();
-      trackSectionStarted(section);
-
-      if (
-        isLessonReviewSection(state.currentSection) &&
-        !state.sections[state.currentSection]?.isComplete
-      ) {
-        if (track.lessonSectionAbandoned) {
-          track.lessonSectionAbandoned(
-            getSectionTrackingData(state.currentSection),
-          );
-        }
-      }
       dispatch({ type: "setCurrentSection", section });
     };
 
     const proceedToNextSection = () => {
-      trackLessonStarted();
-      trackSectionStarted(state.currentSection);
       dispatch({ type: "proceedToNextSection" });
+      trackLessonStarted();
     };
 
     const updateSectionResult = (
       result: QuizResult | VideoResult | IntroResult,
     ) => {
       trackLessonStarted();
+      dispatch({ type: "updateSectionResult", result });
+    };
+
+    const updateWorksheetDownloaded = (result: IntroResult) => {
       dispatch({ type: "updateSectionResult", result });
     };
 
@@ -310,13 +297,15 @@ export const LessonEngineProvider = memo(
         value={{
           currentSection: state.currentSection,
           sectionResults: state.sections,
+          timeStamp: state.timeStamp,
           isLessonComplete,
-          completeSection,
+          completeActivity,
           updateCurrentSection,
           proceedToNextSection,
           updateSectionResult,
           lessonReviewSections: state.lessonReviewSections,
           lessonStarted: state.lessonStarted,
+          updateWorksheetDownloaded,
         }}
       >
         {children}

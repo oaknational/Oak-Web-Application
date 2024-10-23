@@ -1,11 +1,12 @@
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
-
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 
 import { getTiersForProgramme } from "./tiers/getTiersForProgramme";
 import { getUnitsForProgramme } from "./units/getUnitsForProgramme";
-import { getAllLearningThemes } from "./threads/getAllLearningThemes";
+import { getAllLearningThemes } from "./filters/getAllLearningThemes";
+import { getAllCategories } from "./filters/getAllCategories";
+import { getAllYearGroups } from "./filters/getAllYearGroups";
+import { rawSuvLessonsSchema } from "./rawSuvLessons.schema";
 
 import { NEW_COHORT } from "@/config/cohort";
 
@@ -20,8 +21,9 @@ const unitListingQuery =
     }
 
     const parsedRawUnits = unitsForProgramme.map((p) =>
-      syntheticUnitvariantLessonsSchema.parse(p),
+      rawSuvLessonsSchema.parse(p),
     );
+
     const firstUnit = parsedRawUnits[0];
 
     if (!firstUnit) {
@@ -36,6 +38,7 @@ const unitListingQuery =
     const hasTiers = parsedRawUnits.some(
       (p) => p.programme_fields.tier_slug !== null,
     );
+
     const tiers = hasTiers
       ? await getTiersForProgramme(
           sdk,
@@ -47,7 +50,12 @@ const unitListingQuery =
       : [];
 
     const units = await getUnitsForProgramme(parsedRawUnits);
+
+    const yearGroups = getAllYearGroups(units);
+
     const learningThemes = getAllLearningThemes(units);
+
+    const subjectCategories = getAllCategories(parsedRawUnits);
 
     const hasNewContent = units
       .flatMap((unit) => unit.flatMap((u) => u.cohort ?? "2020-2023"))
@@ -61,12 +69,15 @@ const unitListingQuery =
       examBoardTitle: programmeFields.examboard,
       subjectSlug: programmeFields.subject_slug,
       subjectTitle: programmeFields.subject,
+      subjectParent: programmeFields.subject_parent || null,
       tierSlug: programmeFields.tier_slug,
       tiers: tiers,
       units: units,
       phase: programmeFields.phase_slug,
       learningThemes: learningThemes,
       hasNewContent,
+      subjectCategories,
+      yearGroups,
     };
   };
 

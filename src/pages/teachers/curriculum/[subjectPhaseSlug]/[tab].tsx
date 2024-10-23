@@ -7,6 +7,7 @@ import {
 import React, { MutableRefObject } from "react";
 import { useRouter } from "next/router";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { isEqual, uniq } from "lodash";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
@@ -39,12 +40,18 @@ import {
   SubjectCategory,
 } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { YearSelection } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
-
-export type CurriculumSelectionSlugs = {
-  phaseSlug: string;
-  subjectSlug: string;
-  examboardSlug: string | null;
-};
+import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
+import {
+  getUnitFeatures,
+  isCycleTwoEnabled,
+} from "@/utils/curriculum/features";
+import { sortYears } from "@/utils/curriculum/sorting";
+import {
+  CurriculumSelectionSlugs,
+  getKs4RedirectSlug,
+  isValidSubjectPhaseSlug,
+  parseSubjectPhaseSlug,
+} from "@/utils/curriculum/slugs";
 
 export type CurriculumUnitsYearGroup = {
   units: Unit[];
@@ -54,12 +61,20 @@ export type CurriculumUnitsYearGroup = {
   ref?: MutableRefObject<HTMLDivElement>;
 };
 
-export type CurriculumUnitsYearData = {
+export type Pathway = {
+  pathway: string;
+  pathway_slug: string;
+};
+
+export type CurriculumUnitsYearData<T = Unit> = {
   [key: string]: {
-    units: Unit[];
+    units: T[];
     childSubjects: Subject[];
     subjectCategories: SubjectCategory[];
     tiers: Tier[];
+    pathways: Pathway[];
+    labels: string[];
+    groupAs: string | null;
     ref?: MutableRefObject<HTMLDivElement>;
   };
 };
@@ -71,11 +86,16 @@ export type CurriculumUnitsTrackingData = {
   examboardSlug: string | null;
 };
 
-export type CurriculumUnitsFormattedData = {
-  yearData: CurriculumUnitsYearData;
+export type CurriculumUnitsFormattedData<T = Unit> = {
+  yearData: CurriculumUnitsYearData<T>;
   threadOptions: Thread[];
   yearOptions: string[];
   initialYearSelection: YearSelection;
+};
+
+type CurriculumDownloadsTierSubjectProps = {
+  child_subjects: Subject[];
+  tiers: Tier[];
 };
 
 export type CurriculumInfoPageProps = {
@@ -84,6 +104,8 @@ export type CurriculumInfoPageProps = {
   curriculumOverviewTabData: CurriculumOverviewMVData;
   curriculumOverviewSanityData: CurriculumOverviewSanityData;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
+  mvRefreshTime: number;
+  curriculumDownloadsTabData: CurriculumDownloadsTierSubjectProps;
 };
 
 const VALID_TABS = ["overview", "units", "downloads"] as const;
@@ -95,32 +117,28 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumOverviewTabData,
   curriculumOverviewSanityData,
   curriculumUnitsFormattedData,
+  mvRefreshTime,
+  curriculumDownloadsTabData,
 }) => {
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
-
-  const { subjectSlug, examboardSlug, phaseSlug } = curriculumSelectionSlugs;
+  const { tiers, child_subjects } = curriculumDownloadsTabData;
+  const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
     subjectSlug,
     phaseSlug,
     subjectTitle: curriculumOverviewTabData.subjectTitle,
-    examboardSlug: examboardSlug,
+    examboardSlug: ks4OptionSlug,
   };
 
-  let keyStagesData: string;
-  switch (phaseSlug) {
-    case "primary":
-      keyStagesData = `KS1-2`;
-      break;
-    case "secondary":
-      keyStagesData = `KS3-4`;
-      break;
-    default:
-      keyStagesData = "";
-      break;
-  }
+  const keyStages = uniq(
+    Object.values(curriculumUnitsFormattedData.yearData).flatMap(({ units }) =>
+      units.map((unit) => unit.keystage_slug),
+    ),
+  );
 
   let tabContent: JSX.Element;
+
   switch (tab) {
     case "overview":
       tabContent = (
@@ -143,12 +161,19 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
       );
       break;
     case "downloads":
-      tabContent = <CurriculumDownloadTab />;
+      tabContent = (
+        <CurriculumDownloadTab
+          curriculumInfo={curriculumOverviewTabData}
+          mvRefreshTime={mvRefreshTime}
+          slugs={curriculumSelectionSlugs}
+          tiers={tiers}
+          child_subjects={child_subjects}
+        />
+      );
       break;
     default:
       throw new Error("Not a valid tab");
   }
-
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout
@@ -157,15 +182,15 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
             title: buildCurriculumMetadata({
               metadataType: "title",
               subjectSlug: subjectSlug,
-              examboardSlug: examboardSlug,
-              keyStagesData: keyStagesData,
+              ks4OptionSlug: ks4OptionSlug,
+              keyStages: keyStages,
               tab: tab,
             }),
             description: buildCurriculumMetadata({
               metadataType: "description",
               subjectSlug: subjectSlug,
-              examboardSlug: examboardSlug,
-              keyStagesData: keyStagesData,
+              ks4OptionSlug: ks4OptionSlug,
+              keyStages: keyStages,
               tab: tab,
             }),
           }),
@@ -175,8 +200,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         <CurriculumHeader
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
+          keyStages={keyStages}
           color1="mint"
-          color2="mint30"
+          color2="mint"
         />
 
         <Box $background={"white"}>{tabContent}</Box>
@@ -200,31 +226,6 @@ export const getStaticPaths = async () => {
     paths: [],
   };
   return config;
-};
-
-export const parseSubjectPhaseSlug = (slug: string) => {
-  const parts = slug.split("-");
-  const lastSlug = parts.pop() ?? null;
-  let phaseSlug: string | null, examboardSlug: string | null;
-  // Use phase to determine if examboard is present
-  if (lastSlug && ["primary", "secondary"].includes(lastSlug)) {
-    examboardSlug = null;
-    phaseSlug = lastSlug;
-  } else {
-    examboardSlug = lastSlug;
-    phaseSlug = parts.pop() ?? null;
-  }
-  const subjectSlug = parts.join("-");
-  if (!subjectSlug || !phaseSlug) {
-    throw new OakError({
-      code: "curriculum-api/params-incorrect",
-    });
-  }
-  return {
-    phaseSlug: phaseSlug,
-    subjectSlug: subjectSlug,
-    examboardSlug: examboardSlug,
-  };
 };
 
 export function createThreadOptions(units: Unit[]): Thread[] {
@@ -262,12 +263,14 @@ export function createYearOptions(units: Unit[]): string[] {
 
   units.forEach((unit: Unit) => {
     // Populate years object
-    if (yearOptions.every((yo) => yo !== unit.year)) {
-      yearOptions.push(unit.year);
+    const year =
+      getUnitFeatures(unit)?.programmes_fields_overrides.year ?? unit.year;
+    if (yearOptions.every((yo) => yo !== year)) {
+      yearOptions.push(year);
     }
   });
   // Sort year data
-  yearOptions.sort((a, b) => Number(a) - Number(b));
+  yearOptions.sort(sortYears);
 
   return yearOptions;
 }
@@ -308,19 +311,26 @@ export function createUnitsListingByYear(
   units: Unit[],
 ): CurriculumUnitsYearData {
   const yearData = {} as CurriculumUnitsYearData;
+
   units.forEach((unit: Unit) => {
     // Check if the yearData object has an entry for the unit's year
     // If not, initialize it with default values
 
-    let currentYearData = yearData[unit.year];
+    const year =
+      getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year;
+
+    let currentYearData = yearData[year];
     if (!currentYearData) {
       currentYearData = {
         units: [],
         childSubjects: [],
         subjectCategories: [],
         tiers: [],
+        pathways: [],
+        labels: [],
+        groupAs: null,
       };
-      yearData[unit.year] = currentYearData;
+      yearData[year] = currentYearData;
     }
 
     // Add the current unit
@@ -354,6 +364,19 @@ export function createUnitsListingByYear(
       });
     }
 
+    if (
+      unit.pathway &&
+      unit.pathway_slug &&
+      currentYearData.pathways.every(
+        (p) => p.pathway_slug !== unit.pathway_slug,
+      )
+    ) {
+      currentYearData.pathways.push({
+        pathway: unit.pathway,
+        pathway_slug: unit.pathway_slug,
+      });
+    }
+
     // Loop through tags array and populate subject categories.
     unit.subjectcategories?.forEach((subjectCategory) => {
       if (
@@ -368,16 +391,155 @@ export function createUnitsListingByYear(
       }
     });
   });
+
+  for (const year of Object.keys(yearData)) {
+    const data = yearData[year]!;
+    if (data.units.length > 0) {
+      const labels = getUnitFeatures(data.units[0]!)?.labels ?? [];
+      if (
+        data.units.every((unit) =>
+          isEqual(getUnitFeatures(unit)?.labels, labels),
+        )
+      ) {
+        data.labels = data.labels.concat(labels);
+      }
+    }
+
+    if (data.units.length > 0) {
+      const groupAs = getUnitFeatures(data.units[0]!)?.group_as;
+      if (groupAs) {
+        if (
+          data.units.every(
+            (unit) => getUnitFeatures(unit)?.group_as === groupAs,
+          )
+        ) {
+          data.groupAs = groupAs;
+        }
+      }
+    }
+  }
+
   return yearData;
+}
+
+export function createDownloadsData(
+  units: Unit[],
+): CurriculumDownloadsTierSubjectProps {
+  const tiers: Tier[] = [];
+  const child_subjects: Subject[] = [];
+
+  units.forEach((unit: Unit) => {
+    // Populate list of child subject filter values
+    if (
+      unit.subject_parent &&
+      unit.subject_parent_slug &&
+      child_subjects.every((c) => c.subject_slug !== unit.subject_slug)
+    ) {
+      child_subjects.push({
+        subject: unit.subject,
+        subject_slug: unit.subject_slug,
+      });
+    }
+
+    // Populate list of tier filter values
+    if (
+      unit.tier &&
+      unit.tier_slug &&
+      tiers.every((t) => t.tier_slug !== unit.tier_slug)
+    ) {
+      tiers.push({
+        tier: unit.tier,
+        tier_slug: unit.tier_slug,
+      });
+    }
+  });
+
+  const sortedChildSubjects = child_subjects.sort((a, b) => {
+    if (a.subject_slug === "combined-science") {
+      return -1;
+    }
+
+    if (b.subject_slug === "combined-science") {
+      return 1;
+    }
+
+    return a.subject_slug.localeCompare(b.subject_slug, undefined, {
+      sensitivity: "base",
+    });
+  });
+
+  const sortedTiers = tiers.sort((a, b) =>
+    a.tier_slug.localeCompare(b.tier_slug, undefined, {
+      sensitivity: "base",
+    }),
+  );
+  const downloadsData = {
+    child_subjects: sortedChildSubjects,
+    tiers: sortedTiers,
+  };
+
+  return downloadsData;
+}
+
+function sanatiseUnits(units: Unit[]): Unit[] {
+  return units.filter((unit, index) => {
+    // Find all units that have the same slug and year
+    const similarUnits = units.filter(
+      (u, i) =>
+        i !== index && // Exclude the current unit itself
+        u.slug === unit.slug &&
+        u.year === unit.year &&
+        u.subject_slug === unit.subject_slug &&
+        u.subject_parent_slug === unit.subject_parent_slug,
+    );
+
+    // Check if there is a more specific unit and remove if so
+    const isMoreSpecific = similarUnits.some((u) => {
+      // Define an array of the optional fields (keys) that we want to check
+      // These fields are considered "specific" if they are not null
+      const fieldsToCheck: (keyof Unit)[] = [
+        "tier_slug",
+        "examboard_slug",
+        "pathway_slug",
+      ];
+
+      return fieldsToCheck.some(
+        (field) =>
+          unit[field] === null &&
+          u[field] !== null &&
+          // We want to only consider the unit `u` more specific if all other fields are identical.
+          fieldsToCheck.every((f) => f === field || unit[f] === u[f]),
+      );
+    });
+    if (isMoreSpecific) {
+      return false;
+    }
+
+    // If this is the first occurrence of the unit in the array, keep it
+    const firstOccurrenceIndex = units.findIndex(
+      (u) =>
+        u.slug === unit.slug &&
+        u.year === unit.year &&
+        u.subject_slug === unit.subject_slug &&
+        u.subject_parent_slug === unit.subject_parent_slug &&
+        u.tier_slug === unit.tier_slug &&
+        u.examboard_slug === unit.examboard_slug &&
+        u.pathway_slug === unit.pathway_slug,
+    );
+
+    return index === firstOccurrenceIndex;
+  });
 }
 
 export function formatCurriculumUnitsData(
   data: CurriculumUnitsTabData,
 ): CurriculumUnitsFormattedData {
   const { units } = data;
-  const yearData = createUnitsListingByYear(units);
-  const threadOptions = createThreadOptions(units);
-  const yearOptions = createYearOptions(units);
+  // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
+  const filteredUnits = sanatiseUnits(units);
+  const yearData = createUnitsListingByYear(filteredUnits);
+  const threadOptions = createThreadOptions(filteredUnits);
+  const yearOptions = createYearOptions(filteredUnits);
   const initialYearSelection = createInitialYearFilterSelection(yearData);
   const formattedDataCurriculumUnits = {
     yearData,
@@ -407,6 +569,34 @@ export const getStaticProps: GetStaticProps<
         });
       }
       const slugs = parseSubjectPhaseSlug(context.params.subjectPhaseSlug);
+      if (!slugs) {
+        throw new OakError({
+          code: "curriculum-api/params-incorrect",
+        });
+      }
+
+      const validSubjectPhases = await curriculumApi.subjectPhaseOptions({
+        cycle: isCycleTwoEnabled() ? "2" : "1",
+      });
+
+      const isValid = isValidSubjectPhaseSlug(validSubjectPhases, slugs);
+      if (!isValid) {
+        const redirect = getKs4RedirectSlug(validSubjectPhases, slugs);
+        if (redirect) {
+          const { subjectSlug, phaseSlug, ks4OptionSlug } = redirect;
+          return {
+            redirect: {
+              destination: `/teachers/curriculum/${subjectSlug}-${phaseSlug}-${ks4OptionSlug}/${tab}`,
+              permanent: false,
+            },
+          };
+        } else {
+          throw new OakError({
+            code: "curriculum-api/not-found",
+          });
+        }
+      }
+
       const curriculumOverviewTabData = await curriculumApi.curriculumOverview({
         subjectSlug: slugs.subjectSlug,
         phaseSlug: slugs.phaseSlug,
@@ -441,7 +631,13 @@ export const getStaticProps: GetStaticProps<
         curriculumUnitsTabData,
       );
 
+      const mvRefreshTime = await getMvRefreshTime();
+      const curriculumDownloadsTabData = createDownloadsData(
+        curriculumUnitsTabData.units,
+      );
+
       const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
           curriculumSelectionSlugs: slugs,
@@ -449,6 +645,8 @@ export const getStaticProps: GetStaticProps<
           curriculumOverviewTabData,
           curriculumOverviewSanityData,
           curriculumUnitsFormattedData,
+          mvRefreshTime,
+          curriculumDownloadsTabData,
         },
       };
       const resultsWithIsr = decorateWithIsr(results);

@@ -4,6 +4,7 @@ import {
   OakP,
   OakSpan,
   OakFlex,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
@@ -26,22 +27,19 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     pupilLessonOutcome,
     isNew,
     subjectIconBackgroundColor,
-    isSpecialist,
+    showShare,
   } = props;
 
   return (
     <Flex $flexDirection={"column"} $display={["flex", "none"]} $gap={24}>
       <OakFlex>
-        <Box $maxHeight={80} $maxWidth={80} $mr={16}>
+        <OakBox $mr="space-between-s" $height="all-spacing-13">
           <SubjectIconBrushBorders
             subjectSlug={subjectSlug}
-            height={20}
-            width={20}
-            $ma={"auto"}
             isNew={isNew}
             color={subjectIconBackgroundColor}
           />
-        </Box>
+        </OakBox>
         <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
           {(examBoardTitle || yearTitle || tierTitle) && (
             <OakSpan $color={"grey60"} $font={"heading-light-7"}>
@@ -64,7 +62,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
         </Box>
       )}
       <LessonOverviewHeaderDownloadAllButton {...props} />
-      {!isSpecialist && <LessonOverviewHeaderShareAllButton {...props} />}
+      {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
     </Flex>
   );
 };

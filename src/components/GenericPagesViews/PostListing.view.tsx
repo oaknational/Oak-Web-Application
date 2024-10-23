@@ -6,7 +6,12 @@ import PostCategoryList, {
 import { PostListJsonLd } from "@/browser-lib/seo/getJsonLd";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { SeoProps } from "@/browser-lib/seo/Seo";
-import { PostListingPage, BlogWebinarCategory } from "@/common-lib/cms-types";
+import {
+  PostListingPage,
+  BlogWebinarCategory,
+  SerializedBlogPostPreview,
+  SerializedWebinarPreview,
+} from "@/common-lib/cms-types";
 import { WebinarsListingPage } from "@/common-lib/cms-types/webinarsListingPage";
 import PostListAndCategories from "@/components/GenericPagesViews/PostListAndCategories.view";
 import {
@@ -20,10 +25,8 @@ import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import {
   PostListingPageProps,
   blogToPostListItem,
-  SerializedBlogPostPreview,
 } from "@/components/GenericPagesViews/BlogIndex.view";
 import {
-  SerializedWebinarPreview,
   WebinarListingPageProps,
   webinarToPostListItem,
 } from "@/components/GenericPagesViews/WebinarsIndex.view";

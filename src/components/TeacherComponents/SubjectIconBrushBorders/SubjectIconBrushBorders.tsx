@@ -1,77 +1,72 @@
 import { FC } from "react";
+import { OakBox, OakFlex, OakIcon } from "@oaknational/oak-components";
 
-import { getSubjectIconAsset } from "@/image-data";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import { OakColorName } from "@/styles/theme/types";
 import Svg from "@/components/SharedComponents/Svg";
-import CMSImage, {
-  CMSImageProps,
-} from "@/components/SharedComponents/CMSImage";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
-import Box from "@/components/SharedComponents/Box";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
-type SubjectIconBrushBoardersProps = Omit<CMSImageProps, "image"> & {
+type SubjectIconBrushBoardersProps = {
   subjectSlug: string | null;
   isNew: boolean;
   color: OakColorName;
-  containerMinWidth?: FlexProps["$minWidth"];
 };
 
 const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
   subjectSlug,
   color,
   isNew,
-  containerMinWidth = [80, 140],
-  ...cmsImageProps
-}) => {
-  const asset = subjectSlug ? getSubjectIconAsset(subjectSlug) : null;
-
-  if (!asset) {
-    return (
-      <Box
-        style={{ width: cmsImageProps.width, height: cmsImageProps.height }}
-        {...cmsImageProps}
+}) => (
+  <OakFlex
+    $minWidth={["all-spacing-13", "all-spacing-17"]}
+    $width={"100%"}
+    $height={"100%"}
+    $position={"relative"}
+    $justifyContent={"center"}
+    $alignItems={"center"}
+  >
+    <Svg
+      $color={color}
+      $position={"absolute"}
+      name={"icon-background-square"}
+    />
+    <OakBox
+      $width={"100%"}
+      $height={"100%"}
+      $maxWidth={["all-spacing-13", "all-spacing-16"]}
+      $maxHeight={["all-spacing-13", "all-spacing-16"]}
+    >
+      <OakIcon
+        iconName={getValidSubjectIconName(subjectSlug)}
+        $width={"100%"}
+        $height={"100%"}
+        alt=""
       />
-    );
-  }
+    </OakBox>
 
-  return (
-    <Flex $minWidth={containerMinWidth} $width={"100%"} $position={"relative"}>
-      <Svg
-        $color={color}
-        $position={"absolute"}
-        name={"icon-background-square"}
-      />
-
-      <CMSImage
-        $zIndex={"inFront"}
-        image={{ asset }}
-        {...cmsImageProps}
-        format={null}
-      />
-      {isNew && (
-        <>
-          <Flex
-            $left={8}
-            $top={10}
-            $zIndex={"inFront"}
-            $position={"absolute"}
-            $display={["none", "flex"]}
-          >
-            <TagPromotional size={"large"} />
-          </Flex>
-          <Flex
-            $top={4}
-            $zIndex={"inFront"}
-            $position={"absolute"}
-            $display={["flex", "none"]}
-          >
-            <TagPromotional size={"small"} />
-          </Flex>
-        </>
-      )}
-    </Flex>
-  );
-};
+    {isNew && (
+      <>
+        <OakBox
+          $left="all-spacing-2"
+          $top="all-spacing-2"
+          $zIndex={"in-front"}
+          $position={"absolute"}
+          $display={["none", "block"]}
+        >
+          <TagPromotional size={"large"} />
+        </OakBox>
+        <OakBox
+          $top="all-spacing-1"
+          $left="all-spacing-2"
+          $zIndex={"in-front"}
+          $position={"absolute"}
+          $display={["block", "none"]}
+        >
+          <TagPromotional size={"small"} />
+        </OakBox>
+      </>
+    )}
+  </OakFlex>
+);
 
 export default SubjectIconBrushBoarders;

@@ -59,6 +59,22 @@ export const mockUnit: Unit = {
   title: "Composition of numbers 6 to 10",
   unit_options: [],
   year: "1",
+  cycle: "1",
+  why_this_why_now: null,
+  description: null,
+  state: "published",
+};
+
+export const mockYearData = {
+  "1": {
+    units: [mockUnit],
+    childSubjects: [],
+    subjectCategories: [],
+    tiers: [],
+    pathways: [],
+    labels: [],
+    groupAs: null,
+  },
 };
 
 export const mockUnitKS4: Unit = {
@@ -100,6 +116,10 @@ export const mockUnitKS4: Unit = {
   title: "Composition of numbers 6 to 10",
   unit_options: [],
   year: "10",
+  cycle: "1",
+  why_this_why_now: null,
+  description: null,
+  state: "published",
 };
 
 const optionalUnits = [
@@ -111,7 +131,10 @@ const optionalUnits = [
     connection_prior_unit_description: "Test connection prior unit description",
     connection_future_unit_title: "Test connection future unit title",
     connection_prior_unit_title: "Test connection prior unit title",
+    why_this_why_now: null,
+    description: null,
     lessons,
+    state: "published",
   },
   {
     title: "Test optional unit 2",
@@ -121,7 +144,10 @@ const optionalUnits = [
     connection_prior_unit_description: "Test connection prior unit description",
     connection_future_unit_title: "Test connection future unit title",
     connection_prior_unit_title: "Test connection prior unit title",
+    why_this_why_now: null,
+    description: null,
     lessons,
+    state: "published",
   },
   {
     title: "Test optional unit 3",
@@ -131,7 +157,10 @@ const optionalUnits = [
     connection_prior_unit_description: "Test connection prior unit description",
     connection_future_unit_title: "Test connection future unit title",
     connection_prior_unit_title: "Test connection prior unit title",
+    why_this_why_now: null,
+    description: null,
     lessons,
+    state: "published",
   },
 ];
 

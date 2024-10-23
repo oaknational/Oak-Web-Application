@@ -17,6 +17,7 @@ export type SearchQuery = {
   contentTypes?: ("unit" | "lesson")[];
   examBoards?: string[];
   legacy?: "filterOutAll" | "filterOutLegacyIncludeEYFS" | "filterOutEYFS";
+  curriculum?: string[];
 };
 
 export type SetSearchQuery = (
@@ -50,6 +51,7 @@ export type UseSearchFiltersReturnType = {
   keyStageFilters: (KeyStage & SearchCheckBoxProps)[];
   contentTypeFilters: (ContentType & SearchCheckBoxProps)[];
   examBoardFilters: (ExamBoard & SearchCheckBoxProps)[];
+  legacyFilter: { slug: string; title: string } & SearchCheckBoxProps;
 };
 
 export type LessonSearchHit = z.infer<typeof lessonSearchHitSchema>;

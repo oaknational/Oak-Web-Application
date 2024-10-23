@@ -1,5 +1,6 @@
 import { FC, useRef } from "react";
-import { OakFlex } from "@oaknational/oak-components";
+import { oakColorTokens, OakFlex } from "@oaknational/oak-components";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 import Logo from "@/components/AppComponents/Logo";
 import { HeaderProps } from "@/components/AppComponents/Layout/Layout";
@@ -15,6 +16,7 @@ import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderlin
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useSelectedArea from "@/hooks/useSelectedArea";
+import { getBreakpoint } from "@/styles/utils/responsive";
 
 export const siteAreas = {
   teachers: "TEACHERS",
@@ -33,6 +35,7 @@ const AppHeader: FC<HeaderProps> = () => {
   const { openMenu, open } = useMenuContext();
   const { track } = useAnalytics();
   const selectedArea = useSelectedArea();
+  const { isSignedIn } = useUser();
 
   return (
     <header>
@@ -64,6 +67,33 @@ const AppHeader: FC<HeaderProps> = () => {
             $gap="all-spacing-6"
             $font="heading-7"
           >
+            {isSignedIn && (
+              <UserButton
+                appearance={{
+                  elements: {
+                    userButtonAvatarBox: {
+                      [`@media (max-width: ${getBreakpoint("small")}px)`]: {
+                        width: "100%",
+                        maxWidth: "100%",
+                      },
+                    },
+                    userButtonTrigger: {
+                      "&:focus": {
+                        boxShadow: `0px 0px 0px 2px ${oakColorTokens.lemon}, 0px 0px 0px 5px ${oakColorTokens.grey60} !important`,
+                      },
+                    },
+                    userButtonPopoverCard: {
+                      [`@media (max-width: ${getBreakpoint("small")}px)`]: {
+                        width: "100%",
+                        maxWidth: "100%",
+                        marginLeft: "0",
+                      },
+                    },
+                  },
+                }}
+                data-testid="clerk-user-button"
+              />
+            )}
             <OwaLink
               page={"home"}
               $focusStyles={["underline"]}

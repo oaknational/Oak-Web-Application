@@ -48,6 +48,7 @@ describe("lessonListing()", () => {
         examBoardSlug: null,
         examBoardTitle: null,
         yearTitle: "Year 1",
+        yearSlug: "year-1",
         lessons: [
           {
             lessonSlug: "lesson-slug",
@@ -165,6 +166,37 @@ describe("lessonListing()", () => {
         unitSlug: "unit-slug",
         unitTitle: "unit-title",
         yearTitle: "Year 1",
+        yearSlug: "year-1",
+      });
+    });
+    test("getTransformedUnit returns the correct data for optionality units", () => {
+      const pfs = syntheticUnitvariantLessonsFixture().programme_fields;
+      const transformedLessons = getTransformedUnit(
+        syntheticUnitvariantLessonsFixture({
+          overrides: {
+            programme_fields: {
+              ...pfs,
+              optionality: "optional",
+            },
+          },
+        }),
+        [],
+      );
+      expect(transformedLessons).toEqual({
+        examBoardSlug: null,
+        examBoardTitle: null,
+        keyStageSlug: "ks1",
+        keyStageTitle: "Key stage 1",
+        lessons: [],
+        programmeSlug: "programme-slug",
+        subjectSlug: "maths",
+        subjectTitle: "Maths",
+        tierSlug: null,
+        tierTitle: null,
+        unitSlug: "unit-slug",
+        unitTitle: "optional",
+        yearTitle: "Year 1",
+        yearSlug: "year-1",
       });
     });
     test("getTransformedLessons returns the correct data", async () => {

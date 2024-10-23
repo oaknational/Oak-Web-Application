@@ -60,6 +60,8 @@ export const SpecialistLessonDownloadSchema = z.object({
     ),
     expired: z.boolean().nullable(),
     copyrightContent: copyrightContentSchema,
+    geoRestricted: z.boolean().nullable(),
+    loginRequired: z.boolean().nullable(),
   }),
 });
 

@@ -32,6 +32,8 @@ const curriculumUnitsSchema = z.object({
       subject_parent_slug: z.string().nullable(),
       tier: z.string().nullable(),
       tier_slug: z.string().nullable(),
+      pathway: z.string().nullable().optional(),
+      pathway_slug: z.string().nullable().optional(),
       tags: z
         .array(
           z.object({
@@ -58,12 +60,18 @@ const curriculumUnitsSchema = z.object({
         }),
       ),
       title: z.string(),
+      description: z.string().nullable(),
+      why_this_why_now: z.string().nullable(),
+      cycle: z.string(),
+      features: z.any(),
       unit_options: z.array(
         z.object({
           connection_prior_unit_description: z.string().nullable(),
           connection_future_unit_description: z.string().nullable(),
           connection_prior_unit_title: z.string().nullable(),
           connection_future_unit_title: z.string().nullable(),
+          description: z.string().nullable(),
+          why_this_why_now: z.string().nullable(),
           title: z.string(),
           unitvariant_id: z.number(),
           lessons: z.array(
@@ -73,9 +81,11 @@ const curriculumUnitsSchema = z.object({
               _state: z.string().optional(),
             }),
           ),
+          state: z.string(),
         }),
       ),
       year: z.string(),
+      state: z.string(),
     })
     .strict()
     .array(),

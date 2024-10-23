@@ -10,6 +10,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
 type CustomArgs = React.ComponentProps<typeof PupilViewsReview> & {
   starterGrade: number;
@@ -61,6 +62,7 @@ export const Default: Story = {
         {" "}
         <LessonEngineContext.Provider
           value={{
+            timeStamp: { section: "review", time: 0 },
             currentSection: "review",
             sectionResults: {
               "exit-quiz": {
@@ -82,6 +84,9 @@ export const Default: Story = {
                 duration: 0,
                 timeElapsed: 0,
                 isComplete: args.isComplete,
+                muted: false,
+                signedOpened: false,
+                transcriptOpened: false,
               },
               intro: {
                 worksheetAvailable: false,
@@ -90,7 +95,7 @@ export const Default: Story = {
               },
             },
             isLessonComplete: args.isComplete,
-            completeSection: () => {},
+            completeActivity: () => {},
             updateCurrentSection: () => {},
             proceedToNextSection: () => {},
             updateSectionResult: () => {},
@@ -101,12 +106,17 @@ export const Default: Story = {
               "exit-quiz",
             ],
             lessonStarted: true,
+            updateWorksheetDownloaded: () => {},
           }}
         >
           <PupilViewsReview
             lessonTitle={args.lessonTitle}
             starterQuizQuestionsArray={quizQuestions}
             exitQuizQuestionsArray={exitQuizQuestions}
+            programmeSlug="programme-slug"
+            unitSlug="unit-slug"
+            pageType="browse"
+            browseData={lessonBrowseDataFixture({})}
           />
         </LessonEngineContext.Provider>
       </MathJaxProvider>

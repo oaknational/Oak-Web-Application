@@ -3,31 +3,21 @@ import { useUser } from "@clerk/nextjs";
 
 import { withOnboardingRequired } from "./withOnboardingRequired";
 
-import * as clerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 import {
   mockLoadingUser,
   mockLoggedIn,
   mockLoggedOut,
 } from "@/__tests__/__helpers__/mockUser";
-
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 type UseUserReturn = ReturnType<typeof useUser>;
 
 describe(withOnboardingRequired, () => {
   const OriginalComponent = () => <div data-testid="canary" />;
   const Subject = withOnboardingRequired(() => <div data-testid="canary" />);
-  let useUserReturn: UseUserReturn;
 
   beforeEach(() => {
-    useUserReturn = mockLoadingUser;
-
-    jest.spyOn(clerk, "useFeatureFlaggedClerk").mockReturnValue({
-      ...clerk.fakeClerkApi,
-      useUser() {
-        return useUserReturn;
-      },
-    });
+    setUseUserReturn(mockLoadingUser);
   });
 
   describe.each<[string, UseUserReturn]>([
@@ -36,7 +26,7 @@ describe(withOnboardingRequired, () => {
     ["the user is signed in but not onboarded", mockLoggedIn],
   ])("%s", (__, currentUseUserReturn) => {
     beforeEach(() => {
-      useUserReturn = currentUseUserReturn;
+      setUseUserReturn(currentUseUserReturn);
     });
 
     it("renders nothing", () => {
@@ -66,13 +56,13 @@ describe(withOnboardingRequired, () => {
 
   describe("when the user is signed in and onboarded", () => {
     beforeEach(() => {
-      useUserReturn = {
+      setUseUserReturn({
         ...mockLoggedIn,
         user: {
           ...mockLoggedIn.user,
-          publicMetadata: { "owa:onboarded": true },
+          publicMetadata: { owa: { isOnboarded: true } },
         },
-      };
+      });
     });
 
     it("renders the component", () => {

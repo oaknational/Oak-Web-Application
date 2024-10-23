@@ -4,7 +4,7 @@ import {
 } from "../queries/specialistLessonDownload/specialistLessonDownload.schema";
 
 export const SpecialistLessonDownloadFixture = (
-  partial?: Partial<SpecialistLessonDownloads>,
+  partialLesson?: Partial<SpecialistLessonDownloads["lesson"]>,
 ): SpecialistLessonDownloads => {
   return {
     lesson: {
@@ -34,8 +34,10 @@ export const SpecialistLessonDownloadFixture = (
         },
       ],
       expired: false,
+      geoRestricted: false,
+      loginRequired: false,
+      ...partialLesson,
     },
-    ...partial,
   };
 };
 

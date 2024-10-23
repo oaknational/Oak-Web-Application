@@ -26,21 +26,21 @@ const searchResultPathways = searchResultsData[3] as SearchResultsItemProps;
 describe("SearchDropdown component", () => {
   test("component renders with correct title for pathways with exam boards", () => {
     const { getByText } = renderWithTheme(
-      <SearchDropdown {...searchResultLesson} />,
+      <SearchDropdown {...searchResultLesson} isHovered isToggleOpen />,
     );
 
     expect(getByText("Select exam board")).toBeInTheDocument();
   });
   test("component renders with correct title for pathways with tiers", () => {
     const { getByText } = renderWithTheme(
-      <SearchDropdown {...searchResultTierPathways} />,
+      <SearchDropdown {...searchResultTierPathways} isHovered isToggleOpen />,
     );
 
     expect(getByText("Select tier")).toBeInTheDocument();
   });
   test("component renders with correct title for pathways without examboards or tiers", () => {
     const { getByText } = renderWithTheme(
-      <SearchDropdown {...searchResultPathways} />,
+      <SearchDropdown {...searchResultPathways} isHovered isToggleOpen />,
     );
 
     expect(getByText("Select unit")).toBeInTheDocument();
@@ -48,66 +48,33 @@ describe("SearchDropdown component", () => {
 
   test("child component to not be visible on unexpanded container", () => {
     const { getByTestId } = renderWithTheme(
-      <SearchDropdown {...searchResultLesson} />,
+      <SearchDropdown {...searchResultLesson} isHovered isToggleOpen={false} />,
     );
 
     expect(getByTestId("search-dropdown-content")).not.toBeVisible();
   });
-
-  test("container expands on click, child component to become visible", async () => {
-    const { getByRole, getByTestId } = renderWithTheme(
-      <SearchDropdown {...searchResultLesson} />,
-    );
-
-    const button = getByRole("button", {
-      name: "Select exam board for lesson: The FDE cycle",
-    });
-
-    await userEvent.click(button);
-
-    expect(getByTestId("search-dropdown-content")).toBeVisible();
-    expect(button).toHaveAttribute("aria-expanded", "true");
-  });
   test("when a pathway has exam boards other pathways are filtered out", async () => {
-    const { getByRole, getAllByRole } = renderWithTheme(
-      <SearchDropdown {...searchResultLesson} />,
+    const { getAllByRole } = renderWithTheme(
+      <SearchDropdown {...searchResultLesson} isHovered isToggleOpen />,
     );
-
-    const button = getByRole("button", {
-      name: "Select exam board for lesson: The FDE cycle",
-    });
-
-    await userEvent.click(button);
 
     const links = getAllByRole("link");
 
     expect(links).toHaveLength(2);
   });
   test("when a pathway has no exam boards paths are filtered by tiers", async () => {
-    const { getByRole, getAllByRole } = renderWithTheme(
-      <SearchDropdown {...searchResultTierPathways} />,
+    const { getAllByRole } = renderWithTheme(
+      <SearchDropdown {...searchResultTierPathways} isHovered isToggleOpen />,
     );
-
-    const button = getByRole("button", {
-      name: "Select tier for unit: Computing systems",
-    });
-
-    await userEvent.click(button);
 
     const links = getAllByRole("link");
 
     expect(links).toHaveLength(2);
   });
   test("lesson type content link to lesson-overview pages", async () => {
-    const { getByRole, getAllByRole } = renderWithTheme(
-      <SearchDropdown {...searchResultLesson} />,
+    const { getAllByRole } = renderWithTheme(
+      <SearchDropdown {...searchResultLesson} isHovered={false} isToggleOpen />,
     );
-
-    const button = getByRole("button", {
-      name: "Select exam board for lesson: The FDE cycle",
-    });
-
-    await userEvent.click(button);
 
     const links = getAllByRole("link");
 
@@ -127,15 +94,13 @@ describe("SearchDropdown component", () => {
   });
 
   test("unit type links, link to lesson-index pages", async () => {
-    const { getByRole, getAllByRole } = renderWithTheme(
-      <SearchDropdown {...searchResultUnit} />,
+    const { getAllByRole } = renderWithTheme(
+      <SearchDropdown
+        {...searchResultUnit}
+        isHovered={false}
+        isToggleOpen={true}
+      />,
     );
-
-    const button = getByRole("button", {
-      name: "Select exam board for unit: Computing systems",
-    });
-
-    await userEvent.click(button);
 
     const links = getAllByRole("link");
 
@@ -155,13 +120,15 @@ describe("SearchDropdown component", () => {
   });
 
   test("onClick is called when a dropdown link is clicked", async () => {
-    const { getByRole, getByText } = renderWithTheme(
-      <SearchDropdown {...searchResultUnit} />,
+    const { getByText } = renderWithTheme(
+      <SearchDropdown
+        {...searchResultUnit}
+        isHovered={false}
+        isToggleOpen={false}
+      />,
     );
 
-    const button = getByRole("button", {
-      name: "Select exam board for unit: Computing systems",
-    });
+    const button = getByText("Select exam board");
 
     await userEvent.click(button);
 

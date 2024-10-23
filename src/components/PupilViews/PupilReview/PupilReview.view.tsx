@@ -1,9 +1,11 @@
+import { useState } from "react";
 import {
   OakFlex,
   OakGrid,
   OakGridArea,
   OakHandDrawnCard,
   OakHeading,
+  OakIcon,
   OakImage,
   OakLessonBottomNav,
   OakLessonLayout,
@@ -11,7 +13,15 @@ import {
   OakLessonReviewQuiz,
   OakPrimaryButton,
   OakTertiaryButton,
+  OakSecondaryButton,
+  OakBox,
 } from "@oaknational/oak-components";
+import {
+  attemptDataCamelCaseSchema,
+  useOakPupil,
+} from "@oaknational/oak-pupil-client";
+
+import { PupilExperienceViewProps } from "../PupilExperience";
 
 import { useLessonReviewFeedback } from "./useLessonReviewFeedback";
 
@@ -19,37 +29,77 @@ import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngin
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { QuestionsArray } from "@/components/PupilComponents/QuizEngineProvider";
 import { QuizResults } from "@/components/PupilComponents/QuizResults";
-
-// TODO: add question arrays for starter and exit quizzes so that the expand quiz results can be rendered
+import { resolveOakHref } from "@/common-lib/urls";
+import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
+import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
   backUrl?: string | null;
-  phase?: "primary" | "secondary";
   starterQuizQuestionsArray: QuestionsArray;
   exitQuizQuestionsArray: QuestionsArray;
+  programmeSlug: string;
+  unitSlug: string;
+  browseData: PupilExperienceViewProps["browseData"];
+  pageType: PupilExperienceViewProps["pageType"];
 };
 
 export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   const {
     lessonTitle,
     backUrl,
-    phase = "primary",
     starterQuizQuestionsArray,
     exitQuizQuestionsArray,
+    browseData: { programmeFields, lessonSlug, isLegacy },
   } = props;
+  const { phase = "primary", yearDescription, subject } = programmeFields;
+  const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const {
     updateCurrentSection,
     sectionResults,
     isLessonComplete,
     lessonReviewSections,
   } = useLessonEngineContext();
+  const { track } = usePupilAnalytics();
   const getSectionLinkProps = useGetSectionLinkProps();
 
   const { finalFeedback } = useLessonReviewFeedback(
     isLessonComplete,
     sectionResults,
   );
+
+  const pupilClient = useOakPupil();
+  const { logAttempt } = pupilClient;
+  const hasQuiz =
+    lessonReviewSections.includes("exit-quiz") ||
+    lessonReviewSections.includes("starter-quiz");
+  const [isAttemptingShare, setIsAttemptingShare] = useState<
+    "failed" | "shared" | "initial"
+  >("initial");
+  const [storedAttemptLocally, setStoredAttemptLocally] = useState<{
+    stored: boolean;
+    attemptId: string;
+  }>({ stored: false, attemptId: "" });
+
+  const storeResultsInLocalStorage = () => {
+    const attemptData = {
+      lessonData: { slug: lessonSlug, title: lessonTitle },
+      browseData: {
+        subject: subject,
+        yearDescription: yearDescription ?? "",
+      },
+      sectionResults: sectionResults,
+    };
+    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+    const attemptId = logAttempt(parsedAttemptData, true);
+    if (typeof attemptId === "string") {
+      setStoredAttemptLocally({ stored: true, attemptId });
+    }
+  };
+
+  if (storedAttemptLocally.stored === false && isLessonComplete) {
+    storeResultsInLocalStorage();
+  }
 
   const bottomNavSlot = (
     <OakLessonBottomNav>
@@ -64,6 +114,75 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       </OakPrimaryButton>
     </OakLessonBottomNav>
   );
+  const handleShareResultsClick = () => {
+    const attemptData = {
+      lessonData: { slug: lessonSlug, title: lessonTitle },
+      browseData: { subject: subject, yearDescription: yearDescription ?? "" },
+      sectionResults: sectionResults,
+    };
+    const parsedAttemptData = attemptDataCamelCaseSchema.parse(attemptData);
+    const res = logAttempt(parsedAttemptData, false);
+    if (typeof res === "string") {
+      const shareUrl = `${
+        process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL
+      }${resolveOakHref({
+        page: "pupil-lesson-results-canonical-share",
+        lessonSlug,
+        attemptId: res,
+      })}`;
+      navigator.clipboard.writeText(shareUrl);
+      setIsAttemptingShare("shared");
+    } else {
+      const { promise, attemptId } = res;
+      promise.catch((e) => {
+        console.error(e);
+        setIsAttemptingShare("failed");
+      });
+      const shareUrl = `${
+        process.env.NEXT_PUBLIC_CLIENT_APP_BASE_URL
+      }${resolveOakHref({
+        page: "pupil-lesson-results-canonical-share",
+        lessonSlug,
+        attemptId,
+      })}`;
+      navigator.clipboard.writeText(shareUrl);
+      setIsAttemptingShare("shared");
+      if (sectionResults["exit-quiz"]?.isComplete) {
+        track.activityResultsShared({
+          shareMedium: "copy-link",
+          pupilExitQuizGrade: sectionResults["exit-quiz"]?.grade ?? 0,
+          pupilExitQuizNumQuestions:
+            sectionResults["exit-quiz"]?.numQuestions ?? 0,
+          pupilStarterQuizGrade: sectionResults["starter-quiz"]?.grade ?? 0,
+          pupilStarterQuizNumQuesions:
+            sectionResults["starter-quiz"]?.numQuestions ?? 0,
+        });
+      }
+    }
+  };
+
+  if (phase === "foundation") {
+    throw new Error("Foundation phase is not supported");
+  }
+
+  if (trackingSent === false) {
+    track.lessonSummaryReviewed({
+      pupilWorksheetAvailable:
+        sectionResults.intro?.worksheetAvailable ?? false,
+      pupilWorksheetDownloaded:
+        sectionResults.intro?.worksheetDownloaded ?? false,
+      pupilExitQuizGrade: sectionResults["exit-quiz"]?.grade ?? null,
+      pupilExitQuizNumQuestions:
+        sectionResults["exit-quiz"]?.numQuestions ?? null,
+      pupilStarterQuizGrade: sectionResults["starter-quiz"]?.grade ?? null,
+      pupilStarterQuizNumQuesions:
+        sectionResults["starter-quiz"]?.numQuestions ?? null,
+      pupilVideoPlayed: sectionResults.video?.played ?? false,
+      pupilVideoDurationSeconds: sectionResults.video?.duration ?? 0,
+      pupilVideoTimeElapsedSeconds: sectionResults.video?.timeElapsed ?? 0,
+    });
+    setTrackingSent(true);
+  }
 
   return (
     <OakLessonLayout
@@ -98,6 +217,78 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
               <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
                 Lesson review
               </OakHeading>
+              {hasQuiz && (
+                <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+                  <OakHeading tag="h2" $font={"body-2-bold"}>
+                    Share options:
+                  </OakHeading>
+                  <OakFlex
+                    $gap={"space-between-s"}
+                    $flexDirection={["column", "row"]}
+                  >
+                    {storedAttemptLocally.stored && (
+                      <OakBox $display={["none", "flex"]}>
+                        <OakSecondaryButton
+                          element="a"
+                          href={resolveOakHref({
+                            page: "pupil-lesson-results-canonical-printable",
+                            lessonSlug,
+                            attemptId: storedAttemptLocally.attemptId,
+                          })}
+                          target="_blank"
+                          aria-label="Printable results, opens in a new tab"
+                          title="Printable results (opens in a new tab)"
+                          iconName={"external"}
+                          isTrailingIcon
+                          data-testid="printable-results-button"
+                        >
+                          Printable results
+                        </OakSecondaryButton>
+                      </OakBox>
+                    )}
+                    <OakSecondaryButton
+                      type="button"
+                      role="button"
+                      aria-label="Copy link to clipboard"
+                      title="Copy link to clipboard"
+                      onClick={handleShareResultsClick}
+                      iconName={"copy"}
+                      isTrailingIcon
+                      data-testid="share-results-button"
+                    >
+                      Copy link
+                    </OakSecondaryButton>
+                  </OakFlex>
+                  {isAttemptingShare === "shared" && (
+                    <OakFlex $gap={"space-between-sssx"} $alignItems={"center"}>
+                      <OakIcon
+                        iconName={"tick"}
+                        $colorFilter={"text-success"}
+                      />
+                      <OakHeading
+                        tag="h2"
+                        $font={"heading-light-7"}
+                        $color={"text-success"}
+                      >
+                        Link copied to clipboard! You can share this with your
+                        teacher.
+                      </OakHeading>
+                    </OakFlex>
+                  )}
+                  {isAttemptingShare === "failed" && (
+                    <OakFlex $gap={"space-between-sssx"} $alignItems={"center"}>
+                      <OakIcon iconName={"cross"} $colorFilter={"text-error"} />
+                      <OakHeading
+                        tag="h2"
+                        $font={"heading-light-7"}
+                        $color={"text-error"}
+                      >
+                        Failed to share results. Please try again.
+                      </OakHeading>
+                    </OakFlex>
+                  )}
+                </OakFlex>
+              )}
               <OakHeading tag="h2" $font={"heading-light-7"}>
                 {lessonTitle}
               </OakHeading>
@@ -149,6 +340,9 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
                         sectionResults={sectionResults}
                         quizArray={quizArray}
                         lessonSection={lessonSection}
+                        copyrightNotice={
+                          <CopyrightNotice isLegacyLicense={isLegacy} />
+                        }
                       />
                     }
                   />

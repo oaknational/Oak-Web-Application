@@ -33,8 +33,9 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     allSubjects,
     allContentTypes,
     allExamBoards,
-    legacy: "filterOutEYFS",
+    legacy: [{ slug: "new", title: "Show new only" }],
   });
+
   const { results } = searchProps;
 
   const paginationProps = usePagination({

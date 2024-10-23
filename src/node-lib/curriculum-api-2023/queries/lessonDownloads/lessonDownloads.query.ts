@@ -1,9 +1,4 @@
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
-
-import {
-  InputMaybe,
-  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
-} from "../../generated/sdk";
+import { constructLessonBrowseQuery } from "../../helpers";
 
 import lessonDownloadsSchema, {
   downloadsAssetData,
@@ -11,6 +6,7 @@ import lessonDownloadsSchema, {
 import { constructDownloadsArray } from "./downloadUtils";
 import constructCanonicalLessonDownloads from "./constructCanonicalLessonDownloads";
 import constructLessonDownloads from "./constructLessonDownloads";
+import { rawSyntheticUVLessonSchema } from "./rawSyntheticUVLesson.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -27,22 +23,11 @@ const lessonDownloadsQuery =
   }): Promise<T> => {
     const { lessonSlug, unitSlug, programmeSlug } = args;
 
-    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
-      {};
-
-    const canonicalLesson = !unitSlug && !programmeSlug;
-
-    if (canonicalLesson) {
-      browseDataWhere["lesson_slug"] = { _eq: lessonSlug };
-    }
-
-    if (unitSlug) {
-      browseDataWhere["unit_slug"] = { _eq: unitSlug };
-    }
-
-    if (programmeSlug) {
-      browseDataWhere["programme_slug"] = { _eq: programmeSlug };
-    }
+    const browseDataWhere = constructLessonBrowseQuery({
+      programmeSlug,
+      unitSlug,
+      lessonSlug,
+    });
 
     const res = await sdk.lessonDownloads({ lessonSlug, browseDataWhere });
 
@@ -78,6 +63,8 @@ const lessonDownloadsQuery =
       exit_quiz,
       is_legacy,
       expired,
+      geo_restricted,
+      login_required,
     } = downloadsAssetData.parse(download_assets[0]);
 
     const downloadsData = {
@@ -103,9 +90,10 @@ const lessonDownloadsQuery =
       : null;
 
     const parsedBrowseData = browse_data.map((bd) =>
-      syntheticUnitvariantLessonsSchema.parse(bd),
+      rawSyntheticUVLessonSchema.parse(bd),
     );
 
+    const canonicalLesson = !unitSlug && !programmeSlug;
     if (canonicalLesson) {
       const canonicalLessonDownloads = constructCanonicalLessonDownloads(
         downloads,
@@ -113,6 +101,7 @@ const lessonDownloadsQuery =
         parsedBrowseData,
         is_legacy,
         copyright,
+        { geoRestricted: geo_restricted, loginRequired: login_required },
       );
       return lessonDownloadsCanonicalSchema.parse(
         canonicalLessonDownloads,
@@ -130,6 +119,8 @@ const lessonDownloadsQuery =
         ...lessonDownloads,
         isLegacy: false,
         isSpecialist: false,
+        geoRestricted: geo_restricted,
+        loginRequired: login_required,
       }) as T;
     }
   };

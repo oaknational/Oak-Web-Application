@@ -31,6 +31,8 @@ export const SpecialistLessonDownloadsPage: Story = {
         nextLessons: nextLessons,
         downloads: downloads,
         updatedAt: "2021-09-29T14:00:00Z",
+        geoRestricted: false,
+        loginRequired: false,
       },
     },
   },

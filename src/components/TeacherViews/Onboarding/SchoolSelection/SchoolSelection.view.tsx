@@ -4,10 +4,12 @@ import { Control, UseFormTrigger, useForm } from "react-hook-form";
 import {
   OakBox,
   OakFlex,
-  OakMaxWidth,
   OakLink,
   OakP,
+  OakSpan,
 } from "@oaknational/oak-components";
+
+import { OnboardingLayout } from "../../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 import ResourcePageSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker";
@@ -18,16 +20,20 @@ import {
   schoolSelectFormSchema,
 } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import ManualEntrySchoolDetails from "@/components/TeacherComponents/ManualEntrySchoolDetails";
+import FieldError from "@/components/SharedComponents/FieldError";
+
+type SchoolSelectionView = "school-picker" | "manual-entry" | "oak-support";
 
 export const SchoolSelectionView = () => {
-  const [renderManualSchoolInput, setRenderManualSchoolInput] =
-    useState<boolean>(false);
+  const [activeView, setActiveView] =
+    useState<SchoolSelectionView>("school-picker");
+
   const { formState, setValue, handleSubmit, control, trigger, reset } =
     useForm<SchoolSelectFormProps>({
       resolver: zodResolver(schoolSelectFormSchema),
       mode: "onBlur",
       defaultValues: {
-        newsletterSignUp: true,
+        newsletterSignUp: false,
       },
     });
 
@@ -37,9 +43,7 @@ export const SchoolSelectionView = () => {
         setValue("manualSchoolName", value, {
           shouldValidate: true,
         });
-      }
-
-      if (!isSchoolName) {
+      } else {
         setValue("schoolAddress", value, {
           shouldValidate: true,
         });
@@ -72,14 +76,14 @@ export const SchoolSelectionView = () => {
     if (selectedSchool && schoolPickerInputValue !== "") {
       setSchoolDetailsInForm(selectedSchool.toString(), schoolPickerInputValue);
     }
-    if (renderManualSchoolInput) {
+    if (activeView === "manual-entry") {
       reset();
     }
   }, [
     selectedSchool,
     schoolPickerInputValue,
     setSchoolDetailsInForm,
-    renderManualSchoolInput,
+    activeView,
     reset,
   ]);
 
@@ -91,70 +95,73 @@ export const SchoolSelectionView = () => {
   };
 
   return (
-    <OakFlex $background={"bg-decorative1-main"}>
-      <OakMaxWidth $justifyContent={"center"} $height={"100vh"}>
-        <OakBox $maxWidth={"all-spacing-21"}>
-          <OnboardingForm
-            control={control as Control<OnboardingFormProps>}
-            trigger={trigger as UseFormTrigger<OnboardingFormProps>}
-            formState={formState}
-            heading="Select your school"
-            handleSubmit={handleSubmit}
-            canSubmit={formState.isValid}
-          >
-            {!renderManualSchoolInput && (
-              <>
-                <OakBox $mt={"space-between-s"}>
-                  <ResourcePageSchoolPicker
-                    hasError={
-                      !renderManualSchoolInput &&
-                      "school" in formState.errors &&
-                      formState.errors?.school !== undefined
-                    }
-                    schoolPickerInputValue={schoolPickerInputValue}
-                    setSchoolPickerInputValue={onSchoolPickerInputChange}
-                    schools={schools}
-                    label={"School"}
-                    setSelectedSchool={setSelectedSchool}
-                    required={true}
-                    withHomeschool={false}
-                  />
-                </OakBox>
-                <OakFlex
-                  $mt={"space-between-s"}
-                  $alignItems={"center"}
-                  $font={"body-2-bold"}
-                >
-                  <OakP $font={"body-2"} $mr={"space-between-sssx"}>
-                    Can't find your school?
-                  </OakP>
+    <OnboardingLayout
+      promptHeading={<>Nearly done&hellip;</>}
+      promptBody="We need a few more details to complete your account setup."
+    >
+      <OnboardingForm
+        control={control as Control<OnboardingFormProps>}
+        trigger={trigger as UseFormTrigger<OnboardingFormProps>}
+        formState={formState}
+        heading="Select your school"
+        handleSubmit={handleSubmit}
+        canSubmit={!formState.isSubmitted || formState.isValid}
+      >
+        {activeView === "school-picker" && (
+          <OakBox $mt="space-between-m">
+            <FieldError id="onboarding-school-error">
+              {"school" in formState.errors && formState.errors.school?.message}
+            </FieldError>
+            <ResourcePageSchoolPicker
+              hasError={
+                activeView === "school-picker" &&
+                "school" in formState.errors &&
+                formState.errors?.school !== undefined
+              }
+              schoolPickerInputValue={schoolPickerInputValue}
+              setSchoolPickerInputValue={onSchoolPickerInputChange}
+              schools={schools}
+              label={"School"}
+              setSelectedSchool={setSelectedSchool}
+              withHomeschool={false}
+              required
+            />
+            <OakFlex
+              $mt={"space-between-s"}
+              $alignItems={"center"}
+              $font={"body-2-bold"}
+              $width={"100%"}
+            >
+              <OakP $font={"body-2"}>
+                Can't find your school?{" "}
+                <OakSpan $font="body-2-bold">
                   <OakLink
                     onClick={() => {
-                      setRenderManualSchoolInput(true);
+                      setActiveView("manual-entry");
                       reset();
                     }}
                     element="button"
                   >
                     Enter manually
                   </OakLink>
-                </OakFlex>
-              </>
-            )}
+                </OakSpan>
+              </OakP>
+            </OakFlex>
+          </OakBox>
+        )}
 
-            {renderManualSchoolInput && (
-              <ManualEntrySchoolDetails
-                hasErrors={formState.errors}
-                onManualSchoolInputChange={setSchoolDetailsInManualForm}
-                setValue={setValue}
-                control={control}
-                setRenderManualSchoolInput={setRenderManualSchoolInput}
-                reset={reset}
-              />
-            )}
-          </OnboardingForm>
-        </OakBox>
-      </OakMaxWidth>
-    </OakFlex>
+        {activeView === "manual-entry" && (
+          <ManualEntrySchoolDetails
+            hasErrors={formState.errors}
+            onManualSchoolInputChange={setSchoolDetailsInManualForm}
+            setValue={setValue}
+            control={control}
+            onSelectFromDropdown={() => setActiveView("school-picker")}
+            reset={reset}
+          />
+        )}
+      </OnboardingForm>
+    </OnboardingLayout>
   );
 };
 

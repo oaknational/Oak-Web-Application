@@ -2,22 +2,18 @@ import { screen } from "@testing-library/dom";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import RoleSelectionPage from "@/pages/onboarding/role-selection";
-import * as featureFlaggedClerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
 jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: () => true,
+  useFeatureFlagVariantKey: () => "with-login",
 }));
 
 jest.mock("next/navigation", () => require("next-router-mock"));
 
 describe("Onboarding role selection page", () => {
   beforeEach(() => {
-    jest.spyOn(featureFlaggedClerk, "useFeatureFlaggedClerk").mockReturnValue({
-      ...featureFlaggedClerk.fakeClerkApi,
-      useUser: () => mockLoggedIn,
-    });
+    setUseUserReturn(mockLoggedIn);
   });
 
   it("should render the onboarding role selection page", async () => {

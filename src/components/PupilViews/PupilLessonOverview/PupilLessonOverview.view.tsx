@@ -1,4 +1,5 @@
 import { isString } from "lodash";
+import { useEffect, useState } from "react";
 import {
   OakBox,
   OakBulletList,
@@ -18,7 +19,6 @@ import {
   OakSubjectIcon,
   isValidIconName,
 } from "@oaknational/oak-components";
-import { useEffect, useState } from "react";
 
 import {
   LessonReviewSection,
@@ -27,36 +27,37 @@ import {
 import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLessonsButton/ViewAllLessonsButton";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 
 type PupilViewsLessonOverviewProps = {
+  browseData: LessonBrowseData;
   lessonTitle: string;
-  yearTitle?: string;
-  phase?: "primary" | "secondary";
-  subjectTitle: string;
-  subjectSlug: string;
   pupilLessonOutcome?: string;
   contentGuidance?: OakPupilContentGuidance[] | null;
   supervisionLevel?: string;
   starterQuizNumQuestions: number;
   exitQuizNumQuestions: number;
   backUrl?: string | null;
-  expirationDate: LessonBrowseData["lessonData"]["expirationDate"];
 };
 
 export const PupilViewsLessonOverview = ({
   lessonTitle,
-  subjectTitle,
-  yearTitle,
-  phase = "primary",
-  subjectSlug,
   pupilLessonOutcome,
   contentGuidance,
   supervisionLevel,
   exitQuizNumQuestions,
   starterQuizNumQuestions,
   backUrl,
-  expirationDate,
+  browseData,
 }: PupilViewsLessonOverviewProps) => {
+  const { programmeFields, lessonData } = browseData;
+  const {
+    subjectSlug,
+    phase = "primary",
+    yearDescription,
+    subject,
+  } = programmeFields;
+  const { expirationDate } = lessonData;
   const {
     sectionResults,
     proceedToNextSection,
@@ -66,13 +67,17 @@ export const PupilViewsLessonOverview = ({
     updateCurrentSection,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+  const { trackSectionStarted } = useTrackSectionStarted();
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
   }, []);
   const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(expirationDate !== null);
+    useState<boolean>(
+      expirationDate !== null ||
+        browseData.actions?.displayExpiringBanner === true,
+    );
 
   function pickProgressForSection(section: LessonReviewSection) {
     if (sectionResults[section]?.isComplete) {
@@ -86,15 +91,24 @@ export const PupilViewsLessonOverview = ({
     return "not-started";
   }
 
+  const handleProceedToNextSectionClick = () => {
+    const nextSection =
+      lessonReviewSections.find(
+        (section) => !sectionResults[section]?.isComplete,
+      ) ?? "review";
+    proceedToNextSection();
+    trackSectionStarted(nextSection);
+  };
+
   return (
     <OakLessonLayout
       lessonSectionName={"overview"}
-      phase={phase}
+      phase={phase as "primary" | "secondary"}
       topNavSlot={null}
       bottomNavSlot={
         <OakLessonBottomNav>
           <OakPrimaryButton
-            onClick={proceedToNextSection}
+            onClick={handleProceedToNextSectionClick}
             width={["100%", "max-content"]}
             iconName="arrow-right"
             isTrailingIcon
@@ -193,7 +207,7 @@ export const PupilViewsLessonOverview = ({
               <OakBox>
                 <OakBox $mb="space-between-s" $display={["none", "block"]}>
                   <OakBulletList
-                    listItems={[yearTitle, subjectTitle].filter(isString)}
+                    listItems={[yearDescription, subject].filter(isString)}
                     $color="text-subdued"
                   />
                 </OakBox>
@@ -247,14 +261,20 @@ export const PupilViewsLessonOverview = ({
             <OakFlex $gap="space-between-s" $flexDirection="column">
               {lessonReviewSections.includes("intro") && (
                 <OakLessonNavItem
-                  {...getSectionLinkProps("intro", updateCurrentSection)}
+                  {...getSectionLinkProps("intro", () => {
+                    trackSectionStarted("intro");
+                    updateCurrentSection("intro");
+                  })}
                   lessonSectionName="intro"
                   progress={pickProgressForSection("intro")}
                 />
               )}
               {lessonReviewSections.includes("starter-quiz") && (
                 <OakLessonNavItem
-                  {...getSectionLinkProps("starter-quiz", updateCurrentSection)}
+                  {...getSectionLinkProps("starter-quiz", () => {
+                    trackSectionStarted("starter-quiz");
+                    updateCurrentSection("starter-quiz");
+                  })}
                   lessonSectionName="starter-quiz"
                   progress={pickProgressForSection("starter-quiz")}
                   numQuestions={starterQuizNumQuestions}
@@ -264,14 +284,20 @@ export const PupilViewsLessonOverview = ({
               )}
               {lessonReviewSections.includes("video") && (
                 <OakLessonNavItem
-                  {...getSectionLinkProps("video", updateCurrentSection)}
+                  {...getSectionLinkProps("video", () => {
+                    trackSectionStarted("video");
+                    updateCurrentSection("video");
+                  })}
                   lessonSectionName="video"
                   progress={pickProgressForSection("video")}
                 />
               )}
               {lessonReviewSections.includes("exit-quiz") && (
                 <OakLessonNavItem
-                  {...getSectionLinkProps("exit-quiz", updateCurrentSection)}
+                  {...getSectionLinkProps("exit-quiz", () => {
+                    trackSectionStarted("exit-quiz");
+                    updateCurrentSection("exit-quiz");
+                  })}
                   lessonSectionName="exit-quiz"
                   progress={pickProgressForSection("exit-quiz")}
                   numQuestions={exitQuizNumQuestions}

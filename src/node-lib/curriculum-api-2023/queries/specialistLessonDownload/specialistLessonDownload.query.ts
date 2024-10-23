@@ -87,11 +87,12 @@ export const specialistLessonDownloadQuery =
     programmeSlug: string;
   }): Promise<SpecialistLessonDownloads> => {
     const { programmeSlug, unitSlug, lessonSlug } = args;
-    const { specialistLessonDownloads } = await sdk.specialistLessonDownloads({
-      lessonSlug: lessonSlug,
-      unitSlug: unitSlug,
-      programmeSlug: programmeSlug,
-    });
+    const { specialistLessonDownloads, restrictions } =
+      await sdk.specialistLessonDownloads({
+        lessonSlug: lessonSlug,
+        unitSlug: unitSlug,
+        programmeSlug: programmeSlug,
+      });
 
     const parsedSpecialistLessonDownloads =
       specialistLessonDownloadQueryResponseSchema.parse(
@@ -126,6 +127,8 @@ export const specialistLessonDownloadQuery =
         nextLessons: [], // TODO: specialist MV needs to be update to support this functionality
         expired: lesson.expired ?? false,
         updatedAt: "2022",
+        geoRestricted: restrictions.at(0)?.geo_restricted ?? null,
+        loginRequired: restrictions.at(0)?.login_required ?? null,
       },
     };
   };

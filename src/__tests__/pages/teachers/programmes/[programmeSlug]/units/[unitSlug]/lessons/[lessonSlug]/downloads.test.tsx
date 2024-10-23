@@ -18,7 +18,12 @@ import LessonDownloadsPage, {
   getStaticPaths,
   getStaticProps,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads";
-import OakError from "@/errors/OakError";
+import {
+  mockLoggedIn,
+  mockUserWithDownloadAccess,
+  mockUserWithoutDownloadAccess,
+} from "@/__tests__/__helpers__/mockUser";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 const props: LessonDownloadsPageProps = {
   curriculumData: lessonDownloadsFixtures(),
@@ -45,7 +50,7 @@ jest.mock(
   () => ({
     __esModule: true,
     default: () => {
-      throw new OakError({ code: "downloads/failed-to-fetch" });
+      Promise.resolve();
     },
   }),
 );
@@ -55,6 +60,28 @@ jest.mock(
   () => {
     return jest.fn();
   },
+);
+
+const lessonDownloaded = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      lessonResourcesDownloaded: (...args: unknown[]) =>
+        lessonDownloaded(...args),
+    },
+  }),
+}));
+
+jest.mock(
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
+  () => ({
+    useHubspotSubmit: () => ({
+      onHubspotSubmit: () => {
+        return Promise.resolve(true);
+      },
+    }),
+  }),
 );
 
 beforeEach(() => {
@@ -124,6 +151,99 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     );
 
     expect(screen.queryByText("Exit quiz questions")).not.toBeInTheDocument();
+  });
+  it("tracks download event with correct args", async () => {
+    const { result } = renderHook(() => useLocalStorageForDownloads());
+
+    result.current.setEmailInLocalStorage("test@test.com");
+    result.current.setTermsInLocalStorage(true);
+    result.current.setSchoolInLocalStorage({
+      schoolId: "123456-Secondary school",
+      schoolName: "Secondary school",
+    });
+    render(<LessonDownloadsPage {...props} />);
+    const downloadButton = screen.getByRole("button", {
+      name: "Download .zip",
+    });
+    await userEvent.click(downloadButton);
+    expect(lessonDownloaded).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+      componentType: "lesson_download_button",
+      emailSupplied: true,
+      engagementIntent: "use",
+      eventVersion: "2.0.0",
+      examBoard: "Edexcel",
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key stage 4",
+      lessonName: "Transverse waves",
+      lessonSlug: "transverse-waves",
+      onwardContent: [
+        "representing-transverse-waves",
+        "representing-longitudinal-waves",
+        "oscilloscope",
+      ],
+      platform: "owa",
+      product: "teacher lesson resources",
+      resourceType: ["exit quiz questions", "exit quiz answers"],
+      schoolName: "Secondary school",
+      schoolOption: "Selected school",
+      schoolUrn: "123456",
+      subjectSlug: "combined-science",
+      subjectTitle: "Combined Science",
+      tierName: "Foundation",
+      unitName: "Measuring waves",
+      unitSlug: "measuring-waves",
+    });
+  });
+  it("tracks download event with correct args for lessons without pfs", async () => {
+    const { result } = renderHook(() => useLocalStorageForDownloads());
+
+    result.current.setEmailInLocalStorage("test@test.com");
+    result.current.setTermsInLocalStorage(true);
+    result.current.setSchoolInLocalStorage({
+      schoolId: "123456-Secondary school",
+      schoolName: "123-name",
+    });
+    render(
+      <LessonDownloadsPage
+        curriculumData={lessonDownloadsFixtures({
+          tierTitle: null,
+          examBoardTitle: null,
+        })}
+      />,
+    );
+    const downloadButton = screen.getByRole("button", {
+      name: "Download .zip",
+    });
+    await userEvent.click(downloadButton);
+    expect(lessonDownloaded).toHaveBeenCalledWith({
+      analyticsUseCase: "Teacher",
+      componentType: "lesson_download_button",
+      emailSupplied: true,
+      engagementIntent: "use",
+      eventVersion: "2.0.0",
+      examBoard: null,
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key stage 4",
+      lessonName: "Transverse waves",
+      lessonSlug: "transverse-waves",
+      onwardContent: [
+        "representing-transverse-waves",
+        "representing-longitudinal-waves",
+        "oscilloscope",
+      ],
+      platform: "owa",
+      product: "teacher lesson resources",
+      resourceType: ["exit quiz questions", "exit quiz answers"],
+      schoolName: "Secondary school",
+      schoolOption: "Selected school",
+      schoolUrn: "123456",
+      subjectSlug: "combined-science",
+      subjectTitle: "Combined Science",
+      tierName: null,
+      unitName: "Measuring waves",
+      unitSlug: "measuring-waves",
+    });
   });
 
   describe("download form", () => {
@@ -220,7 +340,9 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     it("should select all resources if user checks 'Select all'", async () => {
       const { getByRole } = render(<LessonDownloadsPage {...props} />);
 
-      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
+      const selectAllCheckbox = getByRole("checkbox", {
+        name: "Select all",
+      });
       expect(selectAllCheckbox).toBeChecked();
 
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions", {
@@ -423,6 +545,50 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         canonical:
           "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/combined-science-secondary-ks4-foundation-edexcel/units/measuring-waves/lessons/transverse-waves",
         robots: "index,follow",
+      });
+    });
+  });
+
+  describe("when downloads are region restricted", () => {
+    const curriculumData = lessonDownloadsFixtures({
+      geoRestricted: true,
+    });
+
+    describe("and the user has access", () => {
+      beforeEach(() => {
+        setUseUserReturn({
+          ...mockLoggedIn,
+          user: mockUserWithDownloadAccess,
+        });
+      });
+
+      it("allows downloads", () => {
+        render(<LessonDownloadsPage curriculumData={curriculumData} />);
+
+        expect(
+          screen.queryByText(
+            "Sorry, downloads for this lesson are not available in your country",
+          ),
+        ).not.toBeInTheDocument();
+      });
+    });
+
+    describe("and the user does not have access", () => {
+      beforeEach(() => {
+        setUseUserReturn({
+          ...mockLoggedIn,
+          user: mockUserWithoutDownloadAccess,
+        });
+      });
+
+      it("disallows downloads", () => {
+        render(<LessonDownloadsPage curriculumData={curriculumData} />);
+
+        expect(
+          screen.queryByText(
+            "Sorry, downloads for this lesson are not available in your country",
+          ),
+        ).toBeInTheDocument();
       });
     });
   });

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const reportError = errorReporter("useVideoTracking");
 
@@ -35,7 +36,7 @@ const getEventPropsOrWarn = (props: UseVideoTrackingProps) => {
     isMuted: muted,
     timeElapsedSeconds: timeElapsed,
     videoTitle: title,
-    videoPlaybackId: playbackId,
+    videoPlaybackId: [playbackId],
     videoLocation: location,
   };
 };
@@ -51,19 +52,23 @@ export type VideoTrackingGetState = () => {
 };
 type UseVideoTrackingProps = {
   getState: VideoTrackingGetState;
+  pathwayData?: PupilPathwayData;
 };
 const useVideoTracking = (props: UseVideoTrackingProps) => {
   const { track } = useAnalytics();
   const [started, setStarted] = useState(false);
+  const pathwayData = props.pathwayData
+    ? props.pathwayData
+    : ({} as PupilPathwayData);
 
   const onPlay = () => {
     const eventProps = getEventPropsOrWarn(props);
     if (!eventProps) {
       return;
     }
-    track.videoPlayed(eventProps);
+    track.videoPlayed({ ...eventProps, ...pathwayData });
     if (!started) {
-      track.videoStarted(eventProps);
+      track.videoStarted({ ...eventProps, ...pathwayData });
       setStarted(true);
     }
   };
@@ -72,14 +77,14 @@ const useVideoTracking = (props: UseVideoTrackingProps) => {
     if (!eventProps) {
       return;
     }
-    track.videoPaused(eventProps);
+    track.videoPaused({ ...eventProps, ...pathwayData });
   };
   const onEnd = () => {
     const eventProps = getEventPropsOrWarn(props);
     if (!eventProps) {
       return;
     }
-    track.videoFinished(eventProps);
+    track.videoFinished({ ...eventProps, ...pathwayData });
   };
 
   return {

@@ -1,11 +1,15 @@
 import { FC } from "react";
-import { OakHeading, OakHeadingTag } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakHeadingTag,
+  OakIcon,
+} from "@oaknational/oak-components";
 
-import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/SubjectListingCardCountCard";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type SubjectListingCardProps = Omit<CardProps, "children"> & {
   titleTag?: OakHeadingTag;
@@ -31,27 +35,32 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
       $pa={[0, 0]}
       $borderRadius={4}
     >
-      <Flex
+      <OakFlex
         $position={"relative"}
         $flexDirection={["row", "column"]}
         $alignItems={"center"}
-        $mb={[12, 0]}
-        $ml={[12, 0]}
-        $mt={[12, 12]}
+        $mb={["space-between-xs", "space-between-none"]}
+        $ml={["space-between-xs", "space-between-none"]}
+        $mt="space-between-xs"
       >
-        <Flex
-          $mr={[8, 0]}
-          $mb={[0, 8]}
-          $height={[56, 72]}
-          $width={[56, 72]}
-          $minWidth={[56, 72]}
+        <OakFlex
+          $mr={["space-between-ssx", "space-between-none"]}
+          $mb={["space-between-none", "space-between-ssx"]}
+          $height={["all-spacing-10", "all-spacing-12"]}
+          $width={["all-spacing-10", "all-spacing-12"]}
+          $minWidth={["all-spacing-10", "all-spacing-12"]}
         >
-          <SubjectIcon subjectSlug={subjectSlug} $ma={"auto"} />
-        </Flex>
-        <Flex
-          $mh={[0, 12]}
+          <OakIcon
+            iconName={getValidSubjectIconName(subjectSlug)}
+            $width={"100%"}
+            $height={"100%"}
+            alt=""
+          />
+        </OakFlex>
+        <OakFlex
+          $mh={["space-between-none", "space-between-xs"]}
           $alignItems={["start", "center"]}
-          $minHeight={[0, 72]}
+          $minHeight={["all-spacing-0", "all-spacing-12"]}
         >
           <OakHeading
             $textAlign={["start", "center"]}
@@ -60,18 +69,24 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
           >
             {subject.data.subjectTitle}
           </OakHeading>
-        </Flex>
-      </Flex>
-      <Flex role={"list"} $pb={12} $ph={12} $gap={12} $width={"100%"}>
-        <Flex role={"listitem"} $flex={1}>
+        </OakFlex>
+      </OakFlex>
+      <OakFlex
+        role={"list"}
+        $pb="inner-padding-s"
+        $ph="inner-padding-s"
+        $gap="space-between-xs"
+        $width={"100%"}
+      >
+        <OakFlex role={"listitem"} $flexGrow={1}>
           <SubjectListingCardDoubleCountCard
             isLegacyLesson={!subject.hasNewContent}
             keyStageSlug={keyStageSlug}
             keyStageTitle={keyStageTitle}
             {...subject.data}
           />
-        </Flex>
-      </Flex>
+        </OakFlex>
+      </OakFlex>
     </Card>
   );
 };

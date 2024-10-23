@@ -14,8 +14,9 @@ const RoleSelectionComponent: NextPage = () => {
 };
 
 const RoleSelectionPage = withFeatureFlag(
-  RoleSelectionComponent,
-  "use-auth-owa",
+  withPageAuthRequired(RoleSelectionComponent),
+  "teacher-download-auth",
+  "with-login",
 );
 
-export default withPageAuthRequired(RoleSelectionPage);
+export default RoleSelectionPage;

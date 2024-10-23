@@ -2,22 +2,16 @@ import {
   LessonOverviewQuery,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
 } from "../../generated/sdk";
-import {
-  LessonBrowseData,
-  lessonBrowseDataSchema,
-} from "../pupilLesson/pupilLesson.schema";
-import {
-  lessonOverviewQuizData,
-  LessonPathway,
-  lessonPathwaySchema,
-} from "../../shared.schema";
-import { toSentenceCase } from "../../helpers";
+import { lessonOverviewQuizData, LessonPathway } from "../../shared.schema";
+import { constructPathwayLesson, toSentenceCase } from "../../helpers";
 
 import lessonOverviewSchema, {
   lessonContentSchema,
   LessonOverviewContent,
   LessonOverviewDownloads,
   LessonOverviewPageData,
+  LessonBrowseDataByKs,
+  lessonBrowseDataByKsSchema,
 } from "./lessonOverview.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -103,7 +97,7 @@ export function getContentGuidance(
 
 export function getCopyrightContent(
   content:
-    | LessonBrowseData["lessonData"]["copyrightContent"]
+    | LessonBrowseDataByKs["lessonData"]["copyrightContent"]
     | { copyrightInfo: string }[]
     | null,
 ): LessonOverviewPageData["copyrightContent"] {
@@ -125,37 +119,25 @@ export function getCopyrightContent(
 
 const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   const pathways = res.browseData.map((l) => {
-    const lesson = lessonBrowseDataSchema.parse(l);
-    const pathway = {
-      programmeSlug: lesson.programme_slug,
-      unitSlug: lesson.unit_slug,
-      unitTitle: lesson.unit_data.title,
-      keyStageSlug: lesson.programme_fields.keystage_slug,
-      keyStageTitle: lesson.programme_fields.keystage_description,
-      subjectSlug: lesson.programme_fields.subject_slug,
-      subjectTitle: lesson.programme_fields.subject,
-      lessonCohort: lesson.lesson_data._cohort,
-      examBoardSlug: lesson.programme_fields.examboard_slug,
-      examBoardTitle: lesson.programme_fields.examboard,
-      tierSlug: lesson.programme_fields.tier_slug,
-      tierTitle: lesson.programme_fields.tier_description,
-    };
-    return lessonPathwaySchema.parse(pathway);
+    const lesson = lessonBrowseDataByKsSchema.parse(l);
+    return constructPathwayLesson(lesson);
   });
   return pathways;
 };
 
 const transformedLessonOverviewData = (
-  browseData: LessonBrowseData,
+  browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
 ): LessonOverviewPageData => {
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
+  const unitTitle =
+    browseData.programmeFields.optionality ?? browseData.unitData.title;
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
-    unitTitle: browseData.unitData.title,
+    unitTitle,
     keyStageSlug: browseData.programmeFields.keystageSlug,
     keyStageTitle: toSentenceCase(
       browseData.programmeFields.keystageDescription,
@@ -247,8 +229,7 @@ const lessonOverviewQuery =
       browseDataWhere,
       lessonSlug,
     });
-
-    if (res.browseData.length > 1 && unitSlug && programmeSlug) {
+    if (res.browseData.length > 1 && !canonicalLesson) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });
@@ -283,11 +264,11 @@ const lessonOverviewQuery =
     }
     const pathways = canonicalLesson ? getPathways(res) : [];
 
-    lessonBrowseDataSchema.parse(browseDataSnake);
+    lessonBrowseDataByKsSchema.parse(browseDataSnake);
     lessonContentSchema.parse(contentSnake);
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
-    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
     const content = keysToCamelCase(contentSnake) as LessonOverviewContent;
 
     return lessonOverviewSchema.parse(

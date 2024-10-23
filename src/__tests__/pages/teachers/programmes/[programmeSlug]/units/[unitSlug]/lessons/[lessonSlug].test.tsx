@@ -11,6 +11,11 @@ import LessonOverviewPage, {
   URLParams,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]";
 import { LEGACY_COHORT, NEW_COHORT } from "@/config/cohort";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import {
+  mockLoggedIn,
+  mockUserWithDownloadAccess,
+} from "@/__tests__/__helpers__/mockUser";
 
 const props = {
   curriculumData: lessonOverviewFixture({
@@ -43,7 +48,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      downloadResourceButtonClicked: (...args: []) =>
+      lessonResourceDownloadStarted: (...args: []) =>
         downloadResourceButtonClicked(...args),
       lessonShareStarted: (...args: []) => lessonShareStarted(...args),
     },
@@ -53,6 +58,12 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 const render = renderWithProviders();
 
 describe("pages/teachers/lessons", () => {
+  beforeEach(() => {
+    setUseUserReturn({
+      ...mockLoggedIn,
+      user: mockUserWithDownloadAccess,
+    });
+  });
   it("Renders title from the props", async () => {
     render(<LessonOverviewPage {...props} />);
 
@@ -289,7 +300,7 @@ describe("pages/teachers/lessons", () => {
       });
 
       expect(downloadResourceButtonClicked).toHaveBeenCalledWith({
-        analyticsUseCase: null,
+        analyticsUseCase: "Teacher",
         downloadResourceButtonName: "all",
         keyStageSlug: "ks2",
         keyStageTitle: "Key Stage 2",
@@ -300,6 +311,11 @@ describe("pages/teachers/lessons", () => {
         subjectTitle: "English",
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        componentType: "lesson_download_button",
       });
     });
     it("calls track.downloadResourceButtonClicked will 'slide deck' when download slide deck button is pressed", async () => {
@@ -322,6 +338,11 @@ describe("pages/teachers/lessons", () => {
         subjectTitle: "English",
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        componentType: "lesson_download_button",
       });
     });
     it("calls track.downloadResourceButtonClicked will 'worksheet' when download worksheet button is pressed", async () => {
@@ -344,6 +365,11 @@ describe("pages/teachers/lessons", () => {
         subjectTitle: "English",
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        componentType: "lesson_download_button",
       });
     });
     it("calls track.downloadResourceButtonClicked will 'exit quiz' when download exit quiz button is pressed", async () => {
@@ -366,6 +392,11 @@ describe("pages/teachers/lessons", () => {
         subjectTitle: "English",
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        componentType: "lesson_download_button",
       });
     });
     it("calls track.downloadResourceButtonClicked will 'starter quiz' when download starter quiz button is pressed", async () => {
@@ -388,6 +419,11 @@ describe("pages/teachers/lessons", () => {
         subjectTitle: "English",
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
+        platform: "owa",
+        product: "teacher lesson resources",
+        engagementIntent: "use",
+        eventVersion: "2.0.0",
+        componentType: "lesson_download_button",
       });
     });
     it("calls track.lessonShareStarted when share all button is pressed with legacy", async () => {

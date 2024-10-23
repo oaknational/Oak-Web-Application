@@ -14,8 +14,9 @@ const SchoolSelectionComponent: NextPage = () => {
 };
 
 const SchoolSelectionPage = withFeatureFlag(
-  SchoolSelectionComponent,
-  "use-auth-owa",
+  withPageAuthRequired(SchoolSelectionComponent),
+  "teacher-download-auth",
+  "with-login",
 );
 
-export default withPageAuthRequired(SchoolSelectionPage);
+export default SchoolSelectionPage;

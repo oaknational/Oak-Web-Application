@@ -1,7 +1,5 @@
-import {
-  SyntheticUnitvariantLessons,
-  syntheticUnitvariantLessonsSchema,
-} from "@oaknational/oak-curriculum-schema";
+import { z } from "zod";
+import { syntheticUnitvariantLessonsByKsSchema } from "@oaknational/oak-curriculum-schema";
 
 import { Sdk } from "../../sdk";
 import OakError from "../../../../errors/OakError";
@@ -13,10 +11,20 @@ import lessonListingSchema, {
   LessonListingPageData,
 } from "./lessonListing.schema";
 
+const partialSyntheticUnitvariantLessonsSchema =
+  syntheticUnitvariantLessonsByKsSchema.omit({
+    null_unitvariant: true,
+    unitvariant_id: true,
+  });
+
+type PartialSyntheticUnitvariantLessons = z.infer<
+  typeof partialSyntheticUnitvariantLessonsSchema
+>;
+
 export const getTransformedLessons = (res: LessonListingQuery) => {
   return res.unit
     .map((l) => {
-      const lesson = syntheticUnitvariantLessonsSchema.parse(l);
+      const lesson = partialSyntheticUnitvariantLessonsSchema.parse(l);
       const hasCopyrightMaterial =
         l.lesson_data.copyright_content?.find(
           (c: { copyright_info: string }) =>
@@ -47,9 +55,10 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
 };
 
 export const getTransformedUnit = (
-  unit: SyntheticUnitvariantLessons,
+  unit: PartialSyntheticUnitvariantLessons,
   parsedLessons: LessonListingPageData["lessons"],
 ): LessonListingPageData => {
+  const unitTitle = unit.programme_fields.optionality ?? unit.unit_data.title;
   return {
     programmeSlug: unit.programme_slug,
     keyStageSlug: unit.programme_fields.keystage_slug,
@@ -57,11 +66,12 @@ export const getTransformedUnit = (
     subjectSlug: unit.programme_fields.subject_slug,
     subjectTitle: unit.programme_fields.subject,
     unitSlug: unit.unit_slug,
-    unitTitle: unit.unit_data.title,
+    unitTitle,
     tierSlug: unit.programme_fields.tier_slug,
     tierTitle: unit.programme_fields.tier_description,
     examBoardSlug: unit.programme_fields.examboard_slug,
     examBoardTitle: unit.programme_fields.examboard,
+    yearSlug: unit.programme_fields.year_slug,
     yearTitle: unit.programme_fields.year_description,
     lessons: parsedLessons,
   };
@@ -78,7 +88,7 @@ const lessonListingQuery =
     }
     const unitLessons = getTransformedLessons(res);
     const parsedLessons = lessonListSchema.parse(unitLessons);
-    const parsedUnit = syntheticUnitvariantLessonsSchema.parse(unit);
+    const parsedUnit = partialSyntheticUnitvariantLessonsSchema.parse(unit);
     const transformedUnit = getTransformedUnit(parsedUnit, parsedLessons);
     return lessonListingSchema.parse(transformedUnit);
   };

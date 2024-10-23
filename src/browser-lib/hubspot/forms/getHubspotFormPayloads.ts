@@ -4,6 +4,12 @@ import { UtmParams } from "../../../hooks/useUtmParams";
 
 import { HubspotPayload } from "./hubspotSubmitForm";
 
+import { useOfOakSchema } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
+import {
+  OakSupportKey,
+  oakSupportMap,
+} from "@/components/TeacherViews/Onboarding/HowCanOakSupport/HowCanOakSupport.view";
+
 export const USER_ROLES = ["Teacher", "Parent", "Student", "Other"] as const;
 export type UserRole = (typeof USER_ROLES)[number];
 export type NewsletterHubspotFormData = {
@@ -128,17 +134,17 @@ const isOnboardingUKTeacherProps = (
   return parsed.success;
 };
 
-const onboardingInternationalTeacherPropsSchema = z.object({
+const onboardingManualEntryTeacherPropsSchema = z.object({
   schoolAddress: z.string(),
-  schoolName: z.string().optional(),
+  manualSchoolName: z.string().optional(),
 });
 type OnboardingInternationalTeacherProps = z.infer<
-  typeof onboardingInternationalTeacherPropsSchema
+  typeof onboardingManualEntryTeacherPropsSchema
 >;
 const isOnboardingInternationalTeacherProps = (
   u: unknown,
 ): u is OnboardingInternationalTeacherProps => {
-  const parsed = onboardingInternationalTeacherPropsSchema.safeParse(u);
+  const parsed = onboardingManualEntryTeacherPropsSchema.safeParse(u);
   return parsed.success;
 };
 const onboardingNonTeacherPropsSchema = z.object({
@@ -154,11 +160,15 @@ const isOnboardingNonTeacherProps = (
   const parsed = onboardingNonTeacherPropsSchema.safeParse(u);
   return parsed.success;
 };
+
+type UseOfOakProps = z.infer<typeof useOfOakSchema>;
+
 export type OnboardingHubspotFormData = {
   email?: string;
   oakUserId: string | null;
   newsletterSignUp: boolean;
-} & UtmParams &
+} & UseOfOakProps &
+  UtmParams &
   (
     | OnboardingUKTeacherProps
     | OnboardingInternationalTeacherProps
@@ -174,13 +184,26 @@ export const getHubspotOnboardingFormPayload = (props: {
   const isInternationalTeacher = isOnboardingInternationalTeacherProps(data);
   const isNonTeacher = isOnboardingNonTeacherProps(data);
 
+  const howCanOakSupportYou = Object.entries(oakSupportMap)
+    .reduce((acc, [key, value]) => {
+      const item = data[key as OakSupportKey];
+      if (item && item === true) {
+        acc.push(value);
+      }
+      return acc;
+    }, [] as string[])
+    .join("; ");
+
   const snakeCaseData = {
     email: data.email,
     email_consent_on_account_creation: data.newsletterSignUp ? "Yes" : "No",
     do_you_work_in_a_school:
       isUkTeacher || isInternationalTeacher ? "Yes" : "No",
-    contact_school_name:
-      isUkTeacher || isInternationalTeacher ? data.schoolName : undefined,
+    contact_school_name: isUkTeacher
+      ? data.schoolName
+      : isInternationalTeacher
+        ? data.manualSchoolName
+        : "notListed",
     contact_school_urn: isUkTeacher ? data.school.split("-")[0] : undefined,
     manual_input_school_address: isInternationalTeacher
       ? data.schoolAddress
@@ -188,6 +211,7 @@ export const getHubspotOnboardingFormPayload = (props: {
     non_school_role_description: isNonTeacher ? data.role : undefined,
     non_school_role_description_freetext: isNonTeacher ? data.other : undefined,
     oak_user_id: data.oakUserId ?? undefined,
+    how_can_oak_support_you_: howCanOakSupportYou,
     ...getUtmSnakeCaseData(data),
   };
 

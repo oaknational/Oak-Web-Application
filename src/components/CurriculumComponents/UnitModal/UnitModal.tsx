@@ -1,29 +1,30 @@
 import { FC, useState, useEffect } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import { Unit } from "../CurriculumVisualiser";
+import { Unit, YearData } from "../CurriculumVisualiser";
+import BulletList from "../OakComponentsKitchen/BulletList";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button";
-import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Card from "@/components/SharedComponents/Card";
 import {
   CurriculumUnitDetailsProps,
   CurriculumUnitDetails,
 } from "@/components/CurriculumComponents/CurriculumUnitDetails";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import { getUnitFeatures } from "@/utils/curriculum/features";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import { notUndefined } from "@/utils/curriculum/types";
 
 type UnitModalProps = {
   unitData: Unit | null;
+  yearData: YearData;
   displayModal: boolean;
   setUnitOptionsAvailable: (x: boolean) => void;
   setCurrentUnitLessons: (x: Lesson[]) => void;
   setUnitVariantID: (x: number | null) => void;
   unitOptionsAvailable: boolean;
-  isHighlighted: boolean;
 };
 
 export type Lesson = {
@@ -34,15 +35,13 @@ export type Lesson = {
 
 const UnitModal: FC<UnitModalProps> = ({
   unitData,
+  yearData,
   displayModal,
   setUnitOptionsAvailable,
   setCurrentUnitLessons,
   setUnitVariantID,
   unitOptionsAvailable,
-  isHighlighted,
 }) => {
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
   const [optionalityModalOpen, setOptionalityModalOpen] =
     useState<boolean>(false);
 
@@ -71,24 +70,17 @@ const UnitModal: FC<UnitModalProps> = ({
     setUnitVariantID,
   ]);
 
-  useEffect(() => {
-    // For tracking open model events
-    if (displayModal === true) {
-      if (unitData) {
-        track.unitInformationViewed({
-          unitName: unitData.title,
-          unitSlug: unitData.slug,
-          subjectTitle: unitData.subject,
-          subjectSlug: unitData.subject_slug,
-          yearGroupName: unitData.year,
-          yearGroupSlug: unitData.year,
-          unitHighlighted: isHighlighted,
-          analyticsUseCase: analyticsUseCase,
-          //update to include optionality units
-        });
-      }
-    }
-  });
+  const subjectTitle =
+    getUnitFeatures(unitData)?.programmes_fields_overrides.subject ??
+    unitData?.subject;
+
+  const yearTitle = unitData
+    ? getYearGroupTitle(
+        yearData,
+        getUnitFeatures(unitData)?.programmes_fields_overrides.year ??
+          unitData.year,
+      )
+    : "";
 
   return (
     <>
@@ -119,10 +111,13 @@ const UnitModal: FC<UnitModalProps> = ({
                 }}
               />
             </Box>
-            <LessonMetadata
-              subjectTitle={unitData.subject}
-              yearTitle={`Year ${unitData.year}`}
-            />
+            <OakFlex $gap="all-spacing-2" $flexWrap={"wrap"}>
+              <BulletList
+                items={[subjectTitle, yearTitle]
+                  .filter(notUndefined)
+                  .map((text) => ({ text }))}
+              />
+            </OakFlex>
             <OakHeading tag="h2" $font={"heading-5"}>
               {!curriculumUnitDetails
                 ? unitData.title
@@ -132,6 +127,9 @@ const UnitModal: FC<UnitModalProps> = ({
               <Box $display={optionalityModalOpen ? "none" : "block"}>
                 <CurriculumUnitDetails
                   threads={unitData.threads}
+                  cycle={unitData.cycle}
+                  whyThisWhyNow={unitData.why_this_why_now}
+                  description={unitData.description}
                   lessons={unitData.lessons}
                   priorUnitDescription={
                     unitData.connection_prior_unit_description
@@ -234,6 +232,10 @@ const UnitModal: FC<UnitModalProps> = ({
                                       optionalUnit.connection_prior_unit_title,
                                     futureUnitTitle:
                                       optionalUnit.connection_future_unit_title,
+                                    description: optionalUnit.description,
+                                    whyThisWhyNow:
+                                      optionalUnit.why_this_why_now,
+                                    cycle: unitData.cycle,
                                   });
                                 }}
                               />

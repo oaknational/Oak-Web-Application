@@ -11,10 +11,24 @@ export const unitListingFixture = (
     examBoardTitle: null,
     subjectSlug: "computing",
     subjectTitle: "Computing",
+    subjectParent: null,
     hasNewContent: false,
     tierSlug: null,
     phase: "secondary",
+    yearGroups: [
+      {
+        year: "year-10",
+        yearTitle: "Year 10",
+      },
+    ],
     tiers: [],
+    subjectCategories: [
+      {
+        label: "Grammar",
+        iconName: "subject-english-grammar",
+        slug: "grammar",
+      },
+    ],
     units: [
       [
         {
@@ -32,7 +46,10 @@ export const unitListingFixture = (
           yearOrder: 1,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
+          subjectCategories: null,
+
           learningThemes: [
             {
               themeSlug: "computer-science-1",
@@ -57,7 +74,15 @@ export const unitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
+          subjectCategories: [
+            {
+              label: "Grammar",
+              slug: "grammar",
+            },
+          ],
+
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -80,9 +105,16 @@ export const unitListingFixture = (
           unitStudyOrder: 3,
           expired: false,
           yearOrder: 1,
+          subjectCategories: [
+            {
+              label: "Grammar",
+              slug: "grammar",
+            },
+          ],
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -106,9 +138,11 @@ export const unitListingFixture = (
           unitStudyOrder: 4,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -132,10 +166,12 @@ export const unitListingFixture = (
           unitStudyOrder: 5,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
+          year: "year-10",
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -158,10 +194,12 @@ export const unitListingFixture = (
           unitStudyOrder: 6,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           cohort: "2023-2024",
+          year: "year-10",
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -184,9 +222,11 @@ export const unitListingFixture = (
           unitStudyOrder: 1,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -211,7 +251,10 @@ export const unitListingFixture = (
           yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
+          year: "year-10",
           yearTitle: "Year 10",
+          subjectCategories: null,
+
           cohort: "2023-2024",
           learningThemes: [],
         },
@@ -230,9 +273,11 @@ export const unitListingFixture = (
           unitStudyOrder: 3,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [],
         },
@@ -251,9 +296,11 @@ export const unitListingFixture = (
           unitStudyOrder: 4,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [],
         },
@@ -272,9 +319,11 @@ export const unitListingFixture = (
           unitStudyOrder: 5,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [],
         },
@@ -293,9 +342,11 @@ export const unitListingFixture = (
           unitStudyOrder: 6,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [],
         },
@@ -314,9 +365,11 @@ export const unitListingFixture = (
           unitStudyOrder: 7,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [],
         },
@@ -335,9 +388,11 @@ export const unitListingFixture = (
           unitStudyOrder: 8,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -361,9 +416,11 @@ export const unitListingFixture = (
           unitStudyOrder: 9,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -432,6 +489,7 @@ export const combinedUnitListingFixture = (
     programmeSlug: "maths-secondary-ks4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
+    subjectParent: null,
     units: [
       [
         {
@@ -448,7 +506,10 @@ export const combinedUnitListingFixture = (
           expired: false,
           yearOrder: 1,
           expiredLessonCount: 0,
+          subjectCategories: null,
+
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -474,6 +535,9 @@ export const combinedUnitListingFixture = (
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          subjectCategories: null,
+
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -497,9 +561,11 @@ export const combinedUnitListingFixture = (
           unitStudyOrder: 3,
           expired: false,
           yearOrder: 1,
+          subjectCategories: null,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2023-2024",
           learningThemes: [
             {
@@ -525,7 +591,10 @@ export const combinedUnitListingFixture = (
           yearOrder: 1,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2020-2022",
+          subjectCategories: null,
+
           learningThemes: [],
         },
       ],
@@ -541,10 +610,13 @@ export const combinedUnitListingFixture = (
           subjectTitle: "Maths",
           lessonCount: 12,
           unitStudyOrder: 2,
+          subjectCategories: null,
+
           yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2020-2022",
           learningThemes: [],
         },
@@ -561,10 +633,13 @@ export const combinedUnitListingFixture = (
           subjectTitle: "Maths",
           lessonCount: 6,
           unitStudyOrder: 3,
+          subjectCategories: null,
+
           expired: false,
           yearOrder: 1,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
+          year: "year-10",
           cohort: "2020-2022",
           learningThemes: [],
         },

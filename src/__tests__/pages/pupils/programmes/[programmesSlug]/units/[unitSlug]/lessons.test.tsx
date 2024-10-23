@@ -4,6 +4,7 @@ import PupilLessonListingPage, {
   getStaticProps,
 } from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import { lessonBrowseDataByKsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseDataByKs.fixture";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
@@ -174,7 +175,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
           browseData={[
             lessonBrowseDataFixture({
               lessonData: {
-                ...lessonBrowseDataFixture({}).lessonData,
+                ...lessonBrowseDataByKsFixture({}).lessonData,
                 title: "lesson-title-2",
               },
               supplementaryData: { orderInUnit: 2, unitOrder: 4 },
@@ -242,7 +243,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       (
         curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
       ).mockResolvedValue({
-        browseData: [lessonBrowseDataFixture({})],
+        browseData: [lessonBrowseDataByKsFixture({})],
         backLinkData: [{ programmeSlug: "english-secondary-year-10" }],
       });
 
@@ -270,7 +271,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       (
         curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
       ).mockResolvedValue({
-        browseData: [lessonBrowseDataFixture({})],
+        browseData: [lessonBrowseDataByKsFixture({})],
         backLinkData: [
           { programmeSlug: "english-secondary-year-10-aqa" },
           { programmeSlug: "english-secondary-year-10-ocr" },
@@ -302,7 +303,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       (
         curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
       ).mockResolvedValue({
-        browseData: [lessonBrowseDataFixture({})],
+        browseData: [lessonBrowseDataByKsFixture({})],
         backLinkData: [{ programmeSlug: "english-secondary-year-10" }],
       });
 
@@ -331,7 +332,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
     (
       curriculumApi2023.default.pupilLessonListingQuery as jest.Mock
     ).mockResolvedValue({
-      browseData: [lessonBrowseDataFixture({})],
+      browseData: [lessonBrowseDataByKsFixture({})],
       backLinkData: [],
     });
 

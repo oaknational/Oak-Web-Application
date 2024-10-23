@@ -1,6 +1,6 @@
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
-import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 export type curriculumOverviewTabSchema = {
   curriculumInfo: CurriculumOverviewMVData;
@@ -24,6 +24,66 @@ export const curriculumOverviewCMSFixture = (
 ): CurriculumOverviewSanityData => {
   return {
     id: "curriculum.overview",
+    curriculumExplainer: {
+      explainerRaw: [
+        {
+          children: [
+            {
+              _type: "span",
+              marks: [],
+              text: "Aims and purpose",
+              _key: "470ecdd07b71",
+            },
+          ],
+          _type: "block",
+          style: "heading1",
+          _key: "82cf6558d6f1",
+          markDefs: [],
+        },
+        {
+          children: [
+            {
+              _type: "span",
+              marks: [],
+              text: "Heading 1",
+              _key: "470ecdd07b72",
+            },
+          ],
+          _type: "block",
+          style: "heading1",
+          _key: "82cf6558d6f2",
+          markDefs: [],
+        },
+        {
+          children: [
+            {
+              _type: "span",
+              marks: [],
+              text: "Heading 2",
+              _key: "470ecdd07b72",
+            },
+          ],
+          _type: "block",
+          style: "heading2",
+          _key: "82cf6558d6f2",
+          markDefs: [],
+        },
+        {
+          children: [
+            {
+              _type: "span",
+              marks: [],
+              text: "Heading 3",
+              _key: "470ecdd07b73",
+            },
+          ],
+          _type: "block",
+          style: "heading3",
+          _key: "82cf6558d6f3",
+          markDefs: [],
+        },
+      ],
+    },
     subjectPrinciples: [
       "Pairing procedural knowledge with conceptual understanding",
       "Aligning with the Concrete Pictorial Abstract approach to mathematics teaching and learning",
@@ -42,6 +102,7 @@ export const curriculumOverviewCMSFixture = (
         hotspot: null,
       },
     },
+    curriculumPartnerOverviews: [],
     ...partial,
   };
 };
@@ -52,7 +113,7 @@ const curriculumOverviewSlugsFixture = (
   return {
     phaseSlug: "primary",
     subjectSlug: "maths",
-    examboardSlug: null,
+    ks4OptionSlug: null,
     ...partial,
   };
 };

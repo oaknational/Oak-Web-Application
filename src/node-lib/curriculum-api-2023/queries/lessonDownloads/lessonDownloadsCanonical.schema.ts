@@ -12,5 +12,4 @@ export const lessonDownloadsCanonicalSchema = baseLessonDownloadsSchema.extend({
 export type LessonDownloadsCanonical = z.infer<
   typeof lessonDownloadsCanonicalSchema
 >;
-
 export default lessonDownloadsCanonicalSchema;

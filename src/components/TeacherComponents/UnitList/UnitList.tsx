@@ -5,6 +5,7 @@ import {
   OakUnitListItem,
   OakUnitListOptionalityItem,
   OakPagination,
+  OakAnchorTarget,
 } from "@oaknational/oak-components";
 import { NextRouter, useRouter } from "next/router";
 
@@ -25,6 +26,7 @@ import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitList
 import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
+import { convertSubjectToSlug } from "@/node-lib/curriculum-api-2023/queries/unitListing/convertSubjectToSlug";
 
 export type Tier = {
   title: string;
@@ -42,6 +44,7 @@ export type UnitListProps = (UnitListingData | SpecialistUnitListingData) & {
   currentPageItems: CurrentPageItemsProps[] | SpecialistUnit[][];
   paginationProps: PaginationProps & PageSize;
   onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;
+  filteredUnits?: UnitListingData["units"];
 };
 
 const isUnitOption = (
@@ -109,12 +112,27 @@ const isUnitFirstItemRef = (
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
-  const { units, paginationProps, currentPageItems, onClick, subjectSlug } =
-    props;
+  const {
+    units,
+    paginationProps,
+    currentPageItems,
+    onClick,
+    subjectSlug,
+    subjectParent,
+    filteredUnits,
+  } = props;
+
+  const linkSubject = subjectParent
+    ? convertSubjectToSlug(subjectParent)
+    : subjectSlug;
   const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;
   const router = useRouter();
-
+  const category = router.query["category"]?.toString();
+  const modifiedCategory =
+    category === "reading-writing-oracy"
+      ? "Reading, writing & oracy"
+      : category;
   const newPageItems = getPageItems(currentPageItems, false);
   const legacyPageItems = getPageItems(currentPageItems, true);
 
@@ -140,6 +158,14 @@ const UnitList: FC<UnitListProps> = (props) => {
       if (isItemLegacy) {
         if (newAndLegacyUnitsOnPage) {
           calculatedIndex = index;
+        } else if (filteredUnits) {
+          const legacyUnits = filteredUnits?.filter((unit) =>
+            isSlugLegacy(unit[0]!.programmeSlug),
+          );
+          const findIndex = legacyUnits?.findIndex(
+            (unit) => unit[0]?.slug === item[0]?.slug,
+          );
+          calculatedIndex = findIndex;
         } else {
           calculatedIndex = baseIndex - indexOfFirstLegacyUnit;
         }
@@ -208,15 +234,15 @@ const UnitList: FC<UnitListProps> = (props) => {
     });
   };
 
-  const NewUnits = () =>
+  const NewUnits = ({ category }: { category?: string }) =>
     newPageItems.length && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={false}
-        subject={subjectSlug}
+        subject={category ?? subjectSlug}
         phase={phaseSlug}
         curriculumHref={resolveOakHref({
           page: "curriculum-units",
-          subjectPhaseSlug: `${subjectSlug}-${phaseSlug}${
+          subjectPhaseSlug: `${linkSubject}-${phaseSlug}${
             examBoardSlug ? `-${examBoardSlug}` : ""
           }`,
         })}
@@ -234,7 +260,7 @@ const UnitList: FC<UnitListProps> = (props) => {
         curriculumHref={resolveOakHref({
           page: "curriculum-previous-downloads",
           query: {
-            subject: subjectSlug,
+            subject: linkSubject,
             keystage: keyStageSlug,
           },
         })}
@@ -249,10 +275,11 @@ const UnitList: FC<UnitListProps> = (props) => {
 
   return (
     <OakFlex $flexDirection="column">
+      <OakAnchorTarget id="unit-list" />
       {currentPageItems.length ? (
         isUnitListData(props) ? (
           <OakFlex $flexDirection="column" $gap="space-between-xxl">
-            <NewUnits />
+            <NewUnits category={modifiedCategory} />
             <LegacyUnits />
           </OakFlex>
         ) : (

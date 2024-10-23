@@ -18,6 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getCombinedSubjects } from "@/pages-helpers/teacher/subject-listing-page/getCombinedSubjects";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -40,20 +41,45 @@ export type SubjectListingPageProps = {
 const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
   const { keyStageSlug, keyStageTitle, keyStages } = props;
   const containerHeight = keyStages.length > 4 ? 172 : 120;
+  const { track } = useAnalytics();
+
+  const metaDescriptionSlug =
+    keyStageSlug === "early-years-foundation-stage"
+      ? "EYFS"
+      : keyStageSlug.toUpperCase();
 
   return (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Free ${keyStageSlug.toUpperCase()} Teaching Resources for Lesson Planning`,
-          description: `Search by subject for free ${keyStageSlug.toUpperCase()} teaching resources to download and share`,
+          title: `Free ${metaDescriptionSlug} Teaching Resources for Lesson Planning`,
+          description: `Click here to browse and download our free ${metaDescriptionSlug} teaching resources for lesson planning. Our teaching resources are made by subject experts and entirely free to download and use.`,
         }),
       }}
       $background="white"
     >
       <Box $background={"lavender50"} $height={[containerHeight, 140]}>
         <MaxWidth $ph={12} $maxWidth={[480, 840, 1280]} $pv={32}>
-          <KeyStageKeypad keyStages={keyStages} title="Select key stage" />
+          <KeyStageKeypad
+            keyStages={keyStages}
+            title="Select key stage"
+            trackingOnClick={(
+              filterValue: string,
+              activeFilters: Record<string, string[]>,
+            ) =>
+              track.browseRefined({
+                platform: "owa",
+                product: "teacher lesson resources",
+                engagementIntent: "refine",
+                componentType: "keystage_keypad_button",
+                eventVersion: "2.0.0",
+                analyticsUseCase: "Teacher",
+                filterType: "Key stage filter",
+                filterValue,
+                activeFilters,
+              })
+            }
+          />
         </MaxWidth>
       </Box>
       <SubjectListingPage

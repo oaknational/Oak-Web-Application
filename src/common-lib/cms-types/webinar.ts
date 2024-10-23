@@ -39,3 +39,7 @@ export const webinarPreviewSchema = webinarSchema.pick({
 });
 
 export type WebinarPreview = z.infer<typeof webinarPreviewSchema>;
+
+export type SerializedWebinarPreview = Omit<WebinarPreview, "date"> & {
+  date: string;
+};

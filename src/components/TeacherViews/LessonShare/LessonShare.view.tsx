@@ -28,8 +28,8 @@ import {
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
-  PupilActivityResourceTypesValueType,
   ShareMediumValueType,
+  ResourceTypesValueType,
 } from "@/browser-lib/avo/Avo";
 import {
   getSchoolName,
@@ -38,6 +38,7 @@ import {
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { SpecialistLessonShareData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.schema";
+import { useOnboardingStatus } from "@/components/TeacherComponents/hooks/useOnboardingStatus";
 
 export type LessonShareProps =
   | {
@@ -70,7 +71,7 @@ export type LessonShareProps =
     };
 
 const classroomActivityMap: Partial<
-  Record<ResourceType, PupilActivityResourceTypesValueType>
+  Record<ResourceType, ResourceTypesValueType>
 > = {
   "intro-quiz-questions": "starter-quiz",
   "exit-quiz-questions": "exit-quiz",
@@ -79,7 +80,7 @@ const classroomActivityMap: Partial<
 };
 
 export function LessonShare(props: LessonShareProps) {
-  const { lesson } = props;
+  const { isCanonical, lesson } = props;
   const {
     lessonTitle,
     lessonSlug,
@@ -132,6 +133,7 @@ export function LessonShare(props: LessonShareProps) {
     shareResources: shareableResources,
     type: "share",
   });
+  const onboardingStatus = useOnboardingStatus();
 
   const { onSubmit } = useResourceFormSubmit({
     type: "share",
@@ -158,14 +160,19 @@ export function LessonShare(props: LessonShareProps) {
       schoolName: getSchoolName(data.school, getSchoolOption(data.school)),
       schoolOption: getSchoolOption(data.school),
       shareMedium: shareMedium,
-      pupilActivityResourceTypes: pupilActivityResource,
       emailSupplied: isEmailSupplied,
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "advocate",
+      componentType: "share_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      resourceTypes: selectedResources
+        .map((r) => classroomActivityMap[r])
+        .filter((r) => r !== undefined) as ResourceTypesValueType[],
+      audience: "Pupil",
     });
   };
-  const pupilActivityResource = selectedResources?.map((r) => {
-    const resource = classroomActivityMap[r];
-    return resource;
-  }) as PupilActivityResourceTypesValueType[];
 
   return (
     <Box $ph={[16, null]} $background={"grey20"}>
@@ -181,6 +188,7 @@ export function LessonShare(props: LessonShareProps) {
                       lessonSlug,
                       programmeSlug,
                       unitSlug,
+                      isCanonical,
                     }),
                     getLessonShareBreadCrumb({
                       lessonSlug,
@@ -218,6 +226,11 @@ export function LessonShare(props: LessonShareProps) {
           schoolId={schoolIdFromLocalStorage}
           setSchool={setSchool}
           showSavedDetails={shouldDisplayDetailsCompleted}
+          showTermsAgreement={
+            onboardingStatus === "not-onboarded" ||
+            onboardingStatus === "unknown"
+          }
+          isLoading={onboardingStatus === "loading"}
           onEditClick={handleEditDetailsCompletedClick}
           register={form.register}
           control={form.control}

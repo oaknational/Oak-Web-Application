@@ -11,12 +11,16 @@ import {
 import Box from "../Box";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { TeachersHomePageData } from "@/node-lib/curriculum-api-2023";
+
+type KeyStageOnClick = {
+  trackingOnClick: (
+    filterValue: string,
+    activeFilters: Record<string, string[]>,
+  ) => void;
+};
 
 export type KeypadItem = TeachersHomePageData["keyStages"][number];
 
@@ -24,12 +28,10 @@ export type KeyStageKeypadProps = {
   title: string;
   keyStages: KeypadItem[];
   years?: KeypadItem[];
-};
+} & KeyStageOnClick;
 
-const KeypadLink: FC<KeypadItem> = (props) => {
-  const { shortCode, slug, title } = props;
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
+const KeypadLink: FC<KeypadItem & KeyStageOnClick> = (props) => {
+  const { shortCode, slug, title, trackingOnClick } = props;
   const isCurrent = useIsCurrent({ keyStageSlug: slug });
   const backgroundColour = isCurrent ? "black" : "white";
 
@@ -47,14 +49,7 @@ const KeypadLink: FC<KeypadItem> = (props) => {
       aria-current={isCurrent ? "page" : undefined}
       aria-label={title}
       role="button"
-      onClick={() => {
-        track.keyStageSelected({
-          keyStageTitle: title as KeyStageTitleValueType,
-          keyStageSlug: slug,
-          navigatedFrom: "card",
-          analyticsUseCase,
-        });
-      }}
+      onClick={() => trackingOnClick(slug, {})}
     >
       <OakP $font={"heading-7"}>{shortCode}</OakP>
       <BrushBorders color={backgroundColour} />
@@ -78,7 +73,7 @@ const KeyPadGrid = (
           $colSpan={[3, props.ksButtonSpan]}
           key={`key-stage:${keyStage.title}`}
         >
-          <KeypadLink {...keyStage} />
+          <KeypadLink {...keyStage} trackingOnClick={props.trackingOnClick} />
         </OakGridArea>
       ))}
     </OakGrid>
@@ -93,6 +88,7 @@ const KeyPadGrid = (
 const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
   title,
   keyStages,
+  trackingOnClick,
   years,
 }) => {
   const ksButtonSpanDesktop = keyStages.length > 4 ? 2 : 3;
@@ -116,6 +112,7 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
           keyStages={keyStages}
           years={years}
           ksButtonSpan={ksButtonSpanDesktop}
+          trackingOnClick={trackingOnClick}
         />
       </Box>
       <Box $display={["block", "none"]}>
@@ -123,6 +120,7 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
           keyStages={keyStagesMobileOrder}
           years={years}
           ksButtonSpan={3}
+          trackingOnClick={trackingOnClick}
         />
       </Box>
       {years && (
@@ -147,7 +145,11 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
                 key={`year:${years.title}`}
                 $mr={"space-between-m"}
               >
-                <KeypadLink key={`year:${years.title}`} {...years} />
+                <KeypadLink
+                  key={`year:${years.title}`}
+                  {...years}
+                  trackingOnClick={trackingOnClick}
+                />
               </OakLI>
             ))}
           </OakUL>

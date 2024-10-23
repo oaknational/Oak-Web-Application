@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { useFocusWithin } from "react-aria";
+import { useFocusVisible, useFocusWithin } from "react-aria";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import Card from "@/components/SharedComponents/Card";
@@ -13,7 +13,9 @@ import Box from "@/components/SharedComponents/Box";
 export type AccordionContainerTitles =
   | "Lessons in unit"
   | "Previous unit description"
-  | "Following unit description";
+  | "Following unit description"
+  | "Description"
+  | "Why this why now";
 
 type CurriculumUnitDetailsAccordionProps = {
   title: AccordionContainerTitles;
@@ -29,6 +31,7 @@ const CurriculumUnitDetailsAccordion: FC<
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
 
+  const { isFocusVisible } = useFocusVisible();
   const { focusWithinProps } = useFocusWithin({
     onFocusWithinChange: setIsFocused,
   });
@@ -78,7 +81,7 @@ const CurriculumUnitDetailsAccordion: FC<
       </Flex>
       <BoxBorders hideLeft hideRight hideBottom={!lastAccordion || isFocused} />
 
-      {isFocused && (
+      {isFocused && isFocusVisible && (
         <Box
           $position={"absolute"}
           $height={4}

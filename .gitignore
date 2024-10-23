@@ -71,6 +71,7 @@ firebase-debug.log
 
 # storybook
 /storybook-static
+doctor-storybook.log
 
 # asdf version manager
 .tool-versions
@@ -98,3 +99,5 @@ public/mathjax/**/*
 #yalc
 .yalc/
 yalc.lock
+
+/scripts/dev/curriculum/output

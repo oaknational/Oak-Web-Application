@@ -1,8 +1,8 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { userEvent } from "@testing-library/user-event";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { PupilViewsIntro } from "./PupilIntro.view";
 
@@ -12,6 +12,30 @@ import { createLessonEngineContext } from "@/components/PupilComponents/pupilTes
 import * as downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+
+const usePupilAnalyticsMock = {
+  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
+  identify: jest.fn(),
+  posthogDistinctId: "123",
+};
+const useTrackSectionStartedMock = {
+  trackSectionStarted: jest.fn(),
+};
+jest.mock(
+  "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
+  () => {
+    return {
+      usePupilAnalytics: () => usePupilAnalyticsMock,
+    };
+  },
+);
+
+jest.mock("@/hooks/useTrackSectionStarted", () => {
+  return {
+    useTrackSectionStarted: () => useTrackSectionStartedMock,
+  };
+});
 
 jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources",
@@ -185,7 +209,7 @@ describe("PupilIntro", () => {
       </OakThemeProvider>,
     );
     fireEvent.click(getByRole("link", { name: /I'm ready/i }));
-    expect(context.completeSection).toHaveBeenCalledWith("intro");
+    expect(context.completeActivity).toHaveBeenCalledWith("intro");
   });
 
   it("updates the section results when the worksheet is downloaded", async () => {
@@ -199,14 +223,14 @@ describe("PupilIntro", () => {
     );
 
     await userEvent.click(getByRole("button", { name: /Download worksheet/i }));
-    expect(context.updateSectionResult).toHaveBeenCalledWith({
+    expect(context.updateWorksheetDownloaded).toHaveBeenCalledWith({
       worksheetDownloaded: true,
       worksheetAvailable: true,
     });
   });
 
   it("updates the section results when the worksheet is available", async () => {
-    const context = createLessonEngineContext();
+    const context = createLessonEngineContext({ currentSection: "intro" });
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={context}>
@@ -219,5 +243,67 @@ describe("PupilIntro", () => {
       worksheetDownloaded: false,
       worksheetAvailable: true,
     });
+  });
+  it("sends tracking data when a intro is completed", () => {
+    const lessonSectionCompletedIntroduction = jest.fn();
+
+    jest
+      .spyOn(usePupilAnalyticsMock.track, "lessonActivityCompletedIntroduction")
+      .mockImplementation(lessonSectionCompletedIntroduction);
+
+    const context = createLessonEngineContext();
+    const { getByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={context}>
+          <PupilViewsIntro hasWorksheet={false} {...curriculumData} />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+    fireEvent.click(getByRole("link", { name: /I'm ready/i }));
+    expect(lessonSectionCompletedIntroduction).toHaveBeenCalledTimes(1);
+  });
+  it("sends abandoned event data when backbutton clicked", () => {
+    const lessonActivityAbandonedIntroduction = jest.fn();
+
+    jest
+      .spyOn(usePupilAnalyticsMock.track, "lessonActivityAbandonedIntroduction")
+      .mockImplementation(lessonActivityAbandonedIntroduction);
+
+    const context = createLessonEngineContext();
+    const { getByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={context}>
+          <PupilViewsIntro hasWorksheet={false} {...curriculumData} />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    fireEvent.click(getByRole("link", { name: /Back/i }));
+    expect(lessonActivityAbandonedIntroduction).toHaveBeenCalledTimes(1);
+  });
+  it("calls trackSectionStarted when intro is complete and when continue lesson button is pressed", () => {
+    const trackSectionStarted = jest.fn();
+    jest
+      .spyOn(useTrackSectionStartedMock, "trackSectionStarted")
+      .mockImplementation(trackSectionStarted);
+    const context = createLessonEngineContext({
+      currentSection: "intro",
+      sectionResults: {
+        intro: {
+          isComplete: true,
+        },
+      },
+    });
+
+    const { getByRole } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={context}>
+          <PupilViewsIntro hasWorksheet={false} {...curriculumData} />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    fireEvent.click(getByRole("link", { name: /Continue lesson/i }));
+    expect(trackSectionStarted).toHaveBeenCalledTimes(1);
   });
 });

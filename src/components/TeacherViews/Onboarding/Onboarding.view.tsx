@@ -1,13 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useCallback } from "react";
+import { Control, useForm, UseFormTrigger } from "react-hook-form";
 import {
   OakBox,
-  OakFlex,
-  OakMaxWidth,
   OakRadioButton,
   OakRadioGroup,
 } from "@oaknational/oak-components";
-import { useCallback } from "react";
-import { Control, useForm, UseFormTrigger } from "react-hook-form";
+
+import { OnboardingLayout } from "../../TeacherComponents/OnboardingLayout/OnboardingLayout";
 
 import FieldError from "@/components/SharedComponents/FieldError";
 import {
@@ -34,38 +34,36 @@ export const OnboardingView = () => {
   );
 
   return (
-    <OakFlex $background={"bg-decorative1-main"}>
-      <OakMaxWidth $justifyContent={"center"} $height={"100vh"}>
-        <OnboardingForm
-          control={control as Control<OnboardingFormProps>}
-          trigger={trigger as UseFormTrigger<OnboardingFormProps>}
-          formState={formState}
-          heading="Do you work in a school?"
-          handleSubmit={handleSubmit}
-          canSubmit={!formState.errors.worksInSchool}
-          showNewsletterSignUp={false}
-          showTermsAndConditions={false}
-        >
-          <OakBox>
-            <FieldError id={"onboarding-error"}>
-              {formState.errors.worksInSchool?.message}
-            </FieldError>
+    <OnboardingLayout
+      promptHeading={<>Nearly done&hellip;</>}
+      promptBody="We need a few more details to complete your account setup."
+    >
+      <OnboardingForm
+        control={control as Control<OnboardingFormProps>}
+        trigger={trigger as UseFormTrigger<OnboardingFormProps>}
+        formState={formState}
+        heading="Do you work in a school?"
+        handleSubmit={handleSubmit}
+        canSubmit={!formState.errors.worksInSchool}
+        forceHideNewsletterSignUp={true}
+      >
+        <OakBox>
+          <FieldError id={"onboarding-error"}>
+            {formState.errors.worksInSchool?.message}
+          </FieldError>
 
-            <OakRadioGroup
-              onChange={(value) =>
-                setWorksInSchool(value.target.value === "yes")
-              }
-              $flexDirection={"column"}
-              name={"Do you work in a school?"}
-              aria-labelledby={"form-legend"}
-            >
-              <OakRadioButton id="option-1" label="Yes" value="yes" />
-              <OakRadioButton id="option-2" label="No" value="no" />
-            </OakRadioGroup>
-          </OakBox>
-        </OnboardingForm>
-      </OakMaxWidth>
-    </OakFlex>
+          <OakRadioGroup
+            onChange={(value) => setWorksInSchool(value.target.value === "yes")}
+            $flexDirection={"column"}
+            name={"Do you work in a school?"}
+            aria-labelledby={"form-legend"}
+          >
+            <OakRadioButton id="option-1" label="Yes" value="yes" />
+            <OakRadioButton id="option-2" label="No" value="no" />
+          </OakRadioGroup>
+        </OakBox>
+      </OnboardingForm>
+    </OnboardingLayout>
   );
 };
 

@@ -15,7 +15,7 @@ const LessonOverviewSpeechBubble: FC<LessonOverviewSpeechBubbleProps> = ({
 }) => {
   const charCount = text?.length || 0;
 
-  if (charCount > 250 || !text || charCount === 0) {
+  if (charCount > 300 || !text || charCount === 0) {
     return null;
   }
 

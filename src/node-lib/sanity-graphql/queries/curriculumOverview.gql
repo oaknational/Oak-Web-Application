@@ -13,6 +13,9 @@ query curriculumOverview(
     limit: 1
   ) {
     id: _id
+    curriculumExplainer {
+      explainerRaw
+    }
     subjectPrinciples
     partnerBio
     curriculumPartner {
@@ -20,6 +23,15 @@ query curriculumOverview(
       image {
         ...Image
       }
+    }
+    curriculumPartnerOverviews {
+      curriculumPartner {
+        name
+        image {
+          ...Image
+        }
+      }
+      partnerBio
     }
     video {
       ...Video

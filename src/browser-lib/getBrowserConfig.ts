@@ -349,6 +349,31 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
     description: "URL to log the first user visit to",
   },
+  oakGetLessonAttemptUrl: {
+    value: process.env.NEXT_PUBLIC_GET_LESSON_ATTEMPT_URL,
+    envName: "NEXT_PUBLIC_GET_LESSON_ATTEMPT_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description: "URL to get the lesson attempt",
+  },
+  oakLogLessonAttemptUrl: {
+    value: process.env.NEXT_PUBLIC_LOG_LESSON_ATTEMPT_URL,
+    envName: "NEXT_PUBLIC_LOG_LESSON_ATTEMPT_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description: "URL to log the lesson attempt",
+  },
+  developmentUserRegion: {
+    value: process.env.DEVELOPMENT_USER_REGION,
+    envName: "DEVELOPMENT_USER_REGION",
+    required: false,
+    availableInBrowser: false,
+    default: null,
+    description:
+      "The region to use in authentication when running in development mode",
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

@@ -93,7 +93,7 @@ describe("LessonEngineProvider", () => {
     }
 
     act(() => {
-      result.current.completeSection("intro");
+      result.current.completeActivity("intro");
       result.current.proceedToNextSection();
     });
     expect(result.current.currentSection).toEqual("starter-quiz");
@@ -110,7 +110,7 @@ describe("LessonEngineProvider", () => {
 
     act(() => {
       allLessonReviewSections.forEach((section) => {
-        result.current.completeSection(section);
+        result.current.completeActivity(section);
       });
       result.current.proceedToNextSection();
     });
@@ -131,7 +131,7 @@ describe("LessonEngineProvider", () => {
       expect(result.current.currentSection).toEqual("overview");
 
       act(() => {
-        result.current.completeSection(s);
+        result.current.completeActivity(s);
       });
     });
 
@@ -146,7 +146,7 @@ describe("LessonEngineProvider", () => {
     allLessonReviewSections.forEach((section) => {
       expect(result.current.sectionResults[section]?.isComplete).toBeFalsy();
       act(() => {
-        result.current.completeSection("intro");
+        result.current.completeActivity("intro");
       });
       expect(result.current.sectionResults.intro?.isComplete).toEqual(true);
     });
@@ -161,7 +161,7 @@ describe("LessonEngineProvider", () => {
       expect(result.current.isLessonComplete).toEqual(false);
 
       act(() => {
-        result.current.completeSection(section);
+        result.current.completeActivity(section);
       });
     });
 
@@ -207,23 +207,6 @@ describe("LessonEngineProvider", () => {
     );
   });
 
-  it("sends tracking data when a lesson section is completed", () => {
-    const lessonSectionCompleted = jest.fn();
-
-    jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonSectionCompleted")
-      .mockImplementation(lessonSectionCompleted);
-
-    const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: ProviderWrapper,
-    });
-
-    act(() => {
-      result.current.completeSection("intro");
-    });
-    expect(lessonSectionCompleted).toHaveBeenCalled();
-  });
-
   it("sends tracking data when the lesson is started", () => {
     const lessonStarted = jest.fn();
 
@@ -238,53 +221,7 @@ describe("LessonEngineProvider", () => {
     act(() => {
       result.current.proceedToNextSection();
     });
-    expect(lessonStarted).toHaveBeenCalled();
-  });
-
-  it("sends quiz result data when a quiz section is complete", () => {
-    const lessonSectionCompleted = jest.fn();
-
-    jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonSectionCompleted")
-      .mockImplementation(lessonSectionCompleted);
-
-    const { result } = renderHook(() => useLessonEngineContext(), {
-      wrapper: ProviderWrapper,
-    });
-
-    act(() => {
-      result.current.updateCurrentSection("starter-quiz");
-    });
-
-    expect(result.current.currentSection).toEqual("starter-quiz");
-
-    act(() => {
-      result.current.updateSectionResult({
-        grade: 2,
-        numQuestions: 4,
-      });
-    });
-
-    expect(result.current.sectionResults["starter-quiz"]).toEqual({
-      grade: 2,
-      numQuestions: 4,
-      isComplete: false,
-    });
-
-    act(() => {
-      result.current.completeSection("starter-quiz");
-    });
-
-    expect(lessonSectionCompleted).toHaveBeenCalledWith({
-      pupilExperienceLessonSection: "starter-quiz",
-      pupilQuizGrade: 2,
-      pupilQuizNumQuestions: 4,
-      pupilVideoPlayed: undefined,
-      pupilVideoDurationSeconds: undefined,
-      pupilVideoTimeEllapsedSeconds: undefined,
-      pupilWorksheetAvailable: undefined,
-      pupilWorksheetDownloaded: undefined,
-    });
+    expect(lessonStarted).toHaveBeenCalledTimes(1);
   });
 });
 

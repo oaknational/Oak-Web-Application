@@ -28,7 +28,7 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     isNew,
     subjectIconBackgroundColor,
     pupilLessonOutcome,
-    isSpecialist,
+    showShare,
   } = props;
 
   return (
@@ -38,11 +38,6 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
           <Flex $height={[172, 172, 200]} $width={[172, 172, 200]}>
             <SubjectIconBrushBorders
               subjectSlug={subjectSlug}
-              height={96}
-              width={96}
-              $maxHeight={140}
-              $maxWidth={140}
-              $ma={"auto"}
               color={subjectIconBackgroundColor}
               isNew={isNew}
             />
@@ -75,9 +70,7 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
               )}
               <OakFlex $gap="all-spacing-6">
                 <LessonOverviewHeaderDownloadAllButton {...props} />
-                {!isSpecialist && (
-                  <LessonOverviewHeaderShareAllButton {...props} />
-                )}
+                {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
               </OakFlex>
             </OakFlex>
           </OakFlex>

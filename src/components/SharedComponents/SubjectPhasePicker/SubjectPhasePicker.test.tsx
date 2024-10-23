@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { waitFor } from "@testing-library/react";
+import { getByTestId, waitFor } from "@testing-library/react";
 
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
@@ -28,10 +28,15 @@ describe("Component - subject phase picker", () => {
         title: "English",
         slug: "english",
         phases: [],
-        examboards: [],
+        cycle: "1",
+        ks4_options: [{ title: "AQA", slug: "aqa" }],
+        keystages: [
+          { title: "KS1", slug: "ks1" },
+          { title: "KS3", slug: "ks3" },
+        ],
       },
       phase: { title: "Secondary", slug: "secondary" },
-      examboard: { title: "AQA", slug: "aqa" },
+      ks4Option: { title: "AQA", slug: "aqa" },
     };
     const { getByTitle } = render(
       <SubjectPhasePicker
@@ -115,7 +120,7 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(button);
     const control = getByTitle("Phase");
     await userEvent.click(await findByTitle("Secondary"));
-    const examboardTitle = await findByText("Choose an exam board for KS4:");
+    const examboardTitle = await findByText("Choose an option for KS4");
     expect(examboardTitle).toBeTruthy();
     const aqa = (await findAllByTitle("AQA"))[0];
     if (!aqa) {
@@ -146,10 +151,10 @@ describe("Component - subject phase picker", () => {
   });
 
   test("user clicks View without complete selection and gets error", async () => {
-    const { getByText, getAllByTitle, getByTitle, queryByText } = render(
+    const { getByTestId, getAllByTitle, getByTitle, queryByText } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
-    const viewButton = getByText("View");
+    const viewButton = getByTestId("view-desktop");
     await userEvent.click(viewButton);
     expect(queryByText("Select a subject")).toBeTruthy();
     expect(queryByText("Select a school phase")).toBeTruthy();
@@ -166,11 +171,11 @@ describe("Component - subject phase picker", () => {
     await userEvent.click(getByTitle("Secondary"));
     await userEvent.click(document.body);
     await userEvent.click(viewButton);
-    expect(queryByText("Select an exam board option")).toBeTruthy();
+    expect(queryByText("Select an option for KS4")).toBeTruthy();
   });
 
   test("calls tracking.curriculumVisualiserAccessed once, with correct props", async () => {
-    const { findAllByTitle, getByTitle, findByTitle, getByText } = render(
+    const { findAllByTitle, getByTitle, findByTitle, baseElement } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     await userEvent.click(getByTitle("Subject"));
@@ -182,7 +187,7 @@ describe("Component - subject phase picker", () => {
 
     await userEvent.click(await findByTitle("Primary"));
 
-    const viewButton = getByText("View");
+    const viewButton = getByTestId(baseElement, "view-desktop");
     await userEvent.click(viewButton);
 
     expect(curriculumVisualiserAccessed).toHaveBeenCalledTimes(1);
@@ -204,5 +209,131 @@ describe("Component - subject phase picker", () => {
       "href",
       "/teachers/curriculum/previous-downloads",
     );
+  });
+
+  describe("Pathways are shown correctly", () => {
+    test("user clicks English, secondary and two KS4 options are shown", async () => {
+      const {
+        findByText,
+        findByTitle,
+        getByTitle,
+        findAllByTitle,
+        findAllByTestId,
+      } = render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("English"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+      await userEvent.click(button);
+      await userEvent.click(await findByTitle("Secondary"));
+      const examboardTitle = await findByText("Choose an option for KS4");
+      expect(examboardTitle).toBeTruthy();
+
+      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      if (!ks4Options) {
+        throw new Error("Could not find buttons");
+      }
+      expect(ks4Options).toHaveLength(2);
+    });
+
+    test("user clicks PE, secondary and correct examboards are shown in alphabetical order", async () => {
+      const {
+        findByText,
+        findByTitle,
+        getByTitle,
+        findAllByTitle,
+        findAllByTestId,
+      } = render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("Physical education"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+      await userEvent.click(button);
+      await userEvent.click(await findByTitle("Secondary"));
+      const examboardTitle = await findByText("Choose an option for KS4");
+      expect(examboardTitle).toBeTruthy();
+
+      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      if (!ks4Options) {
+        throw new Error("Could not find buttons");
+      }
+      expect(ks4Options[0]).toHaveTextContent("AQA");
+      expect(ks4Options[1]).toHaveTextContent("Edexcel");
+      expect(ks4Options[2]).toHaveTextContent("OCR");
+      expect(ks4Options).toHaveLength(3);
+    });
+
+    test("Computing has correct titles and no GCSE option present", async () => {
+      const {
+        findByText,
+        findByTitle,
+        getByTitle,
+        findAllByTitle,
+        findAllByTestId,
+      } = render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("Computing"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+      await userEvent.click(button);
+      await userEvent.click(await findByTitle("Secondary"));
+      const examboardTitle = await findByText("Choose an option for KS4");
+      expect(examboardTitle).toBeTruthy();
+
+      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      if (!ks4Options) {
+        throw new Error("Could not find buttons");
+      }
+      expect(ks4Options[0]).toHaveTextContent("Core");
+      expect(ks4Options[1]).toHaveTextContent("AQA (Computer Science)");
+      expect(ks4Options[2]).toHaveTextContent("OCR (Computer Science)");
+    });
+
+    test("Citizenship has both Core and GCSE", async () => {
+      const {
+        findByText,
+        findByTitle,
+        getByTitle,
+        findAllByTitle,
+        findAllByTestId,
+      } = render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("Citizenship"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+      await userEvent.click(button);
+      await userEvent.click(await findByTitle("Secondary"));
+      const examboardTitle = await findByText("Choose an option for KS4");
+      expect(examboardTitle).toBeTruthy();
+
+      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      if (!ks4Options) {
+        throw new Error("Could not find buttons");
+      }
+      expect(ks4Options[0]).toHaveTextContent("Core");
+      expect(ks4Options[1]).toHaveTextContent("GCSE");
+    });
+
+    test("No KS4 options displayed", async () => {
+      const { queryByText, findByTitle, getByTitle, findAllByTitle } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("Geography"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+      await userEvent.click(button);
+      await userEvent.click(await findByTitle("Secondary"));
+      expect(queryByText("Choose an option for KS4")).not.toBeInTheDocument();
+    });
   });
 });

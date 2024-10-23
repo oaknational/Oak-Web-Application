@@ -4,9 +4,9 @@ import CurriculumHeader from "./CurriculumHeader";
 
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
 import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
-import { parseSubjectPhaseSlug } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockPrerelease } from "@/utils/mocks";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 const render = renderWithProviders();
 
@@ -16,7 +16,8 @@ describe("Component - Curriculum Header", () => {
   });
   const renderComponent = (overrides = {}) => {
     const defaultProps = {
-      curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa"),
+      curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
+      keyStages: ["ks3", "ks4"],
       subjectPhaseOptions: { subjects: subjectPhaseOptionsFixture() },
       pageSlug: "test-slug",
       tab: "overview",
@@ -59,6 +60,7 @@ describe("Component - Curriculum Header", () => {
   test("should return correct page title for primary phase subject", () => {
     const { getByTestId } = renderComponent({
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-primary"),
+      keyStages: ["ks1", "ks2"],
     });
 
     expect(getByTestId("curriculum-heading")).toHaveTextContent(
@@ -77,16 +79,6 @@ describe("Component - Curriculum Header", () => {
   });
 
   test("user can see the tabular navigation", async () => {
-    const { findByTestId } = renderComponent();
-    const tabularNav = await findByTestId("tabularNav");
-    expect(tabularNav).toBeInTheDocument();
-    const links = await findAllByRole(tabularNav, "link");
-    expect(links).toHaveLength(2);
-    expect(links[0]).toHaveTextContent("Unit sequence");
-    expect(links[1]).toHaveTextContent("Overview");
-  });
-
-  test("user can see the tabular navigation (downloads prerelease)", async () => {
     // NOTE: This is only active during testing.
     mockPrerelease("curriculum.downloads");
     const { findByTestId } = renderComponent();

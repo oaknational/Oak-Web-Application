@@ -6,16 +6,14 @@ import {
   OakLI,
   OakP,
   OakPrimaryButton,
-  OakRadioButton,
-  OakRadioGroup,
   OakUL,
 } from "@oaknational/oak-components";
 import { FC, FormEvent, useId, useState } from "react";
 import styled from "styled-components";
 
-import CurriculumDocumentPreview from "../CurriculumDocumentPreview";
 import AcceptTerms from "../OakComponentsKitchen/AcceptTerms";
 import YourDetails from "../OakComponentsKitchen/YourDetails";
+import Terms from "../OakComponentsKitchen/Terms";
 
 import { submitSchema } from "./schema";
 import { School, runSchema } from "./helper";
@@ -24,6 +22,9 @@ import Box from "@/components/SharedComponents/Box";
 import flex, { FlexCssProps } from "@/styles/utils/flex";
 import spacing, { SpacingProps } from "@/styles/utils/spacing";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
+import Button from "@/components/SharedComponents/Button";
+import ResourceCard from "@/components/TeacherComponents/ResourceCard";
+import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 
 const StyledForm = styled.form<FlexCssProps & SpacingProps>`
   ${flex}
@@ -49,9 +50,25 @@ const assertValidDownloadType = (val: string) => {
   return val as DownloadType;
 };
 
-const DOWNLOAD_LABELS: [DownloadType, string][] = [
-  ["word", "Word"],
-  ["pdf", "PDF"],
+const DOWNLOAD_TYPES: {
+  id: DownloadType;
+  label: string;
+  disabled?: boolean;
+  icon: string;
+  subTitle?: string;
+}[] = [
+  {
+    id: "word",
+    label: "Curriculum plan",
+    subTitle: "Word (accessible)",
+    icon: "maths",
+  },
+  // {
+  //   id: "pdf",
+  //   label: "Curriculum plan",
+  //   subTitle: "PDF",
+  //   icon: "maths"
+  // },
 ];
 
 export type CurriculumDownloadViewData = {
@@ -77,6 +94,7 @@ export type CurriculumDownloadViewProps = {
   schools: School[];
   onChange?: (value: CurriculumDownloadViewData) => void;
   onSubmit?: (value: CurriculumDownloadViewData) => void;
+  onBackToKs4Options?: () => void;
 };
 const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
   schools,
@@ -84,7 +102,9 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
   onChange,
   onSubmit,
   isSubmitting,
+  onBackToKs4Options,
 }) => {
+  const [downloadType, setDownloadType] = useState(DOWNLOAD_TYPES[0]!.id);
   const errorMessageListId = useId();
   const [errors, setErrors] = useState<CurriculumDownloadViewErrors>(
     () => ({}),
@@ -119,9 +139,18 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
 
   return (
     <OakBox $color="black">
-      <OakHeading tag="h2" $font={["heading-4"]} $mb={["space-between-m"]}>
-        Download
-      </OakHeading>
+      {onBackToKs4Options && (
+        <Box $mb={24}>
+          <Button
+            variant={"buttonStyledAsLink"}
+            icon="chevron-left"
+            data-testid="back-to-downloads-link"
+            size="small"
+            label="Back to KS4 options"
+            onClick={onBackToKs4Options}
+          />
+        </Box>
+      )}
       <Container $gap={["space-between-m2", "space-between-l"]}>
         <Box $width={["100%", 510]} $textAlign={"left"}>
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
@@ -130,9 +159,36 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
               $font={["heading-5"]}
               data-testid="download-heading"
             >
-              Document preview
+              Curriculum resources
             </OakHeading>
-            <CurriculumDocumentPreview />
+            <RadioGroup
+              aria-label="Subject Download Options"
+              value={downloadType}
+              onChange={(val) => {
+                const newDownloadType = assertValidDownloadType(val);
+                setDownloadType(newDownloadType);
+              }}
+            >
+              <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+                {DOWNLOAD_TYPES.map((download) => {
+                  return (
+                    <ResourceCard
+                      id={download.id}
+                      key={download.label}
+                      name={download.label}
+                      label={download.label}
+                      subtitle={download.subTitle ?? ""}
+                      resourceType="curriculum-pdf"
+                      onChange={() => {}}
+                      checked={false}
+                      onBlur={() => {}}
+                      useRadio={true}
+                      subjectIcon={download.icon}
+                    />
+                  );
+                })}
+              </OakFlex>
+            </RadioGroup>
           </OakFlex>
         </Box>
         <Box $maxWidth={["100%", 400]} $textAlign={"left"}>
@@ -180,47 +236,15 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
                   />
                 )}
 
-                <Box>
-                  <OakFlex
-                    $flexDirection={"column"}
-                    $width={"100%"}
-                    $gap={"space-between-s"}
-                    $mv={"space-between-m2"}
-                  >
-                    <OakHeading tag={"h3"} $font={"heading-7"}>
-                      Download options
-                    </OakHeading>
-                    <OakRadioGroup
-                      aria-label="Download type"
-                      name="download-type"
-                      data-testid="download-download-type"
-                      value={data.downloadType}
-                      onChange={(e) =>
-                        onChangeLocal({
-                          downloadType: assertValidDownloadType(e.target.value),
-                        })
-                      }
-                      $gap={"space-between-s"}
-                      $flexDirection={"column"}
-                    >
-                      {DOWNLOAD_LABELS.map(
-                        ([downloadTypeValue, downloadTypeLabel]) => {
-                          return (
-                            <OakRadioButton
-                              id={downloadTypeValue}
-                              key={downloadTypeValue}
-                              label={downloadTypeLabel}
-                              value={downloadTypeValue}
-                              data-testid={downloadTypeValue}
-                            />
-                          );
-                        },
-                      )}
-                    </OakRadioGroup>
-                  </OakFlex>
-                </Box>
+                <OakFlex $flexDirection={"column"} $mt={"space-between-m"}>
+                  <Terms />
+                </OakFlex>
 
-                <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
+                <OakFlex
+                  $flexDirection={"column"}
+                  $gap={"space-between-m"}
+                  $mv={"space-between-s"}
+                >
                   {hasErrors > 0 && (
                     <div id={errorMessageListId}>
                       <OakFieldError>

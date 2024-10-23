@@ -4,6 +4,9 @@ import userEvent from "@testing-library/user-event";
 import RoleSelectionView from "./RoleSelection.view";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import * as onboardingActions from "@/components/TeacherComponents/OnboardingForm/onboardingActions";
+
+jest.mock("@/components/TeacherComponents/OnboardingForm/onboardingActions");
 
 describe("RoleSelection", () => {
   it("renders a group of radio buttons in a form", () => {
@@ -23,7 +26,9 @@ describe("RoleSelection", () => {
 
     await userEvent.click(continueButton);
 
-    const roleError = await screen.findByText(/Please select your role/i);
+    const roleError = await screen.findByText(
+      /Please select what describes you best/i,
+    );
     expect(roleError).toBeDefined();
     expect(roleError).toBeVisible();
   });
@@ -32,7 +37,7 @@ describe("RoleSelection", () => {
 
     const otherRadio = await screen.findByLabelText(/other/i);
 
-    userEvent.click(otherRadio);
+    await userEvent.click(otherRadio);
 
     const otherRoleInput = await screen.findByLabelText(/your role/i);
     expect(otherRoleInput).toBeDefined();
@@ -57,13 +62,35 @@ describe("RoleSelection", () => {
     });
     await userEvent.click(continueButton);
 
-    const roleError = await screen.findByText(/Please select your role/i);
+    const roleError = await screen.findByText(
+      /Please select what describes you best/i,
+    );
     expect(roleError).toBeDefined();
     expect(roleError).toBeVisible();
 
     const teacherRadio = await screen.findByLabelText(/teacher trainer/i);
     await userEvent.click(teacherRadio);
 
-    expect(screen.queryByText(/Please select your role/i)).toBeNull();
+    expect(
+      screen.queryByText(/Please select what describes you best/i),
+    ).toBeNull();
+  });
+  it("can submit when a role is selected", async () => {
+    jest.spyOn(onboardingActions, "onboardUser");
+
+    renderWithProviders()(<RoleSelectionView />);
+
+    await userEvent.click(
+      screen.getByRole("radio", {
+        name: "Training to become a teacher",
+      }),
+    );
+    await userEvent.click(
+      screen.getByRole("button", {
+        name: /continue/i,
+      }),
+    );
+
+    expect(onboardingActions.onboardUser).toHaveBeenCalled();
   });
 });

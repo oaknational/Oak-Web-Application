@@ -12,13 +12,11 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   ${oakStyles}
   ${(props) => {
     return css`
-      @property --google-font {
-        syntax: "<font>";
-        inherits: false;
-        initial-value: ${props.fontFamily};
+      :root {
+        --google-font: ${props.fontFamily};
       }
       body {
-        font-family: var(--google-font);
+        font-family: var(--google-font), sans-serif;
       }
     `;
   }}

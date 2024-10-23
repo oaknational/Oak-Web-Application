@@ -11,11 +11,13 @@ export function createLessonEngineContext(
     isLessonComplete: false,
     currentSection: "starter-quiz",
     sectionResults: {},
+    timeStamp: { section: "overview", time: 0 },
     lessonReviewSections: allLessonReviewSections,
-    completeSection: jest.fn(),
+    completeActivity: jest.fn(),
     updateCurrentSection: jest.fn(),
     proceedToNextSection: jest.fn(),
     updateSectionResult: jest.fn(),
+    updateWorksheetDownloaded: jest.fn(),
     ...overrides,
   };
 }

@@ -32,6 +32,10 @@ import { pupilUnitListingQuery } from "./queries/pupilUnitListing/pupilUnitListi
 import { pupilSubjectListingQuery } from "./queries/pupilSubjectListing/pupilSubjectListing.query";
 import teachersSitemap from "./queries/teachersSitemap/teacherSitemap.query";
 import pupilsSitemap from "./queries/pupilsSitemap/pupilsSitemap.query";
+import subjectPhaseOptionsIncludeNewQuery from "./queries/subjectPhaseOptionsIncludeNew/subjectPhaseOptionsIncludeNew.query";
+import curriculumUnitsIncludeNewQuery from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.query";
+import curriculumUnitsIncludeNewSchema from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.schema";
+import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -54,7 +58,12 @@ const phaseSchema = z.object({
   slug: z.string(),
   displayOrder: z.number().optional(),
 });
-export const examboardSchema = z.object({
+export const ks4OptionSchema = z.object({
+  title: z.string(),
+  slug: z.string(),
+  displayOrder: z.number().optional(),
+});
+export const keystagesSchema = z.object({
   title: z.string(),
   slug: z.string(),
   displayOrder: z.number().optional(),
@@ -69,12 +78,14 @@ export const searchPageSchema = z.object({
   keyStages: z.array(keyStageSchema),
   subjects: z.array(subjectSchema),
   contentTypes: z.array(contentTypesSchema),
-  examBoards: z.array(examboardSchema),
+  examBoards: z.array(ks4OptionSchema),
 });
 
 export const subjectPhaseOptionSchema = subjectSchema.extend({
   phases: z.array(phaseSchema),
-  examboards: z.array(examboardSchema).optional().nullable(),
+  keystages: z.array(keystagesSchema).optional().nullable(),
+  cycle: z.string(),
+  ks4_options: z.array(ks4OptionSchema).optional().nullable(),
 });
 
 const curriculumHeaderData = z.object({
@@ -92,7 +103,7 @@ const curriculumDownloadsTabData = z.object({
 
 export type Phase = z.infer<typeof phaseSchema>;
 export type Subject = z.infer<typeof subjectSchema>;
-export type Examboard = z.infer<typeof examboardSchema>;
+export type KS4Option = z.infer<typeof ks4OptionSchema>;
 export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type CurriculumOverviewMVData = z.infer<typeof curriculumOverviewSchema>;
@@ -107,6 +118,9 @@ export type CurriculumUnitsTabData = z.infer<typeof curriculumUnitsSchema>;
 export type CurriculumUnit = z.infer<
   typeof curriculumUnitsSchema
 >["units"][number];
+export type CurriculumUnitsTabDataIncludeNew = z.infer<
+  typeof curriculumUnitsIncludeNewSchema
+>;
 
 export const getFirstResultOrNull =
   () =>
@@ -122,6 +136,7 @@ export const getFirstResultOrNull =
 const curriculumApi2023 = {
   curriculumOverview: curriculumOverviewQuery(sdk),
   curriculumUnits: curriculumUnitsQuery(sdk),
+  curriculumUnitsIncludeNew: curriculumUnitsIncludeNewQuery(sdk),
   curriculumDownloads: curriculumDownloadsQuery(),
   curriculumHeader: curriculumHeaderQuery(sdk),
   lessonListing: lessonListingQuery(sdk),
@@ -136,9 +151,11 @@ const curriculumApi2023 = {
   pupilProgrammeListingQuery: pupilProgrammeListingQuery(sdk),
   pupilsSitemap: pupilsSitemap(sdk),
   programmeListingPage: programmeListingQuery(sdk),
+  refreshedMVTime: refreshedMVTimeQuery(sdk),
   searchPage: searchPageQuery(sdk),
   subjectListingPage: subjectListingQuery(sdk),
   subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
+  subjectPhaseOptionsIncludeNew: subjectPhaseOptionsIncludeNewQuery(sdk),
   unitListing: unitListingQuery(sdk),
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();

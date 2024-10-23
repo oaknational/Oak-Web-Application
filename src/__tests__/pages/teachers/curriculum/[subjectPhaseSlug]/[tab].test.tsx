@@ -1,10 +1,9 @@
+import { screen } from "@testing-library/react";
 import { useRouter } from "next/router";
-import { MockedFunction } from "jest-mock";
 
 import CMSClient from "@/node-lib/cms";
 import curriculumApi from "@/node-lib/curriculum-api-2023";
 import CurriculumInfoPage, {
-  parseSubjectPhaseSlug,
   getStaticProps,
   getStaticPaths,
   formatCurriculumUnitsData,
@@ -22,6 +21,7 @@ import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/c
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import { mockPrerelease } from "@/utils/mocks";
+import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
 const render = renderWithProviders();
 
@@ -67,6 +67,7 @@ const unitData = [
     ],
     order: 6,
     slug: "plant-growth-and-development",
+    state: "published",
     subject: "Biology",
     subject_slug: "biology",
     subject_parent: "Science",
@@ -85,6 +86,9 @@ const unitData = [
     title: "Plant growth and development",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -142,6 +146,7 @@ const unitData = [
     ],
     order: 6,
     slug: "ecosystems",
+    state: "published",
     subject: "Science",
     subject_slug: "science",
     subject_parent: null,
@@ -161,6 +166,9 @@ const unitData = [
     title: "Ecosystems",
     unit_options: [],
     year: "7",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -214,6 +222,7 @@ const unitData = [
     ],
     order: 6,
     slug: "health-and-disease",
+    state: "published",
     subject: "Combined science",
     subject_slug: "combined-science",
     subject_parent: "Science",
@@ -232,6 +241,9 @@ const unitData = [
     title: "Health and disease",
     unit_options: [],
     year: "10",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -247,6 +259,7 @@ const unitData = [
     planned_number_of_lessons: 13,
     phase: "Secondary",
     phase_slug: "secondary",
+    state: "published",
     keystage_slug: "ks4",
     lessons: [
       {
@@ -318,6 +331,9 @@ const unitData = [
       "Coordination and control: maintaining a constant internal environment",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -378,6 +394,7 @@ const unitData = [
     ],
     order: 7,
     slug: "coordination-and-control-maintaining-a-constant-internal-environment",
+    state: "published",
     subject: "Biology",
     subject_slug: "biology",
     subject_parent: "Science",
@@ -398,6 +415,9 @@ const unitData = [
       "Coordination and control: maintaining a constant internal environment",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
   {
     connection_prior_unit_description:
@@ -462,6 +482,7 @@ const unitData = [
     ],
     order: 7,
     slug: "transport-and-exchange-surfaces-in-plants",
+    state: "published",
     subject: "Combined science",
     subject_slug: "combined-science",
     subject_parent: "Science",
@@ -481,19 +502,52 @@ const unitData = [
     title: "Transport and exchange surfaces in plants",
     unit_options: [],
     year: "11",
+    cycle: "1",
+    why_this_why_now: null,
+    description: null,
   },
 ];
+
+const mockCurriculumDownloadsData = {
+  child_subjects: [
+    {
+      subject: "Combined science",
+      subject_slug: "combined-science",
+    },
+    {
+      subject: "Biology",
+      subject_slug: "biology",
+    },
+    {
+      subject: "Chemistry",
+      subject_slug: "chemistry",
+    },
+    {
+      subject: "Physics",
+      subject_slug: "physics",
+    },
+  ],
+  tiers: [
+    {
+      tier: "Foundation",
+      tier_slug: "foundation",
+    },
+    {
+      tier: "Higher",
+      tier_slug: "higher",
+    },
+  ],
+};
 
 jest.mock("next/router");
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumOverview: jest.fn(),
   curriculumUnits: jest.fn(),
+  refreshedMVTime: jest.fn(),
+  subjectPhaseOptions: jest.fn(() => subjectPhaseOptions.subjects),
 }));
-const mockedCurriculumOverview =
-  curriculumApi.curriculumOverview as MockedFunction<
-    typeof curriculumApi.curriculumOverview
-  >;
-
+const mockedCurriculumOverview = curriculumApi.curriculumOverview as jest.Mock;
+const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as jest.Mock;
 jest.mock("@/node-lib/cms");
 
 jest.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
@@ -511,13 +565,9 @@ jest.mock("next-sanity-image", () => ({
     height: 400,
   }),
 }));
-const mockedCurriculumUnits = curriculumApi.curriculumUnits as MockedFunction<
-  typeof curriculumApi.curriculumUnits
->;
+const mockedCurriculumUnits = curriculumApi.curriculumUnits as jest.Mock;
 const mockedFetchSubjectPhasePickerData =
-  fetchSubjectPhasePickerData as MockedFunction<
-    typeof fetchSubjectPhasePickerData
-  >;
+  fetchSubjectPhasePickerData as jest.Mock;
 
 jest.mock("@/pages/teachers/curriculum/index", () => ({
   fetchSubjectPhasePickerData: jest.fn(),
@@ -537,24 +587,6 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
     });
     window.IntersectionObserver = mockIntersectionObserver;
   });
-  describe("parses the subject / phase / examboard slug correctly", () => {
-    it("should extract from a valid slug", () => {
-      const slug = "english-secondary-aqa";
-      const parsed = parseSubjectPhaseSlug(slug);
-      expect(parsed).toEqual({
-        subjectSlug: "english",
-        phaseSlug: "secondary",
-        examboardSlug: "aqa",
-      });
-    });
-
-    it("should reject an invalid slug", () => {
-      const slug = "not_a_valid_slug";
-      expect(() => parseSubjectPhaseSlug(slug)).toThrow(
-        "The params provided are incorrect",
-      );
-    });
-  });
 
   describe("components rendering on page", () => {
     it("renders the Curriculum Header", () => {
@@ -565,39 +597,75 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         asPath: "",
       });
 
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
+      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
       const { queryByTestId } = render(
         <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
         />,
       );
       expect(queryByTestId("tabularNav")).toBeInTheDocument();
     });
 
-    it("renders the Curriculum Overview Tab", () => {
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "overview" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
-        asPath: "",
+    describe("Curriculum Downloads Tab: Secondary Maths", () => {
+      beforeEach(() => {
+        jest.clearAllMocks();
+        const mockIntersectionObserver = jest.fn();
+        mockIntersectionObserver.mockReturnValue({
+          observe: () => null,
+          unobserve: () => null,
+          disconnect: () => null,
+        });
+        window.IntersectionObserver = mockIntersectionObserver;
       });
-      mockCMSClient.curriculumOverviewPage.mockResolvedValue(null);
-      const slugs = parseSubjectPhaseSlug("maths-secondary");
-      const { queryByTestId, queryAllByTestId } = render(
-        <CurriculumInfoPage
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          curriculumSelectionSlugs={slugs}
-          subjectPhaseOptions={subjectPhaseOptions}
-          curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
-          curriculumOverviewTabData={curriculumOverviewMVFixture()}
-        />,
-      );
-      expect(queryByTestId("intent-heading")).toBeInTheDocument();
-      expect(queryAllByTestId("subject-principles")).toHaveLength(4);
+
+      test("user can see the tier selector for secondary maths", async () => {
+        // Mock for prerelease behavior
+        mockPrerelease("curriculum.downloads");
+
+        // Mock for useRouter to provide the correct router query and other properties
+        (useRouter as jest.Mock).mockReturnValue({
+          query: { tab: "downloads", subjectPhaseSlug: "maths-secondary" },
+          isPreview: false,
+          pathname: "/teachers-2023/curriculum/maths-secondary/downloads",
+          asPath: "",
+        });
+
+        // Render the CurriculumInfoPage with necessary mock props
+        const slugs = parseSubjectPhaseSlug("maths-secondary")!;
+        const { queryByTestId } = render(
+          <CurriculumInfoPage
+            mvRefreshTime={1721314874829}
+            curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+            curriculumSelectionSlugs={slugs}
+            subjectPhaseOptions={subjectPhaseOptions}
+            curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
+            curriculumOverviewTabData={curriculumOverviewMVFixture()}
+            curriculumDownloadsTabData={{
+              tiers: [
+                { tier: "Higher", tier_slug: "higher" },
+                { tier: "Foundation", tier_slug: "foundation" },
+              ],
+              child_subjects: [],
+            }}
+          />,
+        );
+
+        const formHeading = screen.getByRole("heading", {
+          name: "Download",
+          level: 2,
+        });
+        expect(formHeading).toBeInTheDocument();
+
+        // Find and test the Tier Selector element by its test ID
+        const tierSelector = await queryByTestId("tier-selector");
+        expect(tierSelector).toBeInTheDocument();
+      });
     });
 
     it("renders the Curriculum Units Tab", () => {
@@ -607,14 +675,16 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/overview",
         asPath: "",
       });
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
+      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
       const { queryByTestId, queryAllByTestId } = render(
         <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
         />,
       );
       expect(queryByTestId("units-heading")).toBeInTheDocument();
@@ -628,14 +698,16 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         isPreview: false,
         pathname: "/teachers-2023/curriculum/english-secondary-aqa/downloads",
       });
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
+      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
       const { queryByTestId } = render(
         <CurriculumInfoPage
+          mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
+          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
         />,
       );
       expect(queryByTestId("download-heading")).toBeInTheDocument();
@@ -655,6 +727,14 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       mockCMSClient.curriculumOverviewPage.mockResolvedValue(
         curriculumOverviewCMSFixture(),
       );
+      mockedRefreshedMVTime.mockResolvedValue({
+        data: [
+          {
+            last_refresh_finish: "2024-07-07T00:00:04.01694+00:00",
+            materializedview_name: "mv_curriculum_units_including_new_0_0_4",
+          },
+        ],
+      });
       mockedCurriculumOverview.mockResolvedValue(curriculumOverviewMVFixture());
       mockedCurriculumUnits.mockResolvedValue(unitsTabFixture);
       mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
@@ -669,12 +749,14 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
 
       expect(props).toEqual({
         props: {
+          mvRefreshTime: 1720310404016,
           curriculumSelectionSlugs: slugs,
           subjectPhaseOptions: subjectPhaseOptions,
           curriculumOverviewSanityData: curriculumOverviewCMSFixture(),
           curriculumOverviewTabData: curriculumOverviewMVFixture(),
           curriculumUnitsFormattedData:
             formatCurriculumUnitsData(unitsTabFixture),
+          curriculumDownloadsTabData: mockCurriculumDownloadsData,
         },
       });
     });
@@ -738,6 +820,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_slug: "combined-science",
             },
           ],
+          pathways: [],
           subjectCategories: [],
           tiers: [],
           units: [
@@ -820,8 +903,14 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Health and disease",
               unit_options: [],
               year: "10",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
+              state: "published",
             },
           ],
+          groupAs: null,
+          labels: [],
         },
         "11": {
           childSubjects: [
@@ -834,6 +923,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               subject_slug: "combined-science",
             },
           ],
+          pathways: [],
           subjectCategories: [],
           tiers: [
             {
@@ -910,6 +1000,10 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Plant growth and development",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
+              state: "published",
             },
             {
               connection_future_unit_description:
@@ -1000,6 +1094,10 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                 "Coordination and control: maintaining a constant internal environment",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
+              state: "published",
             },
             {
               connection_future_unit_description:
@@ -1084,6 +1182,10 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
                 "Coordination and control: maintaining a constant internal environment",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
+              state: "published",
             },
             {
               connection_future_unit_description:
@@ -1169,8 +1271,14 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Transport and exchange surfaces in plants",
               unit_options: [],
               year: "11",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
+              state: "published",
             },
           ],
+          groupAs: null,
+          labels: [],
         },
         "7": {
           childSubjects: [],
@@ -1180,6 +1288,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Biology",
             },
           ],
+          pathways: [],
           tiers: [],
           units: [
             {
@@ -1271,8 +1380,14 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
               title: "Ecosystems",
               unit_options: [],
               year: "7",
+              cycle: "1",
+              description: null,
+              why_this_why_now: null,
+              state: "published",
             },
           ],
+          groupAs: null,
+          labels: [],
         },
       };
       expect(createUnitsListingByYear(unitData)).toEqual(unitListingByYear);

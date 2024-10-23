@@ -12,6 +12,7 @@ import {
   OakSearchFilterCheckBox,
   OakSearchFilterCheckBoxProps,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { SearchProps } from "./search.view.types";
 import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
@@ -27,7 +28,10 @@ import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
-import { FilterTypeValueType } from "@/browser-lib/avo/Avo";
+
+const CustomWidthFlex = styled(OakFlex)`
+  max-width: 300px;
+`;
 
 const Search: FC<SearchProps> = (props) => {
   const {
@@ -40,11 +44,9 @@ const Search: FC<SearchProps> = (props) => {
     searchStartTime,
     setSearchStartTime,
   } = props;
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const router = useRouter();
-
   const hitCount = results.length;
 
   const shouldShowError = status === "fail";
@@ -59,29 +61,51 @@ const Search: FC<SearchProps> = (props) => {
   }, [query.term, setSearchStartTime, status]);
 
   useEffect(() => {
+    const searchHasFilters =
+      router.query.keyStages ||
+      router.query.examBoards ||
+      router.query.contentTypes ||
+      router.query.subjects;
+
     if (
       !router.query.page &&
       searchStartTime &&
       (status === "success" || status === "fail")
     ) {
-      const searchEndTime = performance.now();
-
-      track.searchResultsDisplayed({
-        searchFilterOptionSelected: getSortedSearchFiltersSelected(
-          router.query,
-        ),
-        searchResultCount: hitCount,
-        analyticsUseCase: analyticsUseCase,
-        context: "search",
-        searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
-      });
-      setSearchStartTime(null);
+      if (!searchHasFilters) {
+        const searchEndTime = performance.now();
+        track.searchAccessed({
+          searchTerm: query.term,
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "refine",
+          componentType: "search_button",
+          eventVersion: "2.0.0",
+          analyticsUseCase: "Teacher",
+          searchResultCount: hitCount,
+          searchResultsLoadTime: Math.floor(searchEndTime - searchStartTime),
+        });
+        setSearchStartTime(null);
+      } else {
+        track.searchRefined({
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "refine",
+          componentType: "filter_link",
+          eventVersion: "2.0.0",
+          analyticsUseCase: "Teacher",
+          searchResultCount: hitCount,
+          activeFilters: getSortedSearchFiltersSelected(router.query),
+          filterType: null,
+          filterValue: null,
+        });
+      }
     }
   }, [
     analyticsUseCase,
     hitCount,
     query.term,
-    router.query,
+    router,
     searchStartTime,
     setSearchStartTime,
     status,
@@ -99,16 +123,28 @@ const Search: FC<SearchProps> = (props) => {
       searchHit.isToggleOpen &&
       isKeyStageTitleValueType(searchHit.keyStageTitle)
     ) {
+      const lessonName =
+        searchHit.type === "lesson" ? removeHTMLTags(searchHit.title) : "";
+      const lessonSlug =
+        searchHit.type === "lesson" ? searchHit.buttonLinkProps.lessonSlug : "";
+      const unitName =
+        searchHit.type === "lesson"
+          ? removeHTMLTags(searchHit.unitTitle)
+          : removeHTMLTags(searchHit.title);
+
       track.searchResultExpanded({
+        analyticsUseCase: analyticsUseCase,
+        componentType: "search_result_item",
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        platform: "owa",
+        product: "teacher lesson resources",
         context: "search",
-        keyStageSlug: searchHit.keyStageSlug || "",
+        keyStageSlug: searchHit.keyStageSlug,
         keyStageTitle: searchHit.keyStageTitle,
         subjectTitle: searchHit.subjectTitle,
         subjectSlug: searchHit.subjectSlug,
-        unitName:
-          searchHit.type === "lesson"
-            ? removeHTMLTags(searchHit.unitTitle)
-            : removeHTMLTags(searchHit.title),
+        unitName,
         unitSlug: searchHit.buttonLinkProps.unitSlug,
         searchRank: searchRank,
         searchFilterOptionSelected: getSortedSearchFiltersSelected(
@@ -116,11 +152,8 @@ const Search: FC<SearchProps> = (props) => {
         ),
         searchResultCount: hitCount,
         searchResultType: searchHit.type,
-        lessonName: removeHTMLTags(searchHit.title),
-        lessonSlug:
-          searchHit.type === "lesson"
-            ? searchHit.buttonLinkProps.lessonSlug
-            : "",
+        lessonName,
+        lessonSlug,
       });
     }
   };
@@ -160,18 +193,6 @@ const Search: FC<SearchProps> = (props) => {
     }
   };
 
-  const searchRefined = (
-    filterType: FilterTypeValueType,
-    filterValue: string,
-  ) => {
-    track.searchRefined({
-      context: "search",
-      searchResultCount: hitCount,
-      filterType: filterType,
-      filterValue: filterValue,
-    });
-  };
-
   const [filterButtonFocussed, setFilterButtonFocussed] = useState(false);
 
   return (
@@ -182,26 +203,32 @@ const Search: FC<SearchProps> = (props) => {
             $colSpan={[12, 12, 7]}
             $colStart={1}
             $rowStart={1}
-            $mt={"space-between-m"}
+            $mt={["space-between-none", "space-between-m"]}
             $mb={"space-between-ssx"}
           >
             <OakFlex
               $flexDirection={["column"]}
               $mb={["space-between-m", "space-between-m2"]}
+              $pa={["inner-padding-none", "inner-padding-xl"]}
             >
-              <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
-                Search
-              </OakHeading>
-              <SearchForm
-                searchContext="search"
-                searchTerm={query.term}
-                placeholderText="Search by keyword or topic"
-                handleSubmit={(value) => {
-                  setSearchTerm(value);
-                }}
-                analyticsSearchSource={"search page search box"}
-              />
-              <OakBox $mt={"space-between-m2"}>
+              <OakBox $display={["none", "block"]}>
+                <OakHeading tag="h1" $font={"heading-4"} $mb="space-between-m2">
+                  Search
+                </OakHeading>
+              </OakBox>
+              <OakBox $pv={["inner-padding-xl5", "inner-padding-none"]}>
+                <SearchForm
+                  searchContext="search"
+                  searchTerm={query.term}
+                  placeholderText="Search by keyword or topic"
+                  handleSubmit={(value) => {
+                    setSearchTerm(value);
+                  }}
+                  analyticsSearchSource={"search page search box"}
+                />
+              </OakBox>
+
+              <OakBox $mt={["space-between-none", "space-between-m2"]}>
                 <OakFlex
                   $gap={"space-between-xs"}
                   $flexWrap={"wrap"}
@@ -229,10 +256,6 @@ const Search: FC<SearchProps> = (props) => {
                           {...contentTypeFilter}
                           onChange={() => {
                             contentTypeFilter.onChange();
-                            searchRefined(
-                              "Content type filter",
-                              contentTypeFilter.title,
-                            );
                           }}
                         />
                       );
@@ -250,27 +273,16 @@ const Search: FC<SearchProps> = (props) => {
                     $alignSelf={"flex-end"}
                   >
                     <OakBox $mt={["space-between-m", null, null]}>
-                      <SearchFilters
-                        {...searchFilters}
-                        searchRefined={searchRefined}
-                        isMobileFilter
-                      />
+                      <SearchFilters {...searchFilters} isMobileFilter />
                     </OakBox>
                   </MobileFilters>
                 </OakFlex>
               </OakBox>
             </OakFlex>
-            <OakBox $height={"space-between-l"}>
-              <SearchActiveFilters searchFilters={searchFilters} />
-            </OakBox>
+            <SearchActiveFilters searchFilters={searchFilters} />
           </OakGridArea>
-          <OakGridArea
-            $colSpan={[12, 3]}
-            $colStart={[1, 10]}
-            $rowStart={2}
-            $pr={"inner-padding-m"}
-          >
-            <OakFlex
+          <OakGridArea $colSpan={[12, 3]} $colStart={[1, 10]} $rowStart={2}>
+            <CustomWidthFlex
               $flexDirection="column"
               $mb="space-between-m2"
               $display={["none", "flex"]}
@@ -297,8 +309,8 @@ const Search: FC<SearchProps> = (props) => {
                   Skip to results
                 </OakSecondaryButton>
               </OakFlex>
-              <SearchFilters {...searchFilters} searchRefined={searchRefined} />
-            </OakFlex>
+              <SearchFilters {...searchFilters} />
+            </CustomWidthFlex>
           </OakGridArea>
           <OakGridArea
             $colSpan={[12, 9]}
@@ -306,7 +318,7 @@ const Search: FC<SearchProps> = (props) => {
             $rowStart={2}
             $pr={"inner-padding-m"}
           >
-            <div role="status" aria-live="polite">
+            <OakBox role="status" aria-live="polite" $pl="inner-padding-xl">
               {shouldShowError && (
                 <p>There was an error fetching search results</p>
               )}
@@ -315,12 +327,14 @@ const Search: FC<SearchProps> = (props) => {
                 <NoSearchResults searchTerm={query.term} />
               )}
               {shouldShowResults && (
-                <OakP $mb={"space-between-xxl"}>
-                  Showing {results.length} result
-                  {results.length === 1 ? "" : "s"}
-                </OakP>
+                <OakBox $display={["none", "block"]}>
+                  <OakP $mb={"space-between-xxl"}>
+                    Showing {results.length} result
+                    {results.length === 1 ? "" : "s"}
+                  </OakP>
+                </OakBox>
               )}
-            </div>
+            </OakBox>
 
             {shouldShowResults && (
               <SearchResults

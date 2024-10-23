@@ -55,6 +55,7 @@ describe("constructCanonicalLessonDownloads", () => {
       browseData,
       isLegacy,
       null,
+      { geoRestricted: false, loginRequired: false },
     );
 
     const expectedResult: LessonDownloadsCanonical = {
@@ -66,6 +67,8 @@ describe("constructCanonicalLessonDownloads", () => {
       isSpecialist: false,
       updatedAt: browseData[0]?.lesson_data?.updated_at ?? "",
       copyrightContent: null,
+      geoRestricted: false,
+      loginRequired: false,
       pathways: [
         {
           programmeSlug: "programme-slug",
@@ -166,6 +169,7 @@ describe("constructCanonicalLessonDownloads", () => {
       browseData,
       isLegacy,
       null,
+      { geoRestricted: false, loginRequired: false },
     );
 
     const expectedResult: LessonDownloadsCanonical = {
@@ -177,6 +181,8 @@ describe("constructCanonicalLessonDownloads", () => {
       isSpecialist: false,
       updatedAt: browseData[0]?.lesson_data?.updated_at ?? "",
       copyrightContent: null,
+      geoRestricted: false,
+      loginRequired: false,
       pathways: [
         {
           programmeSlug: "programme-slug",

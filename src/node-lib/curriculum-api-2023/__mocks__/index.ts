@@ -1,6 +1,7 @@
 import unitListingFixture from "../fixtures/unitListing.fixture";
 import { unitBrowseDataFixture } from "../fixtures/unitBrowseData.fixture";
 import { subjectBrowseDataFixture } from "../fixtures/subjectBrowseData.fixture";
+import { LessonShareQuery } from "../queries/lessonShare/lessonShare.query";
 
 import { specialistSubjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/specialistSubjectListing.fixture";
 import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
@@ -17,7 +18,8 @@ import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures
 import lessonShareFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonShare.fixture";
 import lessonDownloadsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonDownloads.fixture";
 import { subjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
-import { pupilProgrammeListingFixture } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
+import { pupilProgrammeListingFixtureEBs } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
+import { refreshedMVTimeFixture } from "@/node-lib/curriculum-api-2023/fixtures/refreshedMVTime.fixture";
 import { teachersSitemapDataFixtureCamelCase } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 import { mockedSiteMapResponse } from "@/node-lib/curriculum-api-2023/fixtures/pupilSiteMap.fixture";
 import { type LessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query";
@@ -43,6 +45,7 @@ const curriculumApi: Pick<
   | "lessonOverview"
   | "lessonDownloads"
   | "unitListing"
+  | "refreshedMVTime"
   | "teachersSitemap"
   | "pupilsSitemap"
 > = {
@@ -89,11 +92,11 @@ const curriculumApi: Pick<
     return [subjectBrowseDataFixture({})];
   }),
   pupilProgrammeListingQuery: jest.fn(async () => {
-    return pupilProgrammeListingFixture();
+    return pupilProgrammeListingFixtureEBs();
   }),
   lessonShare: jest.fn(async () => {
     return lessonShareFixtures();
-  }),
+  }) as jest.Mocked<LessonShareQuery>,
   lessonOverview: jest.fn(async () => {
     return lessonOverviewFixture();
   }),
@@ -102,6 +105,9 @@ const curriculumApi: Pick<
   }) as jest.Mocked<LessonDownloadsQuery>,
   unitListing: jest.fn(async () => {
     return unitListingFixture();
+  }),
+  refreshedMVTime: jest.fn(async () => {
+    return refreshedMVTimeFixture();
   }),
   specialistSubjectListing: jest.fn(async () => {
     return {

@@ -110,8 +110,9 @@ export const getStaticProps: GetStaticProps<
         page: "classroom",
       })}/units/${redirectFrom}`;
 
-      const { transcriptSentences, hasWorksheet } =
-        await requestLessonResources({ lessonContent: content });
+      const transcriptSentences = await requestLessonResources({
+        lessonContent: content,
+      });
 
       const results: GetStaticPropsResult<PupilExperienceViewProps> = {
         props: {
@@ -120,9 +121,10 @@ export const getStaticProps: GetStaticProps<
             transcriptSentences: transcriptSentences ?? [],
           },
           browseData,
-          hasWorksheet,
+          hasWorksheet: content.hasWorksheetAssetObject ? true : false,
           backUrl,
           initialSection: section,
+          pageType: "canonical",
         },
       };
 

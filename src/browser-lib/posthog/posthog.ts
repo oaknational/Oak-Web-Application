@@ -13,29 +13,36 @@ export type MaybeDistinctId = string | null;
 export type PosthogConfig = {
   apiKey: string;
   apiHost: string;
+  uiHost?: string;
 };
 
 export const posthogToAnalyticsServiceWithoutQueue = (
   client: PostHog,
 ): AnalyticsService<PosthogConfig> => ({
   name: "posthog",
-  init: ({ apiKey, apiHost }) =>
+  init: ({ apiKey, apiHost, uiHost }) =>
     new Promise((resolve) => {
-      client.init(apiKey, {
-        api_host: apiHost,
-        debug: getBrowserConfig("releaseStage") !== "production",
-        loaded: () => {
-          const legacyAnonymousId = getLegacyAnonymousId();
-          if (legacyAnonymousId) {
-            client.register({
-              legacy_anonymous_id: legacyAnonymousId,
-            });
-          }
-          resolve(client.get_distinct_id());
-        },
-        disable_session_recording: true,
-        capture_pageview: false,
-      });
+      if (!client.__loaded) {
+        client.init(apiKey, {
+          api_host: apiHost,
+          ui_host: uiHost,
+          debug: getBrowserConfig("releaseStage") !== "production",
+          loaded: () => {
+            const legacyAnonymousId = getLegacyAnonymousId();
+            if (legacyAnonymousId) {
+              client.register({
+                legacy_anonymous_id: legacyAnonymousId,
+              });
+            }
+
+            resolve(client.get_distinct_id());
+          },
+          disable_session_recording: true,
+          capture_pageview: false,
+        });
+      } else {
+        resolve(client.get_distinct_id());
+      }
     }),
   identify: (userId, properties) => {
     client.identify(userId, properties);

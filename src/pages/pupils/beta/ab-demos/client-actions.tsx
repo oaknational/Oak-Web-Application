@@ -1,3 +1,5 @@
+import { useFeatureFlagVariantKey } from "posthog-js/react";
+import { useState } from "react";
 import {
   oakDefaultTheme,
   OakFlex,
@@ -6,8 +8,6 @@ import {
   OakSpan,
   OakThemeProvider,
 } from "@oaknational/oak-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
-import { useState } from "react";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
@@ -37,16 +37,34 @@ const Page = () => {
         return;
       }
     }
+    const pathwayData = {
+      lessonName: undefined,
+      lessonSlug: undefined,
+      subjectTitle: undefined,
+      subjectSlug: undefined,
+      unitName: undefined,
+      unitSlug: undefined,
+      keyStageTitle: undefined,
+      keyStageSlug: undefined,
+      yearGroupName: undefined,
+      yearGroupSlug: undefined,
+      tierName: undefined,
+      examBoard: undefined,
+      pathway: undefined,
+      releaseGroup: undefined,
+      phase: undefined,
+    };
 
     // record success event
     track.videoPlayed({
       videoTitle: String(variantKey),
-      videoPlaybackId: "pupil-client-action-demo",
+      videoPlaybackId: ["pupil-client-action-demo"],
       durationSeconds: 10,
       isCaptioned: false,
       isMuted: false,
       timeElapsedSeconds: 0,
       videoLocation: null,
+      ...pathwayData,
     });
 
     // display success message

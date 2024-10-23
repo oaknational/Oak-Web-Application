@@ -1,5 +1,6 @@
 import mockRouter from "next-router-mock";
 import userEvent from "@testing-library/user-event";
+import { act } from "@testing-library/react";
 
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import UnitListingPage, {
@@ -20,13 +21,17 @@ jest.mock("@/utils/resultsPerPage", () => ({
   RESULTS_PER_PAGE: 20,
 }));
 
+beforeEach(() => {
+  window.HTMLElement.prototype.scrollIntoView = jest.fn();
+});
+
 const unitSelected = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      unitSelected: (...args: unknown[]) => unitSelected(...args),
+      unitAccessed: (...args: unknown[]) => unitSelected(...args),
     },
   }),
 }));
@@ -124,19 +129,43 @@ describe("pages/programmes/[programmeSlug]/units", () => {
       });
     });
   });
+  describe("unit search filters", () => {
+    it("unit filtered by the learningTheme const ", () => {
+      mockRouter.push({
+        pathname: "/teachers/programmes/art-primary-ks1/units",
+        query: {
+          learningTheme: "computer-science-2",
+        },
+      });
+      const { getByRole } = render(
+        <UnitListingPage curriculumData={unitListingFixture()} />,
+      );
 
-  it("unitsFilteredByLearningTheme filters units by the learningTheme const ", () => {
-    mockRouter.push({
-      pathname: "/teachers/programmes/art-primary-ks1/units",
-      query: {
-        learningTheme: "computer-science-2",
-      },
+      expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
     });
-    const { getByRole } = render(
-      <UnitListingPage curriculumData={unitListingFixture()} />,
-    );
 
-    expect(getByRole("heading", { level: 1 })).toHaveTextContent("Computing");
+    it("skip filters button becomes visible when focussed", async () => {
+      const { getByText } = render(
+        <UnitListingPage curriculumData={unitListingFixture()} />,
+      );
+
+      const skipUnits = getByText("Skip to units").closest("a");
+
+      if (!skipUnits) {
+        throw new Error("Could not find filter button");
+      }
+
+      act(() => {
+        skipUnits.focus();
+      });
+      expect(skipUnits).toHaveFocus();
+      expect(skipUnits).not.toHaveStyle("position: absolute");
+
+      act(() => {
+        skipUnits.blur();
+      });
+      expect(skipUnits).not.toHaveFocus();
+    });
   });
 
   describe("getStaticPaths", () => {
@@ -167,7 +196,7 @@ describe("pages/programmes/[programmeSlug]/units", () => {
 });
 
 describe("tracking", () => {
-  test("It calls tracking.unitSelected with correct props when clicked", async () => {
+  test("It calls tracking.unitAccessed with correct props when clicked", async () => {
     const { getByText } = render(
       <UnitListingPage curriculumData={unitListingFixture()} />,
     );
@@ -179,13 +208,22 @@ describe("tracking", () => {
     expect(unitSelected).toHaveBeenCalledTimes(1);
 
     expect(unitSelected).toHaveBeenCalledWith({
-      keyStageTitle: "Key Stage 4",
-      keyStageSlug: "ks4",
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "refine",
+      componentType: "unit_card",
+      eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
-      subjectTitle: "Computing",
-      subjectSlug: "computing",
       unitName: "Data Representation",
       unitSlug: "data-representation-618b",
+      keyStageSlug: "ks4",
+      keyStageTitle: "Key Stage 4",
+      subjectTitle: "Computing",
+      subjectSlug: "computing",
+      yearGroupName: "Year 10",
+      yearGroupSlug: "year-10",
+      tierName: null,
+      examBoard: null,
     });
   });
 });

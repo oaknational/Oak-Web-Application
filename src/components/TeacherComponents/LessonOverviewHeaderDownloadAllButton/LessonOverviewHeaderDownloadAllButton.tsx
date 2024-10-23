@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import { useUser } from "@clerk/nextjs";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -29,13 +30,22 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
     analyticsUseCase,
     onClickDownloadAll,
     isSpecialist,
+    isCanonical,
     ...boxProps
   } = props;
 
   const preselected = "all";
-  const downloads = useFeatureFlagEnabled("use-auth-owa")
-    ? "downloads-auth"
-    : "downloads";
+  const downloads =
+    useFeatureFlagVariantKey("teacher-download-auth") === "with-login"
+      ? "downloads-auth"
+      : "downloads";
+
+  const { user, isLoaded } = useUser();
+
+  const displaySignInMessage =
+    isLoaded &&
+    downloads === "downloads-auth" &&
+    !user?.publicMetadata?.owa?.isOnboarded;
 
   if (expired || !showDownloadAll) {
     return null;
@@ -54,7 +64,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
           downloads,
           query: { preselected },
         }
-      : programmeSlug && unitSlug && !isSpecialist
+      : programmeSlug && unitSlug && !isSpecialist && !isCanonical
         ? {
             page: "lesson-downloads",
             lessonSlug,
@@ -80,7 +90,11 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
         icon="arrow-right"
         size="large"
         $iconPosition="trailing"
-        label={`Download all resources`}
+        label={
+          displaySignInMessage
+            ? `Sign in to download`
+            : `Download all resources`
+        }
         onClick={onClickDownloadAll}
       />
     </Box>

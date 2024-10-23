@@ -2,13 +2,10 @@ import PupilProgrammeListingPage, {
   getStaticProps,
 } from "@/pages/pupils/programmes/[programmeSlug]/options/examboard/[examboardSlug]";
 import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
-import {
-  ProgrammeFields,
-  PupilProgrammeListingData,
-} from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
-import { programmeFieldsFixture } from "@/node-lib/curriculum-api-2023/fixtures/programmeFields.fixture";
 import { PupilViewsProgrammeListing } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
+import { pupilProgrammeListingFixtureEBs } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
 
 const render = renderWithProviders();
 
@@ -19,42 +16,24 @@ jest.mock(
   }),
 );
 
+const programmesEBs = pupilProgrammeListingFixtureEBs();
+const examboardsEBs = getAvailableProgrammeFactor({
+  factorPrefix: "examboard",
+  programmes: programmesEBs,
+});
+
 describe("pages/pupils/programmes/[programmeSlug]/options/examboard/aqa", () => {
-  const overrides: Partial<ProgrammeFields>[] = [
-    {
-      examboard: "AQA",
-      examboardSlug: "aqa",
-      examboardDisplayOrder: 1,
-    },
-    {
-      examboard: "Edexcel",
-      examboardSlug: "edexcel",
-      examboardDisplayOrder: 2,
-    },
-  ];
-
-  const programmeFields = overrides.map((override) =>
-    programmeFieldsFixture({ overrides: override }),
-  );
-
-  const programmes: PupilProgrammeListingData[] = programmeFields.map(
-    (programmeField) => ({
-      programmeSlug: "physics-secondary-year-11",
-      programmeFields: programmeField,
-      yearSlug: "year-11",
-    }),
-  );
-
   describe("renders", () => {
     it("should call PupilViewsProgrammeListing with correct props", () => {
       render(
         <PupilProgrammeListingPage
-          programmes={programmes}
+          programmes={programmesEBs}
           baseSlug="physics-secondary-year-11"
           yearSlug="year-11"
           examboardSlug={"aqa"}
-          examboards={[]}
+          examboards={examboardsEBs}
           tiers={[]}
+          pathways={[]}
         />,
       );
       expect(PupilViewsProgrammeListing).toHaveBeenCalled();

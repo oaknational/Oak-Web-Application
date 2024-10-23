@@ -1,25 +1,25 @@
-import { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   OakHeading,
   OakP,
-  OakSpan,
   OakFlex,
+  OakColorToken,
+  OakIcon,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import SearchResultsSubjectIcon from "@/components/TeacherComponents/SearchResultsSubjectIcon";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import SearchDropdown from "@/components/TeacherComponents/SearchDropdown";
-import Icon from "@/components/SharedComponents/Icon";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import useClickableCard from "@/hooks/useClickableCard";
 import {
   LessonListingLinkProps,
   LessonOverviewLinkProps,
+  resolveOakHref,
 } from "@/common-lib/urls";
 import { PathwaySchemaCamel } from "@/context/Search/search.types";
 import { NEW_COHORT } from "@/config/cohort";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 export type SearchResultsItemProps = {
   subjectSlug: string;
@@ -68,12 +68,10 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
     yearTitle,
     cohort,
     subjectSlug,
-    firstItemRef,
     pathways,
+    onToggleClick,
   } = props;
 
-  const { primaryTargetProps, containerProps } =
-    useClickableCard<HTMLAnchorElement>(firstItemRef);
   const capitalizedType = type.charAt(0).toUpperCase() + type.slice(1);
   const metadataArray = [capitalizedType, keyStageShortCode, yearTitle].filter(
     (item): item is string => item !== undefined,
@@ -81,71 +79,155 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
 
   const isPathwaySearchHit = pathways.length > 1;
   const searchHitDescription = description || pupilLessonOutcome || "";
+  const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
-  return (
-    <Flex
-      $bb={1}
-      $borderColor={"grey40"}
-      $flexDirection={"column"}
-      {...(!isPathwaySearchHit ? containerProps : null)}
-      $mb={56}
-      $maxWidth={734}
-    >
-      <OakFlex $mb="space-between-s" $alignItems={"center"}>
-        <SearchResultsSubjectIcon subjectSlug={subjectSlug} type={type} />
-        <OakFlex $ml="space-between-xs" $flexDirection={"column"}>
-          <OakFlex>
-            <OakHeading $mb="space-between-sssx" tag={"h2"} $font={"heading-7"}>
-              {subjectTitle}
-            </OakHeading>
-            {cohort === NEW_COHORT && <TagPromotional $ml={4} size="small" />}
+  const backgroundColour: OakColorToken =
+    type === "unit" ? "lavender30" : "pink30";
+
+  // TODO: extract to components lib
+  const StyledFlexWithFocusState = styled(OakFlex)`
+    &:focus-visible {
+      outline: none;
+      border: solid 4px #ffe555;
+      box-shadow: 0px 0px 0px 5px #575757;
+      border-radius: 4px;
+    }
+  `;
+
+  type ButtonProps = {
+    as: "button";
+    onClick: () => void;
+    children: React.ReactNode;
+  };
+
+  type LinkProps = {
+    as: "a";
+    href: string;
+    onClick: () => void;
+    children: React.ReactNode;
+  };
+
+  const ClickableSearchCard = (props: ButtonProps | LinkProps) => {
+    const isDesktop = useMediaQuery("desktop");
+    return (
+      <StyledFlexWithFocusState
+        {...props}
+        $pa="inner-padding-xl"
+        $mb="space-between-m2"
+        $borderRadius="border-radius-m2"
+        $flexDirection="column"
+        onMouseEnter={() => isDesktop && setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        $background={isHovered || isToggleOpen ? backgroundColour : "white"}
+        $width="100%"
+        $ba="border-solid-none"
+        $color="black"
+      >
+        {props.children}
+      </StyledFlexWithFocusState>
+    );
+  };
+
+  const CardContent = () => {
+    return (
+      <>
+        <OakFlex $mb="space-between-s" $alignItems={"center"}>
+          <SearchResultsSubjectIcon subjectSlug={subjectSlug} type={type} />
+          <OakFlex $ml="space-between-xs" $flexDirection="column">
+            <OakFlex>
+              <OakHeading
+                $mb="space-between-sssx"
+                tag={"h2"}
+                $font={"heading-7"}
+              >
+                {subjectTitle}
+              </OakHeading>
+              {cohort === NEW_COHORT && <TagPromotional $ml={4} size="small" />}
+            </OakFlex>
+            <LessonMetadata
+              $font={"heading-light-7"}
+              $color={"grey60"}
+              metadataArray={metadataArray}
+            />
           </OakFlex>
-          <LessonMetadata
-            $font={"heading-light-7"}
-            $color={"grey60"}
-            metadataArray={metadataArray}
+        </OakFlex>
+        <OakFlex
+          $mb="space-between-m2"
+          $flexDirection="column"
+          $alignItems="baseline"
+        >
+          <OakHeading
+            tag={"h2"}
+            $font={["heading-6", "heading-5"]}
+            $textAlign="left"
+          >
+            {title}
+          </OakHeading>
+          {searchHitDescription && (
+            <OakP
+              dangerouslySetInnerHTML={{
+                __html: searchHitDescription,
+              }}
+              $mt="space-between-s"
+              $font={"body-2"}
+              $textAlign="left"
+            />
+          )}
+        </OakFlex>
+      </>
+    );
+  };
+
+  const PathwayResultCard = () => {
+    return (
+      <ClickableSearchCard
+        as="button"
+        onClick={() => {
+          const toggleOpen = !isToggleOpen;
+          setToggleOpen(toggleOpen);
+          onToggleClick?.({ ...props, isToggleOpen: toggleOpen });
+        }}
+      >
+        <CardContent />
+        <SearchDropdown
+          {...props}
+          isToggleOpen={isToggleOpen}
+          isHovered={isHovered}
+        />
+      </ClickableSearchCard>
+    );
+  };
+
+  const SingleResultCard = () => {
+    return (
+      <ClickableSearchCard
+        as="a"
+        href={resolveOakHref(buttonLinkProps)}
+        onClick={() => onClick?.(props)}
+        aria-label={`See ${type}: ${title}`}
+      >
+        <CardContent />
+        <OakFlex $alignItems="center">
+          <OakP
+            $font={"heading-7"}
+            $color="navy"
+            $textDecoration={isHovered ? "underline" : "none"}
+          >
+            {type === "unit" ? "See unit" : "See lesson"}
+          </OakP>
+
+          <OakIcon
+            iconName="arrow-right"
+            $colorFilter="navy"
+            $width="all-spacing-6"
           />
         </OakFlex>
-      </OakFlex>
-      <OakFlex $mb="space-between-m2" $flexDirection={"column"}>
-        <OakHeading tag={"h2"} $font={["heading-6", "heading-5"]}>
-          {title}
-        </OakHeading>
-        {searchHitDescription && (
-          <OakP
-            dangerouslySetInnerHTML={{
-              __html: searchHitDescription,
-            }}
-            $mt="space-between-s"
-            $font={"body-2"}
-          />
-        )}
-      </OakFlex>
-      <OakFlex $mb="space-between-m">
-        {isPathwaySearchHit ? (
-          <SearchDropdown {...props} />
-        ) : (
-          <OwaLink
-            aria-label={`See ${type}: ${title}`}
-            {...buttonLinkProps}
-            onClick={() => {
-              onClick?.(props);
-            }}
-            {...primaryTargetProps}
-            $color={"navy"}
-            $focusStyles={["underline"]}
-          >
-            <OakFlex $justifyContent={"center"} $alignItems={"center"}>
-              <OakSpan $font={"heading-7"}>
-                {type === "unit" ? "See unit" : "See lesson"}
-              </OakSpan>
-              <Icon $ml={4} name={"arrow-right"} />
-            </OakFlex>
-          </OwaLink>
-        )}
-      </OakFlex>
-    </Flex>
-  );
+      </ClickableSearchCard>
+    );
+  };
+
+  return isPathwaySearchHit ? <PathwayResultCard /> : <SingleResultCard />;
 };
 
 export default SearchResultsItem;

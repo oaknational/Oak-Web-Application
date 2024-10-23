@@ -1,14 +1,22 @@
 import { createContext } from "react";
+import { capitalize } from "lodash";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   AnalyticsUseCaseValueType,
+  ExamBoardValueType,
   KeyStageTitleValueType,
-  KeyStageTitle,
+  PathwayValueType,
+  PhaseValueType,
+  TierNameValueType,
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
-import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import {
+  LessonBrowseData,
+  LessonContent,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import { unionOrNull } from "@/utils/narrowToUnion";
 
 /**
  * This file is used to wrap the track function from the analytics context
@@ -28,27 +36,73 @@ type NavigationEventProps =
   | "keyStageTitle"
   | "subjectTitle"
   | "subjectSlug"
+  | "yearGroupName"
+  | "yearGroupSlug"
+  | "phase"
+  | "tierName"
+  | "pathway"
+  | "examBoard"
+  | "releaseGroup"
   | "analyticsUseCase";
+
+type VideoDataProps =
+  | "videoTitle"
+  | "numberOfVideos"
+  | "videoSlug"
+  | "isCaptioned"
+  | "videoPlaybackId"
+  | "signedAvailable";
+
+type AudioDataProps =
+  | "audioTitle"
+  | "numberOfAudios"
+  | "audioSlug"
+  | "audioPlaybackId"
+  | "isCaptioned";
 
 export const trackingEvents = [
   "lessonStarted",
   "lessonCompleted",
-  "lessonSectionStarted",
-  "lessonSectionCompleted",
-  "lessonSectionAbandoned",
+  "lessonActivityCompletedIntroduction",
+  "lessonActivityCompletedStarterQuiz",
+  "lessonActivityCompletedLessonVideo",
+  "lessonActivityCompletedExitQuiz",
+  "lessonActivityCompletedLessonAudio",
+  "lessonActivityStartedIntroduction",
+  "lessonActivityStartedStarterQuiz",
+  "lessonActivityStartedLessonVideo",
+  "lessonActivityStartedExitQuiz",
+  "lessonActivityStartedLessonAudio",
+  "lessonActivityAbandonedStarterQuiz",
+  "lessonActivityAbandonedIntroduction",
+  "lessonActivityAbandonedLessonVideo",
+  "lessonActivityAbandonedExitQuiz",
+  "lessonActivityAbandonedLessonAudio",
+  "lessonActivityDownloadedWorksheet",
+  "contentGuidanceAccepted",
+  "contentGuidanceDeclined",
+  "activityResultsShared",
+  "lessonSummaryReviewed",
+  "lessonAccessed",
 ] as const;
 
 export type PupilAnalyticsEvents = (typeof trackingEvents)[number];
 
-type PupilAnalyticsTrack = {
+export type PupilAnalyticsTrack = {
   [eventName in PupilAnalyticsEvents]: (
-    props: Omit<Parameters<TrackFns[eventName]>[0], NavigationEventProps>,
+    props: Omit<
+      Parameters<TrackFns[eventName]>[0],
+      NavigationEventProps | VideoDataProps | AudioDataProps
+    >,
   ) => void;
 };
 
-export const pupilAnalyticsContext = createContext<{
+export type PupilAnalyticsContext = {
   track: PupilAnalyticsTrack;
-} | null>(null);
+};
+
+export const pupilAnalyticsContext =
+  createContext<PupilAnalyticsContext | null>(null);
 
 export type PupilPathwayData = {
   unitName: string;
@@ -56,45 +110,230 @@ export type PupilPathwayData = {
   lessonSlug: string;
   lessonName: string;
   keyStageSlug: string;
-  keyStageTitle: KeyStageTitleValueType | null;
+  keyStageTitle: KeyStageTitleValueType;
   subjectTitle: string;
   subjectSlug: string;
+  yearGroupName: string;
+  yearGroupSlug: string;
+  phase: PhaseValueType;
+  tierName: TierNameValueType | null | undefined;
+  pathway: PathwayValueType | null | undefined;
+  examBoard: ExamBoardValueType | null | undefined;
+  releaseGroup: string;
+};
+
+// TODO: The assumptions behind these types seem wrong. We currently have one video per lesson, but if we have multiple videos they are likely to have multiple titles, slugs, etc.
+export type PupilVideoData = {
+  videoTitle: string;
+  numberOfVideos: number;
+  videoSlug: string[];
+  isCaptioned: boolean;
+  videoPlaybackId: string[];
+  signedAvailable: boolean;
+};
+
+export type PupilAudioData = {
+  audioTitle: string;
+  numberOfAudios: string;
+  audioSlug: string[];
+  audioPlaybackId: string[];
+  isCaptioned: boolean;
+  signedAvailable: boolean;
+};
+
+export type AdditionalArgType = PupilPathwayData & {
+  analyticsUseCase: AnalyticsUseCaseValueType;
 };
 
 export const PupilAnalyticsProvider = ({
   children,
   pupilPathwayData,
+  lessonContent,
 }: {
   children: React.ReactNode;
   pupilPathwayData: PupilPathwayData;
+  lessonContent?: LessonContent;
 }) => {
   const { track } = useAnalytics();
 
-  const additionalArgs: PupilPathwayData & {
-    analyticsUseCase: AnalyticsUseCaseValueType;
-  } = {
+  const additionalArgs: AdditionalArgType = {
     ...pupilPathwayData,
     analyticsUseCase: "Pupil",
   };
 
+  const videoData = lessonContent && getPupilVideoData(lessonContent);
+  const audioData = lessonContent && getPupilAudioData(lessonContent);
+
+  const reportNoAudio = () => {
+    console.error("No audio data available");
+    const error = new Error("No audio data available");
+    errorReporter(
+      "pupils::pupilAnalyticsProvider::lessonActivityCompletedLessonAudio::noAudioData",
+    )(error, {
+      severity: "warning",
+    });
+  };
+
+  const reportNoVideo = () => {
+    console.error("No video data available");
+    const error = new Error("No video data available");
+    errorReporter(
+      "pupils::pupilAnalyticsProvider::lessonActivityCompletedLessonVideo::noVideoData",
+    )(error, {
+      severity: "warning",
+    });
+  };
+
   const pupilTrack: PupilAnalyticsTrack = {
-    lessonCompleted: (args) =>
+    lessonCompleted: (args) => {
+      console.log("PA: lessonCompleted");
       track.lessonCompleted({
         ...args,
         ...additionalArgs,
-      }),
-    lessonSectionCompleted: (args) =>
-      track.lessonSectionCompleted({
+      });
+    },
+    lessonActivityCompletedIntroduction: (args) =>
+      track.lessonActivityCompletedIntroduction({
         ...args,
         ...additionalArgs,
       }),
-    lessonSectionStarted: (args) =>
-      track.lessonSectionStarted({
+    lessonActivityCompletedStarterQuiz: (args) =>
+      track.lessonActivityCompletedStarterQuiz({
+        ...args,
+        ...additionalArgs,
+      }),
+    lessonActivityCompletedLessonVideo: (args) => {
+      if (!videoData) {
+        reportNoVideo();
+        return;
+      }
+
+      track.lessonActivityCompletedLessonVideo({
+        ...args,
+        ...additionalArgs,
+        ...videoData,
+      });
+    },
+    lessonActivityCompletedExitQuiz: (args) =>
+      track.lessonActivityCompletedExitQuiz({
+        ...args,
+        ...additionalArgs,
+      }),
+    lessonActivityCompletedLessonAudio: (args) => {
+      if (!audioData) {
+        reportNoAudio();
+        return;
+      }
+      track.lessonActivityCompletedLessonAudio({
+        ...args,
+        ...additionalArgs,
+        ...audioData,
+      });
+    },
+
+    lessonActivityStartedIntroduction: (args) =>
+      track.lessonActivityStartedIntroduction({
         ...additionalArgs,
         ...args,
       }),
-    lessonSectionAbandoned: (args) =>
-      track.lessonSectionStarted({
+    lessonActivityStartedStarterQuiz: (args) =>
+      track.lessonActivityStartedStarterQuiz({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityStartedLessonVideo: (args) => {
+      if (!videoData) {
+        reportNoVideo();
+        return;
+      }
+      track.lessonActivityStartedLessonVideo({
+        ...additionalArgs,
+        ...videoData,
+        ...args,
+      });
+    },
+    lessonActivityStartedExitQuiz: (args) =>
+      track.lessonActivityStartedExitQuiz({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityStartedLessonAudio: (args) => {
+      if (!audioData) {
+        reportNoAudio();
+        return;
+      }
+      track.lessonActivityStartedLessonAudio({
+        ...additionalArgs,
+        ...args,
+        ...audioData,
+      });
+    },
+    lessonActivityAbandonedStarterQuiz: (args) =>
+      track.lessonActivityAbandonedStarterQuiz({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityAbandonedIntroduction: (args) =>
+      track.lessonActivityAbandonedIntroduction({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityAbandonedLessonVideo: (args) => {
+      if (!videoData) {
+        reportNoVideo();
+        return;
+      }
+      track.lessonActivityAbandonedLessonVideo({
+        ...additionalArgs,
+        ...videoData,
+        ...args,
+      });
+    },
+    lessonActivityAbandonedExitQuiz: (args) =>
+      track.lessonActivityAbandonedExitQuiz({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonActivityAbandonedLessonAudio: (args) => {
+      if (!audioData) {
+        reportNoAudio();
+        return;
+      }
+      track.lessonActivityAbandonedLessonAudio({
+        ...additionalArgs,
+        ...args,
+        ...audioData,
+      });
+    },
+    lessonActivityDownloadedWorksheet: (args) =>
+      track.lessonActivityDownloadedWorksheet({
+        ...additionalArgs,
+        ...args,
+      }),
+    contentGuidanceAccepted: (args) =>
+      track.contentGuidanceAccepted({
+        ...additionalArgs,
+        ...args,
+      }),
+    contentGuidanceDeclined: (args) =>
+      track.contentGuidanceDeclined({
+        ...additionalArgs,
+        ...args,
+      }),
+    activityResultsShared: (args) =>
+      track.activityResultsShared({
+        ...additionalArgs,
+        ...args,
+      }),
+    lessonSummaryReviewed: (args) =>
+      track.lessonSummaryReviewed({
+        ...additionalArgs,
+        ...videoData,
+        ...audioData,
+        ...args,
+      }),
+    lessonAccessed: (args) =>
+      track.lessonAccessed({
         ...additionalArgs,
         ...args,
       }),
@@ -112,14 +351,6 @@ export const PupilAnalyticsProvider = ({
   );
 };
 
-const isKeyStageTitle = (
-  keyStageTitle: string,
-): keyStageTitle is KeyStageTitleValueType => {
-  return Object.values(KeyStageTitle).includes(
-    keyStageTitle as KeyStageTitleValueType,
-  );
-};
-
 export const getPupilPathwayData = (
   browseData: LessonBrowseData,
 ): PupilPathwayData => {
@@ -128,7 +359,7 @@ export const getPupilPathwayData = (
     "stage",
   );
 
-  const keyStageTitle = isKeyStageTitle(k) ? k : null;
+  const keyStageTitle = k as KeyStageTitleValueType;
 
   if (!keyStageTitle) {
     console.error("Invalid key stage title", k);
@@ -140,9 +371,12 @@ export const getPupilPathwayData = (
       keyStageTitle: k,
     });
   }
+  if (browseData.programmeFields.phase === "foundation") {
+    throw new Error("Foundation phase is not supported");
+  }
 
   return {
-    unitName: browseData.unitData.description ?? "",
+    unitName: browseData.unitData.title ?? "",
     unitSlug: browseData.unitData.slug,
     lessonSlug: browseData.lessonData.slug,
     lessonName: browseData.lessonData.title,
@@ -150,5 +384,44 @@ export const getPupilPathwayData = (
     keyStageTitle,
     subjectTitle: browseData.programmeFields.subject,
     subjectSlug: browseData.programmeFields.subjectSlug,
+    yearGroupName: browseData.programmeFields.year,
+    yearGroupSlug: browseData.programmeFields.yearSlug,
+    phase: browseData.programmeFields.phase,
+    tierName: unionOrNull<TierNameValueType>(
+      capitalize(browseData.programmeFields.tier ?? undefined),
+      ["Higher", "Foundation", "Core"],
+    ),
+    examBoard: browseData.programmeFields.examboard,
+    releaseGroup: browseData.isLegacy ? "legacy" : "2023",
+    pathway: null, // TODO: not yet implemented
+  };
+};
+
+export const getPupilVideoData = (
+  lessonContent: LessonContent,
+): PupilVideoData => {
+  return {
+    videoTitle: lessonContent.videoTitle ?? "",
+    numberOfVideos: 1,
+    videoSlug: [lessonContent.lessonSlug], //FIXME: this is misleading and duplicates the pathway data
+    isCaptioned: lessonContent.transcriptSentences.length > 0,
+    videoPlaybackId: [
+      lessonContent.videoMuxPlaybackId || "",
+      lessonContent.videoWithSignLanguageMuxPlaybackId || "",
+    ],
+    signedAvailable: !!lessonContent.videoWithSignLanguageMuxPlaybackId,
+  };
+};
+
+export const getPupilAudioData = (
+  lessonContent: LessonContent,
+): PupilAudioData => {
+  return {
+    audioTitle: "",
+    numberOfAudios: "0",
+    audioSlug: [lessonContent.lessonSlug],
+    audioPlaybackId: [""],
+    isCaptioned: false,
+    signedAvailable: false,
   };
 };

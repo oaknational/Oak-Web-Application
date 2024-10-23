@@ -4,34 +4,24 @@ import { act } from "react-dom/test-utils";
 import { useRequireOnboarding } from "./useRequireOnboarding";
 
 import { renderHookWithProviders } from "@/__tests__/__helpers__/renderWithProviders";
-import * as featureFlaggedClerk from "@/context/FeatureFlaggedClerk/FeatureFlaggedClerk";
 import {
   mockLoadingUser,
   mockLoggedIn,
   mockLoggedOut,
 } from "@/__tests__/__helpers__/mockUser";
-
-jest.mock("@/context/FeatureFlaggedClerk/FeatureFlaggedClerk");
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 describe(useRequireOnboarding, () => {
   const renderHook = renderHookWithProviders();
 
-  let useUserReturn = mockLoadingUser;
-
   beforeEach(() => {
-    jest.spyOn(featureFlaggedClerk, "useFeatureFlaggedClerk").mockReturnValue({
-      ...featureFlaggedClerk.fakeClerkApi,
-      useUser() {
-        return useUserReturn;
-      },
-    });
-
+    setUseUserReturn(mockLoadingUser);
     mockRouter.setCurrentUrl("/original");
   });
 
   describe("when the user is not logged in", () => {
     beforeEach(() => {
-      useUserReturn = mockLoggedOut;
+      setUseUserReturn(mockLoggedOut);
     });
 
     it("does nothing", async () => {
@@ -46,13 +36,13 @@ describe(useRequireOnboarding, () => {
   describe("when the user is logged in", () => {
     describe("and the user has completed onboarding", () => {
       beforeEach(() => {
-        useUserReturn = {
+        setUseUserReturn({
           ...mockLoggedIn,
           user: {
             ...mockLoggedIn.user,
-            publicMetadata: { "owa:onboarded": true },
+            publicMetadata: { owa: { isOnboarded: true } },
           },
-        };
+        });
       });
 
       it("does nothing", () => {
@@ -64,7 +54,7 @@ describe(useRequireOnboarding, () => {
 
     describe("and the user has not completed onboarding", () => {
       beforeEach(() => {
-        useUserReturn = mockLoggedIn;
+        setUseUserReturn(mockLoggedIn);
       });
 
       it("redirects to the onboarding page", () => {

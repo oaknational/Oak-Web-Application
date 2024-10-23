@@ -23,6 +23,7 @@ describe("unit list helpers", () => {
         keyStageSlug: "ks4",
         keyStageTitle: "Key Stage 4",
         yearOrder: 1,
+        year: "year-1",
         yearTitle: "Year 1",
         learningThemes: [],
       },
@@ -38,12 +39,17 @@ describe("unit list helpers", () => {
       examBoardTitle: "AQA",
       subjectSlug: "biology",
       subjectTitle: "Biology",
+      subjectParent: null,
       tierSlug: "higher",
       tiers: [],
       units: [],
       phase: "secondary",
       learningThemes: [],
       hasNewContent: false,
+      yearGroups: [{ year: "year-1", yearTitle: "Year 1" }],
+      subjectCategories: [
+        { label: "Biology", slug: "biology", iconName: "icon-biology" },
+      ],
     });
     expect(result).toEqual(true);
   });
@@ -63,6 +69,7 @@ describe("unit list helpers", () => {
           keyStageSlug: "ks4",
           keyStageTitle: "Key Stage 4",
           yearOrder: 1,
+          year: "year-1",
           yearTitle: "Year 1",
           learningThemes: [],
         },
@@ -79,6 +86,7 @@ describe("unit list helpers", () => {
       examBoardTitle: "AQA",
       subjectSlug: "biology",
       subjectTitle: "Biology",
+      subjectParent: "Science",
       tierSlug: "higher",
       tiers: [],
       units: [],
@@ -86,6 +94,10 @@ describe("unit list helpers", () => {
       learningThemes: [],
       hasNewContent: false,
       currentPageItems: [],
+      yearGroups: [{ year: "year-10", yearTitle: "Year 10" }],
+      subjectCategories: [
+        { label: "Biology", slug: "biology", iconName: "icon-biology" },
+      ],
       paginationProps: mockPaginationProps,
       onClick: () => {},
     });
@@ -112,9 +124,11 @@ describe("unit list helpers", () => {
       subjectTitle: "Numeracy",
       units: [],
       learningThemes: [],
+      subjectParent: null,
       hasNewContent: false,
       currentPageItems: [],
       paginationProps: mockPaginationProps,
+      yearGroups: [{ year: "year-10", yearTitle: "Year 10" }],
       onClick: () => {},
     });
     expect(result).toEqual({

@@ -12,6 +12,7 @@ import {
   OakBox,
   OakInlineBanner,
   OakSecondaryLink,
+  isValidIconName,
 } from "@oaknational/oak-components";
 import { useState } from "react";
 
@@ -35,12 +36,16 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
     subject,
     subjectSlug,
     tierDescription,
-    examboardDescription,
+    pathway,
+    examboard,
     phaseSlug,
   } = programmeFields;
 
   const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
-    useState<boolean>(unitData.expirationDate !== null);
+    useState<boolean>(
+      unitData.expirationDate !== null ||
+        orderedCurriculumData.some((c) => c.actions?.displayExpiringBanner),
+    );
 
   const noneExpiredLessons = orderedCurriculumData.filter(
     (lesson) => !lesson.lessonData?.deprecatedFields?.expired,
@@ -51,8 +56,13 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   }
 
   const breadcrumb: string[] = [yearDescription, subject];
-  if (examboardDescription) {
-    breadcrumb.push(examboardDescription);
+
+  if (pathway) {
+    breadcrumb.push(pathway);
+  }
+
+  if (examboard) {
+    breadcrumb.push(examboard);
   }
   if (tierDescription) {
     breadcrumb.push(tierDescription);
@@ -60,10 +70,12 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
 
   const optionality = programmeFields?.optionality;
 
+  const iconSlug = `subject-${subjectSlug}`;
+
   const LessonListingTitle = (
     <OakPupilJourneyHeader
       iconBackground={phaseSlug}
-      iconName={`subject-${subjectSlug}`}
+      iconName={isValidIconName(iconSlug) ? iconSlug : "question-mark"}
       title={optionality ?? unitData?.title}
       breadcrumbs={breadcrumb}
       optionalityTitle={optionality && unitData?.title}

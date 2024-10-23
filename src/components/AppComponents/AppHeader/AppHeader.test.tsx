@@ -4,10 +4,19 @@ import { screen } from "@testing-library/react";
 import AppHeader from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
+import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: jest.fn(() => "with-login"),
+}));
+
 describe("components/AppHeader", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   test("header should be in the document", () => {
     const { getByRole } = render(<AppHeader />);
 
@@ -76,5 +85,21 @@ describe("components/AppHeader", () => {
     }
 
     expect(pupilsLink.closest("a")).toHaveAttribute("href", "/pupils/years");
+  });
+
+  it("does not render a sign out button when user is not logged in", () => {
+    setUseUserReturn(mockLoggedOut);
+    renderWithProviders()(<AppHeader />);
+
+    const signOutButton = screen.queryByTestId("clerk-user-button");
+    expect(signOutButton).not.toBeInTheDocument();
+  });
+
+  it("renders a sign out button when a user is logged in", async () => {
+    setUseUserReturn(mockLoggedIn);
+    renderWithProviders()(<AppHeader />);
+
+    const signOutButton = screen.getByTestId("clerk-user-button");
+    expect(signOutButton).toBeInTheDocument();
   });
 });

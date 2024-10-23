@@ -4,44 +4,51 @@ const baseSchema = z.object({
   newsletterSignUp: z.boolean(),
 });
 
-export const roleSelectFormSchema = z.object({
-  ...baseSchema.shape,
-  role: z.string({
-    errorMap: () => ({
-      message: "Select a role",
-    }),
-  }),
-  other: z.string().optional(),
-});
+export const roleSelectFormSchema = z
+  .object({
+    ...baseSchema.shape,
+    role: z.string({ message: "Please select what describes you best" }),
+    other: z.string().trim().optional(),
+  })
+  .refine(
+    (input) => {
+      if (input.role === "Other") {
+        return !!input.other;
+      }
+      return true;
+    },
+    {
+      message: "Please tell us what your role is",
+      path: ["other"],
+    },
+  );
+
 export type RoleSelectFormValues = z.infer<typeof roleSelectFormSchema>;
 export type RoleSelectFormProps = RoleSelectFormValues & {
   onSubmit: (values: RoleSelectFormValues) => Promise<void>;
 };
 
-export const schoolSelectFormSchema = z
-  .object({
-    school: z
-      .string({
-        errorMap: () => ({
-          message: "Select school",
-        }),
-      })
-      .min(1, "Select school"),
-    schoolName: z.string().optional(),
-    ...baseSchema.shape,
-  })
-  .or(
-    z.object({
-      manualSchoolName: z
-        .string()
-        .min(3, "School name must be at least 3 characters long"),
+const ukSchoolSchema = z.object({
+  school: z
+    .string({
+      errorMap: () => ({
+        message: "Please select your school",
+      }),
+    })
+    .min(1, "Select school"),
+  schoolName: z.string().optional(),
+  ...baseSchema.shape,
+});
+export type UkSchoolFormValues = z.infer<typeof ukSchoolSchema>;
 
-      schoolAddress: z
-        .string()
-        .min(3, "School address must be at least 3 characters long"),
-      ...baseSchema.shape,
-    }),
-  );
+const manualSchoolSchema = z.object({
+  manualSchoolName: z.string().trim().min(1),
+  schoolAddress: z.string().trim().min(1),
+  ...baseSchema.shape,
+});
+export type ManualSchoolFormValues = z.infer<typeof manualSchoolSchema>;
+
+export const schoolSelectFormSchema = ukSchoolSchema.or(manualSchoolSchema);
 
 export type SchoolSelectFormValues = z.infer<typeof schoolSelectFormSchema>;
 export type SchoolSelectFormProps = SchoolSelectFormValues & {
@@ -59,7 +66,38 @@ export type WorksInSchoolFormProps = WorksInSchoolFormValues & {
   onSubmit: (values: WorksInSchoolFormValues) => Promise<void>;
 };
 
+export const useOfOakSchema = z.object({
+  curriculumDesign: z.boolean().optional(),
+  departmentResources: z.boolean().optional(),
+  enhanceSkills: z.boolean().optional(),
+  resourcesInspiration: z.boolean().optional(),
+  disruptionLearning: z.boolean().optional(),
+});
+
+export const extendedUseOfOakSchema = useOfOakSchema
+  .merge(ukSchoolSchema)
+  .or(useOfOakSchema.merge(manualSchoolSchema));
+
+export type UseOfOakFormSchema = z.infer<typeof extendedUseOfOakSchema>;
+export type UseOfOakFormProps = UseOfOakFormSchema & {
+  onSubmit: (values: UseOfOakFormSchema) => Promise<void>;
+};
+
 export type OnboardingFormProps =
   | SchoolSelectFormProps
   | RoleSelectFormProps
-  | WorksInSchoolFormProps;
+  | WorksInSchoolFormProps
+  | UseOfOakFormProps;
+
+export const isSchoolSelectData = (
+  d: OnboardingFormProps,
+): d is SchoolSelectFormProps => {
+  return (
+    ("school" in d || "manualSchoolName" in d) &&
+    !("curriculumDesign" in d) &&
+    !("departmentResources" in d) &&
+    !("enhanceSkills" in d) &&
+    !("resourcesInspiration" in d) &&
+    !("disruptionLearning" in d)
+  );
+};

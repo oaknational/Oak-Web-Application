@@ -20,6 +20,7 @@ import theme, { OakColorName } from "@/styles/theme";
 import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
+import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -41,12 +42,14 @@ export type VideoPlayerProps = {
   location: VideoLocationValueType;
   isLegacy: boolean;
   userEventCallback?: (event: VideoEventCallbackArgs) => void;
+  pathwayData?: PupilPathwayData;
 };
 
 export type VideoEventCallbackArgs = {
   event: "play" | "playing" | "pause" | "end";
   timeElapsed: number | null;
   duration: number | null;
+  muted: boolean;
 };
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
@@ -58,6 +61,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     playbackPolicy,
     isLegacy,
     userEventCallback = () => {},
+    pathwayData,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement>(null);
@@ -84,7 +88,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     };
   };
 
-  const videoTracking = useVideoTracking({ getState });
+  const videoTracking = useVideoTracking({ getState, pathwayData });
 
   const thumbnailToken = useSignedThumbnailToken({
     playbackId,
@@ -126,6 +130,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       event: "play",
       duration: getDuration(mediaElRef),
       timeElapsed: getTimeElapsed(mediaElRef),
+      muted: mediaElRef.current?.muted || false,
     });
   };
 
@@ -137,6 +142,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       event: "pause",
       duration: getDuration(mediaElRef),
       timeElapsed: getTimeElapsed(mediaElRef),
+      muted: mediaElRef.current?.muted || false,
     });
   };
 
@@ -148,12 +154,14 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         event: "end",
         duration: getDuration(mediaElRef),
         timeElapsed: getTimeElapsed(mediaElRef),
+        muted: mediaElRef.current?.muted || false,
       });
     } else if (mediaElRef.current?.classList.contains(PLAYING_CLASSNAME)) {
       userEventCallback({
         event: "playing",
         duration: getDuration(mediaElRef),
         timeElapsed: getTimeElapsed(mediaElRef),
+        muted: mediaElRef.current?.muted || false,
       });
     }
   };
