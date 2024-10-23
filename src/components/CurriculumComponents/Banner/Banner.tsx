@@ -8,39 +8,18 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import Tag from "@/components/SharedComponents/TagPromotional";
+import { ResolveOakHrefProps } from "@/common-lib/urls";
 
-// Page types that will likely go in the banner and that do not require additional props
-export type SimplePageType =
-  | "careers"
-  | "classroom"
-  | "contact"
-  | "curriculum-landing-page"
-  | "develop-your-curriculum"
-  | "home"
-  | "help"
-  | "labs"
-  | "lesson-planning"
-  | "oak-curriculum"
-  | "onboarding"
-  | "onboarding-role-selection"
-  | "onboarding-school-selection"
-  | "onboarding-use-of-oak"
-  | "our-teachers"
-  | "support-your-team"
-  | "teacher-hub";
-
-type HomePageBannerProps = {
+export type HomePageBannerProps = {
   background: OakColorName;
   newText: string;
   ctaText: string;
-  page: SimplePageType;
-};
-
+} & ResolveOakHrefProps;
 const HomePageBanner: FC<HomePageBannerProps> = ({
   background,
   newText,
   ctaText,
-  page,
+  ...linkProps
 }) => (
   <Box role="banner">
     <Flex
@@ -64,9 +43,9 @@ const HomePageBanner: FC<HomePageBannerProps> = ({
           </OakTypography>
         </Flex>
         <ButtonAsLink
+          {...linkProps}
           label={ctaText}
           variant={"buttonStyledAsLink"}
-          page={page}
           $font={["body-3-bold", "body-2-bold"]}
           icon={"chevron-right"}
           $iconPosition={"trailing"}

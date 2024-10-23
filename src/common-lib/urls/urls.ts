@@ -400,7 +400,7 @@ const EXTERNAL_PAGE_NAMES = [
 ] as const;
 type ExternalPageName = (typeof EXTERNAL_PAGE_NAMES)[number];
 
-type OakPages = {
+export type OakPages = {
   [K in OakLinkProps as K["page"]]: OakPageConfig<K>;
 };
 
