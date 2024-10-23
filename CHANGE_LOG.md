@@ -1,3 +1,10 @@
+## [1.602.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.0...v1.602.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* don't report errors for canonical pages with null subjects ([b8d831f](https://github.com/oaknational/Oak-Web-Application/commit/b8d831f138906c6a8b25c7a69a50fa65f5060c56))
+
 # [1.602.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.601.0...v1.602.0) (2024-10-22)
 
 
