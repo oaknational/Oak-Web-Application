@@ -1,12 +1,7 @@
 import { dedupUnits } from "../../components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser";
 
 import { isVisibleUnit } from "./isVisibleUnit";
-
-// TODO: These types should be moved out of components
-import {
-  YearData,
-  YearSelection,
-} from "@/components/CurriculumComponents/CurriculumVisualiser";
+import { YearData, YearSelection } from "./types";
 
 export function getNumberOfSelectedUnits(
   yearData: YearData,

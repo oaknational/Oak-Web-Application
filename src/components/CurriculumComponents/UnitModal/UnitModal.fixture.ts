@@ -1,6 +1,5 @@
-import { Unit } from "../CurriculumVisualiser";
-
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
+import { Unit } from "@/utils/curriculum/types";
 
 const lessons: Lesson[] = [
   {

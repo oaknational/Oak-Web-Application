@@ -1,72 +1,89 @@
-import React, { FC, useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { OakP, OakFlex, OakSpan } from "@oaknational/oak-components";
 
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioButton, RadioGroup } from "../OakComponentsKitchen/SimpleRadio";
 
+import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
+import { highlightedUnitCount } from "./helpers";
+
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button/Button";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { CurriculumUnitsYearData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Thread } from "@/utils/curriculum/types";
-
-// Types and interfaces
-
-type UnitsTabMobileProps = {
-  selectedThread: Thread | null;
-  handleSelectThread: (thread: string) => void;
-  threadOptions: Thread[];
-  isSelectedThread: (thread: Thread) => boolean;
-  highlightedUnitCount: () => number;
-  trackSelectYear: (year: string) => void;
-  yearOptions: string[];
-  yearData: CurriculumUnitsYearData;
-  updateMobileHeaderScroll: (height: number) => void;
-  visibleMobileYearRefID: string | null;
-};
 
 // Function component
 
-const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
-  updateMobileHeaderScroll,
+export default function CurriculumVisualiserFiltersMobile({
   selectedThread,
-  handleSelectThread,
-  threadOptions,
-  isSelectedThread,
-  highlightedUnitCount,
-  trackSelectYear,
-  yearOptions,
-  yearData,
-  visibleMobileYearRefID,
-}) => {
+  onSelectThread,
+  selectedYear,
+  trackingData,
+  yearSelection,
+  data,
+}: CurriculumVisualiserFiltersProps) {
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
+
+  const { yearData, threadOptions, yearOptions } = data;
+
   // Initialize constants
-  const defaultMobileYearSelection = "7";
+  // const defaultMobileYearSelection = "7";
 
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
-  const [mobileYearSelection, setMobileYearSelection] = useState<string | null>(
-    defaultMobileYearSelection,
-  );
+  // const [mobileYearSelection, setMobileYearSelection] = useState<string | null>(
+  //   defaultMobileYearSelection,
+  // );
 
-  useEffect(() => {
-    if (visibleMobileYearRefID !== mobileYearSelection) {
-      setMobileYearSelection(visibleMobileYearRefID);
-    }
-  }, [visibleMobileYearRefID, mobileYearSelection]);
+  // useEffect(() => {
+  //   if (visibleMobileYearRefID !== mobileYearSelection) {
+  //     setMobileYearSelection(visibleMobileYearRefID);
+  //   }
+  // }, [visibleMobileYearRefID, mobileYearSelection]);
 
-  const mobileHeaderRef = useRef<HTMLDivElement>(null);
-  // Add padding offset for mobile year group filter scroll
-  useEffect(() => {
-    if (mobileHeaderRef.current) {
-      const boundingRect = mobileHeaderRef.current.getBoundingClientRect();
-      updateMobileHeaderScroll(boundingRect.height);
-    }
-  });
+  // const mobileHeaderRef = useRef<HTMLDivElement>(null);
+  // // Add padding offset for mobile year group filter scroll
+  // useEffect(() => {
+  //   if (mobileHeaderRef.current) {
+  //     const boundingRect = mobileHeaderRef.current.getBoundingClientRect();
+  //     updateMobileHeaderScroll(boundingRect.height);
+  //   }
+  // });
 
   function handleMobileThreadModal(): void {
     setMobileThreadModalOpen(!mobileThreadModalOpen);
   }
+
+  function isSelectedThread(thread: Thread) {
+    return selectedThread === thread.slug;
+  }
+
+  function trackSelectYear(year: string): void {
+    if (trackingData) {
+      const { subjectTitle, subjectSlug } = trackingData;
+      track.yearGroupSelected({
+        yearGroupName: year,
+        yearGroupSlug: year,
+        subjectTitle,
+        subjectSlug,
+        analyticsUseCase: analyticsUseCase,
+      });
+    }
+  }
+
+  const highlightedUnits = highlightedUnitCount(
+    yearData,
+    selectedYear,
+    yearSelection,
+    selectedThread,
+  );
+
+  const threadDef = (selectedThread: Thread["slug"]) =>
+    threadOptions.find((t) => t.slug === selectedThread);
 
   return mobileThreadModalOpen ? (
     <Box
@@ -105,8 +122,8 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
         </OakP>
         <RadioGroup
           name="thread"
-          value={selectedThread ? selectedThread.slug : ""}
-          onChange={(e) => handleSelectThread(e.target.value)}
+          value={selectedThread}
+          onChange={(e) => onSelectThread(e.target.value)}
         >
           <Box>
             <Box
@@ -126,7 +143,6 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
             </Box>
             {threadOptions.map((threadOption) => {
               const isSelectedMobile = isSelectedThread(threadOption);
-              const highlightedUnits = highlightedUnitCount();
               return (
                 <Box
                   $position={"relative"}
@@ -195,7 +211,7 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
         $position={["sticky", "static"]}
         $top={0}
         $zIndex={"inFront"}
-        ref={mobileHeaderRef}
+        // ref={mobileHeaderRef}
       >
         <Box
           $width={"100%"}
@@ -223,12 +239,12 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                     data-testid="highlighted-threads-mobile"
                     $maxWidth={"50%"}
                   >
-                    {selectedThread?.title}
+                    {threadDef(selectedThread)?.title}
                   </Box>
                   <Box $mh={6}> • </Box>
                   <Box data-testid="highlighted-units-box-mobile">
                     <OakSpan aria-live="polite" aria-atomic="true">
-                      {highlightedUnitCount()} units highlighted
+                      {highlightedUnits} units highlighted
                     </OakSpan>
                   </Box>
                 </OakFlex>
@@ -253,9 +269,9 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
                       variant="brush"
                       aria-label={`Year ${yearOption}`}
                       background={
-                        mobileYearSelection === yearOption ? "black" : "grey20"
+                        selectedYear === yearOption ? "black" : "grey20"
                       }
-                      isCurrent={yearOption === mobileYearSelection}
+                      isCurrent={yearOption === selectedYear}
                       key={yearOption}
                       label={getYearGroupTitle(yearData, yearOption)}
                       onClick={() => {
@@ -276,5 +292,4 @@ const UnitsTabMobile: FC<UnitsTabMobileProps> = ({
       </Box>
     </Box>
   );
-};
-export default UnitsTabMobile;
+}

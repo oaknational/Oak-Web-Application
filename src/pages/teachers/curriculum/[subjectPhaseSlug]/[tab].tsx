@@ -38,8 +38,8 @@ import {
   Tier,
   Unit,
   SubjectCategory,
-} from "@/components/CurriculumComponents/CurriculumVisualiser";
-import { YearSelection } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
+  YearSelection,
+} from "@/utils/curriculum/types";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import {
   getUnitFeatures,

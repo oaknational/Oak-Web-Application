@@ -1,3 +1,4 @@
+import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 import { SubjectPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/subjectPhaseOptions/subjectPhaseOptions.query";
 
 export type CurriculumSelectionSlugs = {
@@ -92,4 +93,21 @@ export function getKs4RedirectSlug(
     phaseSlug: slugs.phaseSlug,
     ks4OptionSlug: preferedOption.slug,
   };
+}
+
+export function createProgrammeSlug(
+  unitData?: CurriculumUnitsTabData["units"][number] | null,
+  examboardSlug?: string | null,
+  tierSlug?: string,
+) {
+  if (unitData?.keystage_slug === "ks4") {
+    return `${unitData.subject_slug}-${unitData.phase_slug}-${
+      unitData.keystage_slug
+    }${tierSlug ? "-" + tierSlug : ""}${
+      examboardSlug ? "-" + examboardSlug : ""
+    }`;
+  }
+  return unitData
+    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
+    : "";
 }

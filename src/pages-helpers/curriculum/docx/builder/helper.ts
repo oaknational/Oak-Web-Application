@@ -4,7 +4,7 @@ import JSZip from "jszip";
 import { Slugs } from "..";
 import { zipToSimpleObject } from "../zip";
 
-import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
+import { Unit } from "@/utils/curriculum/types";
 import { getUnitFeatures } from "@/utils/curriculum/features";
 
 /**

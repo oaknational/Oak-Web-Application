@@ -1,4 +1,5 @@
-import { YearSelection } from "@/components/CurriculumComponents/CurriculumVisualiser";
+import { YearSelection } from "./types";
+
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 
 export function isVisibleUnit(

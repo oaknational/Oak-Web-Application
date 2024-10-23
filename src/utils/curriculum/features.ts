@@ -1,6 +1,5 @@
 import { ENABLE_CYCLE_2 } from "./constants";
-
-import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
+import { Unit } from "./types";
 
 export function isCycleTwoEnabled() {
   return ENABLE_CYCLE_2;

@@ -1,84 +1,48 @@
 import React, { FC, useState, useRef, useEffect } from "react";
 import { VisuallyHidden } from "react-aria";
-import { OakGridArea, OakHeading, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakFlex,
+  OakIcon,
+  OakTypography,
+  OakBox,
+} from "@oaknational/oak-components";
 
-import { createProgrammeSlug } from "../UnitsTab/UnitsTab";
 import Alert from "../OakComponentsKitchen/Alert";
+import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 
-import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
-import Box from "@/components/SharedComponents/Box";
-import Card from "@/components/SharedComponents/Card/Card";
-import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import Button from "@/components/SharedComponents/Button/Button";
-import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
+import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
+import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import UnitModal, {
   Lesson,
 } from "@/components/CurriculumComponents/UnitModal/UnitModal";
-import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
-import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import {
   getSuffixFromFeatures,
   getYearGroupTitle,
 } from "@/utils/curriculum/formatting";
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-
-export type YearData = {
-  [key: string]: {
-    units: Unit[];
-    childSubjects: Subject[];
-    tiers: Tier[];
-    subjectCategories: SubjectCategory[];
-    labels: string[];
-    groupAs: string | null;
-  };
-};
-
-export type Unit = CurriculumUnitsTabData["units"][number];
-
-export interface Thread {
-  title: string;
-  slug: string;
-  order: number;
-}
-
-export interface Subject {
-  subject: string;
-  subject_slug: string;
-}
-
-export interface Domain {
-  domain: string;
-  domain_id: number;
-}
-
-export interface SubjectCategory {
-  id: number;
-  title: string;
-}
-
-export interface Tier {
-  tier: string;
-  tier_slug: string;
-}
-
-export interface YearSelection {
-  [key: string]: {
-    subjectCategory?: SubjectCategory | null;
-    subject?: Subject | null;
-    domain?: Domain | null;
-    tier?: Tier | null;
-  };
-}
+import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
+import { sortYears } from "@/utils/curriculum/sorting";
+import { createProgrammeSlug } from "@/utils/curriculum/slugs";
+import {
+  Subject,
+  SubjectCategory,
+  Tier,
+  Unit,
+  YearData,
+  YearSelection,
+} from "@/utils/curriculum/types";
 
 type CurriculumVisualiserProps = {
   unitData: Unit | null;
   yearSelection: YearSelection;
-  selectedThread: Thread | null;
+  selectedThread: string | null;
   selectedYear: string | null;
   examboardSlug: string | null;
   yearData: YearData;
@@ -128,11 +92,11 @@ function isSelectedSubjectCategory(
   return yearSelection[year]?.subjectCategory?.id === subjectCategory.id;
 }
 
-function isHighlightedUnit(unit: Unit, selectedThread: Thread | null) {
+function isHighlightedUnit(unit: Unit, selectedThread: string | null) {
   if (!selectedThread) {
     return false;
   }
-  return unit.threads.some((t) => t.slug === selectedThread.slug);
+  return unit.threads.some((t) => t.slug === selectedThread);
 }
 
 function sortChildSubjects(subjects: Subject[]) {
@@ -173,10 +137,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     useState<boolean>(false);
   const [currentUnitLessons, setCurrentUnitLessons] = useState<Lesson[]>([]);
   const [unitVariantID, setUnitVariantID] = useState<number | null>(null);
-  const modalButtonRef = useRef<HTMLButtonElement>(null);
 
   const itemEls = useRef<(HTMLDivElement | null)[]>([]);
-  const visualiserRef = useRef<HTMLDivElement>(null);
   /* Intersection observer to update year filter selection when
   scrolling through the visualiser on mobile */
   useEffect(() => {
@@ -233,23 +195,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     : undefined;
 
   return (
-    <OakGridArea
-      id="content"
-      $colSpan={[12, 9]}
-      data-testid="curriculum-visualiser"
-      ref={visualiserRef}
-    >
+    <OakBox id="content" data-testid="curriculum-visualiser">
       {yearData &&
         Object.keys(yearData)
           .filter((year) => !selectedYear || selectedYear === year)
-          .sort((a, b) => {
-            if (a === "all-years") {
-              return -1;
-            }
-            const aNum = parseInt(a);
-            const bNum = parseInt(b);
-            return aNum - bNum;
-          })
+          .sort(sortYears)
           .map((year, index) => {
             const { units, childSubjects, tiers, subjectCategories, labels } =
               yearData[year] as YearData[string];
@@ -257,6 +207,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
             };
+
             const filteredUnits = units.filter((unit: Unit) =>
               isVisibleUnit(yearSelection, year, unit),
             );
@@ -270,14 +221,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             );
 
             return (
-              <Box
+              <OakBox
                 key={year}
                 $background={"pink30"}
-                $pt={32}
+                $pa={"inner-padding-xl2"}
                 $position={"relative"}
-                $pl={30}
-                $mb={32}
-                $borderRadius={4}
+                $mb={"space-between-m2"}
+                $borderRadius={"border-radius-s"}
                 className="mobileYearDisplay"
                 id={year}
                 ref={ref}
@@ -304,7 +254,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   />
                 )}
                 {childSubjects.length < 1 && subjectCategories?.length > 1 && (
-                  <Box role="group" aria-label="Categories">
+                  <OakBox role="group" aria-label="Categories">
                     {subjectCategories.map((subjectCategory, index) => {
                       const isSelected = isSelectedSubjectCategory(
                         yearSelection,
@@ -328,10 +278,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         />
                       );
                     })}
-                  </Box>
+                  </OakBox>
                 )}
                 {childSubjects.length > 0 && (
-                  <Box role="group" aria-label="Child Subjects">
+                  <OakBox role="group" aria-label="Child Subjects">
                     {sortChildSubjects(childSubjects).map(
                       (subject: Subject) => {
                         const isSelected = isSelectedSubject(
@@ -355,10 +305,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         );
                       },
                     )}
-                  </Box>
+                  </OakBox>
                 )}
                 {tiers.length > 0 && (
-                  <Box role="group" aria-label="Tiers">
+                  <OakBox role="group" aria-label="Tiers">
                     {tiers.map((tier: Tier) => {
                       const isSelected = isSelectedTier(
                         yearSelection,
@@ -381,12 +331,17 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         />
                       );
                     })}
-                  </Box>
+                  </OakBox>
                 )}
                 <OakFlex
                   $flexWrap={"wrap"}
                   $pt="inner-padding-s"
                   data-testid="unit-cards"
+                  $gap={"all-spacing-4"}
+                  // TODO: Remove hack
+                  style={{
+                    marginBottom: "-1rem",
+                  }}
                 >
                   {dedupedUnits.map((unit: Unit, index: number) => {
                     const isHighlighted = isHighlightedUnit(
@@ -396,88 +351,130 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                     const unitOptions = unit.unit_options.length >= 1;
 
                     return (
-                      <Card
-                        key={unit.slug + index}
-                        $background={isHighlighted ? "black" : "white"}
-                        $color={isHighlighted ? "white" : "black"}
-                        $flexGrow={"unset"}
-                        $mb={32}
-                        $mr={28}
+                      <OakFlex
+                        $width={"all-spacing-19"}
+                        $flexGrow={1}
                         $position={"relative"}
-                        $width={[
-                          "100%",
-                          "calc(50% - 28px)",
-                          "calc(33% - 26px)",
-                        ]}
-                        data-testid={
-                          isHighlighted ? "highlighted-unit-card" : "unit-card"
-                        }
-                        $justifyContent={"space-between"}
                       >
-                        <Box>
-                          <OutlineHeading
-                            tag={"div"}
-                            $font={"heading-5"}
-                            $fontSize={24}
-                            $mb={12}
-                          >
-                            {index + 1}
-                          </OutlineHeading>
-                          <OakHeading
-                            tag={"h4"}
-                            $font={"heading-7"}
-                            $mb="space-between-s"
-                          >
-                            {isHighlighted && (
-                              <VisuallyHidden>
-                                Highlighted:&nbsp;
-                              </VisuallyHidden>
-                            )}
-                            {unit.title}
-                          </OakHeading>
-                          {unit.unit_options.length > 1 && (
-                            <Box
-                              $mt={12}
-                              $mb={20}
-                              $zIndex={"neutral"}
-                              data-testid="options-tag"
-                              $position={"relative"}
-                            >
-                              <TagFunctional
-                                color="lavender"
-                                text={`${unit.unit_options.length} unit options`}
-                              />
-                            </Box>
-                          )}
-                          <BrushBorders
-                            color={isHighlighted ? "black" : "white"}
-                          />
-                        </Box>
-
-                        <OakFlex
-                          $flexDirection={"row"}
-                          $justifyContent={"flex-end"}
+                        <FocusIndicator
+                          key={unit.slug + index}
+                          $height={"100%"}
+                          $width={"100%"}
+                          $borderRadius={"border-radius-m"}
+                          $overflow={"hidden"}
+                          disableMouseHover={true}
                         >
-                          <Button
-                            icon="chevron-right"
-                            $iconPosition="trailing"
-                            data-testid={`unit-info-button-${unit.slug}${
-                              unit.tier_slug ? `-${unit.tier_slug}` : ""
-                            }`}
-                            variant={isHighlighted ? "brush" : "minimal"}
-                            background={isHighlighted ? "black" : undefined}
-                            label="Unit info"
+                          <button
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              overflow: "hidden",
+                              background: "none",
+                              border: "none",
+                              padding: 0,
+                              margin: 0,
+                              display: "block",
+                              textAlign: "left",
+                              outline: "none",
+                              cursor: "pointer",
+                            }}
                             onClick={() => {
                               handleOpenModal(unitOptions, unit);
                             }}
-                            ref={modalButtonRef}
-                          />
-                        </OakFlex>
-                      </Card>
+                          >
+                            <OakFlex
+                              $pv={"inner-padding-s"}
+                              $ph={"inner-padding-m"}
+                              $height={"100%"}
+                              $width={"100%"}
+                              $background={isHighlighted ? "black" : "white"}
+                              $color={isHighlighted ? "white" : "black"}
+                              data-testid={
+                                isHighlighted
+                                  ? "highlighted-unit-card"
+                                  : "unit-card"
+                              }
+                              $flexDirection={"column"}
+                            >
+                              <OakBox>
+                                <OutlineHeading
+                                  tag={"div"}
+                                  $font={"heading-5"}
+                                  $fontSize={24}
+                                  $mb={12}
+                                >
+                                  {index + 1}
+                                </OutlineHeading>
+                                <OakHeading tag={"h4"} $font={"heading-7"}>
+                                  {isHighlighted && (
+                                    <VisuallyHidden>
+                                      Highlighted:&nbsp;
+                                    </VisuallyHidden>
+                                  )}
+                                  {unit.title}
+                                </OakHeading>
+                                {unit.unit_options.length > 1 && (
+                                  <OakBox
+                                    $mt={"space-between-xs"}
+                                    $mb={"space-between-m"}
+                                    $zIndex={"neutral"}
+                                    data-testid="options-tag"
+                                    $position={"relative"}
+                                  >
+                                    <TagFunctional
+                                      color="lavender"
+                                      text={`${unit.unit_options.length} unit options`}
+                                    />
+                                  </OakBox>
+                                )}
+                              </OakBox>
+
+                              <OakFlex
+                                $flexDirection={"row"}
+                                $justifyContent={"flex-end"}
+                                $mt={"space-between-s"}
+                                $flexGrow={1}
+                                $alignItems={"flex-end"}
+                              >
+                                <OakFlex
+                                  $alignItems={"center"}
+                                  $gap={"space-between-sssx"}
+                                >
+                                  <OakTypography $font={"heading-7"}>
+                                    Unit info
+                                  </OakTypography>
+
+                                  <OakIcon
+                                    $width="all-spacing-6"
+                                    $height="all-spacing-6"
+                                    $colorFilter={
+                                      isHighlighted ? "white" : "black"
+                                    }
+                                    alt=""
+                                    iconName="chevron-right"
+                                  />
+                                </OakFlex>
+                              </OakFlex>
+                            </OakFlex>
+                          </button>
+                        </FocusIndicator>
+                      </OakFlex>
                     );
                   })}
+                  {/* Empty tiles for correct flex wrapping */}
+                  {Array(3)
+                    .fill(true)
+                    .map(() => {
+                      return (
+                        <OakFlex
+                          $width={"all-spacing-19"}
+                          $flexGrow={1}
+                          $position={"relative"}
+                        />
+                      );
+                    })}
                 </OakFlex>
-              </Box>
+              </OakBox>
             );
           })}
       {displayModal && (
@@ -505,7 +502,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           />
         </UnitsTabSidebar>
       )}
-    </OakGridArea>
+    </OakBox>
   );
 };
 export default CurriculumVisualiser;
