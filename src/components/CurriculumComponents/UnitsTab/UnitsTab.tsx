@@ -50,14 +50,14 @@ export interface YearSelection {
 
 export function createProgrammeSlug(
   unitData?: Unit | null,
-  examboardSlug?: string | null,
+  ks4OptionSlug?: string | null,
   tierSlug?: string,
 ) {
   if (unitData?.keystage_slug === "ks4") {
     return `${unitData.subject_slug}-${unitData.phase_slug}-${
       unitData.keystage_slug
     }${tierSlug ? "-" + tierSlug : ""}${
-      examboardSlug ? "-" + examboardSlug : ""
+      ks4OptionSlug ? "-" + ks4OptionSlug : ""
     }`;
   }
   return unitData
@@ -71,7 +71,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
   // Initialize constants
   const { yearData, threadOptions, yearOptions, initialYearSelection } =
     formattedData;
-  const { examboardSlug } = trackingData;
+  const { ks4OptionSlug } = trackingData;
   // Flattened duplicate slugs into array for getStaticProps, so casting back into a Set
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -360,7 +360,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
             unitData={unitData}
             yearSelection={yearSelection}
             selectedYear={selectedYear}
-            examboardSlug={examboardSlug}
+            ks4OptionSlug={ks4OptionSlug}
             yearData={yearData}
             handleSelectSubjectCategory={handleSelectSubjectCategory}
             handleSelectSubject={handleSelectSubject}

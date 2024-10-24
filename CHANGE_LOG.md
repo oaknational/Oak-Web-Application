@@ -1,3 +1,21 @@
+## [1.602.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.3...v1.602.4) (2024-10-24)
+
+## [1.602.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.2...v1.602.3) (2024-10-24)
+
+
+### Bug Fixes
+
+* make docx cover page keystage aware ([4de0b20](https://github.com/oaknational/Oak-Web-Application/commit/4de0b20837c2b0594d32a3f737c4c091e01ed812))
+
+## [1.602.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.1...v1.602.2) (2024-10-23)
+
+## [1.602.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.0...v1.602.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* don't report errors for canonical pages with null subjects ([b8d831f](https://github.com/oaknational/Oak-Web-Application/commit/b8d831f138906c6a8b25c7a69a50fa65f5060c56))
+
 # [1.602.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.601.0...v1.602.0) (2024-10-22)
 
 

@@ -64,7 +64,7 @@ export function createCurriculumDownloadsQuery(
   mvRefreshTime: number,
   subjectSlug: string,
   phaseSlug: string,
-  examboardSlug: string | null,
+  ks4OptionSlug: string | null,
   tierSlug: string | null,
   childSubjectSlug: string | null,
 ) {
@@ -74,7 +74,7 @@ export function createCurriculumDownloadsQuery(
     phaseSlug: phaseSlug,
     state: state,
   });
-  examboardSlug && query.set("examboardSlug", examboardSlug);
+  ks4OptionSlug && query.set("ks4OptionSlug", ks4OptionSlug);
   tierSlug && tierSlug !== null && query.set("tierSlug", tierSlug);
   childSubjectSlug &&
     childSubjectSlug !== null &&
