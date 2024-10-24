@@ -246,17 +246,21 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     const desktopEl =
       subjectPickerButtonDesktopContainer.current?.querySelector("button");
     const mobileEl =
-      subjectPickerButtonDesktopContainer.current?.querySelector("button");
+      subjectPickerButtonMobileContainer.current?.querySelector("button");
 
     console.log({ desktopEl, mobileEl });
 
     // Focus the last element
     if (desktopEl && desktopEl.checkVisibility()) {
       console.log(">> focus", desktopEl);
-      desktopEl.focus();
+      setTimeout(() => {
+        desktopEl.focus();
+      }, 0);
     } else if (mobileEl && mobileEl.checkVisibility()) {
       console.log(">> focus", mobileEl);
-      mobileEl.focus();
+      setTimeout(() => {
+        mobileEl.focus();
+      }, 0);
     }
   };
   const onFocusSubjectEnd = () => {
@@ -265,7 +269,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     });
 
     console.log(">> focus", phasePickerButton.current);
-    phasePickerButton.current?.focus();
+    setTimeout(() => {
+      phasePickerButton.current?.focus();
+    }, 0);
   };
 
   const toggleShowPhases = () => {
