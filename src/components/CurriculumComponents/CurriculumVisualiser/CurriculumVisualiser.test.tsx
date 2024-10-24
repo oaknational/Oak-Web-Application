@@ -68,7 +68,7 @@ const curriculumVisualiserFixture = {
     },
   },
   selectedYear: null,
-  examboardSlug: "edexcel",
+  ks4OptionSlug: "edexcel",
   yearData: {
     "7": {
       units: [

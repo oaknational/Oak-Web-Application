@@ -57,7 +57,7 @@ export function uncapitalizeSubject(input: string) {
 
 export function createCurriculumSlug(slugs: Slugs) {
   return `${slugs.subjectSlug}-${slugs.phaseSlug}${
-    slugs.examboardSlug ? `-${slugs.examboardSlug}` : ""
+    slugs.ks4OptionSlug ? `-${slugs.ks4OptionSlug}` : ""
   }`;
 }
 
