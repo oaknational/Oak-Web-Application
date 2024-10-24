@@ -83,15 +83,6 @@ export function threadUnitByYear(units: Unit[], threadSlug: string) {
   return output;
 }
 
-export function keyStageFromPhaseTitle(phaseTitle: string) {
-  if (phaseTitle === "Primary") {
-    return "KS1 & KS2";
-  } else if (phaseTitle === "Secondary") {
-    return "KS3 & KS4";
-  }
-  return phaseTitle;
-}
-
 export function cmToPxDpi(cm: number) {
   return (cm / 2.54) * 300;
 }
