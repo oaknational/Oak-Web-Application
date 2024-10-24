@@ -185,6 +185,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   currentSelection,
 }) => {
   const phasePickerButton = useRef<HTMLButtonElement>(null);
+  const subjectPickerButton = useRef<HTMLButtonElement>(null);
   const subjectPickerButtonDesktopContainer = useRef<HTMLDivElement>(null);
   const subjectPickerButtonMobileContainer = useRef<HTMLDivElement>(null);
   const isCycleTwoEnabled = useCycleTwoEnabled();
@@ -242,7 +243,26 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const nextTick = async () => {
     return new Promise((resolve) => setTimeout(resolve, 0));
   };
+  const onFocusSubjectStart = async () => {
+    setShowSubjects(false);
+  };
+  const onFocusSubjectEnd = async () => {
+    flushSync(() => {
+      setShowSubjects(false);
+    });
 
+    await nextTick();
+    phasePickerButton.current?.focus();
+  };
+
+  const onFocusPhasesStart = async () => {
+    flushSync(() => {
+      setShowPhases(false);
+    });
+
+    await nextTick();
+    subjectPickerButton.current?.focus();
+  };
   const onFocusPhasesEnd = async () => {
     flushSync(() => {
       setShowPhases(false);
@@ -261,14 +281,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       await nextTick();
       mobileEl.focus();
     }
-  };
-  const onFocusSubjectEnd = async () => {
-    flushSync(() => {
-      setShowSubjects(false);
-    });
-
-    await nextTick();
-    phasePickerButton.current?.focus();
   };
 
   const toggleShowPhases = () => {
@@ -416,7 +428,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $btlr={["border-radius-s", "border-radius-s"]}
               $btrr={["border-radius-square", "border-radius-s"]}
             >
-              <PickerButton onClick={toggleShowSubjects} title="Subject">
+              <PickerButton
+                ref={subjectPickerButton}
+                onClick={toggleShowSubjects}
+                title="Subject"
+              >
                 <OakBox
                   $pl="inner-padding-m"
                   $pr="inner-padding-m"
@@ -471,7 +487,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 onEscapeKey={() => setShowSubjects(false)}
                 scrollLock={false}
               >
-                <FocusWrap onWrapEnd={onFocusSubjectEnd}>
+                <FocusWrap
+                  onWrapStart={onFocusSubjectStart}
+                  onWrapEnd={onFocusSubjectEnd}
+                >
                   {showSubjectError && (
                     <OakFlex
                       id={subjectErrorId}
@@ -683,7 +702,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     onEscapeKey={() => setShowPhases(false)}
                     scrollLock={false}
                   >
-                    <FocusWrap onWrapEnd={onFocusPhasesEnd}>
+                    <FocusWrap
+                      onWrapStart={onFocusPhasesStart}
+                      onWrapEnd={onFocusPhasesEnd}
+                    >
                       {showPhaseError && (
                         <Flex id={phaseErrorId} $flexDirection={"row"} $mb={20}>
                           <Icon
