@@ -2,6 +2,7 @@ import {
   anchorIntersectionObserver,
   createNode,
   findContainingAnchor,
+  getAllTabFocusableElements,
 } from "./dom";
 
 // Polyfill for domRectFromRect(...)
@@ -162,5 +163,50 @@ describe("findContainingAnchor", () => {
     const target = root.querySelector(`*[data-testid="MISSING"]`)!;
     const el = findContainingAnchor(target);
     expect(el).toBeUndefined();
+  });
+});
+
+describe("getAllTabFocusableElements()", () => {
+  it("should fetch all focusable elements", () => {
+    const root = document.createElement("div");
+    root.innerHTML = `
+      <div>
+        <a href="">hello</a>
+        <button></button>
+        <span></span>
+        <input/>
+        foo
+        <textarea></textarea>
+        <select></select>
+        <details></details>
+        <div tabindex="0"></div>
+        <img/>
+        testing
+      </div>
+    `;
+    const elements = getAllTabFocusableElements(root).map((el) => el.tagName);
+    expect(elements).toEqual([
+      "A",
+      "BUTTON",
+      "INPUT",
+      "TEXTAREA",
+      "SELECT",
+      "DETAILS",
+      "DIV",
+    ]);
+  });
+
+  it("should be empty if none present", () => {
+    const root = document.createElement("div");
+    root.innerHTML = `
+      <div>
+        <span></span>
+        foo
+        <img/>
+        testing
+      </div>
+    `;
+    const elements = getAllTabFocusableElements(root).map((el) => el.tagName);
+    expect(elements).toEqual([]);
   });
 });
