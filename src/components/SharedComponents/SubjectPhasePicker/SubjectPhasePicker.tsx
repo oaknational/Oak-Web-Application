@@ -248,10 +248,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     const mobileEl =
       subjectPickerButtonDesktopContainer.current?.querySelector("button");
 
+    console.log({ desktopEl, mobileEl });
+
     // Focus the last element
     if (desktopEl && desktopEl.checkVisibility()) {
+      console.log(">> focus", desktopEl);
       desktopEl.focus();
     } else if (mobileEl && mobileEl.checkVisibility()) {
+      console.log(">> focus", mobileEl);
       mobileEl.focus();
     }
   };
@@ -260,6 +264,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       setShowSubjects(false);
     });
 
+    console.log(">> focus", phasePickerButton.current);
     phasePickerButton.current?.focus();
   };
 
