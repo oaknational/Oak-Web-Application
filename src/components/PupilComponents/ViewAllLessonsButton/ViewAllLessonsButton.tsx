@@ -12,7 +12,7 @@ type ViewAllLessonsButtonProps = {
  */
 export const ViewAllLessonsButton = ({
   href,
-  ...rest
+  onClick,
 }: ViewAllLessonsButtonProps) => {
   if (href) {
     if (
@@ -26,7 +26,7 @@ export const ViewAllLessonsButton = ({
           iconName="arrow-left"
           href={href}
           element="a"
-          {...rest}
+          onClick={onClick}
         >
           Take me home
         </OakTertiaryButton>
@@ -37,7 +37,7 @@ export const ViewAllLessonsButton = ({
         iconName="arrow-left"
         href={href}
         element="a"
-        {...rest}
+        onClick={onClick}
       >
         View all lessons
       </OakTertiaryButton>

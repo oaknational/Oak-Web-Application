@@ -123,7 +123,7 @@ export const PupilViewsUnitListing = ({
               showTooltip={i === 0}
               expiredSlot={expiringBanner[i]}
               id={`section-${i}`}
-              onCallback={(unit) => {
+              onUnitSelected={(unit) => {
                 track.unitAccessed({
                   platform: "owa",
                   product: "pupil lesson activities",

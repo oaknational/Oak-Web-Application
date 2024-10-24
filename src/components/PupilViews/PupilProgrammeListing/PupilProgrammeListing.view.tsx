@@ -170,7 +170,7 @@ export const PupilViewsProgrammeListing = ({
               [currentFactor]: f,
             });
           }}
-          onCallback={(f) => {
+          onFactorSelected={(f) => {
             const activeFilters: {
               yearDescriptions: string;
               subjectDescription: string;

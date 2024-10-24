@@ -58,7 +58,7 @@ export type PupilUnitsSectionProps = {
   applyFilter: (subjectCategory: string) => void;
   showTooltip?: boolean;
   id?: string;
-  onCallback?: (unit: UnitListingBrowseData[number]) => void;
+  onUnitSelected?: (unit: UnitListingBrowseData[number]) => void;
 };
 
 export const PupilUnitsSection = ({
@@ -73,7 +73,7 @@ export const PupilUnitsSection = ({
   showTooltip = true,
   expiredSlot,
   id = "0",
-  onCallback,
+  onUnitSelected,
 }: PupilUnitsSectionProps) => {
   const indexedUnits = units.map((unit, i) =>
     unit.map((u) => ({ ...u, supplementaryData: { unitOrder: i } })),
@@ -164,7 +164,7 @@ export const PupilUnitsSection = ({
                 return renderListItem(
                   optionalityUnit[0],
                   optionalityUnit[0].supplementaryData.unitOrder,
-                  onCallback,
+                  onUnitSelected,
                 );
             } else {
               // More than 2 optionalities and therefore needs sublistings
@@ -188,7 +188,7 @@ export const PupilUnitsSection = ({
                               unitSlug: unit.unitSlug,
                             })}
                             onClick={() => {
-                              if (onCallback) onCallback(unit);
+                              if (onUnitSelected) onUnitSelected(unit);
                             }}
                             unavailable={unit.expired}
                           />
