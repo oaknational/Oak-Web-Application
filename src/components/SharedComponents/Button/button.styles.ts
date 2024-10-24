@@ -277,15 +277,11 @@ const buttonStyles = css<ButtonStylesProps>`
     css`
       color: #222222;
 
-      & > span {
-        /* color: red; */
-        font-weight: 600;
-      }
-
       & ${ButtonStyledAsLinkFocusUnderline} {
         & :focus {
           display: block;
         }
+
         left: ${props.$iconPosition === "leading" ? "10px" : ""};
         width: ${props.icon ? "calc(100% - 10px)" : "100%"};
       }
