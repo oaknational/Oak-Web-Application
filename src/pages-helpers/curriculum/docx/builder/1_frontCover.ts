@@ -12,28 +12,15 @@ import {
   JSZipCached,
 } from "../docx";
 
-import {
-  cmToPxDpi,
-  keyStageFromPhaseTitle,
-  makeTransparentIfSanity,
-  generateOakIconURL,
-} from "./helper";
-
-import { getSubjectIconAsset } from "@/image-data";
+import { keyStageFromPhaseTitle, generateOakIconURL } from "./helper";
 
 export default async function generate(
   zip: JSZipCached,
   { data, slugs }: { data: CombinedCurriculumData; slugs: Slugs },
 ) {
-  const iconKey = data.subjectTitle.toLowerCase();
-
-  const sanityUrl = getSubjectIconAsset(iconKey)?.url;
-
   const images = await insertImages(zip, {
     icon: {
-      url: sanityUrl
-        ? makeTransparentIfSanity(sanityUrl, cmToPxDpi(13))
-        : generateOakIconURL(slugs.subjectSlug),
+      url: generateOakIconURL(slugs.subjectSlug),
       width: 1000,
     },
     arrow: join(
