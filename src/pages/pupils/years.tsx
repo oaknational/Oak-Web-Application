@@ -39,7 +39,7 @@ const YearListingPage = () => {
         seoProps={{
           ...getSeoProps({
             title: `Year listing`,
-            description: `Listing of all years in the curriculum.`,
+            description: ` Explore our lessons and resources by year group to help you learn or revise what you want, including Year 1 to 11.`,
           }),
         }}
       >
