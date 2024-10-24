@@ -1,8 +1,6 @@
 import { Client as HubspotClient } from "@hubspot/api-client";
-import { NextApiRequest, NextApiResponse } from "next";
+import { currentUser } from "@clerk/nextjs/server";
 import { z } from "zod";
-
-import getServerConfig from "@/node-lib/getServerConfig";
 
 export const contactResponseSchema = z.object({
   schoolName: z.string(),
@@ -10,8 +8,19 @@ export const contactResponseSchema = z.object({
 });
 
 export function createHandler(hubspotClient: HubspotClient) {
-  return async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const email = req.body.email;
+  return async function handler() {
+    const user = await currentUser();
+
+    if (!user) {
+      return new Response(null, { status: 401 });
+    }
+
+    const email = user.primaryEmailAddress?.emailAddress;
+
+    if (!email) {
+      return new Response(null, { status: 204 });
+    }
+
     const contactId = email;
     const properties = ["contact_school_name", "contact_school_urn"];
 
@@ -38,21 +47,15 @@ export function createHandler(hubspotClient: HubspotClient) {
           apiResponse.properties.last_shared_downloaded_a_owa_resource,
       };
 
-      return res.status(200).json(contact);
+      return Response.json(contact);
     } catch (error) {
       if (error instanceof Error && "code" in error) {
         if (error.code === 404) {
-          return res.status(204).end(); // No content
+          return new Response(null, { status: 204 }); // No content
         }
       }
 
-      return res.status(500).json({ error: JSON.stringify(error) });
+      throw error;
     }
   };
 }
-
-export default createHandler(
-  new HubspotClient({
-    accessToken: getServerConfig("hubspotOwaAccessToken"),
-  }),
-);

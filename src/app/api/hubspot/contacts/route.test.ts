@@ -1,10 +1,19 @@
-import { NextApiRequest, NextApiResponse } from "next";
+/**
+ * @jest-environment node
+ */
 import { Client as HubspotClient } from "@hubspot/api-client";
-import { createMocks } from "node-mocks-http";
 
-import handler, { createHandler } from ".";
+import { createHandler } from "./createHandler";
+
+import {
+  setCurrentUser,
+  mockCurrentUser,
+  mockCurrentUserWithNoEmailAddresses,
+} from "@/__tests__/__helpers__/mockClerkServer";
 
 const getById = jest.fn();
+
+jest.mock("@clerk/nextjs/server");
 
 jest.mock("@hubspot/api-client", () => {
   class Client {
@@ -22,10 +31,12 @@ jest.mock("@hubspot/api-client", () => {
   };
 });
 
-describe("Handler API", () => {
+describe("GET /api/hubspot/contacts", () => {
   const hubspot = new HubspotClient();
+  const GET = createHandler(hubspot);
 
   beforeEach(() => {
+    setCurrentUser(mockCurrentUser);
     jest.clearAllMocks(); // Clear mock history between tests
   });
 
@@ -39,25 +50,15 @@ describe("Handler API", () => {
         contact_school_urn: "123456",
       },
     });
-    const handler = createHandler(hubspot);
 
-    // Mock req and res objects
-    const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
-      method: "POST",
-      body: {
-        email: "test@email.com",
-      },
-    });
+    const res = await GET();
 
-    await handler(req, res);
-
-    expect(res._getStatusCode()).toBe(200);
-    expect(JSON.parse(res._getData())).toEqual({
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({
       email: "test@email.com",
       schoolName: "Test School",
       schoolId: "123456",
     });
-
     expect(hubspot.crm.contacts.basicApi.getById).toHaveBeenCalledWith(
       "test@email.com", // contactId
       ["contact_school_name", "contact_school_urn"], // properties
@@ -68,25 +69,27 @@ describe("Handler API", () => {
     );
   });
 
-  test("should return 500 when an unknown error occurs", async () => {
-    // eslint-disable-next-line
-    // @ts-ignore
+  test("should rethrow when an unknown error occurs", async () => {
     jest
       .spyOn(hubspot.crm.contacts.basicApi, "getById")
-      .mockRejectedValue(new Error("Unknown error"));
+      .mockRejectedValue(new Error("Whoops"));
 
-    const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
-      method: "POST",
-      body: {
-        email: "error@email.com",
-      },
-    });
+    expect(GET()).rejects.toEqual(new Error("Whoops"));
+  });
 
-    await handler(req, res);
+  test("should respond with 204 when the signed in user has no primary email", async () => {
+    setCurrentUser(mockCurrentUserWithNoEmailAddresses);
 
-    expect(res._getStatusCode()).toBe(500);
-    expect(JSON.parse(res._getData())).toEqual({
-      error: JSON.stringify(new Error("Unknown error")),
-    });
+    const res = await GET();
+
+    expect(res.status).toBe(204);
+  });
+
+  test("requires authentication", async () => {
+    setCurrentUser(null);
+
+    const res = await GET();
+
+    expect(res.status).toBe(401);
   });
 });

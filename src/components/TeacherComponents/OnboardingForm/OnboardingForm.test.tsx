@@ -14,6 +14,7 @@ import * as onboardingActions from "./onboardingActions";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
+import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
 const setEmailInLocalStorage = jest.fn();
 const setSchoolInLocalStorage = jest.fn();
@@ -33,21 +34,9 @@ jest.mock("./onboardingActions", () => {
   return {
     ...actual,
     onboardUser: jest.fn(),
-    setSubscriptionStatus: jest.fn((email, callback) => {
-      if (callback) {
-        callback(true);
-      }
-      return true;
-    }),
   };
 });
-jest.mock("@clerk/nextjs", () => {
-  return {
-    useUser() {
-      return mockLoggedIn;
-    },
-  };
-});
+jest.mock("@clerk/nextjs");
 
 type OnboardingFormState = DefaultValues<OnboardingFormProps>;
 
@@ -57,6 +46,9 @@ describe("Onboarding form", () => {
   });
   afterAll(() => {
     fetchMock.disableMocks();
+  });
+  beforeEach(() => {
+    setUseUserReturn(mockLoggedIn);
   });
 
   it("should render the onboarding form with fieldset and legend", async () => {

@@ -12,7 +12,7 @@ describe(fetchHubspotContactDetails, () => {
       status: 200,
     });
 
-    expect(await fetchHubspotContactDetails("foo@example.com")).toEqual({
+    expect(await fetchHubspotContactDetails()).toEqual({
       email: "foo@example.com",
     });
   });
@@ -20,14 +20,12 @@ describe(fetchHubspotContactDetails, () => {
   it("returns null when there is no contact", async () => {
     fetchMock.mockResponseOnce("", { status: 204 });
 
-    expect(await fetchHubspotContactDetails("foo@example.com")).toEqual(null);
+    expect(await fetchHubspotContactDetails()).toEqual(null);
   });
 
   it("throws when there is an error", () => {
     fetchMock.mockResponseOnce("", { status: 500 });
 
-    expect(
-      fetchHubspotContactDetails("foo@example.com"),
-    ).rejects.toBeInstanceOf(OakError);
+    expect(fetchHubspotContactDetails()).rejects.toBeInstanceOf(OakError);
   });
 });

@@ -14,14 +14,13 @@ describe("getSubscriptionStatus", () => {
 
   it("makes a request to get the subscription status", async () => {
     fetchMock.mockResponse(JSON.stringify(true));
-    await getSubscriptionStatus("fakeEmail.com", jest.fn);
+    await getSubscriptionStatus(jest.fn);
     expect(fetchMock).toHaveBeenCalledWith(
       expect.stringMatching("/api/hubspot/subscription"),
       expect.objectContaining({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: "fakeEmail.com",
           subscriptionName: "School Support",
         }),
       }),
@@ -30,13 +29,13 @@ describe("getSubscriptionStatus", () => {
   it("calls the callback with the response JSON", async () => {
     fetchMock.mockResponse(JSON.stringify(true));
     const callback = jest.fn();
-    await getSubscriptionStatus("fakeEmail.com", callback);
+    await getSubscriptionStatus(callback);
     expect(callback).toHaveBeenCalledWith(true);
   });
   it("throws an error if the response is not valid", async () => {
     fetchMock.mockResponse(JSON.stringify({}));
-    await expect(
-      getSubscriptionStatus("fakeEmail.com", jest.fn),
-    ).rejects.toEqual(expect.any(OakError));
+    await expect(getSubscriptionStatus(jest.fn)).rejects.toEqual(
+      expect.any(OakError),
+    );
   });
 });

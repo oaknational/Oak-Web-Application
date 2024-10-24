@@ -1,8 +1,7 @@
 import OakError from "@/errors/OakError";
-import { subscriptionResponseSchema } from "@/pages/api/hubspot/subscription";
+import { subscriptionResponseSchema } from "@/app/api/hubspot/subscription/route";
 
 export async function getSubscriptionStatus(
-  email: string,
   callback?: (status: boolean) => void,
 ) {
   try {
@@ -12,7 +11,6 @@ export async function getSubscriptionStatus(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email,
         subscriptionName: "School Support",
       }),
     });
