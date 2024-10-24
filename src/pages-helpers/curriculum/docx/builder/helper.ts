@@ -56,7 +56,7 @@ export function uncapitalizeSubject(input: string) {
 
 export function createCurriculumSlug(slugs: Slugs) {
   return `${slugs.subjectSlug}-${slugs.phaseSlug}${
-    slugs.examboardSlug ? `-${slugs.examboardSlug}` : ""
+    slugs.ks4OptionSlug ? `-${slugs.ks4OptionSlug}` : ""
   }`;
 }
 
@@ -81,15 +81,6 @@ export function threadUnitByYear(units: Unit[], threadSlug: string) {
   });
 
   return output;
-}
-
-export function keyStageFromPhaseTitle(phaseTitle: string) {
-  if (phaseTitle === "Primary") {
-    return "KS1 & KS2";
-  } else if (phaseTitle === "Secondary") {
-    return "KS3 & KS4";
-  }
-  return phaseTitle;
 }
 
 export function cmToPxDpi(cm: number) {

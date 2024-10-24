@@ -83,7 +83,7 @@ export type CurriculumUnitsTrackingData = {
   subjectSlug: string;
   subjectTitle: string;
   phaseSlug: string;
-  examboardSlug: string | null;
+  ks4OptionSlug: string | null;
 };
 
 export type CurriculumUnitsFormattedData<T = Unit> = {
@@ -128,7 +128,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     subjectSlug,
     phaseSlug,
     subjectTitle: curriculumOverviewTabData.subjectTitle,
-    examboardSlug: ks4OptionSlug,
+    ks4OptionSlug: ks4OptionSlug,
   };
 
   const keyStages = uniq(
