@@ -73,7 +73,7 @@ describe("/api/preview/[[...path]]", () => {
         subjectSlug: "english",
         phaseSlug: "secondary",
         state: "published",
-        examboardSlug: "aqa",
+        ks4OptionSlug: "aqa",
       },
     });
     await handler(req, res);
@@ -89,7 +89,7 @@ describe("/api/preview/[[...path]]", () => {
           subjectSlug: "INVALID",
           phaseSlug: "INVALID",
           state: "published",
-          examboardSlug: "aqa",
+          ks4OptionSlug: "aqa",
         },
       });
       await handler(req, res);
@@ -106,7 +106,7 @@ describe("/api/preview/[[...path]]", () => {
         subjectSlug: "english",
         phaseSlug: "secondary",
         state: "published",
-        examboardSlug: "aqa",
+        ks4OptionSlug: "aqa",
       },
     });
     await handler(req, res);
@@ -123,7 +123,7 @@ describe("/api/preview/[[...path]]", () => {
         subjectSlug: "english",
         phaseSlug: "secondary",
         state: "published",
-        examboardSlug: "wjec",
+        ks4OptionSlug: "wjec",
       },
     });
     await handler(req, res);
@@ -140,7 +140,7 @@ describe("/api/preview/[[...path]]", () => {
         subjectSlug: "english",
         phaseSlug: "secondary",
         state: "published",
-        examboardSlug: "aqa",
+        ks4OptionSlug: "aqa",
       },
     });
     await handler(req, res);
@@ -170,7 +170,7 @@ describe("/api/preview/[[...path]]", () => {
         subjectSlug: "english",
         phaseSlug: "secondary",
         state: "new",
-        examboardSlug: "aqa",
+        ks4OptionSlug: "aqa",
       },
     });
     await handler(req, res);
