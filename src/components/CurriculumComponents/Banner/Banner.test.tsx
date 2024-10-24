@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 
 import HomePageBanner, { HomePageBannerProps } from "./Banner";
@@ -22,20 +22,20 @@ describe("HomePageBanner", () => {
   };
 
   it("should render the banner component with correct structure", () => {
-    renderBanner();
+    const { getByRole, getByTestId, getByText } = renderBanner();
 
-    const banner = screen.getByRole("banner");
+    const banner = getByRole("banner");
     expect(banner).toBeInTheDocument();
-    expect(screen.getByTestId("new-icon")).toBeInTheDocument();
-    expect(banner).toContainElement(screen.getByRole("link"));
-    expect(banner).toContainElement(screen.getByText("Subjects added"));
-    expect(screen.getByTestId("hr")).toBeInTheDocument();
+    expect(getByTestId("new-icon")).toBeInTheDocument();
+    expect(banner).toContainElement(getByRole("link"));
+    expect(banner).toContainElement(getByText("Subjects added"));
+    expect(getByTestId("hr")).toBeInTheDocument();
   });
 
   it("should display the New promo tag and its associated text", () => {
-    renderBanner();
+    const { getByTestId, getByText } = renderBanner();
 
-    const newIcon = screen.getByTestId("new-icon");
+    const newIcon = getByTestId("new-icon");
     expect(newIcon).toHaveAttribute("aria-hidden", "true");
 
     // Check SVG sibling div contains "New" text
@@ -45,28 +45,28 @@ describe("HomePageBanner", () => {
     const spanInDiv = divAfterSvg?.querySelector("span");
     expect(spanInDiv).toHaveTextContent("New");
 
-    expect(screen.getByText("Subjects added")).toBeInTheDocument();
+    expect(getByText("Subjects added")).toBeInTheDocument();
   });
 
   it("should render the button with correct props", () => {
-    renderBanner();
+    const { getByRole, getByText } = renderBanner();
 
-    const link = screen.getByRole("link");
+    const link = getByRole("link");
 
     expect(link).toHaveAttribute("href", "/teachers/curriculum");
     expect(link).toHaveAttribute("title", "See curriculum plans");
-    expect(screen.getByText("See curriculum plans")).toBeInTheDocument();
+    expect(getByText("See curriculum plans")).toBeInTheDocument();
   });
 
   it("should render all SVG elements correctly", () => {
-    renderBanner();
+    const { getByTestId } = renderBanner();
     // Check promotional tag SVG
-    const tagSvg = screen.getByTestId("new-icon").querySelector("svg");
+    const tagSvg = getByTestId("new-icon").querySelector("svg");
     expect(tagSvg).toHaveAttribute("aria-hidden", "true");
     expect(tagSvg).toHaveAttribute("name", "tag-promotional");
 
     // Check chevron SVG
-    const buttonIcon = screen.getByTestId("button-icon");
+    const buttonIcon = getByTestId("button-icon");
     const chevronSvg = buttonIcon.querySelector('svg[name="chevron-right"]');
     expect(chevronSvg).toBeInTheDocument();
     expect(chevronSvg).toHaveAttribute("aria-hidden", "true");
@@ -79,11 +79,11 @@ describe("HomePageBanner", () => {
       ctaText: "Try it now",
     };
 
-    renderBanner(customProps);
+    const { getByRole, getByText } = renderBanner(customProps);
 
-    expect(screen.getByText("New feature available")).toBeInTheDocument();
-    const link = screen.getByRole("link");
-    expect(screen.getByText("Try it now")).toBeInTheDocument();
+    expect(getByText("New feature available")).toBeInTheDocument();
+    const link = getByRole("link");
+    expect(getByText("Try it now")).toBeInTheDocument();
     expect(link).toHaveAttribute("title", "Try it now");
   });
 
@@ -104,17 +104,17 @@ describe("HomePageBanner", () => {
     const colors = ["white", "black", "mint", "lavender", "pink"] as const;
 
     colors.forEach((color) => {
-      const { unmount } = renderBanner({
+      const { getByRole, getByText, getByTestId, unmount } = renderBanner({
         ...defaultProps,
         background: color,
       });
 
-      const banner = screen.getByRole("banner");
+      const banner = getByRole("banner");
       expect(banner).toBeInTheDocument();
 
-      expect(screen.getByTestId("new-icon")).toBeInTheDocument();
-      expect(screen.getByText(defaultProps.newText)).toBeInTheDocument();
-      expect(screen.getByRole("link")).toBeInTheDocument();
+      expect(getByTestId("new-icon")).toBeInTheDocument();
+      expect(getByText(defaultProps.newText)).toBeInTheDocument();
+      expect(getByRole("link")).toBeInTheDocument();
 
       unmount();
     });
