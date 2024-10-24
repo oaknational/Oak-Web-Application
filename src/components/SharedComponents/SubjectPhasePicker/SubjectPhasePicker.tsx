@@ -35,7 +35,6 @@ import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/FocusWrap";
-import { getAllTabFocusableElements } from "@/utils/curriculum/dom";
 
 const DEFAULT_KEYSTAGES = [
   { slug: "ks1" },
@@ -185,7 +184,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   subjects,
   currentSelection,
 }) => {
-  const subjectsRef = useRef<HTMLDivElement>(null);
+  const phasePickerButton = useRef<HTMLButtonElement>(null);
+  const subjectPickerButtonDesktopContainer = useRef<HTMLDivElement>(null);
+  const subjectPickerButtonMobileContainer = useRef<HTMLDivElement>(null);
   const isCycleTwoEnabled = useCycleTwoEnabled();
   const router = useRouter();
   const tab = (router.query.tab as CurriculumTab) ?? "units";
@@ -237,19 +238,29 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     setShowPhases(false);
   };
 
-  const onFocusPhasesStart = () => {
-    // Need to flush here so `subjectsRef.current` will be present
+  const onFocusPhasesEnd = () => {
     flushSync(() => {
-      setShowSubjects(true);
       setShowPhases(false);
     });
 
+    const desktopEl =
+      subjectPickerButtonDesktopContainer.current?.querySelector("button");
+    const mobileEl =
+      subjectPickerButtonDesktopContainer.current?.querySelector("button");
+
     // Focus the last element
-    getAllTabFocusableElements(subjectsRef.current).at(-1)?.focus();
+    if (desktopEl && desktopEl.checkVisibility()) {
+      desktopEl.focus();
+    } else if (mobileEl && mobileEl.checkVisibility()) {
+      mobileEl.focus();
+    }
   };
   const onFocusSubjectEnd = () => {
-    setShowSubjects(false);
-    setShowPhases(true);
+    flushSync(() => {
+      setShowSubjects(false);
+    });
+
+    phasePickerButton.current?.focus();
   };
 
   const toggleShowPhases = () => {
@@ -452,100 +463,98 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 onEscapeKey={() => setShowSubjects(false)}
                 scrollLock={false}
               >
-                <div ref={subjectsRef}>
-                  <FocusWrap onWrapEnd={onFocusSubjectEnd}>
-                    {showSubjectError && (
-                      <OakFlex
-                        id={subjectErrorId}
-                        $flexDirection={"row"}
-                        $mb={"space-between-m"}
-                      >
-                        <Icon
-                          $color={"red"}
-                          name="content-guidance"
-                          verticalAlign="bottom"
-                        />
-                        <OakP $color={"red"}>
-                          Select a subject to view a curriculum
-                        </OakP>
-                      </OakFlex>
-                    )}
+                <FocusWrap onWrapEnd={onFocusSubjectEnd}>
+                  {showSubjectError && (
                     <OakFlex
-                      $flexDirection={"column"}
-                      $alignItems={"flex-start"}
-                      $gap={"all-spacing-1"}
-                      $mb={"space-between-sssx"}
+                      id={subjectErrorId}
+                      $flexDirection={"row"}
+                      $mb={"space-between-m"}
                     >
-                      <OakHeading
-                        id={subjectInputId}
-                        tag={"h4"}
-                        $font={"heading-6"}
-                        $mr="space-between-xs"
-                        data-testid="subjectDropdownHeading"
-                      >
-                        Curriculum plans
-                      </OakHeading>
-                      <OakP $mb="space-between-s">
-                        {isCycleTwoEnabled
-                          ? "Explore our curricula for 2024/2025."
-                          : "Explore our new curricula for 2023/2024."}
+                      <Icon
+                        $color={"red"}
+                        name="content-guidance"
+                        verticalAlign="bottom"
+                      />
+                      <OakP $color={"red"}>
+                        Select a subject to view a curriculum
                       </OakP>
                     </OakFlex>
-                    <OakFlex
-                      role="radiogroup"
-                      aria-labelledby={subjectInputId}
-                      aria-required="true"
-                      aria-describedby={
-                        showSubjectError ? subjectErrorId : undefined
-                      }
-                      $gap={"space-between-xs"}
-                      $alignItems={"flex-start"}
-                      $flexWrap={"wrap"}
-                      $mt={"space-between-none"}
+                  )}
+                  <OakFlex
+                    $flexDirection={"column"}
+                    $alignItems={"flex-start"}
+                    $gap={"all-spacing-1"}
+                    $mb={"space-between-sssx"}
+                  >
+                    <OakHeading
+                      id={subjectInputId}
+                      tag={"h4"}
+                      $font={"heading-6"}
+                      $mr="space-between-xs"
+                      data-testid="subjectDropdownHeading"
                     >
-                      {sortBy(subjects, "title").map((subject) => (
-                        <ButtonContainer
-                          className={`lot-picker subject-selection ${
-                            isSelected(subject) ? "selected" : ""
-                          }`}
-                          key={subject.slug}
-                        >
-                          <OakSecondaryButton
-                            role="radio"
-                            iconGap={"space-between-sssx"}
-                            onClick={() => handleSelectSubject(subject)}
-                            aria-checked={isSelected(subject)}
-                            title={subject.title}
-                            hoverShadow={null}
-                            iconOverride={
-                              <OakIcon
-                                iconName={getValidSubjectIconName(subject.slug)}
-                                alt=""
-                              />
-                            }
-                          >
-                            {subject.title}
-                          </OakSecondaryButton>
-                        </ButtonContainer>
-                      ))}
-                    </OakFlex>
-                    <Box $mt={24}>
-                      <OwaLink
-                        page={"curriculum-previous-downloads"}
-                        $textDecoration={"underline"}
-                        $font={"heading-7"}
-                        data-testid="previousPlansLink"
+                      Curriculum plans
+                    </OakHeading>
+                    <OakP $mb="space-between-s">
+                      {isCycleTwoEnabled
+                        ? "Explore our curricula for 2024/2025."
+                        : "Explore our new curricula for 2023/2024."}
+                    </OakP>
+                  </OakFlex>
+                  <OakFlex
+                    role="radiogroup"
+                    aria-labelledby={subjectInputId}
+                    aria-required="true"
+                    aria-describedby={
+                      showSubjectError ? subjectErrorId : undefined
+                    }
+                    $gap={"space-between-xs"}
+                    $alignItems={"flex-start"}
+                    $flexWrap={"wrap"}
+                    $mt={"space-between-none"}
+                  >
+                    {sortBy(subjects, "title").map((subject) => (
+                      <ButtonContainer
+                        className={`lot-picker subject-selection ${
+                          isSelected(subject) ? "selected" : ""
+                        }`}
+                        key={subject.slug}
                       >
-                        Previously released plans
-                        <Icon
-                          $color={"black"}
-                          name="arrow-right"
-                          verticalAlign="bottom"
-                        />
-                      </OwaLink>
-                    </Box>
-                  </FocusWrap>
-                </div>
+                        <OakSecondaryButton
+                          role="radio"
+                          iconGap={"space-between-sssx"}
+                          onClick={() => handleSelectSubject(subject)}
+                          aria-checked={isSelected(subject)}
+                          title={subject.title}
+                          hoverShadow={null}
+                          iconOverride={
+                            <OakIcon
+                              iconName={getValidSubjectIconName(subject.slug)}
+                              alt=""
+                            />
+                          }
+                        >
+                          {subject.title}
+                        </OakSecondaryButton>
+                      </ButtonContainer>
+                    ))}
+                  </OakFlex>
+                  <Box $mt={24}>
+                    <OwaLink
+                      page={"curriculum-previous-downloads"}
+                      $textDecoration={"underline"}
+                      $font={"heading-7"}
+                      data-testid="previousPlansLink"
+                    >
+                      Previously released plans
+                      <Icon
+                        $color={"black"}
+                        name="arrow-right"
+                        verticalAlign="bottom"
+                      />
+                    </OwaLink>
+                  </Box>
+                </FocusWrap>
               </FocusOn>
             </SelectionDropDownBox>
           )}
@@ -581,7 +590,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $btlr={["border-radius-square", "border-radius-s"]}
                 $btrr={["border-radius-s", "border-radius-s"]}
               >
-                <PickerButton onClick={toggleShowPhases} title="Phase">
+                <PickerButton
+                  ref={phasePickerButton}
+                  onClick={toggleShowPhases}
+                  title="Phase"
+                >
                   <OakBox
                     $pl="inner-padding-m"
                     $pt="inner-padding-s"
@@ -662,7 +675,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     onEscapeKey={() => setShowPhases(false)}
                     scrollLock={false}
                   >
-                    <FocusWrap onWrapStart={onFocusPhasesStart}>
+                    <FocusWrap onWrapEnd={onFocusPhasesEnd}>
                       {showPhaseError && (
                         <Flex id={phaseErrorId} $flexDirection={"row"} $mb={20}>
                           <Icon
@@ -816,6 +829,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $height={"100%"}
                 $display={["none", "block"]}
                 $zIndex={3}
+                ref={subjectPickerButtonDesktopContainer}
               >
                 <OakPrimaryButton
                   iconName="arrow-right"
@@ -855,6 +869,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
           $width={["100%", "fit-content"]}
           $display={["flex", "none"]}
           $justifyContent="stretch"
+          ref={subjectPickerButtonMobileContainer}
         >
           <OakPrimaryButton
             width="100%"
