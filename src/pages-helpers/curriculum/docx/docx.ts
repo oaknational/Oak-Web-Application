@@ -14,6 +14,8 @@ import {
   xmlRootToJson,
 } from "./xml";
 
+import { notUndefined } from "@/utils/curriculum/types";
+
 export function generateHash(buffer: Buffer | string) {
   const hash = createHash("sha256");
   hash.setEncoding("hex");
@@ -531,10 +533,6 @@ export async function appendBodyElements(
   doc.elements[0]!.elements![0].elements = [...oldElements, ...childElements];
 
   zip.writeJson("word/document.xml", doc as Element);
-}
-
-function notUndefined<TValue>(value: TValue | undefined): value is TValue {
-  return value !== undefined;
 }
 
 export const checkWithinElement = (

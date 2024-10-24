@@ -77,3 +77,20 @@ Compate the versions
 # ...
 ```
 
+
+### `fixtures`
+Generates fixtures for curriculum squads tests
+
+```bash
+./scripts/dev/curriculum/automate fixtures
+# 📦 generating: src/utils/curriculum/fixtures/curriculumunits-english-secondary.ts
+# 📦 generating: src/utils/curriculum/fixtures/subjectPhaseOptionsIncludeNew.ts
+# 📦 generating: src/utils/curriculum/fixtures/curriculumOverview-english-secondary.ts
+```
+
+You can define new fixture generation in `./scripts/dev/curriculum/_commands/fixtures.ts`
+
+> [!NOTE]  
+> You'll also need to export the correct types in `./src/utils/curriculum/fixtures/index.ts`  
+
+

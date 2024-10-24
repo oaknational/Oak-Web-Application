@@ -15,13 +15,14 @@ import docx, {
 } from "@/pages-helpers/curriculum/docx";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { isCycleTwoEnabled } from "@/utils/curriculum/features";
+import { logErrorMessage } from "@/utils/curriculum/testing";
 
 export const curriculumDownloadQuerySchema = z.object({
   mvRefreshTime: z.string(),
   subjectSlug: z.string(),
   phaseSlug: z.string(),
   state: z.enum(["new", "published"]),
-  examboardSlug: z.string().optional(),
+  ks4OptionSlug: z.string().optional(),
   tierSlug: z.string().optional(),
   childSubjectSlug: z.string().optional(),
 });
@@ -35,7 +36,7 @@ type getDataReturn =
   | {
       notFound: false;
       combinedCurriculumData: CombinedCurriculumData;
-      examboardSlug?: string;
+      ks4OptionSlug?: string;
       subjectSlug: string;
       phaseSlug: string;
       state: string;
@@ -46,7 +47,7 @@ type getDataReturn =
 async function getData(opts: {
   subjectSlug: string;
   phaseSlug: string;
-  examboardSlug?: string;
+  ks4OptionSlug?: string;
   state: string;
   tierSlug?: string;
   childSubjectSlug?: string;
@@ -54,7 +55,7 @@ async function getData(opts: {
   const {
     subjectSlug,
     phaseSlug,
-    examboardSlug,
+    ks4OptionSlug,
     state,
     childSubjectSlug,
     tierSlug,
@@ -69,7 +70,7 @@ async function getData(opts: {
     const curriculumDataUnsorted = await curriculumApi2023.curriculumUnits({
       subjectSlug,
       phaseSlug,
-      ks4OptionSlug: examboardSlug ?? null,
+      ks4OptionSlug: ks4OptionSlug ?? null,
     });
 
     // HACK: This sorts by examboard to push NULLs to the bottom of the list, to fix picking up the correct `unit_options`
@@ -170,7 +171,7 @@ async function getData(opts: {
       };
     }
   } catch (error) {
-    console.log(error);
+    logErrorMessage(error);
     return {
       notFound: true,
     };
@@ -187,7 +188,7 @@ async function getData(opts: {
   }) as SubjectPhasePickerData["subjects"][number] | undefined;
   const ks4Option =
     subject?.ks4_options?.find(
-      (ks4_option) => ks4_option.slug === examboardSlug,
+      (ks4_option) => ks4_option.slug === ks4OptionSlug,
     ) ?? null;
 
   const combinedCurriculumData: CombinedCurriculumData = {
@@ -201,7 +202,7 @@ async function getData(opts: {
   return {
     notFound: false,
     combinedCurriculumData,
-    examboardSlug,
+    ks4OptionSlug,
     subjectSlug,
     phaseSlug,
     state,
@@ -223,7 +224,7 @@ export default async function handler(
     subjectSlug,
     phaseSlug,
     state,
-    examboardSlug,
+    ks4OptionSlug,
     tierSlug,
     childSubjectSlug,
   } = curriculumDownloadQuerySchema.parse(req.query);
@@ -244,7 +245,7 @@ export default async function handler(
         subjectSlug,
         phaseSlug,
         state,
-        examboardSlug,
+        ks4OptionSlug,
         tierSlug,
         childSubjectSlug,
         mvRefreshTime: actualMvRefreshTime,
@@ -261,7 +262,7 @@ export default async function handler(
   const data = await getData({
     subjectSlug,
     phaseSlug,
-    examboardSlug,
+    ks4OptionSlug,
     state,
     tierSlug,
     childSubjectSlug,
@@ -273,7 +274,7 @@ export default async function handler(
       subjectSlug: data.subjectSlug,
       phaseSlug: data.phaseSlug,
       keyStageSlug: data.phaseSlug,
-      examboardSlug: data.examboardSlug,
+      ks4OptionSlug: data.ks4OptionSlug,
       tierSlug,
       childSubjectSlug,
     });

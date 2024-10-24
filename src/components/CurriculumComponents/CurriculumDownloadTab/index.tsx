@@ -32,15 +32,18 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import Box from "@/components/SharedComponents/Box";
 import { useFetch } from "@/hooks/useFetch";
-import { CurriculumSelectionSlugs } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import {
+  AnalyticsUseCaseValueType,
   PhaseValueType,
   ResourceFileTypeValueType,
   TierNameValueType,
 } from "@/browser-lib/avo/Avo";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { unionOrNull } from "@/utils/narrowToUnion";
+import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
+import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -61,7 +64,7 @@ export function createCurriculumDownloadsQuery(
   mvRefreshTime: number,
   subjectSlug: string,
   phaseSlug: string,
-  examboardSlug: string | null,
+  ks4OptionSlug: string | null,
   tierSlug: string | null,
   childSubjectSlug: string | null,
 ) {
@@ -71,7 +74,7 @@ export function createCurriculumDownloadsQuery(
     phaseSlug: phaseSlug,
     state: state,
   });
-  examboardSlug && query.set("examboardSlug", examboardSlug);
+  ks4OptionSlug && query.set("ks4OptionSlug", ks4OptionSlug);
   tierSlug && tierSlug !== null && query.set("tierSlug", tierSlug);
   childSubjectSlug &&
     childSubjectSlug !== null &&
@@ -79,6 +82,59 @@ export function createCurriculumDownloadsQuery(
 
   return query;
 }
+
+export const trackCurriculumDownload = async (
+  data: CurriculumDownloadViewData,
+  resourceFileType: ResourceFileTypeValueType,
+  slugs: CurriculumSelectionSlugs,
+  subjectTitle: string,
+  onHubspotSubmit: (data: ResourceFormProps) => Promise<string | undefined>,
+  track: ReturnType<typeof useAnalytics>["track"],
+  analyticsUseCase: AnalyticsUseCaseValueType,
+  tierSelected: string | null,
+  child_subjects?: { subject: string; subject_slug: string }[],
+) => {
+  const { schoolId, schoolName: dataSchoolName, email, schoolNotListed } = data;
+
+  if (!data.termsAndConditions) return;
+
+  const schoolName =
+    dataSchoolName === "Homeschool" ? "Homeschool" : "Selected school";
+  const schoolOption = schoolNotListed === true ? "Not listed" : schoolName;
+
+  await onHubspotSubmit({
+    school: data.schoolId ?? "notListed",
+    schoolName: data.schoolName,
+    email: data.email,
+    terms: data.termsAndConditions,
+    resources: ["docx"],
+    onSubmit: async () => {},
+  });
+
+  track.curriculumResourcesDownloadedCurriculumDocument({
+    subjectTitle: subjectTitle,
+    subjectSlug: slugs.subjectSlug,
+    phase: slugs.phaseSlug as PhaseValueType,
+    analyticsUseCase: analyticsUseCase,
+    emailSupplied: email != null,
+    schoolOption: schoolOption,
+    schoolUrn:
+      !schoolId || schoolId === "homeschool"
+        ? ""
+        : extractUrnAndSchool(schoolId).urn ?? "",
+    schoolName: dataSchoolName || "",
+    resourceFileType: resourceFileType,
+    tierName: unionOrNull<TierNameValueType>(
+      capitalize(tierSelected ?? undefined),
+      ["Foundation", "Higher"],
+    ),
+    childSubjectSlug: slugs.subjectSlug,
+    childSubjectName: child_subjects?.find(
+      (s) => s.subject_slug === slugs.subjectSlug,
+    )?.subject,
+    examBoardSlug: slugs.ks4OptionSlug,
+  });
+};
 
 export type CurriculumDownloadTabProps = {
   mvRefreshTime: number;
@@ -216,55 +272,6 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     }
   };
 
-  async function trackCurriculumDownload(
-    data: CurriculumDownloadViewData,
-    subject: string,
-    resourceFileType: ResourceFileTypeValueType,
-  ) {
-    const {
-      schoolId,
-      schoolName: dataSchoolName,
-      email,
-      schoolNotListed,
-    } = data;
-
-    if (!data.termsAndConditions) return;
-
-    const schoolName =
-      dataSchoolName === "Homeschool" ? "Homeschool" : "Selected school";
-    const schoolOption = schoolNotListed === true ? "Not listed" : schoolName;
-
-    await onHubspotSubmit({
-      school: data.schoolId ?? "notListed",
-      schoolName: data.schoolName,
-      email: data.email,
-      terms: data.termsAndConditions,
-      resources: ["docx"],
-      onSubmit: async () => {},
-    });
-
-    track.curriculumResourcesDownloadedCurriculumDocument({
-      subjectTitle: curriculumInfo.subjectTitle,
-      subjectSlug: slugs.subjectSlug,
-      phase: slugs.phaseSlug as PhaseValueType,
-      analyticsUseCase: analyticsUseCase,
-      emailSupplied: email != null,
-      schoolOption: schoolOption,
-      schoolUrn:
-        !schoolId || schoolId === "homeschool" ? 0 : parseInt(schoolId),
-      schoolName: dataSchoolName || "",
-      resourceFileType: resourceFileType,
-      tierName: unionOrNull<TierNameValueType>(
-        capitalize(tierSelected ?? undefined),
-        ["Foundation", "Higher"],
-      ),
-      childSubjectName: subject,
-      childSubjectSlug: child_subjects?.find((s) => s.subject_slug === subject)
-        ?.subject,
-      examBoardSlug: slugs.ks4OptionSlug,
-    });
-  }
-
   const onSubmit = async (data: CurriculumDownloadViewData) => {
     setIsSubmitting(true);
 
@@ -291,7 +298,17 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     try {
       await downloadFileFromUrl(downloadPath);
     } finally {
-      trackCurriculumDownload(data, slugs.subjectSlug, "docx");
+      await trackCurriculumDownload(
+        data,
+        "docx",
+        slugs,
+        curriculumInfo.subjectTitle,
+        onHubspotSubmit,
+        track,
+        analyticsUseCase,
+        tierSelected,
+        child_subjects,
+      );
       setIsSubmitting(false);
       setIsDone(true);
     }
