@@ -1,10 +1,9 @@
 import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 
-import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
-import HomePageBanner from "@/components/CurriculumComponents/Banner";
+import Banners from "@/components/CurriculumComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023, {
@@ -27,7 +26,6 @@ export type HomePageProps = {
 
 const Home: NextPage<TeachersHomePageProps> = (props) => {
   const { curriculumData, posts } = props;
-  const cycleTwoEnabled = isCycleTwoEnabled();
 
   return (
     <AppLayout
@@ -38,14 +36,7 @@ const Home: NextPage<TeachersHomePageProps> = (props) => {
       }}
       $background={"white"}
     >
-      {cycleTwoEnabled ? (
-        <HomePageBanner
-          background="lemon"
-          newText="Subjects added"
-          ctaText="See curriculum plans"
-          page="curriculum-landing-page"
-        />
-      ) : null}
+      <Banners />
       <HomePageTabImageNav current={"teachers"} />
       <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
       <HomePageLowerView posts={posts} />

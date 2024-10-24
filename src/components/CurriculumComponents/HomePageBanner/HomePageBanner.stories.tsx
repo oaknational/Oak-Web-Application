@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import HomePageBanner from "./Banner";
+import HomePageBanner from "./HomePageBanner";
 
 import { OakColorName } from "@/styles/theme";
 

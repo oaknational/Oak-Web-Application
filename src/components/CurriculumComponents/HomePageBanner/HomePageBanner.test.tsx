@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { ThemeProvider } from "styled-components";
 
-import HomePageBanner, { HomePageBannerProps } from "./Banner";
+import HomePageBanner, { HomePageBannerProps } from "./HomePageBanner";
 
 import oakDefaultTheme from "@/styles/theme";
 
