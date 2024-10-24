@@ -1,8 +1,7 @@
 import OakError from "@/errors/OakError";
-import { subscriptionResponseSchema } from "@/pages/api/hubspot/subscription";
+import { invariant } from "@/utils/invariant";
 
 export async function getSubscriptionStatus(
-  email: string,
   callback?: (status: boolean) => void,
 ) {
   try {
@@ -12,11 +11,12 @@ export async function getSubscriptionStatus(
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email,
         subscriptionName: "School Support",
       }),
     });
-    const result = subscriptionResponseSchema.parse(await response.json());
+    const result = await response.json();
+    invariant(typeof result === "boolean", "Expected a boolean response body");
+
     if (callback) {
       callback(result);
     }
