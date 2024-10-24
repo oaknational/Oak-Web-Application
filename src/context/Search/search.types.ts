@@ -12,7 +12,9 @@ import { SnakeToCamel } from "@/utils/util.types";
 
 export type SearchQuery = {
   term: string;
+  π;
   keyStages?: string[];
+  yearGroups?: string[];
   subjects?: string[];
   contentTypes?: ("unit" | "lesson")[];
   examBoards?: string[];
@@ -31,9 +33,11 @@ export type ContentType = {
   title: "Lessons" | "Units";
 };
 export type ExamBoard = SearchPageData["examBoards"][number];
+export type YearGroups = SearchPageData["yearGroups"][number];
 
 export type UseSearchFiltersProps = {
   allKeyStages: KeyStage[];
+  allYearGroups: YearGroups[];
   allSubjects: SearchPageData["subjects"];
   allContentTypes: ContentType[];
   allExamBoards: ExamBoard[];
@@ -49,6 +53,7 @@ export type SearchCheckBoxProps = {
 export type UseSearchFiltersReturnType = {
   subjectFilters: (Subject & SearchCheckBoxProps)[];
   keyStageFilters: (KeyStage & SearchCheckBoxProps)[];
+  yearGroupFilters: (YearGroups & SearchCheckBoxProps)[];
   contentTypeFilters: (ContentType & SearchCheckBoxProps)[];
   examBoardFilters: (ExamBoard & SearchCheckBoxProps)[];
   legacyFilter: { slug: string; title: string } & SearchCheckBoxProps;

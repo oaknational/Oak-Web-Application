@@ -21,6 +21,7 @@ type SearchFiltersProps = UseSearchFiltersReturnType & {
 const SearchFilters: FC<SearchFiltersProps> = (props) => {
   const {
     keyStageFilters,
+    yearGroupFilters,
     subjectFilters,
     examBoardFilters,
     isMobileFilter,
@@ -101,6 +102,38 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
                 {...keyStageFilter}
                 onChange={() => {
                   keyStageFilter.onChange();
+                }}
+              />
+            ))}
+          </OakFlex>
+        </OakFieldset>
+      </OakBox>
+      <OakBox
+        $mb="space-between-m2"
+        $bb={"border-solid-s"}
+        $borderColor={"grey40"}
+      >
+        <OakFieldset>
+          <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+            Years
+          </OakP>
+          <OakFlex
+            $gap={"space-between-xs"}
+            $mb="space-between-m2"
+            $flexDirection={"row"}
+            $flexWrap={"wrap"}
+          >
+            {yearGroupFilters.map((yearGroupFilter) => (
+              <OakSearchFilterCheckBox
+                name={"yearGroupFilters"}
+                displayValue={yearGroupFilter.title}
+                key={`search-filters-yearGroup-${yearGroupFilter.slug}`}
+                aria-label={`${yearGroupFilter.title} filter`}
+                id={`search-filters-keyStage-${yearGroupFilter.slug}:mobile:${isMobileFilter}`}
+                value="Year group filter"
+                {...yearGroupFilter}
+                onChange={() => {
+                  yearGroupFilter.onChange();
                 }}
               />
             ))}

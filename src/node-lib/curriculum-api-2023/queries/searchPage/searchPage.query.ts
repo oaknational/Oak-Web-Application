@@ -14,10 +14,6 @@ const searchPageQuery = (sdk: Sdk) => async () => {
 
   return {
     ...parsed,
-    subjects: parsed.subjects.filter(
-      // TODO: this test subject should not be published in production
-      (s) => s.slug !== "testing-not-for-publication",
-    ),
   };
 };
 
