@@ -12,7 +12,6 @@ import { SnakeToCamel } from "@/utils/util.types";
 
 export type SearchQuery = {
   term: string;
-  π;
   keyStages?: string[];
   yearGroups?: string[];
   subjects?: string[];
