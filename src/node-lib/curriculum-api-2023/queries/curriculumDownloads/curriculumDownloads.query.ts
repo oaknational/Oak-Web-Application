@@ -6,7 +6,7 @@ const curriculumDownloadsQuery =
   async (args: {
     subjectSlug: string;
     phaseSlug: string;
-    examboardSlug: string | null;
+    ks4OptionSlug: string | null;
   }) => {
     const { subjectSlug, phaseSlug } = args;
     if (!subjectSlug || !phaseSlug) {

@@ -152,7 +152,7 @@ describe("Downloads tab: unit tests", () => {
       mvRefreshTime: 1721314874829,
       subjectSlug: "science",
       phaseSlug: "secondary",
-      examboardSlug: "aqa",
+      ks4OptionSlug: "aqa",
       tierSlug: "foundation",
       childSubjectSlug: "combined-science",
     };
@@ -160,7 +160,7 @@ describe("Downloads tab: unit tests", () => {
       mvRefreshTime,
       subjectSlug,
       phaseSlug,
-      examboardSlug,
+      ks4OptionSlug,
       tierSlug,
       childSubjectSlug,
     } = data;
@@ -169,12 +169,12 @@ describe("Downloads tab: unit tests", () => {
       mvRefreshTime,
       subjectSlug,
       phaseSlug,
-      examboardSlug,
+      ks4OptionSlug,
       tierSlug,
       childSubjectSlug,
     );
     expect(query.toString()).toEqual(
-      `mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&examboardSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
+      `mvRefreshTime=1721314874829&subjectSlug=science&phaseSlug=secondary&state=published&ks4OptionSlug=aqa&tierSlug=foundation&childSubjectSlug=combined-science`,
     );
   });
 
