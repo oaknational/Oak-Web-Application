@@ -1,10 +1,6 @@
-import { currentUser } from "@clerk/nextjs/server";
-
 import { UseUserReturn } from "./mockClerk";
 
 import { UserResource } from "clerk";
-
-type CurrentUser = NonNullable<Awaited<ReturnType<typeof currentUser>>>;
 
 /**
  * Mock client-side user object
@@ -106,45 +102,4 @@ export const mockLoadingUser: UseUserReturn = {
   user: undefined,
   isLoaded: false,
   isSignedIn: undefined,
-};
-
-/**
- * Provides a mock return value for the backend `currentUser()`
- */
-export const mockCurrentUser: CurrentUser = {
-  id: "123",
-  passwordEnabled: false,
-  totpEnabled: false,
-  backupCodeEnabled: false,
-  twoFactorEnabled: false,
-  banned: false,
-  locked: false,
-  createdAt: 0,
-  updatedAt: 0,
-  imageUrl: "",
-  hasImage: false,
-  primaryEmailAddressId: null,
-  primaryPhoneNumberId: null,
-  primaryWeb3WalletId: null,
-  lastSignInAt: null,
-  externalId: null,
-  username: null,
-  firstName: null,
-  lastName: null,
-  publicMetadata: {},
-  privateMetadata: {},
-  unsafeMetadata: {},
-  emailAddresses: [],
-  phoneNumbers: [],
-  web3Wallets: [],
-  externalAccounts: [],
-  samlAccounts: [],
-  lastActiveAt: null,
-  createOrganizationEnabled: false,
-  createOrganizationsLimit: null,
-  primaryEmailAddress: null,
-  primaryPhoneNumber: null,
-  primaryWeb3Wallet: null,
-  fullName: null,
-  deleteSelfEnabled: false,
 };

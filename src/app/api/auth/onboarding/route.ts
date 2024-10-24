@@ -1,10 +1,10 @@
 import { clerkClient, currentUser } from "@clerk/nextjs/server";
-import { ZodError } from "zod";
 
 import { onboardingSchema } from "@/common-lib/schemas/onboarding";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
+import { handleZodValidationErrors } from "@/node-lib/handleZodValidationErrors";
 
 const reportError = errorReporter("onboardingRoute");
 
@@ -14,44 +14,36 @@ const reportError = errorReporter("onboardingRoute");
  */
 const ALLOWED_REGIONS = ["GB", "IM", "GG", "JE"];
 
-export async function POST(req: Request) {
+export const POST = handleZodValidationErrors(async function (req: Request) {
   const user = await currentUser();
 
   if (!user) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  try {
-    const owaData = onboardingSchema.parse(await req.json());
-    const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
-    const region = user.privateMetadata.region ?? getRegion(req, user.id);
-    const isRegionAuthorised = ALLOWED_REGIONS.includes(region!);
+  const owaData = onboardingSchema.parse(await req.json());
+  const sourceApp = user.publicMetadata.sourceApp ?? getReferrerOrigin(req);
+  const region = user.privateMetadata.region ?? getRegion(req, user.id);
+  const isRegionAuthorised = ALLOWED_REGIONS.includes(region!);
 
-    const publicMetadata: UserPublicMetadata = {
-      sourceApp,
-      owa: {
-        ...owaData,
-        isRegionAuthorised,
-        isOnboarded: true,
-      },
-    };
+  const publicMetadata: UserPublicMetadata = {
+    sourceApp,
+    owa: {
+      ...owaData,
+      isRegionAuthorised,
+      isOnboarded: true,
+    },
+  };
 
-    await clerkClient().users.updateUserMetadata(user.id, {
-      publicMetadata,
-      privateMetadata: {
-        region,
-      },
-    });
+  await clerkClient().users.updateUserMetadata(user.id, {
+    publicMetadata,
+    privateMetadata: {
+      region,
+    },
+  });
 
-    return Response.json(publicMetadata);
-  } catch (error) {
-    if (error instanceof ZodError) {
-      return Response.json(error.format(), { status: 400 });
-    }
-
-    throw error;
-  }
-}
+  return Response.json(publicMetadata);
+});
 
 function getReferrerOrigin(req: Request) {
   const referrer = req.headers.get("referer")?.toString();

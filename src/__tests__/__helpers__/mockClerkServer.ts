@@ -3,8 +3,25 @@ export type CurrentUser = NonNullable<
   Awaited<ReturnType<typeof clerk.currentUser>>
 >;
 
+/**
+ * Sets the return value of `currentUser()` on the server
+ */
 export function setCurrentUser(user: CurrentUser | null) {
   jest.spyOn(clerk, "currentUser").mockResolvedValue(user);
+}
+
+/**
+ * Installs a partial mock of `clerkClient()` for use on the server
+ * to make requests to Clerk's API
+ */
+export function installMockClerkClient() {
+  const mockClerkClient = {
+    users: {
+      updateUserMetadata: () => Promise.resolve(mockCurrentUser),
+    },
+  } as unknown as ReturnType<typeof clerk.clerkClient>;
+  jest.spyOn(clerk, "clerkClient").mockReturnValue(mockClerkClient);
+  return mockClerkClient;
 }
 
 /**
