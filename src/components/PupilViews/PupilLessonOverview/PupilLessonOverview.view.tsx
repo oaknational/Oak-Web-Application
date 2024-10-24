@@ -28,6 +28,7 @@ import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLesson
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
+import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 
 type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
@@ -67,6 +68,7 @@ export const PupilViewsLessonOverview = ({
     updateCurrentSection,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+  const { track } = usePupilAnalytics();
   const { trackSectionStarted } = useTrackSectionStarted();
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
   const [isMounted, setIsMounted] = useState(false);
@@ -132,7 +134,14 @@ export const PupilViewsLessonOverview = ({
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <ViewAllLessonsButton href={backUrl} />
+          <ViewAllLessonsButton
+            href={backUrl}
+            onClick={() => {
+              if (isLessonComplete === false) {
+                track.lessonAbandoned({});
+              }
+            }}
+          />
         </OakGridArea>
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
           <OakInlineBanner

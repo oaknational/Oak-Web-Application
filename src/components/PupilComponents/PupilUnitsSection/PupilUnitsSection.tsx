@@ -58,6 +58,7 @@ export type PupilUnitsSectionProps = {
   applyFilter: (subjectCategory: string) => void;
   showTooltip?: boolean;
   id?: string;
+  onUnitSelected?: (unit: UnitListingBrowseData[number]) => void;
 };
 
 export const PupilUnitsSection = ({
@@ -72,6 +73,7 @@ export const PupilUnitsSection = ({
   showTooltip = true,
   expiredSlot,
   id = "0",
+  onUnitSelected,
 }: PupilUnitsSectionProps) => {
   const indexedUnits = units.map((unit, i) =>
     unit.map((u) => ({ ...u, supplementaryData: { unitOrder: i } })),
@@ -162,6 +164,7 @@ export const PupilUnitsSection = ({
                 return renderListItem(
                   optionalityUnit[0],
                   optionalityUnit[0].supplementaryData.unitOrder,
+                  onUnitSelected,
                 );
             } else {
               // More than 2 optionalities and therefore needs sublistings
@@ -184,6 +187,9 @@ export const PupilUnitsSection = ({
                               programmeSlug: unit.programmeSlug,
                               unitSlug: unit.unitSlug,
                             })}
+                            onClick={() => {
+                              if (onUnitSelected) onUnitSelected(unit);
+                            }}
                             unavailable={unit.expired}
                           />
                         ),
@@ -197,7 +203,11 @@ export const PupilUnitsSection = ({
   );
 };
 
-const renderListItem = (unit: UnitListingBrowseData[number], index: number) => (
+const renderListItem = (
+  unit: UnitListingBrowseData[number],
+  index: number,
+  onCallback?: (unit: UnitListingBrowseData[number]) => void,
+) => (
   <OakPupilJourneyListItem
     key={index}
     title={`${unit.unitData.title}${
@@ -213,6 +223,11 @@ const renderListItem = (unit: UnitListingBrowseData[number], index: number) => (
       programmeSlug: unit.programmeSlug,
       unitSlug: unit.unitSlug,
     })}
+    onClick={() => {
+      if (onCallback) {
+        onCallback(unit);
+      }
+    }}
     unavailable={unit.expired}
   />
 );

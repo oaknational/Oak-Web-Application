@@ -9,10 +9,12 @@ import {
   OakPupilJourneySubjectButton,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
+import { yearDescriptions } from "@oaknational/oak-curriculum-schema";
 
 import { ResolveOakHrefProps, resolveOakHref } from "@/common-lib/urls";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type PupilViewsSubjectListingProps = {
   subjects: PupilSubjectListingData[];
@@ -21,6 +23,7 @@ type PupilViewsSubjectListingProps = {
 export const PupilViewsSubjectListing = ({
   subjects,
 }: PupilViewsSubjectListingProps) => {
+  const { track } = useAnalytics();
   const groupedBySubject = groupBy(
     subjects,
     (subject) => subject.programmeFields.subjectSlug,
@@ -136,6 +139,19 @@ export const PupilViewsSubjectListing = ({
                           | "primary"
                           | "secondary"
                       }
+                      onClick={() => {
+                        track.browseRefined({
+                          platform: "owa",
+                          product: "pupil lesson activities",
+                          engagementIntent: "use",
+                          eventVersion: "2.0.0",
+                          componentType: "subject_card",
+                          analyticsUseCase: "Pupil",
+                          filterType: "Subject filter",
+                          filterValue: subject.programmeFields.subject,
+                          activeFilters: { yearDescriptions },
+                        });
+                      }}
                     >
                       {subject.programmeFields.subject}
                     </OakPupilJourneySubjectButton>

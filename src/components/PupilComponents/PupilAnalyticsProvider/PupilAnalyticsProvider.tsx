@@ -5,10 +5,14 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import {
   AnalyticsUseCaseValueType,
+  EngagementIntentValueType,
+  EventVersionValueType,
   ExamBoardValueType,
   KeyStageTitleValueType,
   PathwayValueType,
   PhaseValueType,
+  PlatformValueType,
+  ProductValueType,
   TierNameValueType,
 } from "@/browser-lib/avo/Avo";
 import errorReporter from "@/common-lib/error-reporter";
@@ -44,6 +48,12 @@ type NavigationEventProps =
   | "examBoard"
   | "releaseGroup"
   | "analyticsUseCase";
+
+type CorePropertyEventProps =
+  | "platform"
+  | "product"
+  | "engagementIntent"
+  | "eventVersion";
 
 type VideoDataProps =
   | "videoTitle"
@@ -84,6 +94,7 @@ export const trackingEvents = [
   "activityResultsShared",
   "lessonSummaryReviewed",
   "lessonAccessed",
+  "lessonAbandoned",
 ] as const;
 
 export type PupilAnalyticsEvents = (typeof trackingEvents)[number];
@@ -92,7 +103,10 @@ export type PupilAnalyticsTrack = {
   [eventName in PupilAnalyticsEvents]: (
     props: Omit<
       Parameters<TrackFns[eventName]>[0],
-      NavigationEventProps | VideoDataProps | AudioDataProps
+      | NavigationEventProps
+      | VideoDataProps
+      | AudioDataProps
+      | CorePropertyEventProps
     >,
   ) => void;
 };
@@ -145,6 +159,13 @@ export type AdditionalArgType = PupilPathwayData & {
   analyticsUseCase: AnalyticsUseCaseValueType;
 };
 
+export type CorePropertyArgType = {
+  platform: PlatformValueType;
+  product: ProductValueType;
+  engagementIntent: EngagementIntentValueType;
+  eventVersion: EventVersionValueType;
+};
+
 export const PupilAnalyticsProvider = ({
   children,
   pupilPathwayData,
@@ -159,6 +180,13 @@ export const PupilAnalyticsProvider = ({
   const additionalArgs: AdditionalArgType = {
     ...pupilPathwayData,
     analyticsUseCase: "Pupil",
+  };
+
+  const corePropertyArgs: CorePropertyArgType = {
+    platform: "owa",
+    product: "pupil lesson activities",
+    engagementIntent: "use",
+    eventVersion: "2.0.0",
   };
 
   const videoData = lessonContent && getPupilVideoData(lessonContent);
@@ -335,11 +363,18 @@ export const PupilAnalyticsProvider = ({
     lessonAccessed: (args) =>
       track.lessonAccessed({
         ...additionalArgs,
+        ...corePropertyArgs,
         ...args,
       }),
     lessonStarted: (args) =>
       track.lessonStarted({
         ...additionalArgs,
+        ...args,
+      }),
+    lessonAbandoned: (args) =>
+      track.lessonAbandoned({
+        ...additionalArgs,
+        ...corePropertyArgs,
         ...args,
       }),
   };
@@ -351,13 +386,10 @@ export const PupilAnalyticsProvider = ({
   );
 };
 
-export const getPupilPathwayData = (
-  browseData: LessonBrowseData,
-): PupilPathwayData => {
-  const k = browseData.programmeFields.keystageDescription.replace(
-    "Stage",
-    "stage",
-  );
+export const generateKeyStageTitle = (
+  keystageDescription: string,
+): KeyStageTitleValueType => {
+  const k = keystageDescription.replace("Stage", "stage");
 
   const keyStageTitle = k as KeyStageTitleValueType;
 
@@ -371,6 +403,15 @@ export const getPupilPathwayData = (
       keyStageTitle: k,
     });
   }
+  return keyStageTitle;
+};
+
+export const getPupilPathwayData = (
+  browseData: LessonBrowseData,
+): PupilPathwayData => {
+  const keyStageTitle = generateKeyStageTitle(
+    browseData.programmeFields.keystageDescription,
+  );
   if (browseData.programmeFields.phase === "foundation") {
     throw new Error("Foundation phase is not supported");
   }
