@@ -44,6 +44,7 @@ export const getFilterForQuery = <T extends { slug: string }>(
 export const getFiltersFromQuery = (query: ParsedUrlQuery) => {
   return [
     query.keyStages,
+    query.yearGroups,
     query.contentTypes,
     query.examBoards,
     query.subjects,
@@ -203,6 +204,7 @@ export function getLessonObject(props: {
     keyStageShortCode: keyStage?.shortCode?.toString() || "",
     keyStageTitle: keyStage?.title?.toString() || "",
     keyStageSlug: keyStage?.slug?.toString() || "",
+    yearTitle: highlightedHit.year_title?.toString(),
     subjectTitle: highlightedHit.subject_title?.toString(),
     buttonLinkProps: buttonLinkProps,
     cohort: hit._source.cohort,
@@ -256,6 +258,8 @@ export function getUnitObject(props: {
     keyStageShortCode: keyStage?.shortCode?.toString() || "",
     keyStageTitle: keyStage?.title?.toString() || "",
     keyStageSlug: keyStage?.slug?.toString() || "",
+    yearTitle: highlightedHit.year_title?.toString(),
+
     buttonLinkProps: buttonLinkProps,
     cohort: hit._source.cohort,
     pathways: hit._source.pathways.map((pathway) =>

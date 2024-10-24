@@ -26,10 +26,12 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
     keyStages: allKeyStages,
     contentTypes: allContentTypes,
     examBoards: allExamBoards,
+    yearGroups: allYearGroups,
   } = curriculumData;
 
   const searchProps = useSearch({
     allKeyStages,
+    allYearGroups,
     allSubjects,
     allContentTypes,
     allExamBoards,
@@ -55,10 +57,12 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
   const searchFilters = useSearchFilters({
     ...searchProps,
     allKeyStages,
+    allYearGroups,
     allSubjects,
     allContentTypes,
     allExamBoards,
   });
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <PaginationHead

@@ -12,7 +12,7 @@ describe("SearchFilters", () => {
     jest.clearAllMocks();
   });
 
-  test("renders all the key stage, subject filters and search type filters", () => {
+  test("renders all the key stage, year grBoup, subject filters and search type filters", () => {
     const { getAllByRole } = renderWithTheme(
       <SearchFilters
         legacyFilter={props.legacyFilter}
@@ -20,6 +20,7 @@ describe("SearchFilters", () => {
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
         examBoardFilters={props.examBoardFilters}
+        yearGroupFilters={props.yearGroupFilters}
       />,
     );
     const searchFilters = getAllByRole("checkbox");
@@ -28,6 +29,7 @@ describe("SearchFilters", () => {
       props.keyStageFilters.length +
         props.subjectFilters.length +
         props.examBoardFilters.length +
+        props.yearGroupFilters.length +
         1,
     );
   });
@@ -39,6 +41,7 @@ describe("SearchFilters", () => {
         subjectFilters={props.subjectFilters}
         keyStageFilters={props.keyStageFilters}
         examBoardFilters={props.examBoardFilters}
+        yearGroupFilters={props.yearGroupFilters}
       />,
     );
     const showNewContentFilter = getByRole("checkbox", {
@@ -53,10 +56,14 @@ describe("SearchFilters", () => {
     const ocrFilter = getByRole("checkbox", {
       name: "OCR filter",
     });
+    const yearGroup = getByRole("checkbox", {
+      name: "Year 10 filter",
+    });
     expect(showNewContentFilter).toBeInTheDocument();
     expect(mathsFilter).toBeInTheDocument();
     expect(ks2Filter).toBeInTheDocument();
     expect(ocrFilter).toBeInTheDocument();
+    expect(yearGroup).toBeInTheDocument();
   });
   test("respect 'checked' attribute when filter active", () => {
     const { getByRole } = renderWithTheme(
@@ -78,6 +85,10 @@ describe("SearchFilters", () => {
           ...filter,
           checked: true,
         }))}
+        yearGroupFilters={props.yearGroupFilters.map((filter) => ({
+          ...filter,
+          checked: true,
+        }))}
       />,
     );
     const newContentFilter = getByRole("checkbox", {
@@ -92,10 +103,14 @@ describe("SearchFilters", () => {
     const examBoardFilter = getByRole("checkbox", {
       name: "OCR filter",
     });
+    const yearGroup = getByRole("checkbox", {
+      name: "Year 10 filter",
+    });
     expect(newContentFilter).toHaveAttribute("checked");
     expect(ks2Filter).toHaveAttribute("checked");
     expect(mathsFilter).toHaveAttribute("checked");
     expect(examBoardFilter).toHaveAttribute("checked");
+    expect(yearGroup).toHaveAttribute("checked");
   });
   test("respect 'checked' attribute when filter not active", () => {
     const { getByRole } = renderWithTheme(
@@ -117,6 +132,10 @@ describe("SearchFilters", () => {
           ...filter,
           checked: false,
         }))}
+        yearGroupFilters={props.yearGroupFilters.map((filter) => ({
+          ...filter,
+          checked: false,
+        }))}
       />,
     );
     const newContentFilter = getByRole("checkbox", {
@@ -131,11 +150,15 @@ describe("SearchFilters", () => {
     const examBoardFilter = getByRole("checkbox", {
       name: "OCR filter",
     });
-    expect(newContentFilter).not.toHaveAttribute("checked");
+    const yearGroupFilter = getByRole("checkbox", {
+      name: "Year 11 filter",
+    });
 
+    expect(newContentFilter).not.toHaveAttribute("checked");
     expect(ks2Filter).not.toHaveAttribute("checked");
     expect(mathsFilter).not.toHaveAttribute("checked");
     expect(examBoardFilter).not.toHaveAttribute("checked");
+    expect(yearGroupFilter).not.toHaveAttribute("checked");
   });
   test("onChange on click", () => {
     const { getByRole } = renderWithTheme(
@@ -157,6 +180,10 @@ describe("SearchFilters", () => {
           ...filter,
           checked: false,
         }))}
+        yearGroupFilters={props.yearGroupFilters.map((filter) => ({
+          ...filter,
+          checked: true,
+        }))}
       />,
     );
     const newContentFilter = getByRole("checkbox", {
@@ -171,12 +198,16 @@ describe("SearchFilters", () => {
     const examBoardFilter = getByRole("checkbox", {
       name: "OCR filter",
     });
+    const yearGroupFilter = getByRole("checkbox", {
+      name: "Year 10 filter",
+    });
+
     newContentFilter.click();
     examBoardFilter.click();
-
     ks2Filter.click();
     mathsFilter.click();
+    yearGroupFilter.click();
 
-    expect(mockOnChange).toHaveBeenCalledTimes(4);
+    expect(mockOnChange).toHaveBeenCalledTimes(5);
   });
 });

@@ -9,7 +9,13 @@ const getCheckboxFilters = <T extends { slug: string }>(
   filterProps: T,
   filterQueryItems: string[],
   setQuery: SetSearchQuery,
-  name: "keyStages" | "subjects" | "contentTypes" | "examBoards" | "curriculum",
+  name:
+    | "keyStages"
+    | "subjects"
+    | "contentTypes"
+    | "examBoards"
+    | "curriculum"
+    | "yearGroups",
 ) => {
   const { slug } = filterProps;
   const checked = filterQueryItems.includes(slug);
@@ -36,6 +42,7 @@ const useSearchFilters = (
 ): UseSearchFiltersReturnType => {
   const {
     allKeyStages,
+    allYearGroups,
     allSubjects,
     allContentTypes,
     allExamBoards,
@@ -55,6 +62,16 @@ const useSearchFilters = (
       query.keyStages || [],
       setQuery,
       "keyStages",
+    );
+    return filters;
+  });
+
+  const yearGroupCheckboxFilters = allYearGroups.map((yearGroup) => {
+    const filters = getCheckboxFilters(
+      yearGroup,
+      query.yearGroups || [],
+      setQuery,
+      "yearGroups",
     );
     return filters;
   });
@@ -92,6 +109,7 @@ const useSearchFilters = (
   return {
     subjectFilters: subjectCheckboxFilters,
     keyStageFilters: keyStageCheckboxFilters,
+    yearGroupFilters: yearGroupCheckboxFilters,
     contentTypeFilters: contentTypeCheckboxFilters,
     examBoardFilters: examBoardCheckboxFilters,
     legacyFilter,

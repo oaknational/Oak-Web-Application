@@ -20,12 +20,14 @@ const SearchActiveFilters: FC<SearchActiveFiltersProps> = (props) => {
     keyStageFilters,
     subjectFilters,
     contentTypeFilters,
+    yearGroupFilters,
     examBoardFilters,
     legacyFilter,
   } = searchFilters;
 
   const activeFilters = [
     ...keyStageFilters.filter((keyStage) => keyStage.checked),
+    ...yearGroupFilters.filter((yearGroup) => yearGroup.checked),
     ...subjectFilters.filter((subject) => subject.checked),
     ...contentTypeFilters.filter((contentType) => contentType.checked),
     ...examBoardFilters.filter((examBoard) => examBoard.checked),

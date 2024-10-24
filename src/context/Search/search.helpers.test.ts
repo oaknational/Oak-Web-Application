@@ -143,13 +143,20 @@ describe("search helpers", () => {
     const query = {
       term: "macbeth",
       keyStages: "ks2",
+      yearGroups: "year-4",
       subjects: "english-grammar",
       contentTypes: "lesson",
       examBoards: "wjec",
     } as ParsedUrlQuery;
 
     const result = getFiltersFromQuery(query);
-    expect(result).toEqual(["ks2", "lesson", "wjec", "english-grammar"]);
+    expect(result).toEqual([
+      "ks2",
+      "year-4",
+      "lesson",
+      "wjec",
+      "english-grammar",
+    ]);
   });
   test("gets expected filters from query with empty filters", () => {
     const query = { term: "macbeth" };

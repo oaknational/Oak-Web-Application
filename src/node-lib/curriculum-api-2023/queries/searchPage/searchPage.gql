@@ -1,7 +1,8 @@
 query searchPage {
-  searchPage: published_mv_search_page_6_0_0 {
+  searchPage: published_mv_search_page_10_0_0 {
     contentTypes: content_type
     keyStages: key_stages
+    yearGroups: year_groups
     subjects
     examBoards: exam_boards
   }

@@ -27,6 +27,8 @@ const searchResultsSourceCommon = z.object({
   key_stage_title: z.string(),
   key_stage_slug: z.string(),
   // These are nullish, as the old search API returns unit slugs as topic_slug etc.
+  year_slug: z.string().nullish(),
+  year_title: z.string().nullish(),
   unit_slug: z.string().nullish(),
   unit_title: z.string().nullish(),
   expired: z.boolean().nullish(),

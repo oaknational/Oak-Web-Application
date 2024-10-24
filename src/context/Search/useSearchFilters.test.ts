@@ -12,6 +12,13 @@ const props: UseSearchFiltersProps = {
     { shortCode: "KS3", slug: "ks3", title: "Key-stage 3" },
     { shortCode: "KS4", slug: "ks4", title: "Key-stage 4" },
   ],
+  allYearGroups: [
+    {
+      slug: "year-1",
+      title: "Year 1",
+    },
+    { slug: "year-10", title: "Year 10" },
+  ],
   allSubjects: [
     { slug: "computing", title: "Computing" },
     { slug: "english", title: "English" },

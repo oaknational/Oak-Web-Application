@@ -11,6 +11,7 @@ const keyStages = fixture.keyStages;
 const subjects = fixture.subjects;
 const contentTypes = fixture.contentTypes;
 const examBoards = fixture.examBoards;
+const yearGroups = fixture.yearGroups;
 
 jest.mock("posthog-js/react", () => ({
   ...jest.requireActual("posthog-js/react"),
@@ -21,7 +22,13 @@ describe("pages/teachers/search.tsx", () => {
   test("renders page with correct seo", () => {
     const { seo } = renderWithSeo()(
       <SearchPage
-        curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
+        curriculumData={{
+          keyStages,
+          subjects,
+          contentTypes,
+          examBoards,
+          yearGroups,
+        }}
       />,
     );
 
@@ -38,22 +45,57 @@ describe("pages/teachers/search.tsx", () => {
     });
   });
 
-  test("renders correct examBoard filters", async () => {
+  test("renders correct content type filters", () => {
     const { getAllByRole } = renderWithSeo()(
       <SearchPage
-        curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
+        curriculumData={{
+          keyStages,
+          subjects,
+          contentTypes,
+          examBoards,
+          yearGroups,
+        }}
       />,
     );
-
-    expect(getAllByRole("checkbox", { hidden: true })[7]).toHaveAttribute(
+    expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAttribute(
       "aria-label",
-      "AQA filter",
+      "Lessons filter",
+    );
+
+    expect(getAllByRole("checkbox", { hidden: true })[1]).toHaveAttribute(
+      "aria-label",
+      "Units filter",
     );
   });
+
+  test("renders correct new curriculum filter", async () => {
+    const { getAllByRole } = renderWithSeo()(
+      <SearchPage
+        curriculumData={{
+          keyStages,
+          subjects,
+          contentTypes,
+          examBoards,
+          yearGroups,
+        }}
+      />,
+    );
+    expect(getAllByRole("checkbox", { hidden: true })[2]).toHaveAttribute(
+      "aria-label",
+      "Show new content filter",
+    );
+  });
+
   test("renders correct key stage filters", async () => {
     const { getAllByRole } = renderWithSeo()(
       <SearchPage
-        curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
+        curriculumData={{
+          keyStages,
+          subjects,
+          contentTypes,
+          examBoards,
+          yearGroups,
+        }}
       />,
     );
 
@@ -62,32 +104,60 @@ describe("pages/teachers/search.tsx", () => {
       "Key stage 1 filter",
     );
   });
+
+  test("renders correct year group filters", () => {
+    const { getAllByRole } = renderWithSeo()(
+      <SearchPage
+        curriculumData={{
+          keyStages,
+          subjects,
+          contentTypes,
+          examBoards,
+          yearGroups,
+        }}
+      />,
+    );
+    expect(getAllByRole("checkbox", { hidden: true })[7]).toHaveAttribute(
+      "aria-label",
+      "Year 1 filter",
+    );
+  });
+
+  test("renders correct examBoard filters", async () => {
+    const { getAllByRole } = renderWithSeo()(
+      <SearchPage
+        curriculumData={{
+          keyStages,
+          subjects,
+          contentTypes,
+          examBoards,
+          yearGroups,
+        }}
+      />,
+    );
+
+    expect(getAllByRole("checkbox", { hidden: true })[18]).toHaveAttribute(
+      "aria-label",
+      "AQA filter",
+    );
+  });
+
   test("renders correct subject filters", () => {
     const { getAllByRole } = renderWithSeo()(
       <SearchPage
-        curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
+        curriculumData={{
+          keyStages,
+          subjects,
+          contentTypes,
+          examBoards,
+          yearGroups,
+        }}
       />,
     );
 
-    expect(getAllByRole("checkbox", { hidden: true })[12]).toHaveAttribute(
+    expect(getAllByRole("checkbox", { hidden: true })[23]).toHaveAttribute(
       "aria-label",
       "English filter",
-    );
-  });
-  test("renders correct content type filters", () => {
-    const { getAllByRole } = renderWithSeo()(
-      <SearchPage
-        curriculumData={{ keyStages, subjects, contentTypes, examBoards }}
-      />,
-    );
-    expect(getAllByRole("checkbox", { hidden: true })[1]).toHaveAttribute(
-      "aria-label",
-      "Units filter",
-    );
-
-    expect(getAllByRole("checkbox", { hidden: true })[0]).toHaveAttribute(
-      "aria-label",
-      "Lessons filter",
     );
   });
 });
