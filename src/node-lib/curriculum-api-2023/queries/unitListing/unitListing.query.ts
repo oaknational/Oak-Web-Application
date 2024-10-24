@@ -39,6 +39,7 @@ const unitListingQuery =
       (p) => p.programme_fields.tier_slug !== null,
     );
 
+    // sibling tiers
     const tiers = hasTiers
       ? await getTiersForProgramme(
           sdk,

@@ -72,6 +72,7 @@ export const PupilPageContent = ({
     exitQuiz,
     lessonTitle,
     pupilLessonOutcome,
+    phonicsOutcome,
     videoMuxPlaybackId,
     videoWithSignLanguageMuxPlaybackId,
     isLegacy,
@@ -96,6 +97,7 @@ export const PupilPageContent = ({
           lessonTitle={lessonTitle ?? ""}
           browseData={browseData}
           pupilLessonOutcome={pupilLessonOutcome ?? undefined}
+          phonicsOutcome={phonicsOutcome ?? undefined}
           contentGuidance={contentGuidance}
           supervisionLevel={supervisionLevel ?? undefined}
           starterQuizNumQuestions={starterQuizNumQuestions}

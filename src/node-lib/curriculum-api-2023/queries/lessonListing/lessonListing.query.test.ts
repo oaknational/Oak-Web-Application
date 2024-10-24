@@ -81,6 +81,7 @@ describe("lessonListing()", () => {
             key_learning_points: [{}],
             equipment_and_resources: null,
             content_guidance_details: null,
+            phonics_outcome: null,
             content_guidance: null,
             supervision_level: null,
             thirdpartycontent_list: null,

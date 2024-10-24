@@ -19,6 +19,7 @@ export const lessonContentSchema = lessonContentSchemaFull.omit({
   video_duration: true,
   geo_restricted: true,
   login_required: true,
+  phonics_outcome: true, // will need to be reinstated when this is implemented
 });
 
 export type LessonOverviewContent = Omit<
