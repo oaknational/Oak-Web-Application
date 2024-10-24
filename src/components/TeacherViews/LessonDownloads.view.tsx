@@ -8,6 +8,7 @@ import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
+import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
 
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -171,11 +172,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     handleToggleSelectAll,
     selectAllChecked,
     setEmailInLocalStorage,
-    hasOnboardingDownloadDetails,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
     type: "download",
   });
+  const onboardingStatus = useOnboardingStatus();
 
   const noResourcesSelected =
     form.watch().resources === undefined || form.watch().resources.length === 0;
@@ -375,7 +376,11 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               hideSelectAll={Boolean(expired)}
               updatedAt={updatedAt}
               withHomeschool={true}
-              hasOnboardingDownloadDetails={hasOnboardingDownloadDetails}
+              showTermsAgreement={
+                onboardingStatus === "not-onboarded" ||
+                onboardingStatus === "unknown"
+              }
+              isLoading={onboardingStatus === "loading"}
               cardGroup={
                 !showNoResources && (
                   <DownloadCardGroup
