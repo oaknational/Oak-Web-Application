@@ -275,11 +275,19 @@ const buttonStyles = css<ButtonStylesProps>`
     props.variant === "buttonStyledAsLink" &&
     props.size === "medium" &&
     css`
+      color: #222222;
+
+      & > span {
+        /* color: red; */
+        font-weight: 600;
+      }
+
       & ${ButtonStyledAsLinkFocusUnderline} {
-        display: block;
-        bottom: -1px;
-        left: ${props.$iconPosition === "leading" ? "4px" : ""};
-        width: ${props.icon ? "calc(100% - 4px)" : "100%"};
+        & :focus {
+          display: block;
+        }
+        left: ${props.$iconPosition === "leading" ? "10px" : ""};
+        width: ${props.icon ? "calc(100% - 10px)" : "100%"};
       }
 
       & ${Flex} {

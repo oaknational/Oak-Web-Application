@@ -15,6 +15,7 @@ export type HomePageBannerProps = {
   newText: string;
   ctaText: string;
 } & ResolveOakHrefProps;
+
 const HomePageBanner: FC<HomePageBannerProps> = ({
   background,
   newText,
@@ -32,7 +33,8 @@ const HomePageBanner: FC<HomePageBannerProps> = ({
       <Flex
         $alignItems={"center"}
         $flexWrap={"wrap"}
-        $gap={[20, 44]}
+        $gap={[4, 40]}
+        $flexDirection={["column", "row"]}
         $justifyContent={"center"}
         $pv={0}
       >
@@ -43,10 +45,10 @@ const HomePageBanner: FC<HomePageBannerProps> = ({
           </OakTypography>
         </Flex>
         <ButtonAsLink
+          $ml={[20, 0]}
           {...linkProps}
           label={ctaText}
           variant={"buttonStyledAsLink"}
-          $font={["body-3-bold", "body-2-bold"]}
           icon={"chevron-right"}
           $iconPosition={"trailing"}
           iconBackground="lemon"

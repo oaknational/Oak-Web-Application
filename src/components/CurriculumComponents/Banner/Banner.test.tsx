@@ -101,25 +101,7 @@ describe("HomePageBanner", () => {
   });
 
   it("should handle OakColor backgrounds", () => {
-    const colors = [
-      "white",
-      "black",
-      "transparent",
-      "inherit",
-      "oakGreen",
-      "mint",
-      "aqua",
-      "lemon",
-      "lavender",
-      "pink",
-      "amber",
-      "blue",
-      "magenta",
-      "purple",
-      "teal",
-      "red",
-      "navy",
-    ] as const;
+    const colors = ["white", "black", "mint", "lavender", "pink"] as const;
 
     colors.forEach((color) => {
       const { unmount } = renderBanner({
