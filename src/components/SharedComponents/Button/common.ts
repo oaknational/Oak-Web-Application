@@ -25,10 +25,13 @@ export type ButtonVariant =
   | "flat";
 export type ButtonBackground = OakColorName;
 export type IconPosition = "leading" | "trailing";
-export type ButtonSize = "small" | "large" | "xs";
+export type ButtonSize = "small" | "medium" | "large" | "xs";
 
 const SMALL_BUTTON_ICON_SIZE = 28;
 const SMALL_BUTTON_HEIGHT = 40;
+
+const MEDIUM_BUTTON_ICON_SIZE = 32;
+const MEDIUM_BUTTON_HEIGHT = 44;
 
 const LARGE_BUTTON_ICON_SIZE = 36;
 const LARGE_BUTTON_HEIGHT = 48;
@@ -197,6 +200,23 @@ const BUTTON_CONFIGS: Record<
   "xs-buttonStyledAsLink-icon-button": DEFAULT_BUTTON_CONFIG,
   "xs-flat-button": DEFAULT_BUTTON_CONFIG,
   "xs-flat-icon-button": DEFAULT_BUTTON_CONFIG,
+  "medium-brush-button": DEFAULT_BUTTON_CONFIG,
+  "medium-brush-icon-button": DEFAULT_BUTTON_CONFIG,
+  "medium-brushNav-button": DEFAULT_BUTTON_CONFIG,
+  "medium-brushNav-icon-button": DEFAULT_BUTTON_CONFIG,
+  "medium-minimal-button": DEFAULT_BUTTON_CONFIG,
+  "medium-minimal-icon-button": DEFAULT_BUTTON_CONFIG,
+  "medium-minimalNav-button": DEFAULT_BUTTON_CONFIG,
+  "medium-minimalNav-icon-button": DEFAULT_BUTTON_CONFIG,
+  "medium-buttonStyledAsLink-button": {
+    height: 30,
+    iconOuterHeight: 0,
+    iconInnerHeight: 0,
+    paddingH: 0,
+  },
+  "medium-buttonStyledAsLink-icon-button": DEFAULT_BUTTON_CONFIG,
+  "medium-flat-button": DEFAULT_BUTTON_CONFIG,
+  "medium-flat-icon-button": DEFAULT_BUTTON_CONFIG,
   "large-flat-button": DEFAULT_BUTTON_CONFIG,
   "small-flat-button": DEFAULT_BUTTON_CONFIG,
   "small-flat-icon-button": DEFAULT_BUTTON_CONFIG,
@@ -220,6 +240,7 @@ export const getIconButtonHeight = (
 
 export const buttonSizeHeightMap: Record<ButtonSize, PixelSpacing> = {
   small: SMALL_BUTTON_HEIGHT,
+  medium: MEDIUM_BUTTON_HEIGHT,
   large: LARGE_BUTTON_HEIGHT,
   xs: SMALL_BUTTON_HEIGHT,
 };
@@ -272,6 +293,7 @@ export const getButtonPadding = (
 ) => getButtonConfig(size, variant, buttonOrIconButton).paddingH;
 export const buttonIconSizeMap: Record<ButtonSize, PixelSpacing> = {
   small: SMALL_BUTTON_ICON_SIZE,
+  medium: MEDIUM_BUTTON_ICON_SIZE,
   large: LARGE_BUTTON_ICON_SIZE,
   xs: SMALL_BUTTON_ICON_SIZE,
 };

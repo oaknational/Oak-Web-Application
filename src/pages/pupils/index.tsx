@@ -4,6 +4,7 @@ import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
+import Banners from "@/components/CurriculumComponents/Banners";
 import PupilTab from "@/components/GenericPagesComponents/PupilTab";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import {
@@ -13,6 +14,7 @@ import {
 
 const Pupils: NextPage<HomePageProps> = (props) => (
   <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
+    <Banners />
     <HomePageTabImageNav current={"pupils"} />
     <PupilTab aria-current="page" />
     <HomePageLowerView posts={props.posts} />
