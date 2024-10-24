@@ -116,7 +116,7 @@ describe("PupilUnitsSection", () => {
         filterItems={["All"]}
         applyFilter={() => {}}
         subjectCategories={subjectCategories}
-        onCallback={onClickCallback}
+        onUnitSelected={onClickCallback}
       />,
     );
     // Find the button and log its presence
@@ -170,7 +170,7 @@ describe("PupilUnitsSection", () => {
         filterItems={["All"]}
         applyFilter={() => {}}
         subjectCategories={subjectCategories}
-        onCallback={onClickCallback}
+        onUnitSelected={onClickCallback}
       />,
     );
     // Find the button and log its presence
