@@ -2,7 +2,6 @@ import { xmlRootToJson } from "../xml";
 
 import {
   generateGridCols,
-  keyStageFromPhaseTitle,
   uncapitalize,
   uncapitalizeSubject,
   generateOakIconURL,
@@ -30,11 +29,6 @@ describe("helper", () => {
     ] as const) {
       expect(uncapitalizeSubject(input)).toEqual(output);
     }
-  });
-
-  it("keyStageFromPhaseTitle", () => {
-    expect(keyStageFromPhaseTitle("Primary")).toEqual("KS1 & KS2");
-    expect(keyStageFromPhaseTitle("Secondary")).toEqual("KS3 & KS4");
   });
 
   describe("generateGridCols", () => {

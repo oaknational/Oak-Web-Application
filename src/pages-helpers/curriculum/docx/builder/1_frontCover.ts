@@ -12,7 +12,9 @@ import {
   JSZipCached,
 } from "../docx";
 
-import { keyStageFromPhaseTitle, generateOakIconURL } from "./helper";
+import { generateOakIconURL } from "./helper";
+
+import { getShortPhaseText } from "@/utils/curriculum/formatting";
 
 export default async function generate(
   zip: JSZipCached,
@@ -33,7 +35,10 @@ export default async function generate(
     ),
   });
 
-  const phaseTitle = keyStageFromPhaseTitle(data.phaseTitle);
+  const phaseTitle = getShortPhaseText(
+    { slug: slugs.phaseSlug ?? "primary" },
+    data.units.map((u) => ({ slug: u.keystage_slug })),
+  );
   const subjectTitle = data.subjectTitle;
 
   const examboardTitle = data.examboardTitle ? `${data.examboardTitle}` : "";
