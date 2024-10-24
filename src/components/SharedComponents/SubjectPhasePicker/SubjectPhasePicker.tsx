@@ -238,7 +238,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     setShowPhases(false);
   };
 
-  const onFocusPhasesEnd = () => {
+  // Lazy version of process.nextTick
+  const nextTick = async () => {
+    return new Promise((resolve) => setTimeout(resolve, 0));
+  };
+
+  const onFocusPhasesEnd = async () => {
     flushSync(() => {
       setShowPhases(false);
     });
@@ -248,30 +253,22 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     const mobileEl =
       subjectPickerButtonMobileContainer.current?.querySelector("button");
 
-    console.log({ desktopEl, mobileEl });
-
     // Focus the last element
     if (desktopEl && desktopEl.checkVisibility()) {
-      console.log(">> focus", desktopEl);
-      setTimeout(() => {
-        desktopEl.focus();
-      }, 0);
+      await nextTick();
+      desktopEl.focus();
     } else if (mobileEl && mobileEl.checkVisibility()) {
-      console.log(">> focus", mobileEl);
-      setTimeout(() => {
-        mobileEl.focus();
-      }, 0);
+      await nextTick();
+      mobileEl.focus();
     }
   };
-  const onFocusSubjectEnd = () => {
+  const onFocusSubjectEnd = async () => {
     flushSync(() => {
       setShowSubjects(false);
     });
 
-    console.log(">> focus", phasePickerButton.current);
-    setTimeout(() => {
-      phasePickerButton.current?.focus();
-    }, 0);
+    await nextTick();
+    phasePickerButton.current?.focus();
   };
 
   const toggleShowPhases = () => {
