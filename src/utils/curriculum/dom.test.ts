@@ -209,4 +209,9 @@ describe("getAllTabFocusableElements()", () => {
     const elements = getAllTabFocusableElements(root).map((el) => el.tagName);
     expect(elements).toEqual([]);
   });
+
+  it("should be empty if no root element supplied", () => {
+    const elements = getAllTabFocusableElements(null);
+    expect(elements).toEqual([]);
+  });
 });
