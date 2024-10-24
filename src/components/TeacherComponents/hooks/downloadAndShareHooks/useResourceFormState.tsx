@@ -62,19 +62,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
   const { isSignedIn, user } = useUser();
 
-  const [hasOnboardingDownloadDetails, setHasOnboardingDownloadDetails] =
-    useState(false);
-
-  useEffect(() => {
-    if (user != null) {
-      // as user has signed in with full onboarding journey on OWA
-      const hasOnboardingDownloadDetails = Boolean(
-        authFlagEnabled && isSignedIn && user.publicMetadata?.owa?.isOnboarded,
-      );
-      setHasOnboardingDownloadDetails(hasOnboardingDownloadDetails);
-    }
-  }, [authFlagEnabled, isSignedIn, user, user?.publicMetadata?.owa?.isTeacher]);
-
   const {
     schoolFromLocalStorage,
     emailFromLocalStorage,
@@ -340,7 +327,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setActiveResources,
     handleToggleSelectAll,
     selectAllChecked,
-    hasOnboardingDownloadDetails,
     form: {
       trigger,
       setValue,

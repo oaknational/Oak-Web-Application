@@ -1,3 +1,48 @@
+## [1.602.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.2...v1.602.3) (2024-10-24)
+
+
+### Bug Fixes
+
+* make docx cover page keystage aware ([4de0b20](https://github.com/oaknational/Oak-Web-Application/commit/4de0b20837c2b0594d32a3f737c4c091e01ed812))
+
+## [1.602.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.1...v1.602.2) (2024-10-23)
+
+## [1.602.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.0...v1.602.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* don't report errors for canonical pages with null subjects ([b8d831f](https://github.com/oaknational/Oak-Web-Application/commit/b8d831f138906c6a8b25c7a69a50fa65f5060c56))
+
+# [1.602.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.601.0...v1.602.0) (2024-10-22)
+
+
+### Bug Fixes
+
+* dropdown text colour when open ([8679273](https://github.com/oaknational/Oak-Web-Application/commit/867927304c27a0b0aac9ef0ea67acbaf62369e1a))
+* explicitly set colour and text alignment on button for iOS safari ([65084fa](https://github.com/oaknational/Oak-Web-Application/commit/65084fa4b0e65f49901ffeca69b9308386efe58b))
+* left align links in dropdown ([f8ed21c](https://github.com/oaknational/Oak-Web-Application/commit/f8ed21c3ae1eda0f44034e4dc95153b1077728cd))
+* remove bullets and extra padding from list items in dropdown ([f98dcef](https://github.com/oaknational/Oak-Web-Application/commit/f98dcef469d2228654ba79283c120588cc15567c))
+
+
+### Features
+
+* make whole dropdown card clickable ([ed27b26](https://github.com/oaknational/Oak-Web-Application/commit/ed27b26772c2acfc33cdd55d23230a019d8f8dc0))
+* update search item card styling and layout ([4644545](https://github.com/oaknational/Oak-Web-Application/commit/4644545af1af98fffd8d0972a7d6e400c9e9ba2e))
+* use media query to set highlight on mouse over on desktop only ([95573fa](https://github.com/oaknational/Oak-Web-Application/commit/95573fade5e2b42e1c6ca7c737ff5717e04f37aa))
+
+# [1.601.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.4...v1.601.0) (2024-10-22)
+
+
+### Bug Fixes
+
+* **LESQ-1115:** remove the flicker of the "your details" section ([e4489fb](https://github.com/oaknational/Oak-Web-Application/commit/e4489fbbb565d1d8c5df2830215a9e2a85b1c87f))
+
+
+### Features
+
+* **LESQ-1115:** add a loader around the downloads page form ([4e82b24](https://github.com/oaknational/Oak-Web-Application/commit/4e82b2438c3bc395383fba7282316ec3021a4a44))
+
 ## [1.600.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.600.3...v1.600.4) (2024-10-21)
 
 
