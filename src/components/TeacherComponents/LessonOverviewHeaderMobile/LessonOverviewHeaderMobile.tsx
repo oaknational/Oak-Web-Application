@@ -28,6 +28,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     isNew,
     subjectIconBackgroundColor,
     showShare,
+    isCanonical,
   } = props;
 
   return (
@@ -46,7 +47,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
               <LessonMetadata
                 examBoardTitle={examBoardTitle}
                 yearTitle={yearTitle}
-                tierTitle={tierTitle}
+                tierTitle={!isCanonical ? tierTitle : null}
               />
             </OakSpan>
           )}
