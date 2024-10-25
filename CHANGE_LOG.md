@@ -1,3 +1,10 @@
+## [1.602.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.4...v1.602.5) (2024-10-24)
+
+
+### Bug Fixes
+
+* **LESQ-1138:** send the correct URN for NI schools to hubspot ([ff2f499](https://github.com/oaknational/Oak-Web-Application/commit/ff2f49994d9b0b0ffe1f3e932d79b73f92300ebb))
+
 ## [1.602.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.3...v1.602.4) (2024-10-24)
 
 ## [1.602.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.2...v1.602.3) (2024-10-24)
