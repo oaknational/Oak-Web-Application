@@ -9,6 +9,7 @@ import {
   OakSupportKey,
   oakSupportMap,
 } from "@/components/TeacherViews/Onboarding/HowCanOakSupport/HowCanOakSupport.view";
+import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 
 export const USER_ROLES = ["Teacher", "Parent", "Student", "Other"] as const;
 export type UserRole = (typeof USER_ROLES)[number];
@@ -204,7 +205,9 @@ export const getHubspotOnboardingFormPayload = (props: {
       : isInternationalTeacher
         ? data.manualSchoolName
         : "notListed",
-    contact_school_urn: isUkTeacher ? data.school.split("-")[0] : undefined,
+    contact_school_urn: isUkTeacher
+      ? extractUrnAndSchool(data.school).urn
+      : undefined,
     manual_input_school_address: isInternationalTeacher
       ? data.schoolAddress
       : undefined,

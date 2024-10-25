@@ -12,6 +12,7 @@ import {
   OakLessonBottomNav,
   OakLessonLayout,
   OakLessonNavItem,
+  OakP,
   OakPrimaryButton,
   OakPupilContentGuidance,
   OakSecondaryLink,
@@ -28,11 +29,13 @@ import { ViewAllLessonsButton } from "@/components/PupilComponents/ViewAllLesson
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
+import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 
 type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
   lessonTitle: string;
   pupilLessonOutcome?: string;
+  phonicsOutcome?: string;
   contentGuidance?: OakPupilContentGuidance[] | null;
   supervisionLevel?: string;
   starterQuizNumQuestions: number;
@@ -43,6 +46,7 @@ type PupilViewsLessonOverviewProps = {
 export const PupilViewsLessonOverview = ({
   lessonTitle,
   pupilLessonOutcome,
+  phonicsOutcome,
   contentGuidance,
   supervisionLevel,
   exitQuizNumQuestions,
@@ -67,6 +71,7 @@ export const PupilViewsLessonOverview = ({
     updateCurrentSection,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+  const { track } = usePupilAnalytics();
   const { trackSectionStarted } = useTrackSectionStarted();
   const subjectIconName: `subject-${string}` = `subject-${subjectSlug}`;
   const [isMounted, setIsMounted] = useState(false);
@@ -100,6 +105,14 @@ export const PupilViewsLessonOverview = ({
     trackSectionStarted(nextSection);
   };
 
+  const lessonOutcomes = [pupilLessonOutcome, phonicsOutcome]
+    .filter(Boolean)
+    .map((outcome) => (
+      <OakP key={outcome} $font="body-1" $mb="space-between-s">
+        {outcome}
+      </OakP>
+    ));
+
   return (
     <OakLessonLayout
       lessonSectionName={"overview"}
@@ -132,7 +145,14 @@ export const PupilViewsLessonOverview = ({
         $ph={["inner-padding-m", "inner-padding-xl", "inner-padding-none"]}
       >
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <ViewAllLessonsButton href={backUrl} />
+          <ViewAllLessonsButton
+            href={backUrl}
+            onClick={() => {
+              if (isLessonComplete === false) {
+                track.lessonAbandoned({});
+              }
+            }}
+          />
         </OakGridArea>
         <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
           <OakInlineBanner
@@ -219,14 +239,15 @@ export const PupilViewsLessonOverview = ({
                 </OakHeading>
               </OakBox>
             </OakFlex>
-            {pupilLessonOutcome && (
+            {lessonOutcomes && (
               <OakBox $display={["none", "block"]} $mt="space-between-xl">
                 <OakHeading tag="h2" $font="heading-7" $mb="space-between-s">
                   Lesson outcome
                 </OakHeading>
-                <OakSpan $font="body-1">{pupilLessonOutcome}</OakSpan>
+                {lessonOutcomes}
               </OakBox>
             )}
+
             {contentGuidance && (
               <OakBox
                 $display={["none", "block"]}

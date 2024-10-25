@@ -13,12 +13,16 @@ import { UseBackHrefProps, useBackHref } from "./useBackHref";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
 import { PupilUnitsSection } from "@/components/PupilComponents/PupilUnitsSection";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
+import { generateKeyStageTitle } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
   phase: "primary" | "secondary";
   backHrefSlugs: UseBackHrefProps;
   subjectCategories: string[];
+  programmeFields: UnitListingBrowseData[number]["programmeFields"];
 };
 
 export const PupilViewsUnitListing = ({
@@ -26,7 +30,9 @@ export const PupilViewsUnitListing = ({
   phase,
   backHrefSlugs,
   subjectCategories,
+  programmeFields,
 }: PupilViewsUnitListingProps) => {
+  const { track } = useAnalytics();
   const [backHref, backLabel] = useBackHref(backHrefSlugs);
 
   const [filterItems, setFilterItems] = useState<string[]>(["All"]);
@@ -117,6 +123,28 @@ export const PupilViewsUnitListing = ({
               showTooltip={i === 0}
               expiredSlot={expiringBanner[i]}
               id={`section-${i}`}
+              onUnitSelected={(unit) => {
+                track.unitAccessed({
+                  platform: "owa",
+                  product: "pupil lesson activities",
+                  engagementIntent: "use",
+                  eventVersion: "2.0.0",
+                  componentType: "programme_card",
+                  analyticsUseCase: "Pupil",
+                  unitName: unit.unitData.title,
+                  unitSlug: unit.unitData.slug,
+                  subjectTitle: programmeFields.subject,
+                  subjectSlug: programmeFields.subjectSlug,
+                  yearGroupName: programmeFields.year,
+                  yearGroupSlug: programmeFields.yearSlug,
+                  keyStageTitle: generateKeyStageTitle(
+                    programmeFields.keystageDescription,
+                  ),
+                  keyStageSlug: programmeFields.keystageSlug,
+                  tierName: unit.programmeFields.tierDescription,
+                  examBoard: unit.programmeFields.examboard,
+                });
+              }}
             />
           );
         })}
