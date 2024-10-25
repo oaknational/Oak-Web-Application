@@ -1,3 +1,16 @@
+# [1.603.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.5...v1.603.0) (2024-10-25)
+
+
+### Bug Fixes
+
+* merge conflicts ([0cb6d00](https://github.com/oaknational/Oak-Web-Application/commit/0cb6d0035750077571c00b3053e8b7d8102749e4))
+* type errors ([217ec9f](https://github.com/oaknational/Oak-Web-Application/commit/217ec9fe090044f0bd4a06a1afc920969fb196ac))
+
+
+### Features
+
+* render phoncis outcome ([c7d9bd0](https://github.com/oaknational/Oak-Web-Application/commit/c7d9bd0440d6a9db77cf2061f7fa8810733db846))
+
 ## [1.602.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.4...v1.602.5) (2024-10-24)
 
 
