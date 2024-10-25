@@ -12,6 +12,7 @@ import {
   OakLessonBottomNav,
   OakLessonLayout,
   OakLessonNavItem,
+  OakP,
   OakPrimaryButton,
   OakPupilContentGuidance,
   OakSecondaryLink,
@@ -34,6 +35,7 @@ type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
   lessonTitle: string;
   pupilLessonOutcome?: string;
+  phonicsOutcome?: string;
   contentGuidance?: OakPupilContentGuidance[] | null;
   supervisionLevel?: string;
   starterQuizNumQuestions: number;
@@ -44,6 +46,7 @@ type PupilViewsLessonOverviewProps = {
 export const PupilViewsLessonOverview = ({
   lessonTitle,
   pupilLessonOutcome,
+  phonicsOutcome,
   contentGuidance,
   supervisionLevel,
   exitQuizNumQuestions,
@@ -101,6 +104,14 @@ export const PupilViewsLessonOverview = ({
     proceedToNextSection();
     trackSectionStarted(nextSection);
   };
+
+  const lessonOutcomes = [pupilLessonOutcome, phonicsOutcome]
+    .filter(Boolean)
+    .map((outcome) => (
+      <OakP key={outcome} $font="body-1" $mb="space-between-s">
+        {outcome}
+      </OakP>
+    ));
 
   return (
     <OakLessonLayout
@@ -228,14 +239,15 @@ export const PupilViewsLessonOverview = ({
                 </OakHeading>
               </OakBox>
             </OakFlex>
-            {pupilLessonOutcome && (
+            {lessonOutcomes && (
               <OakBox $display={["none", "block"]} $mt="space-between-xl">
                 <OakHeading tag="h2" $font="heading-7" $mb="space-between-s">
                   Lesson outcome
                 </OakHeading>
-                <OakSpan $font="body-1">{pupilLessonOutcome}</OakSpan>
+                {lessonOutcomes}
               </OakBox>
             )}
+
             {contentGuidance && (
               <OakBox
                 $display={["none", "block"]}
