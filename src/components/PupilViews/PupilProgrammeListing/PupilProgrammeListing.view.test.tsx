@@ -74,14 +74,14 @@ jest.mock("@/components/PupilComponents/BrowseFactorSelector", () => {
   return {
     ...originalModule,
     BrowseFactorSelector: jest.fn(
-      (props: { onFactorSelected: (factor: string) => void }) => {
-        const { onFactorSelected } = props;
+      (props: { onTrackingCallback: (factor: string) => void }) => {
+        const { onTrackingCallback } = props;
         return (
           <div>
             <div>BrowseFactorSelector</div>
             <button
               onClick={() => {
-                onFactorSelected("AQA");
+                onTrackingCallback("AQA");
               }}
             >
               AQA

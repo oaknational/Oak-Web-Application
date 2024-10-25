@@ -18,7 +18,7 @@ export const BrowseFactorSelector = ({
   onClick,
   chosenFactors,
   programmes,
-  onFactorSelected,
+  onTrackingCallback,
 }: {
   factorType: "pathway" | "examboard" | "tier";
   factors: FactorData[];
@@ -27,7 +27,7 @@ export const BrowseFactorSelector = ({
   chosenFactors: Factors;
   programmes: PupilProgrammeListingData[];
   onClick: (factor: FactorData) => void;
-  onFactorSelected?: (factor: FactorData) => void;
+  onTrackingCallback?: (factor: FactorData) => void;
 }) => {
   const orderedFactors = factors.sort((a, b) => {
     return (a.factorDisplayOrder ?? 0) - (b.factorDisplayOrder ?? 0);
@@ -87,8 +87,8 @@ export const BrowseFactorSelector = ({
               key={factor.factorSlug}
               onClick={() => {
                 onClick(factor);
-                if (onFactorSelected) {
-                  onFactorSelected(factor);
+                if (onTrackingCallback) {
+                  onTrackingCallback(factor);
                 }
               }}
               role="button"
@@ -108,8 +108,8 @@ export const BrowseFactorSelector = ({
               programmeSlug: getSlug(factor),
             })}
             onClick={() => {
-              if (onFactorSelected) {
-                onFactorSelected(factor);
+              if (onTrackingCallback) {
+                onTrackingCallback(factor);
               }
             }}
           >

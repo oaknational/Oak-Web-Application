@@ -206,7 +206,7 @@ describe("BrowseExamboardSelector", () => {
           onClick={onClick}
           baseSlug="my-subject"
           phaseSlug="secondary"
-          onFactorSelected={onClickCallback}
+          onTrackingCallback={onClickCallback}
         />
       </OakThemeProvider>,
     );
@@ -238,7 +238,7 @@ describe("BrowseExamboardSelector", () => {
           onClick={() => {}}
           baseSlug="my-subject"
           phaseSlug="secondary"
-          onFactorSelected={onClickCallback}
+          onTrackingCallback={onClickCallback}
         />
       </OakThemeProvider>,
     );
