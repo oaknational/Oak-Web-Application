@@ -6,7 +6,7 @@ import {
   OakSecondaryButton,
   OakSpan,
 } from "@oaknational/oak-components";
-import { Control, UseFormTrigger, useForm } from "react-hook-form";
+import { Control, Controller, UseFormTrigger, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Link from "next/link";
@@ -37,7 +37,7 @@ export const oakSupportMap: Record<OakSupportKey, string> = {
 const HowCanOakSupport = () => {
   const router = useRouter();
   const onboardingState = decodeOnboardingDataQueryParam(router.query);
-  const { formState, setValue, handleSubmit, getValues, control, trigger } =
+  const { formState, setValue, handleSubmit, control, trigger } =
     useForm<UseOfOakFormProps>({
       resolver: zodResolver(extendedUseOfOakSchema),
       mode: "onBlur",
@@ -55,13 +55,6 @@ const HowCanOakSupport = () => {
   useEffect(() => {
     trigger();
   }, [trigger]);
-
-  const handleToggleCheckbox = (key: OakSupportKey) => {
-    const currentValue = getValues(key);
-    setValue("submitMode", "skip");
-    setValue(key, !currentValue);
-    trigger();
-  };
 
   const hasMissingFormData = Object.entries(formState.errors)
     .filter(([key]) => key !== "root")
@@ -88,7 +81,7 @@ const HowCanOakSupport = () => {
         secondaryButton={(isSubmitting) => (
           <OakSecondaryButton
             width="100%"
-            disabled={hasMissingFormData || isSubmitting}
+            disabled={isSubmitting}
             name="skip"
             onClick={() => {
               setValue("submitMode", "skip");
@@ -100,15 +93,22 @@ const HowCanOakSupport = () => {
         )}
       >
         <OakFlex $flexDirection="column" $gap="space-between-s">
-          <FieldError id="root-error" ariaLive="polite" withoutMarginBottom>
-            {formState.errors.root?.message}
-          </FieldError>
+          <div
+            aria-live="assertive"
+            aria-label={formState.errors.root?.message}
+          >
+            <FieldError id="root-error" ariaHidden withoutMarginBottom>
+              {formState.errors.root?.message}
+            </FieldError>
+          </div>
           {Object.entries(oakSupportMap).map(([key, value]) => (
-            <OakCheckBox
-              id={key}
+            <Controller
+              control={control}
+              name={key as OakSupportKey}
               key={key}
-              value={value}
-              onChange={() => handleToggleCheckbox(key as OakSupportKey)}
+              render={({ field }) => (
+                <OakCheckBox id={key} key={key} {...field} value={value} />
+              )}
             />
           ))}
           {hasMissingFormData && (

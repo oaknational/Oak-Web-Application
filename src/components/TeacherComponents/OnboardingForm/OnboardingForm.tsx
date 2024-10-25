@@ -90,7 +90,7 @@ const OnboardingForm = ({
     data: OnboardingFormProps,
     event?: BaseSyntheticEvent,
   ) => {
-    if (isSubmitting) {
+    if (isSubmitting && !props.canSubmit) {
       return;
     }
 
@@ -216,7 +216,13 @@ const OnboardingForm = ({
         as="form"
         noValidate
         onSubmit={
-          (event) => void props.handleSubmit(onFormSubmit)(event) // https://github.com/orgs/react-hook-form/discussions/8622}
+          (event) => {
+            if (props.canSubmit) {
+              props.handleSubmit(onFormSubmit)(event);
+            } else {
+              event.preventDefault();
+            }
+          } // https://github.com/orgs/react-hook-form/discussions/8622}
         }
       >
         <Logo height={48} width={104} variant="with text" />
@@ -259,7 +265,7 @@ const OnboardingForm = ({
             $flexDirection="column"
           >
             <OakPrimaryButton
-              disabled={!props.canSubmit || isSubmitting}
+              disabled={isSubmitting}
               width="100%"
               type="submit"
               onClick={props.onSubmit}

@@ -98,7 +98,7 @@ export const extendedUseOfOakSchema = useOfOakSchema
       return true;
     },
     {
-      message: "Please tell us how Oak can support you",
+      message: "Please select the ways Oak can support you",
       path: ["root"],
     },
   )
