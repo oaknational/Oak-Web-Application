@@ -3,6 +3,7 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+import { act } from "@testing-library/react";
 
 import { PupilViewsProgrammeListing } from "./PupilProgrammeListing.view";
 
@@ -13,6 +14,17 @@ import {
   pupilProgrammeListingFixturePathwaysEBs,
 } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
+
+const programmeSelected = jest.fn();
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      browseRefined: (...args: unknown[]) => programmeSelected(...args),
+    },
+  }),
+}));
 
 const programmesPathwaysEBs = pupilProgrammeListingFixturePathwaysEBs();
 const examboards = getAvailableProgrammeFactor({
@@ -61,7 +73,23 @@ jest.mock("@/components/PupilComponents/BrowseFactorSelector", () => {
   );
   return {
     ...originalModule,
-    BrowseFactorSelector: jest.fn(() => <div>BrowseFactorSelector</div>),
+    BrowseFactorSelector: jest.fn(
+      (props: { onTrackingCallback: (factor: string) => void }) => {
+        const { onTrackingCallback } = props;
+        return (
+          <div>
+            <div>BrowseFactorSelector</div>
+            <button
+              onClick={() => {
+                onTrackingCallback("AQA");
+              }}
+            >
+              AQA
+            </button>
+          </div>
+        );
+      },
+    ),
   };
 });
 
@@ -128,6 +156,42 @@ describe("PublicProgrammeListing", () => {
       </OakThemeProvider>,
     );
     expect(getByText("Choose an exam board")).toBeInTheDocument();
+  });
+  it("fires the tracking event when an option is selected", () => {
+    const { getByText } = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsProgrammeListing
+          baseSlug="my-subject"
+          yearSlug="year-11"
+          programmes={programmesPathwaysEBs}
+          examboards={examboardsEBsTiers}
+          pathways={[]}
+          tiers={tiersEBsTiers}
+        />
+        ,
+      </OakThemeProvider>,
+    );
+    const button = getByText("AQA");
+    expect(button).toBeInTheDocument(); // Ensure the button exists
+
+    // Simulate the button click
+    act(() => {
+      button.click(); // Manually trigger click
+    });
+    expect(programmeSelected).toHaveBeenCalledWith({
+      activeFilters: {
+        subjectDescription: "Maths",
+        yearDescriptions: "Year 1",
+      },
+      analyticsUseCase: "Pupil",
+      componentType: "programme_card",
+      engagementIntent: "use",
+      eventVersion: "2.0.0",
+      filterType: "Exam board / tier filter",
+      filterValue: "",
+      platform: "owa",
+      product: "pupil lesson activities",
+    });
   });
 
   it("renders the correct backlink", () => {

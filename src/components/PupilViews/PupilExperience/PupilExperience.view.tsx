@@ -167,6 +167,7 @@ const PupilExperienceLayout = ({
   initialSection,
   pageType,
 }: PupilExperienceViewProps) => {
+  const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const { track } = usePupilAnalytics();
   const [isOpen, setIsOpen] = useState<boolean>(
     !!lessonContent.contentGuidance,
@@ -195,6 +196,13 @@ const PupilExperienceLayout = ({
       })?.contentguidanceArea as ContentGuidanceWarningValueType,
     });
   };
+
+  if (trackingSent === false) {
+    track.lessonAccessed({
+      componentType: "page view",
+    });
+    setTrackingSent(true);
+  }
 
   return (
     <OakPupilClientProvider
