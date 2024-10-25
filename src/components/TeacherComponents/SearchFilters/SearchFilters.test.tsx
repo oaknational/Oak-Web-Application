@@ -12,7 +12,7 @@ describe("SearchFilters", () => {
     jest.clearAllMocks();
   });
 
-  test("renders all the key stage, year grBoup, subject filters and search type filters", () => {
+  test("renders all the key stage, year group, subject filters and search type filters", () => {
     const { getAllByRole } = renderWithTheme(
       <SearchFilters
         legacyFilter={props.legacyFilter}
