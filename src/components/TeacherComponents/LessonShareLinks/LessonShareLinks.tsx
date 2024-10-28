@@ -21,7 +21,7 @@ const LessonShareLinks: FC<{
   disabled: boolean;
   lessonSlug: string;
   selectedActivities?: Array<ResourceType>;
-  schoolUrn?: number;
+  schoolUrn?: string;
   onSubmit: (shareMedium: ShareMediumValueType) => void;
 }> = (props) => {
   const [isShareSuccessful, setIsShareSuccessful] = useState(false);

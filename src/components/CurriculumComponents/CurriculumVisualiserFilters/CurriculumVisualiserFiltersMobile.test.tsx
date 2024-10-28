@@ -86,7 +86,7 @@ const CurriculumVisualiserFiltersMobileFixture: CurriculumVisualiserFiltersProps
       subjectSlug: "",
       subjectTitle: "",
       phaseSlug: "",
-      examboardSlug: null,
+      ks4OptionSlug: null,
     },
   };
 

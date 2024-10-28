@@ -168,7 +168,7 @@ describe("getHubspotOnboardingFormPayload", () => {
       data: {
         email: "email value",
         newsletterSignUp: true,
-        school: "school_id value",
+        school: "999999-value",
         schoolName: "school_name value",
         oakUserId: "oak_user_id value",
         utm_campaign: "a campaign",
@@ -180,7 +180,7 @@ describe("getHubspotOnboardingFormPayload", () => {
     });
     expect(result.fields).toEqual([
       { name: "contact_school_name", value: "school_name value" },
-      { name: "contact_school_urn", value: "school_id value" },
+      { name: "contact_school_urn", value: "999999" },
       { name: "do_you_work_in_a_school", value: "Yes" },
       { name: "email", value: "email value" },
       { name: "email_consent_on_account_creation", value: "Yes" },

@@ -8,13 +8,17 @@ export const getValidSubjectIconName = (
 ): OakIconName => {
   const subjectIconName = `subject-${subject}`;
   if (!isValidIconName(subjectIconName)) {
-    const reportError = errorReporter("generateSubjectIconName");
-    reportError(
-      new OakError({
-        code: "oak-components/invalid-icon-name",
-        meta: { iconName: subjectIconName },
-      }),
-    );
+    // Subject will be null when a canonical lesson appears in multiple subjects
+    // it's not helpful to receive error reports for these cases
+    if (subject !== null) {
+      const reportError = errorReporter("generateSubjectIconName");
+      reportError(
+        new OakError({
+          code: "oak-components/invalid-icon-name",
+          meta: { iconName: subjectIconName },
+        }),
+      );
+    }
     // fallback icon
     return "books";
   }

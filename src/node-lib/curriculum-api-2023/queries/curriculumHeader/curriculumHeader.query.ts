@@ -8,7 +8,7 @@ const curriculumHeaderQuery =
     if (splitSlug.length < 2) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
-    const [subjectSlug, phaseSlug, examboardSlug] = splitSlug;
+    const [subjectSlug, phaseSlug, ks4OptionSlug] = splitSlug;
 
     if (!subjectSlug || !phaseSlug) {
       throw new OakError({ code: "curriculum-api/not-found" });
@@ -19,7 +19,7 @@ const curriculumHeaderQuery =
 
     const phase = capitalise(phaseSlug);
 
-    const examboard = examboardSlug ? capitalise(examboardSlug) : "";
+    const ks4Option = ks4OptionSlug ? capitalise(ks4OptionSlug) : "";
 
     if (Object.values(args).some((arg) => !arg.length)) {
       throw new OakError({ code: "curriculum-api/not-found" });
@@ -29,8 +29,8 @@ const curriculumHeaderQuery =
       phase,
       subjectSlug,
       phaseSlug,
-      examboard,
-      examboardSlug,
+      ks4Option,
+      ks4OptionSlug,
     };
   };
 

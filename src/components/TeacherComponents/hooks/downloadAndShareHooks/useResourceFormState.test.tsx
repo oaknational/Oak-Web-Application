@@ -215,7 +215,7 @@ describe("useResourceFormState", () => {
       expect(result.current.schoolIdFromLocalStorage).toEqual("1-local");
       expect(mockSetValue).toHaveBeenCalledWith("terms", true);
     });
-    test("should set email, school and terms from hubspot and clerk user if logged in ", async () => {
+    test("should set email and terms from hubspot and clerk user if logged in, school from local storage ", async () => {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const useFormSpy = jest.spyOn(require("react-hook-form"), "useForm");
       setUseUserReturn({
@@ -249,12 +249,12 @@ describe("useResourceFormState", () => {
       );
 
       await waitFor(() => {
-        expect(mockSetValue).toHaveBeenCalledWith("school", "1");
+        expect(mockSetValue).toHaveBeenCalledWith("school", "1-local");
       });
 
       await waitFor(() =>
         expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
-          schoolId: "1",
+          schoolId: "1-local",
           schoolName: "test-school",
         }),
       );

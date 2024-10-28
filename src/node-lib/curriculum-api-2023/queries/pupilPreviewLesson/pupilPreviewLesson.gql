@@ -1,5 +1,5 @@
 query pupilPreviewLesson($lessonSlug: String!) {
-  content: published_mv_lesson_content_new_2_0_1(
+  content: published_mv_lesson_content_new_3_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id
@@ -12,6 +12,7 @@ query pupilPreviewLesson($lessonSlug: String!) {
     teacher_tips
     key_learning_points
     pupil_lesson_outcome
+    phonics_outcome
     lesson_keywords
     content_guidance
     video_mux_playback_id
@@ -24,5 +25,6 @@ query pupilPreviewLesson($lessonSlug: String!) {
     exit_quiz_id
     supervision_level
     video_title
+    has_worksheet_asset_object
   }
 }

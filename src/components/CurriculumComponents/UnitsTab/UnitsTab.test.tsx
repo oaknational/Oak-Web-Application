@@ -15,7 +15,7 @@ const unitInformationViewed = jest.fn();
 const trackingDataSecondaryScience = {
   subjectTitle: "Science",
   subjectSlug: "science",
-  examboardSlug: "aqa",
+  ks4OptionSlug: "aqa",
   phaseSlug: "secondary",
 };
 const secondaryScienceUnits = {
@@ -92,7 +92,7 @@ const secondaryScienceUnits = {
 const trackingDataPrimaryEnglish = {
   subjectTitle: "English",
   subjectSlug: "english",
-  examboardSlug: null,
+  ks4OptionSlug: null,
   phaseSlug: "primary",
 };
 const primaryEnglishData = {
@@ -537,7 +537,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     const trackingData = {
       subjectTitle: "English",
       subjectSlug: "english",
-      examboardSlug: "aqa",
+      ks4OptionSlug: "aqa",
       phaseSlug: "secondary",
     };
     const { findByTestId, findAllByTestId } = render(

@@ -79,7 +79,7 @@ type CurriculumVisualiserProps = {
   yearSelection: YearSelection;
   selectedThread: string | null;
   selectedYear: string | null;
-  examboardSlug: string | null;
+  ks4OptionSlug: string | null;
   yearData: YearData;
   handleSelectSubject: (year: string, subject: Subject) => void;
   handleSelectTier: (year: string, tier: Tier) => void;
@@ -140,7 +140,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   unitData,
   yearSelection,
   selectedYear,
-  examboardSlug,
+  ks4OptionSlug,
   yearData,
   handleSelectSubject,
   handleSelectTier,
@@ -491,7 +491,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           lessons={currentUnitLessons}
           programmeSlug={createProgrammeSlug(
             unitData,
-            examboardSlug,
+            ks4OptionSlug,
             unitDataTier,
           )}
           unitOptionsAvailable={unitOptionsAvailable}

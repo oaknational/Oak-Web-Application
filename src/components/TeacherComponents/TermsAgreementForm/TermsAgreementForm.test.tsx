@@ -75,14 +75,4 @@ describe("TermsAgreementForm (School, email and terms form within the teacher an
     const detailsCompletedComponent = getByTestId("termsCheckbox");
     expect(detailsCompletedComponent).toBeInTheDocument();
   });
-  it("Hides ResourcePageTermsAndConditionsCheckbox component when hideDetails = true", async () => {
-    // Render the component with required props
-    const { queryByTestId } = render(<Wrapper hideDetails={true} />);
-    const checkboxComponent = queryByTestId("termsCheckbox");
-    expect(checkboxComponent).not.toBeInTheDocument();
-    const newsletterComponent = queryByTestId("newsletter-policy");
-    expect(newsletterComponent).not.toBeInTheDocument();
-    const detailsCompletedComponent = queryByTestId("details-completed");
-    expect(detailsCompletedComponent).not.toBeInTheDocument();
-  });
 });

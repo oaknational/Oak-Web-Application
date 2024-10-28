@@ -33,7 +33,7 @@ export default function UnitsTab({
 }: UnitsTabProps) {
   // Initialize constants
   const { yearData, initialYearSelection } = formattedData;
-  const { examboardSlug } = trackingData;
+  const { ks4OptionSlug } = trackingData;
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
   const [yearSelection, setYearSelection] = useState<YearSelection>({
@@ -135,7 +135,7 @@ export default function UnitsTab({
               unitData={unitData}
               yearSelection={yearSelection}
               selectedYear={selectedYear}
-              examboardSlug={examboardSlug}
+              ks4OptionSlug={ks4OptionSlug}
               yearData={yearData}
               handleSelectSubjectCategory={handleSelectSubjectCategory}
               handleSelectSubject={handleSelectSubject}

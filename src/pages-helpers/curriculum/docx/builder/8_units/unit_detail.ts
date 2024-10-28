@@ -205,7 +205,7 @@ export async function buildUnit(
     greenUnderline: string;
   },
   slugs: {
-    examboardSlug?: string;
+    ks4OptionSlug?: string;
     tierSlug?: string;
   },
 ) {
@@ -221,7 +221,7 @@ export async function buildUnit(
   const links = await insertLinks(zip, {
     onlineResources: `https://www.thenational.academy/teachers/programmes/${createProgrammeSlug(
       unit,
-      slugs.examboardSlug,
+      slugs.ks4OptionSlug,
       slugs.tierSlug,
     )}/units/${unit.slug}${
       unitOption?.unitvariant_id ? `-${unitOption.unitvariant_id}` : ""
