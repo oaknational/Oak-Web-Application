@@ -1,3 +1,21 @@
+# [1.606.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.605.0...v1.606.0) (2024-10-28)
+
+
+### Bug Fixes
+
+* added types for link props passed into component ([42a3a9b](https://github.com/oaknational/Oak-Web-Application/commit/42a3a9b5abba7abf5cfbaaf752dcbb91196e0cc9))
+* suggestions to keep <ButtonAsLink/> generic ([cb21c87](https://github.com/oaknational/Oak-Web-Application/commit/cb21c879d303acb6fc08d16dc2b1af99b0a4710f))
+
+
+### Features
+
+* implement Homepage banner component for Curriculum page ([6a51557](https://github.com/oaknational/Oak-Web-Application/commit/6a515578e5ba01598a2e7504f430e3f2b6bc3b88))
+
+
+### Reverts
+
+* remove unnecessary OakPages export ([4fab5a2](https://github.com/oaknational/Oak-Web-Application/commit/4fab5a2f70890006ff936c4c16b40353dcbb9d1f))
+
 # [1.605.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.604.1...v1.605.0) (2024-10-28)
 
 
