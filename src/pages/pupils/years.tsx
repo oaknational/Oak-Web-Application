@@ -10,12 +10,16 @@ import {
   OakHandDrawnHR,
   OakBox,
 } from "@oaknational/oak-components";
+import { useState } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 const YearListingPage = () => {
+  const [trackingSent, setTrackingSent] = useState(false);
+  const { track } = useAnalytics();
   const years: {
     yearSlug: string;
     yearDescription: string;
@@ -33,13 +37,24 @@ const YearListingPage = () => {
     { yearSlug: "year-10", yearDescription: "Year 10", phase: "secondary" },
     { yearSlug: "year-11", yearDescription: "Year 11", phase: "secondary" },
   ];
+  if (!trackingSent) {
+    track.browseAccessed({
+      platform: "owa",
+      product: "pupil lesson activities",
+      engagementIntent: "use",
+      eventVersion: "2.0.0",
+      componentType: "page view",
+      analyticsUseCase: "Pupil",
+    });
+    setTrackingSent(true);
+  }
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout
         seoProps={{
           ...getSeoProps({
             title: `Year listing`,
-            description: `Listing of all years in the curriculum.`,
+            description: ` Explore our lessons and resources by year group to help you learn or revise what you want, including Year 1 to 11.`,
           }),
         }}
       >
@@ -112,6 +127,19 @@ const YearListingPage = () => {
                             page: "pupil-subject-index",
                             yearSlug: year.yearSlug,
                           })}
+                          onClick={() => {
+                            track.browseRefined({
+                              platform: "owa",
+                              product: "pupil lesson activities",
+                              engagementIntent: "use",
+                              eventVersion: "2.0.0",
+                              componentType: "year_keypad_button",
+                              analyticsUseCase: "Pupil",
+                              filterType: "Year filter",
+                              filterValue: year.yearDescription,
+                              activeFilters: {},
+                            });
+                          }}
                           width={"100%"}
                         >
                           <OakBox
