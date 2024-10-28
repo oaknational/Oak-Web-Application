@@ -3,6 +3,7 @@ import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import TeachersTab from "@/components/GenericPagesComponents/TeachersTab";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
+import Banners from "@/components/CurriculumComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023, {
@@ -35,6 +36,7 @@ const Home: NextPage<TeachersHomePageProps> = (props) => {
       }}
       $background={"white"}
     >
+      <Banners />
       <HomePageTabImageNav current={"teachers"} />
       <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
       <HomePageLowerView posts={posts} />
