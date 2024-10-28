@@ -128,6 +128,8 @@ describe("useSearch()", () => {
           unit_title: "Macbeth: Lady Macbeth as a machiavellian villain",
           key_stage_slug: "ks4",
           key_stage_title: "Key Stage 4",
+          year_slug: "year-10",
+          year_title: "Year 10",
           subject_slug: "english",
           subject_title: "English",
           cohort: "2023-2024",
