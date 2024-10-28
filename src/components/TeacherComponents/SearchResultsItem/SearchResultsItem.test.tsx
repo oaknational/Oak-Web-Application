@@ -191,6 +191,7 @@ describe("SearchResultsItem", () => {
         subjectSlug: "english",
         keyStageShortCode: "KS4",
         keyStageTitle: "Key stage 4",
+        yearTitle: "Year 10",
         pupilLessonOutcome:
           "I can describe the relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>.",
         keyStageSlug: "ks4",
