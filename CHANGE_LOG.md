@@ -1,3 +1,51 @@
+# [1.605.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.604.1...v1.605.0) (2024-10-28)
+
+
+### Features
+
+* add year group filters to search page and update schema and tests ([0168eb3](https://github.com/oaknational/Oak-Web-Application/commit/0168eb386ce92690a86c00b2f430997111fd6e53))
+
+## [1.604.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.604.0...v1.604.1) (2024-10-25)
+
+# [1.604.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.603.0...v1.604.0) (2024-10-25)
+
+
+### Features
+
+* **callback:** rename callbacks ([43233f2](https://github.com/oaknational/Oak-Web-Application/commit/43233f25dae6ee701e3523df3a940b1a93dcd83a))
+* **callback:** rename callbacks ([8ad2bb8](https://github.com/oaknational/Oak-Web-Application/commit/8ad2bb803480aa49154953afaf044886d01280e2))
+* **callback:** rename callbacks ([5bbff0e](https://github.com/oaknational/Oak-Web-Application/commit/5bbff0e30dca5c5f717badf29fe35e9396d9334c))
+* **callback:** rename callbacks ([925bd24](https://github.com/oaknational/Oak-Web-Application/commit/925bd241e88f751d8210f5957b6ddd3984ecf026))
+* **callback:** rename callbacks ([4cd5a96](https://github.com/oaknational/Oak-Web-Application/commit/4cd5a96220896273a182068cced9e1f86abbdaf4))
+* **callback:** rename callbacks ([43668b4](https://github.com/oaknational/Oak-Web-Application/commit/43668b48fada65e7bcb3b39d943e41306159ebf1))
+* **callbacks:** test callbacks are fired ([99eb1fb](https://github.com/oaknational/Oak-Web-Application/commit/99eb1fbcd3c336f569496c04293d14fe161ec3a0))
+* **tracking:** add new event tracking as per plan ([67a0d0c](https://github.com/oaknational/Oak-Web-Application/commit/67a0d0c9eadebf8ed96841f91e6792c40d2a5b4e))
+* **tracking:** add new event tracking as per plan ([b1ffdd7](https://github.com/oaknational/Oak-Web-Application/commit/b1ffdd7e30e9de08d3f1573d0e504e3e277d2bde))
+* **tracking:** add new event tracking as per plan ([c1cf32d](https://github.com/oaknational/Oak-Web-Application/commit/c1cf32d1bef8d8f73683e153d2539ea37f529261))
+* **tracking:** add new event tracking as per plan ([39b5464](https://github.com/oaknational/Oak-Web-Application/commit/39b5464aae7ab67e55068296009b90d0da7bc96c))
+* **tracking:** send updated filter with tracking ([47dc2ae](https://github.com/oaknational/Oak-Web-Application/commit/47dc2aeecbdc2907df3f42672df9db8ac9335bb5))
+* **tracking:** send updated filter with tracking ([e12e530](https://github.com/oaknational/Oak-Web-Application/commit/e12e530cec6357390cfb2548d57bac15e35d1f5d))
+
+# [1.603.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.5...v1.603.0) (2024-10-25)
+
+
+### Bug Fixes
+
+* merge conflicts ([0cb6d00](https://github.com/oaknational/Oak-Web-Application/commit/0cb6d0035750077571c00b3053e8b7d8102749e4))
+* type errors ([217ec9f](https://github.com/oaknational/Oak-Web-Application/commit/217ec9fe090044f0bd4a06a1afc920969fb196ac))
+
+
+### Features
+
+* render phoncis outcome ([c7d9bd0](https://github.com/oaknational/Oak-Web-Application/commit/c7d9bd0440d6a9db77cf2061f7fa8810733db846))
+
+## [1.602.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.4...v1.602.5) (2024-10-24)
+
+
+### Bug Fixes
+
+* **LESQ-1138:** send the correct URN for NI schools to hubspot ([ff2f499](https://github.com/oaknational/Oak-Web-Application/commit/ff2f49994d9b0b0ffe1f3e932d79b73f92300ebb))
+
 ## [1.602.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.3...v1.602.4) (2024-10-24)
 
 ## [1.602.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.602.2...v1.602.3) (2024-10-24)

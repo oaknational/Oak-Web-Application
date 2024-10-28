@@ -1,6 +1,5 @@
 import { GetStaticProps, NextPage } from "next";
 
-import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
@@ -13,7 +12,15 @@ import {
 } from "@/pages-helpers/home/getBlogPosts";
 
 const Curriculum: NextPage<HomePageProps> = (props) => (
-  <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
+  <AppLayout
+    seoProps={{
+      title:
+        "Free curriculum plans aligned with National Curriculum  | Oak National Academy",
+      description:
+        "Discover our free curriculum plans across subjects from KS1 to KS4, all high-quality, fully-sequenced and aligned with the national curriculum.",
+    }}
+    $background={"white"}
+  >
     <Banners />
     <HomePageTabImageNav current={"curriculum"} />
     <CurriculumTab aria-current="page" />

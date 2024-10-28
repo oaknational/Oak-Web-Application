@@ -37,6 +37,7 @@ export type UnitListingPageProps = {
   yearDescription: string;
   unitSections: UnitsSectionData[];
   subjectCategories: string[];
+  programmeFields: UnitListingBrowseData[number]["programmeFields"];
 };
 
 type PupilUnitListingPageURLParams = {
@@ -50,6 +51,7 @@ const PupilUnitListingPage = ({
   yearDescription,
   unitSections,
   subjectCategories,
+  programmeFields,
 }: UnitListingPageProps) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -66,6 +68,7 @@ const PupilUnitListingPage = ({
           phase={phase}
           backHrefSlugs={backHrefSlugs}
           subjectCategories={subjectCategories}
+          programmeFields={programmeFields}
         />
       </AppLayout>
     </OakThemeProvider>
@@ -220,6 +223,7 @@ export const getStaticProps: GetStaticProps<
           backHrefSlugs,
           subjectCategories,
           unitSections: [firstUnitSection, secondUnitSection],
+          programmeFields,
         },
       };
       return results;

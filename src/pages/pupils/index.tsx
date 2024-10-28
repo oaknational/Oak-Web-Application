@@ -1,6 +1,5 @@
 import { GetStaticProps, NextPage } from "next";
 
-import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
@@ -13,7 +12,15 @@ import {
 } from "@/pages-helpers/home/getBlogPosts";
 
 const Pupils: NextPage<HomePageProps> = (props) => (
-  <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
+  <AppLayout
+    seoProps={{
+      title:
+        "Free online lessons, videos and quizzes for pupils | Oak National Academy",
+      description:
+        "Looking for online lessons from KS1 to KS4? Browse and find free videos, quizzes and lessons, just find your year group, subject and lesson and get started.",
+    }}
+    $background={"white"}
+  >
     <Banners />
     <HomePageTabImageNav current={"pupils"} />
     <PupilTab aria-current="page" />
