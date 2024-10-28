@@ -14,7 +14,7 @@ query lessonOverview(
     programme_fields
     supplementary_data
   }
-  content: published_mv_lesson_content_published_2_0_0(
+  content: published_mv_lesson_content_published_2_1_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id
