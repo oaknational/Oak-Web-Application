@@ -142,7 +142,7 @@ const curriculumVisualiserFixture = {
   setVisibleMobileYearRefID: jest.fn(() => {}),
 };
 
-describe("components/pages/CurriculumInfo/tabs/UnitsTabMobile", () => {
+describe("visualiser", () => {
   beforeEach(() => {
     const mockIntersectionObserver = jest.fn();
     mockIntersectionObserver.mockReturnValue({
