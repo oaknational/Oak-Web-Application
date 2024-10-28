@@ -6,6 +6,7 @@ import UnitsTab from "./UnitsTab";
 import { formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import "@/__tests__/__helpers__/ResizeObserverMock";
 
 const render = renderWithProviders();
 const curriculumThreadHighlighted = jest.fn();
