@@ -1,3 +1,10 @@
+# [1.605.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.604.1...v1.605.0) (2024-10-28)
+
+
+### Features
+
+* add year group filters to search page and update schema and tests ([0168eb3](https://github.com/oaknational/Oak-Web-Application/commit/0168eb386ce92690a86c00b2f430997111fd6e53))
+
 ## [1.604.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.604.0...v1.604.1) (2024-10-25)
 
 # [1.604.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.603.0...v1.604.0) (2024-10-25)

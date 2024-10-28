@@ -49580,7 +49580,7 @@ export type RefreshedMvTimeQuery = { __typename?: 'query_root', data: Array<{ __
 export type SearchPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SearchPageQuery = { __typename?: 'query_root', searchPage: Array<{ __typename?: 'published_mv_search_page_6_0_0', subjects?: any | null, contentTypes?: any | null, keyStages?: any | null, examBoards?: any | null }> };
+export type SearchPageQuery = { __typename?: 'query_root', searchPage: Array<{ __typename?: 'published_mv_search_page_10_0_0', subjects?: any | null, contentTypes?: any | null, keyStages?: any | null, yearGroups?: any | null, examBoards?: any | null }> };
 
 export type SpecialistLessonDownloadsQueryVariables = Exact<{
   programmeSlug?: InputMaybe<Scalars['String']['input']>;
@@ -50146,9 +50146,10 @@ export const RefreshedMvTimeDocument = gql`
     `;
 export const SearchPageDocument = gql`
     query searchPage {
-  searchPage: published_mv_search_page_6_0_0 {
+  searchPage: published_mv_search_page_10_0_0 {
     contentTypes: content_type
     keyStages: key_stages
+    yearGroups: year_groups
     subjects
     examBoards: exam_boards
   }
