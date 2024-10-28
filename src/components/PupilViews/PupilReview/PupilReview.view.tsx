@@ -32,6 +32,10 @@ import { QuizResults } from "@/components/PupilComponents/QuizResults";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
+import {
+  PupilExperienceLessonActivityValueType,
+  QuestionResultValueType,
+} from "@/browser-lib/avo/Avo";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -156,6 +160,8 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
           pupilStarterQuizGrade: sectionResults["starter-quiz"]?.grade ?? 0,
           pupilStarterQuizNumQuesions:
             sectionResults["starter-quiz"]?.numQuestions ?? 0,
+          pupilExitQuiz: pupilExitQuiz,
+          pupilStarterQuiz: pupilStarterQuiz,
         });
       }
     }
@@ -164,6 +170,46 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
   if (phase === "foundation") {
     throw new Error("Foundation phase is not supported");
   }
+
+  const pupilExitQuiz = sectionResults["exit-quiz"]?.questionResults
+    ? sectionResults["exit-quiz"]?.questionResults.map((result, index) => {
+        return {
+          pupilExperienceLessonActivity:
+            "exit-quiz" as PupilExperienceLessonActivityValueType,
+          questionNumber: index + 1,
+          questionType: starterQuizQuestionsArray[index]?.questionType
+            ? starterQuizQuestionsArray[index]?.questionType
+            : "",
+          questionResult:
+            result.grade === 1
+              ? "correct"
+              : ("incorrect" as QuestionResultValueType),
+          hintOffered: starterQuizQuestionsArray[index]?.hint ? true : false,
+          hintAccessed: result.offerHint,
+          activityTimeSpent: 0,
+        };
+      })
+    : undefined;
+
+  const pupilStarterQuiz = sectionResults["starter-quiz"]?.questionResults
+    ? sectionResults["starter-quiz"]?.questionResults.map((result, index) => {
+        return {
+          pupilExperienceLessonActivity:
+            "starter-quiz" as PupilExperienceLessonActivityValueType,
+          questionNumber: index + 1,
+          questionType: starterQuizQuestionsArray[index]?.questionType
+            ? starterQuizQuestionsArray[index]?.questionType
+            : "",
+          questionResult:
+            result.grade === 1
+              ? "correct"
+              : ("incorrect" as QuestionResultValueType),
+          hintOffered: starterQuizQuestionsArray[index]?.hint ? true : false,
+          hintAccessed: result.offerHint,
+          activityTimeSpent: 0,
+        };
+      })
+    : undefined;
 
   if (trackingSent === false) {
     track.lessonSummaryReviewed({
@@ -180,6 +226,8 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
       pupilVideoPlayed: sectionResults.video?.played ?? false,
       pupilVideoDurationSeconds: sectionResults.video?.duration ?? 0,
       pupilVideoTimeElapsedSeconds: sectionResults.video?.timeElapsed ?? 0,
+      pupilExitQuiz: pupilExitQuiz,
+      pupilStarterQuiz: pupilStarterQuiz,
     });
     setTrackingSent(true);
   }
