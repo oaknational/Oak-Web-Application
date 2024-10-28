@@ -207,6 +207,7 @@ export const lessonDownloadsListSchema = z.array(
       "exit-quiz-questions",
       "exit-quiz-answers",
       "worksheet-pdf",
+      "worksheet-pdf-questions",
       "worksheet-pptx",
       "supplementary-pdf",
       "supplementary-docx",
