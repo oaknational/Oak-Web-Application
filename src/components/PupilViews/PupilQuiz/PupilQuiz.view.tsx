@@ -75,17 +75,6 @@ const QuizInner = () => {
   const isCorrect = grade === 1;
 
   const handleNextQuestionClick = () => {
-    track.questionAttemptSubmitted({
-      pupilExperienceLessonActivity: currentSection,
-      questionType: currentQuestionData?.questionType
-        ? currentQuestionData.questionType
-        : "",
-      questionResult: grade === 1 ? "correct" : "incorrect",
-      activityTimeSpent: 0,
-      hintOffered: currentQuestionData?.hint ? true : false,
-      hintAccessed: currentQuestionState?.offerHint ? true : false,
-      questionNumber: currentQuestionDisplayIndex + 1,
-    });
     const _currentQuestionIndex = Math.min(
       currentQuestionIndex + 1,
       numQuestions,

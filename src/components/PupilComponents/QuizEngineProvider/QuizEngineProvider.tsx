@@ -7,6 +7,8 @@ import React, {
   useState,
 } from "react";
 
+import { usePupilAnalytics } from "../PupilAnalyticsProvider/usePupilAnalytics";
+
 import type {
   QuizQuestion,
   MCAnswer,
@@ -71,6 +73,7 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const { questionsArray } = props;
   const { updateSectionResult, completeActivity, currentSection } =
     useLessonEngineContext();
+  const { track } = usePupilAnalytics();
 
   // consolidate all this state into a single stateful object . This will make side effects easier to manage
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -91,6 +94,25 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
 
   const updateCurrentQuestion = useCallback(
     (incomingQuestionState: Partial<QuestionState>) => {
+      if (
+        (currentSection === "starter-quiz" || currentSection === "exit-quiz") &&
+        incomingQuestionState.mode === "feedback"
+      ) {
+        track.questionAttemptSubmitted({
+          pupilExperienceLessonActivity: currentSection,
+          questionType: currentQuestionData?.questionType
+            ? currentQuestionData.questionType
+            : "",
+          questionResult:
+            incomingQuestionState.grade === 1 ? "correct" : "incorrect",
+          activityTimeSpent: 0,
+          hintOffered: currentQuestionData?.hint ? true : false,
+          hintAccessed: questionState[currentQuestionIndex]?.offerHint
+            ? true
+            : false,
+          questionNumber: currentQuestionIndex + 1,
+        });
+      }
       setQuestionState((currentState) => {
         const newState = [...currentState];
         newState[currentQuestionIndex] = {
@@ -109,7 +131,15 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
         return newState;
       });
     },
-    [currentQuestionIndex, numInteractiveQuestions, updateSectionResult],
+    [
+      currentQuestionIndex,
+      numInteractiveQuestions,
+      updateSectionResult,
+      currentQuestionData,
+      currentSection,
+      questionState,
+      track,
+    ],
   );
 
   const updateQuestionMode = useCallback(

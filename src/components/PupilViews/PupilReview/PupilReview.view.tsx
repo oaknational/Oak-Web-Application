@@ -32,10 +32,7 @@ import { QuizResults } from "@/components/PupilComponents/QuizResults";
 import { resolveOakHref } from "@/common-lib/urls";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
-import {
-  PupilExperienceLessonActivityValueType,
-  QuestionResultValueType,
-} from "@/browser-lib/avo/Avo";
+import { LessonSummaryReviewedProperties } from "@/browser-lib/avo/Avo";
 
 type PupilViewsReviewProps = {
   lessonTitle: string;
@@ -171,45 +168,39 @@ export const PupilViewsReview = (props: PupilViewsReviewProps) => {
     throw new Error("Foundation phase is not supported");
   }
 
-  const pupilExitQuiz = sectionResults["exit-quiz"]?.questionResults
-    ? sectionResults["exit-quiz"]?.questionResults.map((result, index) => {
-        return {
-          pupilExperienceLessonActivity:
-            "exit-quiz" as PupilExperienceLessonActivityValueType,
-          questionNumber: index + 1,
-          questionType: starterQuizQuestionsArray[index]?.questionType
-            ? starterQuizQuestionsArray[index]?.questionType
-            : "",
-          questionResult:
-            result.grade === 1
-              ? "correct"
-              : ("incorrect" as QuestionResultValueType),
-          hintOffered: starterQuizQuestionsArray[index]?.hint ? true : false,
-          hintAccessed: result.offerHint,
-          activityTimeSpent: 0,
-        };
-      })
-    : undefined;
+  const pupilExitQuiz: LessonSummaryReviewedProperties["pupilExitQuiz"] =
+    sectionResults["exit-quiz"]?.questionResults
+      ? sectionResults["exit-quiz"]?.questionResults.map((result, index) => {
+          return {
+            pupilExperienceLessonActivity: "exit-quiz",
+            questionNumber: index + 1,
+            questionType: starterQuizQuestionsArray[index]?.questionType
+              ? starterQuizQuestionsArray[index]?.questionType
+              : "",
+            questionResult: result.grade === 1 ? "correct" : "incorrect",
+            hintOffered: starterQuizQuestionsArray[index]?.hint ? true : false,
+            hintAccessed: result.offerHint,
+            activityTimeSpent: 0,
+          };
+        })
+      : undefined;
 
-  const pupilStarterQuiz = sectionResults["starter-quiz"]?.questionResults
-    ? sectionResults["starter-quiz"]?.questionResults.map((result, index) => {
-        return {
-          pupilExperienceLessonActivity:
-            "starter-quiz" as PupilExperienceLessonActivityValueType,
-          questionNumber: index + 1,
-          questionType: starterQuizQuestionsArray[index]?.questionType
-            ? starterQuizQuestionsArray[index]?.questionType
-            : "",
-          questionResult:
-            result.grade === 1
-              ? "correct"
-              : ("incorrect" as QuestionResultValueType),
-          hintOffered: starterQuizQuestionsArray[index]?.hint ? true : false,
-          hintAccessed: result.offerHint,
-          activityTimeSpent: 0,
-        };
-      })
-    : undefined;
+  const pupilStarterQuiz: LessonSummaryReviewedProperties["pupilStarterQuiz"] =
+    sectionResults["starter-quiz"]?.questionResults
+      ? sectionResults["starter-quiz"]?.questionResults.map((result, index) => {
+          return {
+            pupilExperienceLessonActivity: "starter-quiz",
+            questionNumber: index + 1,
+            questionType: starterQuizQuestionsArray[index]?.questionType
+              ? starterQuizQuestionsArray[index]?.questionType
+              : "",
+            questionResult: result.grade === 1 ? "correct" : "incorrect",
+            hintOffered: starterQuizQuestionsArray[index]?.hint ? true : false,
+            hintAccessed: result.offerHint,
+            activityTimeSpent: 0,
+          };
+        })
+      : undefined;
 
   if (trackingSent === false) {
     track.lessonSummaryReviewed({
