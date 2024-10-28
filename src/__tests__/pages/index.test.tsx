@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 
-import Home from "@/pages/index";
+import HomePage from "@/pages/index";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import { HomePageProps } from "@/pages-helpers/home/getBlogPosts";
+import { TeachersHomePageProps } from "@/pages/teachers";
 
 const render = renderWithProviders();
 
@@ -10,7 +10,17 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
-const props: HomePageProps = {
+const props: TeachersHomePageProps = {
+  curriculumData: {
+    keyStages: [
+      {
+        title: "Key stage 1",
+        slug: "key-stage-1",
+        displayOrder: 0,
+        shortCode: "ks1",
+      },
+    ],
+  },
   pageData: {
     heading: "",
     id: "",
@@ -33,7 +43,7 @@ describe("Homepage", () => {
         query: "",
         asPath: "/",
       });
-      render(<Home {...props} />);
+      render(<HomePage {...props} />);
     });
 
     it.each(["curriculum", "pupils", "teachers"])(
@@ -56,7 +66,7 @@ describe("Homepage", () => {
           writable: true,
         });
 
-        render(<Home {...props} />);
+        render(<HomePage {...props} />);
 
         expect(pushMock).toHaveBeenCalledWith(`/${path}`);
       },
