@@ -5,7 +5,7 @@ import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
 import CurriculumVisualiserLayout from "../CurriculumVisualiserLayout/CurriculumVisualiserLayout";
 import CurriculumVisualiserFiltersMobile from "../CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile";
 import CurriculumVisualiserFilters from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
-import SizeMonitor from "../OakComponentsKitchen/SizeMonitor";
+// import SizeMonitor from "../OakComponentsKitchen/SizeMonitor";
 
 import {
   Thread,
@@ -50,11 +50,13 @@ export default function UnitsTab({
   );
   const [selectedYear, setSelectedYear] = useState<string>("");
   const [selectedYearMobile, setSelectedYearMobile] = useState<string>("");
-  const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
-    useState<number>(0);
-  const [, /*visibleMobileYearRefID*/ setVisibleMobileYearRefID] = useState<
-    string | null
-  >(null);
+  // const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
+  //   string | null
+  // >(null);
+
+  const setVisibleMobileYearRefID = (newYear: string) => {
+    setSelectedYearMobile(newYear);
+  };
 
   function handleSelectSubject(year: string, subject: Subject) {
     const selection = { ...yearSelection[year] };
@@ -107,17 +109,15 @@ export default function UnitsTab({
           Units that make up our curricula are fully sequenced, and aligned to
           the national curriculum.
         </OakP>
-        <SizeMonitor onChange={(b) => setMobileHeaderScrollOffset(b.height)}>
-          <CurriculumVisualiserFiltersMobile
-            selectedThread={selectedThread}
-            onSelectThread={setSelectedThread}
-            selectedYear={selectedYearMobile}
-            onSelectYear={setSelectedYearMobile}
-            data={formattedData}
-            yearSelection={yearSelection}
-            trackingData={trackingData}
-          />
-        </SizeMonitor>
+        <CurriculumVisualiserFiltersMobile
+          selectedThread={selectedThread}
+          onSelectThread={setSelectedThread}
+          selectedYear={selectedYearMobile}
+          onSelectYear={setSelectedYearMobile}
+          data={formattedData}
+          yearSelection={yearSelection}
+          trackingData={trackingData}
+        />
         <CurriculumVisualiserLayout
           filters={
             <CurriculumVisualiserFilters
@@ -140,7 +140,6 @@ export default function UnitsTab({
               handleSelectSubjectCategory={handleSelectSubjectCategory}
               handleSelectSubject={handleSelectSubject}
               handleSelectTier={handleSelectTier}
-              mobileHeaderScrollOffset={mobileHeaderScrollOffset}
               setUnitData={setUnitData}
               selectedThread={selectedThread}
               setVisibleMobileYearRefID={setVisibleMobileYearRefID}

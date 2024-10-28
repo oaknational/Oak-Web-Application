@@ -1,5 +1,3 @@
-import userEvent from "@testing-library/user-event";
-
 import CurriculumVisualiserFiltersMobile from "./CurriculumVisualiserFiltersMobile";
 import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
 
@@ -146,20 +144,19 @@ describe("<CurriculumVisualiserFiltersMobile/>", () => {
     const { findAllByTestId } = render(
       <CurriculumVisualiserFiltersMobile
         {...CurriculumVisualiserFiltersMobileFixture}
+        selectedYear="8"
       />,
     );
 
     const yearFilterButtons = await findAllByTestId("year-group-filter-button");
-    const year8Button = yearFilterButtons[1];
-    if (year8Button) {
-      await userEvent.click(year8Button);
-      // Selected button background colour should change
-      expect(year8Button).toHaveStyle("background-color: rgb(34, 34, 34);");
-      // Unselected button background colour shouldn't change
-      expect(yearFilterButtons[0]).toHaveStyle(
-        "background-color: rgb(242, 242, 242);",
-      );
-      expect(year8Button).toHaveTextContent("Year 8");
-    }
+    const year8Button = yearFilterButtons[1]!;
+
+    // Selected button background colour should change
+    expect(year8Button).toHaveStyle("background-color: rgb(34, 34, 34);");
+    // Unselected button background colour shouldn't change
+    expect(yearFilterButtons[0]).toHaveStyle(
+      "background-color: rgb(242, 242, 242);",
+    );
+    expect(year8Button).toHaveTextContent("Year 8");
   });
 });

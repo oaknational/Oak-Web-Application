@@ -137,7 +137,6 @@ const curriculumVisualiserFixture = {
       groupAs: null,
     },
   },
-  mobileHeaderScrollOffset: 148,
   selectedThread: null,
   setVisibleMobileYearRefID: jest.fn(() => {}),
 };

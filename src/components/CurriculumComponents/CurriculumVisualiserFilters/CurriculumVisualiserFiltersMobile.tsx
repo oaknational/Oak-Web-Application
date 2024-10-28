@@ -15,26 +15,165 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Thread } from "@/utils/curriculum/types";
 
-// Function component
-
-export default function CurriculumVisualiserFiltersMobile({
-  selectedThread,
-  onSelectThread,
-  selectedYear,
-  trackingData,
-  yearSelection,
+function StickyBit({
+  onOpenModal,
   data,
-}: CurriculumVisualiserFiltersProps) {
+  trackingData,
+  selectedThread,
+  selectedYear,
+  yearSelection,
+  onSelectYear,
+}: Pick<
+  CurriculumVisualiserFiltersProps,
+  | "data"
+  | "trackingData"
+  | "selectedThread"
+  | "selectedYear"
+  | "yearSelection"
+  | "onSelectYear"
+> & { onOpenModal: () => void }) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
   const { yearData, threadOptions, yearOptions } = data;
 
+  const highlightedUnits = highlightedUnitCount(
+    yearData,
+    selectedYear,
+    yearSelection,
+    selectedThread,
+  );
+
+  function trackSelectYear(year: string): void {
+    if (trackingData) {
+      const { subjectTitle, subjectSlug } = trackingData;
+      track.yearGroupSelected({
+        yearGroupName: year,
+        yearGroupSlug: year,
+        subjectTitle,
+        subjectSlug,
+        analyticsUseCase: analyticsUseCase,
+      });
+    }
+  }
+
+  const threadDef = (selectedThread: Thread["slug"]) =>
+    threadOptions.find((t) => t.slug === selectedThread);
+
+  return (
+    <Box
+      $position={["sticky", "static"]}
+      $display={["unset", "none"]}
+      $top={0}
+      $zIndex={"inFront"}
+      // ref={mobileHeaderRef}
+    >
+      <Box
+        $width={"100%"}
+        $background={"white"}
+        $mb={8}
+        data-test-id="filter-mobiles"
+      >
+        <Box>
+          <Box $dropShadow="mobileFilterSelector" $ph={[16, 0]} $pb={16}>
+            <Button
+              label="Highlight a thread"
+              icon="chevron-right"
+              $iconPosition="trailing"
+              variant="buttonStyledAsLink"
+              $mt={16}
+              onClick={onOpenModal}
+              data-testid="mobile-highlight-thread"
+            />
+            {selectedThread && (
+              <OakFlex>
+                <Box
+                  $textOverflow={"ellipsis"}
+                  $whiteSpace={"nowrap"}
+                  $overflow={"hidden"}
+                  data-testid="highlighted-threads-mobile"
+                  $maxWidth={"50%"}
+                >
+                  {threadDef(selectedThread)?.title}
+                </Box>
+                <Box $mh={6}> • </Box>
+                <Box data-testid="highlighted-units-box-mobile">
+                  <OakSpan aria-live="polite" aria-atomic="true">
+                    {highlightedUnits} units highlighted
+                  </OakSpan>
+                </Box>
+              </OakFlex>
+            )}
+          </Box>
+          <Box
+            $pt={10}
+            $dropShadow="mobileFilterSelector"
+            $width={"100%"}
+            $ph={[16, 0]}
+            data-testid={"year-selection-mobile"}
+          >
+            <ButtonGroup
+              aria-label="Select a year group"
+              $overflowX={"auto"}
+              $overflowY={"hidden"}
+              $pb={8}
+            >
+              {yearOptions.map((yearOption) => (
+                <Box key={yearOption} $pt={8} $ml={5}>
+                  <Button
+                    variant="brush"
+                    aria-label={`Year ${yearOption}`}
+                    background={
+                      selectedYear === yearOption ? "black" : "grey20"
+                    }
+                    isCurrent={yearOption === selectedYear}
+                    key={yearOption}
+                    label={getYearGroupTitle(yearData, yearOption)}
+                    onClick={() => {
+                      onSelectYear(yearOption);
+                      trackSelectYear(yearOption);
+
+                      // HACK: Scroll into view used also in Lesson Overview - prevents rerender
+                      document
+                        .getElementById(`year-${yearOption}`)
+                        ?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    data-testid="year-group-filter-button"
+                  />
+                </Box>
+              ))}
+            </ButtonGroup>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+function Modal({
+  data,
+  selectedThread,
+  selectedYear,
+  yearSelection,
+  onSelectThread,
+  onOpenModal,
+}: Pick<
+  CurriculumVisualiserFiltersProps,
+  | "data"
+  | "selectedThread"
+  | "selectedYear"
+  | "yearSelection"
+  | "onSelectThread"
+> & { onOpenModal: () => void }) {
+  const { threadOptions, yearData } = data;
+
+  function isSelectedThread(thread: Thread) {
+    return selectedThread === thread.slug;
+  }
+
   // Initialize constants
   // const defaultMobileYearSelection = "7";
 
-  const [mobileThreadModalOpen, setMobileThreadModalOpen] =
-    useState<boolean>(false);
   // const [mobileYearSelection, setMobileYearSelection] = useState<string | null>(
   //   defaultMobileYearSelection,
   // );
@@ -54,27 +193,6 @@ export default function CurriculumVisualiserFiltersMobile({
   //   }
   // });
 
-  function handleMobileThreadModal(): void {
-    setMobileThreadModalOpen(!mobileThreadModalOpen);
-  }
-
-  function isSelectedThread(thread: Thread) {
-    return selectedThread === thread.slug;
-  }
-
-  function trackSelectYear(year: string): void {
-    if (trackingData) {
-      const { subjectTitle, subjectSlug } = trackingData;
-      track.yearGroupSelected({
-        yearGroupName: year,
-        yearGroupSlug: year,
-        subjectTitle,
-        subjectSlug,
-        analyticsUseCase: analyticsUseCase,
-      });
-    }
-  }
-
   const highlightedUnits = highlightedUnitCount(
     yearData,
     selectedYear,
@@ -82,10 +200,7 @@ export default function CurriculumVisualiserFiltersMobile({
     selectedThread,
   );
 
-  const threadDef = (selectedThread: Thread["slug"]) =>
-    threadOptions.find((t) => t.slug === selectedThread);
-
-  return mobileThreadModalOpen ? (
+  return (
     <Box
       $background={"white"}
       $position="fixed"
@@ -101,7 +216,7 @@ export default function CurriculumVisualiserFiltersMobile({
           icon={"cross"}
           variant={"minimal"}
           size={"large"}
-          onClick={handleMobileThreadModal}
+          onClick={onOpenModal}
           aria-expanded={open}
         />
       </Box>
@@ -201,95 +316,47 @@ export default function CurriculumVisualiserFiltersMobile({
           icon="arrow-right"
           $iconPosition="trailing"
           iconBackground="black"
-          onClick={handleMobileThreadModal}
+          onClick={onOpenModal}
         />
       </OakFlex>
     </Box>
+  );
+}
+
+export default function CurriculumVisualiserFiltersMobile({
+  selectedThread,
+  onSelectThread,
+  selectedYear,
+  trackingData,
+  yearSelection,
+  data,
+  onSelectYear,
+}: CurriculumVisualiserFiltersProps) {
+  const [mobileThreadModalOpen, setMobileThreadModalOpen] =
+    useState<boolean>(false);
+
+  function handleMobileThreadModal(): void {
+    setMobileThreadModalOpen(!mobileThreadModalOpen);
+  }
+
+  return mobileThreadModalOpen ? (
+    <Modal
+      data={data}
+      selectedThread={selectedThread}
+      selectedYear={selectedYear}
+      yearSelection={yearSelection}
+      onOpenModal={handleMobileThreadModal}
+      onSelectThread={onSelectThread}
+    />
   ) : (
-    <Box $display={["unset", "none"]}>
-      <Box
-        $position={["sticky", "static"]}
-        $top={0}
-        $zIndex={"inFront"}
-        // ref={mobileHeaderRef}
-      >
-        <Box
-          $width={"100%"}
-          $background={"white"}
-          $mb={8}
-          data-test-id="filter-mobiles"
-        >
-          <Box>
-            <Box $dropShadow="mobileFilterSelector" $ph={[16, 0]} $pb={16}>
-              <Button
-                label="Highlight a thread"
-                icon="chevron-right"
-                $iconPosition="trailing"
-                variant="buttonStyledAsLink"
-                $mt={16}
-                onClick={handleMobileThreadModal}
-                data-testid="mobile-highlight-thread"
-              />
-              {selectedThread && (
-                <OakFlex>
-                  <Box
-                    $textOverflow={"ellipsis"}
-                    $whiteSpace={"nowrap"}
-                    $overflow={"hidden"}
-                    data-testid="highlighted-threads-mobile"
-                    $maxWidth={"50%"}
-                  >
-                    {threadDef(selectedThread)?.title}
-                  </Box>
-                  <Box $mh={6}> • </Box>
-                  <Box data-testid="highlighted-units-box-mobile">
-                    <OakSpan aria-live="polite" aria-atomic="true">
-                      {highlightedUnits} units highlighted
-                    </OakSpan>
-                  </Box>
-                </OakFlex>
-              )}
-            </Box>
-            <Box
-              $pt={10}
-              $dropShadow="mobileFilterSelector"
-              $width={"100%"}
-              $ph={[16, 0]}
-              data-testid={"year-selection-mobile"}
-            >
-              <ButtonGroup
-                aria-label="Select a year group"
-                $overflowX={"auto"}
-                $overflowY={"hidden"}
-                $pb={8}
-              >
-                {yearOptions.map((yearOption) => (
-                  <Box key={yearOption} $pt={8} $ml={5}>
-                    <Button
-                      variant="brush"
-                      aria-label={`Year ${yearOption}`}
-                      background={
-                        selectedYear === yearOption ? "black" : "grey20"
-                      }
-                      isCurrent={yearOption === selectedYear}
-                      key={yearOption}
-                      label={getYearGroupTitle(yearData, yearOption)}
-                      onClick={() => {
-                        // Scroll into view used also in Lesson Overview - prevents rerender
-                        document
-                          .getElementById(`year-${yearOption}`)
-                          ?.scrollIntoView({ behavior: "smooth" });
-                        trackSelectYear(yearOption);
-                      }}
-                      data-testid="year-group-filter-button"
-                    />
-                  </Box>
-                ))}
-              </ButtonGroup>
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+    <StickyBit
+      onOpenModal={handleMobileThreadModal}
+      data={data}
+      selectedYear={selectedYear}
+      selectedThread={selectedThread}
+      trackingData={trackingData}
+      yearSelection={yearSelection}
+      onSelectYear={onSelectYear}
+    />
   );
 }
