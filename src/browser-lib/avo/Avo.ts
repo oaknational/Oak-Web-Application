@@ -974,7 +974,7 @@ _avo_invoke = function _avo_invoke(env: AvoEnv, eventId: string, hash: string, m
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "j9bqJaVYQVKQtjjHMkPE",
+          "ac": "iYFtVEA4dbVaMhVqJpLX",
           "br": "MnLPI4yJf",
           "en": env,
           "ev": eventId,
@@ -1001,7 +1001,7 @@ _avo_invoke_meta = function _avo_invoke_meta(env: AvoEnv, type: string, messages
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-          "ac": "j9bqJaVYQVKQtjjHMkPE",
+          "ac": "iYFtVEA4dbVaMhVqJpLX",
           "br": "MnLPI4yJf",
           "en": env,
           "ty": type,
@@ -2512,7 +2512,7 @@ export interface LessonResourcesDownloadedProperties {
   subjectSlug: string | null | undefined;
   lessonName: string;
   lessonSlug: string;
-  schoolUrn: number;
+  schoolUrn: string;
   schoolName: string;
   schoolOption: SchoolOptionValueType;
   platform: PlatformValueType;
@@ -2543,7 +2543,7 @@ export interface LessonResourcesDownloadedProperties {
  * @param properties.subjectSlug: Human-readable unique ID of the current subject.
  * @param properties.lessonName: Name of the current lesson.
  * @param properties.lessonSlug: Human-readable unique ID of the current lesson.
- * @param properties.schoolUrn: School URN linked to GIAS attributes
+ * @param properties.schoolUrn: School URN linked to GIAS attributes, should match regex: ^\d{3}\-?\d{3,4}$
  * @param properties.schoolName: Name of the school chosen from the school picker
  * @param properties.schoolOption: The option the user has selected as their school (selected school, homeschool or not listed)
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA and Aila. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -2615,7 +2615,7 @@ export function lessonResourcesDownloaded(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "2367a622bc2d26fdb58c065e2092712d5c668b79b677253677851dafc59b5330", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "k9ZQJai7ws", "8d7a13152240cf9fe9e308645a2f212152f0120683224c779cd95b7ec69dd7d5", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Resources Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -2626,7 +2626,7 @@ export function lessonResourcesDownloaded(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Resources Downloaded", eventProperties, "k9ZQJai7ws", "2367a622bc2d26fdb58c065e2092712d5c668b79b677253677851dafc59b5330");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Resources Downloaded", eventProperties, "k9ZQJai7ws", "8d7a13152240cf9fe9e308645a2f212152f0120683224c779cd95b7ec69dd7d5");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Resources Downloaded", (Object as any).assign({}, eventProperties));
@@ -3968,7 +3968,7 @@ export function onwardContentSelected(
 export interface LessonSharedProperties {
   lessonName: string;
   lessonSlug: string;
-  schoolUrn: number;
+  schoolUrn: string;
   schoolName: string;
   schoolOption: SchoolOptionValueType;
   platform: PlatformValueType;
@@ -3992,7 +3992,7 @@ export interface LessonSharedProperties {
  * @param properties the properties associatied with this event
  * @param properties.lessonName: Name of the current lesson.
  * @param properties.lessonSlug: Human-readable unique ID of the current lesson.
- * @param properties.schoolUrn: School URN linked to GIAS attributes
+ * @param properties.schoolUrn: School URN linked to GIAS attributes, should match regex: ^\d{3}\-?\d{3,4}$
  * @param properties.schoolName: Name of the school chosen from the school picker
  * @param properties.schoolOption: The option the user has selected as their school (selected school, homeschool or not listed)
  * @param properties.platform: Describes the 'platform' or 'codebase' from which the event was sent. Historically this would have been acorn, but now this will cover OWA and Aila. These should typically also have a one to one relationship with the 'sources' as defined in this Avo project (Oak's Tracking Plan).
@@ -4039,7 +4039,7 @@ export function lessonShared(properties: LessonSharedProperties) {
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "RnJu4EY4bA", "45481563ec9f91c5971f5cf9c31bed1e2c12ca39cd0c70290ffb106cce533c5d", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "RnJu4EY4bA", "9f07bd7df79bfcf37d4d0fb28711d799a65feba32953f82bc99dc9de02ce717b", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Lesson Shared", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -4050,7 +4050,7 @@ export function lessonShared(properties: LessonSharedProperties) {
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Shared", eventProperties, "RnJu4EY4bA", "45481563ec9f91c5971f5cf9c31bed1e2c12ca39cd0c70290ffb106cce533c5d");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Lesson Shared", eventProperties, "RnJu4EY4bA", "9f07bd7df79bfcf37d4d0fb28711d799a65feba32953f82bc99dc9de02ce717b");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Lesson Shared", (Object as any).assign({}, eventProperties));
@@ -5934,7 +5934,7 @@ export interface CurriculumResourcesDownloadedProperties {
   emailSupplied: boolean;
   resourceType: ResourceTypeValueType[];
   schoolOption: SchoolOptionValueType;
-  schoolUrn: number;
+  schoolUrn: string;
   schoolName: string;
   subjectTitle: string;
   keyStageTitle: KeyStageTitleValueType;
@@ -5953,7 +5953,7 @@ NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.emailSupplied: A user has signed up for updates on the downloads page
  * @param properties.resourceType: The lesson resources a teacher selected for download.
  * @param properties.schoolOption: The option the user has selected as their school (selected school, homeschool or not listed)
- * @param properties.schoolUrn: School URN linked to GIAS attributes
+ * @param properties.schoolUrn: School URN linked to GIAS attributes, should match regex: ^\d{3}\-?\d{3,4}$
  * @param properties.schoolName: Name of the school chosen from the school picker
  * @param properties.subjectTitle: Title of the current subject.
  * @param properties.keyStageTitle: Title of the current key stage.
@@ -5981,7 +5981,7 @@ export function curriculumResourcesDownloaded(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "L7-HOgqfOB", "0ec0808bac2add2137ae9ebf57c1a1b3d889e14061a3ac4a2ea8e21296a20998", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "L7-HOgqfOB", "d3168c3fe0e25a5f2532e7fccf782860b43f896687334d3a908993b37617ff42", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Resources Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -5992,7 +5992,7 @@ export function curriculumResourcesDownloaded(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Downloaded", eventProperties, "L7-HOgqfOB", "0ec0808bac2add2137ae9ebf57c1a1b3d889e14061a3ac4a2ea8e21296a20998");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Downloaded", eventProperties, "L7-HOgqfOB", "d3168c3fe0e25a5f2532e7fccf782860b43f896687334d3a908993b37617ff42");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Resources Downloaded", (Object as any).assign({}, eventProperties));
@@ -6005,7 +6005,7 @@ export interface CurriculumResourcesDownloadedCurriculumDocumentProperties {
   analyticsUseCase: AnalyticsUseCaseValueType;
   emailSupplied: boolean;
   schoolOption: SchoolOptionValueType;
-  schoolUrn: number;
+  schoolUrn: string;
   schoolName: string;
   subjectTitle: string;
   childSubjectName: string | null | undefined;
@@ -6025,7 +6025,7 @@ export interface CurriculumResourcesDownloadedCurriculumDocumentProperties {
 NB - This will be removed, but keeping to ease transition from AUC to 'product'
  * @param properties.emailSupplied: A user has signed up for updates on the downloads page
  * @param properties.schoolOption: The option the user has selected as their school (selected school, homeschool or not listed)
- * @param properties.schoolUrn: School URN linked to GIAS attributes
+ * @param properties.schoolUrn: School URN linked to GIAS attributes, should match regex: ^\d{3}\-?\d{3,4}$
  * @param properties.schoolName: Name of the school chosen from the school picker
  * @param properties.subjectTitle: Title of the current subject.
  * @param properties.childSubjectName: Name of the Child Subject Associated with the event
@@ -6073,7 +6073,7 @@ export function curriculumResourcesDownloadedCurriculumDocument(
     let messages: AvoAssertMessage[] = [];
     // debug console in Avo
     if (!__AVO_NOOP__) {
-      _avo_invoke(__AVO_ENV__, "L7-HOgqfOB.bCK4k0eAk", "032a6da4fcccbcf90001c40f00f104d168dc42b1440d048a8cd485edf95eb9e3", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
+      _avo_invoke(__AVO_ENV__, "L7-HOgqfOB.bCK4k0eAk", "49f3e4169611b6d6be74f9771f0d20415fc866a9df56dc17c1d407daeb2b0adf", messages.map(m => Object.assign({}, {tag: m.tag, propertyId: m.propertyId, additionalProperties: m.additionalProperties, actualType: m.actualType})), 'event');
     }
     InternalAvoLogger.logEventSent("Curriculum Resources Downloaded", eventProperties, userProperties);
     if (__WEB_DEBUGGER__) {
@@ -6084,7 +6084,7 @@ export function curriculumResourcesDownloadedCurriculumDocument(
   if (!__AVO_NOOP__) {
     if (__INSPECTOR__ != null) {
       // @ts-ignore
-      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Downloaded", eventProperties, "L7-HOgqfOB.bCK4k0eAk", "032a6da4fcccbcf90001c40f00f104d168dc42b1440d048a8cd485edf95eb9e3");
+      __INSPECTOR__._avoFunctionTrackSchemaFromEvent("Curriculum Resources Downloaded", eventProperties, "L7-HOgqfOB.bCK4k0eAk", "49f3e4169611b6d6be74f9771f0d20415fc866a9df56dc17c1d407daeb2b0adf");
     }
     // destination PostHogEU
     PostHogEU.logEvent("Curriculum Resources Downloaded", (Object as any).assign({}, eventProperties));
