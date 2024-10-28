@@ -161,6 +161,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
   },
   hubspotNewsletterFormId: {
+    // Hubspot form name dev: Main Email Signup
     value: process.env.NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID,
     envName: "NEXT_PUBLIC_HUBSPOT_NEWSLETTER_FORM_ID",
     required: true,
@@ -168,6 +169,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
   },
   hubspotDownloadsFormId: {
+    // Hubspot form name dev: Teacher Hub - Email Signup Modal
     value: process.env.NEXT_PUBLIC_HUBSPOT_DOWNLOADS_FORM_ID,
     envName: "NEXT_PUBLIC_HUBSPOT_DOWNLOADS_FORM_ID",
     required: true,
@@ -175,6 +177,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
   },
   hubspotOnboardingFormId: {
+    // Hubspot form name dev: Oak Account Creation Form
     value: process.env.NEXT_PUBLIC_HUBSPOT_ONBOARDING_FORM_ID,
     envName: "NEXT_PUBLIC_HUBSPOT_ONBOARDING_FORM_ID",
     required: true,
@@ -182,6 +185,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
   },
   hubspotFallbackFormId: {
+    // Hubspot form name dev: Teacher Hub - Email Signup Modal (FAILSAFE version)
     value: process.env.NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID,
     envName: "NEXT_PUBLIC_HUBSPOT_FALLBACK_FORM_ID",
     required: true,
