@@ -134,6 +134,17 @@ function isHighlightedUnit(unit: Unit, selectedThread: string | null) {
   return unit.threads.some((t) => t.slug === selectedThread);
 }
 
+const StyledButton = styled("button")`
+  all: unset;
+  color: inherit;
+  cursor: pointer;
+  padding: 12px;
+
+  &:hover:not([aria-pressed="true"]) {
+    background: #f2f2f2;
+  }
+`;
+
 // Function component
 
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
@@ -285,19 +296,27 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                       );
 
                       return (
-                        <Button
-                          $mb={20}
-                          $mr={20}
-                          background={isSelected ? "black" : "white"}
+                        <FocusIndicator
                           key={index}
-                          label={subjectCategory.title}
-                          onClick={() =>
-                            handleSelectSubjectCategory(year, subjectCategory)
-                          }
-                          size="small"
-                          data-testid="subjectCategory-button"
-                          aria-pressed={isSelected}
-                        />
+                          $display={"inline-block"}
+                          $mb="space-between-ssx"
+                          $mr="space-between-ssx"
+                          $background={isSelected ? "black" : "white"}
+                          $color={isSelected ? "white" : "black"}
+                          $borderRadius={"border-radius-s"}
+                          $font="heading-7"
+                          disableMouseHover={isSelected}
+                        >
+                          <StyledButton
+                            data-testid="subjectCategory-button"
+                            aria-pressed={isSelected}
+                            onClick={() =>
+                              handleSelectSubjectCategory(year, subjectCategory)
+                            }
+                          >
+                            {subjectCategory.title}
+                          </StyledButton>
+                        </FocusIndicator>
                       );
                     })}
                   </OakBox>
@@ -381,7 +400,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                             $width={"100%"}
                             $borderRadius={"border-radius-m"}
                             $overflow={"hidden"}
-                            disableMouseHover={true}
+                            $background={isHighlighted ? "black" : "white"}
+                            disableMouseHover={isHighlighted}
                           >
                             <UnstyledButton
                               onClick={() => {
@@ -393,7 +413,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                                 $ph={"inner-padding-m"}
                                 $height={"100%"}
                                 $width={"100%"}
-                                $background={isHighlighted ? "black" : "white"}
                                 $color={isHighlighted ? "white" : "black"}
                                 data-testid={
                                   isHighlighted
