@@ -4,6 +4,7 @@ import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
 import { HomePage } from "@/common-lib/cms-types";
+import Banners from "@/components/CurriculumComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import AiTab from "@/components/GenericPagesComponents/AiTab";
 import {
@@ -25,6 +26,7 @@ const Ai: NextPage<PupilHomePageProps> = (props) => (
     }}
     $background={"white"}
   >
+    <Banners />
     <HomePageTabImageNav current={"ai"} />
     <AiTab aria-current="page" />
     <HomePageLowerView posts={props.posts} />
