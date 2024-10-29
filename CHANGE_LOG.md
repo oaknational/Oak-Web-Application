@@ -1,3 +1,10 @@
+## [1.607.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.607.1...v1.607.2) (2024-10-29)
+
+
+### Bug Fixes
+
+* trim short answer text to avoid case and ws comparison ([ef5181c](https://github.com/oaknational/Oak-Web-Application/commit/ef5181ce87d1635537d8c283b78e2a44c694f619))
+
 ## [1.607.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.607.0...v1.607.1) (2024-10-29)
 
 # [1.607.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.606.1...v1.607.0) (2024-10-29)
