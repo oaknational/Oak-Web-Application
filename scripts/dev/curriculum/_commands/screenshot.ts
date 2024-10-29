@@ -55,7 +55,7 @@ export default async function screenshot(
   { loginUrl, label }: { loginUrl?: string; label?: string } = {},
 ) {
   const browser = await puppeteer.launch({
-    headless: "new",
+    headless: true,
     args: ["--incognito"],
   });
   const page = await browser.newPage();
