@@ -1,3 +1,17 @@
+# [1.607.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.606.1...v1.607.0) (2024-10-29)
+
+
+### Features
+
+* **storybook:** upgrade 8-3-6 ([c9e44f8](https://github.com/oaknational/Oak-Web-Application/commit/c9e44f8e7cca2761cffc66f3909385a652ff945d))
+
+## [1.606.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.606.0...v1.606.1) (2024-10-29)
+
+
+### Bug Fixes
+
+* require authorisation to access Hubspot endpoints ([bd88df2](https://github.com/oaknational/Oak-Web-Application/commit/bd88df264ed20e8f9c701c41090f18e494c85a98))
+
 # [1.606.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.605.0...v1.606.0) (2024-10-28)
 
 
