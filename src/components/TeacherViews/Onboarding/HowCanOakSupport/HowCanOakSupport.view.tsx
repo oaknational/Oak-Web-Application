@@ -91,6 +91,7 @@ const HowCanOakSupport = () => {
             Skip
           </OakSecondaryButton>
         )}
+        continueButtonDescription={formState.errors.root?.message}
       >
         <OakFlex $flexDirection="column" $gap="space-between-s">
           <div

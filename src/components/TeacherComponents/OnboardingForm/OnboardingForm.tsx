@@ -59,6 +59,7 @@ const OnboardingForm = ({
   control: Control<OnboardingFormProps>;
   trigger: UseFormTrigger<OnboardingFormProps>;
   forceHideNewsletterSignUp?: boolean;
+  continueButtonDescription?: string;
 }) => {
   const router = useRouter();
   const utmParams = useUtmParams();
@@ -270,7 +271,9 @@ const OnboardingForm = ({
               type="submit"
               onClick={props.onSubmit}
               name="continue"
-              aria-description={submitError ?? undefined}
+              aria-description={
+                props.continueButtonDescription ?? submitError ?? undefined
+              }
             >
               Continue
             </OakPrimaryButton>
