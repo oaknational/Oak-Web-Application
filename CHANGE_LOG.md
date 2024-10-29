@@ -1,3 +1,44 @@
+## [1.607.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.607.1...v1.607.2) (2024-10-29)
+
+
+### Bug Fixes
+
+* trim short answer text to avoid case and ws comparison ([ef5181c](https://github.com/oaknational/Oak-Web-Application/commit/ef5181ce87d1635537d8c283b78e2a44c694f619))
+
+## [1.607.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.607.0...v1.607.1) (2024-10-29)
+
+# [1.607.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.606.1...v1.607.0) (2024-10-29)
+
+
+### Features
+
+* **storybook:** upgrade 8-3-6 ([c9e44f8](https://github.com/oaknational/Oak-Web-Application/commit/c9e44f8e7cca2761cffc66f3909385a652ff945d))
+
+## [1.606.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.606.0...v1.606.1) (2024-10-29)
+
+
+### Bug Fixes
+
+* require authorisation to access Hubspot endpoints ([bd88df2](https://github.com/oaknational/Oak-Web-Application/commit/bd88df264ed20e8f9c701c41090f18e494c85a98))
+
+# [1.606.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.605.0...v1.606.0) (2024-10-28)
+
+
+### Bug Fixes
+
+* added types for link props passed into component ([42a3a9b](https://github.com/oaknational/Oak-Web-Application/commit/42a3a9b5abba7abf5cfbaaf752dcbb91196e0cc9))
+* suggestions to keep <ButtonAsLink/> generic ([cb21c87](https://github.com/oaknational/Oak-Web-Application/commit/cb21c879d303acb6fc08d16dc2b1af99b0a4710f))
+
+
+### Features
+
+* implement Homepage banner component for Curriculum page ([6a51557](https://github.com/oaknational/Oak-Web-Application/commit/6a515578e5ba01598a2e7504f430e3f2b6bc3b88))
+
+
+### Reverts
+
+* remove unnecessary OakPages export ([4fab5a2](https://github.com/oaknational/Oak-Web-Application/commit/4fab5a2f70890006ff936c4c16b40353dcbb9d1f))
+
 # [1.605.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.604.1...v1.605.0) (2024-10-28)
 
 

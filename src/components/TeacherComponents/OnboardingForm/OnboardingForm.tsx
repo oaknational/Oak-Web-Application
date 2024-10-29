@@ -79,8 +79,7 @@ const OnboardingForm = ({
       return;
     }
     if (user?.emailAddresses[0]) {
-      const email = String(user.emailAddresses[0].emailAddress);
-      getSubscriptionStatus(email, setUserSubscribedInHubspot);
+      getSubscriptionStatus(setUserSubscribedInHubspot);
     }
   }, [user, forceHideNewsletterSignUp]);
 

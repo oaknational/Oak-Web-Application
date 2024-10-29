@@ -30,13 +30,18 @@ import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import { HOVER_SHADOW_TRANSITION } from "@/styles/transitions";
 import opacity, { OpacityProps } from "@/styles/utils/opacity";
 import margin, { MarginProps } from "@/styles/utils/spacing";
-import { BackgroundIcon } from "@/components/SharedComponents/Icon/Icon";
+import {
+  BackgroundIcon,
+  IconName,
+} from "@/components/SharedComponents/Icon/Icon";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 
 export type ButtonStylesProps = OpacityProps &
   MarginProps & {
     size: ButtonSize;
     $iconPosition: IconPosition;
+    icon?: IconName;
     variant: ButtonVariant;
     background: ButtonBackground;
     $fullWidth?: boolean;
@@ -53,6 +58,7 @@ export const getButtonStylesProps = (
   const {
     variant = DEFAULT_BUTTON_VARIANT,
     $iconPosition = DEFAULT_ICON_POSITION,
+    icon,
     size = DEFAULT_BUTTON_SIZE,
     background = DEFAULT_BUTTON_BACKGROUND,
     $fullWidth,
@@ -63,6 +69,7 @@ export const getButtonStylesProps = (
   return {
     size,
     $iconPosition,
+    icon,
     variant,
     $fullWidth,
     background: disabled && variant !== "brushNav" ? "grey50" : background, // we don't discolor brushNav buttons when disabled
@@ -250,7 +257,7 @@ const buttonStyles = css<ButtonStylesProps>`
       `}
     `}
 
-  ${(props) =>
+    ${(props) =>
     props.variant === "buttonStyledAsLink" &&
     css`
       &:focus {
@@ -258,9 +265,29 @@ const buttonStyles = css<ButtonStylesProps>`
           display: block;
         }
       }
-
       :hover:not(:focus) ${ButtonLabel} {
         text-decoration: underline;
+      }
+    `}
+
+
+    ${(props) =>
+    props.variant === "buttonStyledAsLink" &&
+    props.size === "medium" &&
+    css`
+      color: #222222;
+
+      & ${ButtonStyledAsLinkFocusUnderline} {
+        & :focus {
+          display: block;
+        }
+
+        left: ${props.$iconPosition === "leading" ? "10px" : ""};
+        width: ${props.icon ? "calc(100% - 10px)" : "100%"};
+      }
+
+      & ${Flex} {
+        margin-left: 0;
       }
     `}
 

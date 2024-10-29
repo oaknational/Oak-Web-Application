@@ -11,14 +11,12 @@ const contactDetails = z.object({
 
 const reportError = errorReporter("fetchHubspotContactDetails");
 
-export async function fetchHubspotContactDetails(email: string) {
+export async function fetchHubspotContactDetails() {
   try {
     const response = await fetch(`/api/hubspot/contacts`, {
-      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email }),
     });
     if (!response.ok) {
       throw new Error("Failed to fetch contact details");

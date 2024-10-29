@@ -95,7 +95,7 @@ const AppHeader: FC<HeaderProps> = () => {
               />
             )}
             <OwaLink
-              page={"home"}
+              page={"teachers-home-page"}
               $focusStyles={["underline"]}
               $isSelected={true}
             >
