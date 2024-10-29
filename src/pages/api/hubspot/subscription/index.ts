@@ -2,20 +2,15 @@ import { Client as HubspotClient } from "@hubspot/api-client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 import { PublicSubscriptionStatus } from "@hubspot/api-client/lib/codegen/communication_preferences";
+import { clerkClient, getAuth } from "@clerk/nextjs/server";
 
 import getServerConfig from "@/node-lib/getServerConfig";
 
-const hubspot = new HubspotClient({
-  accessToken: getServerConfig("hubspotOwaAccessToken"),
-});
-
 const subscriptionRequestSchema = z.object({
-  email: z.string(),
   subscriptionName: z.string(),
 });
-export const subscriptionResponseSchema = z.boolean();
 
-export const getisSubscribed = (
+const getIsSubscribed = (
   statuses: PublicSubscriptionStatus[],
   subscriptionName: string,
 ) => {
@@ -24,22 +19,40 @@ export const getisSubscribed = (
   return isSubscribed;
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse,
-) {
-  const { email, subscriptionName } = subscriptionRequestSchema.parse(req.body);
-  try {
-    const apiResponse =
-      await hubspot.communicationPreferences.statusApi.getEmailStatus(email);
+export function createHandler(hubspot: HubspotClient) {
+  return async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const auth = getAuth(req);
 
-    const isSubscribed = getisSubscribed(
-      apiResponse.subscriptionStatuses,
-      subscriptionName,
-    );
+    if (!auth.userId) {
+      return res.status(401).send("Unauthorized");
+    }
 
-    return res.status(200).json(isSubscribed);
-  } catch (error) {
-    return res.status(500).json({ error: JSON.stringify(error) });
-  }
+    const email = (await clerkClient().users.getUser(auth.userId))
+      .primaryEmailAddress?.emailAddress;
+
+    if (!email) {
+      return res.status(200).json(false);
+    }
+
+    const { subscriptionName } = subscriptionRequestSchema.parse(req.body);
+    try {
+      const apiResponse =
+        await hubspot.communicationPreferences.statusApi.getEmailStatus(email);
+
+      const isSubscribed = getIsSubscribed(
+        apiResponse.subscriptionStatuses,
+        subscriptionName,
+      );
+
+      return res.status(200).json(isSubscribed);
+    } catch (error) {
+      return res.status(500).json({ error: JSON.stringify(error) });
+    }
+  };
 }
+
+export default createHandler(
+  new HubspotClient({
+    accessToken: getServerConfig("hubspotOwaAccessToken"),
+  }),
+);

@@ -1,6 +1,7 @@
 import { Client as HubspotClient } from "@hubspot/api-client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
+import { getAuth, clerkClient } from "@clerk/nextjs/server";
 
 import getServerConfig from "@/node-lib/getServerConfig";
 
@@ -11,7 +12,19 @@ export const contactResponseSchema = z.object({
 
 export function createHandler(hubspotClient: HubspotClient) {
   return async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const email = req.body.email;
+    const auth = getAuth(req);
+
+    if (!auth.userId) {
+      return res.status(401).send("Unauthorized");
+    }
+
+    const email = (await clerkClient().users.getUser(auth.userId))
+      .primaryEmailAddress?.emailAddress;
+
+    if (!email) {
+      return res.status(204).end();
+    }
+
     const contactId = email;
     const properties = ["contact_school_name", "contact_school_urn"];
 
