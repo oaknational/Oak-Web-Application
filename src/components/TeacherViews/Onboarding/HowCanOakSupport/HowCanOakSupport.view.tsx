@@ -37,7 +37,7 @@ export const oakSupportMap: Record<OakSupportKey, string> = {
 const HowCanOakSupport = () => {
   const router = useRouter();
   const onboardingState = decodeOnboardingDataQueryParam(router.query);
-  const { formState, setValue, handleSubmit, control, trigger } =
+  const { formState, setValue, handleSubmit, control, clearErrors, trigger } =
     useForm<UseOfOakFormProps>({
       resolver: zodResolver(extendedUseOfOakSchema),
       mode: "onBlur",
@@ -108,7 +108,16 @@ const HowCanOakSupport = () => {
               name={key as OakSupportKey}
               key={key}
               render={({ field }) => (
-                <OakCheckBox id={key} key={key} {...field} value={value} />
+                <OakCheckBox
+                  id={key}
+                  key={key}
+                  {...field}
+                  value={value}
+                  onChange={(event) => {
+                    clearErrors();
+                    field.onChange(event);
+                  }}
+                />
               )}
             />
           ))}
