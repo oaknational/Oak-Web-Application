@@ -619,6 +619,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               >
                 <PickerButton
                   ref={phasePickerButton}
+                  data-testid="phasePickerButton"
                   onClick={toggleShowPhases}
                   title="Phase"
                 >

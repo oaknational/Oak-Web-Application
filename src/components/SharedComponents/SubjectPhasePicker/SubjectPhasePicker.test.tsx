@@ -335,5 +335,35 @@ describe("Component - subject phase picker", () => {
       await userEvent.click(await findByTitle("Secondary"));
       expect(queryByText("Choose an option for KS4")).not.toBeInTheDocument();
     });
+
+    test("tab focus breaks outside of modal", async () => {
+      const { getByTestId, getByTitle, findAllByTitle } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+      await userEvent.click(getByTitle("Subject"));
+      const button = (await findAllByTitle("Geography"))[0];
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+
+      const checkIfPhasesFocused = () => {
+        const el = getByTestId("phasePickerButton");
+        if (el.matches(":focus-within")) {
+          return true;
+        }
+        return false;
+      };
+
+      // Tab through until we tab outside the
+      let i = 0;
+      for (i; i < 20; i++) {
+        await userEvent.tab();
+        if (checkIfPhasesFocused()) {
+          break;
+        }
+      }
+
+      expect(getByTestId("phasePickerButton").matches(":focus")).toBe(true);
+    });
   });
 });
