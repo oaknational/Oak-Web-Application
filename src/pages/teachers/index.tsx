@@ -24,7 +24,7 @@ export type HomePageProps = {
   posts: SerializedPost[];
 };
 
-const Home: NextPage<TeachersHomePageProps> = (props) => {
+const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
   const { curriculumData, posts } = props;
 
   return (
@@ -76,4 +76,4 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
   });
 };
 
-export default Home;
+export default TeachersHomePage;

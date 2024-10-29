@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { HomePageProps } from "@/pages-helpers/home/getBlogPosts";
-import Home, {
+import TeachersHomePage, {
   getStaticProps as getStaticPropsTeachers,
   TeachersHomePageProps,
 } from "@/pages/teachers/index";
@@ -17,14 +17,13 @@ const HomePage: NextPage<TeachersHomePageProps> = (props) => {
     } else if (window.location.href.includes("#curriculum")) {
       router.push("/curriculum");
     } else if (window.location.href.includes("#ai")) {
-      //router.push("/ai");
-      router.push("/#ai");
+      router.push("/ai");
     } else if (window.location.href.includes("#teachers")) {
       router.push("/teachers");
     }
   }, [router]);
 
-  return <Home {...props} />;
+  return <TeachersHomePage {...props} />;
 };
 
 export const getStaticProps: GetStaticProps<HomePageProps> =
