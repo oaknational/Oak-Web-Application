@@ -1,3 +1,20 @@
+## [1.609.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.609.0...v1.609.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* add aconditional rendering of tier ([f12e613](https://github.com/oaknational/Oak-Web-Application/commit/f12e61398761a1d2d072dc1045afded2f8a561cc))
+
+# [1.609.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.608.0...v1.609.0) (2024-10-30)
+
+
+### Features
+
+* **deps:** husky update ([4fae377](https://github.com/oaknational/Oak-Web-Application/commit/4fae37776cc5abfff16497dd03c890dadcd0ebf4))
+* **deps:** remove path-to-regexp ([8f2dfaf](https://github.com/oaknational/Oak-Web-Application/commit/8f2dfaf5f9d4ff5f3a9fba7c0b24960b12208e68))
+* **deps:** screenshot ([c8bce76](https://github.com/oaknational/Oak-Web-Application/commit/c8bce76901fae50ca8cf3541aee710d6a883a173))
+* **deps:** updates ([5dc2ed0](https://github.com/oaknational/Oak-Web-Application/commit/5dc2ed0a3ca6ad1d59e1e64a95ec5a1652eeb720))
+
 # [1.608.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.607.2...v1.608.0) (2024-10-30)
 
 
