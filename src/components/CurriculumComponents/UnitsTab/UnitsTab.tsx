@@ -291,7 +291,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                       key={threadOption.slug}
                     >
                       <RadioButton
-                        aria-label={`${threadOption.title} thread`}
+                        aria-label={threadOption.title}
                         value={threadOption.slug}
                         data-testid={
                           isSelected ? "selected-thread-radio" : "thread-radio"
@@ -354,9 +354,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
             </Fieldset>
             <ScreenReaderOnly aria-live="polite" aria-atomic="true">
               <p>
-                {unitCount}{" "}
-                {unitCount === 1 ? "unit" : "units"}
-                {" "} shown,
+                {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
               </p>
               {selectedThread && (
                 <p>
