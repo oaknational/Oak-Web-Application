@@ -1,3 +1,33 @@
+# [1.611.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.610.0...v1.611.0) (2024-10-30)
+
+
+### Bug Fixes
+
+* add backward focus navigation to <SubjectPhasePicker/> ([32bfaec](https://github.com/oaknational/Oak-Web-Application/commit/32bfaec037b77b07289f58c499aa9a820c478197))
+* added edge case for focusout event on document.body ([2e602d9](https://github.com/oaknational/Oak-Web-Application/commit/2e602d97a5b436d39fcc9f413965ef45c44e5de1))
+* attempt next-tick for focus issue ([57e78b8](https://github.com/oaknational/Oak-Web-Application/commit/57e78b866383351c4c1a8cde564c575aef1b4005))
+* correct the focus behavior to be inline with designs ([58ca3b8](https://github.com/oaknational/Oak-Web-Application/commit/58ca3b803eed93437dba3a1ca873c04e0fc88712))
+
+
+### Features
+
+* added in <FocusWrap/> component so we can deal with complex focus movement issues ([57413cf](https://github.com/oaknational/Oak-Web-Application/commit/57413cf6dbf240e1b5811d26eb3d759796e5f35d))
+
+# [1.610.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.609.1...v1.610.0) (2024-10-30)
+
+
+### Bug Fixes
+
+* changed test back to explainer (cycle 1) ([3f8f68b](https://github.com/oaknational/Oak-Web-Application/commit/3f8f68b780e2552004eb271ed5e194201b9bab27))
+* disable cycle 2 ([81e2029](https://github.com/oaknational/Oak-Web-Application/commit/81e20292c22da95041722af5a288deae21aee93a))
+* remove sanity icons ([43ca406](https://github.com/oaknational/Oak-Web-Application/commit/43ca406d088601a11e52ade88078a5605ed5f9cc))
+* update width to match ratio ([31e03bf](https://github.com/oaknational/Oak-Web-Application/commit/31e03bf74957be8a3ebf1aa40fd8f7ec4e0bfad3))
+
+
+### Features
+
+* convert cloudinary svg to png ([a550400](https://github.com/oaknational/Oak-Web-Application/commit/a550400d3ad1f93fa3976e6e9561405fbed0133e))
+
 ## [1.609.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.609.0...v1.609.1) (2024-10-30)
 
 

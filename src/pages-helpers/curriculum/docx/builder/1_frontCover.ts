@@ -12,25 +12,21 @@ import {
   JSZipCached,
 } from "../docx";
 
-import { cmToPxDpi, makeTransparentIfSanity } from "./helper";
+import { generateOakIconURL } from "./helper";
 
-import { getSubjectIconAsset } from "@/image-data";
 import { getShortPhaseText } from "@/utils/curriculum/formatting";
+
+const PARTNER_IMG_WIDTH = 475 * 2;
 
 export default async function generate(
   zip: JSZipCached,
   { data, slugs }: { data: CombinedCurriculumData; slugs: Slugs },
 ) {
-  const iconKey = data.subjectTitle.toLowerCase();
-
-  const sanityUrl = getSubjectIconAsset(iconKey)?.url;
   const images = await insertImages(zip, {
-    icon: sanityUrl
-      ? makeTransparentIfSanity(sanityUrl, cmToPxDpi(13))
-      : join(
-          process.cwd(),
-          "src/pages-helpers/curriculum/docx/builder/images/icon.png",
-        ),
+    icon: {
+      url: generateOakIconURL(slugs.subjectSlug),
+      width: PARTNER_IMG_WIDTH,
+    },
     arrow: join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/arrow.png",
