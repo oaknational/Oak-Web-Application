@@ -58,7 +58,7 @@ describe("isVisibleUnit", () => {
     expect(isVisibleUnit(yearSelection, "10", unit)).toEqual(true);
   });
 
-  it.only("matches subject & subject category", () => {
+  it("matches subject & subject category", () => {
     const unit = {
       ...baseUnit,
       tier: null,
