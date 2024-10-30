@@ -16,6 +16,8 @@ import { generateOakIconURL } from "./helper";
 
 import { getShortPhaseText } from "@/utils/curriculum/formatting";
 
+const PARTNER_IMG_WIDTH = 475 * 2;
+
 export default async function generate(
   zip: JSZipCached,
   { data, slugs }: { data: CombinedCurriculumData; slugs: Slugs },
@@ -23,7 +25,7 @@ export default async function generate(
   const images = await insertImages(zip, {
     icon: {
       url: generateOakIconURL(slugs.subjectSlug),
-      width: 1000,
+      width: PARTNER_IMG_WIDTH,
     },
     arrow: join(
       process.cwd(),
