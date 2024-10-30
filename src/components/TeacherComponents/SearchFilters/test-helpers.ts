@@ -57,4 +57,18 @@ export const searchFilters: UseSearchFiltersReturnType = {
       checked: false,
     },
   ],
+  yearGroupFilters: [
+    {
+      slug: "year-10",
+      title: "Year 10",
+      onChange: mockOnChange,
+      checked: true,
+    },
+    {
+      slug: "year-11",
+      title: "Year 11",
+      onChange: mockOnChange,
+      checked: false,
+    },
+  ],
 };

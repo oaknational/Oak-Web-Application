@@ -48,22 +48,7 @@ const teachersHomePageData = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
-export const subjectSchema = z.object({
-  title: z.string(),
-  slug: z.string(),
-  displayOrder: z.number().optional(),
-});
-const phaseSchema = z.object({
-  title: z.string(),
-  slug: z.string(),
-  displayOrder: z.number().optional(),
-});
-export const ks4OptionSchema = z.object({
-  title: z.string(),
-  slug: z.string(),
-  displayOrder: z.number().optional(),
-});
-export const keystagesSchema = z.object({
+const genericFilteringGroup = z.object({
   title: z.string(),
   slug: z.string(),
   displayOrder: z.number().optional(),
@@ -76,16 +61,17 @@ const contentTypesSchema = z.object({
 
 export const searchPageSchema = z.object({
   keyStages: z.array(keyStageSchema),
-  subjects: z.array(subjectSchema),
+  subjects: z.array(genericFilteringGroup),
   contentTypes: z.array(contentTypesSchema),
-  examBoards: z.array(ks4OptionSchema),
+  examBoards: z.array(genericFilteringGroup),
+  yearGroups: z.array(genericFilteringGroup),
 });
 
-export const subjectPhaseOptionSchema = subjectSchema.extend({
-  phases: z.array(phaseSchema),
-  keystages: z.array(keystagesSchema).optional().nullable(),
+export const subjectPhaseOptionSchema = genericFilteringGroup.extend({
+  phases: z.array(genericFilteringGroup),
+  keystages: z.array(genericFilteringGroup).optional().nullable(),
   cycle: z.string(),
-  ks4_options: z.array(ks4OptionSchema).optional().nullable(),
+  ks4_options: z.array(genericFilteringGroup).optional().nullable(),
 });
 
 const curriculumHeaderData = z.object({
@@ -101,9 +87,9 @@ const curriculumDownloadsTabData = z.object({
   urls: z.array(z.string()),
 });
 
-export type Phase = z.infer<typeof phaseSchema>;
-export type Subject = z.infer<typeof subjectSchema>;
-export type KS4Option = z.infer<typeof ks4OptionSchema>;
+export type Phase = z.infer<typeof genericFilteringGroup>;
+export type Subject = z.infer<typeof genericFilteringGroup>;
+export type KS4Option = z.infer<typeof genericFilteringGroup>;
 export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type CurriculumOverviewMVData = z.infer<typeof curriculumOverviewSchema>;

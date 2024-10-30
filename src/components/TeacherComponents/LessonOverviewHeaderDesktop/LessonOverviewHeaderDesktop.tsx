@@ -29,6 +29,7 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     subjectIconBackgroundColor,
     pupilLessonOutcome,
     showShare,
+    isCanonical,
   } = props;
 
   return (
@@ -54,7 +55,7 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
                 <LessonMetadata
                   examBoardTitle={examBoardTitle}
                   yearTitle={yearTitle}
-                  tierTitle={tierTitle}
+                  tierTitle={!isCanonical ? tierTitle : null}
                 />
               </OakSpan>
             )}

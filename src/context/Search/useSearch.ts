@@ -22,12 +22,14 @@ type UseSearchQueryReturnType = {
 
 const useSearchQuery = ({
   allKeyStages,
+  allYearGroups,
   allSubjects,
   allContentTypes,
   allExamBoards,
   legacy,
 }: {
   allKeyStages?: KeyStage[];
+  allYearGroups?: SearchPageData["yearGroups"];
   allSubjects?: SearchPageData["subjects"];
   allContentTypes?: ContentType[];
   allExamBoards?: SearchPageData["examBoards"];
@@ -37,6 +39,7 @@ const useSearchQuery = ({
     query: {
       term = "",
       keyStages = "",
+      yearGroups = "",
       subjects = "",
       contentTypes = "",
       examBoards = "",
@@ -58,6 +61,9 @@ const useSearchQuery = ({
       keyStages: allKeyStages
         ? getFilterForQueryCallback(keyStages, allKeyStages)
         : [],
+      yearGroups: allYearGroups
+        ? getFilterForQueryCallback(yearGroups, allYearGroups)
+        : [],
       subjects: allSubjects
         ? getFilterForQueryCallback(subjects, allSubjects)
         : [],
@@ -72,10 +78,13 @@ const useSearchQuery = ({
         : [],
       curriculum: legacy ? getFilterForQueryCallback(curriculum, legacy) : [],
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     termString,
     allKeyStages,
+    allYearGroups,
+    yearGroups,
     getFilterForQueryCallback,
     keyStages,
     allSubjects,
@@ -89,7 +98,6 @@ const useSearchQuery = ({
 
   const setQuery: SetSearchQuery = useStableCallback((arg) => {
     const newQuery = typeof arg === "function" ? arg(query) : arg;
-
     const url = resolveOakHref({
       page: "search",
       query: newQuery,
@@ -112,16 +120,24 @@ export type UseSearchReturnType = {
 };
 type UseSearchProps = {
   allKeyStages?: KeyStage[];
+  allYearGroups?: SearchPageData["yearGroups"];
   allSubjects?: SearchPageData["subjects"];
   allContentTypes?: ContentType[];
   allExamBoards?: SearchPageData["examBoards"];
   legacy?: { slug: string; title: string }[];
 };
 const useSearch = (props: UseSearchProps): UseSearchReturnType => {
-  const { allKeyStages, allSubjects, allContentTypes, allExamBoards, legacy } =
-    props;
+  const {
+    allKeyStages,
+    allYearGroups,
+    allSubjects,
+    allContentTypes,
+    allExamBoards,
+    legacy,
+  } = props;
   const { query, setQuery } = useSearchQuery({
     allKeyStages,
+    allYearGroups,
     allSubjects,
     allContentTypes,
     allExamBoards,
