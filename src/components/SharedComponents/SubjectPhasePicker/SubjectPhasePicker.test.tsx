@@ -336,7 +336,7 @@ describe("Component - subject phase picker", () => {
       expect(queryByText("Choose an option for KS4")).not.toBeInTheDocument();
     });
 
-    test("tab focus breaks outside of modal", async () => {
+    test("tab focus breaks outside of subject modal", async () => {
       const { getByTestId, getByTitle, findAllByTitle } = render(
         <SubjectPhasePicker {...subjectPhaseOptions} />,
       );
@@ -364,6 +364,34 @@ describe("Component - subject phase picker", () => {
       }
 
       expect(getByTestId("phasePickerButton").matches(":focus")).toBe(true);
+    });
+
+    test("tab focus breaks outside of phases modal", async () => {
+      Element.prototype.checkVisibility = jest.fn(() => true) as jest.Mock;
+
+      const { getByTestId } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+      await userEvent.click(getByTestId("phasePickerButton"));
+
+      const checkIfPhasesFocused = () => {
+        const el = getByTestId("view-desktop");
+        if (el.matches(":focus-within")) {
+          return true;
+        }
+        return false;
+      };
+
+      // Tab through until we tab outside the
+      let i = 0;
+      for (i; i < 20; i++) {
+        await userEvent.tab();
+        if (checkIfPhasesFocused()) {
+          break;
+        }
+      }
+
+      expect(getByTestId("view-desktop").matches(":focus-within")).toBe(true);
     });
   });
 });
