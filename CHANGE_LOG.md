@@ -1,3 +1,10 @@
+## [1.609.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.609.0...v1.609.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* add aconditional rendering of tier ([f12e613](https://github.com/oaknational/Oak-Web-Application/commit/f12e61398761a1d2d072dc1045afded2f8a561cc))
+
 # [1.609.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.608.0...v1.609.0) (2024-10-30)
 
 
