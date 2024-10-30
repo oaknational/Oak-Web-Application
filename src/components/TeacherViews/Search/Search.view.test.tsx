@@ -119,6 +119,15 @@ const props: SearchProps = {
         checked: false,
       },
     ],
+    yearGroupFilters: [
+      {
+        slug: "year-10",
+        title: "Year 10",
+        displayOrder: 1,
+        onChange: jest.fn(),
+        checked: false,
+      },
+    ],
     subjectFilters: [
       {
         slug: "computing",

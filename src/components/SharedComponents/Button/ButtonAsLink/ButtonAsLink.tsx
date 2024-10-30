@@ -85,6 +85,7 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
         variant={variant}
         background={background}
         $iconPosition={$iconPosition}
+        icon={icon}
         disabled={disabled}
         // see: https://www.scottohara.me/blog/2021/05/28/disabled-links.html
         aria-disabled={disabled}
