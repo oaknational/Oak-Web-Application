@@ -1,5 +1,4 @@
 import userEvent from "@testing-library/user-event";
-import { act } from "@testing-library/react";
 
 import FocusWrap from ".";
 
@@ -69,8 +68,6 @@ describe("Component - subject phase picker", () => {
     expect(onWrapEnd).toHaveBeenCalledTimes(0);
 
     await userEvent.tab({ shift: true });
-    act(() => {});
-    console.log(":::", document.activeElement);
     expect(onWrapStart).toHaveBeenCalledTimes(1);
     expect(onWrapEnd).toHaveBeenCalledTimes(0);
   });
