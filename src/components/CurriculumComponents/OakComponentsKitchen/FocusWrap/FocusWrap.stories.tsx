@@ -15,8 +15,14 @@ type Story = StoryObj<typeof Component>;
 const TestComponent = () => {
   const startRef = useRef<HTMLButtonElement>(null);
   const endRef = useRef<HTMLButtonElement>(null);
-  const onWrapStart = () => endRef.current?.focus();
-  const onWrapEnd = () => startRef.current?.focus();
+  const onWrapStart = () => {
+    console.log("onWrapStart");
+    endRef.current?.focus();
+  };
+  const onWrapEnd = () => {
+    console.log("onWrapEnd");
+    startRef.current?.focus();
+  };
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <Component onWrapStart={onWrapStart} onWrapEnd={onWrapEnd}>
@@ -28,6 +34,6 @@ const TestComponent = () => {
   );
 };
 
-export const BulletList: Story = {
+export const FocusWrap: Story = {
   render: TestComponent,
 };

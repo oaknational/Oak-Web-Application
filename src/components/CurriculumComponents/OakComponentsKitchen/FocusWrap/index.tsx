@@ -25,7 +25,7 @@ export default function FocusWrap({
       let potentialWrapStart = false;
       let potentialWrapEnd = false;
 
-      const focusInHandler = (e: FocusEvent) => {
+      const focusInHandler = (e: { target: EventTarget | null }) => {
         if (e.target) {
           const target = e.target as Node;
           if (!el.contains(target)) {
@@ -43,7 +43,7 @@ export default function FocusWrap({
         potentialWrapStart = false;
         potentialWrapEnd = false;
       };
-      const focusOutHandler = (e: FocusEvent) => {
+      const focusOutHandler = (e: { target: EventTarget | null }) => {
         if (e.target) {
           const target = e.target as Node;
           if (el.contains(target)) {
@@ -69,12 +69,20 @@ export default function FocusWrap({
         }
       };
 
-      document.body.addEventListener("focusin", focusInHandler);
-      document.body.addEventListener("focusout", focusOutHandler);
+      const focusHandler = () => {
+        focusInHandler({ target: document.body });
+      };
+
+      document.addEventListener("focusin", focusInHandler);
+      document.addEventListener("focusout", focusOutHandler);
+
+      // This event handler is required because focusin events don't occur on the window
+      window.addEventListener("focus", focusHandler);
 
       return () => {
-        document.body.removeEventListener("focusin", focusInHandler);
-        document.body.removeEventListener("focusout", focusOutHandler);
+        document.removeEventListener("focusin", focusInHandler);
+        document.removeEventListener("focusout", focusOutHandler);
+        window.removeEventListener("focus", focusHandler);
       };
     }
   }, [ref, onWrapStart, onWrapEnd]);
