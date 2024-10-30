@@ -1,3 +1,13 @@
+# [1.612.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.2...v1.612.0) (2024-10-30)
+
+
+### Features
+
+* **track:** add individual quiz question tracking ([a35d9dc](https://github.com/oaknational/Oak-Web-Application/commit/a35d9dc44b8436a8abe1b28f3ef4dbf1a0633f10))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([18e409a](https://github.com/oaknational/Oak-Web-Application/commit/18e409a0093c14c60ee7b8040ff61ab922c5c8ea))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([8e8b181](https://github.com/oaknational/Oak-Web-Application/commit/8e8b181a0327465d6aeee3d0d91cbd3792fc2da7))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([b52dd2f](https://github.com/oaknational/Oak-Web-Application/commit/b52dd2fec04fd496c8ff800576516e66511fd7bc))
+
 ## [1.611.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.1...v1.611.2) (2024-10-30)
 
 
