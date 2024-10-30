@@ -1316,7 +1316,9 @@ export const PageName = {
   'ONBOARDING_ROLE_SELECTION': 'Onboarding: Role Selection',
   'ONBOARDING_WORK_IN_SCHOOL': 'Onboarding: Work In School',
   'ONBOARDING_USE_OF_OAK': 'Onboarding: Use Of Oak',
+  'TEACHERS_HOME_PAGE': 'Teachers Home Page',
 } as const;
+
 export type PageNameType = typeof PageName;
 export type PageNameValueType = PageNameType[keyof PageNameType];
 

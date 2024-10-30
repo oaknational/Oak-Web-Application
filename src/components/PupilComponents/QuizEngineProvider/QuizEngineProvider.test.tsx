@@ -346,6 +346,30 @@ describe("QuizEngineContext", () => {
     });
   });
 
+  it("should ignore case and whitespace when grading short answers", () => {
+    const questions = [...questionsArrayFixture].filter(
+      (q) => q.questionType === "short-answer",
+    );
+
+    const { result } = renderHook(() => useQuizEngineContext(), {
+      wrapper: (props) =>
+        wrapper({
+          ...props,
+          questionsArray: questions,
+        }),
+    });
+
+    const { handleSubmitShortAnswer } = result.current;
+
+    act(() => {
+      handleSubmitShortAnswer(" Earth ");
+    });
+
+    const { questionState } = result.current;
+
+    expect(questionState[0]?.feedback).toEqual("correct");
+  });
+
   it("should grade a short answer as incorrect if the pupilAnswer is incorrect", () => {
     const questions = [...questionsArrayFixture].filter(
       (q) => q.questionType === "short-answer",

@@ -1,5 +1,7 @@
 import { screen, waitFor } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
+import fetchMock from "jest-fetch-mock";
 
 import HowCanOakSupport, { oakSupportMap } from "./HowCanOakSupport.view";
 
@@ -11,7 +13,20 @@ import { OnboardingFormProps } from "@/components/TeacherComponents/OnboardingFo
 
 jest.mock("next/router", () => require("next-router-mock"));
 
+fetchMock.enableMocks();
+
 describe("HowCanOakSupport", () => {
+  beforeEach(() => {
+    mockRouter.setCurrentUrl({
+      pathname: "/onboarding/how-can-oak-support",
+      query: encodeOnboardingDataQueryParam({}, {
+        newsletterSignUp: true,
+        schoolName: "Jefferson House, Cheshire West and Chester, CW7 1JT",
+        school: "142332-Jefferson House",
+      } as OnboardingFormProps),
+    });
+  });
+
   it("renders the onboarding layout with the correct prompt", () => {
     renderWithProviders()(<HowCanOakSupport />);
     const promptHeading = screen.getByText(/Last step.../i);
@@ -27,31 +42,38 @@ describe("HowCanOakSupport", () => {
     expect(checkboxes).toHaveLength(Object.keys(oakSupportMap).length);
   });
   it("renders a continue button that is enabled by default", async () => {
-    mockRouter.push({
-      pathname: "/onboarding/how-can-oak-support",
-      query: encodeOnboardingDataQueryParam({}, {
-        newsletterSignUp: true,
-        schoolName: "Jefferson House, Cheshire West and Chester, CW7 1JT",
-        school: "142332-Jefferson House",
-      } as OnboardingFormProps),
-    });
     renderWithProviders({ ...allProviders, router: mockRouter })(
       <HowCanOakSupport />,
     );
     const continueButton = screen.getByRole("button", { name: /continue/i });
     await waitFor(() => expect(continueButton).toBeEnabled());
   });
-  it("disabled buttons and renders an error message if there is missing data", async () => {
-    mockRouter.push({
+  it("renders an error message if there is missing data", async () => {
+    mockRouter.setCurrentUrl({
       pathname: "/onboarding/how-can-oak-support",
       query: {},
     });
     renderWithProviders()(<HowCanOakSupport />);
-    const continueButton = screen.getByRole("button", { name: /continue/i });
-    await waitFor(() => expect(continueButton).toBeDisabled());
-    const skipButton = screen.getByRole("button", { name: /skip/i });
-    await waitFor(() => expect(skipButton).toBeDisabled());
-    const errorMessage = screen.getByText(/An error occurred. Please/i);
-    await waitFor(() => expect(errorMessage).toBeInTheDocument());
+    await waitFor(() =>
+      expect(
+        screen.getByText(/An error occurred. Please/i),
+      ).toBeInTheDocument(),
+    );
   });
+
+  it.each(["Continue", "Skip"])(
+    `can be submitted with the %p button`,
+    async (buttonName) => {
+      renderWithProviders()(<HowCanOakSupport />);
+      const button = screen.getByRole("button", { name: buttonName });
+
+      await userEvent.click(
+        screen.getByLabelText(
+          "To support my department with specialist resources",
+        ),
+      );
+
+      await userEvent.click(button);
+    },
+  );
 });

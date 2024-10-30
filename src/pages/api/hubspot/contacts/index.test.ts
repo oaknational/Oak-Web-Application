@@ -1,32 +1,34 @@
+/**
+ * @jest-environment node
+ */
 import { NextApiRequest, NextApiResponse } from "next";
 import { Client as HubspotClient } from "@hubspot/api-client";
 import { createMocks } from "node-mocks-http";
 
-import handler, { createHandler } from ".";
+import { createHandler } from ".";
 
-const getById = jest.fn();
+import {
+  installMockClerkClient,
+  mockGetAuthSignedIn,
+  mockGetAuthSignedOut,
+  setGetAuth,
+  mockServerUser,
+  mockServerUserWithNoEmailAddresses,
+} from "@/__tests__/__helpers__/mockClerkServer";
 
-jest.mock("@hubspot/api-client", () => {
-  class Client {
-    crm = {
-      contacts: {
-        basicApi: {
-          getById: jest.fn().mockImplementation((...args) => getById(...args)),
-        },
-      },
-    };
-  }
+jest.mock("@clerk/nextjs/server");
 
-  return {
-    Client,
-  };
-});
-
-describe("Handler API", () => {
+describe("/api/hubspot/contacts", () => {
   const hubspot = new HubspotClient();
+  const handler = createHandler(hubspot);
+  const mockClerkClient = installMockClerkClient();
 
   beforeEach(() => {
-    jest.clearAllMocks(); // Clear mock history between tests
+    setGetAuth(mockGetAuthSignedIn);
+    jest
+      .spyOn(mockClerkClient.users, "getUser")
+      .mockReset()
+      .mockResolvedValue(mockServerUser);
   });
 
   test("should return 200 with valid contact data", async () => {
@@ -39,20 +41,16 @@ describe("Handler API", () => {
         contact_school_urn: "123456",
       },
     });
-    const handler = createHandler(hubspot);
 
     // Mock req and res objects
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
-      method: "POST",
-      body: {
-        email: "test@email.com",
-      },
+      method: "GET",
     });
 
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
-    expect(JSON.parse(res._getData())).toEqual({
+    expect(res._getJSONData()).toEqual({
       email: "test@email.com",
       schoolName: "Test School",
       schoolId: "123456",
@@ -68,25 +66,28 @@ describe("Handler API", () => {
     );
   });
 
-  test("should return 500 when an unknown error occurs", async () => {
-    // eslint-disable-next-line
-    // @ts-ignore
-    jest
-      .spyOn(hubspot.crm.contacts.basicApi, "getById")
-      .mockRejectedValue(new Error("Unknown error"));
-
+  test("requires authorization", async () => {
+    setGetAuth(mockGetAuthSignedOut);
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
-      method: "POST",
-      body: {
-        email: "error@email.com",
-      },
+      method: "GET",
     });
 
     await handler(req, res);
 
-    expect(res._getStatusCode()).toBe(500);
-    expect(JSON.parse(res._getData())).toEqual({
-      error: JSON.stringify(new Error("Unknown error")),
+    expect(res._getStatusCode()).toBe(401);
+  });
+
+  test("sends a 204 when the user has no email addresses", async () => {
+    jest
+      .spyOn(mockClerkClient.users, "getUser")
+      .mockResolvedValue(mockServerUserWithNoEmailAddresses);
+
+    const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
+      method: "GET",
     });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(204);
   });
 });

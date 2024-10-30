@@ -219,11 +219,23 @@ export const QuizEngineProvider = memo((props: QuizEngineProps) => {
   const handleSubmitShortAnswer = useCallback(
     (pupilAnswer?: string) => {
       const questionAnswers = currentQuestionData?.answers?.["short-answer"];
-      const correctAnswers = questionAnswers?.map((answer) =>
-        answer?.answer?.[0]?.type === "text" ? answer?.answer?.[0]?.text : "",
+
+      const trimmedAnswer = pupilAnswer?.trim().toLowerCase() ?? "";
+
+      const correctAnswers = questionAnswers
+        ?.map((answer) =>
+          answer?.answer?.[0]?.type === "text"
+            ? answer?.answer?.[0].text
+            : null,
+        )
+        .filter((answer) => answer !== null);
+
+      const trimmedAnswers = correctAnswers?.map((answer) =>
+        answer.trim().toLowerCase(),
       );
-      const feedback: QuestionFeedbackType = correctAnswers?.includes(
-        pupilAnswer ?? "",
+
+      const feedback: QuestionFeedbackType = trimmedAnswers?.includes(
+        trimmedAnswer,
       )
         ? "correct"
         : "incorrect";

@@ -81,8 +81,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     const userEmail = user?.emailAddresses?.[0]?.emailAddress;
 
     const updateUserDetailsFromHubspot = async (email: string) => {
-      const hubspotContact = await fetchHubspotContactDetails(email);
-      const subscriptionStatus = await getSubscriptionStatus(email);
+      const hubspotContact = await fetchHubspotContactDetails();
+      const subscriptionStatus = await getSubscriptionStatus();
       setTermsInLocalStorage(true);
       setValue("terms", true);
       if (subscriptionStatus) {
