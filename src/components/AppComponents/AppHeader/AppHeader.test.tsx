@@ -74,7 +74,7 @@ describe("components/AppHeader", () => {
       throw new Error("Failed to find link to teacher experience");
     }
 
-    expect(teacherLink.closest("a")).toHaveAttribute("href", "/");
+    expect(teacherLink.closest("a")).toHaveAttribute("href", "/teachers");
   });
   test("it should include a link for classroom", () => {
     render(<AppHeader />);

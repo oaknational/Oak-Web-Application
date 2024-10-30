@@ -1,3 +1,66 @@
+# [1.608.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.607.2...v1.608.0) (2024-10-30)
+
+
+### Bug Fixes
+
+* **LESQ-1117:** display the correct download CTA when a user is signed in ([98c7ffc](https://github.com/oaknational/Oak-Web-Application/commit/98c7ffcdae10b4d0aceb30127cb24a84afba87b9))
+* **LESQ-1117:** validation on final step of teacher onboarding ([66059d7](https://github.com/oaknational/Oak-Web-Application/commit/66059d72f0614820f94d7fdf1905f2eea81be90f))
+* reset valisation when an option is selected ([462ce10](https://github.com/oaknational/Oak-Web-Application/commit/462ce101c30179d58ae82026756600dc2685a0ae))
+
+
+### Features
+
+* add `aria-description` to the submit button when validation fails ([964ace6](https://github.com/oaknational/Oak-Web-Application/commit/964ace6b96ad0523d127e0cfef711261ee90092b))
+* don't disable the "Continue" button when the form is invalid ([0930398](https://github.com/oaknational/Oak-Web-Application/commit/09303987400505c8fd72133cbb9803112890428f))
+
+## [1.607.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.607.1...v1.607.2) (2024-10-29)
+
+
+### Bug Fixes
+
+* trim short answer text to avoid case and ws comparison ([ef5181c](https://github.com/oaknational/Oak-Web-Application/commit/ef5181ce87d1635537d8c283b78e2a44c694f619))
+
+## [1.607.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.607.0...v1.607.1) (2024-10-29)
+
+# [1.607.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.606.1...v1.607.0) (2024-10-29)
+
+
+### Features
+
+* **storybook:** upgrade 8-3-6 ([c9e44f8](https://github.com/oaknational/Oak-Web-Application/commit/c9e44f8e7cca2761cffc66f3909385a652ff945d))
+
+## [1.606.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.606.0...v1.606.1) (2024-10-29)
+
+
+### Bug Fixes
+
+* require authorisation to access Hubspot endpoints ([bd88df2](https://github.com/oaknational/Oak-Web-Application/commit/bd88df264ed20e8f9c701c41090f18e494c85a98))
+
+# [1.606.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.605.0...v1.606.0) (2024-10-28)
+
+
+### Bug Fixes
+
+* added types for link props passed into component ([42a3a9b](https://github.com/oaknational/Oak-Web-Application/commit/42a3a9b5abba7abf5cfbaaf752dcbb91196e0cc9))
+* suggestions to keep <ButtonAsLink/> generic ([cb21c87](https://github.com/oaknational/Oak-Web-Application/commit/cb21c879d303acb6fc08d16dc2b1af99b0a4710f))
+
+
+### Features
+
+* implement Homepage banner component for Curriculum page ([6a51557](https://github.com/oaknational/Oak-Web-Application/commit/6a515578e5ba01598a2e7504f430e3f2b6bc3b88))
+
+
+### Reverts
+
+* remove unnecessary OakPages export ([4fab5a2](https://github.com/oaknational/Oak-Web-Application/commit/4fab5a2f70890006ff936c4c16b40353dcbb9d1f))
+
+# [1.605.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.604.1...v1.605.0) (2024-10-28)
+
+
+### Features
+
+* add year group filters to search page and update schema and tests ([0168eb3](https://github.com/oaknational/Oak-Web-Application/commit/0168eb386ce92690a86c00b2f430997111fd6e53))
+
 ## [1.604.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.604.0...v1.604.1) (2024-10-25)
 
 # [1.604.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.603.0...v1.604.0) (2024-10-25)

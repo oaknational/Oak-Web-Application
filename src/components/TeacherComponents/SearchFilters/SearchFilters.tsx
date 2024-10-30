@@ -9,7 +9,13 @@ import {
   OakFieldset,
 } from "@oaknational/oak-components";
 
-import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
+import {
+  ExamBoard,
+  SearchCheckBoxProps,
+  Subject,
+  UseSearchFiltersReturnType,
+  YearGroup,
+} from "@/context/Search/search.types";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
@@ -18,9 +24,54 @@ type SearchFiltersProps = UseSearchFiltersReturnType & {
   isMobileFilter?: boolean;
 };
 
+const renderFilterSection = (
+  title: string,
+  filters: ((ExamBoard | YearGroup | Subject) & SearchCheckBoxProps)[],
+  hasIcon: boolean,
+  isLast: boolean,
+  isMobileFilter?: boolean,
+) => (
+  <OakBox
+    $mb="space-between-m2"
+    $bb={!isLast ? "border-solid-s" : null}
+    $borderColor={!isLast ? "grey40" : null}
+  >
+    <OakFieldset>
+      <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
+        {title}
+      </OakP>
+      <OakFlex
+        $gap={"space-between-xs"}
+        $mb="space-between-m2"
+        $flexDirection={"row"}
+        $flexWrap={"wrap"}
+      >
+        {filters.map((filter) => (
+          <OakSearchFilterCheckBox
+            name={`${title.toLowerCase()}Filters`}
+            displayValue={filter.title}
+            key={`search-filters-${title.toLowerCase()}-${filter.slug}`}
+            aria-label={`${filter.title} filter`}
+            id={`search-filters-${title.toLowerCase()}-${
+              filter.slug
+            }:mobile:${isMobileFilter}`}
+            value={`${title} filter`}
+            {...filter}
+            icon={hasIcon ? getValidSubjectIconName(filter.slug) : undefined}
+            onChange={() => {
+              filter.onChange();
+            }}
+          />
+        ))}
+      </OakFlex>
+    </OakFieldset>
+  </OakBox>
+);
+
 const SearchFilters: FC<SearchFiltersProps> = (props) => {
   const {
     keyStageFilters,
+    yearGroupFilters,
     subjectFilters,
     examBoardFilters,
     isMobileFilter,
@@ -107,61 +158,29 @@ const SearchFilters: FC<SearchFiltersProps> = (props) => {
           </OakFlex>
         </OakFieldset>
       </OakBox>
-      <OakBox
-        $mb="space-between-m2"
-        $bb={"border-solid-s"}
-        $borderColor={"grey40"}
-      >
-        <OakFieldset>
-          <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
-            Exam boards
-          </OakP>
-          <OakFlex
-            $gap={"space-between-xs"}
-            $mb="space-between-m2"
-            $flexWrap={"wrap"}
-          >
-            {examBoardFilters.map((examBoardFilter) => (
-              <OakSearchFilterCheckBox
-                value={"examBoardFilters"}
-                key={`search-filters-examBoard-${examBoardFilter.slug}`}
-                aria-label={`${examBoardFilter.title} filter`}
-                displayValue={examBoardFilter.title}
-                id={`search-filters-examBoard-${examBoardFilter.slug}:mobile:${isMobileFilter}`}
-                {...examBoardFilter}
-                onChange={() => {
-                  examBoardFilter.onChange();
-                }}
-              />
-            ))}
-          </OakFlex>
-        </OakFieldset>
-      </OakBox>
-      <OakBox>
-        <OakFieldset>
-          <OakP as={"legend"} $mb="space-between-m" $font={"heading-7"}>
-            Subjects
-          </OakP>
-          <OakFlex $gap={"space-between-xs"} $flexWrap={"wrap"}>
-            {subjectFilters.map((subjectFilter) => {
-              return (
-                <OakSearchFilterCheckBox
-                  value={"subjectFilters"}
-                  key={`search-filters-subject-${subjectFilter.slug}`}
-                  aria-label={`${subjectFilter.title} filter`}
-                  id={`search-filters-subject-${subjectFilter.slug}:mobile:${isMobileFilter}`}
-                  displayValue={subjectFilter.title}
-                  icon={getValidSubjectIconName(subjectFilter.slug)}
-                  {...subjectFilter}
-                  onChange={() => {
-                    subjectFilter.onChange();
-                  }}
-                />
-              );
-            })}
-          </OakFlex>
-        </OakFieldset>
-      </OakBox>
+      <>
+        {renderFilterSection(
+          "Years",
+          yearGroupFilters,
+          false,
+          false,
+          isMobileFilter,
+        )}
+        {renderFilterSection(
+          "Exam Boards",
+          examBoardFilters,
+          false,
+          false,
+          isMobileFilter,
+        )}
+        {renderFilterSection(
+          "Subjects",
+          subjectFilters,
+          false,
+          true,
+          isMobileFilter,
+        )}
+      </>
     </OakThemeProvider>
   );
 };

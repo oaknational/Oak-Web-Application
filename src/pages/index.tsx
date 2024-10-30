@@ -3,11 +3,13 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { HomePageProps } from "@/pages-helpers/home/getBlogPosts";
-import AiPage, { getStaticProps as getStaticPropsAi } from "@/pages/ai/index";
+import TeachersHomePage, {
+  getStaticProps as getStaticPropsTeachers,
+  TeachersHomePageProps,
+} from "@/pages/teachers/index";
 
-const Home: NextPage<HomePageProps> = (props) => {
+const HomePage: NextPage<TeachersHomePageProps> = (props) => {
   const router = useRouter();
-
   useEffect(() => {
     // clientside redirect for old tabs implementation
     if (window.location.href.includes("#pupils")) {
@@ -15,16 +17,16 @@ const Home: NextPage<HomePageProps> = (props) => {
     } else if (window.location.href.includes("#curriculum")) {
       router.push("/curriculum");
     } else if (window.location.href.includes("#ai")) {
-      //router.push("/ai");
-      router.push("/");
+      router.push("/ai");
     } else if (window.location.href.includes("#teachers")) {
       router.push("/teachers");
     }
   }, [router]);
 
-  return <AiPage {...props} />;
+  return <TeachersHomePage {...props} />;
 };
 
-export const getStaticProps: GetStaticProps<HomePageProps> = getStaticPropsAi;
+export const getStaticProps: GetStaticProps<HomePageProps> =
+  getStaticPropsTeachers;
 
-export default Home;
+export default HomePage;

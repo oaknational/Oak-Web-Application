@@ -128,6 +128,10 @@ export type LessonOverviewLinkProps = {
   lessonSlug: string;
 };
 
+export type TeachersHomePageProps = {
+  page: "teachers-home-page";
+};
+
 export type PupilLessonLinkProps = {
   page: "pupil-lesson";
   programmeSlug: string;
@@ -330,6 +334,7 @@ type OnboardingUseOfOak = {
 export type OakLinkProps =
   | LabsLinkProps
   | SubjectListingLinkProps
+  | TeachersHomePageProps
   | SpecialistSubjectListingLinkProps
   | LandingPageLinkProps
   | LessonDownloadsLinkProps
@@ -893,6 +898,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Onboarding: Use Of Oak",
     configType: "internal",
     pageType: "onboarding-use-of-oak",
+  }),
+  "teachers-home-page": createOakPageConfig({
+    pathPattern: "/teachers",
+    analyticsPageName: "Teachers Home Page",
+    configType: "internal",
+    pageType: "teachers-home-page",
   }),
 };
 
