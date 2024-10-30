@@ -5,6 +5,12 @@ import { PupilViewsSubjectListing } from "./PupilSubjectListing.view";
 
 import { subjectBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/subjectBrowseData.fixture";
 
+// Mock the useAnalytics hook
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: jest.fn(() => ({ track: jest.fn() })),
+}));
+
 describe("PupilSubjectListing", () => {
   it("should render the subjects alphabetically ordered", () => {
     const { getByText } = render(

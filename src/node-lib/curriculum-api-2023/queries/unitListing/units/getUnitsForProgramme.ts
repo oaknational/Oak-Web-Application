@@ -69,6 +69,7 @@ export const getUnitsForProgramme = async (
     >,
   );
 
+  // this could helpfully come from the MV
   const threads = await getThreadsForUnit(Object.keys(partialUniqueUnits));
 
   // Populate partial units with threads

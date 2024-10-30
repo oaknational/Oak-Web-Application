@@ -1,10 +1,10 @@
 import { GetStaticProps, NextPage } from "next";
 
-import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
 import { HomePage } from "@/common-lib/cms-types";
+import Banners from "@/components/CurriculumComponents/Banners";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import AiTab from "@/components/GenericPagesComponents/AiTab";
 import {
@@ -18,7 +18,15 @@ export type PupilHomePageProps = {
 };
 
 const Ai: NextPage<PupilHomePageProps> = (props) => (
-  <AppLayout seoProps={DEFAULT_SEO_PROPS} $background={"white"}>
+  <AppLayout
+    seoProps={{
+      title: "Free, AI-powered lesson assistant | Oak National Academy",
+      description:
+        "Looking to create tailor-made lesson resources? Use our free AI-powered lesson assistant to make bespoke lesson plans, worksheets, quizzes and slides in minutes.",
+    }}
+    $background={"white"}
+  >
+    <Banners />
     <HomePageTabImageNav current={"ai"} />
     <AiTab aria-current="page" />
     <HomePageLowerView posts={props.posts} />

@@ -78,7 +78,7 @@ describe("buildCurriculumMetadata", () => {
         tab: "downloads",
         keyStages: ["ks3", "ks4"],
         subjectSlug: "English",
-        examboardSlug: "edexcel",
+        ks4OptionSlug: "edexcel",
       });
     }).toThrow();
   });

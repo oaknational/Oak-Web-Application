@@ -35,7 +35,7 @@ export type CombinedCurriculumData = CurriculumOverviewMVData &
 export type Slugs = {
   subjectSlug: string;
   phaseSlug?: string;
-  examboardSlug?: string;
+  ks4OptionSlug?: string;
   keyStageSlug?: string;
   tierSlug?: string;
   childSubjectSlug?: string;

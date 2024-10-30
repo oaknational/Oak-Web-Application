@@ -1,5 +1,4 @@
 import React from "react";
-import { act } from "react-dom/test-utils";
 
 import SearchResultsItem from "./SearchResultsItem";
 
@@ -32,6 +31,13 @@ const hitObjectLesson = getSearchHitObject(hitLesson, allKeyStages);
 const hitObjectUnit = getSearchHitObject(hitUnit, allKeyStages);
 const legacyHitObject = getSearchHitObject(legacyHit, allKeyStages);
 const render = renderWithProviders();
+
+jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+  __esModule: true,
+  default: () => ({
+    isMobile: false,
+  }),
+}));
 
 describe("SearchResultsItem", () => {
   test("It renders a lesson title", () => {
@@ -175,9 +181,9 @@ describe("SearchResultsItem", () => {
         />,
       );
       const link = getByText("See lesson");
-      act(() => {
-        link.click();
-      });
+
+      link.click();
+
       expect(searchResultClicked).toHaveBeenCalledWith({
         type: "lesson",
         title: "The relationship between Macbeth and Lady Macbeth",
@@ -185,6 +191,7 @@ describe("SearchResultsItem", () => {
         subjectSlug: "english",
         keyStageShortCode: "KS4",
         keyStageTitle: "Key stage 4",
+        yearTitle: "Year 10",
         pupilLessonOutcome:
           "I can describe the relationship between <b>Macbeth</b> and Lady <b>Macbeth</b>.",
         keyStageSlug: "ks4",

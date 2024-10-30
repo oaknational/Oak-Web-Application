@@ -7632,5 +7632,5 @@ export const slugs = {
   subjectSlug: "english",
   phaseSlug: "secondary",
   keyStageSlug: "secondary",
-  examboardSlug: "aqa",
+  ks4OptionSlug: "aqa",
 };

@@ -1,4 +1,4 @@
-import { act } from "@testing-library/react";
+import { act, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import mockRouter from "next-router-mock";
@@ -119,6 +119,15 @@ const props: SearchProps = {
         checked: false,
       },
     ],
+    yearGroupFilters: [
+      {
+        slug: "year-10",
+        title: "Year 10",
+        displayOrder: 1,
+        onChange: jest.fn(),
+        checked: false,
+      },
+    ],
     subjectFilters: [
       {
         slug: "computing",
@@ -188,6 +197,13 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
 
 jest.mock("next/router", () => jest.requireActual("next-router-mock"));
 
+jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+  __esModule: true,
+  default: () => ({
+    isMobile: false,
+  }),
+}));
+
 const render = renderWithProviders();
 
 const SearchComponent = (props: SearchProps) => (
@@ -199,6 +215,7 @@ const SearchComponent = (props: SearchProps) => (
 describe("Search.page.tsx", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockRouter.setCurrentUrl("/teachers/search");
   });
 
   test("status: error message displayed status is fail", () => {
@@ -335,12 +352,11 @@ describe("Search.page.tsx", () => {
       <SearchComponent {...props} {...resultsProps} />,
     );
     const description = getByText("lesson title");
-    const user = userEvent.setup();
-    await user.click(description);
+    fireEvent.click(description);
 
     expect(searchResultOpened).toHaveBeenCalledTimes(1);
     expect(searchResultOpened).toHaveBeenCalledWith({
-      analyticsUseCase: null,
+      analyticsUseCase: "Teacher",
       keyStageSlug: "ks1",
       keyStageTitle: "Key stage 1",
       lessonName: "lesson title",
@@ -390,8 +406,7 @@ describe("Search.page.tsx", () => {
       <SearchComponent {...props} {...resultsPropsPathWays} />,
     );
     const dropdown = getByText("Select exam board");
-    const user = userEvent.setup();
-    await user.click(dropdown);
+    fireEvent.click(dropdown);
 
     expect(searchResultExpanded).toHaveBeenCalledTimes(1);
     expect(searchResultExpanded).toHaveBeenCalledWith({
@@ -440,28 +455,28 @@ describe("Search.page.tsx", () => {
       filterValue: null,
     });
   });
-  test("filter button becomes visible when focussed", async () => {
+  test("skip button becomes visible when focussed", async () => {
     const { getByText } = render(
       <SearchComponent {...props} {...resultsPropsPathWays} />,
     );
 
-    const filterButton = getByText("Skip to results").closest("a");
+    const skipButton = getByText("Skip to results").closest("a");
 
-    if (!filterButton) {
+    if (!skipButton) {
       throw new Error("Could not find filter button");
     }
-    expect(filterButton).not.toBeVisible();
+    expect(skipButton).not.toBeVisible();
 
     act(() => {
-      filterButton.focus();
+      skipButton.focus();
     });
-    expect(filterButton).toHaveFocus();
-    expect(filterButton).not.toHaveStyle("position: absolute");
+    expect(skipButton).toHaveFocus();
+    expect(skipButton).not.toHaveStyle("position: absolute");
 
     act(() => {
-      filterButton.blur();
+      skipButton.blur();
     });
-    expect(filterButton).not.toHaveFocus();
-    expect(filterButton).not.toBeVisible();
+    expect(skipButton).not.toHaveFocus();
+    expect(skipButton).not.toBeVisible();
   });
 });

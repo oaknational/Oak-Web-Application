@@ -11,6 +11,7 @@ type FieldErrorProps = {
   withoutMarginBottom?: boolean;
   variant?: FieldErrorVariant | null;
   ariaLive?: "off" | "polite" | "assertive";
+  ariaHidden?: boolean;
 };
 
 const FieldError = (props: FieldErrorProps) => {
@@ -27,6 +28,7 @@ const FieldError = (props: FieldErrorProps) => {
       $alignItems={"center"}
       $flexDirection={"row"}
       $mb={withoutMarginBottom ? "space-between-none" : "space-between-m"}
+      aria-hidden={props.ariaHidden}
     >
       <OakFlex $alignSelf={"flex-start"} $mr="space-between-sssx">
         <Icon name="content-guidance" $color={"red"} />

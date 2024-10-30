@@ -1,6 +1,7 @@
 import { useUser } from "@clerk/nextjs";
 
 import { OnboardingFormProps } from "../OnboardingForm.schema";
+import { extractUrnAndSchool } from "../../helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 
 import {
   onboardingRoleOptions,
@@ -124,7 +125,7 @@ function pickUserDefinedRole(data: OnboardingFormProps) {
 
 function pickSchoolUrn(data: OnboardingFormProps) {
   if ("school" in data) {
-    return extractUrn(data.school) ?? DUMMY_URN;
+    return extractUrnAndSchool(data.school).urn ?? DUMMY_URN;
   }
 
   if ("manualSchoolName" in data) {
@@ -132,17 +133,6 @@ function pickSchoolUrn(data: OnboardingFormProps) {
   }
 
   return null;
-}
-
-/**
- * Pulls the URN/IRN from the school picker output
- *
- * English and Welsh URNs are 6 digits
- * NI IRNs include a hypen `999-9999`
- * Scottish URNs are 7 digits
- */
-function extractUrn(school: string) {
-  return /^\d{6,7}|^\d{3}-\d{4}/.exec(school)?.at(0);
 }
 
 /**
