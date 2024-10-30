@@ -1,3 +1,84 @@
+# [1.612.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.2...v1.612.0) (2024-10-30)
+
+
+### Features
+
+* **track:** add individual quiz question tracking ([a35d9dc](https://github.com/oaknational/Oak-Web-Application/commit/a35d9dc44b8436a8abe1b28f3ef4dbf1a0633f10))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([18e409a](https://github.com/oaknational/Oak-Web-Application/commit/18e409a0093c14c60ee7b8040ff61ab922c5c8ea))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([8e8b181](https://github.com/oaknational/Oak-Web-Application/commit/8e8b181a0327465d6aeee3d0d91cbd3792fc2da7))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([b52dd2f](https://github.com/oaknational/Oak-Web-Application/commit/b52dd2fec04fd496c8ff800576516e66511fd7bc))
+
+## [1.611.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.1...v1.611.2) (2024-10-30)
+
+
+### Bug Fixes
+
+* revert and override CSS in single place instead ([108a7df](https://github.com/oaknational/Oak-Web-Application/commit/108a7df75afaaed0e4f2ed346e4429f81b8e26e6))
+
+## [1.611.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.0...v1.611.1) (2024-10-30)
+
+# [1.611.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.610.0...v1.611.0) (2024-10-30)
+
+
+### Bug Fixes
+
+* add backward focus navigation to <SubjectPhasePicker/> ([32bfaec](https://github.com/oaknational/Oak-Web-Application/commit/32bfaec037b77b07289f58c499aa9a820c478197))
+* added edge case for focusout event on document.body ([2e602d9](https://github.com/oaknational/Oak-Web-Application/commit/2e602d97a5b436d39fcc9f413965ef45c44e5de1))
+* attempt next-tick for focus issue ([57e78b8](https://github.com/oaknational/Oak-Web-Application/commit/57e78b866383351c4c1a8cde564c575aef1b4005))
+* correct the focus behavior to be inline with designs ([58ca3b8](https://github.com/oaknational/Oak-Web-Application/commit/58ca3b803eed93437dba3a1ca873c04e0fc88712))
+
+
+### Features
+
+* added in <FocusWrap/> component so we can deal with complex focus movement issues ([57413cf](https://github.com/oaknational/Oak-Web-Application/commit/57413cf6dbf240e1b5811d26eb3d759796e5f35d))
+
+# [1.610.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.609.1...v1.610.0) (2024-10-30)
+
+
+### Bug Fixes
+
+* changed test back to explainer (cycle 1) ([3f8f68b](https://github.com/oaknational/Oak-Web-Application/commit/3f8f68b780e2552004eb271ed5e194201b9bab27))
+* disable cycle 2 ([81e2029](https://github.com/oaknational/Oak-Web-Application/commit/81e20292c22da95041722af5a288deae21aee93a))
+* remove sanity icons ([43ca406](https://github.com/oaknational/Oak-Web-Application/commit/43ca406d088601a11e52ade88078a5605ed5f9cc))
+* update width to match ratio ([31e03bf](https://github.com/oaknational/Oak-Web-Application/commit/31e03bf74957be8a3ebf1aa40fd8f7ec4e0bfad3))
+
+
+### Features
+
+* convert cloudinary svg to png ([a550400](https://github.com/oaknational/Oak-Web-Application/commit/a550400d3ad1f93fa3976e6e9561405fbed0133e))
+
+## [1.609.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.609.0...v1.609.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* add aconditional rendering of tier ([f12e613](https://github.com/oaknational/Oak-Web-Application/commit/f12e61398761a1d2d072dc1045afded2f8a561cc))
+
+# [1.609.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.608.0...v1.609.0) (2024-10-30)
+
+
+### Features
+
+* **deps:** husky update ([4fae377](https://github.com/oaknational/Oak-Web-Application/commit/4fae37776cc5abfff16497dd03c890dadcd0ebf4))
+* **deps:** remove path-to-regexp ([8f2dfaf](https://github.com/oaknational/Oak-Web-Application/commit/8f2dfaf5f9d4ff5f3a9fba7c0b24960b12208e68))
+* **deps:** screenshot ([c8bce76](https://github.com/oaknational/Oak-Web-Application/commit/c8bce76901fae50ca8cf3541aee710d6a883a173))
+* **deps:** updates ([5dc2ed0](https://github.com/oaknational/Oak-Web-Application/commit/5dc2ed0a3ca6ad1d59e1e64a95ec5a1652eeb720))
+
+# [1.608.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.607.2...v1.608.0) (2024-10-30)
+
+
+### Bug Fixes
+
+* **LESQ-1117:** display the correct download CTA when a user is signed in ([98c7ffc](https://github.com/oaknational/Oak-Web-Application/commit/98c7ffcdae10b4d0aceb30127cb24a84afba87b9))
+* **LESQ-1117:** validation on final step of teacher onboarding ([66059d7](https://github.com/oaknational/Oak-Web-Application/commit/66059d72f0614820f94d7fdf1905f2eea81be90f))
+* reset valisation when an option is selected ([462ce10](https://github.com/oaknational/Oak-Web-Application/commit/462ce101c30179d58ae82026756600dc2685a0ae))
+
+
+### Features
+
+* add `aria-description` to the submit button when validation fails ([964ace6](https://github.com/oaknational/Oak-Web-Application/commit/964ace6b96ad0523d127e0cfef711261ee90092b))
+* don't disable the "Continue" button when the form is invalid ([0930398](https://github.com/oaknational/Oak-Web-Application/commit/09303987400505c8fd72133cbb9803112890428f))
+
 ## [1.607.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.607.1...v1.607.2) (2024-10-29)
 
 

@@ -21,7 +21,22 @@ import {
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { invariant } from "@/utils/invariant";
+import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
+const usePupilAnalyticsMock = {
+  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
+  identify: jest.fn(),
+  posthogDistinctId: "123",
+};
+
+jest.mock(
+  "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
+  () => {
+    return {
+      usePupilAnalytics: () => usePupilAnalyticsMock,
+    };
+  },
+);
 describe("QuizEngineContext", () => {
   const wrapper = (
     {
