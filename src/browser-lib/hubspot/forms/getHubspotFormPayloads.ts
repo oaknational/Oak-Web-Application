@@ -4,12 +4,12 @@ import { UtmParams } from "../../../hooks/useUtmParams";
 
 import { HubspotPayload } from "./hubspotSubmitForm";
 
-import { useOfOakSchema } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import {
+  useOfOakSchema,
   OakSupportKey,
-  oakSupportMap,
-} from "@/components/TeacherViews/Onboarding/HowCanOakSupport/HowCanOakSupport.view";
+} from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
+import { oakSupportMap } from "@/components/TeacherViews/Onboarding/HowCanOakSupport/HowCanOakSupport.view";
 
 export const USER_ROLES = ["Teacher", "Parent", "Student", "Other"] as const;
 export type UserRole = (typeof USER_ROLES)[number];
