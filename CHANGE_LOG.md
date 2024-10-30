@@ -1,3 +1,18 @@
+# [1.611.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.610.0...v1.611.0) (2024-10-30)
+
+
+### Bug Fixes
+
+* add backward focus navigation to <SubjectPhasePicker/> ([32bfaec](https://github.com/oaknational/Oak-Web-Application/commit/32bfaec037b77b07289f58c499aa9a820c478197))
+* added edge case for focusout event on document.body ([2e602d9](https://github.com/oaknational/Oak-Web-Application/commit/2e602d97a5b436d39fcc9f413965ef45c44e5de1))
+* attempt next-tick for focus issue ([57e78b8](https://github.com/oaknational/Oak-Web-Application/commit/57e78b866383351c4c1a8cde564c575aef1b4005))
+* correct the focus behavior to be inline with designs ([58ca3b8](https://github.com/oaknational/Oak-Web-Application/commit/58ca3b803eed93437dba3a1ca873c04e0fc88712))
+
+
+### Features
+
+* added in <FocusWrap/> component so we can deal with complex focus movement issues ([57413cf](https://github.com/oaknational/Oak-Web-Application/commit/57413cf6dbf240e1b5811d26eb3d759796e5f35d))
+
 # [1.610.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.609.1...v1.610.0) (2024-10-30)
 
 
