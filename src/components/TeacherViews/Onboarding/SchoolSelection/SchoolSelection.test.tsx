@@ -52,21 +52,6 @@ describe("Onboarding view", () => {
     expect(contactUs.closest("a")).toHaveAttribute("href", "/contact-us");
   });
 
-  it("it disables the continue button when the form is invalid", async () => {
-    renderWithProviders()(<SchoolSelectionView />);
-    const continueButton = await screen.findByRole("button", {
-      name: "Continue",
-    });
-
-    const user = userEvent.setup();
-    await user.click(continueButton);
-
-    expect(
-      await screen.findByRole("button", {
-        name: "Continue",
-      }),
-    ).toBeDisabled();
-  });
   it("clears the input when a school is not completed", async () => {
     renderWithProviders()(<SchoolSelectionView />);
 

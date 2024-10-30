@@ -40,12 +40,9 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
       ? "downloads-auth"
       : "downloads";
 
-  const { user, isLoaded } = useUser();
+  const { isSignedIn } = useUser();
 
-  const displaySignInMessage =
-    isLoaded &&
-    downloads === "downloads-auth" &&
-    !user?.publicMetadata?.owa?.isOnboarded;
+  const displaySignInMessage = downloads === "downloads-auth" && !isSignedIn;
 
   if (expired || !showDownloadAll) {
     return null;
