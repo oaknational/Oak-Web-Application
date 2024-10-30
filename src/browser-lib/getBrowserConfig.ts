@@ -169,7 +169,7 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
   },
   hubspotDownloadsFormId: {
-    // Hubspot form name dev: Teacher Hub - Email Signup Modal
+    // Hubspot form name dev: OWA teacher resource download/share
     value: process.env.NEXT_PUBLIC_HUBSPOT_DOWNLOADS_FORM_ID,
     envName: "NEXT_PUBLIC_HUBSPOT_DOWNLOADS_FORM_ID",
     required: true,
