@@ -48,8 +48,8 @@ export const getSchoolName = (
 export const extractUrnAndSchool = (school: string) => {
   const match = /^(?:(\d{7}|\d{6}|\d{3}-\d{4}))-(.*)/.exec(school);
   return {
-    urn: match ? match[1] : "",
-    schoolName: match ? match[2] : "",
+    urn: match?.at(1),
+    schoolName: match?.at(2),
   };
 };
 

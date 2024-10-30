@@ -53,7 +53,7 @@ const SubjectListing: NextPage<SubjectListingPageProps> = (props) => {
       seoProps={{
         ...getSeoProps({
           title: `Free ${metaDescriptionSlug} Teaching Resources for Lesson Planning`,
-          description: `Click here to browse and download our free ${metaDescriptionSlug} teaching resources for lesson planning. Our teaching resources are made by subject experts and entirely free to download and use.`,
+          description: `Browse and download our free ${metaDescriptionSlug} teaching resources for lesson planning. Our teaching resources are made by subject experts and entirely free to download and use.`,
         }),
       }}
       $background="white"
