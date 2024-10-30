@@ -291,7 +291,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                       key={threadOption.slug}
                     >
                       <RadioButton
-                        aria-label={threadOption.title}
+                        aria-label={`${threadOption.title} thread`}
                         value={threadOption.slug}
                         data-testid={
                           isSelected ? "selected-thread-radio" : "thread-radio"
@@ -299,7 +299,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                       >
                         <OakSpan>
                           {threadOption.title}
-                          <OakSpan aria-live="polite" aria-atomic="true">
+                          <OakSpan>
                             {isSelected && (
                               <>
                                 <br />
@@ -351,10 +351,20 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                   </Box>
                 ))}
               </RadioGroup>
-              <ScreenReaderOnly aria-live="polite" aria-atomic="true">
-                Showing {unitCount} {unitCount === 1 ? "unit" : "units"}
-              </ScreenReaderOnly>
             </Fieldset>
+            <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+              <p>
+                Showing a total of {unitCount}{" "}
+                {unitCount === 1 ? "unit" : "units"}
+              </p>
+              {selectedThread && (
+                <p>
+                  {highlightedUnitCount()}
+                  {highlightedUnitCount() === 1 ? " unit " : " units "}
+                  highlighted in {selectedThread.title} thread
+                </p>
+              )}
+            </ScreenReaderOnly>
           </OakGridArea>
           <CurriculumVisualiser
             unitData={unitData}
