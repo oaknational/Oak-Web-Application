@@ -354,14 +354,15 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
             </Fieldset>
             <ScreenReaderOnly aria-live="polite" aria-atomic="true">
               <p>
-                Showing a total of {unitCount}{" "}
+                {unitCount}{" "}
                 {unitCount === 1 ? "unit" : "units"}
+                {" "} shown,
               </p>
               {selectedThread && (
                 <p>
                   {highlightedUnitCount()}
-                  {highlightedUnitCount() === 1 ? " unit " : " units "}
-                  highlighted in {selectedThread.title} thread
+                  {highlightedUnitCount() === 1 ? "unit" : "units"}
+                  highlighted
                 </p>
               )}
             </ScreenReaderOnly>
