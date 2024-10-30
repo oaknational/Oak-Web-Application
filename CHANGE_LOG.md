@@ -1,3 +1,10 @@
+## [1.611.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.1...v1.611.2) (2024-10-30)
+
+
+### Bug Fixes
+
+* revert and override CSS in single place instead ([108a7df](https://github.com/oaknational/Oak-Web-Application/commit/108a7df75afaaed0e4f2ed346e4429f81b8e26e6))
+
 ## [1.611.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.0...v1.611.1) (2024-10-30)
 
 # [1.611.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.610.0...v1.611.0) (2024-10-30)
