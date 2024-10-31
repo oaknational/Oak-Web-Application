@@ -9,7 +9,7 @@ import {
 
 type AlertType = "info" | "neutral" | "success" | "alert" | "error";
 
-export const alertTypes: Record<
+const alertTypes: Record<
   AlertType,
   {
     icon: OakIconName;
@@ -58,7 +58,7 @@ type AlertProps = {
 
 export default function Alert(props: AlertProps) {
   const { type = "info", icon, message, ...rest } = props;
-  const iconResult = icon || alertTypes[type].icon;
+  const iconResult = icon ?? alertTypes[type].icon;
   const iconColorFilterResult = alertTypes[type]?.iconColorFilter;
 
   return (
@@ -76,7 +76,7 @@ export default function Alert(props: AlertProps) {
     >
       <OakBox>
         <OakIcon
-          iconName={iconResult || "info"}
+          iconName={iconResult}
           $colorFilter={iconColorFilterResult}
           $width="all-spacing-7"
           $height="all-spacing-7"
