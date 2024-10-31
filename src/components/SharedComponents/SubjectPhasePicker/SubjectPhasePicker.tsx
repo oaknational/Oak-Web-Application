@@ -19,6 +19,7 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
+// import IconButtonFocusVisible from "@/components/CurriculumComponents/UnitsTabSidebar";
 import {
   KS4Option,
   Phase,
@@ -35,6 +36,7 @@ import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/FocusWrap";
+import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton";
 
 const DEFAULT_KEYSTAGES = [
   { slug: "ks1" },
@@ -580,6 +582,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         verticalAlign="bottom"
                       />
                     </OwaLink>
+                    <CurriculumModalCloseButton onClose={toggleShowSubjects} />
                   </Box>
                 </FocusWrap>
               </FocusOn>
@@ -846,6 +849,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             </OakFlex>
                           </>
                         )}
+                      <CurriculumModalCloseButton onClose={toggleShowPhases} />
                     </FocusWrap>
                   </FocusOn>
                 </SelectionDropDownBox>
