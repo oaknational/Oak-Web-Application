@@ -22,6 +22,7 @@ const teacherPreviewLessonQuery =
     const res = await sdk.teachersPreviewLesson({
       lessonSlug,
     });
+
     const browseFixtureData = lessonBrowseDataFixture({ lessonSlug });
 
     if (res.content.length > 1) {
@@ -41,7 +42,11 @@ const teacherPreviewLessonQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    lessonContentSchemaFull.parse(content);
+    lessonContentSchemaFull.parse({
+      ...content,
+      geo_restricted: true,
+      login_required: true,
+    });
 
     // Incomplete data for new lessons?
     const lessonContentData = keysToCamelCase({

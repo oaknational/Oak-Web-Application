@@ -28,12 +28,8 @@ describe("teacherPreviewLesson()", () => {
           content: [
             {
               ..._lessonContentFixture,
-              geo_restricted: _lessonContentFixture.geo_restricted
-                ? "true"
-                : "false",
-              login_required: _lessonContentFixture.login_required
-                ? "true"
-                : "false",
+              geo_restricted: null,
+              login_required: null,
             },
           ],
         }),
