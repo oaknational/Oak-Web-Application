@@ -1,3 +1,10 @@
+# [1.613.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.612.1...v1.613.0) (2024-10-31)
+
+
+### Features
+
+* consolidate thread and year group screen reader announcements ([bf1e938](https://github.com/oaknational/Oak-Web-Application/commit/bf1e93855f8f0d1c142683fa30dc6faab41d677d))
+
 ## [1.612.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.612.0...v1.612.1) (2024-10-31)
 
 # [1.612.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.2...v1.612.0) (2024-10-30)
