@@ -36,6 +36,7 @@ import subjectPhaseOptionsIncludeNewQuery from "./queries/subjectPhaseOptionsInc
 import curriculumUnitsIncludeNewQuery from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.query";
 import curriculumUnitsIncludeNewSchema from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.schema";
 import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
+import teacherPreviewLessonQuery from "./queries/teacherPreviewLesson/teacherPreviewLesson.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -150,6 +151,7 @@ const curriculumApi2023 = {
     });
     return teachersHomePageData.parse(teachersHomePage);
   },
+  teacherPreviewLesson: teacherPreviewLessonQuery(sdk),
   specialistLessonOverview: specialistLessonOverview(sdk),
   specialistLessonOverviewCanonical: specialistLessonOverviewCanonical(sdk),
   specialistSubjectListing: specialistSubjectListingQuery(sdk),
