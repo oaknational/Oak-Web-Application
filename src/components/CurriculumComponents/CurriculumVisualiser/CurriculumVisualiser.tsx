@@ -22,7 +22,10 @@ import {
   getSuffixFromFeatures,
   getYearGroupTitle,
 } from "@/utils/curriculum/formatting";
-import { getUnitFeatures } from "@/utils/curriculum/features";
+import {
+  filterSubjectCategoriesOnFeatures,
+  getUnitFeatures,
+} from "@/utils/curriculum/features";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -305,29 +308,31 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 )}
                 {childSubjects.length < 1 && subjectCategories?.length > 1 && (
                   <Box role="group" aria-label="Categories">
-                    {subjectCategories.map((subjectCategory, index) => {
-                      const isSelected = isSelectedSubjectCategory(
-                        yearSelection,
-                        year,
-                        subjectCategory,
-                      );
+                    {subjectCategories
+                      .filter(filterSubjectCategoriesOnFeatures(features))
+                      .map((subjectCategory, index) => {
+                        const isSelected = isSelectedSubjectCategory(
+                          yearSelection,
+                          year,
+                          subjectCategory,
+                        );
 
-                      return (
-                        <Button
-                          $mb={20}
-                          $mr={20}
-                          background={isSelected ? "black" : "white"}
-                          key={index}
-                          label={subjectCategory.title}
-                          onClick={() =>
-                            handleSelectSubjectCategory(year, subjectCategory)
-                          }
-                          size="small"
-                          data-testid="subjectCategory-button"
-                          aria-pressed={isSelected}
-                        />
-                      );
-                    })}
+                        return (
+                          <Button
+                            $mb={20}
+                            $mr={20}
+                            background={isSelected ? "black" : "white"}
+                            key={index}
+                            label={subjectCategory.title}
+                            onClick={() =>
+                              handleSelectSubjectCategory(year, subjectCategory)
+                            }
+                            size="small"
+                            data-testid="subjectCategory-button"
+                            aria-pressed={isSelected}
+                          />
+                        );
+                      })}
                   </Box>
                 )}
                 {childSubjects.length > 0 && (

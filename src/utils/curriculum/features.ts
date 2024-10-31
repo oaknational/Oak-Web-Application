@@ -1,6 +1,9 @@
 import { ENABLE_CYCLE_2 } from "./constants";
 
-import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
+import {
+  SubjectCategory,
+  Unit,
+} from "@/components/CurriculumComponents/CurriculumVisualiser";
 
 export function isCycleTwoEnabled() {
   return ENABLE_CYCLE_2;
@@ -8,6 +11,21 @@ export function isCycleTwoEnabled() {
 
 export function useCycleTwoEnabled() {
   return ENABLE_CYCLE_2;
+}
+
+type filterSubjectCategoriesOnFeaturesReturn = (
+  subjectCategory: Pick<SubjectCategory, "id">,
+) => boolean;
+export function filterSubjectCategoriesOnFeatures(
+  features: ReturnType<typeof getUnitFeatures>,
+): filterSubjectCategoriesOnFeaturesReturn {
+  const exclusions = features?.subjectcategories?.exclude;
+  if (exclusions) {
+    return (subjectCategory) => {
+      return exclusions.findIndex((e) => e.id === subjectCategory.id) === -1;
+    };
+  }
+  return () => true;
 }
 
 export function getUnitFeatures(unit?: Unit | null) {
@@ -38,6 +56,12 @@ export function getUnitFeatures(unit?: Unit | null) {
     return {
       programmes_fields_overrides: {
         subject: "Computer Science",
+      },
+    };
+  } else if (unit.subject_slug === "english") {
+    return {
+      subjectcategories: {
+        exclude: [{ id: -1 }],
       },
     };
   }

@@ -100,6 +100,27 @@ describe("getUnitFeatures", () => {
     ).toEqual(undefined);
   });
 
+  it("returns subject category exclusion for english when matching unit", () => {
+    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
+    expect(
+      getUnitFeatures({
+        subject_slug: "english",
+        year: "3",
+      } as Unit),
+    ).toEqual({
+      subjectcategories: {
+        exclude: [{ id: -1 }],
+      },
+    });
+
+    expect(
+      getUnitFeatures({
+        subject_slug: "physical-education",
+        year: "3",
+      } as Unit),
+    ).toEqual(undefined);
+  });
+
   it("returns nothing when hack disabled", () => {
     expect(getUnitFeatures({ slug: "test" } as Unit)).toEqual(undefined);
   });

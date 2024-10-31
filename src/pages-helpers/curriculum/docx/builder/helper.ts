@@ -66,7 +66,7 @@ export function threadUnitByYear(units: Unit[], threadSlug: string) {
 
   units.forEach((unit: Unit) => {
     const year =
-      getUnitFeatures(unit)?.programmes_fields_overrides.year ?? unit.year;
+      getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year;
     unit.threads.forEach((thread) => {
       if (thread.slug === threadSlug) {
         output[year] = output[year] ?? [];

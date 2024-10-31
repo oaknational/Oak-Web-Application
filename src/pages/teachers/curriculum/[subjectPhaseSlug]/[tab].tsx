@@ -264,7 +264,7 @@ export function createYearOptions(units: Unit[]): string[] {
   units.forEach((unit: Unit) => {
     // Populate years object
     const year =
-      getUnitFeatures(unit)?.programmes_fields_overrides.year ?? unit.year;
+      getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year;
     if (yearOptions.every((yo) => yo !== year)) {
       yearOptions.push(year);
     }

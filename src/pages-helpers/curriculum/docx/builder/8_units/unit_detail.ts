@@ -453,7 +453,7 @@ export async function buildUnit(
   const yearData = createUnitsListingByYear([unit]);
   const yearTitle = getYearGroupTitle(
     yearData,
-    getUnitFeatures(unit)?.programmes_fields_overrides.year ?? unit.year,
+    getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year,
   );
 
   const xml = safeXml`
