@@ -299,7 +299,7 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                       >
                         <OakSpan>
                           {threadOption.title}
-                          <OakSpan aria-live="polite" aria-atomic="true">
+                          <OakSpan>
                             {isSelected && (
                               <>
                                 <br />
@@ -351,10 +351,19 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
                   </Box>
                 ))}
               </RadioGroup>
-              <ScreenReaderOnly aria-live="polite" aria-atomic="true">
-                Showing {unitCount} {unitCount === 1 ? "unit" : "units"}
-              </ScreenReaderOnly>
             </Fieldset>
+            <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+              <p>
+                {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
+              </p>
+              {selectedThread && (
+                <p>
+                  {highlightedUnitCount()}
+                  {highlightedUnitCount() === 1 ? "unit" : "units"}
+                  highlighted
+                </p>
+              )}
+            </ScreenReaderOnly>
           </OakGridArea>
           <CurriculumVisualiser
             unitData={unitData}
