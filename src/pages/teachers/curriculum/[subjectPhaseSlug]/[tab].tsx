@@ -44,8 +44,12 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTi
 import {
   getUnitFeatures,
   isCycleTwoEnabled,
+  UnitFeatures,
 } from "@/utils/curriculum/features";
-import { sortYears } from "@/utils/curriculum/sorting";
+import {
+  sortSubjectCategoriesOnFeatures,
+  sortYears,
+} from "@/utils/curriculum/sorting";
 import {
   CurriculumSelectionSlugs,
   getKs4RedirectSlug,
@@ -277,6 +281,7 @@ export function createYearOptions(units: Unit[]): string[] {
 
 export function createInitialYearFilterSelection(
   yearData: CurriculumUnitsYearData,
+  features: UnitFeatures | null,
 ): YearSelection {
   const initialYearSelection = {} as YearSelection;
   Object.keys(yearData).forEach((year) => {
@@ -286,20 +291,28 @@ export function createInitialYearFilterSelection(
     }
     filters.tiers.sort((a, b) => a.tier_slug.localeCompare(b.tier_slug));
     // Sort subject categories
-    filters.subjectCategories.sort((a, b) => a.title.localeCompare(b.title));
+    filters.subjectCategories
+      .sort((a, b) => a.title.localeCompare(b.title))
+      .sort(sortSubjectCategoriesOnFeatures(features));
 
-    // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
     const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
-    if (filters.subjectCategories.length >= 2) {
-      filters.subjectCategories.unshift(allSubjectCategoryTag);
+    // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
+    if (!features?.subjectcategories?.all_disabled) {
+      if (filters.subjectCategories.length >= 2) {
+        filters.subjectCategories.unshift(allSubjectCategoryTag);
+      }
     }
 
+    const subject =
+      filters.childSubjects.find(
+        (s) => s.subject_slug === "combined-science",
+      ) ?? null;
+    const subjectCategory = features?.subjectcategories?.all_disabled
+      ? filters.subjectCategories[0]
+      : allSubjectCategoryTag;
     initialYearSelection[year] = {
-      subject:
-        filters.childSubjects.find(
-          (s) => s.subject_slug === "combined-science",
-        ) ?? null,
-      subjectCategory: allSubjectCategoryTag,
+      subject,
+      subjectCategory,
       tier: filters.tiers.length ? filters.tiers[0] : null,
     };
   });
@@ -535,12 +548,16 @@ export function formatCurriculumUnitsData(
   data: CurriculumUnitsTabData,
 ): CurriculumUnitsFormattedData {
   const { units } = data;
+  const features = getUnitFeatures(units[0]);
   // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
   const filteredUnits = sanatiseUnits(units);
   const yearData = createUnitsListingByYear(filteredUnits);
   const threadOptions = createThreadOptions(filteredUnits);
   const yearOptions = createYearOptions(filteredUnits);
-  const initialYearSelection = createInitialYearFilterSelection(yearData);
+  const initialYearSelection = createInitialYearFilterSelection(
+    yearData,
+    features,
+  );
   const formattedDataCurriculumUnits = {
     yearData,
     threadOptions,

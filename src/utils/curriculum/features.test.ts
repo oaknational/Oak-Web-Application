@@ -105,11 +105,26 @@ describe("getUnitFeatures", () => {
     expect(
       getUnitFeatures({
         subject_slug: "english",
+        phase_slug: "primary",
         year: "3",
       } as Unit),
     ).toEqual({
       subjectcategories: {
-        exclude: [{ id: -1 }],
+        all_disabled: true,
+        default_category_id: 4,
+      },
+    });
+
+    expect(
+      getUnitFeatures({
+        subject_slug: "english",
+        phase_slug: "secondary",
+        year: "7",
+      } as Unit),
+    ).toEqual({
+      subjectcategories: {
+        all_disabled: true,
+        default_category_id: 19,
       },
     });
 
