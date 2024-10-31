@@ -901,7 +901,7 @@ export const OAK_PAGES: {
   }),
   "teachers-home-page": createOakPageConfig({
     pathPattern: "/teachers",
-    analyticsPageName: "Teachers Home Page",
+    analyticsPageName: "Homepage",
     configType: "internal",
     pageType: "teachers-home-page",
   }),
