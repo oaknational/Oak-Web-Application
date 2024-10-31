@@ -40,6 +40,7 @@ import {
   YearData,
   YearSelection,
 } from "@/utils/curriculum/types";
+import { HTMLButtonProps } from "@/components/SharedComponents/Button/common";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -60,7 +61,9 @@ const UnitListItem = styled("li")`
   position: relative;
 `;
 
-const UnstyledButton = styled("button")`
+const UnstyledButton = styled("button")<
+  HTMLButtonProps & { isHighlighted: boolean }
+>`
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -72,6 +75,11 @@ const UnstyledButton = styled("button")`
   text-align: left;
   outline: none;
   cursor: pointer;
+  background: ${({ isHighlighted }) => (isHighlighted ? "black" : "white")};
+  &:hover {
+    background: ${({ isHighlighted }) =>
+      isHighlighted ? "#575757" : "#F2F2F2"};
+  }
 `;
 
 type CurriculumVisualiserProps = {
@@ -398,12 +406,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                             key={unit.slug + index}
                             $height={"100%"}
                             $width={"100%"}
-                            $borderRadius={"border-radius-m"}
+                            $borderRadius={"border-radius-s"}
                             $overflow={"hidden"}
-                            $background={isHighlighted ? "black" : "white"}
                             disableMouseHover={isHighlighted}
                           >
                             <UnstyledButton
+                              isHighlighted={isHighlighted}
                               onClick={() => {
                                 handleOpenModal(unitOptions, unit);
                               }}
