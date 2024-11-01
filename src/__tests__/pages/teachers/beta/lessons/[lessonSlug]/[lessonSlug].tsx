@@ -29,7 +29,7 @@ describe("TeacherPreviewLessonPage", () => {
 });
 
 describe("getStaticProps", () => {
-  it.only("should fetch the correct data", async () => {
+  it("should fetch the correct data", async () => {
     const propsResult = (await getStaticProps({
       params: {
         lessonSlug: "running-as-a-team",
