@@ -1,15 +1,7 @@
-import {
-  GetStaticPathsResult,
-  GetStaticProps,
-  GetStaticPropsResult,
-  NextPage,
-} from "next";
+import { GetStaticProps, GetStaticPropsResult, NextPage } from "next";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
-import {
-  getFallbackBlockingConfig,
-  shouldSkipInitialBuild,
-} from "@/node-lib/isr";
+import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
@@ -54,17 +46,7 @@ export type URLParams = {
   lessonSlug: string;
 };
 
-export const getStaticPaths = async () => {
-  if (shouldSkipInitialBuild) {
-    return getFallbackBlockingConfig();
-  }
-
-  const config: GetStaticPathsResult<URLParams> = {
-    fallback: "blocking",
-    paths: [],
-  };
-  return config;
-};
+export const getStaticPaths = getStaticPathsTemplate<URLParams>;
 
 export const getStaticProps: GetStaticProps<
   TeacherPreviewLessonPageProps,

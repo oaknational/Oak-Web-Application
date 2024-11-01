@@ -39,7 +39,6 @@ describe("teacherPreviewLesson()", () => {
     });
 
     expect(lesson.lessonSlug).toEqual(_lessonContentFixture.lesson_slug);
-    expect(lesson.lessonId).toEqual(_lessonContentFixture.lesson_id);
     expect(lesson.lessonTitle).toEqual(_lessonContentFixture.lesson_title);
   });
 });

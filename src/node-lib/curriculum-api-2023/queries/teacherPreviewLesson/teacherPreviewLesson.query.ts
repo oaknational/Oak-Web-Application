@@ -13,10 +13,11 @@ import {
   getDownloadsArray,
 } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
-import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
+import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 const teacherPreviewLessonQuery =
-  (sdk: Sdk) => async (args: { lessonSlug: string }) => {
+  (sdk: Sdk) =>
+  async (args: { lessonSlug: string }): Promise<LessonOverviewPageData> => {
     const { lessonSlug } = args;
     // pass in the lessonSlug to the sdk.teacherPreviewLesson method
     const res = await sdk.teachersPreviewLesson({
@@ -59,20 +60,18 @@ const teacherPreviewLessonQuery =
         : null,
     });
 
-    // Needs to be parsed with Zod - unit title
-    return {
+    const teacherPreviewData = {
       programmeSlug: browseFixtureData.programmeSlug,
       unitSlug: browseFixtureData.unitSlug,
       unitTitle: "Unit title",
       lessonId: lessonContentData.lessonId,
-      keyStageSlug: browseFixtureData.programmeFields.keystageSlug,
-      keyStageTitle: toSentenceCase(
-        browseFixtureData.programmeFields.keystageDescription,
-      ),
-      subjectSlug: browseFixtureData.programmeFields.subjectSlug,
-      subjectTitle: browseFixtureData.programmeFields.subject,
-      yearTitle: browseFixtureData.programmeFields.yearDescription,
-      examBoardTitle: browseFixtureData.programmeFields.examboard,
+      keyStageSlug: "ks2",
+      keyStageTitle: "Key stage 2",
+      subjectSlug: "maths",
+      // change to make icon fallback
+      subjectTitle: "Subject title",
+      yearTitle: "Year 10",
+      examBoardTitle: "aqa",
       downloads: getDownloadsArray({
         hasExitQuiz:
           lessonContentData.exitQuiz &&
@@ -103,8 +102,8 @@ const teacherPreviewLessonQuery =
       lessonSlug: lessonSlug,
       //lesson title is nullable on lessonContentSchema
       lessonTitle: lessonContentData.lessonTitle ?? "",
-      tierTitle: browseFixtureData.programmeFields.tierDescription,
-      tierSlug: browseFixtureData.programmeFields.tierSlug,
+      tierTitle: "Tier title",
+      tierSlug: "tier-slug",
       contentGuidance: getContentGuidance(lessonContentData.contentGuidance),
       misconceptionsAndCommonMistakes:
         lessonContentData.misconceptionsAndCommonMistakes,
@@ -137,6 +136,9 @@ const teacherPreviewLessonQuery =
       lessonCohort: browseFixtureData.lessonData.Cohort,
       pathways: [],
     };
+
+    // Needs to be parsed with Zod - unit title
+    return teacherPreviewData;
   };
 
 export default teacherPreviewLessonQuery;

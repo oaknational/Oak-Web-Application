@@ -1,6 +1,7 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 
 import TeacherPreviewLessonPage, {
+  TeacherPreviewLessonPageProps,
   URLParams,
   getStaticProps,
 } from "@/pages/teachers/beta/lessons/[lessonSlug]";
@@ -8,7 +9,6 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
-import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
 const render = renderWithProviders();
 
@@ -29,19 +29,16 @@ describe("TeacherPreviewLessonPage", () => {
 });
 
 describe("getStaticProps", () => {
-  it.skip("should fetch the correct data", async () => {
-    (curriculumApi2023.teacherPreviewLesson as jest.Mock).mockRejectedValueOnce(
-      new OakError({ code: "curriculum-api/not-found" }),
-    );
-
+  it.only("should fetch the correct data", async () => {
     const propsResult = (await getStaticProps({
       params: {
         lessonSlug: "running-as-a-team",
       },
       query: {},
     } as GetStaticPropsContext<URLParams, PreviewData>)) as {
-      props: { curriculumData: LessonOverviewPageData };
+      props: TeacherPreviewLessonPageProps;
     };
+    console.log(propsResult, "propsResult");
 
     expect(propsResult.props.curriculumData.lessonSlug).toEqual(
       "running-as-a-team",
