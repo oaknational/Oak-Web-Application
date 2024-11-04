@@ -17,7 +17,6 @@ const lesson = lessonOverviewFixture({
   lessonSlug: "running-as-a-team",
 });
 
-// duplicates lesson overview tests
 describe("TeacherPreviewLessonPage", () => {
   it("Renders title from the props", async () => {
     const result = render(<TeacherPreviewLessonPage curriculumData={lesson} />);

@@ -20,7 +20,6 @@ describe("teacherPreviewLesson()", () => {
 
   test("it returns the lesson if found", async () => {
     const _lessonContentFixture = lessonContentFixture();
-
     const lesson = await teacherPreviewLessonQuery({
       ...sdk,
       teachersPreviewLesson: jest.fn(() =>
@@ -28,6 +27,7 @@ describe("teacherPreviewLesson()", () => {
           content: [
             {
               ..._lessonContentFixture,
+              starter_quiz: null,
               geo_restricted: null,
               login_required: null,
             },
