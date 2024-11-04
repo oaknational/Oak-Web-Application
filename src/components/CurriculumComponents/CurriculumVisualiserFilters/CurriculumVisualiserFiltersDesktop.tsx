@@ -8,9 +8,7 @@ import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters"
 import { highlightedUnitCount } from "./helpers";
 
 import Box from "@/components/SharedComponents/Box";
-import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
 import { Thread } from "@/utils/curriculum/types";
 
 export default function CurriculumVisualiserFiltersDesktop({
@@ -26,12 +24,6 @@ export default function CurriculumVisualiserFiltersDesktop({
   function isSelectedThread(thread: Thread) {
     return selectedThread === thread.slug;
   }
-
-  const unitCount = getNumberOfSelectedUnits(
-    yearData,
-    selectedYear,
-    yearSelection,
-  );
 
   return (
     <>
@@ -94,7 +86,7 @@ export default function CurriculumVisualiserFiltersDesktop({
                 >
                   <OakSpan>
                     {threadOption.title}
-                    <OakSpan aria-live="polite" aria-atomic="true">
+                    <OakSpan>
                       {isSelected && (
                         <>
                           <br />
@@ -146,9 +138,6 @@ export default function CurriculumVisualiserFiltersDesktop({
             </Box>
           ))}
         </RadioGroup>
-        <ScreenReaderOnly aria-live="polite" aria-atomic="true">
-          Showing {unitCount} {unitCount === 1 ? "unit" : "units"}
-        </ScreenReaderOnly>
       </Fieldset>
     </>
   );
