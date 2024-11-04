@@ -5,7 +5,7 @@ import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
 import CurriculumVisualiserLayout from "../CurriculumVisualiserLayout/CurriculumVisualiserLayout";
 import CurriculumVisualiserFiltersMobile from "../CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile";
 import CurriculumVisualiserFilters from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
-// import SizeMonitor from "../OakComponentsKitchen/SizeMonitor";
+import { highlightedUnitCount } from "../CurriculumVisualiserFilters/helpers";
 
 import {
   Thread,
@@ -21,6 +21,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -78,6 +79,19 @@ export default function UnitsTab({
     selection.tier = tier;
     setYearSelection({ ...yearSelection, [year]: selection });
   }
+
+  const highlightedUnits = highlightedUnitCount(
+    yearData,
+    selectedYear,
+    yearSelection,
+    selectedThread,
+  );
+
+  const unitCount = getNumberOfSelectedUnits(
+    yearData,
+    selectedYear,
+    yearSelection,
+  );
 
   return (
     <OakBox>
@@ -146,6 +160,18 @@ export default function UnitsTab({
             />
           }
         />
+        <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+          <p>
+            {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
+          </p>
+          {selectedThread && (
+            <p>
+              {highlightedUnits}
+              {highlightedUnits === 1 ? "unit" : "units"}
+              highlighted
+            </p>
+          )}
+        </ScreenReaderOnly>
       </OakBox>
       <UnitTabBanner />
     </OakBox>

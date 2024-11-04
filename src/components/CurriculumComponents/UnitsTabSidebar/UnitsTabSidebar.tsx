@@ -2,6 +2,7 @@ import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
 import { OakFlex } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import Box from "@/components/SharedComponents/Box";
 import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
@@ -11,6 +12,22 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { Hr } from "@/components/SharedComponents/Typography";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
+import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
+
+const IconButtonFocusVisible = styled(IconButton)`
+  :focus ${IconFocusUnderline} {
+    display: none;
+  }
+  :focus-visible ${IconFocusUnderline} {
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    transform: rotate(-2deg);
+    filter: drop-shadow(1px 2px 0 rgb(0 0 0));
+  }
+`;
 
 type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;
@@ -67,7 +84,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
             >
               <OakFlex $flexDirection={"column"} $minWidth={"100%"}>
                 <Box $position={"fixed"} $top={20} $right={16}>
-                  <IconButton
+                  <IconButtonFocusVisible
                     aria-label="Close Menu"
                     icon={"cross"}
                     variant={"minimal"}

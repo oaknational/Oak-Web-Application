@@ -3,6 +3,7 @@ import { GetStaticProps, NextPage } from "next";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
 import HomePageTabImageNav from "@/components/GenericPagesComponents/HomePageTabImageNav";
+import Banners from "@/components/CurriculumComponents/Banners";
 import PupilTab from "@/components/GenericPagesComponents/PupilTab";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import {
@@ -20,6 +21,7 @@ const Pupils: NextPage<HomePageProps> = (props) => (
     }}
     $background={"white"}
   >
+    <Banners />
     <HomePageTabImageNav current={"pupils"} />
     <PupilTab aria-current="page" />
     <HomePageLowerView posts={props.posts} />
