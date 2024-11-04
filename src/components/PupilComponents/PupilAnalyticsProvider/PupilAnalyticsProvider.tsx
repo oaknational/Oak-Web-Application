@@ -95,6 +95,7 @@ export const trackingEvents = [
   "lessonSummaryReviewed",
   "lessonAccessed",
   "lessonAbandoned",
+  "questionAttemptSubmitted",
 ] as const;
 
 export type PupilAnalyticsEvents = (typeof trackingEvents)[number];
@@ -377,6 +378,12 @@ export const PupilAnalyticsProvider = ({
         ...corePropertyArgs,
         ...args,
       }),
+    questionAttemptSubmitted: (args) => {
+      track.questionAttemptSubmitted({
+        ...additionalArgs,
+        ...args,
+      });
+    },
   };
 
   return (

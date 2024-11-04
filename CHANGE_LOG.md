@@ -1,3 +1,37 @@
+## [1.613.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.0...v1.613.1) (2024-11-04)
+
+
+### Bug Fixes
+
+* only download worksheet questions ([58ff4c8](https://github.com/oaknational/Oak-Web-Application/commit/58ff4c82c9028f2bfaf943ae9cd5be07ff64d2c2))
+* type errors ([c8a9e60](https://github.com/oaknational/Oak-Web-Application/commit/c8a9e6000944da3feb58383f92eea5bc35ed3f35))
+
+# [1.613.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.612.1...v1.613.0) (2024-10-31)
+
+
+### Features
+
+* consolidate thread and year group screen reader announcements ([bf1e938](https://github.com/oaknational/Oak-Web-Application/commit/bf1e93855f8f0d1c142683fa30dc6faab41d677d))
+
+## [1.612.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.612.0...v1.612.1) (2024-10-31)
+
+# [1.612.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.2...v1.612.0) (2024-10-30)
+
+
+### Features
+
+* **track:** add individual quiz question tracking ([a35d9dc](https://github.com/oaknational/Oak-Web-Application/commit/a35d9dc44b8436a8abe1b28f3ef4dbf1a0633f10))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([18e409a](https://github.com/oaknational/Oak-Web-Application/commit/18e409a0093c14c60ee7b8040ff61ab922c5c8ea))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([8e8b181](https://github.com/oaknational/Oak-Web-Application/commit/8e8b181a0327465d6aeee3d0d91cbd3792fc2da7))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([b52dd2f](https://github.com/oaknational/Oak-Web-Application/commit/b52dd2fec04fd496c8ff800576516e66511fd7bc))
+
+## [1.611.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.1...v1.611.2) (2024-10-30)
+
+
+### Bug Fixes
+
+* revert and override CSS in single place instead ([108a7df](https://github.com/oaknational/Oak-Web-Application/commit/108a7df75afaaed0e4f2ed346e4429f81b8e26e6))
+
 ## [1.611.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.0...v1.611.1) (2024-10-30)
 
 # [1.611.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.610.0...v1.611.0) (2024-10-30)
