@@ -307,9 +307,11 @@ export function createInitialYearFilterSelection(
       filters.childSubjects.find(
         (s) => s.subject_slug === "combined-science",
       ) ?? null;
-    const subjectCategory = features?.subjectcategories?.all_disabled
-      ? filters.subjectCategories[0]
-      : allSubjectCategoryTag;
+    const subjectCategory =
+      features?.subjectcategories?.all_disabled &&
+      filters.subjectCategories.length > 0
+        ? filters.subjectCategories[0]
+        : allSubjectCategoryTag;
     initialYearSelection[year] = {
       subject,
       subjectCategory,
