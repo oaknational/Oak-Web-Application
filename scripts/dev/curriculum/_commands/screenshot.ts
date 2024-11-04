@@ -43,6 +43,10 @@ const screenshotPage = async (
     waitUntil: "networkidle0",
   });
 
+  await page.evaluate(() => {
+    document.querySelector("div[data-testid=cookie-banner]")?.remove();
+  });
+
   const viewportHeight = await page.evaluate(() => {
     return window.innerHeight;
   });
