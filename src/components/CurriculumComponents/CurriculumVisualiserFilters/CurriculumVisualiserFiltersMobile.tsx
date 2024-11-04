@@ -170,28 +170,6 @@ function Modal({
     return selectedThread === thread.slug;
   }
 
-  // Initialize constants
-  // const defaultMobileYearSelection = "7";
-
-  // const [mobileYearSelection, setMobileYearSelection] = useState<string | null>(
-  //   defaultMobileYearSelection,
-  // );
-
-  // useEffect(() => {
-  //   if (visibleMobileYearRefID !== mobileYearSelection) {
-  //     setMobileYearSelection(visibleMobileYearRefID);
-  //   }
-  // }, [visibleMobileYearRefID, mobileYearSelection]);
-
-  // const mobileHeaderRef = useRef<HTMLDivElement>(null);
-  // // Add padding offset for mobile year group filter scroll
-  // useEffect(() => {
-  //   if (mobileHeaderRef.current) {
-  //     const boundingRect = mobileHeaderRef.current.getBoundingClientRect();
-  //     updateMobileHeaderScroll(boundingRect.height);
-  //   }
-  // });
-
   const highlightedUnits = highlightedUnitCount(
     yearData,
     selectedYear,
