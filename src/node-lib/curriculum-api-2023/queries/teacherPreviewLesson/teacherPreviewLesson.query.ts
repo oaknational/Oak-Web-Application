@@ -46,7 +46,7 @@ const teacherPreviewLessonQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const parsedlessonContent = lessonContentSchemaFull.parse({
+    const parsedLessonContent = lessonContentSchemaFull.parse({
       ...content,
       geo_restricted: true,
       login_required: true,
@@ -54,7 +54,7 @@ const teacherPreviewLessonQuery =
 
     // Incomplete data will break the preview for new lessons
     const lessonContentData = keysToCamelCase({
-      ...parsedlessonContent,
+      ...parsedLessonContent,
       exit_quiz: content.exit_quiz
         ? content.exit_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
