@@ -65,8 +65,7 @@ function StickyBit({
       $position={["sticky", "static"]}
       $display={["unset", "none"]}
       $top={0}
-      $zIndex={"inFront"}
-      // ref={mobileHeaderRef}
+      $zIndex={"fixedHeader"}
     >
       <Box
         $width={"100%"}
