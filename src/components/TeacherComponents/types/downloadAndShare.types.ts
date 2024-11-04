@@ -26,6 +26,7 @@ export type ResourceType =
 
 export type DownloadResourceType =
   LessonDownloadsPageData["downloads"][number]["type"];
+
 export type ResourcesToDownloadArrayType = DownloadResourceType[];
 export type ShareResourceType = LessonShareResourceData["type"];
 
