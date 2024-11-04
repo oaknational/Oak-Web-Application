@@ -1,11 +1,11 @@
 import createDownloadResourcesLink from "./createDownloadResourcesLink";
 import createAndClickHiddenDownloadLink from "./createAndClickHiddenDownloadLink";
 
-import type { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 const downloadLessonResources = async (
   lessonSlug: string,
-  selectedResourceTypes: ResourcesToDownloadArrayType,
+  selectedResourceTypes: (DownloadResourceType | "worksheet-pdf-questions")[], // FIXME: a new solution is required for types which are shared across different journeys . Also should the downloads schemas be added to oak-curriculum schema?
   isLegacyDownload: boolean,
   authFlagEnabled?: boolean,
   authToken?: string | null,
