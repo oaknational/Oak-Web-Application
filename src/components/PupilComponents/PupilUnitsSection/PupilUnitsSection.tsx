@@ -1,3 +1,5 @@
+import { intersection } from "lodash";
+
 import {
   OakFlex,
   OakInfo,
@@ -10,17 +12,17 @@ import {
   OakPupilJourneyUnitsFilter,
   OakBulletList,
 } from "@oaknational/oak-components";
-import { intersection } from "lodash";
-
 import { resolveOakHref } from "@/common-lib/urls";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 
 const FilterSlot = ({
   subjectCategories,
   applyFilter,
+  onSkipCallback,
 }: {
   subjectCategories: string[];
   applyFilter: (subjectCategory: string) => void;
+  onSkipCallback: () => void;
 }) => {
   if (subjectCategories.length === 0) {
     return null;
@@ -40,6 +42,7 @@ const FilterSlot = ({
           applyFilter(value.value);
         }}
         selected={"All"}
+        onSkipCallback={onSkipCallback}
       />
     </OakFlex>
   );
@@ -79,6 +82,13 @@ export const PupilUnitsSection = ({
     unit.map((u) => ({ ...u, supplementaryData: { unitOrder: i } })),
   );
 
+  const handleSkipToResultsClick = () => {
+    const inputElement = document.querySelector(".pupil-journey-item");
+    if (inputElement instanceof HTMLElement) {
+      inputElement.focus();
+    }
+  };
+
   const filteredUnits =
     filterItems.length > 0
       ? indexedUnits.filter(
@@ -94,6 +104,7 @@ export const PupilUnitsSection = ({
     <FilterSlot
       subjectCategories={subjectCategories}
       applyFilter={applyFilter}
+      onSkipCallback={handleSkipToResultsClick}
     />
   ) : null;
 
@@ -179,6 +190,7 @@ export const PupilUnitsSection = ({
                       (unit) =>
                         unit.programmeFields.optionality && (
                           <OakPupilJourneyOptionalityButton
+                            className="pupil-journey-item"
                             key={unit.unitSlug}
                             title={unit.programmeFields.optionality}
                             numberOfLessons={unit.lessonCount}
