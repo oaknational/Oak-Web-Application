@@ -38,7 +38,6 @@ describe("getStaticProps", () => {
     } as GetStaticPropsContext<URLParams, PreviewData>)) as {
       props: TeacherPreviewLessonPageProps;
     };
-    console.log(propsResult, "propsResult");
 
     expect(propsResult.props.curriculumData.lessonSlug).toEqual(
       "running-as-a-team",
