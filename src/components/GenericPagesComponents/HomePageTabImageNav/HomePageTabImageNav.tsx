@@ -19,14 +19,6 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
         aria-label="Site sections"
       >
         <OakHomepageTabButton
-          title="AI Experiments"
-          iconName="homepage-robot-waving"
-          href="/ai"
-          element="a"
-          isActive={current === "ai"}
-          showNewIcon={true}
-        />
-        <OakHomepageTabButton
           title="Teaching resources"
           iconName="homepage-teacher"
           href="/teachers"
@@ -39,6 +31,14 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
           href="/curriculum"
           element="a"
           isActive={current === "curriculum"}
+        />
+        <OakHomepageTabButton
+          title="AI Experiments"
+          iconName="homepage-robot-waving"
+          href="/ai"
+          element="a"
+          isActive={current === "ai"}
+          showNewIcon={true}
         />
         <OakHomepageTabButton
           title="Pupils"

@@ -1,14 +1,14 @@
 /**
  * @jest-environment node
  */
-import { clerkClient, currentUser } from "@clerk/nextjs/server";
-
 import { POST } from "./route";
 
-import { mockCurrentUser } from "@/__tests__/__helpers__/mockUser";
 import OakError from "@/errors/OakError";
-
-let user: Awaited<ReturnType<typeof currentUser>>;
+import {
+  installMockClerkClient,
+  mockServerUser,
+  setCurrentUser,
+} from "@/__tests__/__helpers__/mockClerkServer";
 
 const reportError = jest.fn();
 jest.mock("@/common-lib/error-reporter", () => ({
@@ -19,27 +19,14 @@ jest.mock("@/common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
-jest.mock("@clerk/nextjs/server", () => {
-  const updateUserMetadataSpy = jest.fn();
-
-  return {
-    clerkClient() {
-      return {
-        users: {
-          updateUserMetadata: updateUserMetadataSpy,
-        },
-      };
-    },
-    currentUser() {
-      return Promise.resolve(user);
-    },
-  };
-});
+jest.mock("@clerk/nextjs/server");
 
 // @ts-expect-error - region is overwritten in development
 process.env.NODE_ENV = "production";
 
 describe("/api/auth/onboarding", () => {
+  const mockClerkClient = installMockClerkClient();
+
   let req: Request;
   beforeEach(() => {
     req = new Request("http://example.com", {
@@ -51,11 +38,12 @@ describe("/api/auth/onboarding", () => {
       },
     });
 
-    user = mockCurrentUser;
+    jest.spyOn(mockClerkClient.users, "updateUserMetadata").mockReset();
+    setCurrentUser(mockServerUser);
   });
 
   it("requires authentication", async () => {
-    user = null;
+    setCurrentUser(null);
     const response = await POST(req);
 
     expect(response.status).toBe(401);
@@ -64,7 +52,7 @@ describe("/api/auth/onboarding", () => {
   it("marks the user as onboarded", async () => {
     const response = await POST(req);
 
-    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+    expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
       "123",
       expect.objectContaining({
         publicMetadata: expect.objectContaining({
@@ -96,7 +84,7 @@ describe("/api/auth/onboarding", () => {
   it("sets the referer header as sourceApp", async () => {
     await POST(req);
 
-    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+    expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
       expect.anything(),
       expect.objectContaining({
         publicMetadata: expect.objectContaining({
@@ -108,7 +96,7 @@ describe("/api/auth/onboarding", () => {
   it("sets the x-country header as region", async () => {
     await POST(req);
 
-    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+    expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
       "123",
       expect.objectContaining({
         privateMetadata: expect.objectContaining({
@@ -135,7 +123,7 @@ describe("/api/auth/onboarding", () => {
       });
       await POST(req);
 
-      expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+      expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
         expect.anything(),
         expect.objectContaining({
           publicMetadata: expect.objectContaining({
@@ -150,7 +138,7 @@ describe("/api/auth/onboarding", () => {
   it("sets the x-country header as region", async () => {
     await POST(req);
 
-    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+    expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
       "123",
       expect.objectContaining({
         privateMetadata: expect.objectContaining({
@@ -184,15 +172,17 @@ describe("/api/auth/onboarding", () => {
   });
 
   it("does not change sourceApp when the user already has one", async () => {
-    user = Object.assign({}, mockCurrentUser, {
-      publicMetadata: {
-        sourceApp: "http://remember-me.com",
-      },
-    });
+    setCurrentUser(
+      Object.assign({}, mockServerUser, {
+        publicMetadata: {
+          sourceApp: "http://remember-me.com",
+        },
+      }),
+    );
 
     await POST(req);
 
-    expect(clerkClient().users.updateUserMetadata).toHaveBeenCalledWith(
+    expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
       expect.anything(),
       expect.objectContaining({
         publicMetadata: expect.objectContaining({

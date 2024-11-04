@@ -21,7 +21,22 @@ import {
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { invariant } from "@/utils/invariant";
+import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
+const usePupilAnalyticsMock = {
+  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
+  identify: jest.fn(),
+  posthogDistinctId: "123",
+};
+
+jest.mock(
+  "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
+  () => {
+    return {
+      usePupilAnalytics: () => usePupilAnalyticsMock,
+    };
+  },
+);
 describe("QuizEngineContext", () => {
   const wrapper = (
     {
@@ -329,6 +344,30 @@ describe("QuizEngineContext", () => {
         pupilAnswer: "earth",
       });
     });
+  });
+
+  it("should ignore case and whitespace when grading short answers", () => {
+    const questions = [...questionsArrayFixture].filter(
+      (q) => q.questionType === "short-answer",
+    );
+
+    const { result } = renderHook(() => useQuizEngineContext(), {
+      wrapper: (props) =>
+        wrapper({
+          ...props,
+          questionsArray: questions,
+        }),
+    });
+
+    const { handleSubmitShortAnswer } = result.current;
+
+    act(() => {
+      handleSubmitShortAnswer(" Earth ");
+    });
+
+    const { questionState } = result.current;
+
+    expect(questionState[0]?.feedback).toEqual("correct");
   });
 
   it("should grade a short answer as incorrect if the pupilAnswer is incorrect", () => {
