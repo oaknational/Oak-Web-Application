@@ -193,7 +193,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
         options,
       );
 
-      itemEls.current.forEach((el) => io.observe(el as Element));
+      itemEls.current.forEach((el) => {
+        if (el) {
+          io.observe(el);
+        }
+      });
       return () => {
         io.disconnect();
       };
