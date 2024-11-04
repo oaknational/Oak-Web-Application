@@ -15,6 +15,7 @@ import {
 import { sortBy } from "lodash";
 import { flushSync } from "react-dom";
 
+import SubjectPhasePickerMobile from "@/components/SharedComponents/SubjectPhasePickerMobile";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
@@ -234,9 +235,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const subjectInputId = useId();
   const ks4OptionInputId = useId();
 
+  const isMobile = true;
+  const [isMobileLotPickerModalOpen, setIsMobileLotPickerModalOpen] = useState(false);
+
   const toggleShowSubjects = () => {
-    setShowSubjects(!showSubjects);
-    setShowPhases(false);
+    if (isMobile) {
+      setIsMobileLotPickerModalOpen(true);
+    } else {
+      setShowSubjects(!showSubjects);
+      setShowPhases(false);
+    }
   };
 
   // Lazy version of process.nextTick
@@ -469,7 +477,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               </PickerButton>
             </FocusIndicatorAlt>
           </OakFlex>
-          {showSubjects && (
+          {showSubjects && !isMobile ? (
             <SelectionDropDownBox
               $background={"white"}
               $dropShadow="interactiveCardHover"
@@ -584,7 +592,19 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 </FocusWrap>
               </FocusOn>
             </SelectionDropDownBox>
-          )}
+          ) : null}
+          {isMobileLotPickerModalOpen && isMobile ? (
+            <SubjectPhasePickerMobile
+              subjects={subjects}
+              showSubjectError={showSubjectError}
+              subjectErrorId={subjectErrorId}
+              subjectInputId={subjectInputId}
+              handleSelectSubject={handleSelectSubject}
+              isSelected={isSelected}
+              onClose={() => setIsMobileLotPickerModalOpen(false)}
+              isCycleTwoEnabled={isCycleTwoEnabled}
+            />
+          ) : null}
           <Box
             $height={50}
             $width={3}
