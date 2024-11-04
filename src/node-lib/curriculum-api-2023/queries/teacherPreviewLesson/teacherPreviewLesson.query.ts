@@ -9,7 +9,7 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { transformedLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
-import {
+import lessonOverviewSchema, {
   LessonOverviewContent,
   LessonOverviewPageData,
 } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
@@ -24,7 +24,9 @@ const teacherPreviewLessonQuery =
     });
 
     const browseFixtureData = {
-      ...lessonBrowseDataFixture({ lessonSlug }),
+      ...lessonBrowseDataFixture({
+        lessonSlug,
+      }),
     };
 
     if (res.content.length > 1) {
@@ -44,7 +46,7 @@ const teacherPreviewLessonQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    lessonContentSchemaFull.parse({
+    const parsedlessonContent = lessonContentSchemaFull.parse({
       ...content,
       geo_restricted: true,
       login_required: true,
@@ -52,7 +54,7 @@ const teacherPreviewLessonQuery =
 
     // Incomplete data will break the preview for new lessons
     const lessonContentData = keysToCamelCase({
-      ...content,
+      ...parsedlessonContent,
       exit_quiz: content.exit_quiz
         ? content.exit_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
@@ -62,12 +64,17 @@ const teacherPreviewLessonQuery =
     });
 
     const teacherPreviewData = transformedLessonOverviewData(
-      browseFixtureData,
+      { ...browseFixtureData },
       lessonContentData as LessonOverviewContent,
       [],
     );
 
-    return teacherPreviewData;
+    const parsedLessonPreviewData = lessonOverviewSchema.parse({
+      ...teacherPreviewData,
+      lessonTitle: lessonContentData.lessonTitle,
+    });
+
+    return parsedLessonPreviewData;
   };
 
 export default teacherPreviewLessonQuery;
