@@ -1,5 +1,3 @@
-import { intersection } from "lodash";
-
 import {
   OakFlex,
   OakInfo,
@@ -12,6 +10,8 @@ import {
   OakPupilJourneyUnitsFilter,
   OakBulletList,
 } from "@oaknational/oak-components";
+import { intersection } from "lodash";
+
 import { resolveOakHref } from "@/common-lib/urls";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 
