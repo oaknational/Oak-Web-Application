@@ -1,6 +1,6 @@
 import { isVisibleUnit } from "./isVisibleUnit";
+import { YearSelection } from "./types";
 
-import { YearSelection } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
 
 const baseUnit = {

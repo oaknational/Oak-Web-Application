@@ -25,10 +25,7 @@ const FocusIndicator = styled(OakBox)<{
   &:has(button:hover),
   &:has(button:hover:not(:active${isJSDOM() ? "" : ", :focus-visible"})) {
     z-index: 1;
-    box-shadow: ${(props) =>
-      props.disableMouseHover
-        ? ""
-        : `rgb(255, 229, 85) 0.125rem 0.125rem 0px;`};
+    background-color: ${(props) => (props.disableMouseHover ? "" : `#f2f2f2;`)};
   }
   &:has(button:hover) {
     box-shadow: ${(props) =>
@@ -36,7 +33,6 @@ const FocusIndicator = styled(OakBox)<{
   }
   &:has(button:active) {
     z-index: 2;
-    background: transparent;
     box-shadow: ${(props) =>
       props.disableActive
         ? ""
