@@ -1,7 +1,5 @@
 import { getNumberOfSelectedUnits } from "./getNumberOfSelectedUnits";
 import { isVisibleUnit } from "./isVisibleUnit";
-
-// TODO: Shouldn't be reaching into <CurriculumVisualiser/> component for core types
 import {
   YearData,
   YearSelection,
@@ -9,7 +7,7 @@ import {
   Subject,
   Tier,
   SubjectCategory,
-} from "@/components/CurriculumComponents/CurriculumVisualiser";
+} from "./types";
 
 jest.mock("./isVisibleUnit");
 
