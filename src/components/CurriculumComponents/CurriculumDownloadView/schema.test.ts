@@ -50,4 +50,20 @@ describe("CurriculumDownloadView / schema", () => {
       "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
     );
   });
+
+  test("submitSchema invalid schoolId", () => {
+    const out = submitSchema.safeParse({
+      schoolId: "",
+      schoolNotListed: false,
+      email: "test@example.com",
+      termsAndConditions: true,
+    });
+    expect(out.success).toEqual(false);
+    const error = (out as SafeParseError<unknown>).error;
+    expect(error).toBeDefined();
+    expect(error.errors).toHaveLength(1);
+    expect(error.errors[0]!.message).toEqual(
+      "Select school, type ‘homeschool’ or tick ‘My school isn’t listed’",
+    );
+  });
 });

@@ -1,3 +1,21 @@
+## [1.613.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.2...v1.613.3) (2024-11-05)
+
+
+### Bug Fixes
+
+* added back in cookie-banner removal into curric dev tool ([7059e1a](https://github.com/oaknational/Oak-Web-Application/commit/7059e1a781f561de5842d396d1a460ee3711bc83))
+* added page concat back into './scripts/dev/curriculum/automate screenshot' ([3a5049f](https://github.com/oaknational/Oak-Web-Application/commit/3a5049f68c80649fcf7fc5aa8e448e63c02f2088))
+
+## [1.613.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.1...v1.613.2) (2024-11-04)
+
+## [1.613.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.0...v1.613.1) (2024-11-04)
+
+
+### Bug Fixes
+
+* only download worksheet questions ([58ff4c8](https://github.com/oaknational/Oak-Web-Application/commit/58ff4c82c9028f2bfaf943ae9cd5be07ff64d2c2))
+* type errors ([c8a9e60](https://github.com/oaknational/Oak-Web-Application/commit/c8a9e6000944da3feb58383f92eea5bc35ed3f35))
+
 # [1.613.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.612.1...v1.613.0) (2024-10-31)
 
 
