@@ -34,7 +34,7 @@ describe(useWorksheetDownload, () => {
 
     expect(downloadSpy).toHaveBeenCalledWith(
       "lesson-slug",
-      ["worksheet-pdf"],
+      ["worksheet-pdf-questions"],
       false,
     );
   });
