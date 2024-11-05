@@ -3,8 +3,7 @@ import {
   useCycleTwoEnabled,
   getUnitFeatures,
 } from "./features";
-
-import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
+import { Unit } from "./types";
 
 const MOCK_ENABLE_CYCLE_2 = jest.fn();
 const MOCK_CURRIC_PARTNER_HACK = jest.fn();
