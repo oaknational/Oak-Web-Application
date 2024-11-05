@@ -53,7 +53,11 @@ export default function CurriculumUnitCard(props: CurriculumUnitCardProps) {
       $overflow={"hidden"}
       disableMouseHover={isHighlighted}
     >
-      <UnstyledButton isHighlighted={isHighlighted} onClick={onClick}>
+      <UnstyledButton
+        data-testid="unit-info-button"
+        isHighlighted={isHighlighted}
+        onClick={onClick}
+      >
         <OakFlex
           $pv={"inner-padding-s"}
           $ph={"inner-padding-m"}
