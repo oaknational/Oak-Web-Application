@@ -16,7 +16,12 @@ import YourDetails from "../OakComponentsKitchen/YourDetails";
 import Terms from "../OakComponentsKitchen/Terms";
 
 import { submitSchema } from "./schema";
-import { School, runSchema } from "./helper";
+import {
+  School,
+  assertValidDownloadType,
+  runSchema,
+  validDownloadTypes,
+} from "./helper";
 
 import Box from "@/components/SharedComponents/Box";
 import flex, { FlexCssProps } from "@/styles/utils/flex";
@@ -40,15 +45,7 @@ const Container = styled(OakFlex)`
   }
 `;
 
-const validDownloadTypes = ["word", "pdf"] as const;
 export type DownloadType = (typeof validDownloadTypes)[number];
-
-const assertValidDownloadType = (val: string) => {
-  if (!validDownloadTypes.includes(val as DownloadType)) {
-    throw new Error("Invalid ");
-  }
-  return val as DownloadType;
-};
 
 const DOWNLOAD_TYPES: {
   id: DownloadType;
