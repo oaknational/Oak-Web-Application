@@ -1,17 +1,21 @@
 import React, { FC } from "react";
+import styled from "styled-components";
 
-import Box from "@/components/SharedComponents/Box";
+import Box, { box, BoxProps } from "@/components/SharedComponents/Box";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 
-type CurriculumModalCloseButtonProps = {
+type CurriculumModalCloseButtonProps = BoxProps & {
   onClose: () => void;
 };
 
+const CurriculumModalCloseButtonBox = styled(Box)<BoxProps>`
+  ${box}
+`;
 export const CurriculumModalCloseButton: FC<
   CurriculumModalCloseButtonProps
-> = ({ onClose }) => {
+> = ({ onClose, ...boxProps }) => {
   return (
-    <Box $position={"absolute"} $top={[16, 32]} $right={[16, 32]}>
+    <CurriculumModalCloseButtonBox {...boxProps}>
       <IconButton
         variant="minimal"
         icon="cross"
@@ -20,6 +24,6 @@ export const CurriculumModalCloseButton: FC<
         size="small"
         data-testid="close-modal-button"
       />
-    </Box>
+    </CurriculumModalCloseButtonBox>
   );
 };

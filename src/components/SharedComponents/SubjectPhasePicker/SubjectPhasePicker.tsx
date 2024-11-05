@@ -582,7 +582,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         verticalAlign="bottom"
                       />
                     </OwaLink>
-                    <CurriculumModalCloseButton onClose={toggleShowSubjects} />
+                    <CurriculumModalCloseButton
+                      onClose={toggleShowSubjects}
+                      $position={"absolute"}
+                      $top={[16, 32]}
+                      $right={[16, 32]}
+                    />
                   </Box>
                 </FocusWrap>
               </FocusOn>
@@ -849,7 +854,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             </OakFlex>
                           </>
                         )}
-                      <CurriculumModalCloseButton onClose={toggleShowPhases} />
+                      <CurriculumModalCloseButton
+                        onClose={toggleShowPhases}
+                        $position={"absolute"}
+                        $top={[16, 32]}
+                        $right={[16, 32]}
+                      />
                     </FocusWrap>
                   </FocusOn>
                 </SelectionDropDownBox>
