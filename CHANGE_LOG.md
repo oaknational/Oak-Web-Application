@@ -1,3 +1,18 @@
+# [1.614.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.3...v1.614.0) (2024-11-05)
+
+
+### Bug Fixes
+
+* added condition around observe (page crash) ([2ec2640](https://github.com/oaknational/Oak-Web-Application/commit/2ec2640c143715d250faf33b25d1fbb0da070547))
+* mobile highlighted year fixes ([ce4e6c9](https://github.com/oaknational/Oak-Web-Application/commit/ce4e6c9ee6a720f578217fac5c1b9f3a2698c8a8))
+
+
+### Features
+
+* curriculum visualiser a11y fixes ([87537cd](https://github.com/oaknational/Oak-Web-Application/commit/87537cd1a0758708c7be8e3c5c64a815434115ba))
+* initial improvements to make curriculum visualiser flexible ([5535eb6](https://github.com/oaknational/Oak-Web-Application/commit/5535eb603e09b4c402aa34c62e381735764bc0a9))
+* removed wobbly borders from child-subject/domain buttons (CUR-994) ([a03a5d2](https://github.com/oaknational/Oak-Web-Application/commit/a03a5d2c947b97994a99bedfa794c135251eafd3))
+
 ## [1.613.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.2...v1.613.3) (2024-11-05)
 
 
