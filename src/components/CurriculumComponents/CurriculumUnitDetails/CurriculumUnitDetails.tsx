@@ -8,12 +8,11 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 
-import { Thread } from "../CurriculumVisualiser";
-
 import Box from "@/components/SharedComponents/Box";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import CurriculumUnitDetailsAccordion from "@/components/CurriculumComponents/CurriculumUnitDetailsAccordion";
+import { Thread } from "@/utils/curriculum/types";
 
 export type CurriculumUnitDetailsProps = {
   unitTitle?: string;

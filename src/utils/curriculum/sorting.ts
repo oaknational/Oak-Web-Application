@@ -1,6 +1,5 @@
 import { UnitFeatures } from "./features";
-
-import { SubjectCategory } from "@/components/CurriculumComponents/CurriculumVisualiser";
+import { Subject, SubjectCategory } from "./types";
 
 export function sortYears(a: string, b: string) {
   if (a === "all-years") {
@@ -28,4 +27,15 @@ export function sortSubjectCategoriesOnFeatures(
     };
   }
   return (a, b) => a.id - b.id;
+}
+
+export function sortChildSubjects(a: Subject, b: Subject) {
+  // Special logic we always want combined-science first.
+  if (a.subject_slug === "combined-science") return -10;
+  if (b.subject_slug === "combined-science") return 10;
+
+  // Alphabetical
+  if (a.subject_slug < b.subject_slug) return -1;
+  if (a.subject_slug > b.subject_slug) return 1;
+  return 0;
 }
