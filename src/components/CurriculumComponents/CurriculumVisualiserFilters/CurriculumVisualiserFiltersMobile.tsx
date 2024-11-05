@@ -214,7 +214,7 @@ function Modal({
         </OakP>
         <RadioGroup
           name="thread"
-          value={selectedThread}
+          value={selectedThread ?? ""}
           onChange={(e) => onSelectThread(e.target.value)}
         >
           <Box>
