@@ -93,6 +93,12 @@ export default function UnitsTab({
     yearSelection,
   );
 
+  const unitCountMessage = `${unitCount} ${unitCount === 1 ? "unit" : "units"} shown,`;
+
+  const highlightCountMessage = `${highlightedUnits}
+    ${highlightedUnits === 1 ? "unit" : "units"}
+    highlighted`;
+
   return (
     <OakBox>
       <OakBox
@@ -161,16 +167,8 @@ export default function UnitsTab({
           }
         />
         <ScreenReaderOnly aria-live="polite" aria-atomic="true">
-          <p>
-            {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
-          </p>
-          {selectedThread && (
-            <p>
-              {highlightedUnits}
-              {highlightedUnits === 1 ? "unit" : "units"}
-              highlighted
-            </p>
-          )}
+          <p>{unitCountMessage}</p>
+          {selectedThread && <p>{highlightCountMessage}</p>}
         </ScreenReaderOnly>
       </OakBox>
       <UnitTabBanner />
