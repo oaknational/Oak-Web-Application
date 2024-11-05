@@ -21,7 +21,7 @@ export const CurriculumModalCloseButton: FC<
         icon="cross"
         onClick={onClose}
         aria-label="close subject modal"
-        size="small"
+        size="large"
         data-testid="close-modal-button"
       />
     </CurriculumModalCloseButtonBox>

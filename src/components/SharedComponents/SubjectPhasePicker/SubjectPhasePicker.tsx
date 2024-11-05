@@ -19,7 +19,6 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-// import IconButtonFocusVisible from "@/components/CurriculumComponents/UnitsTabSidebar";
 import {
   KS4Option,
   Phase,
@@ -493,6 +492,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   onWrapStart={onFocusSubjectStart}
                   onWrapEnd={onFocusSubjectEnd}
                 >
+                  <CurriculumModalCloseButton
+                    onClose={toggleShowSubjects}
+                    $position={"absolute"}
+                    $top={[8, 12]}
+                    $right={[8, 12]}
+                  />
                   {showSubjectError && (
                     <OakFlex
                       id={subjectErrorId}
@@ -582,12 +587,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         verticalAlign="bottom"
                       />
                     </OwaLink>
-                    <CurriculumModalCloseButton
-                      onClose={toggleShowSubjects}
-                      $position={"absolute"}
-                      $top={[16, 32]}
-                      $right={[16, 32]}
-                    />
                   </Box>
                 </FocusWrap>
               </FocusOn>
@@ -764,6 +763,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         $flexDirection={"column"}
                         $gap={"space-between-s"}
                       >
+                        <CurriculumModalCloseButton
+                          onClose={toggleShowPhases}
+                          $position={"absolute"}
+                          $top={[8, 12]}
+                          $right={[8, 12]}
+                        />
                         {(selectedSubject?.phases ?? phases).map((phase) => (
                           <ButtonContainer
                             className={`lot-picker ${
@@ -854,12 +859,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             </OakFlex>
                           </>
                         )}
-                      <CurriculumModalCloseButton
-                        onClose={toggleShowPhases}
-                        $position={"absolute"}
-                        $top={[16, 32]}
-                        $right={[16, 32]}
-                      />
                     </FocusWrap>
                   </FocusOn>
                 </SelectionDropDownBox>
