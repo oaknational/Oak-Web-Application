@@ -1,3 +1,55 @@
+# [1.614.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.3...v1.614.0) (2024-11-05)
+
+
+### Bug Fixes
+
+* added condition around observe (page crash) ([2ec2640](https://github.com/oaknational/Oak-Web-Application/commit/2ec2640c143715d250faf33b25d1fbb0da070547))
+* mobile highlighted year fixes ([ce4e6c9](https://github.com/oaknational/Oak-Web-Application/commit/ce4e6c9ee6a720f578217fac5c1b9f3a2698c8a8))
+
+
+### Features
+
+* curriculum visualiser a11y fixes ([87537cd](https://github.com/oaknational/Oak-Web-Application/commit/87537cd1a0758708c7be8e3c5c64a815434115ba))
+* initial improvements to make curriculum visualiser flexible ([5535eb6](https://github.com/oaknational/Oak-Web-Application/commit/5535eb603e09b4c402aa34c62e381735764bc0a9))
+* removed wobbly borders from child-subject/domain buttons (CUR-994) ([a03a5d2](https://github.com/oaknational/Oak-Web-Application/commit/a03a5d2c947b97994a99bedfa794c135251eafd3))
+
+## [1.613.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.2...v1.613.3) (2024-11-05)
+
+
+### Bug Fixes
+
+* added back in cookie-banner removal into curric dev tool ([7059e1a](https://github.com/oaknational/Oak-Web-Application/commit/7059e1a781f561de5842d396d1a460ee3711bc83))
+* added page concat back into './scripts/dev/curriculum/automate screenshot' ([3a5049f](https://github.com/oaknational/Oak-Web-Application/commit/3a5049f68c80649fcf7fc5aa8e448e63c02f2088))
+
+## [1.613.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.1...v1.613.2) (2024-11-04)
+
+## [1.613.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.0...v1.613.1) (2024-11-04)
+
+
+### Bug Fixes
+
+* only download worksheet questions ([58ff4c8](https://github.com/oaknational/Oak-Web-Application/commit/58ff4c82c9028f2bfaf943ae9cd5be07ff64d2c2))
+* type errors ([c8a9e60](https://github.com/oaknational/Oak-Web-Application/commit/c8a9e6000944da3feb58383f92eea5bc35ed3f35))
+
+# [1.613.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.612.1...v1.613.0) (2024-10-31)
+
+
+### Features
+
+* consolidate thread and year group screen reader announcements ([bf1e938](https://github.com/oaknational/Oak-Web-Application/commit/bf1e93855f8f0d1c142683fa30dc6faab41d677d))
+
+## [1.612.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.612.0...v1.612.1) (2024-10-31)
+
+# [1.612.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.2...v1.612.0) (2024-10-30)
+
+
+### Features
+
+* **track:** add individual quiz question tracking ([a35d9dc](https://github.com/oaknational/Oak-Web-Application/commit/a35d9dc44b8436a8abe1b28f3ef4dbf1a0633f10))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([18e409a](https://github.com/oaknational/Oak-Web-Application/commit/18e409a0093c14c60ee7b8040ff61ab922c5c8ea))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([8e8b181](https://github.com/oaknational/Oak-Web-Application/commit/8e8b181a0327465d6aeee3d0d91cbd3792fc2da7))
+* **tracking:** move quiz tracking to quiz engine, remove type cast ([b52dd2f](https://github.com/oaknational/Oak-Web-Application/commit/b52dd2fec04fd496c8ff800576516e66511fd7bc))
+
 ## [1.611.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.611.1...v1.611.2) (2024-10-30)
 
 

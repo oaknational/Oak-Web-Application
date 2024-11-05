@@ -1,80 +1,40 @@
-import React, { FC, useState, useLayoutEffect, ChangeEvent } from "react";
-import {
-  OakGrid,
-  OakGridArea,
-  OakP,
-  OakHeading,
-  OakSpan,
-} from "@oaknational/oak-components";
+import React, { useState, useLayoutEffect } from "react";
+import { OakP, OakHeading, OakBox } from "@oaknational/oak-components";
 
-import CurriculumVisualiser, {
+import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
+import CurriculumVisualiserLayout from "../CurriculumVisualiserLayout/CurriculumVisualiserLayout";
+import CurriculumVisualiserFiltersMobile from "../CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile";
+import CurriculumVisualiserFilters from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
+import { highlightedUnitCount } from "../CurriculumVisualiserFilters/helpers";
+
+import {
   Thread,
   Subject,
   Tier,
   Unit,
   SubjectCategory,
-} from "../CurriculumVisualiser/CurriculumVisualiser";
-import UnitsTabMobile from "../UnitsTabMobile/UnitsTabMobile";
-import SkipLink from "../OakComponentsKitchen/SkipLink";
-import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
-import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
-
-import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
-import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
-import Box from "@/components/SharedComponents/Box";
+  YearSelection,
+} from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-
-// Types and interfaces
+import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
   formattedData: CurriculumUnitsFormattedData;
 };
 
-export interface YearSelection {
-  [key: string]: {
-    subjectCategory?: SubjectCategory | null;
-    subject?: Subject | null;
-    tier?: Tier | null;
-  };
-}
-
-export function createProgrammeSlug(
-  unitData?: Unit | null,
-  ks4OptionSlug?: string | null,
-  tierSlug?: string,
-) {
-  if (unitData?.keystage_slug === "ks4") {
-    return `${unitData.subject_slug}-${unitData.phase_slug}-${
-      unitData.keystage_slug
-    }${tierSlug ? "-" + tierSlug : ""}${
-      ks4OptionSlug ? "-" + ks4OptionSlug : ""
-    }`;
-  }
-  return unitData
-    ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
-    : "";
-}
-
-// Function component
-
-const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
+export default function UnitsTab({
+  trackingData,
+  formattedData,
+}: UnitsTabProps) {
   // Initialize constants
-  const { yearData, threadOptions, yearOptions, initialYearSelection } =
-    formattedData;
+  const { yearData, initialYearSelection } = formattedData;
   const { ks4OptionSlug } = trackingData;
-  // Flattened duplicate slugs into array for getStaticProps, so casting back into a Set
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
   const [yearSelection, setYearSelection] = useState<YearSelection>({
@@ -86,34 +46,18 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
     setYearSelection(initialYearSelection);
   }, [initialYearSelection]);
 
-  const [selectedThread, setSelectedThread] = useState<Thread | null>(null);
-  const [selectedYear, setSelectedYear] = useState<string>("");
-  const [mobileHeaderScrollOffset, setMobileHeaderScrollOffset] =
-    useState<number>(0);
-  const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
-    string | null
-  >(null);
-  const unitCount = getNumberOfSelectedUnits(
-    yearData,
-    selectedYear,
-    yearSelection,
+  const [selectedThread, setSelectedThread] = useState<Thread["slug"] | null>(
+    null,
   );
+  const [selectedYear, setSelectedYear] = useState<string>("");
+  const [selectedYearMobile, setSelectedYearMobile] = useState<string>("");
+  // const [visibleMobileYearRefID, setVisibleMobileYearRefID] = useState<
+  //   string | null
+  // >(null);
 
-  // Filter interaction handlers
-
-  function handleSelectThread(slug: string): void {
-    const thread = threadOptions.find((to) => to.slug === slug) ?? null;
-    if (thread) {
-      trackSelectThread(thread);
-    }
-    setSelectedThread(thread);
-  }
-
-  function handleSelectYear(e: ChangeEvent<HTMLInputElement>): void {
-    const year = e.target.value;
-    trackSelectYear(year);
-    setSelectedYear(year);
-  }
+  const setVisibleMobileYearRefID = (newYear: string) => {
+    setSelectedYearMobile(newYear);
+  };
 
   function handleSelectSubject(year: string, subject: Subject) {
     const selection = { ...yearSelection[year] };
@@ -136,80 +80,27 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
     setYearSelection({ ...yearSelection, [year]: selection });
   }
 
-  // Visibility helpers
+  const highlightedUnits = highlightedUnitCount(
+    yearData,
+    selectedYear,
+    yearSelection,
+    selectedThread,
+  );
 
-  function highlightedUnitCount(): number {
-    let count = 0;
-    Object.keys(yearData).forEach((year) => {
-      const units = yearData[year]?.units;
-      if (units && (!selectedYear || selectedYear === year)) {
-        units.forEach((unit) => {
-          if (
-            isVisibleUnit(yearSelection, year, unit) &&
-            isHighlightedUnit(unit)
-          ) {
-            count++;
-          }
-        });
-      }
-    });
-    return count;
-  }
-
-  function isHighlightedUnit(unit: Unit) {
-    if (!selectedThread) {
-      return false;
-    }
-    return unit.threads.some((t) => t.slug === selectedThread.slug);
-  }
-
-  function isSelectedThread(thread: Thread) {
-    return selectedThread?.slug === thread.slug;
-  }
-
-  // Analytics handlers
-  function trackSelectThread(thread: Thread): void {
-    if (trackingData) {
-      const { subjectTitle, subjectSlug, phaseSlug } = trackingData;
-      track.curriculumThreadHighlighted({
-        subjectTitle,
-        subjectSlug,
-        threadTitle: thread.title,
-        threadSlug: thread.slug,
-        phase: phaseSlug as PhaseValueType,
-        order: thread.order,
-        analyticsUseCase: analyticsUseCase,
-      });
-    }
-  }
-
-  function trackSelectYear(year: string): void {
-    if (trackingData) {
-      const { subjectTitle, subjectSlug } = trackingData;
-      track.yearGroupSelected({
-        yearGroupName: year,
-        yearGroupSlug: year,
-        subjectTitle,
-        subjectSlug,
-        analyticsUseCase: analyticsUseCase,
-      });
-    }
-  }
-
-  function updateMobileHeaderScroll(height: number) {
-    if (!mobileHeaderScrollOffset) {
-      setMobileHeaderScrollOffset(height);
-    }
-  }
+  const unitCount = getNumberOfSelectedUnits(
+    yearData,
+    selectedYear,
+    yearSelection,
+  );
 
   return (
-    <Box>
-      <Box
+    <OakBox>
+      <OakBox
         id="curriculum-units"
         aria-labelledby="curriculum-unit-sequence-heading"
-        $maxWidth={1280}
+        $maxWidth={"all-spacing-24"}
         $mh={"auto"}
-        $ph={[0, 18]}
+        $ph={["inner-padding-none", "inner-padding-l"]}
         $width={"100%"}
         role="region"
       >
@@ -232,148 +123,57 @@ const UnitsTab: FC<UnitsTabProps> = ({ trackingData, formattedData }) => {
           Units that make up our curricula are fully sequenced, and aligned to
           the national curriculum.
         </OakP>
-        <UnitsTabMobile
-          updateMobileHeaderScroll={updateMobileHeaderScroll}
+        <CurriculumVisualiserFiltersMobile
           selectedThread={selectedThread}
-          handleSelectThread={handleSelectThread}
-          threadOptions={threadOptions}
-          isSelectedThread={isSelectedThread}
-          highlightedUnitCount={highlightedUnitCount}
-          trackSelectYear={trackSelectYear}
-          yearOptions={yearOptions}
-          yearData={yearData}
-          visibleMobileYearRefID={visibleMobileYearRefID}
+          onSelectThread={setSelectedThread}
+          selectedYear={selectedYearMobile}
+          onSelectYear={setSelectedYearMobile}
+          data={formattedData}
+          yearSelection={yearSelection}
+          trackingData={trackingData}
         />
-        <OakGrid>
-          <OakGridArea data-test-id="filter-sidebar" $colSpan={[12, 3]}>
-            <Fieldset
-              $mr={16}
-              $mb={32}
-              $display={["none", "block"]}
-              data-testid="threads-filter-desktop"
-            >
-              <FieldsetLegend $font={"heading-7"} $mb="space-between-xs">
-                Highlight a thread
-              </FieldsetLegend>
-              <OakP $mb="space-between-xs">
-                Threads are groups of units across the curriculum that build a
-                common body of knowledge
-              </OakP>
-              <RadioGroup
-                name="thread"
-                onChange={(e) => handleSelectThread(e.target.value)}
-                value={selectedThread ? selectedThread.slug : ""}
-              >
-                <SkipLink href="#content">Skip to units</SkipLink>
-                <Box $mv={16} $pl={12} $bl={1} $borderColor="transparent">
-                  <RadioButton
-                    aria-label={"None highlighted"}
-                    value={""}
-                    data-testid={"no-threads-radio"}
-                  >
-                    None highlighted
-                  </RadioButton>
-                </Box>
-                {threadOptions.map((threadOption) => {
-                  const isSelected = isSelectedThread(threadOption);
-                  const highlightedCount = highlightedUnitCount();
-                  return (
-                    <Box
-                      $ba={1}
-                      $background={isSelected ? "black" : "white"}
-                      $borderColor={isSelected ? "black" : "grey40"}
-                      $borderRadius={4}
-                      $color={isSelected ? "white" : "black"}
-                      $font={isSelected ? "heading-light-7" : "body-2"}
-                      $ph={12}
-                      $pt={12}
-                      $mb={8}
-                      key={threadOption.slug}
-                    >
-                      <RadioButton
-                        aria-label={threadOption.title}
-                        value={threadOption.slug}
-                        data-testid={
-                          isSelected ? "selected-thread-radio" : "thread-radio"
-                        }
-                      >
-                        <OakSpan>
-                          {threadOption.title}
-                          <OakSpan aria-live="polite" aria-atomic="true">
-                            {isSelected && (
-                              <>
-                                <br />
-                                {highlightedCount}
-                                {highlightedCount === 1 ? " unit " : " units "}
-                                highlighted
-                              </>
-                            )}
-                          </OakSpan>
-                        </OakSpan>
-                      </RadioButton>
-                    </Box>
-                  );
-                })}
-              </RadioGroup>
-            </Fieldset>
-            <Fieldset
-              $mr={16}
-              $mb={32}
-              $display={["none", "block"]}
-              data-testid="year-group-filter-desktop"
-            >
-              <FieldsetLegend $font={"heading-7"} $mb="space-between-xs">
-                Year group
-              </FieldsetLegend>
-              <RadioGroup
-                name="year"
-                value={selectedYear}
-                onChange={handleSelectYear}
-              >
-                <Box $mb={16}>
-                  <RadioButton
-                    aria-label="All year groups"
-                    value={""}
-                    data-testid={"all-years-radio"}
-                  >
-                    All
-                  </RadioButton>
-                </Box>
-                {yearOptions.map((yearOption) => (
-                  <Box key={yearOption} $mb={16}>
-                    <RadioButton
-                      value={yearOption}
-                      data-testid={"year-radio"}
-                      aria-label={getYearGroupTitle(yearData, yearOption)}
-                    >
-                      {getYearGroupTitle(yearData, yearOption)}
-                    </RadioButton>
-                  </Box>
-                ))}
-              </RadioGroup>
-              <ScreenReaderOnly aria-live="polite" aria-atomic="true">
-                Showing {unitCount} {unitCount === 1 ? "unit" : "units"}
-              </ScreenReaderOnly>
-            </Fieldset>
-          </OakGridArea>
-          <CurriculumVisualiser
-            unitData={unitData}
-            yearSelection={yearSelection}
-            selectedYear={selectedYear}
-            ks4OptionSlug={ks4OptionSlug}
-            yearData={yearData}
-            handleSelectSubjectCategory={handleSelectSubjectCategory}
-            handleSelectSubject={handleSelectSubject}
-            handleSelectTier={handleSelectTier}
-            mobileHeaderScrollOffset={mobileHeaderScrollOffset}
-            setUnitData={setUnitData}
-            selectedThread={selectedThread}
-            setVisibleMobileYearRefID={setVisibleMobileYearRefID}
-          />
-        </OakGrid>
-      </Box>
+        <CurriculumVisualiserLayout
+          filters={
+            <CurriculumVisualiserFilters
+              selectedThread={selectedThread}
+              onSelectThread={setSelectedThread}
+              selectedYear={selectedYear}
+              onSelectYear={setSelectedYear}
+              data={formattedData}
+              yearSelection={yearSelection}
+              trackingData={trackingData}
+            />
+          }
+          units={
+            <CurriculumVisualiser
+              unitData={unitData}
+              yearSelection={yearSelection}
+              selectedYear={selectedYear}
+              ks4OptionSlug={ks4OptionSlug}
+              yearData={yearData}
+              handleSelectSubjectCategory={handleSelectSubjectCategory}
+              handleSelectSubject={handleSelectSubject}
+              handleSelectTier={handleSelectTier}
+              setUnitData={setUnitData}
+              selectedThread={selectedThread}
+              setVisibleMobileYearRefID={setVisibleMobileYearRefID}
+            />
+          }
+        />
+        <ScreenReaderOnly aria-live="polite" aria-atomic="true">
+          <p>
+            {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
+          </p>
+          {selectedThread && (
+            <p>
+              {highlightedUnits}
+              {highlightedUnits === 1 ? "unit" : "units"}
+              highlighted
+            </p>
+          )}
+        </ScreenReaderOnly>
+      </OakBox>
       <UnitTabBanner />
-    </Box>
+    </OakBox>
   );
-};
-export default UnitsTab;
+}
