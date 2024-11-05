@@ -1,12 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Fieldset render 1`] = `
+exports[`Fieldset all options 1`] = `
 <body>
   <div>
     <div
       class="sc-fqkvVR sc-gsFSXq cTKaen gXxntV"
       data-testid="oak-inline-banner"
-      type="info"
     >
       <div
         class="sc-fqkvVR bjeqlm"
@@ -36,7 +35,6 @@ exports[`Fieldset render 1`] = `
     <div
       class="sc-fqkvVR sc-gsFSXq jmhHRi gXxntV"
       data-testid="oak-inline-banner"
-      type="neutral"
     >
       <div
         class="sc-fqkvVR bjeqlm"
@@ -66,7 +64,6 @@ exports[`Fieldset render 1`] = `
     <div
       class="sc-fqkvVR sc-gsFSXq bAhQYs gXxntV"
       data-testid="oak-inline-banner"
-      type="success"
     >
       <div
         class="sc-fqkvVR bjeqlm"
@@ -96,7 +93,6 @@ exports[`Fieldset render 1`] = `
     <div
       class="sc-fqkvVR sc-gsFSXq cnpfpZ gXxntV"
       data-testid="oak-inline-banner"
-      type="alert"
     >
       <div
         class="sc-fqkvVR bjeqlm"
@@ -126,7 +122,6 @@ exports[`Fieldset render 1`] = `
     <div
       class="sc-fqkvVR sc-gsFSXq eRnHFx gXxntV"
       data-testid="oak-inline-banner"
-      type="error"
     >
       <div
         class="sc-fqkvVR bjeqlm"
@@ -151,6 +146,42 @@ exports[`Fieldset render 1`] = `
         data-testid="inline-banner-message"
       >
         Error example
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Fieldset default options 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-gsFSXq cTKaen gXxntV"
+      data-testid="oak-inline-banner"
+    >
+      <div
+        class="sc-fqkvVR bjeqlm"
+      >
+        <div
+          class="sc-fqkvVR cTLAoS"
+          data-testid="inline-banner-icon"
+        >
+          <img
+            alt="info"
+            class="sc-dcJsrY dAhYsf"
+            data-nimg="fill"
+            decoding="async"
+            loading="lazy"
+            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1709052869/icons/Icon_Info_vsx3xi.svg"
+            style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+          />
+        </div>
+      </div>
+      <div
+        class="sc-fqkvVR ipjbBR"
+        data-testid="inline-banner-message"
+      >
+        Default example
       </div>
     </div>
   </div>

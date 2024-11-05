@@ -1,5 +1,7 @@
 import { ZodType } from "zod";
 
+import { DownloadType } from ".";
+
 export type School = {
   urn: string;
   la: string;
@@ -36,4 +38,13 @@ export function runSchema<T extends Record<string, unknown>>(
     success: rslt.success,
     errors: newErrors,
   };
+}
+
+export const validDownloadTypes = ["word", "pdf"] as const;
+
+export function assertValidDownloadType(val: string) {
+  if (!validDownloadTypes.includes(val as DownloadType)) {
+    throw new Error("Invalid ");
+  }
+  return val as DownloadType;
 }

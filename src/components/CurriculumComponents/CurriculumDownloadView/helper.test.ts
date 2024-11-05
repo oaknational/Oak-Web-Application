@@ -1,6 +1,10 @@
 import { z } from "zod";
 
-import { parseSchoolToListItems, runSchema } from "./helper";
+import {
+  assertValidDownloadType,
+  parseSchoolToListItems,
+  runSchema,
+} from "./helper";
 
 describe("CurriculumDownloadView / helper", () => {
   test("parseSchoolToListItems", () => {
@@ -53,6 +57,16 @@ describe("CurriculumDownloadView / helper", () => {
       expect(result2.errors).toEqual({
         favNumber: "Expected number, received string",
       });
+    });
+  });
+
+  describe("assertValidDownloadType", () => {
+    test("valid", () => {
+      expect(assertValidDownloadType("word")).toEqual("word");
+    });
+
+    test("invalid", () => {
+      expect(() => assertValidDownloadType("foobar")).toThrow();
     });
   });
 });

@@ -1,5 +1,159 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`docx createImage all options 1`] = `
+"
+        <w:drawing>
+            <wp:anchor
+        distT="0"
+        distB="0"
+        distL="0"
+        distR="114300"
+        simplePos="0"
+        relativeHeight="2"
+        behindDoc="1"
+        locked="0"
+        layoutInCell="1"
+        allowOverlap="1"
+      >
+        <wp:simplePos x="0" y="0"/>
+        <wp:positionH relativeFrom="column">
+            <wp:posOffset>102</wp:posOffset>
+        </wp:positionH>
+        <wp:positionV relativeFrom="column">
+            <wp:posOffset>103</wp:posOffset>
+        </wp:positionV>
+        
+                <wp:extent cx="100" cy="101"/>
+                <wp:effectExtent l="0" t="0" r="0" b="0"/>
+                
+                
+                
+                  <wp:wrapTight wrapText="bothSides">
+                    <wp:wrapPolygon edited="0" >
+                      <wp:start x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                      <wp:lineTo x="0" y="0" />
+                    </wp:wrapPolygon>
+                  </wp:wrapTight>
+                
+                <wp:docPr id="30001" name="test" descr="testing">
+                    <a:extLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+                        <a:ext uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}">
+                            <adec:decorative xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative" val="1"/>
+                        </a:ext>
+                    </a:extLst>
+                </wp:docPr>
+                <wp:cNvGraphicFramePr>
+                    <a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/>
+                </wp:cNvGraphicFramePr>
+                <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+                    <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+                        <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+                            <pic:nvPicPr>
+                                <pic:cNvPr id="30001" name="test" descr="testing">
+                                    <a:extLst>
+                                        <a:ext uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}">
+                                            <adec:decorative xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative" val="1"/>
+                                        </a:ext>
+                                    </a:extLst>
+                                </pic:cNvPr>
+                                <pic:cNvPicPr/>
+                            </pic:nvPicPr>
+                            <pic:blipFill>
+                                <a:blip r:embed="r32">
+                                    <a:extLst>
+                                        <a:ext uri="{28A0092B-C50C-407E-A947-70E740481C1C}">
+                                            <a14:useLocalDpi xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" val="0"/>
+                                        </a:ext>
+                                    </a:extLst>
+                                </a:blip>
+                                <a:stretch>
+                                    <a:fillRect/>
+                                </a:stretch>
+                            </pic:blipFill>
+                            <pic:spPr>
+                                <a:xfrm rot="1800000">
+                                    <a:off x="0" y="0"/>
+                                    <a:ext cx="100" cy="101"/>
+                                </a:xfrm>
+                                <a:prstGeom prst="rect">
+                                    <a:avLst/>
+                                </a:prstGeom>
+                            </pic:spPr>
+                        </pic:pic>
+                    </a:graphicData>
+                </a:graphic>
+            
+      </wp:anchor>
+        </w:drawing>
+    "
+`;
+
+exports[`docx createImage no options 1`] = `
+"
+        <w:drawing>
+            <wp:inline distT="0" distB="0" distL="0" distR="0">
+                <wp:extent cx="1000000" cy="1000000"/>
+                <wp:effectExtent l="0" t="0" r="0" b="0"/>
+                
+                
+                
+                <wp:docPr id="30000" name="" descr="">
+                    <a:extLst xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+                        <a:ext uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}">
+                            <adec:decorative xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative" val="0"/>
+                        </a:ext>
+                    </a:extLst>
+                </wp:docPr>
+                <wp:cNvGraphicFramePr>
+                    <a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/>
+                </wp:cNvGraphicFramePr>
+                <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+                    <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+                        <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+                            <pic:nvPicPr>
+                                <pic:cNvPr id="30000" name="" descr="">
+                                    <a:extLst>
+                                        <a:ext uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}">
+                                            <adec:decorative xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative" val="0"/>
+                                        </a:ext>
+                                    </a:extLst>
+                                </pic:cNvPr>
+                                <pic:cNvPicPr/>
+                            </pic:nvPicPr>
+                            <pic:blipFill>
+                                <a:blip r:embed="r32">
+                                    <a:extLst>
+                                        <a:ext uri="{28A0092B-C50C-407E-A947-70E740481C1C}">
+                                            <a14:useLocalDpi xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" val="0"/>
+                                        </a:ext>
+                                    </a:extLst>
+                                </a:blip>
+                                <a:stretch>
+                                    <a:fillRect/>
+                                </a:stretch>
+                            </pic:blipFill>
+                            <pic:spPr>
+                                <a:xfrm rot="0">
+                                    <a:off x="0" y="0"/>
+                                    <a:ext cx="1000000" cy="1000000"/>
+                                </a:xfrm>
+                                <a:prstGeom prst="rect">
+                                    <a:avLst/>
+                                </a:prstGeom>
+                            </pic:spPr>
+                        </pic:pic>
+                    </a:graphicData>
+                </a:graphic>
+            </wp:inline>
+        </w:drawing>
+    "
+`;
+
 exports[`docx insertNumbering test 1`] = `
 {
   "word/numbering.xml": {

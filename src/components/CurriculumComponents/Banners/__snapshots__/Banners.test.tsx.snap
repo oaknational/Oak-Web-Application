@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Banners when cycle 2 enabled 1`] = `
+<div>
+  <div
+    class="sc-ad0ad6f5-0 bZaRlP"
+    role="banner"
+  >
+    <div
+      class="sc-ad0ad6f5-0 sc-213e351e-0 dKiBog cQsapu"
+    >
+      <div
+        class="sc-ad0ad6f5-0 sc-213e351e-0 dLtZMN glzuTZ"
+      >
+        <div
+          class="sc-ad0ad6f5-0 sc-213e351e-0 IJRuG bvfibs"
+        >
+          <div
+            aria-hidden="true"
+            class="sc-ad0ad6f5-0 sc-213e351e-0 kukHQW cUwoYe"
+            data-testid="new-icon"
+          >
+            <svg
+              aria-hidden="true"
+              class="sc-86d1d46f-0 kiKfWP"
+              filter="drop-shadow(2px 2px 0px rgb(255 255 255 / 0.6))"
+              height="100%"
+              name="tag-promotional"
+              width="100%"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <use
+                xlink:href="/images/sprite/sprite.svg#tag-promotional"
+              />
+            </svg>
+            <div
+              class="sc-ad0ad6f5-0 sc-213e351e-0 SIsrt cUwoYe"
+            >
+              <span
+                class="sc-kpDqfm dpkXxG"
+              >
+                New
+              </span>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR sc-eldPxv fmUONJ camYZD"
+          >
+            <span
+              class="sc-50f33a24-0 ehBjeG"
+            >
+              New 
+            </span>
+             
+            Subjects added
+          </div>
+        </div>
+        <a
+          class="sc-20316575-0 ldDVCs"
+          href="/teachers/curriculum"
+          role="link"
+          title="See curriculum plans"
+        >
+          <div
+            class="sc-ad0ad6f5-0 sc-213e351e-0 rqUDT BtlXC"
+          >
+            <span
+              aria-hidden="true"
+              class="sc-bea19ba6-0 bNTveO"
+              data-testid="button-icon"
+            >
+              <svg
+                aria-hidden="true"
+                class="sc-86d1d46f-0 jOBmUC sc-bea19ba6-2 gvZQHW"
+                height="100%"
+                name="icon-background"
+                width="100%"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <use
+                  xlink:href="/images/sprite/sprite.svg#icon-background"
+                />
+              </svg>
+              <span
+                class="sc-bea19ba6-1 fqRwJG"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="sc-86d1d46f-0 eJtvEZ"
+                  height="100%"
+                  name="chevron-right"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use
+                    xlink:href="/images/sprite/sprite.svg#chevron-right"
+                  />
+                </svg>
+              </span>
+            </span>
+          </div>
+          <div
+            class="sc-ad0ad6f5-0 jIxoAR"
+          >
+            <div
+              class="sc-ad0ad6f5-0 bZaRlP"
+            >
+              <span
+                class="sc-ef29f35c-0 sc-859435d3-0 bIpPnV leLdFP"
+              >
+                See curriculum plans
+              </span>
+            </div>
+          </div>
+          <svg
+            aria-hidden="true"
+            class="sc-86d1d46f-0 jOBmUC sc-8aa75bfd-0 ewNWJE"
+            height="100%"
+            name="underline-1"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <use
+              xlink:href="/images/sprite/sprite.svg#underline-1"
+            />
+          </svg>
+          <svg
+            aria-hidden="true"
+            class="sc-86d1d46f-0 jOBmUC sc-8aa75bfd-2 jnsKyy"
+            height="100%"
+            name="underline-1"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <use
+              xlink:href="/images/sprite/sprite.svg#underline-1"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div
+      aria-hidden="true"
+      class="sc-ad0ad6f5-0 depSXY"
+      data-testid="hr"
+      role="separator"
+    >
+      <svg
+        aria-hidden="true"
+        class="sc-86d1d46f-0 jOBmUC sc-5633ef5f-0 iPOyVF"
+        height="100%"
+        name="horizontal-rule"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <use
+          xlink:href="/images/sprite/sprite.svg#horizontal-rule"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;

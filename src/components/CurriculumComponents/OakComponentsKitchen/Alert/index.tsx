@@ -4,9 +4,20 @@ import {
   OakFlexProps,
   OakIcon,
   OakIconName,
+  OakIconProps,
 } from "@oaknational/oak-components";
 
-export const alertTypes = {
+type AlertType = "info" | "neutral" | "success" | "alert" | "error";
+
+const alertTypes: Record<
+  AlertType,
+  {
+    icon: OakIconName;
+    iconColorFilter: OakIconProps["$colorFilter"];
+    backgroundColour: OakFlexProps["$background"];
+    borderColour: OakFlexProps["$borderColor"];
+  }
+> = {
   info: {
     icon: "info",
     iconColorFilter: "black",
@@ -41,13 +52,13 @@ export const alertTypes = {
 
 type AlertProps = {
   icon?: OakIconName;
-  type?: "info" | "neutral" | "success" | "alert" | "error";
+  type?: AlertType;
   message: string;
 } & OakFlexProps;
 
 export default function Alert(props: AlertProps) {
-  const { type = "info", icon, message } = props;
-  const iconResult = icon || alertTypes[type]?.icon;
+  const { type = "info", icon, message, ...rest } = props;
+  const iconResult = icon ?? alertTypes[type].icon;
   const iconColorFilterResult = alertTypes[type]?.iconColorFilter;
 
   return (
@@ -61,11 +72,11 @@ export default function Alert(props: AlertProps) {
       $flexDirection={"row"}
       $gap="space-between-xs"
       $alignItems={"center"}
-      {...props}
+      {...rest}
     >
       <OakBox>
         <OakIcon
-          iconName={iconResult || "info"}
+          iconName={iconResult}
           $colorFilter={iconColorFilterResult}
           $width="all-spacing-7"
           $height="all-spacing-7"

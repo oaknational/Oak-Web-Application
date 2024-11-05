@@ -96,8 +96,8 @@ export default async function generate(
                         <w:sz w:val="24" />
                       </w:rPr>
                       <w:t xml:space="preserve">${cdata(
-                          `Unit ${unit.order}, `,
-                        )}</w:t>
+                        `Unit ${unit.order}, `,
+                      )}</w:t>
                     </w:r>
                     <w:r>
                       <w:rPr>
@@ -164,15 +164,17 @@ export default async function generate(
         </w:p>
 
         ${yearElements.join("")}
-        ${isLast
-          ? ""
-          : safeXml`
+        ${
+          isLast
+            ? ""
+            : safeXml`
               <w:p>
                 <w:r>
                   <w:br w:type="page" />
                 </w:r>
               </w:p>
-            `}
+            `
+        }
       </XML_FRAGMENT>
     `;
   });

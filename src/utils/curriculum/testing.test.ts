@@ -19,7 +19,7 @@ describe("logErrorMessage", () => {
     expect(logSpy).toHaveBeenCalledTimes(0);
   });
 
-  it("logs when in non-test env", () => {
+  it("logs when in non-test env (string)", () => {
     process.env = {
       ...originalEnv,
       NODE_ENV: "development",
@@ -27,5 +27,15 @@ describe("logErrorMessage", () => {
     logErrorMessage("test2");
     expect(logSpy).toHaveBeenCalledTimes(1);
     expect(logSpy).toHaveBeenCalledWith("test2");
+  });
+
+  it("logs when in non-test env (error object)", () => {
+    process.env = {
+      ...originalEnv,
+      NODE_ENV: "development",
+    };
+    logErrorMessage(new Error("test3"));
+    expect(logSpy).toHaveBeenCalledTimes(1);
+    expect(logSpy).toHaveBeenCalledWith("test3");
   });
 });

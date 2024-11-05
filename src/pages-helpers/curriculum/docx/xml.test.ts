@@ -133,6 +133,18 @@ describe("xml", () => {
       };
       expect(collapseFragments(input)).toEqual(input);
     });
+
+    it("should return fragment if top level is fragment (elements undefined)", () => {
+      const input = {
+        type: "element",
+        name: "XML_FRAGMENT",
+        elements: undefined,
+      };
+      expect(collapseFragments(input)).toEqual({
+        ...input,
+        elements: [],
+      });
+    });
     it("with fragments", () => {
       const input = {
         elements: [

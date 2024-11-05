@@ -509,10 +509,10 @@ export default async function generate(
           })
           .join("")}
       ${Array(9)
-          .fill(true)
-          .map(() => {
-            return `<w:p />`;
-          })}
+        .fill(true)
+        .map(() => {
+          return `<w:p />`;
+        })}
         <w:p>
           <w:pPr>
             <w:jc w:val="center" />

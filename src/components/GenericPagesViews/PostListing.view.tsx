@@ -58,8 +58,9 @@ const PostListing: FC<PostListingProps> = ({
 }) => {
   const triggerId = useId();
 
-  const categoryHeading = categories.find((cat) => cat.slug === categorySlug)
-    ?.title;
+  const categoryHeading = categories.find(
+    (cat) => cat.slug === categorySlug,
+  )?.title;
 
   const postListItems = posts.map((post) =>
     "video" in post ? webinarToPostListItem(post) : blogToPostListItem(post),

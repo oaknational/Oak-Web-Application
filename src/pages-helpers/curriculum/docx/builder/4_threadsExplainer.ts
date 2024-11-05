@@ -254,9 +254,10 @@ export default async function generate(
           <w:br w:type="page" />
         </w:r>
       </w:p>
-      ${cycleTwoEnabled
-        ? ""
-        : safeXml`
+      ${
+        cycleTwoEnabled
+          ? ""
+          : safeXml`
             <XML_FRAGMENT>
               <w:p>
                 <w:pPr>
@@ -316,7 +317,8 @@ export default async function generate(
                 </w:r>
               </w:p>
             </XML_FRAGMENT>
-          `}
+          `
+      }
       <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading3" />

@@ -7,9 +7,12 @@ import {
   checkWithinElement,
   cmToEmu,
   cmToTwip,
+  createImage,
   CURRENT_BOOKMARK,
+  degreeToOoxmlDegree,
   emuToCm,
   generateEmptyDocx,
+  getFooterFilenameFromContent,
   insertImages,
   insertLinks,
   insertNumbering,
@@ -472,6 +475,43 @@ describe("docx", () => {
           ],
         },
       });
+    });
+  });
+
+  test("getFooterFilenameFromContent", () => {
+    expect(getFooterFilenameFromContent("test")).toEqual(
+      "footer-9f86d081884c.xml",
+    );
+  });
+
+  test("degreeToOoxmlDegree", () => {
+    expect(degreeToOoxmlDegree(30)).toEqual(1800000);
+    expect(degreeToOoxmlDegree(0)).toEqual(0);
+    expect(degreeToOoxmlDegree(360)).toEqual(21600000);
+    expect(degreeToOoxmlDegree(440)).toEqual(26400000);
+  });
+
+  describe("createImage", () => {
+    test("no options", () => {
+      expect(createImage("r32")).toMatchSnapshot();
+    });
+    test("all options", () => {
+      expect(
+        createImage("r32", {
+          name: "test",
+          desc: "testing",
+          width: 100,
+          height: 101,
+          xPos: 102,
+          yPos: 103,
+          xPosAnchor: "column",
+          yPosAnchor: "column",
+          isDecorative: true,
+          isWrapTight: true,
+          relativeHeight: 2,
+          rotation: 30,
+        }),
+      ).toMatchSnapshot();
     });
   });
 });

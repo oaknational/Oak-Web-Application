@@ -31,8 +31,9 @@ export const QuizResultOrder = ({
     }
 
     const feedbackState = feedback[index];
-    const standardText = answer.answer.find((answer) => answer?.type === "text")
-      ?.text;
+    const standardText = answer.answer.find(
+      (answer) => answer?.type === "text",
+    )?.text;
 
     if (!standardText) {
       throw new Error("Text is missing from order answer");
