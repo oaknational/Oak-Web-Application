@@ -121,7 +121,7 @@ export const trackCurriculumDownload = async (
     schoolUrn:
       !schoolId || schoolId === "homeschool"
         ? ""
-        : extractUrnAndSchool(schoolId).urn ?? "",
+        : (extractUrnAndSchool(schoolId).urn ?? ""),
     schoolName: dataSchoolName || "",
     resourceFileType: resourceFileType,
     tierName: unionOrNull<TierNameValueType>(
