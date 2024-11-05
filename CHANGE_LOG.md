@@ -1,3 +1,12 @@
+# [1.615.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.614.0...v1.615.0) (2024-11-05)
+
+
+### Features
+
+* **filter:** add skip button to sub cat filter ([26e6cd8](https://github.com/oaknational/Oak-Web-Application/commit/26e6cd8319a9dc85a7d0d23cb42e1d21a20036b6))
+* **filter:** add skip button to sub cat filter ([6716ed3](https://github.com/oaknational/Oak-Web-Application/commit/6716ed3297402f210b267d6ef3389de6bedc005e))
+* **filter:** add skip button to sub cat filter ([1d28fbc](https://github.com/oaknational/Oak-Web-Application/commit/1d28fbc529fcd2beb2576a8357702ebb54bead6d))
+
 # [1.614.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.3...v1.614.0) (2024-11-05)
 
 
