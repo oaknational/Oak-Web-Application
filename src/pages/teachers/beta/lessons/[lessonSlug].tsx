@@ -13,7 +13,10 @@ export type TeacherPreviewLessonPageProps = {
   curriculumData: LessonOverviewPageData;
 };
 
-//http://localhost:3000/teachers/beta/lessons/running-as-a-team
+/*
+Example URL:
+http://localhost:3000/teachers/beta/lessons/running-as-a-team
+**/
 
 const TeacherPreviewLessonPage: NextPage<TeacherPreviewLessonPageProps> = ({
   curriculumData,
