@@ -1,3 +1,26 @@
+# [1.617.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.616.0...v1.617.0) (2024-11-06)
+
+
+### Features
+
+* teacher preview query and beta page ([aa9e37f](https://github.com/oaknational/Oak-Web-Application/commit/aa9e37f33df1da9cb7ed9006ae4d7931a66977e1))
+
+# [1.616.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.615.0...v1.616.0) (2024-11-06)
+
+
+### Features
+
+* **submit:** make checkout tooltip accessible ([21dcdc1](https://github.com/oaknational/Oak-Web-Application/commit/21dcdc106e1f2dad16e7d2c9a7387eba3db17f05))
+
+# [1.615.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.614.0...v1.615.0) (2024-11-05)
+
+
+### Features
+
+* **filter:** add skip button to sub cat filter ([26e6cd8](https://github.com/oaknational/Oak-Web-Application/commit/26e6cd8319a9dc85a7d0d23cb42e1d21a20036b6))
+* **filter:** add skip button to sub cat filter ([6716ed3](https://github.com/oaknational/Oak-Web-Application/commit/6716ed3297402f210b267d6ef3389de6bedc005e))
+* **filter:** add skip button to sub cat filter ([1d28fbc](https://github.com/oaknational/Oak-Web-Application/commit/1d28fbc529fcd2beb2576a8357702ebb54bead6d))
+
 # [1.614.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.3...v1.614.0) (2024-11-05)
 
 
