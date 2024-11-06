@@ -1,3 +1,10 @@
+# [1.616.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.615.0...v1.616.0) (2024-11-06)
+
+
+### Features
+
+* **submit:** make checkout tooltip accessible ([21dcdc1](https://github.com/oaknational/Oak-Web-Application/commit/21dcdc106e1f2dad16e7d2c9a7387eba3db17f05))
+
 # [1.615.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.614.0...v1.615.0) (2024-11-05)
 
 
