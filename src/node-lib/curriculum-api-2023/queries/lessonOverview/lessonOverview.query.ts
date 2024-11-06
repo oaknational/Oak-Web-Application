@@ -194,7 +194,7 @@ export const transformedLessonOverviewData = (
     exitQuiz: exitQuiz,
     videoTitle: content.videoTitle,
     lessonCohort: browseData.lessonData.Cohort,
-    phonicsOutcome: content.phonicsOutcome || null,
+    phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
   };
 };
@@ -270,7 +270,10 @@ const lessonOverviewQuery =
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
-    const content = keysToCamelCase(contentSnake) as LessonOverviewContent;
+    const content = keysToCamelCase({
+      ...contentSnake,
+      phonics_outcome: null,
+    }) as LessonOverviewContent;
 
     return lessonOverviewSchema.parse(
       transformedLessonOverviewData(browseData, content, pathways),
