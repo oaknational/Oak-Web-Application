@@ -1,3 +1,16 @@
+# [1.618.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.617.0...v1.618.0) (2024-11-06)
+
+
+### Bug Fixes
+
+* broken snapshots and test relating to cycle 2 overview header ([ba76d79](https://github.com/oaknational/Oak-Web-Application/commit/ba76d794c91f43e66571addcb4ecd8984dc362bb))
+* bumping curriculum schema to resolve issue with listing too many units in the visualiser ([4ea4ee3](https://github.com/oaknational/Oak-Web-Application/commit/4ea4ee31e4ca71676505ac931158d8e3f56ee3c6))
+
+
+### Features
+
+* enable cycle 2 features in curriculum picker/downloads/overview ([65d860f](https://github.com/oaknational/Oak-Web-Application/commit/65d860fc14b7fbcd9c15e92d89f7a52cc1abf0c1))
+
 # [1.617.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.616.0...v1.617.0) (2024-11-06)
 
 
