@@ -194,6 +194,7 @@ export const transformedLessonOverviewData = (
     exitQuiz: exitQuiz,
     videoTitle: content.videoTitle,
     lessonCohort: browseData.lessonData.Cohort,
+    phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
   };
 };
