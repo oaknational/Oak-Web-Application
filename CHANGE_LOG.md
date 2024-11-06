@@ -1,3 +1,10 @@
+# [1.617.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.616.0...v1.617.0) (2024-11-06)
+
+
+### Features
+
+* teacher preview query and beta page ([aa9e37f](https://github.com/oaknational/Oak-Web-Application/commit/aa9e37f33df1da9cb7ed9006ae4d7931a66977e1))
+
 # [1.616.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.615.0...v1.616.0) (2024-11-06)
 
 
