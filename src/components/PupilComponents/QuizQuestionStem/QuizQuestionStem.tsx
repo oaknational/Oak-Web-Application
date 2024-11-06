@@ -77,6 +77,7 @@ export const QuizQuestionStem = ({
                   placeholder="oak"
                   sizes={getSizes(["100vw", 1200])}
                   $background={"white"}
+                  role="presentation"
                 />
               )}
             </OakFlex>

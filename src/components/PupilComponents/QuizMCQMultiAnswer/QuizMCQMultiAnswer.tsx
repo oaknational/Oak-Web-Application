@@ -82,6 +82,7 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
                 $minWidth={"all-spacing-19"}
                 placeholder="oak"
                 sizes={getSizes(["100vw", 1200])}
+                role="presentation"
               />
             ) : undefined;
 
