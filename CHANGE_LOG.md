@@ -1,3 +1,51 @@
+# [1.617.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.616.0...v1.617.0) (2024-11-06)
+
+
+### Features
+
+* teacher preview query and beta page ([aa9e37f](https://github.com/oaknational/Oak-Web-Application/commit/aa9e37f33df1da9cb7ed9006ae4d7931a66977e1))
+
+# [1.616.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.615.0...v1.616.0) (2024-11-06)
+
+
+### Features
+
+* **submit:** make checkout tooltip accessible ([21dcdc1](https://github.com/oaknational/Oak-Web-Application/commit/21dcdc106e1f2dad16e7d2c9a7387eba3db17f05))
+
+# [1.615.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.614.0...v1.615.0) (2024-11-05)
+
+
+### Features
+
+* **filter:** add skip button to sub cat filter ([26e6cd8](https://github.com/oaknational/Oak-Web-Application/commit/26e6cd8319a9dc85a7d0d23cb42e1d21a20036b6))
+* **filter:** add skip button to sub cat filter ([6716ed3](https://github.com/oaknational/Oak-Web-Application/commit/6716ed3297402f210b267d6ef3389de6bedc005e))
+* **filter:** add skip button to sub cat filter ([1d28fbc](https://github.com/oaknational/Oak-Web-Application/commit/1d28fbc529fcd2beb2576a8357702ebb54bead6d))
+
+# [1.614.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.3...v1.614.0) (2024-11-05)
+
+
+### Bug Fixes
+
+* added condition around observe (page crash) ([2ec2640](https://github.com/oaknational/Oak-Web-Application/commit/2ec2640c143715d250faf33b25d1fbb0da070547))
+* mobile highlighted year fixes ([ce4e6c9](https://github.com/oaknational/Oak-Web-Application/commit/ce4e6c9ee6a720f578217fac5c1b9f3a2698c8a8))
+
+
+### Features
+
+* curriculum visualiser a11y fixes ([87537cd](https://github.com/oaknational/Oak-Web-Application/commit/87537cd1a0758708c7be8e3c5c64a815434115ba))
+* initial improvements to make curriculum visualiser flexible ([5535eb6](https://github.com/oaknational/Oak-Web-Application/commit/5535eb603e09b4c402aa34c62e381735764bc0a9))
+* removed wobbly borders from child-subject/domain buttons (CUR-994) ([a03a5d2](https://github.com/oaknational/Oak-Web-Application/commit/a03a5d2c947b97994a99bedfa794c135251eafd3))
+
+## [1.613.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.2...v1.613.3) (2024-11-05)
+
+
+### Bug Fixes
+
+* added back in cookie-banner removal into curric dev tool ([7059e1a](https://github.com/oaknational/Oak-Web-Application/commit/7059e1a781f561de5842d396d1a460ee3711bc83))
+* added page concat back into './scripts/dev/curriculum/automate screenshot' ([3a5049f](https://github.com/oaknational/Oak-Web-Application/commit/3a5049f68c80649fcf7fc5aa8e448e63c02f2088))
+
+## [1.613.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.1...v1.613.2) (2024-11-04)
+
 ## [1.613.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.613.0...v1.613.1) (2024-11-04)
 
 

@@ -1,7 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import { Unit, YearData } from "../CurriculumVisualiser";
 import BulletList from "../OakComponentsKitchen/BulletList";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -15,7 +14,7 @@ import {
 } from "@/components/CurriculumComponents/CurriculumUnitDetails";
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { notUndefined } from "@/utils/curriculum/types";
+import { notUndefined, Unit, YearData } from "@/utils/curriculum/types";
 
 type UnitModalProps = {
   unitData: Unit | null;
