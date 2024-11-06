@@ -10,8 +10,6 @@ import {
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
-import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 
@@ -29,10 +27,15 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     subjectIconBackgroundColor,
     showShare,
     isCanonical,
+    phonicsOutcome,
   } = props;
 
   return (
-    <Flex $flexDirection={"column"} $display={["flex", "none"]} $gap={24}>
+    <OakFlex
+      $flexDirection={"column"}
+      $display={["flex", "none"]}
+      $gap={"all-spacing-6"}
+    >
       <OakFlex>
         <OakBox $mr="space-between-s" $height="all-spacing-13">
           <SubjectIconBrushBorders
@@ -51,19 +54,22 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
               />
             </OakSpan>
           )}
-
           <OakHeading tag={"h1"} $font={"heading-5"}>
             {lessonTitle}
           </OakHeading>
         </OakFlex>
       </OakFlex>
-      {pupilLessonOutcome && (
-        <Box>
-          <OakP $font={"body-3"}>{pupilLessonOutcome}</OakP>
-        </Box>
-      )}
+      <OakBox>
+        <OakP $font={"body-2-bold"}>Learning outcomes</OakP>
+        <OakBox>
+          {pupilLessonOutcome && (
+            <OakP $font={"body-2"}>{pupilLessonOutcome}</OakP>
+          )}
+          {phonicsOutcome && <OakP $font={"body-2"}>{phonicsOutcome}</OakP>}
+        </OakBox>
+      </OakBox>
       <LessonOverviewHeaderDownloadAllButton {...props} />
       {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
-    </Flex>
+    </OakFlex>
   );
 };

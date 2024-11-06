@@ -6,15 +6,24 @@ import {
   OakP,
   OakSpan,
   OakFlex,
+  OakBox,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { LessonOverviewHeaderDownloadAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton";
 import { LessonOverviewHeaderShareAllButton } from "@/components/TeacherComponents/LessonOverviewHeaderShareAllButton";
-import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
+
+const CustomDimensionFlex = styled(OakFlex)`
+  height: 200px;
+  width: 200px;
+  @media (max-width: 1280px) {
+    height: 172px;
+    width: 172px;
+  }
+`;
 
 export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
   props,
@@ -30,19 +39,20 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     pupilLessonOutcome,
     showShare,
     isCanonical,
+    phonicsOutcome,
   } = props;
 
   return (
-    <Box $display={["none", "grid"]}>
+    <OakBox $display={["none", "grid"]}>
       <OakGrid>
         <OakGridArea $justifyContent={"center"} $colSpan={[12, 3]}>
-          <Flex $height={[172, 172, 200]} $width={[172, 172, 200]}>
+          <CustomDimensionFlex>
             <SubjectIconBrushBorders
               subjectSlug={subjectSlug}
               color={subjectIconBackgroundColor}
               isNew={isNew}
             />
-          </Flex>
+          </CustomDimensionFlex>
         </OakGridArea>
         <OakGridArea
           $justifyContent={"center"}
@@ -64,11 +74,17 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
               <OakHeading tag={"h1"} $font={"heading-3"}>
                 {lessonTitle}
               </OakHeading>
-              {pupilLessonOutcome && (
-                <Box $maxWidth={740}>
-                  <OakP $font={"body-2"}>{pupilLessonOutcome}</OakP>
-                </Box>
-              )}
+              <OakBox>
+                <OakP $font={"body-2-bold"}>Learning outcomes</OakP>
+                <OakBox $maxWidth={"all-spacing-23"}>
+                  {pupilLessonOutcome && (
+                    <OakP $font={"body-2"}>{pupilLessonOutcome}</OakP>
+                  )}
+                  {phonicsOutcome && (
+                    <OakP $font={"body-2"}>{phonicsOutcome}</OakP>
+                  )}
+                </OakBox>
+              </OakBox>
               <OakFlex $gap="all-spacing-6">
                 <LessonOverviewHeaderDownloadAllButton {...props} />
                 {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
@@ -77,6 +93,6 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
           </OakFlex>
         </OakGridArea>
       </OakGrid>
-    </Box>
+    </OakBox>
   );
 };
