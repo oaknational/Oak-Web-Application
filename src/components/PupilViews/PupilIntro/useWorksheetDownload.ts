@@ -27,7 +27,7 @@ export function useWorksheetDownload(
     try {
       await downloadLessonResources(
         lessonSlug,
-        ["worksheet-pdf"],
+        ["worksheet-pdf-questions"],
         isLegacyDownload,
       );
     } catch (error) {
