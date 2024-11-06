@@ -76,7 +76,7 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
             answerImageData && answerImageData.publicId ? (
               <OakCloudinaryImage
                 cloudinaryId={answerImageData.publicId}
-                alt=""
+                alt="An image in a quiz"
                 width={answerImageData.width}
                 height={answerImageData.height}
                 $minWidth={"all-spacing-19"}
