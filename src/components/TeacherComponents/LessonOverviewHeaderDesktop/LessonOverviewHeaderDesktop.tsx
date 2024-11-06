@@ -75,7 +75,9 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
                 {lessonTitle}
               </OakHeading>
               <OakBox>
-                <OakP $font={"body-2-bold"}>Learning outcomes</OakP>
+                {phonicsOutcome && (
+                  <OakP $font={"body-2-bold"}>Learning outcomes</OakP>
+                )}
                 <OakBox $maxWidth={"all-spacing-23"}>
                   {pupilLessonOutcome && (
                     <OakP $font={"body-2"}>{pupilLessonOutcome}</OakP>

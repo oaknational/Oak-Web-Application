@@ -194,7 +194,7 @@ export const transformedLessonOverviewData = (
     exitQuiz: exitQuiz,
     videoTitle: content.videoTitle,
     lessonCohort: browseData.lessonData.Cohort,
-    phonicsOutcome: content.phonicsOutcome,
+    phonicsOutcome: content.phonicsOutcome || null,
     pathways: pathways,
   };
 };
@@ -266,7 +266,7 @@ const lessonOverviewQuery =
     const pathways = canonicalLesson ? getPathways(res) : [];
 
     lessonBrowseDataByKsSchema.parse(browseDataSnake);
-    lessonContentSchema.parse(contentSnake);
+    lessonContentSchema.parse({ ...contentSnake, phonics_outcome: null });
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
