@@ -21,6 +21,24 @@ const fixtures = {
     });
     return output;
   },
+  "curriculumunits-science-secondary": async () => {
+    const output = await sdk.curriculumUnits({
+      where: {
+        _and: [
+          {
+            _or: [
+              { subject_slug: { _eq: "science" } },
+              { subject_parent_slug: { _eq: "science" } },
+            ],
+          },
+          { phase_slug: { _eq: "secondary" } },
+          { examboard_slug: { _eq: "edexcel" } },
+          { state: { _eq: "published" } },
+        ],
+      },
+    });
+    return output;
+  },
   subjectPhaseOptions: async () => {
     return await sdk.subjectPhaseOptions();
   },
