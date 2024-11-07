@@ -48,6 +48,7 @@ const curriculumApi: Pick<
   | "refreshedMVTime"
   | "teachersSitemap"
   | "pupilsSitemap"
+  | "teacherPreviewLesson"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -77,6 +78,15 @@ const curriculumApi: Pick<
     return {
       browseData: lessonBrowseDataFixture({}),
       content: lessonContentFixture({}),
+    };
+  }),
+  teacherPreviewLesson: jest.fn(async () => {
+    return {
+      ...lessonOverviewFixture({
+        lessonSlug: "running-as-a-team",
+        yearTitle: "Year 10",
+      }),
+      lessonId: 1,
     };
   }),
   pupilLessonListingQuery: jest.fn(async () => {
@@ -128,6 +138,7 @@ const curriculumApi: Pick<
   teachersSitemap: jest.fn(async () => {
     return teachersSitemapDataFixtureCamelCase;
   }),
+
   pupilsSitemap: jest.fn(async () => {
     return mockedSiteMapResponse;
   }),
