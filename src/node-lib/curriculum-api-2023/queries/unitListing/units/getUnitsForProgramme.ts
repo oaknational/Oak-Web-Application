@@ -1,97 +1,40 @@
-import { kebabCase } from "lodash";
+import { groupBy, values } from "lodash";
 
-import { RawSuvLessons } from "../rawSuvLessons.schema";
-import { getThreadsForUnit } from "../filters/getThreadsForUnit";
+import { UnitsCamel } from "../unitListing.schema";
 
-import { UnitData, UnitsForProgramme, unitSchema } from "./units.schema";
+import { UnitsForProgramme } from "./units.schema";
 
-export const getUnitsForProgramme = async (
-  programmeData: RawSuvLessons[],
-): Promise<UnitsForProgramme> => {
-  const partialUniqueUnits = programmeData.reduce(
-    (acc, programme) => {
-      const unitId = programme.unit_data.unit_id;
-      const optionalityTitle = programme.programme_fields.optionality;
-      const lessonCount = programmeData.filter((pd) => {
-        return pd.unit_slug === programme.unit_slug;
-      }).length;
-      const expiredLessonCount = programmeData.filter(
-        (pd) =>
-          pd.unit_slug === programme.unit_slug &&
-          pd.lesson_data.deprecated_fields?.expired,
-      ).length;
+export const getUnitsForProgramme = (
+  rawUnits: UnitsCamel,
+): UnitsForProgramme => {
+  const processedUnits = rawUnits.map((unit) => ({
+    slug: unit.unitSlug,
+    title: unit.programmeFields.optionality ?? unit.unitData.title,
+    nullTitle: unit.unitData.title,
+    programmeSlug: unit.programmeSlug,
+    keyStageSlug: unit.programmeFields.keystageSlug,
+    keyStageTitle: unit.programmeFields.keystageDescription,
+    subjectSlug: unit.programmeFields.subjectSlug,
+    subjectTitle: unit.programmeFields.subject,
+    yearTitle: unit.programmeFields.yearDescription,
+    year: unit.programmeFields.yearSlug,
+    unitStudyOrder: unit.supplementaryData.unitOrder,
+    yearOrder: unit.programmeFields.yearDisplayOrder,
+    cohort: unit.unitData.Cohort,
+    isOptionalityUnit: !!unit.programmeFields.optionality,
+    lessonCount: unit.lessonCount,
+    expiredLessonCount: unit.lessonExpiredCount,
+    expired: unit.lessonCount === unit.lessonExpiredCount,
+    subjectCategories: unit.unitData.subjectcategories,
+    learningThemes: unit.threads,
+  }));
 
-      const subjectCategory =
-        programme.unit_data.subjectcategories &&
-        programme.unit_data.subjectcategories.length > 0
-          ? programme.unit_data.subjectcategories
-              .filter(
-                (category): category is string => typeof category === "string",
-              )
-              .map((category) => {
-                return { label: category, slug: kebabCase(category) };
-              })
-          : null;
-
-      const unit = {
-        slug: programme.unit_slug,
-        title: optionalityTitle ?? programme.unit_data.title,
-        nullTitle: programme.unit_data.title,
-        programmeSlug: programme.programme_slug,
-        keyStageSlug: programme.programme_fields.keystage_slug,
-        keyStageTitle: programme.programme_fields.keystage_description,
-        subjectSlug: programme.programme_fields.subject_slug,
-        subjectTitle: programme.programme_fields.subject,
-        yearTitle: programme.programme_fields.year_description,
-        year: programme.programme_fields.year_slug,
-        unitStudyOrder: programme.supplementary_data.unit_order,
-        yearOrder: programme.programme_fields.year_display_order,
-        cohort: programme.unit_data._cohort,
-        isOptionalityUnit: !!optionalityTitle,
-        lessonCount,
-        expiredLessonCount,
-        expired: lessonCount === expiredLessonCount,
-        subjectCategories: subjectCategory,
-      };
-      if (acc[unitId]) {
-        const slugExists = acc[unitId]?.find((u) => u.slug === unit.slug);
-        if (!slugExists) {
-          acc[unitId]!.push(unit);
-        }
-      } else {
-        acc[unitId] = [unit];
-      }
-      return acc;
-    },
-    {} as Record<
-      string,
-      Array<Partial<UnitData> & { isOptionalityUnit: boolean }>
-    >,
+  // group optionality units
+  const groupedUnits = values(
+    groupBy(processedUnits, (unit) => unit.nullTitle),
   );
 
-  // this could helpfully come from the MV
-  const threads = await getThreadsForUnit(Object.keys(partialUniqueUnits));
-
-  // Populate partial units with threads
-  Object.entries(threads).forEach(([unitId, threadsForUnit]) => {
-    const unit = partialUniqueUnits[unitId];
-    if (unit && unit.length > 0) {
-      const populatedUnits = unit
-        // remove null unit variants when there is optionality present
-        .filter((u) => (unit.length > 1 ? u.isOptionalityUnit : true))
-        .map((u) => {
-          if (threadsForUnit) {
-            u.learningThemes = threadsForUnit;
-          }
-          return u;
-        });
-
-      partialUniqueUnits[unitId] = populatedUnits;
-    }
-  });
-
-  const parsedUnits = unitSchema.parse(Object.values(partialUniqueUnits));
-  const sortedUnits = parsedUnits
+  const sortedUnits = groupedUnits
     .map((units) => units.sort((a, b) => (a.title > b.title ? 1 : -1)))
     .sort((a, b) => {
       // Sort units first by year and then by unit order

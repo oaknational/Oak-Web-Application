@@ -10,12 +10,27 @@ import {
   tierSlugs,
   yearDescriptions,
   yearSlugs,
+  syntheticUnitvariantsWithLessonIdsByKsSchema,
+  ProgrammeFields,
 } from "@oaknational/oak-curriculum-schema";
 
 import { tierSchema } from "./tiers/tiers.schema";
 import { learningThemes } from "./filters/threads.schema";
 import { unitSchema } from "./units/units.schema";
 
+import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
+
+export const rawQuerySchema = syntheticUnitvariantsWithLessonIdsByKsSchema
+  .omit({
+    null_unitvariant_id: true,
+  })
+  .array();
+
+export type UnitsSnake = z.infer<typeof rawQuerySchema>;
+export type UnitsCamel = ConvertKeysToCamelCase<UnitsSnake>;
+export type ProgrammeFieldsCamel = ConvertKeysToCamelCase<ProgrammeFields>;
+
+// reshaped output of the unitListing query
 const unitListingData = z.object({
   programmeSlug: z.string(),
   keyStageSlug: keystageSlugs,

@@ -6,51 +6,36 @@ import { getUnitsForProgramme } from "./units/getUnitsForProgramme";
 import { getAllLearningThemes } from "./filters/getAllLearningThemes";
 import { getAllCategories } from "./filters/getAllCategories";
 import { getAllYearGroups } from "./filters/getAllYearGroups";
-import { rawSuvLessonsSchema } from "./rawSuvLessons.schema";
+import { ProgrammeFieldsCamel, rawQuerySchema } from "./unitListing.schema";
 
 import { NEW_COHORT } from "@/config/cohort";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.unitListing(args);
 
-    const unitsForProgramme = res.units;
+    const unitsSnake = res.units;
 
-    if (!unitsForProgramme || unitsForProgramme.length === 0) {
-      return null;
-    }
-
-    const parsedRawUnits = unitsForProgramme.map((p) =>
-      rawSuvLessonsSchema.parse(p),
-    );
-
-    const firstUnit = parsedRawUnits[0];
-
-    if (!firstUnit) {
+    if (!unitsSnake || unitsSnake.length === 0) {
       throw new OakError({
         code: "curriculum-api/not-found",
       });
     }
 
-    const programmeFields = firstUnit.programme_fields;
+    rawQuerySchema.parse(unitsSnake);
 
-    const isLegacy = firstUnit.is_legacy;
-    const hasTiers = parsedRawUnits.some(
-      (p) => p.programme_fields.tier_slug !== null,
+    const unitsCamel = keysToCamelCase(unitsSnake);
+
+    const programmeFields = unitsCamel.reduce(
+      (acc, val) => ({ ...acc, ...val.programmeFields }),
+      {} as ProgrammeFieldsCamel,
     );
 
     // sibling tiers
-    const tiers = hasTiers
-      ? await getTiersForProgramme(
-          sdk,
-          programmeFields.subject_slug,
-          programmeFields.keystage_slug,
-          programmeFields.examboard_slug,
-          isLegacy,
-        )
-      : [];
+    const tiers = programmeFields.tierSlug ? ["foundation", "higher"] : [];
 
-    const units = await getUnitsForProgramme(parsedRawUnits);
+    const reshapedUnits = getUnitsForProgramme(unitsCamel);
 
     const yearGroups = getAllYearGroups(units);
 
@@ -61,6 +46,11 @@ const unitListingQuery =
     const hasNewContent = units
       .flatMap((unit) => unit.flatMap((u) => u.cohort ?? "2020-2023"))
       .includes(NEW_COHORT);
+
+    const isLegacy = unitsCamel.reduce(
+      (acc, val) => Boolean(acc) || Boolean(val.isLegacy),
+      false,
+    );
 
     return {
       programmeSlug: args.programmeSlug,
