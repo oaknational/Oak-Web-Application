@@ -68,17 +68,21 @@ const CorrectAnswerSection = (props: CorectAnswerSectionProps) => {
 
 type ResultsInnerProps = {
   index: number;
+  displayIndex: number;
   quizArray: QuestionsArray;
   questionResult: QuestionState;
   lessonSection: "exit-quiz" | "starter-quiz";
 };
 
 export const QuizResultInner = (props: ResultsInnerProps) => {
-  const { index, quizArray, questionResult, lessonSection } = props;
+  const { index, displayIndex, quizArray, questionResult, lessonSection } =
+    props;
   const quizQuestion = quizArray[index];
   const questionStem = quizQuestion?.questionStem;
   const answers = quizQuestion?.answers;
   const grade = questionResult.grade;
+  const isInitMode = questionResult.mode === "init";
+
   return (
     <OakFlex
       key={`${lessonSection}-question-${index}`}
@@ -86,15 +90,20 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
       $flexDirection={["column", "row"]}
       role="listitem"
     >
-      <OakIcon
-        iconName={grade === 1 ? "tick" : "cross"}
-        $background={grade === 1 ? "icon-success" : "icon-error"}
-        $colorFilter={"white"}
-        $borderRadius={"border-radius-circle"}
-      />
+      {!isInitMode && (
+        <OakIcon
+          iconName={grade === 1 ? "tick" : "cross"}
+          $background={grade === 1 ? "icon-success" : "icon-error"}
+          $colorFilter={"white"}
+          $borderRadius={"border-radius-circle"}
+        />
+      )}
       <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
         {questionStem && (
-          <QuizResultQuestionStem index={index} questionStem={questionStem} />
+          <QuizResultQuestionStem
+            displayIndex={displayIndex}
+            questionStem={questionStem}
+          />
         )}
         {answers?.["multiple-choice"] && isArray(questionResult?.feedback) && (
           <QuizResultMCQ
@@ -125,7 +134,7 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
             pupilAnswers={questionResult.pupilAnswer}
           />
         )}
-        {grade === 0 && quizQuestion && (
+        {grade === 0 && quizQuestion && !isInitMode && (
           <>
             <CorrectAnswerSection
               questionResult={questionResult}

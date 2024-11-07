@@ -17,13 +17,13 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 type QuizQuestionStemProps = {
   questionStem: (ImageItem | TextItem)[];
-  index: number;
+  displayIndex: number;
 };
 
 export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
-  const { questionStem, index } = props;
+  const { questionStem, displayIndex } = props;
 
-  const displayNumber = `Q${index + 1}.`;
+  const displayNumber = `Q${displayIndex}.`;
 
   return (
     <MathJaxWrap>
@@ -40,7 +40,7 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
               key={`q-${displayNumber}-stem-element-0`}
               $font={"body-2-bold"}
             >
-              {displayNumber}{" "}
+              {displayIndex !== 999 && displayNumber}{" "}
               {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
             </OakSpan>
           )}
