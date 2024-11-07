@@ -1,3 +1,37 @@
+## [1.618.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.618.0...v1.618.1) (2024-11-07)
+
+
+### Bug Fixes
+
+* update sanity query for equality of subject title ([6d1b484](https://github.com/oaknational/Oak-Web-Application/commit/6d1b484aa1cd2749a48795fbdf931a0d0d596e4a))
+
+# [1.618.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.617.0...v1.618.0) (2024-11-06)
+
+
+### Bug Fixes
+
+* broken snapshots and test relating to cycle 2 overview header ([ba76d79](https://github.com/oaknational/Oak-Web-Application/commit/ba76d794c91f43e66571addcb4ecd8984dc362bb))
+* bumping curriculum schema to resolve issue with listing too many units in the visualiser ([4ea4ee3](https://github.com/oaknational/Oak-Web-Application/commit/4ea4ee31e4ca71676505ac931158d8e3f56ee3c6))
+
+
+### Features
+
+* enable cycle 2 features in curriculum picker/downloads/overview ([65d860f](https://github.com/oaknational/Oak-Web-Application/commit/65d860fc14b7fbcd9c15e92d89f7a52cc1abf0c1))
+
+# [1.617.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.616.0...v1.617.0) (2024-11-06)
+
+
+### Features
+
+* teacher preview query and beta page ([aa9e37f](https://github.com/oaknational/Oak-Web-Application/commit/aa9e37f33df1da9cb7ed9006ae4d7931a66977e1))
+
+# [1.616.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.615.0...v1.616.0) (2024-11-06)
+
+
+### Features
+
+* **submit:** make checkout tooltip accessible ([21dcdc1](https://github.com/oaknational/Oak-Web-Application/commit/21dcdc106e1f2dad16e7d2c9a7387eba3db17f05))
+
 # [1.615.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.614.0...v1.615.0) (2024-11-05)
 
 

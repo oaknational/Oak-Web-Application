@@ -88,5 +88,5 @@ export const lessonBrowseDataByKsSchema =
   });
 
 export type LessonBrowseDataByKs = ConvertKeysToCamelCase<
-  z.infer<typeof syntheticUnitvariantLessonsByKsSchema>
+  z.infer<typeof lessonBrowseDataByKsSchema>
 >;
