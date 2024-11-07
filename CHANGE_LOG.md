@@ -1,3 +1,10 @@
+# [1.621.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.620.0...v1.621.0) (2024-11-07)
+
+
+### Features
+
+* add new curriculum blog post and updated associated tests ([437d94b](https://github.com/oaknational/Oak-Web-Application/commit/437d94b0d23529a7ddb5f8ac99816ded9f2f8a2d))
+
 # [1.620.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.619.0...v1.620.0) (2024-11-07)
 
 
