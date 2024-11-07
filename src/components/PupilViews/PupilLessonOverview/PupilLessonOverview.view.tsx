@@ -267,9 +267,9 @@ export const PupilViewsLessonOverview = ({
                 </OakFlex>
                 <OakSpan $font="body-1">
                   {contentGuidance.map(
-                    (item) => item.contentguidanceLabel + " ",
+                    (item) => item.contentguidanceLabel + ". ",
                   )}
-                  {supervisionLevel}
+                  {supervisionLevel + "."}
                 </OakSpan>
               </OakBox>
             )}
