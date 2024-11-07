@@ -139,7 +139,7 @@
     "@commitlint/prompt-cli": "^19.5.0",
     "@google-cloud/secret-manager": "^5.6.0",
     "@graphql-codegen/cli": "^5.0.3",
-    "@graphql-codegen/typescript": "^4.0.9",
+    "@graphql-codegen/typescript": "^4.1.1",
     "@graphql-codegen/typescript-graphql-request": "^6.2.0",
     "@graphql-codegen/typescript-operations": "^4.2.3",
     "@netlify/edge-functions": "^2.8.1",
