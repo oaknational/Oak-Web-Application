@@ -60,7 +60,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
         </OakFlex>
       </OakFlex>
       <OakBox>
-        <OakP $font={"body-2-bold"}>Learning outcomes</OakP>
+        {phonicsOutcome && <OakP $font={"body-2-bold"}>Learning outcomes</OakP>}
         <OakBox>
           {pupilLessonOutcome && (
             <OakP $font={"body-2"}>{pupilLessonOutcome}</OakP>
