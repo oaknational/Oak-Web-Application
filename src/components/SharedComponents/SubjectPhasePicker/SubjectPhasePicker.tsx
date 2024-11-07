@@ -1,4 +1,4 @@
-import { FC, useState, useId, useRef } from "react";
+import React, { FC, useState, useId, useRef } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -38,6 +38,7 @@ import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/FocusWrap";
 import { Hr } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
+import { useBreakpoint } from "@/utils/curriculum/hooks";
 
 
 const DEFAULT_KEYSTAGES = [
@@ -229,6 +230,87 @@ const MobileButtonContainer = styled.div`
 `;
 
 
+type SubjectContainerProps = {
+  children: React.ReactNode;
+  showSubjectError: boolean;
+}
+function SubjectContainer ({children, showSubjectError}: SubjectContainerProps) {
+  const isCycleTwoEnabled = useCycleTwoEnabled();
+  const subjectErrorId = useId();
+  const subjectInputId = useId();
+
+  return (
+    <>
+    {showSubjectError && (
+                    <OakFlex
+                      id={subjectErrorId}
+                      $flexDirection={"row"}
+                      $mb={"space-between-m"}
+                    >
+                      <Icon
+                        $color={"red"}
+                        name="content-guidance"
+                        verticalAlign="bottom"
+                      />
+                      <OakP $color={"red"}>
+                        Select a subject to view a curriculum
+                      </OakP>
+                    </OakFlex>
+                  )}
+                  <OakFlex
+                    $flexDirection={"column"}
+                    $alignItems={"flex-start"}
+                    $gap={"all-spacing-1"}
+                    $mb={"space-between-sssx"}
+                  >
+                    <OakHeading
+                      id={subjectInputId}
+                      tag={"h4"}
+                      $font={"heading-6"}
+                      $mr="space-between-xs"
+                      data-testid="subjectDropdownHeading"
+                    >
+                      Curriculum plans
+                    </OakHeading>
+                    <OakP $mb="space-between-s">
+                      {isCycleTwoEnabled
+                        ? "Explore our curricula for 2024/2025."
+                        : "Explore our new curricula for 2023/2024."}
+                    </OakP>
+                  </OakFlex>
+                  <OakFlex
+                    role="radiogroup"
+                    aria-labelledby={subjectInputId}
+                    aria-required="true"
+                    aria-describedby={
+                      showSubjectError ? subjectErrorId : undefined
+                    }
+                    $gap={"space-between-xs"}
+                    $alignItems={"flex-start"}
+                    $flexWrap={"wrap"}
+                    $mt={"space-between-none"}
+                  >
+                    {children}
+                  </OakFlex>
+                  <Box $mt={24}>
+                    <OwaLink
+                      page={"curriculum-previous-downloads"}
+                      $textDecoration={"underline"}
+                      $font={"heading-7"}
+                      data-testid="previousPlansLink"
+                    >
+                      Previously released plans
+                      <Icon
+                        $color={"black"}
+                        name="arrow-right"
+                        verticalAlign="bottom"
+                      />
+                    </OwaLink>
+                  </Box>
+    </>
+  )
+}
+
 const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   subjects,
   currentSelection,
@@ -280,10 +362,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const [showKS4OptionError, setShowKS4OptionError] = useState(false);
 
   const schoolPhaseInputId = useId();
-  const subjectInputId = useId();
   const ks4OptionInputId = useId();
 
-  const isMobile = true;
+  const isMobile = useBreakpoint(750);
   const [isMobileLotPickerModalOpen, setIsMobileLotPickerModalOpen] = useState(false);
 
 
@@ -568,55 +649,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   onWrapStart={onFocusSubjectStart}
                   onWrapEnd={onFocusSubjectEnd}
                 >
-                  {showSubjectError && (
-                    <OakFlex
-                      id={subjectErrorId}
-                      $flexDirection={"row"}
-                      $mb={"space-between-m"}
-                    >
-                      <Icon
-                        $color={"red"}
-                        name="content-guidance"
-                        verticalAlign="bottom"
-                      />
-                      <OakP $color={"red"}>
-                        Select a subject to view a curriculum
-                      </OakP>
-                    </OakFlex>
-                  )}
-                  <OakFlex
-                    $flexDirection={"column"}
-                    $alignItems={"flex-start"}
-                    $gap={"all-spacing-1"}
-                    $mb={"space-between-sssx"}
-                  >
-                    <OakHeading
-                      id={subjectInputId}
-                      tag={"h4"}
-                      $font={"heading-6"}
-                      $mr="space-between-xs"
-                      data-testid="subjectDropdownHeading"
-                    >
-                      Curriculum plans
-                    </OakHeading>
-                    <OakP $mb="space-between-s">
-                      {isCycleTwoEnabled
-                        ? "Explore our curricula for 2024/2025."
-                        : "Explore our new curricula for 2023/2024."}
-                    </OakP>
-                  </OakFlex>
-                  <OakFlex
-                    role="radiogroup"
-                    aria-labelledby={subjectInputId}
-                    aria-required="true"
-                    aria-describedby={
-                      showSubjectError ? subjectErrorId : undefined
-                    }
-                    $gap={"space-between-xs"}
-                    $alignItems={"flex-start"}
-                    $flexWrap={"wrap"}
-                    $mt={"space-between-none"}
-                  >
+                  <SubjectContainer showSubjectError={showSubjectError}>
                     {sortBy(subjects, "title").map((subject) => (
                       <ButtonContainer
                         className={`lot-picker subject-selection ${isSelected(subject) ? "selected" : ""
@@ -641,22 +674,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         </OakSecondaryButton>
                       </ButtonContainer>
                     ))}
-                  </OakFlex>
-                  <Box $mt={24}>
-                    <OwaLink
-                      page={"curriculum-previous-downloads"}
-                      $textDecoration={"underline"}
-                      $font={"heading-7"}
-                      data-testid="previousPlansLink"
-                    >
-                      Previously released plans
-                      <Icon
-                        $color={"black"}
-                        name="arrow-right"
-                        verticalAlign="bottom"
-                      />
-                    </OwaLink>
-                  </Box>
+                  </SubjectContainer>
                 </FocusWrap>
               </FocusOn>
             </SelectionDropDownBox>
@@ -697,46 +715,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     Subject
                   </OakHeading>
 
-                  {showSubjectError && (
-                    <OakFlex
-                      id={subjectErrorId}
-                      $flexDirection="row"
-                      $gap="space-between-xs"
-                    >
-                      <Icon
-                        $color="red"
-                        name="content-guidance"
-                        verticalAlign="bottom"
-                      />
-                      <OakP $color="red">Select a subject to view a curriculum</OakP>
-                    </OakFlex>
-                  )}
-
-                  <OakFlex $flexDirection="column" $gap="space-between-sssx">
-                    <OakHeading
-                      id={subjectInputId}
-                      tag="h2"
-                      $font="heading-7"
-                    >
-                      Curriculum plans
-                    </OakHeading>
-                    <OakP>
-                      {isCycleTwoEnabled
-                        ? "Explore our curricula for 2024/2025."
-                        : "Explore our new curricula for 2023/2024."}
-                    </OakP>
-                  </OakFlex>
-
-                  <OakFlex
-                    role="radiogroup"
-                    aria-labelledby={subjectInputId}
-                    aria-required="true"
-                    aria-describedby={showSubjectError ? subjectErrorId : undefined}
-                    $flexDirection="row"
-                    $flexWrap="wrap"
-                    $gap="space-between-xs"
-                    $background={"white"}
-                  >
+                  <SubjectContainer showSubjectError={showSubjectError}>
                     {sortBy(subjects, "title").map((subject) => (
                       <MobileButtonContainer
                         className={`lot-picker ${isSelected(subject) ? "selected" : ""}`}
@@ -763,16 +742,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         </OakSecondaryButton>
                       </MobileButtonContainer>
                     ))}
-                  </OakFlex>
-
-                  <OwaLink
-                    page="curriculum-previous-downloads"
-                    $textDecoration="underline"
-                    $font="heading-7"
-                  >
-                    Previously released plans
-                    <Icon $color="black" name="arrow-right" verticalAlign="bottom" />
-                  </OwaLink>
+                  </SubjectContainer>
 
                   <Box
                     $position="fixed"
