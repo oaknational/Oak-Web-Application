@@ -1,3 +1,13 @@
+## [1.618.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.618.2...v1.618.3) (2024-11-07)
+
+
+### Bug Fixes
+
+* added 'display: block;' to fix sticky issues in curric visualiser (iOS) ([14bafb9](https://github.com/oaknational/Oak-Web-Application/commit/14bafb94185e169aba6b29a9f6b835045d811a01))
+* fixedHeader -> modalDialog for curric threads mobile modal ([d78edaa](https://github.com/oaknational/Oak-Web-Application/commit/d78edaaccf8a9062ff9bc90e3de1904f213fac5d))
+* remove style 'display: block;' ([960d72e](https://github.com/oaknational/Oak-Web-Application/commit/960d72e9d04ba56c573a74bb06ec0c458372cfe4))
+* z-index of threads sticky header in mobile curric visualiser ([d61b8f8](https://github.com/oaknational/Oak-Web-Application/commit/d61b8f833591cd3f33c1a5aa38f45e8635b043e7))
+
 ## [1.618.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.618.1...v1.618.2) (2024-11-07)
 
 
