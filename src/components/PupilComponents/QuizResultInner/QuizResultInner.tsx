@@ -81,7 +81,7 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
   const questionStem = quizQuestion?.questionStem;
   const answers = quizQuestion?.answers;
   const grade = questionResult.grade;
-  const isInitMode = questionResult.mode === "init";
+  const isHint = questionResult.mode === "init";
 
   return (
     <OakFlex
@@ -90,7 +90,7 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
       $flexDirection={["column", "row"]}
       role="listitem"
     >
-      {!isInitMode && (
+      {!isHint && (
         <OakIcon
           iconName={grade === 1 ? "tick" : "cross"}
           $background={grade === 1 ? "icon-success" : "icon-error"}
@@ -134,7 +134,7 @@ export const QuizResultInner = (props: ResultsInnerProps) => {
             pupilAnswers={questionResult.pupilAnswer}
           />
         )}
-        {grade === 0 && quizQuestion && !isInitMode && (
+        {grade === 0 && quizQuestion && !isHint && (
           <>
             <CorrectAnswerSection
               questionResult={questionResult}
