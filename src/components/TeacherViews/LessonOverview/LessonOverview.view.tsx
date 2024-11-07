@@ -5,6 +5,7 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { hasLessonMathJax } from "./hasLessonMathJax";
@@ -48,6 +49,7 @@ import {
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads };
@@ -91,11 +93,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     isSpecialist,
     updatedAt,
     isCanonical,
+    lessonGuideUrl,
   } = lesson;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const commonPathway = getPathway(lesson);
-
   const {
     keyStageSlug,
     keyStageTitle,
@@ -162,8 +164,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const starterQuizSectionRef = useRef<HTMLDivElement>(null);
   const exitQuizSectionRef = useRef<HTMLDivElement>(null);
   const additionalMaterialSectionRef = useRef<HTMLDivElement>(null);
+  const lessonGuideSectionRef = useRef<HTMLDivElement>(null);
 
   const sectionRefs = {
+    "lesson-guide": lessonGuideSectionRef,
     "slide-deck": slideDeckSectionRef,
     "lesson-details": lessonDetailsSectionRef,
     video: videoSectionRef,
@@ -274,6 +278,40 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             </GridArea>
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
+                {pageLinks.find((p) => p.label === "Lesson guide") &&
+                  lessonGuideUrl && (
+                    <LessonItemContainer
+                      isSpecialist={isSpecialist}
+                      ref={lessonGuideSectionRef}
+                      title={"Lesson guide"}
+                      //Defaulted to false until download ticket implementation
+                      downloadable={false}
+                      // needs to be added to avo
+                      // onDownloadButtonClick={() => {
+                      //   trackDownloadResourceButtonClicked({
+                      //     downloadResourceButtonName: "lesson guide",
+                      //   });
+                      // }}
+                      slugs={slugs}
+                      anchorId="lesson-guide"
+                      pageLinks={pageLinks}
+                    >
+                      <OakBox $width={"100%"}>
+                        <AspectRatio ratio={"16:9"}>
+                          <iframe
+                            src={lessonGuideUrl.replace("/view", "/embed")}
+                            width="100%"
+                            height="100%"
+                          />
+                        </AspectRatio>
+                      </OakBox>
+                      {/* <LessonOverviewPresentation
+                      asset={lessonGuideUrl}
+                      title={lessonTitle}
+                      isWorksheet={false}
+                    /> */}
+                    </LessonItemContainer>
+                  )}
                 {pageLinks.find((p) => p.label === "Slide deck") &&
                   !checkIsResourceCopyrightRestricted(
                     "presentation",

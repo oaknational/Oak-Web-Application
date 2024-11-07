@@ -26,6 +26,7 @@ export const getContainerId = (anchorId: string) => {
  *
  */
 export type LessonItemTitle =
+  | "Lesson guide"
   | "Slide deck"
   | "Exit quiz"
   | "Starter quiz"
