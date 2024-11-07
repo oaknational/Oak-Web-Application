@@ -268,7 +268,10 @@ const lessonOverviewQuery =
     lessonBrowseDataByKsSchema.parse(browseDataSnake);
     lessonContentSchema.parse({ ...contentSnake, phonics_outcome: null });
 
-    // We've already parsed this data with Zod so we can safely cast it to the correct type
+    /**
+     * ! - We've already parsed this data with Zod so we can safely cast it to the correct type
+     * ! - Whilst some data is still new and beta overview and 'regular' overview share types, some values are hardcoded i.e. phonics_outcome
+     *  */
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
     const content = keysToCamelCase({
       ...contentSnake,
