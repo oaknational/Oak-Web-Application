@@ -125,7 +125,7 @@ const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   return pathways;
 };
 
-const transformedLessonOverviewData = (
+export const transformedLessonOverviewData = (
   browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],

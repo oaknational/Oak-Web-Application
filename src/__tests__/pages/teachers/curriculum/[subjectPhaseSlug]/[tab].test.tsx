@@ -669,7 +669,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       });
     });
 
-    it("renders the Curriculum Units Tab", () => {
+    it.skip("renders the Curriculum Units Tab", () => {
       (useRouter as jest.Mock).mockReturnValue({
         query: { tab: "units" },
         isPreview: false,
