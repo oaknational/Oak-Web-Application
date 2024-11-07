@@ -20,12 +20,12 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/andykwoods/
   From: Dublin, Ireland
 
+  Assad Khan (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/assad-k-07b42a6b/
+  From: London, UK
+
   Ben Protheroe (Software Engineer)
   From: London, lives in Cornwall
-
-  Carl Whittaker (Software Engineer)
-  LinkedIn: https://www.linkedin.com/in/carlmw 
-  From: London, UK
   
   Dan Dupont (Product Manager)
   LinkedIn: https://www.linkedin.com/in/dandupontlopez/
@@ -95,10 +95,10 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Twitter: @johnrobeds
   From: Manchester, UK
 
-  Matt Gregory (Software Engineer)
+  Matt Gregory (Senior Software Engineer)
   Site: https://mantagen.org
 
-  Michael Jenic (Engineering Manager)
+  Michael Jenic (Software Engineering Manager)
   LinkedIn: https://uk.linkedin.com/in/mjenic
   From: York, UK
 
@@ -114,7 +114,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Linkedin: https://uk.linkedin.com/in/monika-koziol-a138a325
   From: Poland, lives in London
 
-  Natassja Blore (Software Engineer)
+  Natassja Blore (Senior Software Engineer)
   LinkedIn: https://www.linkedin.com/in/tash-blore-245079182/
   From: Manchester, UK
 
@@ -129,7 +129,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://linkedin.com/in/shaquillehobbsdaley
   From: London, UK
 
-  Simon Katan (Software Engineer)
+  Simon Katan (Senior Software Engineer)
   LinkedIn: https://www.linkedin.com/in/simonkatan/
   From: London, UK
 
@@ -137,17 +137,20 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/sonalisin
   From: Manchester, lives in London, UK
 
-  Thomas Birch (Software Engineer)
+  Thomas Birch (Senior Software Engineer)
   Site: https://capeflair.com
   From: Guildford, UK
 
-  Will Gayne (Head of Product Strategy)
+  Will Gayne (Director of Product Strategy & Impact)
   LinkedIn: https://www.linkedin.com/in/william-gayne-a8a363134/
   From: Macclesfield, UK
 
 
 /* THANKS */
 
+  Carl Whittaker (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/carlmw 
+  From: London, UK
 
   Craig McCahill (Software Engineer)
   From: London, UK
