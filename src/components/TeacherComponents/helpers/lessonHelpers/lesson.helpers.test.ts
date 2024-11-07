@@ -202,6 +202,7 @@ describe("getPageLinksForLesson()", () => {
 
   it("doesn't include slidedeck if hasCopyrightMaterial", () => {
     const lesson = {
+      lessonGuideUrl: null,
       presentationUrl: "presentation-url",
       hasCopyrightMaterial: true,
       videoMuxPlaybackId: null,
