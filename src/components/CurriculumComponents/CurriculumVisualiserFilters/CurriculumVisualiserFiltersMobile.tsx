@@ -63,9 +63,7 @@ function StickyBit({
   return (
     <Box
       $position={["sticky", "static"]}
-      // To fix sticky issues above
-      style={{ display: "block" }}
-      $display={["unset", "none"]}
+      $display={["block", "none"]}
       $top={0}
       $zIndex={"fixedHeader"}
     >
@@ -185,7 +183,7 @@ function Modal({
       $position="fixed"
       $top={0}
       $height={"100%"}
-      $zIndex={"modalDialog"}
+      $zIndex={"fixedHeader"}
       $display={["block", "none"]}
     >
       <Box $position={"absolute"} $top={20} $right={16} $zIndex={"inFront"}>
