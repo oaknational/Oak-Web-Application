@@ -1,3 +1,17 @@
+## [1.618.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.618.1...v1.618.2) (2024-11-07)
+
+
+### Bug Fixes
+
+* **LESQ-1155:** guard against duplicate sign-up events when hook is remounted ([b0c3431](https://github.com/oaknational/Oak-Web-Application/commit/b0c343144d797912b694a52273557c4b672573e1))
+
+## [1.618.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.618.0...v1.618.1) (2024-11-07)
+
+
+### Bug Fixes
+
+* update sanity query for equality of subject title ([6d1b484](https://github.com/oaknational/Oak-Web-Application/commit/6d1b484aa1cd2749a48795fbdf931a0d0d596e4a))
+
 # [1.618.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.617.0...v1.618.0) (2024-11-06)
 
 
