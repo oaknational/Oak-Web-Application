@@ -1,3 +1,10 @@
+# [1.619.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.618.3...v1.619.0) (2024-11-07)
+
+
+### Features
+
+* add phonic outcome to lesson overview page ([39d5dc3](https://github.com/oaknational/Oak-Web-Application/commit/39d5dc3b46ce4c6fe3610d921d8db778de9972ae))
+
 ## [1.618.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.618.2...v1.618.3) (2024-11-07)
 
 
