@@ -110,7 +110,7 @@
     "react-aria": "^3.35.0",
     "react-dom": "^18.3.1",
     "react-focus-on": "^3.9.4",
-    "react-hook-form": "^7.53.0",
+    "react-hook-form": "^7.53.1",
     "react-stately": "^3.33.0",
     "react-string-replace": "^1.1.1",
     "react-transition-group": "^4.4.5",
