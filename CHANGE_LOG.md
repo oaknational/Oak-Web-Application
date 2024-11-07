@@ -1,3 +1,16 @@
+# [1.620.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.619.0...v1.620.0) (2024-11-07)
+
+
+### Bug Fixes
+
+* added filters.subjectCategories length check into initial filters ([c1831d6](https://github.com/oaknational/Oak-Web-Application/commit/c1831d692ff1aa5b0f03169dc3f975a4828867e2))
+* switch over to all_disabled/default_category_id ([905925a](https://github.com/oaknational/Oak-Web-Application/commit/905925afe32ed02c1fe0016e697712fe8d1328b0))
+
+
+### Features
+
+* exclude "all" from subjectcategories in english primary/secondary ([f73a4a3](https://github.com/oaknational/Oak-Web-Application/commit/f73a4a37059ff9900c7bab3bde69bf015947d2ee))
+
 # [1.619.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.618.3...v1.619.0) (2024-11-07)
 
 
