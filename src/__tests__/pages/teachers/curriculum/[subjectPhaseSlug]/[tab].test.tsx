@@ -1421,7 +1421,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         },
       };
       const yearData = createUnitsListingByYear(unitData);
-      expect(createInitialYearFilterSelection(yearData)).toEqual(
+      expect(createInitialYearFilterSelection(yearData, null)).toEqual(
         initialYearFilterSelection,
       );
     });
