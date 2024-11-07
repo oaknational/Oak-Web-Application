@@ -390,7 +390,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     <OakBox
       $position="relative"
       data-testid="subjectPhasePicker"
-      $zIndex={99}
+      $zIndex={101}
       $maxWidth="all-spacing-23"
       $borderRadius="border-radius-s"
       $borderColor={showSubjects || showPhases ? "transparent" : "black"}
@@ -478,7 +478,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $pa={24}
               $position="absolute"
               $top={["50%", "100%"]}
-              $zIndex={"inFront"}
+              $zIndex={"modalDialog"}
               $width={"100%"}
             >
               <FocusOn
@@ -590,7 +590,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $width={3}
             $position={"relative"}
             $display={"block"}
-            $zIndex={"inFront"}
+            $zIndex={"modalDialog"}
             $visibility={showSubjects || showPhases ? "hidden" : null}
           >
             <BoxBorders
@@ -694,7 +694,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   $pa={28}
                   $position="absolute"
                   $top={"100%"}
-                  $zIndex={"inFront"}
+                  $zIndex={"modalDialog"}
                   className="phase-selection"
                 >
                   <FocusOn
