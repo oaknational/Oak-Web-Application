@@ -63,7 +63,7 @@ function StickyBit({
   return (
     <Box
       $position={["sticky", "static"]}
-      $display={["unset", "none"]}
+      $display={["block", "none"]}
       $top={0}
       $zIndex={"fixedHeader"}
     >
