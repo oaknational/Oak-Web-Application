@@ -192,7 +192,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const showShare =
     !isSpecialist && keyStageSlug !== "early-years-foundation-stage";
 
-  // TODO: Currently lessonGuideUrl preview is hardcoded to ensure it is in preview mode
+  // TODO: Currently lessonGuideUrl is in edit mode, will be changed to preview when published
+  const getPreviewUrl = (url: string): string => {
+    return url.replace(/\/edit.*$/, "/preview");
+  };
+  const previewLessonGuideUrl = getPreviewUrl(lessonGuideUrl || "");
 
   return (
     <MathJaxLessonProvider>
@@ -287,7 +291,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       title={"Lesson guide"}
                       //Defaulted to false until download ticket implementation
                       downloadable={false}
-                      // needs to be added to avo
+                      // Avo types need to be updated to include lesson guide
                       // onDownloadButtonClick={() => {
                       //   trackDownloadResourceButtonClicked({
                       //     downloadResourceButtonName: "lesson guide",
@@ -300,7 +304,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       <OakBox $width={"100%"} $ba={"border-solid-m"}>
                         <AspectRatio ratio={"16:9"}>
                           <iframe
-                            src={`https://docs.google.com/document/d/1sv9LuUKXMRFdOCjjb4zTxTK91Gw64bOhCXEjxC03h60/preview`}
+                            src={`${previewLessonGuideUrl}`}
                             width="100%"
                             height="100%"
                           />
