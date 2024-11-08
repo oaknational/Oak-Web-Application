@@ -304,6 +304,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       <OakBox $width={"100%"} $ba={"border-solid-m"}>
                         <AspectRatio ratio={"16:9"}>
                           <iframe
+                            data-testid="lesson-guide-iframe"
                             src={`${previewLessonGuideUrl}`}
                             width="100%"
                             height="100%"

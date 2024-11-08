@@ -190,7 +190,7 @@ describe("pages/teachers/lessons", () => {
 
   it("renders an iframe for a lesson guide google doc", () => {
     const { getAllByTestId } = render(<LessonOverviewPage {...props} />);
-    const iframeElement = getAllByTestId("lesson-guide");
+    const iframeElement = getAllByTestId("lesson-guide-iframe");
     expect(iframeElement.length).toEqual(1);
   });
 
