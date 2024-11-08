@@ -63,7 +63,7 @@ function StickyBit({
   return (
     <Box
       $position={["sticky", "static"]}
-      $display={["unset", "none"]}
+      $display={["block", "none"]}
       $top={0}
       $zIndex={"fixedHeader"}
     >
@@ -213,7 +213,7 @@ function Modal({
         </OakP>
         <RadioGroup
           name="thread"
-          value={selectedThread}
+          value={selectedThread ?? ""}
           onChange={(e) => onSelectThread(e.target.value)}
         >
           <Box>
