@@ -39,7 +39,7 @@ function StickyBit({
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
-    selectedYear,
+    null,
     yearSelection,
     selectedThread,
   );
@@ -152,7 +152,6 @@ function StickyBit({
 function Modal({
   data,
   selectedThread,
-  selectedYear,
   yearSelection,
   onSelectThread,
   onOpenModal,
@@ -172,7 +171,7 @@ function Modal({
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
-    selectedYear,
+    null,
     yearSelection,
     selectedThread,
   );
