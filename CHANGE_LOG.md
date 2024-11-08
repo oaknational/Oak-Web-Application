@@ -1,3 +1,10 @@
+## [1.621.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.1...v1.621.2) (2024-11-08)
+
+
+### Bug Fixes
+
+* default null to empty string in curriculum visualiser ([d10155f](https://github.com/oaknational/Oak-Web-Application/commit/d10155fdcb4a9c928abbd0dcfe952f83fe687801))
+
 ## [1.621.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.0...v1.621.1) (2024-11-08)
 
 
