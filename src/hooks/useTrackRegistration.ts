@@ -5,6 +5,15 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import type { UserResource } from "clerk";
 import { SingleSignOnServiceValueType } from "@/browser-lib/avo/Avo";
 
+let hasAlreadyTrackedEvent = false;
+
+/**
+ * Resets the module state for testing
+ */
+export function resetUseTrackingRegistration() {
+  hasAlreadyTrackedEvent = false;
+}
+
 /**
  * Tracks when a user returns to the app after
  * signing up through OWA
@@ -25,13 +34,22 @@ export function useTrackRegistration() {
       return;
     }
 
-    // Skip if the sign-in has already been tracked
+    // Skip if the sign-in has already been tracked on a previous page
     if (
       user.unsafeMetadata.owa?.lastTrackedSignInAt ===
       user.lastSignInAt?.valueOf()
     ) {
       return;
     }
+
+    // Skip tracking when the hook has been re-mounted/re-rendered
+    // this guards against a race condition caused by the hook being unmounted
+    // and re-rendered while the Clerk user metadata is being updated
+    if (hasAlreadyTrackedEvent) {
+      return;
+    }
+
+    hasAlreadyTrackedEvent = true;
 
     // `lastTrackedSignInAt` is initialised as `null` by the sign-up form
     // we use this to determine if the sign-up originated in OWA
