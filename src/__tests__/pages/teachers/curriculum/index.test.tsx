@@ -36,6 +36,13 @@ const mockPosts = [
     date: new Date("2021-12-01").toISOString(),
     category: { title: "category", slug: "category" },
   },
+  {
+    id: "4",
+    title: "blog 4",
+    slug: "blog-4",
+    date: new Date("2021-12-01").toISOString(),
+    category: { title: "category", slug: "category" },
+  },
 ] as SerializedBlogPostPreview[];
 
 const props: CurriculumHomePageProps = {
@@ -54,7 +61,7 @@ const mockCMS = (willErr = false) => ({
   blogPostBySlug: jest.fn((slug) => {
     if (willErr) throw new Error("Missing blog post");
     switch (slug) {
-      case "how-to-design-a-subject-curriculum":
+      case "our-new-curriculum-plans-are-here":
         return {
           id: "1",
           title: "blog 1",
@@ -62,7 +69,7 @@ const mockCMS = (willErr = false) => ({
           date: new Date("2021-12-01"),
           category: { title: "category", slug: "category" },
         };
-      case "how-to-refresh-your-curriculum-using-oak-units":
+      case "how-to-design-a-subject-curriculum":
         return {
           id: "2",
           title: "blog 2",
@@ -70,11 +77,19 @@ const mockCMS = (willErr = false) => ({
           date: new Date("2021-12-01"),
           category: { title: "category", slug: "category" },
         };
-      case "how-to-design-a-unit-of-study":
+      case "how-to-refresh-your-curriculum-using-oak-units":
         return {
           id: "3",
           title: "blog 3",
           slug: "blog-3",
+          date: new Date("2021-12-01"),
+          category: { title: "category", slug: "category" },
+        };
+      case "how-to-design-a-unit-of-study":
+        return {
+          id: "4",
+          title: "blog 4",
+          slug: "blog-4",
           date: new Date("2021-12-01"),
           category: { title: "category", slug: "category" },
         };
@@ -110,7 +125,7 @@ describe("pages/curriculum/index", () => {
     it("Renders the correct number of blogs", () => {
       render(<CurriculumHomePage {...props} />);
       const blogs = screen.getAllByTestId("blog-list-item");
-      expect(blogs).toHaveLength(3);
+      expect(blogs).toHaveLength(4);
     });
 
     describe("fetchCurriculumPageBlogs", () => {
@@ -213,5 +228,21 @@ describe("pages/curriculum/index", () => {
         },
       ] as SubjectPhaseOption[]);
     });
+  });
+
+  it("should display the correct heading for blog section", () => {
+    render(
+      <CurriculumHomePage
+        subjectPhaseOptions={{ subjects: [] }}
+        posts={mockPosts}
+      />,
+    );
+
+    expect(
+      screen.getByRole("heading", {
+        name: "Our blogs on curriculum",
+        level: 2,
+      }),
+    ).toBeInTheDocument();
   });
 });
