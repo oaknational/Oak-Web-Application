@@ -107,7 +107,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     unitSlug,
     programmeSlug,
   } = commonPathway;
-
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
   const isNew = lessonCohort === NEW_COHORT;
   const isMathJaxLesson = hasLessonMathJax(
@@ -192,6 +191,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const showDownloadAll = downloadsFilteredByCopyright.length > 0;
   const showShare =
     !isSpecialist && keyStageSlug !== "early-years-foundation-stage";
+
+  // TODO: Currently lessonGuideUrl preview is hardcoded to ensure it is in preview mode
 
   return (
     <MathJaxLessonProvider>
@@ -296,20 +297,15 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       anchorId="lesson-guide"
                       pageLinks={pageLinks}
                     >
-                      <OakBox $width={"100%"}>
+                      <OakBox $width={"100%"} $ba={"border-solid-m"}>
                         <AspectRatio ratio={"16:9"}>
                           <iframe
-                            src={lessonGuideUrl.replace("/view", "/embed")}
+                            src={`https://docs.google.com/document/d/1sv9LuUKXMRFdOCjjb4zTxTK91Gw64bOhCXEjxC03h60/preview`}
                             width="100%"
                             height="100%"
                           />
                         </AspectRatio>
                       </OakBox>
-                      {/* <LessonOverviewPresentation
-                      asset={lessonGuideUrl}
-                      title={lessonTitle}
-                      isWorksheet={false}
-                    /> */}
                     </LessonItemContainer>
                   )}
                 {pageLinks.find((p) => p.label === "Slide deck") &&
