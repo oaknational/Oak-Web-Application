@@ -113,8 +113,6 @@ export const PupilViewsLessonOverview = ({
       </OakP>
     ));
 
-  console.log(contentGuidance);
-
   return (
     <OakLessonLayout
       lessonSectionName={"overview"}
