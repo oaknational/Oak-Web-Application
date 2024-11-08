@@ -23,7 +23,6 @@ const TeacherPreviewLessonPage: NextPage<TeacherPreviewLessonPageProps> = ({
 }) => {
   const { lessonTitle } = curriculumData;
 
-  console.log(curriculumData, "<<<< curriculumData");
   return (
     <AppLayout
       seoProps={{

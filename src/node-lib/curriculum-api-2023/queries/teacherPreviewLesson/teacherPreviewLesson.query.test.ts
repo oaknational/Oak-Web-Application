@@ -30,6 +30,7 @@ describe("teacherPreviewLesson()", () => {
               starter_quiz: null,
               geo_restricted: null,
               login_required: null,
+              lesson_guide_asset_object_url: "lesson-guide-url",
             },
           ],
         }),

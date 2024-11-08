@@ -98,7 +98,7 @@ const lessonOverviewFixture = (
       { exists: true, type: "presentation" },
     ],
     updatedAt: "2024-09-29T14:00:00.000Z",
-    lessonGuideUrl: null,
+    lessonGuideUrl: "lesson-guide-url",
     ...partial,
   };
 };
