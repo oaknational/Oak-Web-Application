@@ -1,3 +1,12 @@
+## [1.621.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.0...v1.621.1) (2024-11-08)
+
+
+### Bug Fixes
+
+* add full stop after each item of content guidance ([1e3fb00](https://github.com/oaknational/Oak-Web-Application/commit/1e3fb0072aa5b0ae87a4242df2de558beb8552be))
+* add full stop only when there isnt one coming from database ([b254239](https://github.com/oaknational/Oak-Web-Application/commit/b254239d38dba4c6eccf7327f3555c04affa62d5))
+* remove console log ([278b28b](https://github.com/oaknational/Oak-Web-Application/commit/278b28ba2870afec3833afa3745d6c3a42547c7a))
+
 # [1.621.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.620.0...v1.621.0) (2024-11-07)
 
 
