@@ -1,3 +1,10 @@
+## [1.621.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.2...v1.621.3) (2024-11-08)
+
+
+### Bug Fixes
+
+* fix for selected year in highlight threads mobile (curric visualiser) ([69ed979](https://github.com/oaknational/Oak-Web-Application/commit/69ed979facdf2a1cd3c32caeea9a20bebba17cd5))
+
 ## [1.621.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.1...v1.621.2) (2024-11-08)
 
 
