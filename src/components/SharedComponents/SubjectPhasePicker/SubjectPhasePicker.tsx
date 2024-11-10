@@ -782,7 +782,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $width={3}
             $position={"relative"}
             $display={"block"}
-            $zIndex={"modalDialog"}
             $visibility={showSubjects || showPhases ? "hidden" : null}
           >
             <BoxBorders
