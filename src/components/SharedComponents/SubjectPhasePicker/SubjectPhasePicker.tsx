@@ -516,6 +516,25 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     }
   };
 
+  const isPhaseSelectionComplete = () => {
+    if (!selectedPhase) return false;
+    
+    if (selectedPhase.slug === "primary") {
+      return true;
+    }
+    
+    if (selectedPhase.slug === "secondary") {
+      // If KS4 options are available, require one to be selected
+      if (selectedSubject?.ks4_options) {
+        return !!selectedKS4Option;
+      }
+      // If no KS4 options, just secondary selection is enough
+      return true;
+    }
+    
+    return false;
+  };
+
   return (
     <OakBox
       $position="relative"
@@ -733,14 +752,23 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     $pv={10}
                     $background={"white"}
                   >
-                    <Hr $color={"grey40"} $position="relative" $left={-24} $height={1} $mt={-10} $mb={10} $width={"120%"} />
+                    <Hr 
+                      $color={"grey40"} 
+                      $position="relative" 
+                      $left={-24} 
+                      $height={1} 
+                      $mt={-10} 
+                      $mb={10} 
+                      $width={"120%"} 
+                    />
                     <OakPrimaryButton
                       data-testid="lot-picker-modal-confirm-subject-button"
                       iconName="arrow-right"
                       isTrailingIcon={true}
                       onClick={handleConfirmSubject}
-                          pv="inner-padding-m"
-                          ph="inner-padding-l"
+                      pv="inner-padding-m"
+                      ph="inner-padding-l"
+                      disabled={!selectedSubject}
                     >
                       Confirm subject
                     </OakPrimaryButton>
@@ -1186,17 +1214,24 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         $mv={10}
                         $background="white"
                       >
-                        <Hr $color="grey40" $height={1} $mv={-10} $mb={10} $ml={-16} />
+                        <Hr 
+                          $color="grey40" 
+                          $height={1} 
+                          $mv={-10} 
+                          $mb={10} 
+                          $ml={-16} 
+                        />
                         <OakPrimaryButton
                           data-testid="phase-picker-modal-confirm-button"
                           iconName="arrow-right"
                           isTrailingIcon={true}
                           onClick={() => {
-                            setShowPhases(false); // Close the phase picker
-                            handleViewCurriculum(); // This will now handle all validation and navigation
+                            setShowPhases(false);
+                            handleViewCurriculum();
                           }}
                           pv="inner-padding-m"
                           ph="inner-padding-l"
+                          disabled={!isPhaseSelectionComplete()}
                         >
                           View curriculum
                         </OakPrimaryButton>
