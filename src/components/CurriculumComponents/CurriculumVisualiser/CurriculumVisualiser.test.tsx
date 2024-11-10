@@ -137,12 +137,11 @@ const curriculumVisualiserFixture = {
       groupAs: null,
     },
   },
-  mobileHeaderScrollOffset: 148,
   selectedThread: null,
   setVisibleMobileYearRefID: jest.fn(() => {}),
 };
 
-describe("components/pages/CurriculumInfo/tabs/UnitsTabMobile", () => {
+describe("visualiser", () => {
   beforeEach(() => {
     const mockIntersectionObserver = jest.fn();
     mockIntersectionObserver.mockReturnValue({

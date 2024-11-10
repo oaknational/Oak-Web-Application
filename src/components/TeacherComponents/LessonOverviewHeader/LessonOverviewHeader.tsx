@@ -30,6 +30,7 @@ export type LessonOverviewHeaderProps = {
   expired?: boolean | null;
   lessonSlug: string;
   lessonDescription?: string;
+  phonicsOutcome?: string | null;
   isSpecialist: boolean;
   isCanonical: boolean;
   // other props
