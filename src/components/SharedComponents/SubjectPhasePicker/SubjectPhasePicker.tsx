@@ -185,31 +185,6 @@ const SelectionDropDownBox = styled(Box) <object>`
   box-shadow: 0px 8px 8px 0px rgba(92, 92, 92, 0.2);
 `;
 
-
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  max-height: 100vh;
-  height: 100%;
-  z-index: 1000;
-`;
-
-const ModalContent = styled(OakBox)`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  max-height: 100vh;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 1001;
-`;
-
 const MobileButtonContainer = styled.div`
 
   &.lot-picker {
@@ -228,7 +203,6 @@ const MobileButtonContainer = styled.div`
     filter: invert(1);
   }
 `;
-
 
 type SubjectContainerProps = {
   children: React.ReactNode;
@@ -272,7 +246,7 @@ function SubjectContainer ({children, showSubjectError}: SubjectContainerProps) 
                     >
                       Curriculum plans
                     </OakHeading>
-                    <OakP $mb="space-between-s">
+                    <OakP>
                       {isCycleTwoEnabled
                         ? "Explore our curricula for 2024/2025."
                         : "Explore our new curricula for 2023/2024."}
@@ -292,7 +266,7 @@ function SubjectContainer ({children, showSubjectError}: SubjectContainerProps) 
                   >
                     {children}
                   </OakFlex>
-                  <Box $mt={24}>
+                  <Box $mt={4} $mb={80}>
                     <OwaLink
                       page={"curriculum-previous-downloads"}
                       $textDecoration={"underline"}
@@ -688,6 +662,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               scrollLock={false}
             >
               <Box
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="mobile-subject-picker-heading"
                 $position="fixed"
                 $bottom={0}
                 $left={0}
@@ -696,13 +673,13 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $height="100%"
                 $overflowY="auto"
                 $zIndex="modalDialog"
-              // $pa="24"
+                $pa={24}
               >
                 <OakFlex $flexDirection="column" $gap="space-between-m">
                   <OakFlex $alignItems={"center"} $justifyContent={"flex-end"}>
                     <Button
                       label=""
-                      aria-label="Close Subject Picker"
+                      aria-label="Close subject picker"
                       icon={"cross"}
                       variant={"minimal"}
                       size={"large"}
@@ -711,7 +688,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     />
                   </OakFlex>
 
-                  <OakHeading tag="h1" $font="heading-5">
+                  <OakHeading id="mobile-subject-picker-heading" tag="h1" $font="heading-5">
                     Subject
                   </OakHeading>
 
@@ -726,8 +703,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           iconGap="space-between-sssx"
                           onClick={() => {
                             handleSelectSubject(subject);
-                            // onClose();
                           }}
+                          pv="inner-padding-xs"
+                          ph="inner-padding-s"
                           aria-checked={isSelected(subject)}
                           title={subject.title}
                           hoverShadow={null}
@@ -751,16 +729,18 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     $zIndex={"modalDialog"}
                     $display={["block"]}
                     $width={"100%"}
-                    $mh={16}
-                    $mv={10}
+                    $ph={24}
+                    $pv={10}
                     $background={"white"}
                   >
-                    <Hr $color={"grey40"} $height={1} $mb={10} $ml={-16} />
+                    <Hr $color={"grey40"} $position="relative" $left={-24} $height={1} $mt={-10} $mb={10} $width={"120%"} />
                     <OakPrimaryButton
                       data-testid="lot-picker-modal-confirm-subject-button"
                       iconName="arrow-right"
                       isTrailingIcon={true}
                       onClick={handleConfirmSubject}
+                          pv="inner-padding-m"
+                          ph="inner-padding-l"
                     >
                       Confirm subject
                     </OakPrimaryButton>
@@ -1041,6 +1021,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   scrollLock={false}
                 >
                   <Box
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="mobile-phase-picker-heading"
                     $position="fixed"
                     $bottom={0}
                     $left={0}
@@ -1049,7 +1032,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     $height="100%"
                     $overflowY="auto"
                     $zIndex="modalDialog"
-                    $pa="24"
+                    $pa={24}
                   >
                     <OakFlex $flexDirection="column" $gap="space-between-m">
                       <OakFlex
@@ -1057,7 +1040,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         $justifyContent="space-between"
                       >
                         <Button
-                          $ma={16}
+                          // $ma={16}
                           $ml={-8}
                           size="large"
                           label="Back"
@@ -1072,7 +1055,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         />
                         <Button
                           label=""
-                          aria-label="Close Phase Picker"
+                          aria-label="Close phase picker"
                           icon="cross"
                           variant="minimal"
                           size="large"
@@ -1081,7 +1064,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         />
                       </OakFlex>
 
-                      <OakHeading tag="h1" $font="heading-5">
+
+                      <OakHeading id="mobile-phase-picker-heading" tag="h1" $font="heading-5">
                         School phase
                       </OakHeading>
 
@@ -1127,7 +1111,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             <OakSecondaryButton
                               key={phase.slug}
                               role="radio"
-                              pv="inner-padding-s"
+                              pv="inner-padding-m"
                               ph="inner-padding-s"
                               width="100%"
                               onClick={() => handleSelectPhase(phase)}
@@ -1137,7 +1121,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               hoverShadow={null}
                             >
                               {phase.title}
-                              <OakP $font="body-2">
+                              <OakP $font="body-2" $mt="space-between-ssx">
                                 {getPhaseText(
                                   phase,
                                   selectedSubject?.keystages ?? DEFAULT_KEYSTAGES,
@@ -1149,16 +1133,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       </OakFlex>
 
                       {selectedPhase?.slug === "secondary" && selectedSubject?.ks4_options && (
-                        <>
+                        <OakFlex $flexDirection="column" $gap="space-between-xs">
                           <OakHeading
                             id={ks4OptionInputId}
-                            $mb="space-between-s"
-                            $mt="space-between-m"
-                            tag="h4"
-                            $font="heading-6"
+                            $mt="space-between-ssx"
+                            tag="h2"
+                            $font="heading-7"
                           >
-                            Choose an option for KS4
+                            Choose an option for KS4:
                           </OakHeading>
+
                           <OakFlex
                             role="radiogroup"
                             aria-labelledby={ks4OptionInputId}
@@ -1181,27 +1165,28 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                     onClick={() => handleSelectKS4Option(ks4Option)}
                                     title={createKS4OptionTitle(selectedSubject.title, ks4Option)}
                                     aria-checked={isSelected(ks4Option)}
+                                    pv="inner-padding-xs"
+                                    ph="inner-padding-s"
                                   >
                                     {createKS4OptionTitle(selectedSubject.title, ks4Option)}
                                   </OakSecondaryButton>
                                 </ButtonContainer>
                               ))}
                           </OakFlex>
-                        </>
+                        </OakFlex>
                       )}
 
                       <Box
                         $position="fixed"
                         $bottom={0}
                         $left={0}
-                        $zIndex={1002}
                         $display={["block"]}
                         $width="100%"
                         $mh={16}
                         $mv={10}
                         $background="white"
                       >
-                        <Hr $color="grey40" $height={1} $mb={10} $ml={-16} />
+                        <Hr $color="grey40" $height={1} $mv={-10} $mb={10} $ml={-16} />
                         <OakPrimaryButton
                           data-testid="phase-picker-modal-confirm-button"
                           iconName="arrow-right"
@@ -1210,6 +1195,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             setShowPhases(false); // Close the phase picker
                             handleViewCurriculum(); // This will now handle all validation and navigation
                           }}
+                          pv="inner-padding-m"
+                          ph="inner-padding-l"
                         >
                           View curriculum
                         </OakPrimaryButton>
