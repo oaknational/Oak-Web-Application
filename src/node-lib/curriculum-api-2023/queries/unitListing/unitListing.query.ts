@@ -3,7 +3,10 @@ import { Sdk } from "../../sdk";
 
 import { reshapeUnitData } from "./helpers/reshapeUnitData";
 import { getAllLearningThemes } from "./helpers/getAllLearningThemes";
-import { getAllCategories } from "./helpers/getAllCategories";
+import {
+  applySlugsToUnitCategories,
+  getAllCategories,
+} from "./helpers/getAllCategories";
 import { getAllYearGroups } from "./helpers/getAllYearGroups";
 import {
   ProgrammeFieldsCamel,
@@ -61,6 +64,10 @@ const unitListingQuery =
     const yearGroups = getAllYearGroups(reshapedUnits);
     const learningThemes = getAllLearningThemes(reshapedUnits);
     const subjectCategories = getAllCategories(reshapedUnits);
+    const unitsWithSubjectCategories = applySlugsToUnitCategories(
+      subjectCategories,
+      reshapedUnits,
+    );
     const tiers = programmeFields.tierSlug
       ? getTierData(args.programmeSlug)
       : [];
@@ -80,7 +87,7 @@ const unitListingQuery =
       subjectParent: programmeFields.subjectParent || null,
       tierSlug: programmeFields.tierSlug,
       tiers: tiers,
-      units: reshapedUnits,
+      units: unitsWithSubjectCategories,
       phase: programmeFields.phaseSlug,
       learningThemes: learningThemes,
       hasNewContent,

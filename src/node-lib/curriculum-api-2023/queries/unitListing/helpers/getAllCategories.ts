@@ -53,3 +53,20 @@ export const getAllCategories = (
   const categories = generateCategoryObjects(uniqueCategories);
   return categories.sort((a, b) => a.label.localeCompare(b.label));
 };
+
+export const applySlugsToUnitCategories = (
+  categories: SubjectCategory[],
+  units: GroupedUnitsSchema,
+) =>
+  units.map((groupedUnits) =>
+    groupedUnits.map((unit) => {
+      const newUnit = { ...unit };
+      if (newUnit.subjectCategories) {
+        newUnit.subjectCategories = newUnit.subjectCategories.map((sc) => {
+          const category = categories.find((c) => c.label === sc.label);
+          return { ...sc, slug: category?.slug };
+        });
+      }
+      return newUnit;
+    }),
+  );
