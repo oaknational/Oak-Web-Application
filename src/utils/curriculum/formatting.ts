@@ -1,6 +1,6 @@
 import { getUnitFeatures } from "./features";
+import { YearData } from "./types";
 
-import { YearData } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { Phase } from "@/node-lib/curriculum-api-2023";
 
 export function getYearGroupTitle(

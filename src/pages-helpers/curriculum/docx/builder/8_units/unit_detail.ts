@@ -12,11 +12,11 @@ import {
   wrapInLinkTo,
 } from "../../docx";
 
-import { createProgrammeSlug } from "@/components/CurriculumComponents/UnitsTab/UnitsTab";
-import { SubjectCategory } from "@/components/CurriculumComponents/CurriculumVisualiser";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { createUnitsListingByYear } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+import { createProgrammeSlug } from "@/utils/curriculum/slugs";
+import { SubjectCategory } from "@/utils/curriculum/types";
 
 const DISABLE_COLUMN_BREAKS = true;
 
@@ -453,7 +453,7 @@ export async function buildUnit(
   const yearData = createUnitsListingByYear([unit]);
   const yearTitle = getYearGroupTitle(
     yearData,
-    getUnitFeatures(unit)?.programmes_fields_overrides.year ?? unit.year,
+    getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year,
   );
 
   const xml = safeXml`

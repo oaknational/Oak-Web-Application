@@ -50173,6 +50173,13 @@ export type SubjectPhaseOptionsIncludeNewQueryVariables = Exact<{ [key: string]:
 
 export type SubjectPhaseOptionsIncludeNewQuery = { __typename?: 'query_root', options: Array<{ __typename?: 'published_mv_subject_phase_options_including_new_0_0_1', title?: string | null, slug?: string | null, state?: string | null, phases?: any | null, examboards?: any | null }> };
 
+export type TeachersPreviewLessonQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type TeachersPreviewLessonQuery = { __typename?: 'query_root', content: Array<{ __typename?: 'published_mv_lesson_content_new_3_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, video_duration?: string | null, _state?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, geo_restricted?: string | null, login_required?: string | null }> };
+
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -50950,6 +50957,54 @@ export const SubjectPhaseOptionsIncludeNewDocument = gql`
   }
 }
     `;
+export const TeachersPreviewLessonDocument = gql`
+    query teachersPreviewLesson($lessonSlug: String!) {
+  content: published_mv_lesson_content_new_3_0_0(
+    where: {lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    lesson_id
+    lesson_title
+    lesson_slug
+    deprecated_fields
+    is_legacy
+    misconceptions_and_common_mistakes
+    equipment_and_resources
+    teacher_tips
+    key_learning_points
+    pupil_lesson_outcome
+    phonics_outcome
+    lesson_keywords
+    content_guidance
+    video_mux_playback_id
+    video_id
+    video_with_sign_language_mux_playback_id
+    video_duration
+    _state
+    transcript_sentences
+    starter_quiz
+    starter_quiz_id
+    exit_quiz
+    exit_quiz_id
+    supervision_level
+    video_title
+    has_worksheet_google_drive_downloadable_version
+    has_slide_deck_asset_object
+    worksheet_asset_id
+    has_worksheet_asset_object
+    worksheet_answers_asset_id
+    has_worksheet_answers_asset_object
+    supplementary_asset_id
+    has_supplementary_asset_object
+    supervision_level
+    slide_deck_asset_id
+    slide_deck_asset_object_url
+    worksheet_asset_object_url
+    supplementary_asset_object_url
+    geo_restricted
+    login_required
+  }
+}
+    `;
 export const TeachersHomePageDocument = gql`
     query teachersHomePage {
   teachersHomePage: published_mv_homepage_3_0_1 {
@@ -51141,6 +51196,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     subjectPhaseOptionsIncludeNew(variables?: SubjectPhaseOptionsIncludeNewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SubjectPhaseOptionsIncludeNewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<SubjectPhaseOptionsIncludeNewQuery>(SubjectPhaseOptionsIncludeNewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'subjectPhaseOptionsIncludeNew', 'query', variables);
+    },
+    teachersPreviewLesson(variables: TeachersPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersPreviewLessonQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewLessonQuery>(TeachersPreviewLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersPreviewLesson', 'query', variables);
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query', variables);
