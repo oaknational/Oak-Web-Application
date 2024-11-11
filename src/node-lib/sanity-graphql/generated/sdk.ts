@@ -3905,7 +3905,7 @@ export type CurriculumCorePageQuery = { __typename?: 'RootQuery', allCurriculumC
 
 export type CurriculumOverviewQueryVariables = Exact<{
   isDraftFilter?: InputMaybe<Sanity_DocumentFilter>;
-  subjectSlug?: InputMaybe<Scalars['String']['input']>;
+  subjectTitle?: InputMaybe<Scalars['String']['input']>;
   phaseSlug?: InputMaybe<Scalars['String']['input']>;
 }>;
 
@@ -4805,9 +4805,9 @@ ${TextBlockFragmentDoc}
 ${BlogPreviewFieldsFragmentDoc}
 ${SeoFragmentDoc}`;
 export const CurriculumOverviewDocument = gql`
-    query curriculumOverview($isDraftFilter: Sanity_DocumentFilter, $subjectSlug: String, $phaseSlug: String) {
+    query curriculumOverview($isDraftFilter: Sanity_DocumentFilter, $subjectTitle: String, $phaseSlug: String) {
   allCurriculumInfoPageOverview(
-    where: {_: $isDraftFilter, subject: {matches: $subjectSlug}, phase: {matches: $phaseSlug}}
+    where: {_: $isDraftFilter, subject: {eq: $subjectTitle}, phase: {matches: $phaseSlug}}
     sort: {_updatedAt: DESC}
     limit: 1
   ) {
