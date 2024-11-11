@@ -266,10 +266,14 @@ export const PupilViewsLessonOverview = ({
                   </OakHeading>
                 </OakFlex>
                 <OakSpan $font="body-1">
-                  {contentGuidance.map(
-                    (item) => item.contentguidanceLabel + " ",
-                  )}
-                  {supervisionLevel}
+                  {contentGuidance.map((item) => {
+                    const contentGuidanceLabel = item.contentguidanceLabel;
+                    const hasFullStop = contentGuidanceLabel?.slice(-1) === ".";
+                    return contentGuidanceLabel && hasFullStop
+                      ? contentGuidanceLabel + " "
+                      : contentGuidanceLabel + ". ";
+                  })}
+                  {supervisionLevel + "."}
                 </OakSpan>
               </OakBox>
             )}

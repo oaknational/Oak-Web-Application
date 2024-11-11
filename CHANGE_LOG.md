@@ -1,3 +1,66 @@
+## [1.622.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.0...v1.622.1) (2024-11-11)
+
+
+### Bug Fixes
+
+* removed wobbly borders on "Child Subjects" section in curric visualiser ([1712fd1](https://github.com/oaknational/Oak-Web-Application/commit/1712fd1edb4b4969478a4d20372f9c174fc98b3d))
+
+# [1.622.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.3...v1.622.0) (2024-11-11)
+
+
+### Bug Fixes
+
+* styling fixes & updated tab order ([20d6718](https://github.com/oaknational/Oak-Web-Application/commit/20d67186c6352fa5fdac52f2c7aebf57fb288c9c))
+
+
+### Features
+
+* add close button to subject / phase modals ([4e153ee](https://github.com/oaknational/Oak-Web-Application/commit/4e153ee90737048f41ef338eb7b6a5ece8636eb7))
+* new component for modal closing button ([f23b067](https://github.com/oaknational/Oak-Web-Application/commit/f23b067ae8da2ef5ac4cf639127c10204d501fe9))
+
+## [1.621.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.2...v1.621.3) (2024-11-08)
+
+
+### Bug Fixes
+
+* fix for selected year in highlight threads mobile (curric visualiser) ([69ed979](https://github.com/oaknational/Oak-Web-Application/commit/69ed979facdf2a1cd3c32caeea9a20bebba17cd5))
+
+## [1.621.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.1...v1.621.2) (2024-11-08)
+
+
+### Bug Fixes
+
+* default null to empty string in curriculum visualiser ([d10155f](https://github.com/oaknational/Oak-Web-Application/commit/d10155fdcb4a9c928abbd0dcfe952f83fe687801))
+
+## [1.621.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.0...v1.621.1) (2024-11-08)
+
+
+### Bug Fixes
+
+* add full stop after each item of content guidance ([1e3fb00](https://github.com/oaknational/Oak-Web-Application/commit/1e3fb0072aa5b0ae87a4242df2de558beb8552be))
+* add full stop only when there isnt one coming from database ([b254239](https://github.com/oaknational/Oak-Web-Application/commit/b254239d38dba4c6eccf7327f3555c04affa62d5))
+* remove console log ([278b28b](https://github.com/oaknational/Oak-Web-Application/commit/278b28ba2870afec3833afa3745d6c3a42547c7a))
+
+# [1.621.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.620.0...v1.621.0) (2024-11-07)
+
+
+### Features
+
+* add new curriculum blog post and updated associated tests ([437d94b](https://github.com/oaknational/Oak-Web-Application/commit/437d94b0d23529a7ddb5f8ac99816ded9f2f8a2d))
+
+# [1.620.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.619.0...v1.620.0) (2024-11-07)
+
+
+### Bug Fixes
+
+* added filters.subjectCategories length check into initial filters ([c1831d6](https://github.com/oaknational/Oak-Web-Application/commit/c1831d692ff1aa5b0f03169dc3f975a4828867e2))
+* switch over to all_disabled/default_category_id ([905925a](https://github.com/oaknational/Oak-Web-Application/commit/905925afe32ed02c1fe0016e697712fe8d1328b0))
+
+
+### Features
+
+* exclude "all" from subjectcategories in english primary/secondary ([f73a4a3](https://github.com/oaknational/Oak-Web-Application/commit/f73a4a37059ff9900c7bab3bde69bf015947d2ee))
+
 # [1.619.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.618.3...v1.619.0) (2024-11-07)
 
 
