@@ -1,3 +1,16 @@
+# [1.622.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.3...v1.622.0) (2024-11-11)
+
+
+### Bug Fixes
+
+* styling fixes & updated tab order ([20d6718](https://github.com/oaknational/Oak-Web-Application/commit/20d67186c6352fa5fdac52f2c7aebf57fb288c9c))
+
+
+### Features
+
+* add close button to subject / phase modals ([4e153ee](https://github.com/oaknational/Oak-Web-Application/commit/4e153ee90737048f41ef338eb7b6a5ece8636eb7))
+* new component for modal closing button ([f23b067](https://github.com/oaknational/Oak-Web-Application/commit/f23b067ae8da2ef5ac4cf639127c10204d501fe9))
+
 ## [1.621.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.2...v1.621.3) (2024-11-08)
 
 
