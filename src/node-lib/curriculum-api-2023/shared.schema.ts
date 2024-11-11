@@ -251,7 +251,7 @@ export const lessonListSchema = z.array(
     hasCopyrightMaterial: z.boolean().nullish(),
     orderInUnit: z.number().nullish(),
     lessonCohort: z.string().nullish(),
-    resources: z.array(lessonDownloadsTypes),
+    resources: z.array(lessonDownloadsTypes).nullish(),
   }),
 );
 

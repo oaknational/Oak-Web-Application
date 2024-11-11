@@ -132,7 +132,7 @@ const LessonListItem: FC<
 
   const auth = useAuth();
   const isLoggedIn = auth.isSignedIn;
-  const hasDownloads = isLessonListItem(props) && props.resources.length > 0;
+  const hasDownloads = isLessonListItem(props) && props.resources?.length;
   const [isLoading, setIsLoading] = useState(false);
 
   const onLessonDownloadClick = async () => {
@@ -144,7 +144,7 @@ const LessonListItem: FC<
     try {
       await downloadLessonResources(
         lessonSlug,
-        props.resources,
+        props.resources ?? [],
         props.lessonCohort === LEGACY_COHORT,
         true,
         accessToken,
