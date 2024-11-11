@@ -43,7 +43,7 @@ export default function CurriculumVisualiserFiltersDesktop({
         <RadioGroup
           name="thread"
           onChange={(e) => onSelectThread(e.target.value)}
-          value={selectedThread}
+          value={selectedThread ?? ""}
         >
           <SkipLink href="#content">Skip to units</SkipLink>
           <Box $mv={16} $pl={12} $bl={1} $borderColor="transparent">
