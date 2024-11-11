@@ -1,3 +1,37 @@
+## [1.622.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.0...v1.622.1) (2024-11-11)
+
+
+### Bug Fixes
+
+* removed wobbly borders on "Child Subjects" section in curric visualiser ([1712fd1](https://github.com/oaknational/Oak-Web-Application/commit/1712fd1edb4b4969478a4d20372f9c174fc98b3d))
+
+# [1.622.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.3...v1.622.0) (2024-11-11)
+
+
+### Bug Fixes
+
+* styling fixes & updated tab order ([20d6718](https://github.com/oaknational/Oak-Web-Application/commit/20d67186c6352fa5fdac52f2c7aebf57fb288c9c))
+
+
+### Features
+
+* add close button to subject / phase modals ([4e153ee](https://github.com/oaknational/Oak-Web-Application/commit/4e153ee90737048f41ef338eb7b6a5ece8636eb7))
+* new component for modal closing button ([f23b067](https://github.com/oaknational/Oak-Web-Application/commit/f23b067ae8da2ef5ac4cf639127c10204d501fe9))
+
+## [1.621.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.2...v1.621.3) (2024-11-08)
+
+
+### Bug Fixes
+
+* fix for selected year in highlight threads mobile (curric visualiser) ([69ed979](https://github.com/oaknational/Oak-Web-Application/commit/69ed979facdf2a1cd3c32caeea9a20bebba17cd5))
+
+## [1.621.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.1...v1.621.2) (2024-11-08)
+
+
+### Bug Fixes
+
+* default null to empty string in curriculum visualiser ([d10155f](https://github.com/oaknational/Oak-Web-Application/commit/d10155fdcb4a9c928abbd0dcfe952f83fe687801))
+
 ## [1.621.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.0...v1.621.1) (2024-11-08)
 
 
