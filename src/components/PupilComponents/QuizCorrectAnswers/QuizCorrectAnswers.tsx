@@ -11,7 +11,6 @@ export const QuizCorrectAnswers = () => {
     switch (true) {
       case currentQuestionState &&
         Array.isArray(currentQuestionState.correctAnswer) &&
-        currentQuestionState.correctAnswer.length > 1 &&
         Object.prototype.hasOwnProperty.call(
           currentQuestionState.correctAnswer[0],
           "imageObject",
