@@ -42,7 +42,10 @@ import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { UnitListItemProps } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
-import { UnitListingData , Tiers } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import {
+  UnitListingData,
+  Tiers,
+} from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
