@@ -301,13 +301,27 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       anchorId="lesson-guide"
                       pageLinks={pageLinks}
                     >
-                      <OakBox $width={"100%"} $ba={"border-solid-m"}>
+                      <OakBox
+                        $width={"100%"}
+                        $ba={"border-solid-m"}
+                        style={{ height: "100%" }}
+                      >
                         <AspectRatio ratio={"16:9"}>
                           <iframe
                             data-testid="lesson-guide-iframe"
                             src={`${previewLessonGuideUrl}`}
-                            width="100%"
+                            title={`lesson guide: ${lessonTitle}`}
+                            width="auto"
                             height="100%"
+                            style={{
+                              border: "none",
+                            }}
+                            //small render bug fix to make sure the iframe assumes 100% width. Docs are still in unpublished currently so temporary
+                            onLoad={(e) => {
+                              const iframe = e.target as HTMLIFrameElement;
+                              iframe.style.width = "100%";
+                              iframe.style.height = "100%";
+                            }}
                           />
                         </AspectRatio>
                       </OakBox>
