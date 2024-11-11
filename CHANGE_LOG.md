@@ -1,3 +1,11 @@
+## [1.622.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.2...v1.622.3) (2024-11-11)
+
+
+### Bug Fixes
+
+* remove text feedback for image mcq with single answer ([c42adc3](https://github.com/oaknational/Oak-Web-Application/commit/c42adc39b7addc65cb358a459ae45e4f21479813))
+* remove text feedback for image mcqs ([e50541c](https://github.com/oaknational/Oak-Web-Application/commit/e50541c88f734b4dc7560889d896ea3dbd594c5f))
+
 ## [1.622.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.1...v1.622.2) (2024-11-11)
 
 
