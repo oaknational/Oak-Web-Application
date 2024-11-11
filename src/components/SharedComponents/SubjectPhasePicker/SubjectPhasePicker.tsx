@@ -39,6 +39,7 @@ import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/Fo
 import { Hr } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import { useBreakpoint } from "@/utils/curriculum/hooks";
+import IconButton from "@/components/SharedComponents/Button/IconButton";
 
 
 const DEFAULT_KEYSTAGES = [
@@ -696,15 +697,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               >
                 <OakFlex $flexDirection="column" $gap="space-between-m">
                   <OakFlex $alignItems={"center"} $justifyContent={"flex-end"}>
-                    <Button
-                      label=""
+                    <IconButton
                       aria-label="Close subject picker"
-                      icon={"cross"}
-                      variant={"minimal"}
-                      size={"large"}
+                      icon="cross"
+                      variant="minimal"
+                      size="large"
                       onClick={handleMobileLotPickerModal}
                       aria-expanded={open}
                     />
+
+
                   </OakFlex>
 
                   <OakHeading id="mobile-subject-picker-heading" tag="h1" $font="heading-5">
@@ -757,9 +759,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       $position="relative" 
                       $left={-24} 
                       $height={1} 
-                      $mt={-10} 
+                      $mt={-8} 
                       $mb={10} 
-                      $width={"120%"} 
+                      $width={"calc(100% + 48px)"} 
                     />
                     <OakPrimaryButton
                       data-testid="lot-picker-modal-confirm-subject-button"
@@ -1067,7 +1069,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         $justifyContent="space-between"
                       >
                         <Button
-                          // $ma={16}
                           $ml={-8}
                           size="large"
                           label="Back"
@@ -1080,8 +1081,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             setIsMobileLotPickerModalOpen(true);
                           }}
                         />
-                        <Button
-                          label=""
+                        <IconButton
                           aria-label="Close phase picker"
                           icon="cross"
                           variant="minimal"
@@ -1216,9 +1216,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         <Hr 
                           $color="grey40" 
                           $height={1} 
-                          $mv={-10} 
+                          $mv={-8} 
                           $mb={10} 
-                          $ml={-16} 
+                          $ml={-16}
+                          $width={"100%"}
                         />
                         <OakPrimaryButton
                           data-testid="phase-picker-modal-confirm-button"
@@ -1263,43 +1264,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               </OakFlex>
             </OakFlex>
           </Box>
-        </OakFlex>
-
-        <Box
-          style={{
-            width: "calc(100% - 1rem * 2)",
-            transform: "translate(0, 50%)",
-          }}
-          $height={3}
-          $position={"relative"}
-          $display={["block", " none"]}
-        >
-          <BoxBorders
-            $color="grey30"
-            hideTop={true}
-            hideRight={true}
-            hideLeft={true}
-          />
-        </Box>
-
-        <OakFlex
-          $pl={"inner-padding-m"}
-          $pr={"inner-padding-m"}
-          $pt={["inner-padding-s"]}
-          $pb={["inner-padding-s"]}
-          $width={["100%", "fit-content"]}
-          $display={["flex", "none"]}
-          $justifyContent="stretch"
-          ref={subjectPickerButtonMobileContainer}
-        >
-          <OakPrimaryButton
-            width="100%"
-            iconName="arrow-right"
-            isTrailingIcon={true}
-            onClick={handleViewCurriculum}
-          >
-            View
-          </OakPrimaryButton>
         </OakFlex>
       </OakFlex>
     </OakBox>

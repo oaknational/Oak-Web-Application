@@ -104,6 +104,7 @@ export type NullablePixelSpacing = PixelSpacing | null;
 export type NegativePixelSpacing =
   | -72
   | -54
+  | -48
   | -36
   | -32
   | -28
