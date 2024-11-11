@@ -1,15 +1,33 @@
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 
-import { getTiersForProgramme } from "./tiers/getTiersForProgramme";
-import { getUnitsForProgramme } from "./units/getUnitsForProgramme";
-import { getAllLearningThemes } from "./filters/getAllLearningThemes";
-import { getAllCategories } from "./filters/getAllCategories";
-import { getAllYearGroups } from "./filters/getAllYearGroups";
-import { ProgrammeFieldsCamel, rawQuerySchema } from "./unitListing.schema";
+import { reshapeUnitData } from "./helpers/reshapeUnitData";
+import { getAllLearningThemes } from "./helpers/getAllLearningThemes";
+import { getAllCategories } from "./helpers/getAllCategories";
+import { getAllYearGroups } from "./helpers/getAllYearGroups";
+import {
+  ProgrammeFieldsCamel,
+  rawQuerySchema,
+  UnitListingData,
+} from "./unitListing.schema";
 
 import { NEW_COHORT } from "@/config/cohort";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+
+const getTierData = (programmeSlug: string): UnitListingData["tiers"] => [
+  {
+    tierSlug: "foundation",
+    tierTitle: "Foundation",
+    tierOrder: 1,
+    tierProgrammeSlug: programmeSlug.replace("-higher", "-foundation"),
+  },
+  {
+    tierSlug: "higher",
+    tierTitle: "Higher",
+    tierOrder: 2,
+    tierProgrammeSlug: programmeSlug.replace("-foundation", "-higher"),
+  },
+];
 
 const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
@@ -18,53 +36,52 @@ const unitListingQuery =
     const unitsSnake = res.units;
 
     if (!unitsSnake || unitsSnake.length === 0) {
+      return null;
+    }
+
+    let parsedUnits;
+    try {
+      parsedUnits = rawQuerySchema.parse(unitsSnake);
+    } catch (e) {
+      console.log(e);
       throw new OakError({
-        code: "curriculum-api/not-found",
+        code: "curriculum-api/internal-error",
+        meta: { error: e },
       });
     }
 
-    rawQuerySchema.parse(unitsSnake);
-
-    const unitsCamel = keysToCamelCase(unitsSnake);
+    const unitsCamel = keysToCamelCase(parsedUnits);
 
     const programmeFields = unitsCamel.reduce(
       (acc, val) => ({ ...acc, ...val.programmeFields }),
       {} as ProgrammeFieldsCamel,
     );
 
-    // sibling tiers
-    const tiers = programmeFields.tierSlug ? ["foundation", "higher"] : [];
+    const reshapedUnits = reshapeUnitData(unitsCamel);
+    const yearGroups = getAllYearGroups(reshapedUnits);
+    const learningThemes = getAllLearningThemes(reshapedUnits);
+    const subjectCategories = getAllCategories(reshapedUnits);
+    const tiers = programmeFields.tierSlug
+      ? getTierData(args.programmeSlug)
+      : [];
 
-    const reshapedUnits = getUnitsForProgramme(unitsCamel);
-
-    const yearGroups = getAllYearGroups(units);
-
-    const learningThemes = getAllLearningThemes(units);
-
-    const subjectCategories = getAllCategories(parsedRawUnits);
-
-    const hasNewContent = units
+    const hasNewContent = reshapedUnits
       .flatMap((unit) => unit.flatMap((u) => u.cohort ?? "2020-2023"))
       .includes(NEW_COHORT);
 
-    const isLegacy = unitsCamel.reduce(
-      (acc, val) => Boolean(acc) || Boolean(val.isLegacy),
-      false,
-    );
-
     return {
       programmeSlug: args.programmeSlug,
-      keyStageSlug: programmeFields.keystage_slug,
-      keyStageTitle: programmeFields.keystage_description,
-      examBoardSlug: programmeFields.examboard_slug,
+      keyStageSlug: programmeFields.keystageSlug,
+      keyStageTitle: programmeFields.keystageDescription,
+      examBoardSlug: programmeFields.examboardSlug,
       examBoardTitle: programmeFields.examboard,
-      subjectSlug: programmeFields.subject_slug,
+      subjectSlug: programmeFields.subjectSlug,
       subjectTitle: programmeFields.subject,
-      subjectParent: programmeFields.subject_parent || null,
-      tierSlug: programmeFields.tier_slug,
+      subjectParent: programmeFields.subjectParent || null,
+      tierSlug: programmeFields.tierSlug,
       tiers: tiers,
-      units: units,
-      phase: programmeFields.phase_slug,
+      units: reshapedUnits,
+      phase: programmeFields.phaseSlug,
       learningThemes: learningThemes,
       hasNewContent,
       subjectCategories,

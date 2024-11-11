@@ -1,12 +1,8 @@
 import { groupBy, values } from "lodash";
 
-import { UnitsCamel } from "../unitListing.schema";
+import { UnitsCamel, GroupedUnitsSchema } from "../unitListing.schema";
 
-import { UnitsForProgramme } from "./units.schema";
-
-export const getUnitsForProgramme = (
-  rawUnits: UnitsCamel,
-): UnitsForProgramme => {
+export const reshapeUnitData = (rawUnits: UnitsCamel): GroupedUnitsSchema => {
   const processedUnits = rawUnits.map((unit) => ({
     slug: unit.unitSlug,
     title: unit.programmeFields.optionality ?? unit.unitData.title,
@@ -25,13 +21,20 @@ export const getUnitsForProgramme = (
     lessonCount: unit.lessonCount,
     expiredLessonCount: unit.lessonExpiredCount,
     expired: unit.lessonCount === unit.lessonExpiredCount,
-    subjectCategories: unit.unitData.subjectcategories,
-    learningThemes: unit.threads,
+    subjectCategories:
+      unit.unitData.subjectcategories?.map((category) => ({
+        label: String(category),
+      })) || null,
+    learningThemes:
+      unit.threads?.map((thread) => ({
+        themeTitle: thread.threadTitle,
+        themeSlug: thread.threadSlug,
+      })) || null,
   }));
 
   // group optionality units
   const groupedUnits = values(
-    groupBy(processedUnits, (unit) => unit.nullTitle),
+    groupBy(processedUnits, (unit) => unit.nullTitle + unit.year),
   );
 
   const sortedUnits = groupedUnits

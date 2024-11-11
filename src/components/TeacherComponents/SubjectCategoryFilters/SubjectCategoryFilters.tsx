@@ -9,7 +9,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import { Category } from "@/node-lib/curriculum-api-2023/queries/unitListing/filters/getAllCategories";
+import { Category } from "@/node-lib/curriculum-api-2023/queries/unitListing/helpers/getAllCategories";
 
 type SubjectCategoryFiltersProps = {
   subjectCategories: Category[];
