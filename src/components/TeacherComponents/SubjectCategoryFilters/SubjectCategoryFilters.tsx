@@ -9,10 +9,10 @@ import {
 } from "@oaknational/oak-components";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import { Category } from "@/node-lib/curriculum-api-2023/queries/unitListing/helpers/getAllCategories";
+import { SubjectCategory } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
 type SubjectCategoryFiltersProps = {
-  subjectCategories: Category[];
+  subjectCategories: SubjectCategory[];
   categorySlug: string | undefined;
   browseRefined: TrackFns["browseRefined"];
   idSuffix: "desktop" | "mobile";
@@ -150,7 +150,7 @@ const SubjectCategoryFilters: React.FC<SubjectCategoryFiltersProps> = ({
                     { shallow: true },
                   );
                 } else {
-                  setCategory && setCategory(category.slug);
+                  setCategory && category.slug && setCategory(category.slug);
                 }
               }}
             />

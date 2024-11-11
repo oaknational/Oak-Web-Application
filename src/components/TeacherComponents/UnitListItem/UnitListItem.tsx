@@ -9,8 +9,7 @@ import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDe
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import { UnitListItemLessonCount } from "@/components/TeacherComponents/UnitListItemLessonCount";
 import { SpecialistUnit } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
-import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
-import { UnitData } from "@/node-lib/curriculum-api-2023/queries/unitListing/units/units.schema";
+import { UnitListingData , ReshapedUnitData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
 export type UnitListItemProps = Omit<
   UnitListingData["units"][number][number],
@@ -25,7 +24,7 @@ type UnitListProps = {
   currentPage?: number;
   firstItemRef?: MutableRefObject<HTMLAnchorElement | null> | null;
   isUnitOption?: boolean;
-  unitOptions?: UnitData[];
+  unitOptions?: ReshapedUnitData[];
   isExemplarUnit?: boolean;
   yearTitle?: string | null;
   onClick: (props: UnitListItemProps | SpecialistListItemProps) => void;

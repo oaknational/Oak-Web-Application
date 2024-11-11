@@ -1,7 +1,7 @@
 import { z } from "zod";
 import {
   lessonContentSchema as lessonContentSchemaFull,
-  syntheticUnitvariantLessonsByKsSchema,
+  syntheticUnitvariantLessonsByKsSchemaOld,
 } from "@oaknational/oak-curriculum-schema";
 
 import {
@@ -82,11 +82,11 @@ export type LessonOverviewCanonical = z.infer<
 >;
 
 export const lessonBrowseDataByKsSchema =
-  syntheticUnitvariantLessonsByKsSchema.omit({
+  syntheticUnitvariantLessonsByKsSchemaOld.omit({
     unitvariant_id: true,
     null_unitvariant: true,
   });
 
 export type LessonBrowseDataByKs = ConvertKeysToCamelCase<
-  z.infer<typeof syntheticUnitvariantLessonsByKsSchema>
+  z.infer<typeof lessonBrowseDataByKsSchema>
 >;

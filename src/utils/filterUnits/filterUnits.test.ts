@@ -1,6 +1,7 @@
-import unitListingFixture from "../../node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
-
 import filterUnits from "./filterUnits";
+
+import unitListingFixture from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
+import { ReshapedUnitData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
 describe("filterUnits", () => {
   it("should return all units if all filters are undefined", () => {
@@ -12,7 +13,7 @@ describe("filterUnits", () => {
     };
     const units = unitListingFixture().units;
 
-    expect(filterUnits(params)).toEqual(units);
+    expect(filterUnits<ReshapedUnitData>(params)).toEqual(units);
   });
   it("should return units with same theme if themeSlug has a value", () => {
     const params = {
