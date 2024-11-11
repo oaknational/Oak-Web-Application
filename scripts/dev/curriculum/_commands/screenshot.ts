@@ -1,6 +1,7 @@
 import { mkdir, unlink } from "fs/promises";
 import { dirname, relative } from "path";
 
+import { uniq } from "lodash";
 import puppeteer, { Page } from "puppeteer";
 import sharp from "sharp";
 import slugify from "slugify";
@@ -33,19 +34,20 @@ const combineScreenshots = async (
   }
 };
 
-const screenshotPage = async (
+const screenshotPageCurrent = async (
   page: Page,
-  url: string,
   path: string,
   logOpts: { id: string },
+  opts: { removeOptionsElement?: boolean },
 ) => {
-  await page.goto(url, {
-    waitUntil: "networkidle0",
-  });
-
-  await page.evaluate(() => {
-    document.querySelector("div[data-testid=cookie-banner]")?.remove();
-  });
+  // Hack for testing new MV
+  if (opts.removeOptionsElement) {
+    await page.evaluate(() => {
+      [...document.querySelectorAll('*[data-testid="options-tag"]')].forEach(
+        (el) => el.remove(),
+      );
+    });
+  }
 
   const viewportHeight = await page.evaluate(() => {
     return window.innerHeight;
@@ -110,11 +112,55 @@ const screenshotPage = async (
   await Promise.all(images.map((img) => unlink(img.input)));
 };
 
+const screenshotPage = async (
+  page: Page,
+  url: string,
+  path: string,
+  logOpts: { id: string },
+  opts: { removeOptionsElement?: boolean },
+) => {
+  await page.goto(url, {
+    waitUntil: "networkidle0",
+  });
+
+  await page.evaluate(() => {
+    document.querySelector("div[data-testid=cookie-banner]")?.remove();
+  });
+
+  const selector =
+    '*[data-testid="subjectCategory-button"], *[data-testid="subject-button"]';
+  const alternatives = await page.evaluate((selector) => {
+    return [...document.querySelectorAll(selector)].map(
+      (el) => el.textContent ?? "",
+    );
+  }, selector);
+  const unitAlts = uniq(alternatives);
+
+  if (unitAlts.length > 0) {
+    for (const unitAlt of unitAlts) {
+      for (const el of await page.$$(selector)) {
+        if ((await page.evaluate((el) => el.textContent, el)) === unitAlt) {
+          await el.click();
+        }
+      }
+      await screenshotPageCurrent(
+        page,
+        path.replace(/\.png/, "-" + unitAlt.toLowerCase() + ".png"),
+        logOpts,
+        opts,
+      );
+    }
+  } else {
+    await screenshotPageCurrent(page, path, logOpts, opts);
+  }
+};
+
 async function screenshotUnitsPage(
   page: Page,
   slug: string,
   host: string,
-  label?: string,
+  label: string | undefined,
+  opts: { removeOptionsElement?: boolean },
 ) {
   const urlObj = new URL(host);
 
@@ -122,7 +168,7 @@ async function screenshotUnitsPage(
   const finalLabel = label ?? slugify(urlObj.host);
   const screenshotPath = `${process.cwd()}/scripts/dev/curriculum/output/screenshots/${finalLabel}/${slug}.png`;
   await mkdir(dirname(screenshotPath), { recursive: true });
-  await screenshotPage(page, url, screenshotPath, { id: slug });
+  await screenshotPage(page, url, screenshotPath, { id: slug }, opts);
 }
 
 async function loginWithUrl(page: Page, loginUrl: string) {
@@ -133,7 +179,11 @@ async function loginWithUrl(page: Page, loginUrl: string) {
 
 export default async function screenshot(
   host: string,
-  { loginUrl, label }: { loginUrl?: string; label?: string } = {},
+  {
+    loginUrl,
+    label,
+    removeOptionsElement,
+  }: { loginUrl?: string; label?: string; removeOptionsElement?: true } = {},
 ) {
   const browser = await puppeteer.launch({
     headless: "new",
@@ -147,27 +197,59 @@ export default async function screenshot(
   }
 
   const slugs = [
+    "art-primary",
+    "art-secondary",
+    "citizenship-secondary-core",
+    "citizenship-secondary-gcse",
+    "computing-primary",
+    "computing-secondary-core",
+    "computing-secondary-aqa",
+    "computing-secondary-ocr",
+    "cooking-nutrition-primary",
+    "cooking-nutrition-secondary",
+    "design-technology-primary",
+    "design-technology-secondary",
     "english-primary",
     "english-secondary-aqa",
     "english-secondary-edexcel",
     "english-secondary-eduqas",
+    "french-primary",
+    "french-secondary-aqa",
+    "french-secondary-edexcel",
+    "geography-primary",
+    "geography-secondary-aqa",
+    "geography-secondary-edexcelb",
+    "german-secondary-aqa",
+    "german-secondary-edexcel",
+    "history-primary",
+    "history-secondary-aqa",
+    "history-secondary-edexcel",
+    "maths-primary",
+    "maths-secondary",
+    "music-primary",
+    "music-secondary-edexcel",
+    "music-secondary-eduqas",
+    "music-secondary-ocr",
+    "physical-education-primary",
+    "physical-education-secondary-core",
+    "physical-education-secondary-aqa",
+    "physical-education-secondary-edexcel",
+    "physical-education-secondary-ocr",
+    "religious-education-primary",
+    "religious-education-secondary-gcse",
     "science-primary",
     "science-secondary-aqa",
     "science-secondary-edexcel",
     "science-secondary-ocr",
-    "music-secondary-edexcel",
-    "music-secondary-eduqas",
-    "music-secondary-ocr",
-    "maths-primary",
-    "maths-secondary",
-    "history-primary",
-    "history-secondary-aqa",
-    "history-secondary-edexcel",
-    "geography-primary",
+    "spanish-primary",
+    "spanish-secondary-aqa",
+    "spanish-secondary-edexcel",
   ];
 
   for (const slug of slugs) {
-    await screenshotUnitsPage(page, slug, host, label);
+    await screenshotUnitsPage(page, slug, host, label ?? undefined, {
+      removeOptionsElement,
+    });
   }
 
   await browser.close();
