@@ -65,6 +65,7 @@ export const rawQuerySchema = syntheticUnitvariantsWithLessonIdsByKsSchema
   .array();
 
 export type UnitsSnake = z.infer<typeof rawQuerySchema>;
+export type UnitSnake = z.infer<typeof rawQuerySchema>[0];
 export type UnitsCamel = ConvertKeysToCamelCase<UnitsSnake>;
 export type ProgrammeFieldsCamel = ConvertKeysToCamelCase<ProgrammeFields>;
 

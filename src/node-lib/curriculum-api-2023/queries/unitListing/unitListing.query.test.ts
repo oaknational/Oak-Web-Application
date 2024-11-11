@@ -1,88 +1,89 @@
 import {
-  lessonDataFixture,
   programmeFieldsFixture,
   unitDataFixture,
-  unitvariantFixture,
+  syntheticUnitvariantsWithLessonIdsByKsFixture,
 } from "@oaknational/oak-curriculum-schema";
 
-import sdk, { getBatchedRequests } from "../../sdk";
+import sdk from "../../sdk";
 
 import unitListing from "./unitListing.query";
+import { UnitSnake } from "./unitListing.schema";
 
-const mockBatched = getBatchedRequests as jest.Mock;
+const rawFixture = ({
+  overrides,
+}: {
+  overrides: Partial<UnitSnake>;
+}): UnitSnake => {
+  const unitSnake =
+    syntheticUnitvariantsWithLessonIdsByKsFixture() as UnitSnake;
+
+  delete (unitSnake as { base_slug?: string }).base_slug;
+  delete (unitSnake as { null_unitvariant_id?: string }).null_unitvariant_id;
+  delete (unitSnake as { programme_slug_by_year?: string })
+    .programme_slug_by_year;
+
+  return { ...unitSnake, ...overrides };
+};
 
 jest.mock("../../sdk", () => {
   return {
     ...jest.requireActual("../../sdk"),
-    tiers: jest.fn(() =>
-      Promise.resolve({
-        tiers: [
-          {
-            programme_fields: programmeFieldsFixture({
-              overrides: {
-                tier: "foundation",
-                tier_slug: "foundation",
-                tier_description: "Foundation",
-              },
-            }),
-            programme_slug: "subject-phase-ks-foundation",
-          },
-          {
-            programme_fields: programmeFieldsFixture({
-              overrides: {
-                tier: "higher",
-                tier_slug: "higher",
-                tier_description: "Higher",
-              },
-            }),
-            programme_slug: "subject-phase-ks-higher",
-          },
-        ],
-      }),
-    ),
-    getBatchedRequests: jest.fn(() => Promise.resolve([])),
     unitListing: jest.fn(() =>
       Promise.resolve({
         units: [
-          {
-            is_legacy: false,
-            lesson_data: lessonDataFixture(),
-            lesson_slug: "lesson-slug",
-            programme_fields: programmeFieldsFixture({
-              overrides: {
-                tier: "foundation",
-                tier_slug: "foundation",
-                tier_description: "Foundation",
-                tier_display_order: 1,
-              },
-            }),
-            programme_slug: "programme-slug",
-            supplementary_data: { unit_order: 1, order_in_unit: 1 },
-            unit_data: unitDataFixture({ overrides: { unit_id: 1 } }),
-            unit_slug: "unit-slug",
-          },
-          {
-            is_legacy: false,
-            lesson_data: lessonDataFixture({
-              overrides: { deprecated_fields: { expired: true } },
-            }),
-            lesson_slug: "lesson-slug",
-            null_unitvariant: unitvariantFixture(),
-            programme_fields: programmeFieldsFixture({
-              overrides: {
-                tier: "foundation",
-                tier_slug: "foundation",
-                tier_description: "Foundation",
-                tier_display_order: 1,
-              },
-            }),
-            programme_slug: "programme-slug",
-            supplementary_data: { unit_order: 1, order_in_unit: 1 },
-            unit_data: unitDataFixture({
-              overrides: { unit_id: 1, subjectcategories: ["Physics"] },
-            }),
-            unit_slug: "unit-slug",
-          },
+          rawFixture({
+            overrides: {
+              is_legacy: false,
+              programme_fields: programmeFieldsFixture({
+                overrides: {
+                  tier: "foundation",
+                  tier_slug: "foundation",
+                  tier_description: "Foundation",
+                  tier_display_order: 1,
+                },
+              }),
+              programme_slug: "subject-phase-ks-foundation",
+              unit_data: unitDataFixture({
+                overrides: {
+                  unit_id: 1,
+                  subjectcategories: null,
+                  title: "unit-title-1",
+                },
+              }),
+              unit_slug: "unit-slug-1",
+              supplementary_data: { unit_order: 1 },
+            },
+          }),
+          rawFixture({
+            overrides: {
+              is_legacy: false,
+              programme_fields: programmeFieldsFixture({
+                overrides: {
+                  tier: "foundation",
+                  tier_slug: "foundation",
+                  tier_description: "Foundation",
+                  tier_display_order: 1,
+                },
+              }),
+              programme_slug: "subject-phase-ks-foundation",
+              supplementary_data: { unit_order: 2 },
+              unit_data: unitDataFixture({
+                overrides: {
+                  unit_id: 1,
+                  subjectcategories: ["Physics"],
+                  title: "unit-title-2",
+                },
+              }),
+              threads: [
+                {
+                  thread_id: 1,
+                  thread_slug: "theme1",
+                  thread_title: "Theme 1",
+                },
+              ],
+              unit_slug: "unit-slug-2",
+            },
+          }),
         ],
       }),
     ),
@@ -99,25 +100,16 @@ describe("unitListing()", () => {
     });
     expect(res).toBeNull();
   });
-  test("returns the correct data", async () => {
-    mockBatched.mockResolvedValueOnce(
-      Promise.resolve([
-        {
-          data: {
-            threads: [
-              {
-                threads: [{ theme_slug: "theme1", theme_title: "Theme 1" }],
-                unit_id: 1,
-              },
-            ],
-          },
-        },
-      ]),
-    );
 
-    const res = await unitListing(sdk)({ programmeSlug: "programme-slug" });
+  test("returns the correct data", async () => {
+    const res = await unitListing(sdk)({
+      programmeSlug: "subject-phase-ks-foundation",
+    });
+
+    console.log(res.units);
+
     expect(res).toEqual({
-      programmeSlug: "programme-slug",
+      programmeSlug: "subject-phase-ks-foundation",
       keyStageSlug: "ks1",
       keyStageTitle: "Key Stage 1",
       examBoardSlug: null,
@@ -140,35 +132,59 @@ describe("unitListing()", () => {
           tierSlug: "foundation",
           tierTitle: "Foundation",
           tierProgrammeSlug: "subject-phase-ks-foundation",
-          tierOrder: null,
+          tierOrder: 1,
         },
         {
           tierSlug: "higher",
           tierTitle: "Higher",
           tierProgrammeSlug: "subject-phase-ks-higher",
-          tierOrder: null,
+          tierOrder: 2,
         },
       ],
       units: [
         [
           {
-            slug: "unit-slug",
-            title: "unit-title",
-            nullTitle: "unit-title",
-            programmeSlug: "programme-slug",
+            slug: "unit-slug-1",
+            title: "unit-title-1",
+            nullTitle: "unit-title-1",
+            programmeSlug: "subject-phase-ks-foundation",
             keyStageSlug: "ks1",
             keyStageTitle: "Key Stage 1",
             subjectSlug: "maths",
             subjectTitle: "Maths",
-            lessonCount: 2,
+            lessonCount: 1,
             unitStudyOrder: 1,
             expired: false,
-            expiredLessonCount: 1,
+            expiredLessonCount: 0,
+            isOptionalityUnit: false,
             yearTitle: "Year 1",
             year: "year-1",
             yearOrder: 1,
             cohort: "2023-2024",
-            subjectCategories: [],
+            subjectCategories: null,
+            learningThemes: null,
+          },
+        ],
+        [
+          {
+            slug: "unit-slug-2",
+            title: "unit-title-2",
+            nullTitle: "unit-title-2",
+            programmeSlug: "subject-phase-ks-foundation",
+            keyStageSlug: "ks1",
+            keyStageTitle: "Key Stage 1",
+            subjectSlug: "maths",
+            subjectTitle: "Maths",
+            lessonCount: 1,
+            unitStudyOrder: 2,
+            expired: false,
+            expiredLessonCount: 0,
+            isOptionalityUnit: false,
+            yearTitle: "Year 1",
+            year: "year-1",
+            yearOrder: 1,
+            cohort: "2023-2024",
+            subjectCategories: [{ label: "Physics", slug: "physics" }],
             learningThemes: [{ themeTitle: "Theme 1", themeSlug: "theme1" }],
           },
         ],
