@@ -106,8 +106,6 @@ describe("unitListing()", () => {
       programmeSlug: "subject-phase-ks-foundation",
     });
 
-    console.log(res.units);
-
     expect(res).toEqual({
       programmeSlug: "subject-phase-ks-foundation",
       keyStageSlug: "ks1",
