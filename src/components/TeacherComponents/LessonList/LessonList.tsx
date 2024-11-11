@@ -75,6 +75,7 @@ const LessonList: FC<LessonListProps> = (props) => {
                 index={index + pageSize * (currentPage - 1)}
                 firstItemRef={index === 0 ? firstItemRef : null}
                 onClick={onClick}
+                key={`LessonList-LessonListItem-${item.lessonSlug}`}
               />
             ))}
           </OakUL>

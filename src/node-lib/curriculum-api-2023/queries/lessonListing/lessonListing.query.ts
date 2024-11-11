@@ -6,6 +6,7 @@ import OakError from "../../../../errors/OakError";
 import { lessonListSchema } from "../../shared.schema";
 import { toSentenceCase } from "../../helpers";
 import { LessonListingQuery } from "../../generated/sdk";
+import { constructDownloadsArray } from "../lessonDownloads/downloadUtils";
 
 import lessonListingSchema, {
   LessonListingPageData,
@@ -31,6 +32,21 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
             c.copyright_info === "This lesson contains copyright material.",
         ) !== undefined;
 
+      const downloadsArray = constructDownloadsArray({
+        hasSlideDeckAssetObject: lesson.lesson_data.asset_id_slidedeck
+          ? true
+          : false,
+        hasStarterQuiz: lesson.lesson_data.quiz_id_starter ? true : false,
+        hasExitQuiz: lesson.lesson_data.quiz_id_exit ? true : false,
+        hasWorksheetAssetObject: lesson.lesson_data.asset_id_worksheet
+          ? true
+          : false,
+        hasWorksheetAnswersAssetObject: false,
+        hasWorksheetGoogleDriveDownloadableVersion: false,
+        hasSupplementaryAssetObject: false,
+        isLegacy: lesson.is_legacy,
+      });
+
       const transformedLesson = {
         lessonSlug: lesson.lesson_slug,
         lessonTitle: lesson.lesson_data.title,
@@ -48,7 +64,9 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
         hasCopyrightMaterial,
         orderInUnit: lesson.supplementary_data.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
+        resources: downloadsArray.filter((d) => d.exists).map((d) => d.type),
       };
+
       return transformedLesson;
     })
     .sort((a, b) => a.orderInUnit - b.orderInUnit);

@@ -198,21 +198,23 @@ export const baseLessonOverviewSchema = z.object({
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
+export const lessonDownloadsTypes = z.enum([
+  "presentation",
+  "intro-quiz-questions",
+  "intro-quiz-answers",
+  "exit-quiz-questions",
+  "exit-quiz-answers",
+  "worksheet-pdf",
+  "worksheet-pptx",
+  "supplementary-pdf",
+  "supplementary-docx",
+  "curriculum-pdf",
+]);
+
 export const lessonDownloadsListSchema = z.array(
   z.object({
     exists: z.boolean().nullable(),
-    type: z.enum([
-      "presentation",
-      "intro-quiz-questions",
-      "intro-quiz-answers",
-      "exit-quiz-questions",
-      "exit-quiz-answers",
-      "worksheet-pdf",
-      "worksheet-pptx",
-      "supplementary-pdf",
-      "supplementary-docx",
-      "curriculum-pdf",
-    ]),
+    type: lessonDownloadsTypes,
     label: z.string(),
     ext: z.string(),
     forbidden: z.union([
@@ -249,6 +251,7 @@ export const lessonListSchema = z.array(
     hasCopyrightMaterial: z.boolean().nullish(),
     orderInUnit: z.number().nullish(),
     lessonCohort: z.string().nullish(),
+    resources: z.array(lessonDownloadsTypes),
   }),
 );
 

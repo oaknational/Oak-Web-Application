@@ -1,5 +1,11 @@
-import { FC, MutableRefObject } from "react";
-import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
+import { FC, MutableRefObject, useState } from "react";
+import {
+  OakP,
+  OakSpan,
+  OakFlex,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
+import { SignInButton, useAuth } from "@clerk/nextjs";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
@@ -12,6 +18,7 @@ import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDe
 import Box from "@/components/SharedComponents/Box";
 import { OakColorName } from "@/styles/theme";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
+import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 
 export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   programmeSlug: string;
@@ -121,6 +128,33 @@ const LessonListItem: FC<
 
   const background = expired ? "grey30" : "pink";
   const backgroundOnHover: OakColorName = "pink60";
+
+  const auth = useAuth();
+  const isLoggedIn = auth.isSignedIn;
+  const hasDownloads = isLessonListItem(props) && props.resources.length > 0;
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onLessonDownloadClick = async () => {
+    if (!hasDownloads) {
+      return;
+    }
+    setIsLoading(true);
+    const accessToken = await auth.getToken();
+    try {
+      await downloadLessonResources(
+        lessonSlug,
+        props.resources,
+        true,
+        true,
+        accessToken,
+      );
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Error downloading lesson resources", error);
+    }
+  };
+
   return (
     <ListItemCard
       title={lessonTitle}
@@ -204,6 +238,20 @@ const LessonListItem: FC<
           )}
         </OakFlex>
       </OakFlex>
+      {isLoggedIn && hasDownloads ? (
+        <OakPrimaryButton
+          onClick={() => {
+            onLessonDownloadClick();
+          }}
+          isLoading={isLoading}
+        >
+          Download Lesson
+        </OakPrimaryButton>
+      ) : (
+        <OakPrimaryButton>
+          <SignInButton>Sign in to download</SignInButton>
+        </OakPrimaryButton>
+      )}
     </ListItemCard>
   );
 };

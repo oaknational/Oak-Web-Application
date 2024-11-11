@@ -7,6 +7,7 @@ export const hideAndClickDownloadLink = (url: string, a: HTMLAnchorElement) => {
   a.style.display = "none";
   a.href = encodeURI(url);
   a.setAttribute("download", "download.zip");
+  a.setAttribute("target", "_blank");
   document.body.appendChild(a);
   a.click();
 };
