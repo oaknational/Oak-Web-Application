@@ -35,6 +35,7 @@ import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/FocusWrap";
+import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton";
 
 const DEFAULT_KEYSTAGES = [
   { slug: "ks1" },
@@ -491,6 +492,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   onWrapStart={onFocusSubjectStart}
                   onWrapEnd={onFocusSubjectEnd}
                 >
+                  <CurriculumModalCloseButton
+                    onClose={toggleShowSubjects}
+                    $position={"absolute"}
+                    $top={[8, 12]}
+                    $right={[8, 12]}
+                  />
                   {showSubjectError && (
                     <OakFlex
                       id={subjectErrorId}
@@ -756,6 +763,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         $flexDirection={"column"}
                         $gap={"space-between-s"}
                       >
+                        <CurriculumModalCloseButton
+                          onClose={toggleShowPhases}
+                          $position={"absolute"}
+                          $top={[8, 12]}
+                          $right={[8, 12]}
+                        />
                         {(selectedSubject?.phases ?? phases).map((phase) => (
                           <ButtonContainer
                             className={`lot-picker ${
