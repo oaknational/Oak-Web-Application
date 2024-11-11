@@ -1,3 +1,31 @@
+## [1.622.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.1...v1.622.2) (2024-11-11)
+
+
+### Bug Fixes
+
+* improve naming ([7aa9994](https://github.com/oaknational/Oak-Web-Application/commit/7aa9994779bd9d62c3cbf3995c52bf8becb16577))
+* remove numbering from hint text in quiz results ([ad39133](https://github.com/oaknational/Oak-Web-Application/commit/ad39133875263268794c1cf32c2f7c0bc4536db2))
+
+## [1.622.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.0...v1.622.1) (2024-11-11)
+
+
+### Bug Fixes
+
+* removed wobbly borders on "Child Subjects" section in curric visualiser ([1712fd1](https://github.com/oaknational/Oak-Web-Application/commit/1712fd1edb4b4969478a4d20372f9c174fc98b3d))
+
+# [1.622.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.3...v1.622.0) (2024-11-11)
+
+
+### Bug Fixes
+
+* styling fixes & updated tab order ([20d6718](https://github.com/oaknational/Oak-Web-Application/commit/20d67186c6352fa5fdac52f2c7aebf57fb288c9c))
+
+
+### Features
+
+* add close button to subject / phase modals ([4e153ee](https://github.com/oaknational/Oak-Web-Application/commit/4e153ee90737048f41ef338eb7b6a5ece8636eb7))
+* new component for modal closing button ([f23b067](https://github.com/oaknational/Oak-Web-Application/commit/f23b067ae8da2ef5ac4cf639127c10204d501fe9))
+
 ## [1.621.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.2...v1.621.3) (2024-11-08)
 
 

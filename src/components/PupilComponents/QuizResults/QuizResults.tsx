@@ -15,19 +15,26 @@ export type QuizResultsProps = {
 };
 export const QuizResults = (props: QuizResultsProps) => {
   const { lessonSection, quizArray, sectionResults, copyrightNotice } = props;
+  let questionIndex = 1;
 
   return (
     <MathJaxProvider>
       <OakFlex $flexDirection={"column"} $gap={"space-between-xl"} role="list">
         {sectionResults[lessonSection]?.questionResults?.map(
-          (questionResult, index) => (
-            <QuizResultInner
-              index={index}
-              questionResult={questionResult}
-              quizArray={quizArray}
-              lessonSection={lessonSection}
-            />
-          ),
+          (questionResult, index) => {
+            const displayIndex =
+              questionResult.mode === "init" ? 999 : questionIndex++;
+            return (
+              <QuizResultInner
+                index={index}
+                key={index}
+                displayIndex={displayIndex}
+                questionResult={questionResult}
+                quizArray={quizArray}
+                lessonSection={lessonSection}
+              />
+            );
+          },
         )}
         <QuizAttribution questionData={quizArray} />
         {copyrightNotice}
