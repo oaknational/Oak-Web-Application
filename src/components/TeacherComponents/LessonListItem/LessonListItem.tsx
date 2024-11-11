@@ -19,6 +19,7 @@ import Box from "@/components/SharedComponents/Box";
 import { OakColorName } from "@/styles/theme";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
+import { LEGACY_COHORT } from "@/config/cohort";
 
 export type LessonListItemProps = LessonListingPageData["lessons"][number] & {
   programmeSlug: string;
@@ -144,7 +145,7 @@ const LessonListItem: FC<
       await downloadLessonResources(
         lessonSlug,
         props.resources,
-        true,
+        props.lessonCohort === LEGACY_COHORT,
         true,
         accessToken,
       );
