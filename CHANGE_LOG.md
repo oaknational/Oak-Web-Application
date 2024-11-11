@@ -1,3 +1,10 @@
+## [1.622.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.0...v1.622.1) (2024-11-11)
+
+
+### Bug Fixes
+
+* removed wobbly borders on "Child Subjects" section in curric visualiser ([1712fd1](https://github.com/oaknational/Oak-Web-Application/commit/1712fd1edb4b4969478a4d20372f9c174fc98b3d))
+
 # [1.622.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.3...v1.622.0) (2024-11-11)
 
 
