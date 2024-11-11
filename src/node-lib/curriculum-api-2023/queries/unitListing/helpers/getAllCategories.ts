@@ -39,7 +39,7 @@ const generateCategoryObjects = (
     const categoryKey = category as SubjectCategoryKeys;
     categories.push({
       label: category,
-      iconName: subjectCategoryIconMap[categoryKey],
+      iconName: subjectCategoryIconMap[categoryKey] || null,
       slug: kebabCase(category),
     });
   });

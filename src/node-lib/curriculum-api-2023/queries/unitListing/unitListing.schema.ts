@@ -27,7 +27,7 @@ export type LearningThemes = z.infer<typeof learningThemes>;
 const subjectCategorySchema = z.object({
   label: z.string(),
   slug: z.string().optional(),
-  iconName: z.string().optional(),
+  iconName: z.string().optional().nullable(),
 });
 export type SubjectCategory = z.infer<typeof subjectCategorySchema>;
 
