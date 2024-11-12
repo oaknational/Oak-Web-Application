@@ -18,6 +18,16 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
+jest.mock("@clerk/nextjs", () => ({
+  __esModule: true,
+  SignInButton: () => <button />,
+  useUser: () => ({
+    user: null,
+    isLoaded: true,
+    isSignedIn: false,
+  }),
+}));
+
 const onClick = jest.fn();
 
 describe("components/ Lesson List", () => {

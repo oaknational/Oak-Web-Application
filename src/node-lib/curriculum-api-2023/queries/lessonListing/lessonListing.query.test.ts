@@ -63,6 +63,7 @@ describe("lessonListing()", () => {
             hasCopyrightMaterial: false,
             orderInUnit: 1,
             lessonCohort: "2023-2024",
+            resources: [],
           },
         ],
       });
@@ -218,6 +219,7 @@ describe("lessonListing()", () => {
           quizCount: 0,
           videoCount: 0,
           worksheetCount: 0,
+          resources: [],
         },
       ]);
     });

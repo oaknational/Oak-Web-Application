@@ -4,8 +4,17 @@ import specialistLessonListingFixture from "./SpecialistLessonListing.fixture";
 import SpecialistLessonListing from "./SpecialistLessonListing.view";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-
 const render = renderWithProviders();
+
+jest.mock("@clerk/nextjs", () => ({
+  __esModule: true,
+  SignInButton: () => <button />,
+  useUser: () => ({
+    user: null,
+    isLoaded: true,
+    isSignedIn: false,
+  }),
+}));
 
 describe("SpecialistUnitListing", () => {
   test("renders component", () => {

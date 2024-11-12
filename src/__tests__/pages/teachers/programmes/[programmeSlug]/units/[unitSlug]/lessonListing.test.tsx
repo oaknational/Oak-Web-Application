@@ -29,6 +29,12 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+jest.mock("@clerk/nextjs", () => ({
+  __esModule: true,
+  SignInButton: () => <button />,
+  useUser: () => jest.fn(),
+}));
+
 describe("Lesson listing page", () => {
   test("it renders the unit title as page title", () => {
     const { getByRole } = render(

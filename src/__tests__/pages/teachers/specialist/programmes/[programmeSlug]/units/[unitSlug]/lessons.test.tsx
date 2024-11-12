@@ -8,6 +8,16 @@ import curriculumApi from "@/node-lib/curriculum-api-2023";
 
 const render = renderWithProviders();
 
+jest.mock("@clerk/nextjs", () => ({
+  __esModule: true,
+  SignInButton: () => <button />,
+  useUser: () => ({
+    user: null,
+    isLoaded: true,
+    isSignedIn: false,
+  }),
+}));
+
 describe("pages/specialist/programmes/[programmeSlug]/units/[unitSlug]", () => {
   it("renders lessons", () => {
     render(

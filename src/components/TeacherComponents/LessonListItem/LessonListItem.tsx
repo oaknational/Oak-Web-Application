@@ -5,7 +5,7 @@ import {
   OakFlex,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
-import { SignInButton, useAuth } from "@clerk/nextjs";
+import { SignInButton, useUser } from "@clerk/nextjs";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
@@ -130,8 +130,8 @@ const LessonListItem: FC<
   const background = expired ? "grey30" : "pink";
   const backgroundOnHover: OakColorName = "pink60";
 
-  const auth = useAuth();
-  const isLoggedIn = auth.isSignedIn;
+  const user = useUser();
+  const isLoggedIn = user.isSignedIn;
   const hasDownloads = isLessonListItem(props) && props.resources?.length;
   const [isLoading, setIsLoading] = useState(false);
 
@@ -140,14 +140,13 @@ const LessonListItem: FC<
       return;
     }
     setIsLoading(true);
-    const accessToken = await auth.getToken();
     try {
       await downloadLessonResources(
         lessonSlug,
         props.resources ?? [],
         props.lessonCohort === LEGACY_COHORT,
         true,
-        accessToken,
+        null,
       );
       setIsLoading(false);
     } catch (error) {
@@ -249,9 +248,9 @@ const LessonListItem: FC<
           Download Lesson
         </OakPrimaryButton>
       ) : (
-        <OakPrimaryButton>
-          <SignInButton>Sign in to download</SignInButton>
-        </OakPrimaryButton>
+        <SignInButton>
+          <OakPrimaryButton>Sign in to download </OakPrimaryButton>
+        </SignInButton>
       )}
     </ListItemCard>
   );

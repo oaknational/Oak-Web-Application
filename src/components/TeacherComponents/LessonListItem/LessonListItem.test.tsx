@@ -34,6 +34,16 @@ const props: LessonListItemProps = {
 
 let render: ReturnType<typeof renderWithProviders>;
 
+jest.mock("@clerk/nextjs", () => ({
+  __esModule: true,
+  SignInButton: () => <button />,
+  useUser: () => ({
+    user: null,
+    isLoaded: true,
+    isSignedIn: false,
+  }),
+}));
+
 describe("Lesson List Item", () => {
   beforeAll(() => {
     render = renderWithProviders();
