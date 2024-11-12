@@ -5,9 +5,9 @@ import { NullablePixelSpacing, PercentSpacing } from "../theme/types";
 import responsive, { ResponsiveValues } from "./responsive";
 import { getRemUnits } from "./getRemUnits";
 
-type CalcValues = 
+type CalcValues =
   | `calc(${PercentSpacing} - ${NullablePixelSpacing}px)`
-  | `calc(${PercentSpacing} + ${NullablePixelSpacing}px)`
+  | `calc(${PercentSpacing} + ${NullablePixelSpacing}px)`;
 
 type SizeValue =
   | PercentSpacing
