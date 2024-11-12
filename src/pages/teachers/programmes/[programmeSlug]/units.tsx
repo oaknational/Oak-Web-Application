@@ -491,7 +491,7 @@ export const getStaticProps: GetStaticProps<
 
         return results;
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         return {
           notFound: true,
         };
