@@ -29,9 +29,11 @@ export const getStemTextData = (stem: ImageOrTextItem[]) => {
 export const getStemImage = ({
   stem,
   minWidth = "all-spacing-19",
+  scaled = false,
 }: {
   stem: ImageOrTextItem[];
   minWidth: OakAllSpacingToken;
+  scaled?: boolean;
 }) => {
   const data = getStemImageData(stem);
   if (data?.imageObject?.publicId)
@@ -42,8 +44,9 @@ export const getStemImage = ({
         width={data.imageObject.width}
         height={data.imageObject.height}
         $minWidth={minWidth}
+        $maxWidth={scaled ? "all-spacing-21" : "all-spacing-0"}
         placeholder="oak"
-        sizes={getSizes(["100vw", 1200])}
+        sizes={getSizes(["100vw", scaled ? 3000 : 1200])}
       />
     );
 };
