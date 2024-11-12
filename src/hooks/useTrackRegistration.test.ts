@@ -1,6 +1,9 @@
 import { renderHook } from "@testing-library/react";
 
-import { useTrackRegistration } from "./useTrackRegistration";
+import {
+  resetUseTrackingRegistration,
+  useTrackRegistration,
+} from "./useTrackRegistration";
 
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
@@ -45,6 +48,7 @@ const mockExistingUser: UserResource = {
 
 describe(useTrackRegistration, () => {
   beforeEach(() => {
+    resetUseTrackingRegistration();
     jest
       .spyOn(mockAnalytics.track, "userSignUpCompleted")
       .mockReset()
@@ -93,6 +97,13 @@ describe(useTrackRegistration, () => {
           },
         },
       });
+    });
+
+    it("only tracks the sign-up once", () => {
+      renderHook(useTrackRegistration);
+      renderHook(useTrackRegistration);
+
+      expect(mockAnalytics.track.userSignUpCompleted).toHaveBeenCalledTimes(1);
     });
 
     it.each<
@@ -149,6 +160,13 @@ describe(useTrackRegistration, () => {
       expect(mockAnalytics.track.userSignIn).toHaveBeenCalledWith({
         userId_: "mock-distinct-id",
       });
+    });
+
+    it("only tracks the sign-in once", () => {
+      renderHook(useTrackRegistration);
+      renderHook(useTrackRegistration);
+
+      expect(mockAnalytics.track.userSignIn).toHaveBeenCalledTimes(1);
     });
 
     it("does not track a sign-up", () => {
