@@ -76,7 +76,7 @@
     "@mux/mux-player-react": "^3.0.0",
     "@oaknational/oak-components": "^1.45.0",
     "@oaknational/oak-consent-client": "^2.1.1",
-    "@oaknational/oak-curriculum-schema": "^1.36.0",
+    "@oaknational/oak-curriculum-schema": "^1.37.0",
     "@oaknational/oak-pupil-client": "^2.12.1",
     "@portabletext/react": "^3.0.11",
     "@react-aria/aria-modal-polyfill": "^3.7.8",

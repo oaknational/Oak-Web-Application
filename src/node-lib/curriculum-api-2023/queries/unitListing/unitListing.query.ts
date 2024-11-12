@@ -1,6 +1,3 @@
-import OakError from "../../../../errors/OakError";
-import { Sdk } from "../../sdk";
-
 import { reshapeUnitData } from "./helpers/reshapeUnitData";
 import { getAllLearningThemes } from "./helpers/getAllLearningThemes";
 import {
@@ -16,6 +13,12 @@ import {
 
 import { NEW_COHORT } from "@/config/cohort";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
+import {
+  UnitListingQuery,
+  Sdk,
+} from "@/node-lib/curriculum-api-2023/generated/sdk";
+import OakError from "@/errors/OakError";
 
 const getTierData = (programmeSlug: string): UnitListingData["tiers"] => [
   {
@@ -36,17 +39,22 @@ const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.unitListing(args);
 
-    const unitsSnake = res.units;
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      UnitListingQuery["units"][number]
+    >({
+      journey: "teacher",
+      queryName: "unitListingQuery",
+      browseData: res.units,
+    });
 
-    if (!unitsSnake || unitsSnake.length === 0) {
+    if (modifiedBrowseData.length === 0) {
       return null;
     }
 
     let parsedUnits;
     try {
-      parsedUnits = rawQuerySchema.parse(unitsSnake);
+      parsedUnits = rawQuerySchema.parse(modifiedBrowseData);
     } catch (e) {
-      console.log(e);
       throw new OakError({
         code: "curriculum-api/internal-error",
         meta: { error: e },
