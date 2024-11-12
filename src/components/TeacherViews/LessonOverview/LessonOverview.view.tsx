@@ -303,7 +303,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     >
                       <OakBox
                         $width={"100%"}
-                        $ba={"border-solid-m"}
+                        $ba={"border-solid-xl"}
                         style={{ height: "100%" }}
                       >
                         <AspectRatio ratio={"16:9"}>
