@@ -196,7 +196,7 @@ type SubjectContainerProps = {
 function SubjectContainer({
   children,
   showSubjectError,
-  onClick
+  onClick,
 }: SubjectContainerProps) {
   const isCycleTwoEnabled = useCycleTwoEnabled();
   const subjectErrorId = useId();
@@ -212,6 +212,8 @@ function SubjectContainer({
       {showSubjectError && (
         <OakFlex
           id={subjectErrorId}
+          role="alert"
+          aria-live="polite"
           $flexDirection={"row"}
           $mb={"space-between-m"}
         >
@@ -239,23 +241,21 @@ function SubjectContainer({
           $flexDirection={"column"}
           $gap={["all-spacing-2", "all-spacing-1"]}
         >
-
           {!isMobile && (
             <Box $position={"absolute"} $right={-12} $top={-12}>
-            <IconButton
-              aria-label="Close subject picker"
-              icon="cross"
-              variant="minimal"
-              size="large"
-              onClick={onClick}
-
+              <IconButton
+                aria-label="Close subject picker"
+                icon="cross"
+                variant="minimal"
+                size="large"
+                onClick={onClick}
               />
             </Box>
           )}
 
           <OakHeading
             id={subjectInputId}
-            tag={"h4"}
+            tag={"h2"}
             $font={"heading-6"}
             $mr="space-between-xs"
             data-testid="subjectDropdownHeading"
@@ -663,13 +663,15 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   onWrapStart={onFocusSubjectStart}
                   onWrapEnd={onFocusSubjectEnd}
                 >
-                  <SubjectContainer showSubjectError={showSubjectError} onClick={() => setShowSubjects(false)}>
+                  <SubjectContainer
+                    showSubjectError={showSubjectError}
+                    onClick={() => setShowSubjects(false)}
+                  >
                     {sortBy(subjects, "title").map((subject) => (
                       <ButtonContainer
                         className={`lot-picker subject-selection ${
                           isSelected(subject) ? "selected" : ""
                         }`}
-                        key={subject.slug}
                       >
                         <OakSecondaryButton
                           role="radio"
@@ -701,11 +703,15 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               autoFocus={false}
               onEscapeKey={handleMobileLotPickerModal}
               scrollLock={false}
+              returnFocus
             >
               <Box
                 role="dialog"
                 aria-modal="true"
-                aria-labelledby="mobile-subject-picker-heading"
+                aria-label="Subject picker"
+                aria-describedby={
+                  showSubjectError ? "subject-error-message" : undefined
+                }
                 $position="fixed"
                 $bottom={0}
                 $left={0}
@@ -728,7 +734,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     />
                   </OakFlex>
 
-                  <SubjectContainer showSubjectError={showSubjectError}>
+                  <SubjectContainer
+                    showSubjectError={showSubjectError}
+                    onClick={handleMobileLotPickerModal}
+                  >
                     {sortBy(subjects, "title").map((subject) => (
                       <ButtonContainer
                         className={`lot-picker subject-selection ${
@@ -919,7 +928,13 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       onWrapEnd={onFocusPhasesEnd}
                     >
                       {showPhaseError && (
-                        <Flex id={phaseErrorId} $flexDirection={"row"} $mb={20}>
+                        <Flex
+                          id={phaseErrorId}
+                          role="alert"
+                          aria-live="polite"
+                          $flexDirection={"row"}
+                          $mb={20}
+                        >
                           <Icon
                             $color={"red"}
                             name="content-guidance"
@@ -933,6 +948,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       {showKS4OptionError ? (
                         <Flex
                           id={ks4OptionErrorId}
+                          role="alert"
+                          aria-live="polite"
                           $flexDirection={"row"}
                           $mb={20}
                         >
@@ -1067,11 +1084,19 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   autoFocus={false}
                   onEscapeKey={() => setShowPhases(false)}
                   scrollLock={false}
+                  returnFocus
                 >
                   <Box
                     role="dialog"
                     aria-modal="true"
-                    aria-labelledby="mobile-phase-picker-heading"
+                    aria-label="Phase picker"
+                    aria-describedby={
+                      showPhaseError
+                        ? "phase-error-message"
+                        : showKS4OptionError
+                          ? "ks4-error-message"
+                          : undefined
+                    }
                     $position="fixed"
                     $bottom={0}
                     $left={0}
@@ -1106,7 +1131,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           variant="minimal"
                           size="large"
                           onClick={() => setShowPhases(false)}
-                          aria-expanded={showPhases}
                         />
                       </OakFlex>
 
