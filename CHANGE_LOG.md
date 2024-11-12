@@ -1,3 +1,10 @@
+## [1.622.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.3...v1.622.4) (2024-11-12)
+
+
+### Bug Fixes
+
+* handle nested non-primitives ([7162814](https://github.com/oaknational/Oak-Web-Application/commit/71628140a87d4086b0f1c5f0619f04fe4e23ab09))
+
 ## [1.622.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.2...v1.622.3) (2024-11-11)
 
 
