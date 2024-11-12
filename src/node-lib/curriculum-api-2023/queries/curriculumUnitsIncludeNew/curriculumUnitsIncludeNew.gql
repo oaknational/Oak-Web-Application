@@ -1,5 +1,5 @@
-query curriculumUnitsIncludeNew($where: published_mv_temp_curriculum_units_1_bool_exp) {
-  units: published_mv_temp_curriculum_units_1(where: $where) {
+query curriculumUnitsIncludeNew($where: published_mv_curriculum_sequence_b_13_0_0_bool_exp) {
+  units: published_mv_curriculum_sequence_b_13_0_0(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title
