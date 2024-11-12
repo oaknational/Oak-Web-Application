@@ -19,7 +19,10 @@ describe("QuestionListItem", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizResultQuestionStem questionStem={mcqText.questionStem} index={0} />
+        <QuizResultQuestionStem
+          questionStem={mcqText.questionStem}
+          displayIndex={1}
+        />
       </OakThemeProvider>,
     );
     const primaryQuestionText = getByText("Q1. What is a main clause?");
@@ -34,7 +37,7 @@ describe("QuestionListItem", () => {
       <OakThemeProvider theme={oakDefaultTheme}>
         <QuizResultQuestionStem
           questionStem={mcqStemImage.questionStem}
-          index={0}
+          displayIndex={0}
         />
       </OakThemeProvider>,
     );
@@ -53,11 +56,50 @@ describe("QuestionListItem", () => {
 
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <QuizResultQuestionStem questionStem={questionStem} index={0} />
+        <QuizResultQuestionStem questionStem={questionStem} displayIndex={0} />
       </OakThemeProvider>,
     );
     const secondaryText = getByText("This is some text");
 
     expect(secondaryText).toBeInTheDocument();
+  });
+
+  it("renders question number if displayIndex is other than 999", () => {
+    invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
+
+    const questionStem: ImageOrTextItem[] = [
+      ...mcqStemImage.questionStem,
+      { text: "This is some text", type: "text" },
+    ];
+
+    const { getByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizResultQuestionStem questionStem={questionStem} displayIndex={24} />
+      </OakThemeProvider>,
+    );
+    const displayNumberText = getByText("Q24", { exact: false });
+
+    expect(displayNumberText).toBeInTheDocument();
+  });
+
+  it("does not render question number if displayIndex is 999", () => {
+    invariant(mcqStemImage?.questionStem, "mcqStemImage.questionStem is null");
+
+    const questionStem: ImageOrTextItem[] = [
+      ...mcqStemImage.questionStem,
+      { text: "This is some text", type: "text" },
+    ];
+
+    const { queryByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizResultQuestionStem
+          questionStem={questionStem}
+          displayIndex={999}
+        />
+      </OakThemeProvider>,
+    );
+    const displayNumberText = queryByText("Q999");
+
+    expect(displayNumberText).toBeNull();
   });
 });
