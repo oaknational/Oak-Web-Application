@@ -35,6 +35,7 @@ import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/FocusWrap";
+import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton";
 
 const DEFAULT_KEYSTAGES = [
   { slug: "ks1" },
@@ -390,7 +391,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     <OakBox
       $position="relative"
       data-testid="subjectPhasePicker"
-      $zIndex={99}
+      $zIndex={101}
       $maxWidth="all-spacing-23"
       $borderRadius="border-radius-s"
       $borderColor={showSubjects || showPhases ? "transparent" : "black"}
@@ -478,7 +479,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $pa={24}
               $position="absolute"
               $top={["50%", "100%"]}
-              $zIndex={"inFront"}
+              $zIndex={"modalDialog"}
               $width={"100%"}
             >
               <FocusOn
@@ -491,6 +492,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   onWrapStart={onFocusSubjectStart}
                   onWrapEnd={onFocusSubjectEnd}
                 >
+                  <CurriculumModalCloseButton
+                    onClose={toggleShowSubjects}
+                    $position={"absolute"}
+                    $top={[8, 12]}
+                    $right={[8, 12]}
+                  />
                   {showSubjectError && (
                     <OakFlex
                       id={subjectErrorId}
@@ -590,7 +597,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $width={3}
             $position={"relative"}
             $display={"block"}
-            $zIndex={"inFront"}
+            $zIndex={"modalDialog"}
             $visibility={showSubjects || showPhases ? "hidden" : null}
           >
             <BoxBorders
@@ -694,7 +701,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   $pa={28}
                   $position="absolute"
                   $top={"100%"}
-                  $zIndex={"inFront"}
+                  $zIndex={"modalDialog"}
                   className="phase-selection"
                 >
                   <FocusOn
@@ -756,6 +763,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         $flexDirection={"column"}
                         $gap={"space-between-s"}
                       >
+                        <CurriculumModalCloseButton
+                          onClose={toggleShowPhases}
+                          $position={"absolute"}
+                          $top={[8, 12]}
+                          $right={[8, 12]}
+                        />
                         {(selectedSubject?.phases ?? phases).map((phase) => (
                           <ButtonContainer
                             className={`lot-picker ${
