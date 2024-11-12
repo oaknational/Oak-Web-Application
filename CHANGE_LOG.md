@@ -1,3 +1,15 @@
+# [1.624.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.623.0...v1.624.0) (2024-11-12)
+
+
+### Bug Fixes
+
+* allow curric automation compare sidebar to scroll ([0da721b](https://github.com/oaknational/Oak-Web-Application/commit/0da721bec0f75f8f05cff2277545cd516357b5ee))
+
+
+### Features
+
+* added tiers to curric automation script ([a1e3721](https://github.com/oaknational/Oak-Web-Application/commit/a1e3721b694a701ea8d76ccf32ab487ae47cb547))
+
 # [1.623.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.4...v1.623.0) (2024-11-12)
 
 
