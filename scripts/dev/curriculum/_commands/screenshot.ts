@@ -80,6 +80,8 @@ const screenshotPageCurrent = async (
     return;
   }
 
+  // TODO: Screenshot all the modals
+
   for (let i = 0; i < images.length; i++) {
     const sectionPath = images[i]!.input;
 
@@ -127,25 +129,70 @@ const screenshotPage = async (
     document.querySelector("div[data-testid=cookie-banner]")?.remove();
   });
 
-  const selector =
+  const subjectSelector =
     '*[data-testid="subjectCategory-button"], *[data-testid="subject-button"]';
-  const alternatives = await page.evaluate((selector) => {
-    return [...document.querySelectorAll(selector)].map(
+  const tierSelector = `*[data-testid="tier-button"]`;
+  const subjectAlternatives = await page.evaluate((subjectSelector) => {
+    return [...document.querySelectorAll(subjectSelector)].map(
       (el) => el.textContent ?? "",
     );
-  }, selector);
-  const unitAlts = uniq(alternatives);
+  }, subjectSelector);
+  const tierAlternatives = await page.evaluate((tierSelector) => {
+    return [...document.querySelectorAll(tierSelector)].map(
+      (el) => el.textContent ?? "",
+    );
+  }, tierSelector);
+  const subjectAlternativesUniq = uniq(subjectAlternatives);
+  const tierAlternativesUniq = uniq(tierAlternatives);
 
-  if (unitAlts.length > 0) {
-    for (const unitAlt of unitAlts) {
-      for (const el of await page.$$(selector)) {
-        if ((await page.evaluate((el) => el.textContent, el)) === unitAlt) {
+  type AltType = { subject?: string; tier?: string };
+  const altList: AltType[] = [];
+
+  // TODO: Should be simple "all combinations" function.
+  if (subjectAlternativesUniq.length > 0) {
+    for (const subjectAlternative of subjectAlternativesUniq) {
+      if (tierAlternativesUniq.length > 0) {
+        for (const tierAlternative of tierAlternativesUniq) {
+          altList.push({ subject: subjectAlternative, tier: tierAlternative });
+        }
+      } else {
+        altList.push({ subject: subjectAlternative });
+      }
+    }
+  } else {
+    if (tierAlternativesUniq.length > 0) {
+      for (const tierAlternative of tierAlternativesUniq) {
+        altList.push({ tier: tierAlternative });
+      }
+    }
+  }
+
+  const buildFilenameSlug = (slug: AltType) => {
+    const output = [];
+    if (slug.subject) {
+      output.push(slugify(slug.subject.toLowerCase()));
+    }
+    if (slug.tier) {
+      output.push(slugify(slug.tier.toLowerCase()));
+    }
+    return output.join("-") ?? "";
+  };
+
+  if (altList.length > 0) {
+    for (const alt of altList) {
+      for (const el of await page.$$(subjectSelector)) {
+        if ((await page.evaluate((el) => el.textContent, el)) === alt.subject) {
+          await el.click();
+        }
+      }
+      for (const el of await page.$$(tierSelector)) {
+        if ((await page.evaluate((el) => el.textContent, el)) === alt.tier) {
           await el.click();
         }
       }
       await screenshotPageCurrent(
         page,
-        path.replace(/\.png/, "-" + unitAlt.toLowerCase() + ".png"),
+        path.replace(/\.png/, "-" + buildFilenameSlug(alt) + ".png"),
         logOpts,
         opts,
       );
