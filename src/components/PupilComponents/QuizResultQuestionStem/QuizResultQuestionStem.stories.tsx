@@ -37,7 +37,7 @@ export const Default: Story = {
   },
   args: {
     questionStem: mcqText?.questionStem || [],
-    index: 0,
+    displayIndex: 1,
   },
 };
 
@@ -47,7 +47,7 @@ export const Text: Story = {
   },
   args: {
     questionStem: mcqText?.questionStem || [],
-    index: 0,
+    displayIndex: 1,
   },
 };
 
@@ -57,6 +57,6 @@ export const Image: Story = {
   },
   args: {
     questionStem: mcqStemImage?.questionStem || [],
-    index: 0,
+    displayIndex: 1,
   },
 };

@@ -17,7 +17,7 @@ export function getIntersection<T>(arr: Array<Partial<T> | null>): Partial<T> {
       const o = { ...val };
 
       for (const key in val) {
-        if (acc[key] !== val[key]) {
+        if (JSON.stringify(acc[key]) !== JSON.stringify(val[key])) {
           delete o[key];
         }
       }
