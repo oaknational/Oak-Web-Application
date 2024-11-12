@@ -5,7 +5,6 @@ import React from "react";
 const MathJaxWrap = ({ children }: { children: React.ReactNode }) => {
   return (
     <MathJax hideUntilTypeset="every" dynamic>
-      {`$$\\require{unicode}$$`}
       {children}
     </MathJax>
   );
