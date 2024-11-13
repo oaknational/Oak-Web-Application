@@ -1,3 +1,10 @@
+## [1.626.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.0...v1.626.1) (2024-11-13)
+
+
+### Bug Fixes
+
+* explainer font incorrectly using Aptos ([6c2bfff](https://github.com/oaknational/Oak-Web-Application/commit/6c2bfff0052e7da5ac6c73228c57df1ff5bd3269))
+
 # [1.626.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.625.1...v1.626.0) (2024-11-13)
 
 
