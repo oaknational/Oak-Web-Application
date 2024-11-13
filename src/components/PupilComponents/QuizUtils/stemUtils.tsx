@@ -38,7 +38,7 @@ export const getStemImage = ({
     return (
       <OakCloudinaryImage
         cloudinaryId={data.imageObject.publicId}
-        alt={""} // TODO: add alt text
+        alt={"An image in a quiz"}
         width={data.imageObject.width}
         height={data.imageObject.height}
         $minWidth={minWidth}
