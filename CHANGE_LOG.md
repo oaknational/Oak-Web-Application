@@ -1,3 +1,11 @@
+## [1.624.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.624.0...v1.624.1) (2024-11-13)
+
+
+### Bug Fixes
+
+* **quiz:** add generic alt text to quiz images ([2faebf0](https://github.com/oaknational/Oak-Web-Application/commit/2faebf0067b32e643b6e9bbdb021a80634df746d))
+* **quiz:** add generic alt text to quiz images ([d68ed33](https://github.com/oaknational/Oak-Web-Application/commit/d68ed33607e4884c3fe46f48eef90273bca3c885))
+
 # [1.624.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.623.0...v1.624.0) (2024-11-12)
 
 
