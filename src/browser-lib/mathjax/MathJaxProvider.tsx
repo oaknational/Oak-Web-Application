@@ -6,7 +6,6 @@ const config = {
   loader: { load: ["[tex]/unicode"] },
   tex: {
     packages: { "[+]": ["unicode"] },
-    unicode: ["unicode"],
   },
 };
 
