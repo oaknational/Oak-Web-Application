@@ -131,6 +131,39 @@ export const getLessonDownloadsBreadCrumb = ({
     };
   }
 };
+export const getLessonMediaBreadCrumb = ({
+  lessonSlug,
+  programmeSlug,
+  unitSlug,
+  disabled,
+}: {
+  lessonSlug: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
+  disabled?: boolean;
+}): Breadcrumb => {
+  if (programmeSlug && unitSlug) {
+    return {
+      oakLinkProps: {
+        page: "lesson-media",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      },
+      label: "Extra video and audio",
+      disabled,
+    };
+  } else {
+    return {
+      oakLinkProps: {
+        page: "lesson-media-canonical",
+        lessonSlug,
+      },
+      label: "Media",
+      disabled,
+    };
+  }
+};
 export const getLessonShareBreadCrumb = ({
   lessonSlug,
   programmeSlug,
@@ -187,6 +220,34 @@ export const getBreadCrumbForSpecialistDownload = ({
             downloads: "downloads",
           },
           label: "Downloads",
+          disabled,
+        }
+      : null,
+  ];
+  return nullableBreadcrumbs.filter(truthy);
+};
+
+export const getBreadCrumbForSpecialistMedia = ({
+  lessonSlug,
+  programmeSlug,
+  unitSlug,
+  disabled,
+}: {
+  lessonSlug: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
+  disabled?: boolean;
+}): Breadcrumb[] => {
+  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
+    programmeSlug && unitSlug
+      ? {
+          oakLinkProps: {
+            page: "specialist-lesson-media",
+            programmeSlug,
+            unitSlug,
+            lessonSlug,
+          },
+          label: "Media",
           disabled,
         }
       : null,
