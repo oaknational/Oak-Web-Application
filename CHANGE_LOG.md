@@ -1,3 +1,13 @@
+## [1.624.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.624.1...v1.624.2) (2024-11-13)
+
+
+### Bug Fixes
+
+* add config to MathJaxProvider ([957a1f8](https://github.com/oaknational/Oak-Web-Application/commit/957a1f8b46f983b6e7abb375eab327649d01fc5a))
+* bug snug warning ([b117deb](https://github.com/oaknational/Oak-Web-Application/commit/b117deb9ce3b43300570d6dc65b8dd40099d1b2c))
+* trigger rebuild ([143e256](https://github.com/oaknational/Oak-Web-Application/commit/143e25697af9ed30e440fccc0ebf9971c18d9ef6))
+* unicode celcius error ([7202628](https://github.com/oaknational/Oak-Web-Application/commit/72026284e9202b89ff62cc41e180a363423d594d))
+
 ## [1.624.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.624.0...v1.624.1) (2024-11-13)
 
 
