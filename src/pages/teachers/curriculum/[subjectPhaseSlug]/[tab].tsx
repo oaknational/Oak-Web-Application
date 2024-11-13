@@ -41,11 +41,7 @@ import {
   YearSelection,
 } from "@/utils/curriculum/types";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
-import {
-  getUnitFeatures,
-  isCycleTwoEnabled,
-  UnitFeatures,
-} from "@/utils/curriculum/features";
+import { getUnitFeatures, UnitFeatures } from "@/utils/curriculum/features";
 import {
   sortSubjectCategoriesOnFeatures,
   sortYears,
@@ -595,7 +591,7 @@ export const getStaticProps: GetStaticProps<
       }
 
       const validSubjectPhases = await curriculumApi.subjectPhaseOptions({
-        cycle: isCycleTwoEnabled() ? "2" : "1",
+        cycle: "2",
       });
 
       const isValid = isValidSubjectPhaseSlug(validSubjectPhases, slugs);

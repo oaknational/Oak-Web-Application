@@ -1,8 +1,4 @@
-import {
-  isCycleTwoEnabled,
-  useCycleTwoEnabled,
-  getUnitFeatures,
-} from "./features";
+import { getUnitFeatures } from "./features";
 import { Unit } from "./types";
 
 const MOCK_ENABLE_CYCLE_2 = jest.fn();
@@ -21,28 +17,6 @@ jest.mock("./constants", () => ({
 beforeEach(() => {
   jest.resetAllMocks();
   jest.clearAllMocks();
-});
-
-describe("isCycleTwoEnabled", () => {
-  it("true when ENABLE_CYCLE_2 true", () => {
-    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
-    expect(isCycleTwoEnabled()).toEqual(true);
-  });
-
-  it("false when ENABLE_CYCLE_2 false", () => {
-    expect(isCycleTwoEnabled()).toEqual(false);
-  });
-});
-
-describe("useCycleTwoEnabled", () => {
-  it("true when ENABLE_CYCLE_2 true", () => {
-    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
-    expect(useCycleTwoEnabled()).toEqual(true);
-  });
-
-  it("false when ENABLE_CYCLE_2 false", () => {
-    expect(useCycleTwoEnabled()).toEqual(false);
-  });
 });
 
 describe("getUnitFeatures", () => {
