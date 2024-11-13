@@ -84,13 +84,14 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
               <OakFlex>
                 <OakCloudinaryImage
                   cloudinaryId={answerImageData.publicId}
-                  alt=""
+                  alt="An image in a quiz"
                   width={answerImageData.width}
                   height={answerImageData.height}
                   $minWidth={"all-spacing-19"}
                   $maxWidth={scaled[index] ? "all-spacing-21" : "all-spacing-0"}
                   placeholder="oak"
                   sizes={getSizes(["100vw", scaled[index] ? 2400 : 1200])}
+                  role="presentation"
                 />
                 <OakFlex
                   $width={"all-spacing-7"}

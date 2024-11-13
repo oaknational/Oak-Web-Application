@@ -40,13 +40,14 @@ export const getStemImage = ({
     return (
       <OakCloudinaryImage
         cloudinaryId={data.imageObject.publicId}
-        alt={""} // TODO: add alt text
+        alt={"An image in a quiz"}
         width={data.imageObject.width}
         height={data.imageObject.height}
         $minWidth={minWidth}
         $maxWidth={scaled ? "all-spacing-21" : "all-spacing-0"}
         placeholder="oak"
         sizes={getSizes(["100vw", scaled ? 3000 : 1200])}
+        role="presentation"
       />
     );
 };

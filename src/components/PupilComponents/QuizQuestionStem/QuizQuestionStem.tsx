@@ -79,7 +79,7 @@ export const QuizQuestionStem = ({
                     cloudinaryId={stemItem.imageObject.publicId}
                     height={stemItem.imageObject.height}
                     width={stemItem.imageObject.width}
-                    alt={""}
+                    alt={"An image in a quiz"}
                     $maxWidth={[
                       "100vw",
                       scaled ? "all-spacing-21" : "all-spacing-19",
@@ -90,6 +90,7 @@ export const QuizQuestionStem = ({
                       scaled ? 4000 : 1200,
                     ])}
                     $background={"white"}
+                    role="presentation"
                   />
                   <OakFlex
                     $width={"all-spacing-7"}
