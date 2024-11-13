@@ -100,7 +100,13 @@ export default async function compare(
             </style>
             <div style="display: flex;">
             <div style="width: fit-content;">
-              <div style="position: sticky; top: 0; padding:10px">
+              <div style="
+                position: sticky;
+                top: 0;
+                padding: 10px;
+                height: 100vh;
+                overflow-y: auto;
+              ">
                 ${allFiles
                   .map((filename) => {
                     return `<div class="nav-item"><a href="#${filename}">${removeFileExtension(
