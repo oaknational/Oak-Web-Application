@@ -92,7 +92,7 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
               : undefined;
 
           return (
-            <MathJaxWrap>
+            <MathJaxWrap key={`max-jax-wrap-${index}`}>
               <OakQuizCheckBox
                 key={`${questionUid}-answer-${index}`}
                 id={`${questionUid}-answer-${index}`}
