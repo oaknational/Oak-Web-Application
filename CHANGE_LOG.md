@@ -1,3 +1,10 @@
+## [1.625.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.625.0...v1.625.1) (2024-11-13)
+
+
+### Bug Fixes
+
+* **oakradio:** remove explicit tab index from radio ([7510f66](https://github.com/oaknational/Oak-Web-Application/commit/7510f66434356fee00352abfc0ea9562c0f94d36))
+
 # [1.625.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.624.2...v1.625.0) (2024-11-13)
 
 
