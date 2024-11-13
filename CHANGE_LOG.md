@@ -1,3 +1,19 @@
+# [1.626.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.625.1...v1.626.0) (2024-11-13)
+
+
+### Features
+
+* **images:** make quiz image size adjustable ([fd86e16](https://github.com/oaknational/Oak-Web-Application/commit/fd86e16c6635d0b922251e27820502b7d65a9489))
+* **images:** make quiz image size adjustable ([8b90202](https://github.com/oaknational/Oak-Web-Application/commit/8b90202e902865dc5b103c9d3301f5b2df84c99a))
+* **images:** make quiz image size adjustable ([a93a832](https://github.com/oaknational/Oak-Web-Application/commit/a93a832648262916d1c0e4a731acd207bc982654))
+* **images:** make quiz image size adjustable ([08c7604](https://github.com/oaknational/Oak-Web-Application/commit/08c7604426c672ade95c7c2daaafe5488b28461a))
+* **images:** make quiz image size adjustable ([eb6c514](https://github.com/oaknational/Oak-Web-Application/commit/eb6c5145dcf9f57cd4797f9b6fb8e11f31f65292))
+* **images:** make quiz image size adjustable ([441d670](https://github.com/oaknational/Oak-Web-Application/commit/441d6705119743546e6cd590de88b7291c49e581))
+* **images:** merge in main fix test roles ([5ce031f](https://github.com/oaknational/Oak-Web-Application/commit/5ce031ff83ecaba0073ef1879c9d7879e779b0bd))
+* **images:** only use describy when tooltipl open ([dadbb1b](https://github.com/oaknational/Oak-Web-Application/commit/dadbb1b28bfd1a4e32e4ef7d32d48ed370181659))
+* **images:** uncomment pa11y tests ([eb6c943](https://github.com/oaknational/Oak-Web-Application/commit/eb6c943473b22ec03936c9f5ee9edf552348b8e1))
+* **images:** use min width to set size ([1f908bb](https://github.com/oaknational/Oak-Web-Application/commit/1f908bb404170eb4394e2bade3c54a32dd19ce82))
+
 ## [1.625.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.625.0...v1.625.1) (2024-11-13)
 
 
