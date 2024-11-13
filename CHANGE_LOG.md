@@ -1,3 +1,15 @@
+# [1.625.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.624.2...v1.625.0) (2024-11-13)
+
+
+### Bug Fixes
+
+* trigger rebuild ([0337aca](https://github.com/oaknational/Oak-Web-Application/commit/0337acaa9750a2558296311d009f188f7f068a4f))
+
+
+### Features
+
+* offer lower speed in MuxPlayer ([c470db4](https://github.com/oaknational/Oak-Web-Application/commit/c470db4b754fcc436e4062829670524b2348de29))
+
 ## [1.624.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.624.1...v1.624.2) (2024-11-13)
 
 
