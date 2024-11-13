@@ -347,6 +347,11 @@ export default async function generate(
         },
       },
       blockStyling: {
+        normal: () => {
+          return safeXml`
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+          `;
+        },
         heading1: () => {
           return safeXml`
             <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
