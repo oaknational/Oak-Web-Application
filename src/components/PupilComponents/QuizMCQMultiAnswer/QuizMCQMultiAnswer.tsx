@@ -87,10 +87,11 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
                   alt="An image in a quiz"
                   width={answerImageData.width}
                   height={answerImageData.height}
-                  $minWidth={"all-spacing-19"}
-                  $maxWidth={scaled[index] ? "all-spacing-21" : "all-spacing-0"}
+                  $minWidth={
+                    scaled[index] ? "all-spacing-20" : "all-spacing-19"
+                  }
                   placeholder="oak"
-                  sizes={getSizes(["100vw", scaled[index] ? 2400 : 1200])}
+                  sizes={getSizes(["100vw", 1200])}
                   role="presentation"
                 />
                 <OakFlex

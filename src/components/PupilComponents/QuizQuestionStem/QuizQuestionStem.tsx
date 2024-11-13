@@ -80,15 +80,9 @@ export const QuizQuestionStem = ({
                     height={stemItem.imageObject.height}
                     width={stemItem.imageObject.width}
                     alt={"An image in a quiz"}
-                    $maxWidth={[
-                      "100vw",
-                      scaled ? "all-spacing-21" : "all-spacing-19",
-                    ]}
+                    $minWidth={scaled ? "all-spacing-20" : "all-spacing-19"}
                     placeholder="oak"
-                    sizes={getSizes([
-                      scaled ? "800vw" : "100vw",
-                      scaled ? 4000 : 1200,
-                    ])}
+                    sizes={getSizes(["100vw", 1200])}
                     $background={"white"}
                     role="presentation"
                   />

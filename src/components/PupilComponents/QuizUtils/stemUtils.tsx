@@ -43,10 +43,9 @@ export const getStemImage = ({
         alt={"An image in a quiz"}
         width={data.imageObject.width}
         height={data.imageObject.height}
-        $minWidth={minWidth}
-        $maxWidth={scaled ? "all-spacing-21" : "all-spacing-0"}
+        $minWidth={scaled ? "all-spacing-20" : minWidth}
         placeholder="oak"
-        sizes={getSizes(["100vw", scaled ? 3000 : 1200])}
+        sizes={getSizes(["100vw", 1200])}
         role="presentation"
       />
     );
