@@ -107,7 +107,6 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
             <OakQuizRadioButton
               id={`${questionUid}-answer-${i}`}
               key={`${questionUid}-answer-${i}`}
-              tabIndex={i}
               value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
               label={<MathJaxWrap>{label?.text}</MathJaxWrap>}
               feedback={feedback}
