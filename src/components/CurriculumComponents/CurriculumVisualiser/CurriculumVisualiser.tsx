@@ -334,7 +334,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   </OakBox>
                 )}
                 {childSubjects.length > 0 && (
-                  <OakBox role="group" aria-label="Child Subjects">
+                  <OakBox
+                    role="group"
+                    aria-label="Child Subjects"
+                    $mb="space-between-ssx"
+                  >
                     {[...childSubjects]
                       .sort(sortChildSubjects)
                       .map((subject: Subject) => {
@@ -345,17 +349,25 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                         );
 
                         return (
-                          <Button
-                            $mb={20}
-                            $mr={20}
-                            background={isSelected ? "black" : "white"}
+                          <FocusIndicator
                             key={subject.subject_slug}
-                            label={subject.subject}
-                            onClick={() => handleSelectSubject(year, subject)}
-                            size="small"
-                            data-testid="subject-button"
-                            aria-pressed={isSelected}
-                          />
+                            $display={"inline-block"}
+                            $mb="space-between-ssx"
+                            $mr="space-between-ssx"
+                            $background={isSelected ? "black" : "white"}
+                            $color={isSelected ? "white" : "black"}
+                            $borderRadius={"border-radius-s"}
+                            $font="heading-7"
+                            disableMouseHover={isSelected}
+                          >
+                            <StyledButton
+                              data-testid="subject-button"
+                              aria-pressed={isSelected}
+                              onClick={() => handleSelectSubject(year, subject)}
+                            >
+                              {subject.subject}
+                            </StyledButton>
+                          </FocusIndicator>
                         );
                       })}
                   </OakBox>
