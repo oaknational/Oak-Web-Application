@@ -1,3 +1,30 @@
+## [1.624.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.624.0...v1.624.1) (2024-11-13)
+
+
+### Bug Fixes
+
+* **quiz:** add generic alt text to quiz images ([2faebf0](https://github.com/oaknational/Oak-Web-Application/commit/2faebf0067b32e643b6e9bbdb021a80634df746d))
+* **quiz:** add generic alt text to quiz images ([d68ed33](https://github.com/oaknational/Oak-Web-Application/commit/d68ed33607e4884c3fe46f48eef90273bca3c885))
+
+# [1.624.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.623.0...v1.624.0) (2024-11-12)
+
+
+### Bug Fixes
+
+* allow curric automation compare sidebar to scroll ([0da721b](https://github.com/oaknational/Oak-Web-Application/commit/0da721bec0f75f8f05cff2277545cd516357b5ee))
+
+
+### Features
+
+* added tiers to curric automation script ([a1e3721](https://github.com/oaknational/Oak-Web-Application/commit/a1e3721b694a701ea8d76ccf32ab487ae47cb547))
+
+# [1.623.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.4...v1.623.0) (2024-11-12)
+
+
+### Features
+
+* added cycle 2 subjects to curric automate script ([ff042f2](https://github.com/oaknational/Oak-Web-Application/commit/ff042f2adf2e97120b0cce58e0da7d0e2fcb0b40))
+
 ## [1.622.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.3...v1.622.4) (2024-11-12)
 
 
