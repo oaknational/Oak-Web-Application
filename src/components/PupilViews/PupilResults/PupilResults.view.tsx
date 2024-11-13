@@ -28,13 +28,22 @@ type PupilViewsResultsProps = {
 
 type QuizResultsProps = {
   index: number;
+  displayIndex: number;
   questionResult: QuestionState;
   quizQuestionArray: QuestionsArray;
   lessonSection: "exit-quiz" | "starter-quiz";
 };
 
 const QuizSectionRender = (props: QuizResultsProps) => {
-  const { index, questionResult, quizQuestionArray, lessonSection } = props;
+  const {
+    index,
+    displayIndex,
+    questionResult,
+    quizQuestionArray,
+    lessonSection,
+  } = props;
+  const isHint = questionResult.mode === "init";
+
   return (
     <OakFlex
       $position={"relative"}
@@ -45,6 +54,7 @@ const QuizSectionRender = (props: QuizResultsProps) => {
       <OakFlex $pb={["inner-padding-xl", "inner-padding-none"]}>
         <QuizResultInner
           index={index}
+          displayIndex={displayIndex}
           questionResult={questionResult}
           quizArray={quizQuestionArray}
           lessonSection={lessonSection}
@@ -58,14 +68,16 @@ const QuizSectionRender = (props: QuizResultsProps) => {
         $pl={["inner-padding-none", "inner-padding-xl"]}
         $ml={["space-between-none", "space-between-s"]}
       />
-      <OakJauntyAngleLabel
-        $position={"absolute"}
-        $bottom={"all-spacing-5"}
-        $right={"all-spacing-0"}
-        $background={"bg-neutral"}
-        $font={"heading-light-7"}
-        label={`Question hint used - ${questionResult.offerHint}`}
-      />
+      {!isHint && (
+        <OakJauntyAngleLabel
+          $position={"absolute"}
+          $bottom={"all-spacing-5"}
+          $right={"all-spacing-0"}
+          $background={"bg-neutral"}
+          $font={"heading-light-7"}
+          label={`Question hint used - ${questionResult.offerHint}`}
+        />
+      )}
     </OakFlex>
   );
 };
@@ -92,6 +104,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
       : 0;
 
   const iconSlug = `subject-${subjectSlug}`;
+  let questionIndex = 1;
 
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -128,14 +141,20 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
               </>
             )}
             {starterQuiz?.questionResults &&
-              starterQuiz.questionResults.map((questionResult, index) => (
-                <QuizSectionRender
-                  index={index}
-                  questionResult={questionResult}
-                  quizQuestionArray={starterQuizQuestionsArray}
-                  lessonSection={"starter-quiz"}
-                />
-              ))}
+              starterQuiz.questionResults.map((questionResult, index) => {
+                const displayIndex =
+                  questionResult.mode === "init" ? 999 : questionIndex++;
+
+                return (
+                  <QuizSectionRender
+                    index={index}
+                    displayIndex={displayIndex}
+                    questionResult={questionResult}
+                    quizQuestionArray={starterQuizQuestionsArray}
+                    lessonSection={"starter-quiz"}
+                  />
+                );
+              })}
 
             {exitQuiz?.questionResults && (
               <>
@@ -149,14 +168,20 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
               </>
             )}
             {exitQuiz?.questionResults &&
-              exitQuiz.questionResults.map((questionResult, index) => (
-                <QuizSectionRender
-                  index={index}
-                  questionResult={questionResult}
-                  quizQuestionArray={exitQuizQuestionsArray}
-                  lessonSection={"exit-quiz"}
-                />
-              ))}
+              exitQuiz.questionResults.map((questionResult, index) => {
+                const displayIndex =
+                  questionResult.mode === "init" ? 999 : questionIndex++;
+
+                return (
+                  <QuizSectionRender
+                    index={index}
+                    displayIndex={displayIndex}
+                    questionResult={questionResult}
+                    quizQuestionArray={exitQuizQuestionsArray}
+                    lessonSection={"exit-quiz"}
+                  />
+                );
+              })}
             <CopyrightNotice isLegacyLicense={isLegacy} />
           </OakFlex>
         </OakMaxWidth>

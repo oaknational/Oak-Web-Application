@@ -17,13 +17,14 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 
 type QuizQuestionStemProps = {
   questionStem: (ImageItem | TextItem)[];
-  index: number;
+  displayIndex: number;
 };
 
 export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
-  const { questionStem, index } = props;
+  const { questionStem, displayIndex } = props;
 
-  const displayNumber = `Q${index + 1}.`;
+  const isHint = displayIndex === 999;
+  const questionNumber = isHint ? "" : `Q${displayIndex}.`;
 
   return (
     <MathJaxWrap>
@@ -37,10 +38,10 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
         <OakFlex key="stem-header">
           {questionStem[0]?.type === "text" && (
             <OakSpan
-              key={`q-${displayNumber}-stem-element-0`}
+              key={`q-${displayIndex}-stem-element-0`}
               $font={"body-2-bold"}
             >
-              {displayNumber}{" "}
+              {questionNumber}{" "}
               {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
             </OakSpan>
           )}
@@ -50,7 +51,7 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
           if (stemItem.type === "text" && i > 0) {
             return (
               <OakSpan
-                key={`q-${displayNumber}-stem-element-${i}`}
+                key={`q-${displayIndex}-stem-element-${i}`}
                 $font={"body-2-bold"}
               >
                 {shortAnswerTitleFormatter(removeMarkdown(stemItem.text))}
@@ -58,7 +59,7 @@ export const QuizResultQuestionStem = (props: QuizQuestionStemProps) => {
             );
           } else if (stemItem.type === "image") {
             return (
-              <OakFlex key={`q-${displayNumber}-stem-element-${i}`}>
+              <OakFlex key={`q-${displayIndex}-stem-element-${i}`}>
                 {stemItem.imageObject.publicId && (
                   <OakCloudinaryImage
                     cloudinaryId={stemItem.imageObject.publicId}

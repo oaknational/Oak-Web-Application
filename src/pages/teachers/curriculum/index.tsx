@@ -172,7 +172,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               $position={"relative"}
             >
               <OakHeading tag="h2" $font={"heading-4"} $mb="space-between-m">
-                Our blogs on curriculum design
+                Our blogs on curriculum
               </OakHeading>
               {curriculumBlogs.length ? (
                 <>
@@ -238,6 +238,10 @@ export type Client = typeof CMSClient;
 export async function fetchCurriculumPageBlogs(
   CMSClient: Client,
 ): Promise<SerializedBlogPostPreview[]> {
+  const newCurriculumBlog = await CMSClient.blogPostBySlug(
+    "our-new-curriculum-plans-are-here",
+  );
+
   const subjectCurriculumBlog = await CMSClient.blogPostBySlug(
     "how-to-design-a-subject-curriculum",
   );
@@ -253,14 +257,18 @@ export async function fetchCurriculumPageBlogs(
   const blogs = [];
 
   if (
+    newCurriculumBlog !== null &&
     subjectCurriculumBlog !== null &&
     refreshCurriculumBlog !== null &&
     designUnitBlog !== null
   ) {
     blogs.push(
-      [subjectCurriculumBlog, refreshCurriculumBlog, designUnitBlog].map(
-        serializeDate,
-      ),
+      [
+        newCurriculumBlog,
+        subjectCurriculumBlog,
+        refreshCurriculumBlog,
+        designUnitBlog,
+      ].map(serializeDate),
     );
   } else {
     throw new Error("Missing blog post");
