@@ -1,3 +1,10 @@
+## [1.626.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.2...v1.626.3) (2024-11-14)
+
+
+### Bug Fixes
+
+* only show ks4 in curric header when ks4 exists ([33fea86](https://github.com/oaknational/Oak-Web-Application/commit/33fea860f71066c7507224cd93d31a9d7c907ecc))
+
 ## [1.626.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.1...v1.626.2) (2024-11-14)
 
 
