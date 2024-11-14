@@ -61,6 +61,7 @@ const unitListingQuery =
     );
 
     const reshapedUnits = reshapeUnitData(unitsCamel);
+
     const yearGroups = getAllYearGroups(reshapedUnits);
     const learningThemes = getAllLearningThemes(reshapedUnits);
     const subjectCategories = getAllCategories(reshapedUnits);

@@ -37,7 +37,9 @@ export const reshapeUnitData = (rawUnits: UnitsCamel): GroupedUnitsSchema => {
     groupBy(
       processedUnits,
       (unit) =>
-        unit.isOptionalityUnit ? unit.nullTitle + unit.year : unit.slug, // legacy units occasionally have the same title so we need to check they are optionality before grouping them (slugs are always unique)
+        unit.isOptionalityUnit
+          ? unit.nullTitle + unit.year
+          : unit.slug + unit.year, // legacy units occasionally have the same title so we need to check they are optionality before grouping them (slugs are always unique)
     ),
   );
 
