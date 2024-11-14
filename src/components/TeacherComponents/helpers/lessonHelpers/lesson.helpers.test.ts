@@ -3,6 +3,8 @@ import {
   getCommonPathway,
   getPageLinksForLesson,
   groupLessonPathways,
+  getLessonMediaBreadCrumb,
+  getBreadCrumbForSpecialistMedia,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   quizQuestions,
@@ -650,5 +652,78 @@ describe("createAttributionObject", () => {
   it("when no image metadata is present function returns an empty array", () => {
     const testAttribution = createAttributionObject(quizQuestionsNoImages);
     expect(testAttribution).toEqual([]);
+  });
+});
+
+describe("getLessonMediaBreadCrumb", () => {
+  it("when programmeSlug and unitSlug are passed", () => {
+    expect(
+      getLessonMediaBreadCrumb({
+        lessonSlug: "lesson-1",
+        programmeSlug: "programme-2",
+        unitSlug: "unit-3",
+        disabled: false,
+      }),
+    ).toEqual({
+      oakLinkProps: {
+        page: "lesson-media",
+        programmeSlug: "programme-2",
+        unitSlug: "unit-3",
+        lessonSlug: "lesson-1",
+      },
+      label: "Extra video and audio",
+      disabled: false,
+    });
+  });
+
+  it("when programmeSlug and unitSlug are null", () => {
+    expect(
+      getLessonMediaBreadCrumb({
+        lessonSlug: "lesson-1",
+        programmeSlug: null,
+        unitSlug: null,
+      }),
+    ).toEqual({
+      oakLinkProps: {
+        page: "lesson-media-canonical",
+        lessonSlug: "lesson-1",
+      },
+      label: "Extra video and audio",
+      disabled: undefined,
+    });
+  });
+});
+
+describe("getBreadCrumbForSpecialistMedia", () => {
+  it("when programmeSlug and unitSlug are passed", () => {
+    expect(
+      getBreadCrumbForSpecialistMedia({
+        lessonSlug: "lesson-1",
+        programmeSlug: "programme-2",
+        unitSlug: "unit-3",
+        disabled: false,
+      }),
+    ).toEqual([
+      {
+        disabled: false,
+        label: "Extra video and audio",
+        oakLinkProps: {
+          lessonSlug: "lesson-1",
+          page: "specialist-lesson-media",
+          programmeSlug: "programme-2",
+          unitSlug: "unit-3",
+        },
+      },
+    ]);
+  });
+
+  it("when programmeSlug and unitSlug are null", () => {
+    expect(
+      getBreadCrumbForSpecialistMedia({
+        lessonSlug: "lesson-1",
+        programmeSlug: null,
+        unitSlug: null,
+      }),
+    ).toEqual([]);
   });
 });
