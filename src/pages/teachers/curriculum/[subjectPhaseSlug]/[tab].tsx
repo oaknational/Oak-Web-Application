@@ -56,6 +56,7 @@ import {
   isValidSubjectPhaseSlug,
   parseSubjectPhaseSlug,
 } from "@/utils/curriculum/slugs";
+import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
 
 export type CurriculumUnitsYearGroup = {
   units: Unit[];
@@ -584,7 +585,12 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
-      const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
+      let curriculumUnitsTabData;
+      if (ENABLE_NEW_CURRIC_MV) {
+        curriculumUnitsTabData = await curriculumApi.curriculumSequence(slugs);
+      } else {
+        curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
+      }
 
       // Sort the units to have examboard versions first - this is so non-examboard units are removed
       // in the visualiser

@@ -16,6 +16,7 @@ import docx, {
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 import { logErrorMessage } from "@/utils/curriculum/testing";
+import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
 
 export const curriculumDownloadQuerySchema = z.object({
   mvRefreshTime: z.string(),
@@ -67,11 +68,19 @@ async function getData(opts: {
   const dataWarnings: string[] = [];
 
   try {
-    const curriculumDataUnsorted = await curriculumApi2023.curriculumUnits({
+    const queryOpts = {
       subjectSlug,
       phaseSlug,
       ks4OptionSlug: ks4OptionSlug ?? null,
-    });
+    };
+    let curriculumDataUnsorted;
+    if (ENABLE_NEW_CURRIC_MV) {
+      curriculumDataUnsorted =
+        await curriculumApi2023.curriculumSequence(queryOpts);
+    } else {
+      curriculumDataUnsorted =
+        await curriculumApi2023.curriculumUnits(queryOpts);
+    }
 
     // HACK: This sorts by examboard to push NULLs to the bottom of the list, to fix picking up the correct `unit_options`
     curriculumData = {
