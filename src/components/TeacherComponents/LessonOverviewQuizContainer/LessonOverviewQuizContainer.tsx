@@ -19,7 +19,7 @@ const LessonOverviewQuizContainer: FC<QuizProps> = (props) => {
         $justifyContent={"center"}
         $width={"100%"}
         $position={"relative"}
-        $ba={"border-solid-xl"}
+        $ba={"border-solid-m"}
       >
         <QuizQuestionsList {...props} />
       </OakFlex>

@@ -25,7 +25,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
       ? `https://docs.google.com/document/d/${slidesId}/pub?embedded=true`
       : `https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp`;
   return (
-    <OakBox $ba={["border-solid-xl"]} $width={"100%"}>
+    <OakBox $ba={["border-solid-m"]} $width={"100%"}>
       <AspectRatio ratio={isWorksheetPortrait ? "2:3" : "16:9"}>
         <iframe
           src={srcUrl}
