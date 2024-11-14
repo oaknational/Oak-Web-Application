@@ -309,6 +309,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       >
                         <AspectRatio ratio={"16:9"}>
                           <iframe
+                            tabIndex={-1}
                             data-testid="lesson-guide-iframe"
                             src={`${previewLessonGuideUrl}`}
                             title={`lesson guide: ${lessonTitle}`}
