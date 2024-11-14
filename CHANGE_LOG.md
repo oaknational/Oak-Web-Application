@@ -1,3 +1,24 @@
+## [1.626.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.2...v1.626.3) (2024-11-14)
+
+
+### Bug Fixes
+
+* only show ks4 in curric header when ks4 exists ([33fea86](https://github.com/oaknational/Oak-Web-Application/commit/33fea860f71066c7507224cd93d31a9d7c907ecc))
+
+## [1.626.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.1...v1.626.2) (2024-11-14)
+
+
+### Bug Fixes
+
+* rename 'overview' to 'explainer' in curriculum downloads (docx) ([cda353f](https://github.com/oaknational/Oak-Web-Application/commit/cda353f99314c997aaeba0b549fe88d11881bd7a))
+
+## [1.626.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.0...v1.626.1) (2024-11-13)
+
+
+### Bug Fixes
+
+* explainer font incorrectly using Aptos ([6c2bfff](https://github.com/oaknational/Oak-Web-Application/commit/6c2bfff0052e7da5ac6c73228c57df1ff5bd3269))
+
 # [1.626.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.625.1...v1.626.0) (2024-11-13)
 
 
