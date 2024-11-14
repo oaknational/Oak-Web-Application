@@ -553,7 +553,7 @@ export function formatCurriculumUnitsData(
   const { units } = data;
   const features = getUnitFeatures(units[0]);
   // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
-  const filteredUnits = sanatiseUnits(units);
+  const filteredUnits = ENABLE_NEW_CURRIC_MV ? units : sanatiseUnits(units);
   const yearData = createUnitsListingByYear(filteredUnits);
   const threadOptions = createThreadOptions(filteredUnits);
   const yearOptions = createYearOptions(filteredUnits);
