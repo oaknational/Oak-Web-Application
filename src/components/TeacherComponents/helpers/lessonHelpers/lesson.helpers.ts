@@ -159,7 +159,7 @@ export const getLessonMediaBreadCrumb = ({
         page: "lesson-media-canonical",
         lessonSlug,
       },
-      label: "Media",
+      label: "Extra video and audio",
       disabled,
     };
   }
@@ -247,7 +247,7 @@ export const getBreadCrumbForSpecialistMedia = ({
             unitSlug,
             lessonSlug,
           },
-          label: "Media",
+          label: "Extra video and audio",
           disabled,
         }
       : null,

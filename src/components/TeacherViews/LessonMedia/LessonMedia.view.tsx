@@ -15,7 +15,7 @@ import {
   lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
 import { LEGACY_COHORT } from "@/config/cohort";
-// import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
+import { SpecialistLessonMedia } from "@/node-lib/curriculum-api-2023/queries/specialistLessonMedia/specialistLessonMedia.schema";
 import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type BaseLessonMedia = {
@@ -40,7 +40,7 @@ type NonCanonicalLesson = BaseLessonMedia & {
   updatedAt: string;
 } & LessonPathway;
 
-// type SpecialistLesson = SpecialistLessonDownloads["lesson"];
+type SpecialistLesson = SpecialistLessonMedia["lesson"];
 
 type LessonMediaProps =
   | {
@@ -50,11 +50,11 @@ type LessonMediaProps =
   | {
       isCanonical: false;
       lesson: NonCanonicalLesson;
+    }
+  | {
+      isCanonical: false;
+      lesson: SpecialistLesson;
     };
-// | {
-//     isCanonical: false;
-//     lesson: SpecialistLesson;
-//   };
 
 export function LessonMedia(props: LessonMediaProps) {
   const { isCanonical, lesson } = props;
