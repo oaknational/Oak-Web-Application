@@ -16,11 +16,11 @@ describe("curriculum sequence query", () => {
     }).rejects.toThrow(`The params provided are incorrect`);
   });
 
-  test.skip("throws resource not found error if no rows are returned", async () => {
+  test("throws resource not found error if no rows are returned", async () => {
     await expect(async () => {
       await curriculumSequenceQuery({
         ...sdk,
-        curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
+        curriculumSequence: jest.fn(() => Promise.resolve({ units: [] })),
       })({
         subjectSlug: "english",
         phaseSlug: "secondary",
