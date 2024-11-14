@@ -375,7 +375,13 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:r>
-        <w:rPr></w:rPr>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+        </w:rPr>
         <w:t><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
@@ -423,7 +429,13 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:r>
-        <w:rPr></w:rPr>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+        </w:rPr>
         <w:t><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
@@ -471,7 +483,13 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:r>
-        <w:rPr></w:rPr>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+        </w:rPr>
         <w:t><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
@@ -520,7 +538,13 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:r>
-        <w:rPr></w:rPr>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+        </w:rPr>
         <w:t><![CDATA[test]]></w:t>
       </w:r>
     </w:p>

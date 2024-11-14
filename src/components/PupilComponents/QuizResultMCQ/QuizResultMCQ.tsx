@@ -42,7 +42,7 @@ export const QuizResultMCQ = ({
     const standardText = isText(text) && text?.text ? text.text : undefined;
 
     return (
-      <MathJaxWrap>
+      <MathJaxWrap key={`max-jax-wrap-${index}`}>
         <OakQuizResultItem
           key={index}
           standardText={standardText}
