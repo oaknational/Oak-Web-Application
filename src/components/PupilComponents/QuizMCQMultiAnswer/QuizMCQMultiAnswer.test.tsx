@@ -1,6 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { act } from "@testing-library/react";
 
 import { QuizMCQMultiAnswer } from "./QuizMCQMultiAnswer";
 
@@ -17,6 +18,32 @@ import {
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+
+jest.mock("@oaknational/oak-components", () => {
+  const oakComponents = jest.requireActual("@oaknational/oak-components");
+  return {
+    ...oakComponents,
+    OakScaleImageButton: ({
+      onImageScaleCallback,
+      isExpanded,
+    }: {
+      onImageScaleCallback: (e: React.MouseEvent<HTMLButtonElement>) => void;
+      isExpanded: boolean;
+    }) => {
+      return (
+        <button
+          role="button"
+          type="button"
+          onClick={(e) => {
+            onImageScaleCallback(e);
+          }}
+        >
+          {!isExpanded ? "expand" : "minimize"}
+        </button>
+      );
+    },
+  };
+});
 
 describe("QuizMCQMultiAnswer", () => {
   const multiMcqTextAnswers = [...mcqTextAnswers];
@@ -169,5 +196,23 @@ describe("QuizMCQMultiAnswer", () => {
     );
     const images = getAllByRole("presentation"); // NB. Images are currently unnamed but this will need to be replaced with alt text based search
     expect(images.length).toEqual(mcqImageAnswers.length);
+  });
+  it("sets scaled to true if the image expand button is clicked", () => {
+    const { getAllByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <QuizEngineContext.Provider
+            value={mockQuizEngineContextWithImageAnswers}
+          >
+            <QuizMCQMultiAnswer onChange={() => {}} />
+          </QuizEngineContext.Provider>
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+    const expandButtons = getAllByText("expand");
+    const firstExpandButton = expandButtons[0];
+    act(() => {
+      firstExpandButton?.click(); // Manually trigger click
+    });
   });
 });

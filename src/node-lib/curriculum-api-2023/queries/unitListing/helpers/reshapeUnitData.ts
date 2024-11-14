@@ -34,7 +34,13 @@ export const reshapeUnitData = (rawUnits: UnitsCamel): GroupedUnitsSchema => {
 
   // group optionality units
   const groupedUnits = values(
-    groupBy(processedUnits, (unit) => unit.nullTitle + unit.year),
+    groupBy(
+      processedUnits,
+      (unit) =>
+        unit.isOptionalityUnit
+          ? unit.nullTitle + unit.year
+          : unit.slug + unit.year, // legacy units occasionally have the same title so we need to check they are optionality before grouping them (slugs are always unique)
+    ),
   );
 
   const sortedUnits = groupedUnits
