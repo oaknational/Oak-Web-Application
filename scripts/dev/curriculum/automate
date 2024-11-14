@@ -26,6 +26,10 @@ yargs(hideBin(process.argv))
       .option('login-url', {
         describe: 'URL to login with',
       })
+      .option('remove-options', {
+        describe: 'URL to login with',
+        type: "boolean",
+      })
   }, async (argv) => {
     let label;
     if (argv.label) {
@@ -34,7 +38,7 @@ yargs(hideBin(process.argv))
       }
       label = argv.label.replace(/^:/, "")
     }
-    await screenshot(argv.basepath, {loginUrl: argv.loginUrl, label});
+    await screenshot(argv.basepath, {loginUrl: argv.loginUrl, label, removeOptionsElement: argv.removeOptions});
   })
   .command('compare <basepath> <targetpath>', 'compare two sets of screenshots', (yargs) => {
     return yargs

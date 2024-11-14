@@ -347,6 +347,11 @@ export default async function generate(
         },
       },
       blockStyling: {
+        normal: () => {
+          return safeXml`
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+          `;
+        },
         heading1: () => {
           return safeXml`
             <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
@@ -414,7 +419,7 @@ export default async function generate(
                   <w:color w:val="222222" />
                   <w:sz w:val="56" />
                 </w:rPr>
-                <w:t>${cdata(`${data.subjectTitle} curriculum overview`)}</w:t>
+                <w:t>${cdata(`${data.subjectTitle} curriculum explainer`)}</w:t>
               </w:r>
             `,
           )}
