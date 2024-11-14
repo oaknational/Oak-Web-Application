@@ -1,9 +1,10 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import {
   OakRadioGroup,
   OakQuizRadioButton,
   OakFlex,
   OakJauntyAngleLabel,
+  OakScaleImageButton,
 } from "@oaknational/oak-components";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
@@ -35,6 +36,12 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
     () => currentQuestionData?.answers?.["multiple-choice"] ?? [],
     [currentQuestionData],
   );
+  const [scaled, setScaled] = useState<boolean[]>(answers.map(() => false));
+  const handleSetScale = (index: number, newValue: boolean) => {
+    setScaled((prevStates) =>
+      prevStates.map((state, i) => (i === index ? newValue : state)),
+    );
+  };
   const questionState = quizEngineContext.questionState[currentQuestionIndex];
   const questionUid = currentQuestionData?.questionUid;
 
@@ -67,11 +74,30 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
       >
         {answers?.map((answer, i) => {
           const label = answer.answer.find(isText);
-
           const image = getStemImage({
             stem: answer.answer.filter(isImage),
             minWidth: "all-spacing-19",
+            scaled: scaled[i] ? true : false,
           });
+          const ResizeableImage = image ? (
+            <OakFlex>
+              {image}
+              <OakFlex
+                $width={"all-spacing-7"}
+                $height={"all-spacing-7"}
+                $pointerEvents={"auto"}
+                $display={["none", "flex"]}
+              >
+                <OakScaleImageButton
+                  onImageScaleCallback={(e) => {
+                    e.stopPropagation();
+                    handleSetScale(i, !scaled[i]);
+                  }}
+                  isExpanded={scaled[i] ? true : false}
+                />
+              </OakFlex>
+            </OakFlex>
+          ) : undefined;
 
           const feedback = Array.isArray(questionState.feedback)
             ? questionState.feedback[i]
@@ -81,11 +107,10 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
             <OakQuizRadioButton
               id={`${questionUid}-answer-${i}`}
               key={`${questionUid}-answer-${i}`}
-              tabIndex={i}
               value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
               label={<MathJaxWrap>{label?.text}</MathJaxWrap>}
               feedback={feedback}
-              image={image}
+              image={ResizeableImage}
               isHighlighted={questionState?.mode === "incomplete"}
             />
           );

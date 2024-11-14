@@ -255,6 +255,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         envKey={envKey}
         metadata={metadata}
         playbackId={playbackId}
+        playbackRates={[0.5, 0.7, 1, 1.2, 1.5, 1.7, 2]}
         start-time={startTime}
         tokens={tokens}
         thumbnailTime={thumbTime || undefined}
