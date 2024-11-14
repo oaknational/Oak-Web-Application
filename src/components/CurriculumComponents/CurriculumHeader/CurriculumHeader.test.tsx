@@ -96,4 +96,11 @@ describe("Component - Curriculum Header", () => {
     const examboardMetadata = getByTestId("examboard-metadata");
     expect(examboardMetadata).toHaveTextContent("AQA (KS4)");
   });
+
+  test("no KS4 text when not ks4 keystage", () => {
+    const { baseElement } = renderComponent({
+      keyStages: ["ks3"],
+    });
+    expect(baseElement).not.toHaveTextContent("AQA (KS4)");
+  });
 });
