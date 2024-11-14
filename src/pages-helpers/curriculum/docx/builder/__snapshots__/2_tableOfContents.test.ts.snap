@@ -452,7 +452,7 @@ exports[`2_tableOfContents simple 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Physical education curriculum overview]]></w:t>
+          <w:t><![CDATA[Physical education curriculum explainer]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>

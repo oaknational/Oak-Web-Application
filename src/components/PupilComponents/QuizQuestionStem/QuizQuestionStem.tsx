@@ -1,6 +1,8 @@
+import React, { useEffect, useState } from "react";
 import {
   OakCloudinaryImage,
   OakFlex,
+  OakScaleImageButton,
   OakSpan,
 } from "@oaknational/oak-components";
 
@@ -23,7 +25,11 @@ export const QuizQuestionStem = ({
   index: number;
   takeFullHeight?: boolean;
 }) => {
+  const [scaled, setScaled] = useState(false);
   const displayNumber = `Q${index + 1}.`;
+  useEffect(() => {
+    setScaled(false);
+  }, [questionStem]);
 
   return (
     <OakFlex
@@ -68,16 +74,32 @@ export const QuizQuestionStem = ({
               key={`q-${displayNumber}-stem-element-${i}`}
             >
               {stemItem.imageObject.publicId && (
-                <OakCloudinaryImage
-                  cloudinaryId={stemItem.imageObject.publicId}
-                  height={stemItem.imageObject.height}
-                  width={stemItem.imageObject.width}
-                  alt={""}
-                  $minWidth={"all-spacing-19"}
-                  placeholder="oak"
-                  sizes={getSizes(["100vw", 1200])}
-                  $background={"white"}
-                />
+                <OakFlex>
+                  <OakCloudinaryImage
+                    cloudinaryId={stemItem.imageObject.publicId}
+                    height={stemItem.imageObject.height}
+                    width={stemItem.imageObject.width}
+                    alt={"An image in a quiz"}
+                    $minWidth={scaled ? "all-spacing-20" : "all-spacing-19"}
+                    placeholder="oak"
+                    sizes={getSizes(["100vw", 1200])}
+                    $background={"white"}
+                    role="presentation"
+                  />
+                  <OakFlex
+                    $width={"all-spacing-7"}
+                    $height={"all-spacing-7"}
+                    $pointerEvents={"auto"}
+                  >
+                    <OakScaleImageButton
+                      onImageScaleCallback={(e) => {
+                        e.stopPropagation();
+                        setScaled(!scaled);
+                      }}
+                      isExpanded={scaled}
+                    />
+                  </OakFlex>
+                </OakFlex>
               )}
             </OakFlex>
           );
