@@ -305,6 +305,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         $width={"100%"}
                         $ba={"border-solid-xl"}
                         style={{ height: "100%" }}
+                        $position={"relative"}
                       >
                         <AspectRatio ratio={"16:9"}>
                           <iframe
