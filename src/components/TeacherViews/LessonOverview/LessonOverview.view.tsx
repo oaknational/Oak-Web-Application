@@ -192,7 +192,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const showShare =
     !isSpecialist && keyStageSlug !== "early-years-foundation-stage";
 
-  // TODO: Currently lessonGuideUrl is in edit mode, will be changed to preview when published
+  // TODO: Currently lessonGuideUrl is in edit mode, once published remove
   const getPreviewUrl = (url: string): string => {
     return url.replace(/\/edit.*$/, "/preview");
   };

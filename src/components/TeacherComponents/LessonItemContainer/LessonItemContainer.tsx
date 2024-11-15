@@ -84,6 +84,7 @@ export const LessonItemContainer = forwardRef<
 
   const skipContentAnchor =
     anchorId === "video" ||
+    anchorId === "lesson-guide" ||
     anchorId === "worksheet" ||
     anchorId === "slide-deck"
       ? pageLinks[pageLinks.findIndex((link) => link.anchorId === anchorId) + 1]
