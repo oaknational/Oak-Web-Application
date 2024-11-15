@@ -1,21 +1,23 @@
 import { z } from "zod";
-import { syntheticUnitvariantLessonsByKsSchemaOld } from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 
 import { Sdk } from "../../sdk";
 import OakError from "../../../../errors/OakError";
 import { lessonListSchema } from "../../shared.schema";
 import { toSentenceCase } from "../../helpers";
 import { LessonListingQuery } from "../../generated/sdk";
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 
 import lessonListingSchema, {
   LessonListingPageData,
 } from "./lessonListing.schema";
 
-const partialSyntheticUnitvariantLessonsSchema =
-  syntheticUnitvariantLessonsByKsSchemaOld.omit({
-    null_unitvariant: true,
-    unitvariant_id: true,
-  });
+const partialSyntheticUnitvariantLessonsSchema = z.object({
+  ...syntheticUnitvariantLessonsSchema.omit({
+    supplementary_data: true,
+  }).shape,
+  order_in_unit: z.number(),
+});
 
 type PartialSyntheticUnitvariantLessons = z.infer<
   typeof partialSyntheticUnitvariantLessonsSchema
@@ -46,7 +48,7 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
         presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
         worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
         hasCopyrightMaterial,
-        orderInUnit: lesson.supplementary_data.order_in_unit,
+        orderInUnit: lesson.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
       };
       return transformedLesson;
@@ -81,11 +83,20 @@ const lessonListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string; unitSlug: string }) => {
     const res = await sdk.lessonListing(args);
 
-    const [unit] = res.unit;
+    const modifiedUnit = applyGenericOverridesAndExceptions<
+      LessonListingQuery["unit"][number]
+    >({
+      journey: "pupil",
+      queryName: "pupilLessonListingQuery",
+      browseData: res.unit,
+    });
 
-    if (!unit) {
+    if (modifiedUnit.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
+
+    const [unit] = modifiedUnit;
+
     const unitLessons = getTransformedLessons(res);
     const parsedLessons = lessonListSchema.parse(unitLessons);
     const parsedUnit = partialSyntheticUnitvariantLessonsSchema.parse(unit);
