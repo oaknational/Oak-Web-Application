@@ -1,4 +1,4 @@
-import React, { FC, useState, useId, useRef } from "react";
+import { FC, useState, useId, useRef } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -1322,7 +1322,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $right="all-spacing-0"
                 $pr="inner-padding-m"
                 $alignContent="center"
-                $maxWidth="all-spacing-15"
+                $maxWidth={["all-spacing-15", "all-spacing-17"]}
                 $width="fit-content"
                 $height="100%"
                 $display={["none", "block"]}
