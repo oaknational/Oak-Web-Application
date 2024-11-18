@@ -4,7 +4,6 @@ import { GetServerSideProps } from "next";
 import { getServerSideSitemap } from "next-sitemap";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 
 /**
  * Get all curriculum pages and construct sitemap entries for them.
@@ -16,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const basePath = "teachers/curriculum";
 
   const curriculumResult = await curriculumApi2023.subjectPhaseOptions({
-    cycle: isCycleTwoEnabled() ? "2" : "1",
+    cycle: "2",
   });
 
   const curriculumPathSlugs: string[] = [];
