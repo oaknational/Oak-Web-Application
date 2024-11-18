@@ -1,7 +1,4 @@
-import {
-  syntheticUnitvariantLessonsByKsFixture,
-  syntheticUnitvariantLessonsFixture,
-} from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
 
@@ -30,7 +27,7 @@ describe("lessonListing()", () => {
         ...sdk,
         lessonListing: jest.fn(() =>
           Promise.resolve({
-            unit: [syntheticUnitvariantLessonsFixture()],
+            unit: [syntheticUnitvariantLessonsByKsFixture()],
           }),
         ),
       })({
@@ -71,9 +68,9 @@ describe("lessonListing()", () => {
       });
     });
     test("it returns lessons in the correct order", async () => {
-      const lessonListingFixture2 = syntheticUnitvariantLessonsFixture({
+      const lessonListingFixture2 = syntheticUnitvariantLessonsByKsFixture({
         overrides: {
-          supplementary_data: { unit_order: 2, order_in_unit: 2 },
+          order_in_unit: 2,
           lesson_data: {
             lesson_id: 1,
             lesson_uid: "lesson-uid",
@@ -110,7 +107,10 @@ describe("lessonListing()", () => {
         ...sdk,
         lessonListing: jest.fn(() =>
           Promise.resolve({
-            unit: [lessonListingFixture2, syntheticUnitvariantLessonsFixture()],
+            unit: [
+              lessonListingFixture2,
+              syntheticUnitvariantLessonsByKsFixture(),
+            ],
           }),
         ),
       })({
@@ -205,7 +205,7 @@ describe("lessonListing()", () => {
     });
     test("getTransformedLessons returns the correct data", async () => {
       const transformedLessons = getTransformedLessons({
-        unit: [syntheticUnitvariantLessonsFixture()],
+        unit: [syntheticUnitvariantLessonsByKsFixture()],
       });
       expect(transformedLessons).toEqual([
         {
