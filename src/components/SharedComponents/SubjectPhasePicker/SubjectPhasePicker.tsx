@@ -1,4 +1,4 @@
-import { FC, useState, useId, useRef } from "react";
+import { FC, useState, useId, useRef , useTransition } from "react";
 import { FocusOn } from "react-focus-on";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -205,9 +205,10 @@ function SubjectContainer({
 
   return (
     <Box
-      $maxHeight={["calc(100vh - 200px)", "auto"]}
+      $maxHeight={["calc(100vh - 160px)", "auto"]}
       $overflowY={["auto", "visible"]}
       $position={"relative"}
+      $pl={6}
     >
       {showSubjectError && (
         <OakFlex
@@ -280,7 +281,7 @@ function SubjectContainer({
           {children}
         </OakFlex>
       </Box>
-      <Box $mb={[5, 0]} $ml={[5, 0]}>
+      <Box $mb={[30, 0]} $ml={0}>
         <OwaLink
           page={"curriculum-previous-downloads"}
           $textDecoration={"underline"}
@@ -465,6 +466,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     }
   };
 
+  const [isPending, startTransition] = useTransition();
+  const [isNavigating, setIsNavigating] = useState(false);
+
   const handleViewCurriculum = () => {
     let canViewCurriculum = true;
 
@@ -498,9 +502,23 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         subjectPhaseSlug += "-" + selectedKS4Option.slug;
       }
       trackViewCurriculum();
-      setShowPhases(false);
-      router.push({
-        pathname: `/teachers/curriculum/${subjectPhaseSlug}/${tab}`,
+
+      // For mobile, keep the modal open during navigation
+      if (isMobile) {
+        setIsNavigating(true);
+      } else {
+        setShowPhases(false);
+      }
+
+      startTransition(() => {
+        router
+          .push({
+            pathname: `/teachers/curriculum/${subjectPhaseSlug}/${tab}`,
+          })
+          .finally(() => {
+            setIsNavigating(false);
+            setShowPhases(false);
+          });
       });
     }
   };
@@ -770,7 +788,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     $zIndex={"modalDialog"}
                     $display={["block"]}
                     $width={"100%"}
-                    $ph={24}
+                    $ph={30}
                     $pv={10}
                     $background={"white"}
                   >
@@ -1066,6 +1084,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                         ks4Option,
                                       )}
                                       aria-checked={isSelected(ks4Option)}
+                                      hoverShadow={null}
                                     >
                                       {createKS4OptionTitle(
                                         selectedSubject.title,
@@ -1083,7 +1102,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               )}
 
               {/* MOBILE PHASE PICKER */}
-              {showPhases && isMobile && (
+              {showPhases && isMobile && (isNavigating || !isPending) && (
                 <FocusOn
                   enabled={isMobile}
                   autoFocus={false}
@@ -1267,6 +1286,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                                       aria-checked={isSelected(ks4Option)}
                                       pv="inner-padding-xs"
                                       ph="inner-padding-s"
+                                      hoverShadow={null}
                                     >
                                       {createKS4OptionTitle(
                                         selectedSubject.title,
@@ -1302,12 +1322,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           iconName="arrow-right"
                           isTrailingIcon={true}
                           onClick={() => {
-                            setShowPhases(false);
                             handleViewCurriculum();
                           }}
                           pv="inner-padding-m"
                           ph="inner-padding-l"
-                          disabled={!isPhaseSelectionComplete()}
+                          disabled={!isPhaseSelectionComplete() || isNavigating}
+                          isLoading={isNavigating}
                         >
                           View curriculum
                         </OakPrimaryButton>
