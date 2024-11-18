@@ -1,13 +1,16 @@
 import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
 
-import { LessonBrowseDataByKs } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { LessonBrowseDataByKsOld } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 export const lessonBrowseDataByKsFixture = (
-  overrides: Partial<LessonBrowseDataByKs>,
-): LessonBrowseDataByKs => {
+  overrides: Partial<LessonBrowseDataByKsOld>,
+): LessonBrowseDataByKsOld => {
   const snake = syntheticUnitvariantLessonsByKsFixture();
-  const camel = keysToCamelCase(snake) as LessonBrowseDataByKs;
+  const camel = keysToCamelCase({
+    ...snake,
+    supplementaryData: { unit_order: 1, order_in_unit: 1 },
+  });
   return {
     ...camel,
     ...overrides,

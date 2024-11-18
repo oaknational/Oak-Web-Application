@@ -254,16 +254,6 @@ exports[`6_subjectPrincipals simple 1`] = `
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering"
     Target="numbering.xml"
   ></Relationship>
-  <Relationship
-    Id="rIde5ee048f1c2f9460dc43412455a628ee20a89131178b309a07d8687d43a77a36"
-    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_e5ee048f1c2f9460dc43412455a628ee20a89131178b309a07d8687d43a77a36.png"
-  ></Relationship>
-  <Relationship
-    Id="rId880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b"
-    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png"
-  ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
   version="1.0"
@@ -529,9 +519,6 @@ exports[`6_subjectPrincipals simple 1`] = `
     </w:p>
   </w:footnote>
 </w:footnotes>",
-  "word/media/": "",
-  "word/media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png": "d36df0472cd373f0a7cd5fdfb58745287ab7abb75b5c36e1aba96855c0dba86f",
-  "word/media/hash_e5ee048f1c2f9460dc43412455a628ee20a89131178b309a07d8687d43a77a36.png": "294c10e4d867fb9a9b5d5285bfce072dc369eba9ed78ea75225fa012a117c310",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"

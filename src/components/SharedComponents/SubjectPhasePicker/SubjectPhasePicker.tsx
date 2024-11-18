@@ -33,7 +33,6 @@ import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pag
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/FocusWrap";
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton";
 
@@ -189,7 +188,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const subjectPickerButton = useRef<HTMLButtonElement>(null);
   const subjectPickerButtonDesktopContainer = useRef<HTMLDivElement>(null);
   const subjectPickerButtonMobileContainer = useRef<HTMLDivElement>(null);
-  const isCycleTwoEnabled = useCycleTwoEnabled();
   const router = useRouter();
   const tab = (router.query.tab as CurriculumTab) ?? "units";
 
@@ -530,9 +528,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       Curriculum plans
                     </OakHeading>
                     <OakP $mb="space-between-s">
-                      {isCycleTwoEnabled
-                        ? "Explore our curricula for 2024/2025."
-                        : "Explore our new curricula for 2023/2024."}
+                      Explore our curricula for 2024/2025.
                     </OakP>
                   </OakFlex>
                   <OakFlex

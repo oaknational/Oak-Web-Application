@@ -350,6 +350,7 @@ export const getBreadcrumbsForLessonPathway = (
 
 type GetPageLinksForLessonProps = Pick<
   LessonBase,
+  | "lessonGuideUrl"
   | "presentationUrl"
   | "videoMuxPlaybackId"
   | "worksheetUrl"
@@ -359,6 +360,7 @@ type GetPageLinksForLessonProps = Pick<
   | "hasCopyrightMaterial"
 >;
 export type LessonPageLinkAnchorId =
+  | "lesson-guide"
   | "slide-deck"
   | "lesson-details"
   | "video"
@@ -378,6 +380,11 @@ export const getPageLinksForLesson = (
     anchorId: LessonPageLinkAnchorId;
     condition: (lesson: GetPageLinksForLessonProps) => boolean;
   }[] = [
+    {
+      label: "Lesson guide",
+      anchorId: "lesson-guide",
+      condition: (lesson) => Boolean(lesson.lessonGuideUrl),
+    },
     {
       label: "Slide deck",
       anchorId: "slide-deck",
