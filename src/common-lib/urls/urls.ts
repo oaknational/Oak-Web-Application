@@ -229,13 +229,6 @@ export type LessonMediaLinkProps = {
   lessonSlug: string;
 };
 
-export type SpecialistLessonMediaLinkProps = Omit<
-  LessonMediaLinkProps,
-  "page"
-> & {
-  page: "specialist-lesson-media";
-};
-
 export type LessonMediaCanonicalLinkProps = {
   page: "lesson-media-canonical";
   lessonSlug: string;
@@ -361,7 +354,6 @@ export type OakLinkProps =
   | SpecialistLessonDownloadsLinkProps
   | LessonDownloadsCanonicalLinkProps
   | LessonMediaLinkProps
-  | SpecialistLessonMediaLinkProps
   | LessonMediaCanonicalLinkProps
   | LessonShareLinkProps
   | SpecialistLessonShareLinkProps
@@ -805,13 +797,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson Media",
     configType: "internal",
     pageType: "lesson-media",
-  }),
-  "specialist-lesson-media": createOakPageConfig({
-    pathPattern:
-      "/teachers/specialist/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/media",
-    analyticsPageName: "Lesson Media",
-    configType: "internal",
-    pageType: "specialist-lesson-media",
   }),
   "lesson-media-canonical": createOakPageConfig({
     pathPattern: "/teachers/lessons/:lessonSlug/media",

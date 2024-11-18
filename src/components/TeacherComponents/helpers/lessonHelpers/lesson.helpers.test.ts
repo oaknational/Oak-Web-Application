@@ -4,7 +4,6 @@ import {
   getPageLinksForLesson,
   groupLessonPathways,
   getLessonMediaBreadCrumb,
-  getBreadCrumbForSpecialistMedia,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   quizQuestions,
@@ -691,39 +690,5 @@ describe("getLessonMediaBreadCrumb", () => {
       label: "Extra video and audio",
       disabled: undefined,
     });
-  });
-});
-
-describe("getBreadCrumbForSpecialistMedia", () => {
-  it("when programmeSlug and unitSlug are passed", () => {
-    expect(
-      getBreadCrumbForSpecialistMedia({
-        lessonSlug: "lesson-1",
-        programmeSlug: "programme-2",
-        unitSlug: "unit-3",
-        disabled: false,
-      }),
-    ).toEqual([
-      {
-        disabled: false,
-        label: "Extra video and audio",
-        oakLinkProps: {
-          lessonSlug: "lesson-1",
-          page: "specialist-lesson-media",
-          programmeSlug: "programme-2",
-          unitSlug: "unit-3",
-        },
-      },
-    ]);
-  });
-
-  it("when programmeSlug and unitSlug are null", () => {
-    expect(
-      getBreadCrumbForSpecialistMedia({
-        lessonSlug: "lesson-1",
-        programmeSlug: null,
-        unitSlug: null,
-      }),
-    ).toEqual([]);
   });
 });

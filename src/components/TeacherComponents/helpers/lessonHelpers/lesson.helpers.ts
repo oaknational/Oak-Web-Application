@@ -227,34 +227,6 @@ export const getBreadCrumbForSpecialistDownload = ({
   return nullableBreadcrumbs.filter(truthy);
 };
 
-export const getBreadCrumbForSpecialistMedia = ({
-  lessonSlug,
-  programmeSlug,
-  unitSlug,
-  disabled,
-}: {
-  lessonSlug: string;
-  programmeSlug: string | null;
-  unitSlug: string | null;
-  disabled?: boolean;
-}): Breadcrumb[] => {
-  const nullableBreadcrumbs: (Breadcrumb | null)[] = [
-    programmeSlug && unitSlug
-      ? {
-          oakLinkProps: {
-            page: "specialist-lesson-media",
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          },
-          label: "Extra video and audio",
-          disabled,
-        }
-      : null,
-  ];
-  return nullableBreadcrumbs.filter(truthy);
-};
-
 export const getBreadCrumbForSpecialistShare = ({
   lessonSlug,
   programmeSlug,
