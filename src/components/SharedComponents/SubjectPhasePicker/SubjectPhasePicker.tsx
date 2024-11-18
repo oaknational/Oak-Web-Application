@@ -197,7 +197,6 @@ function SubjectContainer({
   showSubjectError,
   onClick,
 }: SubjectContainerProps) {
-  const isCycleTwoEnabled = useCycleTwoEnabled();
   const subjectErrorId = useId();
   const subjectInputId = useId();
   const isMobile = useMediaQuery("mobile");
@@ -260,11 +259,7 @@ function SubjectContainer({
           >
             Curriculum plans
           </OakHeading>
-          <OakP>
-            {isCycleTwoEnabled
-              ? "Explore our curricula for 2024/2025."
-              : "Explore our new curricula for 2023/2024."}
-          </OakP>
+          <OakP>Explore our curricula for 2024/2025."</OakP>
         </OakFlex>
       </OakFlex>
       <Box $mv={[30, 24]}>
