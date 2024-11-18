@@ -135,7 +135,8 @@ export type PercentSpacing =
   | "10%"
   | "5%"
   // vw units sometimes needed to fix edge cages
-  | "28vw";
+  | "28vw"
+  | "100vh";
 export type Unset = "unset";
 
 /**
