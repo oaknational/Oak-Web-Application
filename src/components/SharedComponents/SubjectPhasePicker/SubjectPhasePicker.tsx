@@ -1285,7 +1285,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         $left={0}
                         $display={["block"]}
                         $width="100%"
-                        $mh={16}
+                        $mh={24}
                         $mv={10}
                         $background="white"
                       >
@@ -1294,7 +1294,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           $height={1}
                           $mv={-8}
                           $mb={10}
-                          $ml={-16}
+                          $ml={-24}
                           $width={"100%"}
                         />
                         <OakPrimaryButton
@@ -1322,7 +1322,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 $right="all-spacing-0"
                 $pr="inner-padding-m"
                 $alignContent="center"
-                $maxWidth="all-spacing-17"
+                $maxWidth="all-spacing-15"
                 $width="fit-content"
                 $height="100%"
                 $display={["none", "block"]}
