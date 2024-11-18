@@ -8,8 +8,6 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import { useEffect, useRef } from "react";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -26,11 +24,7 @@ import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonO
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-import {
-  getShareIdFromCookie,
-  getShareIdKey,
-} from "@/pages-helpers/teacher/share-experiments/createShareId";
-import { getUpdatedUrl } from "@/pages-helpers/teacher/share-experiments/getUpdatedUrl";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -45,39 +39,10 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
-  const shareIdRef = useRef<string | null>(null);
-  const shareIdKeyRef = useRef<string | null>(null);
-
-  const shareExperimentFlag = useFeatureFlagVariantKey(
-    "delivery-sq-share-experiment",
-  );
-
-  useEffect(() => {
-    if (!shareIdRef.current && shareExperimentFlag) {
-      // get the current url params
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlShareId = urlParams.get(getShareIdKey(lesson.lessonSlug));
-      const cookieShareId = getShareIdFromCookie(lesson.lessonSlug);
-
-      if (urlShareId && cookieShareId !== urlShareId) {
-        // const urlShareMethod = urlParams.get("sm");
-        // TODO: send a tracking event to the backend to track the share-id
-      }
-
-      const { url, shareIdKey, shareId } = getUpdatedUrl({
-        url: window.location.href,
-        cookieShareId,
-        lessonSlug: lesson.lessonSlug,
-      });
-
-      shareIdRef.current = shareId;
-      shareIdKeyRef.current = shareIdKey;
-
-      if (window.location.href !== url) {
-        window.history.replaceState({}, "", url);
-      }
-    }
-  }, [lesson.lessonSlug, shareExperimentFlag]);
+  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+    lessonSlug: lesson.lessonSlug,
+  });
+  console.log(shareIdRef, shareIdKeyRef);
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (

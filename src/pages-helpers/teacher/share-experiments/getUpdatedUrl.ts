@@ -13,13 +13,13 @@ import {
 export const getUpdatedUrl = ({
   url,
   cookieShareId,
-  lessonSlug,
+  unhashedKey,
 }: {
   url: string;
   cookieShareId: string | undefined;
-  lessonSlug: string;
+  unhashedKey: string;
 }) => {
-  const shareIdKey = getShareIdKey(lessonSlug);
+  const shareIdKey = getShareIdKey(unhashedKey);
   const strippedUrl = url.split("?")[0];
 
   if (cookieShareId) {
@@ -28,7 +28,7 @@ export const getUpdatedUrl = ({
   }
 
   // generate share-id and store it as a cookie
-  const { id, key } = createAndStoreShareId(lessonSlug);
+  const { id, key } = createAndStoreShareId(unhashedKey);
 
   const updatedUrl = `${strippedUrl}?${key}=${id}&sm=${shareMethods.url}`;
   return { url: updatedUrl, shareIdKey: key, shareId: id };
