@@ -16,7 +16,6 @@ export function getCookiesWithSchema<
   const { dflt, disableLogging } = opts;
   let cookieValue: unknown;
   const cookieValueRaw = Cookies.get(key);
-
   if (cookieValueRaw === undefined) {
     return dflt;
   }

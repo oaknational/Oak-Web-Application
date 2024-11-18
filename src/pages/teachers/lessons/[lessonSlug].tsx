@@ -9,6 +9,7 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 import { useEffect, useRef } from "react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -25,7 +26,10 @@ import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonO
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-import { getShareIdFromCookie, getShareIdKey } from "@/utils/createShareId";
+import {
+  getShareIdFromCookie,
+  getShareIdKey,
+} from "@/pages-helpers/teacher/share-experiments/createShareId";
 import { getUpdatedUrl } from "@/pages-helpers/teacher/share-experiments/getUpdatedUrl";
 
 type PageProps = {
@@ -44,8 +48,12 @@ export default function LessonOverviewCanonicalPage({
   const shareIdRef = useRef<string | null>(null);
   const shareIdKeyRef = useRef<string | null>(null);
 
+  const shareExperimentFlag = useFeatureFlagVariantKey(
+    "delivery-sq-share-experiment",
+  );
+
   useEffect(() => {
-    if (!shareIdRef.current) {
+    if (!shareIdRef.current && shareExperimentFlag) {
       // get the current url params
       const urlParams = new URLSearchParams(window.location.search);
       const urlShareId = urlParams.get(getShareIdKey(lesson.lessonSlug));
@@ -58,7 +66,6 @@ export default function LessonOverviewCanonicalPage({
 
       const { url, shareIdKey, shareId } = getUpdatedUrl({
         url: window.location.href,
-        urlShareId,
         cookieShareId,
         lessonSlug: lesson.lessonSlug,
       });
@@ -70,7 +77,7 @@ export default function LessonOverviewCanonicalPage({
         window.history.replaceState({}, "", url);
       }
     }
-  }, [lesson.lessonSlug]);
+  }, [lesson.lessonSlug, shareExperimentFlag]);
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (

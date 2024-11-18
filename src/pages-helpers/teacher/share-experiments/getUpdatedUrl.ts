@@ -2,30 +2,30 @@ import {
   createAndStoreShareId,
   getShareIdKey,
   shareMethods,
-} from "@/utils/createShareId";
+} from "@/pages-helpers/teacher/share-experiments/createShareId";
+
+/**
+ *
+ * updates the url with either the stored cookie share-id or a newly generated one
+ *
+ */
 
 export const getUpdatedUrl = ({
   url,
-  urlShareId,
   cookieShareId,
   lessonSlug,
 }: {
   url: string;
-  urlShareId: string | null;
   cookieShareId: string | undefined;
   lessonSlug: string;
 }) => {
   const shareIdKey = getShareIdKey(lessonSlug);
-
   const strippedUrl = url.split("?")[0];
 
-  console.log("URL Share ID:", urlShareId);
-  console.log("Cookie Share ID:", cookieShareId);
-
-  if (urlShareId && cookieShareId === urlShareId) {
+  if (cookieShareId) {
     console.log("Share ID already stored in cookie");
-    // we already generated a share-id from this page
-    return { url, shareIdKey, shareId: urlShareId };
+    const updatedUrl = `${strippedUrl}?${shareIdKey}=${cookieShareId}&sm=${shareMethods.url}`;
+    return { url: updatedUrl, shareIdKey, shareId: cookieShareId };
   }
 
   // generate share-id and store it as a cookie
