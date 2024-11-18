@@ -11,6 +11,7 @@ const LessonMediaPage = () => {
   );
 
   if (isMediaPageContentEnabled) {
+    // hardcode data until we have gql query for media page
     const lessonTitle = "Geometry";
     const lessonSlug = "basics-of-geometry";
     const keyStageSlug = "ks3";
