@@ -235,7 +235,7 @@ export type Assets_Bool_Exp = {
 
 /** unique or primary key constraints on table "assets" */
 export enum Assets_Constraint {
-  /** unique or primary key constraint on columns "_state", "asset_id" */
+  /** unique or primary key constraint on columns "asset_id", "_state" */
   AssetsPkey = 'assets_pkey'
 }
 
@@ -772,8 +772,6 @@ export type Cat_Contentguidance_Avg_Fields = {
   __typename?: 'cat_contentguidance_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -804,7 +802,7 @@ export type Cat_Contentguidance_Bool_Exp = {
 
 /** unique or primary key constraints on table "cat_contentguidance" */
 export enum Cat_Contentguidance_Constraint {
-  /** unique or primary key constraint on columns "contentguidance_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "contentguidance_id" */
   CatContentguidancePkey = 'cat_contentguidance_pkey'
 }
 
@@ -864,8 +862,6 @@ export type Cat_Contentguidance_Max_Fields = {
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_label?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -882,8 +878,6 @@ export type Cat_Contentguidance_Min_Fields = {
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_label?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
@@ -993,8 +987,6 @@ export type Cat_Contentguidance_Stddev_Fields = {
   __typename?: 'cat_contentguidance_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1003,8 +995,6 @@ export type Cat_Contentguidance_Stddev_Pop_Fields = {
   __typename?: 'cat_contentguidance_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1013,8 +1003,6 @@ export type Cat_Contentguidance_Stddev_Samp_Fields = {
   __typename?: 'cat_contentguidance_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1049,8 +1037,6 @@ export type Cat_Contentguidance_Sum_Fields = {
   __typename?: 'cat_contentguidance_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   contentguidance_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Int']['output']>;
 };
 
@@ -1110,8 +1096,6 @@ export type Cat_Contentguidance_Var_Pop_Fields = {
   __typename?: 'cat_contentguidance_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1120,8 +1104,6 @@ export type Cat_Contentguidance_Var_Samp_Fields = {
   __typename?: 'cat_contentguidance_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1130,8 +1112,6 @@ export type Cat_Contentguidance_Variance_Fields = {
   __typename?: 'cat_contentguidance_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   contentguidance_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_contentguidance__lessons__count" */
-  lessons_with_contentguidance_count?: Maybe<Scalars['Int']['output']>;
   supervisionlevel_id?: Maybe<Scalars['Float']['output']>;
 };
 
@@ -1230,8 +1210,6 @@ export type Cat_Examboardspecs_Avg_Fields = {
   __typename?: 'cat_examboardspecs_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "cat_examboardspecs". All fields are combined with a logical 'AND'. */
@@ -1257,7 +1235,7 @@ export type Cat_Examboardspecs_Bool_Exp = {
 
 /** unique or primary key constraints on table "cat_examboardspecs" */
 export enum Cat_Examboardspecs_Constraint {
-  /** unique or primary key constraint on columns "examboardspecs_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "examboardspecs_id" */
   CatExamboardspecsPkey = 'cat_examboardspecs_pkey'
 }
 
@@ -1310,8 +1288,6 @@ export type Cat_Examboardspecs_Max_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1325,8 +1301,6 @@ export type Cat_Examboardspecs_Min_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1422,8 +1396,6 @@ export type Cat_Examboardspecs_Stddev_Fields = {
   __typename?: 'cat_examboardspecs_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -1431,8 +1403,6 @@ export type Cat_Examboardspecs_Stddev_Pop_Fields = {
   __typename?: 'cat_examboardspecs_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -1440,8 +1410,6 @@ export type Cat_Examboardspecs_Stddev_Samp_Fields = {
   __typename?: 'cat_examboardspecs_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Streaming cursor of the table "cat_examboardspecs" */
@@ -1472,8 +1440,6 @@ export type Cat_Examboardspecs_Sum_Fields = {
   __typename?: 'cat_examboardspecs_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   examboardspecs_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** update columns of table "cat_examboardspecs" */
@@ -1526,8 +1492,6 @@ export type Cat_Examboardspecs_Var_Pop_Fields = {
   __typename?: 'cat_examboardspecs_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate var_samp on columns */
@@ -1535,8 +1499,6 @@ export type Cat_Examboardspecs_Var_Samp_Fields = {
   __typename?: 'cat_examboardspecs_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate variance on columns */
@@ -1544,8 +1506,6 @@ export type Cat_Examboardspecs_Variance_Fields = {
   __typename?: 'cat_examboardspecs_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   examboardspecs_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_examboardspecs__units__count" */
-  units_with_exam_board_specification_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** columns and relationships of "cat_nationalcurriculum" */
@@ -1643,8 +1603,6 @@ export type Cat_Nationalcurriculum_Avg_Fields = {
   __typename?: 'cat_nationalcurriculum_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "cat_nationalcurriculum". All fields are combined with a logical 'AND'. */
@@ -1670,7 +1628,7 @@ export type Cat_Nationalcurriculum_Bool_Exp = {
 
 /** unique or primary key constraints on table "cat_nationalcurriculum" */
 export enum Cat_Nationalcurriculum_Constraint {
-  /** unique or primary key constraint on columns "_state", "nationalcurriculum_id" */
+  /** unique or primary key constraint on columns "nationalcurriculum_id", "_state" */
   CatNationalcurriculumPkey = 'cat_nationalcurriculum_pkey'
 }
 
@@ -1723,8 +1681,6 @@ export type Cat_Nationalcurriculum_Max_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1738,8 +1694,6 @@ export type Cat_Nationalcurriculum_Min_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -1835,8 +1789,6 @@ export type Cat_Nationalcurriculum_Stddev_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
@@ -1844,8 +1796,6 @@ export type Cat_Nationalcurriculum_Stddev_Pop_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
@@ -1853,8 +1803,6 @@ export type Cat_Nationalcurriculum_Stddev_Samp_Fields = {
   __typename?: 'cat_nationalcurriculum_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** Streaming cursor of the table "cat_nationalcurriculum" */
@@ -1885,8 +1833,6 @@ export type Cat_Nationalcurriculum_Sum_Fields = {
   __typename?: 'cat_nationalcurriculum_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** update columns of table "cat_nationalcurriculum" */
@@ -1939,8 +1885,6 @@ export type Cat_Nationalcurriculum_Var_Pop_Fields = {
   __typename?: 'cat_nationalcurriculum_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate var_samp on columns */
@@ -1948,8 +1892,6 @@ export type Cat_Nationalcurriculum_Var_Samp_Fields = {
   __typename?: 'cat_nationalcurriculum_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** aggregate variance on columns */
@@ -1957,8 +1899,6 @@ export type Cat_Nationalcurriculum_Variance_Fields = {
   __typename?: 'cat_nationalcurriculum_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   nationalcurriculum_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_nationalcurriculum__units__count" */
-  units_with_national_curriculum_content_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** columns and relationships of "cat_subjectcategories" */
@@ -2071,8 +2011,6 @@ export type Cat_Subjectcategories_Avg_Fields = {
   __typename?: 'cat_subjectcategories_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
-  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by avg() on columns of table "cat_subjectcategories" */
@@ -2104,7 +2042,7 @@ export type Cat_Subjectcategories_Bool_Exp = {
 
 /** unique or primary key constraints on table "cat_subjectcategories" */
 export enum Cat_Subjectcategories_Constraint {
-  /** unique or primary key constraint on columns "subjectcategory_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "subjectcategory_id" */
   CatSubjectcategoriesPkey = 'cat_subjectcategories_pkey'
 }
 
@@ -2157,8 +2095,6 @@ export type Cat_Subjectcategories_Max_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   subjectcategory_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
-  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2184,8 +2120,6 @@ export type Cat_Subjectcategories_Min_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   subjectcategory_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
-  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -2293,8 +2227,6 @@ export type Cat_Subjectcategories_Stddev_Fields = {
   __typename?: 'cat_subjectcategories_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
-  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev() on columns of table "cat_subjectcategories" */
@@ -2308,8 +2240,6 @@ export type Cat_Subjectcategories_Stddev_Pop_Fields = {
   __typename?: 'cat_subjectcategories_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
-  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_pop() on columns of table "cat_subjectcategories" */
@@ -2323,8 +2253,6 @@ export type Cat_Subjectcategories_Stddev_Samp_Fields = {
   __typename?: 'cat_subjectcategories_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
-  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_samp() on columns of table "cat_subjectcategories" */
@@ -2361,8 +2289,6 @@ export type Cat_Subjectcategories_Sum_Fields = {
   __typename?: 'cat_subjectcategories_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   subjectcategory_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
-  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by sum() on columns of table "cat_subjectcategories" */
@@ -2421,8 +2347,6 @@ export type Cat_Subjectcategories_Var_Pop_Fields = {
   __typename?: 'cat_subjectcategories_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
-  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_pop() on columns of table "cat_subjectcategories" */
@@ -2436,8 +2360,6 @@ export type Cat_Subjectcategories_Var_Samp_Fields = {
   __typename?: 'cat_subjectcategories_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
-  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_samp() on columns of table "cat_subjectcategories" */
@@ -2451,8 +2373,6 @@ export type Cat_Subjectcategories_Variance_Fields = {
   __typename?: 'cat_subjectcategories_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   subjectcategory_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_subjectcategories__units__count" */
-  units_with_subjectcategory_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by variance() on columns of table "cat_subjectcategories" */
@@ -2974,11 +2894,7 @@ export type Cat_Tags_Append_Input = {
 export type Cat_Tags_Avg_Fields = {
   __typename?: 'cat_tags_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by avg() on columns of table "cat_tags" */
@@ -3065,13 +2981,9 @@ export type Cat_Tags_Max_Fields = {
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_category?: Maybe<Scalars['String']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -3096,13 +3008,9 @@ export type Cat_Tags_Min_Fields = {
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_category?: Maybe<Scalars['String']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
   updated_at?: Maybe<Scalars['timestamptz']['output']>;
 };
 
@@ -3216,11 +3124,7 @@ export type Cat_Tags_Set_Input = {
 export type Cat_Tags_Stddev_Fields = {
   __typename?: 'cat_tags_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev() on columns of table "cat_tags" */
@@ -3233,11 +3137,7 @@ export type Cat_Tags_Stddev_Order_By = {
 export type Cat_Tags_Stddev_Pop_Fields = {
   __typename?: 'cat_tags_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_pop() on columns of table "cat_tags" */
@@ -3250,11 +3150,7 @@ export type Cat_Tags_Stddev_Pop_Order_By = {
 export type Cat_Tags_Stddev_Samp_Fields = {
   __typename?: 'cat_tags_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by stddev_samp() on columns of table "cat_tags" */
@@ -3291,11 +3187,7 @@ export type Cat_Tags_Stream_Cursor_Value_Input = {
 export type Cat_Tags_Sum_Fields = {
   __typename?: 'cat_tags_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by sum() on columns of table "cat_tags" */
@@ -3355,11 +3247,7 @@ export type Cat_Tags_Updates = {
 export type Cat_Tags_Var_Pop_Fields = {
   __typename?: 'cat_tags_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_pop() on columns of table "cat_tags" */
@@ -3372,11 +3260,7 @@ export type Cat_Tags_Var_Pop_Order_By = {
 export type Cat_Tags_Var_Samp_Fields = {
   __typename?: 'cat_tags_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by var_samp() on columns of table "cat_tags" */
@@ -3389,11 +3273,7 @@ export type Cat_Tags_Var_Samp_Order_By = {
 export type Cat_Tags_Variance_Fields = {
   __typename?: 'cat_tags_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__lessons__count" */
-  lessons_with_tag_count?: Maybe<Scalars['Int']['output']>;
   tag_id?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__cat_tags__units__count" */
-  units_with_tag_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** order by variance() on columns of table "cat_tags" */
@@ -3539,7 +3419,7 @@ export type Cat_Vocabulary_Bool_Exp = {
 
 /** unique or primary key constraints on table "cat_vocabulary" */
 export enum Cat_Vocabulary_Constraint {
-  /** unique or primary key constraint on columns "vocabulary_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "vocabulary_id" */
   CatVocabularyPkey = 'cat_vocabulary_pkey'
 }
 
@@ -4388,7 +4268,7 @@ export type Internal_Releases_Bool_Exp = {
 
 /** unique or primary key constraints on table "internal.releases" */
 export enum Internal_Releases_Constraint {
-  /** unique or primary key constraint on columns "release_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "release_id" */
   ReleasesPkey = 'releases_pkey'
 }
 
@@ -4878,7 +4758,7 @@ export type Internal_Review_Lessons_Bool_Exp = {
 
 /** unique or primary key constraints on table "internal.review_lessons" */
 export enum Internal_Review_Lessons_Constraint {
-  /** unique or primary key constraint on columns "_state", "lesson_id" */
+  /** unique or primary key constraint on columns "lesson_id", "_state" */
   ReviewLessonsPkey = 'review_lessons_pkey'
 }
 
@@ -4947,10 +4827,6 @@ export type Internal_Review_Lessons_Max_Fields = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  /** A computed field, executes function "internal.function__internal_review_lessons__firstapproval" */
-  firstapproval?: Maybe<Scalars['timestamp']['output']>;
-  /** A computed field, executes function "internal.function__internal_review_lessons__lastapproval" */
-  lastapproval?: Maybe<Scalars['timestamp']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
   release_uid?: Maybe<Scalars['bpchar']['output']>;
@@ -4996,10 +4872,6 @@ export type Internal_Review_Lessons_Min_Fields = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
-  /** A computed field, executes function "internal.function__internal_review_lessons__firstapproval" */
-  firstapproval?: Maybe<Scalars['timestamp']['output']>;
-  /** A computed field, executes function "internal.function__internal_review_lessons__lastapproval" */
-  lastapproval?: Maybe<Scalars['timestamp']['output']>;
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
   release_uid?: Maybe<Scalars['bpchar']['output']>;
@@ -6886,7 +6758,7 @@ export type Lessons_Bool_Exp = {
 
 /** unique or primary key constraints on table "lessons" */
 export enum Lessons_Constraint {
-  /** unique or primary key constraint on columns "_state", "lesson_id" */
+  /** unique or primary key constraint on columns "lesson_id", "_state" */
   LessonsPkey = 'lessons_pkey'
 }
 
@@ -10951,9 +10823,9 @@ export type Pf_Developmentstages_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_developmentstages" */
 export enum Pf_Developmentstages_Constraint {
-  /** unique or primary key constraint on columns "_state", "developmentstage_id" */
+  /** unique or primary key constraint on columns "developmentstage_id", "_state" */
   PfDevelopmentstagesPkey = 'pf_developmentstages_pkey',
-  /** unique or primary key constraint on columns "_cohort", "_state", "slug" */
+  /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfDevelopmentstagesSlugStateCohortKey = 'pf_developmentstages_slug__state__cohort_key'
 }
 
@@ -11333,9 +11205,9 @@ export type Pf_Examboards_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_examboards" */
 export enum Pf_Examboards_Constraint {
-  /** unique or primary key constraint on columns "_state", "examboard_id" */
+  /** unique or primary key constraint on columns "examboard_id", "_state" */
   PfExamboardsPkey = 'pf_examboards_pkey',
-  /** unique or primary key constraint on columns "_cohort", "_state", "slug" */
+  /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfExamboardsSlugStateCohortKey = 'pf_examboards_slug__state__cohort_key'
 }
 
@@ -11715,9 +11587,9 @@ export type Pf_Keystages_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_keystages" */
 export enum Pf_Keystages_Constraint {
-  /** unique or primary key constraint on columns "keystage_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "keystage_id" */
   PfKeystagesPkey = 'pf_keystages_pkey',
-  /** unique or primary key constraint on columns "_cohort", "_state", "slug" */
+  /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfKeystagesSlugStateCohortKey = 'pf_keystages_slug__state__cohort_key'
 }
 
@@ -12097,9 +11969,9 @@ export type Pf_Pathways_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_pathways" */
 export enum Pf_Pathways_Constraint {
-  /** unique or primary key constraint on columns "pathway_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "pathway_id" */
   PfPathwaysPkey = 'pf_pathways_pkey',
-  /** unique or primary key constraint on columns "_cohort", "_state", "slug" */
+  /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfPathwaysSlugStateCohortKey = 'pf_pathways_slug__state__cohort_key'
 }
 
@@ -12479,9 +12351,9 @@ export type Pf_Phases_Bool_Exp = {
 
 /** unique or primary key constraints on table "pf_phases" */
 export enum Pf_Phases_Constraint {
-  /** unique or primary key constraint on columns "_state", "phase_id" */
+  /** unique or primary key constraint on columns "phase_id", "_state" */
   PfPhasesPkey = 'pf_phases_pkey',
-  /** unique or primary key constraint on columns "_cohort", "_state", "slug" */
+  /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfPhasesSlugStateCohortKey = 'pf_phases_slug__state__cohort_key'
 }
 
@@ -12852,8 +12724,6 @@ export type Pf_Subjects_Avg_Fields = {
   __typename?: 'pf_subjects_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -12884,7 +12754,7 @@ export type Pf_Subjects_Bool_Exp = {
 export enum Pf_Subjects_Constraint {
   /** unique or primary key constraint on columns "subject_id", "_state" */
   PfSubjectsPkey = 'pf_subjects_pkey',
-  /** unique or primary key constraint on columns "_cohort", "_state", "slug" */
+  /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfSubjectsSlugStateCohortKey = 'pf_subjects_slug__state__cohort_key'
 }
 
@@ -12937,8 +12807,6 @@ export type Pf_Subjects_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   subject?: Maybe<Scalars['String']['output']>;
   subject_id?: Maybe<Scalars['Int']['output']>;
@@ -12955,8 +12823,6 @@ export type Pf_Subjects_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   subject?: Maybe<Scalars['String']['output']>;
   subject_id?: Maybe<Scalars['Int']['output']>;
@@ -13069,8 +12935,6 @@ export type Pf_Subjects_Stddev_Fields = {
   __typename?: 'pf_subjects_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -13080,8 +12944,6 @@ export type Pf_Subjects_Stddev_Pop_Fields = {
   __typename?: 'pf_subjects_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -13091,8 +12953,6 @@ export type Pf_Subjects_Stddev_Samp_Fields = {
   __typename?: 'pf_subjects_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -13127,8 +12987,6 @@ export type Pf_Subjects_Sum_Fields = {
   __typename?: 'pf_subjects_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Int']['output']>;
   subject_parent_id?: Maybe<Scalars['Int']['output']>;
 };
@@ -13187,8 +13045,6 @@ export type Pf_Subjects_Var_Pop_Fields = {
   __typename?: 'pf_subjects_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -13198,8 +13054,6 @@ export type Pf_Subjects_Var_Samp_Fields = {
   __typename?: 'pf_subjects_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -13209,8 +13063,6 @@ export type Pf_Subjects_Variance_Fields = {
   __typename?: 'pf_subjects_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
   display_order?: Maybe<Scalars['Float']['output']>;
-  /** A computed field, executes function "function__pf_subjects__programmes__count" */
-  programmes_count?: Maybe<Scalars['Int']['output']>;
   subject_id?: Maybe<Scalars['Float']['output']>;
   subject_parent_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -13304,7 +13156,7 @@ export type Pf_Tiers_Bool_Exp = {
 export enum Pf_Tiers_Constraint {
   /** unique or primary key constraint on columns "tier_id", "_state" */
   PfTiersPkey = 'pf_tiers_pkey',
-  /** unique or primary key constraint on columns "_cohort", "_state", "slug" */
+  /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfTiersSlugStateCohortKey = 'pf_tiers_slug__state__cohort_key'
 }
 
@@ -13686,7 +13538,7 @@ export type Pf_Years_Bool_Exp = {
 export enum Pf_Years_Constraint {
   /** unique or primary key constraint on columns "_state", "year_id" */
   PfYearsPkey = 'pf_years_pkey',
-  /** unique or primary key constraint on columns "_cohort", "_state", "slug" */
+  /** unique or primary key constraint on columns "slug", "_cohort", "_state" */
   PfYearsSlugStateCohortKey = 'pf_years_slug__state__cohort_key'
 }
 
@@ -14187,7 +14039,7 @@ export type Programme_Threads_Bool_Exp = {
 
 /** unique or primary key constraints on table "programme_threads" */
 export enum Programme_Threads_Constraint {
-  /** unique or primary key constraint on columns "programme_id", "_state", "thread_id" */
+  /** unique or primary key constraint on columns "_state", "thread_id", "programme_id" */
   ProgrammeThreadsPkey = 'programme_threads_pkey'
 }
 
@@ -14782,7 +14634,7 @@ export type Programme_Units_Bool_Exp = {
 
 /** unique or primary key constraints on table "programme_units" */
 export enum Programme_Units_Constraint {
-  /** unique or primary key constraint on columns "unit_id", "programme_id", "_state" */
+  /** unique or primary key constraint on columns "unit_id", "_state", "programme_id" */
   ProgrammeUnitsPkey = 'programme_units_pkey'
 }
 
@@ -15947,7 +15799,7 @@ export type Programmes_Bool_Exp = {
 
 /** unique or primary key constraints on table "programmes" */
 export enum Programmes_Constraint {
-  /** unique or primary key constraint on columns "programme_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "programme_id" */
   ProgrammesPkey = 'programmes_pkey',
   /** unique or primary key constraint on columns "programme_fields", "_state" */
   ProgrammesProgrammeFieldsStateKey = 'programmes_programme_fields__state_key'
@@ -45729,7 +45581,7 @@ export type Thirdpartycontent_Bool_Exp = {
 
 /** unique or primary key constraints on table "thirdpartycontent" */
 export enum Thirdpartycontent_Constraint {
-  /** unique or primary key constraint on columns "_state", "thirdpartycontent_id" */
+  /** unique or primary key constraint on columns "thirdpartycontent_id", "_state" */
   ThirdpartycontentPkey = 'thirdpartycontent_pkey'
 }
 
@@ -47770,7 +47622,7 @@ export enum Tpc_Media_Constraint {
   TpcMediaExternalUrlStateKey = 'tpc_media_external_url__state_key',
   /** unique or primary key constraint on columns "media_id", "_state" */
   TpcMediaPkey = 'tpc_media_pkey',
-  /** unique or primary key constraint on columns "thirdparty_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "thirdparty_id" */
   TpcMediaThirdpartyIdStateKey = 'tpc_media_thirdparty_id__state_key'
 }
 
@@ -48355,7 +48207,7 @@ export type Tpc_Works_Bool_Exp = {
 
 /** unique or primary key constraints on table "tpc_works" */
 export enum Tpc_Works_Constraint {
-  /** unique or primary key constraint on columns "works_id", "_state" */
+  /** unique or primary key constraint on columns "_state", "works_id" */
   TpcWorksPkey = 'tpc_works_pkey'
 }
 
@@ -49336,8 +49188,6 @@ export type Units_Max_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   expiration_date?: Maybe<Scalars['date']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__units__last_updated_lesson_review_date" */
-  last_updated_lesson_review_date?: Maybe<Scalars['timestamptz']['output']>;
   notes?: Maybe<Scalars['String']['output']>;
   planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
@@ -49385,8 +49235,6 @@ export type Units_Min_Fields = {
   description?: Maybe<Scalars['String']['output']>;
   expiration_date?: Maybe<Scalars['date']['output']>;
   intro_video_id?: Maybe<Scalars['Int']['output']>;
-  /** A computed field, executes function "function__units__last_updated_lesson_review_date" */
-  last_updated_lesson_review_date?: Maybe<Scalars['timestamptz']['output']>;
   notes?: Maybe<Scalars['String']['output']>;
   planned_number_of_lessons?: Maybe<Scalars['Int']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
@@ -50105,7 +49953,7 @@ export type Unitvariant_Lessons_Bool_Exp = {
 
 /** unique or primary key constraints on table "unitvariant_lessons" */
 export enum Unitvariant_Lessons_Constraint {
-  /** unique or primary key constraint on columns "unitvariant_id", "_state", "lesson_id" */
+  /** unique or primary key constraint on columns "lesson_id", "unitvariant_id", "_state" */
   UnitvariantLessonsPkey = 'unitvariant_lessons_pkey'
 }
 
@@ -51365,7 +51213,7 @@ export type Videocaptions_Bool_Exp = {
 
 /** unique or primary key constraints on table "videocaptions" */
 export enum Videocaptions_Constraint {
-  /** unique or primary key constraint on columns "_state", "caption_id" */
+  /** unique or primary key constraint on columns "caption_id", "_state" */
   VideocaptionsPkey = 'videocaptions_pkey'
 }
 
@@ -52718,7 +52566,7 @@ export type UnitListingQueryVariables = Exact<{
 }>;
 
 
-export type UnitListingQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_13_0_0', is_legacy?: boolean | null, programme_slug?: string | null, unit_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_count?: number | null, lesson_expired_count?: number | null, lesson_sensitive_count?: number | null, expired?: boolean | null, supplementary_data?: any | null, threads?: any | null, actions?: any | null, features?: any | null }> };
+export type UnitListingQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_0', is_legacy?: boolean | null, programme_slug?: string | null, unit_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_count?: number | null, lesson_expired_count?: number | null, lesson_sensitive_count?: number | null, expired?: boolean | null, supplementary_data?: any | null, threads?: any | null, actions?: any | null, features?: any | null }> };
 
 
 export const CurriculumOverviewDocument = gql`
@@ -53571,7 +53419,7 @@ export const TeachersSitemapDocument = gql`
     `;
 export const UnitListingDocument = gql`
     query unitListing($programmeSlug: String!) {
-  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_13_0_0(
+  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_0(
     where: {programme_slug: {_eq: $programmeSlug}}
   ) {
     is_legacy
