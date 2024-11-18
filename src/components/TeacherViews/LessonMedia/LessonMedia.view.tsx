@@ -1,3 +1,6 @@
+import { OakTertiaryButton } from "@oaknational/oak-components";
+
+import { resolveOakHref } from "@/common-lib/urls";
 import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
@@ -41,7 +44,7 @@ export function LessonMedia(props: LessonMediaProps) {
   const { programmeSlug, unitSlug } = commonPathway;
 
   return (
-    <Box $ph={[16, null]} $background={"grey20"}>
+    <Box $ph={[16, null]}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
         <Box $mb={32} $mt={24}>
           <Breadcrumbs
@@ -62,6 +65,23 @@ export function LessonMedia(props: LessonMediaProps) {
               }),
             ]}
           />
+        </Box>
+        <Box>
+          {programmeSlug && unitSlug && (
+            <OakTertiaryButton
+              element="a"
+              href={resolveOakHref({
+                page: "lesson-overview",
+                programmeSlug,
+                lessonSlug,
+                unitSlug,
+              })}
+              iconName="arrow-left"
+              data-testid="back-to-lesson-button"
+            >
+              Back to lesson
+            </OakTertiaryButton>
+          )}
         </Box>
       </MaxWidth>
     </Box>

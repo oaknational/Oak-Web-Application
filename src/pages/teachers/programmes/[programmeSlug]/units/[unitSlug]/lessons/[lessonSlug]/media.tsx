@@ -12,14 +12,14 @@ const LessonMediaPage = () => {
 
   if (isMediaPageContentEnabled) {
     // hardcode data until we have gql query for media page
-    const lessonTitle = "Geometry";
-    const lessonSlug = "basics-of-geometry";
+    const lessonTitle = "Add 3 numbers together using doubles and near doubles";
+    const lessonSlug = "add-3-numbers-together-using-doubles-and-near-doubles";
     const keyStageSlug = "ks3";
     const subjectTitle = "Maths";
     const subjectSlug = "maths";
-    const programmeSlug = "maths";
-    const unitSlug = "geometry";
-    const unitTitle = "Geometry";
+    const programmeSlug = "maths-primary-ks2";
+    const unitSlug = "review-strategies-for-adding-and-subtracting-across-10";
+    const unitTitle = "Review strategies for adding and subtracting across 10";
 
     const lesson = {
       lessonTitle,
