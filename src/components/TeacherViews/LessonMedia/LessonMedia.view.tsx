@@ -15,20 +15,14 @@ import {
   lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
 import { LEGACY_COHORT } from "@/config/cohort";
-import { SpecialistLessonMedia } from "@/node-lib/curriculum-api-2023/queries/specialistLessonMedia/specialistLessonMedia.schema";
-import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
 
 type BaseLessonMedia = {
-  expired: boolean | null;
-  isLegacy: boolean;
   lessonTitle: string;
   lessonSlug: string;
   lessonCohort?: string | null;
-  copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
-  geoRestricted: boolean | null;
-  loginRequired: boolean | null;
 };
 
 type CanonicalLesson = BaseLessonMedia & {
@@ -40,7 +34,7 @@ type NonCanonicalLesson = BaseLessonMedia & {
   updatedAt: string;
 } & LessonPathway;
 
-type SpecialistLesson = SpecialistLessonMedia["lesson"];
+type SpecialistLesson = SpecialistLessonDownloads["lesson"];
 
 type LessonMediaProps =
   | {
