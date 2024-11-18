@@ -144,8 +144,8 @@ describe("Component - Mobile subject phase picker", () => {
       ) as HTMLElement[];
 
       if (focusableElements.length > 0) {
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
+        const firstElement = focusableElements[0]!;
+        const lastElement = focusableElements[focusableElements.length - 1]!;
 
         // Focus on the last element and tab forward, expecting wrap to the first
         lastElement.focus();
@@ -308,8 +308,8 @@ describe("Component - Mobile subject phase picker", () => {
       ) as HTMLElement[];
 
       if (focusableElements.length > 0) {
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
+        const firstElement = focusableElements[0]!;
+        const lastElement = focusableElements[focusableElements.length - 1]!;
 
         // Focus on the last element and tab forward, expecting wrap to the first
         lastElement.focus();
