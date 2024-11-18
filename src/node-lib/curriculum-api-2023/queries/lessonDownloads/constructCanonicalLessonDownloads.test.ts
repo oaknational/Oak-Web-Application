@@ -1,5 +1,5 @@
 import {
-  SyntheticUnitvariantLessons,
+  SyntheticUnitvariantLessonsByKsOld,
   syntheticUnitvariantLessonsFixture,
 } from "@oaknational/oak-curriculum-schema";
 
@@ -9,11 +9,16 @@ import { downloadAssetsFixture } from "./downloadUtils.test";
 import { LessonDownloadsCanonical } from "./lessonDownloadsCanonical.schema";
 
 describe("constructCanonicalLessonDownloads", () => {
+  type UpdatedSyntheticUnitvariantLessonsByKsOld = Omit<
+    SyntheticUnitvariantLessonsByKsOld,
+    "unitvariant_id" | "null_unitvariant"
+  >;
+
   it("should construct LessonDownloadsCanonical correctly", () => {
     const downloads: LessonDownloadsListSchema =
       downloadAssetsFixture as LessonDownloadsListSchema;
     const lessonSlug = "lesson-slug";
-    const browseData: SyntheticUnitvariantLessons[] = [
+    const browseData: UpdatedSyntheticUnitvariantLessonsByKsOld[] = [
       syntheticUnitvariantLessonsFixture({
         overrides: {
           lesson_data: {
@@ -95,7 +100,7 @@ describe("constructCanonicalLessonDownloads", () => {
     const downloads: LessonDownloadsListSchema =
       downloadAssetsFixture as LessonDownloadsListSchema;
     const lessonSlug = "lesson-slug";
-    const browseData: SyntheticUnitvariantLessons[] = [
+    const browseData: UpdatedSyntheticUnitvariantLessonsByKsOld[] = [
       syntheticUnitvariantLessonsFixture({
         overrides: {
           lesson_data: {
