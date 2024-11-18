@@ -8,6 +8,8 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+import { useEffect, useRef } from "react";
+import { z } from "zod";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -24,6 +26,8 @@ import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonO
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
+import { generateShareId } from "@/utils/generateShareId";
+import { getCookiesWithSchema } from "@/utils/getCookiesWithSchema";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -38,6 +42,29 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
+  const shareId = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!shareId.current) {
+      // get the current url params
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlShareId = urlParams.get("sid");
+      const cookieShareId = getCookiesWithSchema("sid", z.string());
+
+      if (urlShareId && cookieShareId === urlShareId) {
+        // we already generated a share-id from this page
+        shareId.current = urlShareId;
+      } else {
+        // generate a share-id
+        shareId.current = generateShareId();
+
+        const oldHref = window.location.href.split("?")[0];
+        const newHref = `${oldHref}?sid=${shareId.current}`;
+        window.history.replaceState({}, "", newHref);
+      }
+    }
+  }, [shareId]);
+
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
     <AppLayout
