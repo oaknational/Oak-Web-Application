@@ -616,7 +616,6 @@ export const getStaticProps: GetStaticProps<
         subjectSlug: slugs.subjectSlug,
         phaseSlug: slugs.phaseSlug,
       });
-
       const curriculumOverviewSanityData =
         await CMSClient.curriculumOverviewPage({
           previewMode: isPreviewMode,

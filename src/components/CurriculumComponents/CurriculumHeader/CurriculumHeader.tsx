@@ -158,7 +158,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 $justifyContent={"center"}
                 $flexDirection={"column"}
               >
-                {phase.slug === "secondary" && (
+                {keyStages.includes("ks4") && (
                   <OakP
                     $font={"heading-light-7"}
                     data-testid={"examboard-metadata"}
