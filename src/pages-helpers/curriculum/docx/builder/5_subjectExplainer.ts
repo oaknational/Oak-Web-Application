@@ -419,7 +419,7 @@ export default async function generate(
                   <w:color w:val="222222" />
                   <w:sz w:val="56" />
                 </w:rPr>
-                <w:t>${cdata(`${data.subjectTitle} curriculum overview`)}</w:t>
+                <w:t>${cdata(`${data.subjectTitle} curriculum explainer`)}</w:t>
               </w:r>
             `,
           )}
