@@ -9,7 +9,6 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 import { useEffect, useRef } from "react";
-import { z } from "zod";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -26,8 +25,8 @@ import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonO
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-import { generateShareId } from "@/utils/generateShareId";
-import { getCookiesWithSchema } from "@/utils/getCookiesWithSchema";
+import { getShareIdFromCookie, getShareIdKey } from "@/utils/createShareId";
+import { getUpdatedUrl } from "@/pages-helpers/teacher/share-experiments/getUpdatedUrl";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -42,28 +41,36 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
-  const shareId = useRef<string | null>(null);
+  const shareIdRef = useRef<string | null>(null);
+  const shareIdKeyRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!shareId.current) {
+    if (!shareIdRef.current) {
       // get the current url params
       const urlParams = new URLSearchParams(window.location.search);
-      const urlShareId = urlParams.get("sid");
-      const cookieShareId = getCookiesWithSchema("sid", z.string());
+      const urlShareId = urlParams.get(getShareIdKey(lesson.lessonSlug));
+      const cookieShareId = getShareIdFromCookie(lesson.lessonSlug);
 
-      if (urlShareId && cookieShareId === urlShareId) {
-        // we already generated a share-id from this page
-        shareId.current = urlShareId;
-      } else {
-        // generate a share-id
-        shareId.current = generateShareId();
+      if (urlShareId && cookieShareId !== urlShareId) {
+        // const urlShareMethod = urlParams.get("sm");
+        // TODO: send a tracking event to the backend to track the share-id
+      }
 
-        const oldHref = window.location.href.split("?")[0];
-        const newHref = `${oldHref}?sid=${shareId.current}`;
-        window.history.replaceState({}, "", newHref);
+      const { url, shareIdKey, shareId } = getUpdatedUrl({
+        url: window.location.href,
+        urlShareId,
+        cookieShareId,
+        lessonSlug: lesson.lessonSlug,
+      });
+
+      shareIdRef.current = shareId;
+      shareIdKeyRef.current = shareIdKey;
+
+      if (window.location.href !== url) {
+        window.history.replaceState({}, "", url);
       }
     }
-  }, [shareId]);
+  }, [lesson.lessonSlug]);
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
