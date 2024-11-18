@@ -52701,7 +52701,7 @@ export type TeachersPreviewLessonQueryVariables = Exact<{
 }>;
 
 
-export type TeachersPreviewLessonQuery = { __typename?: 'query_root', content: Array<{ __typename?: 'published_mv_lesson_content_new_3_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, video_duration?: string | null, _state?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, geo_restricted?: string | null, login_required?: string | null }> };
+export type TeachersPreviewLessonQuery = { __typename?: 'query_root', content: Array<{ __typename?: 'published_mv_lesson_content_new_4_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, video_duration?: string | null, _state?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, geo_restricted?: string | null, login_required?: string | null }> };
 
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -53482,7 +53482,7 @@ export const SubjectPhaseOptionsIncludeNewDocument = gql`
     `;
 export const TeachersPreviewLessonDocument = gql`
     query teachersPreviewLesson($lessonSlug: String!) {
-  content: published_mv_lesson_content_new_3_0_0(
+  content: published_mv_lesson_content_new_4_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -53523,6 +53523,10 @@ export const TeachersPreviewLessonDocument = gql`
     slide_deck_asset_object_url
     worksheet_asset_object_url
     supplementary_asset_object_url
+    has_lesson_guide_google_drive_downloadable_version
+    lesson_guide_asset_object_url
+    has_lesson_guide_object
+    lesson_guide_asset_id
     geo_restricted
     login_required
   }

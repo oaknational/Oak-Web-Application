@@ -109,6 +109,7 @@ describe("getCommonPathway()", () => {
 describe("getPageLinksForLesson()", () => {
   it("returns only the correct page links for a lesson with no starter or exit quiz", () => {
     const lesson = {
+      lessonGuideUrl: "lesson-guide-url",
       presentationUrl: "presentation-url",
       videoMuxPlaybackId: "video-mux-playback-id",
       worksheetUrl: "worksheet-url",
@@ -122,6 +123,10 @@ describe("getPageLinksForLesson()", () => {
     const result = getPageLinksForLesson(lesson, []);
 
     const expected = [
+      {
+        anchorId: "lesson-guide",
+        label: "Lesson guide",
+      },
       {
         anchorId: "slide-deck",
         label: "Slide deck",
@@ -198,6 +203,7 @@ describe("getPageLinksForLesson()", () => {
 
   it("doesn't include slidedeck if hasCopyrightMaterial", () => {
     const lesson = {
+      lessonGuideUrl: null,
       presentationUrl: "presentation-url",
       hasCopyrightMaterial: true,
       videoMuxPlaybackId: null,
