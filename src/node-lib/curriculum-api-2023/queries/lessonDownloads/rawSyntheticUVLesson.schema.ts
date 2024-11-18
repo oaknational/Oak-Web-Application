@@ -1,10 +1,25 @@
 import { z } from "zod";
-import { syntheticUnitvariantLessonsByKsSchemaOld } from "@oaknational/oak-curriculum-schema";
+import {
+  syntheticUnitvariantLessonsByKsSchemaOld,
+  syntheticUnitvariantLessonsSchema,
+} from "@oaknational/oak-curriculum-schema";
 
-export const rawSyntheticUVLessonSchema =
+export const rawSyntheticUVLessonSchema = z.object({
+  ...syntheticUnitvariantLessonsSchema.omit({
+    supplementary_data: true,
+    null_unitvariant_id: true,
+  }).shape,
+  order_in_unit: z.number().optional(),
+});
+
+export type RawSyntheticUVLesson = z.infer<typeof rawSyntheticUVLessonSchema>;
+
+export const deprecatedRawSyntheticUVLessonSchema =
   syntheticUnitvariantLessonsByKsSchemaOld.omit({
     unitvariant_id: true,
     null_unitvariant: true,
   });
 
-export type RawSyntheticUVLesson = z.infer<typeof rawSyntheticUVLessonSchema>;
+export type DeprecatedRawSyntheticUVLesson = z.infer<
+  typeof deprecatedRawSyntheticUVLessonSchema
+>;

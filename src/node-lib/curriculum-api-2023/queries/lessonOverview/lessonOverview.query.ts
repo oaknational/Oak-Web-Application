@@ -4,6 +4,7 @@ import {
 } from "../../generated/sdk";
 import { lessonOverviewQuizData, LessonPathway } from "../../shared.schema";
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 
 import lessonOverviewSchema, {
   lessonContentSchema,
@@ -241,12 +242,19 @@ const lessonOverviewQuery =
       });
     }
 
-    const [browseDataSnake] = res.browseData;
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      LessonOverviewQuery["browseData"][number]
+    >({
+      journey: "teacher",
+      queryName: "lessonOverviewQuery",
+      browseData: res.browseData,
+    });
 
-    if (!browseDataSnake) {
+    if (modifiedBrowseData.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
+    const [browseDataSnake] = modifiedBrowseData;
     const [contentSnake] = res.content;
 
     if (!contentSnake) {
@@ -266,16 +274,15 @@ const lessonOverviewQuery =
     const pathways = canonicalLesson ? getPathways(res) : [];
 
     lessonBrowseDataByKsSchema.parse(browseDataSnake);
-    lessonContentSchema.parse({ ...contentSnake, phonics_outcome: null });
+    lessonContentSchema.parse({ ...contentSnake });
 
     /**
      * ! - We've already parsed this data with Zod so we can safely cast it to the correct type
-     * ! - Whilst some data is still new and beta overview and 'regular' overview share types, some values are hardcoded i.e. phonics_outcome
      *  */
+
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
     const content = keysToCamelCase({
       ...contentSnake,
-      phonics_outcome: null,
     }) as LessonOverviewContent;
 
     return lessonOverviewSchema.parse(
