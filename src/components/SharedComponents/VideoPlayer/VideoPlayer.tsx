@@ -208,7 +208,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       <OakFlex
         $alignItems={"center"}
         $justifyContent={"center"}
-        $ba={"border-solid-l"}
+        $ba={"border-solid-m"}
         $minWidth={"100%"}
         $borderColor={"black"}
         style={{

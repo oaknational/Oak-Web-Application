@@ -4,13 +4,6 @@ import { generateEmptyDocx } from "../docx";
 import generate from "./5_subjectExplainer";
 import { zipToSnapshotObject } from "./helper";
 
-const isCycleTwoEnabled = jest.fn(() => false);
-jest.mock("@/utils/curriculum/features", () => ({
-  __esModule: true,
-  isCycleTwoEnabled: (...args: []) => isCycleTwoEnabled(...args),
-  default: {},
-}));
-
 describe("5_subjectExplainer", () => {
   beforeEach(() => {
     jest.resetAllMocks();
@@ -18,7 +11,6 @@ describe("5_subjectExplainer", () => {
   });
 
   it("simple", async () => {
-    isCycleTwoEnabled.mockReturnValue(false);
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {
@@ -49,7 +41,6 @@ describe("5_subjectExplainer", () => {
   });
 
   it("cycle 2 features", async () => {
-    isCycleTwoEnabled.mockReturnValue(true);
     const zip = await generateEmptyDocx();
     await generate(zip, {
       data: {

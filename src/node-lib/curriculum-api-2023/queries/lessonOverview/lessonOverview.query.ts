@@ -10,8 +10,8 @@ import lessonOverviewSchema, {
   LessonOverviewContent,
   LessonOverviewDownloads,
   LessonOverviewPageData,
-  LessonBrowseDataByKs,
-  lessonBrowseDataByKsSchema,
+  LessonBrowseDataByKsOld,
+  lessonBrowseDataByKsSchemaOld,
 } from "./lessonOverview.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -97,7 +97,7 @@ export function getContentGuidance(
 
 export function getCopyrightContent(
   content:
-    | LessonBrowseDataByKs["lessonData"]["copyrightContent"]
+    | LessonBrowseDataByKsOld["lessonData"]["copyrightContent"]
     | { copyrightInfo: string }[]
     | null,
 ): LessonOverviewPageData["copyrightContent"] {
@@ -119,14 +119,14 @@ export function getCopyrightContent(
 
 const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   const pathways = res.browseData.map((l) => {
-    const lesson = lessonBrowseDataByKsSchema.parse(l);
+    const lesson = lessonBrowseDataByKsSchemaOld.parse(l);
     return constructPathwayLesson(lesson);
   });
   return pathways;
 };
 
 export const transformedLessonOverviewData = (
-  browseData: LessonBrowseDataByKs,
+  browseData: LessonBrowseDataByKsOld,
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
 ): LessonOverviewPageData => {
@@ -194,6 +194,7 @@ export const transformedLessonOverviewData = (
     exitQuiz: exitQuiz,
     videoTitle: content.videoTitle,
     lessonCohort: browseData.lessonData.Cohort,
+    lessonGuideUrl: content.lessonGuideAssetObjectUrl ?? null,
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
   };
@@ -265,14 +266,16 @@ const lessonOverviewQuery =
     }
     const pathways = canonicalLesson ? getPathways(res) : [];
 
-    lessonBrowseDataByKsSchema.parse(browseDataSnake);
+    lessonBrowseDataByKsSchemaOld.parse(browseDataSnake);
     lessonContentSchema.parse({ ...contentSnake, phonics_outcome: null });
 
     /**
      * ! - We've already parsed this data with Zod so we can safely cast it to the correct type
      * ! - Whilst some data is still new and beta overview and 'regular' overview share types, some values are hardcoded i.e. phonics_outcome
      *  */
-    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
+    const browseData = keysToCamelCase(
+      browseDataSnake,
+    ) as LessonBrowseDataByKsOld;
     const content = keysToCamelCase({
       ...contentSnake,
       phonics_outcome: null,
