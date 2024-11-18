@@ -204,9 +204,9 @@ describe("lessonListing()", () => {
       });
     });
     test("getTransformedLessons returns the correct data", async () => {
-      const transformedLessons = getTransformedLessons({
-        unit: [syntheticUnitvariantLessonsByKsFixture()],
-      });
+      const transformedLessons = getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture(),
+      ]);
       expect(transformedLessons).toEqual([
         {
           description: "lesson-description",

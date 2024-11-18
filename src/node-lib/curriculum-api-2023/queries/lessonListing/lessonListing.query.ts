@@ -23,8 +23,8 @@ type PartialSyntheticUnitvariantLessons = z.infer<
   typeof partialSyntheticUnitvariantLessonsSchema
 >;
 
-export const getTransformedLessons = (res: LessonListingQuery) => {
-  return res.unit
+export const getTransformedLessons = (unit: LessonListingQuery["unit"]) => {
+  return unit
     .map((l) => {
       const lesson = partialSyntheticUnitvariantLessonsSchema.parse(l);
       const hasCopyrightMaterial =
@@ -97,10 +97,11 @@ const lessonListingQuery =
 
     const [unit] = modifiedUnit;
 
-    const unitLessons = getTransformedLessons(res);
+    const unitLessons = getTransformedLessons(modifiedUnit);
     const parsedLessons = lessonListSchema.parse(unitLessons);
     const parsedUnit = partialSyntheticUnitvariantLessonsSchema.parse(unit);
     const transformedUnit = getTransformedUnit(parsedUnit, parsedLessons);
+    console.log(modifiedUnit);
     return lessonListingSchema.parse(transformedUnit);
   };
 
