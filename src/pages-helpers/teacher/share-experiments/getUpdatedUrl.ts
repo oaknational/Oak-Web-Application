@@ -23,7 +23,6 @@ export const getUpdatedUrl = ({
   const strippedUrl = url.split("?")[0];
 
   if (cookieShareId) {
-    console.log("Share ID already stored in cookie");
     const updatedUrl = `${strippedUrl}?${shareIdKey}=${cookieShareId}&sm=${shareMethods.url}`;
     return { url: updatedUrl, shareIdKey, shareId: cookieShareId };
   }
