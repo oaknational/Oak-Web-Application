@@ -1,3 +1,10 @@
+## [1.627.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.627.0...v1.627.1) (2024-11-18)
+
+
+### Bug Fixes
+
+* remove old cycle 2 conditionals now we're in a cycle 2 world ([18d753a](https://github.com/oaknational/Oak-Web-Application/commit/18d753a291ab4cafc8661adbcbb3c80c32e2cb25))
+
 # [1.627.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.4...v1.627.0) (2024-11-18)
 
 
