@@ -4895,7 +4895,7 @@ exports[`5_subjectExplainer simple 1`] = `
             w:val="56"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[Science curriculum overview]]></w:t>
+        <w:t><![CDATA[Science curriculum explainer]]></w:t>
       </w:r>
       <w:bookmarkEnd
         w:id="20001"
