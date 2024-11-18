@@ -1,4 +1,7 @@
-import { syntheticUnitvariantLessonsFixture } from "@oaknational/oak-curriculum-schema";
+import {
+  syntheticUnitvariantLessonsByKsFixture,
+  syntheticUnitvariantLessonsFixture,
+} from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
 
@@ -150,7 +153,7 @@ describe("lessonListing()", () => {
   describe("transform functions ", () => {
     test("getTransformedUnit returns the correct data", async () => {
       const transformedLessons = getTransformedUnit(
-        syntheticUnitvariantLessonsFixture(),
+        syntheticUnitvariantLessonsByKsFixture(),
         [],
       );
       expect(transformedLessons).toEqual({
@@ -171,9 +174,9 @@ describe("lessonListing()", () => {
       });
     });
     test("getTransformedUnit returns the correct data for optionality units", () => {
-      const pfs = syntheticUnitvariantLessonsFixture().programme_fields;
+      const pfs = syntheticUnitvariantLessonsByKsFixture().programme_fields;
       const transformedLessons = getTransformedUnit(
-        syntheticUnitvariantLessonsFixture({
+        syntheticUnitvariantLessonsByKsFixture({
           overrides: {
             programme_fields: {
               ...pfs,
