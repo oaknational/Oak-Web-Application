@@ -1,3 +1,24 @@
+## [1.627.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.627.0...v1.627.1) (2024-11-18)
+
+
+### Bug Fixes
+
+* remove old cycle 2 conditionals now we're in a cycle 2 world ([18d753a](https://github.com/oaknational/Oak-Web-Application/commit/18d753a291ab4cafc8661adbcbb3c80c32e2cb25))
+
+# [1.627.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.4...v1.627.0) (2024-11-18)
+
+
+### Bug Fixes
+
+* amend failing test ([a3e0771](https://github.com/oaknational/Oak-Web-Application/commit/a3e0771fa2824e50e50054ad5f2542ea617f6983))
+
+
+### Features
+
+* initial lesson guide implementation ([da5b000](https://github.com/oaknational/Oak-Web-Application/commit/da5b000270208818aa415cf79c4f30a5d9d30721))
+* preview mode google doc hardcoded in ([027c31e](https://github.com/oaknational/Oak-Web-Application/commit/027c31ec4f77f40f0c33f7b0bb1a7042999d0816))
+* update mv and schema version, fix type errors ([d41202d](https://github.com/oaknational/Oak-Web-Application/commit/d41202d5a3bdb57ae0ba4e159acc1a0959a1dafd))
+
 ## [1.626.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.3...v1.626.4) (2024-11-14)
 
 ## [1.626.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.2...v1.626.3) (2024-11-14)

@@ -37,6 +37,7 @@ describe("hasLessonMathJax", () => {
     unitTitle: "Example Unit Title",
     unitSlug: "example-unit-slug",
     programmeSlug: "example-programme-slug",
+    lessonGuideUrl: null,
     updatedAt: "2022",
   };
 
