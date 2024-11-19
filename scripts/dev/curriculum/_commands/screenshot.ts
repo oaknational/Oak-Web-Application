@@ -17,44 +17,68 @@ const screenshotCurrentModals = async (
   label: string,
   slug: string,
   page: Page,
+  opts: { id: string },
 ): Promise<ScreenshotModalResult[]> => {
   const modals: ScreenshotModalResult[] = [];
 
-  const getModalSlug = (text: string) => {
-    return slugify(text.replace(/:/g, "").replace("Unit info", ""));
+  const getModalSlug = (yearText: string, text: string) => {
+    return (
+      slugify(yearText.toLowerCase().replace(/:/g, "")) +
+      "-" +
+      slugify(text.toLowerCase().replace(/:/g, "").replace("Unit info", ""))
+    );
   };
 
-  const els = await page.$$('*[data-testid="unit-card"]');
-  for (const el of els) {
-    await el.click();
-    const text = await page.evaluate((el) => el.textContent ?? "", el);
+  const yearContainerEls = await page.$$(
+    '*[data-testid="curriculum-visualiser"] > *[id]',
+  );
 
-    await page.waitForSelector('*[data-testid="sidebar-modal"]');
-    const sidebarEl = await page.$('*[data-testid="sidebar-modal"]');
-    if (sidebarEl) {
-      // Open all the accordians
-      const accordianButtonElements = await sidebarEl.$$(
-        '*[data-testid="expand-accordian-button"]',
-      );
-      for (const accordianButtonElement of accordianButtonElements) {
-        await accordianButtonElement.click();
+  for (const yearContainerEl of yearContainerEls) {
+    const yearText = await (await yearContainerEl.$(
+      '*[data-testid="year-heading"]',
+    ))!.evaluate((el) => {
+      return el.textContent ?? "";
+    });
+    const els = await yearContainerEl.$$('*[data-testid="unit-card"]');
+    for (const el of els) {
+      await el.click();
+      const text = await page.evaluate((el) => el.textContent ?? "", el);
+
+      await page.waitForSelector('*[data-testid="sidebar-modal"]');
+      const sidebarEl = await page.$('*[data-testid="sidebar-modal"]');
+      if (sidebarEl) {
+        // Open all the accordians
+        const accordianButtonElements = await sidebarEl.$$(
+          '*[data-testid="expand-accordian-button"]',
+        );
+        for (const accordianButtonElement of accordianButtonElements) {
+          await accordianButtonElement.click();
+        }
+
+        const modalSlug = getModalSlug(yearText, text);
+
+        const modalScreenshotDir = getModalPath(label, slug);
+        await mkdir(modalScreenshotDir, { recursive: true });
+        const modalScreenshotPath = join(
+          modalScreenshotDir,
+          modalSlug + ".png",
+        );
+
+        await sidebarEl.screenshot({
+          path: modalScreenshotPath,
+        });
+
+        console.log(`🖼️ [${opts.id}/${modalSlug}] rendered`);
+
+        modals.push({
+          slug: modalSlug,
+          screenshot: relative(BASE_PATH, modalScreenshotPath),
+        });
+        const closeEl = await page.$('*[data-testid="close-button"]');
+        await closeEl?.click();
+      } else {
+        throw new Error("Missing sidebar");
       }
-
-      const modalSlug = getModalSlug(text);
-      const modalScreenshotDir = getModalPath(label, slug);
-      await mkdir(modalScreenshotDir, { recursive: true });
-      const modalScreenshotPath = join(modalScreenshotDir, modalSlug + ".png");
-      await sidebarEl.screenshot({
-        path: modalScreenshotPath,
-      });
-      modals.push({
-        slug: modalSlug,
-        screenshot: relative(BASE_PATH, modalScreenshotPath),
-      });
-      const closeEl = await page.$('*[data-testid="close-button"]');
-      await closeEl?.click();
-    } else {
-      throw new Error("Missing sidebar");
     }
   }
 
@@ -150,7 +174,7 @@ const screenshotPage = async (
       );
       const modals = !opts.includeModals
         ? []
-        : await screenshotCurrentModals(label, slug, page);
+        : await screenshotCurrentModals(label, slug, page, { id: opts.id });
       outputJson.push({
         slug,
         screenshot: relative(BASE_PATH, pagePath),
@@ -165,7 +189,7 @@ const screenshotPage = async (
     );
     const modals = !opts.includeModals
       ? []
-      : await screenshotCurrentModals(label, slug, page);
+      : await screenshotCurrentModals(label, slug, page, { id: opts.id });
     outputJson.push({
       slug,
       screenshot: relative(BASE_PATH, pagePath),
