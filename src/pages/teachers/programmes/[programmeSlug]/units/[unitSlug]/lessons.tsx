@@ -78,6 +78,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const { shareIdRef, shareIdKeyRef } = useShareExperiment({
     unitSlug: unitSlug ?? undefined,
     programmeSlug: programmeSlug ?? undefined,
+    source: "lesson-listing",
   });
   console.log(shareIdRef, shareIdKeyRef);
 

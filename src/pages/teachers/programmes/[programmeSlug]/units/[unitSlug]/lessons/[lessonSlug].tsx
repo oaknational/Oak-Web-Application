@@ -42,6 +42,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     lessonSlug,
     unitSlug,
     programmeSlug,
+    source: "lesson-browse",
   });
   console.log(shareIdRef, shareIdKeyRef);
 

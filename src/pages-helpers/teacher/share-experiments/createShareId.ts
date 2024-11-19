@@ -28,3 +28,11 @@ export const shareMethods = {
   url: 0,
   button: 1,
 };
+
+export const shareSources = {
+  "lesson-browse": 0,
+  "lesson-canonical": 1,
+  "download-browse": 2,
+  "download-canonical": 2,
+  "lesson-listing": 3,
+};

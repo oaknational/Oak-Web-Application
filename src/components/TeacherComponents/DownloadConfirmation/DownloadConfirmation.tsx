@@ -46,6 +46,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     lessonSlug,
     unitSlug: unitSlug ?? undefined,
     programmeSlug: programmeSlug ?? undefined,
+    source: isCanonical ? "download-canonical" : "download-browse",
   });
   console.log(shareIdRef, shareIdKeyRef);
 
