@@ -1,3 +1,26 @@
+# [1.628.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.627.1...v1.628.0) (2024-11-19)
+
+
+### Bug Fixes
+
+* add hook to lesson listing page ([bdddc54](https://github.com/oaknational/Oak-Web-Application/commit/bdddc545b80028047c84c6d687f210fcab5d2f9b))
+
+
+### Features
+
+* add test for override ([cb0a406](https://github.com/oaknational/Oak-Web-Application/commit/cb0a406ef425a52f4aea178724d4eef47342ce69))
+* added experiment flag ([b20596e](https://github.com/oaknational/Oak-Web-Application/commit/b20596ef830c9f9755d98daba8faa34309a5184c))
+* added tests ([c22b704](https://github.com/oaknational/Oak-Web-Application/commit/c22b70407bd4f173ecb2c1554e7996fa5f249b6f))
+* refactored share experiments into a hook ([4688f05](https://github.com/oaknational/Oak-Web-Application/commit/4688f0565025b92c4d3408c47708a33404b5a037))
+* wip share tracking ([b0cea9f](https://github.com/oaknational/Oak-Web-Application/commit/b0cea9f4d62d8c2a69914318cdf56ba7ef9ce674))
+
+## [1.627.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.627.0...v1.627.1) (2024-11-18)
+
+
+### Bug Fixes
+
+* remove old cycle 2 conditionals now we're in a cycle 2 world ([18d753a](https://github.com/oaknational/Oak-Web-Application/commit/18d753a291ab4cafc8661adbcbb3c80c32e2cb25))
+
 # [1.627.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.4...v1.627.0) (2024-11-18)
 
 
