@@ -1,5 +1,14 @@
-import { programmeListingResponseSchema } from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
+
+export const programmeListingResponseSchema =
+  syntheticUnitvariantLessonsSchema.omit({
+    supplementary_data: true,
+    lesson_slug: true,
+    unit_slug: true,
+    unit_data: true,
+    null_unitvariant_id: true,
+  });
 
 export type ProgrammeListingResponse = z.infer<
   typeof programmeListingResponseSchema

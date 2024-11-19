@@ -1,16 +1,16 @@
-import {
-  programmeListingResponseSchema,
-  programmeListingResponseSchemaArray,
-} from "@oaknational/oak-curriculum-schema";
+import { z } from "zod";
 
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
 import { toSentenceCase } from "../../helpers";
+import { ProgrammeListingQuery } from "../../generated/sdk";
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 
 import {
   Programme,
   ProgrammeListingResponse,
   programmeListingSchema,
+  programmeListingResponseSchema,
 } from "./programmeListing.schema";
 
 export const getTransformedProgrammeData = (
@@ -63,12 +63,25 @@ const programmeListingQuery =
   }) => {
     const res = await sdk.programmeListing(args);
 
-    const [firstProgram] = res.programmes;
-    if (!firstProgram) {
+    const modified = applyGenericOverridesAndExceptions<
+      ProgrammeListingQuery["programmes"][number]
+    >({
+      journey: "teacher",
+      queryName: "programmeListingQuery",
+      browseData: res.programmes,
+    });
+
+    if (modified.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
+    const [firstProgram] = modified;
 
-    const parsedRes = programmeListingResponseSchemaArray.parse(res.programmes);
+    const syntheticUnitvariantLessonsSchemaArray = z.array(
+      programmeListingResponseSchema,
+    );
+    const parsedRes = syntheticUnitvariantLessonsSchemaArray.parse(
+      res.programmes,
+    );
     const parsedFirstProgramme =
       programmeListingResponseSchema.parse(firstProgram);
 
