@@ -18,6 +18,7 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -26,8 +27,23 @@ export type LessonOverviewPageProps = {
 const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   curriculumData,
 }) => {
-  const { lessonTitle, keyStageSlug, subjectTitle, tierTitle, examBoardTitle } =
-    curriculumData;
+  const {
+    lessonTitle,
+    keyStageSlug,
+    subjectTitle,
+    tierTitle,
+    examBoardTitle,
+    lessonSlug,
+    unitSlug,
+    programmeSlug,
+  } = curriculumData;
+
+  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+    lessonSlug,
+    unitSlug,
+    programmeSlug,
+  });
+  console.log(shareIdRef, shareIdKeyRef);
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
