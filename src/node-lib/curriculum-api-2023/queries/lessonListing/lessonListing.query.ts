@@ -101,7 +101,6 @@ const lessonListingQuery =
     const parsedLessons = lessonListSchema.parse(unitLessons);
     const parsedUnit = partialSyntheticUnitvariantLessonsSchema.parse(unit);
     const transformedUnit = getTransformedUnit(parsedUnit, parsedLessons);
-    console.log(modifiedUnit);
     return lessonListingSchema.parse(transformedUnit);
   };
 
