@@ -538,9 +538,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
 
   const handleConfirmSubject = () => {
     setShowPhases(true);
-    setTimeout(() => {
-      setIsMobileLotPickerModalOpen(false);
-    }, 50);
+    setIsMobileLotPickerModalOpen(false);
   };
 
   const isPhaseSelectionComplete = () => {
@@ -1320,8 +1318,8 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           }}
                           pv="inner-padding-m"
                           ph="inner-padding-l"
-                          disabled={!isPhaseSelectionComplete() || isNavigating}
                           isLoading={isNavigating}
+                          disabled={!isPhaseSelectionComplete()}
                         >
                           View curriculum
                         </OakPrimaryButton>
