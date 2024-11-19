@@ -4,7 +4,6 @@ import { OakSpan, OakFlex } from "@oaknational/oak-components";
 import QuizQuestionsList from "@/components/TeacherComponents/QuizQuestionsList";
 import Box from "@/components/SharedComponents/Box";
 import { LessonOverviewQuizData } from "@/node-lib/curriculum-api-2023/shared.schema";
-import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 
 export type QuizProps = {
   questions: NonNullable<LessonOverviewQuizData>;
@@ -20,9 +19,9 @@ const LessonOverviewQuizContainer: FC<QuizProps> = (props) => {
         $justifyContent={"center"}
         $width={"100%"}
         $position={"relative"}
+        $ba={"border-solid-m"}
       >
         <QuizQuestionsList {...props} />
-        <BoxBorders />
       </OakFlex>
       {props.imageAttribution.length > 0 && (
         <Box $mt={24}>
