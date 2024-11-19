@@ -1,4 +1,5 @@
 import { readFile, unlink } from "fs/promises";
+import { join } from "path";
 
 import { Page } from "puppeteer";
 import sharp from "sharp";
@@ -91,7 +92,7 @@ export function wrapHtmlLayout(content: string) {
 export function resolveInputPath(input: string) {
   if (input.startsWith(":")) {
     const labelName = input.replace(/^:/, "");
-    return `${BASE_PATH}/screenshots/${labelName}/`;
+    return join(BASE_PATH, "screenshots", labelName);
   } else {
     return input;
   }
@@ -116,7 +117,7 @@ export function renderComparison(
   after: Comparison | null,
 ) {
   if (!before || !after) {
-    throw new Error("Missing");
+    throw new Error("Missing data, both comparison objects are empty");
   }
   const slug = before?.slug ?? after?.slug;
 
@@ -212,7 +213,7 @@ export async function screenshotPageCurrent(page: Page, path: string) {
   }
 
   if (images.length < 1) {
-    throw new Error("Missing");
+    throw new Error("Something went wrong, no images generated");
   }
 
   for (let i = 0; i < images.length; i++) {

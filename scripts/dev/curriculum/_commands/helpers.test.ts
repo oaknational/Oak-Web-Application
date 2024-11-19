@@ -9,10 +9,10 @@ describe("wrapHtmlLayout", () => {
 describe("outputPathFromLabel", () => {
   it("should work with valid label", () => {
     expect(resolveInputPath(":foo")).toEqual(
-      `${process.cwd()}/scripts/dev/curriculum/output/screenshots/foo/`,
+      `${process.cwd()}/scripts/dev/curriculum/output/screenshots/foo`,
     );
     expect(resolveInputPath(":foo")).toEqual(
-      `${process.cwd()}/scripts/dev/curriculum/output/screenshots/foo/`,
+      `${process.cwd()}/scripts/dev/curriculum/output/screenshots/foo`,
     );
   });
 
