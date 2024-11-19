@@ -1,8 +1,6 @@
-import { OakTertiaryButton } from "@oaknational/oak-components";
+import { OakTertiaryButton , OakBox , OakMaxWidth } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import Box from "@/components/SharedComponents/Box";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import {
   getLessonOverviewBreadCrumb,
@@ -44,46 +42,44 @@ export function LessonMedia(props: LessonMediaProps) {
   const { programmeSlug, unitSlug } = commonPathway;
 
   return (
-    <Box $ph={[16, null]}>
-      <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
-        <Box $mb={32} $mt={24}>
-          <Breadcrumbs
-            breadcrumbs={[
-              ...getBreadcrumbsForLessonPathway(commonPathway),
-              getLessonOverviewBreadCrumb({
-                lessonTitle,
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-                isCanonical,
-              }),
-              getLessonMediaBreadCrumb({
-                lessonSlug,
-                programmeSlug,
-                unitSlug,
-                disabled: true,
-              }),
-            ]}
-          />
-        </Box>
-        <Box>
-          {programmeSlug && unitSlug && (
-            <OakTertiaryButton
-              element="a"
-              href={resolveOakHref({
-                page: "lesson-overview",
-                programmeSlug,
-                lessonSlug,
-                unitSlug,
-              })}
-              iconName="arrow-left"
-              data-testid="back-to-lesson-button"
-            >
-              Back to lesson
-            </OakTertiaryButton>
-          )}
-        </Box>
-      </MaxWidth>
-    </Box>
+    <OakMaxWidth $pb={"inner-padding-xl8"}>
+      <OakBox $mb={"space-between-m2"} $mt={"space-between-m"}>
+        <Breadcrumbs
+          breadcrumbs={[
+            ...getBreadcrumbsForLessonPathway(commonPathway),
+            getLessonOverviewBreadCrumb({
+              lessonTitle,
+              lessonSlug,
+              programmeSlug,
+              unitSlug,
+              isCanonical,
+            }),
+            getLessonMediaBreadCrumb({
+              lessonSlug,
+              programmeSlug,
+              unitSlug,
+              disabled: true,
+            }),
+          ]}
+        />
+      </OakBox>
+      <OakBox>
+        {programmeSlug && unitSlug && (
+          <OakTertiaryButton
+            element="a"
+            href={resolveOakHref({
+              page: "lesson-overview",
+              programmeSlug,
+              lessonSlug,
+              unitSlug,
+            })}
+            iconName="arrow-left"
+            data-testid="back-to-lesson-button"
+          >
+            Back to lesson
+          </OakTertiaryButton>
+        )}
+      </OakBox>
+    </OakMaxWidth>
   );
 }
