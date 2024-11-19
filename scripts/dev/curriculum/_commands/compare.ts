@@ -101,7 +101,7 @@ export default async function compare(
           .map((slug) => {
             return `<div class="nav-item">
               <a href="#${slug}">${removeFileExtension(slug)}
-              ${includesModals ? `</a>&nbsp;—&nbsp;<a href="./${slug}.html">modals↗</a>` : ""}
+              ${includesModals ? `</a>&nbsp;—&nbsp;<a target="modals_${slug}" href="./${slug}.html">modals↗</a>` : ""}
             </div>`;
           })
           .join("")}
