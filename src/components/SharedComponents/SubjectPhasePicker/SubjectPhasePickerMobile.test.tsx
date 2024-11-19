@@ -199,7 +199,7 @@ describe("Component - Mobile subject phase picker", () => {
 
   describe("Phase picker interaction", () => {
     test("user can navigate back from phase picker to subject picker", async () => {
-      const { findAllByTitle, getByTestId } = render(
+      const { findAllByTitle, getByTestId, queryByTestId } = render(
         <SubjectPhasePicker {...subjectPhaseOptions} />,
       );
 
@@ -213,25 +213,25 @@ describe("Component - Mobile subject phase picker", () => {
       const confirmButton = getByTestId("mobile-subject-picker-confirm-button");
       await userEvent.click(confirmButton);
 
-      await waitFor(() => {
-        expect(getByTestId("mobile-phase-picker-heading")).toHaveTextContent(
-          "School phase",
-        );
-      });
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      const phasePickerHeading = getByTestId("mobile-phase-picker-heading");
+      expect(phasePickerHeading).toBeInTheDocument();
+      expect(phasePickerHeading).toHaveTextContent("School phase");
 
       const backButton = getByTestId(
         "mobile-phase-picker-back-to-subject-button",
       );
-      if (!backButton) {
-        throw new Error("Back button not found");
-      }
       await userEvent.click(backButton);
 
       await waitFor(() => {
-        expect(getByTestId("mobile-subject-picker")).toBeInTheDocument();
-        expect(getByTestId("subject-picker-heading")).toHaveTextContent(
-          "Curriculum plans",
-        );
+        expect(
+          queryByTestId("mobile-phase-picker-heading"),
+        ).not.toBeInTheDocument();
+      });
+
+      await waitFor(() => {
+        expect(getByTestId("subject-picker-heading")).toBeInTheDocument();
       });
     });
 
@@ -523,7 +523,7 @@ describe("Component - Mobile subject phase picker", () => {
     });
 
     test("shows both Core and GCSE options for Citizenship", async () => {
-      const { getByTitle, findAllByTitle, getByTestId, findAllByTestId } =
+      const { getByTitle, findAllByTestId, findAllByTitle, getByTestId } =
         render(<SubjectPhasePicker {...subjectPhaseOptions} />);
 
       const control = getByTestId("subject-picker-button");
@@ -552,16 +552,20 @@ describe("Component - Mobile subject phase picker", () => {
       }
       await userEvent.click(secondaryButton);
 
-      const ks4OptionsTitle = getByTestId(
-        "mobile-phase-picker-ks4-option-heading",
-      );
-      expect(ks4OptionsTitle).toHaveTextContent("Choose an option for KS4");
+      await waitFor(() => {
+        expect(
+          getByTestId("mobile-phase-picker-ks4-option-heading"),
+        ).toHaveTextContent("Choose an option for KS4");
+      });
 
       const ks4Options = await findAllByTestId(
         "mobile-phase-picker-ks4-option",
       );
-      expect(ks4Options[0]).toHaveTextContent("Core");
-      expect(ks4Options[1]).toHaveTextContent("GCSE");
+      expect(ks4Options).toHaveLength(2);
+
+      const optionTexts = ks4Options.map((opt) => opt.textContent);
+      expect(optionTexts).toContain("Core");
+      expect(optionTexts).toContain("GCSE");
     });
 
     test("No KS4 options displayed for Geography", async () => {

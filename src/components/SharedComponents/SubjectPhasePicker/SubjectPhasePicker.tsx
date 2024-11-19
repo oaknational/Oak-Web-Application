@@ -470,6 +470,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       canViewCurriculum = false;
       setShowSubjectError(true);
       setShowSubjects(true);
+      if (isMobile) {
+        setShowPhases(false);
+      }
     }
 
     if (!selectedPhase) {
@@ -534,13 +537,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   };
 
   const handleConfirmSubject = () => {
-    setIsMobileLotPickerModalOpen(false);
-    if (isMobile) {
-      // Delay showing phases slightly to allow modal to close smoothly
-      setTimeout(() => {
-        setShowPhases(true);
-      }, 100);
-    }
+    setShowPhases(true);
+    setTimeout(() => {
+      setIsMobileLotPickerModalOpen(false);
+    }, 50);
   };
 
   const isPhaseSelectionComplete = () => {
