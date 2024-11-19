@@ -20,7 +20,6 @@ import { OakColorName } from "@/styles/theme/types";
 import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 export type CurriculumHeaderPageProps = {
@@ -38,7 +37,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   subjectPhaseOptions,
   keyStages,
 }) => {
-  const cycleTwoEnabled = isCycleTwoEnabled();
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
   const subject = subjectPhaseOptions.subjects.find(
@@ -86,7 +84,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
       scroll: false,
     },
     {
-      label: cycleTwoEnabled ? "Explainer" : "Overview",
+      label: "Explainer",
       page: "curriculum-overview",
       subjectPhaseSlug: subjectPhaseSlug,
       isCurrent: tab === "overview",

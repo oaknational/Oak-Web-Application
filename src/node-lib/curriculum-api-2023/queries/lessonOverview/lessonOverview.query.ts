@@ -195,6 +195,7 @@ export const transformedLessonOverviewData = (
     exitQuiz: exitQuiz,
     videoTitle: content.videoTitle,
     lessonCohort: browseData.lessonData.Cohort,
+    lessonGuideUrl: content.lessonGuideAssetObjectUrl ?? null,
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
   };
