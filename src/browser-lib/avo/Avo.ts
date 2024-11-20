@@ -1293,6 +1293,7 @@ export const PageName = {
   'SUPPORT_YOUR_TEAM': 'Support Your Team',
   'SEARCH': 'Search',
   'LESSON_DOWNLOAD': 'Lesson Download',
+  'LESSON_MEDIA': 'Lesson Media',
   'UNIT_DOWNLOAD': 'Unit Download',
   'BLOG_LISTING': 'Blog Listing',
   'WEBINAR_LISTING': 'Webinar Listing',
