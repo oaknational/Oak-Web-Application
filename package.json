@@ -143,7 +143,7 @@
     "@graphql-codegen/typescript": "^4.1.1",
     "@graphql-codegen/typescript-graphql-request": "^6.2.0",
     "@graphql-codegen/typescript-operations": "^4.3.1",
-    "@netlify/edge-functions": "^2.8.1",
+    "@netlify/edge-functions": "^2.11.1",
     "@netlify/plugin-nextjs": "^5.4.0",
     "@next/bundle-analyzer": "^14.2.4",
     "@next/env": "^14.2.4",
