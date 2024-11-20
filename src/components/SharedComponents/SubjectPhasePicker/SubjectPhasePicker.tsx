@@ -586,7 +586,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     <OakBox
       $position="relative"
       data-testid="lot-picker"
-      $zIndex={300}
+      $zIndex={
+        (isMobileLotPickerModalOpen || showPhases) && isMobile ? 300 : 101
+      }
       $maxWidth="all-spacing-23"
       $borderRadius="border-radius-s"
       $borderColor={showSubjects || showPhases ? "transparent" : "black"}
