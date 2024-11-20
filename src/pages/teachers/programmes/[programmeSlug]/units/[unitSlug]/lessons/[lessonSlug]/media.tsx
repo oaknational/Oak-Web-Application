@@ -1,60 +1,122 @@
 import { useFeatureFlagEnabled } from "posthog-js/react";
+import {
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { LessonMedia } from "@/components/TeacherViews/LessonMedia/LessonMedia.view";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import {
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "@/node-lib/isr";
+import getPageProps from "@/node-lib/getPageProps";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
-const LessonMediaPage = () => {
+type LessonMediaData = {
+  lessonSlug: string;
+  programmeSlug: string;
+  unitSlug: string;
+  keyStageSlug: string;
+  subjectTitle: string;
+  subjectSlug: string;
+  unitTitle: string;
+  lessonTitle: string;
+};
+
+export type LessonMediaPageProps = {
+  curriculumData: LessonMediaData;
+};
+
+const LessonMediaPage: NextPage<LessonMediaPageProps> = ({
+  curriculumData,
+}) => {
   const isMediaPageContentEnabled = useFeatureFlagEnabled(
     "is_media_page_content_enabled",
   );
+  if (!isMediaPageContentEnabled) return null;
 
-  if (isMediaPageContentEnabled) {
-    // hardcode data until we have gql query for media page
-    const lessonTitle = "Add 3 numbers together using doubles and near doubles";
-    const lessonSlug = "add-3-numbers-together-using-doubles-and-near-doubles";
-    const keyStageSlug = "ks3";
-    const subjectTitle = "Maths";
-    const subjectSlug = "maths";
-    const programmeSlug = "maths-primary-ks2";
-    const unitSlug = "review-strategies-for-adding-and-subtracting-across-10";
-    const unitTitle = "Review strategies for adding and subtracting across 10";
+  const {
+    lessonTitle,
+    keyStageSlug,
+    subjectTitle,
+    programmeSlug,
+    unitSlug,
+    lessonSlug,
+  } = curriculumData;
 
-    const lesson = {
-      lessonTitle,
-      lessonSlug,
-      subjectTitle,
-      subjectSlug,
-      unitTitle,
-      unitSlug,
-      programmeSlug,
-    };
-
-    return (
-      <AppLayout
-        seoProps={{
-          ...getSeoProps({
-            title: `Lesson Media: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
-            description: "Extra video and audio for the lesson",
-            canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${
-              programmeSlug
-            }/units/${unitSlug}/lessons/${lessonSlug}`,
-          }),
-        }}
-      >
-        <LessonMedia isCanonical={false} lesson={lesson} />
-      </AppLayout>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: `Lesson Media: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
+          description: "Extra video and audio for the lesson",
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${
+            programmeSlug
+          }/units/${unitSlug}/lessons/${lessonSlug}`,
+        }),
+      }}
+    >
+      <LessonMedia isCanonical={false} lesson={curriculumData} />
+    </AppLayout>
+  );
 };
 
 export type URLParams = {
   lessonSlug: string;
   programmeSlug: string;
   unitSlug: string;
+};
+
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: "blocking",
+    paths: [],
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
+  LessonMediaPageProps,
+  URLParams
+> = async (context) => {
+  return getPageProps({
+    page: "lessonMedia::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("No context.params");
+      }
+      const { lessonSlug, programmeSlug, unitSlug } = context.params;
+
+      const curriculumData = await curriculumApi2023.mediaClips({
+        lessonSlug,
+        programmeSlug,
+        unitSlug,
+      });
+
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
+
+      const results: GetStaticPropsResult<LessonMediaPageProps> = {
+        props: {
+          curriculumData: { ...curriculumData.browseData },
+        },
+      };
+      return results;
+    },
+  });
 };
 
 export default LessonMediaPage;

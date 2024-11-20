@@ -1,0 +1,18 @@
+query mediaClips(
+  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0_bool_exp
+) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
+    where: $browseDataWhere
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    is_legacy
+    lesson_data
+    unit_data
+    programme_fields
+    actions
+    features
+    order_in_unit
+  }
+}

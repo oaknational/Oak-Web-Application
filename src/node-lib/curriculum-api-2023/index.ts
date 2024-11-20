@@ -37,6 +37,7 @@ import curriculumUnitsIncludeNewQuery from "./queries/curriculumUnitsIncludeNew/
 import curriculumUnitsIncludeNewSchema from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.schema";
 import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
 import teacherPreviewLessonQuery from "./queries/teacherPreviewLesson/teacherPreviewLesson.query";
+import { mediaClipsQuery } from "./queries/mediaClips/mediaClips.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -161,6 +162,7 @@ const curriculumApi2023 = {
   specialistLessonDownloads: specialistLessonDownloadQuery(sdk),
   specialistLessonShare: specialistLessonShareQuery(sdk),
   teachersSitemap: teachersSitemap(sdk),
+  mediaClips: mediaClipsQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;
