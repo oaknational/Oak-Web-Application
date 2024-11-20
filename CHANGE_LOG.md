@@ -1,3 +1,10 @@
+## [1.630.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.630.0...v1.630.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* icon URLs for docx curriculum downloads ([bf59046](https://github.com/oaknational/Oak-Web-Application/commit/bf590464fc2717aacfae6fe39ce9e59964fa285b))
+
 # [1.630.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.629.1...v1.630.0) (2024-11-20)
 
 
