@@ -12,7 +12,7 @@ import {
   JSZipCached,
 } from "../docx";
 
-import { generateOakIconURL } from "./helper";
+import { generateIconURL } from "./helper";
 
 import { getShortPhaseText } from "@/utils/curriculum/formatting";
 
@@ -24,7 +24,7 @@ export default async function generate(
 ) {
   const images = await insertImages(zip, {
     icon: {
-      url: generateOakIconURL(slugs.subjectSlug),
+      url: generateIconURL(slugs.subjectSlug),
       width: PARTNER_IMG_WIDTH,
     },
     arrow: join(
