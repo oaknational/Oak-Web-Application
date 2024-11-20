@@ -166,7 +166,7 @@ export const getStaticProps: GetStaticProps<
       const optionalityUnits: UnitListingBrowseData[number][][] = Object.values(
         groupBy(mainUnits, (unit) =>
           unit.programmeFields.optionality
-            ? unit.unitSlug.replace(/\d+$/, "")
+            ? unit.unitSlug.replace(/-\d+?$/, "")
             : unit.unitSlug,
         ),
       );
