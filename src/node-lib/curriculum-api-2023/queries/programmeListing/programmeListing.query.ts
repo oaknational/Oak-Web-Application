@@ -2,12 +2,12 @@ import { z } from "zod";
 
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
-import { toSentenceCase } from "../../helpers";
 import { ProgrammeListingQuery } from "../../generated/sdk";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 
 import {
   Programme,
+  ProgrammeListingPageData,
   ProgrammeListingResponse,
   programmeListingResponseSchema,
 } from "./programmeListing.schema";
@@ -15,7 +15,7 @@ import {
 export const getTransformedProgrammeData = (
   programmeData: ProgrammeListingResponse[],
   programmeFields: ProgrammeListingResponse["programme_fields"],
-) => {
+): ProgrammeListingPageData => {
   const {
     keystage_description: keyStageTitle,
     keystage_slug: keyStageSlug,
@@ -34,6 +34,9 @@ export const getTransformedProgrammeData = (
       examBoardTitle: programme.programme_fields.examboard,
       examBoardDisplayOrder:
         programme.programme_fields.examboard_display_order || 0,
+      pathwaySlug: programme.programme_fields.pathway_slug,
+      pathwayTitle: programme.programme_fields.pathway,
+      pathwayDisplayOrder: programme.programme_fields.pathway_display_order,
     };
   });
 
@@ -44,7 +47,7 @@ export const getTransformedProgrammeData = (
   });
 
   return {
-    keyStageTitle: toSentenceCase(keyStageTitle),
+    keyStageTitle,
     keyStageSlug,
     subjectSlug,
     subjectTitle,
