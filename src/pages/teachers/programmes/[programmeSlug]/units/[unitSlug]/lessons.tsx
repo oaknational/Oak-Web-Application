@@ -40,6 +40,7 @@ import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 import { isLessonListItem } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -73,6 +74,12 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     programmeSlug,
     subjectSlug,
   } = curriculumData;
+
+  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+    unitSlug: unitSlug ?? undefined,
+    programmeSlug: programmeSlug ?? undefined,
+  });
+  console.log(shareIdRef, shareIdKeyRef);
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
   const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
