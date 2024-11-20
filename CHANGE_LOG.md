@@ -1,3 +1,10 @@
+## [1.629.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.629.0...v1.629.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* destructuring array to prevent modifying it ([2078436](https://github.com/oaknational/Oak-Web-Application/commit/2078436b6a0b21ec0b8b0c5406c8a639f80f08b7))
+
 # [1.629.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.628.0...v1.629.0) (2024-11-20)
 
 
