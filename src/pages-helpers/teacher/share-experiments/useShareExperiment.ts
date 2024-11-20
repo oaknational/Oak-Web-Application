@@ -73,6 +73,8 @@ export const useShareExperiment = ({
     const cookieShareId = getShareIdFromCookie(key);
 
     if (urlShareId && cookieShareId !== urlShareId) {
+      // TODO: store the converted shareId in a cookie for preventing multiple conversion events
+
       // track the share converted event irrespective of whether the user is part of the experiment
       track.teacherShareConverted({
         shareId: urlShareId,
@@ -93,7 +95,7 @@ export const useShareExperiment = ({
       });
 
       if (!cookieShareId) {
-        // track the share activated event
+        // track the share initiated event
         track.teacherShareInitiated({
           unitSlug,
           lessonSlug,
