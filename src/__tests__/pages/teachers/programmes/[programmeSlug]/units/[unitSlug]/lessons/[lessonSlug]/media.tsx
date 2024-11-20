@@ -9,6 +9,8 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => true,
 }));
 
+// REFACTOR ADD THIS TO A FIXTURE FILE
+
 const testCurriculumData = {
   lessonTitle: "Lesson Title",
   keyStageSlug: "ks1",
