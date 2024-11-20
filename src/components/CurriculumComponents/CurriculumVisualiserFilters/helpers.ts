@@ -11,7 +11,7 @@ function isHighlightedUnit(unit: Unit, selectedThread: Thread["slug"] | null) {
 
 export function highlightedUnitCount(
   yearData: CurriculumUnitsYearData,
-  selectedYear: string,
+  selectedYear: string | null,
   yearSelection: YearSelection,
   selectedThread: Thread["slug"] | null,
 ): number {

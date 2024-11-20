@@ -393,5 +393,61 @@ describe("Component - subject phase picker", () => {
 
       expect(getByTestId("view-desktop").matches(":focus-within")).toBe(true);
     });
+
+    test("close button is visible in subject picker", async () => {
+      const { getByTestId, getByTitle } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+      await userEvent.click(getByTitle("Subject"));
+      const button = getByTestId("close-modal-button");
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+
+      expect(button).toBeInTheDocument();
+    });
+
+    test("close button closes subject picker", async () => {
+      const { getByTestId, getByTitle } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+      await userEvent.click(getByTitle("Subject"));
+      const button = getByTestId("close-modal-button");
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+
+      await userEvent.click(button);
+
+      expect(button).not.toBeInTheDocument();
+    });
+
+    test("close button is visible in phase picker", async () => {
+      const { getByTestId, getByTitle } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+      await userEvent.click(getByTitle("Phase"));
+      const button = getByTestId("close-modal-button");
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+
+      expect(button).toBeInTheDocument();
+    });
+
+    test("close button closes phase picker", async () => {
+      const { getByTestId, getByTitle } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+      await userEvent.click(getByTitle("Phase"));
+      const button = getByTestId("close-modal-button");
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+
+      await userEvent.click(button);
+
+      expect(button).not.toBeInTheDocument();
+    });
   });
 });

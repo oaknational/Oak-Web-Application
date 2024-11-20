@@ -254,16 +254,6 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering"
     Target="numbering.xml"
   ></Relationship>
-  <Relationship
-    Id="rId2e79f37955e32c0faa9ca14f218bfb3a4eccb7f8e9fae2e91feeb7c4450038e4"
-    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_2e79f37955e32c0faa9ca14f218bfb3a4eccb7f8e9fae2e91feeb7c4450038e4.png"
-  ></Relationship>
-  <Relationship
-    Id="rId880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b"
-    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png"
-  ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
   version="1.0"
@@ -333,7 +323,7 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
             w:val="56"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[Science curriculum overview]]></w:t>
+        <w:t><![CDATA[Science curriculum explainer]]></w:t>
       </w:r>
       <w:bookmarkEnd
         w:id="20002"
@@ -385,7 +375,13 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:r>
-        <w:rPr></w:rPr>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+        </w:rPr>
         <w:t><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
@@ -433,7 +429,13 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:r>
-        <w:rPr></w:rPr>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+        </w:rPr>
         <w:t><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
@@ -481,7 +483,13 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:r>
-        <w:rPr></w:rPr>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+        </w:rPr>
         <w:t><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
@@ -530,7 +538,13 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:r>
-        <w:rPr></w:rPr>
+        <w:rPr>
+          <w:rFonts
+            w:ascii="Arial"
+            w:hAnsi="Arial"
+            w:cs="Arial"
+          ></w:rFonts>
+        </w:rPr>
         <w:t><![CDATA[test]]></w:t>
       </w:r>
     </w:p>
@@ -999,9 +1013,6 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
     </w:p>
   </w:footnote>
 </w:footnotes>",
-  "word/media/": "",
-  "word/media/hash_2e79f37955e32c0faa9ca14f218bfb3a4eccb7f8e9fae2e91feeb7c4450038e4.png": "0cd608625d1c1085fcb481ad42b436cd10fd2ae6eb3c5272aeb420587ee005f5",
-  "word/media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png": "d36df0472cd373f0a7cd5fdfb58745287ab7abb75b5c36e1aba96855c0dba86f",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"
@@ -4815,16 +4826,6 @@ exports[`5_subjectExplainer simple 1`] = `
     Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering"
     Target="numbering.xml"
   ></Relationship>
-  <Relationship
-    Id="rId2e79f37955e32c0faa9ca14f218bfb3a4eccb7f8e9fae2e91feeb7c4450038e4"
-    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_2e79f37955e32c0faa9ca14f218bfb3a4eccb7f8e9fae2e91feeb7c4450038e4.png"
-  ></Relationship>
-  <Relationship
-    Id="rId880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b"
-    Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image"
-    Target="media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png"
-  ></Relationship>
 </Relationships>",
   "word/document.xml": "<?xml
   version="1.0"
@@ -4894,36 +4895,26 @@ exports[`5_subjectExplainer simple 1`] = `
             w:val="56"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[Science curriculum overview]]></w:t>
+        <w:t><![CDATA[Science curriculum explainer]]></w:t>
       </w:r>
       <w:bookmarkEnd
         w:id="20001"
       ></w:bookmarkEnd>
     </w:p>
-    <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:b></w:b>
-          <w:color
-            w:val="222222"
-          ></w:color>
-          <w:sz
-            w:val="56"
-          ></w:sz>
-        </w:rPr>
-        <w:t></w:t>
-      </w:r>
-    </w:p>
+    <w:p></w:p>
+    <w:p></w:p>
     <w:p>
       <w:pPr>
         <w:pStyle
-          w:val="Heading3"
+          w:val="Heading4"
         ></w:pStyle>
+        <w:keepNext></w:keepNext>
+        <w:spacing
+          w:lineRule="auto"
+          w:line="240"
+          w:before="0"
+          w:after="192"
+        ></w:spacing>
       </w:pPr>
       <w:r>
         <w:rPr>
@@ -4933,352 +4924,23 @@ exports[`5_subjectExplainer simple 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:b></w:b>
+          <w:i
+            w:val="0"
+          ></w:i>
           <w:color
             w:val="222222"
           ></w:color>
           <w:sz
-            w:val="36"
+            w:val="28"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA[Curriculum explainer]]></w:t>
-        <w:drawing>
-          <wp:anchor
-            distT="0"
-            distB="0"
-            distL="0"
-            distR="114300"
-            simplePos="0"
-            relativeHeight="1"
-            behindDoc="1"
-            locked="0"
-            layoutInCell="1"
-            allowOverlap="1"
-          >
-            <wp:simplePos
-              x="0"
-              y="0"
-            ></wp:simplePos>
-            <wp:positionH
-              relativeFrom="column"
-            >
-              <wp:posOffset>
-                -68400
-              </wp:posOffset>
-            </wp:positionH>
-            <wp:positionV
-              relativeFrom="paragraph"
-            >
-              <wp:posOffset>
-                324000
-              </wp:posOffset>
-            </wp:positionV>
-            <wp:extent
-              cx="2509200"
-              cy="75600"
-            ></wp:extent>
-            <wp:effectExtent
-              l="0"
-              t="0"
-              r="0"
-              b="0"
-            ></wp:effectExtent>
-            <wp:wrapNone></wp:wrapNone>
-            <wp:docPr
-              id="30000"
-              name=""
-              descr=""
-            >
-              <a:extLst
-                xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
-              >
-                <a:ext
-                  uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}"
-                >
-                  <adec:decorative
-                    xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative"
-                    val="1"
-                  ></adec:decorative>
-                </a:ext>
-              </a:extLst>
-            </wp:docPr>
-            <wp:cNvGraphicFramePr>
-              <a:graphicFrameLocks
-                xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
-                noChangeAspect="1"
-              ></a:graphicFrameLocks>
-            </wp:cNvGraphicFramePr>
-            <a:graphic
-              xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
-            >
-              <a:graphicData
-                uri="http://schemas.openxmlformats.org/drawingml/2006/picture"
-              >
-                <pic:pic
-                  xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"
-                >
-                  <pic:nvPicPr>
-                    <pic:cNvPr
-                      id="30000"
-                      name=""
-                      descr=""
-                    >
-                      <a:extLst>
-                        <a:ext
-                          uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}"
-                        >
-                          <adec:decorative
-                            xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative"
-                            val="1"
-                          ></adec:decorative>
-                        </a:ext>
-                      </a:extLst>
-                    </pic:cNvPr>
-                    <pic:cNvPicPr></pic:cNvPicPr>
-                  </pic:nvPicPr>
-                  <pic:blipFill>
-                    <a:blip
-                      r:embed="rId880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b"
-                    >
-                      <a:extLst>
-                        <a:ext
-                          uri="{28A0092B-C50C-407E-A947-70E740481C1C}"
-                        >
-                          <a14:useLocalDpi
-                            xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main"
-                            val="0"
-                          ></a14:useLocalDpi>
-                        </a:ext>
-                      </a:extLst>
-                    </a:blip>
-                    <a:stretch>
-                      <a:fillRect></a:fillRect>
-                    </a:stretch>
-                  </pic:blipFill>
-                  <pic:spPr>
-                    <a:xfrm
-                      rot="0"
-                    >
-                      <a:off
-                        x="0"
-                        y="0"
-                      ></a:off>
-                      <a:ext
-                        cx="2509200"
-                        cy="75600"
-                      ></a:ext>
-                    </a:xfrm>
-                    <a:prstGeom
-                      prst="rect"
-                    >
-                      <a:avLst></a:avLst>
-                    </a:prstGeom>
-                  </pic:spPr>
-                </pic:pic>
-              </a:graphicData>
-            </a:graphic>
-          </wp:anchor>
-        </w:drawing>
-      </w:r>
-    </w:p>
-    <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:sz
-            w:val="36"
-          ></w:sz>
-        </w:rPr>
-        <w:t></w:t>
-      </w:r>
-    </w:p>
-    <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:color
-            w:val="222222"
-          ></w:color>
-          <w:sz
-            w:val="24"
-          ></w:sz>
-        </w:rPr>
-        <w:t><![CDATA[Something]]></w:t>
-      </w:r>
-    </w:p>
-    <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:color
-            w:val="222222"
-          ></w:color>
-          <w:sz
-            w:val="24"
-          ></w:sz>
-        </w:rPr>
-        <w:t><![CDATA[something]]></w:t>
-      </w:r>
-    </w:p>
-    <w:p>
-      <w:r>
-        <w:rPr>
-          <w:rFonts
-            w:ascii="Arial"
-            w:hAnsi="Arial"
-            w:cs="Arial"
-          ></w:rFonts>
-          <w:color
-            w:val="222222"
-          ></w:color>
-          <w:sz
-            w:val="24"
-          ></w:sz>
-        </w:rPr>
-        <w:t><![CDATA[something]]></w:t>
+        <w:t><![CDATA[Aims and purpose]]></w:t>
       </w:r>
     </w:p>
     <w:p></w:p>
     <w:p></w:p>
     <w:p></w:p>
     <w:p></w:p>
-    <w:p></w:p>
-    <w:p></w:p>
-    <w:p></w:p>
-    <w:p></w:p>
-    <w:p></w:p>
-    <w:p>
-      <w:pPr>
-        <w:jc
-          w:val="center"
-        ></w:jc>
-      </w:pPr>
-      <w:r>
-        <w:drawing>
-          <wp:inline
-            distT="0"
-            distB="0"
-            distL="0"
-            distR="0"
-          >
-            <wp:extent
-              cx="5011200"
-              cy="3704400"
-            ></wp:extent>
-            <wp:effectExtent
-              l="0"
-              t="0"
-              r="0"
-              b="0"
-            ></wp:effectExtent>
-            <wp:docPr
-              id="30001"
-              name=""
-              descr=""
-            >
-              <a:extLst
-                xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
-              >
-                <a:ext
-                  uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}"
-                >
-                  <adec:decorative
-                    xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative"
-                    val="1"
-                  ></adec:decorative>
-                </a:ext>
-              </a:extLst>
-            </wp:docPr>
-            <wp:cNvGraphicFramePr>
-              <a:graphicFrameLocks
-                xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
-                noChangeAspect="1"
-              ></a:graphicFrameLocks>
-            </wp:cNvGraphicFramePr>
-            <a:graphic
-              xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
-            >
-              <a:graphicData
-                uri="http://schemas.openxmlformats.org/drawingml/2006/picture"
-              >
-                <pic:pic
-                  xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"
-                >
-                  <pic:nvPicPr>
-                    <pic:cNvPr
-                      id="30001"
-                      name=""
-                      descr=""
-                    >
-                      <a:extLst>
-                        <a:ext
-                          uri="{C183D7F6-B498-43B3-948B-1728B52AA6E4}"
-                        >
-                          <adec:decorative
-                            xmlns:adec="http://schemas.microsoft.com/office/drawing/2017/decorative"
-                            val="1"
-                          ></adec:decorative>
-                        </a:ext>
-                      </a:extLst>
-                    </pic:cNvPr>
-                    <pic:cNvPicPr></pic:cNvPicPr>
-                  </pic:nvPicPr>
-                  <pic:blipFill>
-                    <a:blip
-                      r:embed="rId2e79f37955e32c0faa9ca14f218bfb3a4eccb7f8e9fae2e91feeb7c4450038e4"
-                    >
-                      <a:extLst>
-                        <a:ext
-                          uri="{28A0092B-C50C-407E-A947-70E740481C1C}"
-                        >
-                          <a14:useLocalDpi
-                            xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main"
-                            val="0"
-                          ></a14:useLocalDpi>
-                        </a:ext>
-                      </a:extLst>
-                    </a:blip>
-                    <a:stretch>
-                      <a:fillRect></a:fillRect>
-                    </a:stretch>
-                  </pic:blipFill>
-                  <pic:spPr>
-                    <a:xfrm
-                      rot="0"
-                    >
-                      <a:off
-                        x="0"
-                        y="0"
-                      ></a:off>
-                      <a:ext
-                        cx="5011200"
-                        cy="3704400"
-                      ></a:ext>
-                    </a:xfrm>
-                    <a:prstGeom
-                      prst="rect"
-                    >
-                      <a:avLst></a:avLst>
-                    </a:prstGeom>
-                  </pic:spPr>
-                </pic:pic>
-              </a:graphicData>
-            </a:graphic>
-          </wp:inline>
-        </w:drawing>
-      </w:r>
-    </w:p>
   </w:body>
 </w:document>",
   "word/endnotes.xml": "<?xml
@@ -5500,9 +5162,6 @@ exports[`5_subjectExplainer simple 1`] = `
     </w:p>
   </w:footnote>
 </w:footnotes>",
-  "word/media/": "",
-  "word/media/hash_2e79f37955e32c0faa9ca14f218bfb3a4eccb7f8e9fae2e91feeb7c4450038e4.png": "0cd608625d1c1085fcb481ad42b436cd10fd2ae6eb3c5272aeb420587ee005f5",
-  "word/media/hash_880c66d6a6ce4b35b61426498e68490bbba30f2ca509bb4b53df0ccfedc0af1b.png": "d36df0472cd373f0a7cd5fdfb58745287ab7abb75b5c36e1aba96855c0dba86f",
   "word/numbering.xml": "<?xml
   version="1.0"
   encoding="UTF-8"

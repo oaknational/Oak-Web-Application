@@ -1,12 +1,7 @@
-import { join } from "path";
-
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import {
   appendBodyElements,
-  cmToEmu,
-  createImage,
-  insertImages,
   insertNumbering,
   JSZipCached,
   line240,
@@ -14,7 +9,6 @@ import {
 } from "../docx";
 
 import { PortableTextJSON } from "@/common-lib/cms-types";
-import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 
 type PortableTextToDocxDef = {
   list: (
@@ -125,22 +119,6 @@ export default async function generate(
   zip: JSZipCached,
   { data }: { data: CombinedCurriculumData },
 ) {
-  const cycleTwoEnabled = isCycleTwoEnabled();
-  const images = await insertImages(zip, {
-    educationRoad: join(
-      process.cwd(),
-      "src/pages-helpers/curriculum/docx/builder/images/education-road.png",
-    ),
-    underline: join(
-      process.cwd(),
-      "src/pages-helpers/curriculum/docx/builder/images/underline.png",
-    ),
-  });
-
-  const curriculaDescLines = data.curriculaDesc
-    .split("\n")
-    .filter((line) => line !== "");
-
   let currentNumbering:
     | {
         bullet: string;
@@ -347,6 +325,11 @@ export default async function generate(
         },
       },
       blockStyling: {
+        normal: () => {
+          return safeXml`
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+          `;
+        },
         heading1: () => {
           return safeXml`
             <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
@@ -395,10 +378,7 @@ export default async function generate(
     },
   );
 
-  let pageXml;
-
-  if (cycleTwoEnabled) {
-    pageXml = safeXml`
+  const pageXml = safeXml`
       <root>
         <w:p>
           <w:pPr>
@@ -414,120 +394,19 @@ export default async function generate(
                   <w:color w:val="222222" />
                   <w:sz w:val="56" />
                 </w:rPr>
-                <w:t>${cdata(`${data.subjectTitle} curriculum overview`)}</w:t>
+                <w:t>${cdata(`${data.subjectTitle} curriculum explainer`)}</w:t>
               </w:r>
             `,
           )}
         </w:p>
         <w:p />
         <w:p />
-        ${cycleTwoEnabled ? explainerXml : ""}
+        ${explainerXml}
         ${Array(4)
           .fill(true)
           .map(() => safeXml`<w:p />`)}
       </root>
     `;
-  } else {
-    pageXml = safeXml`
-      <root>
-        <w:p>
-          <w:pPr>
-            <w:pStyle w:val="Heading2" />
-          </w:pPr>
-          ${wrapInBookmarkPoint(
-            "section_curriculum_overview",
-            safeXml`
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:b />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="56" />
-                </w:rPr>
-                <w:t>${cdata(`${data.subjectTitle} curriculum overview`)}</w:t>
-              </w:r>
-            `,
-          )}
-        </w:p>
-        <w:p>
-          <w:r>
-            <w:rPr>
-              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-              <w:b />
-              <w:color w:val="222222" />
-              <w:sz w:val="56" />
-            </w:rPr>
-            <w:t />
-          </w:r>
-        </w:p>
-        <w:p>
-          <w:pPr>
-            <w:pStyle w:val="Heading3" />
-          </w:pPr>
-          <w:r>
-            <w:rPr>
-              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-              <w:b />
-              <w:color w:val="222222" />
-              <w:sz w:val="36" />
-            </w:rPr>
-            <w:t>${cdata(`Curriculum explainer`)}</w:t>
-            ${createImage(images.underline, {
-              width: cmToEmu(6.97),
-              height: cmToEmu(0.21),
-              xPos: cmToEmu(-0.19),
-              yPos: cmToEmu(0.9),
-              xPosAnchor: "column",
-              yPosAnchor: "paragraph",
-              isDecorative: true,
-            })}
-          </w:r>
-        </w:p>
-        <w:p>
-          <w:r>
-            <w:rPr>
-              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-              <w:sz w:val="36" />
-            </w:rPr>
-            <w:t />
-          </w:r>
-        </w:p>
-        ${curriculaDescLines
-          .map((line) => {
-            return safeXml`
-              <w:p>
-                <w:r>
-                  <w:rPr>
-                    <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                    <w:color w:val="222222" />
-                    <w:sz w:val="24" />
-                  </w:rPr>
-                  <w:t>${cdata(line)}</w:t>
-                </w:r>
-              </w:p>
-            `;
-          })
-          .join("")}
-      ${Array(9)
-        .fill(true)
-        .map(() => {
-          return `<w:p />`;
-        })}
-        <w:p>
-          <w:pPr>
-            <w:jc w:val="center" />
-          </w:pPr>
-          <w:r>
-            ${createImage(images.educationRoad, {
-              width: cmToEmu(13.92),
-              height: cmToEmu(10.29),
-              isDecorative: true,
-            })}
-          </w:r>
-        </w:p>
-      </root>
-    `;
-  }
 
   await appendBodyElements(zip, xmlElementToJson(pageXml)?.elements);
 }

@@ -30,7 +30,7 @@ export default async function generate(
     },
     {
       anchorId: "section_curriculum_overview",
-      text: `${data.subjectTitle} curriculum overview`,
+      text: `${data.subjectTitle} curriculum explainer`,
     },
     ...yearOptions.map((year) => {
       return {

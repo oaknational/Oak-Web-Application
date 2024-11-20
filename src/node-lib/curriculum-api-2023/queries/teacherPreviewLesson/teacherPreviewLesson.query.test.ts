@@ -30,6 +30,8 @@ describe("teacherPreviewLesson()", () => {
               starter_quiz: null,
               geo_restricted: null,
               login_required: null,
+              phonics_outcome: "phonics-outcome",
+              lesson_guide_asset_object_url: "lesson-guide-url",
             },
           ],
         }),
@@ -40,5 +42,7 @@ describe("teacherPreviewLesson()", () => {
 
     expect(lesson.lessonSlug).toEqual(_lessonContentFixture.lesson_slug);
     expect(lesson.lessonTitle).toEqual(_lessonContentFixture.lesson_title);
+    expect(lesson.lessonGuideUrl).toEqual("lesson-guide-url");
+    expect(lesson.phonicsOutcome).toEqual("phonics-outcome");
   });
 });

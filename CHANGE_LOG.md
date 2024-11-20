@@ -1,3 +1,214 @@
+# [1.629.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.628.0...v1.629.0) (2024-11-20)
+
+
+### Bug Fixes
+
+* added year prefix to unit modal filenames ([0928e67](https://github.com/oaknational/Oak-Web-Application/commit/0928e67ce0bc98b3fc80d284e218ff1abfc79499))
+* open modals in new tab ([623a3a2](https://github.com/oaknational/Oak-Web-Application/commit/623a3a226b5096d3f8a6b4fb468967f4fb268f9c))
+
+
+### Features
+
+* screenshots of modals added to curric automate script ([825f3aa](https://github.com/oaknational/Oak-Web-Application/commit/825f3aa2dd1adb19c2861c4f2a06f7d518856c82))
+
+# [1.628.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.627.1...v1.628.0) (2024-11-19)
+
+
+### Bug Fixes
+
+* add hook to lesson listing page ([bdddc54](https://github.com/oaknational/Oak-Web-Application/commit/bdddc545b80028047c84c6d687f210fcab5d2f9b))
+
+
+### Features
+
+* add test for override ([cb0a406](https://github.com/oaknational/Oak-Web-Application/commit/cb0a406ef425a52f4aea178724d4eef47342ce69))
+* added experiment flag ([b20596e](https://github.com/oaknational/Oak-Web-Application/commit/b20596ef830c9f9755d98daba8faa34309a5184c))
+* added tests ([c22b704](https://github.com/oaknational/Oak-Web-Application/commit/c22b70407bd4f173ecb2c1554e7996fa5f249b6f))
+* refactored share experiments into a hook ([4688f05](https://github.com/oaknational/Oak-Web-Application/commit/4688f0565025b92c4d3408c47708a33404b5a037))
+* wip share tracking ([b0cea9f](https://github.com/oaknational/Oak-Web-Application/commit/b0cea9f4d62d8c2a69914318cdf56ba7ef9ce674))
+
+## [1.627.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.627.0...v1.627.1) (2024-11-18)
+
+
+### Bug Fixes
+
+* remove old cycle 2 conditionals now we're in a cycle 2 world ([18d753a](https://github.com/oaknational/Oak-Web-Application/commit/18d753a291ab4cafc8661adbcbb3c80c32e2cb25))
+
+# [1.627.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.4...v1.627.0) (2024-11-18)
+
+
+### Bug Fixes
+
+* amend failing test ([a3e0771](https://github.com/oaknational/Oak-Web-Application/commit/a3e0771fa2824e50e50054ad5f2542ea617f6983))
+
+
+### Features
+
+* initial lesson guide implementation ([da5b000](https://github.com/oaknational/Oak-Web-Application/commit/da5b000270208818aa415cf79c4f30a5d9d30721))
+* preview mode google doc hardcoded in ([027c31e](https://github.com/oaknational/Oak-Web-Application/commit/027c31ec4f77f40f0c33f7b0bb1a7042999d0816))
+* update mv and schema version, fix type errors ([d41202d](https://github.com/oaknational/Oak-Web-Application/commit/d41202d5a3bdb57ae0ba4e159acc1a0959a1dafd))
+
+## [1.626.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.3...v1.626.4) (2024-11-14)
+
+## [1.626.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.2...v1.626.3) (2024-11-14)
+
+
+### Bug Fixes
+
+* only show ks4 in curric header when ks4 exists ([33fea86](https://github.com/oaknational/Oak-Web-Application/commit/33fea860f71066c7507224cd93d31a9d7c907ecc))
+
+## [1.626.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.1...v1.626.2) (2024-11-14)
+
+
+### Bug Fixes
+
+* rename 'overview' to 'explainer' in curriculum downloads (docx) ([cda353f](https://github.com/oaknational/Oak-Web-Application/commit/cda353f99314c997aaeba0b549fe88d11881bd7a))
+
+## [1.626.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.0...v1.626.1) (2024-11-13)
+
+
+### Bug Fixes
+
+* explainer font incorrectly using Aptos ([6c2bfff](https://github.com/oaknational/Oak-Web-Application/commit/6c2bfff0052e7da5ac6c73228c57df1ff5bd3269))
+
+# [1.626.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.625.1...v1.626.0) (2024-11-13)
+
+
+### Features
+
+* **images:** make quiz image size adjustable ([fd86e16](https://github.com/oaknational/Oak-Web-Application/commit/fd86e16c6635d0b922251e27820502b7d65a9489))
+* **images:** make quiz image size adjustable ([8b90202](https://github.com/oaknational/Oak-Web-Application/commit/8b90202e902865dc5b103c9d3301f5b2df84c99a))
+* **images:** make quiz image size adjustable ([a93a832](https://github.com/oaknational/Oak-Web-Application/commit/a93a832648262916d1c0e4a731acd207bc982654))
+* **images:** make quiz image size adjustable ([08c7604](https://github.com/oaknational/Oak-Web-Application/commit/08c7604426c672ade95c7c2daaafe5488b28461a))
+* **images:** make quiz image size adjustable ([eb6c514](https://github.com/oaknational/Oak-Web-Application/commit/eb6c5145dcf9f57cd4797f9b6fb8e11f31f65292))
+* **images:** make quiz image size adjustable ([441d670](https://github.com/oaknational/Oak-Web-Application/commit/441d6705119743546e6cd590de88b7291c49e581))
+* **images:** merge in main fix test roles ([5ce031f](https://github.com/oaknational/Oak-Web-Application/commit/5ce031ff83ecaba0073ef1879c9d7879e779b0bd))
+* **images:** only use describy when tooltipl open ([dadbb1b](https://github.com/oaknational/Oak-Web-Application/commit/dadbb1b28bfd1a4e32e4ef7d32d48ed370181659))
+* **images:** uncomment pa11y tests ([eb6c943](https://github.com/oaknational/Oak-Web-Application/commit/eb6c943473b22ec03936c9f5ee9edf552348b8e1))
+* **images:** use min width to set size ([1f908bb](https://github.com/oaknational/Oak-Web-Application/commit/1f908bb404170eb4394e2bade3c54a32dd19ce82))
+
+## [1.625.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.625.0...v1.625.1) (2024-11-13)
+
+
+### Bug Fixes
+
+* **oakradio:** remove explicit tab index from radio ([7510f66](https://github.com/oaknational/Oak-Web-Application/commit/7510f66434356fee00352abfc0ea9562c0f94d36))
+
+# [1.625.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.624.2...v1.625.0) (2024-11-13)
+
+
+### Bug Fixes
+
+* trigger rebuild ([0337aca](https://github.com/oaknational/Oak-Web-Application/commit/0337acaa9750a2558296311d009f188f7f068a4f))
+
+
+### Features
+
+* offer lower speed in MuxPlayer ([c470db4](https://github.com/oaknational/Oak-Web-Application/commit/c470db4b754fcc436e4062829670524b2348de29))
+
+## [1.624.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.624.1...v1.624.2) (2024-11-13)
+
+
+### Bug Fixes
+
+* add config to MathJaxProvider ([957a1f8](https://github.com/oaknational/Oak-Web-Application/commit/957a1f8b46f983b6e7abb375eab327649d01fc5a))
+* bug snug warning ([b117deb](https://github.com/oaknational/Oak-Web-Application/commit/b117deb9ce3b43300570d6dc65b8dd40099d1b2c))
+* trigger rebuild ([143e256](https://github.com/oaknational/Oak-Web-Application/commit/143e25697af9ed30e440fccc0ebf9971c18d9ef6))
+* unicode celcius error ([7202628](https://github.com/oaknational/Oak-Web-Application/commit/72026284e9202b89ff62cc41e180a363423d594d))
+
+## [1.624.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.624.0...v1.624.1) (2024-11-13)
+
+
+### Bug Fixes
+
+* **quiz:** add generic alt text to quiz images ([2faebf0](https://github.com/oaknational/Oak-Web-Application/commit/2faebf0067b32e643b6e9bbdb021a80634df746d))
+* **quiz:** add generic alt text to quiz images ([d68ed33](https://github.com/oaknational/Oak-Web-Application/commit/d68ed33607e4884c3fe46f48eef90273bca3c885))
+
+# [1.624.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.623.0...v1.624.0) (2024-11-12)
+
+
+### Bug Fixes
+
+* allow curric automation compare sidebar to scroll ([0da721b](https://github.com/oaknational/Oak-Web-Application/commit/0da721bec0f75f8f05cff2277545cd516357b5ee))
+
+
+### Features
+
+* added tiers to curric automation script ([a1e3721](https://github.com/oaknational/Oak-Web-Application/commit/a1e3721b694a701ea8d76ccf32ab487ae47cb547))
+
+# [1.623.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.4...v1.623.0) (2024-11-12)
+
+
+### Features
+
+* added cycle 2 subjects to curric automate script ([ff042f2](https://github.com/oaknational/Oak-Web-Application/commit/ff042f2adf2e97120b0cce58e0da7d0e2fcb0b40))
+
+## [1.622.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.3...v1.622.4) (2024-11-12)
+
+
+### Bug Fixes
+
+* handle nested non-primitives ([7162814](https://github.com/oaknational/Oak-Web-Application/commit/71628140a87d4086b0f1c5f0619f04fe4e23ab09))
+
+## [1.622.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.2...v1.622.3) (2024-11-11)
+
+
+### Bug Fixes
+
+* remove text feedback for image mcq with single answer ([c42adc3](https://github.com/oaknational/Oak-Web-Application/commit/c42adc39b7addc65cb358a459ae45e4f21479813))
+* remove text feedback for image mcqs ([e50541c](https://github.com/oaknational/Oak-Web-Application/commit/e50541c88f734b4dc7560889d896ea3dbd594c5f))
+
+## [1.622.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.1...v1.622.2) (2024-11-11)
+
+
+### Bug Fixes
+
+* improve naming ([7aa9994](https://github.com/oaknational/Oak-Web-Application/commit/7aa9994779bd9d62c3cbf3995c52bf8becb16577))
+* remove numbering from hint text in quiz results ([ad39133](https://github.com/oaknational/Oak-Web-Application/commit/ad39133875263268794c1cf32c2f7c0bc4536db2))
+
+## [1.622.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.622.0...v1.622.1) (2024-11-11)
+
+
+### Bug Fixes
+
+* removed wobbly borders on "Child Subjects" section in curric visualiser ([1712fd1](https://github.com/oaknational/Oak-Web-Application/commit/1712fd1edb4b4969478a4d20372f9c174fc98b3d))
+
+# [1.622.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.3...v1.622.0) (2024-11-11)
+
+
+### Bug Fixes
+
+* styling fixes & updated tab order ([20d6718](https://github.com/oaknational/Oak-Web-Application/commit/20d67186c6352fa5fdac52f2c7aebf57fb288c9c))
+
+
+### Features
+
+* add close button to subject / phase modals ([4e153ee](https://github.com/oaknational/Oak-Web-Application/commit/4e153ee90737048f41ef338eb7b6a5ece8636eb7))
+* new component for modal closing button ([f23b067](https://github.com/oaknational/Oak-Web-Application/commit/f23b067ae8da2ef5ac4cf639127c10204d501fe9))
+
+## [1.621.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.2...v1.621.3) (2024-11-08)
+
+
+### Bug Fixes
+
+* fix for selected year in highlight threads mobile (curric visualiser) ([69ed979](https://github.com/oaknational/Oak-Web-Application/commit/69ed979facdf2a1cd3c32caeea9a20bebba17cd5))
+
+## [1.621.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.1...v1.621.2) (2024-11-08)
+
+
+### Bug Fixes
+
+* default null to empty string in curriculum visualiser ([d10155f](https://github.com/oaknational/Oak-Web-Application/commit/d10155fdcb4a9c928abbd0dcfe952f83fe687801))
+
+## [1.621.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.621.0...v1.621.1) (2024-11-08)
+
+
+### Bug Fixes
+
+* add full stop after each item of content guidance ([1e3fb00](https://github.com/oaknational/Oak-Web-Application/commit/1e3fb0072aa5b0ae87a4242df2de558beb8552be))
+* add full stop only when there isnt one coming from database ([b254239](https://github.com/oaknational/Oak-Web-Application/commit/b254239d38dba4c6eccf7327f3555c04affa62d5))
+* remove console log ([278b28b](https://github.com/oaknational/Oak-Web-Application/commit/278b28ba2870afec3833afa3745d6c3a42547c7a))
+
 # [1.621.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.620.0...v1.621.0) (2024-11-07)
 
 

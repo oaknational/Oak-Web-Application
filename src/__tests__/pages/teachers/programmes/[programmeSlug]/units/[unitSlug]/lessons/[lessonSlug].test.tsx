@@ -188,6 +188,12 @@ describe("pages/teachers/lessons", () => {
     expect(iframeElement.length).toEqual(2);
   });
 
+  it("renders an iframe for a lesson guide google doc", () => {
+    const { getAllByTestId } = render(<LessonOverviewPage {...props} />);
+    const iframeElement = getAllByTestId("lesson-guide-iframe");
+    expect(iframeElement.length).toEqual(1);
+  });
+
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonOverviewPage {...props} />);
