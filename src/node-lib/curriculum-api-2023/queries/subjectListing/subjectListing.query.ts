@@ -11,7 +11,8 @@ const subjectListingQuery =
   (sdk: Sdk) => async (args: { keyStageSlug: string }) => {
     const res = await sdk.subjectListing(args);
 
-    const { subjectLessons, key_stages } = subjectLisitingRawSchema.parse(res);
+    // const { subjectLessons, key_stages } = subjectLisitingRawSchema.parse(res);
+    const { subjectLessons, key_stages } = res;
 
     if (!subjectLessons || subjectLessons.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
@@ -36,9 +37,10 @@ const subjectListingQuery =
       keyStages: keyStages,
     };
 
-    return subjectListingSchema.parse({
-      ...returnData,
-    });
+    return returnData;
+    // return subjectListingSchema.parse({
+    //   returnData,
+    // });
   };
 
 export default subjectListingQuery;

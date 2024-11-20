@@ -2,7 +2,7 @@ import { z } from "zod";
 import {
   keystageSlugs,
   keystageDescriptions,
-  syntheticUnitvariantLessonsByKsSchemaOld,
+  syntheticUnitvariantLessonsSchema,
   programmeFieldsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
@@ -47,10 +47,10 @@ const partialPFSchema = programmeFieldsSchema.omit({
 
 export const subjectLisitingRawSchema = z.object({
   subjectLessons: z.array(
-    syntheticUnitvariantLessonsByKsSchemaOld
+    syntheticUnitvariantLessonsSchema
       .omit({
-        unitvariant_id: true,
         programme_fields: true,
+        supplementary_data: true,
       })
       .merge(z.object({ programme_fields: partialPFSchema })),
   ),

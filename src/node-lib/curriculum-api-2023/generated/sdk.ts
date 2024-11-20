@@ -52684,7 +52684,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', subjectLessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant?: any | null, supplementary_data?: any | null, lesson_data?: any | null, unit_data?: any | null, unit_slug?: string | null, lesson_slug?: string | null, programme_slug?: string | null }>, key_stages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null, display_order?: number | null, keystage?: string | null, description?: string | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', subjectLessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant_id?: number | null, lesson_data?: any | null, unit_data?: any | null, unit_slug?: string | null, lesson_slug?: string | null, programme_slug?: string | null }>, key_stages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null, display_order?: number | null, keystage?: string | null, description?: string | null }> };
 
 export type SubjectPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -53425,13 +53425,12 @@ export const SpecialistUnitListingDocument = gql`
     `;
 export const SubjectListingDocument = gql`
     query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
-  subjectLessons: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  subjectLessons: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
     where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}]}
   ) {
     programme_fields
     is_legacy
-    null_unitvariant
-    supplementary_data
+    null_unitvariant_id
     lesson_data
     unit_data
     unit_slug
