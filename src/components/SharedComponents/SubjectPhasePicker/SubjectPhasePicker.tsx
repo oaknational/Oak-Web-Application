@@ -804,6 +804,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     <OakPrimaryButton
                       data-testid="mobile-subject-picker-confirm-button"
                       iconName="arrow-right"
+                      aria-label="Confirm subject"
                       isTrailingIcon={true}
                       onClick={handleConfirmSubject}
                       pv="inner-padding-m"
@@ -1320,6 +1321,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         <OakPrimaryButton
                           data-testid="mobile-phase-picker-confirm-button"
                           iconName="arrow-right"
+                          aria-label="View curriculum"
                           isTrailingIcon={true}
                           onClick={() => {
                             handleViewCurriculum();
