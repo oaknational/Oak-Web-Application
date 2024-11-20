@@ -24,6 +24,7 @@ import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonO
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -38,6 +39,11 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
+  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+    lessonSlug: lesson.lessonSlug,
+  });
+  console.log(shareIdRef, shareIdKeyRef);
+
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
     <AppLayout
