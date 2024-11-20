@@ -56,37 +56,35 @@ export const useShareExperiment = ({
   const { track } = useAnalytics();
 
   useEffect(() => {
+    const coreTrackingProps: CoreProperties = {
+      platform: "owa",
+      product: "teacher lesson resources",
+      engagementIntent: "advocate",
+      componentType: "page view",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+    };
+
+    const key = [lessonSlug, unitSlug, programmeSlug].filter(Boolean).join("_");
+
+    // get the current url params
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlShareId = urlParams.get(getShareIdKey(key));
+    const cookieShareId = getShareIdFromCookie(key);
+
+    if (urlShareId && cookieShareId !== urlShareId) {
+      // track the share converted event irrespective of whether the user is part of the experiment
+      track.teacherShareConverted({
+        shareId: urlShareId,
+        linkUrl: window.location.href,
+        lessonSlug,
+        unitSlug,
+        ...coreTrackingProps,
+        ...curriculumTrackingProps,
+      });
+    }
+
     if (!shareIdRef.current && shareExperimentFlag) {
-      const key = [lessonSlug, unitSlug, programmeSlug]
-        .filter(Boolean)
-        .join("_");
-
-      // get the current url params
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlShareId = urlParams.get(getShareIdKey(key));
-      const cookieShareId = getShareIdFromCookie(key);
-
-      const coreTrackingProps: CoreProperties = {
-        platform: "owa",
-        product: "teacher lesson resources",
-        engagementIntent: "advocate",
-        componentType: "page view",
-        eventVersion: "2.0.0",
-        analyticsUseCase: "Teacher",
-      };
-
-      if (urlShareId && cookieShareId !== urlShareId) {
-        // track the share converted event
-        track.teacherShareConverted({
-          shareId: urlShareId,
-          linkUrl: window.location.href,
-          lessonSlug,
-          unitSlug,
-          ...coreTrackingProps,
-          ...curriculumTrackingProps,
-        });
-      }
-
       const { url, shareIdKey, shareId } = getUpdatedUrl({
         url: window.location.href,
         cookieShareId,
