@@ -70,3 +70,9 @@ jest.mock("./src/common-lib/error-reporter", () => ({
 
 jest.mock("@oaknational/oak-consent-client");
 jest.mock("@clerk/nextjs");
+
+jest.mock("nanoid", () => {
+  return {
+    nanoid: (len) => Array(len).fill("x").join(""),
+  };
+});

@@ -109,4 +109,16 @@ describe("LessonOverviewHeader", () => {
     const description = getAllByText("A pupil lesson outcome");
     expect(description).toHaveLength(2); // mobile and desktop
   });
+
+  it("renders phonic outcomes on overview header when passed in ", () => {
+    const testProps = {
+      ...props,
+      phonicsOutcome: "A phonic outcome",
+    };
+    const { getAllByText } = renderWithTheme(
+      <LessonOverviewHeader {...testProps} />,
+    );
+    const description = getAllByText("A phonic outcome");
+    expect(description).toHaveLength(2); // mobile and desktop
+  });
 });

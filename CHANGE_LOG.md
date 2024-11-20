@@ -1,3 +1,53 @@
+# [1.629.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.628.0...v1.629.0) (2024-11-20)
+
+
+### Bug Fixes
+
+* added year prefix to unit modal filenames ([0928e67](https://github.com/oaknational/Oak-Web-Application/commit/0928e67ce0bc98b3fc80d284e218ff1abfc79499))
+* open modals in new tab ([623a3a2](https://github.com/oaknational/Oak-Web-Application/commit/623a3a226b5096d3f8a6b4fb468967f4fb268f9c))
+
+
+### Features
+
+* screenshots of modals added to curric automate script ([825f3aa](https://github.com/oaknational/Oak-Web-Application/commit/825f3aa2dd1adb19c2861c4f2a06f7d518856c82))
+
+# [1.628.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.627.1...v1.628.0) (2024-11-19)
+
+
+### Bug Fixes
+
+* add hook to lesson listing page ([bdddc54](https://github.com/oaknational/Oak-Web-Application/commit/bdddc545b80028047c84c6d687f210fcab5d2f9b))
+
+
+### Features
+
+* add test for override ([cb0a406](https://github.com/oaknational/Oak-Web-Application/commit/cb0a406ef425a52f4aea178724d4eef47342ce69))
+* added experiment flag ([b20596e](https://github.com/oaknational/Oak-Web-Application/commit/b20596ef830c9f9755d98daba8faa34309a5184c))
+* added tests ([c22b704](https://github.com/oaknational/Oak-Web-Application/commit/c22b70407bd4f173ecb2c1554e7996fa5f249b6f))
+* refactored share experiments into a hook ([4688f05](https://github.com/oaknational/Oak-Web-Application/commit/4688f0565025b92c4d3408c47708a33404b5a037))
+* wip share tracking ([b0cea9f](https://github.com/oaknational/Oak-Web-Application/commit/b0cea9f4d62d8c2a69914318cdf56ba7ef9ce674))
+
+## [1.627.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.627.0...v1.627.1) (2024-11-18)
+
+
+### Bug Fixes
+
+* remove old cycle 2 conditionals now we're in a cycle 2 world ([18d753a](https://github.com/oaknational/Oak-Web-Application/commit/18d753a291ab4cafc8661adbcbb3c80c32e2cb25))
+
+# [1.627.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.4...v1.627.0) (2024-11-18)
+
+
+### Bug Fixes
+
+* amend failing test ([a3e0771](https://github.com/oaknational/Oak-Web-Application/commit/a3e0771fa2824e50e50054ad5f2542ea617f6983))
+
+
+### Features
+
+* initial lesson guide implementation ([da5b000](https://github.com/oaknational/Oak-Web-Application/commit/da5b000270208818aa415cf79c4f30a5d9d30721))
+* preview mode google doc hardcoded in ([027c31e](https://github.com/oaknational/Oak-Web-Application/commit/027c31ec4f77f40f0c33f7b0bb1a7042999d0816))
+* update mv and schema version, fix type errors ([d41202d](https://github.com/oaknational/Oak-Web-Application/commit/d41202d5a3bdb57ae0ba4e159acc1a0959a1dafd))
+
 ## [1.626.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.3...v1.626.4) (2024-11-14)
 
 ## [1.626.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.626.2...v1.626.3) (2024-11-14)

@@ -1,21 +1,7 @@
-import { ENABLE_CYCLE_2 } from "./constants";
 import { Unit } from "./types";
-
-export function isCycleTwoEnabled() {
-  return ENABLE_CYCLE_2;
-}
-
-export function useCycleTwoEnabled() {
-  return ENABLE_CYCLE_2;
-}
 
 export function getUnitFeatures(unit?: Unit | null) {
   if (!unit) {
-    return;
-  }
-
-  if (!isCycleTwoEnabled()) {
-    // Early exit
     return;
   }
 

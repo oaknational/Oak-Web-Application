@@ -9,7 +9,8 @@ All the scripts are contained in a single CLI app, you can pass `--help` to the 
 # automate <command>
 # 
 # Commands:
-#   automate screenshot                       screenshot the visualiser
+#   automate fixtures                         generates fixtures from graphql
+#   automate screenshot <label>               screenshot the visualiser
 #   automate compare <basepath> <targetpath>  compare two sets of screenshots
 # 
 # Options:
@@ -18,39 +19,7 @@ All the scripts are contained in a single CLI app, you can pass `--help` to the 
 ```
 
 ### `screenshot` & `compare`
-Generate some screenshots of your local environment
-
-> [!NOTE]  
-> You might want to use labels instead, see section below  
-
-```bash
-./scripts/dev/curriculum/automate screenshot 
-# ...
-```
-
-Generate some screenshots of the production environment
-
-```bash
-./scripts/dev/curriculum/automate screenshot --basepath https://www.thenational.academy/
-# ...
-```
-
-Compare both envs
-
-```bash
-./scripts/dev/curriculum/automate compare ./scripts/dev/curriculum/output/screenshots/www-thenational-academy ./scripts/dev/curriculum/output/screenshots/localhost-3000
-# ...
-```
-
-Should open a browser with the following showing the two envs
-
-![Screenshot of automate compare output](empty.png)
-
-
-#### Using labels
-Rather than having the `screenshot` command picking names you can a labels  
-
-Take snapshot with label `:before`
+Generate some screenshots of your local environment, take snapshot with label `:before`
 
 ```bash
 ./scripts/dev/curriculum/automate screenshot :before
@@ -76,6 +45,15 @@ Compate the versions
 ./scripts/dev/curriculum/automate compare :before :after
 # ...
 ```
+
+#### Using `--basepath`
+Generate some screenshots of the production environment
+
+```bash
+./scripts/dev/curriculum/automate screenshot :foo --basepath https://www.thenational.academy/
+# ...
+```
+
 
 
 ### `fixtures`
