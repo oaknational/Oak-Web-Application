@@ -9,6 +9,17 @@ import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experimen
 const onwardContentSelected =
   jest.fn() as unknown as TrackFns["onwardContentSelected"];
 
+jest.mock(
+  "@/pages-helpers/teacher/share-experiments/useShareExperiment",
+  () => ({
+    __esModule: true,
+    useShareExperiment: jest.fn(() => ({
+      shareIdRef: { current: "test-share-id" },
+      shareIdKeyRef: { current: "test-share-id-key" },
+    })),
+  }),
+);
+
 describe("DownloadConfirmation component", () => {
   beforeEach(() => {
     jest.clearAllMocks();
