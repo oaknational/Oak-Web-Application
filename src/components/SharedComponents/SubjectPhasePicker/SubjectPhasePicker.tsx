@@ -821,7 +821,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               $flexDirection={"row"}
                               $gap={"all-spacing-2"}
                             >
-                              {selectedSubject.ks4_options
+                              {[...selectedSubject.ks4_options]
                                 // sort Core/GSCE first
                                 .sort((a: KS4Option) =>
                                   isExamboardSlug(a.slug) ? 1 : -1,
