@@ -1,7 +1,7 @@
 import { FC, memo, useState } from "react";
+import { OakBox } from "@oaknational/oak-components";
 
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
-import Box from "@/components/SharedComponents/Box";
 
 interface LessonOverviewPresentationProps {
   asset: string | null;
@@ -25,7 +25,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
       ? `https://docs.google.com/document/d/${slidesId}/pub?embedded=true`
       : `https://docs.google.com/presentation/d/${slidesId}/embed?start=false&amp;loop=false&amp`;
   return (
-    <Box $ba={[3]} $width={"100%"}>
+    <OakBox $ba={["border-solid-m"]} $width={"100%"}>
       <AspectRatio ratio={isWorksheetPortrait ? "2:3" : "16:9"}>
         <iframe
           src={srcUrl}
@@ -41,7 +41,7 @@ const LessonOverviewPresentation: FC<LessonOverviewPresentationProps> = ({
           loading="eager"
         />
       </AspectRatio>
-    </Box>
+    </OakBox>
   );
 };
 

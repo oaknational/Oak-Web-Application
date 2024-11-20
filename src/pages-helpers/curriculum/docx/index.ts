@@ -163,8 +163,7 @@ export default async function docx(data: CombinedCurriculumData, slugs: Slugs) {
     threadsExplainer: async () =>
       await builder.threadsExplainer(zip, { slugs, data }),
     subjectExplainer: async () => await builder.subjectExplainer(zip, { data }),
-    subjectPrincipals: async () =>
-      await builder.subjectPrincipals(zip, { data }),
+    subjectPrincipals: async () => await builder.subjectPrincipals(),
     ourPartner: async () => await builder.ourPartner(zip, { data }),
     units: async () => await builder.units(zip, { data, slugs }),
     threadsOverview: async () => await builder.threadsOverview(zip, { data }),

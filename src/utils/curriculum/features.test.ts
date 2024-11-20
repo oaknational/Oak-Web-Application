@@ -1,54 +1,13 @@
-import {
-  isCycleTwoEnabled,
-  useCycleTwoEnabled,
-  getUnitFeatures,
-} from "./features";
-
-import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
-
-const MOCK_ENABLE_CYCLE_2 = jest.fn();
-const MOCK_CURRIC_PARTNER_HACK = jest.fn();
-jest.mock("./constants", () => ({
-  __esModule: true,
-  get ENABLE_CYCLE_2() {
-    return MOCK_ENABLE_CYCLE_2() ?? false;
-  },
-  get CURRIC_PARTNER_HACK() {
-    return MOCK_CURRIC_PARTNER_HACK() ?? false;
-  },
-  default: {},
-}));
+import { getUnitFeatures } from "./features";
+import { Unit } from "./types";
 
 beforeEach(() => {
   jest.resetAllMocks();
   jest.clearAllMocks();
 });
 
-describe("isCycleTwoEnabled", () => {
-  it("true when ENABLE_CYCLE_2 true", () => {
-    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
-    expect(isCycleTwoEnabled()).toEqual(true);
-  });
-
-  it("false when ENABLE_CYCLE_2 false", () => {
-    expect(isCycleTwoEnabled()).toEqual(false);
-  });
-});
-
-describe("useCycleTwoEnabled", () => {
-  it("true when ENABLE_CYCLE_2 true", () => {
-    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
-    expect(useCycleTwoEnabled()).toEqual(true);
-  });
-
-  it("false when ENABLE_CYCLE_2 false", () => {
-    expect(useCycleTwoEnabled()).toEqual(false);
-  });
-});
-
 describe("getUnitFeatures", () => {
   it("returns swimming rules when matching unit", () => {
-    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
     expect(
       getUnitFeatures({
         subject_slug: "physical-education",
@@ -74,7 +33,6 @@ describe("getUnitFeatures", () => {
   });
 
   it("returns computer science override when matching unit", () => {
-    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
     expect(
       getUnitFeatures({
         subject_slug: "computing",
@@ -100,12 +58,46 @@ describe("getUnitFeatures", () => {
     ).toEqual(undefined);
   });
 
+  it("returns subject category exclusion for english when matching unit", () => {
+    expect(
+      getUnitFeatures({
+        subject_slug: "english",
+        phase_slug: "primary",
+        year: "3",
+      } as Unit),
+    ).toEqual({
+      subjectcategories: {
+        all_disabled: true,
+        default_category_id: 4,
+      },
+    });
+
+    expect(
+      getUnitFeatures({
+        subject_slug: "english",
+        phase_slug: "secondary",
+        year: "7",
+      } as Unit),
+    ).toEqual({
+      subjectcategories: {
+        all_disabled: true,
+        default_category_id: 19,
+      },
+    });
+
+    expect(
+      getUnitFeatures({
+        subject_slug: "physical-education",
+        year: "3",
+      } as Unit),
+    ).toEqual(undefined);
+  });
+
   it("returns nothing when hack disabled", () => {
     expect(getUnitFeatures({ slug: "test" } as Unit)).toEqual(undefined);
   });
 
   it("returns nothing when hack enabled but not a matching unit", () => {
-    MOCK_ENABLE_CYCLE_2.mockReturnValue(true);
     expect(getUnitFeatures({ slug: "test" } as Unit)).toEqual(undefined);
   });
 });

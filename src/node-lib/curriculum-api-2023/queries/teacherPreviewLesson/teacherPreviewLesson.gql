@@ -1,0 +1,50 @@
+query teachersPreviewLesson($lessonSlug: String!) {
+  content: published_mv_lesson_content_new_4_0_0(
+    where: { lesson_slug: { _eq: $lessonSlug } }
+  ) {
+    lesson_id
+    lesson_title
+    lesson_slug
+    deprecated_fields
+    is_legacy
+    misconceptions_and_common_mistakes
+    equipment_and_resources
+    teacher_tips
+    key_learning_points
+    pupil_lesson_outcome
+    phonics_outcome
+    lesson_keywords
+    content_guidance
+    video_mux_playback_id
+    video_id
+    video_with_sign_language_mux_playback_id
+    video_duration
+    _state
+    transcript_sentences
+    starter_quiz
+    starter_quiz_id
+    exit_quiz
+    exit_quiz_id
+    supervision_level
+    video_title
+    has_worksheet_google_drive_downloadable_version
+    has_slide_deck_asset_object
+    worksheet_asset_id
+    has_worksheet_asset_object
+    worksheet_answers_asset_id
+    has_worksheet_answers_asset_object
+    supplementary_asset_id
+    has_supplementary_asset_object
+    supervision_level
+    slide_deck_asset_id
+    slide_deck_asset_object_url
+    worksheet_asset_object_url
+    supplementary_asset_object_url
+    has_lesson_guide_google_drive_downloadable_version
+    lesson_guide_asset_object_url
+    has_lesson_guide_object
+    lesson_guide_asset_id
+    geo_restricted
+    login_required
+  }
+}

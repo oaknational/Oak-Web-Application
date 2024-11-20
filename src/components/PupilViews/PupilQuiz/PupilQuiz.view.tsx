@@ -172,6 +172,11 @@ const QuizInner = () => {
               isTrailingIcon
               iconName="arrow-right"
               width={["100%", "max-content"]}
+              aria-describedby={
+                currentQuestionState?.mode === "incomplete"
+                  ? "quiz-tooltip"
+                  : undefined
+              }
             >
               Check
             </OakPrimaryButton>

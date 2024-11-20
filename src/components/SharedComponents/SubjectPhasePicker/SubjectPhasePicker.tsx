@@ -33,8 +33,8 @@ import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pag
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
-import { useCycleTwoEnabled } from "@/utils/curriculum/features";
 import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/FocusWrap";
+import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton";
 
 const DEFAULT_KEYSTAGES = [
   { slug: "ks1" },
@@ -188,7 +188,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const subjectPickerButton = useRef<HTMLButtonElement>(null);
   const subjectPickerButtonDesktopContainer = useRef<HTMLDivElement>(null);
   const subjectPickerButtonMobileContainer = useRef<HTMLDivElement>(null);
-  const isCycleTwoEnabled = useCycleTwoEnabled();
   const router = useRouter();
   const tab = (router.query.tab as CurriculumTab) ?? "units";
 
@@ -390,7 +389,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     <OakBox
       $position="relative"
       data-testid="subjectPhasePicker"
-      $zIndex={99}
+      $zIndex={101}
       $maxWidth="all-spacing-23"
       $borderRadius="border-radius-s"
       $borderColor={showSubjects || showPhases ? "transparent" : "black"}
@@ -478,7 +477,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               $pa={24}
               $position="absolute"
               $top={["50%", "100%"]}
-              $zIndex={"inFront"}
+              $zIndex={"modalDialog"}
               $width={"100%"}
             >
               <FocusOn
@@ -491,6 +490,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   onWrapStart={onFocusSubjectStart}
                   onWrapEnd={onFocusSubjectEnd}
                 >
+                  <CurriculumModalCloseButton
+                    onClose={toggleShowSubjects}
+                    $position={"absolute"}
+                    $top={[8, 12]}
+                    $right={[8, 12]}
+                  />
                   {showSubjectError && (
                     <OakFlex
                       id={subjectErrorId}
@@ -523,9 +528,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       Curriculum plans
                     </OakHeading>
                     <OakP $mb="space-between-s">
-                      {isCycleTwoEnabled
-                        ? "Explore our curricula for 2024/2025."
-                        : "Explore our new curricula for 2023/2024."}
+                      Explore our curricula for 2024/2025.
                     </OakP>
                   </OakFlex>
                   <OakFlex
@@ -590,7 +593,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $width={3}
             $position={"relative"}
             $display={"block"}
-            $zIndex={"inFront"}
+            $zIndex={"modalDialog"}
             $visibility={showSubjects || showPhases ? "hidden" : null}
           >
             <BoxBorders
@@ -694,7 +697,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   $pa={28}
                   $position="absolute"
                   $top={"100%"}
-                  $zIndex={"inFront"}
+                  $zIndex={"modalDialog"}
                   className="phase-selection"
                 >
                   <FocusOn
@@ -756,6 +759,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         $flexDirection={"column"}
                         $gap={"space-between-s"}
                       >
+                        <CurriculumModalCloseButton
+                          onClose={toggleShowPhases}
+                          $position={"absolute"}
+                          $top={[8, 12]}
+                          $right={[8, 12]}
+                        />
                         {(selectedSubject?.phases ?? phases).map((phase) => (
                           <ButtonContainer
                             className={`lot-picker ${
@@ -812,7 +821,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               $flexDirection={"row"}
                               $gap={"all-spacing-2"}
                             >
-                              {selectedSubject.ks4_options
+                              {[...selectedSubject.ks4_options]
                                 // sort Core/GSCE first
                                 .sort((a: KS4Option) =>
                                   isExamboardSlug(a.slug) ? 1 : -1,

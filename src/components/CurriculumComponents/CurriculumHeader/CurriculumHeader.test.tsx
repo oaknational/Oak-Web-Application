@@ -87,7 +87,7 @@ describe("Component - Curriculum Header", () => {
     const links = await findAllByRole(tabularNav, "link");
     expect(links).toHaveLength(3);
     expect(links[0]).toHaveTextContent("Unit sequence");
-    expect(links[1]).toHaveTextContent("Overview");
+    expect(links[1]).toHaveTextContent("Explainer");
     expect(links[2]).toHaveTextContent("Download");
   });
 
@@ -95,5 +95,12 @@ describe("Component - Curriculum Header", () => {
     const { getByTestId } = renderComponent();
     const examboardMetadata = getByTestId("examboard-metadata");
     expect(examboardMetadata).toHaveTextContent("AQA (KS4)");
+  });
+
+  test("no KS4 text when not ks4 keystage", () => {
+    const { baseElement } = renderComponent({
+      keyStages: ["ks3"],
+    });
+    expect(baseElement).not.toHaveTextContent("AQA (KS4)");
   });
 });

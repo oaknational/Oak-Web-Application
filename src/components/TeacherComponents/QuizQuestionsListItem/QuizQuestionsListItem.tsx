@@ -19,6 +19,7 @@ const QuizQuestionsListItem: FC<QuizQuestionsListItemProps> = (props) => {
   const { question, index, isMathJaxLesson } = props;
   const { questionStem, answers } = question;
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
+
   return (
     <MathJaxWrapper>
       <OakFlex

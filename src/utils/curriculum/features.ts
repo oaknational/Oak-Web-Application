@@ -1,22 +1,7 @@
-import { ENABLE_CYCLE_2 } from "./constants";
-
-import { Unit } from "@/components/CurriculumComponents/CurriculumVisualiser";
-
-export function isCycleTwoEnabled() {
-  return ENABLE_CYCLE_2;
-}
-
-export function useCycleTwoEnabled() {
-  return ENABLE_CYCLE_2;
-}
+import { Unit } from "./types";
 
 export function getUnitFeatures(unit?: Unit | null) {
   if (!unit) {
-    return;
-  }
-
-  if (!isCycleTwoEnabled()) {
-    // Early exit
     return;
   }
 
@@ -40,5 +25,23 @@ export function getUnitFeatures(unit?: Unit | null) {
         subject: "Computer Science",
       },
     };
+  } else if (unit.subject_slug === "english" && unit.phase_slug === "primary") {
+    return {
+      subjectcategories: {
+        all_disabled: true,
+        default_category_id: 4,
+      },
+    };
+  } else if (
+    unit.subject_slug === "english" &&
+    unit.phase_slug === "secondary"
+  ) {
+    return {
+      subjectcategories: {
+        all_disabled: true,
+        default_category_id: 19,
+      },
+    };
   }
 }
+export type UnitFeatures = ReturnType<typeof getUnitFeatures>;

@@ -14,7 +14,6 @@ import docx, {
   CurriculumUnitsTabDataIncludeNewWithOrder,
 } from "@/pages-helpers/curriculum/docx";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
-import { isCycleTwoEnabled } from "@/utils/curriculum/features";
 import { logErrorMessage } from "@/utils/curriculum/testing";
 
 export const curriculumDownloadQuerySchema = z.object({
@@ -112,7 +111,7 @@ async function getData(opts: {
 
     curriculumOverviewSanityData = await CMSClient.curriculumOverviewPage({
       previewMode: false,
-      ...{ subjectSlug, phaseSlug },
+      ...{ subjectTitle: curriculumOverviewTabData.subjectTitle, phaseSlug },
     });
 
     if (!curriculumOverviewSanityData) {
@@ -179,7 +178,7 @@ async function getData(opts: {
 
   const subjectPhaseOptions = {
     subjects: await curriculumApi2023.subjectPhaseOptions({
-      cycle: isCycleTwoEnabled() ? "2" : "1",
+      cycle: "2",
     }),
   };
 
