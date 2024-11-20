@@ -72,6 +72,8 @@ export const useShareExperiment = ({
     const urlShareId = urlParams.get(getShareIdKey(key));
     const cookieShareId = getShareIdFromCookie(key);
 
+    //console.log("urlShareId", urlShareId);
+
     if (urlShareId && cookieShareId !== urlShareId) {
       // track the share converted event irrespective of whether the user is part of the experiment
       track.teacherShareConverted({
