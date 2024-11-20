@@ -187,6 +187,19 @@ const SelectionDropDownBox = styled(Box)<object>`
   box-shadow: 0px 8px 8px 0px rgba(92, 92, 92, 0.2);
 `;
 
+const SubjectContainerWrapper = styled.div`
+  position: relative;
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+  padding-left: 8px;
+
+  @media (min-width: 769px) {
+    padding-left: 0px;
+    max-height: auto;
+    overflow-y: visible;
+  }
+`;
+
 type SubjectContainerProps = {
   children: React.ReactNode;
   showSubjectError: boolean;
@@ -202,12 +215,7 @@ function SubjectContainer({
   const isMobile = useMediaQuery("mobile");
 
   return (
-    <Box
-      $maxHeight={["calc(100vh - 160px)", "auto"]}
-      $overflowY={["auto", "visible"]}
-      $position={"relative"}
-      $pl={6}
-    >
+    <SubjectContainerWrapper>
       {showSubjectError && (
         <OakFlex
           id={subjectErrorId}
@@ -286,7 +294,7 @@ function SubjectContainer({
           <Icon $color={"black"} name="arrow-right" verticalAlign="bottom" />
         </OwaLink>
       </Box>
-    </Box>
+    </SubjectContainerWrapper>
   );
 }
 
@@ -781,17 +789,17 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     $display={["block"]}
                     $width={"100%"}
                     $ph={30}
-                    $pv={10}
+                    $pb={10}
+                    $pt={12}
                     $background={"white"}
                   >
                     <Hr
                       $color={"grey40"}
-                      $position="relative"
-                      $left={-24}
+                      $position="absolute"
+                      $left={0}
+                      $top={-24}
                       $height={1}
-                      $mt={-8}
-                      $mb={10}
-                      $width={"calc(100% + 48px)"}
+                      $width="100%"
                     />
                     <OakPrimaryButton
                       data-testid="mobile-subject-picker-confirm-button"
