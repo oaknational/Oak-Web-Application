@@ -14,10 +14,11 @@ yargs(hideBin(process.argv))
   }, async () => {
     await buildFixtures();
   })
-  .command('screenshot [label]', 'screenshot the visualiser', (yargs) => {
+  .command('screenshot <label>', 'screenshot the visualiser', (yargs) => {
     return yargs
       .positional('label', {
         describe: 'label of the screenshots',
+        required: true,
       })
       .option('basepath', {
         describe: 'basepath of host site',
@@ -26,9 +27,9 @@ yargs(hideBin(process.argv))
       .option('login-url', {
         describe: 'URL to login with',
       })
-      .option('remove-options', {
-        describe: 'URL to login with',
-        type: "boolean",
+      .option('modals', {
+        describe: 'include-modals',
+        type: "boolean"
       })
   }, async (argv) => {
     let label;
@@ -38,7 +39,7 @@ yargs(hideBin(process.argv))
       }
       label = argv.label.replace(/^:/, "")
     }
-    await screenshot(argv.basepath, {loginUrl: argv.loginUrl, label, removeOptionsElement: argv.removeOptions});
+    await screenshot(argv.basepath, label, {loginUrl: argv.loginUrl, includeModals: argv.modals});
   })
   .command('compare <basepath> <targetpath>', 'compare two sets of screenshots', (yargs) => {
     return yargs
