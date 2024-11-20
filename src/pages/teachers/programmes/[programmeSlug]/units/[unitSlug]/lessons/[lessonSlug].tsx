@@ -18,7 +18,8 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { useShareExperiment, CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -36,6 +37,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     lessonSlug,
     unitSlug,
     programmeSlug,
+    unitTitle,
+    subjectSlug,
+    keyStageTitle,
   } = curriculumData;
 
   const { shareIdRef, shareIdKeyRef } = useShareExperiment({
@@ -43,6 +47,13 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     unitSlug,
     programmeSlug,
     source: "lesson-browse",
+    curriculumTrackingProps: {
+      lessonName: lessonTitle,
+      unitName: unitTitle,
+      subjectSlug,
+      subjectTitle,
+      keyStageSlug,
+      keyStageTitle as CurriculumTrackingProps['keyStageTitle'],
   });
   console.log(shareIdRef, shareIdKeyRef);
 
