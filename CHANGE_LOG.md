@@ -1,3 +1,26 @@
+# [1.630.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.629.1...v1.630.0) (2024-11-20)
+
+
+### Features
+
+* add back to lesson button ([1d9d730](https://github.com/oaknational/Oak-Web-Application/commit/1d9d7308c810f76e34d5ce7501cc93f914d93257))
+* add comments ([3c647a1](https://github.com/oaknational/Oak-Web-Application/commit/3c647a1b28a81e26ba84043e525471762eca5b53))
+* add feature flag ([d05f13e](https://github.com/oaknational/Oak-Web-Application/commit/d05f13e5e7732babce27159ccca1cd74b00c1f8c))
+* add gql query for specialistLessonMedia ([b31b0a5](https://github.com/oaknational/Oak-Web-Application/commit/b31b0a5a8c88591dd7368f1f85e01390069d7ef3))
+* add specialist lesson media page ([09296b1](https://github.com/oaknational/Oak-Web-Application/commit/09296b1af2cd690d8695e3ec7dfb496db6ff0d52))
+* add test for lesson helpers ([eb06591](https://github.com/oaknational/Oak-Web-Application/commit/eb06591525effcd8819626500c579bf4f082eebb))
+* cleanup ([7e6cc08](https://github.com/oaknational/Oak-Web-Application/commit/7e6cc08f5f598d503ad022b3a192cbf7a2adb445))
+* create media page ([fc02289](https://github.com/oaknational/Oak-Web-Application/commit/fc02289cd5580a578a9552f0032e9a2b257cf56a))
+* replace relvenat components with oak-components ([656b384](https://github.com/oaknational/Oak-Web-Application/commit/656b384c9fa32ac7c5e80d537bbbfc38a397045e))
+* run formatter ([4acf5ae](https://github.com/oaknational/Oak-Web-Application/commit/4acf5ae3ceee813fd45c706af37ef3c2d8be1e25))
+
+## [1.629.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.629.0...v1.629.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* destructuring array to prevent modifying it ([2078436](https://github.com/oaknational/Oak-Web-Application/commit/2078436b6a0b21ec0b8b0c5406c8a639f80f08b7))
+
 # [1.629.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.628.0...v1.629.0) (2024-11-20)
 
 
