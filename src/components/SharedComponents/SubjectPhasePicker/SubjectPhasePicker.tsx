@@ -572,7 +572,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     <OakBox
       $position="relative"
       data-testid="lot-picker"
-      $zIndex={101}
+      $zIndex={300}
       $maxWidth="all-spacing-23"
       $borderRadius="border-radius-s"
       $borderColor={showSubjects || showPhases ? "transparent" : "black"}
