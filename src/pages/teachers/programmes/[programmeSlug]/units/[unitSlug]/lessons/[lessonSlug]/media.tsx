@@ -32,6 +32,13 @@ export type LessonMediaPageProps = {
   curriculumData: LessonMediaData;
 };
 
+/**
+ * TODO: Update schema definitions for LessonMediaData
+ * TODO: Add test file for LessonMediaPage
+ * TODO: Extrapolate schema definitions, functions etc into correct areas
+ * @returns
+ */
+
 const LessonMediaPage: NextPage<LessonMediaPageProps> = ({
   curriculumData,
 }) => {
