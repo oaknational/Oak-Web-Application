@@ -717,7 +717,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
               enabled={isMobile}
               autoFocus={false}
               onEscapeKey={handleMobileLotPickerModal}
-              scrollLock={false}
+              scrollLock={true}
               returnFocus
             >
               <Box
@@ -1108,7 +1108,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   enabled={isMobile}
                   autoFocus={false}
                   onEscapeKey={() => setShowPhases(false)}
-                  scrollLock={false}
+                  scrollLock={true}
                   returnFocus
                 >
                   <Box
