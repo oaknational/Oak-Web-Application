@@ -144,9 +144,9 @@ describe("programmes listing page", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key Stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Choose foundation or higher tier for GCSE Maths",
-        ogTitle: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle: "Key Stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Choose foundation or higher tier for GCSE Maths",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
@@ -205,9 +205,9 @@ describe("programmes listing page", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key Stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Choose core, foundation or higher tier for GCSE Maths",
-        ogTitle: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle: "Key Stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Choose core, foundation or higher tier for GCSE Maths",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
@@ -226,9 +226,9 @@ describe("programmes listing page", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Key stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key Stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Choose from the most popular exam boards in GCSE Maths",
-        ogTitle: "Key stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle: "Key Stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Choose from the most popular exam boards in GCSE Maths",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
@@ -247,10 +247,10 @@ describe("programmes listing page", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Key stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key Stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
         description:
           "Choose foundation or higher tier from the most popular exam boards in GCSE Maths",
-        ogTitle: "Key stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle: "Key Stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Choose foundation or higher tier from the most popular exam boards in GCSE Maths",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
@@ -266,7 +266,7 @@ describe("programmes listing page", () => {
       expect(programmeSelected).toHaveBeenCalledWith({
         activeFilters: {
           keyStage: ["ks4"],
-          subject: ["maths-l"],
+          subject: ["maths"],
         },
         analyticsUseCase: "Teacher",
         componentType: "programme_card",
@@ -292,7 +292,7 @@ describe("programmes listing page", () => {
       expect(programmeSelected).toHaveBeenCalledWith({
         activeFilters: {
           keyStage: ["ks4"],
-          subject: ["maths-l"],
+          subject: ["maths"],
         },
         analyticsUseCase: "Teacher",
         componentType: "programme_card",
@@ -320,7 +320,7 @@ describe("programmes listing page", () => {
       expect(programmeSelected).toHaveBeenCalledWith({
         activeFilters: {
           keyStage: ["ks4"],
-          subject: ["maths-l"],
+          subject: ["maths"],
         },
         analyticsUseCase: "Teacher",
         componentType: "programme_card",

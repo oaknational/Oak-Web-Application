@@ -87,7 +87,7 @@ describe("programmeListing()", () => {
 
     expect(programmeListingSchema.parse(res)).toEqual({
       keyStageSlug: "ks1",
-      keyStageTitle: "Key stage 1",
+      keyStageTitle: "Key Stage 1",
       programmes: [
         {
           examBoardDisplayOrder: 1,
@@ -98,6 +98,9 @@ describe("programmeListing()", () => {
           tierDisplayOrder: null,
           tierSlug: null,
           tierTitle: null,
+          pathwayDisplayOrder: null,
+          pathwaySlug: null,
+          pathwayTitle: null,
         },
         {
           examBoardDisplayOrder: 2,
@@ -108,6 +111,9 @@ describe("programmeListing()", () => {
           tierDisplayOrder: null,
           tierSlug: null,
           tierTitle: null,
+          pathwayDisplayOrder: null,
+          pathwaySlug: null,
+          pathwayTitle: null,
         },
       ],
       subjectSlug: "maths",
@@ -141,7 +147,7 @@ describe("programmeListing()", () => {
 
     expect(transformedProgrammes).toEqual({
       keyStageSlug: "ks1",
-      keyStageTitle: "Key stage 1",
+      keyStageTitle: "Key Stage 1",
       legacy: false,
       programmes: [
         {
@@ -153,8 +159,10 @@ describe("programmeListing()", () => {
           tierDisplayOrder: null,
           tierSlug: null,
           tierTitle: null,
+          pathwayDisplayOrder: null,
+          pathwaySlug: null,
+          pathwayTitle: null,
         },
-
         {
           examBoardDisplayOrder: 2,
           examBoardSlug: null,
@@ -164,6 +172,9 @@ describe("programmeListing()", () => {
           tierDisplayOrder: null,
           tierSlug: null,
           tierTitle: null,
+          pathwayDisplayOrder: null,
+          pathwaySlug: null,
+          pathwayTitle: null,
         },
       ],
       subjectSlug: "maths",
