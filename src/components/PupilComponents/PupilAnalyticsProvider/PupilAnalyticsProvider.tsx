@@ -150,8 +150,8 @@ export type PupilVideoData = {
 export type PupilAudioData = {
   audioTitle: string;
   numberOfAudios: string;
-  audioSlug: string[];
-  audioPlaybackId: string[];
+  audioSlug: string;
+  audioPlaybackId: string;
   isCaptioned: boolean;
   signedAvailable: boolean;
 };
@@ -467,8 +467,8 @@ export const getPupilAudioData = (
   return {
     audioTitle: "",
     numberOfAudios: "0",
-    audioSlug: [lessonContent.lessonSlug],
-    audioPlaybackId: [""],
+    audioSlug: lessonContent.lessonSlug,
+    audioPlaybackId: "",
     isCaptioned: false,
     signedAvailable: false,
   };

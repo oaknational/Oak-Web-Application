@@ -33,6 +33,7 @@ describe("DownloadConfirmation component", () => {
         unitSlug="test-unit"
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
+        {...curriculumTrackingProps}
       />,
     );
 
@@ -71,6 +72,7 @@ describe("DownloadConfirmation component", () => {
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
         isSpecialist={true}
+        {...curriculumTrackingProps}
       />,
     );
 
@@ -91,6 +93,7 @@ describe("DownloadConfirmation component", () => {
         unitSlug={null}
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
+        {...curriculumTrackingProps}
       />,
     );
 
@@ -110,6 +113,7 @@ describe("DownloadConfirmation component", () => {
         unitSlug="test-unit"
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
+        {...curriculumTrackingProps}
       />,
     );
 
@@ -137,6 +141,7 @@ describe("DownloadConfirmation component", () => {
         unitSlug={null}
         isCanonical={true}
         onwardContentSelected={onwardContentSelected}
+        {...curriculumTrackingProps}
       />,
     );
 

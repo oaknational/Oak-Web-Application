@@ -15,8 +15,8 @@ import {
 } from "@/browser-lib/avo/Avo";
 
 export type CurriculumTrackingProps = {
-  lessonName: string;
-  unitName: string;
+  lessonName: string | null;
+  unitName: string | null;
   subjectSlug: string | null;
   subjectTitle: string | null;
   keyStageSlug: string | null;
