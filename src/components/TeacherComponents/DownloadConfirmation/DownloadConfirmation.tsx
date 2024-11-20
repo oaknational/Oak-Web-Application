@@ -7,6 +7,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 type DownloadConfirmationProps = {
   lessonSlug: string;
@@ -40,6 +41,13 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   useEffect(() => {
     focusRef.current?.focus();
   }, []);
+
+  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+    lessonSlug,
+    unitSlug: unitSlug ?? undefined,
+    programmeSlug: programmeSlug ?? undefined,
+  });
+  console.log(shareIdRef, shareIdKeyRef);
 
   return (
     <>
