@@ -9,20 +9,19 @@ import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndEx
 import {
   Programme,
   ProgrammeListingResponse,
-  programmeListingSchema,
   programmeListingResponseSchema,
 } from "./programmeListing.schema";
 
 export const getTransformedProgrammeData = (
   programmeData: ProgrammeListingResponse[],
-  firstProgramme: ProgrammeListingResponse,
+  programmeFields: ProgrammeListingResponse["programme_fields"],
 ) => {
   const {
     keystage_description: keyStageTitle,
     keystage_slug: keyStageSlug,
     subject_slug: subjectSlug,
     subject: subjectTitle,
-  } = firstProgramme.programme_fields;
+  } = programmeFields;
 
   const programmes = programmeData.map((programme): Programme => {
     return {
@@ -50,7 +49,7 @@ export const getTransformedProgrammeData = (
     subjectSlug,
     subjectTitle,
     programmes: sortedProgrammes,
-    legacy: firstProgramme.is_legacy,
+    legacy: programmeFields.legacy ? true : false,
   };
 };
 
@@ -71,26 +70,28 @@ const programmeListingQuery =
       browseData: res.programmes,
     });
 
-    if (modified.length === 0) {
-      throw new OakError({ code: "curriculum-api/not-found" });
-    }
-    const [firstProgram] = modified;
-
     const syntheticUnitvariantLessonsSchemaArray = z.array(
       programmeListingResponseSchema,
     );
-    const parsedRes = syntheticUnitvariantLessonsSchemaArray.parse(
-      res.programmes,
+
+    const parsedModified =
+      syntheticUnitvariantLessonsSchemaArray.parse(modified);
+
+    if (parsedModified.length === 0) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    const programmeFieldsSnakeCase = modified.reduce(
+      (acc, val) => ({ ...acc, ...val.programme_fields }),
+      {} as ProgrammeListingResponse["programme_fields"],
     );
-    const parsedFirstProgramme =
-      programmeListingResponseSchema.parse(firstProgram);
 
     const transformedData = getTransformedProgrammeData(
-      parsedRes,
-      parsedFirstProgramme,
+      parsedModified,
+      programmeFieldsSnakeCase,
     );
 
-    return programmeListingSchema.parse(transformedData);
+    return transformedData;
   };
 
 export default programmeListingQuery;
