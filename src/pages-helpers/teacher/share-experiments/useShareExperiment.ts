@@ -14,13 +14,13 @@ import {
   TeacherShareInitiatedProperties,
 } from "@/browser-lib/avo/Avo";
 
-type CurriculumTrackingProps = {
+export type CurriculumTrackingProps = {
   lessonName: string;
   unitName: string;
-  subjectSlug: string;
+  subjectSlug: string | null;
   subjectTitle: string | null;
-  keyStageSlug: string;
-  keyStageTitle: KeyStageTitleValueType;
+  keyStageSlug: string | null;
+  keyStageTitle: KeyStageTitleValueType | null;
 };
 
 type CoreProperties = Pick<

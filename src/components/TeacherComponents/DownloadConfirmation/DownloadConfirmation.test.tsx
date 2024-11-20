@@ -4,6 +4,7 @@ import DownloadConfirmation from "./DownloadConfirmation";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 const onwardContentSelected =
   jest.fn() as unknown as TrackFns["onwardContentSelected"];
@@ -12,6 +13,15 @@ describe("DownloadConfirmation component", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+
+  const curriculumTrackingProps: CurriculumTrackingProps = {
+    lessonName: "Test lesson",
+    unitName: "Test unit",
+    keyStageSlug: "test-key-stage",
+    keyStageTitle: "Key stage 1",
+    subjectSlug: "test-subject",
+    subjectTitle: "Test subject",
+  };
 
   it("should render", () => {
     const { getByText } = renderWithTheme(
@@ -39,6 +49,7 @@ describe("DownloadConfirmation component", () => {
         unitSlug="test-unit"
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
+        {...curriculumTrackingProps}
       />,
     );
 

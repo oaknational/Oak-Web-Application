@@ -7,7 +7,10 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import {
+  useShareExperiment,
+  CurriculumTrackingProps,
+} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 type DownloadConfirmationProps = {
   lessonSlug: string;
@@ -19,6 +22,10 @@ type DownloadConfirmationProps = {
   nextLessons?: NextLesson[];
   onwardContentSelected: TrackFns["onwardContentSelected"];
   isSpecialist?: boolean;
+  keyStageSlug: CurriculumTrackingProps["keyStageSlug"];
+  keyStageTitle: CurriculumTrackingProps["keyStageTitle"];
+  subjectSlug: CurriculumTrackingProps["subjectSlug"];
+  subjectTitle: CurriculumTrackingProps["subjectTitle"];
 };
 
 const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
@@ -31,6 +38,10 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   nextLessons,
   onwardContentSelected,
   isSpecialist = false,
+  keyStageSlug,
+  keyStageTitle,
+  subjectSlug,
+  subjectTitle,
 }) => {
   const displayNextLessonContainer =
     !isCanonical && unitSlug && programmeSlug && unitTitle;
@@ -47,6 +58,14 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     unitSlug: unitSlug ?? undefined,
     programmeSlug: programmeSlug ?? undefined,
     source: isCanonical ? "download-canonical" : "download-browse",
+    curriculumTrackingProps: {
+      lessonName: lessonTitle,
+      unitName: unitTitle ?? "",
+      keyStageSlug,
+      keyStageTitle,
+      subjectSlug,
+      subjectTitle,
+    },
   });
   console.log(shareIdRef, shareIdKeyRef);
 
