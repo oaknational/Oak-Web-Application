@@ -69,7 +69,7 @@
     "@bugsnag/plugin-react": "^8.1.1",
     "@clerk/nextjs": "^5.7.5",
     "@google-cloud/storage": "^7.14.0",
-    "@hookform/resolvers": "^3.7.0",
+    "@hookform/resolvers": "^3.9.1",
     "@hubspot/api-client": "^11.1.0",
     "@mdx-js/loader": "^3.0.1",
     "@mux/mux-node": "^8.8.0",
