@@ -200,6 +200,20 @@ const SubjectContainerWrapper = styled.div`
   }
 `;
 
+const PhaseContainerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+  position: relative;
+
+  @media (min-width: 769px) {
+    max-height: auto;
+    overflow-y: visible;
+  }
+`;
+
 type SubjectContainerProps = {
   children: React.ReactNode;
   showSubjectError: boolean;
@@ -1157,166 +1171,168 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         />
                       </OakFlex>
 
-                      <OakHeading
-                        data-testid="mobile-phase-picker-heading"
-                        tag="h1"
-                        $font="heading-5"
-                      >
-                        School phase
-                      </OakHeading>
-
-                      {showPhaseError && (
-                        <Flex id={phaseErrorId} $flexDirection="row" $mb={20}>
-                          <Icon
-                            $color="red"
-                            name="content-guidance"
-                            verticalAlign="bottom"
-                          />
-                          <OakP $color="red">
-                            Select a school phase to view the curriculum
-                          </OakP>
-                        </Flex>
-                      )}
-
-                      {showKS4OptionError && (
-                        <Flex
-                          id={ks4OptionErrorId}
-                          $flexDirection="row"
-                          $mb={20}
+                      <PhaseContainerWrapper>
+                        <OakHeading
+                          data-testid="mobile-phase-picker-heading"
+                          tag="h1"
+                          $font="heading-5"
                         >
-                          <Icon
-                            $color="red"
-                            name="content-guidance"
-                            verticalAlign="bottom"
-                          />
-                          <OakP $color="red">
-                            Select a KS4 option to view the curriculum
-                          </OakP>
-                        </Flex>
-                      )}
+                          School phase
+                        </OakHeading>
 
-                      <OakFlex
-                        role="radiogroup"
-                        aria-labelledby={schoolPhaseInputId}
-                        aria-required="true"
-                        aria-describedby={
-                          showPhaseError ? phaseErrorId : undefined
-                        }
-                        $flexDirection="column"
-                        $gap="space-between-s"
-                      >
-                        {(selectedSubject?.phases ?? phases).map((phase) => (
-                          <ButtonContainer
-                            className={`lot-picker ${isSelected(phase) ? "selected" : ""}`}
-                            key={phase.slug}
-                          >
-                            <OakSecondaryButton
-                              data-testid="mobile-phase-button"
-                              key={phase.slug}
-                              role="radio"
-                              pv="inner-padding-m"
-                              ph="inner-padding-s"
-                              width="100%"
-                              onClick={() => handleSelectPhase(phase)}
-                              aria-checked={isSelected(phase)}
-                              title={phase.title}
-                              textAlign="start"
-                              hoverShadow={null}
-                            >
-                              {phase.title}
-                              <OakP $font="body-2" $mt="space-between-ssx">
-                                {getPhaseText(
-                                  phase,
-                                  selectedSubject?.keystages ??
-                                    DEFAULT_KEYSTAGES,
-                                )}
-                              </OakP>
-                            </OakSecondaryButton>
-                          </ButtonContainer>
-                        ))}
-                      </OakFlex>
-
-                      {selectedPhase?.slug === "secondary" &&
-                        selectedSubject?.ks4_options && (
-                          <OakFlex
-                            $flexDirection="column"
-                            $gap="space-between-xs"
-                          >
-                            <OakHeading
-                              data-testid="mobile-phase-picker-ks4-option-heading"
-                              id={ks4OptionInputId}
-                              $mt="space-between-ssx"
-                              tag="h2"
-                              $font="heading-7"
-                            >
-                              Choose an option for KS4:
-                            </OakHeading>
-
-                            <OakFlex
-                              role="radiogroup"
-                              aria-labelledby={ks4OptionInputId}
-                              aria-required="true"
-                              aria-describedby={
-                                showKS4OptionError
-                                  ? ks4OptionErrorId
-                                  : undefined
-                              }
-                              $flexWrap="wrap"
-                              $flexDirection="row"
-                              $gap="all-spacing-2"
-                            >
-                              {selectedSubject.ks4_options
-                                .sort((a: KS4Option) =>
-                                  isExamboardSlug(a.slug) ? 1 : -1,
-                                )
-                                .map((ks4Option: KS4Option) => (
-                                  <ButtonContainer
-                                    key={ks4Option.slug}
-                                    className={`lot-picker ${isSelected(ks4Option) ? "selected" : ""}`}
-                                    data-testid="mobile-phase-picker-ks4-option"
-                                  >
-                                    <OakSecondaryButton
-                                      role="radio"
-                                      onClick={() =>
-                                        handleSelectKS4Option(ks4Option)
-                                      }
-                                      title={createKS4OptionTitle(
-                                        selectedSubject.title,
-                                        ks4Option,
-                                      )}
-                                      aria-checked={isSelected(ks4Option)}
-                                      pv="inner-padding-xs"
-                                      ph="inner-padding-s"
-                                      hoverShadow={null}
-                                    >
-                                      {createKS4OptionTitle(
-                                        selectedSubject.title,
-                                        ks4Option,
-                                      )}
-                                    </OakSecondaryButton>
-                                  </ButtonContainer>
-                                ))}
-                            </OakFlex>
-                          </OakFlex>
+                        {showPhaseError && (
+                          <Flex id={phaseErrorId} $flexDirection="row" $mb={20}>
+                            <Icon
+                              $color="red"
+                              name="content-guidance"
+                              verticalAlign="bottom"
+                            />
+                            <OakP $color="red">
+                              Select a school phase to view the curriculum
+                            </OakP>
+                          </Flex>
                         )}
 
+                        {showKS4OptionError && (
+                          <Flex
+                            id={ks4OptionErrorId}
+                            $flexDirection="row"
+                            $mb={20}
+                          >
+                            <Icon
+                              $color="red"
+                              name="content-guidance"
+                              verticalAlign="bottom"
+                            />
+                            <OakP $color="red">
+                              Select a KS4 option to view the curriculum
+                            </OakP>
+                          </Flex>
+                        )}
+
+                        <OakFlex
+                          role="radiogroup"
+                          aria-labelledby={schoolPhaseInputId}
+                          aria-required="true"
+                          aria-describedby={
+                            showPhaseError ? phaseErrorId : undefined
+                          }
+                          $flexDirection="column"
+                          $gap="space-between-s"
+                        >
+                          {(selectedSubject?.phases ?? phases).map((phase) => (
+                            <ButtonContainer
+                              className={`lot-picker ${isSelected(phase) ? "selected" : ""}`}
+                              key={phase.slug}
+                            >
+                              <OakSecondaryButton
+                                data-testid="mobile-phase-button"
+                                key={phase.slug}
+                                role="radio"
+                                pv="inner-padding-m"
+                                ph="inner-padding-s"
+                                width="100%"
+                                onClick={() => handleSelectPhase(phase)}
+                                aria-checked={isSelected(phase)}
+                                title={phase.title}
+                                textAlign="start"
+                                hoverShadow={null}
+                              >
+                                {phase.title}
+                                <OakP $font="body-2" $mt="space-between-ssx">
+                                  {getPhaseText(
+                                    phase,
+                                    selectedSubject?.keystages ??
+                                      DEFAULT_KEYSTAGES,
+                                  )}
+                                </OakP>
+                              </OakSecondaryButton>
+                            </ButtonContainer>
+                          ))}
+                        </OakFlex>
+
+                        {selectedPhase?.slug === "secondary" &&
+                          selectedSubject?.ks4_options && (
+                            <OakFlex
+                              $flexDirection="column"
+                              $gap="space-between-xs"
+                            >
+                              <OakHeading
+                                data-testid="mobile-phase-picker-ks4-option-heading"
+                                id={ks4OptionInputId}
+                                $mt="space-between-ssx"
+                                tag="h2"
+                                $font="heading-7"
+                              >
+                                Choose an option for KS4:
+                              </OakHeading>
+
+                              <OakFlex
+                                role="radiogroup"
+                                aria-labelledby={ks4OptionInputId}
+                                aria-required="true"
+                                aria-describedby={
+                                  showKS4OptionError
+                                    ? ks4OptionErrorId
+                                    : undefined
+                                }
+                                $flexWrap="wrap"
+                                $flexDirection="row"
+                                $gap="all-spacing-2"
+                              >
+                                {selectedSubject.ks4_options
+                                  .sort((a: KS4Option) =>
+                                    isExamboardSlug(a.slug) ? 1 : -1,
+                                  )
+                                  .map((ks4Option: KS4Option) => (
+                                    <ButtonContainer
+                                      key={ks4Option.slug}
+                                      className={`lot-picker ${isSelected(ks4Option) ? "selected" : ""}`}
+                                      data-testid="mobile-phase-picker-ks4-option"
+                                    >
+                                      <OakSecondaryButton
+                                        role="radio"
+                                        onClick={() =>
+                                          handleSelectKS4Option(ks4Option)
+                                        }
+                                        title={createKS4OptionTitle(
+                                          selectedSubject.title,
+                                          ks4Option,
+                                        )}
+                                        aria-checked={isSelected(ks4Option)}
+                                        pv="inner-padding-xs"
+                                        ph="inner-padding-s"
+                                        hoverShadow={null}
+                                      >
+                                        {createKS4OptionTitle(
+                                          selectedSubject.title,
+                                          ks4Option,
+                                        )}
+                                      </OakSecondaryButton>
+                                    </ButtonContainer>
+                                  ))}
+                              </OakFlex>
+                            </OakFlex>
+                          )}
+                      </PhaseContainerWrapper>
                       <Box
                         $position="fixed"
                         $bottom={0}
                         $left={0}
                         $display={["block"]}
+                        $zIndex={"modalDialog"}
                         $width="100%"
-                        $mh={24}
-                        $mv={10}
+                        $ph={24}
+                        $pv={10}
                         $background="white"
                       >
                         <Hr
-                          $color="grey40"
+                          $color={"grey40"}
+                          $position="absolute"
+                          $left={0}
+                          $top={-24}
                           $height={1}
-                          $mv={-8}
-                          $mb={10}
-                          $ml={-24}
-                          $width={"100%"}
+                          $width="100%"
                         />
                         <OakPrimaryButton
                           data-testid="mobile-phase-picker-confirm-button"
