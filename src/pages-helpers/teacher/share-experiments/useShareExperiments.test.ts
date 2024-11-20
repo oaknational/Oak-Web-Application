@@ -60,6 +60,7 @@ describe("useShareExperiments", () => {
         href: "http://localhost",
         assign: jest.fn(),
         replace: jest.fn(),
+        search: "",
       } as MockLocation,
     });
   });
@@ -169,17 +170,14 @@ describe("useShareExperiments", () => {
     expect(mockTrack.teacherShareInitiated).not.toHaveBeenCalled();
   });
 
-  it.skip("should call track shareConverted the url shareId is present and there is no cookieId or feature flag", () => {
+  it("should call track shareConverted the url shareId is present and there is no cookieId or feature flag", () => {
     (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(false);
 
     const mockTrack = useAnalytics().track;
 
     const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
 
-    // TODO the url doesn't seem to be updating
-    window.location.href = `http://localhost?${key}=xxxxxxxxxx&sm=0&src=1`;
-
-    console.log("window.location.href", window.location.href);
+    window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
 
     // hook wrapper
     renderHook(() =>
@@ -193,5 +191,31 @@ describe("useShareExperiments", () => {
     );
 
     expect(mockTrack.teacherShareConverted).toHaveBeenCalled();
+  });
+
+  it("should not call track shareConverted if the url shareId matches cookieId ", () => {
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(false);
+
+    const mockTrack = useAnalytics().track;
+
+    const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+
+    // set the cookie
+    createAndStoreShareId("lessonSlug_unitSlug_programmeSlug");
+
+    window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
+
+    // hook wrapper
+    renderHook(() =>
+      useShareExperiment({
+        lessonSlug: "lessonSlug",
+        unitSlug: "unitSlug",
+        programmeSlug: "programmeSlug",
+        source: "lesson-canonical",
+        curriculumTrackingProps,
+      }),
+    );
+
+    expect(mockTrack.teacherShareConverted).not.toHaveBeenCalled();
   });
 });
