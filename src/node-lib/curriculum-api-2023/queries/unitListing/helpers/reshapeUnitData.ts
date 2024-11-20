@@ -38,7 +38,7 @@ export const reshapeUnitData = (rawUnits: UnitsCamel): GroupedUnitsSchema => {
       processedUnits,
       (unit) =>
         unit.isOptionalityUnit
-          ? unit.slug.replace(/-\d+?/, "") // strip the numbers from the end of the slug
+          ? unit.slug.replace(/-\d+?$/, "") // strip the numbers from the end of the slug
           : unit.slug + unit.year, // legacy units occasionally have the same title so we need to check they are optionality before grouping them (slugs are always unique)
     ),
   );
