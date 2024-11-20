@@ -1,3 +1,16 @@
+# [1.629.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.628.0...v1.629.0) (2024-11-20)
+
+
+### Bug Fixes
+
+* added year prefix to unit modal filenames ([0928e67](https://github.com/oaknational/Oak-Web-Application/commit/0928e67ce0bc98b3fc80d284e218ff1abfc79499))
+* open modals in new tab ([623a3a2](https://github.com/oaknational/Oak-Web-Application/commit/623a3a226b5096d3f8a6b4fb468967f4fb268f9c))
+
+
+### Features
+
+* screenshots of modals added to curric automate script ([825f3aa](https://github.com/oaknational/Oak-Web-Application/commit/825f3aa2dd1adb19c2861c4f2a06f7d518856c82))
+
 # [1.628.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.627.1...v1.628.0) (2024-11-19)
 
 
