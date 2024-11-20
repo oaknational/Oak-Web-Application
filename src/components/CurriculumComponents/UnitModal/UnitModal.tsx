@@ -2,12 +2,11 @@ import { FC, useState, useEffect } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
+import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button";
-import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
-import Card from "@/components/SharedComponents/Card";
 import {
   CurriculumUnitDetailsProps,
   CurriculumUnitDetails,
@@ -153,6 +152,7 @@ const UnitModal: FC<UnitModalProps> = ({
                   $background={"pink30"}
                   $pa={24}
                   $mt={40}
+                  $pb={0}
                   data-testid="unit-options-card"
                   $borderRadius={4}
                 >
@@ -165,84 +165,59 @@ const UnitModal: FC<UnitModalProps> = ({
                     Unit options
                   </OakHeading>
                   <OakFlex
-                    $flexDirection={["column", "row"]}
+                    $flexDirection={["row"]}
                     $gap="all-spacing-6"
                     $flexWrap={"wrap"}
                   >
                     {unitData.unit_options.map((optionalUnit, index) => {
                       return (
-                        <Card
-                          $pa={16}
-                          key={`${optionalUnit.unitvariant_id}-${index}}`}
-                          $background={"white"}
+                        <OakFlex
+                          $width={"all-spacing-19"}
+                          $flexGrow={1}
                           $position={"relative"}
-                          $maxWidth={["100%", "calc(50% - 12px)"]}
-                          $minWidth={["100%", "calc(50% - 12px)"]}
-                          data-testid="unit-option"
-                          $maxHeight={"fit-content"}
-                          $justifyContent={"space-between"}
                         >
-                          <Box>
-                            <BrushBorders color="white" />
-                            <OakHeading
-                              tag="h5"
-                              $font={"heading-7"}
-                              $mb="space-between-s"
-                              $wordWrap={"normal"}
-                            >
-                              {optionalUnit.title}
-                            </OakHeading>
-                          </Box>
-
-                          <OakFlex
-                            $flexDirection={"row"}
-                            $justifyContent={"flex-end"}
-                            $alignSelf={"flex-end"}
-                          >
-                            <OakFlex
-                              $flexDirection={"row"}
-                              $alignItems={"flex-start"}
-                              $width={"100%"}
-                              $color={"grey70"}
-                            >
-                              <Button
-                                label="Unit info"
-                                data-testid="unit-info-button"
-                                $font={"heading-7"}
-                                icon="chevron-right"
-                                $iconPosition="trailing"
-                                variant="minimal"
-                                iconBackground={undefined}
-                                background={undefined}
-                                onClick={() => {
-                                  handleOptionalityModal();
-                                  setUnitOptionsAvailable(false);
-                                  setUnitVariantID(optionalUnit.unitvariant_id);
-                                  setCurrentUnitLessons(optionalUnit.lessons);
-                                  setCurriculumUnitDetails({
-                                    unitTitle: optionalUnit.title,
-                                    threads: unitData.threads,
-                                    lessons: optionalUnit.lessons,
-                                    priorUnitDescription:
-                                      optionalUnit.connection_prior_unit_description,
-                                    futureUnitDescription:
-                                      optionalUnit.connection_future_unit_description,
-                                    priorUnitTitle:
-                                      optionalUnit.connection_prior_unit_title,
-                                    futureUnitTitle:
-                                      optionalUnit.connection_future_unit_title,
-                                    description: optionalUnit.description,
-                                    whyThisWhyNow:
-                                      optionalUnit.why_this_why_now,
-                                    cycle: unitData.cycle,
-                                  });
-                                }}
-                              />
-                            </OakFlex>
-                          </OakFlex>
-                        </Card>
+                          <CurriculumUnitCard
+                            unit={optionalUnit}
+                            index={index}
+                            isHighlighted={false}
+                            onClick={() => {
+                              handleOptionalityModal();
+                              setUnitOptionsAvailable(false);
+                              setUnitVariantID(optionalUnit.unitvariant_id);
+                              setCurrentUnitLessons(optionalUnit.lessons);
+                              setCurriculumUnitDetails({
+                                unitTitle: optionalUnit.title,
+                                threads: unitData.threads,
+                                lessons: optionalUnit.lessons,
+                                priorUnitDescription:
+                                  optionalUnit.connection_prior_unit_description,
+                                futureUnitDescription:
+                                  optionalUnit.connection_future_unit_description,
+                                priorUnitTitle:
+                                  optionalUnit.connection_prior_unit_title,
+                                futureUnitTitle:
+                                  optionalUnit.connection_future_unit_title,
+                                description: optionalUnit.description,
+                                whyThisWhyNow: optionalUnit.why_this_why_now,
+                                cycle: unitData.cycle,
+                              });
+                            }}
+                          />
+                        </OakFlex>
                       );
                     })}
+                    {/* Empty tiles for correct flex wrapping */}
+                    {Array(2)
+                      .fill(true)
+                      .map(() => {
+                        return (
+                          <OakFlex
+                            $width={"all-spacing-19"}
+                            $flexGrow={1}
+                            $position={"relative"}
+                          />
+                        );
+                      })}
                   </OakFlex>
                 </Box>
               )}
