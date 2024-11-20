@@ -84,7 +84,7 @@ async function fetchSecrets({ projectId, secretNames }) {
 
   // Fetch all secret values in parallel
   // @todo use correct settings for uslint so Promise is allowed
-  // eslint-disable-next-line no-undef
+   
   const secrets = await Promise.all(latestSecretValuePromises);
 
   return Object.fromEntries(secrets);
