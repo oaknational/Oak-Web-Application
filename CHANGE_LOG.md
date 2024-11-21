@@ -1,3 +1,18 @@
+# [1.633.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.632.0...v1.633.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* don't sanatiseUnits(...) for new MV ([6b89511](https://github.com/oaknational/Oak-Web-Application/commit/6b89511b6b539c44bfa5b4820afd06d13aa8bdbb))
+* removed hack added in [#2846](https://github.com/oaknational/Oak-Web-Application/issues/2846) (no longer needed) ([650c94c](https://github.com/oaknational/Oak-Web-Application/commit/650c94c1f5a27da57ad454a3659df7a4d09e26ab))
+* revert change to curriculumUnitsIncludeNew ([03c8919](https://github.com/oaknational/Oak-Web-Application/commit/03c8919b565b4a34b2162cfe9643faef0ecdfd77))
+
+
+### Features
+
+* added constant to switch on new mv_curriculum_sequence_b_13_0_0 MV ([e2c1262](https://github.com/oaknational/Oak-Web-Application/commit/e2c1262bfa49d93a8874dbb56a0140fb2d6620bf))
+* initial work on new curric MV ([dd56e3c](https://github.com/oaknational/Oak-Web-Application/commit/dd56e3ceed8869703427842b41d65c60c26fc0be))
+
 # [1.632.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.631.1...v1.632.0) (2024-11-21)
 
 
