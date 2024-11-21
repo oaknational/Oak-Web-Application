@@ -44,6 +44,7 @@ import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTi
 import { getUnitFeatures, UnitFeatures } from "@/utils/curriculum/features";
 import {
   sortSubjectCategoriesOnFeatures,
+  sortUnits,
   sortYears,
 } from "@/utils/curriculum/sorting";
 import {
@@ -428,6 +429,10 @@ export function createUnitsListingByYear(
         }
       }
     }
+  }
+
+  for (const year of Object.keys(yearData)) {
+    yearData[year]!.units = yearData[year]!.units.toSorted(sortUnits);
   }
 
   return yearData;
