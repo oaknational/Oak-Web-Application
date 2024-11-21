@@ -164,7 +164,11 @@ export const getStaticProps: GetStaticProps<
         unitsByProgramme[programmeSlug] || [];
 
       const optionalityUnits: UnitListingBrowseData[number][][] = Object.values(
-        groupBy(mainUnits, (unit) => unit?.unitData.title),
+        groupBy(mainUnits, (unit) =>
+          unit.programmeFields.optionality
+            ? unit.unitSlug.replace(/-\d+?$/, "")
+            : unit.unitSlug,
+        ),
       );
 
       const breadcrumbs: string[] = [yearDescription];
