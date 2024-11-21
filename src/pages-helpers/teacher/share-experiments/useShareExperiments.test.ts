@@ -48,13 +48,6 @@ describe("useShareExperiments", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    //clear the cookies
-    document.cookie.split(";").forEach((cookie) => {
-      document.cookie = cookie
-        .replace(/^ +/, "")
-        .replace(/=.*/, `=;expires=${new Date(0).toUTCString()}`);
-    });
-
     Object.defineProperty(window, "location", {
       writable: true,
       value: {
@@ -64,6 +57,9 @@ describe("useShareExperiments", () => {
         search: "",
       } as MockLocation,
     });
+
+    // reset local storage
+    localStorage.clear();
   });
 
   it("should return null values if the feature flag is not found", () => {
@@ -226,6 +222,7 @@ describe("useShareExperiments", () => {
     const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
 
     window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
+    const fn = jest.spyOn(Storage.prototype, "setItem");
 
     // hook wrapper
     renderHook(() =>
@@ -238,7 +235,7 @@ describe("useShareExperiments", () => {
       }),
     );
 
-    expect(document.cookie).toContain(`cv-xxxxxxxxxx=true`);
+    expect(fn).toHaveBeenCalledWith(`cv-xxxxxxxxxx`, JSON.stringify(true));
   });
 
   it("should not send a conversion event if the conversion shareId is already present", () => {
@@ -251,7 +248,7 @@ describe("useShareExperiments", () => {
     window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
 
     // set the conversion cookie
-    document.cookie = `cv-xxxxxxxxxx=true`;
+    localStorage.setItem("cv-xxxxxxxxxx", JSON.stringify(true));
 
     // hook wrapper
     renderHook(() =>
@@ -294,8 +291,7 @@ describe("useShareExperiments", () => {
 
     const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
 
-    // set the activation cookie
-    document.cookie = `av-${key}=true`;
+    localStorage.setItem(`av-${key}`, JSON.stringify(true));
 
     const { result } = renderHook(() =>
       useShareExperiment({

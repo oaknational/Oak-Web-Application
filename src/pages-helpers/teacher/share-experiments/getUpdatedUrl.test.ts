@@ -34,6 +34,7 @@ describe("getUpdatedUrl", () => {
   it("should generate a new share id and store it in a cookie if no cookieId provided", () => {
     const url = "http://example.com";
     const unhashedKey = "lesson-1";
+    const fn = jest.spyOn(Storage.prototype, "setItem");
     const result = getUpdatedUrl({
       url,
       cookieShareId: undefined,
@@ -43,8 +44,9 @@ describe("getUpdatedUrl", () => {
     expect(result.url).toEqual(
       "http://example.com?sid-c2d05c=xxxxxxxxxx&sm=0&src=1",
     );
+
     expect(result.shareIdKey).toEqual("sid-c2d05c");
     expect(result.shareId).toEqual("xxxxxxxxxx");
-    expect(document.cookie).toContain("sid-c2d05c=xxxxxxxxxx");
+    expect(fn).toHaveBeenCalledWith("sid-c2d05c", JSON.stringify("xxxxxxxxxx"));
   });
 });
