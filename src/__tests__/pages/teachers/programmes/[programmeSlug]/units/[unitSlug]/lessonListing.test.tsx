@@ -160,9 +160,6 @@ describe("Lesson listing page", () => {
         keyStageTitle: "Key Stage 4",
         yearGroupName: "Year 10",
         yearGroupSlug: "year-10",
-        pathwaySlug: null,
-        pathwayTitle: null,
-        pathwayDisplayOrder: null,
       });
     });
   });
