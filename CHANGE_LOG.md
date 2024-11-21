@@ -1,3 +1,26 @@
+# [1.632.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.631.1...v1.632.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* add scrolling on phase picker when zoomed in 200% ([9fa8792](https://github.com/oaknational/Oak-Web-Application/commit/9fa8792e8d83e3c5d560d58879afdfaf3886bb5f))
+* adjust 'View curriculum' button margin in mobile phase picker ([03c1795](https://github.com/oaknational/Oak-Web-Application/commit/03c1795fe11b53b2a6754269046dbca69e8081de))
+* adjust desktop lot picker width ([bff245f](https://github.com/oaknational/Oak-Web-Application/commit/bff245f4d706877f92e18bcd68513786b0159448))
+* close phase picker when viewing curriculum without subject ([42090ef](https://github.com/oaknational/Oak-Web-Application/commit/42090ef7267cf3ea7c9f66b86df7ec759726e723))
+* ensure mobile lot picker modals have z-index greater than cookie banner ([754d169](https://github.com/oaknational/Oak-Web-Application/commit/754d1699cdf02f4df2176bec66295636fcba4891))
+* fix lotpicker intrusion on cookie banner by setting appropriate z-index ([cc2b3b6](https://github.com/oaknational/Oak-Web-Application/commit/cc2b3b6787453f11b0d9a391ebf0d5748b150104))
+* prevent background page scrolling when modal is open ([1dd388c](https://github.com/oaknational/Oak-Web-Application/commit/1dd388cff1bc8a804e623ff108e1436c63882039))
+* remove cycleTwo flag ([e677680](https://github.com/oaknational/Oak-Web-Application/commit/e677680df0a1d030cdb4c132d2d8c7785e4ed2bd))
+* remove OakPrimaryButton text from aria-label ([3245d19](https://github.com/oaknational/Oak-Web-Application/commit/3245d19f217a42cff5b20e8381d7b0afa705426f))
+* remove stray double quote from string ([0765e55](https://github.com/oaknational/Oak-Web-Application/commit/0765e55079eca5de925b1d8e29b543d41bf0b709))
+
+
+### Features
+
+* add loader View curriculum button in mobile phase picker ([4af7a9b](https://github.com/oaknational/Oak-Web-Application/commit/4af7a9be20bfb7b3f8e54fa8bcfd195bf5ede8bd))
+* add mobile lot picker ([504bf97](https://github.com/oaknational/Oak-Web-Application/commit/504bf97d802f018f67a0982f865dfddefa4c1319))
+* add transiton to phase picker modal to ensure page is not visible until loaded ([6fb6777](https://github.com/oaknational/Oak-Web-Application/commit/6fb67779b476bbaf6104e901f41b73dbf2c954f7))
+
 ## [1.631.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.631.0...v1.631.1) (2024-11-21)
 
 
