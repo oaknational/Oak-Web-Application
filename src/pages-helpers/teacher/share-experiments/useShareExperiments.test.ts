@@ -17,6 +17,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => {
   const track = {
     teacherShareInitiated: jest.fn(),
     teacherShareConverted: jest.fn(),
+    teacherShareActivated: jest.fn(),
   };
 
   return {
@@ -264,5 +265,50 @@ describe("useShareExperiments", () => {
     );
 
     expect(mockTrack.teacherShareConverted).not.toHaveBeenCalled();
+  });
+
+  it("sends an activation event when shareActivated is called", () => {
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
+
+    const mockTrack = useAnalytics().track;
+
+    const { result } = renderHook(() =>
+      useShareExperiment({
+        lessonSlug: "lessonSlug",
+        unitSlug: "unitSlug",
+        programmeSlug: "programmeSlug",
+        source: "lesson-canonical",
+        curriculumTrackingProps,
+      }),
+    );
+
+    result.current.shareActivated();
+
+    expect(mockTrack.teacherShareActivated).toHaveBeenCalled();
+  });
+
+  it("doesn't send an activation event when shareActivated is called and the cookie is already present", () => {
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
+
+    const mockTrack = useAnalytics().track;
+
+    const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+
+    // set the activation cookie
+    document.cookie = `av-${key}=true`;
+
+    const { result } = renderHook(() =>
+      useShareExperiment({
+        lessonSlug: "lessonSlug",
+        unitSlug: "unitSlug",
+        programmeSlug: "programmeSlug",
+        source: "lesson-canonical",
+        curriculumTrackingProps,
+      }),
+    );
+
+    result.current.shareActivated();
+
+    expect(mockTrack.teacherShareActivated).not.toHaveBeenCalled();
   });
 });

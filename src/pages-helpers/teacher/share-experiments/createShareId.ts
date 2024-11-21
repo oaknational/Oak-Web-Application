@@ -35,6 +35,12 @@ export const storeConversionShareId = (id: string) => {
 export const getConversionShareId = (id: string): string | undefined =>
   Cookies.get(`cv-${id}`);
 
+export const storeActivationKey = (key: string) =>
+  Cookies.set(`av-${key}`, "true", { expires: 30 });
+
+export const getActivationKey = (key: string): string | undefined =>
+  Cookies.get(`av-${key}`);
+
 export const shareMethods = {
   url: 0,
   button: 1,

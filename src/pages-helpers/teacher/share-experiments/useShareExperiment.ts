@@ -3,10 +3,12 @@ import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { getUpdatedUrl } from "./getUpdatedUrl";
 import {
+  getActivationKey,
   getConversionShareId,
   getShareIdFromCookie,
   getShareIdKey,
   shareSources,
+  storeActivationKey,
   storeConversionShareId,
 } from "./createShareId";
 
@@ -146,21 +148,25 @@ export const useShareExperiment = ({
   ]);
 
   const shareActivated = () => {
-    if (!shareIdRef.current) {
+    if (!shareIdRef.current || !shareIdKeyRef.current) {
       return;
     }
 
-    //TODO : cookie tracking for deduping share activated events
+    if (!getActivationKey(shareIdKeyRef.current)) {
+      //TODO : cookie tracking for deduping share activated events
 
-    track.teacherShareActivated({
-      shareId: shareIdRef.current,
-      linkUrl: window.location.href,
-      lessonSlug,
-      unitSlug,
-      sourcePageSlug: window.location.pathname,
-      ...coreTrackingProps,
-      ...curriculumTrackingProps,
-    });
+      track.teacherShareActivated({
+        shareId: shareIdRef.current,
+        linkUrl: window.location.href,
+        lessonSlug,
+        unitSlug,
+        sourcePageSlug: window.location.pathname,
+        ...coreTrackingProps,
+        ...curriculumTrackingProps,
+      });
+
+      storeActivationKey(shareIdKeyRef.current);
+    }
   };
 
   return {
