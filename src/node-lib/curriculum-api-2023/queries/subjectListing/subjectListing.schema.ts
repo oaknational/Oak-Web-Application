@@ -30,19 +30,10 @@ const keyStageSchema = z.object({
 });
 
 const subjectListingSchema = z.object({
+  subjects: z.array(subjectSchema),
   keyStageSlug: keystageSlugs,
   keyStageTitle: keystageDescriptions,
-  subjects: z.array(subjectSchema),
   keyStages: z.array(keyStageSchema),
-});
-
-// temporary fix until reimplementation of this query
-const partialPFSchema = programmeFieldsSchema.omit({
-  pathway: true,
-  pathway_slug: true,
-  pathway_description: true,
-  pathway_display_order: true,
-  pathway_id: true,
 });
 
 export const subjectLisitingRawSchema = z.object({
@@ -52,7 +43,7 @@ export const subjectLisitingRawSchema = z.object({
         programme_fields: true,
         supplementary_data: true,
       })
-      .merge(z.object({ programme_fields: partialPFSchema })),
+      .merge(z.object({ programme_fields: programmeFieldsSchema })),
   ),
   key_stages: z.array(keyStageDataRaw),
 });

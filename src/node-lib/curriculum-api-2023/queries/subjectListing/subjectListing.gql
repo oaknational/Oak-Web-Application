@@ -14,6 +14,8 @@ query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
     unit_slug
     lesson_slug
     programme_slug
+    features
+    actions
   }
   key_stages: published_mv_key_stages_2_0_0 {
     keystage: short_code

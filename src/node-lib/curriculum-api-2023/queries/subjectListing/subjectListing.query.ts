@@ -1,4 +1,6 @@
 import { Sdk } from "../../sdk";
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
+import { SubjectListingQuery } from "../../generated/sdk";
 
 import subjectListingSchema, {
   subjectLisitingRawSchema,
@@ -11,16 +13,28 @@ const subjectListingQuery =
   (sdk: Sdk) => async (args: { keyStageSlug: string }) => {
     const res = await sdk.subjectListing(args);
 
-    // const { subjectLessons, key_stages } = subjectLisitingRawSchema.parse(res);
-    const { subjectLessons, key_stages } = res;
+    const modifiedSubjectLessons = applyGenericOverridesAndExceptions<
+      SubjectListingQuery["subjectLessons"][number]
+    >({
+      journey: "pupil",
+      queryName: "pupilSubjectListingQuery",
+      browseData: res.subjectLessons,
+    });
 
-    if (!subjectLessons || subjectLessons.length === 0) {
+    if (modifiedSubjectLessons.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const processedLessons = constructSubjectsFromLessonData(subjectLessons);
+    const parsedModified = subjectLisitingRawSchema.parse({
+      subjectLessons: modifiedSubjectLessons,
+      key_stages: res.key_stages,
+    });
 
-    const keyStages = key_stages.map((keyStage) => {
+    const processedLessons = constructSubjectsFromLessonData(
+      parsedModified.subjectLessons,
+    );
+
+    const keyStages = parsedModified.key_stages.map((keyStage) => {
       const keyStageNew = {
         slug: keyStage.slug,
         title: keyStage.description,
@@ -32,15 +46,14 @@ const subjectListingQuery =
 
     const returnData = {
       subjects: processedLessons,
-      keyStageSlug: subjectLessons[0]?.programme_fields.keystage_slug,
-      keyStageTitle: subjectLessons[0]?.programme_fields.keystage_description,
+      keyStageSlug:
+        parsedModified.subjectLessons[0]?.programme_fields.keystage_slug,
+      keyStageTitle:
+        parsedModified.subjectLessons[0]?.programme_fields.keystage_description,
       keyStages: keyStages,
     };
 
-    return returnData;
-    // return subjectListingSchema.parse({
-    //   returnData,
-    // });
+    return subjectListingSchema.parse(returnData);
   };
 
 export default subjectListingQuery;
