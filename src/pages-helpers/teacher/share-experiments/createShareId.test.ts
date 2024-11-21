@@ -1,7 +1,9 @@
 import {
   createAndStoreShareId,
+  getConversionShareId,
   getShareIdFromCookie,
   getShareIdKey,
+  storeConversionShareId,
 } from "./createShareId";
 
 describe("createShareId", () => {
@@ -38,6 +40,31 @@ describe("createShareId", () => {
       const result = createAndStoreShareId(lessonSlug);
       const key = getShareIdKey(lessonSlug);
       expect(document.cookie).toContain(`${key}=${result.id}`);
+    });
+  });
+
+  describe("storeConversionShareId", () => {
+    it("should store the conversion shareId in a cookie", () => {
+      const shareId = "1234";
+      const key = `cv-${shareId}`;
+      storeConversionShareId(shareId);
+      expect(document.cookie).toContain(`${key}=true`);
+    });
+
+    it("should return the key", () => {
+      const shareId = "1234";
+      const key = storeConversionShareId(shareId);
+      expect(key).toEqual(`cv-${shareId}`);
+    });
+  });
+
+  describe("getConversionShareId", () => {
+    it("should return the conversion shareId from the cookie", () => {
+      const shareId = "1234";
+      const key = `cv-${shareId}`;
+      document.cookie = `${key}=true`;
+      const result = getConversionShareId(shareId);
+      expect(result).toEqual("true");
     });
   });
 });
