@@ -13,6 +13,10 @@ import {
 } from "./createShareId";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import {
+  KeyStageTitleValueType,
+  TeacherShareInitiatedProperties,
+} from "@/browser-lib/avo/Avo";
 
 export type CurriculumTrackingProps = {
   lessonName: string | null;
