@@ -3,9 +3,11 @@ import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { getUpdatedUrl } from "./getUpdatedUrl";
 import {
+  getConversionShareId,
   getShareIdFromCookie,
   getShareIdKey,
   shareSources,
+  storeConversionShareId,
 } from "./createShareId";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -73,17 +75,21 @@ export const useShareExperiment = ({
     const cookieShareId = getShareIdFromCookie(key);
 
     if (urlShareId && cookieShareId !== urlShareId) {
-      // TODO: store the converted shareId in a cookie for preventing multiple conversion events
+      // check for  existing conversion shareId
+      if (!getConversionShareId(urlShareId)) {
+        // TODO: store the converted shareId in a cookie for preventing multiple conversion events
+        storeConversionShareId(urlShareId);
 
-      // track the share converted event irrespective of whether the user is part of the experiment
-      track.teacherShareConverted({
-        shareId: urlShareId,
-        linkUrl: window.location.href,
-        lessonSlug,
-        unitSlug,
-        ...coreTrackingProps,
-        ...curriculumTrackingProps,
-      });
+        // track the share converted event irrespective of whether the user is part of the experiment
+        track.teacherShareConverted({
+          shareId: urlShareId,
+          linkUrl: window.location.href,
+          lessonSlug,
+          unitSlug,
+          ...coreTrackingProps,
+          ...curriculumTrackingProps,
+        });
+      }
     }
 
     if (!shareIdRef.current && shareExperimentFlag) {

@@ -218,4 +218,51 @@ describe("useShareExperiments", () => {
 
     expect(mockTrack.teacherShareConverted).not.toHaveBeenCalled();
   });
+
+  it("should store the conversion shareId in a cookie", () => {
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(false);
+
+    const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+
+    window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
+
+    // hook wrapper
+    renderHook(() =>
+      useShareExperiment({
+        lessonSlug: "lessonSlug",
+        unitSlug: "unitSlug",
+        programmeSlug: "programmeSlug",
+        source: "lesson-canonical",
+        curriculumTrackingProps,
+      }),
+    );
+
+    expect(document.cookie).toContain(`cv-xxxxxxxxxx=true`);
+  });
+
+  it("should not send a conversion event if the conversion shareId is already present", () => {
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(false);
+
+    const mockTrack = useAnalytics().track;
+
+    const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+
+    window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
+
+    // set the conversion cookie
+    document.cookie = `cv-xxxxxxxxxx=true`;
+
+    // hook wrapper
+    renderHook(() =>
+      useShareExperiment({
+        lessonSlug: "lessonSlug",
+        unitSlug: "unitSlug",
+        programmeSlug: "programmeSlug",
+        source: "lesson-canonical",
+        curriculumTrackingProps,
+      }),
+    );
+
+    expect(mockTrack.teacherShareConverted).not.toHaveBeenCalled();
+  });
 });

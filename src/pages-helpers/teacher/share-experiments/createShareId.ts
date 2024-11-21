@@ -24,6 +24,15 @@ export const createAndStoreShareId = (
   return { key, id };
 };
 
+export const storeConversionShareId = (id: string) => {
+  const key = `cv-${id}`;
+  Cookies.set(key, "true", { expires: 30 }); // cookie lasts 30 days
+  return key;
+};
+
+export const getConversionShareId = (id: string): string | undefined =>
+  Cookies.get(`cv-${id}`);
+
 export const shareMethods = {
   url: 0,
   button: 1,
