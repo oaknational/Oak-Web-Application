@@ -11,6 +11,7 @@ import {
   useShareExperiment,
   CurriculumTrackingProps,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 
 type DownloadConfirmationProps = {
   lessonSlug: string;
@@ -53,7 +54,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     focusRef.current?.focus();
   }, []);
 
-  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
     lessonSlug,
     unitSlug: unitSlug ?? undefined,
     programmeSlug: programmeSlug ?? undefined,
@@ -67,7 +68,10 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
       subjectTitle,
     },
   });
-  console.log(shareIdRef, shareIdKeyRef);
+
+  const teacherShareButton = shareExperimentFlag ? (
+    <TeacherShareButton shareUrl={shareUrl} shareActivated={shareActivated} />
+  ) : null;
 
   return (
     <>
@@ -145,6 +149,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
             Thanks for downloading
           </OakHeading>
+          {teacherShareButton}
 
           <OakP $font={"body-1"}>
             We hope you find the resources useful. Click the question mark in
