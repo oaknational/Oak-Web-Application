@@ -1,3 +1,10 @@
+## [1.631.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.631.0...v1.631.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* policy page links styling ([25cb8c7](https://github.com/oaknational/Oak-Web-Application/commit/25cb8c7533ca66b1c9447e4bcce036bb82d03623))
+
 # [1.631.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.630.1...v1.631.0) (2024-11-20)
 
 
