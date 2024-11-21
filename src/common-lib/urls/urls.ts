@@ -221,6 +221,19 @@ export type LessonDownloadsCanonicalLinkProps = {
     preselected: PreselectedDownloadType | null;
   };
 };
+
+export type LessonMediaLinkProps = {
+  page: "lesson-media";
+  programmeSlug: string;
+  unitSlug: string;
+  lessonSlug: string;
+};
+
+export type LessonMediaCanonicalLinkProps = {
+  page: "lesson-media-canonical";
+  lessonSlug: string;
+};
+
 export type LessonShareLinkProps = {
   page: "lesson-share";
   programmeSlug: string;
@@ -340,6 +353,8 @@ export type OakLinkProps =
   | LessonDownloadsLinkProps
   | SpecialistLessonDownloadsLinkProps
   | LessonDownloadsCanonicalLinkProps
+  | LessonMediaLinkProps
+  | LessonMediaCanonicalLinkProps
   | LessonShareLinkProps
   | SpecialistLessonShareLinkProps
   | LessonShareCanonicalLinkProps
@@ -775,6 +790,19 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson Download",
     configType: "internal",
     pageType: "lesson-downloads-canonical",
+  }),
+  "lesson-media": createOakPageConfig({
+    pathPattern:
+      "/teachers/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/media",
+    analyticsPageName: "Lesson Media",
+    configType: "internal",
+    pageType: "lesson-media",
+  }),
+  "lesson-media-canonical": createOakPageConfig({
+    pathPattern: "/teachers/lessons/:lessonSlug/media",
+    analyticsPageName: "Lesson Media",
+    configType: "internal",
+    pageType: "lesson-media-canonical",
   }),
   "lesson-share": createOakPageConfig({
     pathPattern:
