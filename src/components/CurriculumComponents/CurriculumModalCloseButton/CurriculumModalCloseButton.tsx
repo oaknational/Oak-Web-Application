@@ -6,6 +6,7 @@ import IconButton from "@/components/SharedComponents/Button/IconButton";
 
 type CurriculumModalCloseButtonProps = BoxProps & {
   onClose: () => void;
+  ariaLabel?: string;
 };
 
 const CurriculumModalCloseButtonBox = styled(Box)<BoxProps>`
@@ -13,14 +14,14 @@ const CurriculumModalCloseButtonBox = styled(Box)<BoxProps>`
 `;
 export const CurriculumModalCloseButton: FC<
   CurriculumModalCloseButtonProps
-> = ({ onClose, ...boxProps }) => {
+> = ({ onClose, ariaLabel = "Close subject modal", ...boxProps }) => {
   return (
     <CurriculumModalCloseButtonBox {...boxProps}>
       <IconButton
         variant="minimal"
         icon="cross"
         onClick={onClose}
-        aria-label="close subject modal"
+        aria-label={ariaLabel}
         size="large"
         data-testid="close-modal-button"
       />
