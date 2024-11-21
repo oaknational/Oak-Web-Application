@@ -4,7 +4,6 @@ import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-s
 import { Sdk } from "../../sdk";
 import OakError from "../../../../errors/OakError";
 import { lessonListSchema } from "../../shared.schema";
-import { toSentenceCase } from "../../helpers";
 import { LessonListingQuery } from "../../generated/sdk";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 
@@ -64,7 +63,7 @@ export const getTransformedUnit = (
   return {
     programmeSlug: unit.programme_slug,
     keyStageSlug: unit.programme_fields.keystage_slug,
-    keyStageTitle: toSentenceCase(unit.programme_fields.keystage_description),
+    keyStageTitle: unit.programme_fields.keystage_description,
     subjectSlug: unit.programme_fields.subject_slug,
     subjectTitle: unit.programme_fields.subject,
     unitSlug: unit.unit_slug,
@@ -76,6 +75,9 @@ export const getTransformedUnit = (
     yearSlug: unit.programme_fields.year_slug,
     yearTitle: unit.programme_fields.year_description,
     lessons: parsedLessons,
+    pathwaySlug: unit.programme_fields.pathway_slug,
+    pathwayTitle: unit.programme_fields.pathway,
+    pathwayDisplayOrder: unit.programme_fields.pathway_display_order,
   };
 };
 

@@ -38,7 +38,7 @@ describe("lessonListing()", () => {
       expect(lessonListingSchema.parse(res)).toEqual({
         programmeSlug: "programme-slug",
         keyStageSlug: "ks1",
-        keyStageTitle: "Key stage 1",
+        keyStageTitle: "Key Stage 1",
         subjectSlug: "maths",
         subjectTitle: "Maths",
         unitSlug: "unit-slug",
@@ -49,6 +49,9 @@ describe("lessonListing()", () => {
         examBoardTitle: null,
         yearTitle: "Year 1",
         yearSlug: "year-1",
+        pathwaySlug: null,
+        pathwayTitle: null,
+        pathwayDisplayOrder: null,
         lessons: [
           {
             lessonSlug: "lesson-slug",
@@ -160,7 +163,7 @@ describe("lessonListing()", () => {
         examBoardSlug: null,
         examBoardTitle: null,
         keyStageSlug: "ks1",
-        keyStageTitle: "Key stage 1",
+        keyStageTitle: "Key Stage 1",
         lessons: [],
         programmeSlug: "programme-slug",
         subjectSlug: "maths",
@@ -171,6 +174,9 @@ describe("lessonListing()", () => {
         unitTitle: "unit-title",
         yearTitle: "Year 1",
         yearSlug: "year-1",
+        pathwaySlug: null,
+        pathwayTitle: null,
+        pathwayDisplayOrder: null,
       });
     });
     test("getTransformedUnit returns the correct data for optionality units", () => {
@@ -190,7 +196,7 @@ describe("lessonListing()", () => {
         examBoardSlug: null,
         examBoardTitle: null,
         keyStageSlug: "ks1",
-        keyStageTitle: "Key stage 1",
+        keyStageTitle: "Key Stage 1",
         lessons: [],
         programmeSlug: "programme-slug",
         subjectSlug: "maths",
@@ -201,6 +207,9 @@ describe("lessonListing()", () => {
         unitTitle: "optional",
         yearTitle: "Year 1",
         yearSlug: "year-1",
+        pathwaySlug: null,
+        pathwayTitle: null,
+        pathwayDisplayOrder: null,
       });
     });
     test("getTransformedLessons returns the correct data", async () => {

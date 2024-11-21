@@ -1,21 +1,25 @@
 import { z } from "zod";
+import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
 
 import { lessonListSchema } from "../../shared.schema";
 
 const lessonListingSchema = z.object({
   programmeSlug: z.string(),
-  keyStageSlug: z.string(),
-  keyStageTitle: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
   unitSlug: z.string(),
   unitTitle: z.string(),
-  tierSlug: z.string().nullish(),
-  tierTitle: z.string().nullish(),
-  examBoardSlug: z.string().nullish(),
-  examBoardTitle: z.string().nullish(),
-  yearTitle: z.string(),
-  yearSlug: z.string(),
+  subjectSlug: programmeFieldsSchema.shape.subject_slug,
+  subjectTitle: programmeFieldsSchema.shape.subject,
+  yearTitle: programmeFieldsSchema.shape.year_description,
+  yearSlug: programmeFieldsSchema.shape.year_slug,
+  keyStageSlug: programmeFieldsSchema.shape.keystage_slug,
+  keyStageTitle: programmeFieldsSchema.shape.keystage_description,
+  tierSlug: programmeFieldsSchema.shape.tier_slug,
+  tierTitle: programmeFieldsSchema.shape.tier_description,
+  examBoardSlug: programmeFieldsSchema.shape.examboard_slug,
+  examBoardTitle: programmeFieldsSchema.shape.examboard,
+  pathwaySlug: programmeFieldsSchema.shape.pathway_slug,
+  pathwayTitle: programmeFieldsSchema.shape.pathway,
+  pathwayDisplayOrder: programmeFieldsSchema.shape.pathway_display_order,
   lessons: lessonListSchema,
 });
 

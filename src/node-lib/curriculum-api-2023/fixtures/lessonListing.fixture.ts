@@ -6,14 +6,20 @@ const lessonListingFixture = (
   return {
     programmeSlug: "maths-secondary-ks4-higher",
     keyStageSlug: "ks4",
-    keyStageTitle: "Key stage 4",
+    keyStageTitle: "Key Stage 4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
     tierSlug: null,
+    tierTitle: null,
     unitSlug: "adding-surds-a57d",
     unitTitle: "Adding surds",
     yearSlug: "year-10",
     yearTitle: "Year 10",
+    examBoardSlug: null,
+    examBoardTitle: null,
+    pathwaySlug: null,
+    pathwayTitle: null,
+    pathwayDisplayOrder: null,
     lessons: [
       {
         expired: false,

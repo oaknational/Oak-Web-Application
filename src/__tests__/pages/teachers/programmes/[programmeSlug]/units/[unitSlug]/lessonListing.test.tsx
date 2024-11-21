@@ -157,9 +157,12 @@ describe("Lesson listing page", () => {
         unitName: "Adding surds",
         unitSlug: "adding-surds-a57d",
         keyStageSlug: "ks4",
-        keyStageTitle: "Key stage 4",
+        keyStageTitle: "Key Stage 4",
         yearGroupName: "Year 10",
         yearGroupSlug: "year-10",
+        pathwaySlug: null,
+        pathwayTitle: null,
+        pathwayDisplayOrder: null,
       });
     });
   });
