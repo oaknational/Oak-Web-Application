@@ -1,23 +1,14 @@
 import React, { FC, useState, useRef, useEffect } from "react";
-import { VisuallyHidden } from "react-aria";
-import {
-  OakHeading,
-  OakFlex,
-  OakIcon,
-  OakTypography,
-  OakBox,
-  OakSpan,
-} from "@oaknational/oak-components";
+import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
+import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
 
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
 import Button from "@/components/SharedComponents/Button/Button";
-import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import UnitModal, {
   Lesson,
@@ -40,7 +31,6 @@ import {
   YearData,
   YearSelection,
 } from "@/utils/curriculum/types";
-import { HTMLButtonProps } from "@/components/SharedComponents/Button/common";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -59,27 +49,6 @@ const UnitListItem = styled("li")`
   width: 240px;
   flex-grow: 1;
   position: relative;
-`;
-
-const UnstyledButton = styled("button")<
-  HTMLButtonProps & { isHighlighted: boolean }
->`
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  display: block;
-  text-align: left;
-  outline: none;
-  cursor: pointer;
-  background: ${({ isHighlighted }) => (isHighlighted ? "black" : "white")};
-  &:hover {
-    background: ${({ isHighlighted }) =>
-      isHighlighted ? "#575757" : "#F2F2F2"};
-  }
 `;
 
 type CurriculumVisualiserProps = {
@@ -418,95 +387,15 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 
                       return (
                         <UnitListItem>
-                          <FocusIndicator
+                          <CurriculumUnitCard
+                            unit={unit}
                             key={unit.slug + index}
-                            $height={"100%"}
-                            $width={"100%"}
-                            $borderRadius={"border-radius-s"}
-                            $overflow={"hidden"}
-                            disableMouseHover={isHighlighted}
-                          >
-                            <UnstyledButton
-                              isHighlighted={isHighlighted}
-                              onClick={() => {
-                                handleOpenModal(unitOptions, unit);
-                              }}
-                            >
-                              <OakFlex
-                                $pv={"inner-padding-s"}
-                                $ph={"inner-padding-m"}
-                                $height={"100%"}
-                                $width={"100%"}
-                                $color={isHighlighted ? "white" : "black"}
-                                data-testid={
-                                  isHighlighted
-                                    ? "highlighted-unit-card"
-                                    : "unit-card"
-                                }
-                                $flexDirection={"column"}
-                              >
-                                <OakBox>
-                                  <OutlineHeading
-                                    tag={"div"}
-                                    $font={"heading-5"}
-                                    $fontSize={24}
-                                    $mb={12}
-                                  >
-                                    <span aria-hidden={true}>{index + 1}</span>
-                                  </OutlineHeading>
-                                  <OakSpan $font={"heading-7"}>
-                                    {unit.title}
-                                  </OakSpan>
-                                  {unit.unit_options.length > 1 && (
-                                    <OakBox
-                                      $mt={"space-between-xs"}
-                                      $mb={"space-between-m"}
-                                      $zIndex={"neutral"}
-                                      data-testid="options-tag"
-                                      $position={"relative"}
-                                    >
-                                      <TagFunctional
-                                        color="lavender"
-                                        text={`${unit.unit_options.length} unit options`}
-                                      />
-                                    </OakBox>
-                                  )}
-                                </OakBox>
-
-                                <OakFlex
-                                  $flexDirection={"row"}
-                                  $justifyContent={"flex-end"}
-                                  $mt={"space-between-s"}
-                                  $flexGrow={1}
-                                  $alignItems={"flex-end"}
-                                >
-                                  <OakFlex
-                                    $alignItems={"center"}
-                                    $gap={"space-between-sssx"}
-                                  >
-                                    <OakTypography $font={"heading-7"}>
-                                      Unit info
-                                    </OakTypography>
-
-                                    <OakIcon
-                                      $width="all-spacing-6"
-                                      $height="all-spacing-6"
-                                      $colorFilter={
-                                        isHighlighted ? "white" : "black"
-                                      }
-                                      alt=""
-                                      iconName="chevron-right"
-                                    />
-                                  </OakFlex>
-                                </OakFlex>
-                                {isHighlighted && (
-                                  <VisuallyHidden>
-                                    &nbsp;(highlighted)
-                                  </VisuallyHidden>
-                                )}
-                              </OakFlex>
-                            </UnstyledButton>
-                          </FocusIndicator>
+                            index={index}
+                            isHighlighted={isHighlighted}
+                            onClick={() => {
+                              handleOpenModal(unitOptions, unit);
+                            }}
+                          />
                         </UnitListItem>
                       );
                     })}

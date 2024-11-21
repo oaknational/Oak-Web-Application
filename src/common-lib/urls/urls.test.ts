@@ -139,6 +139,18 @@ describe("urls.ts", () => {
         "/teachers/programmes/primary-ks2-maths/units/geometry-349/lessons/semi-circles-48/downloads",
       );
     });
+    it("Lesson media", () => {
+      expect(
+        resolveOakHref({
+          page: "lesson-media",
+          programmeSlug: "primary-ks2-maths",
+          unitSlug: "geometry-360",
+          lessonSlug: "semi-circles-52",
+        }),
+      ).toBe(
+        "/teachers/programmes/primary-ks2-maths/units/geometry-360/lessons/semi-circles-52/media",
+      );
+    });
     it("Search", () => {
       expect(
         resolveOakHref({
