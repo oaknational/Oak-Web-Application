@@ -1,3 +1,18 @@
+# [1.634.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.633.0...v1.634.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* tests ([ddfaf44](https://github.com/oaknational/Oak-Web-Application/commit/ddfaf444f7e51ab706fd12fc73615b7bc2e0e775))
+* type errors ([1f09471](https://github.com/oaknational/Oak-Web-Application/commit/1f094715e8464a278d438b23ab108457539e47a4))
+* type errors ([39f00e9](https://github.com/oaknational/Oak-Web-Application/commit/39f00e9a8776c3e9c217e1c210a0eb74d12be167))
+
+
+### Features
+
+* adding extra tracking fields ([4dfc364](https://github.com/oaknational/Oak-Web-Application/commit/4dfc3645f4ae205170a9d63af114eb57b422fa5e))
+* prevent duplicate conversion events ([4aa27a6](https://github.com/oaknational/Oak-Web-Application/commit/4aa27a67ed46ce424eed25273ef39f9da5bd079b))
+
 # [1.633.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.632.0...v1.633.0) (2024-11-21)
 
 
