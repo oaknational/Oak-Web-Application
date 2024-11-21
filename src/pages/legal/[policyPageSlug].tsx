@@ -84,6 +84,7 @@ const customPolicyComponent: PortableTextComponents = {
           href={value?.href}
           aria-label={ariaLabel}
           $textDecoration={"underline"}
+          $isInline
           page={null}
         >
           {children}
@@ -102,6 +103,7 @@ const customPolicyComponent: PortableTextComponents = {
           href={resolveInternalHref(value.reference)}
           page={null}
           $textDecoration={"underline"}
+          $isInline
         >
           {children}
         </OwaLink>
