@@ -25,6 +25,7 @@ import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -39,7 +40,7 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
-  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
     lessonSlug: lesson.lessonSlug,
     source: "lesson-canonical",
     curriculumTrackingProps: {
@@ -51,7 +52,10 @@ export default function LessonOverviewCanonicalPage({
       keyStageTitle: null,
     },
   });
-  console.log(shareIdRef, shareIdKeyRef);
+
+  const teacherShareButton = shareExperimentFlag ? (
+    <TeacherShareButton shareUrl={shareUrl} shareActivated={shareActivated} />
+  ) : null;
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
@@ -65,7 +69,12 @@ export default function LessonOverviewCanonicalPage({
     >
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonOverview
-          lesson={{ ...lesson, isCanonical: true, isSpecialist }}
+          lesson={{
+            ...lesson,
+            isCanonical: true,
+            isSpecialist,
+            teacherShareButton,
+          }}
         />
         {!isSpecialist && (
           <OakFlex $background={"pink50"} $width={"100%"}>

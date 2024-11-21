@@ -3,6 +3,8 @@ import crypto from "crypto";
 import { nanoid } from "nanoid";
 import Cookies from "js-cookie";
 
+// TODO switch to local storage to avoid cookie size limits
+
 export const getShareIdKey = (unhashedKey: string): string => {
   const hash = crypto
     .createHash("sha256")
