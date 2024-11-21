@@ -131,6 +131,39 @@ export const getLessonDownloadsBreadCrumb = ({
     };
   }
 };
+export const getLessonMediaBreadCrumb = ({
+  lessonSlug,
+  programmeSlug,
+  unitSlug,
+  disabled,
+}: {
+  lessonSlug: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
+  disabled?: boolean;
+}): Breadcrumb => {
+  if (programmeSlug && unitSlug) {
+    return {
+      oakLinkProps: {
+        page: "lesson-media",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      },
+      label: "Extra video and audio",
+      disabled,
+    };
+  } else {
+    return {
+      oakLinkProps: {
+        page: "lesson-media-canonical",
+        lessonSlug,
+      },
+      label: "Extra video and audio",
+      disabled,
+    };
+  }
+};
 export const getLessonShareBreadCrumb = ({
   lessonSlug,
   programmeSlug,
