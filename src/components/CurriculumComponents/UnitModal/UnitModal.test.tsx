@@ -148,7 +148,7 @@ describe("Unit modal", () => {
         />,
       );
 
-      expect(getAllByTestId("unit-option")).toHaveLength(3);
+      expect(getAllByTestId("unit-info-button")).toHaveLength(3);
     });
 
     test("optionality cards render correct unit titles", () => {

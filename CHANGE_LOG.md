@@ -1,3 +1,10 @@
+# [1.631.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.630.1...v1.631.0) (2024-11-20)
+
+
+### Features
+
+* extract out unit card used in curriculum options ([9cf7cb1](https://github.com/oaknational/Oak-Web-Application/commit/9cf7cb14d86c04a082b12ef43388bec71008cabb))
+
 ## [1.630.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.630.0...v1.630.1) (2024-11-20)
 
 
