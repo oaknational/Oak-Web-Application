@@ -13,17 +13,17 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import { LessonMediaClipsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { CanonicalLessonMediaClips } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
-type LessonMediaCanonicalPageProps = {
-  curriculumData: LessonMediaClipsCanonical;
+export type CanonicalLessonMediaClipsPageProps = {
+  curriculumData: CanonicalLessonMediaClips;
 };
 
-const LessonMediaCanonicalPage: NextPage<LessonMediaCanonicalPageProps> = ({
-  curriculumData,
-}) => {
+const CanonicalLessonMediaClipsPage: NextPage<
+  CanonicalLessonMediaClipsPageProps
+> = ({ curriculumData }) => {
   const isMediaPageContentEnabled = useFeatureFlagEnabled(
     "is_media_page_content_enabled",
   );
@@ -63,7 +63,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  LessonMediaCanonicalPageProps,
+  CanonicalLessonMediaClipsPageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps<
       const { lessonSlug } = context.params;
 
       const curriculumData =
-        await curriculumApi2023.lessonMediaClips<LessonMediaClipsCanonical>({
+        await curriculumApi2023.lessonMediaClips<CanonicalLessonMediaClips>({
           lessonSlug,
         });
 
@@ -86,14 +86,15 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const results: GetStaticPropsResult<LessonMediaCanonicalPageProps> = {
-        props: {
-          curriculumData,
-        },
-      };
+      const results: GetStaticPropsResult<CanonicalLessonMediaClipsPageProps> =
+        {
+          props: {
+            curriculumData,
+          },
+        };
       return results;
     },
   });
 };
 
-export default LessonMediaCanonicalPage;
+export default CanonicalLessonMediaClipsPage;

@@ -1,20 +1,20 @@
-import { LessonMediaData } from "../queries/lessonMedia/lessonMedia.schema";
+import { LessonMediaClipsData } from "../queries/lessonMediaClips/lessonMediaClips.schema";
 
-const lessonShareFixtures = (
-  partial?: Partial<LessonMediaData>,
-): LessonMediaData => {
+const lessonMediaFixture = (
+  partial?: Partial<LessonMediaClipsData>,
+): LessonMediaClipsData => {
   return {
-    lessonSlug: "macbeth-lesson-1",
-    lessonTitle: "Islamic Geometry",
-    programmeSlug: "maths-higher-ks4-l",
+    lessonSlug: "running-as-a-team",
+    lessonTitle: "Running as a team",
+    programmeSlug: "physical-education-ks4",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
-    subjectSlug: "maths",
-    subjectTitle: "Maths",
-    unitSlug: "geometry",
-    unitTitle: "Geometry",
+    subjectSlug: "physical-education",
+    subjectTitle: "Physical Education",
+    unitSlug: "running-and-jumping",
+    unitTitle: "Running and jumping",
     ...partial,
   };
 };
 
-export default lessonShareFixtures;
+export default lessonMediaFixture;

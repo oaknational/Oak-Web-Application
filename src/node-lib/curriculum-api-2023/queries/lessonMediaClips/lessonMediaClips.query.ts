@@ -62,7 +62,7 @@ export const lessonMediaClipsQuery =
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });
-      errorReporter("curriculum-api-2023::pupilLesson")(error, {
+      errorReporter("curriculum-api-2023::lessonMediaClips")(error, {
         severity: "warning",
         ...args,
         res,
@@ -154,3 +154,7 @@ export const lessonMediaClipsQuery =
       } as T;
     }
   };
+
+export type LessonMediaClipsQueryReturn = ReturnType<
+  typeof lessonMediaClipsQuery
+>;
