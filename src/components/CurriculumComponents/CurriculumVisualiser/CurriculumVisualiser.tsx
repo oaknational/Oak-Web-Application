@@ -262,7 +262,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 {labels.includes("swimming") && (
                   <Alert
                     $mb="space-between-s"
-                    $mr="space-between-m2"
                     type="info"
                     message="Swimming and water safety units should be selected based on the ability and experience of your pupils."
                   />

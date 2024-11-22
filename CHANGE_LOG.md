@@ -1,3 +1,10 @@
+## [1.635.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.1...v1.635.2) (2024-11-22)
+
+
+### Bug Fixes
+
+* remove old right margin left over from wobbly border visualiser ([ee65f77](https://github.com/oaknational/Oak-Web-Application/commit/ee65f77ab0510ed3200be5d14bcba174b7941320))
+
 ## [1.635.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.0...v1.635.1) (2024-11-22)
 
 
