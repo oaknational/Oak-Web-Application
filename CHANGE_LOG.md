@@ -1,3 +1,11 @@
+# [1.635.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.634.0...v1.635.0) (2024-11-22)
+
+
+### Features
+
+* added button to download ([9ca2b6e](https://github.com/oaknational/Oak-Web-Application/commit/9ca2b6e55686555b8e823a02d5cdaf34ecc5acd0))
+* dedupe activation events ([ec25959](https://github.com/oaknational/Oak-Web-Application/commit/ec2595963f41eb7a8d227b7fed8d2501112043ac))
+
 # [1.634.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.633.0...v1.634.0) (2024-11-21)
 
 
