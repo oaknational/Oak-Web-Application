@@ -1,12 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { getUpdatedUrl } from "./getUpdatedUrl";
 import {
+  getActivationKey,
   getConversionShareId,
   getShareIdFromCookie,
   getShareIdKey,
   shareSources,
+  storeActivationKey,
   storeConversionShareId,
 } from "./createShareId";
 
@@ -50,6 +52,7 @@ export const useShareExperiment = ({
 }) => {
   const shareIdRef = useRef<string | null>(null);
   const shareIdKeyRef = useRef<string | null>(null);
+  const [shareUrl, setShareUrl] = useState<string | null>(null);
 
   const shareExperimentFlag = useFeatureFlagVariantKey(
     "delivery-sq-share-experiment",
@@ -57,16 +60,19 @@ export const useShareExperiment = ({
 
   const { track } = useAnalytics();
 
-  useEffect(() => {
-    const coreTrackingProps: CoreProperties = {
+  const coreTrackingProps: CoreProperties = useMemo(
+    () => ({
       platform: "owa",
       product: "teacher lesson resources",
       engagementIntent: "advocate",
       componentType: "page view",
       eventVersion: "2.0.0",
       analyticsUseCase: "Teacher",
-    };
+    }),
+    [],
+  );
 
+  useEffect(() => {
     const key = [lessonSlug, unitSlug, programmeSlug].filter(Boolean).join("_");
 
     // get the current url params
@@ -98,7 +104,18 @@ export const useShareExperiment = ({
         cookieShareId,
         unhashedKey: key,
         source,
+        shareMethod: "url",
       });
+
+      const { url: buttonUrl } = getUpdatedUrl({
+        url: window.location.href,
+        cookieShareId: shareId, // we know that this will now be the shareId
+        unhashedKey: key,
+        source,
+        shareMethod: "button",
+      });
+
+      setShareUrl(buttonUrl);
 
       if (!cookieShareId) {
         // track the share initiated event
@@ -127,7 +144,36 @@ export const useShareExperiment = ({
     shareExperimentFlag,
     source,
     track,
+    coreTrackingProps,
   ]);
 
-  return { shareIdRef, shareIdKeyRef };
+  const shareActivated = () => {
+    if (!shareIdRef.current || !shareIdKeyRef.current) {
+      return;
+    }
+
+    if (!getActivationKey(shareIdKeyRef.current)) {
+      //TODO : cookie tracking for deduping share activated events
+
+      track.teacherShareActivated({
+        shareId: shareIdRef.current,
+        linkUrl: window.location.href,
+        lessonSlug,
+        unitSlug,
+        sourcePageSlug: window.location.pathname,
+        ...coreTrackingProps,
+        ...curriculumTrackingProps,
+      });
+
+      storeActivationKey(shareIdKeyRef.current);
+    }
+  };
+
+  return {
+    shareExperimentFlag,
+    shareIdRef,
+    shareIdKeyRef,
+    shareUrl,
+    shareActivated,
+  };
 };
