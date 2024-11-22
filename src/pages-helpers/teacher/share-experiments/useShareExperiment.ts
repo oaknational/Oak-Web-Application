@@ -5,7 +5,7 @@ import { getUpdatedUrl } from "./getUpdatedUrl";
 import {
   getActivationKey,
   getConversionShareId,
-  getShareIdFromCookie,
+  getShareId,
   getShareIdKey,
   shareSources,
   storeActivationKey,
@@ -78,12 +78,12 @@ export const useShareExperiment = ({
     // get the current url params
     const urlParams = new URLSearchParams(window.location.search);
     const urlShareId = urlParams.get(getShareIdKey(key));
-    const cookieShareId = getShareIdFromCookie(key);
+    const storageShareId = getShareId(key);
 
-    if (urlShareId && cookieShareId !== urlShareId) {
+    if (urlShareId && storageShareId !== urlShareId) {
       // check for  existing conversion shareId
       if (!getConversionShareId(urlShareId)) {
-        // TODO: store the converted shareId in a cookie for preventing multiple conversion events
+        // TODO: store the converted shareId in a storage for preventing multiple conversion events
         storeConversionShareId(urlShareId);
 
         // track the share converted event irrespective of whether the user is part of the experiment
@@ -101,7 +101,7 @@ export const useShareExperiment = ({
     if (!shareIdRef.current && shareExperimentFlag) {
       const { url, shareIdKey, shareId } = getUpdatedUrl({
         url: window.location.href,
-        cookieShareId,
+        storageShareId,
         unhashedKey: key,
         source,
         shareMethod: "url",
@@ -109,7 +109,7 @@ export const useShareExperiment = ({
 
       const { url: buttonUrl } = getUpdatedUrl({
         url: window.location.href,
-        cookieShareId: shareId, // we know that this will now be the shareId
+        storageShareId: shareId, // we know that this will now be the shareId
         unhashedKey: key,
         source,
         shareMethod: "button",
@@ -117,7 +117,7 @@ export const useShareExperiment = ({
 
       setShareUrl(buttonUrl);
 
-      if (!cookieShareId) {
+      if (!storageShareId) {
         // track the share initiated event
         track.teacherShareInitiated({
           unitSlug,
@@ -153,8 +153,6 @@ export const useShareExperiment = ({
     }
 
     if (!getActivationKey(shareIdKeyRef.current)) {
-      //TODO : cookie tracking for deduping share activated events
-
       track.teacherShareActivated({
         shareId: shareIdRef.current,
         linkUrl: window.location.href,

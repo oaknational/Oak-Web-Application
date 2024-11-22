@@ -1,9 +1,16 @@
 import crypto from "crypto";
 
 import { nanoid } from "nanoid";
-import Cookies from "js-cookie";
 
-// TODO switch to local storage to avoid cookie size limits
+import {
+  LS_KEY_TEACHER_SHARE_KIDS_INITIATED_SCHEMA,
+  LS_KEY_TEACHER_SHARE_IDS_CONVERTED_SCHEMA,
+  LS_KEY_TEACHER_SHARE_KEYS_ACTIVATED_SCHEMA,
+} from "@/config/localStorageSchemas";
+import {
+  getNullableLocalstorageWithSchema,
+  setLocalstorageWithSchema,
+} from "@/utils/localstorage";
 
 export const getShareIdKey = (unhashedKey: string): string => {
   const hash = crypto
@@ -14,32 +21,53 @@ export const getShareIdKey = (unhashedKey: string): string => {
   return `sid-${hash}`;
 };
 
-export const getShareIdFromCookie = (unhashedKey: string): string | undefined =>
-  Cookies.get(getShareIdKey(unhashedKey));
+export const getShareId = (unhashedKey: string): string | undefined =>
+  getNullableLocalstorageWithSchema(
+    getShareIdKey(unhashedKey),
+    LS_KEY_TEACHER_SHARE_KIDS_INITIATED_SCHEMA,
+  );
 
 export const createAndStoreShareId = (
   unhashedKey: string,
 ): { key: string; id: string } => {
   const id = nanoid(10);
   const key = getShareIdKey(unhashedKey);
-  Cookies.set(key, id, { expires: 30 }); // cookie lasts 30 days
+  setLocalstorageWithSchema(
+    key,
+    LS_KEY_TEACHER_SHARE_KIDS_INITIATED_SCHEMA,
+    id,
+  );
   return { key, id };
 };
 
 export const storeConversionShareId = (id: string) => {
   const key = `cv-${id}`;
-  Cookies.set(key, "true", { expires: 30 }); // cookie lasts 30 days
+  setLocalstorageWithSchema(
+    key,
+    LS_KEY_TEACHER_SHARE_IDS_CONVERTED_SCHEMA,
+    true,
+  );
   return key;
 };
 
-export const getConversionShareId = (id: string): string | undefined =>
-  Cookies.get(`cv-${id}`);
+export const getConversionShareId = (id: string): boolean | undefined =>
+  getNullableLocalstorageWithSchema(
+    `cv-${id}`,
+    LS_KEY_TEACHER_SHARE_IDS_CONVERTED_SCHEMA,
+  );
 
 export const storeActivationKey = (key: string) =>
-  Cookies.set(`av-${key}`, "true", { expires: 30 });
+  setLocalstorageWithSchema(
+    `av-${key}`,
+    LS_KEY_TEACHER_SHARE_KEYS_ACTIVATED_SCHEMA,
+    true,
+  );
 
-export const getActivationKey = (key: string): string | undefined =>
-  Cookies.get(`av-${key}`);
+export const getActivationKey = (key: string): boolean | undefined =>
+  getNullableLocalstorageWithSchema(
+    `av-${key}`,
+    LS_KEY_TEACHER_SHARE_KEYS_ACTIVATED_SCHEMA,
+  );
 
 export const shareMethods = {
   url: 0,
