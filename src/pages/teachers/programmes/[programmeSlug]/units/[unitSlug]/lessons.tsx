@@ -40,7 +40,10 @@ import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 import { isLessonListItem } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import {
+  CurriculumTrackingProps,
+  useShareExperiment,
+} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -78,6 +81,15 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const { shareIdRef, shareIdKeyRef } = useShareExperiment({
     unitSlug: unitSlug ?? undefined,
     programmeSlug: programmeSlug ?? undefined,
+    source: "lesson-listing",
+    curriculumTrackingProps: {
+      lessonName: null,
+      unitName: unitTitle,
+      subjectSlug,
+      subjectTitle,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+    },
   });
   console.log(shareIdRef, shareIdKeyRef);
 

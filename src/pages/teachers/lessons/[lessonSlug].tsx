@@ -41,6 +41,15 @@ export default function LessonOverviewCanonicalPage({
 }: PageProps): JSX.Element {
   const { shareIdRef, shareIdKeyRef } = useShareExperiment({
     lessonSlug: lesson.lessonSlug,
+    source: "lesson-canonical",
+    curriculumTrackingProps: {
+      lessonName: lesson.lessonTitle,
+      unitName: null,
+      subjectSlug: null,
+      subjectTitle: null,
+      keyStageSlug: null,
+      keyStageTitle: null,
+    },
   });
   console.log(shareIdRef, shareIdKeyRef);
 
