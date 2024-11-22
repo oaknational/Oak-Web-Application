@@ -33,6 +33,7 @@ export type HeaderListingProps = {
   title: string;
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
+  shareButton?: React.ReactNode;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -50,6 +51,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     examBoardTitle,
     tierTitle,
     yearTitle,
+    shareButton,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -119,6 +121,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           />
         )}
       </Flex>
+      {shareButton}
     </LessonHeaderWrapper>
   );
 };

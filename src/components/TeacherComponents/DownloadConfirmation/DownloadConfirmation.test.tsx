@@ -4,14 +4,35 @@ import DownloadConfirmation from "./DownloadConfirmation";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 const onwardContentSelected =
   jest.fn() as unknown as TrackFns["onwardContentSelected"];
+
+jest.mock(
+  "@/pages-helpers/teacher/share-experiments/useShareExperiment",
+  () => ({
+    __esModule: true,
+    useShareExperiment: jest.fn(() => ({
+      shareIdRef: { current: "test-share-id" },
+      shareIdKeyRef: { current: "test-share-id-key" },
+    })),
+  }),
+);
 
 describe("DownloadConfirmation component", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+
+  const curriculumTrackingProps: CurriculumTrackingProps = {
+    lessonName: "Test lesson",
+    unitName: "Test unit",
+    keyStageSlug: "test-key-stage",
+    keyStageTitle: "Key stage 1",
+    subjectSlug: "test-subject",
+    subjectTitle: "Test subject",
+  };
 
   it("should render", () => {
     const { getByText } = renderWithTheme(
@@ -23,6 +44,7 @@ describe("DownloadConfirmation component", () => {
         unitSlug="test-unit"
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
+        {...curriculumTrackingProps}
       />,
     );
 
@@ -39,6 +61,7 @@ describe("DownloadConfirmation component", () => {
         unitSlug="test-unit"
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
+        {...curriculumTrackingProps}
       />,
     );
 
@@ -60,6 +83,7 @@ describe("DownloadConfirmation component", () => {
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
         isSpecialist={true}
+        {...curriculumTrackingProps}
       />,
     );
 
@@ -80,6 +104,7 @@ describe("DownloadConfirmation component", () => {
         unitSlug={null}
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
+        {...curriculumTrackingProps}
       />,
     );
 
@@ -99,6 +124,7 @@ describe("DownloadConfirmation component", () => {
         unitSlug="test-unit"
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
+        {...curriculumTrackingProps}
       />,
     );
 
@@ -126,6 +152,7 @@ describe("DownloadConfirmation component", () => {
         unitSlug={null}
         isCanonical={true}
         onwardContentSelected={onwardContentSelected}
+        {...curriculumTrackingProps}
       />,
     );
 

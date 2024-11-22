@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -46,6 +46,8 @@ export type LessonOverviewHeaderProps = {
   onClickShareAll: () => void;
   showDownloadAll: boolean;
   showShare: boolean;
+  // teacher share
+  teacherShareButton?: React.ReactNode;
 };
 
 const LessonOverviewHeader: FC<LessonOverviewHeaderProps> = (props) => {
