@@ -1,81 +1,71 @@
 import { FC } from "react";
+import { OakSmallSecondaryButton } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps } from "@/components/TeacherComponents/LessonOverviewHeader";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import {
-  LessonShareCanonicalLinkProps,
-  LessonShareLinkProps,
-  SpecialistLessonShareLinkProps,
-} from "@/common-lib/urls";
+import { resolveOakHref } from "@/common-lib/urls";
+import { invariant } from "@/utils/invariant";
 
 export const LessonOverviewHeaderShareAllButton: FC<
   LessonOverviewHeaderProps
 > = (props) => {
   const {
-    subjectSlug,
-    lessonTitle,
-    expired,
-    programmeSlug,
     lessonSlug,
     unitSlug,
-    unitTitle,
-    subjectTitle,
-    track,
-    analyticsUseCase,
+    programmeSlug,
     isShareable,
     onClickShareAll,
     isSpecialist,
     isCanonical,
-    ...boxProps
   } = props;
 
   const preselected = "all";
 
-  const linkProps:
-    | LessonShareLinkProps
-    | LessonShareCanonicalLinkProps
-    | SpecialistLessonShareLinkProps = isCanonical
-    ? ({
+  const href = (() => {
+    if (isCanonical) {
+      return resolveOakHref({
         page: "lesson-share-canonical",
         lessonSlug,
         query: { preselected },
-      } as LessonShareCanonicalLinkProps)
-    : isSpecialist
-      ? ({
-          page: "specialist-lesson-share",
-          lessonSlug,
-          unitSlug,
-          programmeSlug,
-          query: { preselected },
-        } as SpecialistLessonShareLinkProps)
-      : ({
-          page: "lesson-share",
-          lessonSlug,
-          unitSlug,
-          programmeSlug,
-          query: { preselected },
-        } as LessonShareLinkProps);
+      });
+    }
+
+    invariant(typeof unitSlug === "string", "unitSlug is required");
+    invariant(typeof programmeSlug === "string", "programmeSlug is required");
+
+    if (isSpecialist) {
+      return resolveOakHref({
+        page: "specialist-lesson-share",
+        lessonSlug,
+        unitSlug,
+        programmeSlug,
+        query: { preselected },
+      });
+    }
+
+    return resolveOakHref({
+      page: "lesson-share",
+      lessonSlug,
+      unitSlug,
+      programmeSlug,
+      query: { preselected },
+    });
+  })();
+
+  if (!isShareable || !href) {
+    <OakSmallSecondaryButton iconName="arrow-right" isTrailingIcon disabled>
+      Share activities with pupils
+    </OakSmallSecondaryButton>;
+  }
 
   return (
-    <Flex
-      $display={["block", "flex"]}
-      $gap={12}
-      $flexDirection={"column"}
-      {...boxProps}
+    <OakSmallSecondaryButton
+      element="a"
+      href={href}
+      iconName="arrow-right"
+      isTrailingIcon
+      onClick={onClickShareAll}
     >
-      <ButtonAsLink
-        {...linkProps}
-        data-testid={"share-all-button"}
-        variant="brush"
-        iconBackground={isShareable ? "black" : "grey60"}
-        icon="arrow-right"
-        size="large"
-        $iconPosition="trailing"
-        label={`Share activities with pupils`}
-        disabled={!isShareable}
-        onClick={onClickShareAll}
-      />
-    </Flex>
+      Share activities with pupils
+    </OakSmallSecondaryButton>
   );
 };
