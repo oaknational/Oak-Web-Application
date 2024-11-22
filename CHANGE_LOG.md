@@ -1,3 +1,12 @@
+## [1.635.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.0...v1.635.1) (2024-11-22)
+
+
+### Bug Fixes
+
+* renaming cookie functions which now use local storage ([45baa16](https://github.com/oaknational/Oak-Web-Application/commit/45baa16015e141f55682602a19844ea70cdd3af1))
+* switch from cookies to local storage ([c3b8419](https://github.com/oaknational/Oak-Web-Application/commit/c3b8419e233127bb78474b5764e2a9153a9fd85a))
+* type errors ([4208e7f](https://github.com/oaknational/Oak-Web-Application/commit/4208e7f97a2e67bf4a5f6296872ec8ce50c20a2a))
+
 # [1.635.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.634.0...v1.635.0) (2024-11-22)
 
 
