@@ -52359,12 +52359,12 @@ export type LessonShareQueryVariables = Exact<{
 
 export type LessonShareQuery = { __typename?: 'query_root', share: Array<{ __typename?: 'published_mv_lesson_content_published_2_1_0', lesson_title?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, video_mux_playback_id?: string | null, video_duration?: string | null, worksheet_asset_object_url?: string | null, expired?: any | null }>, browse: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, null_unitvariant?: any | null, unit_title?: any | null }> };
 
-export type MediaClipsQueryVariables = Exact<{
+export type LessonMediaClipsQueryVariables = Exact<{
   browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp>;
 }>;
 
 
-export type MediaClipsQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
+export type LessonMediaClipsQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
 
 export type ProgrammeListingQueryVariables = Exact<{
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
@@ -52816,8 +52816,8 @@ export const LessonShareDocument = gql`
   }
 }
     `;
-export const MediaClipsDocument = gql`
-    query mediaClips($browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0_bool_exp) {
+export const LessonMediaClipsDocument = gql`
+    query lessonMediaClips($browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0_bool_exp) {
   browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
     where: $browseDataWhere
   ) {
@@ -53519,8 +53519,8 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     lessonShare(variables: LessonShareQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonShareQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonShareQuery>(LessonShareDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonShare', 'query', variables);
     },
-    mediaClips(variables?: MediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<MediaClipsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<MediaClipsQuery>(MediaClipsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'mediaClips', 'query', variables);
+    lessonMediaClips(variables?: LessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonMediaClipsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<LessonMediaClipsQuery>(LessonMediaClipsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonMediaClips', 'query', variables);
     },
     programmeListing(variables?: ProgrammeListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ProgrammeListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ProgrammeListingQuery>(ProgrammeListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'programmeListing', 'query', variables);

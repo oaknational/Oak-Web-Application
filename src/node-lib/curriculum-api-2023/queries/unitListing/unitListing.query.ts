@@ -62,6 +62,8 @@ const unitListingQuery =
       .flatMap((unit) => unit.flatMap((u) => u.cohort ?? "2020-2023"))
       .includes(NEW_COHORT);
 
+    console.log(subjectCategories, "<< SUBJECT CATEGORIES");
+
     return {
       programmeSlug: args.programmeSlug,
       keyStageSlug: programmeFields.keystage_slug,

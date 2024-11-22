@@ -1,8 +1,11 @@
-import { LessonBrowseDataByKsOld } from "../lessonOverview/lessonOverview.schema";
-import { toSentenceCase } from "../../helpers";
-import { LessonMediaData } from "../lessonMedia/lessonMedia.schema";
-
-import { LessonBrowseData, lessonBrowseDataSchema } from "./mediaClips.schema";
+import {
+  canonicalLessonMediaClipsSchema,
+  LessonBrowseData,
+  lessonBrowseDataSchema,
+  lessonMediaClipsSchema,
+} from "./lessonMediaClips.schema";
+import { constructLessonMediaData } from "./constructLessonMediaClips";
+import { constructCanonicalLessonMediaData } from "./constructCanonicalLessonMediaClips";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -12,46 +15,21 @@ import {
   applyGenericOverridesAndExceptions,
 } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import {
-  MediaClipsQuery,
+  LessonMediaClipsQuery,
   InputMaybe,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { getIntersection } from "@/utils/getIntersection";
 
-export const transformedLessonMediaData = (
-  browseData: LessonBrowseDataByKsOld,
-) => {
-  const unitTitle =
-    browseData.programmeFields.optionality ?? browseData.unitData.title;
-  return {
-    programmeSlug: browseData.programmeSlug,
-    unitSlug: browseData.unitSlug,
-    unitTitle,
-    keyStageSlug: browseData.programmeFields.keystageSlug,
-    keyStageTitle: toSentenceCase(
-      browseData.programmeFields.keystageDescription,
-    ),
-    subjectSlug: browseData.programmeFields.subjectSlug,
-    subjectTitle: browseData.programmeFields.subject,
-    yearTitle: browseData.programmeFields.yearDescription,
-    examBoardTitle: browseData.programmeFields.examboard,
-    updatedAt: browseData.lessonData.updatedAt,
-    lessonSlug: browseData.lessonSlug,
-    lessonTitle: browseData.lessonData.title,
-    tierTitle: browseData.programmeFields.tierDescription,
-    tierSlug: browseData.programmeFields.tierSlug,
-  };
-};
-
-export const mediaClipsQuery =
+export const lessonMediaClipsQuery =
   (sdk: Sdk) =>
-  async (args: {
+  async <T>(args: {
     lessonSlug: string;
     unitSlug?: string;
     programmeSlug?: string;
     isLegacy?: boolean;
-  }): Promise<{ browseData: LessonMediaData }> => {
+  }): Promise<T> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
     const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp> =
@@ -69,11 +47,18 @@ export const mediaClipsQuery =
       browseDataWhere["is_legacy"] = { _eq: isLegacy };
     }
 
-    const res = await sdk.mediaClips({
+    const res = await sdk.lessonMediaClips({
       browseDataWhere,
     });
 
-    if (res.browseData.length > 1 && unitSlug && programmeSlug) {
+    const canonicalLesson = !unitSlug && !programmeSlug;
+
+    if (
+      !canonicalLesson &&
+      res.browseData.length > 1 &&
+      unitSlug &&
+      programmeSlug
+    ) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });
@@ -112,7 +97,7 @@ export const mediaClipsQuery =
      * TODO: Add media clip query name to curriculum schema
      */
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
-      MediaClipsQuery["browseData"][number]
+      LessonMediaClipsQuery["browseData"][number]
     >({
       journey: "teacher",
       queryName: "lessonOverviewQuery",
@@ -136,9 +121,36 @@ export const mediaClipsQuery =
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
 
-    const data = transformedLessonMediaData(browseData);
-
-    return {
-      browseData: data,
-    };
+    //Both return values don't have the specific Lesson Media data required
+    if (!canonicalLesson) {
+      const data = constructLessonMediaData(browseData);
+      lessonMediaClipsSchema.parse(data);
+      return {
+        ...data,
+      } as T;
+    } else {
+      const data = constructCanonicalLessonMediaData(browseData, []);
+      canonicalLessonMediaClipsSchema.parse(data);
+      //Pathways is hard coded currently
+      return {
+        lessonSlug: data.lessonSlug,
+        lessonTitle: data.lessonTitle,
+        pathways: [
+          {
+            lessonSlug: data.lessonSlug,
+            lessonTitle: data.lessonTitle,
+            unitSlug: data.unitSlug,
+            unitTitle: data.unitTitle,
+            keyStageSlug: data.keyStageSlug,
+            keyStageTitle: data.keyStageTitle,
+            subjectSlug: data.subjectSlug,
+            subjectTitle: data.subjectTitle,
+            yearTitle: data.yearTitle,
+            examBoardTitle: data.examBoardTitle,
+            tierTitle: data.tierTitle,
+            tierSlug: data.tierSlug,
+          },
+        ],
+      } as T;
+    }
   };

@@ -37,7 +37,7 @@ import curriculumUnitsIncludeNewQuery from "./queries/curriculumUnitsIncludeNew/
 import curriculumUnitsIncludeNewSchema from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.schema";
 import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
 import teacherPreviewLessonQuery from "./queries/teacherPreviewLesson/teacherPreviewLesson.query";
-import { mediaClipsQuery } from "./queries/mediaClips/mediaClips.query";
+import { lessonMediaClipsQuery } from "./queries/lessonMediaClips/lessonMediaClips.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -129,6 +129,7 @@ const curriculumApi2023 = {
   curriculumHeader: curriculumHeaderQuery(sdk),
   lessonListing: lessonListingQuery(sdk),
   lessonDownloads: lessonDownloadsQuery(sdk),
+  lessonMediaClips: lessonMediaClipsQuery(sdk),
   lessonShare: lessonShareQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   pupilLessonQuery: pupilLessonQuery(sdk),
@@ -162,7 +163,6 @@ const curriculumApi2023 = {
   specialistLessonDownloads: specialistLessonDownloadQuery(sdk),
   specialistLessonShare: specialistLessonShareQuery(sdk),
   teachersSitemap: teachersSitemap(sdk),
-  mediaClips: mediaClipsQuery(sdk),
 };
 
 export type CurriculumApi = typeof curriculumApi2023;

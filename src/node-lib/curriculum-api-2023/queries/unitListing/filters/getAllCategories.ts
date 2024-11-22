@@ -45,7 +45,8 @@ const generateCategoryObjects = (uniqueCategories: Set<string>): Category[] => {
     const categoryKey = category as CategoryKeys;
     categories.push({
       label: category,
-      iconName: categoryIconMap[categoryKey],
+      // default to subject-english icon if no icon is found
+      iconName: categoryIconMap[categoryKey] || "subject-english",
       slug: kebabCase(category),
     });
   });

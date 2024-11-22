@@ -104,11 +104,12 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.mediaClips({
-        lessonSlug,
-        programmeSlug,
-        unitSlug,
-      });
+      const curriculumData =
+        await curriculumApi2023.lessonMediaClips<LessonMediaData>({
+          lessonSlug,
+          programmeSlug,
+          unitSlug,
+        });
 
       if (!curriculumData) {
         return {
@@ -118,7 +119,7 @@ export const getStaticProps: GetStaticProps<
 
       const results: GetStaticPropsResult<LessonMediaPageProps> = {
         props: {
-          curriculumData: { ...curriculumData.browseData },
+          curriculumData,
         },
       };
       return results;

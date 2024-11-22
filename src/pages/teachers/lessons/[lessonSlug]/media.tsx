@@ -1,65 +1,99 @@
+import {
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { LessonMedia } from "@/components/TeacherViews/LessonMedia/LessonMedia.view";
+import {
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "@/node-lib/isr";
+import { LessonMediaClipsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import getPageProps from "@/node-lib/getPageProps";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
-const LessonMediaCanonicalPage = () => {
+type LessonMediaCanonicalPageProps = {
+  curriculumData: LessonMediaClipsCanonical;
+};
+
+const LessonMediaCanonicalPage: NextPage<LessonMediaCanonicalPageProps> = ({
+  curriculumData,
+}) => {
   const isMediaPageContentEnabled = useFeatureFlagEnabled(
     "is_media_page_content_enabled",
   );
+  if (!isMediaPageContentEnabled) null;
 
-  if (isMediaPageContentEnabled) {
-    // hardcode data until we have gql query for media page
-    const lessonTitle = "Geometry";
-    const lessonSlug = "basics-of-geometry";
-    const subjectTitle = "Maths";
-    const subjectSlug = "maths";
-    const programmeSlug = "maths";
-    const unitSlug = "geometry";
-    const unitTitle = "Geometry";
+  const { lessonTitle } = curriculumData;
 
-    const lesson = {
-      lessonTitle,
-      lessonSlug,
-      subjectTitle,
-      subjectSlug,
-      unitTitle,
-      unitSlug,
-      programmeSlug,
-      pathways: [
-        {
-          subjectTitle,
-          subjectSlug,
-          unitTitle,
-          unitSlug,
-          programmeSlug,
-        },
-      ],
-    };
-
-    return (
-      <AppLayout
-        seoProps={{
-          ...getSeoProps({
-            title: `Lesson Share: ${lessonTitle}`,
-            description:
-              "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
-          }),
-        }}
-      >
-        <LessonMedia isCanonical lesson={lesson} />
-      </AppLayout>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: `Lesson Share: ${lessonTitle}`,
+          description:
+            "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
+        }),
+      }}
+    >
+      <LessonMedia isCanonical={true} lesson={curriculumData} />
+    </AppLayout>
+  );
 };
 
 export type URLParams = {
   lessonSlug: string;
-  programmeSlug: string;
-  unitSlug: string;
+};
+
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: "blocking",
+    paths: [],
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
+  LessonMediaCanonicalPageProps,
+  URLParams
+> = async (context) => {
+  return getPageProps({
+    page: "share::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("No context.params");
+      }
+      const { lessonSlug } = context.params;
+
+      const curriculumData =
+        await curriculumApi2023.lessonMediaClips<LessonMediaClipsCanonical>({
+          lessonSlug,
+        });
+
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
+
+      const results: GetStaticPropsResult<LessonMediaCanonicalPageProps> = {
+        props: {
+          curriculumData,
+        },
+      };
+      return results;
+    },
+  });
 };
 
 export default LessonMediaCanonicalPage;
