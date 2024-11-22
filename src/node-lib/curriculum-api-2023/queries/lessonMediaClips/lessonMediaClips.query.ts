@@ -5,7 +5,6 @@ import {
   lessonMediaClipsSchema,
 } from "./lessonMediaClips.schema";
 import { constructLessonMediaData } from "./constructLessonMediaClips";
-import { constructCanonicalLessonMediaData } from "./constructCanonicalLessonMediaClips";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -129,7 +128,7 @@ export const lessonMediaClipsQuery =
         ...data,
       } as T;
     } else {
-      const data = constructCanonicalLessonMediaData(browseData, []);
+      const data = constructLessonMediaData(browseData, []);
       canonicalLessonMediaClipsSchema.parse(data);
       //Pathways is hard coded currently
       return {

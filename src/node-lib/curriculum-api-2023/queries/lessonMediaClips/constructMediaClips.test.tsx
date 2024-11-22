@@ -1,6 +1,5 @@
 import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
 
-import { constructCanonicalLessonMediaData } from "./constructCanonicalLessonMediaClips";
 import { constructLessonMediaData } from "./constructLessonMediaClips";
 
 import keysToCamelCase from "@/utils/snakeCaseConverter";
@@ -21,10 +20,7 @@ describe("constructMediaClips", () => {
 
   describe("constructCanonicalLessonMediaData", () => {
     it("should construct CanonicalLessonMediaData correctly", () => {
-      const result = constructCanonicalLessonMediaData(
-        lessonMediaClipsFixture,
-        [],
-      );
+      const result = constructLessonMediaData(lessonMediaClipsFixture, []);
 
       expect(result).toStrictEqual({
         programmeSlug: "physical-education-ks4",

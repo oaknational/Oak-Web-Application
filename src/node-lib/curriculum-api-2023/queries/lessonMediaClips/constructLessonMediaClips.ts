@@ -1,12 +1,14 @@
 import { toSentenceCase } from "../../helpers";
+import { LessonPathway } from "../../shared.schema";
 import { LessonBrowseDataByKsOld } from "../lessonOverview/lessonOverview.schema";
 
 export const constructLessonMediaData = (
   browseData: LessonBrowseDataByKsOld,
+  pathways?: LessonPathway[] | [],
 ) => {
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
-  return {
+  const result = {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
     unitTitle,
@@ -24,4 +26,10 @@ export const constructLessonMediaData = (
     tierTitle: browseData.programmeFields.tierDescription,
     tierSlug: browseData.programmeFields.tierSlug,
   };
+
+  if (pathways) {
+    return { ...result, pathways };
+  }
+
+  return result;
 };

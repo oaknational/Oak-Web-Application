@@ -16,36 +16,22 @@ import {
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import ErrorPage from "@/pages/_error";
+import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
-type LessonMediaData = {
-  lessonSlug: string;
-  programmeSlug: string;
-  unitSlug: string;
-  keyStageSlug: string;
-  subjectTitle: string;
-  subjectSlug: string;
-  unitTitle: string;
-  lessonTitle: string;
+export type LessonMediaClipsPageProps = {
+  curriculumData: LessonMediaClipsData;
 };
 
-export type LessonMediaPageProps = {
-  curriculumData: LessonMediaData;
-};
-
-/**
- * TODO: Update schema definitions for LessonMediaData
- * TODO: Add test file for LessonMediaPage
- * TODO: Extrapolate schema definitions, functions etc into correct areas
- * @returns
- */
-
-const LessonMediaPage: NextPage<LessonMediaPageProps> = ({
+const LessonMediaPage: NextPage<LessonMediaClipsPageProps> = ({
   curriculumData,
 }) => {
   const isMediaPageContentEnabled = useFeatureFlagEnabled(
     "is_media_page_content_enabled",
   );
-  if (!isMediaPageContentEnabled) return null;
+  if (!isMediaPageContentEnabled) {
+    return <ErrorPage statusCode={404} />;
+  }
 
   const {
     lessonTitle,
@@ -92,7 +78,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  LessonMediaPageProps,
+  LessonMediaClipsPageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
@@ -105,7 +91,7 @@ export const getStaticProps: GetStaticProps<
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
       const curriculumData =
-        await curriculumApi2023.lessonMediaClips<LessonMediaData>({
+        await curriculumApi2023.lessonMediaClips<LessonMediaClipsData>({
           lessonSlug,
           programmeSlug,
           unitSlug,
@@ -117,7 +103,7 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const results: GetStaticPropsResult<LessonMediaPageProps> = {
+      const results: GetStaticPropsResult<LessonMediaClipsPageProps> = {
         props: {
           curriculumData,
         },

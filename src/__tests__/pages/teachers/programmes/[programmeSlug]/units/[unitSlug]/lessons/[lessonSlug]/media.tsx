@@ -3,7 +3,7 @@ import { GetStaticPropsContext, PreviewData } from "next";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import LessonMediaPage, {
-  LessonMediaPageProps,
+  LessonMediaClipsPageProps,
   getStaticProps,
   getStaticPaths,
   URLParams,
@@ -47,7 +47,7 @@ describe("pages/teachers/lessons/[lessonSlug]/media", () => {
         },
         query: {},
       } as GetStaticPropsContext<URLParams, PreviewData>)) as {
-        props: LessonMediaPageProps;
+        props: LessonMediaClipsPageProps;
       };
 
       expect(propsResult.props.curriculumData.lessonSlug).toEqual(

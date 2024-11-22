@@ -16,6 +16,7 @@ import {
 import { CanonicalLessonMediaClips } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import ErrorPage from "@/pages/_error";
 
 export type CanonicalLessonMediaClipsPageProps = {
   curriculumData: CanonicalLessonMediaClips;
@@ -27,7 +28,9 @@ const CanonicalLessonMediaClipsPage: NextPage<
   const isMediaPageContentEnabled = useFeatureFlagEnabled(
     "is_media_page_content_enabled",
   );
-  if (!isMediaPageContentEnabled) null;
+  if (!isMediaPageContentEnabled) {
+    return <ErrorPage statusCode={404} />;
+  }
 
   const { lessonTitle } = curriculumData;
 
