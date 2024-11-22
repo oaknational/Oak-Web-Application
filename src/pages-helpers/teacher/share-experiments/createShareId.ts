@@ -12,8 +12,6 @@ import {
   setLocalstorageWithSchema,
 } from "@/utils/localstorage";
 
-// TODO switch to local storage to avoid cookie size limits
-
 export const getShareIdKey = (unhashedKey: string): string => {
   const hash = crypto
     .createHash("sha256")
@@ -23,7 +21,7 @@ export const getShareIdKey = (unhashedKey: string): string => {
   return `sid-${hash}`;
 };
 
-export const getShareIdFromCookie = (unhashedKey: string): string | undefined =>
+export const getShareId = (unhashedKey: string): string | undefined =>
   getNullableLocalstorageWithSchema(
     getShareIdKey(unhashedKey),
     LS_KEY_TEACHER_SHARE_KIDS_INITIATED_SCHEMA,

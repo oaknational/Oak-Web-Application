@@ -7,19 +7,19 @@ import {
 
 /**
  *
- * updates the url with either the stored cookie share-id or a newly generated one
+ * updates the url with either the stored share-id or a newly generated one
  *
  */
 
 export const getUpdatedUrl = ({
   url,
-  cookieShareId,
+  storageShareId,
   unhashedKey,
   source,
   shareMethod = "url",
 }: {
   url: string;
-  cookieShareId: string | undefined;
+  storageShareId: string | undefined;
   unhashedKey: string;
   source: keyof typeof shareSources;
   shareMethod?: keyof typeof shareMethods;
@@ -27,12 +27,12 @@ export const getUpdatedUrl = ({
   const shareIdKey = getShareIdKey(unhashedKey);
   const strippedUrl = url.split("?")[0];
 
-  if (cookieShareId) {
-    const updatedUrl = `${strippedUrl}?${shareIdKey}=${cookieShareId}&sm=${shareMethods[shareMethod]}&src=${shareSources[source]}`;
-    return { url: updatedUrl, shareIdKey, shareId: cookieShareId };
+  if (storageShareId) {
+    const updatedUrl = `${strippedUrl}?${shareIdKey}=${storageShareId}&sm=${shareMethods[shareMethod]}&src=${shareSources[source]}`;
+    return { url: updatedUrl, shareIdKey, shareId: storageShareId };
   }
 
-  // generate share-id and store it as a cookie
+  // generate share-id and store
   const { id, key } = createAndStoreShareId(unhashedKey);
 
   const updatedUrl = `${strippedUrl}?${key}=${id}&sm=${shareMethods[shareMethod]}&src=${shareSources[source]}`;
