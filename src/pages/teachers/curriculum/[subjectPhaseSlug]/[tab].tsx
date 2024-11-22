@@ -53,6 +53,7 @@ import {
   isValidSubjectPhaseSlug,
   parseSubjectPhaseSlug,
 } from "@/utils/curriculum/slugs";
+import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
 
 export type CurriculumUnitsYearGroup = {
   units: Unit[];
@@ -553,7 +554,7 @@ export function formatCurriculumUnitsData(
   const { units } = data;
   const features = getUnitFeatures(units[0]);
   // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
-  const filteredUnits = sanatiseUnits(units);
+  const filteredUnits = ENABLE_NEW_CURRIC_MV ? units : sanatiseUnits(units);
   const yearData = createUnitsListingByYear(filteredUnits);
   const threadOptions = createThreadOptions(filteredUnits);
   const yearOptions = createYearOptions(filteredUnits);
@@ -635,7 +636,12 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
-      const curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
+      let curriculumUnitsTabData;
+      if (ENABLE_NEW_CURRIC_MV) {
+        curriculumUnitsTabData = await curriculumApi.curriculumSequence(slugs);
+      } else {
+        curriculumUnitsTabData = await curriculumApi.curriculumUnits(slugs);
+      }
 
       // Sort the units to have examboard versions first - this is so non-examboard units are removed
       // in the visualiser
