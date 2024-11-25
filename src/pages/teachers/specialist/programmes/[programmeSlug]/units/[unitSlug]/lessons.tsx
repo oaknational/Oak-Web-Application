@@ -8,7 +8,7 @@ import {
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { specialistLessonListing } from "@/node-lib/curriculum-api-2023";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   getFallbackBlockingConfig,
@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug, unitSlug } = context.params;
       try {
-        const curriculumData = await curriculumApi2023.specialistLessonListing({
+        const curriculumData = await specialistLessonListing({
           unitSlug,
           programmeSlug,
         });

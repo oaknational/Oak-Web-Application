@@ -8,7 +8,7 @@ import {
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { specialistProgrammeListing } from "@/node-lib/curriculum-api-2023";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { SpecialistProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
 import {
@@ -72,8 +72,9 @@ export const getStaticProps: GetStaticProps<
       }
       const { subjectSlug } = context.params;
       try {
-        const curriculumData =
-          await curriculumApi2023.specialistProgrammeListing({ subjectSlug });
+        const curriculumData = await specialistProgrammeListing({
+          subjectSlug,
+        });
         if (!curriculumData) {
           return {
             notFound: true,

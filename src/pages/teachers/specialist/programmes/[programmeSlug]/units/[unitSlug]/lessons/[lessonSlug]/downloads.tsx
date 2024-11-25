@@ -9,7 +9,7 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { specialistLessonDownloads } from "@/node-lib/curriculum-api-2023";
 import { SpecialistLessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
 import SpecialistLessonDownloads from "@/components/TeacherViews/SpecialistLessonDownloads/SpecialistLessonDownloads.view";
 import AppLayout from "@/components/SharedComponents/AppLayout";
@@ -65,12 +65,11 @@ export const getStaticProps: GetStaticProps<
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
       try {
-        const curriculumData =
-          await curriculumApi2023.specialistLessonDownloads({
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          });
+        const curriculumData = await specialistLessonDownloads({
+          programmeSlug,
+          unitSlug,
+          lessonSlug,
+        });
 
         if (!curriculumData) {
           return {
