@@ -13,9 +13,9 @@ import {
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { SpecialistUnitListingData } from "@/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.schema";
 import SpecialistUnitListing from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view";
+import { specialistUnitListing } from "@/node-lib/curriculum-api-2023";
 
 export type SpecialistUnitListingPageProps = {
   curriculumData: SpecialistUnitListingData;
@@ -81,7 +81,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.specialistUnitListing({
+      const curriculumData = await specialistUnitListing({
         programmeSlug,
       });
 

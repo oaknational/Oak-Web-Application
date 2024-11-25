@@ -13,9 +13,9 @@ import {
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
 import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.view";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { lessonShare } from "@/node-lib/curriculum-api-2023";
 
 export type LessonSharePageProps = {
   curriculumData: LessonShareData;
@@ -77,12 +77,11 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData =
-        await curriculumApi2023.lessonShare<LessonShareData>({
-          programmeSlug,
-          unitSlug,
-          lessonSlug,
-        });
+      const curriculumData = await lessonShare<LessonShareData>({
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      });
 
       if (!curriculumData) {
         return {

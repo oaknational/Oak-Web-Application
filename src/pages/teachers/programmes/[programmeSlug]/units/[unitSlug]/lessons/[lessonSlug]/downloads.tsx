@@ -11,10 +11,10 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { lessonDownloads } from "@/node-lib/curriculum-api-2023";
 
 export type LessonDownloadsPageProps = {
   curriculumData: LessonDownloadsPageData;
@@ -74,12 +74,11 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, programmeSlug, unitSlug } = context.params;
 
-      const curriculumData =
-        await curriculumApi2023.lessonDownloads<LessonDownloadsPageData>({
-          programmeSlug,
-          unitSlug,
-          lessonSlug,
-        });
+      const curriculumData = await lessonDownloads<LessonDownloadsPageData>({
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      });
 
       if (!curriculumData) {
         return {
