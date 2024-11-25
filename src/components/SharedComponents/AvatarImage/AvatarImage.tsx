@@ -1,4 +1,4 @@
-import { max } from "lodash";
+import max from "lodash/max";
 import { FC } from "react";
 
 import { Image } from "@/common-lib/cms-types";

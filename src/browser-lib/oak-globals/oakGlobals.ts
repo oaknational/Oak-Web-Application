@@ -1,4 +1,4 @@
-import { merge } from "lodash/fp";
+import merge from "lodash/fp/merge";
 
 import { WindowOakThemes } from "../../hooks/useOakTheme";
 import isBrowser from "../../utils/isBrowser";

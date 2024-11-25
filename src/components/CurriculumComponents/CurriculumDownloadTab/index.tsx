@@ -14,7 +14,9 @@ import {
   Tier,
   Subject,
 } from "@oaknational/oak-components";
-import { mapKeys, camelCase, capitalize } from "lodash";
+import mapKeys from "lodash/mapKeys";
+import camelCase from "lodash/camelCase";
+import capitalize from "lodash/capitalize";
 
 import CurriculumDownloadView, {
   CurriculumDownloadViewData,

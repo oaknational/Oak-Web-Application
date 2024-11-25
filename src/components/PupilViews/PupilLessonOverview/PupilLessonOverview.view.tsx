@@ -1,4 +1,4 @@
-import { isString } from "lodash";
+import isString from "lodash/isString";
 import { useEffect, useState } from "react";
 import {
   OakBox,

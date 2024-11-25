@@ -12,7 +12,7 @@ import {
   OakSecondaryButton,
   OakSpan,
 } from "@oaknational/oak-components";
-import { sortBy } from "lodash";
+import sortBy from "lodash/sortBy";
 import { flushSync } from "react-dom";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";

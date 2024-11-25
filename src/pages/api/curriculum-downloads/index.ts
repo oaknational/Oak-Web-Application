@@ -1,7 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { format } from "date-fns";
 import { z } from "zod";
-import { capitalize, isUndefined, omitBy } from "lodash";
+import capitalize from "lodash/capitalize";
+import isUndefined from "lodash/isUndefined";
+import omitBy from "lodash/omitBy";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";

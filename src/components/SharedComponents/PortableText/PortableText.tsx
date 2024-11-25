@@ -7,7 +7,7 @@ import {
 } from "@portabletext/react";
 import type { TypedObject, PortableTextBlock } from "@portabletext/types";
 import styled from "styled-components";
-import { merge } from "lodash/fp";
+import merge from "lodash/fp/merge";
 import { OakLI, OakP, OakSpan, OakOL } from "@oaknational/oak-components";
 
 import { PTActionTrigger } from "./PTActionTrigger";

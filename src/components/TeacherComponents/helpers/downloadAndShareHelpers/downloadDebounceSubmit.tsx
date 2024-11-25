@@ -1,4 +1,4 @@
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 
 import OakError from "@/errors/OakError";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";

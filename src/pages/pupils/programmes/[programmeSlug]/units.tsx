@@ -1,5 +1,6 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
-import { groupBy, uniq } from "lodash";
+import groupBy from "lodash/groupBy";
+import uniq from "lodash/uniq";
 import {
   OakIconProps,
   OakThemeProvider,

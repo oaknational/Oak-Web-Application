@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { isArray } from "lodash";
+import isArray from "lodash/isArray";
 import {
   OakBox,
   OakDraggableFeedback,

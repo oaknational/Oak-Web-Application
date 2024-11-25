@@ -1,7 +1,8 @@
 import { writeFile } from "fs/promises";
 import { join } from "path";
 
-import { sortBy, uniq } from "lodash";
+import sortBy from "lodash/sortBy";
+import uniq from "lodash/uniq";
 import open from "open";
 
 import {

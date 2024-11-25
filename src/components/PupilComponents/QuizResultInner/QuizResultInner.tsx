@@ -4,7 +4,8 @@ import {
   OakQuizResultItem,
   OakSpan,
 } from "@oaknational/oak-components";
-import { isArray, isString } from "lodash";
+import isArray from "lodash/isArray";
+import isString from "lodash/isString";
 
 import { QuestionState } from "../QuizUtils/questionTypes";
 

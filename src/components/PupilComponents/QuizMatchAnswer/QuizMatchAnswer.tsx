@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react";
-import { isArray } from "lodash";
+import isArray from "lodash/isArray";
 import styled from "styled-components";
 import {
   OakBox,

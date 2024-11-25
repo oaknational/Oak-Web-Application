@@ -6,7 +6,7 @@ import {
   NextPage,
 } from "next";
 import { useNextSanityImage } from "next-sanity-image";
-import { uniqBy } from "lodash/fp";
+import uniqBy from "lodash/fp/uniqBy";
 
 import Layout from "@/components/AppComponents/Layout";
 import CMSClient from "@/node-lib/cms";

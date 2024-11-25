@@ -1,5 +1,5 @@
 import { OakSpan } from "@oaknational/oak-components";
-import { isString } from "lodash";
+import isString from "lodash/isString";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 

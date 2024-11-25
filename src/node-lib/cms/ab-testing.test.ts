@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from "next";
 import { PostHog } from "posthog-node";
-import { sample } from "lodash/fp";
+import sample from "lodash/fp/sample";
 
 import { LandingPage } from "../../common-lib/cms-types";
 import { ABTestedLandingPage } from "../../common-lib/cms-types/abTest";

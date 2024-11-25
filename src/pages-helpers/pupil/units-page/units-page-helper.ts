@@ -1,4 +1,4 @@
-import { groupBy } from "lodash";
+import groupBy from "lodash/groupBy";
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
