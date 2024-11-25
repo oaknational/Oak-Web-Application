@@ -35,7 +35,7 @@ import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearn
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { unitListing } from "@/node-lib/curriculum-api-2023";
 import filterUnits from "@/utils/filterUnits/filterUnits";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
@@ -455,7 +455,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { programmeSlug } = context.params;
       try {
-        const curriculumData = await curriculumApi2023.unitListing({
+        const curriculumData = await unitListing({
           programmeSlug,
         });
 
@@ -465,7 +465,7 @@ export const getStaticProps: GetStaticProps<
           };
         }
 
-        const legacyCurriculumData = await curriculumApi2023.unitListing({
+        const legacyCurriculumData = await unitListing({
           programmeSlug: programmeSlug + "-l",
         });
 

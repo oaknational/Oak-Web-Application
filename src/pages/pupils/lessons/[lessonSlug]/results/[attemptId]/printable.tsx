@@ -15,7 +15,7 @@ import {
 
 import getPageProps from "@/node-lib/getPageProps";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { pupilLessonQuery } from "@/node-lib/curriculum-api-2023";
 import {
   LessonBrowseData,
   LessonContent,
@@ -125,7 +125,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const { browseData, content } = await curriculumApi2023.pupilLessonQuery({
+      const { browseData, content } = await pupilLessonQuery({
         lessonSlug,
       });
 

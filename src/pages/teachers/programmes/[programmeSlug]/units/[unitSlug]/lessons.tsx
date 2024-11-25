@@ -22,7 +22,7 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { lessonListing } from "@/node-lib/curriculum-api-2023";
 import {
   LessonListingPageData,
   lessonListingSchema,
@@ -271,7 +271,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const curriculumData = await curriculumApi2023.lessonListing({
+      const curriculumData = await lessonListing({
         programmeSlug,
         unitSlug,
       });

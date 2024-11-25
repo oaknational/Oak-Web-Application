@@ -7,7 +7,7 @@ import { GetServerSideProps, GetServerSidePropsResult } from "next";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { PupilViewsResults } from "@/components/PupilViews/PupilResults";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { pupilLessonQuery } from "@/node-lib/curriculum-api-2023";
 import {
   LessonBrowseData,
   LessonContent,
@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps<
         throw new Error("unexpected context.params");
       }
 
-      const { browseData, content } = await curriculumApi2023.pupilLessonQuery({
+      const { browseData, content } = await pupilLessonQuery({
         lessonSlug,
       });
 
