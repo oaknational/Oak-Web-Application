@@ -1,4 +1,3 @@
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -16,8 +15,8 @@ import {
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import ErrorPage from "@/pages/_error";
 import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import withFeatureFlag from "@/hocs/withFeatureFlag";
 
 export type LessonMediaClipsPageProps = {
   curriculumData: LessonMediaClipsData;
@@ -26,13 +25,6 @@ export type LessonMediaClipsPageProps = {
 const LessonMediaPage: NextPage<LessonMediaClipsPageProps> = ({
   curriculumData,
 }) => {
-  const isMediaPageContentEnabled = useFeatureFlagEnabled(
-    "is_media_page_content_enabled",
-  );
-  if (!isMediaPageContentEnabled) {
-    return <ErrorPage statusCode={404} />;
-  }
-
   const {
     lessonTitle,
     keyStageSlug,
@@ -113,4 +105,9 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonMediaPage;
+const LessonMediaPageWithFeatureFlag = withFeatureFlag(
+  LessonMediaPage,
+  "is_media_page_content_enabled",
+);
+
+export default LessonMediaPageWithFeatureFlag;
