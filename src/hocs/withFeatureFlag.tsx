@@ -13,7 +13,7 @@ const withFeatureFlag = <P extends object>(
     const flagLoaded = flagValue !== undefined;
     const ffEnabled = flagValue === featureFlagVariant;
     const router = useRouter();
-
+    console.log(featureFlagVariant, ", val");
     useEffect(() => {
       if (flagLoaded && !ffEnabled) {
         router.replace("/404");
@@ -23,7 +23,7 @@ const withFeatureFlag = <P extends object>(
     if (!flagLoaded || !ffEnabled) {
       return null;
     }
-
+    console.log("inside feature flag");
     return <WrappedComponent {...props} />;
   };
 

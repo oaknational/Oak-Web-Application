@@ -22,7 +22,7 @@ export type LessonMediaClipsPageProps = {
   curriculumData: LessonMediaClipsData;
 };
 
-const LessonMediaPage: NextPage<LessonMediaClipsPageProps> = ({
+export const LessonMediaClipsPage: NextPage<LessonMediaClipsPageProps> = ({
   curriculumData,
 }) => {
   const {
@@ -106,7 +106,7 @@ export const getStaticProps: GetStaticProps<
 };
 
 const LessonMediaPageWithFeatureFlag = withFeatureFlag(
-  LessonMediaPage,
+  LessonMediaClipsPage,
   "is_media_page_content_enabled",
 );
 

@@ -1,19 +1,20 @@
 import { GetStaticPropsContext, PreviewData } from "next";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { useRouter } from "next/router";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import LessonMediaCanonicalPage, {
+import {
   getStaticProps,
   URLParams,
   CanonicalLessonMediaClipsPageProps,
+  CanonicalLessonMediaClipsPage,
 } from "@/pages/teachers/lessons/[lessonSlug]/media";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 
 const render = renderWithProviders();
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: () => true,
-}));
+jest.mock("posthog-js/react");
 
 const fixtureData = {
   lessonSlug: "running-as-a-team",
@@ -33,10 +34,29 @@ const fixtureData = {
   ],
 };
 
-describe("LessonMediaCanonicalPage", () => {
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: jest.fn(() => true),
+}));
+
+describe("LessonMediaClipsCanonicalPage", () => {
+  beforeEach(() => {
+    (useRouter as jest.Mock).mockReturnValue({
+      isPreview: false,
+      replace: jest.fn(),
+      pathname: "/teachers/lessons/running-as-a-team/media",
+      query: {},
+      asPath: "/teachers/lessons/running-as-a-team/media",
+    });
+  });
   it("Renders breadcrumbs", async () => {
     const result = render(
-      <LessonMediaCanonicalPage curriculumData={fixtureData} />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <CanonicalLessonMediaClipsPage curriculumData={fixtureData} />,
+      </OakThemeProvider>,
     );
 
     expect(result.queryByText("Extra video and audio")).toBeInTheDocument();

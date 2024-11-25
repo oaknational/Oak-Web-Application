@@ -1,26 +1,49 @@
-import React from "react";
 import { GetStaticPropsContext, PreviewData } from "next";
+import { useRouter } from "next/router";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import LessonMediaPage, {
+import {
   LessonMediaClipsPageProps,
   getStaticProps,
   getStaticPaths,
   URLParams,
+  LessonMediaClipsPage,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
 import lessonMediaFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonMedia.fixture";
 
 const render = renderWithProviders();
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagEnabled: () => true,
+jest.mock("posthog-js/react");
+
+const lessonFixtureData = lessonMediaFixture();
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
 }));
 
-describe("pages/teachers/lessons/[lessonSlug]/media", () => {
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: jest.fn(() => true),
+}));
+
+describe("LessonMediaClipsPage", () => {
+  beforeEach(() => {
+    (useRouter as jest.Mock).mockReturnValue({
+      isPreview: false,
+      replace: jest.fn(),
+      pathname:
+        "/teachers/programmes/physical-education/-ks4/units/running-and-jumping/lessons/running-as-a-team/media",
+      query: {},
+      asPath:
+        "/teachers/programmes/physical-education/-ks4/units/running-and-jumping/lessons/running-as-a-team/media",
+    });
+  });
   it("Renders breadcrumbs", async () => {
     const result = render(
-      <LessonMediaPage curriculumData={lessonMediaFixture()} />,
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonMediaClipsPage curriculumData={lessonFixtureData} />,
+      </OakThemeProvider>,
     );
 
     expect(result.queryByText("Extra video and audio")).toBeInTheDocument();

@@ -21,11 +21,10 @@ export type CanonicalLessonMediaClipsPageProps = {
   curriculumData: CanonicalLessonMediaClips;
 };
 
-const CanonicalLessonMediaClipsPage: NextPage<
+export const CanonicalLessonMediaClipsPage: NextPage<
   CanonicalLessonMediaClipsPageProps
 > = ({ curriculumData }) => {
   const { lessonTitle } = curriculumData;
-
   return (
     <AppLayout
       seoProps={{
