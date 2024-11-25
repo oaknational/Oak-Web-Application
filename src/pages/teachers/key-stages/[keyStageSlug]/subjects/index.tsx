@@ -9,7 +9,6 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import Box from "@/components/SharedComponents/Box";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   KeyStageData,
   KeyStageSubjectData,
@@ -19,6 +18,7 @@ import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getCombinedSubjects } from "@/pages-helpers/teacher/subject-listing-page/getCombinedSubjects";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { subjectListingPage } from "@/node-lib/curriculum-api-2023";
 
 export type KeyStagePageProps = {
   keyStageTitle: string;
@@ -123,7 +123,7 @@ export const getStaticProps: GetStaticProps<
 
       const isEyfs = keyStage === "early-years-foundation-stage";
 
-      const curriculumData = await curriculumApi2023.subjectListingPage({
+      const curriculumData = await subjectListingPage({
         keyStageSlug: keyStage,
       });
 

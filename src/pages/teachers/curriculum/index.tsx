@@ -15,8 +15,9 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Hr } from "@/components/SharedComponents/Typography";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
-import curriculumApi2023, {
+import {
   SubjectPhaseOption,
+  subjectPhaseOptions,
 } from "@/node-lib/curriculum-api-2023";
 import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
@@ -224,7 +225,7 @@ export const filterValidSubjectPhaseOptions = (
 
 export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
-    const subjects = await curriculumApi2023.subjectPhaseOptions({
+    const subjects = await subjectPhaseOptions({
       cycle: "2",
     });
     return {

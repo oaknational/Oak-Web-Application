@@ -11,10 +11,10 @@ import {
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonDownloadsCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloadsCanonical.schema";
 import { getCommonPathway } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view";
+import { lessonDownloads } from "@/node-lib/curriculum-api-2023";
 
 export type LessonDownloadsCanonicalPageProps = {
   curriculumData: LessonDownloadsCanonical;
@@ -79,10 +79,9 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug } = context.params;
 
-      const curriculumData =
-        await curriculumApi2023.lessonDownloads<LessonDownloadsCanonical>({
-          lessonSlug,
-        });
+      const curriculumData = await lessonDownloads<LessonDownloadsCanonical>({
+        lessonSlug,
+      });
 
       if (!curriculumData) {
         return {

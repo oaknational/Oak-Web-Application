@@ -9,7 +9,6 @@ import {
   oakDefaultTheme,
 } from "@oaknational/oak-components";
 
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import {
   shouldSkipInitialBuild,
@@ -26,6 +25,10 @@ import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import {
+  lessonOverview,
+  specialistLessonOverviewCanonical,
+} from "@/node-lib/curriculum-api-2023";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -120,7 +123,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
       let isSpecialist = false;
 
       try {
-        const res = await curriculumApi2023.specialistLessonOverviewCanonical({
+        const res = await specialistLessonOverviewCanonical({
           lessonSlug,
         });
         lesson = { ...res, isWorksheetLandscape: true, pathways: [] };
@@ -131,7 +134,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           error.code === "curriculum-api/not-found"
         ) {
           await new Promise((resolve) => setTimeout(resolve, 0)); // TODO: remove this
-          lesson = await curriculumApi2023.lessonOverview({
+          lesson = await lessonOverview({
             lessonSlug,
           });
           lesson = await populateLessonWithTranscript(lesson);

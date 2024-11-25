@@ -2,8 +2,7 @@ import path from "node:path/posix";
 
 import { GetServerSideProps } from "next";
 import { getServerSideSitemap } from "next-sitemap";
-
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { subjectPhaseOptions } from "@/node-lib/curriculum-api-2023";
 
 /**
  * Get all curriculum pages and construct sitemap entries for them.
@@ -14,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const basePath = "teachers/curriculum";
 
-  const curriculumResult = await curriculumApi2023.subjectPhaseOptions({
+  const curriculumResult = await subjectPhaseOptions({
     cycle: "2",
   });
 

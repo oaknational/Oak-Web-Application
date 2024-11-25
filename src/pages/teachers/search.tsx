@@ -5,9 +5,7 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import useSearch from "@/context/Search/useSearch";
 import Search from "@/components/TeacherViews/Search/Search.view";
-import curriculumApi2023, {
-  SearchPageData,
-} from "@/node-lib/curriculum-api-2023";
+import { searchPage, SearchPageData } from "@/node-lib/curriculum-api-2023";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import useSearchFilters from "@/context/Search/useSearchFilters";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
@@ -97,7 +95,7 @@ export const getStaticProps: GetStaticProps<SearchPageProps> = async (
     page: "teachers-search::getStaticProps",
     context,
     getProps: async () => {
-      const curriculumData = await curriculumApi2023.searchPage();
+      const curriculumData = await searchPage();
 
       const results = {
         props: {

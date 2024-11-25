@@ -1,7 +1,6 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import { useEffect, useState } from "react";
-
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { pupilLessonListingQuery } from "@/node-lib/curriculum-api-2023";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
@@ -107,11 +106,10 @@ export const getStaticProps: GetStaticProps<
       // validate the programmeSlug ahead of the call to the API
       validateProgrammeSlug(programmeSlug);
 
-      const { browseData, backLinkData } =
-        await curriculumApi2023.pupilLessonListingQuery({
-          programmeSlug,
-          unitSlug,
-        });
+      const { browseData, backLinkData } = await pupilLessonListingQuery({
+        programmeSlug,
+        unitSlug,
+      });
 
       const filteredBrowseData = browseData.filter(
         (lesson) => !lesson.lessonData.deprecatedFields?.isSensitive,

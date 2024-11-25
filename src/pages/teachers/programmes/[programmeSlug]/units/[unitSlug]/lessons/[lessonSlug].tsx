@@ -13,7 +13,6 @@ import {
 } from "@/node-lib/isr";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
@@ -23,6 +22,7 @@ import {
   CurriculumTrackingProps,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import { lessonOverview } from "@/node-lib/curriculum-api-2023";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -129,7 +129,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug, unitSlug, programmeSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.lessonOverview({
+      const curriculumData = await lessonOverview({
         programmeSlug,
         lessonSlug,
         unitSlug,

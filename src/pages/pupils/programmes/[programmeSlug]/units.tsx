@@ -9,7 +9,7 @@ import {
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { pupilUnitListingQuery } from "@/node-lib/curriculum-api-2023";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -100,7 +100,7 @@ export const getStaticProps: GetStaticProps<
         throw new OakError({ code: "curriculum-api/params-incorrect" });
       }
 
-      let curriculumData = await curriculumApi2023.pupilUnitListingQuery({
+      let curriculumData = await pupilUnitListingQuery({
         baseSlug,
       });
 

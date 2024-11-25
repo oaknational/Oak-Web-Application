@@ -3,11 +3,11 @@ import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
+import { teacherPreviewLesson } from "@/node-lib/curriculum-api-2023";
 
 export type TeacherPreviewLessonPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug } = context.params;
 
-      const curriculumData = await curriculumApi2023.teacherPreviewLesson({
+      const curriculumData = await teacherPreviewLesson({
         lessonSlug,
       });
       const results: GetStaticPropsResult<TeacherPreviewLessonPageProps> = {
