@@ -90,8 +90,6 @@ export const getStaticProps: GetStaticProps<
           unitSlug,
         });
 
-      console.log(curriculumData, "<< data");
-
       if (!curriculumData) {
         return {
           notFound: true,

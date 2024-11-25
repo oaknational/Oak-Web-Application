@@ -5,8 +5,8 @@ const lessonMediaClipsFixtures = (
 ): LessonMediaClipsData => {
   return {
     programmeSlug: "physical-education-ks4",
-    lessonSlug: "running-and-jumping",
-    lessonTitle: "Running and jumping",
+    lessonSlug: "running-as-a-team",
+    lessonTitle: "Running as a team",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
     unitSlug: "running-and-jumping",
