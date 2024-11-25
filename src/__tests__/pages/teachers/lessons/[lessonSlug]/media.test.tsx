@@ -15,7 +15,6 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => true,
 }));
 
-// TODO: Refactor to utilise fixture once more data is available
 const fixtureData = {
   lessonSlug: "running-as-a-team",
   lessonTitle: "Running as a team",
