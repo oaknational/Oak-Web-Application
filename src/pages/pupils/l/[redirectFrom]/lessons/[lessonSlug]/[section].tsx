@@ -2,7 +2,7 @@ import { GetStaticProps, GetStaticPropsResult } from "next";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import getPageProps from "@/node-lib/getPageProps";
-import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { pupilLessonQuery } from "@/node-lib/curriculum-api-2023";
 import { requestLessonResources } from "@/components/PupilComponents/pupilUtils/requestLessonResources";
 import {
   PupilExperienceViewProps,
@@ -63,28 +63,26 @@ export const getStaticProps: GetStaticProps<
         page: "classroom",
       })}/lessons/${lessonSlug}`;
 
-      const res = await curriculumApi2023
-        .pupilLessonQuery({
+      const res = await pupilLessonQuery({
+        lessonSlug,
+      }).catch((error) => {
+        const forwardError: OakError = { ...error };
+        if (forwardError.code === "curriculum-api/not-found") {
+          forwardError.config.shouldNotify = true;
+        }
+
+        errorReporter(
+          "pupils::lesson-overview-legacy-canonical::getStaticProps::pupilLessonQuery",
+        )(forwardError, {
+          severity: "warning",
           lessonSlug,
-        })
-        .catch((error) => {
-          const forwardError: OakError = { ...error };
-          if (forwardError.code === "curriculum-api/not-found") {
-            forwardError.config.shouldNotify = true;
-          }
-
-          errorReporter(
-            "pupils::lesson-overview-legacy-canonical::getStaticProps::pupilLessonQuery",
-          )(forwardError, {
-            severity: "warning",
-            lessonSlug,
-            redirectFrom,
-          });
-
-          console.error("Error in getStaticProps", error);
-
-          return null;
+          redirectFrom,
         });
+
+        console.error("Error in getStaticProps", error);
+
+        return null;
+      });
 
       if (!res) {
         return {
