@@ -25,15 +25,55 @@ const baseLessonMediaClipsSchema = z.object({
   lessonTitle: z.string(),
 });
 
-export const lessonMediaClipsSchema = baseLessonMediaClipsSchema.extend(
-  baseLessonBrowseSchema.shape,
-);
-
 export const canonicalLessonMediaClipsSchema =
   baseLessonMediaClipsSchema.extend({
     pathways: z.array(lessonPathwaySchema),
   });
 
+const mediaObjectSchema = z.object({
+  url: z.string().url(),
+  resourceType: z.string(),
+  displayName: z.string(),
+  usageRestrictions: z.string().optional(),
+  alt: z.string().optional(),
+  attributionRequired: z.string(),
+});
+
+const videoObjectSchema = z.object({
+  url: z.string().url(),
+  muxPlaybackId: z.string().optional(),
+  videoWithSignLanguageMuxPlaybackId: z.string().optional(),
+  resourceType: z.string(),
+  displayName: z.string(),
+  usageRestrictions: z.string().optional(),
+  attributionRequired: z.string(),
+  duration: z.number(),
+});
+
+const mediaItemSchema = z.object({
+  order: z.number().min(1),
+  mediaId: z.number(),
+  customTitle: z.string().optional(),
+  mediaObject: mediaObjectSchema,
+  mediaType: z.enum(["audio", "video"]),
+  videoId: z.number(),
+  videoObject: videoObjectSchema,
+});
+
+const cycleSchema = z.array(mediaItemSchema);
+
+const mediaClipsSchema = z.object({
+  intro: cycleSchema,
+  cycle1: cycleSchema,
+  cycle2: cycleSchema.optional(),
+  cycle3: cycleSchema.optional(),
+});
+
+export const lessonMediaClipsSchema = baseLessonMediaClipsSchema.extend({
+  ...baseLessonBrowseSchema.shape,
+  mediaClips: mediaClipsSchema,
+});
+export type MediaObject = z.infer<typeof mediaClipsSchema>;
 export type LessonMediaClipsData = z.infer<typeof lessonMediaClipsSchema>;
 export type CanonicalLessonMediaClips = z.infer<
   typeof canonicalLessonMediaClipsSchema
