@@ -13,9 +13,9 @@ import {
 } from "@/node-lib/isr";
 import getPageProps from "@/node-lib/getPageProps";
 import { LessonShare } from "@/components/TeacherViews/LessonShare/LessonShare.view";
-import { lessonShare } from "@/node-lib/curriculum-api-2023";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { lessonShare } from "@/node-lib/curriculum-api-2023";
 
 export type LessonSharePageProps = {
   curriculumData: LessonShareData;
