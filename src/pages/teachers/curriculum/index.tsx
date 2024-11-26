@@ -18,7 +18,6 @@ import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023, {
   SubjectPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
-import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 import Cover from "@/components/SharedComponents/Cover/Cover";
@@ -39,7 +38,7 @@ export type CurriculumHomePageProps = {
 };
 
 const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
-  const { subjectPhaseOptions, posts } = props;
+  const { /*subjectPhaseOptions,*/ posts } = props;
   const curriculumBlogs = posts.map(blogToPostListItem);
 
   return (
@@ -73,9 +72,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             <Hr $color={"white"} $mb={0} />
           </Box>
           <Flex $mt={[24, 80]} $mb={[80]}>
-            <HomepageCurriculumLandingHero
+            {/* <HomepageCurriculumLandingHero
               subjectPhaseOptions={subjectPhaseOptions}
-            />
+            /> */}
           </Flex>
         </MaxWidth>
       </Flex>
@@ -203,9 +202,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
   );
 };
 
-export const filterValidSubjectPhaseOptions = (
-  subjects: SubjectPhaseOption[],
-) => {
+const filterValidSubjectPhaseOptions = (subjects: SubjectPhaseOption[]) => {
   subjects.forEach(({ ks4_options }) => {
     if (
       ks4_options &&
@@ -222,7 +219,7 @@ export const filterValidSubjectPhaseOptions = (
   return subjects;
 };
 
-export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
+const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
     const subjects = await curriculumApi2023.subjectPhaseOptions({
       cycle: "2",
