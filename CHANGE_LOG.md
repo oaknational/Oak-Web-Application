@@ -1,3 +1,10 @@
+## [1.636.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.636.0...v1.636.1) (2024-11-26)
+
+
+### Bug Fixes
+
+* conditional in curric automate to allow for missing screenshots ([17d888a](https://github.com/oaknational/Oak-Web-Application/commit/17d888a2ef1956883798f45c540ba4db4d82445c))
+
 # [1.636.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.2...v1.636.0) (2024-11-26)
 
 
