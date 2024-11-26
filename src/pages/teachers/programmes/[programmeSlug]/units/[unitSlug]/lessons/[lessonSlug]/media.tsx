@@ -33,7 +33,6 @@ export const LessonMediaClipsPage: NextPage<LessonMediaClipsPageProps> = ({
     unitSlug,
     lessonSlug,
   } = curriculumData;
-  console.log(curriculumData, "<< curriculumData");
 
   return (
     <AppLayout
