@@ -65,14 +65,11 @@ export const lessonMediaClipsQuery =
       });
     }
 
-    /**
-     * TODO: Add media clip query name to curriculum schema
-     */
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       LessonMediaClipsQuery["browseData"][number]
     >({
       journey: "teacher",
-      queryName: "lessonOverviewQuery",
+      queryName: "lessonMediaClipsQuery",
       browseData: res.browseData,
     });
 
