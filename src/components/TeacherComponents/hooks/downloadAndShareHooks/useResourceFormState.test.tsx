@@ -26,7 +26,7 @@ const shareProps: UseResourceFormStateProps = {
   type: "share",
 };
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+ 
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 jest.mock("posthog-js/react", () => ({
@@ -196,7 +196,7 @@ describe("useResourceFormState", () => {
   });
   describe("State local storage and auth", () => {
     test("should set email, school and terms from local storage if not logged in ", async () => {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
+       
       const useFormSpy = jest.spyOn(require("react-hook-form"), "useForm");
 
       useFormSpy.mockImplementation(() => {
@@ -216,7 +216,7 @@ describe("useResourceFormState", () => {
       expect(mockSetValue).toHaveBeenCalledWith("terms", true);
     });
     test("should set email and terms from hubspot and clerk user if logged in, school from local storage ", async () => {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
+       
       const useFormSpy = jest.spyOn(require("react-hook-form"), "useForm");
       setUseUserReturn({
         ...mockLoggedIn,

@@ -3,7 +3,7 @@ import { createRef } from "react";
 
 import usePagination from "./usePagination";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+ 
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 // Default test values
