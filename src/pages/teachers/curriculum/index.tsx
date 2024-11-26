@@ -73,9 +73,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             <Hr $color={"white"} $mb={0} />
           </Box>
           <Flex $mt={[24, 80]} $mb={[80]}>
-            {/* <HomepageCurriculumLandingHero
+            <HomepageCurriculumLandingHero
               subjectPhaseOptions={subjectPhaseOptions}
-            /> */}
+            />
           </Flex>
         </MaxWidth>
       </Flex>
@@ -203,7 +203,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
   );
 };
 
-const filterValidSubjectPhaseOptions = (subjects: SubjectPhaseOption[]) => {
+export const filterValidSubjectPhaseOptions = (
+  subjects: SubjectPhaseOption[],
+) => {
   subjects.forEach(({ ks4_options }) => {
     if (
       ks4_options &&
@@ -220,7 +222,7 @@ const filterValidSubjectPhaseOptions = (subjects: SubjectPhaseOption[]) => {
   return subjects;
 };
 
-const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
+export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
     const subjects = await curriculumApi2023.subjectPhaseOptions({
       cycle: "2",
