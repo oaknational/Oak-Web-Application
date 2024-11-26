@@ -1,7 +1,7 @@
 import {
   createAndStoreShareId,
   getConversionShareId,
-  getShareIdFromCookie,
+  getShareId,
   getShareIdKey,
   storeConversionShareId,
 } from "./createShareId";
@@ -15,12 +15,19 @@ describe("createShareId", () => {
     });
   });
 
-  describe("getShareIdFromCookie", () => {
-    it("should return the shareId from the cookie", () => {
+  describe("getShareId", () => {
+    it("should return the shareId from the storage", () => {
       const lessonSlug = "lesson-1";
       const key = getShareIdKey(lessonSlug);
-      document.cookie = `${key}=1234`;
-      const result = getShareIdFromCookie(lessonSlug);
+      const obj: Record<string, string> = {};
+      obj[key] = "1234";
+
+      jest
+        .spyOn(Storage.prototype, "getItem")
+        .mockImplementationOnce((key: string) => {
+          return JSON.stringify(obj[key]);
+        });
+      const result = getShareId(lessonSlug);
       expect(result).toEqual("1234");
     });
   });
@@ -35,20 +42,22 @@ describe("createShareId", () => {
       expect(result.key).toEqual(getShareIdKey(lessonSlug));
     });
 
-    it("should store the shareId in a cookie", () => {
+    it("should store the shareId storage", () => {
+      const fn = jest.spyOn(Storage.prototype, "setItem");
       const lessonSlug = "lesson-1";
       const result = createAndStoreShareId(lessonSlug);
       const key = getShareIdKey(lessonSlug);
-      expect(document.cookie).toContain(`${key}=${result.id}`);
+      expect(fn).toHaveBeenCalledWith(key, JSON.stringify(result.id));
     });
   });
 
   describe("storeConversionShareId", () => {
-    it("should store the conversion shareId in a cookie", () => {
+    it("should store the conversion shareId storage", () => {
+      const fn = jest.spyOn(Storage.prototype, "setItem");
       const shareId = "1234";
       const key = `cv-${shareId}`;
       storeConversionShareId(shareId);
-      expect(document.cookie).toContain(`${key}=true`);
+      expect(fn).toHaveBeenCalledWith(key, JSON.stringify(true));
     });
 
     it("should return the key", () => {
@@ -59,12 +68,18 @@ describe("createShareId", () => {
   });
 
   describe("getConversionShareId", () => {
-    it("should return the conversion shareId from the cookie", () => {
+    it("should return the conversion shareId from the storage", () => {
       const shareId = "1234";
-      const key = `cv-${shareId}`;
-      document.cookie = `${key}=true`;
+      const obj: Record<string, boolean> = {};
+      obj[`cv-${shareId}`] = true;
+
+      jest
+        .spyOn(Storage.prototype, "getItem")
+        .mockImplementationOnce((key: string) => {
+          return JSON.stringify(obj[key]);
+        });
       const result = getConversionShareId(shareId);
-      expect(result).toEqual("true");
+      expect(result).toEqual(true);
     });
   });
 });

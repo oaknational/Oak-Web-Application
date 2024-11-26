@@ -44,6 +44,7 @@ import {
   CurriculumTrackingProps,
   useShareExperiment,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -78,7 +79,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     subjectSlug,
   } = curriculumData;
 
-  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
     unitSlug: unitSlug ?? undefined,
     programmeSlug: programmeSlug ?? undefined,
     source: "lesson-listing",
@@ -91,7 +92,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
     },
   });
-  console.log(shareIdRef, shareIdKeyRef);
+
+  const teacherShareButton = shareExperimentFlag ? (
+    <TeacherShareButton shareUrl={shareUrl} shareActivated={shareActivated} />
+  ) : null;
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
   const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
@@ -198,6 +202,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           isNew={isNew}
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
+          shareButton={teacherShareButton}
         />
         <MaxWidth $ph={16}>
           <OakGrid>

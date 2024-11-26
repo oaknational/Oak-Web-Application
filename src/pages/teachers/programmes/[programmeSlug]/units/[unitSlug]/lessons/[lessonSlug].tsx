@@ -22,6 +22,7 @@ import {
   useShareExperiment,
   CurriculumTrackingProps,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -44,7 +45,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     keyStageTitle,
   } = curriculumData;
 
-  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
     lessonSlug,
     unitSlug,
     programmeSlug,
@@ -58,7 +59,10 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
     },
   });
-  console.log(shareIdRef, shareIdKeyRef);
+
+  const teacherShareButton = shareExperimentFlag ? (
+    <TeacherShareButton shareUrl={shareUrl} shareActivated={shareActivated} />
+  ) : null;
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
@@ -86,6 +90,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             ...curriculumData,
             isCanonical: false,
             isSpecialist: false,
+            teacherShareButton: teacherShareButton,
           }}
         />
       </OakThemeProvider>

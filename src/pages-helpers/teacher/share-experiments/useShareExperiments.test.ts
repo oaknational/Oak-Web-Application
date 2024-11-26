@@ -17,6 +17,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => {
   const track = {
     teacherShareInitiated: jest.fn(),
     teacherShareConverted: jest.fn(),
+    teacherShareActivated: jest.fn(),
   };
 
   return {
@@ -47,13 +48,6 @@ describe("useShareExperiments", () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    //clear the cookies
-    document.cookie.split(";").forEach((cookie) => {
-      document.cookie = cookie
-        .replace(/^ +/, "")
-        .replace(/=.*/, `=;expires=${new Date(0).toUTCString()}`);
-    });
-
     Object.defineProperty(window, "location", {
       writable: true,
       value: {
@@ -63,6 +57,9 @@ describe("useShareExperiments", () => {
         search: "",
       } as MockLocation,
     });
+
+    // reset local storage
+    localStorage.clear();
   });
 
   it("should return null values if the feature flag is not found", () => {
@@ -128,7 +125,7 @@ describe("useShareExperiments", () => {
     );
   });
 
-  it("should call track shareInitiated if there is no cookie and the feature flag is enabled", () => {
+  it("should call track shareInitiated if there is no storage and the feature flag is enabled", () => {
     // mock the feature flag
     (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
 
@@ -148,12 +145,12 @@ describe("useShareExperiments", () => {
     expect(mockTrack.teacherShareInitiated).toHaveBeenCalled();
   });
 
-  it("should not call share initiated if the cookie is already present", () => {
+  it("should not call share initiated if the storage is already present", () => {
     (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
 
     const mockTrack = useAnalytics().track;
 
-    // set the cookie
+    // set the storage
     createAndStoreShareId("lessonSlug_unitSlug_programmeSlug");
 
     // hook wrapper
@@ -170,7 +167,7 @@ describe("useShareExperiments", () => {
     expect(mockTrack.teacherShareInitiated).not.toHaveBeenCalled();
   });
 
-  it("should call track shareConverted the url shareId is present and there is no cookieId or feature flag", () => {
+  it("should call track shareConverted the url shareId is present and there is no storageId or feature flag", () => {
     (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(false);
 
     const mockTrack = useAnalytics().track;
@@ -193,14 +190,14 @@ describe("useShareExperiments", () => {
     expect(mockTrack.teacherShareConverted).toHaveBeenCalled();
   });
 
-  it("should not call track shareConverted if the url shareId matches cookieId ", () => {
+  it("should not call track shareConverted if the url shareId matches storageId ", () => {
     (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(false);
 
     const mockTrack = useAnalytics().track;
 
     const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
 
-    // set the cookie
+    // set the storage
     createAndStoreShareId("lessonSlug_unitSlug_programmeSlug");
 
     window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
@@ -219,12 +216,13 @@ describe("useShareExperiments", () => {
     expect(mockTrack.teacherShareConverted).not.toHaveBeenCalled();
   });
 
-  it("should store the conversion shareId in a cookie", () => {
+  it("should store the conversion shareId in a storage", () => {
     (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(false);
 
     const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
 
     window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
+    const fn = jest.spyOn(Storage.prototype, "setItem");
 
     // hook wrapper
     renderHook(() =>
@@ -237,7 +235,7 @@ describe("useShareExperiments", () => {
       }),
     );
 
-    expect(document.cookie).toContain(`cv-xxxxxxxxxx=true`);
+    expect(fn).toHaveBeenCalledWith(`cv-xxxxxxxxxx`, JSON.stringify(true));
   });
 
   it("should not send a conversion event if the conversion shareId is already present", () => {
@@ -249,8 +247,8 @@ describe("useShareExperiments", () => {
 
     window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
 
-    // set the conversion cookie
-    document.cookie = `cv-xxxxxxxxxx=true`;
+    // set the conversion storage
+    localStorage.setItem("cv-xxxxxxxxxx", JSON.stringify(true));
 
     // hook wrapper
     renderHook(() =>
@@ -264,5 +262,49 @@ describe("useShareExperiments", () => {
     );
 
     expect(mockTrack.teacherShareConverted).not.toHaveBeenCalled();
+  });
+
+  it("sends an activation event when shareActivated is called", () => {
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
+
+    const mockTrack = useAnalytics().track;
+
+    const { result } = renderHook(() =>
+      useShareExperiment({
+        lessonSlug: "lessonSlug",
+        unitSlug: "unitSlug",
+        programmeSlug: "programmeSlug",
+        source: "lesson-canonical",
+        curriculumTrackingProps,
+      }),
+    );
+
+    result.current.shareActivated();
+
+    expect(mockTrack.teacherShareActivated).toHaveBeenCalled();
+  });
+
+  it("doesn't send an activation event when shareActivated is called and the storage is already present", () => {
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
+
+    const mockTrack = useAnalytics().track;
+
+    const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+
+    localStorage.setItem(`av-${key}`, JSON.stringify(true));
+
+    const { result } = renderHook(() =>
+      useShareExperiment({
+        lessonSlug: "lessonSlug",
+        unitSlug: "unitSlug",
+        programmeSlug: "programmeSlug",
+        source: "lesson-canonical",
+        curriculumTrackingProps,
+      }),
+    );
+
+    result.current.shareActivated();
+
+    expect(mockTrack.teacherShareActivated).not.toHaveBeenCalled();
   });
 });
