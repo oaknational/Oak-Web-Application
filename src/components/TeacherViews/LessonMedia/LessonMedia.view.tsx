@@ -83,6 +83,19 @@ export function LessonMedia(props: LessonMediaProps) {
             Back to lesson
           </OakTertiaryButton>
         )}
+        {isCanonical && (
+          <OakTertiaryButton
+            element="a"
+            href={resolveOakHref({
+              page: "lesson-overview-canonical",
+              lessonSlug,
+            })}
+            iconName="arrow-left"
+            data-testid="back-to-lesson-button"
+          >
+            Back to lesson
+          </OakTertiaryButton>
+        )}
       </OakBox>
     </OakMaxWidth>
   );
