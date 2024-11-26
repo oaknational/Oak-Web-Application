@@ -40,6 +40,7 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
     showShare,
     isCanonical,
     phonicsOutcome,
+    teacherShareButton,
   } = props;
 
   return (
@@ -89,6 +90,7 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
               </OakBox>
               <OakFlex $gap="all-spacing-6">
                 <LessonOverviewHeaderDownloadAllButton {...props} />
+                {teacherShareButton}
                 {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
               </OakFlex>
             </OakFlex>

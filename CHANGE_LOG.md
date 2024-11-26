@@ -1,3 +1,73 @@
+## [1.636.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.636.0...v1.636.1) (2024-11-26)
+
+
+### Bug Fixes
+
+* conditional in curric automate to allow for missing screenshots ([17d888a](https://github.com/oaknational/Oak-Web-Application/commit/17d888a2ef1956883798f45c540ba4db4d82445c))
+
+# [1.636.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.2...v1.636.0) (2024-11-26)
+
+
+### Features
+
+* add back to lesson button for canonical lessons ([ab9f2dc](https://github.com/oaknational/Oak-Web-Application/commit/ab9f2dcc5d646dc1861f36eb07266b531e4af5fd))
+* create mediaClips query ([32ddb17](https://github.com/oaknational/Oak-Web-Application/commit/32ddb1708e314f4492e04d0b3a9c1bb034dd356b))
+* query, schema, fixture and plug into page ([99c2c3c](https://github.com/oaknational/Oak-Web-Application/commit/99c2c3c6f069c404e317e6b0332fffe4215cd8ae))
+
+## [1.635.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.1...v1.635.2) (2024-11-22)
+
+
+### Bug Fixes
+
+* remove old right margin left over from wobbly border visualiser ([ee65f77](https://github.com/oaknational/Oak-Web-Application/commit/ee65f77ab0510ed3200be5d14bcba174b7941320))
+
+## [1.635.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.0...v1.635.1) (2024-11-22)
+
+
+### Bug Fixes
+
+* renaming cookie functions which now use local storage ([45baa16](https://github.com/oaknational/Oak-Web-Application/commit/45baa16015e141f55682602a19844ea70cdd3af1))
+* switch from cookies to local storage ([c3b8419](https://github.com/oaknational/Oak-Web-Application/commit/c3b8419e233127bb78474b5764e2a9153a9fd85a))
+* type errors ([4208e7f](https://github.com/oaknational/Oak-Web-Application/commit/4208e7f97a2e67bf4a5f6296872ec8ce50c20a2a))
+
+# [1.635.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.634.0...v1.635.0) (2024-11-22)
+
+
+### Features
+
+* added button to download ([9ca2b6e](https://github.com/oaknational/Oak-Web-Application/commit/9ca2b6e55686555b8e823a02d5cdaf34ecc5acd0))
+* dedupe activation events ([ec25959](https://github.com/oaknational/Oak-Web-Application/commit/ec2595963f41eb7a8d227b7fed8d2501112043ac))
+
+# [1.634.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.633.0...v1.634.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* tests ([ddfaf44](https://github.com/oaknational/Oak-Web-Application/commit/ddfaf444f7e51ab706fd12fc73615b7bc2e0e775))
+* type errors ([1f09471](https://github.com/oaknational/Oak-Web-Application/commit/1f094715e8464a278d438b23ab108457539e47a4))
+* type errors ([39f00e9](https://github.com/oaknational/Oak-Web-Application/commit/39f00e9a8776c3e9c217e1c210a0eb74d12be167))
+
+
+### Features
+
+* adding extra tracking fields ([4dfc364](https://github.com/oaknational/Oak-Web-Application/commit/4dfc3645f4ae205170a9d63af114eb57b422fa5e))
+* prevent duplicate conversion events ([4aa27a6](https://github.com/oaknational/Oak-Web-Application/commit/4aa27a67ed46ce424eed25273ef39f9da5bd079b))
+
+# [1.633.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.632.0...v1.633.0) (2024-11-21)
+
+
+### Bug Fixes
+
+* don't sanatiseUnits(...) for new MV ([6b89511](https://github.com/oaknational/Oak-Web-Application/commit/6b89511b6b539c44bfa5b4820afd06d13aa8bdbb))
+* removed hack added in [#2846](https://github.com/oaknational/Oak-Web-Application/issues/2846) (no longer needed) ([650c94c](https://github.com/oaknational/Oak-Web-Application/commit/650c94c1f5a27da57ad454a3659df7a4d09e26ab))
+* revert change to curriculumUnitsIncludeNew ([03c8919](https://github.com/oaknational/Oak-Web-Application/commit/03c8919b565b4a34b2162cfe9643faef0ecdfd77))
+
+
+### Features
+
+* added constant to switch on new mv_curriculum_sequence_b_13_0_0 MV ([e2c1262](https://github.com/oaknational/Oak-Web-Application/commit/e2c1262bfa49d93a8874dbb56a0140fb2d6620bf))
+* initial work on new curric MV ([dd56e3c](https://github.com/oaknational/Oak-Web-Application/commit/dd56e3ceed8869703427842b41d65c60c26fc0be))
+
 # [1.632.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.631.1...v1.632.0) (2024-11-21)
 
 
