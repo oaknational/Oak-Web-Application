@@ -17,6 +17,7 @@ import TeachersTabResourceSelectorCard from "@/components/GenericPagesComponents
 import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 type TeacherTabProps = {
   keyStages: KeyStageKeypadProps["keyStages"];
@@ -83,7 +84,10 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
             </Flex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
-            <ImageContainer imageSlug={"hero-pupils"}>
+            <ImageContainer
+              imageSlug={"hero-pupils"}
+              sizes={getSizes([400, 600])}
+            >
               <TeachersTabResourceSelectorCard
                 icon={"worksheet"}
                 title="Worksheets"
