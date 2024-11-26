@@ -572,7 +572,8 @@ const mockedCurriculumUnits = curriculumApi.curriculumUnits as jest.Mock;
 const mockedFetchSubjectPhasePickerData =
   fetchSubjectPhasePickerData as jest.Mock;
 
-jest.mock("@/pages/teachers/curriculum/index", () => ({
+jest.mock("@/pages-helpers/curriculum/docx/tab-helpers", () => ({
+  ...jest.requireActual("@/pages-helpers/curriculum/docx/tab-helpers"),
   fetchSubjectPhasePickerData: jest.fn(),
 }));
 

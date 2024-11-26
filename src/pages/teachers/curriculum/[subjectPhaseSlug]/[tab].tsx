@@ -10,7 +10,7 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { uniq } from "lodash";
 
 import CMSClient from "@/node-lib/cms";
-// import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader";
+import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader";
 import OverviewTab from "@/components/CurriculumComponents/OverviewTab";
 import UnitsTab from "@/components/CurriculumComponents/UnitsTab";
 import AppLayout from "@/components/SharedComponents/AppLayout";
@@ -45,7 +45,7 @@ import {
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
-  // subjectPhaseOptions,
+  subjectPhaseOptions,
   curriculumOverviewTabData,
   curriculumOverviewSanityData,
   curriculumUnitsFormattedData,
@@ -129,13 +129,13 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         }}
         $background={"white"}
       >
-        {/* <CurriculumHeader
+        <CurriculumHeader
           subjectPhaseOptions={subjectPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           keyStages={keyStages}
           color1="mint"
           color2="mint"
-        /> */}
+        />
 
         <Box $background={"white"}>{tabContent}</Box>
       </AppLayout>

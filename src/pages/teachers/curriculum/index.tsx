@@ -31,6 +31,7 @@ import { serializeDate } from "@/utils/serializeDate";
 import PostListItem from "@/components/SharedComponents/PostListItem";
 import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
+import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 
 export type CurriculumHomePageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -38,7 +39,7 @@ export type CurriculumHomePageProps = {
 };
 
 const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
-  const { /*subjectPhaseOptions,*/ posts } = props;
+  const { subjectPhaseOptions, posts } = props;
   const curriculumBlogs = posts.map(blogToPostListItem);
 
   return (
@@ -72,9 +73,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
             <Hr $color={"white"} $mb={0} />
           </Box>
           <Flex $mt={[24, 80]} $mb={[80]}>
-            {/* <HomepageCurriculumLandingHero
+            <HomepageCurriculumLandingHero
               subjectPhaseOptions={subjectPhaseOptions}
-            /> */}
+            />
           </Flex>
         </MaxWidth>
       </Flex>
