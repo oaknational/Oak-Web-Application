@@ -1,3 +1,18 @@
+## [1.637.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.637.0...v1.637.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* removing crypto dependency ([935ff86](https://github.com/oaknational/Oak-Web-Application/commit/935ff86f430ac30b36bb250f6142dbef068f8886))
+* resolve conflicts ([2b86815](https://github.com/oaknational/Oak-Web-Application/commit/2b868153ed9f8e8e3fc08ff2eaf496603084496c))
+
+# [1.637.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.636.1...v1.637.0) (2024-11-27)
+
+
+### Features
+
+* added statoscope as build tooling ([61fe102](https://github.com/oaknational/Oak-Web-Application/commit/61fe1022b7f42f229a7a3c58602a86476fda29d7))
+
 ## [1.636.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.636.0...v1.636.1) (2024-11-26)
 
 
