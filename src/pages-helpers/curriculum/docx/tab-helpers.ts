@@ -19,6 +19,7 @@ import {
 import { getUnitFeatures, UnitFeatures } from "@/utils/curriculum/features";
 import {
   sortSubjectCategoriesOnFeatures,
+  sortUnits,
   sortYears,
 } from "@/utils/curriculum/sorting";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
@@ -283,6 +284,10 @@ export function createUnitsListingByYear(
         }
       }
     }
+  }
+
+  for (const year of Object.keys(yearData)) {
+    yearData[year]!.units = yearData[year]!.units.toSorted(sortUnits);
   }
 
   return yearData;

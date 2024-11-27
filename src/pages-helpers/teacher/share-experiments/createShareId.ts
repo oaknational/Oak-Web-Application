@@ -1,6 +1,6 @@
-import crypto from "crypto";
-
 import { nanoid } from "nanoid";
+// !!WARNING!!: This is a non-secure hashing library. It is not suitable for security purposes.
+import sha256 from "tiny-hashes/sha256";
 
 import {
   LS_KEY_TEACHER_SHARE_KIDS_INITIATED_SCHEMA,
@@ -13,11 +13,7 @@ import {
 } from "@/utils/localstorage";
 
 export const getShareIdKey = (unhashedKey: string): string => {
-  const hash = crypto
-    .createHash("sha256")
-    .update(unhashedKey)
-    .digest("hex")
-    .slice(0, 6);
+  const hash = sha256(unhashedKey).slice(0, 6);
   return `sid-${hash}`;
 };
 
