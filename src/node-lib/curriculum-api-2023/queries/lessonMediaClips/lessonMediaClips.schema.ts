@@ -23,6 +23,8 @@ export type LessonBrowseData = ConvertKeysToCamelCase<
 const baseLessonMediaClipsSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
+  subjectTitle: z.string(),
+  keyStageTitle: z.string(),
 });
 
 export const lessonMediaClipsSchema = baseLessonMediaClipsSchema.extend(

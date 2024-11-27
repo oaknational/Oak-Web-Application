@@ -15,9 +15,9 @@ import {
 
 export type LessonMediaClipInfoProps = {
   clipTitle: string;
-  keyStageSlug: string;
-  yearSlug: string;
-  subjectSlug: string;
+  keyStageTitle: string;
+  yearTitle: string;
+  subjectTitle: string;
   videoTranscript?: ReactNode;
   signLanguageButtonEnabled?: boolean;
   copyLinkButtonEnabled?: boolean;
@@ -29,9 +29,9 @@ export type LessonMediaClipInfoProps = {
 
 export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
   clipTitle,
-  keyStageSlug,
-  yearSlug,
-  subjectSlug,
+  keyStageTitle,
+  yearTitle,
+  subjectTitle,
   videoTranscript,
   signLanguageButtonEnabled = false,
   onSignLanguageButtonClick = () => {},
@@ -47,7 +47,7 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
         $font={"heading-light-7"}
         $color={"grey60"}
         $mb="space-between-m"
-      >{`${keyStageSlug} • ${yearSlug} • ${subjectSlug}`}</OakTypography>
+      >{`${keyStageTitle} • ${yearTitle} • ${subjectTitle}`}</OakTypography>
       {videoTranscript && (
         <OakVideoTranscript
           id={"video-transcript"}

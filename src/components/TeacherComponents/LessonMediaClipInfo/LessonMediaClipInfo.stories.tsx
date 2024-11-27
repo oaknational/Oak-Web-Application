@@ -8,9 +8,9 @@ import {
 
 const props: LessonMediaClipInfoProps = {
   clipTitle: "How it is done",
-  keyStageSlug: "KS3",
-  subjectSlug: "Maths",
-  yearSlug: "Year 2",
+  keyStageTitle: "KS 3",
+  subjectTitle: "Maths",
+  yearTitle: "Year 2",
   videoTranscript: (
     <OakP>
       Hi, I'm Rebecca, your computing teacher for the collaborating online

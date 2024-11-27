@@ -2,7 +2,7 @@ import {
   OakTertiaryButton,
   OakBox,
   OakMaxWidth,
-} from "@oaknational/oak-components";
+ OakP } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
@@ -13,10 +13,13 @@ import {
   getLessonMediaBreadCrumb,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
+import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
 
 type BaseLessonMedia = {
   lessonTitle: string;
   lessonSlug: string;
+  keyStageTitle: string;
+  subjectTitle: string;
 };
 
 type CanonicalLesson = BaseLessonMedia & {
@@ -37,7 +40,7 @@ type LessonMediaProps =
 
 export function LessonMedia(props: LessonMediaProps) {
   const { isCanonical, lesson } = props;
-  const { lessonTitle, lessonSlug } = lesson;
+  const { lessonTitle, lessonSlug, keyStageTitle, subjectTitle } = lesson;
 
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
@@ -67,7 +70,7 @@ export function LessonMedia(props: LessonMediaProps) {
           ]}
         />
       </OakBox>
-      <OakBox>
+      <OakBox $mb={"space-between-m"}>
         {programmeSlug && unitSlug && (
           <OakTertiaryButton
             element="a"
@@ -97,6 +100,15 @@ export function LessonMedia(props: LessonMediaProps) {
           </OakTertiaryButton>
         )}
       </OakBox>
+      <LessonMediaClipInfo
+        clipTitle="Clip title"
+        keyStageTitle={keyStageTitle}
+        yearTitle="Year slug here"
+        subjectTitle={subjectTitle}
+        videoTranscript={<OakP>video transcript here</OakP>}
+        copyLinkButtonEnabled={true}
+        copyLinkHref="/hey"
+      />
     </OakMaxWidth>
   );
 }
