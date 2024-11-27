@@ -52,14 +52,16 @@ export const LessonOverviewHeaderShareAllButton: FC<
   })();
 
   if (!isShareable || !href) {
-    <OakSmallSecondaryButton
-      iconName="arrow-right"
-      isTrailingIcon
-      disabled
-      data-testid="share-all-button"
-    >
-      Share activities with pupils
-    </OakSmallSecondaryButton>;
+    return (
+      <OakSmallSecondaryButton
+        iconName="arrow-right"
+        isTrailingIcon
+        disabled={true}
+        data-testid="share-all-button"
+      >
+        Share activities with pupils
+      </OakSmallSecondaryButton>
+    );
   }
 
   return (

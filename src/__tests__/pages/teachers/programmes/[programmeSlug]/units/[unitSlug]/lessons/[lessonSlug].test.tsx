@@ -132,7 +132,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       throw new Error("Share all button not found");
     }
   });
-  it.only("share button is not disabled with non legacy content (lesson cohort is the same as legacy cohort)", () => {
+  it("share button is not disabled with non legacy content (lesson cohort is the same as legacy cohort)", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
@@ -166,7 +166,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     const shareLabel = queryAllByText("Share activities with pupils");
 
     if (shareButton[0] !== undefined && shareButton.length > 0) {
-      expect(shareButton[0]).toHaveAttribute("disabled");
+      expect(shareButton[0]).toBeDisabled();
       expect(shareLabel[0]).toBeInTheDocument();
     } else {
       throw new Error("Share all button not found");

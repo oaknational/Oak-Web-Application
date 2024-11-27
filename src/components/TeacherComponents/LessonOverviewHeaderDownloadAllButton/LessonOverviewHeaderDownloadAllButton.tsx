@@ -72,7 +72,7 @@ export const LessonOverviewHeaderDownloadAllButton: FC<
       }
       onClick={onClickDownloadAll}
     >
-      Download all resources
+      {displaySignInMessage ? `Sign in to download` : `Download all resources`}
     </OakSmallPrimaryButton>
   );
 };
