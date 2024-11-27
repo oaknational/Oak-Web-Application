@@ -10,13 +10,3 @@ export const rawSyntheticUVLessonSchema = z.object({
 });
 
 export type RawSyntheticUVLesson = z.infer<typeof rawSyntheticUVLessonSchema>;
-
-// export const deprecatedRawSyntheticUVLessonSchema =
-//   syntheticUnitvariantLessonsByKsSchemaOld.omit({
-//     unitvariant_id: true,
-//     null_unitvariant: true,
-//   });
-
-// export type DeprecatedRawSyntheticUVLesson = z.infer<
-//   typeof deprecatedRawSyntheticUVLessonSchema
-// >;
