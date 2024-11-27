@@ -1,3 +1,19 @@
+## [1.636.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.636.0...v1.636.1) (2024-11-26)
+
+
+### Bug Fixes
+
+* conditional in curric automate to allow for missing screenshots ([17d888a](https://github.com/oaknational/Oak-Web-Application/commit/17d888a2ef1956883798f45c540ba4db4d82445c))
+
+# [1.636.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.2...v1.636.0) (2024-11-26)
+
+
+### Features
+
+* add back to lesson button for canonical lessons ([ab9f2dc](https://github.com/oaknational/Oak-Web-Application/commit/ab9f2dcc5d646dc1861f36eb07266b531e4af5fd))
+* create mediaClips query ([32ddb17](https://github.com/oaknational/Oak-Web-Application/commit/32ddb1708e314f4492e04d0b3a9c1bb034dd356b))
+* query, schema, fixture and plug into page ([99c2c3c](https://github.com/oaknational/Oak-Web-Application/commit/99c2c3c6f069c404e317e6b0332fffe4215cd8ae))
+
 ## [1.635.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.1...v1.635.2) (2024-11-22)
 
 
