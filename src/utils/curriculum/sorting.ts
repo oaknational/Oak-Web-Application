@@ -1,5 +1,5 @@
 import { UnitFeatures } from "./features";
-import { Subject, SubjectCategory } from "./types";
+import { Subject, SubjectCategory, Unit } from "./types";
 
 export function sortYears(a: string, b: string) {
   if (a === "all-years") {
@@ -38,4 +38,12 @@ export function sortChildSubjects(a: Subject, b: Subject) {
   if (a.subject_slug < b.subject_slug) return -1;
   if (a.subject_slug > b.subject_slug) return 1;
   return 0;
+}
+
+export function sortUnits(a: Unit, b: Unit) {
+  const aYear = parseInt(a.year, 10);
+  const bYear = parseInt(b.year, 10);
+
+  // We now have grouped years so we must order by year number and unit order.
+  return aYear * 100 + a.order - (bYear * 100 + b.order);
 }
