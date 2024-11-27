@@ -1,5 +1,5 @@
+import { CurriculumUnitsYearData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
-import { CurriculumUnitsYearData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { Unit, Thread, YearSelection } from "@/utils/curriculum/types";
 
 function isHighlightedUnit(unit: Unit, selectedThread: Thread["slug"] | null) {
