@@ -17,11 +17,11 @@ import {
 } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
+import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
 import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
-} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
+} from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
