@@ -948,18 +948,14 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     );
 
     const yearFilterButtons = await findAllByTestId("year-group-filter-button");
-    console.log("yearFilterButtons", yearFilterButtons);
     const yearHeadings = await findAllByTestId("year-heading");
     const year2Button = yearFilterButtons[1];
-    console.log("year2Button", year2Button);
     if (year2Button) {
       await userEvent.click(year2Button);
       // Selected button background colour should change
       waitFor(() => {
         expect(year2Button).toHaveStyle("background-color: rgb(34, 34, 34);");
         // Unselected button background colour shouldn't change
-        console.log("year2Button", year2Button);
-
         expect(yearFilterButtons[0]).toHaveStyle(
           "background-color: rgb(242, 242, 242);",
         );
