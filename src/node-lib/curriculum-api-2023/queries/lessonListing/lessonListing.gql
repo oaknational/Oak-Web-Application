@@ -1,18 +1,20 @@
 query lessonListing($programmeSlug: String!, $unitSlug: String!) {
-  unit: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  unit: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
     where: {
       unit_slug: { _eq: $unitSlug }
       programme_slug: { _eq: $programmeSlug }
     }
   ) {
-    unit_slug
     lesson_data
     lesson_slug
-    is_legacy
-    programme_slug
-    unit_data
-    null_unitvariant
     programme_fields
-    supplementary_data
+    null_unitvariant_id
+    unit_slug
+    unit_data
+    programme_slug
+    is_legacy
+    actions
+    features
+    order_in_unit
   }
 }

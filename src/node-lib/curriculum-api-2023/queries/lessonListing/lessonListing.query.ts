@@ -1,28 +1,29 @@
 import { z } from "zod";
-import { syntheticUnitvariantLessonsByKsSchemaOld } from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 
 import { Sdk } from "../../sdk";
 import OakError from "../../../../errors/OakError";
 import { lessonListSchema } from "../../shared.schema";
-import { toSentenceCase } from "../../helpers";
 import { LessonListingQuery } from "../../generated/sdk";
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 
 import lessonListingSchema, {
   LessonListingPageData,
 } from "./lessonListing.schema";
 
-const partialSyntheticUnitvariantLessonsSchema =
-  syntheticUnitvariantLessonsByKsSchemaOld.omit({
-    null_unitvariant: true,
-    unitvariant_id: true,
-  });
+const partialSyntheticUnitvariantLessonsSchema = z.object({
+  ...syntheticUnitvariantLessonsSchema.omit({
+    supplementary_data: true,
+  }).shape,
+  order_in_unit: z.number(),
+});
 
 type PartialSyntheticUnitvariantLessons = z.infer<
   typeof partialSyntheticUnitvariantLessonsSchema
 >;
 
-export const getTransformedLessons = (res: LessonListingQuery) => {
-  return res.unit
+export const getTransformedLessons = (unit: LessonListingQuery["unit"]) => {
+  return unit
     .map((l) => {
       const lesson = partialSyntheticUnitvariantLessonsSchema.parse(l);
       const hasCopyrightMaterial =
@@ -46,7 +47,7 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
         presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
         worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
         hasCopyrightMaterial,
-        orderInUnit: lesson.supplementary_data.order_in_unit,
+        orderInUnit: lesson.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
       };
       return transformedLesson;
@@ -62,7 +63,7 @@ export const getTransformedUnit = (
   return {
     programmeSlug: unit.programme_slug,
     keyStageSlug: unit.programme_fields.keystage_slug,
-    keyStageTitle: toSentenceCase(unit.programme_fields.keystage_description),
+    keyStageTitle: unit.programme_fields.keystage_description,
     subjectSlug: unit.programme_fields.subject_slug,
     subjectTitle: unit.programme_fields.subject,
     unitSlug: unit.unit_slug,
@@ -74,6 +75,9 @@ export const getTransformedUnit = (
     yearSlug: unit.programme_fields.year_slug,
     yearTitle: unit.programme_fields.year_description,
     lessons: parsedLessons,
+    pathwaySlug: unit.programme_fields.pathway_slug,
+    pathwayTitle: unit.programme_fields.pathway,
+    pathwayDisplayOrder: unit.programme_fields.pathway_display_order,
   };
 };
 
@@ -81,12 +85,21 @@ const lessonListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string; unitSlug: string }) => {
     const res = await sdk.lessonListing(args);
 
-    const [unit] = res.unit;
+    const modifiedUnit = applyGenericOverridesAndExceptions<
+      LessonListingQuery["unit"][number]
+    >({
+      journey: "pupil",
+      queryName: "pupilLessonListingQuery",
+      browseData: res.unit,
+    });
 
-    if (!unit) {
+    if (modifiedUnit.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
-    const unitLessons = getTransformedLessons(res);
+
+    const [unit] = modifiedUnit;
+
+    const unitLessons = getTransformedLessons(modifiedUnit);
     const parsedLessons = lessonListSchema.parse(unitLessons);
     const parsedUnit = partialSyntheticUnitvariantLessonsSchema.parse(unit);
     const transformedUnit = getTransformedUnit(parsedUnit, parsedLessons);

@@ -1,4 +1,4 @@
-import { syntheticUnitvariantLessonsFixture } from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
 
@@ -27,7 +27,7 @@ describe("lessonListing()", () => {
         ...sdk,
         lessonListing: jest.fn(() =>
           Promise.resolve({
-            unit: [syntheticUnitvariantLessonsFixture()],
+            unit: [syntheticUnitvariantLessonsByKsFixture()],
           }),
         ),
       })({
@@ -38,7 +38,7 @@ describe("lessonListing()", () => {
       expect(lessonListingSchema.parse(res)).toEqual({
         programmeSlug: "programme-slug",
         keyStageSlug: "ks1",
-        keyStageTitle: "Key stage 1",
+        keyStageTitle: "Key Stage 1",
         subjectSlug: "maths",
         subjectTitle: "Maths",
         unitSlug: "unit-slug",
@@ -49,6 +49,9 @@ describe("lessonListing()", () => {
         examBoardTitle: null,
         yearTitle: "Year 1",
         yearSlug: "year-1",
+        pathwaySlug: null,
+        pathwayTitle: null,
+        pathwayDisplayOrder: null,
         lessons: [
           {
             lessonSlug: "lesson-slug",
@@ -68,9 +71,9 @@ describe("lessonListing()", () => {
       });
     });
     test("it returns lessons in the correct order", async () => {
-      const lessonListingFixture2 = syntheticUnitvariantLessonsFixture({
+      const lessonListingFixture2 = syntheticUnitvariantLessonsByKsFixture({
         overrides: {
-          supplementary_data: { unit_order: 2, order_in_unit: 2 },
+          order_in_unit: 2,
           lesson_data: {
             lesson_id: 1,
             lesson_uid: "lesson-uid",
@@ -107,7 +110,10 @@ describe("lessonListing()", () => {
         ...sdk,
         lessonListing: jest.fn(() =>
           Promise.resolve({
-            unit: [lessonListingFixture2, syntheticUnitvariantLessonsFixture()],
+            unit: [
+              lessonListingFixture2,
+              syntheticUnitvariantLessonsByKsFixture(),
+            ],
           }),
         ),
       })({
@@ -150,14 +156,14 @@ describe("lessonListing()", () => {
   describe("transform functions ", () => {
     test("getTransformedUnit returns the correct data", async () => {
       const transformedLessons = getTransformedUnit(
-        syntheticUnitvariantLessonsFixture(),
+        syntheticUnitvariantLessonsByKsFixture(),
         [],
       );
       expect(transformedLessons).toEqual({
         examBoardSlug: null,
         examBoardTitle: null,
         keyStageSlug: "ks1",
-        keyStageTitle: "Key stage 1",
+        keyStageTitle: "Key Stage 1",
         lessons: [],
         programmeSlug: "programme-slug",
         subjectSlug: "maths",
@@ -168,12 +174,15 @@ describe("lessonListing()", () => {
         unitTitle: "unit-title",
         yearTitle: "Year 1",
         yearSlug: "year-1",
+        pathwaySlug: null,
+        pathwayTitle: null,
+        pathwayDisplayOrder: null,
       });
     });
     test("getTransformedUnit returns the correct data for optionality units", () => {
-      const pfs = syntheticUnitvariantLessonsFixture().programme_fields;
+      const pfs = syntheticUnitvariantLessonsByKsFixture().programme_fields;
       const transformedLessons = getTransformedUnit(
-        syntheticUnitvariantLessonsFixture({
+        syntheticUnitvariantLessonsByKsFixture({
           overrides: {
             programme_fields: {
               ...pfs,
@@ -187,7 +196,7 @@ describe("lessonListing()", () => {
         examBoardSlug: null,
         examBoardTitle: null,
         keyStageSlug: "ks1",
-        keyStageTitle: "Key stage 1",
+        keyStageTitle: "Key Stage 1",
         lessons: [],
         programmeSlug: "programme-slug",
         subjectSlug: "maths",
@@ -198,12 +207,15 @@ describe("lessonListing()", () => {
         unitTitle: "optional",
         yearTitle: "Year 1",
         yearSlug: "year-1",
+        pathwaySlug: null,
+        pathwayTitle: null,
+        pathwayDisplayOrder: null,
       });
     });
     test("getTransformedLessons returns the correct data", async () => {
-      const transformedLessons = getTransformedLessons({
-        unit: [syntheticUnitvariantLessonsFixture()],
-      });
+      const transformedLessons = getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture(),
+      ]);
       expect(transformedLessons).toEqual([
         {
           description: "lesson-description",

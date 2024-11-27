@@ -54681,7 +54681,7 @@ export type LessonListingQueryVariables = Exact<{
 }>;
 
 
-export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', unit_slug?: string | null, lesson_data?: any | null, lesson_slug?: string | null, is_legacy?: boolean | null, programme_slug?: string | null, unit_data?: any | null, null_unitvariant?: any | null, programme_fields?: any | null, supplementary_data?: any | null }> };
+export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unit_data?: any | null, programme_slug?: string | null, is_legacy?: boolean | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
 
 export type LessonMediaClipsQueryVariables = Exact<{
   browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp>;
@@ -54713,7 +54713,7 @@ export type ProgrammeListingQueryVariables = Exact<{
 }>;
 
 
-export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', lesson_data?: any | null, programme_fields?: any | null, is_legacy?: boolean | null, programme_slug?: string | null }> };
+export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_slug?: string | null, unit_slug?: string | null, unit_data?: any | null, null_unitvariant_id?: number | null, lesson_data?: any | null, programme_fields?: any | null, is_legacy?: boolean | null, programme_slug?: string | null }> };
 
 export type PupilLessonQueryVariables = Exact<{
   browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_12_0_0_Bool_Exp>;
@@ -55084,18 +55084,20 @@ export const LessonDownloadsDocument = gql`
     `;
 export const LessonListingDocument = gql`
     query lessonListing($programmeSlug: String!, $unitSlug: String!) {
-  unit: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  unit: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
     where: {unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}}
   ) {
-    unit_slug
     lesson_data
     lesson_slug
-    is_legacy
-    programme_slug
-    unit_data
-    null_unitvariant
     programme_fields
-    supplementary_data
+    null_unitvariant_id
+    unit_slug
+    unit_data
+    programme_slug
+    is_legacy
+    actions
+    features
+    order_in_unit
   }
 }
     `;
@@ -55205,10 +55207,14 @@ export const LessonShareDocument = gql`
     `;
 export const ProgrammeListingDocument = gql`
     query programmeListing($keyStageSlug: String, $subjectSlug: String, $isLegacy: Boolean) {
-  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
     where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}, {programme_fields: {_contains: {subject_slug: $subjectSlug}}}, {is_legacy: {_eq: $isLegacy}}]}
     distinct_on: programme_slug
   ) {
+    lesson_slug
+    unit_slug
+    unit_data
+    null_unitvariant_id
     lesson_data
     programme_fields
     is_legacy
