@@ -1,3 +1,10 @@
+# [1.637.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.636.1...v1.637.0) (2024-11-27)
+
+
+### Features
+
+* added statoscope as build tooling ([61fe102](https://github.com/oaknational/Oak-Web-Application/commit/61fe1022b7f42f229a7a3c58602a86476fda29d7))
+
 ## [1.636.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.636.0...v1.636.1) (2024-11-26)
 
 
