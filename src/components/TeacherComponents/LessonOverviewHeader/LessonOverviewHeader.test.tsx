@@ -35,7 +35,10 @@ describe("LessonOverviewHeader", () => {
     const { getAllByTestId } = renderWithTheme(
       <LessonOverviewHeader {...props} />,
     );
-    expect(getAllByTestId("share-all-button")).toHaveLength(2); // mobile and desktop
+
+    const buttons = getAllByTestId("share-all-button");
+
+    expect(buttons).toHaveLength(2); // mobile and desktop
   });
 
   it("does not render the download button when expired && show download all is true", () => {
