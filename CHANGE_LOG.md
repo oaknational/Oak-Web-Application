@@ -1,3 +1,57 @@
+## [1.637.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.637.1...v1.637.2) (2024-11-27)
+
+
+### Bug Fixes
+
+* added year sorting function to sort by grouped units by year/order ([f9a2a16](https://github.com/oaknational/Oak-Web-Application/commit/f9a2a1680499a8092384fdf66fdb1bb918bdf2be))
+
+## [1.637.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.637.0...v1.637.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* removing crypto dependency ([935ff86](https://github.com/oaknational/Oak-Web-Application/commit/935ff86f430ac30b36bb250f6142dbef068f8886))
+* resolve conflicts ([2b86815](https://github.com/oaknational/Oak-Web-Application/commit/2b868153ed9f8e8e3fc08ff2eaf496603084496c))
+
+# [1.637.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.636.1...v1.637.0) (2024-11-27)
+
+
+### Features
+
+* added statoscope as build tooling ([61fe102](https://github.com/oaknational/Oak-Web-Application/commit/61fe1022b7f42f229a7a3c58602a86476fda29d7))
+
+## [1.636.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.636.0...v1.636.1) (2024-11-26)
+
+
+### Bug Fixes
+
+* conditional in curric automate to allow for missing screenshots ([17d888a](https://github.com/oaknational/Oak-Web-Application/commit/17d888a2ef1956883798f45c540ba4db4d82445c))
+
+# [1.636.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.2...v1.636.0) (2024-11-26)
+
+
+### Features
+
+* add back to lesson button for canonical lessons ([ab9f2dc](https://github.com/oaknational/Oak-Web-Application/commit/ab9f2dcc5d646dc1861f36eb07266b531e4af5fd))
+* create mediaClips query ([32ddb17](https://github.com/oaknational/Oak-Web-Application/commit/32ddb1708e314f4492e04d0b3a9c1bb034dd356b))
+* query, schema, fixture and plug into page ([99c2c3c](https://github.com/oaknational/Oak-Web-Application/commit/99c2c3c6f069c404e317e6b0332fffe4215cd8ae))
+
+## [1.635.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.1...v1.635.2) (2024-11-22)
+
+
+### Bug Fixes
+
+* remove old right margin left over from wobbly border visualiser ([ee65f77](https://github.com/oaknational/Oak-Web-Application/commit/ee65f77ab0510ed3200be5d14bcba174b7941320))
+
+## [1.635.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.635.0...v1.635.1) (2024-11-22)
+
+
+### Bug Fixes
+
+* renaming cookie functions which now use local storage ([45baa16](https://github.com/oaknational/Oak-Web-Application/commit/45baa16015e141f55682602a19844ea70cdd3af1))
+* switch from cookies to local storage ([c3b8419](https://github.com/oaknational/Oak-Web-Application/commit/c3b8419e233127bb78474b5764e2a9153a9fd85a))
+* type errors ([4208e7f](https://github.com/oaknational/Oak-Web-Application/commit/4208e7f97a2e67bf4a5f6296872ec8ce50c20a2a))
+
 # [1.635.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.634.0...v1.635.0) (2024-11-22)
 
 
