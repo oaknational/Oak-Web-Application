@@ -1,13 +1,10 @@
 import { cdata, safeXml, xmlElementToJson } from "../xml";
 import { CombinedCurriculumData } from "..";
 import { appendBodyElements, insertNumbering, JSZipCached } from "../docx";
+import { createThreadOptions, createUnitsListingByYear } from "../tab-helpers";
 
 import { threadUnitByYear } from "./helper";
 
-import {
-  createThreadOptions,
-  createUnitsListingByYear,
-} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { sortYears } from "@/utils/curriculum/sorting";
 import { Unit } from "@/utils/curriculum/types";
