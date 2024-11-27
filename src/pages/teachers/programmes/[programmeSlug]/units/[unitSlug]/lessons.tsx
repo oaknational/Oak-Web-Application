@@ -40,7 +40,11 @@ import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 import { isLessonListItem } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import {
+  CurriculumTrackingProps,
+  useShareExperiment,
+} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -75,11 +79,28 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     subjectSlug,
   } = curriculumData;
 
-  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
     unitSlug: unitSlug ?? undefined,
     programmeSlug: programmeSlug ?? undefined,
+    source: "lesson-listing",
+    curriculumTrackingProps: {
+      lessonName: null,
+      unitName: unitTitle,
+      subjectSlug,
+      subjectTitle,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+    },
   });
-  console.log(shareIdRef, shareIdKeyRef);
+
+  const teacherShareButton = shareExperimentFlag ? (
+    <TeacherShareButton
+      variant="primary"
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+      label="Share unit with colleague"
+    />
+  ) : null;
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
   const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
@@ -186,6 +207,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           isNew={isNew}
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
+          shareButton={teacherShareButton}
         />
         <MaxWidth $ph={16}>
           <OakGrid>

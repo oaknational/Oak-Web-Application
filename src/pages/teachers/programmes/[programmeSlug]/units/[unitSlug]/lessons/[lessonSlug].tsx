@@ -18,7 +18,11 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import {
+  useShareExperiment,
+  CurriculumTrackingProps,
+} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -36,14 +40,34 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     lessonSlug,
     unitSlug,
     programmeSlug,
+    unitTitle,
+    subjectSlug,
+    keyStageTitle,
   } = curriculumData;
 
-  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
     lessonSlug,
     unitSlug,
     programmeSlug,
+    source: "lesson-browse",
+    curriculumTrackingProps: {
+      lessonName: lessonTitle,
+      unitName: unitTitle,
+      subjectSlug,
+      subjectTitle,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+    },
   });
-  console.log(shareIdRef, shareIdKeyRef);
+
+  const teacherShareButton = shareExperimentFlag ? (
+    <TeacherShareButton
+      label="Share resources with colleague"
+      variant={"secondary"}
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+    />
+  ) : null;
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
@@ -71,6 +95,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             ...curriculumData,
             isCanonical: false,
             isSpecialist: false,
+            teacherShareButton: teacherShareButton,
           }}
         />
       </OakThemeProvider>

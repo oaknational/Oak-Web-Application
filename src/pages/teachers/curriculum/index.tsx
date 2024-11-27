@@ -18,7 +18,6 @@ import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023, {
   SubjectPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
-import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 import Cover from "@/components/SharedComponents/Cover/Cover";
@@ -32,6 +31,7 @@ import { serializeDate } from "@/utils/serializeDate";
 import PostListItem from "@/components/SharedComponents/PostListItem";
 import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
+import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 
 export type CurriculumHomePageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
@@ -203,9 +203,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
   );
 };
 
-export const filterValidSubjectPhaseOptions = (
-  subjects: SubjectPhaseOption[],
-) => {
+const filterValidSubjectPhaseOptions = (subjects: SubjectPhaseOption[]) => {
   subjects.forEach(({ ks4_options }) => {
     if (
       ks4_options &&
@@ -222,7 +220,7 @@ export const filterValidSubjectPhaseOptions = (
   return subjects;
 };
 
-export const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
+const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
     const subjects = await curriculumApi2023.subjectPhaseOptions({
       cycle: "2",

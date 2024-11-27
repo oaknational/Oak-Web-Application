@@ -57,12 +57,13 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 const render = renderWithProviders();
 
-describe("pages/teachers/lessons", () => {
+describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]", () => {
   beforeEach(() => {
     setUseUserReturn({
       ...mockLoggedIn,
       user: mockUserWithDownloadAccess,
     });
+    console.error = jest.fn();
   });
   it("Renders title from the props", async () => {
     render(<LessonOverviewPage {...props} />);
@@ -165,7 +166,7 @@ describe("pages/teachers/lessons", () => {
     const shareLabel = queryAllByText("Share activities with pupils");
 
     if (shareButton[0] !== undefined && shareButton.length > 0) {
-      expect(shareButton[0]).toHaveAttribute("disabled");
+      expect(shareButton[0]).toBeDisabled();
       expect(shareLabel[0]).toBeInTheDocument();
     } else {
       throw new Error("Share all button not found");
