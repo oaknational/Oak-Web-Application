@@ -26,7 +26,6 @@ import {
   SubjectPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/SharedComponents/Icon";
-import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
@@ -38,6 +37,7 @@ import { Hr } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 const DEFAULT_KEYSTAGES = [
   { slug: "ks1" },
