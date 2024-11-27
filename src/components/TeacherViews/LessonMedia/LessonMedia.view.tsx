@@ -2,7 +2,8 @@ import {
   OakTertiaryButton,
   OakBox,
   OakMaxWidth,
- OakP } from "@oaknational/oak-components";
+  OakP,
+} from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
@@ -49,7 +50,7 @@ export function LessonMedia(props: LessonMediaProps) {
   const { programmeSlug, unitSlug } = commonPathway;
 
   return (
-    <OakMaxWidth $pb={"inner-padding-xl8"}>
+    <OakMaxWidth $pb={"inner-padding-xl8"} $ph={"inner-padding-s"}>
       <OakBox $mb={"space-between-m2"} $mt={"space-between-m"}>
         <Breadcrumbs
           breadcrumbs={[

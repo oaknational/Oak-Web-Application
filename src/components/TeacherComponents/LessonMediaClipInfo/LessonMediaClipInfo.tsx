@@ -51,7 +51,6 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
       {videoTranscript && (
         <OakVideoTranscript
           id={"video-transcript"}
-          data-testid={"video-transcript"}
           signLanguageControl={
             signLanguageButtonEnabled && (
               <OakSignLanguageButton onClick={onSignLanguageButtonClick} />
