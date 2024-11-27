@@ -101,3 +101,4 @@ public/mathjax/**/*
 yalc.lock
 
 /scripts/dev/curriculum/output
+/reports
