@@ -14,7 +14,6 @@ import LessonOverviewTeacherTips, {
   LessonOverviewTeacherTipProps,
 } from "@/components/TeacherComponents/LessonOverviewTeacherTips";
 import LessonOverviewHelper from "@/components/TeacherComponents/LessonOverviewHelper";
-import Box from "@/components/SharedComponents/Box";
 import {
   ContentGuidance,
   Equipment,
@@ -75,11 +74,11 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
             </OakBox>
           )}
           {commonMisconceptions && (
-            <Box>
+            <OakBox>
               <LessonOverviewCommonMisconceptions
                 commonMisconceptions={commonMisconceptions}
               />
-            </Box>
+            </OakBox>
           )}
         </OakFlex>
         <OakFlex
