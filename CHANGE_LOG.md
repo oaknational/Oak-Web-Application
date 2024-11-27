@@ -1,3 +1,27 @@
+# [1.639.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.638.0...v1.639.0) (2024-11-27)
+
+
+### Bug Fixes
+
+* broken tests ([d06ccf7](https://github.com/oaknational/Oak-Web-Application/commit/d06ccf70c559632afbbaa0a2cf6f66bcb269aef4))
+* forgot to return element in component ([a0e22e6](https://github.com/oaknational/Oak-Web-Application/commit/a0e22e6a74f195fd146c5202b8fbe39c8a802510))
+* lint error ([2b06fef](https://github.com/oaknational/Oak-Web-Application/commit/2b06fef5ab32a7f38fb6714d9ff3b6cecc399e13))
+* tests ([913558f](https://github.com/oaknational/Oak-Web-Application/commit/913558f0418999af5cef2ababd26844ab8d61a06))
+
+
+### Features
+
+* styling of share buttons ([1cc8e4d](https://github.com/oaknational/Oak-Web-Application/commit/1cc8e4db04404add3736af42191a23f7b1cd11bc))
+
+# [1.638.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.637.3...v1.638.0) (2024-11-27)
+
+
+### Features
+
+* mock lesson media clips data ([225cd1e](https://github.com/oaknational/Oak-Web-Application/commit/225cd1ee8184c945d9e51d2444201356d859952c))
+
+## [1.637.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.637.2...v1.637.3) (2024-11-27)
+
 ## [1.637.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.637.1...v1.637.2) (2024-11-27)
 
 

@@ -94,7 +94,12 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   });
 
   const teacherShareButton = shareExperimentFlag ? (
-    <TeacherShareButton shareUrl={shareUrl} shareActivated={shareActivated} />
+    <TeacherShareButton
+      variant="primary"
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+      label="Share unit with colleague"
+    />
   ) : null;
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);

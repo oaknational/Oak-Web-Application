@@ -2,11 +2,11 @@ import { LessonMedia } from "./LessonMedia.view";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import lessonMediaFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonMedia.fixture";
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 const render = renderWithProviders();
 
-const lesson = lessonMediaFixture();
+const lesson = lessonMediaClipsFixtures();
 
 describe("LessonMedia view", () => {
   it("renders 'Back to lesson' button with correct link", () => {

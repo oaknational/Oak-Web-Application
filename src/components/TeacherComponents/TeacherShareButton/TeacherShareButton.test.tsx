@@ -7,7 +7,11 @@ describe("TeacherShareButton", () => {
   it("renders", () => {
     render(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <TeacherShareButton shareUrl={"test"} />
+        <TeacherShareButton
+          shareUrl={"test"}
+          variant="primary"
+          label="share me"
+        />
       </OakThemeProvider>,
     );
     expect(screen.getByRole("button")).toBeInTheDocument();
@@ -24,7 +28,11 @@ describe("TeacherShareButton", () => {
 
     render(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <TeacherShareButton shareUrl={"test"} />
+        <TeacherShareButton
+          shareUrl={"test"}
+          variant="primary"
+          label="share me"
+        />
       </OakThemeProvider>,
     );
 
@@ -44,6 +52,8 @@ describe("TeacherShareButton", () => {
         <TeacherShareButton
           shareUrl={"test"}
           shareActivated={shareActivatedMock}
+          variant="primary"
+          label="share me"
         />
       </OakThemeProvider>,
     );
