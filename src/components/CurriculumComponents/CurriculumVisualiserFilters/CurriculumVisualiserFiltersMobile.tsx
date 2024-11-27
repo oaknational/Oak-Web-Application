@@ -204,7 +204,6 @@ function StickyBit({
                       <StyledButton
                         data-testid="year-group-filter-button"
                         aria-pressed={isSelectedYear(yearOption)}
-                        aria-label={`Year ${yearOption}`}
                         onClick={() => {
                           onSelectYear(yearOption);
                           trackSelectYear(yearOption);
