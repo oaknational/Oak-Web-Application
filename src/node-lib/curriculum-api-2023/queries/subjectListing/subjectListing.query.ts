@@ -1,4 +1,6 @@
 import { Sdk } from "../../sdk";
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
+import { SubjectListingQuery } from "../../generated/sdk";
 
 import subjectListingSchema, {
   subjectLisitingRawSchema,
@@ -6,8 +8,6 @@ import subjectListingSchema, {
 import { constructSubjectsFromUnitData } from "./constructSubjectsFromUnitData";
 
 import OakError from "@/errors/OakError";
-import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
-import { SubjectListingQuery } from "../../generated/sdk";
 
 const subjectListingQuery =
   (sdk: Sdk) => async (args: { keyStageSlug: string }) => {
@@ -28,8 +28,8 @@ const subjectListingQuery =
     }
 
     const parsedModified = subjectLisitingRawSchema.parse({
-      subjectLessons: modifiedSubjectUnits,
-      key_stages: res.key_stages,
+      subjectUnits: modifiedSubjectUnits,
+      key_stages,
     });
 
     const processedUnits = constructSubjectsFromUnitData(
