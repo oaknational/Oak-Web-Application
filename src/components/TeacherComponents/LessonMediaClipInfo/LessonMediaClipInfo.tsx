@@ -1,7 +1,12 @@
-import { FC } from "react";
-
-import { OakBox, OakFlex, OakHeading, OakTypography } from "@oaknational/oak-components";
-import TranscriptToggle from "@/components/TeacherComponents/TranscriptViewer/TranscriptToggle";
+import { FC, ReactNode } from "react";
+import {
+  OakBox,
+  OakHeading,
+  OakTypography,
+  OakVideoTranscript,
+  OakSignLanguageButton,
+  OakCopyLinkButton,
+} from "@oaknational/oak-components";
 
 /**
  * This is component with extra information about the video
@@ -13,18 +18,52 @@ export type LessonMediaClipInfoProps = {
   keyStageSlug: string;
   yearSlug: string;
   subjectSlug: string;
+  videoTranscript?: ReactNode;
+  signLanguageButtonEnabled?: boolean;
+  copyLinkButtonEnabled?: boolean;
+  onSignLanguageButtonClick?: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => void;
+  copyLinkHref?: string;
 };
 
-const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({ clipTitle, keyStageSlug, yearSlug, subjectSlug }: LessonMediaClipInfoProps) => {
+export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
+  clipTitle,
+  keyStageSlug,
+  yearSlug,
+  subjectSlug,
+  videoTranscript,
+  signLanguageButtonEnabled = false,
+  onSignLanguageButtonClick = () => {},
+  copyLinkButtonEnabled = false,
+  copyLinkHref,
+}: LessonMediaClipInfoProps) => {
   return (
     <OakBox>
-      <OakHeading tag="h5" $font={"heading-5"} $mb="space-between-s">{clipTitle}</OakHeading>
-      <OakTypography $font={"heading-light-7"} $mb="space-between-m">{`${keyStageSlug} • ${yearSlug} • ${subjectSlug}`}</OakTypography>
-      <OakFlex>
-        <TranscriptToggle transcriptSentences={[""]} />
-      </OakFlex>
+      <OakHeading tag="h5" $font={"heading-5"} $mb="space-between-xs">
+        {clipTitle}
+      </OakHeading>
+      <OakTypography
+        $font={"heading-light-7"}
+        $color={"grey60"}
+        $mb="space-between-m"
+      >{`${keyStageSlug} • ${yearSlug} • ${subjectSlug}`}</OakTypography>
+      {videoTranscript && (
+        <OakVideoTranscript
+          id={"video-transcript"}
+          data-testid={"video-transcript"}
+          signLanguageControl={
+            signLanguageButtonEnabled && (
+              <OakSignLanguageButton onClick={onSignLanguageButtonClick} />
+            )
+          }
+          copyLinkControl={
+            copyLinkButtonEnabled && <OakCopyLinkButton href={copyLinkHref} />
+          }
+        >
+          <>{videoTranscript}</>
+        </OakVideoTranscript>
+      )}
     </OakBox>
   );
 };
-
-export default LessonMediaClipInfo;

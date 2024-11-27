@@ -1,2 +1,2 @@
-export { default } from "./LessonMediaClipInfo";
+export { LessonMediaClipInfo } from "./LessonMediaClipInfo";
 export type { LessonMediaClipInfoProps } from "./LessonMediaClipInfo";

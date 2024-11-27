@@ -1,36 +1,33 @@
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
+import { OakP } from "@oaknational/oak-components";
 
-import { LessonMediaClipInfoProps } from "./LessonMediaClipInfo";
-
-import Component from ".";
-
-import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
-
-const meta: Meta<typeof Component> = {
-  decorators: [AnalyticsDecorator],
-  component: Component,
-  argTypes: {
-    clipTitle: { control: "text" }
-  },
-  parameters: {
-    controls: {
-      include: ["clipTitle"],
-    },
-  },
-};
+import {
+  LessonMediaClipInfo,
+  LessonMediaClipInfoProps,
+} from "./LessonMediaClipInfo";
 
 const props: LessonMediaClipInfoProps = {
-  clipTitle: "How can we train muscular endurance?",
+  clipTitle: "How it is done",
   keyStageSlug: "KS3",
-  yearSlug: "Year 7",
-  subjectSlug: "Physical education",
+  subjectSlug: "Maths",
+  yearSlug: "Year 2",
+  videoTranscript: (
+    <OakP>
+      Hi, I'm Rebecca, your computing teacher for the collaborating online
+      respectfully unit.
+    </OakP>
+  ),
+};
+
+const meta: Meta<typeof LessonMediaClipInfo> = {
+  component: LessonMediaClipInfo,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Component>;
+type Story = StoryObj<typeof LessonMediaClipInfo>;
 
 export const Standard: Story = {
-  render: ({ ...args }) => <Component {...args} />,
+  render: ({ ...args }) => <LessonMediaClipInfo {...args} />,
   args: { ...props },
-}
+};
