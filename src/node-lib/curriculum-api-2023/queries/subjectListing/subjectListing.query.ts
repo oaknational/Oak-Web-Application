@@ -3,23 +3,40 @@ import { Sdk } from "../../sdk";
 import subjectListingSchema, {
   subjectLisitingRawSchema,
 } from "./subjectListing.schema";
-import { constructSubjectsFromLessonData } from "./constructSubjectsFromLessonData";
+import { constructSubjectsFromUnitData } from "./constructSubjectsFromUnitData";
 
 import OakError from "@/errors/OakError";
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
+import { SubjectListingQuery } from "../../generated/sdk";
 
 const subjectListingQuery =
   (sdk: Sdk) => async (args: { keyStageSlug: string }) => {
     const res = await sdk.subjectListing(args);
 
-    const { subjectLessons, key_stages } = subjectLisitingRawSchema.parse(res);
+    const { subjectUnits, key_stages } = subjectLisitingRawSchema.parse(res);
 
-    if (!subjectLessons || subjectLessons.length === 0) {
+    const modifiedSubjectUnits = applyGenericOverridesAndExceptions<
+      SubjectListingQuery["subjectUnits"][number]
+    >({
+      journey: "pupil",
+      queryName: "pupilSubjectListingQuery",
+      browseData: subjectUnits,
+    });
+
+    if (modifiedSubjectUnits.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const processedLessons = constructSubjectsFromLessonData(subjectLessons);
+    const parsedModified = subjectLisitingRawSchema.parse({
+      subjectLessons: modifiedSubjectUnits,
+      key_stages: res.key_stages,
+    });
 
-    const keyStages = key_stages.map((keyStage) => {
+    const processedUnits = constructSubjectsFromUnitData(
+      parsedModified.subjectUnits,
+    );
+
+    const keyStages = parsedModified.key_stages.map((keyStage) => {
       const keyStageNew = {
         slug: keyStage.slug,
         title: keyStage.description,
@@ -30,9 +47,11 @@ const subjectListingQuery =
     });
 
     const returnData = {
-      subjects: processedLessons,
-      keyStageSlug: subjectLessons[0]?.programme_fields.keystage_slug,
-      keyStageTitle: subjectLessons[0]?.programme_fields.keystage_description,
+      subjects: processedUnits,
+      keyStageSlug:
+        parsedModified.subjectUnits[0]?.programme_fields.keystage_slug,
+      keyStageTitle:
+        parsedModified.subjectUnits[0]?.programme_fields.keystage_description,
       keyStages: keyStages,
     };
 
