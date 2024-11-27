@@ -75,6 +75,15 @@ Unit tests live next to the code they are testing wherever possible. Next does n
 - `npm run test:coverage` will run tests using `--watch` with coverage statistics enabled.
 - `npm run test:ci` will run the tests once and create a coverage report.
 
+### Reporting
+Once you've run a build with `npm run build` you can see a report in the `./reports/` directory.
+
+You can also run the following to open the report in your browser.
+
+```bash
+npm run report:open
+```
+
 ### End-to-End Browser Tests
 
 We use WebdriverIO.
