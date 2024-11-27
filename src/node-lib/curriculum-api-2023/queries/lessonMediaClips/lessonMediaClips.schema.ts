@@ -30,37 +30,43 @@ export const canonicalLessonMediaClipsSchema =
     pathways: z.array(lessonPathwaySchema),
   });
 
-const mediaObjectSchema = z.object({
-  url: z.string().url(),
-  resourceType: z.string(),
-  displayName: z.string(),
-  usageRestrictions: z.string().optional(),
-  alt: z.string().optional(),
-  attributionRequired: z.string(),
-});
+const mediaObjectSchema = z
+  .object({
+    url: z.string().url(),
+    resourceType: z.string(),
+    displayName: z.string(),
+    usageRestrictions: z.string().optional(),
+    alt: z.string().optional(),
+    attributionRequired: z.string(),
+  })
+  .nullable();
 
-const videoObjectSchema = z.object({
-  url: z.string().url(),
-  muxPlaybackId: z.string().optional(),
-  videoWithSignLanguageMuxPlaybackId: z.string().optional(),
-  resourceType: z.string(),
-  displayName: z.string(),
-  usageRestrictions: z.string().optional(),
-  attributionRequired: z.string(),
-  duration: z.number(),
-});
+const videoObjectSchema = z
+  .object({
+    url: z.string().url(),
+    muxPlaybackId: z.string(),
+    videoWithSignLanguageMuxPlaybackId: z.string().optional(),
+    transcriptionSentences: z.array(z.string()).optional(),
+    resourceType: z.string(),
+    displayName: z.string(),
+    usageRestrictions: z.string().optional(),
+    attributionRequired: z.string(),
+    duration: z.number(),
+  })
+  .nullable();
 
-const mediaItemSchema = z.object({
+const mediaClipsCycleSchema = z.object({
   order: z.number().min(1),
-  mediaId: z.number(),
-  customTitle: z.string().optional(),
+  mediaId: z.number().nullish(),
+  slug: z.string(),
+  mediaClipTitle: z.string(),
   mediaObject: mediaObjectSchema,
   mediaType: z.enum(["audio", "video"]),
-  videoId: z.number(),
+  videoId: z.number().nullish(),
   videoObject: videoObjectSchema,
 });
 
-const cycleSchema = z.array(mediaItemSchema);
+const cycleSchema = z.array(mediaClipsCycleSchema);
 
 const mediaClipsSchema = z.object({
   intro: cycleSchema,
