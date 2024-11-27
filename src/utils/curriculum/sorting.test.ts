@@ -1,5 +1,5 @@
-import { sortChildSubjects, sortYears } from "./sorting";
-import { Subject } from "./types";
+import { sortChildSubjects, sortUnits, sortYears } from "./sorting";
+import { Subject, Unit } from "./types";
 
 describe("sortYears", () => {
   it("basic numbers", () => {
@@ -61,4 +61,38 @@ test("sortChildSubjects", () => {
       subject_slug: "physics",
     },
   ]);
+});
+
+describe("sortUnits", () => {
+  it("should sort normal units by order", () => {
+    const testUnits = [
+      { slug: "b", order: 2, year: "1" },
+      { slug: "a", order: 1, year: "1" },
+      { slug: "d", order: 4, year: "1" },
+      { slug: "c", order: 3, year: "1" },
+    ] as Unit[];
+    const output = testUnits.toSorted(sortUnits);
+    expect(output).toEqual([
+      { slug: "a", order: 1, year: "1" },
+      { slug: "b", order: 2, year: "1" },
+      { slug: "c", order: 3, year: "1" },
+      { slug: "d", order: 4, year: "1" },
+    ]);
+  });
+
+  it("should sort grouped units by year/order", () => {
+    const testUnits = [
+      { slug: "c", order: 2, year: "2" },
+      { slug: "b", order: 1, year: "2" },
+      { slug: "a", order: 4, year: "1" },
+      { slug: "d", order: 3, year: "2" },
+    ] as Unit[];
+    const output = testUnits.toSorted(sortUnits);
+    expect(output).toEqual([
+      { slug: "a", order: 4, year: "1" },
+      { slug: "b", order: 1, year: "2" },
+      { slug: "c", order: 2, year: "2" },
+      { slug: "d", order: 3, year: "2" },
+    ]);
+  });
 });

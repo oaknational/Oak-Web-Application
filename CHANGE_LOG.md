@@ -1,3 +1,27 @@
+# [1.638.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.637.3...v1.638.0) (2024-11-27)
+
+
+### Features
+
+* mock lesson media clips data ([225cd1e](https://github.com/oaknational/Oak-Web-Application/commit/225cd1ee8184c945d9e51d2444201356d859952c))
+
+## [1.637.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.637.2...v1.637.3) (2024-11-27)
+
+## [1.637.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.637.1...v1.637.2) (2024-11-27)
+
+
+### Bug Fixes
+
+* added year sorting function to sort by grouped units by year/order ([f9a2a16](https://github.com/oaknational/Oak-Web-Application/commit/f9a2a1680499a8092384fdf66fdb1bb918bdf2be))
+
+## [1.637.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.637.0...v1.637.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* removing crypto dependency ([935ff86](https://github.com/oaknational/Oak-Web-Application/commit/935ff86f430ac30b36bb250f6142dbef068f8886))
+* resolve conflicts ([2b86815](https://github.com/oaknational/Oak-Web-Application/commit/2b868153ed9f8e8e3fc08ff2eaf496603084496c))
+
 # [1.637.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.636.1...v1.637.0) (2024-11-27)
 
 
