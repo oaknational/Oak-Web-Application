@@ -61,6 +61,7 @@ export const rawQuerySchema = syntheticUnitvariantsWithLessonIdsByKsSchema
     null_unitvariant_id: true,
     programme_slug_by_year: true,
     base_slug: true,
+    lesson_ids: true,
   })
   .array();
 
