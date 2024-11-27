@@ -11,13 +11,13 @@ import {
   LessonMediaClipsPage,
 } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
-import lessonMediaFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonMedia.fixture";
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 const render = renderWithProviders();
 
 jest.mock("posthog-js/react");
 
-const lessonFixtureData = lessonMediaFixture();
+const lessonFixtureData = lessonMediaClipsFixtures();
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
