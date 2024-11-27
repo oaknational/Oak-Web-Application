@@ -7,7 +7,6 @@ import {
   OakMediaClipList,
 } from "@oaknational/oak-components";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
-import { useSignedThumbnailToken } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
@@ -19,6 +18,9 @@ import {
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
+import type { MediaClipsList, ConstructedMediaClip } from "@/components/TeacherComponents/types/mediaClip.types";
+import { useState } from "react";
+import { constructMediaClipList } from "@/components/TeacherComponents/helpers/lessonHelpers/mediaClips.helpers";
 
 type BaseLessonMedia = {
   lessonTitle: string;
@@ -26,6 +28,7 @@ type BaseLessonMedia = {
   keyStageTitle: string;
   subjectTitle: string;
   yearTitle: string;
+  mediaClips: MediaClipsList;
 };
 
 type CanonicalLesson = BaseLessonMedia & {
@@ -54,54 +57,39 @@ export function LessonMedia(props: LessonMediaProps) {
 
   const { programmeSlug, unitSlug } = commonPathway;
 
-  const listOfAllClips = [];
+  const listOfAllClips: ConstructedMediaClip[] = constructMediaClipList(mediaClips);
+  const [currentClip, setCurrentClip] = useState(listOfAllClips[0]);
 
-  Object.keys(mediaClips).forEach(learningCycle => {
-    mediaClips[learningCycle].forEach((mediaClip) => {
-      let item;
-      if (mediaClip.mediaType === "video") {
-        const { videoObject } = mediaClip;
-
-        const thumbnailToken = useSignedThumbnailToken({
-          playbackId: videoObject.muxPlaybackId,
-          playbackPolicy: "signed",
-          isLegacy: false,
-        });
-
-        item = ({
-          thumbnailImage: `https://image.mux.com/${videoObject.muxPlaybackId}/thumbnail.{format}?token=${thumbnailToken}`,
-          muxPlaybackId: videoObject.muxPlaybackId,
-          timeCode: videoObject.duration,
-          clipName: videoObject.displayName,
-          learningCycle: "learning cycle title here",
-          muxPlayingState: "standard",
-          onClick: () => {},
-          imageAltText: "",
-          isAudioClip: false,
-          element: "button",
-        })
-      } else if (mediaClip.mediaType === "audio") {
-        const { mediaObject } = mediaClip;
+  const videoPlayer = (
+    currentClip &&
+    <VideoPlayer
+      playbackId={currentClip.muxPlaybackId}
+      playbackPolicy={"signed"}
+      title={""} // todo
+      location={"lesson"}
+      isLegacy={false}
+    />
+  );
   
-        item = ({
-          muxPlaybackId: mediaObject.muxPlaybackId,
-          timeCode: mediaObject.duration,
-          clipName: mediaObject.displayName,
-          learningCycle: "learning cycle title here",
-          muxPlayingState: "standard",
-          onClick: () => {},
-          imageAltText: "",
-          isAudioClip: true,
-          element: "button",
-        })
-      }
-      listOfAllClips.push(item);
-    });  
+  // media clip list component 
+  const mediaClipList = (
+    <OakMediaClipList 
+      lessonTitle={lessonTitle}
+      mediaClipList={listOfAllClips}
+    />
+  );
 
-
-  });
-
-  console.log("listOfAllClips", listOfAllClips)
+  // media clip info component 
+  const lessonMediaClipInfo = (
+    (currentClip && <LessonMediaClipInfo
+      clipTitle={currentClip.clipName}
+      keyStageTitle={keyStageTitle}
+      yearTitle={yearTitle}
+      subjectTitle={subjectTitle}
+      videoTranscript={<OakP>[video transcript here]</OakP>}
+      copyLinkButtonEnabled={true}
+    />)
+  );
 
   return (
     <OakMaxWidth $pb={"inner-padding-xl8"} $ph={"inner-padding-s"}>
@@ -156,31 +144,33 @@ export function LessonMedia(props: LessonMediaProps) {
         )}
       </OakBox>
 
-      <OakFlex $flexDirection={"column"} $gap={"space-between-m2"}>
-        <VideoPlayer
-          playbackId={listOfAllClips[0].muxPlaybackId}
-          playbackPolicy={"signed"}
-          title={""}
-          location={"lesson"}
-          isLegacy={false}
-        />
+      {/* desktop layout */}
+      {listOfAllClips.length > 0 && (
+        <OakBox $display={["none", "none", "block"]}>
+          <OakFlex $flexDirection={"row"} $height={"all-spacing-21"} $mb={"space-between-m"}>
+            <OakFlex $flexGrow={1} $alignItems={"center"} $background={"black"} $overflow={"hidden"}>
+              {videoPlayer}
+            </OakFlex>
+            <OakFlex $maxWidth={"all-spacing-20"}>
+              {mediaClipList}
+            </OakFlex>
+          </OakFlex>
 
-        <LessonMediaClipInfo
-          clipTitle="Clip title"
-          keyStageTitle={keyStageTitle}
-          yearTitle={yearTitle}
-          subjectTitle={subjectTitle}
-          videoTranscript={<OakP>video transcript here</OakP>}
-          copyLinkButtonEnabled={true}
-          copyLinkHref="/hey"
-        />
-
-        <OakMediaClipList 
-          lessonTitle={lessonTitle}
-          mediaClipList={listOfAllClips}
-        />
+          {lessonMediaClipInfo}
+        </OakBox>
+      )}
       
-      </OakFlex>
+      {/* mobile layout */}
+      {listOfAllClips.length > 0 && (
+        <OakBox $display={["block", "block", "none"]}>
+          <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
+            {videoPlayer}
+            {lessonMediaClipInfo}
+            {mediaClipList}
+          </OakFlex>
+        </OakBox>
+      )}
+
     </OakMaxWidth>
   );
 }
