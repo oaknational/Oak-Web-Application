@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
-import { OakFlex, OakSmallPrimaryButton } from "@oaknational/oak-components";
+import { OakSmallPrimaryButton } from "@oaknational/oak-components";
 
 import { LessonOverviewHeaderProps as LessonOverviewHeaderDownloadAllButtonProps } from "@/components/TeacherComponents/LessonOverviewHeader";
 import { resolveOakHref } from "@/common-lib/urls";
