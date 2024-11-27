@@ -116,7 +116,7 @@ export function renderComparison(
   before: Comparison | null,
   after: Comparison | null,
 ) {
-  if (!before || !after) {
+  if (!before && !after) {
     throw new Error("Missing data, both comparison objects are empty");
   }
   const slug = before?.slug ?? after?.slug;

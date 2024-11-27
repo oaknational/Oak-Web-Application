@@ -9,7 +9,7 @@ import { zipToSnapshotObject } from "./helper";
 jest.mock("@/pages-helpers/curriculum/docx/builder/helper", () => ({
   __esModule: true,
   ...jest.requireActual("@/pages-helpers/curriculum/docx/builder/helper"),
-  generateOakIconURL: jest.fn(() =>
+  generateIconURL: jest.fn(() =>
     join(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/icon.png",

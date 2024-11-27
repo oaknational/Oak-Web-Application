@@ -574,6 +574,13 @@ jest.mock("@/pages/teachers/curriculum/index", () => ({
   fetchSubjectPhasePickerData: jest.fn(),
 }));
 
+jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+  __esModule: true,
+  default: () => ({
+    isMobile: false,
+  }),
+}));
+
 const curriculumUnitsFormattedData = formatCurriculumUnitsData(
   curriculumUnitsTabFixture(),
 );
