@@ -52,7 +52,12 @@ export const LessonOverviewHeaderShareAllButton: FC<
   })();
 
   if (!isShareable || !href) {
-    <OakSmallSecondaryButton iconName="arrow-right" isTrailingIcon disabled>
+    <OakSmallSecondaryButton
+      iconName="arrow-right"
+      isTrailingIcon
+      disabled
+      data-testid="share-all-button"
+    >
       Share activities with pupils
     </OakSmallSecondaryButton>;
   }
@@ -64,6 +69,7 @@ export const LessonOverviewHeaderShareAllButton: FC<
       iconName="arrow-right"
       isTrailingIcon
       onClick={onClickShareAll}
+      data-testid="share-all-button"
     >
       Share activities with pupils
     </OakSmallSecondaryButton>

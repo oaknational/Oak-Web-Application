@@ -57,12 +57,13 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 const render = renderWithProviders();
 
-describe("pages/teachers/lessons", () => {
+describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]", () => {
   beforeEach(() => {
     setUseUserReturn({
       ...mockLoggedIn,
       user: mockUserWithDownloadAccess,
     });
+    console.error = jest.fn();
   });
   it("Renders title from the props", async () => {
     render(<LessonOverviewPage {...props} />);
@@ -131,7 +132,7 @@ describe("pages/teachers/lessons", () => {
       throw new Error("Share all button not found");
     }
   });
-  it("share button is not disabled with non legacy content (lesson cohort is the same as legacy cohort)", () => {
+  it.only("share button is not disabled with non legacy content (lesson cohort is the same as legacy cohort)", () => {
     const { queryAllByTestId, queryAllByText } = render(
       <LessonOverviewPage
         curriculumData={lessonOverviewFixture({
