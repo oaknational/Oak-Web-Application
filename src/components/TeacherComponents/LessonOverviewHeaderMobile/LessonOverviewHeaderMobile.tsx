@@ -70,8 +70,8 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
         </OakBox>
       </OakBox>
       <LessonOverviewHeaderDownloadAllButton {...props} />
-      {teacherShareButton}
       {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
+      {teacherShareButton}
     </OakFlex>
   );
 };

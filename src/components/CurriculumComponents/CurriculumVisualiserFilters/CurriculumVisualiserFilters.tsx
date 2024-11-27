@@ -2,11 +2,11 @@ import { OakBox } from "@oaknational/oak-components";
 
 import CurriculumVisualiserFiltersDesktop from "./CurriculumVisualiserFiltersDesktop";
 
+import { Thread, YearSelection } from "@/utils/curriculum/types";
 import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
-} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import { Thread, YearSelection } from "@/utils/curriculum/types";
+} from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 export type CurriculumVisualiserFiltersProps = {
   selectedThread: Thread["slug"] | null;
