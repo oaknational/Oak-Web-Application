@@ -83,7 +83,6 @@ export const getStaticProps: GetStaticProps<
         await curriculumApi2023.lessonDownloads<LessonDownloadsCanonical>({
           lessonSlug,
         });
-
       if (!curriculumData) {
         return {
           notFound: true,
