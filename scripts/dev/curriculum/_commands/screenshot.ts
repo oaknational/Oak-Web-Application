@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from "fs/promises";
 import { relative, join } from "path";
 
-import { uniq } from "lodash";
+import uniq from "lodash/uniq";
 import { Page, launch } from "puppeteer";
 import slugify from "slugify";
 

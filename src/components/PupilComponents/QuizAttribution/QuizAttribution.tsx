@@ -1,5 +1,6 @@
 import { OakP, OakSpan } from "@oaknational/oak-components";
-import { isNull, negate } from "lodash";
+import isNull from "lodash/isNull";
+import negate from "lodash/negate";
 
 import { isImage } from "../QuizUtils/stemUtils";
 

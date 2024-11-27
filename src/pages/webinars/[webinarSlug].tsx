@@ -5,7 +5,7 @@ import {
   NextPage,
 } from "next";
 import { useEffect } from "react";
-import { uniqBy } from "lodash/fp";
+import uniqBy from "lodash/fp/uniqBy";
 import { OakFlex } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";

@@ -1,4 +1,5 @@
-import { get, update } from "lodash/fp";
+import get from "lodash/fp/get";
+import update from "lodash/fp/update";
 import { z } from "zod";
 
 import OakError from "../../../errors/OakError";

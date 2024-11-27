@@ -1,6 +1,6 @@
 import { join } from "path";
 
-import { capitalize } from "lodash";
+import capitalize from "lodash/capitalize";
 
 import { CombinedCurriculumData, Slugs } from "..";
 import { cdata, safeXml, xmlElementToJson } from "../xml";

@@ -1,4 +1,6 @@
-import { groupBy, isEqual, uniqWith } from "lodash";
+import groupBy from "lodash/groupBy";
+import isEqual from "lodash/isEqual";
+import uniqWith from "lodash/uniqWith";
 
 import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.schema";
 

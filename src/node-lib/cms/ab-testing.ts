@@ -1,6 +1,6 @@
 import { GetServerSidePropsContext } from "next";
 import { PostHog as PostHogNode } from "posthog-node";
-import { sample } from "lodash/fp";
+import sample from "lodash/fp/sample";
 
 import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 

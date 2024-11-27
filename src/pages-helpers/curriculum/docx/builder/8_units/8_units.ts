@@ -1,6 +1,7 @@
 import { join } from "path";
 
-import { sortBy, uniqBy } from "lodash";
+import sortBy from "lodash/sortBy";
+import uniqBy from "lodash/uniqBy";
 
 import { cdata, safeXml, xmlElementToJson } from "../../xml";
 import { CombinedCurriculumData, Slugs } from "../..";

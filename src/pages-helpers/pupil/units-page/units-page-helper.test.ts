@@ -1,4 +1,4 @@
-import { groupBy } from "lodash";
+import groupBy from "lodash/groupBy";
 
 import { getSecondUnitSection } from "./units-page-helper";
 

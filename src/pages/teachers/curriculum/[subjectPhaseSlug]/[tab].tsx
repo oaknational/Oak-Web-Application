@@ -7,7 +7,8 @@ import {
 import React, { MutableRefObject } from "react";
 import { useRouter } from "next/router";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { isEqual, uniq } from "lodash";
+import isEqual from "lodash/isEqual";
+import uniq from "lodash/uniq";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";

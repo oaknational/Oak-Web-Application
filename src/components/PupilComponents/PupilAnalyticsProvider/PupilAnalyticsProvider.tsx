@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { capitalize } from "lodash";
+import capitalize from "lodash/capitalize";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import useAnalytics from "@/context/Analytics/useAnalytics";

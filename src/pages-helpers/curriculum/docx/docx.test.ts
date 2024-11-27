@@ -1,5 +1,5 @@
 import { Element } from "xml-js";
-import { sortBy } from "lodash";
+import sortBy from "lodash/sortBy";
 import { diff } from "json-diff";
 
 import {

@@ -1,4 +1,5 @@
-import { pick, groupBy } from "lodash";
+import pick from "lodash/pick";
+import groupBy from "lodash/groupBy";
 
 import { checkIsResourceCopyrightRestricted } from "../downloadAndShareHelpers/downloadsCopyright";
 

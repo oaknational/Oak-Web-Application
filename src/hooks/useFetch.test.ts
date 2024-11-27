@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import { uniqueId } from "lodash";
+import uniqueId from "lodash/uniqueId";
 
 import { useFetch } from "./useFetch";
 

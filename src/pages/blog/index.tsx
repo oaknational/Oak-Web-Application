@@ -1,4 +1,4 @@
-import { uniqBy } from "lodash/fp";
+import uniqBy from "lodash/fp/uniqBy";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 
 import { PostListingPageProps } from "../../components/GenericPagesViews/BlogIndex.view";
