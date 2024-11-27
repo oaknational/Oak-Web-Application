@@ -15,13 +15,13 @@ import {
   JSZipCached,
 } from "../../docx";
 import { createCurriculumSlug, generateGridCols } from "../helper";
-
-import { buildUnit } from "./unit_detail";
-
 import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
-} from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
+} from "../../tab-helpers";
+
+import { buildUnit } from "./unit_detail";
+
 import {
   getSuffixFromFeatures,
   getYearGroupTitle,

@@ -1,3 +1,15 @@
+## [1.639.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.639.0...v1.639.1) (2024-11-27)
+
+
+### Bug Fixes
+
+* added back in missing components ([27687e9](https://github.com/oaknational/Oak-Web-Application/commit/27687e9870bd4ba0f8926506b7a3b33617b6c23e))
+
+
+### Performance Improvements
+
+* extract out helpers from pages to fix bunele issue ([53c19b4](https://github.com/oaknational/Oak-Web-Application/commit/53c19b45c9b3d2718ec06b20705f0b03478a138e))
+
 # [1.639.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.638.0...v1.639.0) (2024-11-27)
 
 
