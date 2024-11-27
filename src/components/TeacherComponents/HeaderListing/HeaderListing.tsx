@@ -97,6 +97,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
+            {shareButton}
           </OakFlex>
         </OakFlex>
       </OakFlex>
@@ -121,7 +122,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           />
         )}
       </Flex>
-      {shareButton}
     </LessonHeaderWrapper>
   );
 };

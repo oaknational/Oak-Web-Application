@@ -39,14 +39,15 @@ export const TeacherShareButton = ({
           disabled={!shareUrl}
           iconName="share"
           isTrailingIcon
+          ph={["inner-padding-xs", "inner-padding-m"]}
         >
           {label}
         </OakPrimaryButton>
         {linkCopied && (
           <OakFlex
             $alignItems={"center"}
-            $position={[null, "absolute"]}
-            $top={"all-spacing-11"}
+            $position={"absolute"}
+            $top={["all-spacing-10", "all-spacing-11"]}
           >
             <OakIcon iconName={"tick"} $colorFilter={"text-success"} />
             <OakHeading
