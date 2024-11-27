@@ -1,20 +1,24 @@
 import { LessonMediaClipsData } from "../queries/lessonMediaClips/lessonMediaClips.schema";
 
-const lessonMediaFixture = (
+const lessonMediaClipsFixtures = (
   partial?: Partial<LessonMediaClipsData>,
 ): LessonMediaClipsData => {
   return {
-    lessonSlug: "running-as-a-team",
-    lessonTitle: "Running as a team",
     programmeSlug: "physical-education-ks4",
+    lessonSlug: "running-and-jumping",
+    lessonTitle: "Running and jumping",
     keyStageSlug: "ks4",
     keyStageTitle: "Key stage 4",
-    subjectSlug: "physical-education",
-    subjectTitle: "Physical Education",
     unitSlug: "running-and-jumping",
     unitTitle: "Running and jumping",
+    subjectSlug: "physical-education",
+    subjectTitle: "Physical Education",
+    examBoardSlug: null,
+    examBoardTitle: null,
+    tierSlug: null,
+    tierTitle: null,
     ...partial,
   };
 };
 
-export default lessonMediaFixture;
+export default lessonMediaClipsFixtures;
