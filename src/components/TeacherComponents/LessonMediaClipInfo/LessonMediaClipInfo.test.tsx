@@ -15,9 +15,13 @@ describe("LessonMediaClipInfo component", () => {
       />,
     );
     const clipTitle = getByText("Clip title");
-    const constructedInfo = getByText("KS 2 • Year 2 • Maths");
+    const keyStage = getByText("KS 2");
+    const year = getByText("Year 2");
+    const subjectTitle = getByText("Maths");
     expect(clipTitle).toBeInTheDocument();
-    expect(constructedInfo).toBeInTheDocument();
+    expect(keyStage).toBeInTheDocument();
+    expect(year).toBeInTheDocument();
+    expect(subjectTitle).toBeInTheDocument();
   });
 
   it("should render video transcript if provided", () => {

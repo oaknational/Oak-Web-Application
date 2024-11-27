@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { OakP , OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 
 import {
   LessonMediaClipInfo,

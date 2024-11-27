@@ -6,6 +6,8 @@ import {
   OakVideoTranscript,
   OakSignLanguageButton,
   OakCopyLinkButton,
+  OakFlex,
+  OakSpan,
 } from "@oaknational/oak-components";
 
 /**
@@ -47,7 +49,15 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
         $font={"heading-light-7"}
         $color={"grey60"}
         $mb="space-between-m"
-      >{`${keyStageTitle} • ${yearTitle} • ${subjectTitle}`}</OakTypography>
+      >
+        <OakFlex $flexDirection="row" $gap={"space-between-ssx"}>
+          <OakSpan>{keyStageTitle}</OakSpan>
+          <OakSpan>•</OakSpan>
+          <OakSpan>{yearTitle}</OakSpan>
+          <OakSpan>•</OakSpan>
+          <OakSpan>{subjectTitle}</OakSpan>
+        </OakFlex>
+      </OakTypography>
       {videoTranscript && (
         <OakVideoTranscript
           id={"video-transcript"}
