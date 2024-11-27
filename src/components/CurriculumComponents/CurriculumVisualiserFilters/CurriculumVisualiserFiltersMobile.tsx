@@ -17,7 +17,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Thread } from "@/utils/curriculum/types";
 
-const StyledButton = styled("button")`
+const StyledButton = styled.button`
   all: unset;
   color: inherit;
   cursor: pointer;
@@ -81,7 +81,7 @@ const StyledButtonGroup = styled(ButtonGroup)`
   }
 
   & > *:not(:last-child) {
-    margin-right: 0px;
+    margin-right: -5px;
   }
 `;
 
@@ -189,6 +189,7 @@ function StickyBit({
                 {yearOptions.map((yearOption) => (
                   <Box key={yearOption} $pt={8} $ml={5}>
                     <FocusIndicator
+                      data-testid="year-group-focus-indicator"
                       $display={"inline-block"}
                       $mb="space-between-ssx"
                       $mr="space-between-ssx"
