@@ -31,7 +31,10 @@ const lessonMediaClipsFixtures = (
           videoObject: {
             muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
             playbackPolicy: "signed",
-            transcriptionSentences: ["There will be some transcript sentences here.", "Welcome to the lesson."],
+            transcriptionSentences: [
+              "There will be some transcript sentences here.",
+              "Welcome to the lesson.",
+            ],
             // url: "https://example.com/video/33.mp4",
             resourceType: "video",
             title: "Introduction physical exercise video",
@@ -202,7 +205,9 @@ const lessonMediaClipsFixtures = (
           videoObject: {
             muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
             playbackPolicy: "signed",
-            transcriptionSentences: ["There will be some transcript sentences here"],
+            transcriptionSentences: [
+              "There will be some transcript sentences here",
+            ],
             // url: "https://example.com/video/123.mp4",
             resourceType: "video",
             title: "Cycle 3 running video",

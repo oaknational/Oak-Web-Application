@@ -6,6 +6,7 @@ import {
   OakMediaClipList,
 } from "@oaknational/oak-components";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -59,12 +60,99 @@ export function LessonMedia(props: LessonMediaProps) {
 
   const { programmeSlug, unitSlug, subjectTitle, yearTitle } = commonPathway;
 
-  const listOfAllClips: ConstructedMediaClip[] = constructMediaClipList(mediaClips);
-  const [currentClip] = useState(listOfAllClips[0]);
+  const router = useRouter();
+  const { query } = router;
+
+  let listOfAllClips: ConstructedMediaClip[] = [];
+
+  const onMediaClipClick = (clipSlug: string) => {
+    const activeMediaClip = listOfAllClips.find(
+      (clip) => clip.clipSlug === clipSlug,
+    );
+    setCurrentClip(activeMediaClip);
+
+    router.replace(
+      {
+        pathname: router.pathname,
+        query: {
+          programmeSlug: programmeSlug,
+          unitSlug: unitSlug,
+          lessonSlug: lessonSlug,
+          video: clipSlug,
+        },
+      },
+      undefined,
+      { shallow: true },
+    );
+  };
+
+  Object.keys(mediaClips).forEach((learningCycle) => {
+    mediaClips[learningCycle].forEach((mediaClip: MediaClip) => {
+      let item: ConstructedMediaClip | {};
+
+      if (mediaClip.mediaType === "video") {
+        const { videoObject, mediaClipTitle, learningCycleTitle, slug } =
+          mediaClip;
+
+        const thumbnailToken =
+          videoObject &&
+          useSignedThumbnailToken({
+            playbackId: videoObject?.muxPlaybackId,
+            playbackPolicy: videoObject?.playbackPolicy,
+            isLegacy: true,
+          });
+
+        item = {
+          thumbnailImage: `https://image.mux.com/${videoObject.muxPlaybackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`,
+          muxPlaybackId: videoObject?.muxPlaybackId || "",
+          transcript: videoObject?.transcriptionSentences,
+          timeCode: videoObject?.duration,
+          clipName: mediaClipTitle,
+          clipSlug: slug,
+          learningCycle: learningCycleTitle,
+          muxPlayingState: "standard",
+          onClick: () => onMediaClipClick(slug),
+          isAudioClip: false,
+          element: "button",
+          imageAltText: "",
+        };
+      } else {
+        const { mediaObject, mediaClipTitle, learningCycleTitle, slug } =
+          mediaClip;
+
+        item = {
+          muxPlaybackId: mediaObject?.muxPlaybackId,
+          timeCode: mediaObject?.duration,
+          clipName: mediaClipTitle,
+          clipSlug: slug,
+          learningCycle: learningCycleTitle,
+          muxPlayingState: "standard",
+          onClick: () => onMediaClipClick(slug),
+          isAudioClip: true,
+          element: "button",
+          imageAltText: "",
+        };
+      }
+
+      if (item) listOfAllClips.push(item);
+    });
+  });
+
+  const getInitialCurrentClip = () => {
+    const videoQueryFromUrl = query.video;
+    if (videoQueryFromUrl) {
+      return listOfAllClips.find((clip) => clip.clipSlug === videoQueryFromUrl);
+    }
+    return listOfAllClips[0];
+  };
+
+  console.log(">>>>>> query video", query.video);
+
+  const [currentClip, setCurrentClip] = useState(getInitialCurrentClip());
 
   const videoPlayer = currentClip && (
     <VideoPlayer
-      playbackId={"2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU"}
+      playbackId={currentClip.muxPlaybackId}
       playbackPolicy={"signed"}
       title={currentClip.clipName}
       location={"lesson"}

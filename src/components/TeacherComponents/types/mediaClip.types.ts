@@ -32,7 +32,6 @@ export type MediaClip = {
   mediaId: number | null | undefined;
   slug: string;
   mediaClipTitle: string;
-  mediaClipSlug: string;
   mediaObject: MediaObject;
   mediaType: "audio" | "video";
   videoId: number | null;
