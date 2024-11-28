@@ -1,6 +1,9 @@
+import { PlaybackPolicy } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
+
 export type MediaObject = {
   // url: string;
   muxPlaybackId: string;
+  playbackPolicy: PlaybackPolicy;
   transcriptionSentences?: string[];
   resourceType: string;
   title: string;
@@ -13,6 +16,7 @@ export type MediaObject = {
 export type VideoObject = {
   // url: string;
   muxPlaybackId: string;
+  playbackPolicy: PlaybackPolicy;
   videoWithSignLanguageMuxPlaybackId?: string;
   transcriptionSentences?: string[];
   resourceType: string;

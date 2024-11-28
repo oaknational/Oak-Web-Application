@@ -30,6 +30,7 @@ const lessonMediaClipsFixtures = (
           videoId: 33,
           videoObject: {
             muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
+            playbackPolicy: "signed",
             transcriptionSentences: ["There will be some transcript sentences here.", "Welcome to the lesson."],
             // url: "https://example.com/video/33.mp4",
             resourceType: "video",
@@ -48,6 +49,7 @@ const lessonMediaClipsFixtures = (
           mediaObject: {
             // url: "https://example.com/audio/137156.mp3",
             muxPlaybackId: "KHUK004YVrDuBlZH1YK01J2KQw2AyxGwpy00l016qIO3jDU",
+            playbackPolicy: "signed",
             resourceType: "audio",
             title: "Running",
             usageRestrictions: "No restrictions",
@@ -72,6 +74,7 @@ const lessonMediaClipsFixtures = (
           videoId: 4,
           videoObject: {
             muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
+            playbackPolicy: "signed",
             // url: "https://example.com/video/4.mp4",
             resourceType: "video",
             title: "Cycle 1 Video",
@@ -89,6 +92,7 @@ const lessonMediaClipsFixtures = (
           mediaObject: {
             // url: "https://example.com/audio/137139.mp3",
             muxPlaybackId: "KHUK004YVrDuBlZH1YK01J2KQw2AyxGwpy00l016qIO3jDU",
+            playbackPolicy: "signed",
             resourceType: "audio",
             title: "Cycle 1 Audio",
             usageRestrictions: "No restrictions",
@@ -112,6 +116,7 @@ const lessonMediaClipsFixtures = (
           videoId: 50,
           videoObject: {
             muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
+            playbackPolicy: "signed",
             // url: "https://example.com/video/50.mp4",
             videoWithSignLanguageMuxPlaybackId:
               "YEPHo9rLrwNEIh02YUkNnqX6CFELAVtmlw5R4lYJESDs",
@@ -136,6 +141,7 @@ const lessonMediaClipsFixtures = (
           videoId: 223422,
           videoObject: {
             muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
+            playbackPolicy: "signed",
             // url: "https://example.com/video/222.mp4",
             resourceType: "video",
             title: "Cycle 3 Video",
@@ -153,6 +159,7 @@ const lessonMediaClipsFixtures = (
           mediaObject: {
             // url: "https://example.com/audio/137146.mp3",
             muxPlaybackId: "FJ8WDFTLqK9b02U01Vqc4PGMii01Dj6Zu2rsSTambKVLeI",
+            playbackPolicy: "signed",
             resourceType: "audio",
             title: "Cycle 3 Audio - Track 30",
             usageRestrictions: "No restrictions",
@@ -172,6 +179,7 @@ const lessonMediaClipsFixtures = (
           mediaObject: {
             // url: "https://example.com/audio/137146.mp3",
             muxPlaybackId: "FJ8WDFTLqK9b02U01Vqc4PGMii01Dj6Zu2rsSTambKVLeI",
+            playbackPolicy: "signed",
             resourceType: "audio",
             title: "Cycle 3 Audio - Track 30",
             usageRestrictions: "No restrictions",
@@ -193,6 +201,7 @@ const lessonMediaClipsFixtures = (
           videoId: 12325,
           videoObject: {
             muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
+            playbackPolicy: "signed",
             transcriptionSentences: ["There will be some transcript sentences here"],
             // url: "https://example.com/video/123.mp4",
             resourceType: "video",

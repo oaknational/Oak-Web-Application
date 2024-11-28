@@ -59,57 +59,8 @@ export function LessonMedia(props: LessonMediaProps) {
 
   const { programmeSlug, unitSlug, subjectTitle, yearTitle } = commonPathway;
 
-
-
-  const listOfAllClips: ConstructedMediaClip[] = [];
-
-  Object.keys(mediaClips).forEach((learningCycle) => {
-    mediaClips[learningCycle].forEach((mediaClip: MediaClip) => {
-      let item: ConstructedMediaClip | {};
-
-      if (mediaClip.mediaType === "video") {
-        const { videoObject, mediaClipTitle, learningCycleTitle, mediaClipSlug } = mediaClip;
-
-        const thumbnailToken = videoObject && useSignedThumbnailToken({
-          playbackId: videoObject?.muxPlaybackId,
-          playbackPolicy: "signed",
-          isLegacy: true,
-        });
-
-        item = {
-          thumbnailImage: `https://image.mux.com/${videoObject.muxPlaybackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`,
-          muxPlaybackId: videoObject?.muxPlaybackId || "",
-          transcript: videoObject?.transcriptionSentences,
-          timeCode: videoObject?.duration,
-          clipName: mediaClipTitle,
-          clipSlug: mediaClipSlug,
-          learningCycle: learningCycleTitle,
-          muxPlayingState: "standard",
-          isAudioClip: false,
-          element: "button",
-        };
-      } else {
-        const { mediaObject, mediaClipTitle, learningCycleTitle, mediaClipSlug } = mediaClip;
-        
-          item = {
-            muxPlaybackId: mediaObject?.muxPlaybackId,
-            timeCode: mediaObject?.duration,
-            clipName: mediaClipTitle,
-            clipSlug: mediaClipSlug,
-            learningCycle: learningCycleTitle,
-            muxPlayingState: "standard",
-            onClick: () => {},
-            isAudioClip: true,
-            element: "button",
-          };
-      } 
-
-      if (item) listOfAllClips.push(item);
-    });  
-  });
-
+  const listOfAllClips: ConstructedMediaClip[] = constructMediaClipList(mediaClips);
   const [currentClip] = useState(listOfAllClips[0]);
-
 
   const videoPlayer = currentClip && (
     <VideoPlayer
@@ -136,7 +87,7 @@ export function LessonMedia(props: LessonMediaProps) {
       keyStageTitle={keyStageTitle}
       yearTitle={yearTitle}
       subjectTitle={subjectTitle}
-      videoTranscript={currentClip.transcript.join(" ")}
+      videoTranscript={currentClip?.transcript?.join(" ")}
       copyLinkButtonEnabled={true}
     />
   );

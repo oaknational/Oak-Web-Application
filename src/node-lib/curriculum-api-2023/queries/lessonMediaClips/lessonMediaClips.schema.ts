@@ -22,13 +22,12 @@ export type LessonBrowseData = ConvertKeysToCamelCase<
 
 const mediaObjectSchema = z
   .object({
-    // url: z.string().url(),
     muxPlaybackId: z.string(),
+    playbackPolicy: z.string(),
     transcriptionSentences: z.array(z.string()).optional(),
     resourceType: z.string(),
     title: z.string(),
     usageRestrictions: z.string().optional(),
-    // alt: z.string().optional(),
     attributionRequired: z.string(),
     duration: z.number(),
   })
@@ -36,8 +35,8 @@ const mediaObjectSchema = z
 
 const videoObjectSchema = z
   .object({
-    // url: z.string().url(),
     muxPlaybackId: z.string(),
+    playbackPolicy: z.string(),
     videoWithSignLanguageMuxPlaybackId: z.string().optional(),
     transcriptionSentences: z.array(z.string()).optional(),
     resourceType: z.string(),
