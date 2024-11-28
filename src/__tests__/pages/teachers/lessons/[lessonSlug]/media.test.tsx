@@ -19,6 +19,8 @@ jest.mock("posthog-js/react");
 const fixtureData = {
   lessonSlug: "running-as-a-team",
   lessonTitle: "Running as a team",
+  subjectTitle: "Physical Education",
+  keyStageTitle: "Key stage 4",
   pathways: [
     {
       programmeSlug: "physical-education-ks4",
