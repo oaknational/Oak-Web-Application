@@ -8,9 +8,11 @@ import {
 import {
   OakGrid,
   OakGridArea,
+  OakPrimaryButton,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+import { SignInButton, useUser } from "@clerk/nextjs";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -45,6 +47,7 @@ import {
   useShareExperiment,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -152,6 +155,26 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 
   const isNew = hasNewContent ?? false;
 
+  // TODO: feature flag
+  // TODO: use real slug
+  const { exists, fileSize, hasCheckedFiles } = useUnitDownloadExistenceCheck(
+    "test-unit-6-lessons",
+  );
+
+  const { isSignedIn, isLoaded } = useUser();
+
+  const unitDownloadButton =
+    isLoaded && !isSignedIn ? (
+      // TODO: A/B test button text
+      <SignInButton>
+        <OakPrimaryButton>Sign in to download this unit</OakPrimaryButton>
+      </SignInButton>
+    ) : hasCheckedFiles && exists ? (
+      <OakPrimaryButton iconName="download" isTrailingIcon>
+        Download .zip {fileSize}
+      </OakPrimaryButton> // TODO: update button with 'new' tag
+    ) : null;
+
   return (
     <AppLayout
       seoProps={{
@@ -214,6 +237,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
+          unitDownloadButton={unitDownloadButton}
         />
         <MaxWidth $ph={16}>
           <OakGrid>

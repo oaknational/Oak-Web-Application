@@ -34,6 +34,7 @@ export type HeaderListingProps = {
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
+  unitDownloadButton?: React.ReactNode;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -52,6 +53,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
     shareButton,
+    unitDownloadButton,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -97,7 +99,10 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
-            {shareButton}
+            <OakFlex $gap="space-between-s">
+              {unitDownloadButton}
+              {shareButton}
+            </OakFlex>
           </OakFlex>
         </OakFlex>
       </OakFlex>
