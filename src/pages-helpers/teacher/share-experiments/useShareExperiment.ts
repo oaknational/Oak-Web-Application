@@ -57,7 +57,15 @@ export const useShareExperiment = ({
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [browserUrl, setBrowserUrl] = useState<string | null>(null);
 
-  const flag = `share-advocate-${source.split("-")[0]}`;
+  const flags = {
+    "lesson-browse": "share-advocate-lesson",
+    "lesson-canonical": "share-advocate-lesson",
+    "download-browse": "share-advocate-download",
+    "download-canonical": "share-advocate-download",
+    "lesson-listing": "share-advocate-unit",
+  };
+
+  const flag = flags[source];
 
   const shareExperimentFlag = useFeatureFlagVariantKey(flag);
 
