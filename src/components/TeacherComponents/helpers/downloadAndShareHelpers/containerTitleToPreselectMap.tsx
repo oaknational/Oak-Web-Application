@@ -13,5 +13,5 @@ export const containerTitleToPreselectMap: CombinedDownloadsShareType = {
   },
   Worksheet: { downloadType: "worksheet", shareType: "worksheet" },
   Transcript: { downloadType: null, shareType: null },
-  Video: { downloadType: null, shareType: "video" },
+  "Lesson video": { downloadType: null, shareType: "video" },
 };

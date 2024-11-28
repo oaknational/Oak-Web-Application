@@ -138,7 +138,7 @@ describe("LessonItemContainer", () => {
       <LessonItemContainer
         downloadable={true}
         slugs={lessonOverview}
-        title={"Video"}
+        title={"Lesson video"}
         isSpecialist={false}
         anchorId={"video"}
         onDownloadButtonClick={onDownloadButtonClick}
@@ -198,7 +198,7 @@ describe("LessonItemContainer", () => {
           </Card>
         </LessonItemContainer>
         <LessonItemContainer
-          title={"Video"}
+          title={"Lesson video"}
           downloadable={true}
           isSpecialist={false}
           anchorId="video"

@@ -31,7 +31,7 @@ export const ExpandingContainer: Story = {
     external: true,
     projectable: true,
     downloadable: true,
-    title: "Video",
+    title: "Lesson video",
     programmeSlug: "secondary-ks3-maths",
     unitSlug: "unit",
     lessonSlug: "slug-slug-slug",
