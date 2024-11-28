@@ -1,3 +1,13 @@
+# [1.640.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.639.4...v1.640.0) (2024-11-28)
+
+
+### Features
+
+* add LessonMediaClipInfo to media page ([3470184](https://github.com/oaknational/Oak-Web-Application/commit/34701841930b1612de6e881e31b9e167ca5f6005))
+* create MediaClipInfo component ([30da817](https://github.com/oaknational/Oak-Web-Application/commit/30da81799fd231f9216f6aa8dd94de3125ae24f2))
+* implement transcript part ([f316370](https://github.com/oaknational/Oak-Web-Application/commit/f316370803cb3dd0bb060fdb460821f8acf5543b))
+* use LessonMetadata component to construct lesson metadata ([5d519f3](https://github.com/oaknational/Oak-Web-Application/commit/5d519f367998ba3363562f550623f8cbf61df4d2))
+
 ## [1.639.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.639.3...v1.639.4) (2024-11-28)
 
 
