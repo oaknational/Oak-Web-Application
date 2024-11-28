@@ -54,11 +54,55 @@ describe("Lesson Overview Canonical Page", () => {
       );
     });
 
-    it("updates the url if shareExperimentFlag is true", async () => {
+    it("Renders the share button if shareExperimentFlag is test", async () => {
+      window.history.replaceState = jest.fn();
+
+      (useShareExperiment as jest.Mock).mockReturnValueOnce({
+        shareExperimentFlag: "test",
+        shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+        browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+        shareActivated: () => {},
+      });
+
+      const result = render(
+        <LessonOverviewCanonicalPage
+          lesson={{ ...lesson, pathways: [] }}
+          isSpecialist={false}
+        />,
+      );
+
+      expect(
+        result.getAllByText("Share resources with colleague"),
+      ).toHaveLength(2);
+    });
+
+    it("doesn't render the share button if shareExperimentFlag is control", async () => {
+      window.history.replaceState = jest.fn();
+
+      (useShareExperiment as jest.Mock).mockReturnValueOnce({
+        shareExperimentFlag: "control",
+        shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+        browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+        shareActivated: false,
+      });
+
+      const result = render(
+        <LessonOverviewCanonicalPage
+          lesson={{ ...lesson, pathways: [] }}
+          isSpecialist={false}
+        />,
+      );
+
+      expect(() =>
+        result.getByText("Share resources with colleague"),
+      ).toThrow();
+    });
+
+    it("updates the url if shareExperimentFlag is test or control", async () => {
       const fn = jest.spyOn(window.history, "replaceState");
 
       (useShareExperiment as jest.Mock).mockReturnValueOnce({
-        shareExperimentFlag: true,
+        shareExperimentFlag: "test",
         shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         shareActivated: false,
