@@ -348,6 +348,14 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 nextLessons={lesson.nextLessons}
                 onwardContentSelected={onwardContentSelected}
                 isSpecialist={isSpecialist}
+                subjectSlug={subjectSlug}
+                subjectTitle={subjectTitle}
+                keyStageSlug={keyStageSlug === undefined ? null : keyStageSlug}
+                keyStageTitle={
+                  keyStageTitle === undefined
+                    ? null
+                    : (keyStageTitle as KeyStageTitleValueType)
+                }
               />
             );
           }

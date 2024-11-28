@@ -4,13 +4,13 @@ import CurriculumHomePage, {
   CurriculumHomePageProps,
   fetchCurriculumPageBlogs,
   Client,
-  filterValidSubjectPhaseOptions,
 } from "@/pages/teachers/curriculum";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
 import { SubjectPhaseOption } from "@/node-lib/curriculum-api-2023";
+import { filterValidSubjectPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 const render = renderWithProviders();
 

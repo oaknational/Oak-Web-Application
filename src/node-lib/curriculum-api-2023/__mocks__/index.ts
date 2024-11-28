@@ -23,6 +23,8 @@ import { refreshedMVTimeFixture } from "@/node-lib/curriculum-api-2023/fixtures/
 import { teachersSitemapDataFixtureCamelCase } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 import { mockedSiteMapResponse } from "@/node-lib/curriculum-api-2023/fixtures/pupilSiteMap.fixture";
 import { type LessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query";
+import lessonMediaFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import { LessonMediaClipsQueryReturn } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.query";
 
 const curriculumApi: Pick<
   CurriculumApi,
@@ -49,6 +51,7 @@ const curriculumApi: Pick<
   | "teachersSitemap"
   | "pupilsSitemap"
   | "teacherPreviewLesson"
+  | "lessonMediaClips"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -113,6 +116,9 @@ const curriculumApi: Pick<
   lessonDownloads: jest.fn(async () => {
     return lessonDownloadsFixtures();
   }) as jest.Mocked<LessonDownloadsQuery>,
+  lessonMediaClips: jest.fn(async () => {
+    return lessonMediaFixture();
+  }) as jest.Mocked<LessonMediaClipsQueryReturn>,
   unitListing: jest.fn(async () => {
     return unitListingFixture();
   }),

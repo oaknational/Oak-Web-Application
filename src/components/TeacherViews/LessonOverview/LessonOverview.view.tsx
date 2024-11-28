@@ -52,7 +52,9 @@ import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 
 export type LessonOverviewProps = {
-  lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads };
+  lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
+    teacherShareButton?: React.ReactNode;
+  };
 };
 
 // helper function to remove key learning points from the header in legacy lessons
@@ -94,6 +96,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     updatedAt,
     isCanonical,
     lessonGuideUrl,
+    teacherShareButton,
   } = lesson;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -240,6 +243,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         )}
         showDownloadAll={showDownloadAll}
         showShare={showShare}
+        teacherShareButton={teacherShareButton}
       />
       <MaxWidth $ph={16} $pb={80}>
         <NewContentBanner
@@ -382,13 +386,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   />
                 </LessonItemContainer>
 
-                {pageLinks.find((p) => p.label === "Video") && (
+                {pageLinks.find((p) => p.label === "Lesson video") && (
                   <LessonItemContainer
                     isSpecialist={isSpecialist}
                     ref={videoSectionRef}
                     shareable={isLegacyLicense && showShare}
                     slugs={slugs}
-                    title={"Video"}
+                    title={"Lesson video"}
                     anchorId="video"
                     isFinalElement={
                       pageLinks.findIndex((p) => p.label === "Video") ===

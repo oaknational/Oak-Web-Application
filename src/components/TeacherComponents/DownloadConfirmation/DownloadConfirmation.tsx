@@ -7,7 +7,11 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import {
+  useShareExperiment,
+  CurriculumTrackingProps,
+} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 
 type DownloadConfirmationProps = {
   lessonSlug: string;
@@ -19,6 +23,10 @@ type DownloadConfirmationProps = {
   nextLessons?: NextLesson[];
   onwardContentSelected: TrackFns["onwardContentSelected"];
   isSpecialist?: boolean;
+  keyStageSlug: CurriculumTrackingProps["keyStageSlug"];
+  keyStageTitle: CurriculumTrackingProps["keyStageTitle"];
+  subjectSlug: CurriculumTrackingProps["subjectSlug"];
+  subjectTitle: CurriculumTrackingProps["subjectTitle"];
 };
 
 const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
@@ -31,6 +39,10 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   nextLessons,
   onwardContentSelected,
   isSpecialist = false,
+  keyStageSlug,
+  keyStageTitle,
+  subjectSlug,
+  subjectTitle,
 }) => {
   const displayNextLessonContainer =
     !isCanonical && unitSlug && programmeSlug && unitTitle;
@@ -42,12 +54,36 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     focusRef.current?.focus();
   }, []);
 
-  const { shareIdRef, shareIdKeyRef } = useShareExperiment({
+  // create a share URL which points at the lesson overview page
+  const pathElems = window.location.href.split("/");
+  const shareBaseUrl = pathElems
+    .splice(0, pathElems.indexOf(lessonSlug) + 1)
+    .join("/");
+
+  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
     lessonSlug,
-    unitSlug: unitSlug ?? undefined,
-    programmeSlug: programmeSlug ?? undefined,
+    unitSlug: isCanonical ? undefined : (unitSlug ?? undefined), // NB. unitSlug can sometimes be defined for canonical state
+    programmeSlug: isCanonical ? undefined : (programmeSlug ?? undefined),
+    source: isCanonical ? "download-canonical" : "download-browse",
+    shareBaseUrl,
+    curriculumTrackingProps: {
+      lessonName: lessonTitle,
+      unitName: unitTitle ?? "",
+      keyStageSlug,
+      keyStageTitle,
+      subjectSlug,
+      subjectTitle,
+    },
   });
-  console.log(shareIdRef, shareIdKeyRef);
+
+  const teacherShareButton = shareExperimentFlag ? (
+    <TeacherShareButton
+      label="Share resources with colleague"
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+      variant="primary"
+    />
+  ) : null;
 
   return (
     <>
@@ -130,6 +166,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             We hope you find the resources useful. Click the question mark in
             the bottom-right corner to share your feedback.
           </OakP>
+          {teacherShareButton}
         </Flex>
       </Flex>
 

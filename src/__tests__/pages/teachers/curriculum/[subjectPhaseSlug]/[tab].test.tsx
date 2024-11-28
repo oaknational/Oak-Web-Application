@@ -6,13 +6,7 @@ import curriculumApi from "@/node-lib/curriculum-api-2023";
 import CurriculumInfoPage, {
   getStaticProps,
   getStaticPaths,
-  formatCurriculumUnitsData,
-  createThreadOptions,
-  createYearOptions,
-  createInitialYearFilterSelection,
-  createUnitsListingByYear,
 } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
-import { fetchSubjectPhasePickerData } from "@/pages/teachers/curriculum";
 import {
   curriculumOverviewCMSFixture,
   curriculumOverviewMVFixture,
@@ -24,6 +18,14 @@ import { mockPrerelease } from "@/utils/mocks";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
+import {
+  createInitialYearFilterSelection,
+  createThreadOptions,
+  createUnitsListingByYear,
+  createYearOptions,
+  fetchSubjectPhasePickerData,
+  formatCurriculumUnitsData,
+} from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 const render = renderWithProviders();
 
@@ -573,7 +575,8 @@ const mockedCurriculumSequence = curriculumApi.curriculumSequence as jest.Mock;
 const mockedFetchSubjectPhasePickerData =
   fetchSubjectPhasePickerData as jest.Mock;
 
-jest.mock("@/pages/teachers/curriculum/index", () => ({
+jest.mock("@/pages-helpers/curriculum/docx/tab-helpers", () => ({
+  ...jest.requireActual("@/pages-helpers/curriculum/docx/tab-helpers"),
   fetchSubjectPhasePickerData: jest.fn(),
 }));
 

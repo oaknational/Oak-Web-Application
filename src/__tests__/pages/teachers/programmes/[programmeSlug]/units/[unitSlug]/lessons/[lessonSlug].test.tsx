@@ -16,6 +16,7 @@ import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 const props = {
   curriculumData: lessonOverviewFixture({
@@ -55,14 +56,31 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+// mock useShareExperiment
+jest.mock(
+  "@/pages-helpers/teacher/share-experiments/useShareExperiment",
+  () => {
+    return {
+      __esModule: true,
+      useShareExperiment: jest.fn(() => ({
+        shareExperimentFlag: false,
+        shareUrl: "",
+        browserUrl: "",
+        shareActivated: false,
+      })),
+    };
+  },
+);
+
 const render = renderWithProviders();
 
-describe("pages/teachers/lessons", () => {
+describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]", () => {
   beforeEach(() => {
     setUseUserReturn({
       ...mockLoggedIn,
       user: mockUserWithDownloadAccess,
     });
+    console.error = jest.fn();
   });
   it("Renders title from the props", async () => {
     render(<LessonOverviewPage {...props} />);
@@ -165,7 +183,7 @@ describe("pages/teachers/lessons", () => {
     const shareLabel = queryAllByText("Share activities with pupils");
 
     if (shareButton[0] !== undefined && shareButton.length > 0) {
-      expect(shareButton[0]).toHaveAttribute("disabled");
+      expect(shareButton[0]).toBeDisabled();
       expect(shareLabel[0]).toBeInTheDocument();
     } else {
       throw new Error("Share all button not found");
@@ -462,6 +480,24 @@ describe("pages/teachers/lessons", () => {
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
       });
+    });
+
+    it("updates the url if shareExperimentFlag is true", async () => {
+      const fn = jest.spyOn(window.history, "replaceState");
+
+      (useShareExperiment as jest.Mock).mockReturnValueOnce({
+        shareExperimentFlag: true,
+        shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+        browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+        shareActivated: false,
+      });
+      render(<LessonOverviewPage {...props} />);
+
+      expect(fn).toHaveBeenCalledWith(
+        {},
+        "",
+        "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+      );
     });
   });
   describe("getStaticProps", () => {
