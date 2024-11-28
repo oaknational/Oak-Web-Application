@@ -59,7 +59,7 @@ export const useShareExperiment = ({
 
   const flag = `share-advocate-${source.split("-")[0]}`;
 
-  const shareExperimentFlag = useFeatureFlagVariantKey(flag) === "test";
+  const shareExperimentFlag = useFeatureFlagVariantKey(flag);
 
   const { track } = useAnalytics();
 
@@ -102,6 +102,7 @@ export const useShareExperiment = ({
     }
 
     if (!shareIdRef.current && shareExperimentFlag) {
+      // we update the url and send the share initiated event for any users in the experiment
       const { url, shareIdKey, shareId } = getUpdatedUrl({
         url: window.location.href,
         storageShareId,

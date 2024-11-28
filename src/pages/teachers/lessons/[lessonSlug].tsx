@@ -58,14 +58,15 @@ export default function LessonOverviewCanonicalPage({
     window.history.replaceState({}, "", browserUrl);
   }
 
-  const teacherShareButton = shareExperimentFlag ? (
-    <TeacherShareButton
-      label="Share resources with colleague"
-      variant={"secondary"}
-      shareUrl={shareUrl}
-      shareActivated={shareActivated}
-    />
-  ) : null;
+  const teacherShareButton =
+    shareExperimentFlag === "test" ? (
+      <TeacherShareButton
+        label="Share resources with colleague"
+        variant={"secondary"}
+        shareUrl={shareUrl}
+        shareActivated={shareActivated}
+      />
+    ) : null;
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
