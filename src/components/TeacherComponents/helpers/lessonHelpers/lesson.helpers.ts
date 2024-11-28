@@ -436,7 +436,7 @@ export const getPageLinksForLesson = (
       condition: () => true,
     },
     {
-      label: "Video",
+      label: "Lesson video",
       anchorId: "video",
       condition: (lesson) => Boolean(lesson.videoMuxPlaybackId),
     },
