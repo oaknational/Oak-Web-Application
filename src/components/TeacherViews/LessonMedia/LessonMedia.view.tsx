@@ -5,8 +5,9 @@ import {
   OakFlex,
   OakMediaClipList,
 } from "@oaknational/oak-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { cloneDeep } from "lodash";
 
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -66,10 +67,20 @@ export function LessonMedia(props: LessonMediaProps) {
   let listOfAllClips: ConstructedMediaClip[] = [];
 
   const onMediaClipClick = (clipSlug: string) => {
-    const activeMediaClip = listOfAllClips.find(
+    const activeMediaClip = clipList.find(
       (clip) => clip.clipSlug === clipSlug,
     );
     setCurrentClip(activeMediaClip);
+
+    setClipList((prevList) => {
+      const newList = cloneDeep(prevList);
+      if (newList[currentIndex]) {
+        newList[currentIndex].muxPlayingState = "playing";
+      }
+      return newList;
+    }); 
+
+    if (currentClip) setCurrentIndex(clipList.indexOf(currentClip));
 
     router.replace(
       {
@@ -138,17 +149,31 @@ export function LessonMedia(props: LessonMediaProps) {
     });
   });
 
+
+  useEffect(() => {
+    if (currentClip) setCurrentIndex(clipList.indexOf(currentClip))
+    setClipList((prevList) => {
+      const newList = cloneDeep(prevList);
+      if (newList[currentIndex]) {
+        newList[currentIndex].muxPlayingState = "playing";
+      }
+      return newList;
+    });   
+  }, [])
+
+  const [clipList, setClipList] = useState(listOfAllClips);
+
   const getInitialCurrentClip = () => {
     const videoQueryFromUrl = query.video;
     if (videoQueryFromUrl) {
-      return listOfAllClips.find((clip) => clip.clipSlug === videoQueryFromUrl);
+      return clipList.find((clip) => clip.clipSlug === videoQueryFromUrl);
+    } else {
+      return clipList[0];
     }
-    return listOfAllClips[0];
   };
 
-  console.log(">>>>>> query video", query.video);
-
   const [currentClip, setCurrentClip] = useState(getInitialCurrentClip());
+  const [currentIndex, setCurrentIndex] = useState(currentClip ? clipList.indexOf(currentClip) : 0);
 
   const videoPlayer = currentClip && (
     <VideoPlayer
@@ -164,7 +189,7 @@ export function LessonMedia(props: LessonMediaProps) {
   const mediaClipList = (
     <OakMediaClipList
       lessonTitle={lessonTitle}
-      mediaClipList={listOfAllClips}
+      mediaClipList={clipList}
     />
   );
 
