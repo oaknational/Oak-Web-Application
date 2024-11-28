@@ -17,7 +17,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Thread } from "@/utils/curriculum/types";
 
-const StyledButton = styled.button`
+const StyledButton = styled("button")`
   all: unset;
   color: inherit;
   cursor: pointer;
@@ -133,6 +133,7 @@ function StickyBit({
   function isSelectedYear(yearOption: string) {
     return selectedYear === yearOption;
   }
+  console.log("Currently selected year:", selectedYear);
 
   return (
     <Box
@@ -208,16 +209,22 @@ function StickyBit({
                           onSelectYear(yearOption);
                           trackSelectYear(yearOption);
 
-                          setTimeout(() => {
-                            const targetElement = document.getElementById(
+                          const targetElement = document.getElementById(
+                            `year-${yearOption}`,
+                          );
+                          if (targetElement) {
+                            targetElement.scrollIntoView({
+                              behavior: "smooth",
+                            });
+                            const yearHeading = document.getElementById(
                               `year-${yearOption}`,
-                            );
-                            if (targetElement) {
-                              targetElement.scrollIntoView({
-                                behavior: "smooth",
-                              });
+                            ) as HTMLElement;
+
+                            if (yearHeading) {
+                              yearHeading.setAttribute("tabindex", "-1");
+                              yearHeading.focus();
                             }
-                          }, 0);
+                          }
                         }}
                       >
                         {getYearGroupTitle(yearData, yearOption)}
