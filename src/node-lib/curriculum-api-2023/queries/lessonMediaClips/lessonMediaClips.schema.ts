@@ -20,18 +20,6 @@ export type LessonBrowseData = ConvertKeysToCamelCase<
   z.infer<typeof lessonBrowseDataSchema>
 >;
 
-const baseLessonMediaClipsSchema = z.object({
-  lessonSlug: z.string(),
-  lessonTitle: z.string(),
-  subjectTitle: z.string(),
-  keyStageTitle: z.string(),
-});
-
-export const canonicalLessonMediaClipsSchema =
-  baseLessonMediaClipsSchema.extend({
-    pathways: z.array(lessonPathwaySchema),
-  });
-
 const mediaObjectSchema = z
   .object({
     url: z.string().url(),
@@ -59,7 +47,7 @@ const videoObjectSchema = z
 
 const mediaClipsCycleSchema = z.object({
   order: z.number().min(1),
-  mediaId: z.number().nullish(),
+  mediaId: z.number(),
   slug: z.string(),
   mediaClipTitle: z.string(),
   mediaObject: mediaObjectSchema,
@@ -77,9 +65,20 @@ const mediaClipsSchema = z.object({
   cycle3: cycleSchema.optional(),
 });
 
+const baseLessonMediaClipsSchema = z.object({
+  lessonSlug: z.string(),
+  lessonTitle: z.string(),
+  keyStageTitle: z.string(),
+  mediaClips: mediaClipsSchema,
+});
+
+export const canonicalLessonMediaClipsSchema =
+  baseLessonMediaClipsSchema.extend({
+    pathways: z.array(lessonPathwaySchema),
+  });
+
 export const lessonMediaClipsSchema = baseLessonMediaClipsSchema.extend({
   ...baseLessonBrowseSchema.shape,
-  mediaClips: mediaClipsSchema,
 });
 export type MediaObject = z.infer<typeof mediaClipsSchema>;
 export type LessonMediaClipsData = z.infer<typeof lessonMediaClipsSchema>;

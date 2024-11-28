@@ -2,13 +2,12 @@ import { FC, ReactNode } from "react";
 import {
   OakBox,
   OakHeading,
-  OakTypography,
   OakVideoTranscript,
   OakSignLanguageButton,
   OakCopyLinkButton,
-  OakFlex,
-  OakSpan,
 } from "@oaknational/oak-components";
+
+import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 
 /**
  * This is component with extra information about the video
@@ -45,19 +44,13 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
       <OakHeading tag="h5" $font={"heading-5"} $mb="space-between-xs">
         {clipTitle}
       </OakHeading>
-      <OakTypography
-        $font={"heading-light-7"}
+      <LessonMetadata
+        keyStageTitle={keyStageTitle}
+        yearTitle={yearTitle}
+        subjectTitle={subjectTitle}
         $color={"grey60"}
         $mb="space-between-m"
-      >
-        <OakFlex $flexDirection="row" $gap={"space-between-ssx"}>
-          <OakSpan>{keyStageTitle}</OakSpan>
-          <OakSpan>•</OakSpan>
-          <OakSpan>{yearTitle}</OakSpan>
-          <OakSpan>•</OakSpan>
-          <OakSpan>{subjectTitle}</OakSpan>
-        </OakFlex>
-      </OakTypography>
+      />
       {videoTranscript && (
         <OakVideoTranscript
           id={"video-transcript"}

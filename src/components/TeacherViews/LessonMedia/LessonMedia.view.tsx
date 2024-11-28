@@ -6,8 +6,9 @@ import {
   OakFlex,
   OakMediaClipList,
 } from "@oaknational/oak-components";
-import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
+import { useState } from "react";
 
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { resolveOakHref } from "@/common-lib/urls";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import {
@@ -18,16 +19,16 @@ import {
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
-import type { MediaClipsList, ConstructedMediaClip } from "@/components/TeacherComponents/types/mediaClip.types";
-import { useState } from "react";
+import type {
+  MediaClipsList,
+  ConstructedMediaClip,
+} from "@/components/TeacherComponents/types/mediaClip.types";
 import { constructMediaClipList } from "@/components/TeacherComponents/helpers/lessonHelpers/mediaClips.helpers";
 
 type BaseLessonMedia = {
   lessonTitle: string;
   lessonSlug: string;
   keyStageTitle: string;
-  subjectTitle: string;
-  yearTitle: string;
   mediaClips: MediaClipsList;
 };
 
@@ -49,19 +50,19 @@ type LessonMediaProps =
 
 export function LessonMedia(props: LessonMediaProps) {
   const { isCanonical, lesson } = props;
-  const { lessonTitle, lessonSlug, keyStageTitle, subjectTitle, yearTitle, mediaClips } = lesson;
+  const { lessonTitle, lessonSlug, keyStageTitle, mediaClips } = lesson;
 
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
 
-  const { programmeSlug, unitSlug } = commonPathway;
+  const { programmeSlug, unitSlug, subjectTitle, yearTitle } = commonPathway;
 
-  const listOfAllClips: ConstructedMediaClip[] = constructMediaClipList(mediaClips);
-  const [currentClip, setCurrentClip] = useState(listOfAllClips[0]);
+  const listOfAllClips: ConstructedMediaClip[] =
+    constructMediaClipList(mediaClips);
+  const [currentClip] = useState(listOfAllClips[0]);
 
-  const videoPlayer = (
-    currentClip &&
+  const videoPlayer = currentClip && (
     <VideoPlayer
       playbackId={currentClip.muxPlaybackId}
       playbackPolicy={"signed"}
@@ -70,25 +71,25 @@ export function LessonMedia(props: LessonMediaProps) {
       isLegacy={false}
     />
   );
-  
-  // media clip list component 
+
+  // media clip list component
   const mediaClipList = (
-    <OakMediaClipList 
+    <OakMediaClipList
       lessonTitle={lessonTitle}
       mediaClipList={listOfAllClips}
     />
   );
 
-  // media clip info component 
-  const lessonMediaClipInfo = (
-    (currentClip && <LessonMediaClipInfo
+  // media clip info component
+  const lessonMediaClipInfo = currentClip && yearTitle && subjectTitle && (
+    <LessonMediaClipInfo
       clipTitle={currentClip.clipName}
       keyStageTitle={keyStageTitle}
       yearTitle={yearTitle}
       subjectTitle={subjectTitle}
       videoTranscript={<OakP>[video transcript here]</OakP>}
       copyLinkButtonEnabled={true}
-    />)
+    />
   );
 
   return (
@@ -147,19 +148,26 @@ export function LessonMedia(props: LessonMediaProps) {
       {/* desktop layout */}
       {listOfAllClips.length > 0 && (
         <OakBox $display={["none", "none", "block"]}>
-          <OakFlex $flexDirection={"row"} $height={"all-spacing-21"} $mb={"space-between-m"}>
-            <OakFlex $flexGrow={1} $alignItems={"center"} $background={"black"} $overflow={"hidden"}>
+          <OakFlex
+            $flexDirection={"row"}
+            $height={"all-spacing-21"}
+            $mb={"space-between-m"}
+          >
+            <OakFlex
+              $flexGrow={1}
+              $alignItems={"center"}
+              $background={"black"}
+              $overflow={"hidden"}
+            >
               {videoPlayer}
             </OakFlex>
-            <OakFlex $maxWidth={"all-spacing-20"}>
-              {mediaClipList}
-            </OakFlex>
+            <OakFlex $maxWidth={"all-spacing-20"}>{mediaClipList}</OakFlex>
           </OakFlex>
 
           {lessonMediaClipInfo}
         </OakBox>
       )}
-      
+
       {/* mobile layout */}
       {listOfAllClips.length > 0 && (
         <OakBox $display={["block", "block", "none"]}>
@@ -170,7 +178,6 @@ export function LessonMedia(props: LessonMediaProps) {
           </OakFlex>
         </OakBox>
       )}
-
     </OakMaxWidth>
   );
 }

@@ -20,7 +20,7 @@ export type ExpandingContainerTitle =
   | "Exit quiz"
   | "Starter quiz"
   | "Worksheet"
-  | "Video"
+  | "Lesson video"
   | "Transcript"
   | "Lesson overview"
   | "Additional material";
