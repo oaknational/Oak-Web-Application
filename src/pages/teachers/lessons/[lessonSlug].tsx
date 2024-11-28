@@ -40,18 +40,23 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
-  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
-    lessonSlug: lesson.lessonSlug,
-    source: "lesson-canonical",
-    curriculumTrackingProps: {
-      lessonName: lesson.lessonTitle,
-      unitName: null,
-      subjectSlug: null,
-      subjectTitle: null,
-      keyStageSlug: null,
-      keyStageTitle: null,
-    },
-  });
+  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
+    useShareExperiment({
+      lessonSlug: lesson.lessonSlug,
+      source: "lesson-canonical",
+      curriculumTrackingProps: {
+        lessonName: lesson.lessonTitle,
+        unitName: null,
+        subjectSlug: null,
+        subjectTitle: null,
+        keyStageSlug: null,
+        keyStageTitle: null,
+      },
+    });
+
+  if (shareExperimentFlag && window.location.href !== browserUrl) {
+    window.history.replaceState({}, "", browserUrl);
+  }
 
   const teacherShareButton = shareExperimentFlag ? (
     <TeacherShareButton

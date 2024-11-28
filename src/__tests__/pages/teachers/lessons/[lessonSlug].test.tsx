@@ -9,6 +9,25 @@ import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lesso
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+
+const url = "";
+
+// mock useShareExperiment
+jest.mock(
+  "@/pages-helpers/teacher/share-experiments/useShareExperiment",
+  () => {
+    return {
+      __esModule: true,
+      useShareExperiment: jest.fn(() => ({
+        shareExperimentFlag: false,
+        shareUrl: "",
+        browserUrl: url,
+        shareActivated: false,
+      })),
+    };
+  },
+);
 
 const render = renderWithProviders();
 
@@ -32,6 +51,29 @@ describe("Lesson Overview Canonical Page", () => {
 
       expect(result.getByRole("heading", { level: 1 })).toHaveTextContent(
         lesson.lessonTitle,
+      );
+    });
+
+    it("updates the url if shareExperimentFlag is true", async () => {
+      const fn = jest.spyOn(window.history, "replaceState");
+
+      (useShareExperiment as jest.Mock).mockReturnValueOnce({
+        shareExperimentFlag: true,
+        shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+        browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+        shareActivated: false,
+      });
+      render(
+        <LessonOverviewCanonicalPage
+          lesson={{ ...lesson, pathways: [] }}
+          isSpecialist={false}
+        />,
+      );
+
+      expect(fn).toHaveBeenCalledWith(
+        {},
+        "",
+        "http://localhost:3000/teachers/lessons/lesson-1?test=1",
       );
     });
   });

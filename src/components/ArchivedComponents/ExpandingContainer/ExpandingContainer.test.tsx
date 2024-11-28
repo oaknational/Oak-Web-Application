@@ -12,7 +12,7 @@ it("component renders with the title", () => {
       external={true}
       projectable={true}
       downloadable={true}
-      title={"Video"}
+      title={"Lesson video"}
       programmeSlug={"secondary-ks3-maths"}
       unitSlug={"unit"}
       lessonSlug={"slug-slug-slug"}
@@ -32,7 +32,7 @@ it("component renders with the title only", () => {
       external={false}
       projectable={false}
       downloadable={false}
-      title={"Video"}
+      title={"Lesson video"}
       programmeSlug={"secondary-ks3-maths"}
       unitSlug={"unit"}
       lessonSlug={"slug-slug-slug"}
@@ -58,7 +58,7 @@ it.skip("renders top right icons", async () => {
       programmeSlug={"secondary-ks3-maths"}
       unitSlug={"unit"}
       lessonSlug={"slug-slug-slug"}
-      title={"Video"}
+      title={"Lesson video"}
     >
       <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
         Grid box
@@ -102,7 +102,7 @@ describe("comonents/ExpandingContainer", () => {
         external={true}
         projectable={true}
         downloadable={true}
-        title={"Video"}
+        title={"Lesson video"}
         programmeSlug="programme-slug"
         unitSlug={"unit"}
         lessonSlug={"slug-slug-slug"}
@@ -122,7 +122,7 @@ describe("comonents/ExpandingContainer", () => {
         external={false}
         projectable={false}
         downloadable={false}
-        title={"Video"}
+        title={"Lesson video"}
         programmeSlug="programme-slug"
         unitSlug={"unit"}
         lessonSlug={"slug-slug-slug"}
@@ -182,7 +182,7 @@ describe("comonents/ExpandingContainer", () => {
         programmeSlug="programme-slug"
         unitSlug={"unit"}
         lessonSlug={"slug-slug-slug"}
-        title={"Video"}
+        title={"Lesson video"}
         onDownloadButtonClick={onDownloadButtonClick}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
@@ -231,7 +231,7 @@ describe("comonents/ExpandingContainer", () => {
         programmeSlug="programme-slug"
         unitSlug={"unit"}
         lessonSlug={"slug-slug-slug"}
-        title={"Video"}
+        title={"Lesson video"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
@@ -254,7 +254,7 @@ describe("comonents/ExpandingContainer", () => {
         programmeSlug="programme-slug"
         unitSlug={"unit"}
         lessonSlug={"slug-slug-slug"}
-        title={"Video"}
+        title={"Lesson video"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
@@ -276,7 +276,7 @@ describe("comonents/ExpandingContainer", () => {
         programmeSlug="programme-slug"
         unitSlug={"unit"}
         lessonSlug={"slug-slug-slug"}
-        title={"Video"}
+        title={"Lesson video"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
@@ -299,7 +299,7 @@ describe("comonents/ExpandingContainer", () => {
         programmeSlug="programme-slug"
         unitSlug={"unit"}
         lessonSlug={"slug-slug-slug"}
-        title={"Video"}
+        title={"Lesson video"}
       >
         <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
           Grid box
@@ -313,7 +313,7 @@ describe("comonents/ExpandingContainer", () => {
     expect(resourceContainerExpanded).toHaveBeenCalledTimes(1);
     expect(resourceContainerExpanded).toHaveBeenCalledWith({
       pageName: "Homepage",
-      containerTitle: "Video",
+      containerTitle: "Lesson video",
       analyticsUseCase: null,
     });
   });
