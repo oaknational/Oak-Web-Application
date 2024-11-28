@@ -2,8 +2,7 @@ import { z } from "zod";
 import {
   keystageSlugs,
   keystageDescriptions,
-  syntheticUnitvariantLessonsByKsSchemaOld,
-  programmeFieldsSchema,
+  syntheticUnitvariantsWithLessonIdsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 export const subjectSchema = z.object({
@@ -36,24 +35,8 @@ const subjectListingSchema = z.object({
   keyStages: z.array(keyStageSchema),
 });
 
-// temporary fix until reimplementation of this query
-const partialPFSchema = programmeFieldsSchema.omit({
-  pathway: true,
-  pathway_slug: true,
-  pathway_description: true,
-  pathway_display_order: true,
-  pathway_id: true,
-});
-
 export const subjectLisitingRawSchema = z.object({
-  subjectLessons: z.array(
-    syntheticUnitvariantLessonsByKsSchemaOld
-      .omit({
-        unitvariant_id: true,
-        programme_fields: true,
-      })
-      .merge(z.object({ programme_fields: partialPFSchema })),
-  ),
+  subjectUnits: z.array(syntheticUnitvariantsWithLessonIdsByKsSchema),
   key_stages: z.array(keyStageDataRaw),
 });
 

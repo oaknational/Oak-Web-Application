@@ -1,6 +1,8 @@
-import { subjects, subjectSlugs } from "@oaknational/oak-curriculum-schema";
-
-import { DeprecatedRawSyntheticUVLesson } from "../lessonDownloads/rawSyntheticUVLesson.schema";
+import {
+  subjects,
+  subjectSlugs,
+  SyntheticUnitvariantsWithLessonIdsByKs,
+} from "@oaknational/oak-curriculum-schema";
 
 interface UnprocessedSubject {
   [key: string]: {
@@ -8,7 +10,7 @@ interface UnprocessedSubject {
     subjectSlug: typeof subjectSlugs | string;
     programmeSlug: string;
     unitIds: Set<number>;
-    lessonSlugs: Set<string>;
+    lessonIds: Set<number>;
     programmeSlugs: Set<string>;
   };
 }
@@ -22,12 +24,12 @@ interface ProcessedSubject {
   programmeCount: number;
 }
 
-export const constructSubjectsFromLessonData = (
-  lessons: DeprecatedRawSyntheticUVLesson[],
+export const constructSubjectsFromUnitData = (
+  units: SyntheticUnitvariantsWithLessonIdsByKs[],
 ): ProcessedSubject[] => {
-  const subjects = lessons.reduce((acc, lesson) => {
-    let { programme_slug } = lesson;
-    const { lesson_slug } = lesson;
+  const subjects = units.reduce((acc, unit) => {
+    let { programme_slug } = unit;
+    const { unit_data, lesson_ids } = unit;
 
     const {
       subject,
@@ -36,8 +38,8 @@ export const constructSubjectsFromLessonData = (
       subject_slug,
       tier_slug,
       examboard_slug,
-    } = lesson.programme_fields;
-    const { unit_id } = lesson.unit_data;
+    } = unit.programme_fields;
+    const { unit_id } = unit_data;
     const originalProgrammeSlug = programme_slug;
 
     //remove programme factors from new data
@@ -48,7 +50,10 @@ export const constructSubjectsFromLessonData = (
 
     // adds all the slugs to the unitSet, lessonSet and programmeSet
     if (acc[programme_slug]) {
-      acc[programme_slug]?.lessonSlugs.add(lesson_slug);
+      if (lesson_ids)
+        lesson_ids.forEach((lesson_id) => {
+          acc[programme_slug]?.lessonIds.add(lesson_id);
+        });
       acc[programme_slug]?.programmeSlugs.add(originalProgrammeSlug);
       acc[programme_slug]?.unitIds.add(unit_id);
     } else {
@@ -58,7 +63,7 @@ export const constructSubjectsFromLessonData = (
         subjectSlug: subject_slug,
         programmeSlug: programme_slug,
         unitIds: new Set([unit_id]),
-        lessonSlugs: new Set([lesson_slug]),
+        lessonIds: new Set(lesson_ids),
         programmeSlugs: new Set([originalProgrammeSlug]),
       };
     }
@@ -73,7 +78,7 @@ export const constructSubjectsFromLessonData = (
       subjectSlug: subject.subjectSlug,
       programmeSlug: subject.programmeSlug,
       unitCount: subject.unitIds.size,
-      lessonCount: subject.lessonSlugs.size,
+      lessonCount: subject.lessonIds.size,
       programmeCount: subject.programmeSlugs.size,
     }),
   );
