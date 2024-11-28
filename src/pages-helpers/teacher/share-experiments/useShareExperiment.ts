@@ -57,9 +57,9 @@ export const useShareExperiment = ({
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [browserUrl, setBrowserUrl] = useState<string | null>(null);
 
-  const shareExperimentFlag = useFeatureFlagVariantKey(
-    "delivery-sq-share-experiment",
-  );
+  const flag = `share-advocate-${source.split("-")[0]}`;
+
+  const shareExperimentFlag = useFeatureFlagVariantKey(flag) === "test";
 
   const { track } = useAnalytics();
 
