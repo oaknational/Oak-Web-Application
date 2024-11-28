@@ -20,7 +20,6 @@ type BaseLessonMedia = {
   lessonTitle: string;
   lessonSlug: string;
   keyStageTitle: string;
-  subjectTitle: string;
 };
 
 type CanonicalLesson = BaseLessonMedia & {
@@ -41,13 +40,13 @@ type LessonMediaProps =
 
 export function LessonMedia(props: LessonMediaProps) {
   const { isCanonical, lesson } = props;
-  const { lessonTitle, lessonSlug, keyStageTitle, subjectTitle } = lesson;
+  const { lessonTitle, lessonSlug, keyStageTitle } = lesson;
 
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
 
-  const { programmeSlug, unitSlug } = commonPathway;
+  const { programmeSlug, unitSlug, subjectTitle } = commonPathway;
 
   return (
     <OakMaxWidth $pb={"inner-padding-xl8"} $ph={"inner-padding-s"}>
@@ -105,7 +104,7 @@ export function LessonMedia(props: LessonMediaProps) {
         clipTitle="Clip title"
         keyStageTitle={keyStageTitle}
         yearTitle="Year slug here"
-        subjectTitle={subjectTitle}
+        subjectTitle={subjectTitle || ""}
         videoTranscript={<OakP>video transcript here</OakP>}
         copyLinkButtonEnabled={true}
         copyLinkHref="/hey"

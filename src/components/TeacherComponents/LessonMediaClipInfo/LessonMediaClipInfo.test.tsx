@@ -9,13 +9,13 @@ describe("LessonMediaClipInfo component", () => {
     const { getByText } = renderWithTheme(
       <LessonMediaClipInfo
         clipTitle="Clip title"
-        keyStageTitle="KS 2"
+        keyStageTitle="Key stage 2"
         yearTitle="Year 2"
         subjectTitle="Maths"
       />,
     );
     const clipTitle = getByText("Clip title");
-    const keyStage = getByText("KS 2");
+    const keyStage = getByText("Key stage 2");
     const year = getByText("Year 2");
     const subjectTitle = getByText("Maths");
     expect(clipTitle).toBeInTheDocument();
