@@ -93,6 +93,7 @@ const CurriculumVisualiserFiltersMobileFixture: CurriculumVisualiserFiltersProps
 describe("<CurriculumVisualiserFiltersMobile/>", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+
     const mockIntersectionObserver = jest.fn();
     mockIntersectionObserver.mockReturnValue({
       observe: () => null,

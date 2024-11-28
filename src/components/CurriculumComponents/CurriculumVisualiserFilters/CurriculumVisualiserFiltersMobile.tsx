@@ -131,22 +131,7 @@ function StickyBit({
     threadOptions.find((t) => t.slug === selectedThread);
 
   function isSelectedYear(yearOption: string) {
-    if (selectedYear === yearOption) {
-      setTimeout(() => {
-        const button = document.querySelector(
-          `[data-testid="year-group-filter-button"][aria-pressed="true"]`,
-        );
-        if (button) {
-          button.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-            inline: "center",
-          });
-        }
-      }, 0);
-      return true;
-    }
-    return false;
+    return selectedYear === yearOption;
   }
 
   return (
