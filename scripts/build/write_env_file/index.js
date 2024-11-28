@@ -245,7 +245,8 @@ async function main() {
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
       process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
       oakConfig.clerk.publishableKey,
-    CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY || oakConfig.clerk.secretKey,
+    CLERK_SECRET_KEY:
+      process.env.CLERK_SECRET_KEY || secretsFromNetwork.CLERK_SECRET_KEY,
 
     // Geolocation
     DEVELOPMENT_USER_REGION:
