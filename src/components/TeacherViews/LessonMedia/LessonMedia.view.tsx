@@ -2,7 +2,6 @@ import {
   OakTertiaryButton,
   OakBox,
   OakMaxWidth,
-  OakP,
   OakFlex,
   OakMediaClipList,
 } from "@oaknational/oak-components";
@@ -20,10 +19,12 @@ import {
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
 import type {
+  MediaClip,
   MediaClipsList,
   ConstructedMediaClip,
 } from "@/components/TeacherComponents/types/mediaClip.types";
 import { constructMediaClipList } from "@/components/TeacherComponents/helpers/lessonHelpers/mediaClips.helpers";
+import { useSignedThumbnailToken } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
 
 type BaseLessonMedia = {
   lessonTitle: string;
@@ -58,17 +59,65 @@ export function LessonMedia(props: LessonMediaProps) {
 
   const { programmeSlug, unitSlug, subjectTitle, yearTitle } = commonPathway;
 
-  const listOfAllClips: ConstructedMediaClip[] =
-    constructMediaClipList(mediaClips);
+
+
+  const listOfAllClips: ConstructedMediaClip[] = [];
+
+  Object.keys(mediaClips).forEach((learningCycle) => {
+    mediaClips[learningCycle].forEach((mediaClip: MediaClip) => {
+      let item: ConstructedMediaClip | {};
+
+      if (mediaClip.mediaType === "video") {
+        const { videoObject, mediaClipTitle, learningCycleTitle, mediaClipSlug } = mediaClip;
+
+        const thumbnailToken = videoObject && useSignedThumbnailToken({
+          playbackId: videoObject?.muxPlaybackId,
+          playbackPolicy: "signed",
+          isLegacy: true,
+        });
+
+        item = {
+          thumbnailImage: `https://image.mux.com/${videoObject.muxPlaybackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`,
+          muxPlaybackId: videoObject?.muxPlaybackId || "",
+          transcript: videoObject?.transcriptionSentences,
+          timeCode: videoObject?.duration,
+          clipName: mediaClipTitle,
+          clipSlug: mediaClipSlug,
+          learningCycle: learningCycleTitle,
+          muxPlayingState: "standard",
+          isAudioClip: false,
+          element: "button",
+        };
+      } else {
+        const { mediaObject, mediaClipTitle, learningCycleTitle, mediaClipSlug } = mediaClip;
+        
+          item = {
+            muxPlaybackId: mediaObject?.muxPlaybackId,
+            timeCode: mediaObject?.duration,
+            clipName: mediaClipTitle,
+            clipSlug: mediaClipSlug,
+            learningCycle: learningCycleTitle,
+            muxPlayingState: "standard",
+            onClick: () => {},
+            isAudioClip: true,
+            element: "button",
+          };
+      } 
+
+      if (item) listOfAllClips.push(item);
+    });  
+  });
+
   const [currentClip] = useState(listOfAllClips[0]);
+
 
   const videoPlayer = currentClip && (
     <VideoPlayer
-      playbackId={currentClip.muxPlaybackId}
+      playbackId={"2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU"}
       playbackPolicy={"signed"}
-      title={""} // todo
+      title={currentClip.clipName}
       location={"lesson"}
-      isLegacy={false}
+      isLegacy={true}
     />
   );
 
@@ -87,7 +136,7 @@ export function LessonMedia(props: LessonMediaProps) {
       keyStageTitle={keyStageTitle}
       yearTitle={yearTitle}
       subjectTitle={subjectTitle}
-      videoTranscript={<OakP>[video transcript here]</OakP>}
+      videoTranscript={currentClip.transcript.join(" ")}
       copyLinkButtonEnabled={true}
     />
   );

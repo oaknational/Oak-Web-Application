@@ -1,19 +1,22 @@
 export type MediaObject = {
-  url: string;
+  // url: string;
+  muxPlaybackId: string;
+  transcriptionSentences?: string[];
   resourceType: string;
-  displayName: string;
+  title: string;
   usageRestrictions?: string;
-  alt?: string;
+  // alt?: string;
   attributionRequired: string;
+  duration: number;
 };
 
 export type VideoObject = {
-  url: string;
+  // url: string;
   muxPlaybackId: string;
   videoWithSignLanguageMuxPlaybackId?: string;
   transcriptionSentences?: string[];
   resourceType: string;
-  displayName: string;
+  title: string;
   usageRestrictions?: string;
   attributionRequired: string;
   duration: number;
@@ -21,9 +24,11 @@ export type VideoObject = {
 
 export type MediaClip = {
   order: number;
+  learningCycleTitle: LearningCycle;
   mediaId: number | null | undefined;
   slug: string;
   mediaClipTitle: string;
+  mediaClipSlug: string;
   mediaObject: MediaObject;
   mediaType: "audio" | "video";
   videoId: number | null;
@@ -42,8 +47,10 @@ export type LearningCycle = "intro" | "cycle 1" | "cycle 2" | "cycle 3";
 export type ConstructedMediaClip = {
   thumbnailImage?: string;
   muxPlaybackId: string;
+  transcript?: string[];
   timeCode: number;
   clipName: string;
+  clipSlug: string;
   learningCycle: string;
   muxPlayingState: "standard" | "played" | "playing";
   onClick: () => void;

@@ -22,23 +22,26 @@ export type LessonBrowseData = ConvertKeysToCamelCase<
 
 const mediaObjectSchema = z
   .object({
-    url: z.string().url(),
+    // url: z.string().url(),
+    muxPlaybackId: z.string(),
+    transcriptionSentences: z.array(z.string()).optional(),
     resourceType: z.string(),
-    displayName: z.string(),
+    title: z.string(),
     usageRestrictions: z.string().optional(),
-    alt: z.string().optional(),
+    // alt: z.string().optional(),
     attributionRequired: z.string(),
+    duration: z.number(),
   })
   .nullable();
 
 const videoObjectSchema = z
   .object({
-    url: z.string().url(),
+    // url: z.string().url(),
     muxPlaybackId: z.string(),
     videoWithSignLanguageMuxPlaybackId: z.string().optional(),
     transcriptionSentences: z.array(z.string()).optional(),
     resourceType: z.string(),
-    displayName: z.string(),
+    title: z.string(),
     usageRestrictions: z.string().optional(),
     attributionRequired: z.string(),
     duration: z.number(),
@@ -47,6 +50,7 @@ const videoObjectSchema = z
 
 const mediaClipsCycleSchema = z.object({
   order: z.number().min(1),
+  learningCycleTitle: z.string(),
   mediaId: z.number(),
   slug: z.string(),
   mediaClipTitle: z.string(),

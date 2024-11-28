@@ -10,20 +10,21 @@ export const constructMediaClipList = (mediaClips: MediaClipsList) => {
       let item: ConstructedMediaClip | {};
 
       if (mediaClip.mediaType === "video") {
-        const { videoObject } = mediaClip;
+        const { videoObject, mediaClipTitle, learningCycleTitle, mediaClipSlug } = mediaClip;
 
         const thumbnailToken = videoObject && useSignedThumbnailToken({
           playbackId: videoObject?.muxPlaybackId,
           playbackPolicy: "signed",
-          isLegacy: false,
+          isLegacy: true,
         });
 
         item = {
-          thumbnailImage: `https://image.mux.com/${videoObject.muxPlaybackId}/thumbnail.{format}?token=${thumbnailToken}`,
+          thumbnailImage: `https://image.mux.com/${videoObject.muxPlaybackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`,
           muxPlaybackId: videoObject?.muxPlaybackId || "",
           timeCode: videoObject?.duration,
-          clipName: videoObject?.displayName,
-          learningCycle: "[learning cycle title here]",
+          clipName: mediaClipTitle,
+          clipSlug: mediaClipSlug,
+          learningCycle: learningCycleTitle,
           muxPlayingState: "standard",
           onClick: () => {},
           imageAltText: "",
@@ -31,13 +32,14 @@ export const constructMediaClipList = (mediaClips: MediaClipsList) => {
           element: "button",
         };
       } else {
-        const { mediaObject } = mediaClip;
+        const { mediaObject, mediaClipTitle, learningCycleTitle, mediaClipSlug } = mediaClip;
         
           item = {
-            muxPlaybackId: mediaObject?.url, // todo should it come from playbackId too?
-            timeCode: 0, // @todo
-            clipName: mediaObject?.displayName,
-            learningCycle: "[learning cycle title here]", //@todo
+            muxPlaybackId: mediaObject?.muxPlaybackId,
+            timeCode: mediaObject?.duration,
+            clipName: mediaClipTitle,
+            clipSlug: mediaClipSlug,
+            learningCycle: learningCycleTitle,
             muxPlayingState: "standard",
             onClick: () => {},
             imageAltText: "",
