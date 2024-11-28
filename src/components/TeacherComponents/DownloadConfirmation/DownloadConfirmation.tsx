@@ -76,14 +76,15 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     },
   });
 
-  const teacherShareButton = shareExperimentFlag ? (
-    <TeacherShareButton
-      label="Share resources with colleague"
-      shareUrl={shareUrl}
-      shareActivated={shareActivated}
-      variant="primary"
-    />
-  ) : null;
+  const teacherShareButton =
+    shareExperimentFlag === "test" ? (
+      <TeacherShareButton
+        label="Share resources with colleague"
+        shareUrl={shareUrl}
+        shareActivated={shareActivated}
+        variant="primary"
+      />
+    ) : null;
 
   return (
     <>
