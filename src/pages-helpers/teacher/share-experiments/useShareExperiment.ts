@@ -57,9 +57,17 @@ export const useShareExperiment = ({
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [browserUrl, setBrowserUrl] = useState<string | null>(null);
 
-  const shareExperimentFlag = useFeatureFlagVariantKey(
-    "delivery-sq-share-experiment",
-  );
+  const flags = {
+    "lesson-browse": "share-advocate-lesson",
+    "lesson-canonical": "share-advocate-lesson",
+    "download-browse": "share-advocate-download",
+    "download-canonical": "share-advocate-download",
+    "lesson-listing": "share-advocate-unit",
+  };
+
+  const flag = flags[source];
+
+  const shareExperimentFlag = useFeatureFlagVariantKey(flag);
 
   const { track } = useAnalytics();
 
@@ -102,6 +110,7 @@ export const useShareExperiment = ({
     }
 
     if (!shareIdRef.current && shareExperimentFlag) {
+      // we update the url and send the share initiated event for any users in the experiment
       const { url, shareIdKey, shareId } = getUpdatedUrl({
         url: window.location.href,
         storageShareId,

@@ -99,14 +99,15 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     window.history.replaceState({}, "", browserUrl);
   }
 
-  const teacherShareButton = shareExperimentFlag ? (
-    <TeacherShareButton
-      variant="primary"
-      shareUrl={shareUrl}
-      shareActivated={shareActivated}
-      label="Share unit with colleague"
-    />
-  ) : null;
+  const teacherShareButton =
+    shareExperimentFlag == "test" ? (
+      <TeacherShareButton
+        variant="primary"
+        shareUrl={shareUrl}
+        shareActivated={shareActivated}
+        label="Share unit with colleague"
+      />
+    ) : null;
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
   const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
