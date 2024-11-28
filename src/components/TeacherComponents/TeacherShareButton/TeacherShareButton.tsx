@@ -54,6 +54,7 @@ export const TeacherShareButton = ({
               tag="h2"
               $font={"heading-light-7"}
               $color={"text-success"}
+              aria-live="polite"
             >
               Link copied to clipboard
             </OakHeading>
@@ -88,6 +89,7 @@ export const TeacherShareButton = ({
             tag="h2"
             $font={"heading-light-7"}
             $color={"text-success"}
+            aria-live="polite"
           >
             Link copied to clipboard
           </OakHeading>
