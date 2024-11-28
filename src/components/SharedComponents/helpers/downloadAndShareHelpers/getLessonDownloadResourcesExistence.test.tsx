@@ -1,7 +1,7 @@
-import getDownloadResourcesExistence, {
+import getLessonDownloadResourcesExistence, {
   DownloadsApiCheckFilesResponseSchema,
   LegacyDownloadsApiCheckFilesResponseSchema,
-} from "./getDownloadResourcesExistence";
+} from "./getLessonDownloadResourcesExistence";
 
 import OakError from "@/errors/OakError";
 
@@ -47,7 +47,7 @@ describe("checkIfDownloadResourcesExist()", () => {
   });
 
   it("should return correct data if fetch is successful", async () => {
-    downloadResourcesExist = await getDownloadResourcesExistence(
+    downloadResourcesExist = await getLessonDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
       false,
@@ -61,7 +61,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     );
 
     try {
-      await getDownloadResourcesExistence(
+      await getLessonDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
         true,
@@ -83,7 +83,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     );
 
     try {
-      await getDownloadResourcesExistence(
+      await getLessonDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
 
@@ -113,7 +113,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     );
 
     try {
-      await getDownloadResourcesExistence(
+      await getLessonDownloadResourcesExistence(
         "lesson-slug",
         "exit-quiz-answers,worksheet-pdf",
         true,
@@ -131,7 +131,7 @@ describe("checkIfDownloadResourcesExist()", () => {
   });
 
   it("should fetch from new api if isLegacyDownload = true", async () => {
-    downloadResourcesExist = await getDownloadResourcesExistence(
+    downloadResourcesExist = await getLessonDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
       true,
@@ -142,7 +142,7 @@ describe("checkIfDownloadResourcesExist()", () => {
     );
   });
   it("should fetch from download api if isLegacyDownload = false", async () => {
-    downloadResourcesExist = await getDownloadResourcesExistence(
+    downloadResourcesExist = await getLessonDownloadResourcesExistence(
       "lesson-slug",
       "exit-quiz-answers,worksheet-pdf",
       false,

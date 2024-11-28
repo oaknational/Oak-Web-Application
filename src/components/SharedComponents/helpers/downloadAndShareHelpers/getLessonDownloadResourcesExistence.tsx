@@ -61,7 +61,7 @@ export type LegacyDownloadsApiCheckFilesResponseSchema = z.infer<
   typeof legacySchema
 >;
 
-const getDownloadResourcesExistence = async (
+const getLessonDownloadResourcesExistence = async (
   lessonSlug: string,
   resourceTypesString: string,
   isLegacyDownload: boolean,
@@ -114,4 +114,4 @@ const getDownloadResourcesExistence = async (
   return data;
 };
 
-export default getDownloadResourcesExistence;
+export default getLessonDownloadResourcesExistence;

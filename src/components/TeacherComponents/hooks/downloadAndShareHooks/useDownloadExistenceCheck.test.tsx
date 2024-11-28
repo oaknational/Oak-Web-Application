@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import useDownloadExistenceCheck from "./useDownloadExistenceCheck";
+import useLessonDownloadExistenceCheck from "./useLessonDownloadExistenceCheck";
 
 import type {
   DownloadResourceType,
@@ -44,7 +44,7 @@ describe("useDownloadExistenceCheck", () => {
     const isLegacyDownload = true;
 
     renderHook(() =>
-      useDownloadExistenceCheck({
+      useLessonDownloadExistenceCheck({
         lessonSlug,
         resourcesToCheck,
         onComplete,
@@ -83,7 +83,7 @@ describe("useDownloadExistenceCheck", () => {
     const isLegacyDownload = true;
 
     renderHook(() =>
-      useDownloadExistenceCheck({
+      useLessonDownloadExistenceCheck({
         lessonSlug,
         resourcesToCheck,
         onComplete,

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import type { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import getDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
+import getLessonDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getLessonDownloadResourcesExistence";
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter";
 
@@ -14,7 +14,9 @@ type UseDownloadExistenceCheckProps = {
   isLegacyDownload: boolean;
 };
 
-const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
+const useLessonDownloadExistenceCheck = (
+  props: UseDownloadExistenceCheckProps,
+) => {
   const [hasCheckedFiles, setHasCheckedFiles] = useState(false);
   const { resourcesToCheck, onComplete, lessonSlug, isLegacyDownload } = props;
 
@@ -29,7 +31,7 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
       setHasCheckedFiles(true);
       try {
         const { resources: resourceExistence } =
-          await getDownloadResourcesExistence(
+          await getLessonDownloadResourcesExistence(
             lessonSlug,
             resourceTypesAsString,
             isLegacyDownload,
@@ -72,4 +74,4 @@ const useDownloadExistenceCheck = (props: UseDownloadExistenceCheckProps) => {
   ]);
 };
 
-export default useDownloadExistenceCheck;
+export default useLessonDownloadExistenceCheck;

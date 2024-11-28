@@ -22,7 +22,6 @@ const resourcesToDownload: ResourcesToDownloadArrayType = [
   "exit-quiz-answers",
   "worksheet-pdf",
 ];
-const resourcesToDownloadAsSelection = "exit-quiz-answers,worksheet-pdf";
 
 describe("downloadLessonResources", () => {
   beforeEach(() => {
@@ -39,12 +38,10 @@ describe("downloadLessonResources", () => {
   it("should call createDownloadResourcesLink with correct parameters", async () => {
     await downloadLessonResources("lesson-slug", resourcesToDownload, true);
 
-    expect(createDownloadResourcesLink).toHaveBeenCalledWith(
-      "lesson-slug",
-      resourcesToDownloadAsSelection,
-      true,
-      undefined, // authFlagEnabled
-      undefined, // authToken
-    );
+    expect(createDownloadResourcesLink).toHaveBeenCalledWith({
+      downloadSlug: "lesson-slug",
+      selection: "exit-quiz-answers,worksheet-pdf",
+      isLegacyDownload: true,
+    });
   });
 });

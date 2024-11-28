@@ -22,17 +22,24 @@ const schema = z.object({
 });
 export type DownloadsApiDownloadResponseSchema = z.infer<typeof schema>;
 
-const createDownloadResourcesLink = async (
-  lessonSlug: string,
-  selection: string,
-  isLegacyDownload: boolean,
-  authFlagEnabled?: boolean,
-  authToken?: string | null,
-) => {
-  const downloadEnpoint = `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/download?selection=${selection}`;
+const createDownloadResourcesLink = async ({
+  downloadSlug,
+  isLegacyDownload,
+  selection,
+  authFlagEnabled,
+  authToken,
+}: {
+  downloadSlug: string;
+  isLegacyDownload: boolean;
+  selection?: string;
+  authFlagEnabled?: boolean;
+  authToken?: string | null;
+}) => {
+  const selectionString = selection ? `?selection=${selection}` : "";
+  const downloadEnpoint = `${DOWNLOADS_API_URL}/api/lesson/${downloadSlug}/download${selectionString}`;
 
   const meta = {
-    lessonSlug,
+    downloadSlug,
     selection,
     isLegacyDownload,
   };

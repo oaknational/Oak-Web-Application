@@ -22,11 +22,11 @@ describe("createDownloadResourcesLink()", () => {
   });
 
   it("should return correct data if fetch is successful", async () => {
-    downloadResourcesLink = await createDownloadResourcesLink(
-      "lesson-slug",
-      "exit-quiz-answers,worksheet-pdf",
-      true,
-    );
+    downloadResourcesLink = await createDownloadResourcesLink({
+      downloadSlug: "lesson-slug",
+      isLegacyDownload: true,
+      selection: "exit-quiz-answers,worksheet-pdf",
+    });
 
     expect(downloadResourcesLink).toEqual(data.url);
   });
@@ -37,11 +37,11 @@ describe("createDownloadResourcesLink()", () => {
     );
 
     try {
-      await createDownloadResourcesLink(
-        "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
-        true,
-      );
+      await createDownloadResourcesLink({
+        downloadSlug: "lesson-slug",
+        selection: "exit-quiz-answers,worksheet-pdf",
+        isLegacyDownload: true,
+      });
     } catch (error) {
       expect(error).toEqual("bad thing");
     }
@@ -59,17 +59,16 @@ describe("createDownloadResourcesLink()", () => {
     );
 
     try {
-      await createDownloadResourcesLink(
-        "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
-
-        true,
-      );
+      await createDownloadResourcesLink({
+        downloadSlug: "lesson-slug",
+        selection: "exit-quiz-answers,worksheet-pdf",
+        isLegacyDownload: true,
+      });
     } catch (error) {
       expect((error as OakError).message).toEqual("Failed to fetch downloads");
       expect((error as OakError).meta).toEqual({
         isLegacyDownload: true,
-        lessonSlug: "lesson-slug",
+        downloadSlug: "lesson-slug",
         selection: "exit-quiz-answers,worksheet-pdf",
       });
     }
@@ -87,26 +86,26 @@ describe("createDownloadResourcesLink()", () => {
     );
 
     try {
-      await createDownloadResourcesLink(
-        "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
-        true,
-      );
+      await createDownloadResourcesLink({
+        downloadSlug: "lesson-slug",
+        selection: "exit-quiz-answers,worksheet-pdf",
+        isLegacyDownload: true,
+      });
     } catch (error) {
       expect((error as OakError).message).toEqual("Failed to fetch downloads");
       expect((error as OakError).meta).toEqual({
         isLegacyDownload: true,
-        lessonSlug: "lesson-slug",
+        downloadSlug: "lesson-slug",
         selection: "exit-quiz-answers,worksheet-pdf",
       });
     }
   });
   it("should fetch from new api if isLegacyDownloads = true", async () => {
-    await createDownloadResourcesLink(
-      "lesson-slug",
-      "exit-quiz-answers,worksheet-pdf",
-      true,
-    );
+    await createDownloadResourcesLink({
+      downloadSlug: "lesson-slug",
+      selection: "exit-quiz-answers,worksheet-pdf",
+      isLegacyDownload: true,
+    });
 
     expect(global.fetch).toBeCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
@@ -114,11 +113,11 @@ describe("createDownloadResourcesLink()", () => {
     );
   });
   it("should fetch from download api if isLegacyDownloads = false", async () => {
-    await createDownloadResourcesLink(
-      "lesson-slug",
-      "exit-quiz-answers,worksheet-pdf",
-      false,
-    );
+    await createDownloadResourcesLink({
+      downloadSlug: "lesson-slug",
+      selection: "exit-quiz-answers,worksheet-pdf",
+      isLegacyDownload: false,
+    });
 
     expect(global.fetch).toBeCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/download?selection=exit-quiz-answers,worksheet-pdf",
@@ -130,12 +129,11 @@ describe("createDownloadResourcesLink()", () => {
     delete process.env.NEXT_PUBLIC_DOWNLOAD_API_URL;
 
     try {
-      await createDownloadResourcesLink(
-        "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
-
-        false,
-      );
+      await createDownloadResourcesLink({
+        downloadSlug: "lesson-slug",
+        selection: "exit-quiz-answers,worksheet-pdf",
+        isLegacyDownload: false,
+      });
     } catch (error) {
       expect(error).toEqual(
         new TypeError(
@@ -148,13 +146,13 @@ describe("createDownloadResourcesLink()", () => {
   });
   it("should fetch with correct headers including Authorization when authToken is provided", async () => {
     const authToken = "testToken";
-    await createDownloadResourcesLink(
-      "lesson-slug",
-      "exit-quiz-answers,worksheet-pdf",
-      true,
-      true,
+    await createDownloadResourcesLink({
+      downloadSlug: "lesson-slug",
+      selection: "exit-quiz-answers,worksheet-pdf",
+      isLegacyDownload: true,
       authToken,
-    );
+      authFlagEnabled: true,
+    });
 
     expect(global.fetch).toBeCalledWith(
       expect.any(String),
@@ -168,12 +166,12 @@ describe("createDownloadResourcesLink()", () => {
   });
 
   it("should fetch with X-Should-Authenticate-Download set to false when authFlagEnabled is false", async () => {
-    await createDownloadResourcesLink(
-      "lesson-slug",
-      "exit-quiz-answers,worksheet-pdf",
-      true,
-      false, // authFlagEnabled
-    );
+    await createDownloadResourcesLink({
+      downloadSlug: "lesson-slug",
+      selection: "exit-quiz-answers,worksheet-pdf",
+      isLegacyDownload: true,
+      authFlagEnabled: false,
+    });
 
     expect(global.fetch).toBeCalledWith(
       expect.any(String),

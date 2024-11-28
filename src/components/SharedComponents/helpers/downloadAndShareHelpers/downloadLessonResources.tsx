@@ -17,13 +17,13 @@ const downloadLessonResources = async (
 
   const selection = selectedResourceTypes.join(",");
 
-  const downloadResourcesLink = await createDownloadResourcesLink(
-    lessonSlug,
+  const downloadResourcesLink = await createDownloadResourcesLink({
+    downloadSlug: lessonSlug,
     selection,
     isLegacyDownload,
     authFlagEnabled,
     authToken,
-  );
+  });
 
   if (downloadResourcesLink) {
     createAndClickHiddenDownloadLink(downloadResourcesLink);
