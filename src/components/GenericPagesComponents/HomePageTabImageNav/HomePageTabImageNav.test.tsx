@@ -16,7 +16,7 @@ describe("HomePageTabImageNav Component", () => {
 
   it.each([
     [/Curriculum Plans/i, "/curriculum"],
-    [/AI Experiments/i, "/ai"],
+    [/AI experiments/i, "/ai"],
     [/Pupils/i, "/pupils"],
   ])(
     "navigates to the correct tab when the button is clicked",
