@@ -1,3 +1,14 @@
+## [1.640.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.1...v1.640.2) (2024-11-28)
+
+
+### Bug Fixes
+
+* correct unit listing flag ([1528ec4](https://github.com/oaknational/Oak-Web-Application/commit/1528ec4e59c765d7b0892fa71f098cc8ff9a28a3))
+* download control doesn't show button ([20eea86](https://github.com/oaknational/Oak-Web-Application/commit/20eea86b160e341baefb9b684d8241acd6d13338))
+* ensure control sends events and modifies url ([9ebe0af](https://github.com/oaknational/Oak-Web-Application/commit/9ebe0af35d0c4586f7c8b115ec771a1d7be9c443))
+* merged avo ([a0e68be](https://github.com/oaknational/Oak-Web-Application/commit/a0e68be94a0ace017bab082c242f42d56d00467f))
+* resolve missing page name in avo ([dec8e88](https://github.com/oaknational/Oak-Web-Application/commit/dec8e8841b3afc47b3c3771f104b5ce18e80c405))
+
 ## [1.640.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.0...v1.640.1) (2024-11-28)
 
 
