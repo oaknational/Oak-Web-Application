@@ -1,3 +1,10 @@
+## [1.640.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.0...v1.640.1) (2024-11-28)
+
+
+### Bug Fixes
+
+* get clerk secret key from secrets from network ([03a481c](https://github.com/oaknational/Oak-Web-Application/commit/03a481cc952c26aabe078e23dc292fa1df30e6bf))
+
 # [1.640.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.639.4...v1.640.0) (2024-11-28)
 
 
