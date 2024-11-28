@@ -45,20 +45,26 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     keyStageTitle,
   } = curriculumData;
 
-  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
-    lessonSlug,
-    unitSlug,
-    programmeSlug,
-    source: "lesson-browse",
-    curriculumTrackingProps: {
-      lessonName: lessonTitle,
-      unitName: unitTitle,
-      subjectSlug,
-      subjectTitle,
-      keyStageSlug,
-      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
-    },
-  });
+  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
+    useShareExperiment({
+      lessonSlug,
+      unitSlug,
+      programmeSlug,
+      source: "lesson-browse",
+      curriculumTrackingProps: {
+        lessonName: lessonTitle,
+        unitName: unitTitle,
+        subjectSlug,
+        subjectTitle,
+        keyStageSlug,
+        keyStageTitle:
+          keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      },
+    });
+
+  if (shareExperimentFlag && window.location.href !== browserUrl) {
+    window.history.replaceState({}, "", browserUrl);
+  }
 
   const teacherShareButton = shareExperimentFlag ? (
     <TeacherShareButton
