@@ -31,7 +31,7 @@ export type LessonItemTitle =
   | "Exit quiz"
   | "Starter quiz"
   | "Worksheet"
-  | "Video"
+  | "Lesson video"
   | "Transcript"
   | "Lesson details"
   | "Additional material";

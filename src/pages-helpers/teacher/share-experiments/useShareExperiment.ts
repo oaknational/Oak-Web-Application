@@ -42,17 +42,20 @@ export const useShareExperiment = ({
   unitSlug,
   programmeSlug,
   source,
+  shareBaseUrl,
   curriculumTrackingProps,
 }: {
   lessonSlug?: string;
   unitSlug?: string;
   programmeSlug?: string;
+  shareBaseUrl?: string;
   source: keyof typeof shareSources;
   curriculumTrackingProps: CurriculumTrackingProps;
 }) => {
   const shareIdRef = useRef<string | null>(null);
   const shareIdKeyRef = useRef<string | null>(null);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [browserUrl, setBrowserUrl] = useState<string | null>(null);
 
   const shareExperimentFlag = useFeatureFlagVariantKey(
     "delivery-sq-share-experiment",
@@ -107,8 +110,10 @@ export const useShareExperiment = ({
         shareMethod: "url",
       });
 
+      setBrowserUrl(url);
+
       const { url: buttonUrl } = getUpdatedUrl({
-        url: window.location.href,
+        url: shareBaseUrl || window.location.href,
         storageShareId: shareId, // we know that this will now be the shareId
         unhashedKey: key,
         source,
@@ -131,15 +136,12 @@ export const useShareExperiment = ({
 
       shareIdRef.current = shareId;
       shareIdKeyRef.current = shareIdKey;
-
-      if (window.location.href !== url) {
-        window.history.replaceState({}, "", url);
-      }
     }
   }, [
     lessonSlug,
     programmeSlug,
     unitSlug,
+    shareBaseUrl,
     curriculumTrackingProps,
     shareExperimentFlag,
     source,
@@ -172,6 +174,7 @@ export const useShareExperiment = ({
     shareIdRef,
     shareIdKeyRef,
     shareUrl,
+    browserUrl,
     shareActivated,
   };
 };

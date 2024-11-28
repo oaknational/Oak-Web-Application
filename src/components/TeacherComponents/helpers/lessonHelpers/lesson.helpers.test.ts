@@ -137,7 +137,7 @@ describe("getPageLinksForLesson()", () => {
       },
       {
         anchorId: "video",
-        label: "Video",
+        label: "Lesson video",
       },
       {
         anchorId: "worksheet",
@@ -178,7 +178,7 @@ describe("getPageLinksForLesson()", () => {
       },
       {
         anchorId: "video",
-        label: "Video",
+        label: "Lesson video",
       },
       {
         anchorId: "worksheet",

@@ -33,7 +33,7 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
           isActive={current === "curriculum"}
         />
         <OakHomepageTabButton
-          title="AI Experiments"
+          title="AI experiments"
           iconName="homepage-robot-waving"
           href="/ai"
           element="a"

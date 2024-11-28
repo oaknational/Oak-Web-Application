@@ -54,11 +54,18 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     focusRef.current?.focus();
   }, []);
 
+  // create a share URL which points at the lesson overview page
+  const pathElems = window.location.href.split("/");
+  const shareBaseUrl = pathElems
+    .splice(0, pathElems.indexOf(lessonSlug) + 1)
+    .join("/");
+
   const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
     lessonSlug,
-    unitSlug: unitSlug ?? undefined,
-    programmeSlug: programmeSlug ?? undefined,
+    unitSlug: isCanonical ? undefined : (unitSlug ?? undefined), // NB. unitSlug can sometimes be defined for canonical state
+    programmeSlug: isCanonical ? undefined : (programmeSlug ?? undefined),
     source: isCanonical ? "download-canonical" : "download-browse",
+    shareBaseUrl,
     curriculumTrackingProps: {
       lessonName: lessonTitle,
       unitName: unitTitle ?? "",

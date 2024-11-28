@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from "react";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import LessonOverviewKeyLearningPoints, {
   LessonOverviewKeyLearningPointProps,
@@ -14,7 +14,6 @@ import LessonOverviewTeacherTips, {
   LessonOverviewTeacherTipProps,
 } from "@/components/TeacherComponents/LessonOverviewTeacherTips";
 import LessonOverviewHelper from "@/components/TeacherComponents/LessonOverviewHelper";
-import Box from "@/components/SharedComponents/Box";
 import {
   ContentGuidance,
   Equipment,
@@ -63,23 +62,23 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
           $mb="space-between-m"
         >
           {keyLearningPoints && (
-            <Box>
+            <OakBox>
               <LessonOverviewKeyLearningPoints
                 keyLearningPoints={keyLearningPoints}
               />
-            </Box>
+            </OakBox>
+          )}
+          {keyWords && (
+            <OakBox>
+              <LessonOverviewKeywords keyWords={keyWords} />
+            </OakBox>
           )}
           {commonMisconceptions && (
-            <Box>
+            <OakBox>
               <LessonOverviewCommonMisconceptions
                 commonMisconceptions={commonMisconceptions}
               />
-            </Box>
-          )}
-          {keyWords && (
-            <Box>
-              <LessonOverviewKeywords keyWords={keyWords} />
-            </Box>
+            </OakBox>
           )}
         </OakFlex>
         <OakFlex
@@ -89,15 +88,15 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
           $mb={"space-between-m"}
         >
           {teacherTips && teacherTips.length > 0 && (
-            <Box>
+            <OakBox>
               <LessonOverviewTeacherTips teacherTips={teacherTips} />
-            </Box>
+            </OakBox>
           )}
           {(equipmentAndResources && equipmentAndResources.length > 0) ||
           (contentGuidance && contentGuidance.length > 0) ||
           supervisionLevel ||
           isLegacyLicense !== undefined ? (
-            <Box>
+            <OakBox>
               <LessonOverviewHelper
                 equipment={equipmentAndResources}
                 contentGuidance={contentGuidance}
@@ -105,7 +104,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                 isLegacyLicense={isLegacyLicense}
                 updatedAt={updatedAt}
               />
-            </Box>
+            </OakBox>
           ) : null}
         </OakFlex>
       </OakFlex>

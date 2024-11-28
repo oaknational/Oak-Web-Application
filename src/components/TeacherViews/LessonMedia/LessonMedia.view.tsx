@@ -2,6 +2,7 @@ import {
   OakTertiaryButton,
   OakBox,
   OakMaxWidth,
+  OakP,
 } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -13,10 +14,12 @@ import {
   getLessonMediaBreadCrumb,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
+import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
 
 type BaseLessonMedia = {
   lessonTitle: string;
   lessonSlug: string;
+  keyStageTitle: string;
 };
 
 type CanonicalLesson = BaseLessonMedia & {
@@ -37,16 +40,16 @@ type LessonMediaProps =
 
 export function LessonMedia(props: LessonMediaProps) {
   const { isCanonical, lesson } = props;
-  const { lessonTitle, lessonSlug } = lesson;
+  const { lessonTitle, lessonSlug, keyStageTitle } = lesson;
 
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
 
-  const { programmeSlug, unitSlug } = commonPathway;
+  const { programmeSlug, unitSlug, subjectTitle } = commonPathway;
 
   return (
-    <OakMaxWidth $pb={"inner-padding-xl8"}>
+    <OakMaxWidth $pb={"inner-padding-xl8"} $ph={"inner-padding-s"}>
       <OakBox $mb={"space-between-m2"} $mt={"space-between-m"}>
         <Breadcrumbs
           breadcrumbs={[
@@ -67,7 +70,7 @@ export function LessonMedia(props: LessonMediaProps) {
           ]}
         />
       </OakBox>
-      <OakBox>
+      <OakBox $mb={"space-between-m"}>
         {programmeSlug && unitSlug && (
           <OakTertiaryButton
             element="a"
@@ -97,6 +100,15 @@ export function LessonMedia(props: LessonMediaProps) {
           </OakTertiaryButton>
         )}
       </OakBox>
+      <LessonMediaClipInfo
+        clipTitle="Clip title"
+        keyStageTitle={keyStageTitle}
+        yearTitle="Year slug here"
+        subjectTitle={subjectTitle || ""}
+        videoTranscript={<OakP>video transcript here</OakP>}
+        copyLinkButtonEnabled={true}
+        copyLinkHref="/hey"
+      />
     </OakMaxWidth>
   );
 }
