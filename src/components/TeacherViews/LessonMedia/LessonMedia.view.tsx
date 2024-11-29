@@ -3,11 +3,11 @@ import {
   OakBox,
   OakMaxWidth,
   OakFlex,
+  OakMediaClip,
   OakMediaClipList,
 } from "@oaknational/oak-components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import { cloneDeep } from "lodash";
 
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -21,10 +21,16 @@ import {
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
 import type {
+  MediaClip,
   MediaClipsList,
-  ConstructedMediaClip,
+  LearningCycle,
 } from "@/components/TeacherComponents/types/mediaClip.types";
-import { constructMediaClipList } from "@/components/TeacherComponents/helpers/lessonHelpers/mediaClips.helpers";
+import { useSignedThumbnailToken } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
+import {
+  getTranscript,
+  getPlaybackId,
+  getPlayingState,
+} from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 
 type BaseLessonMedia = {
   lessonTitle: string;
@@ -62,14 +68,39 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const router = useRouter();
   const { query } = router;
 
+  // construct list of all clips in one array
+  const listOfAllClips = Object.keys(mediaClips)
+    .map((learningCycle) =>
+      mediaClips[learningCycle as LearningCycle].map(
+        (mediaClip: MediaClip) => mediaClip,
+      ),
+    )
+    .flat();
+
+  // get current clip from url parameters and if not available then choose first clip from the list
+  const getInitialCurrentClip = () => {
+    const videoQueryFromUrl = query.video;
+    if (videoQueryFromUrl) {
+      return listOfAllClips.find((clip) => clip.slug === videoQueryFromUrl);
+    } else {
+      return listOfAllClips[0];
+    }
+  };
+
+  const [currentClip, setCurrentClip] = useState(getInitialCurrentClip());
+  const [currentIndex, setCurrentIndex] = useState(
+    currentClip ? listOfAllClips.indexOf(currentClip) : 0,
+  );
+
+  // action performed on media clip item click
   const onMediaClipClick = (clipSlug: string) => {
-    const clickedMediaClip = clipList.find(
-      (clip) => clip.clipSlug === clipSlug,
+    const clickedMediaClip = listOfAllClips.find(
+      (clip) => clip.slug === clipSlug,
     );
     setCurrentClip(clickedMediaClip);
-    setActiveClip();
-
-    if (currentClip) setCurrentIndex(clipList.indexOf(currentClip));
+    setCurrentIndex(
+      clickedMediaClip ? listOfAllClips.indexOf(clickedMediaClip) : 0,
+    );
 
     // add video parameter to the url
     router.replace(
@@ -87,40 +118,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
     );
   };
 
-  let listOfAllClips: ConstructedMediaClip[] = constructMediaClipList(mediaClips, onMediaClipClick);
-
-  const getInitialCurrentClip = () => {
-    const videoQueryFromUrl = query.video;
-    if (videoQueryFromUrl) {
-      return clipList.find((clip) => clip.clipSlug === videoQueryFromUrl);
-    } else {
-      return clipList[0];
-    }
-  };
-
-  const setActiveClip = () => {
-    setClipList((prevList) => {
-      const newList = cloneDeep(prevList);
-      if (newList[currentIndex]) {
-        newList[currentIndex].muxPlayingState = "playing";
-      }
-      return newList;
-    }); 
-  };
-
-  const [clipList, setClipList] = useState(listOfAllClips);
-  const [currentClip, setCurrentClip] = useState(getInitialCurrentClip());
-  const [currentIndex, setCurrentIndex] = useState(currentClip ? clipList.indexOf(currentClip) : 0);
-
-  useEffect(() => {
-    setActiveClip();
-  }, [])
-
   const videoPlayer = currentClip && (
     <VideoPlayer
-      playbackId={currentClip.muxPlaybackId}
+      playbackId={getPlaybackId(currentClip)}
       playbackPolicy={"signed"}
-      title={currentClip.clipName}
+      title={currentClip.mediaClipTitle}
       location={"lesson"}
       isLegacy={false}
     />
@@ -130,18 +132,73 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const mediaClipList = (
     <OakMediaClipList
       lessonTitle={lessonTitle}
-      mediaClipList={clipList}
-    />
+      currentClipCounter={currentIndex + 1}
+      totalClipCounter={listOfAllClips.length}
+    >
+      {Object.keys(mediaClips).map((learningCycle) =>
+        mediaClips[learningCycle as LearningCycle].map(
+          (mediaClip: MediaClip) => {
+            const {
+              videoObject,
+              mediaObject,
+              mediaClipTitle,
+              learningCycleTitle,
+              slug,
+              mediaType,
+            } = mediaClip;
+
+            if (mediaType === "video" && videoObject) {
+              const thumbnailToken = useSignedThumbnailToken({
+                playbackId: videoObject?.muxPlaybackId,
+                playbackPolicy: videoObject?.playbackPolicy,
+                isLegacy: false,
+              });
+
+              const thumbnailImage = thumbnailToken.playbackToken
+                ? `https://image.mux.com/${videoObject.muxPlaybackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`
+                : "";
+
+              return (
+                <OakMediaClip
+                  clipName={mediaClipTitle}
+                  timeCode={videoObject.duration}
+                  learningCycle={learningCycleTitle}
+                  thumbnailImage={thumbnailImage}
+                  muxPlayingState={getPlayingState(currentClip?.slug, slug)}
+                  isAudioClip={false}
+                  imageAltText=""
+                  onClick={() => onMediaClipClick(slug)}
+                />
+              );
+            } else if (mediaType === "audio" && mediaObject) {
+              const { mediaClipTitle, learningCycleTitle, slug } = mediaClip;
+
+              return (
+                <OakMediaClip
+                  clipName={mediaClipTitle}
+                  timeCode={mediaObject.duration}
+                  learningCycle={learningCycleTitle}
+                  muxPlayingState={getPlayingState(currentClip?.slug, slug)}
+                  isAudioClip={false}
+                  imageAltText=""
+                  onClick={() => onMediaClipClick(slug)}
+                />
+              );
+            }
+          },
+        ),
+      )}
+    </OakMediaClipList>
   );
 
   // media clip info component
   const lessonMediaClipInfo = currentClip && yearTitle && subjectTitle && (
     <LessonMediaClipInfo
-      clipTitle={currentClip.clipName}
+      clipTitle={currentClip.mediaClipTitle}
       keyStageTitle={keyStageTitle}
       yearTitle={yearTitle}
       subjectTitle={subjectTitle}
-      videoTranscript={currentClip?.transcript?.join(" ")}
+      videoTranscript={getTranscript(currentClip)}
       copyLinkButtonEnabled={true}
     />
   );
@@ -234,4 +291,4 @@ export const LessonMedia = (props: LessonMediaProps) => {
       )}
     </OakMaxWidth>
   );
-}
+};
