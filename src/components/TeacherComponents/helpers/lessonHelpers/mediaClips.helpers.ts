@@ -5,7 +5,7 @@ import type {
 } from "@/components/TeacherComponents/types/mediaClip.types";
 import { useSignedThumbnailToken } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
 
-export const constructMediaClipList = (mediaClips: MediaClipsList) => {
+export const constructMediaClipList = (mediaClips: MediaClipsList, onMediaClipClick: (slug: string) => void) => {
   const listOfAllClips: ConstructedMediaClip[] = [];
 
   Object.keys(mediaClips).forEach((learningCycle) => {
@@ -16,13 +16,11 @@ export const constructMediaClipList = (mediaClips: MediaClipsList) => {
         const { videoObject, mediaClipTitle, learningCycleTitle, slug } =
           mediaClip;
 
-        const thumbnailToken =
-          videoObject &&
-          useSignedThumbnailToken({
-            playbackId: videoObject?.muxPlaybackId,
-            playbackPolicy: videoObject?.playbackPolicy,
-            isLegacy: true,
-          });
+        const thumbnailToken = useSignedThumbnailToken({
+          playbackId: videoObject?.muxPlaybackId,
+          playbackPolicy: videoObject?.playbackPolicy,
+          isLegacy: false,
+        });
 
         item = {
           thumbnailImage: `https://image.mux.com/${videoObject.muxPlaybackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`,
@@ -33,7 +31,7 @@ export const constructMediaClipList = (mediaClips: MediaClipsList) => {
           clipSlug: slug,
           learningCycle: learningCycleTitle,
           muxPlayingState: "standard",
-          onClick: () => {},
+          onClick: () => onMediaClipClick(slug),
           isAudioClip: false,
           element: "button",
           imageAltText: "",
@@ -49,7 +47,7 @@ export const constructMediaClipList = (mediaClips: MediaClipsList) => {
           clipSlug: slug,
           learningCycle: learningCycleTitle,
           muxPlayingState: "standard",
-          onClick: () => {},
+          onClick: () => onMediaClipClick(slug),
           isAudioClip: true,
           element: "button",
           imageAltText: "",
@@ -59,6 +57,7 @@ export const constructMediaClipList = (mediaClips: MediaClipsList) => {
       if (item) listOfAllClips.push(item);
     });
   });
+
 
   return listOfAllClips;
 };

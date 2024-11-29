@@ -64,6 +64,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     pathwayData,
   } = props;
 
+
   const mediaElRef = useRef<MuxPlayerElement>(null);
   const hasTrackedEndRef = useRef(false);
   const [envKey] = useState(INITIAL_ENV_KEY);

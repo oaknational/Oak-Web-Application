@@ -29,13 +29,12 @@ const lessonMediaClipsFixtures = (
           mediaType: "video",
           videoId: 33,
           videoObject: {
-            muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
+            muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
             playbackPolicy: "signed",
             transcriptionSentences: [
               "There will be some transcript sentences here.",
               "Welcome to the lesson.",
             ],
-            // url: "https://example.com/video/33.mp4",
             resourceType: "video",
             title: "Introduction physical exercise video",
             usageRestrictions: "No restrictions",
@@ -50,9 +49,8 @@ const lessonMediaClipsFixtures = (
           slug: "running",
           mediaId: 137156,
           mediaObject: {
-            // url: "https://example.com/audio/137156.mp3",
-            muxPlaybackId: "KHUK004YVrDuBlZH1YK01J2KQw2AyxGwpy00l016qIO3jDU",
-            playbackPolicy: "signed",
+            muxPlaybackId: "DS00Spx1CV902MCtPj5WknGlR102V5HFkDe",
+            playbackPolicy: "public",
             resourceType: "audio",
             title: "Running",
             usageRestrictions: "No restrictions",
@@ -76,9 +74,8 @@ const lessonMediaClipsFixtures = (
           mediaType: "video",
           videoId: 4,
           videoObject: {
-            muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
+            muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
             playbackPolicy: "signed",
-            // url: "https://example.com/video/4.mp4",
             resourceType: "video",
             title: "Cycle 1 Video",
             usageRestrictions: "No restrictions",
@@ -93,7 +90,6 @@ const lessonMediaClipsFixtures = (
           slug: "cycle-1-audio",
           mediaId: 137139,
           mediaObject: {
-            // url: "https://example.com/audio/137139.mp3",
             muxPlaybackId: "KHUK004YVrDuBlZH1YK01J2KQw2AyxGwpy00l016qIO3jDU",
             playbackPolicy: "signed",
             resourceType: "audio",
@@ -118,9 +114,8 @@ const lessonMediaClipsFixtures = (
           mediaType: "video",
           videoId: 50,
           videoObject: {
-            muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
+            muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
             playbackPolicy: "signed",
-            // url: "https://example.com/video/50.mp4",
             videoWithSignLanguageMuxPlaybackId:
               "YEPHo9rLrwNEIh02YUkNnqX6CFELAVtmlw5R4lYJESDs",
             transcriptionSentences: ["This is the transcription sentence"],
@@ -143,9 +138,8 @@ const lessonMediaClipsFixtures = (
           mediaType: "video",
           videoId: 223422,
           videoObject: {
-            muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
+            muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
             playbackPolicy: "signed",
-            // url: "https://example.com/video/222.mp4",
             resourceType: "video",
             title: "Cycle 3 Video",
             usageRestrictions: "No restrictions",
@@ -160,7 +154,6 @@ const lessonMediaClipsFixtures = (
           slug: "cycle-3-audio",
           mediaId: 137108,
           mediaObject: {
-            // url: "https://example.com/audio/137146.mp3",
             muxPlaybackId: "FJ8WDFTLqK9b02U01Vqc4PGMii01Dj6Zu2rsSTambKVLeI",
             playbackPolicy: "signed",
             resourceType: "audio",
@@ -180,7 +173,6 @@ const lessonMediaClipsFixtures = (
           slug: "cycle-3-audio-track-30",
           mediaId: 137146,
           mediaObject: {
-            // url: "https://example.com/audio/137146.mp3",
             muxPlaybackId: "FJ8WDFTLqK9b02U01Vqc4PGMii01Dj6Zu2rsSTambKVLeI",
             playbackPolicy: "signed",
             resourceType: "audio",
@@ -203,12 +195,11 @@ const lessonMediaClipsFixtures = (
           mediaType: "video",
           videoId: 12325,
           videoObject: {
-            muxPlaybackId: "2AcJzv00T02KcjUgA2wR02KlVQcfSSJRgLkV286rVPeGqU",
+            muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
             playbackPolicy: "signed",
             transcriptionSentences: [
               "There will be some transcript sentences here",
             ],
-            // url: "https://example.com/video/123.mp4",
             resourceType: "video",
             title: "Cycle 3 running video",
             usageRestrictions: "No restrictions",
