@@ -210,6 +210,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         $justifyContent={"center"}
         $ba={"border-solid-m"}
         $minWidth={"100%"}
+        // $width={"60%"}
         $borderColor={"black"}
         style={{
           aspectRatio: "16/9",
@@ -243,6 +244,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
       $flexDirection={"column"}
       $ba={"border-solid-l"}
       $minWidth={"100%"}
+      // $width={"60%"}
       $borderColor={"black"}
       style={{
         boxSizing: "content-box",

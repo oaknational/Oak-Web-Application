@@ -107,29 +107,36 @@ export const LessonMedia = (props: LessonMediaProps) => {
     );
 
     // add video parameter to the url
-    router.replace(
-      {
-        pathname: router.pathname,
-        query: {
-          programmeSlug: programmeSlug,
-          unitSlug: unitSlug,
-          lessonSlug: lessonSlug,
-          video: clipSlug,
-        },
-      },
-      undefined,
-      { shallow: true },
-    );
+    query.video = clipSlug;
+    router.replace(router);
+
+    // router.replace(
+    //   {
+    //     pathname: router.pathname,
+    //     query: {
+    //       programmeSlug: programmeSlug,
+    //       unitSlug: unitSlug,
+    //       lessonSlug: lessonSlug,
+    //       video: clipSlug,
+    //     },
+    //   },
+    //   undefined,
+    //   { shallow: true },
+    // );
   };
 
   const handleVideoPlayed = (event: VideoEventCallbackArgs) => {
-    if (event.duration === event.timeElapsed) {
-      currentClip &&
-        setPlayedVideosList([...playedVideosList, currentClip?.slug]);
-
-      console.log("played videos: ", playedVideosList);
+    if (event.event === "play") {
+      if (currentClip && !playedVideosList.includes(currentClip?.slug)) {
+        setPlayedVideosList((playedVideosList) => [
+          ...playedVideosList,
+          currentClip.slug,
+        ]);
+      }
     }
   };
+
+  console.log("played videos: ", playedVideosList);
 
   const videoPlayer = currentClip && (
     <VideoPlayer
@@ -149,67 +156,63 @@ export const LessonMedia = (props: LessonMediaProps) => {
       currentClipCounter={currentIndex + 1}
       totalClipCounter={listOfAllClips.length}
     >
-      {Object.keys(mediaClips).map((learningCycle) =>
-        mediaClips[learningCycle as LearningCycle].map(
-          (mediaClip: MediaClip) => {
-            const {
-              videoObject,
-              mediaObject,
-              mediaClipTitle,
-              learningCycleTitle,
-              slug,
-              mediaType,
-            } = mediaClip;
+      {listOfAllClips.map((mediaClip: MediaClip) => {
+        const {
+          videoObject,
+          mediaObject,
+          mediaClipTitle,
+          learningCycleTitle,
+          slug,
+          mediaType,
+        } = mediaClip;
 
-            if (mediaType === "video" && videoObject) {
-              const thumbnailToken = useSignedThumbnailToken({
-                playbackId: videoObject?.muxPlaybackId,
-                playbackPolicy: videoObject?.playbackPolicy,
-                isLegacy: false,
-              });
+        if (mediaType === "video" && videoObject) {
+          const thumbnailToken = useSignedThumbnailToken({
+            playbackId: videoObject?.muxPlaybackId,
+            playbackPolicy: videoObject?.playbackPolicy,
+            isLegacy: false,
+          });
 
-              const thumbnailImage = thumbnailToken.playbackToken
-                ? `https://image.mux.com/${videoObject.muxPlaybackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`
-                : "";
+          const thumbnailImage = thumbnailToken
+            ? `https://image.mux.com/${videoObject.muxPlaybackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`
+            : "";
 
-              return (
-                <OakMediaClip
-                  clipName={mediaClipTitle}
-                  timeCode={videoObject.duration}
-                  learningCycle={learningCycleTitle}
-                  thumbnailImage={thumbnailImage}
-                  muxPlayingState={getPlayingState(
-                    currentClip?.slug,
-                    slug,
-                    playedVideosList,
-                  )}
-                  isAudioClip={false}
-                  imageAltText=""
-                  onClick={() => onMediaClipClick(slug)}
-                />
-              );
-            } else if (mediaType === "audio" && mediaObject) {
-              const { mediaClipTitle, learningCycleTitle, slug } = mediaClip;
+          return (
+            <OakMediaClip
+              clipName={mediaClipTitle}
+              timeCode={videoObject.duration}
+              learningCycle={learningCycleTitle}
+              thumbnailImage={thumbnailImage}
+              muxPlayingState={getPlayingState(
+                currentClip?.slug,
+                slug,
+                playedVideosList,
+              )}
+              isAudioClip={false}
+              imageAltText=""
+              onClick={() => onMediaClipClick(slug)}
+            />
+          );
+        } else if (mediaType === "audio" && mediaObject) {
+          const { mediaClipTitle, learningCycleTitle, slug } = mediaClip;
 
-              return (
-                <OakMediaClip
-                  clipName={mediaClipTitle}
-                  timeCode={mediaObject.duration}
-                  learningCycle={learningCycleTitle}
-                  muxPlayingState={getPlayingState(
-                    currentClip?.slug,
-                    slug,
-                    playedVideosList,
-                  )}
-                  isAudioClip={false}
-                  imageAltText=""
-                  onClick={() => onMediaClipClick(slug)}
-                />
-              );
-            }
-          },
-        ),
-      )}
+          return (
+            <OakMediaClip
+              clipName={mediaClipTitle}
+              timeCode={mediaObject.duration}
+              learningCycle={learningCycleTitle}
+              muxPlayingState={getPlayingState(
+                currentClip?.slug,
+                slug,
+                playedVideosList,
+              )}
+              isAudioClip={false}
+              imageAltText=""
+              onClick={() => onMediaClipClick(slug)}
+            />
+          );
+        }
+      })}
     </OakMediaClipList>
   );
 
@@ -278,37 +281,28 @@ export const LessonMedia = (props: LessonMediaProps) => {
         )}
       </OakBox>
 
-      {/* desktop layout */}
       {listOfAllClips.length > 0 && currentClip && (
-        <OakBox $display={["none", "none", "block"]}>
+        <OakBox>
           <OakFlex
-            $flexDirection={"row"}
-            $height={"all-spacing-21"}
+            $flexDirection={["column", "column", "row"]}
+            $gap={["space-between-m", "space-between-m", "space-between-none"]}
             $mb={"space-between-m"}
           >
             <OakFlex
-              $flexGrow={1}
+              $width={["100%", "100%", "all-spacing-23"]}
               $alignItems={"center"}
-              $background={"black"}
-              $overflow={"hidden"}
+              $overflow={["visible", "visible", "hidden"]}
             >
               {videoPlayer}
             </OakFlex>
-            <OakFlex $maxWidth={"all-spacing-20"}>{mediaClipList}</OakFlex>
-          </OakFlex>
-
-          {lessonMediaClipInfo}
-        </OakBox>
-      )}
-
-      {/* mobile layout */}
-      {listOfAllClips.length > 0 && currentClip && (
-        <OakBox $display={["block", "block", "none"]}>
-          <OakFlex $flexDirection={"column"} $gap={"space-between-m"}>
-            {videoPlayer}
-            {lessonMediaClipInfo}
+            <OakBox $display={["block", "block", "none"]}>
+              {lessonMediaClipInfo}
+            </OakBox>
             {mediaClipList}
           </OakFlex>
+          <OakBox $display={["none", "none", "block"]}>
+            {lessonMediaClipInfo}
+          </OakBox>
         </OakBox>
       )}
     </OakMaxWidth>

@@ -1,3 +1,4 @@
+import { PlaybackPolicy } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
 import { LessonMediaClipsData } from "../queries/lessonMediaClips/lessonMediaClips.schema";
 
 const lessonMediaClipsFixtures = (
@@ -30,7 +31,7 @@ const lessonMediaClipsFixtures = (
           videoId: 33,
           videoObject: {
             muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
-            playbackPolicy: "signed",
+            playbackPolicy: "signed" as PlaybackPolicy,
             transcriptionSentences: [
               "There will be some transcript sentences here.",
               "Welcome to the lesson.",
@@ -54,7 +55,6 @@ const lessonMediaClipsFixtures = (
             resourceType: "audio",
             title: "Running",
             usageRestrictions: "No restrictions",
-            // alt: "Running",
             attributionRequired: "No attribution required",
             duration: 180.34,
           },
@@ -75,7 +75,7 @@ const lessonMediaClipsFixtures = (
           videoId: 4,
           videoObject: {
             muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
-            playbackPolicy: "signed",
+            playbackPolicy: "signed" as PlaybackPolicy,
             resourceType: "video",
             title: "Cycle 1 Video",
             usageRestrictions: "No restrictions",
@@ -91,7 +91,7 @@ const lessonMediaClipsFixtures = (
           mediaId: 137139,
           mediaObject: {
             muxPlaybackId: "KHUK004YVrDuBlZH1YK01J2KQw2AyxGwpy00l016qIO3jDU",
-            playbackPolicy: "signed",
+            playbackPolicy: "signed" as PlaybackPolicy,
             resourceType: "audio",
             title: "Cycle 1 Audio",
             usageRestrictions: "No restrictions",
@@ -115,7 +115,7 @@ const lessonMediaClipsFixtures = (
           videoId: 50,
           videoObject: {
             muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
-            playbackPolicy: "signed",
+            playbackPolicy: "signed" as PlaybackPolicy,
             videoWithSignLanguageMuxPlaybackId:
               "YEPHo9rLrwNEIh02YUkNnqX6CFELAVtmlw5R4lYJESDs",
             transcriptionSentences: ["This is the transcription sentence"],
@@ -139,7 +139,7 @@ const lessonMediaClipsFixtures = (
           videoId: 223422,
           videoObject: {
             muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
-            playbackPolicy: "signed",
+            playbackPolicy: "signed" as PlaybackPolicy,
             resourceType: "video",
             title: "Cycle 3 Video",
             usageRestrictions: "No restrictions",
@@ -155,7 +155,7 @@ const lessonMediaClipsFixtures = (
           mediaId: 137108,
           mediaObject: {
             muxPlaybackId: "FJ8WDFTLqK9b02U01Vqc4PGMii01Dj6Zu2rsSTambKVLeI",
-            playbackPolicy: "signed",
+            playbackPolicy: "signed" as PlaybackPolicy,
             resourceType: "audio",
             title: "Cycle 3 Audio - Track 30",
             usageRestrictions: "No restrictions",
@@ -174,7 +174,7 @@ const lessonMediaClipsFixtures = (
           mediaId: 137146,
           mediaObject: {
             muxPlaybackId: "FJ8WDFTLqK9b02U01Vqc4PGMii01Dj6Zu2rsSTambKVLeI",
-            playbackPolicy: "signed",
+            playbackPolicy: "signed" as PlaybackPolicy,
             resourceType: "audio",
             title: "Cycle 3 Audio - Track 30",
             usageRestrictions: "No restrictions",
@@ -196,7 +196,7 @@ const lessonMediaClipsFixtures = (
           videoId: 12325,
           videoObject: {
             muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
-            playbackPolicy: "signed",
+            playbackPolicy: "signed" as PlaybackPolicy,
             transcriptionSentences: [
               "There will be some transcript sentences here",
             ],

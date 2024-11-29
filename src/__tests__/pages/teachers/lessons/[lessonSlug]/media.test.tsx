@@ -11,6 +11,7 @@ import {
 } from "@/pages/teachers/lessons/[lessonSlug]/media";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 const render = renderWithProviders();
 
@@ -34,6 +35,7 @@ const fixtureData = {
       subjectTitle: "Physical Education",
     },
   ],
+  mediaClips: lessonMediaClipsFixtures().mediaClips,
 };
 
 jest.mock("next/router", () => ({
