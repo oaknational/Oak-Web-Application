@@ -19,9 +19,12 @@ export const getTranscript = (currentClip: MediaClip) => {
 export const getPlayingState = (
   currentClipSlug: string | undefined,
   slug: string,
+  playedVideosList?: string[],
 ) => {
   if (slug === currentClipSlug) {
     return "playing";
+  } else if (playedVideosList?.includes(slug)) {
+    return "played";
   } else {
     return "standard";
   }

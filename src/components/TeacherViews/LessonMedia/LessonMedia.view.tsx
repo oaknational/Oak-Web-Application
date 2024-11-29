@@ -9,7 +9,9 @@ import {
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
+import VideoPlayer, {
+  VideoEventCallbackArgs,
+} from "@/components/SharedComponents/VideoPlayer";
 import { resolveOakHref } from "@/common-lib/urls";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import {
@@ -92,6 +94,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
     currentClip ? listOfAllClips.indexOf(currentClip) : 0,
   );
 
+  const [playedVideosList, setPlayedVideosList] = useState<string[]>([]);
+
   // action performed on media clip item click
   const onMediaClipClick = (clipSlug: string) => {
     const clickedMediaClip = listOfAllClips.find(
@@ -118,6 +122,15 @@ export const LessonMedia = (props: LessonMediaProps) => {
     );
   };
 
+  const handleVideoPlayed = (event: VideoEventCallbackArgs) => {
+    if (event.duration === event.timeElapsed) {
+      currentClip &&
+        setPlayedVideosList([...playedVideosList, currentClip?.slug]);
+
+      console.log("played videos: ", playedVideosList);
+    }
+  };
+
   const videoPlayer = currentClip && (
     <VideoPlayer
       playbackId={getPlaybackId(currentClip)}
@@ -125,6 +138,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       title={currentClip.mediaClipTitle}
       location={"lesson"}
       isLegacy={false}
+      userEventCallback={handleVideoPlayed}
     />
   );
 
@@ -164,7 +178,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
                   timeCode={videoObject.duration}
                   learningCycle={learningCycleTitle}
                   thumbnailImage={thumbnailImage}
-                  muxPlayingState={getPlayingState(currentClip?.slug, slug)}
+                  muxPlayingState={getPlayingState(
+                    currentClip?.slug,
+                    slug,
+                    playedVideosList,
+                  )}
                   isAudioClip={false}
                   imageAltText=""
                   onClick={() => onMediaClipClick(slug)}
@@ -178,7 +196,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
                   clipName={mediaClipTitle}
                   timeCode={mediaObject.duration}
                   learningCycle={learningCycleTitle}
-                  muxPlayingState={getPlayingState(currentClip?.slug, slug)}
+                  muxPlayingState={getPlayingState(
+                    currentClip?.slug,
+                    slug,
+                    playedVideosList,
+                  )}
                   isAudioClip={false}
                   imageAltText=""
                   onClick={() => onMediaClipClick(slug)}
