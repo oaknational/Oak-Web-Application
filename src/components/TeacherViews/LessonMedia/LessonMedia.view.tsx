@@ -14,6 +14,7 @@ import VideoPlayer, {
 } from "@/components/SharedComponents/VideoPlayer";
 import { resolveOakHref } from "@/common-lib/urls";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
+import MediaClipWithThumbnail from "@/components/TeacherComponents/LessonMediaClipWithThumbnail";
 import {
   getLessonOverviewBreadCrumb,
   getBreadcrumbsForLessonPathway,
@@ -27,7 +28,6 @@ import type {
   MediaClipsList,
   LearningCycle,
 } from "@/components/TeacherComponents/types/mediaClip.types";
-import { useSignedThumbnailToken } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
 import {
   getTranscript,
   getPlaybackId,
@@ -124,12 +124,6 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   console.log("played videos: ", playedVideosList);
 
-  const thumbnailToken = useSignedThumbnailToken({
-    playbackId: currentClip?.videoObject?.muxPlaybackId || "",
-    playbackPolicy: currentClip?.videoObject?.playbackPolicy || "public",
-    isLegacy: false,
-  });
-
   const videoPlayer = currentClip && (
     <VideoPlayer
       playbackId={getPlaybackId(currentClip)}
@@ -159,29 +153,21 @@ export const LessonMedia = (props: LessonMediaProps) => {
         } = mediaClip;
 
         if (mediaType === "video" && videoObject) {
-          // const thumbnailToken = useSignedThumbnailToken({
-          //   playbackId: mediaClip?.videoObject?.muxPlaybackId || "",
-          //   playbackPolicy: mediaClip?.videoObject?.playbackPolicy || "public",
-          //   isLegacy: false,
-          // });
-
-          const thumbnailImage = thumbnailToken
-            ? `https://image.mux.com/${videoObject.muxPlaybackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`
-            : "";
-
           return (
-            <OakMediaClip
+            <MediaClipWithThumbnail
               clipName={mediaClipTitle}
               timeCode={videoObject.duration}
               learningCycle={learningCycleTitle}
-              thumbnailImage={thumbnailImage}
               muxPlayingState={getPlayingState(
                 currentClip?.slug,
                 slug,
                 playedVideosList,
               )}
+              playbackId={mediaClip?.videoObject?.muxPlaybackId || ""}
+              playbackPolicy={
+                mediaClip?.videoObject?.playbackPolicy || "public"
+              }
               isAudioClip={false}
-              imageAltText=""
               onClick={() => onMediaClipClick(slug)}
               key={index}
             />
