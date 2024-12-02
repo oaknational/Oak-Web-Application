@@ -88,7 +88,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
     currentClip ? listOfAllClips.indexOf(currentClip) : 0,
   );
 
-  const [playedVideosList, setPlayedVideosList] = useState<string[]>([]);
+  const playedVideosList: string[] =
+    sessionStorage.getItem("playedVideosList")?.split(",") || [];
 
   // action performed on media clip item click
   const onMediaClipClick = (clipSlug: string) => {
@@ -101,17 +102,19 @@ export const LessonMedia = (props: LessonMediaProps) => {
     );
 
     // add video parameter to the url
-    // query.video = clipSlug;
-    // router.replace(router);
+    query.video = clipSlug;
+    router.replace(router);
   };
 
   const handleVideoPlayed = (event: VideoEventCallbackArgs) => {
     if (event.event === "play") {
       if (currentClip && !playedVideosList.includes(currentClip?.slug)) {
-        setPlayedVideosList((playedVideosList) => [
+        // add played video to session storage
+        const updatedPlayedVideosList = [
           ...playedVideosList,
           currentClip.slug,
-        ]);
+        ].toString();
+        sessionStorage.setItem("playedVideosList", updatedPlayedVideosList);
       }
     }
   };
