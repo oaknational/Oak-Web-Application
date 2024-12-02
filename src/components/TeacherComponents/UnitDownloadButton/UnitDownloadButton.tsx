@@ -14,16 +14,32 @@ import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUni
 import createUnitDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createUnitDownloadLink";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
-const UnitDownloadSignInButton = ({ buttonText }: { buttonText: string }) => (
+// teacher-unit-downloads experiment A/B test group keys and test values
+const variantKey = z
+  .literal("option-a")
+  .or(z.literal("option-b"))
+  .or(z.literal("control"));
+type VariantKey = z.infer<typeof variantKey>;
+
+const unitButtonSignInText = {
+  "option-a": "Download unit",
+  "option-b": "Create a free account to download unit",
+  control: "Download unit", // should not be used
+};
+
+const UnitDownloadSignInButton = ({ variant }: { variant: VariantKey }) => (
   <SignInButton>
-    <OakPrimaryButton iconName="download" isTrailingIcon>
+    <OakPrimaryButton
+      iconName={variant === "option-a" ? "download" : "arrow-right"}
+      isTrailingIcon
+    >
       <OakFlex $alignItems="center" $gap="space-between-xs">
         <OakTagFunctional
           label="New"
           $background="mint"
           $color="text-primary"
         />
-        {buttonText}
+        {unitButtonSignInText[variant]}
       </OakFlex>
     </OakPrimaryButton>
   </SignInButton>
@@ -76,18 +92,6 @@ export type UnitDownloadButtonProps = {
   downloadInProgress: boolean;
 };
 
-// teacher-unit-downloads experiment A/B test group keys and test values
-const variantKey = z
-  .literal("option-a")
-  .or(z.literal("option-b"))
-  .or(z.literal("control"));
-
-const unitButtonSignInText = {
-  "option-a": "Download unit",
-  "option-b": "Create a free account to download unit",
-  control: "Download unit",
-};
-
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const { isSignedIn, isLoaded } = useUser();
   const featureFlag = useFeatureFlagVariantKey("teacher-unit-downloads");
@@ -120,6 +124,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
         onDownloadSuccess();
       }
     } catch (error) {
+      setShowDownloadMessage(false);
       setDownloadError(true);
     }
     setDownloadInProgress(false);
@@ -131,9 +136,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const showDownloadButton = !unitDownloadDisabled && hasCheckedFiles && exists;
 
   return showSignInButton ? (
-    <UnitDownloadSignInButton
-      buttonText={unitButtonSignInText[parsedFeatureFlagKey.data]}
-    />
+    <UnitDownloadSignInButton variant={parsedFeatureFlagKey.data} />
   ) : showDownloadButton ? (
     <DownloadButton
       onUnitDownloadClick={onUnitDownloadClick}
