@@ -1,3 +1,62 @@
+# [1.641.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.3...v1.641.0) (2024-12-02)
+
+
+### Features
+
+* add played videos to session storage ([3f48923](https://github.com/oaknational/Oak-Web-Application/commit/3f48923230b3b8c43ceafd0d8f07cc48b632cbd5))
+* add tests for lessonMedia helpers ([d7c83d1](https://github.com/oaknational/Oak-Web-Application/commit/d7c83d1f35a9b08ce73ac5c926625557d00713e7))
+* create LessonMediaClipWithThumbnail component ([9550881](https://github.com/oaknational/Oak-Web-Application/commit/9550881d232908bece777f2cae54b25b5be89fc1))
+* fix UI for the video ([38be1e6](https://github.com/oaknational/Oak-Web-Application/commit/38be1e64c4a41fb9351c47dd45b0d003c7f44a48))
+* implement media clip player ([492c1e9](https://github.com/oaknational/Oak-Web-Application/commit/492c1e972075c050773f22a7c9579ae229015fe9))
+
+## [1.640.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.2...v1.640.3) (2024-12-02)
+
+
+### Bug Fixes
+
+* curric screenshot regression which was missing tiers/subjects ([470a3f5](https://github.com/oaknational/Oak-Web-Application/commit/470a3f5d3648b1d6d52e074eb51659b4452fdab7))
+
+## [1.640.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.1...v1.640.2) (2024-11-28)
+
+
+### Bug Fixes
+
+* correct unit listing flag ([1528ec4](https://github.com/oaknational/Oak-Web-Application/commit/1528ec4e59c765d7b0892fa71f098cc8ff9a28a3))
+* download control doesn't show button ([20eea86](https://github.com/oaknational/Oak-Web-Application/commit/20eea86b160e341baefb9b684d8241acd6d13338))
+* ensure control sends events and modifies url ([9ebe0af](https://github.com/oaknational/Oak-Web-Application/commit/9ebe0af35d0c4586f7c8b115ec771a1d7be9c443))
+* merged avo ([a0e68be](https://github.com/oaknational/Oak-Web-Application/commit/a0e68be94a0ace017bab082c242f42d56d00467f))
+* resolve missing page name in avo ([dec8e88](https://github.com/oaknational/Oak-Web-Application/commit/dec8e8841b3afc47b3c3771f104b5ce18e80c405))
+
+## [1.640.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.0...v1.640.1) (2024-11-28)
+
+
+### Bug Fixes
+
+* get clerk secret key from secrets from network ([03a481c](https://github.com/oaknational/Oak-Web-Application/commit/03a481cc952c26aabe078e23dc292fa1df30e6bf))
+
+# [1.640.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.639.4...v1.640.0) (2024-11-28)
+
+
+### Features
+
+* add LessonMediaClipInfo to media page ([3470184](https://github.com/oaknational/Oak-Web-Application/commit/34701841930b1612de6e881e31b9e167ca5f6005))
+* create MediaClipInfo component ([30da817](https://github.com/oaknational/Oak-Web-Application/commit/30da81799fd231f9216f6aa8dd94de3125ae24f2))
+* implement transcript part ([f316370](https://github.com/oaknational/Oak-Web-Application/commit/f316370803cb3dd0bb060fdb460821f8acf5543b))
+* use LessonMetadata component to construct lesson metadata ([5d519f3](https://github.com/oaknational/Oak-Web-Application/commit/5d519f367998ba3363562f550623f8cbf61df4d2))
+
+## [1.639.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.639.3...v1.639.4) (2024-11-28)
+
+
+### Bug Fixes
+
+* add a test for url change ([dabe8ec](https://github.com/oaknational/Oak-Web-Application/commit/dabe8ec518b0be92acbd657bb9915762ac25bda1))
+* added aria attribute for better accessibility ([be6d284](https://github.com/oaknational/Oak-Web-Application/commit/be6d284bfda782ce7fb4e62f2f7eac85f9012791))
+* downloads share url should point to lesson overview page ([7901b07](https://github.com/oaknational/Oak-Web-Application/commit/7901b079686891e6f5ac069c3cdab6d3a13590cf))
+
+## [1.639.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.639.2...v1.639.3) (2024-11-28)
+
+## [1.639.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.639.1...v1.639.2) (2024-11-28)
+
 ## [1.639.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.639.0...v1.639.1) (2024-11-27)
 
 

@@ -386,13 +386,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   />
                 </LessonItemContainer>
 
-                {pageLinks.find((p) => p.label === "Video") && (
+                {pageLinks.find((p) => p.label === "Lesson video") && (
                   <LessonItemContainer
                     isSpecialist={isSpecialist}
                     ref={videoSectionRef}
                     shareable={isLegacyLicense && showShare}
                     slugs={slugs}
-                    title={"Video"}
+                    title={"Lesson video"}
                     anchorId="video"
                     isFinalElement={
                       pageLinks.findIndex((p) => p.label === "Video") ===

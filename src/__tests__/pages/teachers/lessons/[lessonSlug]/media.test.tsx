@@ -2,6 +2,7 @@ import { GetStaticPropsContext, PreviewData } from "next";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { useRouter } from "next/router";
 
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import {
   getStaticProps,
@@ -16,9 +17,14 @@ const render = renderWithProviders();
 
 jest.mock("posthog-js/react");
 
+const mediaClips = lessonMediaClipsFixtures().mediaClips;
+
 const fixtureData = {
   lessonSlug: "running-as-a-team",
   lessonTitle: "Running as a team",
+  subjectTitle: "Physical Education",
+  keyStageTitle: "Key stage 4",
+  mediaClips,
   pathways: [
     {
       programmeSlug: "physical-education-ks4",
