@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -6,17 +6,12 @@ import {
   GetStaticPathsResult,
 } from "next";
 import {
-  OakFlex,
   OakGrid,
   OakGridArea,
   OakInlineBanner,
-  OakLoadingSpinner,
-  OakPrimaryButton,
-  OakTagFunctional,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import { SignInButton, useUser } from "@clerk/nextjs";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -51,9 +46,9 @@ import {
   useShareExperiment,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
-import createUnitDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createUnitDownloadLink";
-import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
+import UnitDownloadButton, {
+  useUnitDownloadButtonState,
+} from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -161,80 +156,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 
   const isNew = hasNewContent ?? false;
 
-  const [downloadError, setDownloadError] = useState<boolean | undefined>();
-  const [showDownloadMessage, setShowDownloadMessage] = useState(false);
-  const [downloadInProgress, setDownloadInProgress] = useState(false);
-
-  // TODO: feature flag
-  // TODO: use real slug
-  const mockSlug = "test-unit-6-lessons";
-  const { exists, fileSize, hasCheckedFiles } =
-    useUnitDownloadExistenceCheck(mockSlug);
-
-  const onUnitDownloadClick = async () => {
-    setShowDownloadMessage(true);
-    setDownloadInProgress(true);
-    try {
-      setDownloadError(false);
-      const downloadLink = await createUnitDownloadLink({
-        unitSlug: mockSlug,
-      });
-
-      if (downloadLink) {
-        createAndClickHiddenDownloadLink(downloadLink);
-        track.unitDownloadInitiated({
-          platform: "owa",
-          product: "teacher lesson resources",
-          engagementIntent: "use",
-          componentType: "unit_download_button",
-          eventVersion: "2.0.0",
-          analyticsUseCase: "Teacher",
-          unitName: unitTitle,
-          unitSlug: unitSlug,
-          keyStageSlug: keyStageSlug,
-          keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-          subjectSlug: subjectSlug,
-          subjectTitle: subjectTitle,
-        });
-      }
-    } catch (error) {
-      setDownloadError(true);
-    }
-    setDownloadInProgress(false);
-  };
-
-  const { isSignedIn, isLoaded } = useUser();
-
-  const unitDownloadButton =
-    isLoaded && !isSignedIn ? (
-      // TODO: A/B test button text
-      <SignInButton>
-        <OakPrimaryButton iconName="download" isTrailingIcon>
-          <OakFlex $alignItems="center" $gap="space-between-xs">
-            <OakTagFunctional
-              label="New"
-              $background="mint"
-              $color="text-primary"
-            />
-            Download unit{" "}
-          </OakFlex>
-        </OakPrimaryButton>
-      </SignInButton>
-    ) : hasCheckedFiles && exists ? (
-      <OakPrimaryButton
-        iconName="download"
-        isTrailingIcon
-        onClick={onUnitDownloadClick}
-        disabled={downloadInProgress}
-      >
-        <OakFlex $gap="space-between-xs">
-          {downloadInProgress && <OakLoadingSpinner />}
-          {downloadInProgress
-            ? "Downloading..."
-            : `Download (.zip ${fileSize})`}
-        </OakFlex>
-      </OakPrimaryButton>
-    ) : null;
+  const {
+    showDownloadMessage,
+    setShowDownloadMessage,
+    downloadError,
+    setDownloadError,
+    setDownloadInProgress,
+    downloadInProgress,
+  } = useUnitDownloadButtonState();
 
   return (
     <AppLayout
@@ -298,7 +227,30 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
-          unitDownloadButton={unitDownloadButton}
+          unitDownloadButton={
+            <UnitDownloadButton
+              setDownloadError={setDownloadError}
+              setDownloadInProgress={setDownloadInProgress}
+              setShowDownloadMessage={setShowDownloadMessage}
+              downloadInProgress={downloadInProgress}
+              onDownloadSuccess={() =>
+                track.unitDownloadInitiated({
+                  platform: "owa",
+                  product: "teacher lesson resources",
+                  engagementIntent: "use",
+                  componentType: "unit_download_button",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  unitName: unitTitle,
+                  unitSlug: unitSlug,
+                  keyStageSlug: keyStageSlug,
+                  keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+                  subjectSlug: subjectSlug,
+                  subjectTitle: subjectTitle,
+                })
+              }
+            />
+          }
           banner={
             showDownloadMessage ? (
               <OakInlineBanner
