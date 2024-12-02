@@ -1,4 +1,4 @@
-import { SignInButton, useUser } from "@clerk/nextjs";
+import { SignUpButton, useUser } from "@clerk/nextjs";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import {
   OakFlex,
@@ -28,7 +28,7 @@ const unitButtonSignInText = {
 };
 
 const UnitDownloadSignInButton = ({ variant }: { variant: VariantKey }) => (
-  <SignInButton>
+  <SignUpButton>
     <OakPrimaryButton
       iconName={variant === "option-a" ? "download" : "arrow-right"}
       isTrailingIcon
@@ -43,7 +43,7 @@ const UnitDownloadSignInButton = ({ variant }: { variant: VariantKey }) => (
         {unitButtonSignInText[variant]}
       </OakFlex>
     </OakPrimaryButton>
-  </SignInButton>
+  </SignUpButton>
 );
 
 const DownloadButton = ({

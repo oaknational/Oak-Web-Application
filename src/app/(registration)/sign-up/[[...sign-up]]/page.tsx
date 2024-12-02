@@ -71,7 +71,7 @@ function SignUpPage() {
             Our resources will always be free. Creating an account gives you:
           </OakHeading>
           <OakUL $font="heading-light-7" $reset $mh="space-between-xl">
-            <ListItem>Unlimited downloads</ListItem>
+            <ListItem>Full unit downloads</ListItem>
             <ListItem>Instant access to Aila, our AI lesson assistant</ListItem>
             <ListItem>Priority access to new products and features</ListItem>
           </OakUL>
