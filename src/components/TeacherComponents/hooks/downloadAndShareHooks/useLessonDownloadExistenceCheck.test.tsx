@@ -22,14 +22,14 @@ const getDownloadResourcesExistenceMock = jest.fn(() => ({
 }));
 
 jest.mock(
-  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/getLessonDownloadResourcesExistence",
   () => ({
     __esModule: true,
     default: (...args: []) => getDownloadResourcesExistenceMock(...args),
   }),
 );
 
-describe("useDownloadExistenceCheck", () => {
+describe("useLessonDownloadExistenceCheck", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
