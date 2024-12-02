@@ -53,6 +53,8 @@ export const SpecialistLessonPage: Story = {
       downloads: [],
       updatedAt: "2022-02-22T12:00:00Z",
       lessonGuideUrl: null,
+      hasMediaClips: false,
+      lessonMediaClips: null,
     },
   },
 };

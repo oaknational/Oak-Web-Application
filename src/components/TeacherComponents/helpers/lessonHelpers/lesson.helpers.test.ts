@@ -118,6 +118,7 @@ describe("getPageLinksForLesson()", () => {
       exitQuiz: [],
       hasCopyrightMaterial: false,
       hasDownloadableResources: true,
+      hasMediaClips: false,
     };
 
     const result = getPageLinksForLesson(lesson, []);
@@ -212,6 +213,7 @@ describe("getPageLinksForLesson()", () => {
       starterQuiz: [],
       exitQuiz: [],
       hasDownloadableResources: true,
+      hasMediaClips: false,
     };
 
     const result = getPageLinksForLesson(lesson, [

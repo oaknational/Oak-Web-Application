@@ -33,7 +33,6 @@ export const canonicalLessonMediaClipsSchema =
 
 const mediaObjectSchema = z
   .object({
-    url: z.string().url(),
     resourceType: z.string(),
     displayName: z.string(),
     usageRestrictions: z.string().optional(),
@@ -44,8 +43,8 @@ const mediaObjectSchema = z
 
 const videoObjectSchema = z
   .object({
-    url: z.string().url(),
     muxPlaybackId: z.string(),
+    playbackPolicy: z.enum(["public", "signed"]),
     videoWithSignLanguageMuxPlaybackId: z.string().optional(),
     transcriptionSentences: z.array(z.string()).optional(),
     resourceType: z.string(),
@@ -59,6 +58,7 @@ const videoObjectSchema = z
 const mediaClipsCycleSchema = z.object({
   order: z.number().min(1),
   mediaId: z.number().nullish(),
+  playbackPolicy: z.enum(["public", "signed"]),
   slug: z.string(),
   mediaClipTitle: z.string(),
   mediaObject: mediaObjectSchema,
@@ -69,12 +69,14 @@ const mediaClipsCycleSchema = z.object({
 
 const cycleSchema = z.array(mediaClipsCycleSchema);
 
-const mediaClipsSchema = z.object({
+export const mediaClipsSchema = z.object({
   intro: cycleSchema,
   cycle1: cycleSchema,
-  cycle2: cycleSchema.optional(),
-  cycle3: cycleSchema.optional(),
+  cycle2: cycleSchema,
+  cycle3: cycleSchema,
 });
+
+// TODO: Rename and extrapolate these types into component library
 
 export const lessonMediaClipsSchema = baseLessonMediaClipsSchema.extend({
   ...baseLessonBrowseSchema.shape,

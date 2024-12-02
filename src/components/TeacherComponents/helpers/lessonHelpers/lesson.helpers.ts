@@ -391,7 +391,9 @@ type GetPageLinksForLessonProps = Pick<
   | "starterQuiz"
   | "exitQuiz"
   | "hasCopyrightMaterial"
+  | "hasMediaClips"
 >;
+
 export type LessonPageLinkAnchorId =
   | "lesson-guide"
   | "slide-deck"
@@ -400,10 +402,13 @@ export type LessonPageLinkAnchorId =
   | "worksheet"
   | "starter-quiz"
   | "exit-quiz"
-  | "additional-material";
+  | "additional-material"
+  | "media-clips";
+
 export const getPageLinksForLesson = (
   lesson: GetPageLinksForLessonProps,
   copyrightContent: CopyrightContent,
+  mediaClipsLabel?: string,
 ): {
   label: string;
   anchorId: LessonPageLinkAnchorId;
@@ -429,6 +434,11 @@ export const getPageLinksForLesson = (
               copyrightContent,
             ),
         ),
+    },
+    {
+      label: mediaClipsLabel || "Video & audio",
+      anchorId: "media-clips",
+      condition: (lesson) => lesson.hasMediaClips,
     },
     {
       label: "Lesson details",

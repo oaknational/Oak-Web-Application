@@ -5,6 +5,7 @@ import {
   OakSecondaryButton,
   OakThemeProvider,
   oakDefaultTheme,
+  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import {
@@ -16,6 +17,8 @@ import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonIt
 import { Hr } from "@/components/SharedComponents/Typography";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Box from "@/components/SharedComponents/Box";
+import { resolveOakHref } from "@/common-lib/urls";
+import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 export const getContainerId = (anchorId: string) => {
   return `${anchorId}-container`;
@@ -34,7 +37,10 @@ export type LessonItemTitle =
   | "Lesson video"
   | "Transcript"
   | "Lesson details"
-  | "Additional material";
+  | "Additional material"
+  | "Demonstration videos"
+  | "Audio clips"
+  | "Video & audio clips";
 
 type Slugs = {
   lessonSlug: string;
@@ -44,22 +50,23 @@ type Slugs = {
 
 export interface LessonItemContainerProps {
   children?: React.ReactNode;
-  title: LessonItemTitle;
+  title: LessonItemTitle | DownloadableLessonTitles;
   anchorId: LessonPageLinkAnchorId;
   downloadable?: boolean;
   shareable?: boolean;
-  slugs?: Slugs;
+  displayMediaClipButton?: boolean;
+  slugs: Slugs;
   onDownloadButtonClick?: () => void;
   isFinalElement?: boolean;
   isSpecialist: boolean;
   pageLinks: ReturnType<typeof getPageLinksForLesson>;
 }
 
-const getPreselectedDownloadFromTitle = (title: LessonItemTitle) => {
+const getPreselectedDownloadFromTitle = (title: DownloadableLessonTitles) => {
   return containerTitleToPreselectMap[title]?.downloadType;
 };
 
-const getPreselectedQueryFromTitle = (title: LessonItemTitle) => {
+const getPreselectedQueryFromTitle = (title: DownloadableLessonTitles) => {
   return containerTitleToPreselectMap[title]?.shareType;
 };
 
@@ -71,14 +78,19 @@ export const LessonItemContainer = forwardRef<
     children,
     title,
     downloadable,
+    displayMediaClipButton,
     onDownloadButtonClick,
     slugs,
     anchorId,
     shareable,
     pageLinks,
   } = props;
-  const preselectedDownload = getPreselectedDownloadFromTitle(title);
-  const preselectedShare = getPreselectedQueryFromTitle(title);
+  const preselectedDownload = getPreselectedDownloadFromTitle(
+    title as DownloadableLessonTitles,
+  );
+  const preselectedShare = getPreselectedQueryFromTitle(
+    title as DownloadableLessonTitles,
+  );
   const [skipVideoButtonFocused, setSkipVideoButtonFocused] =
     useState<boolean>(false);
 
@@ -86,7 +98,8 @@ export const LessonItemContainer = forwardRef<
     anchorId === "video" ||
     anchorId === "lesson-guide" ||
     anchorId === "worksheet" ||
-    anchorId === "slide-deck"
+    anchorId === "slide-deck" ||
+    anchorId === "media-clips"
       ? pageLinks[pageLinks.findIndex((link) => link.anchorId === anchorId) + 1]
           ?.anchorId || undefined
       : undefined;
@@ -119,6 +132,28 @@ export const LessonItemContainer = forwardRef<
               {title}
             </OakHeading>
           )}
+          {displayMediaClipButton && slugs && (
+            <OakTertiaryButton
+              element="a"
+              href={
+                slugs?.programmeSlug && slugs?.unitSlug
+                  ? resolveOakHref({
+                      page: "lesson-media",
+                      lessonSlug: slugs.lessonSlug,
+                      programmeSlug: slugs.programmeSlug,
+                      unitSlug: slugs.unitSlug,
+                    })
+                  : resolveOakHref({
+                      page: "lesson-media-canonical",
+                      lessonSlug: slugs.lessonSlug,
+                    })
+              }
+              isTrailingIcon
+              iconName="arrow-right"
+            >
+              Play all
+            </OakTertiaryButton>
+          )}
           {downloadable && slugs && (
             <LessonItemContainerLink
               page={"download"}
@@ -139,6 +174,7 @@ export const LessonItemContainer = forwardRef<
               {...slugs}
             />
           )}
+
           {skipContentAnchor && (
             <OakSecondaryButton
               element="a"

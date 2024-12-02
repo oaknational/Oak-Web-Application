@@ -28,7 +28,7 @@ export function LessonItemContainerLink({
   page,
   isSpecialist,
 }: {
-  page: "share" | "download";
+  page: "share" | "download" | "media";
   resourceTitle: string;
   onClick?: () => void;
   lessonSlug: string;
