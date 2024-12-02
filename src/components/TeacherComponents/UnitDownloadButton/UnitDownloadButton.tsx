@@ -32,6 +32,7 @@ const UnitDownloadSignInButton = ({ variant }: { variant: VariantKey }) => (
     <OakPrimaryButton
       iconName={variant === "option-a" ? "download" : "arrow-right"}
       isTrailingIcon
+      width="fit-content"
     >
       <OakFlex $alignItems="center" $gap="space-between-xs">
         <OakTagFunctional
