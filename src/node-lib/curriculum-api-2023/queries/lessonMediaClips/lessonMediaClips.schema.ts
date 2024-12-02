@@ -68,6 +68,8 @@ const mediaClipsSchema = z.object({
   cycle3: cycleSchema,
 });
 
+const learningCycleSchema = z.enum(["intro", "cycle1", "cycle2", "cycle3"]);
+
 const baseLessonMediaClipsSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
@@ -84,8 +86,12 @@ export const lessonMediaClipsSchema = baseLessonMediaClipsSchema.extend({
   ...baseLessonBrowseSchema.shape,
 });
 
-export type MediaObject = z.infer<typeof mediaClipsSchema>;
+export type MediaClipsList = z.infer<typeof mediaClipsSchema>;
+export type MediaClip = z.infer<typeof mediaClipsCycleSchema>;
 export type LessonMediaClipsData = z.infer<typeof lessonMediaClipsSchema>;
 export type CanonicalLessonMediaClips = z.infer<
   typeof canonicalLessonMediaClipsSchema
 >;
+export type MediaObject = z.infer<typeof mediaObjectSchema>;
+export type VideoObject = z.infer<typeof videoObjectSchema>;
+export type LearningCycle = z.infer<typeof learningCycleSchema>;

@@ -1,4 +1,4 @@
-import type { MediaClip } from "@/components/TeacherComponents/types/mediaClip.types";
+import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
 export const getPlaybackId = (currentClip: MediaClip) => {
   if (currentClip.mediaType === "video" && currentClip.videoObject) {

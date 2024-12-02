@@ -27,7 +27,7 @@ import type {
   MediaClip,
   MediaClipsList,
   LearningCycle,
-} from "@/components/TeacherComponents/types/mediaClip.types";
+} from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import {
   getTranscript,
   getPlaybackId,
@@ -70,7 +70,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   const router = useRouter();
   const { query } = router;
-  const { video } = query;
+  const videoQuery = query.video;
 
   // construct list of all clips in one array
   const listOfAllClips = Object.keys(mediaClips)
@@ -82,7 +82,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
     .flat();
 
   const [currentClip, setCurrentClip] = useState(
-    getInitialCurrentClip(listOfAllClips, video),
+    getInitialCurrentClip(listOfAllClips, videoQuery),
   );
   const [currentIndex, setCurrentIndex] = useState(
     currentClip ? listOfAllClips.indexOf(currentClip) : 0,
@@ -96,14 +96,26 @@ export const LessonMedia = (props: LessonMediaProps) => {
     const clickedMediaClip = listOfAllClips.find(
       (clip) => clip.slug === clipSlug,
     );
+
     setCurrentClip(clickedMediaClip);
     setCurrentIndex(
       clickedMediaClip ? listOfAllClips.indexOf(clickedMediaClip) : 0,
     );
 
     // add video parameter to the url
-    query.video = clipSlug;
-    router.replace(router);
+    router.replace(
+      {
+        pathname: router.pathname,
+        query: {
+          programmeSlug: programmeSlug,
+          unitSlug: unitSlug,
+          lessonSlug: lessonSlug,
+          video: clipSlug,
+        },
+      },
+      undefined,
+      { shallow: true },
+    );
   };
 
   const handleVideoPlayed = (event: VideoEventCallbackArgs) => {
@@ -257,24 +269,28 @@ export const LessonMedia = (props: LessonMediaProps) => {
       </OakBox>
 
       {listOfAllClips.length > 0 && currentClip && (
-        <OakBox>
+        <OakBox data-testid="media-clip-wrapper">
           <OakFlex
             $flexDirection={["column", "column", "row"]}
             $gap={["space-between-m", "space-between-m", "space-between-none"]}
             $mb={"space-between-m"}
+            $height={["auto", "auto", "all-spacing-21"]}
           >
             <OakFlex
               $width={["100%", "100%", "all-spacing-23"]}
               $alignItems={"center"}
               $background={"black"}
               $overflow={["visible", "visible", "hidden"]}
+              $height={"100%"}
             >
               {videoPlayer}
             </OakFlex>
-            <OakBox $display={["block", "block", "none"]}>
+            <OakBox $display={["block", "block", "none"]} $width={"100%"}>
               {lessonMediaClipInfo}
             </OakBox>
-            {mediaClipList}
+            <OakBox $width={["auto", "auto", "all-spacing-21"]}>
+              {mediaClipList}
+            </OakBox>
           </OakFlex>
           <OakBox $display={["none", "none", "block"]}>
             {lessonMediaClipInfo}
