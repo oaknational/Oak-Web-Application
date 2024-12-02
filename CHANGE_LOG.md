@@ -1,3 +1,10 @@
+## [1.640.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.2...v1.640.3) (2024-12-02)
+
+
+### Bug Fixes
+
+* curric screenshot regression which was missing tiers/subjects ([470a3f5](https://github.com/oaknational/Oak-Web-Application/commit/470a3f5d3648b1d6d52e074eb51659b4452fdab7))
+
 ## [1.640.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.1...v1.640.2) (2024-11-28)
 
 
