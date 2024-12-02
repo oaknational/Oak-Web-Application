@@ -257,13 +257,15 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                 isOpen={showDownloadMessage}
                 canDismiss
                 onDismiss={() => setShowDownloadMessage(false)}
-                type="info"
+                type="neutral"
+                aria-live="polite"
                 message="Downloads may take a few minutes on slower Wi-Fi connections."
               />
             ) : downloadError ? (
               <OakInlineBanner
                 isOpen
                 type="error"
+                aria-live="polite"
                 message="Sorry, download is not working. Please try again in a few minutes."
                 icon="error"
               />
