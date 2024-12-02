@@ -1,3 +1,14 @@
+# [1.641.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.3...v1.641.0) (2024-12-02)
+
+
+### Features
+
+* add played videos to session storage ([3f48923](https://github.com/oaknational/Oak-Web-Application/commit/3f48923230b3b8c43ceafd0d8f07cc48b632cbd5))
+* add tests for lessonMedia helpers ([d7c83d1](https://github.com/oaknational/Oak-Web-Application/commit/d7c83d1f35a9b08ce73ac5c926625557d00713e7))
+* create LessonMediaClipWithThumbnail component ([9550881](https://github.com/oaknational/Oak-Web-Application/commit/9550881d232908bece777f2cae54b25b5be89fc1))
+* fix UI for the video ([38be1e6](https://github.com/oaknational/Oak-Web-Application/commit/38be1e64c4a41fb9351c47dd45b0d003c7f44a48))
+* implement media clip player ([492c1e9](https://github.com/oaknational/Oak-Web-Application/commit/492c1e972075c050773f22a7c9579ae229015fe9))
+
 ## [1.640.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.2...v1.640.3) (2024-12-02)
 
 
