@@ -217,9 +217,9 @@ function StickyBit({
                             });
                             const yearHeading = document.getElementById(
                               `year-${yearOption}`,
-                            ) as HTMLElement;
+                            );
 
-                            if (yearHeading) {
+                            if (yearHeading instanceof HTMLElement) {
                               yearHeading.setAttribute("tabindex", "-1");
                               yearHeading.focus();
                             }
