@@ -233,6 +233,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               setDownloadInProgress={setDownloadInProgress}
               setShowDownloadMessage={setShowDownloadMessage}
               downloadInProgress={downloadInProgress}
+              unitProgrammeSlug={programmeSlug + unitSlug}
               onDownloadSuccess={() =>
                 track.unitDownloadInitiated({
                   platform: "owa",
