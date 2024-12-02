@@ -6,9 +6,11 @@ import {
   GetStaticPathsResult,
 } from "next";
 import {
+  OakFlex,
   OakGrid,
   OakGridArea,
   OakPrimaryButton,
+  OakTagFunctional,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
@@ -167,12 +169,21 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     isLoaded && !isSignedIn ? (
       // TODO: A/B test button text
       <SignInButton>
-        <OakPrimaryButton>Sign in to download this unit</OakPrimaryButton>
+        <OakPrimaryButton iconName="download" isTrailingIcon>
+          <OakFlex $alignItems="center" $gap="space-between-xs">
+            <OakTagFunctional
+              label="New"
+              $background="mint"
+              $color="text-primary"
+            />
+            Download unit{" "}
+          </OakFlex>
+        </OakPrimaryButton>
       </SignInButton>
     ) : hasCheckedFiles && exists ? (
       <OakPrimaryButton iconName="download" isTrailingIcon>
-        Download .zip {fileSize}
-      </OakPrimaryButton> // TODO: update button with 'new' tag
+        Download (.zip {fileSize})
+      </OakPrimaryButton>
     ) : null;
 
   return (

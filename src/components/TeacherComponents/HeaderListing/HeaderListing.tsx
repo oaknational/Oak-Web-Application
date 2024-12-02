@@ -99,7 +99,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
-            <OakFlex $gap="space-between-s">
+            <OakFlex $gap="space-between-s" $flexDirection={["column", "row"]}>
               {unitDownloadButton}
               {shareButton}
             </OakFlex>
