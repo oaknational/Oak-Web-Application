@@ -17,7 +17,6 @@ const screenshotCurrentModals = async (
   label: string,
   slug: string,
   page: Page,
-  opts: { id: string },
 ): Promise<ScreenshotModalResult[]> => {
   const modals: ScreenshotModalResult[] = [];
 
@@ -68,7 +67,7 @@ const screenshotCurrentModals = async (
           path: modalScreenshotPath,
         });
 
-        console.log(`🖼️ [${opts.id}/${modalSlug}] rendered`);
+        console.log(`🖼️  [${slug}/${modalSlug}] rendered`);
 
         modals.push({
           slug: modalSlug,
@@ -167,16 +166,18 @@ const screenshotPage = async (
           await el.click();
         }
       }
-      const pagePath = getPagePath(label, buildFilenameSlug(alt) + ".png");
+      const filenameSlug = buildFilenameSlug(alt);
+      const pagePath = getPagePath(label, filenameSlug + ".png");
       await screenshotPageCurrent(page, pagePath);
+      const combinedSlug = `${slug}-${filenameSlug}`;
       console.log(
-        `📦 [${opts.id}] combined: ./${relative(process.cwd(), pagePath)}`,
+        `📦 [${combinedSlug}] combined: ./${relative(process.cwd(), pagePath)}`,
       );
       const modals = !opts.includeModals
         ? []
-        : await screenshotCurrentModals(label, slug, page, { id: opts.id });
+        : await screenshotCurrentModals(label, combinedSlug, page);
       outputJson.push({
-        slug,
+        slug: combinedSlug,
         screenshot: relative(BASE_PATH, pagePath),
         modals,
       });
@@ -185,11 +186,11 @@ const screenshotPage = async (
     const pagePath = getPagePath(label, `${slug}.png`);
     await screenshotPageCurrent(page, pagePath);
     console.log(
-      `📦 [${opts.id}] combined: ./${relative(process.cwd(), pagePath)}`,
+      `📦 [${slug}] combined: ./${relative(process.cwd(), pagePath)}`,
     );
     const modals = !opts.includeModals
       ? []
-      : await screenshotCurrentModals(label, slug, page, { id: opts.id });
+      : await screenshotCurrentModals(label, slug, page);
     outputJson.push({
       slug,
       screenshot: relative(BASE_PATH, pagePath),
