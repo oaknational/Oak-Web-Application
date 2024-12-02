@@ -2,6 +2,7 @@ import { LessonMediaClipsData } from "../queries/lessonMediaClips/lessonMediaCli
 
 import { PlaybackPolicy } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
 
+
 const lessonMediaClipsFixtures = (
   partial?: Partial<LessonMediaClipsData>,
 ): LessonMediaClipsData => {
@@ -24,8 +25,6 @@ const lessonMediaClipsFixtures = (
         {
           order: 1,
           learningCycleTitle: "Intro",
-          title: "Introduction physical exercise video",
-          playbackPolicy: "signed" as PlaybackPolicy,
           mediaId: 137156,
           mediaClipTitle: "Introduction physical exercise video",
           slug: "introduction-physical-exercise-video",
@@ -49,8 +48,6 @@ const lessonMediaClipsFixtures = (
         {
           order: 2,
           learningCycleTitle: "Intro",
-          title: "Introduction physical exercise audio",
-          playbackPolicy: "signed" as PlaybackPolicy,
           mediaClipTitle: "Running",
           slug: "running",
           mediaId: 137156,
@@ -93,8 +90,6 @@ const lessonMediaClipsFixtures = (
         {
           order: 2,
           learningCycleTitle: "Learning cycle 1",
-          title: "Cycle 1 Audio",
-          playbackPolicy: "signed" as PlaybackPolicy,
           mediaClipTitle: "Cycle 1 Audio",
           slug: "cycle-1-audio",
           mediaId: 137139,
@@ -116,8 +111,6 @@ const lessonMediaClipsFixtures = (
         {
           order: 1,
           learningCycleTitle: "Learning cycle 2",
-          title: "Cycle 2 Video",
-          playbackPolicy: "signed" as PlaybackPolicy,
           mediaClipTitle: "Cycle 2 video",
           slug: "cycle-2-video",
           mediaId: 137120,
@@ -142,8 +135,6 @@ const lessonMediaClipsFixtures = (
         {
           order: 1,
           learningCycleTitle: "Learning cycle 3",
-          title: "Cycle 3 Video",
-          playbackPolicy: "signed" as PlaybackPolicy,
           mediaClipTitle: "Cycle 3 video",
           slug: "cycle-3-video",
           mediaId: 137156,
