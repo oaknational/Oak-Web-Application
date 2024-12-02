@@ -26,7 +26,7 @@ describe("LessonOverviewMediaClips", () => {
     expect(
       getByText("Introduction physical exercise video"),
     ).toBeInTheDocument();
-    expect(getByText("Cycle 1 running video")).toBeInTheDocument();
+    expect(getByText("Cycle 1 Video")).toBeInTheDocument();
   });
 
   it("calls resolveOakHref with correct arguments when programmeSlug and unitSlug are provided", () => {
