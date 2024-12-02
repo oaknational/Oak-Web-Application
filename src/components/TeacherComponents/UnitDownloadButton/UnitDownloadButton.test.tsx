@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import UnitDownloadButton from "./UnitDownloadButton";
 
@@ -22,9 +23,28 @@ jest.mock("@clerk/nextjs", () => ({
   SignInButton: jest.fn(() => <button>Download unit</button>),
 }));
 
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: jest.fn(),
+}));
+
 describe("UnitDownloadButton", () => {
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("option-a");
+  });
+  it("should not render when feature flag is off or control group", () => {
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("control");
+    renderWithProviders()(
+      <UnitDownloadButton
+        setDownloadError={jest.fn()}
+        setDownloadInProgress={jest.fn()}
+        setShowDownloadMessage={jest.fn()}
+        downloadInProgress={false}
+        onDownloadSuccess={jest.fn()}
+      />,
+    );
+    const button = screen.queryByText("Download (.zip 1.2MB)");
+    expect(button).not.toBeInTheDocument;
   });
   it("should render a download button when logged in", () => {
     renderWithProviders()(

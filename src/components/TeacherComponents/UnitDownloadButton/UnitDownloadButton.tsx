@@ -6,14 +6,15 @@ import {
   OakPrimaryButton,
   OakTagFunctional,
 } from "@oaknational/oak-components";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
+import { z } from "zod";
 
 import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
 import createUnitDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createUnitDownloadLink";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
-const UnitDownloadSignInButton = () => (
-  // TODO: A/B test button text
+const UnitDownloadSignInButton = ({ buttonText }: { buttonText: string }) => (
   <SignInButton>
     <OakPrimaryButton iconName="download" isTrailingIcon>
       <OakFlex $alignItems="center" $gap="space-between-xs">
@@ -22,7 +23,7 @@ const UnitDownloadSignInButton = () => (
           $background="mint"
           $color="text-primary"
         />
-        Download unit
+        {buttonText}
       </OakFlex>
     </OakPrimaryButton>
   </SignInButton>
@@ -75,7 +76,23 @@ export type UnitDownloadButtonProps = {
   downloadInProgress: boolean;
 };
 
+// teacher-unit-downloads experiment A/B test group keys and test values
+const variantKey = z
+  .literal("option-a")
+  .or(z.literal("option-b"))
+  .or(z.literal("control"));
+
+const unitButtonSignInText = {
+  "option-a": "Download unit",
+  "option-b": "Create a free account to download unit",
+  control: "Download unit",
+};
+
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
+  const { isSignedIn, isLoaded } = useUser();
+  const featureFlag = useFeatureFlagVariantKey("teacher-unit-downloads");
+  const parsedFeatureFlagKey = variantKey.safeParse(featureFlag);
+
   const {
     onDownloadSuccess,
     setDownloadError,
@@ -83,7 +100,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     setShowDownloadMessage,
     downloadInProgress,
   } = props;
-  // TODO: feature flag
+
   // TODO: use real slug
   const mockSlug = "test-unit-6-lessons";
   const { exists, fileSize, hasCheckedFiles } =
@@ -107,13 +124,16 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     }
     setDownloadInProgress(false);
   };
-  const { isSignedIn, isLoaded } = useUser();
 
-  const showSignInButton = isLoaded && !isSignedIn;
-  const showDownloadButton = hasCheckedFiles && exists;
+  const unitDownloadDisabled =
+    !parsedFeatureFlagKey.success || parsedFeatureFlagKey.data === "control";
+  const showSignInButton = !unitDownloadDisabled && isLoaded && !isSignedIn;
+  const showDownloadButton = !unitDownloadDisabled && hasCheckedFiles && exists;
 
   return showSignInButton ? (
-    <UnitDownloadSignInButton />
+    <UnitDownloadSignInButton
+      buttonText={unitButtonSignInText[parsedFeatureFlagKey.data]}
+    />
   ) : showDownloadButton ? (
     <DownloadButton
       onUnitDownloadClick={onUnitDownloadClick}
