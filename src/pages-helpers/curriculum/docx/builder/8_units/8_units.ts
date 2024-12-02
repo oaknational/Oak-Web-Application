@@ -28,6 +28,7 @@ import {
 } from "@/utils/curriculum/formatting";
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { sortYears } from "@/utils/curriculum/sorting";
+import { Unit } from "@/utils/curriculum/types";
 
 function generateGroupedUnits(
   data: CurriculumUnitsFormattedData<CombinedCurriculumData["units"][number]>,
@@ -120,6 +121,7 @@ export default async function generate(
 
   const yearXml: string[] = [];
   const groupedUnits = generateGroupedUnits(formattedData);
+  console.log("groupedUnits=", groupedUnits);
   for (const { units, year, childSubject, tier, pathway } of groupedUnits) {
     yearXml.push(
       await buildYear(
@@ -362,61 +364,153 @@ async function buildYear(
     )}/units`,
   });
 
-  const rows = [];
   const units = removeDups(unitsInput);
-  for (let i = 0; i < units.length; i += 3) {
-    const unitsColumns = Array(3)
-      .fill(true)
-      .map((_, colIdx) => {
-        const index = i + colIdx;
-        const unit = units[index];
-        if (unit) {
-          return buildYearColumn({
-            index: index,
-            title: unit.title,
-            unitOptions: unit.unit_options,
-          });
-        } else {
-          return buildEmpty(index);
+
+  // HACK: Massive hack should use new features table.
+  const enableGroupBySubjectCategory = units[0]!.subject_slug === "english";
+
+  const buildUnitBlock = (units: Unit[]) => {
+    const rows = [];
+    for (let i = 0; i < units.length; i += 3) {
+      const unitsColumns = Array(3)
+        .fill(true)
+        .map((_, colIdx) => {
+          const index = i + colIdx;
+          const unit = units[index];
+          if (unit) {
+            return buildYearColumn({
+              index: index,
+              title: unit.title,
+              unitOptions: unit.unit_options,
+            });
+          } else {
+            return buildEmpty(index);
+          }
+        });
+      rows.push(buildYearRow(unitsColumns.join("")));
+    }
+
+    return safeXml`
+      <w:tbl>
+        <w:tblPr>
+          <w:tblW w:type="pct" w:w="100%" />
+          <w:tblBorders>
+            <w:insideH w:val="single" w:color="auto" w:sz="4" />
+            <w:insideV w:val="single" w:color="auto" w:sz="4" />
+          </w:tblBorders>
+        </w:tblPr>
+        <w:tblGrid>${generateGridCols(3)}</w:tblGrid>
+        ${rows.join("")}
+      </w:tbl>
+    `;
+  };
+
+  const groupUnitsBySubjectCategory = (units: Unit[]) => {
+    const out: Record<string, Unit[]> = {};
+    const subjectCategories: Record<
+      string,
+      NonNullable<Unit["subjectcategories"]>[number]
+    > = {};
+    for (const unit of units) {
+      for (const subjectcategory of unit.subjectcategories ?? []) {
+        if (out[subjectcategory.id] === undefined) {
+          subjectCategories[subjectcategory.id] = subjectcategory;
+          out[subjectcategory.id] = [];
         }
-      });
-    rows.push(buildYearRow(unitsColumns.join("")));
+        out[subjectcategory.id]!.push(unit);
+      }
+    }
+
+    return Object.entries(out).map(([subjectcategoryId, units]) => {
+      return {
+        subjectCategory: subjectCategories[subjectcategoryId]!,
+        units,
+      };
+    });
+  };
+
+  let yearContent: string;
+  if (enableGroupBySubjectCategory) {
+    const groupedContent = [];
+    for (const {
+      subjectCategory,
+      units: catUnits,
+    } of groupUnitsBySubjectCategory(units)) {
+      console.log("catUnits=", subjectCategory, catUnits);
+      groupedContent.push(safeXml`
+        <XML_FRAGMENT>
+          <w:p>
+            <w:pPr>
+              <w:pStyle w:val="Heading3" />
+            </w:pPr>
+              <w:r>
+                <w:rPr>
+                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                  <w:b />
+                  <w:color w:val="222222" />
+                  <w:sz w:val="32" />
+                </w:rPr>
+                <w:t>${cdata(subjectCategory.title)}</w:t>
+              </w:r>
+          </w:p>
+          ${buildUnitBlock(catUnits)};
+        </XML_FRAGMENT>
+      `);
+    }
+    yearContent = groupedContent.join("");
+  } else {
+    yearContent = buildUnitBlock(units);
   }
 
-  const unitsXml: string[] = [];
-  const unitUnitsBySlug = uniqBy(units, "slug");
+  const buildUnitsPages = async (units: Unit[]) => {
+    const unitsXml: string[] = [];
+    const unitUnitsBySlug = uniqBy(units, "slug");
 
-  // FIXME: This is slow
-  const tierSlug = units.find((u) => u.tier_slug)?.tier_slug ?? undefined;
-  for (let unitIndex = 0; unitIndex < unitUnitsBySlug.length; unitIndex++) {
-    const unit = unitUnitsBySlug[unitIndex]!;
-    if (unit.unit_options.length > 0) {
-      for (
-        let unitOptionIndex = 0;
-        unitOptionIndex < unit.unit_options.length;
-        unitOptionIndex++
-      ) {
-        const unitOption = unit.unit_options[unitOptionIndex]!;
+    // FIXME: This is slow
+    const tierSlug = units.find((u) => u.tier_slug)?.tier_slug ?? undefined;
+    for (let unitIndex = 0; unitIndex < unitUnitsBySlug.length; unitIndex++) {
+      const unit = unitUnitsBySlug[unitIndex]!;
+      if (unit.unit_options.length > 0) {
+        for (
+          let unitOptionIndex = 0;
+          unitOptionIndex < unit.unit_options.length;
+          unitOptionIndex++
+        ) {
+          const unitOption = unit.unit_options[unitOptionIndex]!;
+          unitsXml.push(
+            await buildUnit(
+              zip,
+              unit,
+              unitIndex,
+              unitOption,
+              unitOptionIndex,
+              images,
+              { ...slugs, tierSlug },
+            ),
+          );
+        }
+      } else {
         unitsXml.push(
-          await buildUnit(
-            zip,
-            unit,
-            unitIndex,
-            unitOption,
-            unitOptionIndex,
-            images,
-            { ...slugs, tierSlug },
-          ),
+          await buildUnit(zip, unit, unitIndex, undefined, undefined, images, {
+            ...slugs,
+            tierSlug,
+          }),
         );
       }
-    } else {
-      unitsXml.push(
-        await buildUnit(zip, unit, unitIndex, undefined, undefined, images, {
-          ...slugs,
-          tierSlug,
-        }),
-      );
     }
+
+    return unitsXml;
+  };
+
+  let unitContent;
+  if (enableGroupBySubjectCategory) {
+    const parts = [];
+    for (const group of groupUnitsBySubjectCategory(units)) {
+      parts.push(await buildUnitsPages(group.units));
+    }
+    unitContent = parts.join("");
+  } else {
+    unitContent = await buildUnitsPages(units);
   }
 
   let subjectTierPathwayTitle: undefined | string;
@@ -569,23 +663,13 @@ async function buildYear(
           <w:t xml:space="preserve"> </w:t>
         </w:r>
       </w:p>
-      <w:tbl>
-        <w:tblPr>
-          <w:tblW w:type="pct" w:w="100%" />
-          <w:tblBorders>
-            <w:insideH w:val="single" w:color="auto" w:sz="4" />
-            <w:insideV w:val="single" w:color="auto" w:sz="4" />
-          </w:tblBorders>
-        </w:tblPr>
-        <w:tblGrid>${generateGridCols(3)}</w:tblGrid>
-        ${rows.join("")}
-      </w:tbl>
+      ${yearContent}
       <w:p>
         <w:r>
           <w:br w:type="page" />
         </w:r>
       </w:p>
-      ${unitsXml}
+      ${unitContent}
     </XML_FRAGMENT>
   `;
 
