@@ -9,7 +9,7 @@ import {
   useSignedThumbnailToken,
 } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
 
-export type LessonMediaClipWithThumbnailProps = Omit<
+export type LessonOverviewClipWithThumbnail = Omit<
   OakMediaClipStackListItemProps,
   "imageUrl" | "imageAltText"
 > & {
@@ -18,13 +18,13 @@ export type LessonMediaClipWithThumbnailProps = Omit<
   numberOfClips: number;
 };
 
-const LessonMediaClipWithThumbnail: FC<LessonMediaClipWithThumbnailProps> = ({
+const LessonOverviewClipWithThumbnail: FC<LessonOverviewClipWithThumbnail> = ({
   title,
   playbackId,
   playbackPolicy,
   numberOfClips,
   href,
-}: LessonMediaClipWithThumbnailProps) => {
+}: LessonOverviewClipWithThumbnail) => {
   const thumbnailToken = useSignedThumbnailToken({
     playbackId,
     playbackPolicy,
@@ -46,4 +46,4 @@ const LessonMediaClipWithThumbnail: FC<LessonMediaClipWithThumbnailProps> = ({
   );
 };
 
-export default LessonMediaClipWithThumbnail;
+export default LessonOverviewClipWithThumbnail;

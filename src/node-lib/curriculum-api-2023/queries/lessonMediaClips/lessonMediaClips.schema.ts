@@ -34,10 +34,13 @@ export const canonicalLessonMediaClipsSchema =
 const mediaObjectSchema = z
   .object({
     resourceType: z.string(),
-    displayName: z.string(),
+    muxPlaybackId: z.string(),
+    playbackPolicy: z.enum(["signed", "public"]),
+    title: z.string(),
     usageRestrictions: z.string().optional(),
     alt: z.string().optional(),
     attributionRequired: z.string(),
+    duration: z.number(),
   })
   .nullable();
 
@@ -48,7 +51,7 @@ const videoObjectSchema = z
     videoWithSignLanguageMuxPlaybackId: z.string().optional(),
     transcriptionSentences: z.array(z.string()).optional(),
     resourceType: z.string(),
-    displayName: z.string(),
+    title: z.string(),
     usageRestrictions: z.string().optional(),
     attributionRequired: z.string(),
     duration: z.number(),
@@ -58,9 +61,11 @@ const videoObjectSchema = z
 const mediaClipsCycleSchema = z.object({
   order: z.number().min(1),
   mediaId: z.number().nullish(),
+  learningCycleTitle: z.string(),
+  mediaClipTitle: z.string(),
   playbackPolicy: z.enum(["public", "signed"]),
   slug: z.string(),
-  mediaClipTitle: z.string(),
+  title: z.string(),
   mediaObject: mediaObjectSchema,
   mediaType: z.enum(["audio", "video"]),
   videoId: z.number().nullish(),
@@ -69,12 +74,7 @@ const mediaClipsCycleSchema = z.object({
 
 const cycleSchema = z.array(mediaClipsCycleSchema);
 
-export const mediaClipsSchema = z.object({
-  intro: cycleSchema,
-  cycle1: cycleSchema,
-  cycle2: cycleSchema,
-  cycle3: cycleSchema,
-});
+export const mediaClipsSchema = z.record(z.string(), cycleSchema);
 
 // TODO: Rename and extrapolate these types into component library
 

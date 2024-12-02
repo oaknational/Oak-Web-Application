@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
-import LessonMediaClipWithThumbnail from "./LessonMediaClipWithThumbnail";
+import LessonOverviewClipWithThumbnail from "./LessonOverviewClipWithThumbnail";
 
 import { MediaObject } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -35,8 +35,8 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
             $colSpan={[0]}
             $maxWidth={["100%", "all-spacing-18"]}
           >
-            <LessonMediaClipWithThumbnail
-              title={video[0]?.mediaClipTitle ? video[0]?.mediaClipTitle : ""}
+            <LessonOverviewClipWithThumbnail
+              title={video[0]?.title ? video[0]?.title : ""}
               playbackId={
                 video[0]?.videoObject?.muxPlaybackId
                   ? video[0]?.videoObject?.muxPlaybackId
