@@ -266,6 +266,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
             <OakFlex
               $width={["100%", "100%", "all-spacing-23"]}
               $alignItems={"center"}
+              $background={"black"}
               $overflow={["visible", "visible", "hidden"]}
             >
               {videoPlayer}
