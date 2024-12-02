@@ -32,6 +32,7 @@ import {
   getTranscript,
   getPlaybackId,
   getPlayingState,
+  getInitialCurrentClip,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 
 type BaseLessonMedia = {
@@ -69,6 +70,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   const router = useRouter();
   const { query } = router;
+  const { video } = query;
 
   // construct list of all clips in one array
   const listOfAllClips = Object.keys(mediaClips)
@@ -79,17 +81,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
     )
     .flat();
 
-  // get current clip from url parameters and if not available then choose first clip from the list
-  const getInitialCurrentClip = () => {
-    const videoQueryFromUrl = query.video;
-    if (videoQueryFromUrl) {
-      return listOfAllClips.find((clip) => clip.slug === videoQueryFromUrl);
-    } else {
-      return listOfAllClips[0];
-    }
-  };
-
-  const [currentClip, setCurrentClip] = useState(getInitialCurrentClip());
+  const [currentClip, setCurrentClip] = useState(
+    getInitialCurrentClip(listOfAllClips, video),
+  );
   const [currentIndex, setCurrentIndex] = useState(
     currentClip ? listOfAllClips.indexOf(currentClip) : 0,
   );
@@ -107,8 +101,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
     );
 
     // add video parameter to the url
-    query.video = clipSlug;
-    router.replace(router);
+    // query.video = clipSlug;
+    // router.replace(router);
   };
 
   const handleVideoPlayed = (event: VideoEventCallbackArgs) => {
@@ -121,8 +115,6 @@ export const LessonMedia = (props: LessonMediaProps) => {
       }
     }
   };
-
-  console.log("played videos: ", playedVideosList);
 
   const videoPlayer = currentClip && (
     <VideoPlayer

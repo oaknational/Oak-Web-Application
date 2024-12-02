@@ -29,3 +29,14 @@ export const getPlayingState = (
     return "standard";
   }
 };
+
+export const getInitialCurrentClip = (
+  listOfAllClips: MediaClip[],
+  videoQueryParam?: string | string[] | undefined,
+) => {
+  if (videoQueryParam) {
+    return listOfAllClips.find((clip) => clip.slug === videoQueryParam);
+  } else {
+    return listOfAllClips[0];
+  }
+};
