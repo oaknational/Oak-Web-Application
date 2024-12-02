@@ -1,5 +1,10 @@
 import { FC } from "react";
-import { OakFlex, OakHeading, OakSpan } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakInlineBanner,
+  OakSpan,
+} from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -35,6 +40,7 @@ export type HeaderListingProps = {
   hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
   unitDownloadButton?: React.ReactNode;
+  downloadError?: boolean;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -54,6 +60,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     yearTitle,
     shareButton,
     unitDownloadButton,
+    downloadError,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -99,9 +106,20 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
-            <OakFlex $gap="space-between-s" $flexDirection={["column", "row"]}>
-              {unitDownloadButton}
-              {shareButton}
+            <OakFlex $flexDirection="column" $gap="space-between-s">
+              <OakFlex
+                $gap="space-between-s"
+                $flexDirection={["column", "row"]}
+              >
+                {unitDownloadButton}
+                {shareButton}
+              </OakFlex>
+              <OakInlineBanner
+                isOpen={!!downloadError}
+                type="error"
+                message="Sorry, download is not working. Please try again in a few minutes."
+                icon="error"
+              />
             </OakFlex>
           </OakFlex>
         </OakFlex>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -9,6 +9,7 @@ import {
   OakFlex,
   OakGrid,
   OakGridArea,
+  OakLoadingSpinner,
   OakPrimaryButton,
   OakTagFunctional,
   OakThemeProvider,
@@ -50,6 +51,8 @@ import {
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import useUnitDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
+import createUnitDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createUnitDownloadLink";
+import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -157,11 +160,45 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 
   const isNew = hasNewContent ?? false;
 
+  const [downloadError, setDownloadError] = useState<boolean | undefined>();
+  const [downloadInProgress, setDownloadInProgress] = useState(false);
+
   // TODO: feature flag
   // TODO: use real slug
-  const { exists, fileSize, hasCheckedFiles } = useUnitDownloadExistenceCheck(
-    "test-unit-6-lessons",
-  );
+  const mockSlug = "test-unit-6-lessons";
+  const { exists, fileSize, hasCheckedFiles } =
+    useUnitDownloadExistenceCheck(mockSlug);
+
+  const onUnitDownloadClick = async () => {
+    setDownloadInProgress(true);
+    try {
+      setDownloadError(false);
+      const downloadLink = await createUnitDownloadLink({
+        unitSlug: mockSlug,
+      });
+
+      if (downloadLink) {
+        createAndClickHiddenDownloadLink(downloadLink);
+        track.unitDownloadInitiated({
+          platform: "owa",
+          product: "teacher lesson resources",
+          engagementIntent: "use",
+          componentType: "unit_download_button",
+          eventVersion: "2.0.0",
+          analyticsUseCase: "Teacher",
+          unitName: unitTitle,
+          unitSlug: unitSlug,
+          keyStageSlug: keyStageSlug,
+          keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+          subjectSlug: subjectSlug,
+          subjectTitle: subjectTitle,
+        });
+      }
+    } catch (error) {
+      setDownloadError(true);
+    }
+    setDownloadInProgress(false);
+  };
 
   const { isSignedIn, isLoaded } = useUser();
 
@@ -181,8 +218,18 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         </OakPrimaryButton>
       </SignInButton>
     ) : hasCheckedFiles && exists ? (
-      <OakPrimaryButton iconName="download" isTrailingIcon>
-        Download (.zip {fileSize})
+      <OakPrimaryButton
+        iconName="download"
+        isTrailingIcon
+        onClick={onUnitDownloadClick}
+        disabled={downloadInProgress}
+      >
+        <OakFlex $gap="space-between-xs">
+          {downloadInProgress && <OakLoadingSpinner />}
+          {downloadInProgress
+            ? "Downloading..."
+            : `Download (.zip ${fileSize})`}
+        </OakFlex>
       </OakPrimaryButton>
     ) : null;
 
@@ -249,6 +296,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           {...curriculumData}
           shareButton={teacherShareButton}
           unitDownloadButton={unitDownloadButton}
+          downloadError={downloadError}
         />
         <MaxWidth $ph={16}>
           <OakGrid>
