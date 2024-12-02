@@ -11,8 +11,8 @@ import {
   OakPupilJourneyListCounter,
   OakBox,
   OakInlineBanner,
-  OakSecondaryLink,
   isValidIconName,
+  OakSecondaryButton,
 } from "@oaknational/oak-components";
 import { useState } from "react";
 
@@ -33,6 +33,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   const { unitData, programmeFields, orderedCurriculumData, backLink } = props;
   const {
     yearDescription,
+    yearSlug,
     subject,
     subjectSlug,
     tierDescription,
@@ -46,6 +47,9 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       unitData.expirationDate !== null ||
         orderedCurriculumData.some((c) => c.actions?.displayExpiringBanner),
     );
+
+  const baseSlug = `${subjectSlug}-${phaseSlug}-${yearSlug}`;
+  const unitListingHref = `/pupils/programmes/${baseSlug}/options`; // NB. options will forward to units if no options available
 
   const noneExpiredLessons = orderedCurriculumData.filter(
     (lesson) => !lesson.lessonData?.deprecatedFields?.expired,
@@ -107,16 +111,17 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       <OakInlineBanner
         canDismiss
         cta={
-          <OakSecondaryLink
-            href="https://support.thenational.academy/lesson-unavailable"
-            iconName="chevron-right"
+          <OakSecondaryButton
+            element="a"
+            iconName="arrow-right"
             isTrailingIcon
+            href={unitListingHref}
           >
-            Read the help article
-          </OakSecondaryLink>
+            View new lessons
+          </OakSecondaryButton>
         }
         isOpen={showExpiredLessonsBanner}
-        message="We've made brand new and improved lessons for you."
+        message="We've made brand-new and improved lessons for you."
         onDismiss={() => {
           setShowExpiredLessonsBanner(false);
         }}

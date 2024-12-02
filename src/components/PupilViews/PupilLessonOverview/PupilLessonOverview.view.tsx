@@ -15,7 +15,7 @@ import {
   OakP,
   OakPrimaryButton,
   OakPupilContentGuidance,
-  OakSecondaryLink,
+  OakSecondaryButton,
   OakSpan,
   OakSubjectIcon,
   isValidIconName,
@@ -83,6 +83,9 @@ export const PupilViewsLessonOverview = ({
       expirationDate !== null ||
         browseData.actions?.displayExpiringBanner === true,
     );
+
+  const baseSlug = `${browseData.programmeFields.subjectSlug}-${browseData.programmeFields.phaseSlug}-${browseData.programmeFields.yearSlug}`;
+  const unitListingHref = `/pupils/programmes/${baseSlug}/options`; // NB. options will forward to units if no options available
 
   function pickProgressForSection(section: LessonReviewSection) {
     if (sectionResults[section]?.isComplete) {
@@ -158,20 +161,21 @@ export const PupilViewsLessonOverview = ({
           <OakInlineBanner
             canDismiss
             cta={
-              <OakSecondaryLink
-                href="https://support.thenational.academy/lesson-unavailable"
-                iconName="chevron-right"
+              <OakSecondaryButton
+                element="a"
+                iconName="arrow-right"
                 isTrailingIcon
+                href={unitListingHref}
               >
-                Read the help article
-              </OakSecondaryLink>
+                View new lessons
+              </OakSecondaryButton>
             }
             isOpen={showExpiredLessonsBanner}
-            message="We've made brand new and improved lessons for you."
+            message="We've made brand-new and improved lessons for you."
             onDismiss={() => {
               setShowExpiredLessonsBanner(false);
             }}
-            title="This lesson will soon be taken down."
+            title="These lessons will be removed by Spring 2025."
             type="alert"
             $mt={"space-between-m"}
           />
