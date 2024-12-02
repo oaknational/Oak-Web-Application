@@ -1,5 +1,8 @@
 import { z } from "zod";
-import { programmeFieldsSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  programmeFieldsSchema,
+  syntheticUnitvariantLessonsSchema,
+} from "@oaknational/oak-curriculum-schema";
 
 import { lessonListSchema } from "../../shared.schema";
 
@@ -26,5 +29,20 @@ const lessonListingSchema = z.object({
 export type lessonListingSchema = z.infer<typeof lessonListingSchema>;
 
 export type LessonListingPageData = z.infer<typeof lessonListingSchema>;
+
+export const partialSyntheticUnitvariantLessonsSchema = z.object({
+  ...syntheticUnitvariantLessonsSchema.omit({
+    supplementary_data: true,
+  }).shape,
+  order_in_unit: z.number(),
+});
+
+export const partialSyntheticUnitvariantLessonsArraySchema = z.array(
+  partialSyntheticUnitvariantLessonsSchema,
+);
+
+export type PartialSyntheticUnitvariantLessons = z.infer<
+  typeof partialSyntheticUnitvariantLessonsSchema
+>;
 
 export default lessonListingSchema;

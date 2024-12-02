@@ -6,7 +6,6 @@ import {
 } from "./helpers/getAllCategories";
 import { getAllYearGroups } from "./helpers/getAllYearGroups";
 import {
-  GroupedUnitsSchema,
   ProgrammeFieldsCamel,
   rawQuerySchema,
   UnitListingData,
@@ -79,36 +78,6 @@ const unitListingQuery =
       reshapedUnits,
     );
 
-    // this is a temporary fix for legacy data to remove duplicates units within key stage
-    // we will remove once legacy data is removed
-    const reduceBySlugAndYearOrder = (arr: GroupedUnitsSchema) => {
-      return Object.values(
-        arr.reduce(
-          (acc, item) => {
-            const { slug, yearOrder } = item[0] ?? {};
-            if (!slug || !yearOrder) {
-              return acc;
-            } else if (!acc[slug]) {
-              acc[slug] = item;
-              return acc;
-            } else {
-              if (acc[slug][0]) {
-                if (acc[slug][0].yearOrder > yearOrder) {
-                  acc[slug] = item;
-                }
-              }
-              return acc;
-            }
-          },
-          {} as { [key: string]: GroupedUnitsSchema[number] },
-        ),
-      );
-    };
-
-    const reducedUnitsArray = reduceBySlugAndYearOrder(
-      unitsWithSubjectCategories,
-    );
-
     const tiers = programmeFields.tierSlug
       ? getTierData(args.programmeSlug)
       : [];
@@ -128,7 +97,7 @@ const unitListingQuery =
       subjectParent: programmeFields.subjectParent || null,
       tierSlug: programmeFields.tierSlug,
       tiers: tiers,
-      units: reducedUnitsArray,
+      units: unitsWithSubjectCategories,
       phase: programmeFields.phaseSlug,
       learningThemes: learningThemes,
       hasNewContent,

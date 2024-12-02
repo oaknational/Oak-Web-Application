@@ -32,10 +32,24 @@ export const reshapeUnitData = (rawUnits: UnitsCamel): GroupedUnitsSchema => {
       })) || null,
   }));
 
+  /*
+   *
+   * The following code is to remove duplicate units from legacy data.
+   * It should be removed once the legacy data is no longer in use.
+   *
+   */
+
+  // sort the units by year so that we preferentially display units where they first appear
+  processedUnits.sort((a, b) => (a.yearOrder > b.yearOrder ? 1 : -1));
+
+  const filteredUnits = processedUnits.filter(
+    (unit, i) => processedUnits.findIndex((u) => u.slug === unit.slug) === i, // check there isn't an earlier instance of the unit
+  );
+
   // group optionality units
   const groupedUnits = values(
     groupBy(
-      processedUnits,
+      filteredUnits,
       (unit) =>
         unit.isOptionalityUnit
           ? unit.slug.replace(/-\d+?$/, "") // strip the numbers from the end of the slug

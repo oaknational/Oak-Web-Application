@@ -1,29 +1,25 @@
-import { z } from "zod";
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  ProgrammeFields,
+  yearSlugs,
+  yearDescriptions,
+} from "@oaknational/oak-curriculum-schema";
 
 import { Sdk } from "../../sdk";
 import OakError from "../../../../errors/OakError";
-import { lessonListSchema } from "../../shared.schema";
+import { LessonListSchema } from "../../shared.schema";
 import { LessonListingQuery } from "../../generated/sdk";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 
 import lessonListingSchema, {
   LessonListingPageData,
+  partialSyntheticUnitvariantLessonsArraySchema,
+  partialSyntheticUnitvariantLessonsSchema,
 } from "./lessonListing.schema";
 
-const partialSyntheticUnitvariantLessonsSchema = z.object({
-  ...syntheticUnitvariantLessonsSchema.omit({
-    supplementary_data: true,
-  }).shape,
-  order_in_unit: z.number(),
-});
-
-type PartialSyntheticUnitvariantLessons = z.infer<
-  typeof partialSyntheticUnitvariantLessonsSchema
->;
-
-export const getTransformedLessons = (unit: LessonListingQuery["unit"]) => {
-  return unit
+export const getTransformedLessons = (
+  lessons: LessonListingQuery["lessons"],
+): LessonListSchema => {
+  return lessons
     .map((l) => {
       const lesson = partialSyntheticUnitvariantLessonsSchema.parse(l);
       const hasCopyrightMaterial =
@@ -39,7 +35,7 @@ export const getTransformedLessons = (unit: LessonListingQuery["unit"]) => {
           lesson.lesson_data.description ||
           lesson.lesson_data.pupil_lesson_outcome,
         pupilLessonOutcome: lesson.lesson_data.pupil_lesson_outcome,
-        expired: lesson.lesson_data.deprecated_fields?.expired || false,
+        expired: Boolean(lesson.lesson_data.deprecated_fields?.expired),
         quizCount:
           (lesson.lesson_data.quiz_id_starter ? 1 : 0) +
           (lesson.lesson_data.quiz_id_exit ? 1 : 0),
@@ -55,29 +51,63 @@ export const getTransformedLessons = (unit: LessonListingQuery["unit"]) => {
     .sort((a, b) => a.orderInUnit - b.orderInUnit);
 };
 
-export const getTransformedUnit = (
-  unit: PartialSyntheticUnitvariantLessons,
-  parsedLessons: LessonListingPageData["lessons"],
+type PackagedUnitData = {
+  programmeFields: ProgrammeFields;
+  unitSlug: string;
+  programmeSlug: string;
+  unitTitle: string;
+  programmeSlugByYear: string[];
+};
+
+export const getPackagedUnit = (
+  packagedUnitData: PackagedUnitData,
+  unitLessons: LessonListSchema,
 ): LessonListingPageData => {
-  const unitTitle = unit.programme_fields.optionality ?? unit.unit_data.title;
-  return {
-    programmeSlug: unit.programme_slug,
-    keyStageSlug: unit.programme_fields.keystage_slug,
-    keyStageTitle: unit.programme_fields.keystage_description,
-    subjectSlug: unit.programme_fields.subject_slug,
-    subjectTitle: unit.programme_fields.subject,
-    unitSlug: unit.unit_slug,
+  const {
+    programmeFields,
+    unitSlug,
     unitTitle,
-    tierSlug: unit.programme_fields.tier_slug,
-    tierTitle: unit.programme_fields.tier_description,
-    examBoardSlug: unit.programme_fields.examboard_slug,
-    examBoardTitle: unit.programme_fields.examboard,
-    yearSlug: unit.programme_fields.year_slug,
-    yearTitle: unit.programme_fields.year_description,
-    lessons: parsedLessons,
-    pathwaySlug: unit.programme_fields.pathway_slug,
-    pathwayTitle: unit.programme_fields.pathway,
-    pathwayDisplayOrder: unit.programme_fields.pathway_display_order,
+    programmeSlug,
+    programmeSlugByYear,
+  } = packagedUnitData;
+
+  programmeSlugByYear.sort((a, b) => a.localeCompare(b));
+  const yearSlug = programmeSlugByYear[0]
+    ?.split(`${programmeFields.phase_slug}-`)[1]
+    ?.replace("-l", "");
+
+  const parsedYearSlug = yearSlugs.safeParse(yearSlug);
+  if (
+    parsedYearSlug.success &&
+    parsedYearSlug.data !== programmeFields.year_slug
+  ) {
+    programmeFields.year_slug = parsedYearSlug.data;
+    const parsedYearDescription = yearDescriptions.safeParse(
+      parsedYearSlug.data.replace("year-", "Year "),
+    ).data;
+    if (parsedYearDescription) {
+      programmeFields.year_description = parsedYearDescription;
+    }
+  }
+
+  return {
+    programmeSlug,
+    keyStageSlug: programmeFields.keystage_slug,
+    keyStageTitle: programmeFields.keystage_description,
+    subjectSlug: programmeFields.subject_slug,
+    subjectTitle: programmeFields.subject,
+    unitSlug,
+    unitTitle,
+    tierSlug: programmeFields.tier_slug,
+    tierTitle: programmeFields.tier_description,
+    examBoardSlug: programmeFields.examboard_slug,
+    examBoardTitle: programmeFields.examboard,
+    yearSlug: programmeFields.year_slug,
+    yearTitle: programmeFields.year_description,
+    lessons: unitLessons,
+    pathwaySlug: programmeFields.pathway_slug,
+    pathwayTitle: programmeFields.pathway,
+    pathwayDisplayOrder: programmeFields.pathway_display_order,
   };
 };
 
@@ -85,24 +115,34 @@ const lessonListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string; unitSlug: string }) => {
     const res = await sdk.lessonListing(args);
 
-    const modifiedUnit = applyGenericOverridesAndExceptions<
-      LessonListingQuery["unit"][number]
+    const modifiedLessons = applyGenericOverridesAndExceptions<
+      LessonListingQuery["lessons"][number]
     >({
       journey: "pupil",
       queryName: "pupilLessonListingQuery",
-      browseData: res.unit,
+      browseData: res.lessons,
     });
 
-    if (modifiedUnit.length === 0) {
+    if (modifiedLessons.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const [unit] = modifiedUnit;
+    const parsedModifiedLessons =
+      partialSyntheticUnitvariantLessonsArraySchema.parse(modifiedLessons);
 
-    const unitLessons = getTransformedLessons(modifiedUnit);
-    const parsedLessons = lessonListSchema.parse(unitLessons);
-    const parsedUnit = partialSyntheticUnitvariantLessonsSchema.parse(unit);
-    const transformedUnit = getTransformedUnit(parsedUnit, parsedLessons);
+    const unitLessons = getTransformedLessons(parsedModifiedLessons);
+    const packagedUnitData = modifiedLessons.reduce((acc, lesson) => {
+      return {
+        ...acc,
+        programmeFields: lesson.programme_fields,
+        unitSlug: lesson.unit_slug ?? "",
+        programmeSlug: lesson.programme_slug ?? "",
+        unitTitle:
+          lesson.programme_fields.optionality ?? lesson.unit_data.title,
+        programmeSlugByYear: lesson.programme_slug_by_year,
+      };
+    }, {} as PackagedUnitData);
+    const transformedUnit = getPackagedUnit(packagedUnitData, unitLessons);
     return lessonListingSchema.parse(transformedUnit);
   };
 
