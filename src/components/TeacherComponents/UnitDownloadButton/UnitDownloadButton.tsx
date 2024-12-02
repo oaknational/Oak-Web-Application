@@ -30,7 +30,7 @@ const unitButtonSignInText = {
 const UnitDownloadSignInButton = ({ variant }: { variant: VariantKey }) => (
   <SignUpButton>
     <OakPrimaryButton
-      iconName={variant === "option-a" ? "download" : "arrow-right"}
+      iconName={variant === "option-a" ? "download" : undefined}
       isTrailingIcon
       width="fit-content"
     >
