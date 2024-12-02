@@ -9,6 +9,7 @@ import {
   OakFlex,
   OakGrid,
   OakGridArea,
+  OakInlineBanner,
   OakLoadingSpinner,
   OakPrimaryButton,
   OakTagFunctional,
@@ -161,6 +162,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const isNew = hasNewContent ?? false;
 
   const [downloadError, setDownloadError] = useState<boolean | undefined>();
+  const [showDownloadMessage, setShowDownloadMessage] = useState(false);
   const [downloadInProgress, setDownloadInProgress] = useState(false);
 
   // TODO: feature flag
@@ -170,6 +172,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     useUnitDownloadExistenceCheck(mockSlug);
 
   const onUnitDownloadClick = async () => {
+    setShowDownloadMessage(true);
     setDownloadInProgress(true);
     try {
       setDownloadError(false);
@@ -296,7 +299,24 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           {...curriculumData}
           shareButton={teacherShareButton}
           unitDownloadButton={unitDownloadButton}
-          downloadError={downloadError}
+          banner={
+            showDownloadMessage ? (
+              <OakInlineBanner
+                isOpen={showDownloadMessage}
+                canDismiss
+                onDismiss={() => setShowDownloadMessage(false)}
+                type="info"
+                message="Downloads may take a few minutes on slower Wi-Fi connections."
+              />
+            ) : downloadError ? (
+              <OakInlineBanner
+                isOpen
+                type="error"
+                message="Sorry, download is not working. Please try again in a few minutes."
+                icon="error"
+              />
+            ) : null
+          }
         />
         <MaxWidth $ph={16}>
           <OakGrid>
