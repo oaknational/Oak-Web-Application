@@ -110,8 +110,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         }
       } else {
         setSchoolInLocalStorage({
-          schoolId: "",
-          schoolName: "",
+          schoolId: "notListed",
+          schoolName: "notListed",
         });
       }
     };
