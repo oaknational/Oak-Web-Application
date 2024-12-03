@@ -1,4 +1,4 @@
-import { createLessonDownloadLink } from "./createDownloadResourcesLink";
+import { createLessonDownloadLink } from "./createDownloadLink";
 import downloadLessonResources from "./downloadLessonResources";
 
 import type { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";

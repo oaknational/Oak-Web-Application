@@ -1,4 +1,4 @@
-import { createLessonDownloadLink } from "./createDownloadResourcesLink";
+import { createLessonDownloadLink } from "./createDownloadLink";
 import createAndClickHiddenDownloadLink from "./createAndClickHiddenDownloadLink";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";

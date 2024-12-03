@@ -1,4 +1,4 @@
-import { createLessonDownloadLink } from "./createDownloadResourcesLink";
+import { createLessonDownloadLink } from "./createDownloadLink";
 
 import OakError from "@/errors/OakError";
 
