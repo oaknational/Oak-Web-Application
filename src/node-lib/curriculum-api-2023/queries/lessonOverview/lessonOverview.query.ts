@@ -1,10 +1,11 @@
 import {
   LessonOverviewQuery,
-  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp,
 } from "../../generated/sdk";
 import { lessonOverviewQuizData, LessonPathway } from "../../shared.schema";
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
+import { getCorrectYear } from "../../helpers/getCorrectYear";
 
 import lessonOverviewSchema, {
   lessonContentSchema,
@@ -211,7 +212,7 @@ const lessonOverviewQuery =
   }): Promise<LessonOverviewPageData> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
-    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
+    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp> =
       { lesson_slug: { _eq: lessonSlug } };
 
     const canonicalLesson = !unitSlug && !programmeSlug;
@@ -232,16 +233,6 @@ const lessonOverviewQuery =
       browseDataWhere,
       lessonSlug,
     });
-    if (res.browseData.length > 1 && !canonicalLesson) {
-      const error = new OakError({
-        code: "curriculum-api/uniqueness-assumption-violated",
-      });
-      errorReporter("curriculum-api-2023::lessonOverview")(error, {
-        severity: "warning",
-        ...args,
-        res,
-      });
-    }
 
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       LessonOverviewQuery["browseData"][number]
@@ -255,7 +246,15 @@ const lessonOverviewQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const [browseDataSnake] = modifiedBrowseData;
+    const modifiedProgrammeFields = getCorrectYear({
+      programmeSlugByYear: modifiedBrowseData[0]?.programme_slug_by_year,
+      programmeFields: modifiedBrowseData[0]?.programme_fields,
+    });
+
+    const browseDataSnake = {
+      ...modifiedBrowseData[0],
+      programme_fields: modifiedProgrammeFields,
+    };
     const [contentSnake] = res.content;
 
     if (!contentSnake) {

@@ -1,20 +1,17 @@
-import {
-  ProgrammeFields,
-  yearSlugs,
-  yearDescriptions,
-} from "@oaknational/oak-curriculum-schema";
-
-import { Sdk } from "../../sdk";
-import OakError from "../../../../errors/OakError";
-import { LessonListSchema } from "../../shared.schema";
-import { LessonListingQuery } from "../../generated/sdk";
-import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
+import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 
 import lessonListingSchema, {
   LessonListingPageData,
   partialSyntheticUnitvariantLessonsArraySchema,
   partialSyntheticUnitvariantLessonsSchema,
 } from "./lessonListing.schema";
+
+import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import OakError from "@/errors/OakError";
+import { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { LessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
+import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
+import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
 
 export const getTransformedLessons = (
   lessons: LessonListingQuery["lessons"],
@@ -71,43 +68,29 @@ export const getPackagedUnit = (
     programmeSlugByYear,
   } = packagedUnitData;
 
-  programmeSlugByYear.sort((a, b) => a.localeCompare(b));
-  const yearSlug = programmeSlugByYear[0]
-    ?.split(`${programmeFields.phase_slug}-`)[1]
-    ?.replace("-l", "");
-
-  const parsedYearSlug = yearSlugs.safeParse(yearSlug);
-  if (
-    parsedYearSlug.success &&
-    parsedYearSlug.data !== programmeFields.year_slug
-  ) {
-    programmeFields.year_slug = parsedYearSlug.data;
-    const parsedYearDescription = yearDescriptions.safeParse(
-      parsedYearSlug.data.replace("year-", "Year "),
-    ).data;
-    if (parsedYearDescription) {
-      programmeFields.year_description = parsedYearDescription;
-    }
-  }
+  const modifiedProgrammeFields = getCorrectYear({
+    programmeSlugByYear,
+    programmeFields,
+  });
 
   return {
     programmeSlug,
-    keyStageSlug: programmeFields.keystage_slug,
-    keyStageTitle: programmeFields.keystage_description,
-    subjectSlug: programmeFields.subject_slug,
-    subjectTitle: programmeFields.subject,
+    keyStageSlug: modifiedProgrammeFields.keystage_slug,
+    keyStageTitle: modifiedProgrammeFields.keystage_description,
+    subjectSlug: modifiedProgrammeFields.subject_slug,
+    subjectTitle: modifiedProgrammeFields.subject,
     unitSlug,
     unitTitle,
-    tierSlug: programmeFields.tier_slug,
-    tierTitle: programmeFields.tier_description,
-    examBoardSlug: programmeFields.examboard_slug,
-    examBoardTitle: programmeFields.examboard,
-    yearSlug: programmeFields.year_slug,
-    yearTitle: programmeFields.year_description,
+    tierSlug: modifiedProgrammeFields.tier_slug,
+    tierTitle: modifiedProgrammeFields.tier_description,
+    examBoardSlug: modifiedProgrammeFields.examboard_slug,
+    examBoardTitle: modifiedProgrammeFields.examboard,
+    yearSlug: modifiedProgrammeFields.year_slug,
+    yearTitle: modifiedProgrammeFields.year_description,
     lessons: unitLessons,
-    pathwaySlug: programmeFields.pathway_slug,
-    pathwayTitle: programmeFields.pathway,
-    pathwayDisplayOrder: programmeFields.pathway_display_order,
+    pathwaySlug: modifiedProgrammeFields.pathway_slug,
+    pathwayTitle: modifiedProgrammeFields.pathway,
+    pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
   };
 };
 
