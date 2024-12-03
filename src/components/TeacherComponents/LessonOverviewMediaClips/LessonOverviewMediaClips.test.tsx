@@ -8,9 +8,6 @@ jest.mock("@/common-lib/urls", () => ({
   resolveOakHref: jest.fn(),
 }));
 
-// TODO: Clean up the tests
-// TODO: Add storybook file so can test with more video entries
-
 const mockLearningCycleVideos = lessonMediaClipsFixtures().mediaClips;
 
 describe("LessonOverviewMediaClips", () => {

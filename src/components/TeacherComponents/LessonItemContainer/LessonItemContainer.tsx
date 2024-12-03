@@ -5,7 +5,6 @@ import {
   OakSecondaryButton,
   OakThemeProvider,
   oakDefaultTheme,
-  OakTertiaryButton,
 } from "@oaknational/oak-components";
 
 import {
@@ -17,8 +16,8 @@ import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonIt
 import { Hr } from "@/components/SharedComponents/Typography";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Box from "@/components/SharedComponents/Box";
-import { resolveOakHref } from "@/common-lib/urls";
 import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import LessonPlayAllButton from "@/components/LessonPlayAllButton/LessonPlayAllButton";
 
 export const getContainerId = (anchorId: string) => {
   return `${anchorId}-container`;
@@ -55,7 +54,7 @@ export interface LessonItemContainerProps {
   downloadable?: boolean;
   shareable?: boolean;
   displayMediaClipButton?: boolean;
-  slugs: Slugs;
+  slugs?: Slugs;
   onDownloadButtonClick?: () => void;
   isFinalElement?: boolean;
   isSpecialist: boolean;
@@ -133,26 +132,7 @@ export const LessonItemContainer = forwardRef<
             </OakHeading>
           )}
           {displayMediaClipButton && slugs && (
-            <OakTertiaryButton
-              element="a"
-              href={
-                slugs?.programmeSlug && slugs?.unitSlug
-                  ? resolveOakHref({
-                      page: "lesson-media",
-                      lessonSlug: slugs.lessonSlug,
-                      programmeSlug: slugs.programmeSlug,
-                      unitSlug: slugs.unitSlug,
-                    })
-                  : resolveOakHref({
-                      page: "lesson-media-canonical",
-                      lessonSlug: slugs.lessonSlug,
-                    })
-              }
-              isTrailingIcon
-              iconName="arrow-right"
-            >
-              Play all
-            </OakTertiaryButton>
+            <LessonPlayAllButton {...slugs} />
           )}
           {downloadable && slugs && (
             <LessonItemContainerLink

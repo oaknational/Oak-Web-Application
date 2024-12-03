@@ -12,16 +12,12 @@ type LessonOverviewMediaClipsProps = {
   programmeSlug: string | null;
 };
 
-// TODO : Remove ternary statements from component
-
 const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   learningCycleVideos,
   unitSlug,
   programmeSlug,
 }) => {
-  // TODO: Add ticket to refactor so that this comes from the Database?
   const videosArray = Object.values(learningCycleVideos);
-  // TODO : Add ticket to refactor media clips component ot break in phone design at media viewport
   return (
     <OakGrid
       $width={"100%"}
@@ -29,6 +25,8 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
       $rg={"all-spacing-4"}
     >
       {videosArray.map((video, index) => {
+        const firstCycleVideo = video[0];
+        if (!firstCycleVideo) return null;
         return (
           <OakGridArea
             key={index}
@@ -36,25 +34,31 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
             $maxWidth={["100%", "all-spacing-18"]}
           >
             <LessonOverviewClipWithThumbnail
-              title={video[0]?.mediaClipTitle ? video[0]?.mediaClipTitle : ""}
+              title={firstCycleVideo.mediaClipTitle}
               playbackId={
-                video[0]?.videoObject?.muxPlaybackId
-                  ? video[0]?.videoObject?.muxPlaybackId
+                firstCycleVideo.videoObject
+                  ? firstCycleVideo.videoObject.muxPlaybackId
                   : ""
               }
-              playbackPolicy={video[0]?.videoObject?.playbackPolicy ?? "public"}
+              playbackPolicy={
+                firstCycleVideo.videoObject
+                  ? firstCycleVideo.videoObject.playbackPolicy
+                  : "public"
+              }
               numberOfClips={video.length}
               href={
                 programmeSlug && unitSlug
                   ? resolveOakHref({
                       page: "lesson-media",
-                      lessonSlug: video[0]?.slug ? video[0]?.slug : "",
+                      lessonSlug: firstCycleVideo.slug,
                       programmeSlug,
                       unitSlug,
+                      query: { video: firstCycleVideo.slug },
                     })
                   : resolveOakHref({
                       page: "lesson-media-canonical",
-                      lessonSlug: video[0]?.slug ? video[0]?.slug : "",
+                      lessonSlug: firstCycleVideo.slug,
+                      query: { video: firstCycleVideo.slug },
                     })
               }
             />

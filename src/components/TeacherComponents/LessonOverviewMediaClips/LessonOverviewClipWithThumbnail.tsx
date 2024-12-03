@@ -4,10 +4,8 @@ import {
   OakMediaClipStackListItemProps,
 } from "@oaknational/oak-components";
 
-import {
-  PlaybackPolicy,
-  useSignedThumbnailToken,
-} from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
+import { PlaybackPolicy } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
+import useMediaClipThumbnail from "@/components/SharedComponents/VideoPlayer/useMediaClipThumbnails";
 
 export type LessonOverviewClipWithThumbnail = Omit<
   OakMediaClipStackListItemProps,
@@ -25,15 +23,11 @@ const LessonOverviewClipWithThumbnail: FC<LessonOverviewClipWithThumbnail> = ({
   numberOfClips,
   href,
 }: LessonOverviewClipWithThumbnail) => {
-  const thumbnailToken = useSignedThumbnailToken({
+  const thumbnailImage = useMediaClipThumbnail({
     playbackId,
     playbackPolicy,
     isLegacy: false,
   });
-
-  const thumbnailImage = thumbnailToken
-    ? `https://image.mux.com/${playbackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`
-    : "";
 
   return (
     <OakMediaClipStackListItem

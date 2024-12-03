@@ -20,6 +20,7 @@ export type LessonBrowseData = ConvertKeysToCamelCase<
   z.infer<typeof lessonBrowseDataSchema>
 >;
 
+// TODO : Refactor so this and the video object are one
 const mediaObjectSchema = z
   .object({
     muxPlaybackId: z.string(),
@@ -74,17 +75,7 @@ const learningCycleNamesSchema = z.enum([
 ]);
 
 // TODO : Make this flexible to allow for more cycles
-export const mediaClipsSchema = z.object({
-  intro: cycleSchema,
-  cycle1: cycleSchema,
-  cycle2: cycleSchema.optional(),
-  cycle3: cycleSchema.optional(),
-  cycle4: cycleSchema.optional(),
-  cycle5: cycleSchema.optional(),
-  cycle6: cycleSchema.optional(),
-  cycle7: cycleSchema.optional(),
-  cycle8: cycleSchema.optional(),
-});
+export const mediaClipsSchema = z.record(z.string(), cycleSchema);
 
 const baseLessonMediaClipsPageSchema = z.object({
   lessonSlug: z.string(),
