@@ -42,21 +42,32 @@ export const useShareExperiment = ({
   unitSlug,
   programmeSlug,
   source,
+  shareBaseUrl,
   curriculumTrackingProps,
 }: {
   lessonSlug?: string;
   unitSlug?: string;
   programmeSlug?: string;
+  shareBaseUrl?: string;
   source: keyof typeof shareSources;
   curriculumTrackingProps: CurriculumTrackingProps;
 }) => {
   const shareIdRef = useRef<string | null>(null);
   const shareIdKeyRef = useRef<string | null>(null);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
+  const [browserUrl, setBrowserUrl] = useState<string | null>(null);
 
-  const shareExperimentFlag = useFeatureFlagVariantKey(
-    "delivery-sq-share-experiment",
-  );
+  const flags = {
+    "lesson-browse": "share-advocate-lesson",
+    "lesson-canonical": "share-advocate-lesson",
+    "download-browse": "share-advocate-download",
+    "download-canonical": "share-advocate-download",
+    "lesson-listing": "share-advocate-unit",
+  };
+
+  const flag = flags[source];
+
+  const shareExperimentFlag = useFeatureFlagVariantKey(flag);
 
   const { track } = useAnalytics();
 
@@ -99,6 +110,7 @@ export const useShareExperiment = ({
     }
 
     if (!shareIdRef.current && shareExperimentFlag) {
+      // we update the url and send the share initiated event for any users in the experiment
       const { url, shareIdKey, shareId } = getUpdatedUrl({
         url: window.location.href,
         storageShareId,
@@ -107,8 +119,10 @@ export const useShareExperiment = ({
         shareMethod: "url",
       });
 
+      setBrowserUrl(url);
+
       const { url: buttonUrl } = getUpdatedUrl({
-        url: window.location.href,
+        url: shareBaseUrl || window.location.href,
         storageShareId: shareId, // we know that this will now be the shareId
         unhashedKey: key,
         source,
@@ -131,15 +145,12 @@ export const useShareExperiment = ({
 
       shareIdRef.current = shareId;
       shareIdKeyRef.current = shareIdKey;
-
-      if (window.location.href !== url) {
-        window.history.replaceState({}, "", url);
-      }
     }
   }, [
     lessonSlug,
     programmeSlug,
     unitSlug,
+    shareBaseUrl,
     curriculumTrackingProps,
     shareExperimentFlag,
     source,
@@ -172,6 +183,7 @@ export const useShareExperiment = ({
     shareIdRef,
     shareIdKeyRef,
     shareUrl,
+    browserUrl,
     shareActivated,
   };
 };

@@ -81,7 +81,7 @@ describe("useShareExperiments", () => {
 
   it("should generate a shareId if the feature flag is enabled", () => {
     // mock the feature flag
-    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("test");
 
     // hook wrapper
     const { result } = renderHook(() =>
@@ -99,35 +99,36 @@ describe("useShareExperiments", () => {
     expect(shareIdKeyRef.current).not.toBeNull();
   });
 
-  it("should update the window location with the shareId", () => {
+  it("should return a shareId based on the shareBaseUrl", () => {
     jest.spyOn(window.history, "replaceState").mockImplementation(() => {});
 
     // mock the feature flag
-    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("test");
 
     // hook wrapper
-    renderHook(() =>
+    const { result } = renderHook(() =>
       useShareExperiment({
         lessonSlug: "lessonSlug",
         unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
+        shareBaseUrl: "http://localhost:3000/teachers/lessons/lesson-slug",
         curriculumTrackingProps,
       }),
     );
 
     const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+    const { shareUrl, browserUrl } = result.current;
 
-    expect(window.history.replaceState).toHaveBeenCalledWith(
-      expect.anything(), // Ignore the first argument
-      expect.anything(), // Ignore the second argument
-      `http://localhost?${key}=xxxxxxxxxx&sm=0&src=1`,
+    expect(browserUrl).toBe(`http://localhost?${key}=xxxxxxxxxx&sm=0&src=1`);
+    expect(shareUrl).toBe(
+      `http://localhost:3000/teachers/lessons/lesson-slug?${key}=xxxxxxxxxx&sm=1&src=1`,
     );
   });
 
   it("should call track shareInitiated if there is no storage and the feature flag is enabled", () => {
     // mock the feature flag
-    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("test");
 
     const mockTrack = useAnalytics().track;
 
@@ -146,7 +147,7 @@ describe("useShareExperiments", () => {
   });
 
   it("should not call share initiated if the storage is already present", () => {
-    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("test");
 
     const mockTrack = useAnalytics().track;
 
@@ -265,7 +266,7 @@ describe("useShareExperiments", () => {
   });
 
   it("sends an activation event when shareActivated is called", () => {
-    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("test");
 
     const mockTrack = useAnalytics().track;
 
@@ -285,7 +286,7 @@ describe("useShareExperiments", () => {
   });
 
   it("doesn't send an activation event when shareActivated is called and the storage is already present", () => {
-    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue(true);
+    (useFeatureFlagVariantKey as jest.Mock).mockReturnValue("test");
 
     const mockTrack = useAnalytics().track;
 

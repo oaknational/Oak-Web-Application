@@ -45,29 +45,36 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     keyStageTitle,
   } = curriculumData;
 
-  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
-    lessonSlug,
-    unitSlug,
-    programmeSlug,
-    source: "lesson-browse",
-    curriculumTrackingProps: {
-      lessonName: lessonTitle,
-      unitName: unitTitle,
-      subjectSlug,
-      subjectTitle,
-      keyStageSlug,
-      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
-    },
-  });
+  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
+    useShareExperiment({
+      lessonSlug,
+      unitSlug,
+      programmeSlug,
+      source: "lesson-browse",
+      curriculumTrackingProps: {
+        lessonName: lessonTitle,
+        unitName: unitTitle,
+        subjectSlug,
+        subjectTitle,
+        keyStageSlug,
+        keyStageTitle:
+          keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      },
+    });
 
-  const teacherShareButton = shareExperimentFlag ? (
-    <TeacherShareButton
-      label="Share resources with colleague"
-      variant={"secondary"}
-      shareUrl={shareUrl}
-      shareActivated={shareActivated}
-    />
-  ) : null;
+  if (shareExperimentFlag && window.location.href !== browserUrl) {
+    window.history.replaceState({}, "", browserUrl);
+  }
+
+  const teacherShareButton =
+    shareExperimentFlag === "test" ? (
+      <TeacherShareButton
+        label="Share resources with colleague"
+        variant={"secondary"}
+        shareUrl={shareUrl}
+        shareActivated={shareActivated}
+      />
+    ) : null;
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
