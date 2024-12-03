@@ -16,6 +16,7 @@ import {
   getLessonOverviewBreadCrumb,
   createAttributionObject,
   getBreadcrumbsForSpecialistLessonPathway,
+  getMediaClipLabel,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonOverviewAll,
@@ -35,10 +36,7 @@ import type {
 } from "@/browser-lib/avo/Avo";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LessonDetails from "@/components/TeacherComponents/LessonOverviewDetails";
-import {
-  LessonItemContainer,
-  LessonItemTitle,
-} from "@/components/TeacherComponents/LessonItemContainer";
+import { LessonItemContainer } from "@/components/TeacherComponents/LessonItemContainer";
 import HeaderLesson from "@/components/TeacherComponents/LessonOverviewHeader";
 import { useCurrentSection } from "@/components/TeacherComponents/helpers/lessonHelpers/useCurrentSection";
 import LessonOverviewAnchorLinks from "@/components/TeacherComponents/LessonOverviewAnchorLinks";
@@ -123,19 +121,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     subjectSlug,
     isLegacyLicense,
   );
-
-  const getMediaClipLabel = (subjectSlug: string): LessonItemTitle => {
-    switch (subjectSlug) {
-      case "physical-education":
-        return "Demonstration videos";
-      case "spanish":
-      case "french":
-      case "german":
-        return "Audio clips";
-      default:
-        return "Video & audio clips";
-    }
-  };
 
   const mediaClipLabel = subjectSlug
     ? getMediaClipLabel(subjectSlug)

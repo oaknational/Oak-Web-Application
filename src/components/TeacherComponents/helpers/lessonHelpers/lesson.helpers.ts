@@ -17,6 +17,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
+import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 
 /**
  * Returns the intersection different pathways.
@@ -598,4 +599,17 @@ export const createAttributionObject = (
     return attributions;
   }
   return [];
+};
+
+export const getMediaClipLabel = (subjectSlug: string): LessonItemTitle => {
+  switch (subjectSlug) {
+    case "physical-education":
+      return "Demonstration videos";
+    case "spanish":
+    case "french":
+    case "german":
+      return "Audio clips";
+    default:
+      return "Video & audio clips";
+  }
 };
