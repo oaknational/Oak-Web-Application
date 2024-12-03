@@ -64,6 +64,7 @@ describe("LessonOverviewMediaClips", () => {
     expect(resolveOakHref).toHaveBeenCalledWith({
       page: "lesson-media-canonical",
       lessonSlug: "introduction-physical-exercise-video",
+      query: { video: "introduction-physical-exercise-video" },
     });
 
     expect(resolveOakHref).toHaveBeenCalledWith({
