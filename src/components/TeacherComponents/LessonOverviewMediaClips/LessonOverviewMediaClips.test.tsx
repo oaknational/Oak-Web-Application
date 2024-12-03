@@ -40,6 +40,7 @@ describe("LessonOverviewMediaClips", () => {
       lessonSlug: "cycle-1-running-video",
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
+      query: { video: "cycle-1-running-video" },
     });
 
     expect(resolveOakHref).toHaveBeenCalledWith({
@@ -47,6 +48,7 @@ describe("LessonOverviewMediaClips", () => {
       lessonSlug: "cycle-2-video",
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
+      query: { video: "cycle-2-video" },
     });
   });
 
@@ -67,6 +69,7 @@ describe("LessonOverviewMediaClips", () => {
     expect(resolveOakHref).toHaveBeenCalledWith({
       page: "lesson-media-canonical",
       lessonSlug: "cycle-1-running-video",
+      query: { video: "cycle-1-running-video" },
     });
   });
 });
