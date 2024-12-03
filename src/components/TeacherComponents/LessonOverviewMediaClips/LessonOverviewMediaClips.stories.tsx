@@ -11,7 +11,7 @@ import { LessonItemContainer } from "../LessonItemContainer";
 import Component from "./LessonOverviewMediaClips";
 
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
-import { MediaObject } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { MediaClipsList } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -25,7 +25,7 @@ type Story = StoryObj<typeof Component>;
 
 const LessonOverviewMediaClipsComponent = (
   args: JSX.IntrinsicAttributes & {
-    learningCycleVideos: MediaObject;
+    learningCycleVideos: MediaClipsList;
     unitSlug: string | null;
     programmeSlug: string | null;
   },
@@ -68,10 +68,8 @@ export const LessThan4Cycles: Story = {
       intro: [
         {
           order: 1,
-          mediaId: null,
+          mediaId: 2321312,
           learningCycleTitle: "Learning cycle 3",
-          title: "Cycle 3 Video",
-          playbackPolicy: "public",
           mediaClipTitle: "Introduction physical exercise video",
           slug: "introduction-physical-exercise-video",
           mediaObject: null,
@@ -90,9 +88,7 @@ export const LessThan4Cycles: Story = {
         {
           order: 2,
           mediaClipTitle: "Running",
-          title: "Running",
           learningCycleTitle: "Learning cycle 3",
-          playbackPolicy: "public",
           slug: "running",
           mediaId: 137156,
           mediaObject: {
@@ -115,9 +111,7 @@ export const LessThan4Cycles: Story = {
           mediaClipTitle: "Cycle 1 running video",
           slug: "cycle-1-running-video",
           learningCycleTitle: "Learning cycle 1",
-          title: "Cycle 1 Video",
-          mediaId: null,
-          playbackPolicy: "public",
+          mediaId: 4332,
           mediaObject: null,
           mediaType: "video",
           videoId: 4,
@@ -135,9 +129,7 @@ export const LessThan4Cycles: Story = {
           order: 2,
           mediaClipTitle: "Cycle 1 Audio",
           learningCycleTitle: "Learning cycle 1",
-          title: "Cycle 1 Audio",
           slug: "cycle-1-audio",
-          playbackPolicy: "public",
           mediaId: 137139,
           mediaObject: {
             duration: 180.34,
@@ -164,10 +156,8 @@ export const MoreThan4Cycles: Story = {
       intro: [
         {
           order: 1,
-          mediaId: null,
-          playbackPolicy: "public",
+          mediaId: 5643,
           learningCycleTitle: "Learning cycle 3",
-          title: "Cycle 3 Video",
           mediaClipTitle: "Introduction physical exercise video",
           slug: "introduction-physical-exercise-video",
           mediaObject: null,
@@ -188,11 +178,9 @@ export const MoreThan4Cycles: Story = {
         {
           order: 1,
           mediaClipTitle: "Cycle 1 running video",
-          title: "Cycle 1 Video",
           learningCycleTitle: "Learning cycle 1",
           slug: "cycle-1-running-video",
-          mediaId: null,
-          playbackPolicy: "public",
+          mediaId: 78654,
           mediaObject: null,
           mediaType: "video",
           videoId: 4,
@@ -211,12 +199,9 @@ export const MoreThan4Cycles: Story = {
         {
           order: 1,
           mediaClipTitle: "Cycle 1 running video",
-          title: "Cycle 1 Video",
           learningCycleTitle: "Learning cycle 1",
-
           slug: "cycle-1-running-video",
-          mediaId: null,
-          playbackPolicy: "public",
+          mediaId: 85432,
           mediaObject: null,
           mediaType: "video",
           videoId: 4,
@@ -236,10 +221,8 @@ export const MoreThan4Cycles: Story = {
           order: 1,
           mediaClipTitle: "Cycle 1 running video",
           slug: "cycle-1-running-video",
-          title: "Cycle 1 Video",
           learningCycleTitle: "Learning cycle 1",
-          mediaId: null,
-          playbackPolicy: "public",
+          mediaId: 68432,
           mediaObject: null,
           mediaType: "video",
           videoId: 4,
@@ -259,10 +242,8 @@ export const MoreThan4Cycles: Story = {
           order: 1,
           mediaClipTitle: "Cycle 1 running video",
           slug: "cycle-1-running-video",
-          title: "Cycle 1 Video",
           learningCycleTitle: "Learning cycle 1",
-          mediaId: null,
-          playbackPolicy: "public",
+          mediaId: 4994,
           mediaObject: null,
           mediaType: "video",
           videoId: 4,
@@ -282,10 +263,8 @@ export const MoreThan4Cycles: Story = {
           order: 1,
           mediaClipTitle: "Cycle 1 running video",
           slug: "cycle-1-running-video",
-          title: "Cycle 1 Video",
           learningCycleTitle: "Learning cycle 1",
-          mediaId: null,
-          playbackPolicy: "public",
+          mediaId: 6954,
           mediaObject: null,
           mediaType: "video",
           videoId: 4,
@@ -305,10 +284,8 @@ export const MoreThan4Cycles: Story = {
           order: 1,
           mediaClipTitle: "Cycle 1 running video",
           slug: "cycle-1-running-video",
-          title: "Cycle 1 Video",
           learningCycleTitle: "Learning cycle 1",
-          mediaId: null,
-          playbackPolicy: "public",
+          mediaId: 6943,
           mediaObject: null,
           mediaType: "video",
           videoId: 4,

@@ -74,10 +74,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   // construct list of all clips in one array
   const listOfAllClips = Object.keys(mediaClips)
-    .map((learningCycle) =>
-      mediaClips[learningCycle as LearningCycle].map(
-        (mediaClip: MediaClip) => mediaClip,
-      ),
+    .map(
+      (learningCycle) =>
+        mediaClips[learningCycle as LearningCycle]?.map(
+          (mediaClip: MediaClip) => mediaClip,
+        ) || [],
     )
     .flat();
 

@@ -53,41 +53,65 @@ const mediaClipsCycleSchema = z.object({
   mediaId: z.number(),
   slug: z.string(),
   mediaClipTitle: z.string(),
-  playbackPolicy: z.enum(["public", "signed"]),
-  title: z.string(),
   mediaObject: mediaObjectSchema,
   mediaType: z.enum(["audio", "video"]),
   videoId: z.number().nullable(),
   videoObject: videoObjectSchema,
 });
 
-const cycleSchema = z.array(mediaClipsCycleSchema);
+export const cycleSchema = z.array(mediaClipsCycleSchema);
 
-export const mediaClipsSchema = z.record(z.string(), cycleSchema);
+const learningCycleNamesSchema = z.enum([
+  "intro",
+  "cycle1",
+  "cycle2",
+  "cycle3",
+  "cycle4",
+  "cycle5",
+  "cycle6",
+  "cycle7",
+  "cycle8",
+]);
 
-// TODO: Rename and extrapolate these types into component library
+// TODO : Make this flexible to allow for more cycles
+export const mediaClipsSchema = z.object({
+  intro: cycleSchema,
+  cycle1: cycleSchema,
+  cycle2: cycleSchema.optional(),
+  cycle3: cycleSchema.optional(),
+  cycle4: cycleSchema.optional(),
+  cycle5: cycleSchema.optional(),
+  cycle6: cycleSchema.optional(),
+  cycle7: cycleSchema.optional(),
+  cycle8: cycleSchema.optional(),
+});
 
-const baseLessonMediaClipsSchema = z.object({
+const baseLessonMediaClipsPageSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   keyStageTitle: z.string(),
   mediaClips: mediaClipsSchema,
 });
 
-export const lessonMediaClipsSchema = baseLessonMediaClipsSchema.extend({
-  ...baseLessonBrowseSchema.shape,
-});
-
 export const canonicalLessonMediaClipsSchema =
-  baseLessonMediaClipsSchema.extend({
+  baseLessonMediaClipsPageSchema.extend({
     pathways: z.array(lessonPathwaySchema),
   });
 
+export const lessonMediaClipsSchema = baseLessonMediaClipsPageSchema.extend({
+  ...baseLessonBrowseSchema.shape,
+});
+
+// MUX Video / Audio object schemas
+export type MediaObject = z.infer<typeof mediaObjectSchema>;
+export type VideoObject = z.infer<typeof videoObjectSchema>;
+
 export type MediaClipsList = z.infer<typeof mediaClipsSchema>;
 export type MediaClip = z.infer<typeof mediaClipsCycleSchema>;
+export type LearningCycle = z.infer<typeof learningCycleNamesSchema>;
+
+// Page Schemas
 export type LessonMediaClipsData = z.infer<typeof lessonMediaClipsSchema>;
 export type CanonicalLessonMediaClips = z.infer<
   typeof canonicalLessonMediaClipsSchema
 >;
-export type MediaObject = z.infer<typeof mediaObjectSchema>;
-export type VideoObject = z.infer<typeof videoObjectSchema>;

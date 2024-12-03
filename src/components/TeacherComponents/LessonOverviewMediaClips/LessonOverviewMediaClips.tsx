@@ -3,11 +3,11 @@ import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import LessonOverviewClipWithThumbnail from "./LessonOverviewClipWithThumbnail";
 
-import { MediaObject } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { MediaClipsList } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 
 type LessonOverviewMediaClipsProps = {
-  learningCycleVideos: MediaObject;
+  learningCycleVideos: MediaClipsList;
   unitSlug: string | null;
   programmeSlug: string | null;
 };
@@ -36,7 +36,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
             $maxWidth={["100%", "all-spacing-18"]}
           >
             <LessonOverviewClipWithThumbnail
-              title={video[0]?.title ? video[0]?.title : ""}
+              title={video[0]?.mediaClipTitle ? video[0]?.mediaClipTitle : ""}
               playbackId={
                 video[0]?.videoObject?.muxPlaybackId
                   ? video[0]?.videoObject?.muxPlaybackId
