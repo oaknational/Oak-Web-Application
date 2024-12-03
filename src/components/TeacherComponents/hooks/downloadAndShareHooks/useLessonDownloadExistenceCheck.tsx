@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import type { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import getLessonDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getLessonDownloadResourcesExistence";
+import { getLessonDownloadResourcesExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter";
 

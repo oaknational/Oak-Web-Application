@@ -1,7 +1,8 @@
-import getLessonDownloadResourcesExistence, {
+import {
+  getLessonDownloadResourcesExistence,
   DownloadsApiCheckFilesResponseSchema,
   LegacyDownloadsApiCheckFilesResponseSchema,
-} from "./getLessonDownloadResourcesExistence";
+} from "./getDownloadResourcesExistence";
 
 import OakError from "@/errors/OakError";
 

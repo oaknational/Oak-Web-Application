@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import OakError from "@/errors/OakError";
 import errorReporter from "@/common-lib/error-reporter";
-import getUnitDownloadResourcesExistence from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getUnitDownloadResourcesExistence";
+import { getUnitDownloadFileExistence } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence";
 
 const reportError = errorReporter("useDownloadExistenceCheck");
 
@@ -19,7 +19,7 @@ const useUnitDownloadExistenceCheck = (unitProgrammeSlug: string) => {
       setHasCheckedFiles(true);
       try {
         const { exists, fileSize } =
-          await getUnitDownloadResourcesExistence(unitProgrammeSlug);
+          await getUnitDownloadFileExistence(unitProgrammeSlug);
 
         setExists(exists);
         setFileSize(fileSize);
