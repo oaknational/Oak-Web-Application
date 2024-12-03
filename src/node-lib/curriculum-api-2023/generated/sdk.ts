@@ -54673,7 +54673,7 @@ export type LessonDownloadsQueryVariables = Exact<{
 }>;
 
 
-export type LessonDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_published_3_0_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: boolean | null, login_required?: boolean | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
+export type LessonDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_published_3_0_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: boolean | null, login_required?: boolean | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
 
 export type LessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -55072,6 +55072,7 @@ export const LessonDownloadsDocument = gql`
     lesson_slug
     unit_slug
     programme_slug
+    programme_slug_by_year
     is_legacy
     lesson_data
     unit_data
