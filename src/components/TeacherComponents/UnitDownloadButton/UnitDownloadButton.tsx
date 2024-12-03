@@ -105,11 +105,12 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     setDownloadInProgress,
     setShowDownloadMessage,
     downloadInProgress,
-    unitProgrammeSlug,
   } = props;
 
+  // TODO: use real slug
+  const mockSlug = "test-unit-6-lessons";
   const { exists, fileSize, hasCheckedFiles } =
-    useUnitDownloadExistenceCheck(unitProgrammeSlug);
+    useUnitDownloadExistenceCheck(mockSlug);
 
   const onUnitDownloadClick = async () => {
     setShowDownloadMessage(true);
@@ -117,7 +118,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     try {
       setDownloadError(false);
       const downloadLink = await createUnitDownloadLink({
-        unitSlug: unitProgrammeSlug,
+        unitSlug: mockSlug,
       });
 
       if (downloadLink) {
