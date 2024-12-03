@@ -18,6 +18,11 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
+import {
+  useShareExperiment,
+  CurriculumTrackingProps,
+} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -26,8 +31,50 @@ export type LessonOverviewPageProps = {
 const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
   curriculumData,
 }) => {
-  const { lessonTitle, keyStageSlug, subjectTitle, tierTitle, examBoardTitle } =
-    curriculumData;
+  const {
+    lessonTitle,
+    keyStageSlug,
+    subjectTitle,
+    tierTitle,
+    examBoardTitle,
+    lessonSlug,
+    unitSlug,
+    programmeSlug,
+    unitTitle,
+    subjectSlug,
+    keyStageTitle,
+  } = curriculumData;
+
+  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
+    useShareExperiment({
+      lessonSlug,
+      unitSlug,
+      programmeSlug,
+      source: "lesson-browse",
+      curriculumTrackingProps: {
+        lessonName: lessonTitle,
+        unitName: unitTitle,
+        subjectSlug,
+        subjectTitle,
+        keyStageSlug,
+        keyStageTitle:
+          keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      },
+    });
+
+  if (shareExperimentFlag && window.location.href !== browserUrl) {
+    window.history.replaceState({}, "", browserUrl);
+  }
+
+  const teacherShareButton =
+    shareExperimentFlag === "test" ? (
+      <TeacherShareButton
+        label="Share resources with colleague"
+        variant={"secondary"}
+        shareUrl={shareUrl}
+        shareActivated={shareActivated}
+      />
+    ) : null;
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
@@ -55,6 +102,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             ...curriculumData,
             isCanonical: false,
             isSpecialist: false,
+            teacherShareButton: teacherShareButton,
           }}
         />
       </OakThemeProvider>

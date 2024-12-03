@@ -131,6 +131,39 @@ export const getLessonDownloadsBreadCrumb = ({
     };
   }
 };
+export const getLessonMediaBreadCrumb = ({
+  lessonSlug,
+  programmeSlug,
+  unitSlug,
+  disabled,
+}: {
+  lessonSlug: string;
+  programmeSlug: string | null;
+  unitSlug: string | null;
+  disabled?: boolean;
+}): Breadcrumb => {
+  if (programmeSlug && unitSlug) {
+    return {
+      oakLinkProps: {
+        page: "lesson-media",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      },
+      label: "Extra video and audio",
+      disabled,
+    };
+  } else {
+    return {
+      oakLinkProps: {
+        page: "lesson-media-canonical",
+        lessonSlug,
+      },
+      label: "Extra video and audio",
+      disabled,
+    };
+  }
+};
 export const getLessonShareBreadCrumb = ({
   lessonSlug,
   programmeSlug,
@@ -350,6 +383,7 @@ export const getBreadcrumbsForLessonPathway = (
 
 type GetPageLinksForLessonProps = Pick<
   LessonBase,
+  | "lessonGuideUrl"
   | "presentationUrl"
   | "videoMuxPlaybackId"
   | "worksheetUrl"
@@ -359,6 +393,7 @@ type GetPageLinksForLessonProps = Pick<
   | "hasCopyrightMaterial"
 >;
 export type LessonPageLinkAnchorId =
+  | "lesson-guide"
   | "slide-deck"
   | "lesson-details"
   | "video"
@@ -379,6 +414,11 @@ export const getPageLinksForLesson = (
     condition: (lesson: GetPageLinksForLessonProps) => boolean;
   }[] = [
     {
+      label: "Lesson guide",
+      anchorId: "lesson-guide",
+      condition: (lesson) => Boolean(lesson.lessonGuideUrl),
+    },
+    {
       label: "Slide deck",
       anchorId: "slide-deck",
       condition: (lesson) =>
@@ -396,7 +436,7 @@ export const getPageLinksForLesson = (
       condition: () => true,
     },
     {
-      label: "Video",
+      label: "Lesson video",
       anchorId: "video",
       condition: (lesson) => Boolean(lesson.videoMuxPlaybackId),
     },

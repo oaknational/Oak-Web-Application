@@ -1,6 +1,7 @@
 import { CombinedDownloadsShareType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 export const containerTitleToPreselectMap: CombinedDownloadsShareType = {
+  "Lesson guide": { downloadType: null, shareType: null },
   "Slide deck": { downloadType: "slide deck", shareType: null },
   "Exit quiz": { downloadType: "exit quiz", shareType: "exit quiz" },
   "Starter quiz": { downloadType: "starter quiz", shareType: "starter quiz" },
@@ -12,5 +13,5 @@ export const containerTitleToPreselectMap: CombinedDownloadsShareType = {
   },
   Worksheet: { downloadType: "worksheet", shareType: "worksheet" },
   Transcript: { downloadType: null, shareType: null },
-  Video: { downloadType: null, shareType: "video" },
+  "Lesson video": { downloadType: null, shareType: "video" },
 };

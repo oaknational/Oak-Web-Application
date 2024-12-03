@@ -64,6 +64,35 @@ describe("QuizCorrectAnswers", () => {
     expect(getByText("Correct answers: one, two, three")).toBeInTheDocument();
   });
 
+  it("handles an image multiple correct answers inside an array", () => {
+    const context = getQuizEngineContext([
+      {
+        type: "image",
+        imageObject: {
+          secureUrl: "secureUrl",
+          metadata: [],
+        },
+      },
+      {
+        type: "image",
+        imageObject: {
+          secureUrl: "secureUrl2",
+          metadata: [],
+        },
+      },
+    ]);
+
+    const { queryByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizEngineContext.Provider value={context}>
+          <QuizCorrectAnswers />
+        </QuizEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(queryByText("Correct answers:")).toBeNull();
+  });
+
   it("handles a single correct answer", () => {
     const context = getQuizEngineContext(
       "a group of words that contains a verb",
@@ -80,6 +109,28 @@ describe("QuizCorrectAnswers", () => {
     expect(
       getByText("Correct answer: a group of words that contains a verb"),
     ).toBeInTheDocument();
+  });
+
+  it("handles an image single correct answer inside an array", () => {
+    const context = getQuizEngineContext([
+      {
+        type: "image",
+        imageObject: {
+          secureUrl: "secureUrl",
+          metadata: [],
+        },
+      },
+    ]);
+
+    const { queryByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <QuizEngineContext.Provider value={context}>
+          <QuizCorrectAnswers />
+        </QuizEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+
+    expect(queryByText("Correct answers:")).toBeNull();
   });
 
   it("handles no correct answer", () => {

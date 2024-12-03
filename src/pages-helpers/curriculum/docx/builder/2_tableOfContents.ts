@@ -7,10 +7,10 @@ import {
   pointToDxa,
   wrapInLinkToBookmark,
 } from "../docx";
+import { formatCurriculumUnitsData } from "../tab-helpers";
 
 import { uncapitalizeSubject } from "./helper";
 
-import { formatCurriculumUnitsData } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 
 export default async function generate(
@@ -30,7 +30,7 @@ export default async function generate(
     },
     {
       anchorId: "section_curriculum_overview",
-      text: `${data.subjectTitle} curriculum overview`,
+      text: `${data.subjectTitle} curriculum explainer`,
     },
     ...yearOptions.map((year) => {
       return {

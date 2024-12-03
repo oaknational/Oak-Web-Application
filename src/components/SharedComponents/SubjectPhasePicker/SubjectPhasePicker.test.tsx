@@ -5,6 +5,11 @@ import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
+jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+  __esModule: true,
+  default: () => false,
+}));
+
 const render = renderWithProviders();
 
 const curriculumVisualiserAccessed = jest.fn();
@@ -136,15 +141,15 @@ describe("Component - subject phase picker", () => {
     );
 
     // Open the subject dropdown
-    await userEvent.click(getByTestId("selectSubjectHeading"));
-    const curriculumHeadingElem = getByTestId("subjectDropdownHeading");
+    await userEvent.click(getByTestId("subject-picker-button-heading"));
+    const curriculumHeadingElem = getByTestId("subject-picker-heading");
     expect(curriculumHeadingElem).toBeVisible();
     await userEvent.keyboard("{Escape}");
     expect(curriculumHeadingElem).not.toBeVisible();
 
     // Open the phase dropdown
-    await userEvent.click(getByTestId("selectPhaseHeading"));
-    const schoolPhaseHeadingElem = getByTestId("phaseDropdownHeading");
+    await userEvent.click(getByTestId("phase-picker-button"));
+    const schoolPhaseHeadingElem = getByTestId("phase-picker-heading");
     expect(schoolPhaseHeadingElem).toBeVisible();
     await userEvent.keyboard("{Escape}");
     expect(schoolPhaseHeadingElem).not.toBeVisible();
@@ -154,7 +159,7 @@ describe("Component - subject phase picker", () => {
     const { getByTestId, getAllByTitle, getByTitle, queryByText } = render(
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
-    const viewButton = getByTestId("view-desktop");
+    const viewButton = getByTestId("lot-picker-view-curriculum-button");
     await userEvent.click(viewButton);
     expect(queryByText("Select a subject")).toBeTruthy();
     expect(queryByText("Select a school phase")).toBeTruthy();
@@ -187,7 +192,10 @@ describe("Component - subject phase picker", () => {
 
     await userEvent.click(await findByTitle("Primary"));
 
-    const viewButton = getByTestId(baseElement, "view-desktop");
+    const viewButton = getByTestId(
+      baseElement,
+      "lot-picker-view-curriculum-button",
+    );
     await userEvent.click(viewButton);
 
     expect(curriculumVisualiserAccessed).toHaveBeenCalledTimes(1);
@@ -204,7 +212,7 @@ describe("Component - subject phase picker", () => {
       <SubjectPhasePicker {...subjectPhaseOptions} />,
     );
     await userEvent.click(getByTitle("Subject"));
-    const link = getByTestId("previousPlansLink");
+    const link = getByTestId("subject-picker-previous-plans-link");
     expect(link).toHaveAttribute(
       "href",
       "/teachers/curriculum/previous-downloads",
@@ -230,7 +238,7 @@ describe("Component - subject phase picker", () => {
       const examboardTitle = await findByText("Choose an option for KS4");
       expect(examboardTitle).toBeTruthy();
 
-      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      const ks4Options = await findAllByTestId("phase-picker-ks4-option");
       if (!ks4Options) {
         throw new Error("Could not find buttons");
       }
@@ -256,7 +264,7 @@ describe("Component - subject phase picker", () => {
       const examboardTitle = await findByText("Choose an option for KS4");
       expect(examboardTitle).toBeTruthy();
 
-      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      const ks4Options = await findAllByTestId("phase-picker-ks4-option");
       if (!ks4Options) {
         throw new Error("Could not find buttons");
       }
@@ -285,7 +293,7 @@ describe("Component - subject phase picker", () => {
       const examboardTitle = await findByText("Choose an option for KS4");
       expect(examboardTitle).toBeTruthy();
 
-      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      const ks4Options = await findAllByTestId("phase-picker-ks4-option");
       if (!ks4Options) {
         throw new Error("Could not find buttons");
       }
@@ -313,7 +321,7 @@ describe("Component - subject phase picker", () => {
       const examboardTitle = await findByText("Choose an option for KS4");
       expect(examboardTitle).toBeTruthy();
 
-      const ks4Options = await findAllByTestId("ks4-option-lot-picker");
+      const ks4Options = await findAllByTestId("phase-picker-ks4-option");
       if (!ks4Options) {
         throw new Error("Could not find buttons");
       }
@@ -347,14 +355,14 @@ describe("Component - subject phase picker", () => {
       }
 
       const checkIfPhasesFocused = () => {
-        const el = getByTestId("phasePickerButton");
+        const el = getByTestId("phase-picker-button");
         if (el.matches(":focus-within")) {
           return true;
         }
         return false;
       };
 
-      // Tab through until we tab outside the
+      // Tab through until we tab outside the subject modal
       let i = 0;
       for (i; i < 20; i++) {
         await userEvent.tab();
@@ -363,7 +371,7 @@ describe("Component - subject phase picker", () => {
         }
       }
 
-      expect(getByTestId("phasePickerButton").matches(":focus")).toBe(true);
+      expect(getByTestId("phase-picker-button").matches(":focus")).toBe(true);
     });
 
     test("tab focus breaks outside of phases modal", async () => {
@@ -372,17 +380,17 @@ describe("Component - subject phase picker", () => {
       const { getByTestId } = render(
         <SubjectPhasePicker {...subjectPhaseOptions} />,
       );
-      await userEvent.click(getByTestId("phasePickerButton"));
+      await userEvent.click(getByTestId("phase-picker-button"));
 
       const checkIfPhasesFocused = () => {
-        const el = getByTestId("view-desktop");
+        const el = getByTestId("lot-picker-view-curriculum-button");
         if (el.matches(":focus-within")) {
           return true;
         }
         return false;
       };
 
-      // Tab through until we tab outside the
+      // Tab through until we tab outside the phases modal
       let i = 0;
       for (i; i < 20; i++) {
         await userEvent.tab();
@@ -391,7 +399,67 @@ describe("Component - subject phase picker", () => {
         }
       }
 
-      expect(getByTestId("view-desktop").matches(":focus-within")).toBe(true);
+      expect(
+        getByTestId("lot-picker-view-curriculum-button").matches(
+          ":focus-within",
+        ),
+      ).toBe(true);
+    });
+
+    test("close button is visible in subject picker", async () => {
+      const { getByTestId, getByTitle } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+      await userEvent.click(getByTitle("Subject"));
+      const button = getByTestId("close-modal-button");
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+
+      expect(button).toBeInTheDocument();
+    });
+
+    test("close button closes subject picker", async () => {
+      const { getByTestId, getByTitle } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+      await userEvent.click(getByTitle("Subject"));
+      const button = getByTestId("close-modal-button");
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+
+      await userEvent.click(button);
+
+      expect(button).not.toBeInTheDocument();
+    });
+
+    test("close button is visible in phase picker", async () => {
+      const { getByTestId, getByTitle } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+      await userEvent.click(getByTitle("Phase"));
+      const button = getByTestId("close-modal-button");
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+
+      expect(button).toBeInTheDocument();
+    });
+
+    test("close button closes phase picker", async () => {
+      const { getByTestId, getByTitle } = render(
+        <SubjectPhasePicker {...subjectPhaseOptions} />,
+      );
+      await userEvent.click(getByTitle("Phase"));
+      const button = getByTestId("close-modal-button");
+      if (!button) {
+        throw new Error("Could not find button");
+      }
+
+      await userEvent.click(button);
+
+      expect(button).not.toBeInTheDocument();
     });
   });
 });

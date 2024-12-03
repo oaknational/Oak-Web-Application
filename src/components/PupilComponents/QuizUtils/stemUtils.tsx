@@ -29,21 +29,24 @@ export const getStemTextData = (stem: ImageOrTextItem[]) => {
 export const getStemImage = ({
   stem,
   minWidth = "all-spacing-19",
+  scaled = false,
 }: {
   stem: ImageOrTextItem[];
   minWidth: OakAllSpacingToken;
+  scaled?: boolean;
 }) => {
   const data = getStemImageData(stem);
   if (data?.imageObject?.publicId)
     return (
       <OakCloudinaryImage
         cloudinaryId={data.imageObject.publicId}
-        alt={""} // TODO: add alt text
+        alt={"An image in a quiz"}
         width={data.imageObject.width}
         height={data.imageObject.height}
-        $minWidth={minWidth}
+        $minWidth={scaled ? "all-spacing-20" : minWidth}
         placeholder="oak"
         sizes={getSizes(["100vw", 1200])}
+        role="presentation"
       />
     );
 };

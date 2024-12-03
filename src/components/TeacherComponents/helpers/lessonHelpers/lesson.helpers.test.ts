@@ -3,6 +3,7 @@ import {
   getCommonPathway,
   getPageLinksForLesson,
   groupLessonPathways,
+  getLessonMediaBreadCrumb,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   quizQuestions,
@@ -108,6 +109,7 @@ describe("getCommonPathway()", () => {
 describe("getPageLinksForLesson()", () => {
   it("returns only the correct page links for a lesson with no starter or exit quiz", () => {
     const lesson = {
+      lessonGuideUrl: "lesson-guide-url",
       presentationUrl: "presentation-url",
       videoMuxPlaybackId: "video-mux-playback-id",
       worksheetUrl: "worksheet-url",
@@ -122,6 +124,10 @@ describe("getPageLinksForLesson()", () => {
 
     const expected = [
       {
+        anchorId: "lesson-guide",
+        label: "Lesson guide",
+      },
+      {
         anchorId: "slide-deck",
         label: "Slide deck",
       },
@@ -131,7 +137,7 @@ describe("getPageLinksForLesson()", () => {
       },
       {
         anchorId: "video",
-        label: "Video",
+        label: "Lesson video",
       },
       {
         anchorId: "worksheet",
@@ -172,7 +178,7 @@ describe("getPageLinksForLesson()", () => {
       },
       {
         anchorId: "video",
-        label: "Video",
+        label: "Lesson video",
       },
       {
         anchorId: "worksheet",
@@ -197,6 +203,7 @@ describe("getPageLinksForLesson()", () => {
 
   it("doesn't include slidedeck if hasCopyrightMaterial", () => {
     const lesson = {
+      lessonGuideUrl: null,
       presentationUrl: "presentation-url",
       hasCopyrightMaterial: true,
       videoMuxPlaybackId: null,
@@ -650,5 +657,44 @@ describe("createAttributionObject", () => {
   it("when no image metadata is present function returns an empty array", () => {
     const testAttribution = createAttributionObject(quizQuestionsNoImages);
     expect(testAttribution).toEqual([]);
+  });
+});
+
+describe("getLessonMediaBreadCrumb", () => {
+  it("when programmeSlug and unitSlug are passed", () => {
+    expect(
+      getLessonMediaBreadCrumb({
+        lessonSlug: "lesson-1",
+        programmeSlug: "programme-2",
+        unitSlug: "unit-3",
+        disabled: false,
+      }),
+    ).toEqual({
+      oakLinkProps: {
+        page: "lesson-media",
+        programmeSlug: "programme-2",
+        unitSlug: "unit-3",
+        lessonSlug: "lesson-1",
+      },
+      label: "Extra video and audio",
+      disabled: false,
+    });
+  });
+
+  it("when programmeSlug and unitSlug are null", () => {
+    expect(
+      getLessonMediaBreadCrumb({
+        lessonSlug: "lesson-1",
+        programmeSlug: null,
+        unitSlug: null,
+      }),
+    ).toEqual({
+      oakLinkProps: {
+        page: "lesson-media-canonical",
+        lessonSlug: "lesson-1",
+      },
+      label: "Extra video and audio",
+      disabled: undefined,
+    });
   });
 });

@@ -5,6 +5,7 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { hasLessonMathJax } from "./hasLessonMathJax";
@@ -48,9 +49,12 @@ import {
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
+import AspectRatio from "@/components/SharedComponents/AspectRatio";
 
 export type LessonOverviewProps = {
-  lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads };
+  lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
+    teacherShareButton?: React.ReactNode;
+  };
 };
 
 // helper function to remove key learning points from the header in legacy lessons
@@ -91,11 +95,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     isSpecialist,
     updatedAt,
     isCanonical,
+    lessonGuideUrl,
+    teacherShareButton,
   } = lesson;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const commonPathway = getPathway(lesson);
-
   const {
     keyStageSlug,
     keyStageTitle,
@@ -105,7 +110,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     unitSlug,
     programmeSlug,
   } = commonPathway;
-
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
   const isNew = lessonCohort === NEW_COHORT;
   const isMathJaxLesson = hasLessonMathJax(
@@ -162,8 +166,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const starterQuizSectionRef = useRef<HTMLDivElement>(null);
   const exitQuizSectionRef = useRef<HTMLDivElement>(null);
   const additionalMaterialSectionRef = useRef<HTMLDivElement>(null);
+  const lessonGuideSectionRef = useRef<HTMLDivElement>(null);
 
   const sectionRefs = {
+    "lesson-guide": lessonGuideSectionRef,
     "slide-deck": slideDeckSectionRef,
     "lesson-details": lessonDetailsSectionRef,
     video: videoSectionRef,
@@ -188,6 +194,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const showDownloadAll = downloadsFilteredByCopyright.length > 0;
   const showShare =
     !isSpecialist && keyStageSlug !== "early-years-foundation-stage";
+
+  // TODO: Currently lessonGuideUrl is in edit mode, once published remove
+  const getPreviewUrl = (url: string): string => {
+    return url.replace(/\/edit.*$/, "/preview");
+  };
+  const previewLessonGuideUrl = getPreviewUrl(lessonGuideUrl || "");
 
   return (
     <MathJaxLessonProvider>
@@ -231,6 +243,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         )}
         showDownloadAll={showDownloadAll}
         showShare={showShare}
+        teacherShareButton={teacherShareButton}
       />
       <MaxWidth $ph={16} $pb={80}>
         <NewContentBanner
@@ -274,6 +287,52 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
             </GridArea>
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
+                {pageLinks.find((p) => p.label === "Lesson guide") &&
+                  lessonGuideUrl && (
+                    <LessonItemContainer
+                      isSpecialist={isSpecialist}
+                      ref={lessonGuideSectionRef}
+                      title={"Lesson guide"}
+                      //Defaulted to false until download ticket implementation
+                      downloadable={false}
+                      // Avo types need to be updated to include lesson guide
+                      // onDownloadButtonClick={() => {
+                      //   trackDownloadResourceButtonClicked({
+                      //     downloadResourceButtonName: "lesson guide",
+                      //   });
+                      // }}
+                      slugs={slugs}
+                      anchorId="lesson-guide"
+                      pageLinks={pageLinks}
+                    >
+                      <OakBox
+                        $width={"100%"}
+                        $ba={"border-solid-m"}
+                        style={{ height: "100%" }}
+                        $position={"relative"}
+                      >
+                        <AspectRatio ratio={"16:9"}>
+                          <iframe
+                            tabIndex={-1}
+                            data-testid="lesson-guide-iframe"
+                            src={`${previewLessonGuideUrl}`}
+                            title={`lesson guide: ${lessonTitle}`}
+                            width="auto"
+                            height="100%"
+                            style={{
+                              border: "none",
+                            }}
+                            //small render bug fix to make sure the iframe assumes 100% width. Docs are still in unpublished currently so temporary
+                            onLoad={(e) => {
+                              const iframe = e.target as HTMLIFrameElement;
+                              iframe.style.width = "100%";
+                              iframe.style.height = "100%";
+                            }}
+                          />
+                        </AspectRatio>
+                      </OakBox>
+                    </LessonItemContainer>
+                  )}
                 {pageLinks.find((p) => p.label === "Slide deck") &&
                   !checkIsResourceCopyrightRestricted(
                     "presentation",
@@ -327,13 +386,13 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   />
                 </LessonItemContainer>
 
-                {pageLinks.find((p) => p.label === "Video") && (
+                {pageLinks.find((p) => p.label === "Lesson video") && (
                   <LessonItemContainer
                     isSpecialist={isSpecialist}
                     ref={videoSectionRef}
                     shareable={isLegacyLicense && showShare}
                     slugs={slugs}
-                    title={"Video"}
+                    title={"Lesson video"}
                     anchorId="video"
                     isFinalElement={
                       pageLinks.findIndex((p) => p.label === "Video") ===

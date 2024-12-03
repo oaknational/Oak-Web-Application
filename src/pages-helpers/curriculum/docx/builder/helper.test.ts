@@ -1,10 +1,12 @@
+import { generateOakIconURL } from "@oaknational/oak-components";
+
 import { xmlRootToJson } from "../xml";
 
 import {
   generateGridCols,
   uncapitalize,
   uncapitalizeSubject,
-  generateOakIconURL,
+  generateIconURL,
 } from "./helper";
 
 describe("helper", () => {
@@ -66,21 +68,15 @@ describe("helper", () => {
     });
   });
 
-  describe("generateOakIconURL", () => {
-    const baseURL = `https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}`;
+  describe("generateIconURL", () => {
     it("returns a books url when no valid subject icon is passed in", () => {
-      const url = generateOakIconURL("potions");
-      expect(url).toBe(baseURL + "/books.svg");
+      const url = generateIconURL("potions");
+      expect(url).toBe(generateOakIconURL("subject-english"));
     });
 
-    it("returns a valid url when cycle 1 subject icon is passed in", () => {
-      const url = generateOakIconURL("maths");
-      expect(url).toBe(baseURL + "/subject-icons/maths.svg");
-    });
-
-    it("returns a valid url when cycle 2 subject icon is passed in", () => {
-      const url = generateOakIconURL("cooking-nutrition");
-      expect(url).toBe(baseURL + "/subject-icons/cooking-nutrition.svg");
+    it("returns a valid url when valid subject icon is passed in", () => {
+      const url = generateIconURL("maths");
+      expect(url).toBe(generateOakIconURL("subject-maths"));
     });
   });
 });

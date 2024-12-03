@@ -28,6 +28,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
     showShare,
     isCanonical,
     phonicsOutcome,
+    teacherShareButton,
   } = props;
 
   return (
@@ -70,6 +71,7 @@ export const LessonOverviewHeaderMobile: FC<LessonOverviewHeaderProps> = (
       </OakBox>
       <LessonOverviewHeaderDownloadAllButton {...props} />
       {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
+      {teacherShareButton}
     </OakFlex>
   );
 };

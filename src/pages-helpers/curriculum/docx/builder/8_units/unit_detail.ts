@@ -11,10 +11,10 @@ import {
   JSZipCached,
   wrapInLinkTo,
 } from "../../docx";
+import { createUnitsListingByYear } from "../../tab-helpers";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { getUnitFeatures } from "@/utils/curriculum/features";
-import { createUnitsListingByYear } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import { createProgrammeSlug } from "@/utils/curriculum/slugs";
 import { SubjectCategory } from "@/utils/curriculum/types";
 

@@ -9,12 +9,13 @@
 // Multiple correct answers
 // http://localhost:3000/pupils/programmes/maths-secondary-ks3/units/graphical-representations-of-data/lessons/constructing-bar-charts-by-utilising-technology#starter-quiz
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import {
   OakCloudinaryImage,
   OakFlex,
   OakJauntyAngleLabel,
   OakQuizCheckBox,
+  OakScaleImageButton,
 } from "@oaknational/oak-components";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
@@ -45,6 +46,12 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
     [currentQuestionData],
   );
 
+  const [scaled, setScaled] = useState<boolean[]>(answers.map(() => false));
+  const handleSetScale = (index: number, newValue: boolean) => {
+    setScaled((prevStates) =>
+      prevStates.map((state, i) => (i === index ? newValue : state)),
+    );
+  };
   if (!questionState || !currentQuestionData) {
     return null;
   }
@@ -74,15 +81,34 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
 
           const answerImage =
             answerImageData && answerImageData.publicId ? (
-              <OakCloudinaryImage
-                cloudinaryId={answerImageData.publicId}
-                alt=""
-                width={answerImageData.width}
-                height={answerImageData.height}
-                $minWidth={"all-spacing-19"}
-                placeholder="oak"
-                sizes={getSizes(["100vw", 1200])}
-              />
+              <OakFlex>
+                <OakCloudinaryImage
+                  cloudinaryId={answerImageData.publicId}
+                  alt="An image in a quiz"
+                  width={answerImageData.width}
+                  height={answerImageData.height}
+                  $minWidth={
+                    scaled[index] ? "all-spacing-20" : "all-spacing-19"
+                  }
+                  placeholder="oak"
+                  sizes={getSizes(["100vw", 1200])}
+                  role="presentation"
+                />
+                <OakFlex
+                  $width={"all-spacing-7"}
+                  $height={"all-spacing-7"}
+                  $pointerEvents={"auto"}
+                  $display={["none", "flex"]}
+                >
+                  <OakScaleImageButton
+                    onImageScaleCallback={(e) => {
+                      e.stopPropagation();
+                      handleSetScale(index, !scaled[index]);
+                    }}
+                    isExpanded={scaled[index] ? true : false}
+                  />
+                </OakFlex>
+              </OakFlex>
             ) : undefined;
 
           const feedback =
@@ -91,7 +117,7 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
               : undefined;
 
           return (
-            <MathJaxWrap>
+            <MathJaxWrap key={`max-jax-wrap-${index}`}>
               <OakQuizCheckBox
                 key={`${questionUid}-answer-${index}`}
                 id={`${questionUid}-answer-${index}`}
