@@ -66,14 +66,15 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     window.history.replaceState({}, "", browserUrl);
   }
 
-  const teacherShareButton = shareExperimentFlag ? (
-    <TeacherShareButton
-      label="Share resources with colleague"
-      variant={"secondary"}
-      shareUrl={shareUrl}
-      shareActivated={shareActivated}
-    />
-  ) : null;
+  const teacherShareButton =
+    shareExperimentFlag === "test" ? (
+      <TeacherShareButton
+        label="Share resources with colleague"
+        variant={"secondary"}
+        shareUrl={shareUrl}
+        shareActivated={shareActivated}
+      />
+    ) : null;
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
