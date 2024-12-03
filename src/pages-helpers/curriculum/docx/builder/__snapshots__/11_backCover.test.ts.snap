@@ -819,7 +819,9 @@ exports[`11_backCover simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t>
+        <w:t
+          xml:space="preserve"
+        >
           Licensed on the 
         </w:t>
       </w:r>
@@ -994,7 +996,9 @@ exports[`11_backCover simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t>
+        <w:t
+          xml:space="preserve"
+        >
           , except where otherwise stated. See 
         </w:t>
       </w:r>

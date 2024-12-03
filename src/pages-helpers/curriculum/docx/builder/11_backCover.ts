@@ -182,7 +182,7 @@ export default async function generate(
             <w:color w:val="222222" />
             <w:sz w:val="24" />
           </w:rPr>
-          <w:t>Licensed on the </w:t>
+          <w:t xml:space="preserve">Licensed on the </w:t>
         </w:r>
         ${wrapInLinkTo(
           links.ogl,
@@ -219,7 +219,7 @@ export default async function generate(
             <w:color w:val="222222" />
             <w:sz w:val="24" />
           </w:rPr>
-          <w:t>, except where otherwise stated. See </w:t>
+          <w:t xml:space="preserve">, except where otherwise stated. See </w:t>
         </w:r>
         ${wrapInLinkTo(
           links.terms,
