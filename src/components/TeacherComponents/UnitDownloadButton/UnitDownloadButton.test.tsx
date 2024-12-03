@@ -20,7 +20,7 @@ jest.mock(
 
 jest.mock("@clerk/nextjs", () => ({
   useUser: jest.fn(),
-  SignInButton: jest.fn(() => <button>Download unit</button>),
+  SignUpButton: jest.fn(() => <button>Download unit</button>),
 }));
 
 jest.mock("posthog-js/react", () => ({
