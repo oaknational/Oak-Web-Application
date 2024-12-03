@@ -1,9 +1,11 @@
-import createDownloadResourcesLink from "./createDownloadResourcesLink";
+import { createLessonDownloadLink } from "./createDownloadResourcesLink";
 import downloadLessonResources from "./downloadLessonResources";
 
 import type { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
-jest.mock("./createDownloadResourcesLink");
+jest.mock("./createDownloadResourcesLink", () => ({
+  createLessonDownloadLink: jest.fn(),
+}));
 jest.mock("./createAndClickHiddenDownloadLink");
 
 const data = {
@@ -38,8 +40,8 @@ describe("downloadLessonResources", () => {
   it("should call createDownloadResourcesLink with correct parameters", async () => {
     await downloadLessonResources("lesson-slug", resourcesToDownload, true);
 
-    expect(createDownloadResourcesLink).toHaveBeenCalledWith({
-      downloadSlug: "lesson-slug",
+    expect(createLessonDownloadLink).toHaveBeenCalledWith({
+      lessonSlug: "lesson-slug",
       selection: "exit-quiz-answers,worksheet-pdf",
       isLegacyDownload: true,
     });

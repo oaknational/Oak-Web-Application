@@ -11,8 +11,8 @@ import { z } from "zod";
 
 import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
 
-import createUnitDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createUnitDownloadLink";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
+import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadResourcesLink";
 
 // teacher-unit-downloads experiment A/B test group keys and test values
 const variantKey = z
@@ -118,7 +118,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     try {
       setDownloadError(false);
       const downloadLink = await createUnitDownloadLink({
-        unitSlug: mockSlug,
+        unitProgrammeSlug: mockSlug,
       });
 
       if (downloadLink) {

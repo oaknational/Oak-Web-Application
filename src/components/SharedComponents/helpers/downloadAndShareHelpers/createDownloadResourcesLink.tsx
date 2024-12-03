@@ -22,33 +22,26 @@ const schema = z.object({
 });
 export type DownloadsApiDownloadResponseSchema = z.infer<typeof schema>;
 
-const createDownloadResourcesLink = async ({
-  downloadSlug,
-  isLegacyDownload,
-  selection,
+const getDownloadLink = async ({
+  downloadEndpoint,
+  meta,
   authFlagEnabled,
   authToken,
 }: {
-  downloadSlug: string;
-  isLegacyDownload: boolean;
-  selection?: string;
+  downloadEndpoint: string;
+  meta: {
+    downloadSlug: string;
+    selection?: string;
+    isLegacyDownload?: boolean;
+  };
   authFlagEnabled?: boolean;
   authToken?: string | null;
 }) => {
-  const selectionString = selection ? `?selection=${selection}` : "";
-  const downloadEnpoint = `${DOWNLOADS_API_URL}/api/lesson/${downloadSlug}/download${selectionString}`;
-
-  const meta = {
-    downloadSlug,
-    selection,
-    isLegacyDownload,
-  };
-
   const authHeader = authToken
     ? { Authorization: `Bearer ${authToken}` }
     : undefined;
 
-  const res = await fetch(downloadEnpoint, {
+  const res = await fetch(downloadEndpoint, {
     headers: {
       ...authHeader,
       "X-Should-Authenticate-Download": JSON.stringify(
@@ -94,4 +87,46 @@ const createDownloadResourcesLink = async ({
   return data.url;
 };
 
-export default createDownloadResourcesLink;
+export const createLessonDownloadLink = async ({
+  lessonSlug,
+  isLegacyDownload,
+  selection,
+  authFlagEnabled,
+  authToken,
+}: {
+  lessonSlug: string;
+  isLegacyDownload: boolean;
+  selection?: string;
+  authFlagEnabled?: boolean;
+  authToken?: string | null;
+}) => {
+  const selectionString = selection ? `?selection=${selection}` : "";
+  const downloadEndpoint = `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/download${selectionString}`;
+  const meta = {
+    downloadSlug: lessonSlug,
+    selection,
+    isLegacyDownload,
+  };
+  const url = await getDownloadLink({
+    downloadEndpoint,
+    meta,
+    authFlagEnabled,
+    authToken,
+  });
+  return url;
+};
+
+export const createUnitDownloadLink = async ({
+  unitProgrammeSlug,
+}: {
+  unitProgrammeSlug: string;
+}) => {
+  const downloadEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitProgrammeSlug}/download`;
+
+  const meta = {
+    downloadSlug: unitProgrammeSlug,
+  };
+
+  const url = await getDownloadLink({ downloadEndpoint, meta });
+  return url;
+};

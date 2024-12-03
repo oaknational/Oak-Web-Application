@@ -1,4 +1,4 @@
-import createDownloadResourcesLink from "./createDownloadResourcesLink";
+import { createLessonDownloadLink } from "./createDownloadResourcesLink";
 import createAndClickHiddenDownloadLink from "./createAndClickHiddenDownloadLink";
 
 import type { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -17,8 +17,8 @@ const downloadLessonResources = async (
 
   const selection = selectedResourceTypes.join(",");
 
-  const downloadResourcesLink = await createDownloadResourcesLink({
-    downloadSlug: lessonSlug,
+  const downloadResourcesLink = await createLessonDownloadLink({
+    lessonSlug,
     selection,
     isLegacyDownload,
     authFlagEnabled,

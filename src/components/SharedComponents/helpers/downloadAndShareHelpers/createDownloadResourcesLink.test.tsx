@@ -1,4 +1,4 @@
-import createDownloadResourcesLink from "./createDownloadResourcesLink";
+import { createLessonDownloadLink } from "./createDownloadResourcesLink";
 
 import OakError from "@/errors/OakError";
 
@@ -22,8 +22,8 @@ describe("createDownloadResourcesLink()", () => {
   });
 
   it("should return correct data if fetch is successful", async () => {
-    downloadResourcesLink = await createDownloadResourcesLink({
-      downloadSlug: "lesson-slug",
+    downloadResourcesLink = await createLessonDownloadLink({
+      lessonSlug: "lesson-slug",
       isLegacyDownload: true,
       selection: "exit-quiz-answers,worksheet-pdf",
     });
@@ -37,8 +37,8 @@ describe("createDownloadResourcesLink()", () => {
     );
 
     try {
-      await createDownloadResourcesLink({
-        downloadSlug: "lesson-slug",
+      await createLessonDownloadLink({
+        lessonSlug: "lesson-slug",
         selection: "exit-quiz-answers,worksheet-pdf",
         isLegacyDownload: true,
       });
@@ -59,8 +59,8 @@ describe("createDownloadResourcesLink()", () => {
     );
 
     try {
-      await createDownloadResourcesLink({
-        downloadSlug: "lesson-slug",
+      await createLessonDownloadLink({
+        lessonSlug: "lesson-slug",
         selection: "exit-quiz-answers,worksheet-pdf",
         isLegacyDownload: true,
       });
@@ -86,8 +86,8 @@ describe("createDownloadResourcesLink()", () => {
     );
 
     try {
-      await createDownloadResourcesLink({
-        downloadSlug: "lesson-slug",
+      await createLessonDownloadLink({
+        lessonSlug: "lesson-slug",
         selection: "exit-quiz-answers,worksheet-pdf",
         isLegacyDownload: true,
       });
@@ -101,8 +101,8 @@ describe("createDownloadResourcesLink()", () => {
     }
   });
   it("should fetch from new api if isLegacyDownloads = true", async () => {
-    await createDownloadResourcesLink({
-      downloadSlug: "lesson-slug",
+    await createLessonDownloadLink({
+      lessonSlug: "lesson-slug",
       selection: "exit-quiz-answers,worksheet-pdf",
       isLegacyDownload: true,
     });
@@ -113,8 +113,8 @@ describe("createDownloadResourcesLink()", () => {
     );
   });
   it("should fetch from download api if isLegacyDownloads = false", async () => {
-    await createDownloadResourcesLink({
-      downloadSlug: "lesson-slug",
+    await createLessonDownloadLink({
+      lessonSlug: "lesson-slug",
       selection: "exit-quiz-answers,worksheet-pdf",
       isLegacyDownload: false,
     });
@@ -129,8 +129,8 @@ describe("createDownloadResourcesLink()", () => {
     delete process.env.NEXT_PUBLIC_DOWNLOAD_API_URL;
 
     try {
-      await createDownloadResourcesLink({
-        downloadSlug: "lesson-slug",
+      await createLessonDownloadLink({
+        lessonSlug: "lesson-slug",
         selection: "exit-quiz-answers,worksheet-pdf",
         isLegacyDownload: false,
       });
@@ -146,8 +146,8 @@ describe("createDownloadResourcesLink()", () => {
   });
   it("should fetch with correct headers including Authorization when authToken is provided", async () => {
     const authToken = "testToken";
-    await createDownloadResourcesLink({
-      downloadSlug: "lesson-slug",
+    await createLessonDownloadLink({
+      lessonSlug: "lesson-slug",
       selection: "exit-quiz-answers,worksheet-pdf",
       isLegacyDownload: true,
       authToken,
@@ -166,8 +166,8 @@ describe("createDownloadResourcesLink()", () => {
   });
 
   it("should fetch with X-Should-Authenticate-Download set to false when authFlagEnabled is false", async () => {
-    await createDownloadResourcesLink({
-      downloadSlug: "lesson-slug",
+    await createLessonDownloadLink({
+      lessonSlug: "lesson-slug",
       selection: "exit-quiz-answers,worksheet-pdf",
       isLegacyDownload: true,
       authFlagEnabled: false,
