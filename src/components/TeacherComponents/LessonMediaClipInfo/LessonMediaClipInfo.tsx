@@ -37,7 +37,6 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
   signLanguageButtonEnabled = false,
   onSignLanguageButtonClick = () => {},
   copyLinkButtonEnabled = false,
-  copyLinkHref,
 }: LessonMediaClipInfoProps) => {
   return (
     <OakBox>
@@ -51,21 +50,17 @@ export const LessonMediaClipInfo: FC<LessonMediaClipInfoProps> = ({
         $color={"grey60"}
         $mb="space-between-m"
       />
-      {videoTranscript && (
-        <OakVideoTranscript
-          id={"video-transcript"}
-          signLanguageControl={
-            signLanguageButtonEnabled && (
-              <OakSignLanguageButton onClick={onSignLanguageButtonClick} />
-            )
-          }
-          copyLinkControl={
-            copyLinkButtonEnabled && <OakCopyLinkButton href={copyLinkHref} />
-          }
-        >
-          <>{videoTranscript}</>
-        </OakVideoTranscript>
-      )}
+      <OakVideoTranscript
+        id={"video-transcript"}
+        signLanguageControl={
+          signLanguageButtonEnabled && (
+            <OakSignLanguageButton onClick={onSignLanguageButtonClick} />
+          )
+        }
+        copyLinkControl={copyLinkButtonEnabled && <OakCopyLinkButton />}
+      >
+        {videoTranscript}
+      </OakVideoTranscript>
     </OakBox>
   );
 };
