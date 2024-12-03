@@ -5,16 +5,17 @@
  */
 
 import { z } from "zod";
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsByKsSchema } from "@oaknational/oak-curriculum-schema";
 
 import { lessonPathwaySchema } from "../../shared.schema";
 import { baseLessonBrowseSchema } from "../lessonShare/lessonShare.schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
-export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
-  null_unitvariant_id: true,
-});
+export const lessonBrowseDataSchema =
+  syntheticUnitvariantLessonsByKsSchema.omit({
+    null_unitvariant_id: true,
+  });
 
 export type LessonBrowseData = ConvertKeysToCamelCase<
   z.infer<typeof lessonBrowseDataSchema>

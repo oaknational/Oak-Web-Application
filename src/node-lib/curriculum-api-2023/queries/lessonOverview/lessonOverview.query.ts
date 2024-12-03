@@ -1,4 +1,9 @@
 import {
+  yearDescriptions,
+  yearSlugs,
+} from "@oaknational/oak-curriculum-schema";
+
+import {
   LessonOverviewQuery,
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
 } from "../../generated/sdk";
@@ -135,6 +140,27 @@ export const transformedLessonOverviewData = (
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
+  const programmeFields = browseData.programmeFields;
+
+  browseData.programmeSlugByYear.sort((a, b) => a.localeCompare(b));
+  const yearSlug = browseData.programmeSlugByYear[0]
+    ?.split(`${programmeFields.phaseSlug}-`)[1]
+    ?.replace("-l", "");
+
+  const parsedYearSlug = yearSlugs.safeParse(yearSlug);
+  if (
+    parsedYearSlug.success &&
+    parsedYearSlug.data !== programmeFields.yearSlug
+  ) {
+    programmeFields.yearSlug = parsedYearSlug.data;
+    const parsedYearDescription = yearDescriptions.safeParse(
+      parsedYearSlug.data.replace("year-", "Year "),
+    ).data;
+    if (parsedYearDescription) {
+      programmeFields.yearDescription = parsedYearDescription;
+    }
+  }
+
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,

@@ -84,7 +84,6 @@ export const lessonMediaClipsQuery =
      */
     lessonBrowseDataSchema.parse({
       ...browseDataSnake,
-      supplementary_data: { order_in_unit: 0, unit_order: 0 },
     });
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type

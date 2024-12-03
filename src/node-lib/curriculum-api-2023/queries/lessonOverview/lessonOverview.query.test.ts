@@ -1,6 +1,6 @@
 import {
   lessonContentFixture,
-  syntheticUnitvariantLessonsFixture,
+  syntheticUnitvariantLessonsByKsFixture,
 } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
@@ -30,7 +30,7 @@ describe("lessonOverview()", () => {
 
   test("it returns the lesson if found", async () => {
     const _syntheticUnitvariantLessonsFixture =
-      syntheticUnitvariantLessonsFixture({
+      syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           lesson_slug: "lesson-slug-test",
           unit_slug: "unit-slug-test",
@@ -79,19 +79,19 @@ describe("lessonOverview()", () => {
 
   test("it should return pathways for canonical lesson if unit_slug and programme_slug are not passed as props", async () => {
     const _syntheticUnitvariantLessonsFixture1 =
-      syntheticUnitvariantLessonsFixture({
+      syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           programme_slug: "lesson-slug-test-1",
         },
       });
     const _syntheticUnitvariantLessonsFixture2 =
-      syntheticUnitvariantLessonsFixture({
+      syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           programme_slug: "lesson-slug-test-2",
         },
       });
     const _syntheticUnitvariantLessonsFixture3 =
-      syntheticUnitvariantLessonsFixture({
+      syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           programme_slug: "lesson-slug-test-3",
         },

@@ -8,6 +8,7 @@ query lessonOverview(
     lesson_slug
     unit_slug
     programme_slug
+    programme_slug_by_year
     is_legacy
     lesson_data
     unit_data
