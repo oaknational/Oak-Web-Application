@@ -39,7 +39,7 @@ describe("LessonOverviewMediaClips", () => {
 
     expect(resolveOakHref).toHaveBeenCalledWith({
       page: "lesson-media",
-      lessonSlug: "cycle-1-running-video",
+      lessonSlug: "lesson-slug",
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
       query: { video: "cycle-1-running-video" },
@@ -47,7 +47,7 @@ describe("LessonOverviewMediaClips", () => {
 
     expect(resolveOakHref).toHaveBeenCalledWith({
       page: "lesson-media",
-      lessonSlug: "cycle-2-video",
+      lessonSlug: "lesson-slug",
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
       query: { video: "cycle-2-video" },
@@ -66,13 +66,13 @@ describe("LessonOverviewMediaClips", () => {
 
     expect(resolveOakHref).toHaveBeenCalledWith({
       page: "lesson-media-canonical",
-      lessonSlug: "introduction-physical-exercise-video",
+      lessonSlug: "lesson-slug",
       query: { video: "introduction-physical-exercise-video" },
     });
 
     expect(resolveOakHref).toHaveBeenCalledWith({
       page: "lesson-media-canonical",
-      lessonSlug: "cycle-1-running-video",
+      lessonSlug: "lesson-slug",
       query: { video: "cycle-1-running-video" },
     });
   });
