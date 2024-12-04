@@ -10,7 +10,7 @@ import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/le
 describe("lessonMedia helpers", () => {
   describe("getPlaybackId", () => {
     it("should get correct playback id for video clip", () => {
-      const clip = lessonMediaClipsFixtures().mediaClips["intro"]?.[0] ?? null;
+      const clip = lessonMediaClipsFixtures().mediaClips["intro"]?.[0];
       const playbackId = clip && getPlaybackId(clip);
       expect(playbackId).toEqual(
         "WfJkoCV01EvqXpkLiaY01axFcTk7O9nurFXrXxZgV02Q004",

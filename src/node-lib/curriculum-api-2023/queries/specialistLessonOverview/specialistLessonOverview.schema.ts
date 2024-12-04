@@ -10,7 +10,6 @@ import {
   lessonOverviewQuizData,
   lessonPathwaySchema,
 } from "../../shared.schema";
-import { mediaClipsSchema } from "../lessonMediaClips/lessonMediaClips.schema";
 
 export type SpecialistLessonOverviewData = Omit<
   LessonOverviewPageData,
@@ -20,6 +19,7 @@ export type SpecialistLessonOverviewData = Omit<
   | "tierSlug"
   | "yearTitle"
   | "examBoardTitle"
+  | "lessonMediaClips"
 > & {
   isCanonical: false;
   developmentStageTitle: string;
@@ -125,7 +125,6 @@ const specialistLessonOverviewSchema = baseLessonOverviewSchema.extend({
   downloads: lessonOverviewDownloads,
   updatedAt: z.string(),
   pathways: z.array(lessonPathwaySchema),
-  lessonMediaClips: mediaClipsSchema.nullable(),
 });
 
 export type SpecialistLessonOverview = z.infer<

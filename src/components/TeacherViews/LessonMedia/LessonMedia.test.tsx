@@ -12,7 +12,7 @@ const render = renderWithProviders();
 
 const lesson = lessonMediaClipsFixtures();
 const mediaClips = lesson.mediaClips;
-const firstMediaClip = mediaClips["intro"] ? mediaClips["intro"][0] : undefined;
+const firstMediaClip = mediaClips["intro"];
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
