@@ -1,3 +1,10 @@
+# [1.642.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.641.0...v1.642.0) (2024-12-04)
+
+
+### Features
+
+* add links for terms and conditions; and OGL license to DocX template ([e9926d9](https://github.com/oaknational/Oak-Web-Application/commit/e9926d9460f24885356e3a0a52d42186642727e8))
+
 # [1.641.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.640.3...v1.641.0) (2024-12-02)
 
 
