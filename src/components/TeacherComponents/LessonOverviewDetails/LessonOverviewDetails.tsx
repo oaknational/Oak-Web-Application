@@ -19,6 +19,7 @@ import {
   Equipment,
 } from "@/components/TeacherComponents/LessonOverviewRequirements/LessonOverviewRequirements";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
+import LessonOverviewVocabButton from "@/components/TeacherComponents/LessonOverviewVocabButton";
 
 type LessonOverviewDetailsProps = {
   keyLearningPoints: LessonOverviewKeyLearningPointProps[] | null | undefined;
@@ -27,6 +28,7 @@ type LessonOverviewDetailsProps = {
   teacherTips: LessonOverviewTeacherTipProps[] | null | undefined;
   equipmentAndResources: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
+  hasVocabAndTranscripts: boolean;
   supervisionLevel: string | null | undefined;
   isLegacyLicense?: boolean;
   isMathJaxLesson: boolean;
@@ -44,6 +46,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   isLegacyLicense,
   isMathJaxLesson,
   updatedAt,
+  hasVocabAndTranscripts,
 }) => {
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
   return (
@@ -61,6 +64,11 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
           $gap="all-spacing-9"
           $mb="space-between-m"
         >
+          {hasVocabAndTranscripts && (
+            <OakBox>
+              <LessonOverviewVocabButton />
+            </OakBox>
+          )}
           {keyLearningPoints && (
             <OakBox>
               <LessonOverviewKeyLearningPoints

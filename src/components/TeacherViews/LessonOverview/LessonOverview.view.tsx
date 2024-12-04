@@ -97,6 +97,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     isCanonical,
     lessonGuideUrl,
     teacherShareButton,
+    additionalMaterialUrl,
   } = lesson;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -382,6 +383,8 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     supervisionLevel={supervisionLevel}
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
+                    // change
+                    hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
                     updatedAt={updatedAt}
                   />
                 </LessonItemContainer>
