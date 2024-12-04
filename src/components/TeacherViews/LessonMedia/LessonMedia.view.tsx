@@ -26,7 +26,6 @@ import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaC
 import type {
   MediaClip,
   MediaClipsList,
-  LearningCycle,
 } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import {
   getTranscript,
@@ -76,9 +75,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const listOfAllClips = Object.keys(mediaClips)
     .map(
       (learningCycle) =>
-        mediaClips[learningCycle as LearningCycle]?.map(
-          (mediaClip: MediaClip) => mediaClip,
-        ) || [],
+        mediaClips[learningCycle]?.map((mediaClip: MediaClip) => mediaClip) ||
+        [],
     )
     .flat();
 

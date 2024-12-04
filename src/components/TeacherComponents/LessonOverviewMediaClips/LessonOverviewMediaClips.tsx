@@ -10,12 +10,14 @@ type LessonOverviewMediaClipsProps = {
   learningCycleVideos: MediaClipsList;
   unitSlug: string | null;
   programmeSlug: string | null;
+  lessonSlug: string;
 };
 
 const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   learningCycleVideos,
   unitSlug,
   programmeSlug,
+  lessonSlug,
 }) => {
   const videosArray = Object.values(learningCycleVideos);
   return (
@@ -50,14 +52,14 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
                 programmeSlug && unitSlug
                   ? resolveOakHref({
                       page: "lesson-media",
-                      lessonSlug: firstCycleVideo.slug,
+                      lessonSlug: lessonSlug,
                       programmeSlug,
                       unitSlug,
                       query: { video: firstCycleVideo.slug },
                     })
                   : resolveOakHref({
                       page: "lesson-media-canonical",
-                      lessonSlug: firstCycleVideo.slug,
+                      lessonSlug: lessonSlug,
                       query: { video: firstCycleVideo.slug },
                     })
               }

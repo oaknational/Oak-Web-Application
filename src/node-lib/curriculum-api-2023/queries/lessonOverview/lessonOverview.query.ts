@@ -197,7 +197,7 @@ export const transformedLessonOverviewData = (
     lessonGuideUrl: content.lessonGuideAssetObjectUrl ?? null,
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
-    hasMediaClips: true,
+    hasMediaClips: false,
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
   };
 };

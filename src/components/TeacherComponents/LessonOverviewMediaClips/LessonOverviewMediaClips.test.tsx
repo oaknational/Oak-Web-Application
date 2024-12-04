@@ -15,6 +15,7 @@ describe("LessonOverviewMediaClips", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewMediaClips
         learningCycleVideos={mockLearningCycleVideos}
+        lessonSlug="lesson-slug"
         unitSlug="unit-slug"
         programmeSlug="programme-slug"
       />,
@@ -30,6 +31,7 @@ describe("LessonOverviewMediaClips", () => {
     renderWithTheme(
       <LessonOverviewMediaClips
         learningCycleVideos={mockLearningCycleVideos}
+        lessonSlug="lesson-slug"
         unitSlug="unit-slug"
         programmeSlug="programme-slug"
       />,
@@ -56,6 +58,7 @@ describe("LessonOverviewMediaClips", () => {
     renderWithTheme(
       <LessonOverviewMediaClips
         learningCycleVideos={mockLearningCycleVideos}
+        lessonSlug="lesson-slug"
         unitSlug={null}
         programmeSlug={null}
       />,

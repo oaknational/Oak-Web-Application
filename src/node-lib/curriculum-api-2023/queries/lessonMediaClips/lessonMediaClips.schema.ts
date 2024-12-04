@@ -62,19 +62,6 @@ const mediaClipsCycleSchema = z.object({
 
 export const cycleSchema = z.array(mediaClipsCycleSchema);
 
-const learningCycleNamesSchema = z.enum([
-  "intro",
-  "cycle1",
-  "cycle2",
-  "cycle3",
-  "cycle4",
-  "cycle5",
-  "cycle6",
-  "cycle7",
-  "cycle8",
-]);
-
-// TODO : Make this flexible to allow for more cycles
 export const mediaClipsSchema = z.record(z.string(), cycleSchema);
 
 const baseLessonMediaClipsPageSchema = z.object({
@@ -99,7 +86,6 @@ export type VideoObject = z.infer<typeof videoObjectSchema>;
 
 export type MediaClipsList = z.infer<typeof mediaClipsSchema>;
 export type MediaClip = z.infer<typeof mediaClipsCycleSchema>;
-export type LearningCycle = z.infer<typeof learningCycleNamesSchema>;
 
 // Page Schemas
 export type LessonMediaClipsData = z.infer<typeof lessonMediaClipsSchema>;

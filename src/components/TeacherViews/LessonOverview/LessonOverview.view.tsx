@@ -100,6 +100,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     isCanonical,
     lessonGuideUrl,
     teacherShareButton,
+    hasMediaClips,
   } = lesson;
 
   const { track } = useAnalytics();
@@ -378,25 +379,27 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       />
                     </LessonItemContainer>
                   )}
-                {pageLinks.find((p) => p.label === mediaClipLabel) && (
-                  <LessonItemContainer
-                    title={mediaClipLabel}
-                    ref={lessonMediaClipsSectionRef}
-                    anchorId="media-clips"
-                    isSpecialist={isSpecialist}
-                    slugs={slugs}
-                    pageLinks={pageLinks}
-                    displayMediaClipButton={true}
-                  >
-                    <LessonOverviewMediaClips
-                      learningCycleVideos={
-                        lessonMediaClipsFixtures().mediaClips
-                      }
-                      unitSlug={unitSlug ?? null}
-                      programmeSlug={programmeSlug ?? null}
-                    />
-                  </LessonItemContainer>
-                )}
+                {pageLinks.find((p) => p.label === mediaClipLabel) &&
+                  hasMediaClips && (
+                    <LessonItemContainer
+                      title={mediaClipLabel}
+                      ref={lessonMediaClipsSectionRef}
+                      anchorId="media-clips"
+                      isSpecialist={isSpecialist}
+                      slugs={slugs}
+                      pageLinks={pageLinks}
+                      displayMediaClipButton={true}
+                    >
+                      <LessonOverviewMediaClips
+                        lessonSlug={lessonSlug}
+                        learningCycleVideos={
+                          lessonMediaClipsFixtures().mediaClips
+                        }
+                        unitSlug={unitSlug ?? null}
+                        programmeSlug={programmeSlug ?? null}
+                      />
+                    </LessonItemContainer>
+                  )}
 
                 <LessonItemContainer
                   isSpecialist={isSpecialist}
