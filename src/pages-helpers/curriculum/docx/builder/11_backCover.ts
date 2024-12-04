@@ -9,6 +9,8 @@ import {
   createImage,
   insertImages,
   JSZipCached,
+  insertLinks,
+  wrapInLinkTo,
 } from "../docx";
 
 export default async function generate(
@@ -28,6 +30,15 @@ export default async function generate(
       process.cwd(),
       "src/pages-helpers/curriculum/docx/builder/images/box-with-logo.png",
     ),
+    jumpOutArrow: join(
+      process.cwd(),
+      "src/pages-helpers/curriculum/docx/builder/images/jump-out-arrow-2.png",
+    ),
+  });
+
+  const links = await insertLinks(zip, {
+    ogl: "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    terms: "https://www.thenational.academy/legal/terms-and-conditions",
   });
 
   const pageXml = safeXml`
@@ -171,11 +182,81 @@ export default async function generate(
             <w:color w:val="222222" />
             <w:sz w:val="24" />
           </w:rPr>
-          <w:t>
-            ${cdata(
-              "Licensed on the Open Government Licence v3.0, except where otherwise stated. See Oak terms and conditions.",
-            )}
-          </w:t>
+          <w:t xml:space="preserve">Licensed on the </w:t>
+        </w:r>
+        ${wrapInLinkTo(
+          links.ogl,
+          safeXml`
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+              <w:b />
+              <w:color w:val="222222" />
+              <w:sz w:val="24" />
+              <w:u w:val="single" />
+            </w:rPr>
+            <w:t>Open Government Licence v3.0</w:t>
+          </w:r>
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+              <w:b />
+              <w:color w:val="222222" />
+              <w:sz w:val="24" />
+              <w:u w:val="none" />
+            </w:rPr>
+            ${createImage(images.jumpOutArrow, {
+              width: cmToEmu(0.41),
+              height: cmToEmu(0.35),
+              isDecorative: true,
+            })}
+          </w:r>
+        `,
+        )}
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t xml:space="preserve">, except where otherwise stated. See </w:t>
+        </w:r>
+        ${wrapInLinkTo(
+          links.terms,
+          safeXml`
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+              <w:b />
+              <w:color w:val="222222" />
+              <w:sz w:val="24" />
+              <w:u w:val="single" />
+            </w:rPr>
+            <w:t>Oak terms and conditions</w:t>
+          </w:r>
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+              <w:b />
+              <w:color w:val="222222" />
+              <w:sz w:val="24" />
+              <w:u w:val="none" />
+            </w:rPr>
+            ${createImage(images.jumpOutArrow, {
+              width: cmToEmu(0.41),
+              height: cmToEmu(0.35),
+              isDecorative: true,
+            })}
+          </w:r>
+        `,
+        )}
+        <w:r>
+          <w:rPr>
+            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+            <w:color w:val="222222" />
+            <w:sz w:val="24" />
+          </w:rPr>
+          <w:t>.</w:t>
         </w:r>
       </w:p>
       <w:p>
