@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { useRouter } from "next/router";
 import { within } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
@@ -18,6 +19,60 @@ jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
+const currentErrorEvent = { detail: { data: { type: "networkError" } } };
+
+jest.mock("@mux/mux-player-react/lazy", () => {
+  // @ts-expect-error - MuxPlayer mock
+  return forwardRef(({ onError, onPlay, onPause }, ref) => {
+    ref; // This prevents warning about ref not being used
+
+    return (
+      <div data-testid="mux-player">
+        <button
+          data-testid="error-button"
+          onClick={() => {
+            onError(currentErrorEvent);
+          }}
+        >
+          Error
+        </button>
+        <button data-testid="play-button" onClick={onPlay}>
+          Play
+        </button>
+        <button data-testid="pause-button" onClick={onPause}>
+          Pause
+        </button>
+      </div>
+    );
+  });
+});
+
+const localStorageMock = (() => {
+  let store = {} as Storage;
+
+  return {
+    getItem(key: string) {
+      return store[key];
+    },
+
+    setItem(key: string, value: string) {
+      store[key] = value;
+    },
+
+    removeItem(key: string) {
+      delete store[key];
+    },
+
+    clear() {
+      store = {} as Storage;
+    },
+  };
+})();
+
+Object.defineProperty(window, "sessionStorage", {
+  value: localStorageMock,
+});
+
 describe("LessonMedia view", () => {
   jest.mock(
     "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers",
@@ -35,7 +90,7 @@ describe("LessonMedia view", () => {
     pathname: "/test-path",
   };
   beforeEach(() => {
-    jest.resetAllMocks();
+    jest.clearAllMocks();
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
   });
 
@@ -55,15 +110,6 @@ describe("LessonMedia view", () => {
         unitSlug: lesson.unitSlug,
       }),
     );
-  });
-
-  it("renders media clip player", () => {
-    const { getByTestId } = render(
-      <LessonMedia lesson={lesson} isCanonical={false} />,
-    );
-
-    const mediaClipWrapper = getByTestId("media-clip-wrapper");
-    expect(mediaClipWrapper).toBeInTheDocument();
   });
 
   it("renders media clip player with correct amount of items", () => {
@@ -87,13 +133,13 @@ describe("LessonMedia view", () => {
     const mediaClipWrapper = getByTestId("media-clip-wrapper");
     const mediaClipList = within(mediaClipWrapper).getByRole("list");
     const mediaClipListItems = within(mediaClipList).getAllByRole("listitem");
-    const mediaClipItem =
+    const videoItem =
       mediaClipListItems[0] &&
       within(mediaClipListItems[0]).getByRole("button");
 
-    if (mediaClipItem) {
+    if (videoItem) {
       const user = userEvent.setup();
-      await user.click(mediaClipItem);
+      await user.click(videoItem);
 
       expect(mockRouter.replace).toHaveBeenCalledTimes(1);
       expect(mockRouter.replace).toHaveBeenCalledWith(
@@ -110,5 +156,53 @@ describe("LessonMedia view", () => {
         { shallow: true },
       );
     }
+  });
+
+  it("calls router with correct parameters when audio is clicked", async () => {
+    const { getByTestId } = render(
+      <LessonMedia lesson={lesson} isCanonical={false} />,
+    );
+
+    const mediaClipWrapper = getByTestId("media-clip-wrapper");
+    const mediaClipList = within(mediaClipWrapper).getByRole("list");
+    const mediaClipListItems = within(mediaClipList).getAllByRole("listitem");
+    const audioItem =
+      mediaClipListItems[1] &&
+      within(mediaClipListItems[1]).getByRole("button");
+
+    if (audioItem) {
+      const user = userEvent.setup();
+      await user.click(audioItem);
+
+      expect(mockRouter.replace).toHaveBeenCalledTimes(1);
+      expect(mockRouter.replace).toHaveBeenCalledWith(
+        {
+          pathname: "/test-path",
+          query: {
+            lessonSlug: "running-as-a-team",
+            programmeSlug: "physical-education-ks4",
+            unitSlug: "running-and-jumping",
+            video: "running",
+          },
+        },
+        undefined,
+        { shallow: true },
+      );
+    }
+  });
+
+  it("adds video slug to session storage when 'play' is pressed on the video", async () => {
+    const { getByTestId } = render(
+      <LessonMedia lesson={lesson} isCanonical={false} />,
+    );
+
+    const videoPlayerWrapper = getByTestId("video-player-wrapper");
+    const playButton = within(videoPlayerWrapper).getByText("Play");
+
+    await userEvent.click(playButton);
+
+    expect(sessionStorage.getItem("playedVideosList")).toBe(
+      "introduction-physical-exercise-video",
+    );
   });
 });

@@ -91,6 +91,21 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const playedVideosList: string[] =
     sessionStorage.getItem("playedVideosList")?.split(",") || [];
 
+  const goToTheNextClip = (slug: string) =>
+    router.replace(
+      {
+        pathname: router.pathname,
+        query: {
+          programmeSlug: programmeSlug,
+          unitSlug: unitSlug,
+          lessonSlug: lessonSlug,
+          video: slug,
+        },
+      },
+      undefined,
+      { shallow: true },
+    );
+
   // action performed on media clip item click
   const onMediaClipClick = (clipSlug: string) => {
     const clickedMediaClip = listOfAllClips.find(
@@ -101,24 +116,10 @@ export const LessonMedia = (props: LessonMediaProps) => {
     setCurrentIndex(
       clickedMediaClip ? listOfAllClips.indexOf(clickedMediaClip) : 0,
     );
-
-    // add video parameter to the url
-    router.replace(
-      {
-        pathname: router.pathname,
-        query: {
-          programmeSlug: programmeSlug,
-          unitSlug: unitSlug,
-          lessonSlug: lessonSlug,
-          video: clipSlug,
-        },
-      },
-      undefined,
-      { shallow: true },
-    );
+    goToTheNextClip(clipSlug);
   };
 
-  const handleVideoPlayed = (event: VideoEventCallbackArgs) => {
+  const handlePlayedVideo = (event: VideoEventCallbackArgs) => {
     if (event.event === "play") {
       if (currentClip && !playedVideosList.includes(currentClip?.slug)) {
         // add played video to session storage
@@ -127,6 +128,12 @@ export const LessonMedia = (props: LessonMediaProps) => {
           currentClip.slug,
         ].toString();
         sessionStorage.setItem("playedVideosList", updatedPlayedVideosList);
+      }
+    } else if (event.event === "end") {
+      const nextClip = listOfAllClips[currentIndex + 1];
+
+      if (nextClip) {
+        goToTheNextClip(nextClip.slug);
       }
     }
   };
@@ -138,7 +145,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       title={currentClip.mediaClipTitle}
       location={"lesson"}
       isLegacy={false}
-      userEventCallback={handleVideoPlayed}
+      userEventCallback={handlePlayedVideo}
     />
   );
 
@@ -282,6 +289,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
               $background={"black"}
               $overflow={["visible", "visible", "hidden"]}
               $height={"100%"}
+              $br={"border-solid-m"}
+              data-testid="video-player-wrapper"
             >
               {videoPlayer}
             </OakFlex>
