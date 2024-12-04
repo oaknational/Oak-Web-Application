@@ -30,8 +30,8 @@ export async function setOnboardingLocalStorage({
     });
   } else {
     localStorageForDownloads.setSchoolInLocalStorage({
-      schoolName: "",
-      schoolId: "",
+      schoolName: "notListed",
+      schoolId: "notListed",
     });
   }
 
