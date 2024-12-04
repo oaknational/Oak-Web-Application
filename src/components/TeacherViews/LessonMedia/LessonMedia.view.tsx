@@ -113,9 +113,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
     );
 
     setCurrentClip(clickedMediaClip);
-    setCurrentIndex(
-      clickedMediaClip ? listOfAllClips.indexOf(clickedMediaClip) : 0,
-    );
+    clickedMediaClip &&
+      setCurrentIndex(listOfAllClips.indexOf(clickedMediaClip));
     goToTheNextClip(clipSlug);
   };
 
