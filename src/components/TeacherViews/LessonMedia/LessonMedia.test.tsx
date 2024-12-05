@@ -1,8 +1,6 @@
-import { forwardRef } from "react";
 import { useRouter } from "next/router";
 import { within } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { waitFor } from "@testing-library/react";
 
 import { LessonMedia } from "./LessonMedia.view";
 
@@ -21,29 +19,6 @@ jest.mock("next/router", () => ({
 }));
 
 window.history.replaceState = jest.fn();
-
-jest.mock("@mux/mux-player-react/lazy", () => {
-  // @ts-expect-error - MuxPlayer mock
-  return forwardRef(({ onPlay, userEventCallback }, ref) => {
-    ref; // This prevents warning about ref not being used
-    if (onPlay) {
-      userEventCallback({
-        event: "play",
-        timeElapsed: 20,
-        duration: 20,
-        muted: false,
-      });
-    }
-
-    return (
-      <div data-testid="mux-player">
-        <button data-testid="play-button" onClick={onPlay}>
-          Play
-        </button>
-      </div>
-    );
-  });
-});
 
 const mockRouter = {
   query: {},
@@ -113,14 +88,12 @@ describe("LessonMedia view", () => {
     const user = userEvent.setup();
     videoItem && (await user.click(videoItem));
 
-    waitFor(() => {
-      expect(window.history.replaceState).toHaveBeenCalledTimes(1);
-      expect(window.history.replaceState).toHaveBeenCalledWith(
-        null,
-        "",
-        "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=introduction-physical-exercise-video",
-      );
-    });
+    expect(window.history.replaceState).toHaveBeenCalledTimes(1);
+    expect(window.history.replaceState).toHaveBeenCalledWith(
+      null,
+      "",
+      "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=introduction-physical-exercise-video",
+    );
   });
 
   it("calls window.history.replaceState with correct parameters when audio is clicked", async () => {
@@ -138,27 +111,11 @@ describe("LessonMedia view", () => {
     const user = userEvent.setup();
     audioItem && (await user.click(audioItem));
 
-    waitFor(() => {
-      expect(window.history.replaceState).toHaveBeenCalledTimes(1);
-      expect(window.history.replaceState).toHaveBeenCalledWith(
-        null,
-        "",
-        "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=running",
-      );
-    });
+    expect(window.history.replaceState).toHaveBeenCalledTimes(1);
+    expect(window.history.replaceState).toHaveBeenCalledWith(
+      null,
+      "",
+      "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=running",
+    );
   });
-
-  // it("it updates correctly when 'Play' is pressed on the video", async () => {
-  //   const { getByTestId } = render(
-  //     <LessonMedia lesson={lesson} isCanonical={false} />,
-  //   );
-
-  //   const videoPlayerWrapper = getByTestId("mux-player");
-  //   expect(videoPlayerWrapper).toBeInTheDocument();
-  //   const playButton = within(videoPlayerWrapper).getByText("Play");
-
-  //   await userEvent.click(playButton);
-
-  //   expect(window.history.replaceState).toHaveBeenCalledTimes(1);
-  // });
 });

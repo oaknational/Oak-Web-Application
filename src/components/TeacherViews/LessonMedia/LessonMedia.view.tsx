@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import {
   OakTertiaryButton,
@@ -88,6 +88,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
   );
   const [playedVideos, setPlayedVideos] = useState<string[]>([]);
 
+  const videoPlayerWrapper = useRef<HTMLDivElement>(null);
+
   const goToTheNextClip = (slug: string) => {
     if (programmeSlug && unitSlug) {
       const newUrl = resolveOakHref({
@@ -116,12 +118,15 @@ export const LessonMedia = (props: LessonMediaProps) => {
       (clip) => clip.slug === clipSlug,
     );
     clickedMediaClip && handleVideoChange(clickedMediaClip);
+    videoPlayerWrapper.current?.focus();
   };
 
-  const handlePlayedVideo = (event: VideoEventCallbackArgs) => {
+  const handleVideoEvents = (event: VideoEventCallbackArgs) => {
     if (event.event === "play") {
       currentClip && setPlayedVideos([...playedVideos, currentClip.slug]);
-    } else if (event.duration === event.timeElapsed) {
+    }
+
+    if (event.event === "end") {
       const nextClip = listOfAllClips[currentIndex + 1];
       nextClip && handleVideoChange(nextClip);
     }
@@ -134,7 +139,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       title={currentClip.mediaClipTitle}
       location={"lesson"}
       isLegacy={false}
-      userEventCallback={handlePlayedVideo}
+      userEventCallback={handleVideoEvents}
     />
   );
 
@@ -166,10 +171,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
                 slug,
                 playedVideos,
               )}
-              playbackId={mediaClip?.videoObject?.muxPlaybackId || ""}
-              playbackPolicy={
-                mediaClip?.videoObject?.playbackPolicy || "public"
-              }
+              playbackId={videoObject?.muxPlaybackId}
+              playbackPolicy={videoObject?.playbackPolicy}
               isAudioClip={false}
               onClick={() => onMediaClipClick(slug)}
               key={index}
@@ -280,6 +283,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
               $height={"100%"}
               $br={"border-solid-m"}
               data-testid="video-player-wrapper"
+              ref={videoPlayerWrapper}
+              tabIndex={-1}
             >
               {videoPlayer}
             </OakFlex>
