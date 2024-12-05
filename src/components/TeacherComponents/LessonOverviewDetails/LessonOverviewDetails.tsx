@@ -29,6 +29,8 @@ type LessonOverviewDetailsProps = {
   equipmentAndResources: Equipment[] | null | undefined;
   contentGuidance: ContentGuidance[] | null | undefined;
   hasVocabAndTranscripts: boolean;
+  //temporary to only render on beta pages
+  displayVocab: boolean;
   supervisionLevel: string | null | undefined;
   isLegacyLicense?: boolean;
   isMathJaxLesson: boolean;
@@ -47,6 +49,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   isMathJaxLesson,
   updatedAt,
   hasVocabAndTranscripts,
+  displayVocab,
 }) => {
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
   return (
@@ -64,7 +67,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
           $gap="all-spacing-9"
           $mb="space-between-m"
         >
-          {hasVocabAndTranscripts && (
+          {hasVocabAndTranscripts && displayVocab && (
             <OakBox>
               <LessonOverviewVocabButton />
             </OakBox>
