@@ -70,7 +70,6 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   const router = useRouter();
   const { query } = router;
-  const videoQuery = query.video;
 
   // construct list of all clips in one array
   const listOfAllClips = Object.keys(mediaClips)
@@ -82,58 +81,49 @@ export const LessonMedia = (props: LessonMediaProps) => {
     .flat();
 
   const [currentClip, setCurrentClip] = useState(
-    getInitialCurrentClip(listOfAllClips, videoQuery),
+    getInitialCurrentClip(listOfAllClips, query.video),
   );
   const [currentIndex, setCurrentIndex] = useState(
     currentClip ? listOfAllClips.indexOf(currentClip) : 0,
   );
+  const [playedVideos, setPlayedVideos] = useState<string[]>([]);
 
-  const playedVideosList: string[] =
-    sessionStorage.getItem("playedVideosList")?.split(",") || [];
+  const goToTheNextClip = (slug: string) => {
+    if (programmeSlug && unitSlug) {
+      const newUrl = resolveOakHref({
+        page: "lesson-media",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      });
 
-  const goToTheNextClip = (slug: string) =>
-    router.replace(
-      {
-        pathname: router.pathname,
-        query: {
-          programmeSlug: programmeSlug,
-          unitSlug: unitSlug,
-          lessonSlug: lessonSlug,
-          video: slug,
-        },
-      },
-      undefined,
-      { shallow: true },
-    );
+      window.history.replaceState(
+        window.history.state,
+        "",
+        `${newUrl}?video=${slug}`,
+      );
+    }
+  };
 
-  // action performed on media clip item click
+  const handleVideoChange = (clip: MediaClip) => {
+    goToTheNextClip(clip.slug);
+    setCurrentClip(clip);
+    setCurrentIndex(listOfAllClips.indexOf(clip));
+  };
+
   const onMediaClipClick = (clipSlug: string) => {
     const clickedMediaClip = listOfAllClips.find(
       (clip) => clip.slug === clipSlug,
     );
-
-    setCurrentClip(clickedMediaClip);
-    clickedMediaClip &&
-      setCurrentIndex(listOfAllClips.indexOf(clickedMediaClip));
-    goToTheNextClip(clipSlug);
+    clickedMediaClip && handleVideoChange(clickedMediaClip);
   };
 
   const handlePlayedVideo = (event: VideoEventCallbackArgs) => {
     if (event.event === "play") {
-      if (currentClip && !playedVideosList.includes(currentClip?.slug)) {
-        // add played video to session storage
-        const updatedPlayedVideosList = [
-          ...playedVideosList,
-          currentClip.slug,
-        ].toString();
-        sessionStorage.setItem("playedVideosList", updatedPlayedVideosList);
-      }
-    } else if (event.event === "end") {
+      currentClip && setPlayedVideos([...playedVideos, currentClip.slug]);
+    } else if (event.duration === event.timeElapsed) {
       const nextClip = listOfAllClips[currentIndex + 1];
-
-      if (nextClip) {
-        goToTheNextClip(nextClip.slug);
-      }
+      nextClip && handleVideoChange(nextClip);
     }
   };
 
@@ -174,7 +164,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
               muxPlayingState={getPlayingState(
                 currentClip?.slug,
                 slug,
-                playedVideosList,
+                playedVideos,
               )}
               playbackId={mediaClip?.videoObject?.muxPlaybackId || ""}
               playbackPolicy={
@@ -196,7 +186,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
               muxPlayingState={getPlayingState(
                 currentClip?.slug,
                 slug,
-                playedVideosList,
+                playedVideos,
               )}
               isAudioClip={false}
               imageAltText=""
