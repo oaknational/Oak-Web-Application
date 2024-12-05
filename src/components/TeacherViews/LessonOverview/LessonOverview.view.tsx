@@ -204,7 +204,8 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
   const isMFL =
     subjectSlug === "german" ||
     subjectSlug === "french" ||
-    subjectSlug === "spanish";
+    subjectSlug === "spanish" ||
+    lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre";
 
   return (
     <MathJaxLessonProvider>
