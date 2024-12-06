@@ -1,5 +1,17 @@
-import { programmeListingResponseSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  syntheticUnitvariantLessonsSchema,
+  programmeFieldsSchema,
+} from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
+
+export const programmeListingResponseSchema =
+  syntheticUnitvariantLessonsSchema.omit({
+    supplementary_data: true,
+    lesson_slug: true,
+    unit_slug: true,
+    unit_data: true,
+    null_unitvariant_id: true,
+  });
 
 export type ProgrammeListingResponse = z.infer<
   typeof programmeListingResponseSchema
@@ -8,19 +20,22 @@ export type ProgrammeListingResponse = z.infer<
 const programmeSchema = z.object({
   programmeSlug: z.string(),
   subjectTitle: z.string(),
-  tierSlug: z.string().nullable(),
-  tierTitle: z.string().nullable(),
-  tierDisplayOrder: z.number().nullable(),
-  examBoardSlug: z.string().nullable(),
-  examBoardTitle: z.string().nullable(),
-  examBoardDisplayOrder: z.number().nullable(),
+  tierSlug: programmeFieldsSchema.shape.tier_slug,
+  tierTitle: programmeFieldsSchema.shape.tier_description,
+  tierDisplayOrder: programmeFieldsSchema.shape.tier_display_order,
+  examBoardSlug: programmeFieldsSchema.shape.examboard_slug,
+  examBoardTitle: programmeFieldsSchema.shape.examboard,
+  examBoardDisplayOrder: programmeFieldsSchema.shape.examboard_display_order,
+  pathwaySlug: programmeFieldsSchema.shape.pathway_slug,
+  pathwayTitle: programmeFieldsSchema.shape.pathway,
+  pathwayDisplayOrder: programmeFieldsSchema.shape.pathway_display_order,
 });
 
 export const programmeListingSchema = z.object({
-  keyStageTitle: z.string(),
-  keyStageSlug: z.string(),
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
+  keyStageTitle: programmeFieldsSchema.shape.keystage_description,
+  keyStageSlug: programmeFieldsSchema.shape.keystage_slug,
+  subjectSlug: programmeFieldsSchema.shape.subject_slug,
+  subjectTitle: programmeFieldsSchema.shape.subject,
   programmes: z.array(programmeSchema),
 });
 

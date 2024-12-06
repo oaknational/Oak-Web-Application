@@ -1,8 +1,6 @@
-import { UnitData } from "../units/units.schema";
+import { GroupedUnitsSchema, LearningThemes } from "../unitListing.schema";
 
-import { LearningThemes } from "./threads.schema";
-
-export const getAllLearningThemes = (units: Array<Array<UnitData>>) => {
+export const getAllLearningThemes = (units: GroupedUnitsSchema) => {
   return units
     .flat()
     .reduce((learningThemes, unit) => {

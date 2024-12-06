@@ -1,3 +1,5 @@
+import { SubjectCategory } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+
 type GenericUnitListingData<U> = {
   units: U[][];
 };
@@ -11,7 +13,7 @@ type FilterUnitsParams<U> = {
 function filterUnits<
   U extends {
     learningThemes?: { themeSlug?: string | null }[] | null;
-    subjectCategories?: ({ label: string; slug: string } | null)[] | null;
+    subjectCategories?: (SubjectCategory | null)[] | null;
     year?: string | null;
   },
 >({

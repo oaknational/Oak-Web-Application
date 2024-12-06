@@ -5,8 +5,8 @@ export const programmeListingFixture = (
 ): ProgrammeListingPageData => {
   return {
     keyStageSlug: "ks4",
-    keyStageTitle: "Key stage 4",
-    subjectSlug: "maths-l",
+    keyStageTitle: "Key Stage 4",
+    subjectSlug: "maths",
     subjectTitle: "Maths",
     legacy: false,
     programmes: [
@@ -19,6 +19,9 @@ export const programmeListingFixture = (
         examBoardSlug: null,
         examBoardTitle: null,
         examBoardDisplayOrder: null,
+        pathwayDisplayOrder: null,
+        pathwaySlug: null,
+        pathwayTitle: null,
       },
       {
         programmeSlug: "maths-secondary-ks4-higher-l",
@@ -29,6 +32,9 @@ export const programmeListingFixture = (
         examBoardSlug: null,
         examBoardTitle: null,
         examBoardDisplayOrder: null,
+        pathwayDisplayOrder: null,
+        pathwaySlug: null,
+        pathwayTitle: null,
       },
     ],
     ...partial,
@@ -69,7 +75,7 @@ export const examBoardProgrammeListingFixture = (
 ): ProgrammeListingPageData => {
   return {
     keyStageSlug: "ks3",
-    keyStageTitle: "Key stage 3",
+    keyStageTitle: "Key Stage 3",
     subjectSlug: "maths",
     subjectTitle: "Maths",
     legacy: false,
@@ -83,6 +89,9 @@ export const examBoardProgrammeListingFixture = (
         examBoardSlug: "aqa",
         examBoardTitle: "AQA",
         examBoardDisplayOrder: 1,
+        pathwayDisplayOrder: null,
+        pathwaySlug: null,
+        pathwayTitle: null,
       },
       {
         programmeSlug: "history-secondary-ks4-edexcel",
@@ -93,6 +102,9 @@ export const examBoardProgrammeListingFixture = (
         examBoardSlug: "edexcel",
         examBoardTitle: "Edexcel",
         examBoardDisplayOrder: 2,
+        pathwayDisplayOrder: null,
+        pathwaySlug: null,
+        pathwayTitle: null,
       },
     ],
 

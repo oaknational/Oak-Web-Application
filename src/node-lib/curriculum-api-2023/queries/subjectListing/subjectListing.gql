@@ -1,5 +1,5 @@
 query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
-  subjectLessons: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  subjectUnits: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_1(
     where: {
       _and: [
         { programme_fields: { _contains: { keystage_slug: $keyStageSlug } } }
@@ -8,13 +8,21 @@ query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
   ) {
     programme_fields
     is_legacy
-    null_unitvariant
-    supplementary_data
-    lesson_data
+    null_unitvariant_id
     unit_data
     unit_slug
-    lesson_slug
     programme_slug
+    supplementary_data
+    lesson_count
+    lesson_sensitive_count
+    lesson_expired_count
+    lesson_ids
+    expired
+    actions
+    features
+    threads
+    base_slug
+    programme_slug_by_year
   }
   key_stages: published_mv_key_stages_2_0_0 {
     keystage: short_code
