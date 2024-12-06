@@ -13,6 +13,7 @@ import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUni
 
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
+import { useRequireOnboarding } from "@/hooks/useRequireOnboarding";
 
 // teacher-unit-downloads experiment A/B test group keys and test values
 const variantKey = z
@@ -98,6 +99,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const { isSignedIn, isLoaded } = useUser();
   const featureFlag = useFeatureFlagVariantKey("teacher-unit-downloads");
   const parsedFeatureFlagKey = variantKey.safeParse(featureFlag);
+  useRequireOnboarding();
 
   const {
     onDownloadSuccess,
