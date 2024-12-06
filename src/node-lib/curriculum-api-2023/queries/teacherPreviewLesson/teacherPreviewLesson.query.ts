@@ -69,9 +69,19 @@ const teacherPreviewLessonQuery =
       [],
     );
 
+    let subjectSlug: string = browseFixtureData.programmeFields.subjectSlug;
+
+    if (lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre") {
+      subjectSlug = "german";
+    } else if (lessonSlug === "running-as-a-team") {
+      subjectSlug = "physical-education";
+    }
+
     const parsedLessonPreviewData = lessonOverviewSchema.parse({
       ...teacherPreviewData,
       lessonTitle: lessonContentData.lessonTitle,
+      hasMediaClips: true,
+      subjectSlug: subjectSlug,
     });
 
     return parsedLessonPreviewData;

@@ -82,6 +82,7 @@ export default function LessonOverviewCanonicalPage({
         <LessonOverview
           lesson={{
             ...lesson,
+            lessonMediaClips: null,
             isCanonical: true,
             isSpecialist,
             teacherShareButton,

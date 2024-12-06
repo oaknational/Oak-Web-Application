@@ -17,6 +17,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/shared.schema";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
+import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 
 /**
  * Returns the intersection different pathways.
@@ -391,7 +392,9 @@ type GetPageLinksForLessonProps = Pick<
   | "starterQuiz"
   | "exitQuiz"
   | "hasCopyrightMaterial"
+  | "hasMediaClips"
 >;
+
 export type LessonPageLinkAnchorId =
   | "lesson-guide"
   | "slide-deck"
@@ -400,10 +403,13 @@ export type LessonPageLinkAnchorId =
   | "worksheet"
   | "starter-quiz"
   | "exit-quiz"
-  | "additional-material";
+  | "additional-material"
+  | "media-clips";
+
 export const getPageLinksForLesson = (
   lesson: GetPageLinksForLessonProps,
   copyrightContent: CopyrightContent,
+  mediaClipsLabel?: string,
 ): {
   label: string;
   anchorId: LessonPageLinkAnchorId;
@@ -429,6 +435,11 @@ export const getPageLinksForLesson = (
               copyrightContent,
             ),
         ),
+    },
+    {
+      label: mediaClipsLabel || "Video & audio",
+      anchorId: "media-clips",
+      condition: (lesson) => lesson.hasMediaClips,
     },
     {
       label: "Lesson details",
@@ -588,4 +599,17 @@ export const createAttributionObject = (
     return attributions;
   }
   return [];
+};
+
+export const getMediaClipLabel = (subjectSlug: string): LessonItemTitle => {
+  switch (subjectSlug) {
+    case "physical-education":
+      return "Demonstration videos";
+    case "spanish":
+    case "french":
+    case "german":
+      return "Audio clips";
+    default:
+      return "Video & audio clips";
+  }
 };

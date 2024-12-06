@@ -16,6 +16,8 @@ import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonIt
 import { Hr } from "@/components/SharedComponents/Typography";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import Box from "@/components/SharedComponents/Box";
+import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import LessonPlayAllButton from "@/components/LessonPlayAllButton/LessonPlayAllButton";
 
 export const getContainerId = (anchorId: string) => {
   return `${anchorId}-container`;
@@ -34,7 +36,10 @@ export type LessonItemTitle =
   | "Lesson video"
   | "Transcript"
   | "Lesson details"
-  | "Additional material";
+  | "Additional material"
+  | "Demonstration videos"
+  | "Audio clips"
+  | "Video & audio clips";
 
 type Slugs = {
   lessonSlug: string;
@@ -44,10 +49,11 @@ type Slugs = {
 
 export interface LessonItemContainerProps {
   children?: React.ReactNode;
-  title: LessonItemTitle;
+  title: LessonItemTitle | DownloadableLessonTitles;
   anchorId: LessonPageLinkAnchorId;
   downloadable?: boolean;
   shareable?: boolean;
+  displayMediaClipButton?: boolean;
   slugs?: Slugs;
   onDownloadButtonClick?: () => void;
   isFinalElement?: boolean;
@@ -55,11 +61,11 @@ export interface LessonItemContainerProps {
   pageLinks: ReturnType<typeof getPageLinksForLesson>;
 }
 
-const getPreselectedDownloadFromTitle = (title: LessonItemTitle) => {
+const getPreselectedDownloadFromTitle = (title: DownloadableLessonTitles) => {
   return containerTitleToPreselectMap[title]?.downloadType;
 };
 
-const getPreselectedQueryFromTitle = (title: LessonItemTitle) => {
+const getPreselectedQueryFromTitle = (title: DownloadableLessonTitles) => {
   return containerTitleToPreselectMap[title]?.shareType;
 };
 
@@ -71,14 +77,19 @@ export const LessonItemContainer = forwardRef<
     children,
     title,
     downloadable,
+    displayMediaClipButton,
     onDownloadButtonClick,
     slugs,
     anchorId,
     shareable,
     pageLinks,
   } = props;
-  const preselectedDownload = getPreselectedDownloadFromTitle(title);
-  const preselectedShare = getPreselectedQueryFromTitle(title);
+  const preselectedDownload = getPreselectedDownloadFromTitle(
+    title as DownloadableLessonTitles,
+  );
+  const preselectedShare = getPreselectedQueryFromTitle(
+    title as DownloadableLessonTitles,
+  );
   const [skipVideoButtonFocused, setSkipVideoButtonFocused] =
     useState<boolean>(false);
 
@@ -86,7 +97,8 @@ export const LessonItemContainer = forwardRef<
     anchorId === "video" ||
     anchorId === "lesson-guide" ||
     anchorId === "worksheet" ||
-    anchorId === "slide-deck"
+    anchorId === "slide-deck" ||
+    anchorId === "media-clips"
       ? pageLinks[pageLinks.findIndex((link) => link.anchorId === anchorId) + 1]
           ?.anchorId || undefined
       : undefined;
@@ -119,6 +131,9 @@ export const LessonItemContainer = forwardRef<
               {title}
             </OakHeading>
           )}
+          {displayMediaClipButton && slugs && (
+            <LessonPlayAllButton {...slugs} />
+          )}
           {downloadable && slugs && (
             <LessonItemContainerLink
               page={"download"}
@@ -139,6 +154,7 @@ export const LessonItemContainer = forwardRef<
               {...slugs}
             />
           )}
+
           {skipContentAnchor && (
             <OakSecondaryButton
               element="a"

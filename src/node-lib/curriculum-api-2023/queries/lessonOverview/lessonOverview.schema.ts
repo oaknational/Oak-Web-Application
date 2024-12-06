@@ -9,6 +9,7 @@ import {
   lessonPathwaySchema,
 } from "../../shared.schema";
 import { QuizQuestion } from "../pupilLesson/pupilLesson.schema";
+import { mediaClipsSchema } from "../lessonMediaClips/lessonMediaClips.schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
@@ -63,6 +64,8 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   downloads: lessonOverviewDownloads,
   updatedAt: z.string(),
   pathways: z.array(lessonPathwaySchema),
+  // temporary addition to support media clips
+  lessonMediaClips: mediaClipsSchema.nullable(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;

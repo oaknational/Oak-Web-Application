@@ -1,10 +1,8 @@
 import { FC } from "react";
 import { OakMediaClip, OakMediaClipProps } from "@oaknational/oak-components";
 
-import {
-  PlaybackPolicy,
-  useSignedThumbnailToken,
-} from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
+import { PlaybackPolicy } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
+import useMediaClipThumbnail from "@/components/SharedComponents/VideoPlayer/useMediaClipThumbnails";
 
 export type LessonMediaClipWithThumbnailProps = Omit<
   OakMediaClipProps,
@@ -24,15 +22,11 @@ const LessonMediaClipWithThumbnail: FC<LessonMediaClipWithThumbnailProps> = ({
   playbackId,
   playbackPolicy,
 }: LessonMediaClipWithThumbnailProps) => {
-  const thumbnailToken = useSignedThumbnailToken({
+  const thumbnailImage = useMediaClipThumbnail({
     playbackId,
     playbackPolicy,
     isLegacy: false,
   });
-
-  const thumbnailImage = thumbnailToken
-    ? `https://image.mux.com/${playbackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`
-    : "";
 
   return (
     <OakMediaClip

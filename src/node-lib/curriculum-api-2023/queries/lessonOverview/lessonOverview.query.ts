@@ -21,6 +21,7 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -163,7 +164,6 @@ export const transformedLessonOverviewData = (
       hasSlideDeckAssetObject: Boolean(content.hasSlideDeckAssetObject),
       isLegacy: browseData.isLegacy,
     }),
-
     updatedAt: browseData.lessonData.updatedAt,
     isLegacy: content.isLegacy || false,
     lessonSlug: browseData.lessonSlug,
@@ -199,6 +199,8 @@ export const transformedLessonOverviewData = (
     lessonGuideUrl: content.lessonGuideAssetObjectUrl ?? null,
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
+    hasMediaClips: false,
+    lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
   };
 };
 
@@ -284,7 +286,6 @@ const lessonOverviewQuery =
     const content = keysToCamelCase({
       ...contentSnake,
     }) as LessonOverviewContent;
-
     return lessonOverviewSchema.parse(
       transformedLessonOverviewData(browseData, content, pathways),
     );

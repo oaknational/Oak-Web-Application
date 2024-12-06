@@ -227,11 +227,17 @@ export type LessonMediaLinkProps = {
   programmeSlug: string;
   unitSlug: string;
   lessonSlug: string;
+  query?: {
+    video: string;
+  };
 };
 
 export type LessonMediaCanonicalLinkProps = {
   page: "lesson-media-canonical";
   lessonSlug: string;
+  query?: {
+    video: string;
+  };
 };
 
 export type LessonShareLinkProps = {

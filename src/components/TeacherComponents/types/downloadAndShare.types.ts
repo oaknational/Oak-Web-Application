@@ -43,9 +43,13 @@ export type CombinedPreselectedTypeMap = Record<
     shareType?: ShareResourceType[] | "all";
   }
 >;
+export type DownloadableLessonTitles = Exclude<
+  LessonItemTitle,
+  "Demonstration videos" | "Audio clips" | "Video & audio clips"
+>;
 
 export type CombinedDownloadsShareType = Record<
-  ExpandingContainerTitle | LessonItemTitle,
+  ExpandingContainerTitle | DownloadableLessonTitles,
   {
     downloadType: PreselectedDownloadType | null;
     shareType: PreselectedShareType | null;

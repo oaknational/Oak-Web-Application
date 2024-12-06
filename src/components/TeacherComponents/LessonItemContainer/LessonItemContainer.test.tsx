@@ -76,13 +76,13 @@ describe("LessonItemContainer", () => {
     );
     expect(getAllByRole("link")).toHaveLength(1);
   });
-
   it("doesn't render the download button without curriculum data", () => {
     const { getAllByRole } = renderWithTheme(
       <LessonItemContainer
         title={"Slide deck"}
         downloadable={true}
         isSpecialist={false}
+        displayMediaClipButton={false}
         anchorId="slide-deck"
         pageLinks={[]}
       >
@@ -233,5 +233,23 @@ describe("LessonItemContainer", () => {
     });
     expect(slideDeckButton).not.toHaveFocus();
     expect(slideDeckButton).not.toBeVisible();
+  });
+  it("renders the play all button when displayMediaClip is true and curriculum data is provided", () => {
+    const { getAllByRole } = renderWithTheme(
+      <LessonItemContainer
+        title={"Demonstration videos"}
+        downloadable={false}
+        anchorId={"media-clips"}
+        displayMediaClipButton={true}
+        isSpecialist={false}
+        slugs={lessonOverview}
+        pageLinks={[]}
+      >
+        <Card $background={"white"} $ba={3} $borderColor={"grey30"}>
+          Inner content
+        </Card>
+      </LessonItemContainer>,
+    );
+    expect(getAllByRole("link")).toHaveLength(1);
   });
 });
