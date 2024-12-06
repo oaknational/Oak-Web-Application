@@ -26,7 +26,7 @@ import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitList
 import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
-import { convertSubjectToSlug } from "@/node-lib/curriculum-api-2023/queries/unitListing/convertSubjectToSlug";
+import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
 
 export type Tier = {
   title: string;
@@ -148,6 +148,8 @@ const UnitList: FC<UnitListProps> = (props) => {
       currentPageItems.some((item) => isSlugLegacy(item[0]!.programmeSlug)) &&
       currentPageItems.some((item) => !isSlugLegacy(item[0]!.programmeSlug));
 
+    // get the type of the page items
+
     return pageItems.map((item, index) => {
       const baseIndex = index + pageSize * (currentPage - 1);
       let calculatedIndex = baseIndex;
@@ -162,8 +164,17 @@ const UnitList: FC<UnitListProps> = (props) => {
           const legacyUnits = filteredUnits?.filter((unit) =>
             isSlugLegacy(unit[0]!.programmeSlug),
           );
+
+          // this is a TS hack to get around typescript not following the logic of isSpecialistUnit
+          const castItem = item as Omit<
+            UnitListItemProps,
+            "index" | "onClick"
+          >[];
+
           const findIndex = legacyUnits?.findIndex(
-            (unit) => unit[0]?.slug === item[0]?.slug,
+            (unit) =>
+              unit[0]?.slug === item[0]?.slug &&
+              (isSpecialistUnit || unit[0]?.year === castItem[0]?.year),
           );
           calculatedIndex = findIndex;
         } else {
