@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import useDownloadExistenceCheck from "./useDownloadExistenceCheck";
+import useLessonDownloadExistenceCheck from "./useLessonDownloadExistenceCheck";
 
 import type {
   DownloadResourceType,
@@ -25,11 +25,13 @@ jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
-    default: (...args: []) => getDownloadResourcesExistenceMock(...args),
+    getLessonDownloadResourcesExistence: jest.fn((...args: []) =>
+      getDownloadResourcesExistenceMock(...args),
+    ),
   }),
 );
 
-describe("useDownloadExistenceCheck", () => {
+describe("useLessonDownloadExistenceCheck", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -44,7 +46,7 @@ describe("useDownloadExistenceCheck", () => {
     const isLegacyDownload = true;
 
     renderHook(() =>
-      useDownloadExistenceCheck({
+      useLessonDownloadExistenceCheck({
         lessonSlug,
         resourcesToCheck,
         onComplete,
@@ -83,7 +85,7 @@ describe("useDownloadExistenceCheck", () => {
     const isLegacyDownload = true;
 
     renderHook(() =>
-      useDownloadExistenceCheck({
+      useLessonDownloadExistenceCheck({
         lessonSlug,
         resourcesToCheck,
         onComplete,

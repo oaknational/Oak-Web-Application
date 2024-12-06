@@ -8,6 +8,7 @@ import {
 import {
   OakGrid,
   OakGridArea,
+  OakInlineBanner,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
@@ -45,6 +46,9 @@ import {
   useShareExperiment,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import UnitDownloadButton, {
+  useUnitDownloadButtonState,
+} from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -153,6 +157,15 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 
   const isNew = hasNewContent ?? false;
 
+  const {
+    showDownloadMessage,
+    setShowDownloadMessage,
+    downloadError,
+    setDownloadError,
+    setDownloadInProgress,
+    downloadInProgress,
+  } = useUnitDownloadButtonState();
+
   return (
     <AppLayout
       seoProps={{
@@ -215,6 +228,51 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
+          unitDownloadButton={
+            <UnitDownloadButton
+              setDownloadError={setDownloadError}
+              setDownloadInProgress={setDownloadInProgress}
+              setShowDownloadMessage={setShowDownloadMessage}
+              downloadInProgress={downloadInProgress}
+              unitProgrammeSlug={programmeSlug + unitSlug}
+              onDownloadSuccess={() =>
+                track.unitDownloadInitiated({
+                  platform: "owa",
+                  product: "teacher lesson resources",
+                  engagementIntent: "use",
+                  componentType: "unit_download_button",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  unitName: unitTitle,
+                  unitSlug: unitSlug,
+                  keyStageSlug: keyStageSlug,
+                  keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+                  subjectSlug: subjectSlug,
+                  subjectTitle: subjectTitle,
+                })
+              }
+            />
+          }
+          banner={
+            showDownloadMessage ? (
+              <OakInlineBanner
+                isOpen={showDownloadMessage}
+                canDismiss
+                onDismiss={() => setShowDownloadMessage(false)}
+                type="neutral"
+                aria-live="polite"
+                message="Downloads may take a few minutes on slower Wi-Fi connections."
+              />
+            ) : downloadError ? (
+              <OakInlineBanner
+                isOpen
+                type="error"
+                aria-live="polite"
+                message="Sorry, download is not working. Please try again in a few minutes."
+                icon="error"
+              />
+            ) : null
+          }
         />
         <MaxWidth $ph={16}>
           <OakGrid>
