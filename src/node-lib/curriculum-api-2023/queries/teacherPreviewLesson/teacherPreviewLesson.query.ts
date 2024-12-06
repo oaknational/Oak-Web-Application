@@ -1,6 +1,7 @@
 import {
   lessonContentSchema as lessonContentSchemaFull,
   QuizQuestion,
+  syntheticUnitvariantLessonsByKsFixture,
 } from "@oaknational/oak-curriculum-schema";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -8,7 +9,6 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { transformedLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query";
-import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import lessonOverviewSchema, {
   LessonOverviewContent,
   LessonOverviewPageData,
@@ -22,12 +22,6 @@ const teacherPreviewLessonQuery =
     const res = await sdk.teachersPreviewLesson({
       lessonSlug,
     });
-
-    const browseFixtureData = {
-      ...lessonBrowseDataFixture({
-        lessonSlug,
-      }),
-    };
 
     if (res.content.length > 1) {
       const error = new OakError({
@@ -64,7 +58,7 @@ const teacherPreviewLessonQuery =
     });
 
     const teacherPreviewData = transformedLessonOverviewData(
-      { ...browseFixtureData },
+      { ...keysToCamelCase(syntheticUnitvariantLessonsByKsFixture({})) },
       lessonContentData as LessonOverviewContent,
       [],
     );
