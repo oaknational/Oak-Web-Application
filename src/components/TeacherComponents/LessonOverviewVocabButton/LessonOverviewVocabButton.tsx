@@ -14,6 +14,7 @@ const LessonOverviewVocabButton = () => {
         Vocabulary and transcripts for this lessons
       </OakHeading>
       <OakSecondaryButton
+        width={["all-spacing-20", "100%"]}
         onClick={() => {
           document.getElementById("additional-material")?.scrollIntoView();
           document
