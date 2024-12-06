@@ -29,7 +29,7 @@ describe("pupilUnitListing()", () => {
     expect(res[0]?.programmeFields?.phase).toEqual("primary");
   });
 
-  it("throws if data is not returned", async () => {
+  it("returns empty array if data is not returned", async () => {
     await expect(
       pupilProgrammeListingQuery({
         ...sdk,
@@ -42,7 +42,7 @@ describe("pupilUnitListing()", () => {
       })({
         baseSlug: "unknown-slug",
       }),
-    ).rejects.toThrow("Resource not found");
+    ).resolves.toEqual([]);
   });
 
   it("defaults to legacy programmes", async () => {

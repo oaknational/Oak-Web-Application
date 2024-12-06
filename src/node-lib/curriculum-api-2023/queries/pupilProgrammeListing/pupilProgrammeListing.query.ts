@@ -3,7 +3,6 @@ import {
   pupilProgrammeListingSchema,
 } from "./pupilProgrammeListing.schema";
 
-import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { PupilProgrammeListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
@@ -35,8 +34,9 @@ export const pupilProgrammeListingQuery =
       browseData: res.data,
     });
 
+    // perhaps we redirect to unitListing page ?
     if (modified.length === 0) {
-      throw new OakError({ code: "curriculum-api/not-found" });
+      return [];
     }
 
     pupilProgrammeListingSchema.array().parse(modified);

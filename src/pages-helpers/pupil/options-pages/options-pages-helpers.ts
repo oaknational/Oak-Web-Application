@@ -51,7 +51,9 @@ export const getPupilOptionData = async (
     };
   }
 
-  if (programmes.length === 1) {
+  if (
+    programmes.filter((p) => p?.programmeFields.legacy !== "true").length === 1
+  ) {
     return {
       redirect: {
         destination: resolveOakHref({
