@@ -8,14 +8,12 @@ import {
   OakGridArea,
   OakHeading,
   OakIcon,
-  OakInlineBanner,
   OakLessonBottomNav,
   OakLessonLayout,
   OakLessonNavItem,
   OakP,
   OakPrimaryButton,
   OakPupilContentGuidance,
-  OakSecondaryButton,
   OakSpan,
   OakSubjectIcon,
   isValidIconName,
@@ -30,6 +28,7 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
+import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 
 type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
@@ -116,6 +115,17 @@ export const PupilViewsLessonOverview = ({
       </OakP>
     ));
 
+  const expiringBanner = (
+    <ExpiringBanner
+      isOpen={showExpiredLessonsBanner}
+      isResourcesMessage={false}
+      onwardHref={unitListingHref}
+      onClose={() => {
+        setShowExpiredLessonsBanner(false);
+      }}
+    />
+  );
+
   return (
     <OakLessonLayout
       lessonSectionName={"overview"}
@@ -157,28 +167,13 @@ export const PupilViewsLessonOverview = ({
             }}
           />
         </OakGridArea>
-        <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <OakInlineBanner
-            canDismiss
-            cta={
-              <OakSecondaryButton
-                element="a"
-                iconName="arrow-right"
-                isTrailingIcon
-                href={unitListingHref}
-              >
-                View new lessons
-              </OakSecondaryButton>
-            }
-            isOpen={showExpiredLessonsBanner}
-            message="We've made brand-new and improved lessons for you."
-            onDismiss={() => {
-              setShowExpiredLessonsBanner(false);
-            }}
-            title="These lessons will be removed by Spring 2025."
-            type="alert"
-            $mt={"space-between-m"}
-          />
+        <OakGridArea
+          $colStart={[1, 1, 2]}
+          $colSpan={[12, 12, 10]}
+          $pt="inner-padding-xl"
+          $display={["none", "block"]}
+        >
+          {expiringBanner}
         </OakGridArea>
       </OakGrid>
 
@@ -281,6 +276,16 @@ export const PupilViewsLessonOverview = ({
                 </OakSpan>
               </OakBox>
             )}
+          </OakGridArea>
+
+          <OakGridArea
+            $display={["block", "none"]}
+            $colStart={[1, 1, 7]}
+            $colSpan={[12, 12, 5]}
+            $ph={["inner-padding-m", "inner-padding-none"]}
+            $pb={"inner-padding-m"}
+          >
+            {expiringBanner}
           </OakGridArea>
           <OakGridArea
             $colStart={[1, 1, 7]}

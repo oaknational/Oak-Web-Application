@@ -10,9 +10,7 @@ import {
   OakPupilJourneyList,
   OakPupilJourneyListCounter,
   OakBox,
-  OakInlineBanner,
   isValidIconName,
-  OakSecondaryButton,
 } from "@oaknational/oak-components";
 import { useState } from "react";
 
@@ -20,6 +18,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 
 export type PupilLessonListingViewProps = {
   unitData: LessonListingBrowseData[number]["unitData"];
@@ -108,7 +107,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
           tag="h2"
         />
       </OakFlex>
-      <OakInlineBanner
+      {/* <OakInlineBanner
         canDismiss
         cta={
           <OakSecondaryButton
@@ -125,8 +124,16 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
         onDismiss={() => {
           setShowExpiredLessonsBanner(false);
         }}
-        title="Some of these lessons will soon be taken down."
+        title="These lessons will be removed by Summer Term 2025."
         type="alert"
+      /> */}
+      <ExpiringBanner
+        isOpen={showExpiredLessonsBanner}
+        isResourcesMessage={false}
+        onwardHref={unitListingHref}
+        onClose={() => {
+          setShowExpiredLessonsBanner(false);
+        }}
       />
     </OakFlex>
   );
