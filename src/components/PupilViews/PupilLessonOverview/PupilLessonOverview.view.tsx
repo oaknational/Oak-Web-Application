@@ -119,6 +119,7 @@ export const PupilViewsLessonOverview = ({
     <ExpiringBanner
       isOpen={showExpiredLessonsBanner}
       isResourcesMessage={false}
+      isSingular={true}
       onwardHref={unitListingHref}
       onClose={() => {
         setShowExpiredLessonsBanner(false);
