@@ -9,7 +9,7 @@ describe("subjectListing()", () => {
         ...sdk,
         subjectListing: jest.fn(() =>
           Promise.resolve({
-            subjectLessons: [],
+            subjectUnits: [],
             key_stages: [],
           }),
         ),
