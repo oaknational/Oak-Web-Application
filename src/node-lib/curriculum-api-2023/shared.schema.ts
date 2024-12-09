@@ -162,6 +162,10 @@ export const lessonOverviewQuizData = z
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
+const camelActionSchema = zodToCamelCase(actionsSchema);
+
+export type Actions = z.infer<typeof camelActionSchema>;
+
 export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
@@ -199,6 +203,7 @@ export const baseLessonOverviewSchema = z.object({
   updatedAt: z.string(),
   lessonGuideUrl: z.string().nullable(),
   phonicsOutcome: z.string().nullish(),
+  actions: camelActionSchema.nullish(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
@@ -238,10 +243,6 @@ export const baseLessonDownloadsSchema = z.object({
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),
 });
-
-const camelActionSchema = zodToCamelCase(actionsSchema);
-
-export type Actions = z.infer<typeof camelActionSchema>;
 
 export const lessonListItemSchema = z.object({
   lessonSlug: z.string(),

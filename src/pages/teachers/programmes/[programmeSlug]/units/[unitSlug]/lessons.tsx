@@ -236,7 +236,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                 expiringBanner={
                   <ExpiringBanner
                     isOpen={showExpiredLessonsBanner}
-                    isResourcesMessage={false}
+                    isResourcesMessage={true}
                     onwardHref={unitListingHref}
                     onClose={() => {
                       setShowExpiredLessonsBanner(false);
