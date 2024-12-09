@@ -12,10 +12,11 @@ import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
+import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
 const render = renderWithProviders();
 
-const programmesWithExamboards = [
+const programmesWithExamboards: ProgrammeListingPageData["programmes"] = [
   {
     programmeSlug: "maths-secondary-ks4-aqa",
     subjectTitle: "Maths",
@@ -25,6 +26,9 @@ const programmesWithExamboards = [
     examBoardSlug: "aqa",
     examBoardTitle: "AQA",
     examBoardDisplayOrder: 1,
+    pathwayDisplayOrder: null,
+    pathwaySlug: null,
+    pathwayTitle: null,
   },
   {
     programmeSlug: "maths-secondary-ks4-edexcel",
@@ -35,51 +39,67 @@ const programmesWithExamboards = [
     examBoardSlug: "edexcel",
     examBoardTitle: "Edexcel",
     examBoardDisplayOrder: 1,
+    pathwayDisplayOrder: null,
+    pathwaySlug: null,
+    pathwayTitle: null,
   },
 ];
-const programmesWithTiersAndExamboards = [
-  {
-    programmeSlug: "maths-secondary-ks4-foundation",
-    subjectTitle: "Maths",
-    tierSlug: "foundation",
-    tierTitle: "Foundation",
-    tierDisplayOrder: 1,
-    examBoardSlug: "aqa",
-    examBoardTitle: "AQA",
-    examBoardDisplayOrder: 1,
-  },
-  {
-    programmeSlug: "maths-secondary-ks4-higher",
-    subjectTitle: "Maths",
-    tierSlug: "higher",
-    tierTitle: "Higher",
-    tierDisplayOrder: 1,
-    examBoardSlug: "aqa",
-    examBoardTitle: "AQA",
-    examBoardDisplayOrder: 1,
-  },
-  {
-    programmeSlug: "maths-secondary-ks4-higher",
-    subjectTitle: "Maths",
-    tierSlug: "higher",
-    tierTitle: "Higher",
-    tierDisplayOrder: 3,
-    examBoardSlug: "edexcel",
-    examBoardTitle: "Edexcel",
-    examBoardDisplayOrder: 1,
-  },
+const programmesWithTiersAndExamboards: ProgrammeListingPageData["programmes"] =
+  [
+    {
+      programmeSlug: "maths-secondary-ks4-foundation",
+      subjectTitle: "Maths",
+      tierSlug: "foundation",
+      tierTitle: "Foundation",
+      tierDisplayOrder: 1,
+      examBoardSlug: "aqa",
+      examBoardTitle: "AQA",
+      examBoardDisplayOrder: 1,
+      pathwayDisplayOrder: null,
+      pathwaySlug: null,
+      pathwayTitle: null,
+    },
+    {
+      programmeSlug: "maths-secondary-ks4-higher",
+      subjectTitle: "Maths",
+      tierSlug: "higher",
+      tierTitle: "Higher",
+      tierDisplayOrder: 1,
+      examBoardSlug: "aqa",
+      examBoardTitle: "AQA",
+      examBoardDisplayOrder: 1,
+      pathwayDisplayOrder: null,
+      pathwaySlug: null,
+      pathwayTitle: null,
+    },
+    {
+      programmeSlug: "maths-secondary-ks4-higher",
+      subjectTitle: "Maths",
+      tierSlug: "higher",
+      tierTitle: "Higher",
+      tierDisplayOrder: 3,
+      examBoardSlug: "edexcel",
+      examBoardTitle: "Edexcel",
+      examBoardDisplayOrder: 1,
+      pathwayDisplayOrder: null,
+      pathwaySlug: null,
+      pathwayTitle: null,
+    },
 
-  {
-    programmeSlug: "maths-secondary-ks4-foundation",
-    subjectTitle: "Maths",
-    tierSlug: "foundation",
-    tierTitle: "Foundation",
-    tierDisplayOrder: 3,
-    examBoardSlug: "edexcel",
-    examBoardTitle: "Edexcel",
-    examBoardDisplayOrder: 1,
-  },
-];
+    {
+      programmeSlug: "maths-secondary-ks4-foundation",
+      subjectTitle: "Maths",
+      tierSlug: "foundation",
+      tierTitle: "Foundation",
+      tierDisplayOrder: 3,
+      examBoardSlug: "edexcel",
+      examBoardTitle: "Edexcel",
+      examBoardDisplayOrder: 1,
+      pathwayDisplayOrder: null,
+      pathwaySlug: null,
+      pathwayTitle: null,
+    },
+  ];
 
 const programmeSelected = jest.fn();
 
@@ -124,9 +144,9 @@ describe("programmes listing page", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key Stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Choose foundation or higher tier for GCSE Maths",
-        ogTitle: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle: "Key Stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Choose foundation or higher tier for GCSE Maths",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
@@ -147,6 +167,9 @@ describe("programmes listing page", () => {
                 examBoardSlug: null,
                 examBoardTitle: null,
                 examBoardDisplayOrder: null,
+                pathwayDisplayOrder: null,
+                pathwaySlug: null,
+                pathwayTitle: null,
               },
               {
                 programmeSlug: "maths-secondary-ks4-higher",
@@ -157,6 +180,9 @@ describe("programmes listing page", () => {
                 examBoardSlug: null,
                 examBoardTitle: null,
                 examBoardDisplayOrder: null,
+                pathwayDisplayOrder: null,
+                pathwaySlug: null,
+                pathwayTitle: null,
               },
               {
                 programmeSlug: "maths-secondary-ks4-foundation",
@@ -167,6 +193,9 @@ describe("programmes listing page", () => {
                 examBoardSlug: null,
                 examBoardTitle: null,
                 examBoardDisplayOrder: null,
+                pathwayDisplayOrder: null,
+                pathwaySlug: null,
+                pathwayTitle: null,
               },
             ],
           })}
@@ -176,9 +205,9 @@ describe("programmes listing page", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key Stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Choose core, foundation or higher tier for GCSE Maths",
-        ogTitle: "Key stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle: "Key Stage 4 Maths tiers | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Choose core, foundation or higher tier for GCSE Maths",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
@@ -197,9 +226,9 @@ describe("programmes listing page", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Key stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key Stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
         description: "Choose from the most popular exam boards in GCSE Maths",
-        ogTitle: "Key stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle: "Key Stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription: "Choose from the most popular exam boards in GCSE Maths",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical: "NEXT_PUBLIC_SEO_APP_URL",
@@ -218,10 +247,10 @@ describe("programmes listing page", () => {
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-        title: "Key stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
+        title: "Key Stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
         description:
           "Choose foundation or higher tier from the most popular exam boards in GCSE Maths",
-        ogTitle: "Key stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
+        ogTitle: "Key Stage 4 Maths exam boards | NEXT_PUBLIC_SEO_APP_NAME",
         ogDescription:
           "Choose foundation or higher tier from the most popular exam boards in GCSE Maths",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
@@ -237,7 +266,7 @@ describe("programmes listing page", () => {
       expect(programmeSelected).toHaveBeenCalledWith({
         activeFilters: {
           keyStage: ["ks4"],
-          subject: ["maths-l"],
+          subject: ["maths"],
         },
         analyticsUseCase: "Teacher",
         componentType: "programme_card",
@@ -263,7 +292,7 @@ describe("programmes listing page", () => {
       expect(programmeSelected).toHaveBeenCalledWith({
         activeFilters: {
           keyStage: ["ks4"],
-          subject: ["maths-l"],
+          subject: ["maths"],
         },
         analyticsUseCase: "Teacher",
         componentType: "programme_card",
@@ -291,7 +320,7 @@ describe("programmes listing page", () => {
       expect(programmeSelected).toHaveBeenCalledWith({
         activeFilters: {
           keyStage: ["ks4"],
-          subject: ["maths-l"],
+          subject: ["maths"],
         },
         analyticsUseCase: "Teacher",
         componentType: "programme_card",

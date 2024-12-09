@@ -55,7 +55,7 @@ export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
     teacherShareButton?: React.ReactNode;
   };
-};
+} & { isBeta: boolean };
 
 // helper function to remove key learning points from the header in legacy lessons
 export const getDedupedPupilLessonOutcome = (
@@ -68,7 +68,7 @@ export const getDedupedPupilLessonOutcome = (
   return plo;
 };
 
-export function LessonOverview({ lesson }: LessonOverviewProps) {
+export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
   const {
     lessonTitle,
     lessonSlug,
@@ -97,6 +97,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     isCanonical,
     lessonGuideUrl,
     teacherShareButton,
+    additionalMaterialUrl,
   } = lesson;
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -200,6 +201,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     return url.replace(/\/edit.*$/, "/preview");
   };
   const previewLessonGuideUrl = getPreviewUrl(lessonGuideUrl || "");
+  const isMFL =
+    subjectSlug === "german" ||
+    subjectSlug === "french" ||
+    subjectSlug === "spanish" ||
+    lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre";
 
   return (
     <MathJaxLessonProvider>
@@ -382,6 +388,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     supervisionLevel={supervisionLevel}
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
+                    // change
+                    hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
+                    displayVocab={isBeta && isMFL}
                     updatedAt={updatedAt}
                   />
                 </LessonItemContainer>

@@ -1,9 +1,9 @@
 import { toSentenceCase } from "../../helpers";
 import { LessonPathway } from "../../shared.schema";
-import { LessonBrowseDataByKsOld } from "../lessonOverview/lessonOverview.schema";
+import { LessonBrowseDataByKs } from "../lessonOverview/lessonOverview.schema";
 
 export const constructLessonMediaData = (
-  browseData: LessonBrowseDataByKsOld,
+  browseData: LessonBrowseDataByKs,
   pathways?: LessonPathway[] | [],
 ) => {
   const unitTitle =
