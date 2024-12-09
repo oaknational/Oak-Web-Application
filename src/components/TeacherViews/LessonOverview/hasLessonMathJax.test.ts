@@ -1,6 +1,8 @@
 import { LessonOverviewProps } from "./LessonOverview.view";
 import { containsMathJax, hasLessonMathJax } from "./hasLessonMathJax";
 
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+
 describe("hasLessonMathJax", () => {
   const basicLesson: LessonOverviewProps["lesson"] = {
     isLegacy: false,
@@ -39,6 +41,8 @@ describe("hasLessonMathJax", () => {
     programmeSlug: "example-programme-slug",
     lessonGuideUrl: null,
     updatedAt: "2022",
+    hasMediaClips: false,
+    lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
   };
 
   it("detects MathJax in keyLearningPoints", () => {
