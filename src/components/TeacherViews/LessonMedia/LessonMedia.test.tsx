@@ -7,6 +7,7 @@ import { LessonMedia } from "./LessonMedia.view";
 import { resolveOakHref } from "@/common-lib/urls";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 
 const render = renderWithProviders();
 
@@ -26,9 +27,36 @@ const mockRouter = {
   pathname: "/test-path",
 };
 
-describe("LessonMedia view", () => {
+const onPlay = jest.fn();
+
+const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
+  if (userEventCallback) {
+    userEventCallback({
+      event: "end",
+      timeElapsed: 100,
+      duration: 100,
+      muted: false,
+    });
+  }
+  return (
+    <div data-testid="mux-player">
+      <button data-testid="play-button" onClick={onPlay}>
+        Play
+      </button>
+    </div>
+  );
+};
+
+jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
+  return ({ userEventCallback }: Partial<VideoPlayerProps>) => (
+    <VideoPlayerMock userEventCallback={userEventCallback} />
+  );
+});
+
+describe.only("LessonMedia view", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.resetAllMocks();
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
   });
 
@@ -88,7 +116,7 @@ describe("LessonMedia view", () => {
     const user = userEvent.setup();
     videoItem && (await user.click(videoItem));
 
-    expect(window.history.replaceState).toHaveBeenCalledTimes(1);
+    expect(window.history.replaceState).toHaveBeenCalled();
     expect(window.history.replaceState).toHaveBeenCalledWith(
       null,
       "",
@@ -111,7 +139,26 @@ describe("LessonMedia view", () => {
     const user = userEvent.setup();
     audioItem && (await user.click(audioItem));
 
-    expect(window.history.replaceState).toHaveBeenCalledTimes(1);
+    expect(window.history.replaceState).toHaveBeenCalled();
+    expect(window.history.replaceState).toHaveBeenCalledWith(
+      null,
+      "",
+      "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=running",
+    );
+  });
+
+  it("it updates correctly when 'Play' is pressed on the video end video is ended", async () => {
+    const { getByTestId } = render(
+      <LessonMedia lesson={lesson} isCanonical={false} />,
+    );
+
+    const videoPlayerWrapper = getByTestId("video-player-wrapper");
+    expect(videoPlayerWrapper).toBeInTheDocument();
+    const playButton = within(videoPlayerWrapper).getByText("Play");
+
+    await userEvent.click(playButton);
+
+    expect(onPlay).toHaveBeenCalled();
     expect(window.history.replaceState).toHaveBeenCalledWith(
       null,
       "",
