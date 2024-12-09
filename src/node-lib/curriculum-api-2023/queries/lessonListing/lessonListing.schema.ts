@@ -8,7 +8,7 @@ import {
 import { lessonListSchema } from "../../shared.schema";
 import { zodToCamelCase } from "../../helpers/zodToCamelCase";
 
-const camelActionSchema = zodToCamelCase(actionsSchema) as typeof actionsSchema;
+const camelActionSchema = zodToCamelCase(actionsSchema);
 
 export type Actions = z.infer<typeof camelActionSchema>;
 
@@ -33,7 +33,9 @@ const lessonListingSchema = z.object({
   actions: camelActionSchema,
 });
 
-export type lessonListingSchema = z.infer<typeof lessonListingSchema>;
+export type lessonListingSchema = z.infer<typeof lessonListingSchema> & {
+  actions: Actions | null;
+};
 
 export type LessonListingPageData = z.infer<typeof lessonListingSchema>;
 

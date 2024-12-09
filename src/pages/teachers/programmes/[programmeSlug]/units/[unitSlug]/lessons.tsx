@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -44,6 +44,7 @@ import {
   useShareExperiment,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -76,8 +77,13 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     subjectTitle,
     programmeSlug,
     subjectSlug,
-    // actions,
+    actions,
   } = curriculumData;
+
+  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
+    useState<boolean>(actions?.displayExpiringBanner ?? false);
+
+  const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
 
   const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
     useShareExperiment({
@@ -218,17 +224,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         />
         <MaxWidth $ph={16}>
           <OakGrid>
-            <OakGridArea $colSpan={[12, 9]}>
-              {/* <NewContentBanner
-                keyStageSlug={keyStageSlug}
-                subjectSlug={subjectSlug}
-                subjectTitle={subjectTitle.toLowerCase()}
-                programmeSlug={programmeSlug}
-                isLegacy={isSlugLegacy(programmeSlug)}
-              /> */}
-            </OakGridArea>
-          </OakGrid>
-          <OakGrid>
             <OakGridArea
               $colSpan={[12, 9]}
               $mt={["space-between-s", "space-between-m2"]}
@@ -241,6 +236,16 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                 headingTag={"h2"}
                 unitTitle={unitTitle}
                 onClick={trackLessonSelected}
+                expiringBanner={
+                  <ExpiringBanner
+                    isOpen={showExpiredLessonsBanner}
+                    isResourcesMessage={false}
+                    onwardHref={unitListingHref}
+                    onClose={() => {
+                      setShowExpiredLessonsBanner(false);
+                    }}
+                  />
+                }
               />
             </OakGridArea>
           </OakGrid>

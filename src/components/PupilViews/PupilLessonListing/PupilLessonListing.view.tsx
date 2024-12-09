@@ -107,26 +107,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
           tag="h2"
         />
       </OakFlex>
-      {/* <OakInlineBanner
-        canDismiss
-        cta={
-          <OakSecondaryButton
-            element="a"
-            iconName="arrow-right"
-            isTrailingIcon
-            href={unitListingHref}
-          >
-            View new lessons
-          </OakSecondaryButton>
-        }
-        isOpen={showExpiredLessonsBanner}
-        message="We've made brand-new and improved lessons for you."
-        onDismiss={() => {
-          setShowExpiredLessonsBanner(false);
-        }}
-        title="These lessons will be removed by Summer Term 2025."
-        type="alert"
-      /> */}
+
       <ExpiringBanner
         isOpen={showExpiredLessonsBanner}
         isResourcesMessage={false}
