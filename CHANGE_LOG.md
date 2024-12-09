@@ -1,3 +1,18 @@
+# [1.645.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.644.0...v1.645.0) (2024-12-09)
+
+
+### Bug Fixes
+
+* actually set the banner to be singular ([87f3955](https://github.com/oaknational/Oak-Web-Application/commit/87f395596921b5e4facce0a16b7a758d3d418621))
+* expiring banner render singular and multiples ([fb3e63f](https://github.com/oaknational/Oak-Web-Application/commit/fb3e63fc71d58a11174c43ee4616daac8a130ff9))
+* remove non relevant tests ([1fabb5f](https://github.com/oaknational/Oak-Web-Application/commit/1fabb5fc91cd85ba5fe16fc3bf7b6aee3dde6175))
+
+
+### Features
+
+* pupil expiring banners ([5c51362](https://github.com/oaknational/Oak-Web-Application/commit/5c51362c539b611266ef9a329695a52f53adc3ee))
+* refactored expiring banner into a component ([677f20b](https://github.com/oaknational/Oak-Web-Application/commit/677f20b1fb12aa1c423b6fb220d7cc7b0e2bd34b))
+
 # [1.644.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.643.0...v1.644.0) (2024-12-06)
 
 
