@@ -53,7 +53,7 @@ jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
   );
 });
 
-describe.only("LessonMedia view", () => {
+describe("LessonMedia view", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.resetAllMocks();
