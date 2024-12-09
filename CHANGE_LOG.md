@@ -1,3 +1,10 @@
+# [1.644.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.643.0...v1.644.0) (2024-12-06)
+
+
+### Features
+
+* lesson overview vocab button component ([fb0edf2](https://github.com/oaknational/Oak-Web-Application/commit/fb0edf26e82057bb4668a7d7863b71664b29fd4c))
+
 # [1.643.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.642.0...v1.643.0) (2024-12-06)
 
 
