@@ -87,7 +87,7 @@ describe("programmeListing()", () => {
 
     expect(programmeListingSchema.parse(res)).toEqual({
       keyStageSlug: "ks1",
-      keyStageTitle: "Key stage 1",
+      keyStageTitle: "Key Stage 1",
       programmes: [
         {
           examBoardDisplayOrder: 1,
@@ -98,6 +98,9 @@ describe("programmeListing()", () => {
           tierDisplayOrder: null,
           tierSlug: null,
           tierTitle: null,
+          pathwayDisplayOrder: null,
+          pathwaySlug: null,
+          pathwayTitle: null,
         },
         {
           examBoardDisplayOrder: 2,
@@ -108,6 +111,9 @@ describe("programmeListing()", () => {
           tierDisplayOrder: null,
           tierSlug: null,
           tierTitle: null,
+          pathwayDisplayOrder: null,
+          pathwaySlug: null,
+          pathwayTitle: null,
         },
       ],
       subjectSlug: "maths",
@@ -132,7 +138,7 @@ describe("programmeListing()", () => {
     expect(res.programmes[1]?.examBoardDisplayOrder).toBe(2);
   });
   test("getTransformedProgrammeData returns the correct transformed programme data", async () => {
-    const firstProgramme = programmeListingResponse[0];
+    const firstProgramme = programmeListingResponse[0]?.programme_fields;
     if (!firstProgramme) throw new Error("No first programme");
     const transformedProgrammes = getTransformedProgrammeData(
       programmeListingResponse,
@@ -141,7 +147,7 @@ describe("programmeListing()", () => {
 
     expect(transformedProgrammes).toEqual({
       keyStageSlug: "ks1",
-      keyStageTitle: "Key stage 1",
+      keyStageTitle: "Key Stage 1",
       legacy: false,
       programmes: [
         {
@@ -153,8 +159,10 @@ describe("programmeListing()", () => {
           tierDisplayOrder: null,
           tierSlug: null,
           tierTitle: null,
+          pathwayDisplayOrder: null,
+          pathwaySlug: null,
+          pathwayTitle: null,
         },
-
         {
           examBoardDisplayOrder: 2,
           examBoardSlug: null,
@@ -164,6 +172,9 @@ describe("programmeListing()", () => {
           tierDisplayOrder: null,
           tierSlug: null,
           tierTitle: null,
+          pathwayDisplayOrder: null,
+          pathwaySlug: null,
+          pathwayTitle: null,
         },
       ],
       subjectSlug: "maths",
