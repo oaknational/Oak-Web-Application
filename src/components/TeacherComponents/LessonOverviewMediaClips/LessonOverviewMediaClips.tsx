@@ -23,7 +23,11 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   return (
     <OakGrid
       $width={"100%"}
-      $gridTemplateColumns={["repeat(1, 1fr)", "repeat(4, 1fr)"]}
+      $gridTemplateColumns={[
+        "repeat(1, 1fr)",
+        "repeat(1, 1fr)",
+        "repeat(4, 1fr)",
+      ]}
       $rg={"all-spacing-4"}
     >
       {videosArray.map((video, index) => {
@@ -33,7 +37,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
           <OakGridArea
             key={index}
             $colSpan={[0]}
-            $maxWidth={["100%", "all-spacing-18"]}
+            $maxWidth={["100%", "100%", "all-spacing-18"]}
           >
             <LessonOverviewClipWithThumbnail
               title={firstCycleVideo.mediaClipTitle}

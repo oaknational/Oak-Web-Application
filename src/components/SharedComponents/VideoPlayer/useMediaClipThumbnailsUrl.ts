@@ -6,7 +6,7 @@ interface UseThumbnailImageProps {
   isLegacy?: boolean;
 }
 
-const useMediaClipThumbnail = ({
+const useMediaClipThumbnailUrl = ({
   playbackId,
   playbackPolicy,
   isLegacy = false,
@@ -17,11 +17,14 @@ const useMediaClipThumbnail = ({
     isLegacy,
   });
 
-  const thumbnailImage = thumbnailToken
-    ? `https://image.mux.com/${playbackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`
-    : "";
-
-  return thumbnailImage;
+  if (thumbnailToken.playbackToken !== null) {
+    const thumbnailImage = thumbnailToken
+      ? `https://image.mux.com/${playbackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`
+      : "";
+    return thumbnailImage;
+  } else {
+    return "";
+  }
 };
 
-export default useMediaClipThumbnail;
+export default useMediaClipThumbnailUrl;

@@ -2,7 +2,7 @@ import { FC } from "react";
 import { OakMediaClip, OakMediaClipProps } from "@oaknational/oak-components";
 
 import { PlaybackPolicy } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
-import useMediaClipThumbnail from "@/components/SharedComponents/VideoPlayer/useMediaClipThumbnails";
+import useMediaClipThumbnailUrl from "@/components/SharedComponents/VideoPlayer/useMediaClipThumbnailsUrl";
 
 export type LessonMediaClipWithThumbnailProps = Omit<
   OakMediaClipProps,
@@ -22,7 +22,7 @@ const LessonMediaClipWithThumbnail: FC<LessonMediaClipWithThumbnailProps> = ({
   playbackId,
   playbackPolicy,
 }: LessonMediaClipWithThumbnailProps) => {
-  const thumbnailImage = useMediaClipThumbnail({
+  const thumbnailImage = useMediaClipThumbnailUrl({
     playbackId,
     playbackPolicy,
     isLegacy: false,
