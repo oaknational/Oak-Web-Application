@@ -23,10 +23,7 @@ import {
 } from "@/node-lib/isr";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import {
-  LessonListingPageData,
-  lessonListingSchema,
-} from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
@@ -58,7 +55,7 @@ export type LessonListingPageProps = {
  * This data gets stored in the browser and is used to render the lesson list,
  * so it's important to keep it as small as possible.
  */
-function getHydratedLessonsFromUnit(unit: lessonListingSchema) {
+function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
   const { lessons, ...rest } = unit;
   return lessons.map((lesson) => ({
     ...lesson,

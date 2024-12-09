@@ -104,7 +104,6 @@ const unitListingData = z.object({
     z.object({ year: yearSlugs, yearTitle: yearDescriptions }),
   ),
   subjectCategories: z.array(subjectCategorySchema),
-  actions: z.array(z.object({})),
 });
 
 export type UnitListingData = z.infer<typeof unitListingData>;

@@ -9,7 +9,6 @@ import {
   ProgrammeFieldsCamel,
   rawQuerySchema,
   UnitListingData,
-  UnitsCamel,
 } from "./unitListing.schema";
 
 import { NEW_COHORT } from "@/config/cohort";
@@ -20,7 +19,6 @@ import {
   Sdk,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import OakError from "@/errors/OakError";
-import { getIntersection } from "@/utils/getIntersection";
 
 const getTierData = (programmeSlug: string): UnitListingData["tiers"] => [
   {
@@ -80,10 +78,6 @@ const unitListingQuery =
       reshapedUnits,
     );
 
-    const actions = getIntersection<UnitsCamel[number]["actions"]>(
-      unitsCamel.map((unit) => unit.actions),
-    );
-
     const tiers = programmeFields.tierSlug
       ? getTierData(args.programmeSlug)
       : [];
@@ -109,7 +103,6 @@ const unitListingQuery =
       hasNewContent,
       subjectCategories,
       yearGroups,
-      actions,
     };
   };
 

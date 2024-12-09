@@ -6,7 +6,7 @@ import lessonListing, {
   getTransformedLessons,
   getPackagedUnit,
 } from "./lessonListing.query";
-import lessonListingSchema from "./lessonListing.schema";
+import { lessonListingPageDataSchema } from "./lessonListing.schema";
 
 describe("lessonListing()", () => {
   describe("lessonListing query", () => {
@@ -35,7 +35,7 @@ describe("lessonListing()", () => {
         unitSlug: "unit-slug",
       });
 
-      expect(lessonListingSchema.parse(res)).toEqual({
+      expect(lessonListingPageDataSchema.parse(res)).toEqual({
         programmeSlug: "programme-slug",
         keyStageSlug: "ks1",
         keyStageTitle: "Key Stage 1",

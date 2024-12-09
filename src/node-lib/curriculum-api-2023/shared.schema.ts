@@ -1,4 +1,7 @@
 import { z } from "zod";
+import { actionsSchema } from "@oaknational/oak-curriculum-schema";
+
+import { zodToCamelCase } from "./helpers/zodToCamelCase";
 
 export const contentGuidanceSchema = z.object({
   contentGuidanceLabel: z.string(),
@@ -236,23 +239,27 @@ export const baseLessonDownloadsSchema = z.object({
   loginRequired: z.boolean().nullable(),
 });
 
-export const lessonListSchema = z.array(
-  z.object({
-    lessonSlug: z.string(),
-    lessonTitle: z.string(),
-    description: z.string(),
-    pupilLessonOutcome: z.string().nullish(),
-    expired: z.boolean().nullable(),
-    quizCount: z.number().nullish(),
-    videoCount: z.number().nullish(),
-    presentationCount: z.number().nullish(),
-    worksheetCount: z.number().nullish(),
-    hasCopyrightMaterial: z.boolean().nullish(),
-    orderInUnit: z.number().nullish(),
-    lessonCohort: z.string().nullish(),
-    actions: z.object({}).nullable(),
-  }),
-);
+const camelActionSchema = zodToCamelCase(actionsSchema);
+
+export type Actions = z.infer<typeof camelActionSchema>;
+
+export const lessonListItemSchema = z.object({
+  lessonSlug: z.string(),
+  lessonTitle: z.string(),
+  description: z.string(),
+  pupilLessonOutcome: z.string().nullish(),
+  expired: z.boolean().nullable(),
+  quizCount: z.number().nullish(),
+  videoCount: z.number().nullish(),
+  presentationCount: z.number().nullish(),
+  worksheetCount: z.number().nullish(),
+  hasCopyrightMaterial: z.boolean().nullish(),
+  orderInUnit: z.number().nullish(),
+  lessonCohort: z.string().nullish(),
+  actions: camelActionSchema.nullish(),
+});
+
+export const lessonListSchema = z.array(lessonListItemSchema);
 
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
 

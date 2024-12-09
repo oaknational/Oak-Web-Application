@@ -1,7 +1,7 @@
 import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 
-import lessonListingSchema, {
-  Actions,
+import {
+  lessonListingPageDataSchema,
   LessonListingPageData,
   partialSyntheticUnitvariantLessonsArraySchema,
   partialSyntheticUnitvariantLessonsSchema,
@@ -9,7 +9,10 @@ import lessonListingSchema, {
 
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
-import { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import {
+  LessonListSchema,
+  Actions,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
@@ -136,7 +139,7 @@ const lessonListingQuery =
     }, {} as PackagedUnitData);
 
     const packagedUnit = getPackagedUnit(packagedUnitData, unitLessons);
-    return lessonListingSchema.parse(packagedUnit);
+    return lessonListingPageDataSchema.parse(packagedUnit);
   };
 
 export default lessonListingQuery;

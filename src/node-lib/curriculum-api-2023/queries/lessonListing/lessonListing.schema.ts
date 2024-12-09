@@ -2,17 +2,14 @@ import { z } from "zod";
 import {
   programmeFieldsSchema,
   syntheticUnitvariantLessonsSchema,
-  actionsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
-import { lessonListSchema } from "../../shared.schema";
-import { zodToCamelCase } from "../../helpers/zodToCamelCase";
+import {
+  lessonListItemSchema,
+  lessonListSchema,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
-const camelActionSchema = zodToCamelCase(actionsSchema);
-
-export type Actions = z.infer<typeof camelActionSchema>;
-
-const lessonListingSchema = z.object({
+export const lessonListingPageDataSchema = z.object({
   programmeSlug: z.string(),
   unitSlug: z.string(),
   unitTitle: z.string(),
@@ -30,14 +27,10 @@ const lessonListingSchema = z.object({
   pathwayTitle: programmeFieldsSchema.shape.pathway,
   pathwayDisplayOrder: programmeFieldsSchema.shape.pathway_display_order,
   lessons: lessonListSchema,
-  actions: camelActionSchema,
+  actions: lessonListItemSchema.shape.actions.nullable(),
 });
 
-export type lessonListingSchema = z.infer<typeof lessonListingSchema> & {
-  actions: Actions | null;
-};
-
-export type LessonListingPageData = z.infer<typeof lessonListingSchema>;
+export type LessonListingPageData = z.infer<typeof lessonListingPageDataSchema>;
 
 export const partialSyntheticUnitvariantLessonsSchema = z.object({
   ...syntheticUnitvariantLessonsSchema.omit({
@@ -53,5 +46,3 @@ export const partialSyntheticUnitvariantLessonsArraySchema = z.array(
 export type PartialSyntheticUnitvariantLessons = z.infer<
   typeof partialSyntheticUnitvariantLessonsSchema
 >;
-
-export default lessonListingSchema;
