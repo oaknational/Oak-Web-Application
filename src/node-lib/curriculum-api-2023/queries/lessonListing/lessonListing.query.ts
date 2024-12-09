@@ -2,6 +2,7 @@ import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 
 import lessonListingSchema, {
   LessonListingPageData,
+  PartialSyntheticUnitvariantLessons,
   partialSyntheticUnitvariantLessonsArraySchema,
   partialSyntheticUnitvariantLessonsSchema,
 } from "./lessonListing.schema";
@@ -12,6 +13,8 @@ import { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
+import { getIntersection } from "@/utils/getIntersection";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 export const getTransformedLessons = (
   lessons: LessonListingQuery["lessons"],
@@ -42,6 +45,7 @@ export const getTransformedLessons = (
         hasCopyrightMaterial,
         orderInUnit: lesson.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
+        actions: keysToCamelCase(lesson.actions) || null,
       };
       return transformedLesson;
     })
@@ -73,6 +77,12 @@ export const getPackagedUnit = (
     programmeFields,
   });
 
+  const combinedActions = getIntersection<LessonListSchema[number]["actions"]>(
+    unitLessons.map((lesson) => lesson.actions),
+  );
+
+  console.log("actions", combinedActions);
+
   return {
     programmeSlug,
     keyStageSlug: modifiedProgrammeFields.keystage_slug,
@@ -91,6 +101,7 @@ export const getPackagedUnit = (
     pathwaySlug: modifiedProgrammeFields.pathway_slug,
     pathwayTitle: modifiedProgrammeFields.pathway,
     pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
+    actions: combinedActions,
   };
 };
 

@@ -24,6 +24,7 @@ const lessonListingSchema = z.object({
   pathwayTitle: programmeFieldsSchema.shape.pathway,
   pathwayDisplayOrder: programmeFieldsSchema.shape.pathway_display_order,
   lessons: lessonListSchema,
+  actions: z.object({}).nullable(),
 });
 
 export type lessonListingSchema = z.infer<typeof lessonListingSchema>;

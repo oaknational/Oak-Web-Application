@@ -250,6 +250,7 @@ export const lessonListSchema = z.array(
     hasCopyrightMaterial: z.boolean().nullish(),
     orderInUnit: z.number().nullish(),
     lessonCohort: z.string().nullish(),
+    actions: z.object({}).nullable(),
   }),
 );
 

@@ -45,6 +45,7 @@ import {
   useShareExperiment,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import { act } from "@testing-library/react";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -77,7 +78,11 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     subjectTitle,
     programmeSlug,
     subjectSlug,
+    actions,
   } = curriculumData;
+
+  // TODO why is this not passed through?
+  console.log({ actions });
 
   const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
     useShareExperiment({
