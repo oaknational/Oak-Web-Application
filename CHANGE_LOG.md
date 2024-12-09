@@ -1,3 +1,13 @@
+# [1.646.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.645.0...v1.646.0) (2024-12-09)
+
+
+### Features
+
+* add autoplay functionality to media clips ([03f7b45](https://github.com/oaknational/Oak-Web-Application/commit/03f7b4594d06b3a52063ea7f12336f3cc69dc808))
+* check if time is elapsed rather than event name when video ends ([210a7ae](https://github.com/oaknational/Oak-Web-Application/commit/210a7ae67cfae928123df1706acd3f90aef7b9f8))
+* replace sessionStorage with useState ([564e80c](https://github.com/oaknational/Oak-Web-Application/commit/564e80c204d0dd7e39a439cbaa278e428b68c072))
+* update oak-components version and set focus after changing video ([68e7e7a](https://github.com/oaknational/Oak-Web-Application/commit/68e7e7a13f4ebe6671efcfb457f56c5439e2c5c8))
+
 # [1.645.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.644.0...v1.645.0) (2024-12-09)
 
 
