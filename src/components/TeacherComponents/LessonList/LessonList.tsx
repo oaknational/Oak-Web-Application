@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import {
   OakHeading,
   OakUL,
@@ -29,6 +29,7 @@ export type LessonListProps = {
   headingTag: OakHeadingTag;
   unitTitle: string;
   onClick: (props: LessonListItemProps | SpecialistLessonListItemProps) => void;
+  expiringBanner?: React.ReactNode;
 };
 
 const LESSONS_PER_PAGE = 5;
@@ -47,20 +48,22 @@ const LessonList: FC<LessonListProps> = (props) => {
     currentPageItems,
     unitTitle,
     onClick,
+    expiringBanner,
   } = props;
   const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;
 
   return (
     <OakFlex $flexDirection="column">
-      <OakFlex $flexDirection={["column-reverse", "column"]}>
-        <OakHeading
-          $font={["heading-6", "heading-5"]}
-          $mb="space-between-m"
-          tag={headingTag}
-        >
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={["space-between-m", "space-between-s"]}
+        $mb={["space-between-m", "space-between-s"]}
+      >
+        <OakHeading $font={["heading-6", "heading-5"]} tag={headingTag}>
           {`Lessons (${lessonCount})`}
         </OakHeading>
+        {expiringBanner}
       </OakFlex>
 
       {currentPageItems?.length ? (

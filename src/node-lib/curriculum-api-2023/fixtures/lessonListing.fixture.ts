@@ -33,6 +33,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 1,
+        actions: null,
       },
       {
         expired: false,
@@ -46,6 +47,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 2,
+        actions: null,
       },
       {
         expired: false,
@@ -59,6 +61,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 3,
+        actions: null,
       },
       {
         expired: false,
@@ -72,6 +75,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 4,
+        actions: null,
       },
       {
         expired: false,
@@ -85,6 +89,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 5,
+        actions: null,
       },
     ],
     ...partial,

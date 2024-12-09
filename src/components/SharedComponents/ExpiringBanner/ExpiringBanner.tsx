@@ -44,12 +44,12 @@ export const ExpiringBanner = ({
             href={onwardHref}
             onClick={onViewNewLessons}
           >
-            View new lessons
+            {`View new ${isResourcesMessage ? "resources" : "lessons"}`}
           </OakSecondaryButton>
         </OakBox>
       }
       isOpen={isOpen}
-      message="We've made brand-new and improved lessons for you."
+      message={`We've made brand-new and improved ${isResourcesMessage ? "resources" : "lessons"} for you.`}
       onDismiss={onClose}
       title={title}
       type="alert"

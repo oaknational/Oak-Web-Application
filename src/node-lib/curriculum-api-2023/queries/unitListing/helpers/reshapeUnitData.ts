@@ -30,6 +30,7 @@ export const reshapeUnitData = (rawUnits: UnitsCamel): GroupedUnitsSchema => {
         themeTitle: thread.threadTitle,
         themeSlug: thread.threadSlug,
       })) || null,
+    actions: unit.actions,
   }));
 
   /*
