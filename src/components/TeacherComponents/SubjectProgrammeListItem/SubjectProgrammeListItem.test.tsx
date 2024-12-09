@@ -4,19 +4,20 @@ import userEvent from "@testing-library/user-event";
 import SubjectProgrammeListItem from "./SubjectProgrammeListItem";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
-const programme = {
-  subjectSlug: "maths",
+const programme: ProgrammeListingPageData["programmes"][number] = {
   subjectTitle: "Maths",
-  keyStageSlug: "ks4",
-  keyStageTitle: "Key stage 4",
+  programmeSlug: "maths-secondary-ks4-higher",
   tierTitle: "Higher",
   tierSlug: "higher",
-  programmeSlug: "maths-secondary-ks4-higher",
   tierDisplayOrder: null,
   examBoardSlug: null,
   examBoardTitle: null,
   examBoardDisplayOrder: null,
+  pathwayDisplayOrder: null,
+  pathwaySlug: null,
+  pathwayTitle: null,
 };
 
 describe("ProgrammeListItem", () => {
