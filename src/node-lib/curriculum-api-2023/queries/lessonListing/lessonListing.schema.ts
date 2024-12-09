@@ -2,9 +2,15 @@ import { z } from "zod";
 import {
   programmeFieldsSchema,
   syntheticUnitvariantLessonsSchema,
+  actionsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 import { lessonListSchema } from "../../shared.schema";
+import { zodToCamelCase } from "../../helpers/zodToCamelCase";
+
+const camelActionSchema = zodToCamelCase(actionsSchema) as typeof actionsSchema;
+
+export type Actions = z.infer<typeof camelActionSchema>;
 
 const lessonListingSchema = z.object({
   programmeSlug: z.string(),
@@ -24,7 +30,7 @@ const lessonListingSchema = z.object({
   pathwayTitle: programmeFieldsSchema.shape.pathway,
   pathwayDisplayOrder: programmeFieldsSchema.shape.pathway_display_order,
   lessons: lessonListSchema,
-  actions: z.object({}).nullable(),
+  actions: camelActionSchema,
 });
 
 export type lessonListingSchema = z.infer<typeof lessonListingSchema>;

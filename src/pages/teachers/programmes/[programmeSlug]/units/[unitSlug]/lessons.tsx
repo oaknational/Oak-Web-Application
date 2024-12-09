@@ -35,7 +35,6 @@ import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { NEW_COHORT } from "@/config/cohort";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
-import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
@@ -45,7 +44,6 @@ import {
   useShareExperiment,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import { act } from "@testing-library/react";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -78,11 +76,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     subjectTitle,
     programmeSlug,
     subjectSlug,
-    actions,
+    // actions,
   } = curriculumData;
-
-  // TODO why is this not passed through?
-  console.log({ actions });
 
   const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
     useShareExperiment({
@@ -224,13 +219,13 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         <MaxWidth $ph={16}>
           <OakGrid>
             <OakGridArea $colSpan={[12, 9]}>
-              <NewContentBanner
+              {/* <NewContentBanner
                 keyStageSlug={keyStageSlug}
                 subjectSlug={subjectSlug}
                 subjectTitle={subjectTitle.toLowerCase()}
                 programmeSlug={programmeSlug}
                 isLegacy={isSlugLegacy(programmeSlug)}
-              />
+              /> */}
             </OakGridArea>
           </OakGrid>
           <OakGrid>

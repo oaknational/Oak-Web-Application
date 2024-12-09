@@ -1,8 +1,8 @@
 import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 
 import lessonListingSchema, {
+  Actions,
   LessonListingPageData,
-  PartialSyntheticUnitvariantLessons,
   partialSyntheticUnitvariantLessonsArraySchema,
   partialSyntheticUnitvariantLessonsSchema,
 } from "./lessonListing.schema";
@@ -45,7 +45,7 @@ export const getTransformedLessons = (
         hasCopyrightMaterial,
         orderInUnit: lesson.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
-        actions: keysToCamelCase(lesson.actions) || null,
+        actions: (keysToCamelCase(lesson.actions) || null) as Actions,
       };
       return transformedLesson;
     })
@@ -79,9 +79,7 @@ export const getPackagedUnit = (
 
   const combinedActions = getIntersection<LessonListSchema[number]["actions"]>(
     unitLessons.map((lesson) => lesson.actions),
-  );
-
-  console.log("actions", combinedActions);
+  ) as Actions;
 
   return {
     programmeSlug,
@@ -136,8 +134,9 @@ const lessonListingQuery =
         programmeSlugByYear: lesson.programme_slug_by_year,
       };
     }, {} as PackagedUnitData);
-    const transformedUnit = getPackagedUnit(packagedUnitData, unitLessons);
-    return lessonListingSchema.parse(transformedUnit);
+
+    const packagedUnit = getPackagedUnit(packagedUnitData, unitLessons);
+    return lessonListingSchema.parse(packagedUnit);
   };
 
 export default lessonListingQuery;
