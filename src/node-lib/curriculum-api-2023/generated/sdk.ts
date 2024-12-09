@@ -57316,11 +57316,11 @@ export type CurriculumOverviewQueryVariables = Exact<{
 export type CurriculumOverviewQuery = { __typename?: 'query_root', curriculumOverview: Array<{ __typename?: 'published_mv_curriculum_overview_0_5', curriculaDesc?: string | null, subjectTitle?: string | null, phaseTitle?: string | null, examboardTitle?: string | null }> };
 
 export type CurriculumSequenceQueryVariables = Exact<{
-  where?: InputMaybe<Published_Mv_Curriculum_Sequence_B_13_0_4_Bool_Exp>;
+  where?: InputMaybe<Published_Mv_Curriculum_Sequence_B_13_0_6_Bool_Exp>;
 }>;
 
 
-export type CurriculumSequenceQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_4', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, domain?: string | null, domain_id?: string | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, tags?: any | null, subjectcategories?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, why_this_why_now?: string | null, description?: string | null, cycle?: string | null, features?: any | null, unit_options?: any | null, threads?: any | null, year?: string | null, pathway?: string | null, pathway_slug?: string | null, state?: string | null }> };
+export type CurriculumSequenceQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_sequence_b_13_0_6', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, domain?: string | null, domain_id?: string | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, tags?: any | null, subjectcategories?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, why_this_why_now?: string | null, description?: string | null, cycle?: string | null, features?: any | null, unit_options?: any | null, threads?: any | null, year?: string | null, pathway?: string | null, pathway_slug?: string | null, state?: string | null }> };
 
 export type CurriculumUnitsQueryVariables = Exact<{
   where?: InputMaybe<Published_Mv_Curriculum_Units_Including_New_0_0_16_Bool_Exp>;
@@ -57599,8 +57599,8 @@ export const CurriculumOverviewDocument = gql`
 }
     `;
 export const CurriculumSequenceDocument = gql`
-    query curriculumSequence($where: published_mv_curriculum_sequence_b_13_0_4_bool_exp) {
-  units: published_mv_curriculum_sequence_b_13_0_4(where: $where) {
+    query curriculumSequence($where: published_mv_curriculum_sequence_b_13_0_6_bool_exp) {
+  units: published_mv_curriculum_sequence_b_13_0_6(where: $where) {
     connection_prior_unit_description
     connection_future_unit_description
     connection_future_unit_title
