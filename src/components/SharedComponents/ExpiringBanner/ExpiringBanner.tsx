@@ -6,7 +6,8 @@ import {
 
 export type ExpiringBannerProps = {
   isOpen: boolean;
-  isResourcesMessage: boolean;
+  isResourcesMessage?: boolean;
+  isSingular?: boolean;
   onwardHref: string;
   onClose: () => void;
   onViewNewLessons?: () => void;
@@ -15,10 +16,22 @@ export type ExpiringBannerProps = {
 export const ExpiringBanner = ({
   isOpen,
   isResourcesMessage,
+  isSingular,
   onwardHref,
   onClose,
   onViewNewLessons,
 }: ExpiringBannerProps) => {
+  const title = (() => {
+    switch (true) {
+      case isResourcesMessage:
+        return `These resources will be removed by end of Summer Term 2025.`;
+      case isSingular:
+        return `This lesson will be removed by end of Summer Term 2025.`;
+      default:
+        return `These lessons will be removed by end of Summer Term 2025.`;
+    }
+  })();
+
   return (
     <OakInlineBanner
       canDismiss
@@ -38,7 +51,7 @@ export const ExpiringBanner = ({
       isOpen={isOpen}
       message="We've made brand-new and improved lessons for you."
       onDismiss={onClose}
-      title={`These ${isResourcesMessage ? "resources" : "lessons"} will be removed by end of Summer Term 2025.`}
+      title={title}
       type="alert"
     />
   );

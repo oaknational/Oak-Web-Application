@@ -60,4 +60,15 @@ describe("ExpiringBanner", () => {
     screen.getByRole("link", { name: /view new lessons/i }).click();
     expect(defaultProps.onViewNewLessons).toHaveBeenCalled();
   });
+
+  it("should render the singular title when isSingular is true", () => {
+    const screen = render(
+      <ExpiringBanner {...defaultProps} isSingular={true} />,
+    );
+    expect(
+      screen.getByText(
+        "This lesson will be removed by end of Summer Term 2025.",
+      ),
+    ).toBeInTheDocument();
+  });
 });

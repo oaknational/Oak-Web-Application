@@ -86,6 +86,7 @@ export default function LessonOverviewCanonicalPage({
             isSpecialist,
             teacherShareButton,
           }}
+          isBeta={false}
         />
         {!isSpecialist && (
           <OakFlex $background={"pink50"} $width={"100%"}>
