@@ -17,13 +17,10 @@ const useMediaClipThumbnailUrl = ({
     isLegacy,
   });
 
-  if (thumbnailToken.playbackToken !== null) {
-    const thumbnailImage = thumbnailToken
-      ? `https://image.mux.com/${playbackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`
-      : "";
-    return thumbnailImage;
+  if (thumbnailToken.playbackToken) {
+    return `https://image.mux.com/${playbackId}/thumbnail.png?token=${thumbnailToken.playbackToken}`;
   } else {
-    return "";
+    return undefined;
   }
 };
 
