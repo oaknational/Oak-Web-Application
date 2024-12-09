@@ -121,12 +121,13 @@ export const LessonMedia = (props: LessonMediaProps) => {
     videoPlayerWrapper.current?.focus();
   };
 
-  const handleVideoEvents = (event: VideoEventCallbackArgs) => {
-    if (event.event === "play") {
+  const handleVideoEvents = (e: VideoEventCallbackArgs) => {
+    if (e.event === "play") {
       currentClip && setPlayedVideos([...playedVideos, currentClip.slug]);
     }
 
-    if (event.event === "end") {
+    // we use this check rather than event === "end" because Mux sometimes dispatches "pause" event when video ends
+    if (e.timeElapsed === e.duration) {
       const nextClip = listOfAllClips[currentIndex + 1];
       nextClip && handleVideoChange(nextClip);
     }
