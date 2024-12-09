@@ -1,3 +1,28 @@
+# [1.646.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.645.0...v1.646.0) (2024-12-09)
+
+
+### Features
+
+* add autoplay functionality to media clips ([03f7b45](https://github.com/oaknational/Oak-Web-Application/commit/03f7b4594d06b3a52063ea7f12336f3cc69dc808))
+* check if time is elapsed rather than event name when video ends ([210a7ae](https://github.com/oaknational/Oak-Web-Application/commit/210a7ae67cfae928123df1706acd3f90aef7b9f8))
+* replace sessionStorage with useState ([564e80c](https://github.com/oaknational/Oak-Web-Application/commit/564e80c204d0dd7e39a439cbaa278e428b68c072))
+* update oak-components version and set focus after changing video ([68e7e7a](https://github.com/oaknational/Oak-Web-Application/commit/68e7e7a13f4ebe6671efcfb457f56c5439e2c5c8))
+
+# [1.645.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.644.0...v1.645.0) (2024-12-09)
+
+
+### Bug Fixes
+
+* actually set the banner to be singular ([87f3955](https://github.com/oaknational/Oak-Web-Application/commit/87f395596921b5e4facce0a16b7a758d3d418621))
+* expiring banner render singular and multiples ([fb3e63f](https://github.com/oaknational/Oak-Web-Application/commit/fb3e63fc71d58a11174c43ee4616daac8a130ff9))
+* remove non relevant tests ([1fabb5f](https://github.com/oaknational/Oak-Web-Application/commit/1fabb5fc91cd85ba5fe16fc3bf7b6aee3dde6175))
+
+
+### Features
+
+* pupil expiring banners ([5c51362](https://github.com/oaknational/Oak-Web-Application/commit/5c51362c539b611266ef9a329695a52f53adc3ee))
+* refactored expiring banner into a component ([677f20b](https://github.com/oaknational/Oak-Web-Application/commit/677f20b1fb12aa1c423b6fb220d7cc7b0e2bd34b))
+
 # [1.644.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.643.0...v1.644.0) (2024-12-06)
 
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import {
   OakTertiaryButton,
@@ -70,7 +70,6 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   const router = useRouter();
   const { query } = router;
-  const videoQuery = query.video;
 
   // construct list of all clips in one array
   const listOfAllClips = Object.keys(mediaClips)
@@ -82,52 +81,55 @@ export const LessonMedia = (props: LessonMediaProps) => {
     .flat();
 
   const [currentClip, setCurrentClip] = useState(
-    getInitialCurrentClip(listOfAllClips, videoQuery),
+    getInitialCurrentClip(listOfAllClips, query.video),
   );
   const [currentIndex, setCurrentIndex] = useState(
     currentClip ? listOfAllClips.indexOf(currentClip) : 0,
   );
+  const [playedVideos, setPlayedVideos] = useState<string[]>([]);
 
-  const playedVideosList: string[] =
-    sessionStorage.getItem("playedVideosList")?.split(",") || [];
+  const videoPlayerWrapper = useRef<HTMLDivElement>(null);
 
-  // action performed on media clip item click
+  const goToTheNextClip = (slug: string) => {
+    if (programmeSlug && unitSlug) {
+      const newUrl = resolveOakHref({
+        page: "lesson-media",
+        programmeSlug,
+        unitSlug,
+        lessonSlug,
+      });
+
+      window.history.replaceState(
+        window.history.state,
+        "",
+        `${newUrl}?video=${slug}`,
+      );
+    }
+  };
+
+  const handleVideoChange = (clip: MediaClip) => {
+    goToTheNextClip(clip.slug);
+    setCurrentClip(clip);
+    setCurrentIndex(listOfAllClips.indexOf(clip));
+  };
+
   const onMediaClipClick = (clipSlug: string) => {
     const clickedMediaClip = listOfAllClips.find(
       (clip) => clip.slug === clipSlug,
     );
-
-    setCurrentClip(clickedMediaClip);
-    setCurrentIndex(
-      clickedMediaClip ? listOfAllClips.indexOf(clickedMediaClip) : 0,
-    );
-
-    // add video parameter to the url
-    router.replace(
-      {
-        pathname: router.pathname,
-        query: {
-          programmeSlug: programmeSlug,
-          unitSlug: unitSlug,
-          lessonSlug: lessonSlug,
-          video: clipSlug,
-        },
-      },
-      undefined,
-      { shallow: true },
-    );
+    clickedMediaClip && handleVideoChange(clickedMediaClip);
+    videoPlayerWrapper.current?.focus();
   };
 
-  const handleVideoPlayed = (event: VideoEventCallbackArgs) => {
-    if (event.event === "play") {
-      if (currentClip && !playedVideosList.includes(currentClip?.slug)) {
-        // add played video to session storage
-        const updatedPlayedVideosList = [
-          ...playedVideosList,
-          currentClip.slug,
-        ].toString();
-        sessionStorage.setItem("playedVideosList", updatedPlayedVideosList);
-      }
+  const handleVideoEvents = (e: VideoEventCallbackArgs) => {
+    if (e.event === "play") {
+      currentClip && setPlayedVideos([...playedVideos, currentClip.slug]);
+    }
+
+    // we use this check rather than event === "end" because Mux sometimes dispatches "pause" event when video ends
+    if (e.timeElapsed === e.duration) {
+      const nextClip = listOfAllClips[currentIndex + 1];
+      nextClip && handleVideoChange(nextClip);
     }
   };
 
@@ -138,7 +140,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       title={currentClip.mediaClipTitle}
       location={"lesson"}
       isLegacy={false}
-      userEventCallback={handleVideoPlayed}
+      userEventCallback={handleVideoEvents}
     />
   );
 
@@ -168,12 +170,10 @@ export const LessonMedia = (props: LessonMediaProps) => {
               muxPlayingState={getPlayingState(
                 currentClip?.slug,
                 slug,
-                playedVideosList,
+                playedVideos,
               )}
-              playbackId={mediaClip?.videoObject?.muxPlaybackId || ""}
-              playbackPolicy={
-                mediaClip?.videoObject?.playbackPolicy || "public"
-              }
+              playbackId={videoObject?.muxPlaybackId}
+              playbackPolicy={videoObject?.playbackPolicy}
               isAudioClip={false}
               onClick={() => onMediaClipClick(slug)}
               key={index}
@@ -190,7 +190,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
               muxPlayingState={getPlayingState(
                 currentClip?.slug,
                 slug,
-                playedVideosList,
+                playedVideos,
               )}
               isAudioClip={false}
               imageAltText=""
@@ -282,6 +282,10 @@ export const LessonMedia = (props: LessonMediaProps) => {
               $background={"black"}
               $overflow={["visible", "visible", "hidden"]}
               $height={"100%"}
+              $br={"border-solid-m"}
+              data-testid="video-player-wrapper"
+              ref={videoPlayerWrapper}
+              tabIndex={-1}
             >
               {videoPlayer}
             </OakFlex>
