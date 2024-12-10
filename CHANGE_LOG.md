@@ -1,3 +1,10 @@
+## [1.647.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.647.0...v1.647.1) (2024-12-10)
+
+
+### Bug Fixes
+
+* duplicate isExamboardSlug to fix bundle size issue ([d757feb](https://github.com/oaknational/Oak-Web-Application/commit/d757feb63db22d296a7297ea9d1c49967cab0260))
+
 # [1.647.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.646.0...v1.647.0) (2024-12-09)
 
 
