@@ -8,9 +8,9 @@ import UnitListItem, {
   UnitListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading/OutlineHeading";
-import { UnitData } from "@/node-lib/curriculum-api-2023/queries/unitListing/units/units.schema";
+import { ReshapedUnitData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
 
-export type UnitOption = Omit<UnitData, "unitStudyOrder">;
+export type UnitOption = Omit<ReshapedUnitData, "unitStudyOrder">;
 
 type UnitListOptionalityCardProps = {
   unitOptions: UnitOption[];

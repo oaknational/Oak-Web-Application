@@ -1,10 +1,10 @@
-import { syntheticUnitvariantLessonsFixture } from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
 
 import lessonListing, {
   getTransformedLessons,
-  getTransformedUnit,
+  getPackagedUnit,
 } from "./lessonListing.query";
 import lessonListingSchema from "./lessonListing.schema";
 
@@ -14,7 +14,7 @@ describe("lessonListing()", () => {
       await expect(async () => {
         await lessonListing({
           ...sdk,
-          lessonListing: jest.fn(() => Promise.resolve({ unit: [] })),
+          lessonListing: jest.fn(() => Promise.resolve({ lessons: [] })),
         })({
           programmeSlug: "programme-slug",
           unitSlug: "unit-slug",
@@ -27,7 +27,7 @@ describe("lessonListing()", () => {
         ...sdk,
         lessonListing: jest.fn(() =>
           Promise.resolve({
-            unit: [syntheticUnitvariantLessonsFixture()],
+            lessons: [syntheticUnitvariantLessonsByKsFixture()],
           }),
         ),
       })({
@@ -38,7 +38,7 @@ describe("lessonListing()", () => {
       expect(lessonListingSchema.parse(res)).toEqual({
         programmeSlug: "programme-slug",
         keyStageSlug: "ks1",
-        keyStageTitle: "Key stage 1",
+        keyStageTitle: "Key Stage 1",
         subjectSlug: "maths",
         subjectTitle: "Maths",
         unitSlug: "unit-slug",
@@ -49,6 +49,9 @@ describe("lessonListing()", () => {
         examBoardTitle: null,
         yearTitle: "Year 1",
         yearSlug: "year-1",
+        pathwaySlug: null,
+        pathwayTitle: null,
+        pathwayDisplayOrder: null,
         lessons: [
           {
             lessonSlug: "lesson-slug",
@@ -68,9 +71,9 @@ describe("lessonListing()", () => {
       });
     });
     test("it returns lessons in the correct order", async () => {
-      const lessonListingFixture2 = syntheticUnitvariantLessonsFixture({
+      const lessonListingFixture2 = syntheticUnitvariantLessonsByKsFixture({
         overrides: {
-          supplementary_data: { unit_order: 2, order_in_unit: 2 },
+          order_in_unit: 2,
           lesson_data: {
             lesson_id: 1,
             lesson_uid: "lesson-uid",
@@ -107,7 +110,10 @@ describe("lessonListing()", () => {
         ...sdk,
         lessonListing: jest.fn(() =>
           Promise.resolve({
-            unit: [lessonListingFixture2, syntheticUnitvariantLessonsFixture()],
+            lessons: [
+              lessonListingFixture2,
+              syntheticUnitvariantLessonsByKsFixture(),
+            ],
           }),
         ),
       })({
@@ -127,7 +133,7 @@ describe("lessonListing()", () => {
           // @ts-ignore
           lessonListing: jest.fn(() =>
             Promise.resolve({
-              unit: [
+              lessons: [
                 {
                   programmeSlug: "programme-slug",
                   unitTitle: "unit-title",
@@ -148,17 +154,43 @@ describe("lessonListing()", () => {
     });
   });
   describe("transform functions ", () => {
+    const mockPackagedUnitData = {
+      programmeFields:
+        syntheticUnitvariantLessonsByKsFixture().programme_fields,
+      unitSlug: "unit-slug",
+      programmeSlug: "programme-slug",
+      unitTitle:
+        syntheticUnitvariantLessonsByKsFixture().programme_fields.optionality ??
+        syntheticUnitvariantLessonsByKsFixture().unit_data.title,
+      programmeSlugByYear:
+        syntheticUnitvariantLessonsByKsFixture().programme_slug_by_year,
+    };
     test("getTransformedUnit returns the correct data", async () => {
-      const transformedLessons = getTransformedUnit(
-        syntheticUnitvariantLessonsFixture(),
-        [],
+      const transformedLessons = getPackagedUnit(
+        mockPackagedUnitData,
+        getTransformedLessons([syntheticUnitvariantLessonsByKsFixture()]),
       );
       expect(transformedLessons).toEqual({
         examBoardSlug: null,
         examBoardTitle: null,
         keyStageSlug: "ks1",
-        keyStageTitle: "Key stage 1",
-        lessons: [],
+        keyStageTitle: "Key Stage 1",
+        lessons: [
+          {
+            description: "lesson-description",
+            expired: false,
+            hasCopyrightMaterial: false,
+            lessonCohort: "2023-2024",
+            lessonSlug: "lesson-slug",
+            lessonTitle: "lesson-title",
+            orderInUnit: 1,
+            presentationCount: 0,
+            pupilLessonOutcome: "pupil-lesson-outcome",
+            quizCount: 0,
+            videoCount: 0,
+            worksheetCount: 0,
+          },
+        ],
         programmeSlug: "programme-slug",
         subjectSlug: "maths",
         subjectTitle: "Maths",
@@ -168,42 +200,65 @@ describe("lessonListing()", () => {
         unitTitle: "unit-title",
         yearTitle: "Year 1",
         yearSlug: "year-1",
+        pathwaySlug: null,
+        pathwayTitle: null,
+        pathwayDisplayOrder: null,
       });
     });
     test("getTransformedUnit returns the correct data for optionality units", () => {
-      const pfs = syntheticUnitvariantLessonsFixture().programme_fields;
-      const transformedLessons = getTransformedUnit(
-        syntheticUnitvariantLessonsFixture({
-          overrides: {
-            programme_fields: {
-              ...pfs,
-              optionality: "optional",
+      const pfs = syntheticUnitvariantLessonsByKsFixture().programme_fields;
+      const transformedLessons = getPackagedUnit(
+        mockPackagedUnitData,
+        getTransformedLessons([
+          syntheticUnitvariantLessonsByKsFixture({
+            overrides: {
+              programme_fields: {
+                ...pfs,
+                optionality: "optional",
+              },
             },
-          },
-        }),
-        [],
+          }),
+        ]),
       );
       expect(transformedLessons).toEqual({
         examBoardSlug: null,
         examBoardTitle: null,
         keyStageSlug: "ks1",
-        keyStageTitle: "Key stage 1",
-        lessons: [],
+        keyStageTitle: "Key Stage 1",
+        lessons: [
+          {
+            description: "lesson-description",
+            expired: false,
+            hasCopyrightMaterial: false,
+            lessonCohort: "2023-2024",
+            lessonSlug: "lesson-slug",
+            lessonTitle: "lesson-title",
+            orderInUnit: 1,
+            presentationCount: 0,
+            pupilLessonOutcome: "pupil-lesson-outcome",
+            quizCount: 0,
+            videoCount: 0,
+            worksheetCount: 0,
+          },
+        ],
         programmeSlug: "programme-slug",
         subjectSlug: "maths",
         subjectTitle: "Maths",
         tierSlug: null,
         tierTitle: null,
         unitSlug: "unit-slug",
-        unitTitle: "optional",
+        unitTitle: "unit-title",
         yearTitle: "Year 1",
         yearSlug: "year-1",
+        pathwaySlug: null,
+        pathwayTitle: null,
+        pathwayDisplayOrder: null,
       });
     });
     test("getTransformedLessons returns the correct data", async () => {
-      const transformedLessons = getTransformedLessons({
-        unit: [syntheticUnitvariantLessonsFixture()],
-      });
+      const transformedLessons = getTransformedLessons([
+        syntheticUnitvariantLessonsByKsFixture(),
+      ]);
       expect(transformedLessons).toEqual([
         {
           description: "lesson-description",

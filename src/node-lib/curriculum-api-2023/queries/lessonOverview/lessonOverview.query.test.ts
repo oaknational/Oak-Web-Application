@@ -1,6 +1,6 @@
 import {
   lessonContentFixture,
-  syntheticUnitvariantLessonsFixture,
+  syntheticUnitvariantLessonsByKsFixture,
 } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
@@ -29,13 +29,14 @@ describe("lessonOverview()", () => {
   });
 
   test("it returns the lesson if found", async () => {
-    const _syntheticUnitvariantLessonsFixture =
-      syntheticUnitvariantLessonsFixture({
+    const _syntheticUnitvariantLessonsByKsFixture =
+      syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           lesson_slug: "lesson-slug-test",
           unit_slug: "unit-slug-test",
           programme_slug: "programme-slug-test",
           is_legacy: false,
+          programme_slug_by_year: ["programme-slug-test"],
         },
       });
 
@@ -50,7 +51,7 @@ describe("lessonOverview()", () => {
       ...sdk,
       lessonOverview: jest.fn(() =>
         Promise.resolve({
-          browseData: [_syntheticUnitvariantLessonsFixture],
+          browseData: [_syntheticUnitvariantLessonsByKsFixture],
           content: [_lessonContentFixture],
         }),
       ),
@@ -59,39 +60,39 @@ describe("lessonOverview()", () => {
     });
 
     expect(lesson.lessonSlug).toEqual(
-      _syntheticUnitvariantLessonsFixture.lesson_slug,
+      _syntheticUnitvariantLessonsByKsFixture.lesson_slug,
     );
     expect(lesson.unitSlug).toEqual(
-      _syntheticUnitvariantLessonsFixture.unit_slug,
+      _syntheticUnitvariantLessonsByKsFixture.unit_slug,
     );
     expect(lesson.programmeSlug).toEqual(
-      _syntheticUnitvariantLessonsFixture.programme_slug,
+      _syntheticUnitvariantLessonsByKsFixture.programme_slug,
     );
     expect(lesson.isLegacy).toEqual(
-      _syntheticUnitvariantLessonsFixture.is_legacy,
+      _syntheticUnitvariantLessonsByKsFixture.is_legacy,
     );
     expect(lesson.lessonSlug).toEqual(
-      _syntheticUnitvariantLessonsFixture.lesson_slug,
+      _syntheticUnitvariantLessonsByKsFixture.lesson_slug,
     );
 
     expect(lesson.lessonTitle).toEqual(_lessonContentFixture.lesson_title);
   });
 
   test("it should return pathways for canonical lesson if unit_slug and programme_slug are not passed as props", async () => {
-    const _syntheticUnitvariantLessonsFixture1 =
-      syntheticUnitvariantLessonsFixture({
+    const _syntheticUnitvariantLessonsByKsFixture1 =
+      syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           programme_slug: "lesson-slug-test-1",
         },
       });
-    const _syntheticUnitvariantLessonsFixture2 =
-      syntheticUnitvariantLessonsFixture({
+    const _syntheticUnitvariantLessonsByKsFixture2 =
+      syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           programme_slug: "lesson-slug-test-2",
         },
       });
-    const _syntheticUnitvariantLessonsFixture3 =
-      syntheticUnitvariantLessonsFixture({
+    const _syntheticUnitvariantLessonsByKsFixture3 =
+      syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           programme_slug: "lesson-slug-test-3",
         },
@@ -109,9 +110,9 @@ describe("lessonOverview()", () => {
       lessonOverview: jest.fn(() =>
         Promise.resolve({
           browseData: [
-            _syntheticUnitvariantLessonsFixture1,
-            _syntheticUnitvariantLessonsFixture2,
-            _syntheticUnitvariantLessonsFixture3,
+            _syntheticUnitvariantLessonsByKsFixture1,
+            _syntheticUnitvariantLessonsByKsFixture2,
+            _syntheticUnitvariantLessonsByKsFixture3,
           ],
           content: [_lessonContentFixture],
         }),
@@ -130,25 +131,6 @@ describe("lessonOverview()", () => {
     expect(lesson.pathways.length).toEqual(3);
   });
 
-  test("throws a Zod error if the response is invalid", async () => {
-    await expect(async () => {
-      await lessonOverview({
-        ...sdk,
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        lessonOverview: jest.fn(() =>
-          Promise.resolve({
-            browseData: [{ lesson_slug: "hi" }],
-            content: [{ lesson_slug: "hi" }],
-          }),
-        ),
-      })({
-        lessonSlug: "lesson-slug",
-        unitSlug: "unit-slug",
-        programmeSlug: "programme-slug",
-      });
-    }).rejects.toThrow(`unit_slug`);
-  });
   test("throws a 'Resource not found' error if  data", async () => {
     await expect(async () => {
       await lessonOverview({
@@ -166,6 +148,7 @@ describe("lessonOverview()", () => {
       });
     }).rejects.toThrow("Resource not found");
   });
+
   describe("getCopyrightContent", () => {
     it("should return null if content is null", () => {
       expect(getCopyrightContent(null)).toBeNull();

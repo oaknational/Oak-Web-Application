@@ -107,6 +107,9 @@ describe("SubjectProgrammeListing", () => {
       tierDisplayOrder: 3,
       tierSlug: "higher",
       tierTitle: "Higher",
+      pathwayDisplayOrder: null,
+      pathwaySlug: null,
+      pathwayTitle: null,
     });
   });
 });

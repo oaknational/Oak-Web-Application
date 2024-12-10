@@ -57338,11 +57338,11 @@ export type CurriculumUnitsIncludeNewQuery = { __typename?: 'query_root', units:
 
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
-  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp>;
+  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp>;
 }>;
 
 
-export type LessonDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_published_2_1_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: boolean | null, login_required?: boolean | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, null_unitvariant?: any | null }> };
+export type LessonDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_published_3_0_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: boolean | null, login_required?: boolean | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
 
 export type LessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -57350,7 +57350,7 @@ export type LessonListingQueryVariables = Exact<{
 }>;
 
 
-export type LessonListingQuery = { __typename?: 'query_root', unit: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', unit_slug?: string | null, lesson_data?: any | null, lesson_slug?: string | null, is_legacy?: boolean | null, programme_slug?: string | null, unit_data?: any | null, null_unitvariant?: any | null, programme_fields?: any | null, supplementary_data?: any | null }> };
+export type LessonListingQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unit_data?: any | null, programme_slug?: string | null, is_legacy?: boolean | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
 
 export type LessonMediaClipsQueryVariables = Exact<{
   browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp>;
@@ -57360,20 +57360,20 @@ export type LessonMediaClipsQueryVariables = Exact<{
 export type LessonMediaClipsQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
 
 export type LessonOverviewQueryVariables = Exact<{
-  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp>;
+  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp>;
   lessonSlug: Scalars['String']['input'];
 }>;
 
 
-export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_2_1_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_3_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null }> };
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
-  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp>;
+  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp>;
 }>;
 
 
-export type LessonShareQuery = { __typename?: 'query_root', share: Array<{ __typename?: 'published_mv_lesson_content_published_2_1_0', lesson_title?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, video_mux_playback_id?: string | null, video_duration?: string | null, worksheet_asset_object_url?: string | null, expired?: any | null }>, browse: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, null_unitvariant?: any | null, unit_title?: any | null }> };
+export type LessonShareQuery = { __typename?: 'query_root', share: Array<{ __typename?: 'published_mv_lesson_content_published_3_0_0', lesson_title?: string | null, starter_quiz?: any | null, exit_quiz?: any | null, video_mux_playback_id?: string | null, video_duration?: string | null, worksheet_asset_object_url?: string | null, expired?: any | null }>, browse: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, unit_title?: any | null }> };
 
 export type ProgrammeListingQueryVariables = Exact<{
   keyStageSlug?: InputMaybe<Scalars['String']['input']>;
@@ -57382,7 +57382,7 @@ export type ProgrammeListingQueryVariables = Exact<{
 }>;
 
 
-export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', lesson_data?: any | null, programme_fields?: any | null, is_legacy?: boolean | null, programme_slug?: string | null }> };
+export type ProgrammeListingQuery = { __typename?: 'query_root', programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0', lesson_slug?: string | null, unit_slug?: string | null, unit_data?: any | null, null_unitvariant_id?: number | null, lesson_data?: any | null, programme_fields?: any | null, is_legacy?: boolean | null, programme_slug?: string | null }> };
 
 export type PupilLessonQueryVariables = Exact<{
   browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Year_12_0_0_Bool_Exp>;
@@ -57548,7 +57548,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', subjectLessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant?: any | null, supplementary_data?: any | null, lesson_data?: any | null, unit_data?: any | null, unit_slug?: string | null, lesson_slug?: string | null, programme_slug?: string | null }>, key_stages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null, display_order?: number | null, keystage?: string | null, description?: string | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', subjectUnits: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_1', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant_id?: number | null, unit_data?: any | null, unit_slug?: string | null, programme_slug?: string | null, supplementary_data?: any | null, lesson_count?: number | null, lesson_sensitive_count?: number | null, lesson_expired_count?: number | null, lesson_ids?: any | null, expired?: boolean | null, actions?: any | null, features?: any | null, threads?: any | null, base_slug?: string | null, programme_slug_by_year?: string | null }>, key_stages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null, display_order?: number | null, keystage?: string | null, description?: string | null }> };
 
 export type SubjectPhaseOptionsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -57577,27 +57577,12 @@ export type TeachersSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type TeachersSitemapQuery = { __typename?: 'query_root', keyStages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null }>, programmes: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', programme_slug?: string | null }>, units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', unit_slug?: string | null, programme_slug?: string | null }>, lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null }>, specialistProgrammes: Array<{ __typename?: 'published_mv_specialist_1_0_3', programme_slug?: string | null }>, specialistUnits: Array<{ __typename?: 'published_mv_specialist_1_0_3', unit_slug?: string | null, programme_slug?: string | null }>, specialistLessons: Array<{ __typename?: 'published_mv_specialist_1_0_3', unit_slug?: string | null, lesson_slug?: string | null, programme_slug?: string | null }> };
 
-export type ThreadsForUnitQueryVariables = Exact<{
-  unitId?: InputMaybe<Scalars['Int']['input']>;
-}>;
-
-
-export type ThreadsForUnitQuery = { __typename?: 'query_root', threads: Array<{ __typename?: 'published_mv_threads_by_unit_1_0_0', threads?: any | null, unit_id?: number | null }> };
-
-export type TiersQueryVariables = Exact<{
-  _contains: Scalars['jsonb']['input'];
-  isLegacy: Scalars['Boolean']['input'];
-}>;
-
-
-export type TiersQuery = { __typename?: 'query_root', tiers: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0', programme_fields?: any | null, programme_slug?: string | null }> };
-
 export type UnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
 }>;
 
 
-export type UnitListingQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_10_1_0', is_legacy?: boolean | null, lesson_data?: any | null, lesson_slug?: string | null, null_unitvariant?: any | null, programme_fields?: any | null, programme_slug?: string | null, supplementary_data?: any | null, unit_data?: any | null, unit_slug?: string | null }> };
+export type UnitListingQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_0', is_legacy?: boolean | null, programme_slug?: string | null, unit_slug?: string | null, programme_fields?: any | null, unit_data?: any | null, lesson_count?: number | null, lesson_expired_count?: number | null, lesson_sensitive_count?: number | null, expired?: boolean | null, supplementary_data?: any | null, threads?: any | null, actions?: any | null, features?: any | null }> };
 
 
 export const CurriculumOverviewDocument = gql`
@@ -57734,8 +57719,8 @@ export const CurriculumUnitsIncludeNewDocument = gql`
 }
     `;
 export const LessonDownloadsDocument = gql`
-    query lessonDownloads($lessonSlug: String!, $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0_bool_exp) {
-  download_assets: published_mv_lesson_content_published_2_1_0(
+    query lessonDownloads($lessonSlug: String!, $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0_bool_exp) {
+  download_assets: published_mv_lesson_content_published_3_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     has_slide_deck_asset_object
@@ -57750,35 +57735,40 @@ export const LessonDownloadsDocument = gql`
     geo_restricted
     login_required
   }
-  browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
     where: $browseDataWhere
   ) {
     lesson_slug
     unit_slug
     programme_slug
+    programme_slug_by_year
     is_legacy
     lesson_data
     unit_data
     programme_fields
-    supplementary_data
-    null_unitvariant
+    actions
+    features
+    order_in_unit
   }
 }
     `;
 export const LessonListingDocument = gql`
     query lessonListing($programmeSlug: String!, $unitSlug: String!) {
-  unit: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
     where: {unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}}
   ) {
-    unit_slug
     lesson_data
     lesson_slug
-    is_legacy
-    programme_slug
-    unit_data
-    null_unitvariant
     programme_fields
-    supplementary_data
+    programme_slug_by_year
+    null_unitvariant_id
+    unit_slug
+    unit_data
+    programme_slug
+    is_legacy
+    actions
+    features
+    order_in_unit
   }
 }
     `;
@@ -57801,20 +57791,23 @@ export const LessonMediaClipsDocument = gql`
 }
     `;
 export const LessonOverviewDocument = gql`
-    query lessonOverview($browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0_bool_exp, $lessonSlug: String!) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+    query lessonOverview($browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0_bool_exp, $lessonSlug: String!) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
     where: $browseDataWhere
   ) {
     lesson_slug
     unit_slug
     programme_slug
+    programme_slug_by_year
     is_legacy
     lesson_data
     unit_data
     programme_fields
-    supplementary_data
+    actions
+    features
+    order_in_unit
   }
-  content: published_mv_lesson_content_published_2_1_0(
+  content: published_mv_lesson_content_published_3_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -57827,6 +57820,7 @@ export const LessonOverviewDocument = gql`
     teacher_tips
     key_learning_points
     pupil_lesson_outcome
+    phonics_outcome
     lesson_keywords
     content_guidance
     video_mux_playback_id
@@ -57855,8 +57849,8 @@ export const LessonOverviewDocument = gql`
 }
     `;
 export const LessonShareDocument = gql`
-    query lessonShare($lessonSlug: String!, $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0_bool_exp) {
-  share: published_mv_lesson_content_published_2_1_0(
+    query lessonShare($lessonSlug: String!, $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0_bool_exp) {
+  share: published_mv_lesson_content_published_3_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_title
@@ -57867,7 +57861,7 @@ export const LessonShareDocument = gql`
     worksheet_asset_object_url
     expired: deprecated_fields(path: "expired")
   }
-  browse: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  browse: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
     where: $browseDataWhere
   ) {
     unit_title: unit_data(path: "title")
@@ -57878,17 +57872,21 @@ export const LessonShareDocument = gql`
     lesson_data
     unit_data
     programme_fields
-    supplementary_data
-    null_unitvariant
+    actions
+    features
   }
 }
     `;
 export const ProgrammeListingDocument = gql`
     query programmeListing($keyStageSlug: String, $subjectSlug: String, $isLegacy: Boolean) {
-  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
     where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}, {programme_fields: {_contains: {subject_slug: $subjectSlug}}}, {is_legacy: {_eq: $isLegacy}}]}
     distinct_on: programme_slug
   ) {
+    lesson_slug
+    unit_slug
+    unit_data
+    null_unitvariant_id
     lesson_data
     programme_fields
     is_legacy
@@ -58358,18 +58356,26 @@ export const SpecialistUnitListingDocument = gql`
     `;
 export const SubjectListingDocument = gql`
     query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
-  subjectLessons: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  subjectUnits: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_1(
     where: {_and: [{programme_fields: {_contains: {keystage_slug: $keyStageSlug}}}]}
   ) {
     programme_fields
     is_legacy
-    null_unitvariant
-    supplementary_data
-    lesson_data
+    null_unitvariant_id
     unit_data
     unit_slug
-    lesson_slug
     programme_slug
+    supplementary_data
+    lesson_count
+    lesson_sensitive_count
+    lesson_expired_count
+    lesson_ids
+    expired
+    actions
+    features
+    threads
+    base_slug
+    programme_slug_by_year
   }
   key_stages: published_mv_key_stages_2_0_0 {
     keystage: short_code
@@ -58504,38 +58510,24 @@ export const TeachersSitemapDocument = gql`
   }
 }
     `;
-export const ThreadsForUnitDocument = gql`
-    query threadsForUnit($unitId: Int) {
-  threads: published_mv_threads_by_unit_1_0_0(where: {unit_id: {_eq: $unitId}}) {
-    threads
-    unit_id
-  }
-}
-    `;
-export const TiersDocument = gql`
-    query tiers($_contains: jsonb!, $isLegacy: Boolean!) {
-  tiers: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
-    where: {programme_fields: {_contains: $_contains}, is_legacy: {_eq: $isLegacy}}
-  ) {
-    programme_fields
-    programme_slug
-  }
-}
-    `;
 export const UnitListingDocument = gql`
     query unitListing($programmeSlug: String!) {
-  units: published_mv_synthetic_unitvariant_lessons_by_keystage_10_1_0(
+  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_0(
     where: {programme_slug: {_eq: $programmeSlug}}
   ) {
     is_legacy
-    lesson_data
-    lesson_slug
-    null_unitvariant
-    programme_fields
     programme_slug
-    supplementary_data
-    unit_data
     unit_slug
+    programme_fields
+    unit_data
+    lesson_count
+    lesson_expired_count
+    lesson_sensitive_count
+    expired
+    supplementary_data
+    threads
+    actions
+    features
   }
 }
     `;
@@ -58660,12 +58652,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersSitemap(variables?: TeachersSitemapQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersSitemapQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersSitemapQuery>(TeachersSitemapDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersSitemap', 'query', variables);
-    },
-    threadsForUnit(variables?: ThreadsForUnitQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ThreadsForUnitQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<ThreadsForUnitQuery>(ThreadsForUnitDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'threadsForUnit', 'query', variables);
-    },
-    tiers(variables: TiersQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TiersQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<TiersQuery>(TiersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'tiers', 'query', variables);
     },
     unitListing(variables: UnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<UnitListingQuery>(UnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'unitListing', 'query', variables);

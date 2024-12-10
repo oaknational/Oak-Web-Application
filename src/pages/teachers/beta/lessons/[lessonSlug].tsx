@@ -40,6 +40,7 @@ const TeacherPreviewLessonPage: NextPage<TeacherPreviewLessonPageProps> = ({
             isCanonical: false,
             isSpecialist: false,
           }}
+          isBeta={true}
         />
       </OakThemeProvider>
     </AppLayout>

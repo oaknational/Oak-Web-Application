@@ -12,6 +12,7 @@ import { PupilProgrammeListingData } from "@/node-lib/curriculum-api-2023/querie
 import OakError from "@/errors/OakError";
 import { subjectBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/subjectBrowseData.fixture";
 import { PupilViewsProgrammeListingProps } from "@/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 describe("options-pages-helpers", () => {
   describe("getYearSlug", () => {
@@ -85,7 +86,9 @@ describe("options-pages-helpers", () => {
     it("should return redirect if only one programme exists", async () => {
       (
         curriculumApi2023.default.pupilProgrammeListingQuery as jest.Mock
-      ).mockResolvedValueOnce([syntheticProgrammesByYearFixture()]);
+      ).mockResolvedValueOnce([
+        keysToCamelCase(syntheticProgrammesByYearFixture()),
+      ]);
 
       const result = await getPupilOptionData({
         params: { programmeSlug: "maths-primary-year-1" },
