@@ -584,7 +584,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   };
 
   return (
-    <OakBox>
+    <OakBox aria-describedby="Choose a curriculum" role="group">
       <OakJauntyAngleLabel
         $background={"bg-decorative5-main"}
         $color={"text-primary"}
@@ -596,7 +596,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         $width={"fit-content"}
         $left={"all-spacing-2"}
         $borderRadius={"border-radius-square"}
-        aria-label="Choose a curriculum"
       />
       <OakBox
         $position="relative"
@@ -653,15 +652,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     $pt="inner-padding-s"
                     $pb="inner-padding-s"
                   >
-                    <OakHeading
-                      tag={"h3"}
+                    <OakSpan
                       $font={"heading-light-7"}
                       $mb="space-between-sssx"
                       $color={!showSubjectError ? "black" : "red"}
                       data-testid="subject-picker-button-heading"
                     >
                       Subject
-                    </OakHeading>
+                    </OakSpan>
                     <OakP
                       $font={"body-2"}
                       $color={!showSubjectError ? "black" : "red"}
@@ -894,15 +892,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       $pt="inner-padding-s"
                       $pb="inner-padding-s"
                     >
-                      <OakHeading
-                        tag={"h3"}
+                      <OakSpan
                         $font={"heading-light-7"}
                         $mb="space-between-sssx"
                         $color={!showSubjectError ? "black" : "red"}
                         data-testid="phase-picker-button-heading"
                       >
                         School phase
-                      </OakHeading>
+                      </OakSpan>
                       <Box
                         $font={"body-2"}
                         $color={
