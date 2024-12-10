@@ -244,7 +244,6 @@ function SubjectContainer({
         <OakFlex
           id={subjectErrorId}
           role="alert"
-          aria-live="polite"
           $flexDirection={"row"}
           $mb={"space-between-m"}
         >
@@ -782,7 +781,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       $justifyContent={"flex-end"}
                     >
                       <CurriculumModalCloseButton
-                        ariaLabel="Close subject picker modal"
+                        ariaLabel="Close subject picker"
                         onClose={handleMobileLotPickerModal}
                       />
                     </OakFlex>
@@ -987,7 +986,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           <Flex
                             id={phaseErrorId}
                             role="alert"
-                            aria-live="polite"
                             $flexDirection={"row"}
                             $mb={20}
                           >
@@ -1041,7 +1039,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           $gap={"space-between-s"}
                         >
                           <CurriculumModalCloseButton
-                            ariaLabel="Close phase picker modal"
+                            ariaLabel="Close phase picker"
                             onClose={() => setShowPhases(false)}
                             $position={"absolute"}
                             $top={12}
