@@ -1,17 +1,19 @@
 import {
   LessonOverviewQuery,
-  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp,
 } from "../../generated/sdk";
 import { lessonOverviewQuizData, LessonPathway } from "../../shared.schema";
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
+import { getCorrectYear } from "../../helpers/getCorrectYear";
 
 import lessonOverviewSchema, {
   lessonContentSchema,
   LessonOverviewContent,
   LessonOverviewDownloads,
   LessonOverviewPageData,
-  LessonBrowseDataByKsOld,
-  lessonBrowseDataByKsSchemaOld,
+  LessonBrowseDataByKs,
+  lessonBrowseDataByKsSchema,
 } from "./lessonOverview.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -19,6 +21,7 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -97,7 +100,7 @@ export function getContentGuidance(
 
 export function getCopyrightContent(
   content:
-    | LessonBrowseDataByKsOld["lessonData"]["copyrightContent"]
+    | LessonBrowseDataByKs["lessonData"]["copyrightContent"]
     | { copyrightInfo: string }[]
     | null,
 ): LessonOverviewPageData["copyrightContent"] {
@@ -119,14 +122,14 @@ export function getCopyrightContent(
 
 const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   const pathways = res.browseData.map((l) => {
-    const lesson = lessonBrowseDataByKsSchemaOld.parse(l);
+    const lesson = lessonBrowseDataByKsSchema.parse(l);
     return constructPathwayLesson(lesson);
   });
   return pathways;
 };
 
 export const transformedLessonOverviewData = (
-  browseData: LessonBrowseDataByKsOld,
+  browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
 ): LessonOverviewPageData => {
@@ -161,7 +164,6 @@ export const transformedLessonOverviewData = (
       hasSlideDeckAssetObject: Boolean(content.hasSlideDeckAssetObject),
       isLegacy: browseData.isLegacy,
     }),
-
     updatedAt: browseData.lessonData.updatedAt,
     isLegacy: content.isLegacy || false,
     lessonSlug: browseData.lessonSlug,
@@ -197,6 +199,8 @@ export const transformedLessonOverviewData = (
     lessonGuideUrl: content.lessonGuideAssetObjectUrl ?? null,
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
+    hasMediaClips: false,
+    lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
   };
 };
 
@@ -210,7 +214,7 @@ const lessonOverviewQuery =
   }): Promise<LessonOverviewPageData> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
-    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
+    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp> =
       { lesson_slug: { _eq: lessonSlug } };
 
     const canonicalLesson = !unitSlug && !programmeSlug;
@@ -231,23 +235,28 @@ const lessonOverviewQuery =
       browseDataWhere,
       lessonSlug,
     });
-    if (res.browseData.length > 1 && !canonicalLesson) {
-      const error = new OakError({
-        code: "curriculum-api/uniqueness-assumption-violated",
-      });
-      errorReporter("curriculum-api-2023::lessonOverview")(error, {
-        severity: "warning",
-        ...args,
-        res,
-      });
-    }
 
-    const [browseDataSnake] = res.browseData;
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      LessonOverviewQuery["browseData"][number]
+    >({
+      journey: "teacher",
+      queryName: "lessonOverviewQuery",
+      browseData: res.browseData,
+    });
 
-    if (!browseDataSnake) {
+    if (modifiedBrowseData.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
+    const modifiedProgrammeFields = getCorrectYear({
+      programmeSlugByYear: modifiedBrowseData[0]?.programme_slug_by_year,
+      programmeFields: modifiedBrowseData[0]?.programme_fields,
+    });
+
+    const browseDataSnake = {
+      ...modifiedBrowseData[0],
+      programme_fields: modifiedProgrammeFields,
+    };
     const [contentSnake] = res.content;
 
     if (!contentSnake) {
@@ -266,21 +275,17 @@ const lessonOverviewQuery =
     }
     const pathways = canonicalLesson ? getPathways(res) : [];
 
-    lessonBrowseDataByKsSchemaOld.parse(browseDataSnake);
-    lessonContentSchema.parse({ ...contentSnake, phonics_outcome: null });
+    lessonBrowseDataByKsSchema.parse(browseDataSnake);
+    lessonContentSchema.parse({ ...contentSnake });
 
     /**
      * ! - We've already parsed this data with Zod so we can safely cast it to the correct type
-     * ! - Whilst some data is still new and beta overview and 'regular' overview share types, some values are hardcoded i.e. phonics_outcome
      *  */
-    const browseData = keysToCamelCase(
-      browseDataSnake,
-    ) as LessonBrowseDataByKsOld;
+
+    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
     const content = keysToCamelCase({
       ...contentSnake,
-      phonics_outcome: null,
     }) as LessonOverviewContent;
-
     return lessonOverviewSchema.parse(
       transformedLessonOverviewData(browseData, content, pathways),
     );

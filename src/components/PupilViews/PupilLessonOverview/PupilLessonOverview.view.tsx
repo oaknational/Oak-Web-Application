@@ -8,14 +8,12 @@ import {
   OakGridArea,
   OakHeading,
   OakIcon,
-  OakInlineBanner,
   OakLessonBottomNav,
   OakLessonLayout,
   OakLessonNavItem,
   OakP,
   OakPrimaryButton,
   OakPupilContentGuidance,
-  OakSecondaryLink,
   OakSpan,
   OakSubjectIcon,
   isValidIconName,
@@ -30,6 +28,7 @@ import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/
 import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
+import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 
 type PupilViewsLessonOverviewProps = {
   browseData: LessonBrowseData;
@@ -84,6 +83,9 @@ export const PupilViewsLessonOverview = ({
         browseData.actions?.displayExpiringBanner === true,
     );
 
+  const baseSlug = `${browseData.programmeFields.subjectSlug}-${browseData.programmeFields.phaseSlug}-${browseData.programmeFields.yearSlug}`;
+  const unitListingHref = `/pupils/programmes/${baseSlug}/options`; // NB. options will forward to units if no options available
+
   function pickProgressForSection(section: LessonReviewSection) {
     if (sectionResults[section]?.isComplete) {
       return "complete";
@@ -112,6 +114,18 @@ export const PupilViewsLessonOverview = ({
         {outcome}
       </OakP>
     ));
+
+  const expiringBanner = (
+    <ExpiringBanner
+      isOpen={showExpiredLessonsBanner}
+      isResourcesMessage={false}
+      isSingular={true}
+      onwardHref={unitListingHref}
+      onClose={() => {
+        setShowExpiredLessonsBanner(false);
+      }}
+    />
+  );
 
   return (
     <OakLessonLayout
@@ -154,27 +168,13 @@ export const PupilViewsLessonOverview = ({
             }}
           />
         </OakGridArea>
-        <OakGridArea $colStart={[1, 1, 2]} $colSpan={[12, 12, 10]}>
-          <OakInlineBanner
-            canDismiss
-            cta={
-              <OakSecondaryLink
-                href="https://support.thenational.academy/lesson-unavailable"
-                iconName="chevron-right"
-                isTrailingIcon
-              >
-                Read the help article
-              </OakSecondaryLink>
-            }
-            isOpen={showExpiredLessonsBanner}
-            message="We've made brand new and improved lessons for you."
-            onDismiss={() => {
-              setShowExpiredLessonsBanner(false);
-            }}
-            title="This lesson will soon be taken down."
-            type="alert"
-            $mt={"space-between-m"}
-          />
+        <OakGridArea
+          $colStart={[1, 1, 2]}
+          $colSpan={[12, 12, 10]}
+          $pt="inner-padding-xl"
+          $display={["none", "block"]}
+        >
+          {expiringBanner}
         </OakGridArea>
       </OakGrid>
 
@@ -277,6 +277,16 @@ export const PupilViewsLessonOverview = ({
                 </OakSpan>
               </OakBox>
             )}
+          </OakGridArea>
+
+          <OakGridArea
+            $display={["block", "none"]}
+            $colStart={[1, 1, 7]}
+            $colSpan={[12, 12, 5]}
+            $ph={["inner-padding-m", "inner-padding-none"]}
+            $pb={"inner-padding-m"}
+          >
+            {expiringBanner}
           </OakGridArea>
           <OakGridArea
             $colStart={[1, 1, 7]}
