@@ -1,3 +1,11 @@
+# [1.647.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.646.0...v1.647.0) (2024-12-09)
+
+
+### Features
+
+* adds media clips to lesson overview ([525d90e](https://github.com/oaknational/Oak-Web-Application/commit/525d90ef0c6d6b42eb308a5a0dd1f0b6f55964b7))
+* update package ([b00a234](https://github.com/oaknational/Oak-Web-Application/commit/b00a2347853ff68e9266a516fe492fff1c0767e0))
+
 # [1.646.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.645.0...v1.646.0) (2024-12-09)
 
 

@@ -16,6 +16,7 @@ import {
   getLessonOverviewBreadCrumb,
   createAttributionObject,
   getBreadcrumbsForSpecialistLessonPathway,
+  getMediaClipLabel,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonOverviewAll,
@@ -50,6 +51,8 @@ import {
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -98,7 +101,9 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     lessonGuideUrl,
     teacherShareButton,
     additionalMaterialUrl,
+    hasMediaClips,
   } = lesson;
+
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const commonPathway = getPathway(lesson);
@@ -118,6 +123,10 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     subjectSlug,
     isLegacyLicense,
   );
+
+  const mediaClipLabel = subjectSlug
+    ? getMediaClipLabel(subjectSlug)
+    : "Video & audio clips";
 
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
 
@@ -159,7 +168,12 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
   };
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
-  const pageLinks = getPageLinksForLesson(lesson, copyrightContent);
+  const pageLinks = getPageLinksForLesson(
+    lesson,
+    copyrightContent,
+    mediaClipLabel,
+  );
+
   const slideDeckSectionRef = useRef<HTMLDivElement>(null);
   const lessonDetailsSectionRef = useRef<HTMLDivElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
@@ -168,6 +182,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
   const exitQuizSectionRef = useRef<HTMLDivElement>(null);
   const additionalMaterialSectionRef = useRef<HTMLDivElement>(null);
   const lessonGuideSectionRef = useRef<HTMLDivElement>(null);
+  const lessonMediaClipsSectionRef = useRef<HTMLDivElement>(null);
 
   const sectionRefs = {
     "lesson-guide": lessonGuideSectionRef,
@@ -178,6 +193,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     "starter-quiz": starterQuizSectionRef,
     "exit-quiz": exitQuizSectionRef,
     "additional-material": additionalMaterialSectionRef,
+    "media-clips": lessonMediaClipsSectionRef,
   };
 
   const { currentSectionId } = useCurrentSection({ sectionRefs });
@@ -369,11 +385,34 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                       />
                     </LessonItemContainer>
                   )}
+                {pageLinks.find((p) => p.label === mediaClipLabel) &&
+                  hasMediaClips && (
+                    <LessonItemContainer
+                      title={mediaClipLabel}
+                      ref={lessonMediaClipsSectionRef}
+                      anchorId="media-clips"
+                      isSpecialist={isSpecialist}
+                      slugs={slugs}
+                      pageLinks={pageLinks}
+                      displayMediaClipButton={true}
+                    >
+                      <LessonOverviewMediaClips
+                        lessonSlug={lessonSlug}
+                        learningCycleVideos={
+                          lessonMediaClipsFixtures().mediaClips
+                        }
+                        unitSlug={unitSlug ?? null}
+                        programmeSlug={programmeSlug ?? null}
+                      />
+                    </LessonItemContainer>
+                  )}
+
                 <LessonItemContainer
                   isSpecialist={isSpecialist}
                   ref={lessonDetailsSectionRef}
                   title={"Lesson details"}
                   anchorId="lesson-details"
+                  slugs={slugs}
                   pageLinks={pageLinks}
                 >
                   <LessonDetails

@@ -1,5 +1,6 @@
 import { LessonOverviewPageData } from "../queries/lessonOverview/lessonOverview.schema";
 
+import lessonMediaClipsFixtures from "./lessonMediaClips.fixture";
 import { quizQuestions } from "./quizElements.fixture";
 
 const lessonOverviewFixture = (
@@ -99,6 +100,8 @@ const lessonOverviewFixture = (
     ],
     updatedAt: "2024-09-29T14:00:00.000Z",
     lessonGuideUrl: "lesson-guide-url",
+    hasMediaClips: false,
+    lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
     ...partial,
   };
 };
