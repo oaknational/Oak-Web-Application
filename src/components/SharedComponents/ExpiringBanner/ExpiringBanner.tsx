@@ -32,6 +32,10 @@ export const ExpiringBanner = ({
     }
   })();
 
+  const message = isResourcesMessage
+    ? "Switch to our new teaching resources now - designed by teachers and leading subject experts, and tested in classrooms."
+    : `We've made brand-new and improved lessons for you.`;
+
   return (
     <OakInlineBanner
       canDismiss
@@ -49,7 +53,7 @@ export const ExpiringBanner = ({
         </OakBox>
       }
       isOpen={isOpen}
-      message={`We've made brand-new and improved ${isResourcesMessage ? "resources" : "lessons"} for you.`}
+      message={message}
       onDismiss={onClose}
       title={title}
       type="alert"
