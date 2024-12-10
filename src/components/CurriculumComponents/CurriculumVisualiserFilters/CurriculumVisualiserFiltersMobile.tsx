@@ -134,6 +134,33 @@ function StickyBit({
     return selectedYear === yearOption;
   }
 
+  function scrollToYearSection(yearOption: string) {
+    setTimeout(() => {
+      const targetElement = document.getElementById(`year-${yearOption}`);
+      if (targetElement) {
+        const headerOffset = 70;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+
+        // It's key that focus is set after scroll completes otherwise
+        // scroll ends above the intended year section
+        setTimeout(() => {
+          const yearHeading = document.getElementById(`year-${yearOption}`);
+          if (yearHeading instanceof HTMLElement) {
+            yearHeading.setAttribute("tabindex", "-1");
+            yearHeading.focus();
+          }
+        }, 500);
+      }
+    }, 0);
+  }
+
   return (
     <Box
       $position={["sticky", "static"]}
@@ -207,23 +234,7 @@ function StickyBit({
                         onClick={() => {
                           onSelectYear(yearOption);
                           trackSelectYear(yearOption);
-
-                          const targetElement = document.getElementById(
-                            `year-${yearOption}`,
-                          );
-                          if (targetElement) {
-                            targetElement.scrollIntoView({
-                              behavior: "smooth",
-                            });
-                            const yearHeading = document.getElementById(
-                              `year-${yearOption}`,
-                            );
-
-                            if (yearHeading instanceof HTMLElement) {
-                              yearHeading.setAttribute("tabindex", "-1");
-                              yearHeading.focus();
-                            }
-                          }
+                          scrollToYearSection(yearOption);
                         }}
                       >
                         {getYearGroupTitle(yearData, yearOption)}
