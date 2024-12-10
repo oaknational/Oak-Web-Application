@@ -20,6 +20,7 @@ export type LessonBrowseData = ConvertKeysToCamelCase<
   z.infer<typeof lessonBrowseDataSchema>
 >;
 
+// TODO : Refactor so this and the video object are one
 const mediaObjectSchema = z
   .object({
     muxPlaybackId: z.string(),
@@ -59,18 +60,11 @@ const mediaClipsCycleSchema = z.object({
   videoObject: videoObjectSchema,
 });
 
-const cycleSchema = z.array(mediaClipsCycleSchema);
+export const cycleSchema = z.array(mediaClipsCycleSchema);
 
-const mediaClipsSchema = z.object({
-  intro: cycleSchema,
-  cycle1: cycleSchema,
-  cycle2: cycleSchema,
-  cycle3: cycleSchema,
-});
+export const mediaClipsSchema = z.record(z.string(), cycleSchema);
 
-const learningCycleSchema = z.enum(["intro", "cycle1", "cycle2", "cycle3"]);
-
-const baseLessonMediaClipsSchema = z.object({
+const baseLessonMediaClipsPageSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   keyStageTitle: z.string(),
@@ -78,20 +72,23 @@ const baseLessonMediaClipsSchema = z.object({
 });
 
 export const canonicalLessonMediaClipsSchema =
-  baseLessonMediaClipsSchema.extend({
+  baseLessonMediaClipsPageSchema.extend({
     pathways: z.array(lessonPathwaySchema),
   });
 
-export const lessonMediaClipsSchema = baseLessonMediaClipsSchema.extend({
+export const lessonMediaClipsSchema = baseLessonMediaClipsPageSchema.extend({
   ...baseLessonBrowseSchema.shape,
 });
 
+// MUX Video / Audio object schemas
+export type MediaObject = z.infer<typeof mediaObjectSchema>;
+export type VideoObject = z.infer<typeof videoObjectSchema>;
+
 export type MediaClipsList = z.infer<typeof mediaClipsSchema>;
 export type MediaClip = z.infer<typeof mediaClipsCycleSchema>;
+
+// Page Schemas
 export type LessonMediaClipsData = z.infer<typeof lessonMediaClipsSchema>;
 export type CanonicalLessonMediaClips = z.infer<
   typeof canonicalLessonMediaClipsSchema
 >;
-export type MediaObject = z.infer<typeof mediaObjectSchema>;
-export type VideoObject = z.infer<typeof videoObjectSchema>;
-export type LearningCycle = z.infer<typeof learningCycleSchema>;
