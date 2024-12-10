@@ -596,6 +596,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         $width={"fit-content"}
         $left={"all-spacing-2"}
         $borderRadius={"border-radius-square"}
+        aria-labelledby="Choose a curriculum"
       />
       <OakBox
         $position="relative"
