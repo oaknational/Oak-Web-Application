@@ -1,3 +1,21 @@
+# [1.649.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.648.0...v1.649.0) (2024-12-11)
+
+
+### Bug Fixes
+
+* resolved conflicts ([2e8bcf5](https://github.com/oaknational/Oak-Web-Application/commit/2e8bcf5ed419fdec0e4c3ca73016b62fd2d102a0))
+* tests ([0ee174b](https://github.com/oaknational/Oak-Web-Application/commit/0ee174b9955eae3c3e427688f31d648a89084d92))
+* tests ([e0831cb](https://github.com/oaknational/Oak-Web-Application/commit/e0831cbb4dea008500e3151b2ed39a739b05d311))
+* undoing schema and type hijiinx ([1f903c4](https://github.com/oaknational/Oak-Web-Application/commit/1f903c4755fda22a141bdf87b03a60dbdb210007))
+* update snapshot ([0681bd7](https://github.com/oaknational/Oak-Web-Application/commit/0681bd7d467d973f7f4a11e4377449046892f582))
+* wrong message for teacher views ([ca16bb8](https://github.com/oaknational/Oak-Web-Application/commit/ca16bb8e9204bb6ccef80b5aee3fda84e96d0282))
+
+
+### Features
+
+* convert zod schema to camel case so parsing works ([5653d18](https://github.com/oaknational/Oak-Web-Application/commit/5653d1879be06090bfdc3004354c1dfc9a6d517e))
+* redirect programmes page to unit listing when only one programme available ([46e3d4b](https://github.com/oaknational/Oak-Web-Application/commit/46e3d4b190a2c86677ff048bc908edaf23c135f9))
+
 # [1.648.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.647.2...v1.648.0) (2024-12-11)
 
 
