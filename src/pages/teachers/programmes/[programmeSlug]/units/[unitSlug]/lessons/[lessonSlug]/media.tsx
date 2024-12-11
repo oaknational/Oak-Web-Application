@@ -1,54 +1,54 @@
-import { useFeatureFlagEnabled } from "posthog-js/react";
+import {
+  GetStaticPathsResult,
+  GetStaticProps,
+  GetStaticPropsResult,
+  NextPage,
+} from "next";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import { LessonMedia } from "@/components/TeacherViews/LessonMedia/LessonMedia.view";
+import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import {
+  getFallbackBlockingConfig,
+  shouldSkipInitialBuild,
+} from "@/node-lib/isr";
+import getPageProps from "@/node-lib/getPageProps";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import withFeatureFlag from "@/hocs/withFeatureFlag";
 
-const LessonMediaPage = () => {
-  const isMediaPageContentEnabled = useFeatureFlagEnabled(
-    "is_media_page_content_enabled",
+export type LessonMediaClipsPageProps = {
+  curriculumData: LessonMediaClipsData;
+};
+
+export const LessonMediaClipsPage: NextPage<LessonMediaClipsPageProps> = ({
+  curriculumData,
+}) => {
+  const {
+    lessonTitle,
+    keyStageSlug,
+    subjectTitle,
+    programmeSlug,
+    unitSlug,
+    lessonSlug,
+  } = curriculumData;
+
+  return (
+    <AppLayout
+      seoProps={{
+        ...getSeoProps({
+          title: `Lesson Media: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
+          description: "Extra video and audio for the lesson",
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${
+            programmeSlug
+          }/units/${unitSlug}/lessons/${lessonSlug}`,
+        }),
+      }}
+    >
+      <LessonMedia isCanonical={false} lesson={curriculumData} />
+    </AppLayout>
   );
-
-  if (isMediaPageContentEnabled) {
-    // hardcode data until we have gql query for media page
-    const lessonTitle = "Add 3 numbers together using doubles and near doubles";
-    const lessonSlug = "add-3-numbers-together-using-doubles-and-near-doubles";
-    const keyStageSlug = "ks3";
-    const subjectTitle = "Maths";
-    const subjectSlug = "maths";
-    const programmeSlug = "maths-primary-ks2";
-    const unitSlug = "review-strategies-for-adding-and-subtracting-across-10";
-    const unitTitle = "Review strategies for adding and subtracting across 10";
-
-    const lesson = {
-      lessonTitle,
-      lessonSlug,
-      subjectTitle,
-      subjectSlug,
-      unitTitle,
-      unitSlug,
-      programmeSlug,
-    };
-
-    return (
-      <AppLayout
-        seoProps={{
-          ...getSeoProps({
-            title: `Lesson Media: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
-            description: "Extra video and audio for the lesson",
-            canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${
-              programmeSlug
-            }/units/${unitSlug}/lessons/${lessonSlug}`,
-          }),
-        }}
-      >
-        <LessonMedia isCanonical={false} lesson={lesson} />
-      </AppLayout>
-    );
-  } else {
-    return null;
-  }
 };
 
 export type URLParams = {
@@ -57,4 +57,57 @@ export type URLParams = {
   unitSlug: string;
 };
 
-export default LessonMediaPage;
+export const getStaticPaths = async () => {
+  if (shouldSkipInitialBuild) {
+    return getFallbackBlockingConfig();
+  }
+
+  const config: GetStaticPathsResult<URLParams> = {
+    fallback: "blocking",
+    paths: [],
+  };
+  return config;
+};
+
+export const getStaticProps: GetStaticProps<
+  LessonMediaClipsPageProps,
+  URLParams
+> = async (context) => {
+  return getPageProps({
+    page: "lessonMedia::getStaticProps",
+    context,
+    getProps: async () => {
+      if (!context.params) {
+        throw new Error("No context.params");
+      }
+      const { lessonSlug, programmeSlug, unitSlug } = context.params;
+
+      const curriculumData =
+        await curriculumApi2023.lessonMediaClips<LessonMediaClipsData>({
+          lessonSlug,
+          programmeSlug,
+          unitSlug,
+        });
+
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
+
+      const results: GetStaticPropsResult<LessonMediaClipsPageProps> = {
+        props: {
+          curriculumData,
+        },
+      };
+      return results;
+    },
+  });
+};
+
+const LessonMediaPageWithFeatureFlag = withFeatureFlag(
+  LessonMediaClipsPage,
+  "is_media_page_content_enabled",
+);
+
+export default LessonMediaPageWithFeatureFlag;

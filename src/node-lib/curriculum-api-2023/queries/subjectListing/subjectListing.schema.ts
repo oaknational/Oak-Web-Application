@@ -2,7 +2,7 @@ import { z } from "zod";
 import {
   keystageSlugs,
   keystageDescriptions,
-  syntheticUnitvariantLessonsByKsSchemaOld,
+  syntheticUnitvariantsWithLessonIdsByKsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 export const subjectSchema = z.object({
@@ -36,9 +36,7 @@ const subjectListingSchema = z.object({
 });
 
 export const subjectLisitingRawSchema = z.object({
-  subjectLessons: z.array(
-    syntheticUnitvariantLessonsByKsSchemaOld.omit({ unitvariant_id: true }),
-  ),
+  subjectUnits: z.array(syntheticUnitvariantsWithLessonIdsByKsSchema),
   key_stages: z.array(keyStageDataRaw),
 });
 

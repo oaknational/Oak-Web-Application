@@ -4,6 +4,7 @@ import {
   getPageLinksForLesson,
   groupLessonPathways,
   getLessonMediaBreadCrumb,
+  getMediaClipLabel,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   quizQuestions,
@@ -118,6 +119,7 @@ describe("getPageLinksForLesson()", () => {
       exitQuiz: [],
       hasCopyrightMaterial: false,
       hasDownloadableResources: true,
+      hasMediaClips: false,
     };
 
     const result = getPageLinksForLesson(lesson, []);
@@ -137,7 +139,7 @@ describe("getPageLinksForLesson()", () => {
       },
       {
         anchorId: "video",
-        label: "Video",
+        label: "Lesson video",
       },
       {
         anchorId: "worksheet",
@@ -178,7 +180,7 @@ describe("getPageLinksForLesson()", () => {
       },
       {
         anchorId: "video",
-        label: "Video",
+        label: "Lesson video",
       },
       {
         anchorId: "worksheet",
@@ -212,6 +214,7 @@ describe("getPageLinksForLesson()", () => {
       starterQuiz: [],
       exitQuiz: [],
       hasDownloadableResources: true,
+      hasMediaClips: false,
     };
 
     const result = getPageLinksForLesson(lesson, [
@@ -696,5 +699,32 @@ describe("getLessonMediaBreadCrumb", () => {
       label: "Extra video and audio",
       disabled: undefined,
     });
+  });
+});
+
+describe("getMediaClipLabel", () => {
+  it("returns 'Demonstration videos' for 'physical-education'", () => {
+    const result = getMediaClipLabel("physical-education");
+    expect(result).toBe("Demonstration videos");
+  });
+
+  it("returns 'Audio clips' for 'spanish'", () => {
+    const result = getMediaClipLabel("spanish");
+    expect(result).toBe("Audio clips");
+  });
+
+  it("returns 'Audio clips' for 'french'", () => {
+    const result = getMediaClipLabel("french");
+    expect(result).toBe("Audio clips");
+  });
+
+  it("returns 'Audio clips' for 'german'", () => {
+    const result = getMediaClipLabel("german");
+    expect(result).toBe("Audio clips");
+  });
+
+  it("returns 'Video & audio clips' for any other subject", () => {
+    const result = getMediaClipLabel("math");
+    expect(result).toBe("Video & audio clips");
   });
 });

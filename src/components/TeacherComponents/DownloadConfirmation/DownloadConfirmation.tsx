@@ -54,11 +54,18 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     focusRef.current?.focus();
   }, []);
 
+  // create a share URL which points at the lesson overview page
+  const pathElems = window.location.href.split("/");
+  const shareBaseUrl = pathElems
+    .splice(0, pathElems.indexOf(lessonSlug) + 1)
+    .join("/");
+
   const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
     lessonSlug,
-    unitSlug: unitSlug ?? undefined,
-    programmeSlug: programmeSlug ?? undefined,
+    unitSlug: isCanonical ? undefined : (unitSlug ?? undefined), // NB. unitSlug can sometimes be defined for canonical state
+    programmeSlug: isCanonical ? undefined : (programmeSlug ?? undefined),
     source: isCanonical ? "download-canonical" : "download-browse",
+    shareBaseUrl,
     curriculumTrackingProps: {
       lessonName: lessonTitle,
       unitName: unitTitle ?? "",
@@ -69,9 +76,15 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     },
   });
 
-  const teacherShareButton = shareExperimentFlag ? (
-    <TeacherShareButton shareUrl={shareUrl} shareActivated={shareActivated} />
-  ) : null;
+  const teacherShareButton =
+    shareExperimentFlag === "test" ? (
+      <TeacherShareButton
+        label="Share resources with colleague"
+        shareUrl={shareUrl}
+        shareActivated={shareActivated}
+        variant="primary"
+      />
+    ) : null;
 
   return (
     <>
@@ -149,12 +162,12 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
             Thanks for downloading
           </OakHeading>
-          {teacherShareButton}
 
           <OakP $font={"body-1"}>
             We hope you find the resources useful. Click the question mark in
             the bottom-right corner to share your feedback.
           </OakP>
+          {teacherShareButton}
         </Flex>
       </Flex>
 

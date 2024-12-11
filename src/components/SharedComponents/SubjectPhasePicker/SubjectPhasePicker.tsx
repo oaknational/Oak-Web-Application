@@ -14,22 +14,24 @@ import {
 } from "@oaknational/oak-components";
 import { sortBy } from "lodash";
 import { flushSync } from "react-dom";
+import {
+  examboardSlugs,
+  ProgrammeFields,
+} from "@oaknational/oak-curriculum-schema";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import {
+import type {
   KS4Option,
   Phase,
   Subject,
   SubjectPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
 import Icon from "@/components/SharedComponents/Icon";
-import { CurriculumTab } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
@@ -38,6 +40,13 @@ import { Hr } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import type { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
+
+// FIXME: This is from <@/pages-helpers/pupil/options-pages/options-pages-helpers> being duplicated here to fix bundle issues.
+const isExamboardSlug = (
+  examboardSlug: ProgrammeFields["examboard_slug"] | string | null,
+): examboardSlug is ProgrammeFields["examboard_slug"] =>
+  Object.keys(examboardSlugs.Values).includes(examboardSlug ?? "");
 
 const DEFAULT_KEYSTAGES = [
   { slug: "ks1" },

@@ -29,7 +29,7 @@ const baseLessonShareSchema = z.object({
   expired: z.boolean().nullable(),
 });
 
-export const lessonShareSchema = baseLessonShareSchema.extend({
+export const baseLessonBrowseSchema = z.object({
   programmeSlug: z.string(),
   keyStageSlug: z.string(),
   keyStageTitle: z.string(),
@@ -41,6 +41,10 @@ export const lessonShareSchema = baseLessonShareSchema.extend({
   examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
+});
+
+export const lessonShareSchema = baseLessonShareSchema.extend({
+  ...baseLessonBrowseSchema.shape,
 });
 
 export const canonicalLessonShareSchema = baseLessonShareSchema.extend({

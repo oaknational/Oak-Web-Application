@@ -1,12 +1,3 @@
-import OakError from "../../../../errors/OakError";
-import { Sdk } from "../../sdk";
-import {
-  constructLessonBrowseQuery,
-  constructPathwayLesson,
-} from "../../helpers";
-import { rawSyntheticUVLessonSchema } from "../lessonDownloads/rawSyntheticUVLesson.schema";
-import { LessonPathway } from "../../shared.schema";
-
 import {
   canonicalLessonShareSchema,
   lessonShareSchema,
@@ -14,7 +5,17 @@ import {
 } from "./lessonShare.schema";
 import { constructShareableResources } from "./constructShareableResources";
 
+import OakError from "@/errors/OakError";
+import { rawSyntheticUVLessonSchema } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/rawSyntheticUVLesson.schema";
 import errorReporter from "@/common-lib/error-reporter";
+import { LessonShareQuery as SdkLessonShareQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
+import { LessonPathway } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
+import {
+  constructLessonBrowseQuery,
+  constructPathwayLesson,
+} from "@/node-lib/curriculum-api-2023/helpers";
 
 const lessonShareQuery =
   (sdk: Sdk) =>
@@ -34,17 +35,26 @@ const lessonShareQuery =
     const res = await sdk.lessonShare({ lessonSlug, browseDataWhere });
 
     const rawLesson = res.share;
-    const rawBrowseData = res.browse;
 
-    if (!rawLesson || rawLesson.length === 0 || !rawBrowseData) {
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      SdkLessonShareQuery["browse"][number]
+    >({
+      journey: "teacher",
+      queryName: "lessonOverviewQuery",
+      browseData: res.browse,
+    });
+
+    if (
+      !rawLesson ||
+      !modifiedBrowseData ||
+      modifiedBrowseData.length === 0 ||
+      rawLesson.length === 0
+    ) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
     const canonicalLesson = !unitSlug && !programmeSlug;
-    if (
-      !canonicalLesson &&
-      (rawLesson.length > 1 || rawBrowseData.length > 1)
-    ) {
+    if (!canonicalLesson && rawLesson.length > 1) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });
@@ -56,13 +66,13 @@ const lessonShareQuery =
     }
 
     const parsedRawLesson = rawLessonShareSchema.parse(rawLesson[0]);
-    const parsedRawBrowseData = rawSyntheticUVLessonSchema.parse(
-      rawBrowseData[0],
+    const parsedModifiedBrowseData = rawSyntheticUVLessonSchema.parse(
+      modifiedBrowseData[0],
     );
     const shareableResources = constructShareableResources(parsedRawLesson);
 
     if (canonicalLesson) {
-      const parsedBrowseData = rawBrowseData.map((bd) =>
+      const parsedBrowseData = modifiedBrowseData.map((bd) =>
         rawSyntheticUVLessonSchema.parse(bd),
       );
       const pathways = parsedBrowseData.reduce((acc, lesson) => {
@@ -73,7 +83,7 @@ const lessonShareQuery =
 
       const lesson = canonicalLessonShareSchema.parse({
         shareableResources,
-        isLegacy: parsedRawBrowseData.is_legacy,
+        isLegacy: parsedModifiedBrowseData.is_legacy,
         expired: parsedRawLesson.expired,
         pathways,
         isSpecialist: false,
@@ -83,12 +93,12 @@ const lessonShareQuery =
       return lesson as T;
     } else {
       const lesson = lessonShareSchema.parse({
-        ...constructPathwayLesson(parsedRawBrowseData),
+        ...constructPathwayLesson(parsedModifiedBrowseData),
         isSpecialist: false,
         lessonSlug: lessonSlug,
         lessonTitle: parsedRawLesson.lesson_title,
         shareableResources,
-        isLegacy: parsedRawBrowseData.is_legacy,
+        isLegacy: parsedModifiedBrowseData.is_legacy,
         expired: parsedRawLesson.expired,
       });
 

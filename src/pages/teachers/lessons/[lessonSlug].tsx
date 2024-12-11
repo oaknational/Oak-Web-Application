@@ -40,22 +40,33 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
-  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
-    lessonSlug: lesson.lessonSlug,
-    source: "lesson-canonical",
-    curriculumTrackingProps: {
-      lessonName: lesson.lessonTitle,
-      unitName: null,
-      subjectSlug: null,
-      subjectTitle: null,
-      keyStageSlug: null,
-      keyStageTitle: null,
-    },
-  });
+  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
+    useShareExperiment({
+      lessonSlug: lesson.lessonSlug,
+      source: "lesson-canonical",
+      curriculumTrackingProps: {
+        lessonName: lesson.lessonTitle,
+        unitName: null,
+        subjectSlug: null,
+        subjectTitle: null,
+        keyStageSlug: null,
+        keyStageTitle: null,
+      },
+    });
 
-  const teacherShareButton = shareExperimentFlag ? (
-    <TeacherShareButton shareUrl={shareUrl} shareActivated={shareActivated} />
-  ) : null;
+  if (shareExperimentFlag && window.location.href !== browserUrl) {
+    window.history.replaceState({}, "", browserUrl);
+  }
+
+  const teacherShareButton =
+    shareExperimentFlag === "test" ? (
+      <TeacherShareButton
+        label="Share resources with colleague"
+        variant={"secondary"}
+        shareUrl={shareUrl}
+        shareActivated={shareActivated}
+      />
+    ) : null;
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
@@ -71,10 +82,12 @@ export default function LessonOverviewCanonicalPage({
         <LessonOverview
           lesson={{
             ...lesson,
+            lessonMediaClips: null,
             isCanonical: true,
             isSpecialist,
             teacherShareButton,
           }}
+          isBeta={false}
         />
         {!isSpecialist && (
           <OakFlex $background={"pink50"} $width={"100%"}>

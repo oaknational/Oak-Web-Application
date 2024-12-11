@@ -1,80 +1,104 @@
-import OakError from "../../../../errors/OakError";
-import { Sdk } from "../../sdk";
-
-import { getTiersForProgramme } from "./tiers/getTiersForProgramme";
-import { getUnitsForProgramme } from "./units/getUnitsForProgramme";
-import { getAllLearningThemes } from "./filters/getAllLearningThemes";
-import { getAllCategories } from "./filters/getAllCategories";
-import { getAllYearGroups } from "./filters/getAllYearGroups";
-import { rawSuvLessonsSchema } from "./rawSuvLessons.schema";
+import { reshapeUnitData } from "./helpers/reshapeUnitData";
+import { getAllLearningThemes } from "./helpers/getAllLearningThemes";
+import {
+  applySlugsToUnitCategories,
+  getAllCategories,
+} from "./helpers/getAllCategories";
+import { getAllYearGroups } from "./helpers/getAllYearGroups";
+import {
+  ProgrammeFieldsCamel,
+  rawQuerySchema,
+  UnitListingData,
+} from "./unitListing.schema";
 
 import { NEW_COHORT } from "@/config/cohort";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
+import {
+  UnitListingQuery,
+  Sdk,
+} from "@/node-lib/curriculum-api-2023/generated/sdk";
+import OakError from "@/errors/OakError";
+
+const getTierData = (programmeSlug: string): UnitListingData["tiers"] => [
+  {
+    tierSlug: "foundation",
+    tierTitle: "Foundation",
+    tierOrder: 1,
+    tierProgrammeSlug: programmeSlug.replace("-higher", "-foundation"),
+  },
+  {
+    tierSlug: "higher",
+    tierTitle: "Higher",
+    tierOrder: 2,
+    tierProgrammeSlug: programmeSlug.replace("-foundation", "-higher"),
+  },
+];
 
 const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.unitListing(args);
 
-    const unitsForProgramme = res.units;
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      UnitListingQuery["units"][number]
+    >({
+      journey: "teacher",
+      queryName: "unitListingQuery",
+      browseData: res.units,
+    });
 
-    if (!unitsForProgramme || unitsForProgramme.length === 0) {
+    if (modifiedBrowseData.length === 0) {
       return null;
     }
 
-    const parsedRawUnits = unitsForProgramme.map((p) =>
-      rawSuvLessonsSchema.parse(p),
-    );
-
-    const firstUnit = parsedRawUnits[0];
-
-    if (!firstUnit) {
+    let parsedUnits;
+    try {
+      parsedUnits = rawQuerySchema.parse(modifiedBrowseData);
+    } catch (e) {
       throw new OakError({
-        code: "curriculum-api/not-found",
+        code: "curriculum-api/internal-error",
+        meta: { error: e },
       });
     }
 
-    const programmeFields = firstUnit.programme_fields;
+    const unitsCamel = keysToCamelCase(parsedUnits);
 
-    const isLegacy = firstUnit.is_legacy;
-    const hasTiers = parsedRawUnits.some(
-      (p) => p.programme_fields.tier_slug !== null,
+    const programmeFields = unitsCamel.reduce(
+      (acc, val) => ({ ...acc, ...val.programmeFields }),
+      {} as ProgrammeFieldsCamel,
     );
 
-    // sibling tiers
-    const tiers = hasTiers
-      ? await getTiersForProgramme(
-          sdk,
-          programmeFields.subject_slug,
-          programmeFields.keystage_slug,
-          programmeFields.examboard_slug,
-          isLegacy,
-        )
+    const reshapedUnits = reshapeUnitData(unitsCamel);
+
+    const yearGroups = getAllYearGroups(reshapedUnits);
+    const learningThemes = getAllLearningThemes(reshapedUnits);
+    const subjectCategories = getAllCategories(reshapedUnits);
+    const unitsWithSubjectCategories = applySlugsToUnitCategories(
+      subjectCategories,
+      reshapedUnits,
+    );
+
+    const tiers = programmeFields.tierSlug
+      ? getTierData(args.programmeSlug)
       : [];
 
-    const units = await getUnitsForProgramme(parsedRawUnits);
-
-    const yearGroups = getAllYearGroups(units);
-
-    const learningThemes = getAllLearningThemes(units);
-
-    const subjectCategories = getAllCategories(parsedRawUnits);
-
-    const hasNewContent = units
+    const hasNewContent = reshapedUnits
       .flatMap((unit) => unit.flatMap((u) => u.cohort ?? "2020-2023"))
       .includes(NEW_COHORT);
 
     return {
       programmeSlug: args.programmeSlug,
-      keyStageSlug: programmeFields.keystage_slug,
-      keyStageTitle: programmeFields.keystage_description,
-      examBoardSlug: programmeFields.examboard_slug,
+      keyStageSlug: programmeFields.keystageSlug,
+      keyStageTitle: programmeFields.keystageDescription,
+      examBoardSlug: programmeFields.examboardSlug,
       examBoardTitle: programmeFields.examboard,
-      subjectSlug: programmeFields.subject_slug,
+      subjectSlug: programmeFields.subjectSlug,
       subjectTitle: programmeFields.subject,
-      subjectParent: programmeFields.subject_parent || null,
-      tierSlug: programmeFields.tier_slug,
+      subjectParent: programmeFields.subjectParent || null,
+      tierSlug: programmeFields.tierSlug,
       tiers: tiers,
-      units: units,
-      phase: programmeFields.phase_slug,
+      units: unitsWithSubjectCategories,
+      phase: programmeFields.phaseSlug,
       learningThemes: learningThemes,
       hasNewContent,
       subjectCategories,
