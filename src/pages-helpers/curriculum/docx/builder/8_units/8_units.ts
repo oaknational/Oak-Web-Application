@@ -121,7 +121,7 @@ export default async function generate(
 
   const yearXml: string[] = [];
   const groupedUnits = generateGroupedUnits(formattedData);
-  console.log("groupedUnits=", groupedUnits);
+
   for (const { units, year, childSubject, tier, pathway } of groupedUnits) {
     yearXml.push(
       await buildYear(
@@ -432,13 +432,13 @@ async function buildYear(
   let yearContent: string;
   if (enableGroupBySubjectCategory) {
     const groupedContent = [];
-    for (const {
-      subjectCategory,
-      units: catUnits,
-    } of groupUnitsBySubjectCategory(units)) {
-      console.log("catUnits=", subjectCategory, catUnits);
+    for (const [
+      index,
+      { subjectCategory, units: catUnits },
+    ] of groupUnitsBySubjectCategory(units).entries()) {
       groupedContent.push(safeXml`
         <XML_FRAGMENT>
+          ${index > 0 ? "<w:p></w:p><w:p></w:p>" : ""}
           <w:p>
             <w:pPr>
               <w:pStyle w:val="Heading3" />
@@ -448,7 +448,7 @@ async function buildYear(
                   <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
                   <w:b />
                   <w:color w:val="222222" />
-                  <w:sz w:val="32" />
+                  <w:sz w:val="36" />
                 </w:rPr>
                 <w:t>${cdata(subjectCategory.title)}</w:t>
               </w:r>
