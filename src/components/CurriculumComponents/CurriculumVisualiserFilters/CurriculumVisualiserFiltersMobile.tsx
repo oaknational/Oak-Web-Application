@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { OakP, OakFlex, OakSpan } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioButton, RadioGroup } from "../OakComponentsKitchen/SimpleRadio";
+import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 
 import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "./helpers";
@@ -14,6 +16,74 @@ import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Thread } from "@/utils/curriculum/types";
+
+const StyledButton = styled("button")`
+  all: unset;
+  color: inherit;
+  cursor: pointer;
+  padding: 12px;
+  width: fit-content;
+  display: inline-block;
+  white-space: nowrap;
+  border-radius: 4px;
+  margin-right: 0;
+  border: 1px solid ${({ theme }) => theme.colors.grey40};
+
+  &:hover:not([aria-pressed="true"]) {
+    background: #f2f2f2;
+  }
+`;
+
+const ScrollableWrapper = styled.div`
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 20px;
+    background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 25px;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+`;
+
+const StyledButtonGroup = styled(ButtonGroup)`
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+
+  & > *:first-child {
+    margin-left: 16px;
+  }
+
+  & > *:not(:last-child) {
+    margin-right: -5px;
+  }
+`;
 
 function StickyBit({
   onOpenModal,
@@ -60,6 +130,37 @@ function StickyBit({
   const threadDef = (selectedThread: Thread["slug"]) =>
     threadOptions.find((t) => t.slug === selectedThread);
 
+  function isSelectedYear(yearOption: string) {
+    return selectedYear === yearOption;
+  }
+
+  function scrollToYearSection(yearOption: string) {
+    setTimeout(() => {
+      const targetElement = document.getElementById(`year-${yearOption}`);
+      if (targetElement) {
+        const headerOffset = 70;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+
+        // It's key that focus is set after scroll completes otherwise
+        // scroll ends above the intended year section
+        setTimeout(() => {
+          const yearHeading = document.getElementById(`year-${yearOption}`);
+          if (yearHeading instanceof HTMLElement) {
+            yearHeading.setAttribute("tabindex", "-1");
+            yearHeading.focus();
+          }
+        }, 500);
+      }
+    }, 0);
+  }
+
   return (
     <Box
       $position={["sticky", "static"]}
@@ -105,43 +206,44 @@ function StickyBit({
             )}
           </Box>
           <Box
-            $pt={10}
+            $pt={2}
             $dropShadow="mobileFilterSelector"
             $width={"100%"}
-            $ph={[16, 0]}
             data-testid={"year-selection-mobile"}
           >
-            <ButtonGroup
-              aria-label="Select a year group"
-              $overflowX={"auto"}
-              $overflowY={"hidden"}
-              $pb={8}
-            >
-              {yearOptions.map((yearOption) => (
-                <Box key={yearOption} $pt={8} $ml={5}>
-                  <Button
-                    variant="brush"
-                    aria-label={`Year ${yearOption}`}
-                    background={
-                      selectedYear === yearOption ? "black" : "grey20"
-                    }
-                    isCurrent={yearOption === selectedYear}
-                    key={yearOption}
-                    label={getYearGroupTitle(yearData, yearOption)}
-                    onClick={() => {
-                      onSelectYear(yearOption);
-                      trackSelectYear(yearOption);
-
-                      // HACK: Scroll into view used also in Lesson Overview - prevents rerender
-                      document
-                        .getElementById(`year-${yearOption}`)
-                        ?.scrollIntoView({ behavior: "smooth" });
-                    }}
-                    data-testid="year-group-filter-button"
-                  />
-                </Box>
-              ))}
-            </ButtonGroup>
+            <ScrollableWrapper>
+              <StyledButtonGroup aria-label="Select a year group">
+                {yearOptions.map((yearOption) => (
+                  <Box key={yearOption} $pt={8} $ml={5}>
+                    <FocusIndicator
+                      data-testid="year-group-focus-indicator"
+                      $display={"inline-block"}
+                      $mb="space-between-ssx"
+                      $mr="space-between-ssx"
+                      $background={
+                        isSelectedYear(yearOption) ? "black" : "white"
+                      }
+                      $color={isSelectedYear(yearOption) ? "white" : "black"}
+                      $borderRadius={"border-radius-s"}
+                      $font="heading-7"
+                      disableMouseHover={isSelectedYear(yearOption)}
+                    >
+                      <StyledButton
+                        data-testid="year-group-filter-button"
+                        aria-pressed={isSelectedYear(yearOption)}
+                        onClick={() => {
+                          onSelectYear(yearOption);
+                          trackSelectYear(yearOption);
+                          scrollToYearSection(yearOption);
+                        }}
+                      >
+                        {getYearGroupTitle(yearData, yearOption)}
+                      </StyledButton>
+                    </FocusIndicator>
+                  </Box>
+                ))}
+              </StyledButtonGroup>
+            </ScrollableWrapper>
           </Box>
         </Box>
       </Box>
