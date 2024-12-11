@@ -8,7 +8,7 @@ import React, { FC } from "react";
 import { useRouter } from "next/router";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import { YearGroup } from "@/node-lib/curriculum-api-2023/queries/unitListing/filters/getAllYearGroups";
+import { YearGroup } from "@/node-lib/curriculum-api-2023/queries/unitListing/helpers/getAllYearGroups";
 
 type YearGroupFiltersProps = {
   yearGroups: YearGroup[];

@@ -29,6 +29,7 @@ describe("LessonOverviewDetails component", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
+        displayVocab={false}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={teacherTips}
@@ -37,6 +38,7 @@ describe("LessonOverviewDetails component", () => {
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
       />,
     );
 
@@ -47,6 +49,7 @@ describe("LessonOverviewDetails component", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
+        displayVocab={false}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={teacherTips}
@@ -55,6 +58,7 @@ describe("LessonOverviewDetails component", () => {
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
       />,
     );
 
@@ -66,6 +70,7 @@ describe("LessonOverviewDetails component", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
+        displayVocab={false}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={teacherTips}
@@ -74,6 +79,7 @@ describe("LessonOverviewDetails component", () => {
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
       />,
     );
 
@@ -85,6 +91,7 @@ describe("LessonOverviewDetails component", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
+        displayVocab={false}
         commonMisconceptions={null}
         keyWords={keyWords}
         teacherTips={teacherTips}
@@ -93,6 +100,7 @@ describe("LessonOverviewDetails component", () => {
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
       />,
     );
 
@@ -104,6 +112,7 @@ describe("LessonOverviewDetails component", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
+        displayVocab={false}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={teacherTips}
@@ -112,6 +121,7 @@ describe("LessonOverviewDetails component", () => {
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
       />,
     );
 
@@ -123,6 +133,7 @@ describe("LessonOverviewDetails component", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
+        displayVocab={false}
         commonMisconceptions={commonMisconceptions}
         keyWords={null}
         teacherTips={teacherTips}
@@ -131,6 +142,7 @@ describe("LessonOverviewDetails component", () => {
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
       />,
     );
 
@@ -138,8 +150,8 @@ describe("LessonOverviewDetails component", () => {
     expect(componentTitle).not.toBeInTheDocument();
   });
 
-  it("should render TeacherTips component with keywords", () => {
-    const { getByText } = renderWithTheme(
+  it("should render Vocab button component", () => {
+    const { getByText, getByRole } = renderWithTheme(
       <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
         commonMisconceptions={commonMisconceptions}
@@ -150,6 +162,35 @@ describe("LessonOverviewDetails component", () => {
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
+        displayVocab={true}
+        hasVocabAndTranscripts={true}
+      />,
+    );
+
+    const vocabHeading = getByText(
+      "Vocabulary and transcripts for this lessons",
+    );
+    const vocabButton = getByRole("button", {
+      name: /View vocabulary and transcripts in additional material/i,
+    });
+    expect(vocabButton).toBeInTheDocument();
+    expect(vocabHeading).toBeInTheDocument();
+  });
+
+  it("should render TeacherTips component with keywords", () => {
+    const { getByText } = renderWithTheme(
+      <LessonOverviewDetails
+        keyLearningPoints={keyLearningPoints}
+        displayVocab={false}
+        commonMisconceptions={commonMisconceptions}
+        keyWords={keyWords}
+        teacherTips={teacherTips}
+        equipmentAndResources={equipmentAndResources}
+        contentGuidance={contentGuidance}
+        supervisionLevel={supervisionLevel}
+        isMathJaxLesson={false}
+        updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
       />,
     );
 
@@ -161,6 +202,7 @@ describe("LessonOverviewDetails component", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
+        displayVocab={false}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={null}
@@ -169,6 +211,7 @@ describe("LessonOverviewDetails component", () => {
         supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
       />,
     );
 
@@ -180,6 +223,7 @@ describe("LessonOverviewDetails component", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
         keyLearningPoints={keyLearningPoints}
+        displayVocab={false}
         commonMisconceptions={commonMisconceptions}
         keyWords={keyWords}
         teacherTips={teacherTips}
@@ -188,6 +232,7 @@ describe("LessonOverviewDetails component", () => {
         supervisionLevel={undefined}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
       />,
     );
 
@@ -212,6 +257,8 @@ describe("LessonOverviewDetails component", () => {
         isLegacyLicense={true}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
+        displayVocab={false}
       />,
     );
     const preAlbCopyright = getByText(
@@ -236,6 +283,8 @@ describe("LessonOverviewDetails component", () => {
         isLegacyLicense={false}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
+        hasVocabAndTranscripts={false}
+        displayVocab={false}
       />,
     );
 

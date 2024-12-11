@@ -1,5 +1,3 @@
-import { constructLessonBrowseQuery } from "../../helpers";
-
 import lessonDownloadsSchema, {
   downloadsAssetData,
 } from "./lessonDownloads.schema";
@@ -8,11 +6,13 @@ import constructCanonicalLessonDownloads from "./constructCanonicalLessonDownloa
 import constructLessonDownloads from "./constructLessonDownloads";
 import { rawSyntheticUVLessonSchema } from "./rawSyntheticUVLesson.schema";
 
-import errorReporter from "@/common-lib/error-reporter";
+import { LessonDownloadsQuery as SdkLessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import { constructLessonBrowseQuery } from "@/node-lib/curriculum-api-2023/helpers";
 import lessonDownloadsCanonicalSchema from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloadsCanonical.schema";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 
 const lessonDownloadsQuery =
   (sdk: Sdk) =>
@@ -31,27 +31,24 @@ const lessonDownloadsQuery =
 
     const res = await sdk.lessonDownloads({ lessonSlug, browseDataWhere });
 
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      SdkLessonDownloadsQuery["browse_data"][number]
+    >({
+      journey: "teacher",
+      queryName: "lessonOverviewQuery",
+      browseData: res.browse_data,
+    });
+
     if (
       !res.download_assets ||
-      !res.browse_data ||
-      res.download_assets.length === 0 ||
-      res.browse_data.length === 0
+      !modifiedBrowseData ||
+      modifiedBrowseData.length === 0 ||
+      res.download_assets.length === 0
     ) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    if (res.download_assets.length > 1) {
-      const error = new OakError({
-        code: "curriculum-api/uniqueness-assumption-violated",
-      });
-      errorReporter("curriculum-api-2023::lessonDownloads")(error, {
-        severity: "warning",
-        ...args,
-        res,
-      });
-    }
-
-    const { download_assets, browse_data } = res;
+    const { download_assets } = res;
 
     const {
       has_slide_deck_asset_object,
@@ -82,14 +79,14 @@ const lessonDownloadsQuery =
     const downloads = constructDownloadsArray(downloadsData);
 
     // Copyright content pre-parsed
-    const currentLesson = browse_data.find(
+    const currentLesson = modifiedBrowseData.find(
       (lesson) => lesson.lesson_slug === lessonSlug,
     );
     const copyright = currentLesson?.lesson_data.copyright_content
       ? keysToCamelCase(currentLesson?.lesson_data.copyright_content)
       : null;
 
-    const parsedBrowseData = browse_data.map((bd) =>
+    const parsedBrowseData = modifiedBrowseData.map((bd) =>
       rawSyntheticUVLessonSchema.parse(bd),
     );
 

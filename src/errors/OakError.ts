@@ -25,6 +25,7 @@ const ERROR_CODES = [
   "getRefreshedMVTime/params-incorrect",
   "curriculum-api/not-found",
   "curriculum-api/uniqueness-assumption-violated",
+  "curriculum-api/internal-error",
   "curriculum-api/params-incorrect",
   "school-picker/fetch-suggestions",
   "urls/failed-to-resolve",
@@ -146,6 +147,11 @@ const errorConfigs: Record<ErrorCode, ErrorConfig> = {
     message: "The params provided are incorrect",
     shouldNotify: true,
     responseStatusCode: 404,
+  },
+  "curriculum-api/internal-error": {
+    message: "Internal error in the curriculum API",
+    shouldNotify: true,
+    responseStatusCode: 500,
   },
   "school-picker/fetch-suggestions": {
     message: "Error fetching suggested schools list",

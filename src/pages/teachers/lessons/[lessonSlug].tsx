@@ -82,10 +82,12 @@ export default function LessonOverviewCanonicalPage({
         <LessonOverview
           lesson={{
             ...lesson,
+            lessonMediaClips: null,
             isCanonical: true,
             isSpecialist,
             teacherShareButton,
           }}
+          isBeta={false}
         />
         {!isSpecialist && (
           <OakFlex $background={"pink50"} $width={"100%"}>

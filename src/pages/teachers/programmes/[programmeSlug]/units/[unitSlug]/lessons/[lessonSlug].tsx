@@ -104,6 +104,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             isSpecialist: false,
             teacherShareButton: teacherShareButton,
           }}
+          isBeta={false}
         />
       </OakThemeProvider>
     </AppLayout>
