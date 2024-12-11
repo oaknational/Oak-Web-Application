@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const CurriculumVisualiserLayoutLeft = styled(OakFlex)`
   min-width: 296px;
+  width: 296px;
 `;
 
 type CurriculumVisualiserLayoutProps = {
