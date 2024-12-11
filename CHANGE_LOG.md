@@ -1,3 +1,10 @@
+## [1.647.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.647.1...v1.647.2) (2024-12-11)
+
+
+### Bug Fixes
+
+* curric filter sidebar width add fixed width ([5bea32b](https://github.com/oaknational/Oak-Web-Application/commit/5bea32b8a5b1a2a0080bb9966296f1731f9a2396))
+
 ## [1.647.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.647.0...v1.647.1) (2024-12-10)
 
 
