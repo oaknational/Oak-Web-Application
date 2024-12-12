@@ -47,6 +47,8 @@ export const lessonMediaClipsQuery =
       browseDataWhere,
     });
 
+    console.log(res, "RES DATA");
+
     const canonicalLesson = !unitSlug && !programmeSlug;
 
     if (
@@ -89,6 +91,8 @@ export const lessonMediaClipsQuery =
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+
+    console.log(browseData, "<< browse data");
     const mediaClipsFixture = lessonMediaClipsFixtures().mediaClips;
     if (!canonicalLesson) {
       const data = constructLessonMediaData(browseData);

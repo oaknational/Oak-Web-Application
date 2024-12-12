@@ -10,6 +10,7 @@ import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { transformedLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import lessonOverviewSchema, {
+  LessonBrowseDataByKs,
   LessonOverviewContent,
   LessonOverviewPageData,
 } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
@@ -62,9 +63,10 @@ const teacherPreviewLessonQuery =
         ? content.starter_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
     });
+    const [browseData] = keysToCamelCase(res.browseData);
 
     const teacherPreviewData = transformedLessonOverviewData(
-      { ...browseFixtureData },
+      browseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,
       [],
     );
