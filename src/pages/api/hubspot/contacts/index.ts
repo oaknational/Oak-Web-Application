@@ -13,6 +13,7 @@ export const contactResponseSchema = z.object({
 export function createHandler(hubspotClient: HubspotClient) {
   return async function handler(req: NextApiRequest, res: NextApiResponse) {
     const auth = getAuth(req);
+    console.log("GET AUTH in api/hubspot/contacts", auth);
 
     if (!auth.userId) {
       return res.status(401).send("Unauthorized");

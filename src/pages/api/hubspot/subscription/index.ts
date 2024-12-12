@@ -22,7 +22,7 @@ const getIsSubscribed = (
 export function createHandler(hubspot: HubspotClient) {
   return async function handler(req: NextApiRequest, res: NextApiResponse) {
     const auth = getAuth(req);
-
+    console.log("GET AUTH in api/hubspot/subscription", auth);
     if (!auth.userId) {
       return res.status(401).send("Unauthorized");
     }

@@ -16,6 +16,7 @@ const ALLOWED_REGIONS = ["GB", "IM", "GG", "JE"];
 
 export async function POST(req: Request) {
   const user = await currentUser();
+  console.log("CURRENT USER in api/hubspot/subscription", user);
 
   if (!user) {
     return new Response("Unauthorized", { status: 401 });
