@@ -46,9 +46,10 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: "Curriculum resources",
+          title:
+            "Free curriculum plans aligned with National Curriculum  | Oak National Academy",
           description:
-            "Explore our interactive curriculum tool for free, adaptable sequences perfectly aligned with the National Curriculum. Start browsing now.",
+            "Discover our free curriculum plans across subjects from KS1 to KS4, all high-quality, fully-sequenced and aligned with the national curriculum.",
         }),
       }}
       $background={"grey20"}
