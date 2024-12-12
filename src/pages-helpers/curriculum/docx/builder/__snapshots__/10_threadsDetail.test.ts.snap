@@ -337,7 +337,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="36"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['thread-one’]]></w:t>
+        <w:t><![CDATA['thread-one']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -370,12 +370,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
-          <w:b
-            w:val="true"
-          ></w:b>
-          <w:i
-            w:val="0"
-          ></w:i>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
@@ -439,7 +434,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['Test A’]]></w:t>
+        <w:t><![CDATA['Test A']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -451,7 +446,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:sz
-            w:val="28"
+            w:val="24"
           ></w:sz>
         </w:rPr>
         <w:t></w:t>
@@ -470,12 +465,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
-          <w:b
-            w:val="true"
-          ></w:b>
-          <w:i
-            w:val="0"
-          ></w:i>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
@@ -539,7 +529,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['Test A’]]></w:t>
+        <w:t><![CDATA['Test A']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -551,7 +541,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:sz
-            w:val="28"
+            w:val="24"
           ></w:sz>
         </w:rPr>
         <w:t></w:t>
@@ -570,12 +560,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
-          <w:b
-            w:val="true"
-          ></w:b>
-          <w:i
-            w:val="0"
-          ></w:i>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
@@ -639,7 +624,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['Test A’]]></w:t>
+        <w:t><![CDATA['Test A']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -651,7 +636,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:sz
-            w:val="28"
+            w:val="24"
           ></w:sz>
         </w:rPr>
         <w:t></w:t>
@@ -670,12 +655,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
-          <w:b
-            w:val="true"
-          ></w:b>
-          <w:i
-            w:val="0"
-          ></w:i>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
@@ -739,7 +719,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['Test A’]]></w:t>
+        <w:t><![CDATA['Test A']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -751,7 +731,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:sz
-            w:val="28"
+            w:val="24"
           ></w:sz>
         </w:rPr>
         <w:t></w:t>
@@ -770,12 +750,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
-          <w:b
-            w:val="true"
-          ></w:b>
-          <w:i
-            w:val="0"
-          ></w:i>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
@@ -839,7 +814,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['Test A’]]></w:t>
+        <w:t><![CDATA['Test A']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -851,7 +826,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:sz
-            w:val="28"
+            w:val="24"
           ></w:sz>
         </w:rPr>
         <w:t></w:t>
@@ -903,7 +878,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="36"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['thread-two’]]></w:t>
+        <w:t><![CDATA['thread-two']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -936,12 +911,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
-          <w:b
-            w:val="true"
-          ></w:b>
-          <w:i
-            w:val="0"
-          ></w:i>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
@@ -1005,7 +975,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['Test B’]]></w:t>
+        <w:t><![CDATA['Test B']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -1017,7 +987,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:sz
-            w:val="28"
+            w:val="24"
           ></w:sz>
         </w:rPr>
         <w:t></w:t>
@@ -1036,12 +1006,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
-          <w:b
-            w:val="true"
-          ></w:b>
-          <w:i
-            w:val="0"
-          ></w:i>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
@@ -1105,7 +1070,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['Test B’]]></w:t>
+        <w:t><![CDATA['Test B']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -1117,7 +1082,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:sz
-            w:val="28"
+            w:val="24"
           ></w:sz>
         </w:rPr>
         <w:t></w:t>
@@ -1136,12 +1101,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
-          <w:b
-            w:val="true"
-          ></w:b>
-          <w:i
-            w:val="0"
-          ></w:i>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
@@ -1205,7 +1165,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['Test B’]]></w:t>
+        <w:t><![CDATA['Test B']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -1217,7 +1177,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:sz
-            w:val="28"
+            w:val="24"
           ></w:sz>
         </w:rPr>
         <w:t></w:t>
@@ -1236,12 +1196,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
-          <w:b
-            w:val="true"
-          ></w:b>
-          <w:i
-            w:val="0"
-          ></w:i>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
@@ -1305,7 +1260,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['Test B’]]></w:t>
+        <w:t><![CDATA['Test B']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -1317,7 +1272,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:sz
-            w:val="28"
+            w:val="24"
           ></w:sz>
         </w:rPr>
         <w:t></w:t>
@@ -1336,12 +1291,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:hAnsi="Arial"
             w:cs="Arial"
           ></w:rFonts>
-          <w:b
-            w:val="true"
-          ></w:b>
-          <w:i
-            w:val="0"
-          ></w:i>
+          <w:b></w:b>
           <w:color
             w:val="222222"
           ></w:color>
@@ -1405,7 +1355,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:val="24"
           ></w:sz>
         </w:rPr>
-        <w:t><![CDATA['Test B’]]></w:t>
+        <w:t><![CDATA['Test B']]></w:t>
       </w:r>
     </w:p>
     <w:p>
@@ -1417,7 +1367,7 @@ exports[`10_threadsDetail simple 1`] = `
             w:cs="Arial"
           ></w:rFonts>
           <w:sz
-            w:val="28"
+            w:val="24"
           ></w:sz>
         </w:rPr>
         <w:t></w:t>
