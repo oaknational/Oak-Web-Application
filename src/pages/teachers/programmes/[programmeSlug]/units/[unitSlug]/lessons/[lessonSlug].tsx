@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -45,36 +45,35 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     keyStageTitle,
   } = curriculumData;
 
-  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
-    useShareExperiment({
-      lessonSlug,
-      unitSlug,
-      programmeSlug,
-      source: "lesson-browse",
-      curriculumTrackingProps: {
-        lessonName: lessonTitle,
-        unitName: unitTitle,
-        subjectSlug,
-        subjectTitle,
-        keyStageSlug,
-        keyStageTitle:
-          keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
-      },
-    });
+  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
+    lessonSlug,
+    unitSlug,
+    programmeSlug,
+    source: "lesson-browse",
+    curriculumTrackingProps: {
+      lessonName: lessonTitle,
+      unitName: unitTitle,
+      subjectSlug,
+      subjectTitle,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+    },
+  });
 
-  if (shareExperimentFlag && window.location.href !== browserUrl) {
-    window.history.replaceState({}, "", browserUrl);
-  }
+  useEffect(() => {
+    if (window.location.href !== browserUrl) {
+      window.history.replaceState({}, "", browserUrl);
+    }
+  }, [browserUrl]);
 
-  const teacherShareButton =
-    shareExperimentFlag === "test" ? (
-      <TeacherShareButton
-        label="Share resources with colleague"
-        variant={"secondary"}
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-      />
-    ) : null;
+  const teacherShareButton = (
+    <TeacherShareButton
+      label="Share resources with colleague"
+      variant={"secondary"}
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+    />
+  );
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {

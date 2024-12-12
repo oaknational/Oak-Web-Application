@@ -8,6 +8,7 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+import { useEffect } from "react";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -40,33 +41,33 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
-  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
-    useShareExperiment({
-      lessonSlug: lesson.lessonSlug,
-      source: "lesson-canonical",
-      curriculumTrackingProps: {
-        lessonName: lesson.lessonTitle,
-        unitName: null,
-        subjectSlug: null,
-        subjectTitle: null,
-        keyStageSlug: null,
-        keyStageTitle: null,
-      },
-    });
+  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
+    lessonSlug: lesson.lessonSlug,
+    source: "lesson-canonical",
+    curriculumTrackingProps: {
+      lessonName: lesson.lessonTitle,
+      unitName: null,
+      subjectSlug: null,
+      subjectTitle: null,
+      keyStageSlug: null,
+      keyStageTitle: null,
+    },
+  });
 
-  if (shareExperimentFlag && window.location.href !== browserUrl) {
-    window.history.replaceState({}, "", browserUrl);
-  }
+  useEffect(() => {
+    if (window.location.href !== browserUrl) {
+      window.history.replaceState({}, "", browserUrl);
+    }
+  }, [browserUrl]);
 
-  const teacherShareButton =
-    shareExperimentFlag === "test" ? (
-      <TeacherShareButton
-        label="Share resources with colleague"
-        variant={"secondary"}
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-      />
-    ) : null;
+  const teacherShareButton = (
+    <TeacherShareButton
+      label="Share resources with colleague"
+      variant={"secondary"}
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+    />
+  );
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (

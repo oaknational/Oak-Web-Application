@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -79,35 +79,34 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     subjectSlug,
   } = curriculumData;
 
-  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
-    useShareExperiment({
-      unitSlug: unitSlug ?? undefined,
-      programmeSlug: programmeSlug ?? undefined,
-      source: "lesson-listing",
-      curriculumTrackingProps: {
-        lessonName: null,
-        unitName: unitTitle,
-        subjectSlug,
-        subjectTitle,
-        keyStageSlug,
-        keyStageTitle:
-          keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
-      },
-    });
+  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
+    unitSlug: unitSlug ?? undefined,
+    programmeSlug: programmeSlug ?? undefined,
+    source: "lesson-listing",
+    curriculumTrackingProps: {
+      lessonName: null,
+      unitName: unitTitle,
+      subjectSlug,
+      subjectTitle,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+    },
+  });
 
-  if (shareExperimentFlag && window.location.href !== browserUrl) {
-    window.history.replaceState({}, "", browserUrl);
-  }
+  useEffect(() => {
+    if (window.location.href !== browserUrl) {
+      window.history.replaceState({}, "", browserUrl);
+    }
+  }, [browserUrl]);
 
-  const teacherShareButton =
-    shareExperimentFlag == "test" ? (
-      <TeacherShareButton
-        variant="primary"
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-        label="Share unit with colleague"
-      />
-    ) : null;
+  const teacherShareButton = (
+    <TeacherShareButton
+      variant="primary"
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+      label="Share unit with colleague"
+    />
+  );
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
   const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
