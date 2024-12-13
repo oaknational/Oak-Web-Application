@@ -1,3 +1,18 @@
+# [1.650.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.649.1...v1.650.0) (2024-12-12)
+
+
+### Bug Fixes
+
+* local storage school being reset on downloads page after sign in ([402c0b7](https://github.com/oaknational/Oak-Web-Application/commit/402c0b77fd605555e68882f787be566373f50729))
+* set school to not listed in onboarding ([9e14d4f](https://github.com/oaknational/Oak-Web-Application/commit/9e14d4f7a6aaa61c68b441e16821b4899027a9b2))
+
+
+### Features
+
+* set school to not listed on downloads page ([aed0a16](https://github.com/oaknational/Oak-Web-Application/commit/aed0a16e6682b4d81fe722bdbb4d4a0d8e4b0295))
+
+## [1.649.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.649.0...v1.649.1) (2024-12-12)
+
 # [1.649.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.648.0...v1.649.0) (2024-12-11)
 
 
