@@ -92,6 +92,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           title: `Lesson: ${lessonTitle}${getLessonData()} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description:
             "View lesson content and choose resources to download or share",
+          canonicalURL: `${process.env.NEXT_PUBLIC_APP_URL}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
         }),
       }}
     >

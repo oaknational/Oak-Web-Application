@@ -76,6 +76,7 @@ export default function LessonOverviewCanonicalPage({
         ...getSeoProps({
           title: `Lesson: ${lesson.lessonTitle}`,
           description: "Overview of lesson",
+          canonicalURL: `${process.env.NEXT_PUBLIC_APP_URL}/teachers/lessons/${lesson.lessonSlug}`,
         }),
       }}
     >
