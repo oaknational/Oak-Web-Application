@@ -27,6 +27,7 @@ import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -76,7 +77,7 @@ export default function LessonOverviewCanonicalPage({
         ...getSeoProps({
           title: `Lesson: ${lesson.lessonTitle}`,
           description: "Overview of lesson",
-          canonicalURL: `${process.env.NEXT_PUBLIC_APP_URL}/teachers/lessons/${lesson.lessonSlug}`,
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/lessons/${lesson.lessonSlug}`,
         }),
       }}
     >

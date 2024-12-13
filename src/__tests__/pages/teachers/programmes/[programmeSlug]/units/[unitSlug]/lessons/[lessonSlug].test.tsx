@@ -263,7 +263,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         ogDescription:
           "View lesson content and choose resources to download or share",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-        canonical: `${process.env.NEXT_PUBLIC_APP_URL}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
+        canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
         robots: "index,follow",
       });
     });
@@ -276,7 +276,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
 
       expect(seo).toEqual(
         expect.objectContaining({
-          canonical: `${process.env.NEXT_PUBLIC_APP_URL}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           description:
             "View lesson content and choose resources to download or share",
           ogDescription:
@@ -313,7 +313,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-          canonical: `${process.env.NEXT_PUBLIC_APP_URL}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           robots: "index,follow",
         }),
       );
@@ -340,7 +340,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           ogImage:
             "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2024",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-          canonical: `${process.env.NEXT_PUBLIC_APP_URL}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           robots: "index,follow",
         }),
       );

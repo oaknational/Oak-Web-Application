@@ -23,6 +23,7 @@ import {
   CurriculumTrackingProps,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -92,7 +93,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           title: `Lesson: ${lessonTitle}${getLessonData()} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description:
             "View lesson content and choose resources to download or share",
-          canonicalURL: `${process.env.NEXT_PUBLIC_APP_URL}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
         }),
       }}
     >
