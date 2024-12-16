@@ -1,3 +1,18 @@
+# [1.651.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.650.0...v1.651.0) (2024-12-16)
+
+
+### Bug Fixes
+
+* get app url via hook ([003c857](https://github.com/oaknational/Oak-Web-Application/commit/003c857bdc5fe3b8129e6b2dd8c9dc0fc2be4d3d))
+* remove anchor tags from the canonical urls ([ddba7eb](https://github.com/oaknational/Oak-Web-Application/commit/ddba7ebea1d8d2296f00a8fd8f1bf97a02925880))
+* resolve conflicts ([aa2c635](https://github.com/oaknational/Oak-Web-Application/commit/aa2c635d29de84510123b07c0134d41dc068da71))
+* tests ([644e551](https://github.com/oaknational/Oak-Web-Application/commit/644e5517316c6718b2257fa5fff70baffd333d45))
+
+
+### Features
+
+* remove feature flag restriction from share buttons and tracking ([d2df0b1](https://github.com/oaknational/Oak-Web-Application/commit/d2df0b177933f39e89f4b4ca1cc984123baf9fbc))
+
 # [1.650.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.649.1...v1.650.0) (2024-12-12)
 
 
