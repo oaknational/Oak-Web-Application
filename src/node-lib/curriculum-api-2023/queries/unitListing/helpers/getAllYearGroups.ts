@@ -4,14 +4,14 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 import { z } from "zod";
 
-import { UnitsForProgramme } from "../units/units.schema";
+import { GroupedUnitsSchema } from "../unitListing.schema";
 
 export type YearGroup = {
   yearTitle: z.infer<typeof yearDescriptions>;
   year: z.infer<typeof yearSlugs>;
 };
 
-export const getAllYearGroups = (units: UnitsForProgramme): YearGroup[] => {
+export const getAllYearGroups = (units: GroupedUnitsSchema): YearGroup[] => {
   return Array.from(
     units
       .reduce((acc, unit) => {

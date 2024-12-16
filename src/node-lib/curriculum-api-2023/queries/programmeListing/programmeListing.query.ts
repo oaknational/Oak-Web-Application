@@ -1,28 +1,27 @@
-import {
-  programmeListingResponseSchema,
-  programmeListingResponseSchemaArray,
-} from "@oaknational/oak-curriculum-schema";
+import { z } from "zod";
 
 import OakError from "../../../../errors/OakError";
 import { Sdk } from "../../sdk";
-import { toSentenceCase } from "../../helpers";
+import { ProgrammeListingQuery } from "../../generated/sdk";
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 
 import {
   Programme,
+  ProgrammeListingPageData,
   ProgrammeListingResponse,
-  programmeListingSchema,
+  programmeListingResponseSchema,
 } from "./programmeListing.schema";
 
 export const getTransformedProgrammeData = (
   programmeData: ProgrammeListingResponse[],
-  firstProgramme: ProgrammeListingResponse,
-) => {
+  programmeFields: ProgrammeListingResponse["programme_fields"],
+): ProgrammeListingPageData => {
   const {
     keystage_description: keyStageTitle,
     keystage_slug: keyStageSlug,
     subject_slug: subjectSlug,
     subject: subjectTitle,
-  } = firstProgramme.programme_fields;
+  } = programmeFields;
 
   const programmes = programmeData.map((programme): Programme => {
     return {
@@ -35,6 +34,9 @@ export const getTransformedProgrammeData = (
       examBoardTitle: programme.programme_fields.examboard,
       examBoardDisplayOrder:
         programme.programme_fields.examboard_display_order || 0,
+      pathwaySlug: programme.programme_fields.pathway_slug,
+      pathwayTitle: programme.programme_fields.pathway,
+      pathwayDisplayOrder: programme.programme_fields.pathway_display_order,
     };
   });
 
@@ -45,12 +47,12 @@ export const getTransformedProgrammeData = (
   });
 
   return {
-    keyStageTitle: toSentenceCase(keyStageTitle),
+    keyStageTitle,
     keyStageSlug,
     subjectSlug,
     subjectTitle,
     programmes: sortedProgrammes,
-    legacy: firstProgramme.is_legacy,
+    legacy: programmeFields.legacy ? true : false,
   };
 };
 
@@ -63,21 +65,36 @@ const programmeListingQuery =
   }) => {
     const res = await sdk.programmeListing(args);
 
-    const [firstProgram] = res.programmes;
-    if (!firstProgram) {
+    const modified = applyGenericOverridesAndExceptions<
+      ProgrammeListingQuery["programmes"][number]
+    >({
+      journey: "teacher",
+      queryName: "programmeListingQuery",
+      browseData: res.programmes,
+    });
+
+    const syntheticUnitvariantLessonsSchemaArray = z.array(
+      programmeListingResponseSchema,
+    );
+
+    const parsedModified =
+      syntheticUnitvariantLessonsSchemaArray.parse(modified);
+
+    if (parsedModified.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const parsedRes = programmeListingResponseSchemaArray.parse(res.programmes);
-    const parsedFirstProgramme =
-      programmeListingResponseSchema.parse(firstProgram);
-
-    const transformedData = getTransformedProgrammeData(
-      parsedRes,
-      parsedFirstProgramme,
+    const programmeFieldsSnakeCase = modified.reduce(
+      (acc, val) => ({ ...acc, ...val.programme_fields }),
+      {} as ProgrammeListingResponse["programme_fields"],
     );
 
-    return programmeListingSchema.parse(transformedData);
+    const transformedData = getTransformedProgrammeData(
+      parsedModified,
+      programmeFieldsSnakeCase,
+    );
+
+    return transformedData;
   };
 
 export default programmeListingQuery;

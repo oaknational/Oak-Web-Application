@@ -190,6 +190,22 @@ export const getStaticProps: GetStaticProps<
         isLegacy: isLegacy,
       });
 
+      if (curriculumData.programmes.length === 1) {
+        const programmeSlug = curriculumData.programmes[0]?.programmeSlug;
+        return {
+          redirect: {
+            destination: `/teachers/programmes/${programmeSlug}/units`,
+            permanent: false,
+          },
+        };
+      }
+
+      if (!curriculumData) {
+        return {
+          notFound: true,
+        };
+      }
+
       const results = {
         props: {
           ...curriculumData,

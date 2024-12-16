@@ -134,6 +134,8 @@ export const generateLessonOverviewFromRaw = (
     updatedAt: "2022",
     pathways: [],
     lessonGuideUrl: null,
+    hasMediaClips: false,
+    // lessonMediaClips: null,
   };
 
   return specialistLessonOverviewSchema.parse({

@@ -6,14 +6,20 @@ const lessonListingFixture = (
   return {
     programmeSlug: "maths-secondary-ks4-higher",
     keyStageSlug: "ks4",
-    keyStageTitle: "Key stage 4",
+    keyStageTitle: "Key Stage 4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
     tierSlug: null,
+    tierTitle: null,
     unitSlug: "adding-surds-a57d",
     unitTitle: "Adding surds",
     yearSlug: "year-10",
     yearTitle: "Year 10",
+    examBoardSlug: null,
+    examBoardTitle: null,
+    pathwaySlug: null,
+    pathwayTitle: null,
+    pathwayDisplayOrder: null,
     lessons: [
       {
         expired: false,
@@ -27,6 +33,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 1,
+        actions: null,
       },
       {
         expired: false,
@@ -40,6 +47,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 2,
+        actions: null,
       },
       {
         expired: false,
@@ -53,6 +61,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 3,
+        actions: null,
       },
       {
         expired: false,
@@ -66,6 +75,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 4,
+        actions: null,
       },
       {
         expired: false,
@@ -79,6 +89,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 5,
+        actions: null,
       },
     ],
     ...partial,
