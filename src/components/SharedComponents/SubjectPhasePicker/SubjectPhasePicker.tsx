@@ -592,8 +592,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   };
 
   return (
-    <OakBox aria-describedby="Choose a curriculum" role="group">
+    <OakBox aria-labelledby="choose-curriculum-label" role="group">
       <OakJauntyAngleLabel
+        id="choose-curriculum-label"
         $background={"bg-decorative5-main"}
         $color={"text-primary"}
         $font={"heading-7"}
