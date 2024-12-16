@@ -4,7 +4,7 @@ import { curriculumUnitsScienceSecondary } from "@/utils/curriculum/fixtures";
 
 export const data: CombinedCurriculumData = {
   units: [
-    ...curriculumUnitsScienceSecondary.units,
+    ...curriculumUnitsScienceSecondary.units.slice(0, 10),
     {
       connection_prior_unit_description: null,
       connection_future_unit_description: null,
