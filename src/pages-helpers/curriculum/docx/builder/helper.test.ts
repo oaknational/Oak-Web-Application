@@ -1,12 +1,14 @@
 import { generateOakIconURL } from "@oaknational/oak-components";
 
 import { xmlRootToJson } from "../xml";
+import { CombinedCurriculumData } from "..";
 
 import {
   generateGridCols,
   uncapitalize,
   uncapitalizeSubject,
   generateIconURL,
+  subjectFromUnits,
 } from "./helper";
 
 describe("helper", () => {
@@ -77,6 +79,26 @@ describe("helper", () => {
     it("returns a valid url when valid subject icon is passed in", () => {
       const url = generateIconURL("maths");
       expect(url).toBe(generateOakIconURL("subject-maths"));
+    });
+  });
+
+  describe("subjectFromUnits", () => {
+    const data = [
+      {},
+      { subject_slug: "combined-science", subject: "Combined science" },
+    ] as CombinedCurriculumData["units"];
+    it("return if exists and slug", () => {
+      expect(subjectFromUnits(data, "combined-science")).toEqual(
+        "Combined science",
+      );
+    });
+
+    it("undefined if no slug", () => {
+      expect(subjectFromUnits(data, undefined)).toEqual(undefined);
+    });
+
+    it("undefined if no unit with subject", () => {
+      expect(subjectFromUnits(data, "foobar")).toEqual(undefined);
     });
   });
 });
