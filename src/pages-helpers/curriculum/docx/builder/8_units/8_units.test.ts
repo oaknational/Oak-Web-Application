@@ -4,15 +4,23 @@ import { zipToSnapshotObject } from "../helper";
 import generate from "./8_units";
 import { data } from "./8_units.fixture";
 
+import {
+  curriculumUnitsEnglishPrimary,
+  curriculumUnitsScienceSecondary,
+} from "@/utils/curriculum/fixtures";
+
 describe("8_units", () => {
   it("simple", async () => {
     const zip = await generateEmptyDocx();
     await generate(zip, {
       slugs: {
         subjectSlug: "science",
-        phaseSlug: "primary",
+        phaseSlug: "secondary",
       },
-      data: data,
+      data: {
+        ...data,
+        units: [...curriculumUnitsScienceSecondary.units.slice(0, 10)],
+      },
     });
 
     expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
@@ -23,11 +31,12 @@ describe("8_units", () => {
     await generate(zip, {
       slugs: {
         subjectSlug: "english",
-        phaseSlug: "secondary",
-        keyStageSlug: "secondary",
-        ks4OptionSlug: "aqa",
+        phaseSlug: "primary",
       },
-      data: data,
+      data: {
+        ...data,
+        units: [...curriculumUnitsEnglishPrimary.units.slice(0, 10)],
+      },
     });
 
     expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
