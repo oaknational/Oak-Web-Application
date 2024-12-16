@@ -24,7 +24,6 @@ import AnalyticsProvider, {
 } from "@/context/Analytics/AnalyticsProvider";
 import { MenuProvider } from "@/context/Menu";
 import { ToastProvider } from "@/context/Toast";
-import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
 
 const lexend = Lexend({ subsets: ["latin"] });
@@ -73,7 +72,6 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
               </PostHogProvider>
             </ErrorBoundary>
             <SpriteSheet />
-            <InlineSpriteSheet />
           </ThemeProvider>
         </CookieConsentProvider>
       </ClerkProvider>

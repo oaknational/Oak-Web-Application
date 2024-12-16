@@ -10,11 +10,9 @@ import uiIcons from "./generated/ui-icons.json";
 import uiGraphics from "./generated/ui-graphics.json";
 import subjectIcons from "./generated/subject-icons.json";
 import illustrations from "./generated/illustrations.json";
-import inlineSprite from "./generated/inline-sprite.json";
 import socialSharingImage from "./generated/social-sharing-image.json";
 import faviconLinks from "./generated/favicons.json";
 
-export type InlineSpriteSvgName = keyof typeof inlineSprite;
 export type UiIconName = keyof typeof uiIcons;
 export type UiGraphicName = keyof typeof uiGraphics;
 
