@@ -8,6 +8,7 @@ import { groupUnitsBySubjectCategory, threadUnitByYear } from "./helper";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { sortYears } from "@/utils/curriculum/sorting";
 import { Unit } from "@/utils/curriculum/types";
+import { getUnitFeatures } from "@/utils/curriculum/features";
 
 function sortByOrder(units: Unit[]) {
   return [...units].sort((a, b) => a.order - b.order);
@@ -81,9 +82,8 @@ export default async function generate(
   const yearData = createUnitsListingByYear(data.units);
   const allThreadOptions = createThreadOptions(data.units);
 
-  const enableGroupBySubjectCategory =
-    data.units[0]?.subject_slug === "english" &&
-    data.units[0]?.phase_slug === "primary";
+  const enableGroupBySubjectCategory = getUnitFeatures(data.units[0])
+    ?.subjectcategories?.group_by_subjectcategory;
 
   const elements = allThreadOptions.map((thread, threadIndex) => {
     const threadInfo = threadUnitByYear(data.units, thread.slug);

@@ -370,8 +370,8 @@ async function buildYear(
 
   const units = removeDups(unitsInput);
 
-  // HACK: Massive hack should use new features table.
-  const enableGroupBySubjectCategory = units[0]!.subject_slug === "english";
+  const enableGroupBySubjectCategory = getUnitFeatures(units[0])
+    ?.subjectcategories?.group_by_subjectcategory;
 
   const buildUnitBlock = (units: Unit[]) => {
     const rows = [];
