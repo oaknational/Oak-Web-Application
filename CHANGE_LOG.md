@@ -1,3 +1,33 @@
+# [1.651.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.650.0...v1.651.0) (2024-12-16)
+
+
+### Bug Fixes
+
+* get app url via hook ([003c857](https://github.com/oaknational/Oak-Web-Application/commit/003c857bdc5fe3b8129e6b2dd8c9dc0fc2be4d3d))
+* remove anchor tags from the canonical urls ([ddba7eb](https://github.com/oaknational/Oak-Web-Application/commit/ddba7ebea1d8d2296f00a8fd8f1bf97a02925880))
+* resolve conflicts ([aa2c635](https://github.com/oaknational/Oak-Web-Application/commit/aa2c635d29de84510123b07c0134d41dc068da71))
+* tests ([644e551](https://github.com/oaknational/Oak-Web-Application/commit/644e5517316c6718b2257fa5fff70baffd333d45))
+
+
+### Features
+
+* remove feature flag restriction from share buttons and tracking ([d2df0b1](https://github.com/oaknational/Oak-Web-Application/commit/d2df0b177933f39e89f4b4ca1cc984123baf9fbc))
+
+# [1.650.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.649.1...v1.650.0) (2024-12-12)
+
+
+### Bug Fixes
+
+* local storage school being reset on downloads page after sign in ([402c0b7](https://github.com/oaknational/Oak-Web-Application/commit/402c0b77fd605555e68882f787be566373f50729))
+* set school to not listed in onboarding ([9e14d4f](https://github.com/oaknational/Oak-Web-Application/commit/9e14d4f7a6aaa61c68b441e16821b4899027a9b2))
+
+
+### Features
+
+* set school to not listed on downloads page ([aed0a16](https://github.com/oaknational/Oak-Web-Application/commit/aed0a16e6682b4d81fe722bdbb4d4a0d8e4b0295))
+
+## [1.649.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.649.0...v1.649.1) (2024-12-12)
+
 # [1.649.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.648.0...v1.649.0) (2024-12-11)
 
 
