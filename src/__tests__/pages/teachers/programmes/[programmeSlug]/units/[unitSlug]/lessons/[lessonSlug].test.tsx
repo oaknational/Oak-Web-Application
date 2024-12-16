@@ -249,6 +249,8 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonOverviewPage {...props} />);
 
+      const { lessonSlug, unitSlug, programmeSlug } = props.curriculumData;
+
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
@@ -261,7 +263,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         ogDescription:
           "View lesson content and choose resources to download or share",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-        canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
         robots: "index,follow",
       });
     });
@@ -270,9 +272,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         <LessonOverviewPage {...propsWithTier} />,
       );
 
+      const { lessonSlug, unitSlug, programmeSlug } = props.curriculumData;
+
       expect(seo).toEqual(
         expect.objectContaining({
-          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           description:
             "View lesson content and choose resources to download or share",
           ogDescription:
@@ -294,6 +298,9 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         <LessonOverviewPage {...propsWithExamBoard} />,
       );
 
+      const { lessonSlug, unitSlug, programmeSlug } =
+        propsWithExamBoard.curriculumData;
+
       expect(seo).toEqual(
         expect.objectContaining({
           title:
@@ -306,7 +313,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           robots: "index,follow",
         }),
       );
@@ -315,6 +322,9 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       const { seo } = renderWithSeo()(
         <LessonOverviewPage {...propsWithTierAndExamBoard} />,
       );
+
+      const { lessonSlug, unitSlug, programmeSlug } =
+        propsWithTierAndExamBoard.curriculumData;
 
       expect(seo).toEqual(
         expect.objectContaining({
@@ -330,7 +340,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           ogImage:
             "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2024",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           robots: "index,follow",
         }),
       );

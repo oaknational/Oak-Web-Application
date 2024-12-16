@@ -60,7 +60,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     .splice(0, pathElems.indexOf(lessonSlug) + 1)
     .join("/");
 
-  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
+  const { shareUrl, shareActivated } = useShareExperiment({
     lessonSlug,
     unitSlug: isCanonical ? undefined : (unitSlug ?? undefined), // NB. unitSlug can sometimes be defined for canonical state
     programmeSlug: isCanonical ? undefined : (programmeSlug ?? undefined),
@@ -76,15 +76,14 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     },
   });
 
-  const teacherShareButton =
-    shareExperimentFlag === "test" ? (
-      <TeacherShareButton
-        label="Share resources with colleague"
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-        variant="primary"
-      />
-    ) : null;
+  const teacherShareButton = (
+    <TeacherShareButton
+      label="Share resources with colleague"
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+      variant="primary"
+    />
+  );
 
   return (
     <>

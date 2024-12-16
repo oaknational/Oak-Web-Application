@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -81,36 +81,34 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     useState<boolean>(actions?.displayExpiringBanner ?? false);
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
+  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
+    unitSlug: unitSlug ?? undefined,
+    programmeSlug: programmeSlug ?? undefined,
+    source: "lesson-listing",
+    curriculumTrackingProps: {
+      lessonName: null,
+      unitName: unitTitle,
+      subjectSlug,
+      subjectTitle,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+    },
+  });
 
-  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
-    useShareExperiment({
-      unitSlug: unitSlug ?? undefined,
-      programmeSlug: programmeSlug ?? undefined,
-      source: "lesson-listing",
-      curriculumTrackingProps: {
-        lessonName: null,
-        unitName: unitTitle,
-        subjectSlug,
-        subjectTitle,
-        keyStageSlug,
-        keyStageTitle:
-          keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
-      },
-    });
+  useEffect(() => {
+    if (window.location.href !== browserUrl) {
+      window.history.replaceState({}, "", browserUrl);
+    }
+  }, [browserUrl]);
 
-  if (shareExperimentFlag && window.location.href !== browserUrl) {
-    window.history.replaceState({}, "", browserUrl);
-  }
-
-  const teacherShareButton =
-    shareExperimentFlag == "test" ? (
-      <TeacherShareButton
-        variant="primary"
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-        label="Share unit with colleague"
-      />
-    ) : null;
+  const teacherShareButton = (
+    <TeacherShareButton
+      variant="primary"
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+      label="Share unit with colleague"
+    />
+  );
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
   const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
