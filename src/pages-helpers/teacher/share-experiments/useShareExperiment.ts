@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { getUpdatedUrl } from "./getUpdatedUrl";
 import {
@@ -57,18 +56,6 @@ export const useShareExperiment = ({
   const [shareUrl, setShareUrl] = useState<string | null>(null);
   const [browserUrl, setBrowserUrl] = useState<string | null>(null);
 
-  const flags = {
-    "lesson-browse": "share-advocate-lesson",
-    "lesson-canonical": "share-advocate-lesson",
-    "download-browse": "share-advocate-download",
-    "download-canonical": "share-advocate-download",
-    "lesson-listing": "share-advocate-unit",
-  };
-
-  const flag = flags[source];
-
-  const shareExperimentFlag = useFeatureFlagVariantKey(flag);
-
   const { track } = useAnalytics();
 
   const coreTrackingProps: CoreProperties = useMemo(
@@ -109,7 +96,7 @@ export const useShareExperiment = ({
       }
     }
 
-    if (!shareIdRef.current && shareExperimentFlag) {
+    if (!shareIdRef.current) {
       // we update the url and send the share initiated event for any users in the experiment
       const { url, shareIdKey, shareId } = getUpdatedUrl({
         url: window.location.href,
@@ -152,7 +139,6 @@ export const useShareExperiment = ({
     unitSlug,
     shareBaseUrl,
     curriculumTrackingProps,
-    shareExperimentFlag,
     source,
     track,
     coreTrackingProps,
@@ -179,7 +165,6 @@ export const useShareExperiment = ({
   };
 
   return {
-    shareExperimentFlag,
     shareIdRef,
     shareIdKeyRef,
     shareUrl,
