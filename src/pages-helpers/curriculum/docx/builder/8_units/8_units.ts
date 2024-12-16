@@ -14,7 +14,11 @@ import {
   appendBodyElements,
   JSZipCached,
 } from "../../docx";
-import { createCurriculumSlug, generateGridCols } from "../helper";
+import {
+  createCurriculumSlug,
+  generateGridCols,
+  groupUnitsBySubjectCategory,
+} from "../helper";
 import {
   CurriculumUnitsFormattedData,
   formatCurriculumUnitsData,
@@ -403,30 +407,6 @@ async function buildYear(
         ${rows.join("")}
       </w:tbl>
     `;
-  };
-
-  const groupUnitsBySubjectCategory = (units: Unit[]) => {
-    const out: Record<string, Unit[]> = {};
-    const subjectCategories: Record<
-      string,
-      NonNullable<Unit["subjectcategories"]>[number]
-    > = {};
-    for (const unit of units) {
-      for (const subjectcategory of unit.subjectcategories ?? []) {
-        if (out[subjectcategory.id] === undefined) {
-          subjectCategories[subjectcategory.id] = subjectcategory;
-          out[subjectcategory.id] = [];
-        }
-        out[subjectcategory.id]!.push(unit);
-      }
-    }
-
-    return Object.entries(out).map(([subjectcategoryId, units]) => {
-      return {
-        subjectCategory: subjectCategories[subjectcategoryId]!,
-        units,
-      };
-    });
   };
 
   let yearContent: string;

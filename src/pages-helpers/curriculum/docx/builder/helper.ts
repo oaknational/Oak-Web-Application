@@ -128,3 +128,27 @@ export const generateIconURL = (subjectSlug: string): string => {
   const iconName = isValidIconName(key) ? key : "subject-english";
   return generateOakIconURL(iconName);
 };
+
+export function groupUnitsBySubjectCategory(units: Unit[]) {
+  const out: Record<string, Unit[]> = {};
+  const subjectCategories: Record<
+    string,
+    NonNullable<Unit["subjectcategories"]>[number]
+  > = {};
+  for (const unit of units) {
+    for (const subjectcategory of unit.subjectcategories ?? []) {
+      if (out[subjectcategory.id] === undefined) {
+        subjectCategories[subjectcategory.id] = subjectcategory;
+        out[subjectcategory.id] = [];
+      }
+      out[subjectcategory.id]!.push(unit);
+    }
+  }
+
+  return Object.entries(out).map(([subjectcategoryId, units]) => {
+    return {
+      subjectCategory: subjectCategories[subjectcategoryId]!,
+      units,
+    };
+  });
+}

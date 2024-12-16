@@ -3,7 +3,7 @@ import { CombinedCurriculumData } from "..";
 import { appendBodyElements, insertNumbering, JSZipCached } from "../docx";
 import { createThreadOptions, createUnitsListingByYear } from "../tab-helpers";
 
-import { threadUnitByYear } from "./helper";
+import { groupUnitsBySubjectCategory, threadUnitByYear } from "./helper";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { sortYears } from "@/utils/curriculum/sorting";
@@ -11,31 +11,6 @@ import { Unit } from "@/utils/curriculum/types";
 
 function sortByOrder(units: Unit[]) {
   return [...units].sort((a, b) => a.order - b.order);
-}
-
-// Returns an aray of Subject category objects
-// which each contain units associated with that category
-function groupUnitsBySubjectCategory(units: Unit[]) {
-  const out: Record<string, Unit[]> = {};
-  const subjectCategories: Record<
-    string,
-    NonNullable<Unit["subjectcategories"]>[number]
-  > = {};
-
-  for (const unit of units) {
-    for (const subjectcategory of unit.subjectcategories ?? []) {
-      if (out[subjectcategory.id] === undefined) {
-        subjectCategories[subjectcategory.id] = subjectcategory;
-        out[subjectcategory.id] = [];
-      }
-      out[subjectcategory.id]!.push(unit);
-    }
-  }
-
-  return Object.entries(out).map(([subjectcategoryId, units]) => ({
-    subjectCategory: subjectCategories[subjectcategoryId]!,
-    units,
-  }));
 }
 
 function renderUnits(units: Unit[], numbering: { unitNumbering: string }) {
