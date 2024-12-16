@@ -1,12 +1,14 @@
 import { generateOakIconURL } from "@oaknational/oak-components";
 
 import { xmlRootToJson } from "../xml";
+import { CombinedCurriculumData } from "..";
 
 import {
   generateGridCols,
   uncapitalize,
   uncapitalizeSubject,
   generateIconURL,
+  groupUnitsBySubjectCategory,
 } from "./helper";
 
 describe("helper", () => {
@@ -77,6 +79,58 @@ describe("helper", () => {
     it("returns a valid url when valid subject icon is passed in", () => {
       const url = generateIconURL("maths");
       expect(url).toBe(generateOakIconURL("subject-maths"));
+    });
+  });
+
+  describe("groupUnitsBySubjectCategory", () => {
+    it("should group with subject categories", () => {
+      expect(
+        groupUnitsBySubjectCategory([
+          {
+            slug: "a",
+          },
+          {
+            slug: "b",
+          },
+        ] as CombinedCurriculumData["units"]),
+      ).toEqual([]);
+    });
+
+    it("should not group without subject categories", () => {
+      const input = [
+        {
+          slug: "a",
+          subjectcategories: [
+            {
+              id: 1,
+              title: "test1",
+              category: "test1",
+            },
+          ],
+        },
+        {
+          slug: "b",
+          subjectcategories: [
+            {
+              id: 2,
+              title: "test2",
+              category: "test2",
+            },
+          ],
+        },
+      ] as CombinedCurriculumData["units"];
+
+      const out = groupUnitsBySubjectCategory(input);
+      expect(out).toEqual([
+        {
+          subjectCategory: input[0]!.subjectcategories![0],
+          units: [input[0]!],
+        },
+        {
+          subjectCategory: input[1]!.subjectcategories![0],
+          units: [input[1]!],
+        },
+      ]);
     });
   });
 });
