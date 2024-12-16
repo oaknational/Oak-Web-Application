@@ -5,6 +5,8 @@ export const LogoWithTextSvg = () => (
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
     viewBox="0 0 960.02 439.69"
+    height="100%"
+    width="100%"
   >
     <path
       fill="currentColor"

@@ -5,8 +5,8 @@ export const LogoSvg = () => (
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 32 42"
-    height="42"
-    width="32"
+    height="100%"
+    width="100%"
     aria-hidden="true"
   >
     <path
