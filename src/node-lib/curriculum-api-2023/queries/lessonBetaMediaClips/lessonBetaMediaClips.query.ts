@@ -13,26 +13,14 @@ import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/le
 
 export const betaLessonMediaClipsQuery =
   (sdk: Sdk) =>
-  async <T>(args: {
-    lessonSlug: string;
-    unitSlug?: string;
-    programmeSlug?: string;
-    isLegacy?: boolean;
-  }): Promise<T> => {
-    const { lessonSlug, unitSlug, programmeSlug } = args;
+  async <T>(args: { lessonSlug: string }): Promise<T> => {
+    const { lessonSlug } = args;
 
     const res = await sdk.betaLessonMediaClips({
       lessonSlug,
     });
 
-    const canonicalLesson = !unitSlug && !programmeSlug;
-
-    if (
-      !canonicalLesson &&
-      res.browseData.length > 1 &&
-      unitSlug &&
-      programmeSlug
-    ) {
+    if (res.browseData.length > 1) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });

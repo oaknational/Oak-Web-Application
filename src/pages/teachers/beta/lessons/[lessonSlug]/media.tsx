@@ -4,7 +4,6 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import React from "react";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
@@ -22,18 +21,15 @@ import { LessonMedia } from "@/components/TeacherViews/LessonMedia/LessonMedia.v
 const BetaLessonMediaPage: NextPage<LessonMediaClipsPageProps> = ({
   curriculumData,
 }) => {
-  const { lessonTitle, subjectTitle, programmeSlug, unitSlug, lessonSlug } =
-    curriculumData;
+  const { lessonTitle, subjectTitle, lessonSlug } = curriculumData;
 
   return (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson Media: ${lessonTitle} |  ${subjectTitle}`,
-          description: "Extra video and audio for the lesson",
-          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${
-            programmeSlug
-          }/units/${unitSlug}/lessons/${lessonSlug}`,
+          title: `Beta Lesson Media: ${lessonTitle} |  ${subjectTitle}`,
+          description: "View beta extra video and audio for the lesson",
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/beta/lessons/${lessonSlug}`,
         }),
       }}
     >
@@ -44,8 +40,6 @@ const BetaLessonMediaPage: NextPage<LessonMediaClipsPageProps> = ({
 
 export type URLParams = {
   lessonSlug: string;
-  programmeSlug: string;
-  unitSlug: string;
 };
 
 export const getStaticPaths = async () => {
