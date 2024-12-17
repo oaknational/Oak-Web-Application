@@ -1,4 +1,4 @@
-import React, { useRef, Fragment } from "react";
+import React, { useRef, Fragment, useState } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -48,9 +48,9 @@ import {
   checkIsResourceCopyrightRestricted,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
-import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
@@ -101,6 +101,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     lessonGuideUrl,
     teacherShareButton,
     additionalMaterialUrl,
+    actions,
     hasMediaClips,
   } = lesson;
 
@@ -129,6 +130,11 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     : "Video & audio clips";
 
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
+
+  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
+    useState<boolean>(actions?.displayExpiringBanner);
+
+  const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
 
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
@@ -268,13 +274,6 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
         teacherShareButton={teacherShareButton}
       />
       <MaxWidth $ph={16} $pb={80}>
-        <NewContentBanner
-          keyStageSlug={keyStageSlug ?? ""}
-          subjectSlug={subjectSlug ?? ""}
-          subjectTitle={subjectTitle ? subjectTitle.toLowerCase() : ""}
-          programmeSlug={programmeSlug ?? ""}
-          isLegacy={lessonCohort === LEGACY_COHORT}
-        />
         {expired ? (
           <Box $pa={16} $mb={64}>
             <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
@@ -307,8 +306,20 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                 />
               </OakFlex>
             </GridArea>
+
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
+                <OakBox $pb={"inner-padding-m"}>
+                  <ExpiringBanner
+                    isOpen={showExpiredLessonsBanner}
+                    isResourcesMessage={true}
+                    onwardHref={unitListingHref}
+                    onClose={() => {
+                      setShowExpiredLessonsBanner(false);
+                    }}
+                  />
+                </OakBox>
+
                 {pageLinks.find((p) => p.label === "Lesson guide") &&
                   lessonGuideUrl && (
                     <LessonItemContainer
