@@ -110,7 +110,6 @@ export const lessonMediaClipsQuery =
           subjectTitle: browseData.programmeFields.subject,
         },
       ]);
-      console.log(data, "<< data");
       canonicalLessonMediaClipsSchema.parse({
         ...data,
       });

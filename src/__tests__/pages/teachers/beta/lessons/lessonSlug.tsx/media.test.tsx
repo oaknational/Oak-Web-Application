@@ -17,19 +17,13 @@ import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/le
 
 const render = renderWithProviders();
 
-jest.mock("posthog-js/react");
-
 const lessonFixtureData = lessonMediaClipsFixtures();
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(() => true),
-}));
-
-describe("LessonMediaClipsPage", () => {
+describe("BetaLessonMediaClipsPage", () => {
   beforeEach(() => {
     (useRouter as jest.Mock).mockReturnValue({
       isPreview: false,
