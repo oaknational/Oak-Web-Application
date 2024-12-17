@@ -45,9 +45,6 @@ export const betaLessonMediaClipsQuery =
 
     const [browseDataSnake] = modifiedBrowseData;
 
-    /**
-     * TODO: supplementary_data is not on current schema
-     */
     lessonBrowseDataSchema.parse({
       ...browseDataSnake,
       supplementary_data: { order_in_unit: 0, unit_order: 0 },
@@ -55,29 +52,13 @@ export const betaLessonMediaClipsQuery =
 
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
 
-    const data = constructLessonMediaData(browseData, []);
+    const data = constructLessonMediaData(
+      browseData,
+      lessonMediaClipsFixtures().mediaClips,
+      [],
+    );
 
-    return {
-      lessonSlug: data.lessonSlug,
-      lessonTitle: data.lessonTitle,
-      mediaClips: lessonMediaClipsFixtures().mediaClips,
-      pathways: [
-        {
-          lessonSlug: data.lessonSlug,
-          lessonTitle: data.lessonTitle,
-          unitSlug: data.unitSlug,
-          unitTitle: data.unitTitle,
-          keyStageSlug: data.keyStageSlug,
-          keyStageTitle: data.keyStageTitle,
-          subjectSlug: data.subjectSlug,
-          subjectTitle: data.subjectTitle,
-          yearTitle: data.yearTitle,
-          examBoardTitle: data.examBoardTitle,
-          tierTitle: data.tierTitle,
-          tierSlug: data.tierSlug,
-        },
-      ],
-    } as T;
+    return data as T;
   };
 
 export type LessonMediaClipsQueryReturn = ReturnType<
