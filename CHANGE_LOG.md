@@ -1,3 +1,20 @@
+# [1.653.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.652.0...v1.653.0) (2024-12-18)
+
+
+### Bug Fixes
+
+* add aria label to lot picker label ([9175f64](https://github.com/oaknational/Oak-Web-Application/commit/9175f643819ff1b8fde55377c083aa0a5ad2e782))
+* add correct id and aria label to lot picker label ([aefd7e0](https://github.com/oaknational/Oak-Web-Application/commit/aefd7e0c438d50bb00ca4f40be453922c28f41e9))
+* changed aria value ([d9211de](https://github.com/oaknational/Oak-Web-Application/commit/d9211dede702b0030bc9cea4b94e6bd6f1b53dcc))
+* remove "polite" from errors ([eb8a04d](https://github.com/oaknational/Oak-Web-Application/commit/eb8a04df4204756db6e391de90feab5e5f65ef80))
+* updated aria roles & removed h3 ([615fa0a](https://github.com/oaknational/Oak-Web-Application/commit/615fa0abdf5c703c7b5a1f84fc1e1f002bcf0348))
+* updated z-index ([5d63316](https://github.com/oaknational/Oak-Web-Application/commit/5d6331668635b6d8e9c9438f73284d79daba609a))
+
+
+### Features
+
+* add label to lot picker ([661dd74](https://github.com/oaknational/Oak-Web-Application/commit/661dd74833a65442ad5900405f68130006482c50))
+
 # [1.652.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.3...v1.652.0) (2024-12-18)
 
 
