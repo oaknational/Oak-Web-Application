@@ -22,7 +22,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
   subjectPhaseOptions,
 }) => {
   return (
-    <OakBox $background={"mint"} $pv="inner-padding-xl">
+    <OakBox $background={"mint"} $pv="inner-padding-xl" $ph={"inner-padding-m"}>
       <OakMaxWidth $pv={"inner-padding-xl"}>
         <OakFlex>
           <OakFlex
@@ -34,7 +34,10 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
             <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
               Teachers & subject leads
             </OakHeading>
-            <OakHeading $font={"heading-3"} tag={"h2"}>
+            <OakHeading
+              $font={["heading-4", "heading-4", "heading-3"]}
+              tag={"h2"}
+            >
               Curriculum plans
             </OakHeading>
             <OakFlex $flexDirection={"column"}>
