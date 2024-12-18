@@ -9,6 +9,7 @@ import {
   uncapitalizeSubject,
   generateIconURL,
   groupUnitsBySubjectCategory,
+  subjectFromUnits,
 } from "./helper";
 
 describe("helper", () => {
@@ -131,6 +132,25 @@ describe("helper", () => {
           units: [input[1]!],
         },
       ]);
+    });
+  });
+  describe("subjectFromUnits", () => {
+    const data = [
+      {},
+      { subject_slug: "combined-science", subject: "Combined science" },
+    ] as CombinedCurriculumData["units"];
+    it("return if exists and slug", () => {
+      expect(subjectFromUnits(data, "combined-science")).toEqual(
+        "Combined science",
+      );
+    });
+
+    it("undefined if no slug", () => {
+      expect(subjectFromUnits(data, undefined)).toEqual(undefined);
+    });
+
+    it("undefined if no unit with subject", () => {
+      expect(subjectFromUnits(data, "foobar")).toEqual(undefined);
     });
   });
 });
