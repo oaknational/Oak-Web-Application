@@ -1,3 +1,11 @@
+## [1.651.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.1...v1.651.2) (2024-12-18)
+
+
+### Bug Fixes
+
+* invalid value for w:beforeAutospacing in docx ([384561d](https://github.com/oaknational/Oak-Web-Application/commit/384561d5425f7ccb3ae2922734d3541a654f0ee8))
+* replace w:beforeAutospacing with w:before ([b0efbc5](https://github.com/oaknational/Oak-Web-Application/commit/b0efbc56a7ec230efd533b09ae33649065631da5))
+
 ## [1.651.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.0...v1.651.1) (2024-12-18)
 
 
