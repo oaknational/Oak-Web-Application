@@ -1,3 +1,10 @@
+## [1.651.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.0...v1.651.1) (2024-12-18)
+
+
+### Bug Fixes
+
+* incorrect breakpoint in curric picker ([37127e3](https://github.com/oaknational/Oak-Web-Application/commit/37127e32106782b3cc5452acea1e9a10fa8cd09b))
+
 # [1.651.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.650.0...v1.651.0) (2024-12-16)
 
 

@@ -203,7 +203,7 @@ const SubjectContainerWrapper = styled.div`
   overflow-y: auto;
   padding-left: 8px;
 
-  @media (min-width: 769px) {
+  @media (min-width: 749px) {
     padding-left: 0px;
     max-height: auto;
     overflow-y: visible;
@@ -218,7 +218,7 @@ const PhaseContainerWrapper = styled.div`
   overflow-y: auto;
   position: relative;
 
-  @media (min-width: 769px) {
+  @media (min-width: 749px) {
     max-height: auto;
     overflow-y: visible;
   }
