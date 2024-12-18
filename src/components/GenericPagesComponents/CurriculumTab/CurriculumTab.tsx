@@ -7,29 +7,33 @@ import {
   OakUL,
   OakTypography,
   OakFlex,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
-import CurriculumTabBadge from "@/components/GenericPagesComponents/CurriculumTabBadge";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Illustration from "@/components/SharedComponents/Illustration";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
+import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
+import { resolveOakHref } from "@/common-lib/urls";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
-const CurriculumTab: FC = () => {
+type CurriculumDownloadTabProps = {
+  subjectPhaseOptions: SubjectPhasePickerData;
+};
+const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
+  subjectPhaseOptions,
+}) => {
   return (
     <OakFlex $background={"mint"} $pv="inner-padding-xl">
       <MaxWidth $ph={[16]} $pb={24}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
             {/* @todo replace with OakFlex - work out $flex prop */}
-            <Flex
+            <OakFlex
               $flexDirection={"column"}
-              $maxWidth={[640]}
-              $pt={32}
-              $alignItems={"flex-start"}
-              $gap={24}
-              $flex={"0 1 auto"}
+              $gap={"space-between-m"}
+              $pv={"inner-padding-xl3"}
             >
               <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
                 Teachers & subject leads
@@ -42,10 +46,16 @@ const CurriculumTab: FC = () => {
                 <OakTypography $font={"body-1"}>
                   All of our curriculum plans are:
                 </OakTypography>
-                <OakUL $mt="space-between-s" $font={"body-1"}>
-                  <OakLI>National curriculum-aligned</OakLI>
-                  <OakLI>Sequenced across year groups</OakLI>
-                  <OakLI>Designed by curriculum experts</OakLI>
+                <OakUL $font={"body-1"}>
+                  <OakLI $mt={"space-between-s"}>
+                    National curriculum-aligned
+                  </OakLI>
+                  <OakLI $mt={"space-between-s"}>
+                    Sequenced across year groups
+                  </OakLI>
+                  <OakLI $mt={"space-between-s"}>
+                    Designed by curriculum experts
+                  </OakLI>
                 </OakUL>
               </OakFlex>
 
@@ -54,16 +64,17 @@ const CurriculumTab: FC = () => {
                 $flexWrap={"wrap"}
                 $pb="inner-padding-xl"
               >
-                <ButtonAsLink
-                  label={"View curriculum plans"}
-                  variant={"brushNav"}
-                  page={"curriculum-landing-page"}
-                  icon={"arrow-right"}
-                  $iconPosition={"trailing"}
-                  iconBackground="black"
-                />
+                <OakTypography $font={"body-1-bold"}>
+                  <OakSecondaryLink
+                    href={resolveOakHref({ page: "curriculum-landing-page" })}
+                    iconName="chevron-right"
+                    isTrailingIcon
+                  >
+                    Our curriculum planning approach
+                  </OakSecondaryLink>
+                </OakTypography>
               </OakFlex>
-            </Flex>
+            </OakFlex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
             {/* @todo replace with OakFlex - work out $flex prop */}
@@ -81,6 +92,7 @@ const CurriculumTab: FC = () => {
             >
               <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
                 <Illustration
+                  $transform={["none", "none", "rotate(2deg)"]}
                   slug={"teacher-whiteboard"}
                   noCrop
                   $objectFit="contain"
@@ -90,23 +102,13 @@ const CurriculumTab: FC = () => {
                   $borderStyle={"solid"}
                   $borderColor={"black"}
                 />
-                <OakTypography $font={"body-1"} $color={"black"}>
-                  50% of teachers feel more confident in curriculum design.
-                </OakTypography>
               </OakFlex>
-
-              <Box
-                $position={"absolute"}
-                $bottom={120}
-                $left={-20}
-                aria-hidden={true}
-              >
-                {" "}
-                <CurriculumTabBadge icon="bell" />
-              </Box>
             </Flex>
           </OakGridArea>
         </OakGrid>
+        <Box $maxWidth={["100%", 960]}>
+          <SubjectPhasePicker {...subjectPhaseOptions} />
+        </Box>
       </MaxWidth>
     </OakFlex>
   );
