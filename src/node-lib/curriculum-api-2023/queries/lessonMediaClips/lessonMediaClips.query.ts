@@ -89,42 +89,31 @@ export const lessonMediaClipsQuery =
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+
     const mediaClipsFixture = lessonMediaClipsFixtures().mediaClips;
     if (!canonicalLesson) {
-      const data = constructLessonMediaData(browseData);
-      lessonMediaClipsSchema.parse({ ...data, mediaClips: mediaClipsFixture });
+      const data = constructLessonMediaData(browseData, mediaClipsFixture);
+      lessonMediaClipsSchema.parse({ ...data });
       return {
         ...data,
-        mediaClips: mediaClipsFixture,
       } as T;
     } else {
-      const data = constructLessonMediaData(browseData, []);
+      // Pathway hardcoded
+      const data = constructLessonMediaData(browseData, mediaClipsFixture, [
+        {
+          programmeSlug: browseData.programmeSlug,
+          unitSlug: browseData.unitSlug,
+          unitTitle: browseData.unitData.title,
+          keyStageSlug: browseData.programmeFields.keystageSlug,
+          keyStageTitle: browseData.programmeFields.keystageDescription,
+          subjectSlug: browseData.programmeFields.subjectSlug,
+          subjectTitle: browseData.programmeFields.subject,
+        },
+      ]);
       canonicalLessonMediaClipsSchema.parse({
         ...data,
-        mediaClips: mediaClipsFixture,
       });
-      //Pathways  is hard coded currently
-      return {
-        lessonSlug: data.lessonSlug,
-        lessonTitle: data.lessonTitle,
-        mediaClips: lessonMediaClipsFixtures().mediaClips,
-        pathways: [
-          {
-            lessonSlug: data.lessonSlug,
-            lessonTitle: data.lessonTitle,
-            unitSlug: data.unitSlug,
-            unitTitle: data.unitTitle,
-            keyStageSlug: data.keyStageSlug,
-            keyStageTitle: data.keyStageTitle,
-            subjectSlug: data.subjectSlug,
-            subjectTitle: data.subjectTitle,
-            yearTitle: data.yearTitle,
-            examBoardTitle: data.examBoardTitle,
-            tierTitle: data.tierTitle,
-            tierSlug: data.tierSlug,
-          },
-        ],
-      } as T;
+      return data as T;
     }
   };
 

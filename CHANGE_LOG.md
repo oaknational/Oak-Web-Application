@@ -1,3 +1,26 @@
+# [1.652.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.3...v1.652.0) (2024-12-18)
+
+
+### Features
+
+* add tests and refactor mocks ([ac80f4c](https://github.com/oaknational/Oak-Web-Application/commit/ac80f4c8d5815850d1efe0c68241c132483224dd))
+* wire in new mv into OWA and add beta media page ([1a74d2e](https://github.com/oaknational/Oak-Web-Application/commit/1a74d2e53d744e5bcadc7df67ec22e85711ee951))
+
+## [1.651.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.2...v1.651.3) (2024-12-18)
+
+
+### Bug Fixes
+
+* added subjectFromUnits method to pull title from data rather than generating from the slug ([cf4737a](https://github.com/oaknational/Oak-Web-Application/commit/cf4737a81019725863dffa7992a2fb249c7d80fa))
+
+## [1.651.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.1...v1.651.2) (2024-12-18)
+
+
+### Bug Fixes
+
+* invalid value for w:beforeAutospacing in docx ([384561d](https://github.com/oaknational/Oak-Web-Application/commit/384561d5425f7ccb3ae2922734d3541a654f0ee8))
+* replace w:beforeAutospacing with w:before ([b0efbc5](https://github.com/oaknational/Oak-Web-Application/commit/b0efbc56a7ec230efd533b09ae33649065631da5))
+
 ## [1.651.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.0...v1.651.1) (2024-12-18)
 
 
