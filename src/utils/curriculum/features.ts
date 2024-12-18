@@ -41,6 +41,7 @@ export function getUnitFeatures(unit?: Unit | null) {
       subjectcategories: {
         all_disabled: true,
         default_category_id: 19,
+        group_by_subjectcategory: true,
       },
     };
   }
