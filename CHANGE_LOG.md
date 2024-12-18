@@ -1,3 +1,10 @@
+## [1.651.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.2...v1.651.3) (2024-12-18)
+
+
+### Bug Fixes
+
+* added subjectFromUnits method to pull title from data rather than generating from the slug ([cf4737a](https://github.com/oaknational/Oak-Web-Application/commit/cf4737a81019725863dffa7992a2fb249c7d80fa))
+
 ## [1.651.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.1...v1.651.2) (2024-12-18)
 
 
