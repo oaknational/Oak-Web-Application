@@ -397,7 +397,8 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     </LessonItemContainer>
                   )}
                 {pageLinks.find((p) => p.label === mediaClipLabel) &&
-                  hasMediaClips && (
+                  hasMediaClips &&
+                  isBeta && (
                     <LessonItemContainer
                       title={mediaClipLabel}
                       ref={lessonMediaClipsSectionRef}

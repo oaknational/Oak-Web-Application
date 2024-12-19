@@ -3,8 +3,14 @@ import { lessonContentFixture } from "@oaknational/oak-curriculum-schema";
 import teacherPreviewLessonQuery from "./teacherPreviewLesson.query";
 
 import sdk from "@/node-lib/curriculum-api-2023/sdk";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 
 describe("teacherPreviewLesson()", () => {
+  const browseFixtureData = {
+    ...lessonBrowseDataFixture({
+      lessonSlug: "lesson-slug",
+    }),
+  };
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
       await teacherPreviewLessonQuery({
@@ -24,6 +30,7 @@ describe("teacherPreviewLesson()", () => {
       ...sdk,
       teachersPreviewLesson: jest.fn(() =>
         Promise.resolve({
+          browseData: [browseFixtureData],
           content: [
             {
               ..._lessonContentFixture,

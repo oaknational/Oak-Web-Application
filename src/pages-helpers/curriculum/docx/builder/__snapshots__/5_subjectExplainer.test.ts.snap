@@ -502,9 +502,8 @@ exports[`5_subjectExplainer cycle 2 features 1`] = `
         <w:spacing
           w:lineRule="auto"
           w:line="240"
-          w:before="0"
+          w:before="240"
           w:after="240"
-          w:beforeAutospacing="48"
         ></w:spacing>
       </w:pPr>
       <w:r>
