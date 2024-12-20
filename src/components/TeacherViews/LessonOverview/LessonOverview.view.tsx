@@ -1,4 +1,4 @@
-import React, { useRef, Fragment } from "react";
+import React, { useRef, Fragment, useState } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -16,6 +16,7 @@ import {
   getLessonOverviewBreadCrumb,
   createAttributionObject,
   getBreadcrumbsForSpecialistLessonPathway,
+  getMediaClipLabel,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   LessonOverviewAll,
@@ -47,15 +48,17 @@ import {
   checkIsResourceCopyrightRestricted,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
-import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
+import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
     teacherShareButton?: React.ReactNode;
   };
-};
+} & { isBeta: boolean };
 
 // helper function to remove key learning points from the header in legacy lessons
 export const getDedupedPupilLessonOutcome = (
@@ -68,7 +71,7 @@ export const getDedupedPupilLessonOutcome = (
   return plo;
 };
 
-export function LessonOverview({ lesson }: LessonOverviewProps) {
+export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
   const {
     lessonTitle,
     lessonSlug,
@@ -97,7 +100,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     isCanonical,
     lessonGuideUrl,
     teacherShareButton,
+    additionalMaterialUrl,
+    actions,
+    hasMediaClips,
   } = lesson;
+
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const commonPathway = getPathway(lesson);
@@ -118,7 +125,16 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     isLegacyLicense,
   );
 
+  const mediaClipLabel = subjectSlug
+    ? getMediaClipLabel(subjectSlug)
+    : "Video & audio clips";
+
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
+
+  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
+    useState<boolean>(actions?.displayExpiringBanner);
+
+  const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
 
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
@@ -158,7 +174,12 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   };
 
   const slugs = { unitSlug, lessonSlug, programmeSlug };
-  const pageLinks = getPageLinksForLesson(lesson, copyrightContent);
+  const pageLinks = getPageLinksForLesson(
+    lesson,
+    copyrightContent,
+    mediaClipLabel,
+  );
+
   const slideDeckSectionRef = useRef<HTMLDivElement>(null);
   const lessonDetailsSectionRef = useRef<HTMLDivElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
@@ -167,6 +188,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
   const exitQuizSectionRef = useRef<HTMLDivElement>(null);
   const additionalMaterialSectionRef = useRef<HTMLDivElement>(null);
   const lessonGuideSectionRef = useRef<HTMLDivElement>(null);
+  const lessonMediaClipsSectionRef = useRef<HTMLDivElement>(null);
 
   const sectionRefs = {
     "lesson-guide": lessonGuideSectionRef,
@@ -177,6 +199,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     "starter-quiz": starterQuizSectionRef,
     "exit-quiz": exitQuizSectionRef,
     "additional-material": additionalMaterialSectionRef,
+    "media-clips": lessonMediaClipsSectionRef,
   };
 
   const { currentSectionId } = useCurrentSection({ sectionRefs });
@@ -200,6 +223,11 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     return url.replace(/\/edit.*$/, "/preview");
   };
   const previewLessonGuideUrl = getPreviewUrl(lessonGuideUrl || "");
+  const isMFL =
+    subjectSlug === "german" ||
+    subjectSlug === "french" ||
+    subjectSlug === "spanish" ||
+    lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre";
 
   return (
     <MathJaxLessonProvider>
@@ -246,13 +274,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         teacherShareButton={teacherShareButton}
       />
       <MaxWidth $ph={16} $pb={80}>
-        <NewContentBanner
-          keyStageSlug={keyStageSlug ?? ""}
-          subjectSlug={subjectSlug ?? ""}
-          subjectTitle={subjectTitle ? subjectTitle.toLowerCase() : ""}
-          programmeSlug={programmeSlug ?? ""}
-          isLegacy={lessonCohort === LEGACY_COHORT}
-        />
         {expired ? (
           <Box $pa={16} $mb={64}>
             <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
@@ -285,8 +306,20 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                 />
               </OakFlex>
             </GridArea>
+
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
+                <OakBox $pb={"inner-padding-m"}>
+                  <ExpiringBanner
+                    isOpen={showExpiredLessonsBanner}
+                    isResourcesMessage={true}
+                    onwardHref={unitListingHref}
+                    onClose={() => {
+                      setShowExpiredLessonsBanner(false);
+                    }}
+                  />
+                </OakBox>
+
                 {pageLinks.find((p) => p.label === "Lesson guide") &&
                   lessonGuideUrl && (
                     <LessonItemContainer
@@ -363,11 +396,35 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       />
                     </LessonItemContainer>
                   )}
+                {pageLinks.find((p) => p.label === mediaClipLabel) &&
+                  hasMediaClips &&
+                  isBeta && (
+                    <LessonItemContainer
+                      title={mediaClipLabel}
+                      ref={lessonMediaClipsSectionRef}
+                      anchorId="media-clips"
+                      isSpecialist={isSpecialist}
+                      slugs={slugs}
+                      pageLinks={pageLinks}
+                      displayMediaClipButton={true}
+                    >
+                      <LessonOverviewMediaClips
+                        lessonSlug={lessonSlug}
+                        learningCycleVideos={
+                          lessonMediaClipsFixtures().mediaClips
+                        }
+                        unitSlug={unitSlug ?? null}
+                        programmeSlug={programmeSlug ?? null}
+                      />
+                    </LessonItemContainer>
+                  )}
+
                 <LessonItemContainer
                   isSpecialist={isSpecialist}
                   ref={lessonDetailsSectionRef}
                   title={"Lesson details"}
                   anchorId="lesson-details"
+                  slugs={slugs}
                   pageLinks={pageLinks}
                 >
                   <LessonDetails
@@ -382,6 +439,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     supervisionLevel={supervisionLevel}
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
+                    // change
+                    hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
+                    displayVocab={isBeta && isMFL}
                     updatedAt={updatedAt}
                   />
                 </LessonItemContainer>

@@ -1,28 +1,28 @@
-import { z } from "zod";
-import { syntheticUnitvariantLessonsByKsSchemaOld } from "@oaknational/oak-curriculum-schema";
+import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 
-import { Sdk } from "../../sdk";
-import OakError from "../../../../errors/OakError";
-import { lessonListSchema } from "../../shared.schema";
-import { toSentenceCase } from "../../helpers";
-import { LessonListingQuery } from "../../generated/sdk";
-
-import lessonListingSchema, {
+import {
+  lessonListingPageDataSchema,
   LessonListingPageData,
+  partialSyntheticUnitvariantLessonsArraySchema,
+  partialSyntheticUnitvariantLessonsSchema,
 } from "./lessonListing.schema";
 
-const partialSyntheticUnitvariantLessonsSchema =
-  syntheticUnitvariantLessonsByKsSchemaOld.omit({
-    null_unitvariant: true,
-    unitvariant_id: true,
-  });
+import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
+import OakError from "@/errors/OakError";
+import {
+  LessonListSchema,
+  Actions,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
+import { LessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
+import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
+import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
+import { getIntersection } from "@/utils/getIntersection";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
-type PartialSyntheticUnitvariantLessons = z.infer<
-  typeof partialSyntheticUnitvariantLessonsSchema
->;
-
-export const getTransformedLessons = (res: LessonListingQuery) => {
-  return res.unit
+export const getTransformedLessons = (
+  lessons: LessonListingQuery["lessons"],
+): LessonListSchema => {
+  return lessons
     .map((l) => {
       const lesson = partialSyntheticUnitvariantLessonsSchema.parse(l);
       const hasCopyrightMaterial =
@@ -38,7 +38,7 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
           lesson.lesson_data.description ||
           lesson.lesson_data.pupil_lesson_outcome,
         pupilLessonOutcome: lesson.lesson_data.pupil_lesson_outcome,
-        expired: lesson.lesson_data.deprecated_fields?.expired || false,
+        expired: Boolean(lesson.lesson_data.deprecated_fields?.expired),
         quizCount:
           (lesson.lesson_data.quiz_id_starter ? 1 : 0) +
           (lesson.lesson_data.quiz_id_exit ? 1 : 0),
@@ -46,34 +46,63 @@ export const getTransformedLessons = (res: LessonListingQuery) => {
         presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
         worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
         hasCopyrightMaterial,
-        orderInUnit: lesson.supplementary_data.order_in_unit,
+        orderInUnit: lesson.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
+        actions: (keysToCamelCase(lesson.actions) || null) as Actions,
       };
       return transformedLesson;
     })
     .sort((a, b) => a.orderInUnit - b.orderInUnit);
 };
 
-export const getTransformedUnit = (
-  unit: PartialSyntheticUnitvariantLessons,
-  parsedLessons: LessonListingPageData["lessons"],
+type PackagedUnitData = {
+  programmeFields: ProgrammeFields;
+  unitSlug: string;
+  programmeSlug: string;
+  unitTitle: string;
+  programmeSlugByYear: string[];
+};
+
+export const getPackagedUnit = (
+  packagedUnitData: PackagedUnitData,
+  unitLessons: LessonListSchema,
 ): LessonListingPageData => {
-  const unitTitle = unit.programme_fields.optionality ?? unit.unit_data.title;
-  return {
-    programmeSlug: unit.programme_slug,
-    keyStageSlug: unit.programme_fields.keystage_slug,
-    keyStageTitle: toSentenceCase(unit.programme_fields.keystage_description),
-    subjectSlug: unit.programme_fields.subject_slug,
-    subjectTitle: unit.programme_fields.subject,
-    unitSlug: unit.unit_slug,
+  const {
+    programmeFields,
+    unitSlug,
     unitTitle,
-    tierSlug: unit.programme_fields.tier_slug,
-    tierTitle: unit.programme_fields.tier_description,
-    examBoardSlug: unit.programme_fields.examboard_slug,
-    examBoardTitle: unit.programme_fields.examboard,
-    yearSlug: unit.programme_fields.year_slug,
-    yearTitle: unit.programme_fields.year_description,
-    lessons: parsedLessons,
+    programmeSlug,
+    programmeSlugByYear,
+  } = packagedUnitData;
+
+  const modifiedProgrammeFields = getCorrectYear({
+    programmeSlugByYear,
+    programmeFields,
+  });
+
+  const combinedActions = getIntersection<LessonListSchema[number]["actions"]>(
+    unitLessons.map((lesson) => lesson.actions),
+  ) as Actions;
+
+  return {
+    programmeSlug,
+    keyStageSlug: modifiedProgrammeFields.keystage_slug,
+    keyStageTitle: modifiedProgrammeFields.keystage_description,
+    subjectSlug: modifiedProgrammeFields.subject_slug,
+    subjectTitle: modifiedProgrammeFields.subject,
+    unitSlug,
+    unitTitle,
+    tierSlug: modifiedProgrammeFields.tier_slug,
+    tierTitle: modifiedProgrammeFields.tier_description,
+    examBoardSlug: modifiedProgrammeFields.examboard_slug,
+    examBoardTitle: modifiedProgrammeFields.examboard,
+    yearSlug: modifiedProgrammeFields.year_slug,
+    yearTitle: modifiedProgrammeFields.year_description,
+    lessons: unitLessons,
+    pathwaySlug: modifiedProgrammeFields.pathway_slug,
+    pathwayTitle: modifiedProgrammeFields.pathway,
+    pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
+    actions: combinedActions,
   };
 };
 
@@ -81,16 +110,36 @@ const lessonListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string; unitSlug: string }) => {
     const res = await sdk.lessonListing(args);
 
-    const [unit] = res.unit;
+    const modifiedLessons = applyGenericOverridesAndExceptions<
+      LessonListingQuery["lessons"][number]
+    >({
+      journey: "pupil",
+      queryName: "pupilLessonListingQuery",
+      browseData: res.lessons,
+    });
 
-    if (!unit) {
+    if (modifiedLessons.length === 0) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
-    const unitLessons = getTransformedLessons(res);
-    const parsedLessons = lessonListSchema.parse(unitLessons);
-    const parsedUnit = partialSyntheticUnitvariantLessonsSchema.parse(unit);
-    const transformedUnit = getTransformedUnit(parsedUnit, parsedLessons);
-    return lessonListingSchema.parse(transformedUnit);
+
+    const parsedModifiedLessons =
+      partialSyntheticUnitvariantLessonsArraySchema.parse(modifiedLessons);
+
+    const unitLessons = getTransformedLessons(parsedModifiedLessons);
+    const packagedUnitData = modifiedLessons.reduce((acc, lesson) => {
+      return {
+        ...acc,
+        programmeFields: lesson.programme_fields,
+        unitSlug: lesson.unit_slug ?? "",
+        programmeSlug: lesson.programme_slug ?? "",
+        unitTitle:
+          lesson.programme_fields.optionality ?? lesson.unit_data.title,
+        programmeSlugByYear: lesson.programme_slug_by_year,
+      };
+    }, {} as PackagedUnitData);
+
+    const packagedUnit = getPackagedUnit(packagedUnitData, unitLessons);
+    return lessonListingPageDataSchema.parse(packagedUnit);
   };
 
 export default lessonListingQuery;

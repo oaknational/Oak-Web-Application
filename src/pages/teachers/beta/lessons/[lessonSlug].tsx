@@ -22,7 +22,6 @@ const TeacherPreviewLessonPage: NextPage<TeacherPreviewLessonPageProps> = ({
   curriculumData,
 }) => {
   const { lessonTitle } = curriculumData;
-
   return (
     <AppLayout
       seoProps={{
@@ -40,6 +39,7 @@ const TeacherPreviewLessonPage: NextPage<TeacherPreviewLessonPageProps> = ({
             isCanonical: false,
             isSpecialist: false,
           }}
+          isBeta={true}
         />
       </OakThemeProvider>
     </AppLayout>

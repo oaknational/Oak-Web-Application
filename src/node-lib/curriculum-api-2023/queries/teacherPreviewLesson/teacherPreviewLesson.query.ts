@@ -10,6 +10,7 @@ import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { transformedLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import lessonOverviewSchema, {
+  LessonBrowseDataByKs,
   LessonOverviewContent,
   LessonOverviewPageData,
 } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
@@ -62,16 +63,27 @@ const teacherPreviewLessonQuery =
         ? content.starter_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
     });
+    const [browseData] = keysToCamelCase(res.browseData);
 
     const teacherPreviewData = transformedLessonOverviewData(
-      { ...browseFixtureData },
+      browseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,
       [],
     );
 
+    let subjectSlug: string = browseFixtureData.programmeFields.subjectSlug;
+
+    if (lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre") {
+      subjectSlug = "german";
+    } else if (lessonSlug === "running-as-a-team") {
+      subjectSlug = "physical-education";
+    }
+
     const parsedLessonPreviewData = lessonOverviewSchema.parse({
       ...teacherPreviewData,
       lessonTitle: lessonContentData.lessonTitle,
+      hasMediaClips: true,
+      subjectSlug: subjectSlug,
     });
 
     return parsedLessonPreviewData;

@@ -16,6 +16,7 @@ const SpecialistLesson: FC<SpecialistLessonProps> = (props) => {
           isWorksheetLandscape: true,
           isSpecialist: true,
         }}
+        isBeta={false}
       />
     </>
   );

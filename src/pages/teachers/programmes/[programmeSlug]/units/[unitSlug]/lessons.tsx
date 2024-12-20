@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -24,10 +24,7 @@ import {
 } from "@/node-lib/isr";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import {
-  LessonListingPageData,
-  lessonListingSchema,
-} from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
@@ -36,7 +33,6 @@ import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { NEW_COHORT } from "@/config/cohort";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
-import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
@@ -46,6 +42,7 @@ import {
   useShareExperiment,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import UnitDownloadButton, {
   useUnitDownloadButtonState,
 } from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
@@ -62,7 +59,7 @@ export type LessonListingPageProps = {
  * This data gets stored in the browser and is used to render the lesson list,
  * so it's important to keep it as small as possible.
  */
-function getHydratedLessonsFromUnit(unit: lessonListingSchema) {
+function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
   const { lessons, ...rest } = unit;
   return lessons.map((lesson) => ({
     ...lesson,
@@ -81,37 +78,41 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     subjectTitle,
     programmeSlug,
     subjectSlug,
+    actions,
   } = curriculumData;
 
-  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
-    useShareExperiment({
-      unitSlug: unitSlug ?? undefined,
-      programmeSlug: programmeSlug ?? undefined,
-      source: "lesson-listing",
-      curriculumTrackingProps: {
-        lessonName: null,
-        unitName: unitTitle,
-        subjectSlug,
-        subjectTitle,
-        keyStageSlug,
-        keyStageTitle:
-          keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
-      },
-    });
+  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
+    useState<boolean>(actions?.displayExpiringBanner ?? false);
 
-  if (shareExperimentFlag && window.location.href !== browserUrl) {
-    window.history.replaceState({}, "", browserUrl);
-  }
+  const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
+  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
+    unitSlug: unitSlug ?? undefined,
+    programmeSlug: programmeSlug ?? undefined,
+    source: "lesson-listing",
+    curriculumTrackingProps: {
+      lessonName: null,
+      unitName: unitTitle,
+      subjectSlug,
+      subjectTitle,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+    },
+  });
 
-  const teacherShareButton =
-    shareExperimentFlag == "test" ? (
-      <TeacherShareButton
-        variant="primary"
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-        label="Share unit with colleague"
-      />
-    ) : null;
+  useEffect(() => {
+    if (window.location.href !== browserUrl) {
+      window.history.replaceState({}, "", browserUrl);
+    }
+  }, [browserUrl]);
+
+  const teacherShareButton = (
+    <TeacherShareButton
+      variant="primary"
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+      label="Share unit with colleague"
+    />
+  );
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
   const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
@@ -276,17 +277,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
         />
         <MaxWidth $ph={16}>
           <OakGrid>
-            <OakGridArea $colSpan={[12, 9]}>
-              <NewContentBanner
-                keyStageSlug={keyStageSlug}
-                subjectSlug={subjectSlug}
-                subjectTitle={subjectTitle.toLowerCase()}
-                programmeSlug={programmeSlug}
-                isLegacy={isSlugLegacy(programmeSlug)}
-              />
-            </OakGridArea>
-          </OakGrid>
-          <OakGrid>
             <OakGridArea
               $colSpan={[12, 9]}
               $mt={["space-between-s", "space-between-m2"]}
@@ -299,6 +289,16 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                 headingTag={"h2"}
                 unitTitle={unitTitle}
                 onClick={trackLessonSelected}
+                expiringBanner={
+                  <ExpiringBanner
+                    isOpen={showExpiredLessonsBanner}
+                    isResourcesMessage={true}
+                    onwardHref={unitListingHref}
+                    onClose={() => {
+                      setShowExpiredLessonsBanner(false);
+                    }}
+                  />
+                }
               />
             </OakGridArea>
           </OakGrid>

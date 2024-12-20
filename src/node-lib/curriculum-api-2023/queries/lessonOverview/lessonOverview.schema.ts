@@ -1,7 +1,7 @@
 import { z } from "zod";
 import {
   lessonContentSchema as lessonContentSchemaFull,
-  syntheticUnitvariantLessonsByKsSchemaOld,
+  syntheticUnitvariantLessonsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 import {
@@ -9,6 +9,7 @@ import {
   lessonPathwaySchema,
 } from "../../shared.schema";
 import { QuizQuestion } from "../pupilLesson/pupilLesson.schema";
+import { mediaClipsSchema } from "../lessonMediaClips/lessonMediaClips.schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
@@ -63,6 +64,8 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   downloads: lessonOverviewDownloads,
   updatedAt: z.string(),
   pathways: z.array(lessonPathwaySchema),
+  // temporary addition to support media clips
+  lessonMediaClips: mediaClipsSchema.nullable(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
@@ -80,12 +83,12 @@ export type LessonOverviewCanonical = z.infer<
   typeof lessonOverviewCanonicalSchema
 >;
 
-export const lessonBrowseDataByKsSchemaOld =
-  syntheticUnitvariantLessonsByKsSchemaOld.omit({
-    unitvariant_id: true,
-    null_unitvariant: true,
+export const lessonBrowseDataByKsSchema =
+  syntheticUnitvariantLessonsSchema.omit({
+    supplementary_data: true,
+    null_unitvariant_id: true,
   });
 
-export type LessonBrowseDataByKsOld = ConvertKeysToCamelCase<
-  z.infer<typeof lessonBrowseDataByKsSchemaOld>
+export type LessonBrowseDataByKs = ConvertKeysToCamelCase<
+  z.infer<typeof lessonBrowseDataByKsSchema>
 >;

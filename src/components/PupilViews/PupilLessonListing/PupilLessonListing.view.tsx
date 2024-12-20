@@ -10,8 +10,6 @@ import {
   OakPupilJourneyList,
   OakPupilJourneyListCounter,
   OakBox,
-  OakInlineBanner,
-  OakSecondaryLink,
   isValidIconName,
 } from "@oaknational/oak-components";
 import { useState } from "react";
@@ -20,6 +18,7 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
+import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 
 export type PupilLessonListingViewProps = {
   unitData: LessonListingBrowseData[number]["unitData"];
@@ -33,6 +32,7 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
   const { unitData, programmeFields, orderedCurriculumData, backLink } = props;
   const {
     yearDescription,
+    yearSlug,
     subject,
     subjectSlug,
     tierDescription,
@@ -46,6 +46,9 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
       unitData.expirationDate !== null ||
         orderedCurriculumData.some((c) => c.actions?.displayExpiringBanner),
     );
+
+  const baseSlug = `${subjectSlug}-${phaseSlug}-${yearSlug}`;
+  const unitListingHref = `/pupils/programmes/${baseSlug}/options`; // NB. options will forward to units if no options available
 
   const noneExpiredLessons = orderedCurriculumData.filter(
     (lesson) => !lesson.lessonData?.deprecatedFields?.expired,
@@ -104,24 +107,14 @@ export const PupilViewsLessonListing = (props: PupilLessonListingViewProps) => {
           tag="h2"
         />
       </OakFlex>
-      <OakInlineBanner
-        canDismiss
-        cta={
-          <OakSecondaryLink
-            href="https://support.thenational.academy/lesson-unavailable"
-            iconName="chevron-right"
-            isTrailingIcon
-          >
-            Read the help article
-          </OakSecondaryLink>
-        }
+
+      <ExpiringBanner
         isOpen={showExpiredLessonsBanner}
-        message="We've made brand new and improved lessons for you."
-        onDismiss={() => {
+        isResourcesMessage={false}
+        onwardHref={unitListingHref}
+        onClose={() => {
           setShowExpiredLessonsBanner(false);
         }}
-        title="Some of these lessons will soon be taken down."
-        type="alert"
       />
     </OakFlex>
   );
