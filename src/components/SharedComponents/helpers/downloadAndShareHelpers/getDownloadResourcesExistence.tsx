@@ -137,13 +137,11 @@ export const getLessonDownloadResourcesExistence = async (
   return lessonDataSchema.parse(res);
 };
 
-export const getUnitDownloadFileExistence = async (
-  unitProgrammeSlug: string,
-) => {
-  const checkWhichResourcesExistEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitProgrammeSlug}/check-files`;
+export const getUnitDownloadFileExistence = async (unitFileId: string) => {
+  const checkWhichResourcesExistEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitFileId}/check-files`;
 
   const meta = {
-    unitProgrammeSlug,
+    unitProgrammeSlug: unitFileId,
   };
 
   const res = await getDownloadExistence(

@@ -41,7 +41,7 @@ describe("UnitDownloadButton", () => {
         setShowDownloadMessage={jest.fn()}
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
-        unitProgrammeSlug="mockSlug"
+        unitFileId="mockSlug"
       />,
     );
     const button = screen.queryByText("Download (.zip 1.2MB)");
@@ -55,7 +55,7 @@ describe("UnitDownloadButton", () => {
         setShowDownloadMessage={jest.fn()}
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
-        unitProgrammeSlug="mockSlug"
+        unitFileId="mockSlug"
       />,
     );
     const button = screen.getByText("Download (.zip 1.2MB)");
@@ -69,7 +69,7 @@ describe("UnitDownloadButton", () => {
         setShowDownloadMessage={jest.fn()}
         downloadInProgress={true}
         onDownloadSuccess={jest.fn()}
-        unitProgrammeSlug="mockSlug"
+        unitFileId="mockSlug"
       />,
     );
     const button = screen.getByText("Downloading...");
@@ -86,7 +86,7 @@ describe("UnitDownloadButton", () => {
         setShowDownloadMessage={jest.fn()}
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
-        unitProgrammeSlug="mockSlug"
+        unitFileId="mockSlug"
       />,
     );
     const button = screen.getByText("Download unit");
@@ -101,7 +101,7 @@ describe("UnitDownloadButton", () => {
         setShowDownloadMessage={jest.fn()}
         downloadInProgress={false}
         onDownloadSuccess={jest.fn()}
-        unitProgrammeSlug="mockSlug"
+        unitFileId="mockSlug"
       />,
     );
     setDownloadError(true);
@@ -116,7 +116,7 @@ describe("UnitDownloadButton", () => {
         setShowDownloadMessage={jest.fn()}
         downloadInProgress={false}
         onDownloadSuccess={onDownloadSuccess}
-        unitProgrammeSlug="mockSlug"
+        unitFileId="mockSlug"
       />,
     );
     onDownloadSuccess();

@@ -117,14 +117,14 @@ export const createLessonDownloadLink = async ({
 };
 
 export const createUnitDownloadLink = async ({
-  unitProgrammeSlug,
+  unitFileId,
 }: {
-  unitProgrammeSlug: string;
+  unitFileId: string;
 }) => {
-  const downloadEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitProgrammeSlug}/download`;
+  const downloadEndpoint = `${DOWNLOADS_API_URL}/api/unit/${unitFileId}/download`;
 
   const meta = {
-    downloadSlug: unitProgrammeSlug,
+    downloadSlug: unitFileId,
   };
 
   const url = await getDownloadLink({ downloadEndpoint, meta });

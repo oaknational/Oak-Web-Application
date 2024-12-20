@@ -87,7 +87,7 @@ export const useUnitDownloadButtonState = () => {
 };
 
 export type UnitDownloadButtonProps = {
-  unitProgrammeSlug: string;
+  unitFileId: string;
   onDownloadSuccess: () => void;
   setDownloadError: Dispatch<SetStateAction<boolean | undefined>>;
   setDownloadInProgress: Dispatch<SetStateAction<boolean>>;
@@ -96,10 +96,11 @@ export type UnitDownloadButtonProps = {
 };
 
 export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
+  useRequireOnboarding();
+  const { unitFileId } = props;
   const { isSignedIn, isLoaded } = useUser();
   const featureFlag = useFeatureFlagVariantKey("teacher-unit-downloads");
   const parsedFeatureFlagKey = variantKey.safeParse(featureFlag);
-  useRequireOnboarding();
 
   const {
     onDownloadSuccess,
@@ -109,10 +110,8 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     downloadInProgress,
   } = props;
 
-  // TODO: use real slug
-  const mockSlug = "test-unit-6-lessons";
   const { exists, fileSize, hasCheckedFiles } =
-    useUnitDownloadExistenceCheck(mockSlug);
+    useUnitDownloadExistenceCheck(unitFileId);
 
   const onUnitDownloadClick = async () => {
     setShowDownloadMessage(true);
@@ -120,7 +119,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     try {
       setDownloadError(false);
       const downloadLink = await createUnitDownloadLink({
-        unitProgrammeSlug: mockSlug,
+        unitFileId,
       });
 
       if (downloadLink) {
@@ -136,8 +135,10 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
 
   const unitDownloadDisabled =
     !parsedFeatureFlagKey.success || parsedFeatureFlagKey.data === "control";
-  const showSignInButton = !unitDownloadDisabled && isLoaded && !isSignedIn;
   const showDownloadButton = !unitDownloadDisabled && hasCheckedFiles && exists;
+  const showSignInButton =
+    showDownloadButton && !unitDownloadDisabled && isLoaded && !isSignedIn;
+  console.log("diego file id", unitFileId, exists);
 
   return showSignInButton ? (
     <UnitDownloadSignInButton variant={parsedFeatureFlagKey.data} />

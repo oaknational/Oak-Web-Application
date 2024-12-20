@@ -1,9 +1,9 @@
 import { z } from "zod";
+
 import {
   programmeFieldsSchema,
   syntheticUnitvariantLessonsSchema,
 } from "@oaknational/oak-curriculum-schema";
-
 import {
   lessonListItemSchema,
   lessonListSchema,
@@ -12,6 +12,7 @@ import {
 export const lessonListingPageDataSchema = z.object({
   programmeSlug: z.string(),
   unitSlug: z.string(),
+  unitvariantId: z.number(),
   unitTitle: z.string(),
   subjectSlug: programmeFieldsSchema.shape.subject_slug,
   subjectTitle: programmeFieldsSchema.shape.subject,

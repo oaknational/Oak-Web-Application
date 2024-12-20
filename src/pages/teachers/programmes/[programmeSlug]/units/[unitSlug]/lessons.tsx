@@ -72,6 +72,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 }) => {
   const {
     unitSlug,
+    unitvariantId,
     keyStageTitle,
     keyStageSlug,
     unitTitle,
@@ -235,7 +236,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               setDownloadInProgress={setDownloadInProgress}
               setShowDownloadMessage={setShowDownloadMessage}
               downloadInProgress={downloadInProgress}
-              unitProgrammeSlug={programmeSlug + unitSlug}
+              unitFileId={`${unitSlug}-${unitvariantId}`}
               onDownloadSuccess={() =>
                 track.unitDownloadInitiated({
                   platform: "owa",

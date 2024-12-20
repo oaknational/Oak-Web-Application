@@ -1,5 +1,3 @@
-import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
-
 import {
   lessonListingPageDataSchema,
   LessonListingPageData,
@@ -7,6 +5,7 @@ import {
   partialSyntheticUnitvariantLessonsSchema,
 } from "./lessonListing.schema";
 
+import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
 import {
@@ -58,6 +57,7 @@ export const getTransformedLessons = (
 type PackagedUnitData = {
   programmeFields: ProgrammeFields;
   unitSlug: string;
+  unitvariantId: number;
   programmeSlug: string;
   unitTitle: string;
   programmeSlugByYear: string[];
@@ -70,6 +70,7 @@ export const getPackagedUnit = (
   const {
     programmeFields,
     unitSlug,
+    unitvariantId,
     unitTitle,
     programmeSlug,
     programmeSlugByYear,
@@ -91,6 +92,7 @@ export const getPackagedUnit = (
     subjectSlug: modifiedProgrammeFields.subject_slug,
     subjectTitle: modifiedProgrammeFields.subject,
     unitSlug,
+    unitvariantId,
     unitTitle,
     tierSlug: modifiedProgrammeFields.tier_slug,
     tierTitle: modifiedProgrammeFields.tier_description,
@@ -131,6 +133,7 @@ const lessonListingQuery =
         ...acc,
         programmeFields: lesson.programme_fields,
         unitSlug: lesson.unit_slug ?? "",
+        unitvariantId: lesson.unitvariant_id ?? 0,
         programmeSlug: lesson.programme_slug ?? "",
         unitTitle:
           lesson.programme_fields.optionality ?? lesson.unit_data.title,
