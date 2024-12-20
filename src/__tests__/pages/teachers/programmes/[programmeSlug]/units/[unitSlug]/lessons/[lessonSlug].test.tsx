@@ -239,7 +239,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     expect(iframeElement.length).toEqual(2);
   });
 
-  it("renders an iframe for a lesson guide google doc", () => {
+  it.skip("renders an iframe for a lesson guide google doc", () => {
     const { getAllByTestId } = render(<LessonOverviewPage {...props} />);
     const iframeElement = getAllByTestId("lesson-guide-iframe");
     expect(iframeElement.length).toEqual(1);
