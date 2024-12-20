@@ -104,8 +104,8 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     additionalMaterialUrl,
     actions,
     hasMediaClips,
+    disablePupilShare,
   } = lesson;
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const commonPathway = getPathway(lesson);
@@ -217,7 +217,9 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
 
   const showDownloadAll = downloadsFilteredByCopyright.length > 0;
   const showShare =
-    !isSpecialist && keyStageSlug !== "early-years-foundation-stage";
+    !isSpecialist &&
+    keyStageSlug !== "early-years-foundation-stage" &&
+    !disablePupilShare;
 
   // TODO: Currently lessonGuideUrl is in edit mode, once published remove
   const getPreviewUrl = (url: string): string => {
@@ -280,7 +282,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
-        isShareable={!expired}
+        isShareable={!expired && !disablePupilShare}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",

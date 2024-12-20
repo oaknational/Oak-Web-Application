@@ -64,6 +64,8 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   downloads: lessonOverviewDownloads,
   updatedAt: z.string(),
   pathways: z.array(lessonPathwaySchema),
+  disablePupilShare: z.boolean().nullish(), // Needs to add to Actions in schema lib
+
   // temporary addition to support media clips
   lessonMediaClips: mediaClipsSchema.nullable(),
 });
