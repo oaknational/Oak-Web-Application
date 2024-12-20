@@ -138,7 +138,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const showDownloadButton = !unitDownloadDisabled && hasCheckedFiles && exists;
   const showSignInButton =
     showDownloadButton && !unitDownloadDisabled && isLoaded && !isSignedIn;
-  console.log("diego file id", unitFileId, exists);
 
   return showSignInButton ? (
     <UnitDownloadSignInButton variant={parsedFeatureFlagKey.data} />
