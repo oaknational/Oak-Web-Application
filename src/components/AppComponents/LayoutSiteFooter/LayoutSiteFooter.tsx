@@ -8,7 +8,10 @@ import {
   OakLI,
   OakP,
   OakFlex,
+  OakIcon,
   useCookieConsent,
+  OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 import { keystageDescriptions } from "@oaknational/oak-curriculum-schema";
 
@@ -18,10 +21,7 @@ import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialB
 import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
-import Svg from "@/components/SharedComponents/Svg";
 import Button from "@/components/SharedComponents/Button";
-import Box from "@/components/SharedComponents/Box";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import footerSections from "@/browser-lib/fixtures/footerSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { OakLinkProps } from "@/common-lib/urls";
@@ -206,7 +206,7 @@ const LayoutSiteFooter: FC = () => {
   const displaySignpost = pathname.startsWith("/beta");
 
   return (
-    <Box
+    <OakBox
       as="footer"
       $zIndex="neutral"
       $width="100%"
@@ -215,14 +215,19 @@ const LayoutSiteFooter: FC = () => {
       $overflow={"hidden"}
     >
       <OakFlex $height="all-spacing-1" $position="relative">
-        <Svg name="header-underline" $color="black" />
+        <OakIcon
+          iconName="header-underline"
+          $width={"100%"}
+          $height={"100%"}
+          $objectFit={"fill"}
+        />
       </OakFlex>
       <nav>
-        <MaxWidth
-          $pt={[16, 80]}
+        <OakMaxWidth
+          $pt={["inner-padding-m", "inner-padding-xl8"]}
           $justifyContent={"center"}
           $flexDirection={"column"}
-          $ph={16}
+          $ph={"inner-padding-m"}
           $ma={"auto"}
           $width={"100%"}
         >
@@ -238,7 +243,7 @@ const LayoutSiteFooter: FC = () => {
           <OakGrid>
             <OakGridArea $colSpan={[12, 3]}>
               <FooterSectionLinks {...sections.pupils} />
-              <Box $mt={[0, 32]} />
+              <OakBox $mt={["space-between-none", "space-between-m2"]} />
               <FooterSectionLinks {...sections.teachers} />
             </OakGridArea>
             <OakGridArea $colSpan={[12, 3]}>
@@ -252,9 +257,9 @@ const LayoutSiteFooter: FC = () => {
                 $justifyContent={["left", "right"]}
                 $mt={["space-between-m2", "space-between-none"]}
               >
-                <Box $display={["none", "block"]}>
+                <OakBox $display={["none", "block"]}>
                   <Logo variant="with text" height={66} width={150} />
-                </Box>
+                </OakBox>
                 <SocialButtons
                   $display={["flex", "none"]}
                   for="Oak National Academy"
@@ -277,9 +282,9 @@ const LayoutSiteFooter: FC = () => {
               for="Oak National Academy"
               {...OAK_SOCIALS}
             />
-            <Box $ml={-4} $display={["block", "none"]}>
+            <OakBox $display={["block", "none"]}>
               <Logo variant="with text" height={66} width={150} />
-            </Box>
+            </OakBox>
             <OakFlex
               $mt={["space-between-m2", "space-between-none"]}
               $flexDirection={"column"}
@@ -292,29 +297,43 @@ const LayoutSiteFooter: FC = () => {
               </OakP>
             </OakFlex>
           </OakFlex>
-        </MaxWidth>
+        </OakMaxWidth>
       </nav>
-      <Svg
-        name="looping-line-3"
-        $color={"mint"}
+      <OakIcon
+        iconName="looping-line-3"
+        $colorFilter={"mint"}
         $zIndex={"behind"}
         $display={["none", "block"]}
+        $objectFit={"fill"}
         $transform={[
           "none",
           "translate(25%, 25%) scale(0.7) rotate(-10deg)",
           "translate(25%, 15%) rotate(-10deg)",
         ]}
-        $cover
+        $position={"absolute"}
+        $left={"all-spacing-0"}
+        $right={"all-spacing-0"}
+        $top={"all-spacing-0"}
+        $bottom={"all-spacing-0"}
+        $width={"100%"}
+        $height={"100%"}
       />
-      <Svg
-        name="looping-line-4"
-        $color={"pink50"}
-        $display={["block", "none"]}
+      <OakIcon
+        iconName="looping-line-4"
+        $colorFilter={"pink50"}
         $zIndex={"behind"}
+        $display={["block", "none"]}
+        $objectFit={"fill"}
         $transform={"translate(0%, 32%)"}
-        $cover
+        $position={"absolute"}
+        $left={"all-spacing-0"}
+        $right={"all-spacing-0"}
+        $top={"all-spacing-0"}
+        $bottom={"all-spacing-0"}
+        $width={"100%"}
+        $height={"100%"}
       />
-    </Box>
+    </OakBox>
   );
 };
 

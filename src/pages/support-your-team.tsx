@@ -62,7 +62,11 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               outlineHeading={"50%"}
               heading={"of teachers feel more confident"}
               subHeading={"in curriculum design"}
-              $mr={[0, -8, 8]}
+              $mr={[
+                "space-between-none",
+                "space-between-none",
+                "space-between-ssx",
+              ]}
             />
           </OakFlex>
         </OakFlex>

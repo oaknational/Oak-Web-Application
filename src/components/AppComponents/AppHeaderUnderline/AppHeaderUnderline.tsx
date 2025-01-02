@@ -1,19 +1,22 @@
 import { FC } from "react";
-
-import Box from "@/components/SharedComponents/Box";
-import Svg from "@/components/SharedComponents/Svg";
+import { OakIcon, OakBox } from "@oaknational/oak-components";
 
 export const AppHeaderUnderline: FC = () => {
   return (
-    <Box
-      $position="absolute"
-      $zIndex="behind"
-      $height={4}
-      $top={56}
-      $right={0}
-      $left={0}
+    <OakBox
+      $position={"absolute"}
+      $zIndex={"behind"}
+      $height={"all-spacing-1"}
+      $top={"all-spacing-12"}
+      $right={"all-spacing-0"}
+      $left={"all-spacing-0"}
     >
-      <Svg name="header-underline" $color="black" />
-    </Box>
+      <OakIcon
+        iconName="header-underline"
+        $width={"100%"}
+        $height={"100%"}
+        $objectFit={"fill"}
+      />
+    </OakBox>
   );
 };
