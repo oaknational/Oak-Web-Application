@@ -77,7 +77,7 @@ const teacherPreviewLessonQuery =
     const modBrowseData = keysToCamelCase(modifiedBrowseData[0]);
 
     const teacherPreviewData = transformedLessonOverviewData(
-      modBrowseData as LessonBrowseDataByKs & { disablePupilShare?: boolean },
+      modBrowseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,
       [],
     );
