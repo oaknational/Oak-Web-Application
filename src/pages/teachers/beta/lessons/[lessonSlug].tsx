@@ -26,7 +26,7 @@ const TeacherPreviewLessonPage: NextPage<TeacherPreviewLessonPageProps> = ({
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson: ${lessonTitle} preview}`,
+          title: `Lesson: ${lessonTitle} preview`,
           description:
             "View lesson content and choose resources to download or share",
         }),
@@ -68,6 +68,7 @@ export const getStaticProps: GetStaticProps<
       const curriculumData = await curriculumApi2023.teacherPreviewLesson({
         lessonSlug,
       });
+
       const results: GetStaticPropsResult<TeacherPreviewLessonPageProps> = {
         props: {
           curriculumData,

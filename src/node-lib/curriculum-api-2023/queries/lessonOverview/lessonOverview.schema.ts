@@ -66,6 +66,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   pathways: z.array(lessonPathwaySchema),
   // temporary addition to support media clips
   lessonMediaClips: mediaClipsSchema.nullable(),
+  disablePupilShare: z.boolean().nullish(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;

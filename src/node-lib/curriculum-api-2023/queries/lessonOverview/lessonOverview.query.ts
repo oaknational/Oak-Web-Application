@@ -202,6 +202,7 @@ export const transformedLessonOverviewData = (
     actions: browseData.actions,
     hasMediaClips: false,
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
+    disablePupilShare: browseData?.actions?.disablePupilShare ?? false,
   };
 };
 
