@@ -3,10 +3,7 @@ import {
   QuizQuestion,
 } from "@oaknational/oak-curriculum-schema";
 
-import {
-  Actions,
-  applyGenericOverridesAndExceptions,
-} from "../../helpers/overridesAndExceptions";
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { TeachersPreviewLessonQuery } from "../../generated/sdk";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -19,7 +16,6 @@ import lessonOverviewSchema, {
   LessonOverviewContent,
   LessonOverviewPageData,
 } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
-import { getIntersection } from "@/utils/getIntersection";
 
 const teacherPreviewLessonQuery =
   (sdk: Sdk) =>
@@ -63,29 +59,6 @@ const teacherPreviewLessonQuery =
         ? content.starter_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
     });
-
-    if (res.browseData.length > 1) {
-      // calculate the intersection of the actions
-      const actionsIntersection = getIntersection<Actions>(
-        res.browseData.map((bd) => bd.actions),
-      );
-
-      // replace actions with the intersection in all browseData meaning that only the common actions are applied
-      // this is helpful with canonical urls
-      res.browseData = res.browseData.map((bd) => ({
-        ...bd,
-        actions: actionsIntersection,
-      }));
-
-      const featuresIntersection = getIntersection<Record<string, unknown>>(
-        res.browseData.map((bd) => bd.features),
-      );
-      // do the same for features
-      res.browseData = res.browseData.map((bd) => ({
-        ...bd,
-        features: featuresIntersection,
-      }));
-    }
 
     const [browseData] = keysToCamelCase(res.browseData);
 
