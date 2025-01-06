@@ -162,8 +162,8 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                     "translate(-57%, 5%)",
                     "translate(-57%, -10%)",
                   ]}
-                  $width={[null, "all-spacing-20", "all-spacing-21"]}
-                  $height={[null, "all-spacing-20", "all-spacing-21"]}
+                  $width={[null, "all-spacing-19", "all-spacing-20"]}
+                  $height={[null, "all-spacing-19", "all-spacing-20"]}
                 />
                 <AspectRatio ratio={["7:8", "7:8", "2:3"]}>
                   <OakBox $background="white" $objectFit={"cover"} />
