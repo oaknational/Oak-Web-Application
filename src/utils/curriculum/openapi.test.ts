@@ -1,8 +1,15 @@
+import fetchMock from "jest-fetch-mock";
+
 import openApiRequest from "./openapi";
 
-const fetch = jest.spyOn(global, "fetch") as jest.Mock;
-
 describe("openapi", () => {
+  beforeAll(() => {
+    fetchMock.enableMocks();
+  });
+  afterAll(() => {
+    fetchMock.disableMocks();
+  });
+
   it("units", async () => {
     const body = JSON.stringify([
       {
@@ -40,7 +47,7 @@ describe("openapi", () => {
         ],
       },
     ]);
-    fetch.mockResolvedValue(new Response(body, { status: 200 }));
+    fetchMock.mockResolvedValue(new Response(body, { status: 200 }));
     const output = await openApiRequest("test", {
       subjectSlug: "english",
       phaseSlug: "primary",
@@ -202,7 +209,8 @@ describe("openapi", () => {
         year: 7,
         subjects: [
           {
-            subject: "test1",
+            subjectTitle: "test1",
+            subjectSlug: "test1",
             units: [
               {
                 unitTitle: "Place value",
@@ -219,7 +227,8 @@ describe("openapi", () => {
             ],
           },
           {
-            subject: "test2",
+            subjectTitle: "test2",
+            subjectSlug: "test2",
             units: [
               {
                 unitTitle: "Place value",
@@ -241,7 +250,8 @@ describe("openapi", () => {
         year: 8,
         subjects: [
           {
-            subject: "test1",
+            subjectTitle: "test1",
+            subjectSlug: "test1",
             units: [
               {
                 unitTitle: "Place value",
@@ -258,7 +268,8 @@ describe("openapi", () => {
             ],
           },
           {
-            subject: "test2",
+            subjectTitle: "test2",
+            subjectSlug: "test2",
             units: [
               {
                 unitTitle: "Place value",
@@ -277,7 +288,7 @@ describe("openapi", () => {
         ],
       },
     ]);
-    fetch.mockResolvedValue(new Response(body, { status: 200 }));
+    fetchMock.mockResolvedValue(new Response(body, { status: 200 }));
     const output = await openApiRequest("test", {
       subjectSlug: "english",
       phaseSlug: "primary",
@@ -659,7 +670,7 @@ describe("openapi", () => {
         ],
       },
     ]);
-    fetch.mockResolvedValue(new Response(body, { status: 200 }));
+    fetchMock.mockResolvedValue(new Response(body, { status: 200 }));
     const output = await openApiRequest("test", {
       subjectSlug: "english",
       phaseSlug: "primary",
@@ -966,7 +977,8 @@ describe("openapi", () => {
         year: 7,
         subjects: [
           {
-            subject: "test1",
+            subjectTitle: "test1",
+            subjectSlug: "test1",
             tiers: [
               {
                 tier: "test1",
@@ -1005,7 +1017,8 @@ describe("openapi", () => {
             ],
           },
           {
-            subject: "test2",
+            subjectTitle: "test2",
+            subjectSlug: "test2",
             tiers: [
               {
                 tier: "test1",
@@ -1049,7 +1062,8 @@ describe("openapi", () => {
         year: 8,
         subjects: [
           {
-            subject: "test1",
+            subjectTitle: "test1",
+            subjectSlug: "test1",
             tiers: [
               {
                 tier: "test1",
@@ -1088,7 +1102,8 @@ describe("openapi", () => {
             ],
           },
           {
-            subject: "test2",
+            subjectTitle: "test2",
+            subjectSlug: "test2",
             tiers: [
               {
                 tier: "test1",
@@ -1129,7 +1144,7 @@ describe("openapi", () => {
         ],
       },
     ]);
-    fetch.mockResolvedValue(new Response(body, { status: 200 }));
+    fetchMock.mockResolvedValue(new Response(body, { status: 200 }));
     const output = await openApiRequest("test", {
       subjectSlug: "english",
       phaseSlug: "primary",
