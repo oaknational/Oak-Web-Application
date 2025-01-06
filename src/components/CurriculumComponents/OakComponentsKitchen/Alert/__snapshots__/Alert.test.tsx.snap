@@ -16,7 +16,7 @@ exports[`Fieldset all options 1`] = `
         >
           <img
             alt="info"
-            class="sc-dcJsrY cVfpIY"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -45,7 +45,7 @@ exports[`Fieldset all options 1`] = `
         >
           <img
             alt="info"
-            class="sc-dcJsrY cVfpIY"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -74,7 +74,7 @@ exports[`Fieldset all options 1`] = `
         >
           <img
             alt="success"
-            class="sc-dcJsrY cVfpIY"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -103,7 +103,7 @@ exports[`Fieldset all options 1`] = `
         >
           <img
             alt="warning"
-            class="sc-dcJsrY cVfpIY"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -132,7 +132,7 @@ exports[`Fieldset all options 1`] = `
         >
           <img
             alt="error"
-            class="sc-dcJsrY bCYuQl"
+            class="sc-dcJsrY cGPxx"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -168,7 +168,7 @@ exports[`Fieldset default options 1`] = `
         >
           <img
             alt="info"
-            class="sc-dcJsrY cVfpIY"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
