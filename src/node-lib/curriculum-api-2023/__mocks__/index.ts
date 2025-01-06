@@ -25,7 +25,6 @@ import { mockedSiteMapResponse } from "@/node-lib/curriculum-api-2023/fixtures/p
 import { type LessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query";
 import lessonMediaFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { LessonMediaClipsQueryReturn } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.query";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 const curriculumApi: Pick<
   CurriculumApi,
