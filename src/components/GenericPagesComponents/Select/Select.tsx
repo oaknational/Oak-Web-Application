@@ -4,7 +4,7 @@ import type { AriaSelectProps } from "@react-types/select";
 import { useObjectRef } from "@react-aria/utils";
 import { useSelectState } from "react-stately";
 import { useSelect, useButton, mergeProps, useFocusRing } from "react-aria";
-import { OakSpan } from "@oaknational/oak-components";
+import { OakSpan, OakIcon, OakIconName } from "@oaknational/oak-components";
 
 import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
 import {
@@ -16,7 +16,6 @@ import { Popover } from "@/components/SharedComponents/Popover";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import ellipsis from "@/styles/ellipsis";
 import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
@@ -39,7 +38,7 @@ type SelectProps = {
   items: SelectItem[];
   onSelectionChange: (value: string) => void;
   placeholder?: string;
-  icon?: IconName;
+  icon?: OakIconName;
   myRef: Ref<HTMLButtonElement>;
   containerProps?: FlexProps;
   "aria-invalid"?: boolean;
@@ -167,7 +166,9 @@ export function Select<
           id={buttonId}
         >
           <SelectInner $pt={8} $alignItems={"center"}>
-            {props.icon && <Icon $mr={8} name={props.icon} />}
+            {props.icon && (
+              <OakIcon $mr={"space-between-ssx"} iconName={props.icon} />
+            )}
             <SelectSpan
               id={valueId}
               data-testid={"select-span"}
@@ -179,10 +180,7 @@ export function Select<
                 : props.placeholder}
             </SelectSpan>
           </SelectInner>
-          <Icon
-            $color="black"
-            name={state.isOpen ? "chevron-up" : "chevron-down"}
-          />
+          <OakIcon iconName={state.isOpen ? "chevron-up" : "chevron-down"} />
         </SelectButton>
         {state.isOpen && (
           <Popover isOpen={state.isOpen} onClose={state.close}>

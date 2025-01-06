@@ -6,7 +6,7 @@ import type { CheckboxVariant } from "./Checkbox";
 import position, { PositionProps } from "@/styles/utils/position";
 import { ZIndex, parseZIndex } from "@/styles/utils/zIndex";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
-import Icon from "@/components/SharedComponents/Icon";
+import Icon from "@/components/SharedComponents/Icon.deprecated";
 
 type VisualCheckboxProps = {
   checked: boolean;

@@ -5,7 +5,7 @@ import { OakFlex } from "@oaknational/oak-components";
 import { PixelSpacing } from "@/styles/theme";
 import { ResponsiveValues } from "@/styles/utils/responsive";
 import { FontVariant } from "@/styles/utils/typography";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
+import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import Heading, {
   HeadingTag,
 } from "@/components/SharedComponents/Typography/Heading.deprecated";

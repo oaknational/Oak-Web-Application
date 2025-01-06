@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
+import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
 
 type LessonRequirementsHeadingProps = {
   helperIcon: IconName;

@@ -1,12 +1,11 @@
 import { FC } from "react";
-import { OakTypography, OakFlex } from "@oaknational/oak-components";
+import { OakTypography, OakFlex, OakIcon } from "@oaknational/oak-components";
 
 import LayoutFixedHeader from "@/components/AppComponents/LayoutFixedHeader";
 import Logo from "@/components/AppComponents/Logo";
 import { CTA } from "@/common-lib/cms-types";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import Icon from "@/components/SharedComponents/Icon";
 
 export type LayoutLandingPagesHeaderProps = {
   headerCta?: CTA | null;
@@ -37,14 +36,14 @@ const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
               <OakTypography $textAlign="right" $font={"heading-7"}>
                 {props.headerCta.label}
               </OakTypography>
-              <Icon
-                $ml={12}
-                aria-label={"arrow-right"}
-                name={"arrow-right"}
+              {/* @todo where to find this  */}
+              <OakIcon
+                iconName="arrow-right"
+                $ml={"space-between-xs"}
                 $background={"blue"}
-                $color={"white"}
-                variant={"brush"}
-                size={28}
+                aria-label={"arrow-right"}
+                $colorFilter={"white"}
+                $width={"all-spacing-6"}
               />
             </OakFlex>
           </OwaLink>

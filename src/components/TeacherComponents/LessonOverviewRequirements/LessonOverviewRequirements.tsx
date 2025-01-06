@@ -3,7 +3,7 @@ import { OakP, OakLI, OakUL, OakFlex } from "@oaknational/oak-components";
 
 import LessonRequirementsHeading from "../LessonRequirementsHeading/LessonRequirementsHeading";
 
-import { IconName } from "@/components/SharedComponents/Icon";
+import { IconName } from "@/components/SharedComponents/Icon.deprecated";
 
 type LessonOverviewRequirementsProps = {
   helperIcon: IconName;

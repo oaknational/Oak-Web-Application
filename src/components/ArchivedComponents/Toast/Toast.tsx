@@ -6,7 +6,7 @@ import { OakTypography, OakFlex } from "@oaknational/oak-components";
 import { useToastContext, SHOW_DURATION } from "@/context/Toast";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import theme from "@/styles/theme";
-import Icon from "@/components/SharedComponents/Icon";
+import Icon from "@/components/SharedComponents/Icon.deprecated";
 import Card from "@/components/SharedComponents/Card";
 
 const TRANSITION_DURATION = 500;

@@ -1,11 +1,15 @@
 import { FC } from "react";
-import { OakHeading, OakP, OakSpan } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  OakSpan,
+  OakIcon,
+} from "@oaknational/oak-components";
 
 import { HomePageNotification } from "@/common-lib/cms-types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import Icon from "@/components/SharedComponents/Icon";
 import CardLink from "@/components/SharedComponents/Card/CardLink";
 import Card from "@/components/SharedComponents/Card";
 import Box from "@/components/SharedComponents/Box";
@@ -39,7 +43,7 @@ const HomeNotification: FC<HomeNotificationProps> = ({ notification }) => {
         $left={0}
         $transform="translate(-40%,-40%)"
       >
-        <Icon name="bell" $background="oakGreen" variant="brush" size={30} />
+        <OakIcon iconName={"bell"} $background={"oakGreen"} />
       </Box>
 
       <OakSpan $font={["body-4", "body-3"]} $color="grey60">

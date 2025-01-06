@@ -30,7 +30,6 @@ import type {
   Subject,
   SubjectPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
-import Icon from "@/components/SharedComponents/Icon";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
@@ -247,7 +246,11 @@ function SubjectContainer({
           $flexDirection={"row"}
           $mb={"space-between-m"}
         >
-          <Icon $color={"red"} name="content-guidance" verticalAlign="bottom" />
+          <OakIcon
+            iconName="content-guidance"
+            $colorFilter={"red"}
+            $height={"all-spacing-6"}
+          />
           <OakP $color={"red"}>Select a subject to view a curriculum</OakP>
         </OakFlex>
       )}
@@ -306,17 +309,22 @@ function SubjectContainer({
           {children}
         </OakFlex>
       </Box>
-      <Box $mb={[30, 0]} $ml={0}>
+      <OakBox
+        $mb={["space-between-m2", "space-between-none"]}
+        $ml={"space-between-none"}
+      >
         <OwaLink
           page={"curriculum-previous-downloads"}
           $textDecoration={"underline"}
           $font={"heading-7"}
           data-testid="subject-picker-previous-plans-link"
+          $display={"flex"}
+          $alignItems={"center"}
         >
           Previously released plans
-          <Icon $color={"black"} name="arrow-right" verticalAlign="bottom" />
+          <OakIcon iconName="arrow-right" $width={"all-spacing-6"} />
         </OwaLink>
-      </Box>
+      </OakBox>
     </SubjectContainerWrapper>
   );
 }
@@ -674,14 +682,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       $color={!showSubjectError ? "black" : "red"}
                     >
                       {showSubjectError && (
-                        <>
-                          <Icon
-                            $color={"red"}
-                            name="content-guidance"
-                            verticalAlign="bottom"
+                        <OakFlex>
+                          <OakIcon
+                            iconName="content-guidance"
+                            $colorFilter={"red"}
+                            $height={"all-spacing-6"}
                           />
                           <OakSpan>Select a subject</OakSpan>
-                        </>
+                        </OakFlex>
                       )}
                       {selectedSubject && selectedSubject.title}
                       {!showSubjectError && !selectedSubject && "Select"}
@@ -909,7 +917,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       >
                         School phase
                       </OakSpan>
-                      <Box
+                      <OakBox
                         $font={"body-2"}
                         $color={
                           !showPhaseError && !showKS4OptionError
@@ -918,28 +926,28 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         }
                       >
                         {showPhaseError && (
-                          <>
-                            <Icon
-                              $color={"red"}
-                              name="content-guidance"
-                              verticalAlign="bottom"
+                          <OakFlex>
+                            <OakIcon
+                              iconName="content-guidance"
+                              $colorFilter={"red"}
+                              $height={"all-spacing-6"}
                             />
                             Select a school phase
-                          </>
+                          </OakFlex>
                         )}
                         {showKS4OptionError && (
-                          <>
-                            <Icon
-                              $color={"red"}
-                              name="content-guidance"
-                              verticalAlign="bottom"
+                          <OakFlex>
+                            <OakIcon
+                              iconName="content-guidance"
+                              $colorFilter={"red"}
+                              $height={"all-spacing-6"}
                             />
                             Select an option for KS4
-                          </>
+                          </OakFlex>
                         )}
                         {selectedPhase && !showKS4OptionError && (
                           <>
-                            <Box
+                            <OakBox
                               $textOverflow={"ellipsis"}
                               $whiteSpace={"nowrap"}
                               $overflowX={"hidden"}
@@ -948,14 +956,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               {selectedKS4Option && (
                                 <OakSpan>, {selectedKS4Option.title}</OakSpan>
                               )}
-                            </Box>
+                            </OakBox>
                           </>
                         )}
                         {!selectedPhase &&
                           !showPhaseError &&
                           !showKS4OptionError &&
                           "Select"}
-                      </Box>
+                      </OakBox>
                     </OakBox>
                   </PickerButton>
                 </FocusIndicatorAlt>
@@ -990,10 +998,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             $flexDirection={"row"}
                             $mb={20}
                           >
-                            <Icon
-                              $color={"red"}
-                              name="content-guidance"
-                              verticalAlign="bottom"
+                            <OakIcon
+                              iconName="content-guidance"
+                              $colorFilter={"red"}
+                              $height={"all-spacing-6"}
                             />
                             <OakP $color={"red"}>
                               Select a school phase to view the curriculum
@@ -1008,10 +1016,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             $flexDirection={"row"}
                             $mb={20}
                           >
-                            <Icon
-                              $color={"red"}
-                              name="content-guidance"
-                              verticalAlign="bottom"
+                            <OakIcon
+                              iconName="content-guidance"
+                              $colorFilter={"red"}
+                              $height={"all-spacing-6"}
                             />
                             <OakP $color={"red"}>
                               Select a KS4 option to view the curriculum
@@ -1213,10 +1221,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               $flexDirection="row"
                               $mb={20}
                             >
-                              <Icon
-                                $color="red"
-                                name="content-guidance"
-                                verticalAlign="bottom"
+                              <OakIcon
+                                iconName="content-guidance"
+                                $colorFilter={"red"}
+                                $height={"all-spacing-6"}
                               />
                               <OakP $color="red">
                                 Select a school phase to view the curriculum
@@ -1230,10 +1238,10 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               $flexDirection="row"
                               $mb={20}
                             >
-                              <Icon
-                                $color="red"
-                                name="content-guidance"
-                                verticalAlign="bottom"
+                              <OakIcon
+                                iconName="content-guidance"
+                                $colorFilter={"red"}
+                                $height={"all-spacing-6"}
                               />
                               <OakP $color="red">
                                 Select a KS4 option to view the curriculum

@@ -1,7 +1,4 @@
-import { OakSpan, OakFlex } from "@oaknational/oak-components";
-
-import Icon from "@/components/SharedComponents/Icon";
-
+import { OakSpan, OakFlex, OakIcon } from "@oaknational/oak-components";
 export interface IUnitListItemLessonCountProps {
   lessonCount: number | null;
   expiredLessonCount: number | null;
@@ -30,7 +27,9 @@ export const UnitListItemLessonCount = ({
           </OakSpan>
         )}
 
-        {!expired && lessonCount && <Icon name="chevron-right" size={20} />}
+        {!expired && lessonCount && (
+          <OakIcon iconName="chevron-right" $width={"all-spacing-5"} />
+        )}
       </OakFlex>
     </>
   );

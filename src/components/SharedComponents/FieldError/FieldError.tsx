@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { OakSpan, OakFlex } from "@oaknational/oak-components";
 
-import Icon from "@/components/SharedComponents/Icon";
+import Icon from "@/components/SharedComponents/Icon.deprecated";
 
 type FieldErrorVariant = "large";
 

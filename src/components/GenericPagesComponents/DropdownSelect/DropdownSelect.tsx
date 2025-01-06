@@ -7,7 +7,7 @@ import {
   SelectItem,
 } from "@/components/GenericPagesComponents/Select";
 import { Label } from "@/components/SharedComponents/ListBox/ListBox";
-import { IconName } from "@/components/SharedComponents/Icon";
+import { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 type SelectChangeHandler = (e: {

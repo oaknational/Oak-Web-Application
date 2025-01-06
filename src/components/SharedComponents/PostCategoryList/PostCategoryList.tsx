@@ -9,7 +9,7 @@ import {
   BlogListingLinkProps,
   WebinarListingLinkProps,
 } from "@/common-lib/urls";
-import Icon from "@/components/SharedComponents/Icon";
+import Icon from "@/components/SharedComponents/Icon.deprecated";
 
 export type PostCategoryPage = "blog-index" | "webinar-index";
 

@@ -1,8 +1,7 @@
 import React, { FC, useState } from "react";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakIcon } from "@oaknational/oak-components";
 
 import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
-import Icon from "@/components/SharedComponents/Icon";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -92,10 +91,7 @@ const ExpandingContainer: FC<ExpandingContainerProps> = ({
                 }}
                 $font={"heading-5"}
               />
-              <Icon
-                $color="black"
-                name={toggleOpen ? "chevron-down" : "chevron-up"}
-              />
+              <OakIcon iconName={toggleOpen ? "chevron-down" : "chevron-up"} />
             </OakFlex>
           </Card>
           <OakFlex>

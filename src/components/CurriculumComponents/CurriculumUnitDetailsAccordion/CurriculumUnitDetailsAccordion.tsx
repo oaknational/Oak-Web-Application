@@ -5,7 +5,6 @@ import { OakIcon, OakBox } from "@oaknational/oak-components";
 import useClickableCard from "@/hooks/useClickableCard";
 import Card from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Icon from "@/components/SharedComponents/Icon";
 import Button from "@/components/SharedComponents/Button";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
@@ -64,10 +63,7 @@ const CurriculumUnitDetailsAccordion: FC<
           }}
           $font={"heading-6"}
         />
-        <Icon
-          $color="black"
-          name={isToggleOpen ? "chevron-up" : "chevron-down"}
-        />
+        <OakIcon iconName={isToggleOpen ? "chevron-up" : "chevron-down"} />
       </Card>
       {/* @todo replace with OakFlex - work out $maxHeight, why is it Flex if it has display set to either block or none? */}
       <Flex

@@ -6,7 +6,7 @@ import CardLink, { CardLinkFocusUnderline, CardLinkProps } from "./CardLink";
 
 import { OakColorName } from "@/styles/theme";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
+import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
 
 type RemoveField<Type, Key extends keyof Type> = {
   [Property in keyof Type as Exclude<Property, Key>]: Type[Property];

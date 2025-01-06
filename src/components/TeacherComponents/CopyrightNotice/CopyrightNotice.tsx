@@ -5,7 +5,7 @@ import { OakP } from "@oaknational/oak-components";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import { FontProps } from "@/styles/utils/typography";
-import Icon from "@/components/SharedComponents/Icon";
+import Icon from "@/components/SharedComponents/Icon.deprecated";
 
 type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;

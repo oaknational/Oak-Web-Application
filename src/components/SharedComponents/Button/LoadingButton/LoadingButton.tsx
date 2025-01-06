@@ -7,7 +7,7 @@ import { Spinner } from "./Spinner";
 
 import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
 import { DoubleButtonBorders } from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
+import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import Box from "@/components/SharedComponents/Box";
 import getColorByName from "@/styles/themeHelpers/getColorByName";

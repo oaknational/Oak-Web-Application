@@ -10,6 +10,7 @@ import {
   OakLI,
   OakP,
   OakBox,
+  OakIcon,
 } from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
@@ -21,7 +22,6 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import FieldError from "@/components/SharedComponents/FieldError";
-import Icon from "@/components/SharedComponents/Icon";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
@@ -331,7 +331,7 @@ function CurriculumDownloads(
                 />
                 {hasFormErrors && (
                   <OakFlex $flexDirection={"row"} $mb={"space-between-s"}>
-                    <Icon name="content-guidance" $color={"red"} />
+                    <OakIcon iconName="content-guidance" $colorFilter={"red"} />
                     <OakFlex $flexDirection={"column"}>
                       <OakP $ml={"space-between-sssx"} $color={"red"}>
                         To complete correct the following:

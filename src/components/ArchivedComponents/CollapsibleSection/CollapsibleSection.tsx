@@ -6,7 +6,7 @@ import {
   OakFlex,
 } from "@oaknational/oak-components";
 
-import { IconName } from "@/components/SharedComponents/Icon";
+import { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import Button from "@/components/SharedComponents/Button";
 

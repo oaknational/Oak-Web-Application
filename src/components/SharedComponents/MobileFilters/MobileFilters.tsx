@@ -14,7 +14,7 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import useEventListener from "@/hooks/useEventListener";
 import Cover from "@/components/SharedComponents/Cover";
-import { IconName } from "@/components/SharedComponents/Icon";
+import { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import { useMenuContext } from "@/context/Menu";
 import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
 import { OakColorName } from "@/styles/theme";
