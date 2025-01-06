@@ -156,7 +156,7 @@ export default async function generate(
             <XML_FRAGMENT>
               <w:p>
                 <w:pPr>
-                  <w:pStyle w:val="Heading3" />
+                  <w:pStyle w:val="Heading4" />
                 </w:pPr>
                 <w:r>
                   <w:rPr>
@@ -185,7 +185,7 @@ export default async function generate(
                   return safeXml`
                     <w:p>
                       <w:pPr>
-                        <w:pStyle w:val="Heading4" />
+                        <w:pStyle w:val="Heading5" />
                       </w:pPr>
                       <w:r>
                         <w:rPr>
