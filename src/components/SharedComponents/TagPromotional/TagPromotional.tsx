@@ -60,7 +60,6 @@ const TagPromotional: FC<TagPromotionalProps> = ({
       data-testid={`new-icon`}
       {...flexProps}
     >
-      {/* @todo check for filter, used in two places (next to AI documents)  */}
       <OakIcon
         iconName="tag-promotional"
         $width={"100%"}

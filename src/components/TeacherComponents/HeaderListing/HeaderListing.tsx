@@ -1,5 +1,10 @@
 import { FC } from "react";
-import { OakFlex, OakHeading, OakSpan } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakSpan,
+  OakColorToken,
+} from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -20,7 +25,7 @@ export type HeaderListingProps = {
   background: OakColorName;
   subjectTitle: string;
   subjectSlug: string;
-  subjectIconBackgroundColor: OakColorName;
+  subjectIconBackgroundColor: OakColorToken;
   year?: string;
   keyStageSlug?: string;
   keyStageTitle?: string;

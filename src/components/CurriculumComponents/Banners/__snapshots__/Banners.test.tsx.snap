@@ -21,11 +21,13 @@ exports[`Banners when cycle 2 enabled 1`] = `
             data-testid="new-icon"
           >
             <div
+              aria-hidden="true"
               class="sc-fqkvVR bqktJH"
+              data-testid="tag-promotional-icon"
             >
               <img
                 alt="tag-promotional"
-                class="sc-dcJsrY hAKHXM"
+                class="sc-dcJsrY igvylU"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
