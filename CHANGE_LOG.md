@@ -1,3 +1,10 @@
+## [1.655.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.1...v1.655.2) (2025-01-07)
+
+
+### Bug Fixes
+
+* remove duplicated back to lesson button ([60aff8b](https://github.com/oaknational/Oak-Web-Application/commit/60aff8b7799627f2657679c059790a512f26fcce))
+
 ## [1.655.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.0...v1.655.1) (2025-01-07)
 
 
