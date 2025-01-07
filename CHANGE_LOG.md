@@ -1,3 +1,11 @@
+## [1.655.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.0...v1.655.1) (2025-01-07)
+
+
+### Bug Fixes
+
+* remove double importation ([3c5c95e](https://github.com/oaknational/Oak-Web-Application/commit/3c5c95e897ef66220e904cd5262b281b0b21dbfc))
+* remove double importation of lesson media fixture ([1ce7625](https://github.com/oaknational/Oak-Web-Application/commit/1ce76256a7aaa3177d48c72ddd9771893743b6a1))
+
 # [1.655.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.654.1...v1.655.0) (2025-01-07)
 
 
