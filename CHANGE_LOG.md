@@ -1,3 +1,10 @@
+## [1.654.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.654.0...v1.654.1) (2025-01-06)
+
+
+### Bug Fixes
+
+* rollback mux-player-react version ([b930bc9](https://github.com/oaknational/Oak-Web-Application/commit/b930bc98b17b8ba38cc2d5c41afecf426d0d2c0e))
+
 # [1.654.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.653.2...v1.654.0) (2025-01-06)
 
 
