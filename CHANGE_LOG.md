@@ -1,3 +1,10 @@
+# [1.655.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.654.1...v1.655.0) (2025-01-07)
+
+
+### Features
+
+* added "lot picker" to curric homepage ([a436637](https://github.com/oaknational/Oak-Web-Application/commit/a436637a4ba6cdb90d3e953b8871e9bb89f13cb8))
+
 ## [1.654.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.654.0...v1.654.1) (2025-01-06)
 
 
