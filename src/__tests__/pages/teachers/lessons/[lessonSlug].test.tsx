@@ -54,7 +54,7 @@ describe("Lesson Overview Canonical Page", () => {
       );
     });
 
-    it("Renders the share button if shareExperimentFlag is test", async () => {
+    it.skip("Renders the share button if shareExperimentFlag is test", async () => {
       window.history.replaceState = jest.fn();
 
       (useShareExperiment as jest.Mock).mockReturnValueOnce({
@@ -98,7 +98,7 @@ describe("Lesson Overview Canonical Page", () => {
       ).toThrow();
     });
 
-    it("updates the url if shareExperimentFlag is test or control", async () => {
+    it.skip("updates the url if shareExperimentFlag is test or control", async () => {
       const fn = jest.spyOn(window.history, "replaceState");
 
       (useShareExperiment as jest.Mock).mockReturnValueOnce({

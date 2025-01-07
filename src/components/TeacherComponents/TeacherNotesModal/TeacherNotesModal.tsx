@@ -20,9 +20,9 @@ const StyledEditorContent = styled(EditorContent)`
 
 const limit = 2000;
 
-export type TeacherNotesModalProps = Omit<
+export type TeacherNotesModalProps = Pick<
   OakTeacherNotesModalProps,
-  "editorNode"
+  "isOpen" | "onClose"
 >;
 
 export const TeacherNotesModal = ({
