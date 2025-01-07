@@ -1,3 +1,25 @@
+## [1.654.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.654.0...v1.654.1) (2025-01-06)
+
+
+### Bug Fixes
+
+* rollback mux-player-react version ([b930bc9](https://github.com/oaknational/Oak-Web-Application/commit/b930bc98b17b8ba38cc2d5c41afecf426d0d2c0e))
+
+# [1.654.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.653.2...v1.654.0) (2025-01-06)
+
+
+### Bug Fixes
+
+* bad mock response subject -> subjectSlug/subjectTitle ([1c151f2](https://github.com/oaknational/Oak-Web-Application/commit/1c151f26c48996731a85186d109c7ebc8e3774e7))
+* updated for new API endpoint ([3865299](https://github.com/oaknational/Oak-Web-Application/commit/3865299e6afc9bc58b2c51c48828ea1a1f40ae3d))
+
+
+### Features
+
+* allow openapi backend with ENABLE_OPEN_API + env variables ([62730e9](https://github.com/oaknational/Oak-Web-Application/commit/62730e9f75d753bd574cdfba8c0edc1bc2b76120))
+
+## [1.653.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.653.1...v1.653.2) (2025-01-06)
+
 ## [1.653.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.653.0...v1.653.1) (2025-01-06)
 
 # [1.653.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.652.0...v1.653.0) (2024-12-18)
