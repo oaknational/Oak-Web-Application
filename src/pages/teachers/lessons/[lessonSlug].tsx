@@ -1,14 +1,16 @@
+import { useState } from "react";
 import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakFlex,
+  OakSmallSecondaryButton,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import { useEffect } from "react";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -25,9 +27,10 @@ import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonO
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
-import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+// import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+// import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -42,33 +45,49 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
-  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
-    lessonSlug: lesson.lessonSlug,
-    source: "lesson-canonical",
-    curriculumTrackingProps: {
-      lessonName: lesson.lessonTitle,
-      unitName: null,
-      subjectSlug: null,
-      subjectTitle: null,
-      keyStageSlug: null,
-      keyStageTitle: null,
-    },
-  });
+  const teacherNotesEnabled = useFeatureFlagEnabled("teacher-notes");
 
-  useEffect(() => {
-    if (window.location.href !== browserUrl) {
-      window.history.replaceState({}, "", browserUrl);
-    }
-  }, [browserUrl]);
+  const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
 
-  const teacherShareButton = (
-    <TeacherShareButton
-      label="Share resources with colleague"
-      variant={"secondary"}
-      shareUrl={shareUrl}
-      shareActivated={shareActivated}
-    />
-  );
+  // const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
+  //   lessonSlug: lesson.lessonSlug,
+  //   source: "lesson-canonical",
+  //   curriculumTrackingProps: {
+  //     lessonName: lesson.lessonTitle,
+  //     unitName: null,
+  //     subjectSlug: null,
+  //     subjectTitle: null,
+  //     keyStageSlug: null,
+  //     keyStageTitle: null,
+  //   },
+  // });
+
+  // useEffect(() => {
+  //   if (window.location.href !== browserUrl) {
+  //     window.history.replaceState({}, "", browserUrl);
+  //   }
+  // }, [browserUrl, teacherNotesEnabled]);
+
+  // const teacherShareButton = (
+  //   <TeacherShareButton
+  //     label="Share resources with colleague"
+  //     variant={"secondary"}
+  //     shareUrl={shareUrl}
+  //     shareActivated={shareActivated}
+  //   />
+  // );
+
+  const teacherNotesButton = teacherNotesEnabled ? (
+    <OakSmallSecondaryButton
+      iconName="share"
+      isTrailingIcon
+      onClick={() => {
+        setTeacherNotesOpen(true);
+      }}
+    >
+      Add teacher note and share
+    </OakSmallSecondaryButton>
+  ) : null;
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
@@ -88,7 +107,7 @@ export default function LessonOverviewCanonicalPage({
             lessonMediaClips: null,
             isCanonical: true,
             isSpecialist,
-            teacherShareButton,
+            teacherShareButton: teacherNotesButton,
           }}
           isBeta={false}
         />
@@ -99,6 +118,12 @@ export default function LessonOverviewCanonicalPage({
             </MaxWidth>
           </OakFlex>
         )}
+        <TeacherNotesModal
+          isOpen={teacherNotesOpen}
+          onClose={() => {
+            setTeacherNotesOpen(false);
+          }}
+        />
       </OakThemeProvider>
     </AppLayout>
   );
