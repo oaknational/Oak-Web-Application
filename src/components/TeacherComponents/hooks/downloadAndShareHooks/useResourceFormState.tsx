@@ -58,6 +58,13 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   const [schoolUrn, setSchoolUrn] = useState("");
+
+  const [hubspotLoaded, setHubspotLoaded] = useState(false);
+  const [schoolFromHubspot, setSchoolFromHubspot] = useState<null | {
+    schoolId: string;
+    schoolName: string;
+  }>(null);
+
   const authFlagEnabled =
     useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
   const { isSignedIn, user } = useUser();
@@ -85,6 +92,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       const subscriptionStatus = await getSubscriptionStatus();
       setTermsInLocalStorage(true);
       setValue("terms", true);
+
       if (subscriptionStatus) {
         setEmailInLocalStorage(email);
         setValue("email", email);
@@ -96,17 +104,21 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         const schoolId = hubspotContact.schoolId;
         const schoolName = hubspotContact.schoolName;
 
-        setSchoolInLocalStorage({
-          schoolId: schoolIdFromLocalStorage ?? "notListed",
+        const school = {
+          schoolId: schoolId ?? "notListed",
           schoolName: schoolName ?? "notListed",
-        });
+        };
+
+        setSchoolInLocalStorage(school);
+
+        setSchoolFromHubspot(school);
 
         if (schoolName) {
           setValue("schoolName", schoolName);
         }
 
         if (schoolId) {
-          setValue("school", schoolIdFromLocalStorage);
+          setValue("school", schoolId);
         }
       }
     };
@@ -124,6 +136,20 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setValue,
     user?.emailAddresses,
   ]);
+
+  // Set finished loading when local storage matches hubspot or when no details expected in hubspot
+  useEffect(() => {
+    const detailsUpdatedFromHubspot =
+      schoolFromHubspot?.schoolId === schoolFromLocalStorage.schoolId &&
+      schoolFromHubspot?.schoolName === schoolFromLocalStorage.schoolName;
+
+    const noDetailsInHubspot =
+      authFlagEnabled === false && isSignedIn === false;
+
+    if (detailsUpdatedFromHubspot || noDetailsInHubspot) {
+      setHubspotLoaded(true);
+    }
+  }, [schoolFromHubspot, schoolFromLocalStorage, authFlagEnabled, isSignedIn]);
 
   useEffect(() => {
     if (emailFromLocalStorage) {
@@ -322,6 +348,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setActiveResources,
     handleToggleSelectAll,
     selectAllChecked,
+    hubspotLoaded,
     form: {
       trigger,
       setValue,
