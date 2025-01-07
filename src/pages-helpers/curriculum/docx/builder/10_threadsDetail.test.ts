@@ -80,6 +80,13 @@ describe("10_threadsDetail", () => {
             year: "7",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            features: {
+              subjectcategories: {
+                all_disabled: true,
+                default_category_id: 4,
+                group_by_subjectcategory: true,
+              },
+            },
           },
           {
             subject_slug: "english",
@@ -87,6 +94,13 @@ describe("10_threadsDetail", () => {
             year: "7",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            features: {
+              subjectcategories: {
+                all_disabled: true,
+                default_category_id: 4,
+                group_by_subjectcategory: true,
+              },
+            },
           },
           {
             subject_slug: "english",
@@ -94,6 +108,13 @@ describe("10_threadsDetail", () => {
             year: "8",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            features: {
+              subjectcategories: {
+                all_disabled: true,
+                default_category_id: 4,
+                group_by_subjectcategory: true,
+              },
+            },
           },
           {
             subject_slug: "english",
@@ -101,6 +122,13 @@ describe("10_threadsDetail", () => {
             year: "8",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            features: {
+              subjectcategories: {
+                all_disabled: true,
+                default_category_id: 4,
+                group_by_subjectcategory: true,
+              },
+            },
           },
           {
             subject_slug: "english",
@@ -108,6 +136,13 @@ describe("10_threadsDetail", () => {
             year: "9",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            features: {
+              subjectcategories: {
+                all_disabled: true,
+                default_category_id: 4,
+                group_by_subjectcategory: true,
+              },
+            },
           },
           {
             subject_slug: "english",
@@ -115,6 +150,13 @@ describe("10_threadsDetail", () => {
             year: "9",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            features: {
+              subjectcategories: {
+                all_disabled: true,
+                default_category_id: 4,
+                group_by_subjectcategory: true,
+              },
+            },
           },
           {
             subject_slug: "english",
@@ -122,6 +164,13 @@ describe("10_threadsDetail", () => {
             year: "10",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            features: {
+              subjectcategories: {
+                all_disabled: true,
+                default_category_id: 4,
+                group_by_subjectcategory: true,
+              },
+            },
           },
           {
             subject_slug: "english",
@@ -129,6 +178,13 @@ describe("10_threadsDetail", () => {
             year: "10",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            features: {
+              subjectcategories: {
+                all_disabled: true,
+                default_category_id: 4,
+                group_by_subjectcategory: true,
+              },
+            },
           },
           {
             subject_slug: "english",
@@ -136,6 +192,13 @@ describe("10_threadsDetail", () => {
             year: "11",
             title: "Test A",
             threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            features: {
+              subjectcategories: {
+                all_disabled: true,
+                default_category_id: 4,
+                group_by_subjectcategory: true,
+              },
+            },
           },
           {
             subject_slug: "english",
@@ -143,11 +206,84 @@ describe("10_threadsDetail", () => {
             year: "11",
             title: "Test B",
             threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            features: {
+              subjectcategories: {
+                all_disabled: true,
+                default_category_id: 4,
+                group_by_subjectcategory: true,
+              },
+            },
           },
         ],
       } as CombinedCurriculumData,
     });
 
     expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
+  });
+
+  describe("subject category grouping", () => {
+    it("enables grouping when any unit has group_by_subjectcategory feature", async () => {
+      const zip = await generateEmptyDocx();
+      await generate(zip, {
+        data: {
+          subjectTitle: "English",
+          units: [
+            {
+              subject_slug: "english",
+              phase_slug: "primary",
+              year: "7",
+              title: "Test A",
+              threads: [{ title: "thread-one", order: 0, slug: "one" }],
+              features: {
+                subjectcategories: {
+                  group_by_subjectcategory: false,
+                },
+              },
+            },
+            {
+              subject_slug: "english",
+              phase_slug: "primary",
+              year: "7",
+              title: "Test B",
+              threads: [{ title: "thread-two", order: 0, slug: "two" }],
+              features: {
+                subjectcategories: {
+                  group_by_subjectcategory: true,
+                },
+              },
+            },
+          ],
+        } as CombinedCurriculumData,
+      });
+
+      expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
+    });
+
+    it("disables grouping when no units have group_by_subjectcategory feature", async () => {
+      const zip = await generateEmptyDocx();
+      await generate(zip, {
+        data: {
+          subjectTitle: "English",
+          units: [
+            {
+              subject_slug: "english",
+              phase_slug: "primary",
+              year: "7",
+              title: "Test A",
+              threads: [{ title: "thread-one", order: 0, slug: "one" }],
+            },
+            {
+              subject_slug: "english",
+              phase_slug: "primary",
+              year: "7",
+              title: "Test B",
+              threads: [{ title: "thread-two", order: 0, slug: "two" }],
+            },
+          ],
+        } as CombinedCurriculumData,
+      });
+
+      expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
+    });
   });
 });
