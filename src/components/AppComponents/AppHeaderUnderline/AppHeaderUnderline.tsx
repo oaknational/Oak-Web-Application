@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakIcon, OakBox } from "@oaknational/oak-components";
+import { OakBox } from "@oaknational/oak-components";
 
 export const AppHeaderUnderline: FC = () => {
   return (
@@ -12,7 +12,7 @@ export const AppHeaderUnderline: FC = () => {
       $right={"all-spacing-0"}
       $left={"all-spacing-0"}
     >
-      <OakIcon
+      {/* <OakIcon
         iconName="header-underline"
         $width={"100%"}
         $height={"100%"}
@@ -20,7 +20,7 @@ export const AppHeaderUnderline: FC = () => {
         $left={"all-spacing-0"}
         $top={"all-spacing-0"}
         $objectFit={"fill"}
-      />
+      /> */}
     </OakBox>
   );
 };
