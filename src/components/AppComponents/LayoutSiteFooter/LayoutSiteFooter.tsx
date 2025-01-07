@@ -221,7 +221,7 @@ const LayoutSiteFooter: FC = () => {
           $height={"100%"}
           $objectFit={"fill"}
           height={"4"}
-          width={"300"}
+          width={"1000"}
         />
       </OakFlex>
       <nav>

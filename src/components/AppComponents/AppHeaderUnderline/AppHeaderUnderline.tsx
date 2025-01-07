@@ -21,7 +21,7 @@ export const AppHeaderUnderline: FC = () => {
         $top={"all-spacing-0"}
         $objectFit={"fill"}
         height={"4"}
-        width={"300"}
+        width={"1000"}
       />
     </OakBox>
   );
