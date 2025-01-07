@@ -2,7 +2,7 @@ import { FC } from "react";
 import {
   OakP,
   OakIcon,
-  OakColorToken,
+  OakColorFilterToken,
   OakBox,
   OakFlex,
   OakFlexProps,
@@ -15,7 +15,7 @@ type SupportYourTeamBubbleMessageProps = {
   heading: string;
   subHeading: string;
   variant: "bubble-1" | "bubble-2";
-  background: OakColorToken;
+  background: OakColorFilterToken;
 };
 
 const SupportYourTeamBubbleMessage: FC<

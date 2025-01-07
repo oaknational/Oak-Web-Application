@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
+import { keystageDescriptions } from "@oaknational/oak-curriculum-schema";
 import {
   OakGrid,
   OakGridArea,
@@ -12,8 +13,8 @@ import {
   useCookieConsent,
   OakBox,
   OakMaxWidth,
+  OakSvg,
 } from "@oaknational/oak-components";
-import { keystageDescriptions } from "@oaknational/oak-curriculum-schema";
 
 import Logo from "@/components/AppComponents/Logo";
 import OwaLink from "@/components/SharedComponents/OwaLink";
@@ -215,13 +216,11 @@ const LayoutSiteFooter: FC = () => {
       $overflow={"hidden"}
     >
       <OakFlex $height="all-spacing-1" $position="relative">
-        <OakIcon
-          iconName="header-underline"
-          $width={"100%"}
-          $height={"100%"}
-          $objectFit={"fill"}
-          height={"4"}
-          width={"1000"}
+        <OakSvg
+          name="header-underline"
+          $position={"absolute"}
+          $left={"all-spacing-0"}
+          $top={"all-spacing-0"}
         />
       </OakFlex>
       <nav>
