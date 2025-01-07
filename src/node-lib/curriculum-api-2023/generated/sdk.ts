@@ -6102,6 +6102,14 @@ export type Internal_Video_Ingest_Bool_Exp = {
   video_uid?: InputMaybe<Bpchar_Comparison_Exp>;
 };
 
+/** unique or primary key constraints on table "internal.video_ingest" */
+export enum Internal_Video_Ingest_Constraint {
+  /** unique or primary key constraint on columns "video_id", "_state" */
+  VideoIngestPkey = 'video_ingest_pkey',
+  /** unique or primary key constraint on columns "video_id", "_state" */
+  VideoIngestVideoIdStateKey = 'video_ingest_video_id__state_key'
+}
+
 /** input type for incrementing numeric columns in table "internal.video_ingest" */
 export type Internal_Video_Ingest_Inc_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
@@ -6163,6 +6171,13 @@ export type Internal_Video_Ingest_Mutation_Response = {
   returning: Array<Internal_Video_Ingest>;
 };
 
+/** on_conflict condition type for table "internal.video_ingest" */
+export type Internal_Video_Ingest_On_Conflict = {
+  constraint: Internal_Video_Ingest_Constraint;
+  update_columns?: Array<Internal_Video_Ingest_Update_Column>;
+  where?: InputMaybe<Internal_Video_Ingest_Bool_Exp>;
+};
+
 /** Ordering options when selecting data from "internal.video_ingest". */
 export type Internal_Video_Ingest_Order_By = {
   _cohort?: InputMaybe<Order_By>;
@@ -6177,6 +6192,12 @@ export type Internal_Video_Ingest_Order_By = {
   updated_at?: InputMaybe<Order_By>;
   video_id?: InputMaybe<Order_By>;
   video_uid?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: internal.video_ingest */
+export type Internal_Video_Ingest_Pk_Columns_Input = {
+  _state: Scalars['String']['input'];
+  video_id: Scalars['Int']['input'];
 };
 
 /** select columns of table "internal.video_ingest" */
@@ -6274,6 +6295,34 @@ export type Internal_Video_Ingest_Sum_Fields = {
   _release_id?: Maybe<Scalars['Int']['output']>;
   video_id?: Maybe<Scalars['Int']['output']>;
 };
+
+/** update columns of table "internal.video_ingest" */
+export enum Internal_Video_Ingest_Update_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  ReleaseId = '_release_id',
+  /** column name */
+  State = '_state',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  LinkedObjects = 'linked_objects',
+  /** column name */
+  StatusVideo = 'status_video',
+  /** column name */
+  StatusVideoMux = 'status_video_mux',
+  /** column name */
+  StatusVideoRev = 'status_video_rev',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  VideoId = 'video_id',
+  /** column name */
+  VideoUid = 'video_uid'
+}
 
 export type Internal_Video_Ingest_Updates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -8164,6 +8213,8 @@ export type Mutation_Root = {
   delete_internal_tpc_contracts_by_pk?: Maybe<Internal_Tpc_Contracts>;
   /** delete data from the table: "internal.video_ingest" */
   delete_internal_video_ingest?: Maybe<Internal_Video_Ingest_Mutation_Response>;
+  /** delete single row from the table: "internal.video_ingest" */
+  delete_internal_video_ingest_by_pk?: Maybe<Internal_Video_Ingest>;
   /** delete data from the table: "lessons" */
   delete_lessons?: Maybe<Lessons_Mutation_Response>;
   /** delete single row from the table: "lessons" */
@@ -8532,6 +8583,8 @@ export type Mutation_Root = {
   update_internal_tpc_contracts_many?: Maybe<Array<Maybe<Internal_Tpc_Contracts_Mutation_Response>>>;
   /** update data of the table: "internal.video_ingest" */
   update_internal_video_ingest?: Maybe<Internal_Video_Ingest_Mutation_Response>;
+  /** update single row of the table: "internal.video_ingest" */
+  update_internal_video_ingest_by_pk?: Maybe<Internal_Video_Ingest>;
   /** update multiples rows of table: "internal.video_ingest" */
   update_internal_video_ingest_many?: Maybe<Array<Maybe<Internal_Video_Ingest_Mutation_Response>>>;
   /** update data of the table: "lessons" */
@@ -8876,6 +8929,13 @@ export type Mutation_RootDelete_Internal_Tpc_Contracts_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Internal_Video_IngestArgs = {
   where: Internal_Video_Ingest_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Internal_Video_Ingest_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  video_id: Scalars['Int']['input'];
 };
 
 
@@ -9435,12 +9495,14 @@ export type Mutation_RootInsert_Internal_Tpc_Contracts_OneArgs = {
 /** mutation root */
 export type Mutation_RootInsert_Internal_Video_IngestArgs = {
   objects: Array<Internal_Video_Ingest_Insert_Input>;
+  on_conflict?: InputMaybe<Internal_Video_Ingest_On_Conflict>;
 };
 
 
 /** mutation root */
 export type Mutation_RootInsert_Internal_Video_Ingest_OneArgs = {
   object: Internal_Video_Ingest_Insert_Input;
+  on_conflict?: InputMaybe<Internal_Video_Ingest_On_Conflict>;
 };
 
 
@@ -10251,6 +10313,14 @@ export type Mutation_RootUpdate_Internal_Video_IngestArgs = {
   _inc?: InputMaybe<Internal_Video_Ingest_Inc_Input>;
   _set?: InputMaybe<Internal_Video_Ingest_Set_Input>;
   where: Internal_Video_Ingest_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Internal_Video_Ingest_By_PkArgs = {
+  _inc?: InputMaybe<Internal_Video_Ingest_Inc_Input>;
+  _set?: InputMaybe<Internal_Video_Ingest_Set_Input>;
+  pk_columns: Internal_Video_Ingest_Pk_Columns_Input;
 };
 
 
@@ -43456,6 +43526,8 @@ export type Query_Root = {
   internal_video_ingest: Array<Internal_Video_Ingest>;
   /** fetch aggregated fields from the table: "internal.video_ingest" */
   internal_video_ingest_aggregate: Internal_Video_Ingest_Aggregate;
+  /** fetch data from the table: "internal.video_ingest" using primary key columns */
+  internal_video_ingest_by_pk?: Maybe<Internal_Video_Ingest>;
   /** fetch data from the table: "lessons" */
   lessons: Array<Lessons>;
   /** fetch aggregated fields from the table: "lessons" */
@@ -44294,6 +44366,12 @@ export type Query_RootInternal_Video_Ingest_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Internal_Video_Ingest_Order_By>>;
   where?: InputMaybe<Internal_Video_Ingest_Bool_Exp>;
+};
+
+
+export type Query_RootInternal_Video_Ingest_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  video_id: Scalars['Int']['input'];
 };
 
 
@@ -48563,6 +48641,8 @@ export type Subscription_Root = {
   internal_video_ingest: Array<Internal_Video_Ingest>;
   /** fetch aggregated fields from the table: "internal.video_ingest" */
   internal_video_ingest_aggregate: Internal_Video_Ingest_Aggregate;
+  /** fetch data from the table: "internal.video_ingest" using primary key columns */
+  internal_video_ingest_by_pk?: Maybe<Internal_Video_Ingest>;
   /** fetch data from the table in a streaming manner: "internal.video_ingest" */
   internal_video_ingest_stream: Array<Internal_Video_Ingest>;
   /** fetch data from the table: "lessons" */
@@ -49725,6 +49805,12 @@ export type Subscription_RootInternal_Video_Ingest_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Internal_Video_Ingest_Order_By>>;
   where?: InputMaybe<Internal_Video_Ingest_Bool_Exp>;
+};
+
+
+export type Subscription_RootInternal_Video_Ingest_By_PkArgs = {
+  _state: Scalars['String']['input'];
+  video_id: Scalars['Int']['input'];
 };
 
 
@@ -60852,6 +60938,13 @@ export type CurriculumUnitsIncludeNewQueryVariables = Exact<{
 
 export type CurriculumUnitsIncludeNewQuery = { __typename?: 'query_root', units: Array<{ __typename?: 'published_mv_curriculum_units_including_new_0_0_16', connection_prior_unit_description?: string | null, connection_future_unit_description?: string | null, connection_future_unit_title?: string | null, connection_prior_unit_title?: string | null, why_this_why_now?: string | null, cycle?: string | null, features?: any | null, description?: string | null, domain?: string | null, domain_id?: number | null, examboard?: string | null, examboard_slug?: string | null, keystage_slug?: string | null, lessons?: any | null, order?: number | null, planned_number_of_lessons?: number | null, phase?: string | null, phase_slug?: string | null, slug?: string | null, state?: string | null, subject?: string | null, subject_slug?: string | null, subject_parent?: string | null, subject_parent_slug?: string | null, pathway?: string | null, pathway_slug?: string | null, tags?: any | null, subjectcategories?: any | null, tier?: string | null, tier_slug?: string | null, title?: string | null, unit_options?: any | null, threads?: any | null, year?: string | null }> };
 
+export type BetaLessonMediaClipsQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+}>;
+
+
+export type BetaLessonMediaClipsQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null, media_clips?: any | null }> };
+
 export type LessonDownloadsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
   browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp>;
@@ -61081,7 +61174,7 @@ export type TeachersPreviewLessonQueryVariables = Exact<{
 }>;
 
 
-export type TeachersPreviewLessonQuery = { __typename?: 'query_root', content: Array<{ __typename?: 'published_mv_lesson_content_new_4_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, video_duration?: string | null, _state?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, geo_restricted?: string | null, login_required?: string | null }> };
+export type TeachersPreviewLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_new_5_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, video_duration?: string | null, _state?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, geo_restricted?: string | null, login_required?: string | null }> };
 
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -61231,6 +61324,25 @@ export const CurriculumUnitsIncludeNewDocument = gql`
     unit_options
     threads
     year
+  }
+}
+    `;
+export const BetaLessonMediaClipsDocument = gql`
+    query betaLessonMediaClips($lessonSlug: String!) {
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0(
+    where: {lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    is_legacy
+    lesson_data
+    unit_data
+    programme_fields
+    actions
+    features
+    order_in_unit
+    media_clips
   }
 }
     `;
@@ -61926,7 +62038,22 @@ export const SubjectPhaseOptionsIncludeNewDocument = gql`
     `;
 export const TeachersPreviewLessonDocument = gql`
     query teachersPreviewLesson($lessonSlug: String!) {
-  content: published_mv_lesson_content_new_4_0_0(
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0(
+    where: {lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    programme_slug_by_year
+    is_legacy
+    lesson_data
+    unit_data
+    programme_fields
+    actions
+    features
+    order_in_unit
+  }
+  content: published_mv_lesson_content_new_5_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -62066,6 +62193,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     curriculumUnitsIncludeNew(variables?: CurriculumUnitsIncludeNewQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CurriculumUnitsIncludeNewQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CurriculumUnitsIncludeNewQuery>(CurriculumUnitsIncludeNewDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'curriculumUnitsIncludeNew', 'query', variables);
+    },
+    betaLessonMediaClips(variables: BetaLessonMediaClipsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<BetaLessonMediaClipsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<BetaLessonMediaClipsQuery>(BetaLessonMediaClipsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'betaLessonMediaClips', 'query', variables);
     },
     lessonDownloads(variables: LessonDownloadsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<LessonDownloadsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<LessonDownloadsQuery>(LessonDownloadsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'lessonDownloads', 'query', variables);

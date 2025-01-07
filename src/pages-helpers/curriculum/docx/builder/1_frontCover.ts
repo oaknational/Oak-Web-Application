@@ -12,7 +12,7 @@ import {
   JSZipCached,
 } from "../docx";
 
-import { generateIconURL } from "./helper";
+import { generateIconURL, subjectFromUnits } from "./helper";
 
 import { getShortPhaseText } from "@/utils/curriculum/formatting";
 
@@ -45,9 +45,9 @@ export default async function generate(
 
   const examboardTitle = data.examboardTitle ? `${data.examboardTitle}` : "";
   const tierTitle = slugs.tierSlug ? `${capitalize(slugs.tierSlug)}` : "";
-  const childSubjectTitle = slugs.childSubjectSlug
-    ? `${capitalize(slugs.childSubjectSlug.split("-").join(" "))}`
-    : "";
+
+  const childSubjectTitle =
+    subjectFromUnits(data.units, slugs.childSubjectSlug) ?? "";
 
   const subtitle =
     examboardTitle !== "" || tierTitle !== "" || childSubjectTitle !== ""

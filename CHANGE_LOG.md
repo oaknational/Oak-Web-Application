@@ -1,3 +1,89 @@
+## [1.655.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.0...v1.655.1) (2025-01-07)
+
+
+### Bug Fixes
+
+* remove double importation ([3c5c95e](https://github.com/oaknational/Oak-Web-Application/commit/3c5c95e897ef66220e904cd5262b281b0b21dbfc))
+* remove double importation of lesson media fixture ([1ce7625](https://github.com/oaknational/Oak-Web-Application/commit/1ce76256a7aaa3177d48c72ddd9771893743b6a1))
+
+# [1.655.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.654.1...v1.655.0) (2025-01-07)
+
+
+### Features
+
+* added "lot picker" to curric homepage ([a436637](https://github.com/oaknational/Oak-Web-Application/commit/a436637a4ba6cdb90d3e953b8871e9bb89f13cb8))
+
+## [1.654.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.654.0...v1.654.1) (2025-01-06)
+
+
+### Bug Fixes
+
+* rollback mux-player-react version ([b930bc9](https://github.com/oaknational/Oak-Web-Application/commit/b930bc98b17b8ba38cc2d5c41afecf426d0d2c0e))
+
+# [1.654.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.653.2...v1.654.0) (2025-01-06)
+
+
+### Bug Fixes
+
+* bad mock response subject -> subjectSlug/subjectTitle ([1c151f2](https://github.com/oaknational/Oak-Web-Application/commit/1c151f26c48996731a85186d109c7ebc8e3774e7))
+* updated for new API endpoint ([3865299](https://github.com/oaknational/Oak-Web-Application/commit/3865299e6afc9bc58b2c51c48828ea1a1f40ae3d))
+
+
+### Features
+
+* allow openapi backend with ENABLE_OPEN_API + env variables ([62730e9](https://github.com/oaknational/Oak-Web-Application/commit/62730e9f75d753bd574cdfba8c0edc1bc2b76120))
+
+## [1.653.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.653.1...v1.653.2) (2025-01-06)
+
+## [1.653.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.653.0...v1.653.1) (2025-01-06)
+
+# [1.653.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.652.0...v1.653.0) (2024-12-18)
+
+
+### Bug Fixes
+
+* add aria label to lot picker label ([9175f64](https://github.com/oaknational/Oak-Web-Application/commit/9175f643819ff1b8fde55377c083aa0a5ad2e782))
+* add correct id and aria label to lot picker label ([aefd7e0](https://github.com/oaknational/Oak-Web-Application/commit/aefd7e0c438d50bb00ca4f40be453922c28f41e9))
+* changed aria value ([d9211de](https://github.com/oaknational/Oak-Web-Application/commit/d9211dede702b0030bc9cea4b94e6bd6f1b53dcc))
+* remove "polite" from errors ([eb8a04d](https://github.com/oaknational/Oak-Web-Application/commit/eb8a04df4204756db6e391de90feab5e5f65ef80))
+* updated aria roles & removed h3 ([615fa0a](https://github.com/oaknational/Oak-Web-Application/commit/615fa0abdf5c703c7b5a1f84fc1e1f002bcf0348))
+* updated z-index ([5d63316](https://github.com/oaknational/Oak-Web-Application/commit/5d6331668635b6d8e9c9438f73284d79daba609a))
+
+
+### Features
+
+* add label to lot picker ([661dd74](https://github.com/oaknational/Oak-Web-Application/commit/661dd74833a65442ad5900405f68130006482c50))
+
+# [1.652.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.3...v1.652.0) (2024-12-18)
+
+
+### Features
+
+* add tests and refactor mocks ([ac80f4c](https://github.com/oaknational/Oak-Web-Application/commit/ac80f4c8d5815850d1efe0c68241c132483224dd))
+* wire in new mv into OWA and add beta media page ([1a74d2e](https://github.com/oaknational/Oak-Web-Application/commit/1a74d2e53d744e5bcadc7df67ec22e85711ee951))
+
+## [1.651.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.2...v1.651.3) (2024-12-18)
+
+
+### Bug Fixes
+
+* added subjectFromUnits method to pull title from data rather than generating from the slug ([cf4737a](https://github.com/oaknational/Oak-Web-Application/commit/cf4737a81019725863dffa7992a2fb249c7d80fa))
+
+## [1.651.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.1...v1.651.2) (2024-12-18)
+
+
+### Bug Fixes
+
+* invalid value for w:beforeAutospacing in docx ([384561d](https://github.com/oaknational/Oak-Web-Application/commit/384561d5425f7ccb3ae2922734d3541a654f0ee8))
+* replace w:beforeAutospacing with w:before ([b0efbc5](https://github.com/oaknational/Oak-Web-Application/commit/b0efbc56a7ec230efd533b09ae33649065631da5))
+
+## [1.651.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.651.0...v1.651.1) (2024-12-18)
+
+
+### Bug Fixes
+
+* incorrect breakpoint in curric picker ([37127e3](https://github.com/oaknational/Oak-Web-Application/commit/37127e32106782b3cc5452acea1e9a10fa8cd09b))
+
 # [1.651.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.650.0...v1.651.0) (2024-12-16)
 
 
