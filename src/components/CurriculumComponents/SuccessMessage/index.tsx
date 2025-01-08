@@ -1,9 +1,13 @@
 import { FC } from "react";
-import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakP,
+  OakIcon,
+} from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import Button, { ButtonProps } from "@/components/SharedComponents/Button";
-import Svg from "@/components/SharedComponents/Svg";
 
 type SuccessMessageProps = {
   title: string;
@@ -30,7 +34,11 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
           $flexShrink={1}
         >
           <Box $height={[140, 240, 270]} $width={[166, 240, 320]}>
-            <Svg name="tick-mark-happiness" />
+            <OakIcon
+              iconName="tick-mark-happiness"
+              $width={"100%"}
+              $height={"100%"}
+            />
           </Box>
         </OakFlex>
         <OakFlex

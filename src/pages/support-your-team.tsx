@@ -55,6 +55,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
               subHeading={"by nearly half of teachers using Oak"}
+              $mr={"space-between-s"}
             />
             <SupportYourTeamBubbleMessage
               background={"pink50"}
@@ -62,7 +63,11 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               outlineHeading={"50%"}
               heading={"of teachers feel more confident"}
               subHeading={"in curriculum design"}
-              $mr={[0, -8, 8]}
+              $mr={[
+                "space-between-none",
+                "space-between-none",
+                "space-between-ssx",
+              ]}
             />
           </OakFlex>
         </OakFlex>
