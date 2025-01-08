@@ -41,7 +41,7 @@ const SupportYourTeamBubbleMessage: FC<
       <OakIcon
         iconName={variant}
         $colorFilter={background}
-        $objectFit={"cover"}
+        $objectFit={"fill"}
         $position={"absolute"}
         $width={"100%"}
         $height={"100%"}

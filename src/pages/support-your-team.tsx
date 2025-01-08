@@ -55,6 +55,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
               subHeading={"by nearly half of teachers using Oak"}
+              $mr={"space-between-s"}
             />
             <SupportYourTeamBubbleMessage
               background={"pink50"}
