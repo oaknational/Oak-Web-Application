@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { OakColorToken } from "@oaknational/oak-components";
+import { OakColorFilterToken } from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -39,7 +39,7 @@ export type LessonOverviewHeaderProps = {
   background: OakColorName;
   isNew: boolean;
   isShareable: boolean;
-  subjectIconBackgroundColor: OakColorToken;
+  subjectIconBackgroundColor: OakColorFilterToken;
   track: TrackFns;
   analyticsUseCase: AnalyticsUseCaseValueType;
   pupilLessonOutcome?: string | null;
