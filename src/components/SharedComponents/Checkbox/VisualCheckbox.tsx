@@ -82,7 +82,8 @@ const VisualCheckbox: FC<VisualCheckboxProps> = (props) => {
         <OakIcon
           iconName={"tick"}
           $colorFilter={"white"}
-          $width={"space-between-m"}
+          $width={"all-spacing-5"}
+          $height={"all-spacing-5"}
           data-testid="tick-icon"
         />
       )}

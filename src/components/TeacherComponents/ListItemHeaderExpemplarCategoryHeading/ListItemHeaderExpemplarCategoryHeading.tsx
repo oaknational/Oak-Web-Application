@@ -20,15 +20,19 @@ const ListItemHeaderExpemplarCategoryHeading: FC<
       <OakIcon
         iconName="dot"
         $width={"all-spacing-1"}
+        $height={"all-spacing-1"}
         $mb={"space-between-sssx"}
         $mr={"space-between-sssx"}
+        $display={"inline-flex"}
       />
       {yearTitle}{" "}
       <OakIcon
         iconName="dot"
         $width={"all-spacing-1"}
+        $height={"all-spacing-1"}
         $mb={"space-between-sssx"}
         $mr={"space-between-sssx"}
+        $display={"inline-flex"}
       />
       {subjectTitle}
     </OakTypography>

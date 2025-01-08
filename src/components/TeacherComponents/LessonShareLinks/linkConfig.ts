@@ -37,9 +37,7 @@ export const shareLinkConfig: Record<
   googleClassroom: {
     name: "Google Classroom",
     network: "google-classroom",
-    // @todo add this icon to the oak-components
-    // icon: "google-classroom",
-    icon: "send",
+    icon: "google-classroom",
     url: ({ urlEncodedLink }) => {
       return `https://classroom.google.com/u/0/share?url=${urlEncodedLink}`;
     },
@@ -49,9 +47,7 @@ export const shareLinkConfig: Record<
   microsoftTeams: {
     name: "Microsoft Teams",
     network: "microsoft-teams",
-    // @todo add this icon to the oak-components
-    // icon: "microsoft-teams",
-    icon: "send",
+    icon: "microsoft-teams",
     url: ({ urlEncodedLink, urlEncodedPageTitle }) => {
       return `https://teams.microsoft.com/share?href=${urlEncodedLink}&text=${urlEncodedPageTitle}`;
     },

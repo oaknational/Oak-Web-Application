@@ -152,7 +152,11 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   $alignItems={"center"}
                 >
                   Read more about our approach
-                  <OakIcon iconName={"chevron-right"} />
+                  <OakIcon
+                    iconName={"chevron-right"}
+                    $width={"all-spacing-6"}
+                    $height={"all-spacing-6"}
+                  />
                 </OwaLink>
               </OakTypography>
             </Box>

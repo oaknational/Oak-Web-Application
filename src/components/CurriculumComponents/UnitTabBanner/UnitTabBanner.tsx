@@ -31,7 +31,7 @@ const UnitTabBanner = () => {
           <OakIcon
             iconName="books"
             $width={"all-spacing-14"}
-            $background={"red"}
+            $height={"all-spacing-14"}
             $mr={"space-between-l"}
             $mb={["space-between-m", "space-between-none"]}
           />

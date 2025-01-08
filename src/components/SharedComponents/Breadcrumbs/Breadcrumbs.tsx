@@ -70,6 +70,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
                     $colorFilter={"grey60"}
                     $mr={"space-between-xs"}
                     $width={"all-spacing-5"}
+                    $height={"all-spacing-5"}
                   />
                 )}
                 <BreadcrumbConstrainer>

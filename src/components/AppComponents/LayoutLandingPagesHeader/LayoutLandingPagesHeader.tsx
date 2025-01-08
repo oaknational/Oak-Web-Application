@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakTypography, OakFlex, OakIcon } from "@oaknational/oak-components";
+import { OakFlex, OakTertiaryButton } from "@oaknational/oak-components";
 
 import LayoutFixedHeader from "@/components/AppComponents/LayoutFixedHeader";
 import Logo from "@/components/AppComponents/Logo";
@@ -27,26 +27,14 @@ const LayoutLandingPagesHeader: FC<LayoutLandingPagesHeaderProps> = (props) => {
           <Logo variant="with text" height={48} width={104} />
         </OwaLink>
         {props.headerCta?.linkType && (
-          <OwaLink page={null} href={getLinkHref(props.headerCta)}>
-            <OakFlex
-              $width={["all-spacing-19", "100%"]}
-              $justifyContent={"flex-end"}
-              $alignItems={"center"}
-            >
-              <OakTypography $textAlign="right" $font={"heading-7"}>
-                {props.headerCta.label}
-              </OakTypography>
-              {/* @todo where to find this  */}
-              <OakIcon
-                iconName="arrow-right"
-                $ml={"space-between-xs"}
-                $background={"blue"}
-                aria-label={"arrow-right"}
-                $colorFilter={"white"}
-                $width={"all-spacing-6"}
-              />
-            </OakFlex>
-          </OwaLink>
+          <OakTertiaryButton
+            element={"a"}
+            href={getLinkHref(props.headerCta)}
+            iconName={"arrow-right"}
+            isTrailingIcon
+          >
+            {props.headerCta.label}
+          </OakTertiaryButton>
         )}
       </OakFlex>
     </LayoutFixedHeader>

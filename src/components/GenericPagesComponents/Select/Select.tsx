@@ -167,7 +167,12 @@ export function Select<
         >
           <SelectInner $pt={8} $alignItems={"center"}>
             {props.icon && (
-              <OakIcon $mr={"space-between-ssx"} iconName={props.icon} />
+              <OakIcon
+                $mr={"space-between-ssx"}
+                iconName={props.icon}
+                $width={"all-spacing-6"}
+                $height={"all-spacing-6"}
+              />
             )}
             <SelectSpan
               id={valueId}
@@ -180,7 +185,11 @@ export function Select<
                 : props.placeholder}
             </SelectSpan>
           </SelectInner>
-          <OakIcon iconName={state.isOpen ? "chevron-up" : "chevron-down"} />
+          <OakIcon
+            iconName={state.isOpen ? "chevron-up" : "chevron-down"}
+            $width={"all-spacing-6"}
+            $height={"all-spacing-6"}
+          />
         </SelectButton>
         {state.isOpen && (
           <Popover isOpen={state.isOpen} onClose={state.close}>

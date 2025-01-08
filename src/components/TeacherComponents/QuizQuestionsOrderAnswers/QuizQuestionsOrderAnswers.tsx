@@ -37,7 +37,11 @@ export const QuizQuestionsOrderAnswers = ({
                 {item.correctOrder} - {removeMarkdown(orderAnswer.text)}
               </VisuallyHidden>
               <Box $minWidth={32} aria-hidden>
-                <OakIcon iconName={"tick"} />
+                <OakIcon
+                  iconName={"tick"}
+                  $width={"all-spacing-6"}
+                  $height={"all-spacing-6"}
+                />
               </Box>
 
               <OakTypography $font={["body-2-bold", "body-1-bold"]} aria-hidden>

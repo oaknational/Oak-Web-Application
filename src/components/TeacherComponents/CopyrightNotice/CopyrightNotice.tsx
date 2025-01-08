@@ -34,18 +34,17 @@ const PreAlbCopyright = (
     <OwaLink
       page={"legal"}
       legalSlug="terms-and-conditions"
-      $isInline
       htmlAnchorProps={{
         target: props.openLinksExternally ? "_blank" : "_self",
         "aria-label": `Terms and conditions${
           props.openLinksExternally ? " (opens in a new tab)" : ""
         }`,
       }}
+      $display={"inline-flex"}
+      $alignItems={"center"}
     >
-      <OakFlex $alignItems={"center"} $display={"inline-flex"}>
-        terms &amp; conditions{" "}
-        <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-      </OakFlex>
+      terms &amp; conditions{" "}
+      <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
     </OwaLink>{" "}
     (Collection 1), except where otherwise stated.
   </OakP>
@@ -73,20 +72,23 @@ const PostAlbCopyright = (
         href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
         target={props.openLinksExternally ? "_blank" : "_self"}
       >
-        Open Government Licence version 3.0{" "}
-        <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+        <OakFlex $display={"inline-flex"} $alignItems={"center"}>
+          Open Government Licence version 3.0{" "}
+          <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+        </OakFlex>
       </StyledLink>{" "}
       except where otherwise stated. See{" "}
       <OwaLink
         page={"legal"}
         legalSlug="terms-and-conditions"
-        $isInline
         htmlAnchorProps={{
           target: props.openLinksExternally ? "_blank" : "_self",
           "aria-label": `Terms and conditions${
             props.openLinksExternally ? " (opens in a new tab)" : ""
           }`,
         }}
+        $color={"navy"}
+        $display={"inline-flex"}
       >
         Oak's terms & conditions
         <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />

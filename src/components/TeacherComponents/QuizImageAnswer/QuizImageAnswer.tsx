@@ -37,7 +37,12 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
         aria-hidden
       >
         {answerIsCorrect && (
-          <OakIcon data-testid={"answer-tick"} iconName={"tick"} />
+          <OakIcon
+            data-testid={"answer-tick"}
+            iconName={"tick"}
+            $width={"all-spacing-6"}
+            $height={"all-spacing-6"}
+          />
         )}
       </Flex>
       <Flex $ba={1} $background={"white"} $borderRadius={8}>

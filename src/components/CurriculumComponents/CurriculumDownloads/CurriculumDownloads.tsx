@@ -331,7 +331,12 @@ function CurriculumDownloads(
                 />
                 {hasFormErrors && (
                   <OakFlex $flexDirection={"row"} $mb={"space-between-s"}>
-                    <OakIcon iconName="content-guidance" $colorFilter={"red"} />
+                    <OakIcon
+                      iconName="content-guidance"
+                      $colorFilter={"red"}
+                      $width={"all-spacing-6"}
+                      $height={"all-spacing-6"}
+                    />
                     <OakFlex $flexDirection={"column"}>
                       <OakP $ml={"space-between-sssx"} $color={"red"}>
                         To complete correct the following:

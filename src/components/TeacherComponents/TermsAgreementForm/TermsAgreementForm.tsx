@@ -116,17 +116,20 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 <OakLink
                   page="legal"
                   legalSlug="privacy-policy"
-                  $isInline
                   htmlAnchorProps={{
                     target: "_blank",
                     "aria-label": "Privacy policy (opens in a new tab)",
                   }}
+                  $display={"inline-flex"}
+                  $alignItems={"center"}
                 >
                   privacy policy
                   <OakIcon
                     iconName="external"
                     $width={"all-spacing-5"}
+                    $height={"all-spacing-5"}
                     data-testid="external-link-icon"
+                    $colorFilter={"navy"}
                   />
                 </OakLink>
                 .

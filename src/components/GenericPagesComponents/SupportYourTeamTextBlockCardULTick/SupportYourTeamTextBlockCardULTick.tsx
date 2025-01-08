@@ -29,7 +29,11 @@ export const SupportYourTeamTextBlockCardULTick: PortableTextComponents = {
           $alignItems={"center"}
         >
           <Circle $mr={24} size={36} $background={"white"}>
-            <OakIcon iconName={"tick"} $width={"all-spacing-6"} />
+            <OakIcon
+              iconName={"tick"}
+              $width={"all-spacing-7"}
+              $height={"all-spacing-7"}
+            />
           </Circle>
           <OakSpan $font={"heading-7"}>{listItemText}</OakSpan>
         </OakLI>

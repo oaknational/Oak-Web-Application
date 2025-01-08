@@ -60,6 +60,7 @@ const FooterLinkIconWrapper: React.FC<FooterLinkIconWrapperProps> = (props) => {
         <OakIcon
           iconName={icon}
           $height={"all-spacing-6"}
+          $width={"all-spacing-6"}
           $ml={"space-between-sssx"}
         />
       )}

@@ -17,7 +17,12 @@ const LessonRequirementsHeading: FC<LessonRequirementsHeadingProps> = ({
 }) => {
   return (
     <OakFlex $flexDirection={"row"} $alignItems={"center"}>
-      <OakIcon iconName={helperIcon} $mr={"space-between-ssx"} />
+      <OakIcon
+        iconName={helperIcon}
+        $mr={"space-between-ssx"}
+        $width={"all-spacing-6"}
+        $height={"all-spacing-6"}
+      />
       <OakHeading $font={"heading-7"} tag="h3">
         {heading}
       </OakHeading>

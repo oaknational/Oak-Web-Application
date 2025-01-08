@@ -38,7 +38,12 @@ export const QuizQuestionsMatchAnswers = ({
                 {removeMarkdown(matchOption.text)},
                 {removeMarkdown(correctChoice.text)}
               </VisuallyHidden>
-              <OakIcon $mr={"space-between-ssx"} iconName={"tick"} />
+              <OakIcon
+                $mr={"space-between-ssx"}
+                iconName={"tick"}
+                $width={"all-spacing-6"}
+                $height={"all-spacing-6"}
+              />
               <Flex $flexWrap={"wrap"} $width={["100%", "100%", "max-content"]}>
                 <OakP
                   $whiteSpace={"nowrap"}

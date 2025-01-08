@@ -10,7 +10,7 @@ import CopyLinkButton from "@/components/SharedComponents/Button/CopyLinkButton"
 describe("toast notification", () => {
   const ROLE = "alert";
   test("shows feedback", async () => {
-    const { getByRole, getByTitle, rerender } = renderWithTheme(
+    const { getByRole, getByLabelText, rerender } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton />
         <Toast />
@@ -19,7 +19,7 @@ describe("toast notification", () => {
 
     const user = userEvent.setup();
 
-    const button = getByTitle("Copy link to clipboard");
+    const button = getByLabelText("Copy link to clipboard");
     expect(button).toBeInTheDocument();
 
     await user.click(button);
