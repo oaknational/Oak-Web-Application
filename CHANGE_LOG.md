@@ -1,3 +1,17 @@
+# [1.658.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.657.0...v1.658.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* conflicts ([751e5eb](https://github.com/oaknational/Oak-Web-Application/commit/751e5eb0b48d7d126dd38bf4122baa7a64f075cb))
+* reinstate share experiment code ([23ddda4](https://github.com/oaknational/Oak-Web-Application/commit/23ddda4648dd05b99de906a8047e8db9a6b7e73f))
+* type issues and tests ([7ab4f00](https://github.com/oaknational/Oak-Web-Application/commit/7ab4f00f5dea9467b9ade51e18dadbe2a97a4336))
+
+
+### Features
+
+* added the modal and tiptap editor ([d571833](https://github.com/oaknational/Oak-Web-Application/commit/d571833a525f606aa808a932d54cb01485b82e94))
+
 # [1.657.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.656.0...v1.657.0) (2025-01-08)
 
 
