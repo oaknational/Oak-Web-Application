@@ -1,3 +1,10 @@
+## [1.655.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.3...v1.655.4) (2025-01-08)
+
+
+### Bug Fixes
+
+* use school id from hubspot to set in localstorage if available ([c5e1752](https://github.com/oaknational/Oak-Web-Application/commit/c5e175266260f4e35ebad87cba79af5cd6c9450a))
+
 ## [1.655.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.2...v1.655.3) (2025-01-08)
 
 ## [1.655.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.1...v1.655.2) (2025-01-07)
