@@ -1,3 +1,16 @@
+# [1.657.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.656.0...v1.657.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* only require one option to be false to set hubspot loading finished ([9985525](https://github.com/oaknational/Oak-Web-Application/commit/99855258e334cfd00404fe43e5b0dcb22d15d8c3))
+
+
+### Features
+
+* show a loading state on downloads button when details loading from hubspot ([f3a5072](https://github.com/oaknational/Oak-Web-Application/commit/f3a5072ea746d9780d5752e46b6a3ce518c41694))
+* use 'loading' on button instead of 'downloading' ([d64c0bc](https://github.com/oaknational/Oak-Web-Application/commit/d64c0bc54003bfd1788eedf11887d72ada987ed7))
+
 # [1.656.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.4...v1.656.0) (2025-01-08)
 
 
