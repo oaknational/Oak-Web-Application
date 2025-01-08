@@ -31,6 +31,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import { useOakPupil } from "@oaknational/oak-pupil-client";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -62,15 +63,38 @@ export default function LessonOverviewCanonicalPage({
     },
   });
 
+  const { getTeacherNote } = useOakPupil();
+
   useEffect(() => {
+    const fetchTeacherNote = async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const strippedUrl = window.location.href.split("?")[0];
+
+      if (!strippedUrl) {
+        return;
+      }
+
+      try {
+        // retrieve any existing teacher note from the url
+        const note = await getTeacherNote({ lessonUrl: strippedUrl });
+        console.log("note", note);
+        // TODO set the teacher note in the state
+        // TODO TeacherNotesModal should be able to read the teacher note from the state
+      } catch (e) {
+        console.error(e);
+
+        return;
+      }
+    };
+
     if (window.location.href !== browserUrl) {
       window.history.replaceState({}, "", browserUrl);
     }
 
     if (teacherNotesEnabled) {
-      // retrieve any existing teacher note from the url
+      fetchTeacherNote();
     }
-  }, [browserUrl, teacherNotesEnabled]);
+  }, [browserUrl, teacherNotesEnabled, getTeacherNote]);
 
   const teacherNotesButton = teacherNotesEnabled ? (
     <OakSmallSecondaryButton
