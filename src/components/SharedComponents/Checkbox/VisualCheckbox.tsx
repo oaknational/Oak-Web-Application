@@ -1,9 +1,9 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { OakIcon } from "@oaknational/oak-components";
 
 import type { CheckboxVariant } from "./Checkbox";
 
-import { OakIcon } from "@oaknational/oak-components";
 import position, { PositionProps } from "@/styles/utils/position";
 import { ZIndex, parseZIndex } from "@/styles/utils/zIndex";
 import getColorByName from "@/styles/themeHelpers/getColorByName";

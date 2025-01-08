@@ -1,8 +1,8 @@
 import { FC, useEffect, useRef } from "react";
 import { Transition, TransitionStatus } from "react-transition-group";
 import styled from "styled-components";
-
 import { OakTypography, OakFlex, OakIcon } from "@oaknational/oak-components";
+
 import { useToastContext, SHOW_DURATION } from "@/context/Toast";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import theme from "@/styles/theme";

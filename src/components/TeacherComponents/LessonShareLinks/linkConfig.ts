@@ -1,13 +1,13 @@
-import { SharingMetadata } from "./getSharingMetadata";
+import { OakIconName } from "@oaknational/oak-components";
 
-import { IconName } from "@/components/SharedComponents/Icon.deprecated";
+import { SharingMetadata } from "./getSharingMetadata";
 
 export type ShareLinkConfig = {
   name: "Email" | "Google Classroom" | "Microsoft Teams" | "Copy link";
   network?: "email" | "google-classroom" | "microsoft-teams";
   medium: "social" | "email" | "lms" | "copy-link";
   avoMedium: "microsoft-teams" | "google-classroom" | "email" | "copy-link";
-  icon: IconName;
+  icon: OakIconName;
   url: (params: SharingMetadata) => string;
 };
 
@@ -37,7 +37,9 @@ export const shareLinkConfig: Record<
   googleClassroom: {
     name: "Google Classroom",
     network: "google-classroom",
-    icon: "google-classroom",
+    // @todo add this icon to the oak-components
+    // icon: "google-classroom",
+    icon: "send",
     url: ({ urlEncodedLink }) => {
       return `https://classroom.google.com/u/0/share?url=${urlEncodedLink}`;
     },
@@ -47,7 +49,9 @@ export const shareLinkConfig: Record<
   microsoftTeams: {
     name: "Microsoft Teams",
     network: "microsoft-teams",
-    icon: "microsoft-teams",
+    // @todo add this icon to the oak-components
+    // icon: "microsoft-teams",
+    icon: "send",
     url: ({ urlEncodedLink, urlEncodedPageTitle }) => {
       return `https://teams.microsoft.com/share?href=${urlEncodedLink}&text=${urlEncodedPageTitle}`;
     },
