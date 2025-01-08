@@ -144,7 +144,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       schoolFromHubspot?.schoolName === schoolFromLocalStorage.schoolName;
 
     const noDetailsInHubspot =
-      authFlagEnabled === false && isSignedIn === false;
+      authFlagEnabled === false || isSignedIn === false;
+
     if ((detailsUpdatedFromHubspot || noDetailsInHubspot) && !hubspotLoaded) {
       setHubspotLoaded(true);
     }
