@@ -216,26 +216,18 @@ describe("PupilViewsLessonOverview", () => {
     'renders "$label" for the proceed to next section button',
     ({ label, context }) => {
       const { getByTestId } = renderWithTheme(
-        <OakPupilClientProvider
-          config={{
-            getLessonAttemptUrl: "example.com",
-            logLessonAttemptUrl: "example.com",
-          }}
-        >
-          {" "}
-          <OakThemeProvider theme={oakDefaultTheme}>
-            <LessonEngineContext.Provider
-              value={createLessonEngineContext(context)}
-            >
-              <PupilViewsLessonOverview
-                lessonTitle="Introduction to The Canterbury Tales"
-                starterQuizNumQuestions={4}
-                exitQuizNumQuestions={5}
-                browseData={mockBroweData}
-              />
-            </LessonEngineContext.Provider>
-          </OakThemeProvider>
-        </OakPupilClientProvider>,
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider
+            value={createLessonEngineContext(context)}
+          >
+            <PupilViewsLessonOverview
+              lessonTitle="Introduction to The Canterbury Tales"
+              starterQuizNumQuestions={4}
+              exitQuizNumQuestions={5}
+              browseData={mockBroweData}
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
       );
 
       expect(getByTestId("proceed-to-next-section")).toHaveTextContent(label);

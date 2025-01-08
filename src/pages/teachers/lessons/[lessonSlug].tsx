@@ -66,6 +66,10 @@ export default function LessonOverviewCanonicalPage({
     if (window.location.href !== browserUrl) {
       window.history.replaceState({}, "", browserUrl);
     }
+
+    if (teacherNotesEnabled) {
+      // retrieve any existing teacher note from the url
+    }
   }, [browserUrl, teacherNotesEnabled]);
 
   const teacherNotesButton = teacherNotesEnabled ? (
