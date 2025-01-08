@@ -20,19 +20,21 @@ exports[`Banners when cycle 2 enabled 1`] = `
             class="sc-ad0ad6f5-0 sc-213e351e-0 kukHQW cUwoYe"
             data-testid="new-icon"
           >
-            <svg
+            <div
               aria-hidden="true"
-              class="sc-86d1d46f-0 kiKfWP"
-              filter="drop-shadow(2px 2px 0px rgb(255 255 255 / 0.6))"
-              height="100%"
-              name="tag-promotional"
-              width="100%"
-              xmlns="http://www.w3.org/2000/svg"
+              class="sc-fqkvVR bqktJH"
+              data-testid="tag-promotional-icon"
             >
-              <use
-                xlink:href="/images/sprite/sprite.svg#tag-promotional"
+              <img
+                alt="tag-promotional"
+                class="sc-dcJsrY igvylU"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1734537244/OWA/ui-graphics/tag-promotional_v4p3oa.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
               />
-            </svg>
+            </div>
             <div
               class="sc-ad0ad6f5-0 sc-213e351e-0 SIsrt cUwoYe"
             >

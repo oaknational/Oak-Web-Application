@@ -1,3 +1,22 @@
+# [1.656.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.4...v1.656.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* check if loading set to eager reduces the flicker ([f448093](https://github.com/oaknational/Oak-Web-Application/commit/f4480934a688f259b458fc9e3ad2753efe7474b1))
+* check if setting image height reduces the flicker ([6123742](https://github.com/oaknational/Oak-Web-Application/commit/612374247a6a39f06ddf613dcb405ce42b9585cd))
+* remove header underline flicker in deploy mode ([4a50639](https://github.com/oaknational/Oak-Web-Application/commit/4a506393534a335077548bfb2781c21e2d39ec1d))
+* set both width and height ot be able to see those propas on img tag ([b1f9057](https://github.com/oaknational/Oak-Web-Application/commit/b1f9057269ae016a2c2906c59f73b730b754e023))
+* test in deploy mode if it is header underline causing the flicker ([ff66b45](https://github.com/oaknational/Oak-Web-Application/commit/ff66b45d201ec003e024dee8c8e106a75a7412fb))
+* update few styles ([ad44f29](https://github.com/oaknational/Oak-Web-Application/commit/ad44f2998a158eabfa47b9b416c43f21ad8cbf7d))
+* update width and height ([1b0ef2e](https://github.com/oaknational/Oak-Web-Application/commit/1b0ef2edeff6ce213d7299554b790b74a4c4ef26))
+
+
+### Features
+
+* deprecate Svg component ([1e24c47](https://github.com/oaknational/Oak-Web-Application/commit/1e24c47548baa47f7bcb99f49d0c7f648be6f55e))
+* use OakSvg for header-underline ([b01b0ee](https://github.com/oaknational/Oak-Web-Application/commit/b01b0ee8c13cc256a3e74244912d3f2b38ab8d42))
+
 ## [1.655.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.3...v1.655.4) (2025-01-08)
 
 
