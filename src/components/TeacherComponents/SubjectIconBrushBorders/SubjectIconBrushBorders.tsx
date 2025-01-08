@@ -1,15 +1,18 @@
 import { FC } from "react";
-import { OakBox, OakFlex, OakIcon } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakIcon,
+  OakColorFilterToken,
+} from "@oaknational/oak-components";
 
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
-import { OakColorName } from "@/styles/theme/types";
-import Svg from "@/components/SharedComponents/Svg";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 type SubjectIconBrushBoardersProps = {
   subjectSlug: string | null;
   isNew: boolean;
-  color: OakColorName;
+  color: OakColorFilterToken;
 };
 
 const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
@@ -25,10 +28,12 @@ const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({
     $justifyContent={"center"}
     $alignItems={"center"}
   >
-    <Svg
-      $color={color}
+    <OakIcon
+      iconName={"icon-background-square"}
+      $colorFilter={color}
       $position={"absolute"}
-      name={"icon-background-square"}
+      $width={"100%"}
+      $height={"100%"}
     />
     <OakBox
       $width={"100%"}

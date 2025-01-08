@@ -1,5 +1,11 @@
 import { FC, ReactNode, useId } from "react";
-import { OakGrid, OakGridArea, OakHeading } from "@oaknational/oak-components";
+import {
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakIcon,
+  OakMaxWidth,
+} from "@oaknational/oak-components";
 
 import PostCategoryList from "@/components/SharedComponents/PostCategoryList";
 import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
@@ -9,12 +15,10 @@ import { WebinarSinglePageProps } from "@/pages/webinars/[webinarSlug]";
 import { BlogSinglePageProps } from "@/pages/blog/[blogSlug]";
 import theme from "@/styles/theme";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
-import Svg from "@/components/SharedComponents/Svg";
 
 type PostSingleLayoutProps = {
   children?: ReactNode;
@@ -36,7 +40,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
 
   return (
     <>
-      <MaxWidth>
+      <OakMaxWidth>
         <OakGrid $ph={["inner-padding-s", "inner-padding-none"]}>
           <OakGridArea $colSpan={[12, 0]}>
             <MobileFilters page={page} withBackButton label={"Categories"}>
@@ -57,7 +61,13 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
             $gap={"space-between-m"}
           >
             <Breadcrumbs breadcrumbs={breadcrumbs} />
-            <Svg name="header-underline" $color="grey40" $height={4} />
+            <OakIcon
+              iconName="header-underline"
+              $colorFilter="grey40"
+              $height={"all-spacing-1"}
+              $width={"100%"}
+              $objectFit={"fill"}
+            />
           </OakGridArea>
           <GridArea
             $order={[0, 2]}
@@ -91,7 +101,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
             {children}
           </OakGridArea>
         </OakGrid>
-      </MaxWidth>
+      </OakMaxWidth>
     </>
   );
 };
