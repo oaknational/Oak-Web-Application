@@ -1,3 +1,41 @@
+## [1.655.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.3...v1.655.4) (2025-01-08)
+
+
+### Bug Fixes
+
+* use school id from hubspot to set in localstorage if available ([c5e1752](https://github.com/oaknational/Oak-Web-Application/commit/c5e175266260f4e35ebad87cba79af5cd6c9450a))
+
+## [1.655.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.2...v1.655.3) (2025-01-08)
+
+## [1.655.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.1...v1.655.2) (2025-01-07)
+
+
+### Bug Fixes
+
+* remove duplicated back to lesson button ([60aff8b](https://github.com/oaknational/Oak-Web-Application/commit/60aff8b7799627f2657679c059790a512f26fcce))
+
+## [1.655.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.0...v1.655.1) (2025-01-07)
+
+
+### Bug Fixes
+
+* remove double importation ([3c5c95e](https://github.com/oaknational/Oak-Web-Application/commit/3c5c95e897ef66220e904cd5262b281b0b21dbfc))
+* remove double importation of lesson media fixture ([1ce7625](https://github.com/oaknational/Oak-Web-Application/commit/1ce76256a7aaa3177d48c72ddd9771893743b6a1))
+
+# [1.655.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.654.1...v1.655.0) (2025-01-07)
+
+
+### Features
+
+* added "lot picker" to curric homepage ([a436637](https://github.com/oaknational/Oak-Web-Application/commit/a436637a4ba6cdb90d3e953b8871e9bb89f13cb8))
+
+## [1.654.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.654.0...v1.654.1) (2025-01-06)
+
+
+### Bug Fixes
+
+* rollback mux-player-react version ([b930bc9](https://github.com/oaknational/Oak-Web-Application/commit/b930bc98b17b8ba38cc2d5c41afecf426d0d2c0e))
+
 # [1.654.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.653.2...v1.654.0) (2025-01-06)
 
 
