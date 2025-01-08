@@ -82,8 +82,10 @@ export default async function generate(
   const yearData = createUnitsListingByYear(data.units);
   const allThreadOptions = createThreadOptions(data.units);
 
-  const enableGroupBySubjectCategory = getUnitFeatures(data.units[0])
-    ?.subjectcategories?.group_by_subjectcategory;
+  const enableGroupBySubjectCategory = data.units.some((unit) => {
+    const features = getUnitFeatures(unit);
+    return features?.subjectcategories?.group_by_subjectcategory;
+  });
 
   const elements = allThreadOptions.map((thread, threadIndex) => {
     const threadInfo = threadUnitByYear(data.units, thread.slug);
