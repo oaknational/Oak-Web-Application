@@ -3,7 +3,7 @@ import {
   OakBox,
   OakFlex,
   OakIcon,
-  OakColorToken,
+  OakColorFilterToken,
 } from "@oaknational/oak-components";
 
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
@@ -12,7 +12,7 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 type SubjectIconBrushBoardersProps = {
   subjectSlug: string | null;
   isNew: boolean;
-  color: OakColorToken;
+  color: OakColorFilterToken;
 };
 
 const SubjectIconBrushBoarders: FC<SubjectIconBrushBoardersProps> = ({

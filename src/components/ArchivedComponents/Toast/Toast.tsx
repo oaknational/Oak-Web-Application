@@ -1,12 +1,11 @@
 import { FC, useEffect, useRef } from "react";
 import { Transition, TransitionStatus } from "react-transition-group";
 import styled from "styled-components";
-import { OakTypography, OakFlex } from "@oaknational/oak-components";
 
+import { OakTypography, OakFlex, OakIcon } from "@oaknational/oak-components";
 import { useToastContext, SHOW_DURATION } from "@/context/Toast";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import theme from "@/styles/theme";
-import Icon from "@/components/SharedComponents/Icon.deprecated";
 import Card from "@/components/SharedComponents/Card";
 
 const TRANSITION_DURATION = 500;
@@ -72,12 +71,10 @@ const Toast: FC = () => {
         >
           <BrushBorders color="lemon50" />
           <OakFlex $alignItems={"center"}>
-            <Icon
-              name="tick"
-              size={36}
-              variant={"brush"}
+            <OakIcon
+              iconName="tick"
+              $width={"space-between-m2"}
               $background={"white"}
-              $color={"oakGreen"}
             />
             <OakTypography
               $color={"black"}

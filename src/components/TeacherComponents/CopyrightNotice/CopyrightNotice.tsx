@@ -1,11 +1,10 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakP } from "@oaknational/oak-components";
+import { OakP, OakIcon, OakFlex } from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import { FontProps } from "@/styles/utils/typography";
-import Icon from "@/components/SharedComponents/Icon.deprecated";
 
 type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;
@@ -16,11 +15,13 @@ type CopyrightNoticeProps = FontProps & {
 
 const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
   props.openLinksExternally ? (
-    <Icon
-      name="external"
-      verticalAlign="bottom"
-      size={20}
+    <OakIcon
+      iconName="external"
+      $width={"all-spacing-5"}
+      $height={"all-spacing-5"}
+      $display={"inline-flex"}
       data-testid="external-link-icon"
+      $colorFilter={"navy"}
     />
   ) : null;
 
@@ -41,8 +42,10 @@ const PreAlbCopyright = (
         }`,
       }}
     >
-      terms &amp; conditions{" "}
-      <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+      <OakFlex $alignItems={"center"} $display={"inline-flex"}>
+        terms &amp; conditions{" "}
+        <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+      </OakFlex>
     </OwaLink>{" "}
     (Collection 1), except where otherwise stated.
   </OakP>

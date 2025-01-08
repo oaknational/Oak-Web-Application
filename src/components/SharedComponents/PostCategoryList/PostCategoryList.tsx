@@ -1,15 +1,13 @@
 import { FC } from "react";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakTertiaryButton } from "@oaknational/oak-components";
 
 import Box, { BoxProps } from "@/components/SharedComponents/Box";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import CategoryFilterList from "@/components/SharedComponents/CategoryFilterList";
 import useCategoryFilterList from "@/components/SharedComponents/CategoryFilterList/useCategoryFilterList";
 import {
   BlogListingLinkProps,
   WebinarListingLinkProps,
 } from "@/common-lib/urls";
-import Icon from "@/components/SharedComponents/Icon.deprecated";
 
 export type PostCategoryPage = "blog-index" | "webinar-index";
 
@@ -47,22 +45,14 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
         $height="all-spacing-7"
         $font={"heading-7"}
       >
-        <OwaLink
-          $display="flex"
-          $width={"auto"}
-          $height="100%"
-          $alignItems="center"
-          page={page === "webinar-index" ? "blog-index" : "webinar-index"}
+        <OakTertiaryButton
+          element={"a"}
+          href={page === "webinar-index" ? "blog-index" : "webinar-index"}
+          iconName={"arrow-right"}
+          isTrailingIcon
         >
           {`Switch to ${page === "blog-index" ? "webinars" : "blogs"}`}
-          <Icon
-            $ml={12}
-            variant="brush"
-            size={30}
-            $background={"blue"}
-            name="arrow-right"
-          />
-        </OwaLink>
+        </OakTertiaryButton>
       </OakFlex>
     </Box>
   );

@@ -1,10 +1,14 @@
 import React, { FC } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
 
-import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
+import {
+  OakHeading,
+  OakFlex,
+  OakIcon,
+  OakIconName,
+} from "@oaknational/oak-components";
 
 type LessonRequirementsHeadingProps = {
-  helperIcon: IconName;
+  helperIcon: OakIconName;
   heading: string;
 };
 
@@ -14,7 +18,7 @@ const LessonRequirementsHeading: FC<LessonRequirementsHeadingProps> = ({
 }) => {
   return (
     <OakFlex $flexDirection={"row"} $alignItems={"center"}>
-      <Icon name={helperIcon} variant="minimal" $mr={8} />
+      <OakIcon iconName={helperIcon} $mr={"space-between-ssx"} />
       <OakHeading $font={"heading-7"} tag="h3">
         {heading}
       </OakHeading>
