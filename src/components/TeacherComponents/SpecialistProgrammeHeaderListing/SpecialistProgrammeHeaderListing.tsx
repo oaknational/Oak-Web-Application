@@ -6,7 +6,7 @@ import {
   OakP,
   OakSpan,
   OakFlex,
-  OakColorToken,
+  OakColorFilterToken,
 } from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
@@ -24,7 +24,7 @@ export type SpecialistHeaderListingProps = {
   background?: OakColorName;
   subjectTitle: string;
   subjectSlug: string;
-  subjectIconBackgroundColor?: OakColorToken;
+  subjectIconBackgroundColor?: OakColorFilterToken;
   title: string;
   hasCurriculumDownload?: boolean;
   description: string;

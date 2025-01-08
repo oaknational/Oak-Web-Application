@@ -1,5 +1,4 @@
 import { FC } from "react";
-
 import { OakBox, OakSvg } from "@oaknational/oak-components";
 
 export const AppHeaderUnderline: FC = () => {

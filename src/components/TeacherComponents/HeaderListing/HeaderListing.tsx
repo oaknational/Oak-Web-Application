@@ -3,7 +3,7 @@ import {
   OakFlex,
   OakHeading,
   OakSpan,
-  OakColorToken,
+  OakColorFilterToken,
 } from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
@@ -25,7 +25,7 @@ export type HeaderListingProps = {
   background: OakColorName;
   subjectTitle: string;
   subjectSlug: string;
-  subjectIconBackgroundColor: OakColorToken;
+  subjectIconBackgroundColor: OakColorFilterToken;
   year?: string;
   keyStageSlug?: string;
   keyStageTitle?: string;
