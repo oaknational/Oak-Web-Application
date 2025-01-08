@@ -238,11 +238,11 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     const iframeElement = getAllByTestId("overview-presentation");
     expect(iframeElement.length).toEqual(2);
   });
-  // skipping whilst rendering 2 google docs
-  it.skip("renders an iframe for a lesson guide google doc", () => {
+
+  it("renders an iframe for a lesson guide and additional material google doc", () => {
     const { getAllByTestId } = render(<LessonOverviewPage {...props} />);
-    const iframeElement = getAllByTestId("lesson-guide-iframe");
-    expect(iframeElement.length).toEqual(1);
+    const iframeElement = getAllByTestId("overview-presentation-document");
+    expect(iframeElement.length).toEqual(2);
   });
 
   describe("SEO", () => {
