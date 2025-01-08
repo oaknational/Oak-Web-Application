@@ -60,6 +60,21 @@ export const isAllowedUri = (
   }
 };
 
+export const shouldAutoLink = (url: string) => {
+  try {
+    // construct URL
+    if (url.includes(":")) {
+      new URL(url);
+    } else {
+      new URL(`https://${url}`);
+    }
+
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 const limit = 2000;
 
 export type TeacherNotesModalProps = Pick<
@@ -83,20 +98,7 @@ export const TeacherNotesModal = ({
         defaultProtocol: "https",
         protocols: ["http", "https"],
         isAllowedUri,
-        shouldAutoLink: (url) => {
-          try {
-            // construct URL
-            if (url.includes(":")) {
-              new URL(url);
-            } else {
-              new URL(`https://${url}`);
-            }
-
-            return true;
-          } catch (error) {
-            return false;
-          }
-        },
+        shouldAutoLink,
       }),
     ],
     immediatelyRender: false,
