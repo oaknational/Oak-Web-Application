@@ -125,7 +125,53 @@ export default async function generate(
       </w:p>
     `;
 
-    let contentElements;
+    let contentElements: string[];
+
+    // Original non-categorized format
+    contentElements = Object.entries(threadInfo)
+      .sort(([yearA], [yearB]) => sortYears(yearA, yearB))
+      .map<[string, Unit[]]>(([year, units]) => {
+        if (enableGroupBySubjectCategory) {
+          const filteredUnits = units.filter(
+            (u) => (u.subjectcategories ?? []).length < 1,
+          );
+          return [year, filteredUnits];
+        }
+        return [year, units];
+      })
+      .filter(([, units]) => {
+        return units.length > 0;
+      })
+      .map(([year, units]) => {
+        const yearTitle = getYearGroupTitle(yearData, year);
+        return safeXml`
+          <w:p>
+            <w:pPr>
+              <w:pStyle w:val="Heading4" />
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:b />
+                <w:color w:val="222222" />
+                <w:sz w:val="28" />
+              </w:rPr>
+              <w:t>${cdata(yearTitle)}</w:t>
+            </w:r>
+          </w:p>
+          ${renderUnits(sortByOrder(units), numbering)}
+          <w:p>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:sz w:val="24" />
+              </w:rPr>
+              <w:t />
+            </w:r>
+          </w:p>
+        `;
+      });
+
     if (enableGroupBySubjectCategory) {
       // Reorganises all curriculum units by subject category, year and units
       const categorizedContent = Object.entries(threadInfo)
@@ -152,8 +198,9 @@ export default async function generate(
           >,
         );
 
-      contentElements = Object.values(categorizedContent).map(
-        ({ title, yearContent }) => {
+      contentElements = [
+        ...contentElements,
+        ...Object.values(categorizedContent).map(({ title, yearContent }) => {
           return safeXml`
             <XML_FRAGMENT>
               <w:p>
@@ -215,41 +262,8 @@ export default async function generate(
                 .join("")}
             </XML_FRAGMENT>
           `;
-        },
-      );
-    } else {
-      // Original non-categorized format
-      contentElements = Object.entries(threadInfo)
-        .sort(([yearA], [yearB]) => sortYears(yearA, yearB))
-        .map(([year, units]) => {
-          const yearTitle = getYearGroupTitle(yearData, year);
-          return safeXml`
-            <w:p>
-              <w:pPr>
-                <w:pStyle w:val="Heading4" />
-              </w:pPr>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:b />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="28" />
-                </w:rPr>
-                <w:t>${cdata(yearTitle)}</w:t>
-              </w:r>
-            </w:p>
-            ${renderUnits(sortByOrder(units), numbering)}
-            <w:p>
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:sz w:val="24" />
-                </w:rPr>
-                <w:t />
-              </w:r>
-            </w:p>
-          `;
-        });
+        }),
+      ];
     }
 
     return safeXml`

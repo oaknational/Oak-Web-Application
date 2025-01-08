@@ -35,7 +35,8 @@ export function getUnitFeatures(unit?: Unit | null) {
     };
   } else if (
     unit.subject_slug === "english" &&
-    unit.phase_slug === "secondary"
+    unit.phase_slug === "secondary" &&
+    ["10", "11"].includes(unit.year)
   ) {
     return {
       subjectcategories: {

@@ -79,6 +79,14 @@ describe("getUnitFeatures", () => {
         phase_slug: "secondary",
         year: "7",
       } as Unit),
+    ).toEqual(undefined);
+
+    expect(
+      getUnitFeatures({
+        subject_slug: "english",
+        phase_slug: "secondary",
+        year: "10",
+      } as Unit),
     ).toEqual({
       subjectcategories: {
         all_disabled: true,
