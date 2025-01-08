@@ -145,11 +145,16 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
     const noDetailsInHubspot =
       authFlagEnabled === false && isSignedIn === false;
-
-    if (detailsUpdatedFromHubspot || noDetailsInHubspot) {
+    if ((detailsUpdatedFromHubspot || noDetailsInHubspot) && !hubspotLoaded) {
       setHubspotLoaded(true);
     }
-  }, [schoolFromHubspot, schoolFromLocalStorage, authFlagEnabled, isSignedIn]);
+  }, [
+    schoolFromHubspot,
+    schoolFromLocalStorage,
+    authFlagEnabled,
+    isSignedIn,
+    hubspotLoaded,
+  ]);
 
   useEffect(() => {
     if (emailFromLocalStorage) {

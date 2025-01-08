@@ -409,8 +409,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   text={"Download .zip"}
                   icon={"download"}
                   isLoading={
-                    isAttemptingDownload ||
-                    (!hubspotLoaded && !localStorageDetails) // show loading state when waiting for latest school values to be populated from hubspot
+                    isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
                   }
                   disabled={
                     (hasFormErrors ||
@@ -419,7 +418,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                       (!form.formState.isValid && !localStorageDetails)) &&
                     hubspotLoaded
                   }
-                  loadingText={"Downloading..."}
+                  loadingText={
+                    isAttemptingDownload ? "Downloading..." : "Loading..."
+                  }
                 />
               }
             />
