@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   GetStaticPathsResult,
   GetStaticProps,
@@ -27,10 +27,10 @@ import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonO
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-// import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
-// import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -49,33 +49,24 @@ export default function LessonOverviewCanonicalPage({
 
   const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
 
-  // const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
-  //   lessonSlug: lesson.lessonSlug,
-  //   source: "lesson-canonical",
-  //   curriculumTrackingProps: {
-  //     lessonName: lesson.lessonTitle,
-  //     unitName: null,
-  //     subjectSlug: null,
-  //     subjectTitle: null,
-  //     keyStageSlug: null,
-  //     keyStageTitle: null,
-  //   },
-  // });
+  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
+    lessonSlug: lesson.lessonSlug,
+    source: "lesson-canonical",
+    curriculumTrackingProps: {
+      lessonName: lesson.lessonTitle,
+      unitName: null,
+      subjectSlug: null,
+      subjectTitle: null,
+      keyStageSlug: null,
+      keyStageTitle: null,
+    },
+  });
 
-  // useEffect(() => {
-  //   if (window.location.href !== browserUrl) {
-  //     window.history.replaceState({}, "", browserUrl);
-  //   }
-  // }, [browserUrl, teacherNotesEnabled]);
-
-  // const teacherShareButton = (
-  //   <TeacherShareButton
-  //     label="Share resources with colleague"
-  //     variant={"secondary"}
-  //     shareUrl={shareUrl}
-  //     shareActivated={shareActivated}
-  //   />
-  // );
+  useEffect(() => {
+    if (window.location.href !== browserUrl) {
+      window.history.replaceState({}, "", browserUrl);
+    }
+  }, [browserUrl, teacherNotesEnabled]);
 
   const teacherNotesButton = teacherNotesEnabled ? (
     <OakSmallSecondaryButton
@@ -87,7 +78,14 @@ export default function LessonOverviewCanonicalPage({
     >
       Add teacher note and share
     </OakSmallSecondaryButton>
-  ) : null;
+  ) : (
+    <TeacherShareButton
+      label="Share resources with colleague"
+      variant={"secondary"}
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+    />
+  );
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
