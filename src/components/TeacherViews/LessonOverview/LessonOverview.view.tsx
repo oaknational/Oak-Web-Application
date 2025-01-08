@@ -49,7 +49,6 @@ import {
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
-import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
@@ -219,37 +218,11 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
   const showShare =
     !isSpecialist && keyStageSlug !== "early-years-foundation-stage";
 
-  // TODO: Currently lessonGuideUrl is in edit mode, once published remove
-  const getPreviewUrl = (url: string): string => {
-    return url.replace(/\/edit.*$/, "/preview");
-  };
-  const previewLessonGuideUrl = getPreviewUrl(lessonGuideUrl || "");
-
   const isMFL =
     subjectSlug === "german" ||
     subjectSlug === "french" ||
     subjectSlug === "spanish" ||
     lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre";
-
-  function convertToPreviewMode(url: string | null | undefined): string {
-    if (!url || typeof url !== "string" || !url.trim()) {
-      return "";
-    }
-    const isValidUrl = url.startsWith("http://") || url.startsWith("https://");
-    if (!isValidUrl) {
-      return "";
-    }
-    const urlObj = new URL(url);
-    if (
-      urlObj.hostname === "docs.google.com" &&
-      urlObj.pathname.startsWith("/document/d/")
-    ) {
-      urlObj.pathname = urlObj.pathname.replace(/\/edit|\/view/, "/preview");
-      return urlObj.toString();
-    }
-    return "";
-  }
-  const addMat = convertToPreviewMode(additionalMaterialUrl);
 
   return (
     <MathJaxLessonProvider>
@@ -360,43 +333,14 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                       anchorId="lesson-guide"
                       pageLinks={pageLinks}
                     >
-                      <OakBox
-                        $width={"100%"}
-                        $ba={"border-solid-m"}
-                        style={{ height: "100%" }}
-                        $position={"relative"}
-                      >
-                        <AspectRatio ratio={"16:9"}>
-                          <iframe
-                            tabIndex={-1}
-                            data-testid="lesson-guide-iframe"
-                            src={`${previewLessonGuideUrl}`}
-                            title={`lesson guide: ${lessonTitle}`}
-                            width="auto"
-                            height="100%"
-                            style={{
-                              border: "none",
-                            }}
-                            //small render bug fix to make sure the iframe assumes 100% width. Docs are still in unpublished currently so temporary
-                            onLoad={(e) => {
-                              const iframe = e.target as HTMLIFrameElement;
-                              iframe.style.width = "100%";
-                              iframe.style.height = "100%";
-                            }}
-                          />
-                        </AspectRatio>
-                      </OakBox>
+                      <LessonOverviewDocPresentation
+                        asset={lessonGuideUrl}
+                        title={lessonTitle}
+                        isWorksheetLandscape={true}
+                        docType="lesson guide"
+                      />
                     </LessonItemContainer>
                   )}
-                {lessonGuideUrl && (
-                  <OakBox $mv={"space-between-l"} $width={"100%"}>
-                    <LessonOverviewDocPresentation
-                      asset={lessonGuideUrl ?? ""}
-                      title={lessonTitle}
-                      isWorksheetLandscape={true}
-                    />
-                  </OakBox>
-                )}
 
                 {pageLinks.find((p) => p.label === "Slide deck") &&
                   !checkIsResourceCopyrightRestricted(
@@ -471,7 +415,6 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     supervisionLevel={supervisionLevel}
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
-                    // change
                     hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
                     displayVocab={isBeta && isMFL}
                     updatedAt={updatedAt}
@@ -620,72 +563,48 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     )}
                   </LessonItemContainer>
                 )}
-                {pageLinks.find((p) => p.label === "Additional material") && (
-                  <LessonItemContainer
-                    isSpecialist={isSpecialist}
-                    ref={additionalMaterialSectionRef}
-                    pageLinks={pageLinks}
-                    title={"Additional material"}
-                    anchorId="additional-material"
-                    downloadable={
-                      getIsResourceDownloadable(
-                        "supplementary-docx",
-                        downloads,
-                        copyrightContent,
-                      ) ||
-                      getIsResourceDownloadable(
-                        "supplementary-pdf",
-                        downloads,
-                        copyrightContent,
-                      )
-                    }
-                    shareable={isLegacyLicense && showShare}
-                    onDownloadButtonClick={() => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "additional material",
-                      });
-                    }}
-                    slugs={slugs}
-                    isFinalElement={
-                      pageLinks.findIndex(
-                        (p) => p.label === "Additional material",
-                      ) ===
-                      pageLinks.length - 1
-                    }
-                  >
-                    <LessonOverviewDocPresentation
-                      asset={additionalMaterialUrl ?? ""}
-                      title={lessonTitle}
-                      isWorksheetLandscape={false}
-                    />
-
-                    <OakBox
-                      $mt={"space-between-m"}
-                      $width={"100%"}
-                      $ba={"border-solid-m"}
+                {pageLinks.find((p) => p.label === "Additional material") &&
+                  additionalMaterialUrl && (
+                    <LessonItemContainer
+                      isSpecialist={isSpecialist}
+                      ref={additionalMaterialSectionRef}
+                      pageLinks={pageLinks}
+                      title={"Additional material"}
+                      anchorId="additional-material"
+                      downloadable={
+                        getIsResourceDownloadable(
+                          "supplementary-docx",
+                          downloads,
+                          copyrightContent,
+                        ) ||
+                        getIsResourceDownloadable(
+                          "supplementary-pdf",
+                          downloads,
+                          copyrightContent,
+                        )
+                      }
+                      shareable={isLegacyLicense && showShare}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "additional material",
+                        });
+                      }}
+                      slugs={slugs}
+                      isFinalElement={
+                        pageLinks.findIndex(
+                          (p) => p.label === "Additional material",
+                        ) ===
+                        pageLinks.length - 1
+                      }
                     >
-                      <AspectRatio ratio={"2:3"}>
-                        <iframe
-                          tabIndex={-1}
-                          data-testid="lesson-guide-iframe"
-                          src={addMat}
-                          title={`lesson guide: ${lessonTitle}`}
-                          width="100%"
-                          height="100%"
-                          style={{
-                            border: "none",
-                          }}
-                          //small render bug fix to make sure the iframe assumes 100% width. Docs are still in unpublished currently so temporary
-                          onLoad={(e) => {
-                            const iframe = e.target as HTMLIFrameElement;
-                            iframe.style.width = "100%";
-                            iframe.style.height = "100%";
-                          }}
-                        />
-                      </AspectRatio>
-                    </OakBox>
-                  </LessonItemContainer>
-                )}
+                      <LessonOverviewDocPresentation
+                        asset={additionalMaterialUrl}
+                        title={lessonTitle}
+                        isWorksheetLandscape={false}
+                        docType="additional material"
+                      />
+                    </LessonItemContainer>
+                  )}
               </OakFlex>
             </OakGridArea>
           </OakGrid>

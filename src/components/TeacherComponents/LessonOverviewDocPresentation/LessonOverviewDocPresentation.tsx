@@ -8,12 +8,14 @@ interface LessonOverviewPresentationProps {
   title: string;
   isWorksheetLandscape?: boolean | null;
   isAdditionalMaterial?: boolean;
+  docType: "additional material" | "lesson guide";
 }
 
 const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
   asset,
   title,
   isWorksheetLandscape,
+  docType,
 }) => {
   const extractGoogleDocId = (url: string): string | null => {
     const pattern = /\/d\/([a-zA-Z0-9_-]+)/;
@@ -30,7 +32,7 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
       <AspectRatio ratio={!isWorksheetLandscape ? "2:3" : "16:9"}>
         <iframe
           src={srcUrl}
-          title={`google docs: ${title}`}
+          title={`${title} ${docType}`}
           width="100%"
           height="100%"
           // We know the google slides aren't accessible.
