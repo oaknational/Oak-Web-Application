@@ -31,7 +31,10 @@ import {
   isValidSubjectPhaseSlug,
   parseSubjectPhaseSlug,
 } from "@/utils/curriculum/slugs";
-import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
+import {
+  ENABLE_NEW_CURRIC_MV,
+  ENABLE_OPEN_API,
+} from "@/utils/curriculum/constants";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   createDownloadsData,
@@ -42,6 +45,7 @@ import {
   formatCurriculumUnitsData,
   VALID_TABS,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import openApiRequest from "@/utils/curriculum/openapi";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -227,7 +231,12 @@ export const getStaticProps: GetStaticProps<
         };
       }
       let curriculumUnitsTabData;
-      if (ENABLE_NEW_CURRIC_MV) {
+      if (ENABLE_OPEN_API) {
+        curriculumUnitsTabData = await openApiRequest(
+          context.params.subjectPhaseSlug,
+          slugs,
+        );
+      } else if (ENABLE_NEW_CURRIC_MV) {
         curriculumUnitsTabData =
           await curriculumApi2023.curriculumSequence(slugs);
       } else {

@@ -71,7 +71,7 @@ jobs:
     # Filter out storybook deployments and temporarily Netlify deployments
     if: ${{ (github.event.deployment_status.state == 'success') && !startsWith(github.event.deployment_status.environment, 'storybook')}}
     name: Pa11y
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v4
