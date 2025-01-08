@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import Link from "@tiptap/extension-link";
+import Link, { LinkProtocolOptions } from "@tiptap/extension-link";
 import CharacterCount from "@tiptap/extension-character-count";
 import {
   OakTeacherNotesModal,
@@ -17,6 +17,48 @@ const StyledEditorContent = styled(EditorContent)`
     text-decoration: underline;
   }
 `;
+
+export const isAllowedUri = (
+  url: string,
+  ctx: {
+    defaultValidate: (url: string) => boolean;
+    protocols: Array<LinkProtocolOptions | string>;
+    defaultProtocol: string;
+  },
+) => {
+  try {
+    // construct URL
+    const parsedUrl = url.includes(":")
+      ? new URL(url)
+      : new URL(`${ctx.defaultProtocol}://${url}`);
+
+    // use default validation
+    if (!ctx.defaultValidate(parsedUrl.href)) {
+      return false;
+    }
+
+    // disallowed protocols
+    const disallowedProtocols = ["ftp", "file", "mailto"];
+    const protocol = parsedUrl.protocol.replace(":", "");
+
+    if (disallowedProtocols.includes(protocol)) {
+      return false;
+    }
+
+    // only allow protocols specified in ctx.protocols
+    const allowedProtocols = ctx.protocols.map((p) =>
+      typeof p === "string" ? p : p.scheme,
+    );
+
+    if (!allowedProtocols.includes(protocol)) {
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
 
 const limit = 2000;
 
@@ -40,40 +82,7 @@ export const TeacherNotesModal = ({
         autolink: true,
         defaultProtocol: "https",
         protocols: ["http", "https"],
-        isAllowedUri: (url, ctx) => {
-          try {
-            // construct URL
-            const parsedUrl = url.includes(":")
-              ? new URL(url)
-              : new URL(`${ctx.defaultProtocol}://${url}`);
-
-            // use default validation
-            if (!ctx.defaultValidate(parsedUrl.href)) {
-              return false;
-            }
-
-            // disallowed protocols
-            const disallowedProtocols = ["ftp", "file", "mailto"];
-            const protocol = parsedUrl.protocol.replace(":", "");
-
-            if (disallowedProtocols.includes(protocol)) {
-              return false;
-            }
-
-            // only allow protocols specified in ctx.protocols
-            const allowedProtocols = ctx.protocols.map((p) =>
-              typeof p === "string" ? p : p.scheme,
-            );
-
-            if (!allowedProtocols.includes(protocol)) {
-              return false;
-            }
-
-            return true;
-          } catch (error) {
-            return false;
-          }
-        },
+        isAllowedUri,
         shouldAutoLink: (url) => {
           try {
             // construct URL
