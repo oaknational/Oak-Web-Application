@@ -237,7 +237,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
         />
       </OakBox>
       <OakBox $mb={"space-between-m"}>
-        {programmeSlug && unitSlug && (
+        {programmeSlug && unitSlug && !isCanonical && (
           <OakTertiaryButton
             element="a"
             href={resolveOakHref({
