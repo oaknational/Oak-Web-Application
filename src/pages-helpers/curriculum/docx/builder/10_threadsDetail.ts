@@ -134,7 +134,9 @@ export default async function generate(
         .map<[string, Unit[]]>(([year, units]) => {
           if (enableGroupBySubjectCategory) {
             const filteredUnits = units.filter(
-              (u) => (u.subjectcategories ?? []).length < 1,
+              (u) =>
+                (u.subjectcategories ?? []).length < 1 &&
+                u.threads.findIndex((t) => t.slug === thread.slug) > -1,
             );
             return [year, filteredUnits];
           }
