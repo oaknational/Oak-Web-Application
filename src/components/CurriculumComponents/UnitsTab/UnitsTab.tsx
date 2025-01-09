@@ -3,7 +3,7 @@ import { OakP, OakHeading, OakBox } from "@oaknational/oak-components";
 
 import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
 import CurriculumVisualiserLayout from "../CurriculumVisualiserLayout/CurriculumVisualiserLayout";
-import CurriculumVisualiserFiltersMobile from "../CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile";
+// import CurriculumVisualiserFiltersMobile from "../CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile";
 import CurriculumVisualiserFilters, {
   CurriculumFilters,
 } from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
@@ -66,12 +66,12 @@ export default function UnitsTab({
           Units that make up our curricula are fully sequenced, and aligned to
           the national curriculum.
         </OakP>
-        <CurriculumVisualiserFiltersMobile
+        {/* <CurriculumVisualiserFiltersMobile
           filters={filters}
           onChangeFilters={onChangeFilters}
           data={formattedData}
           trackingData={trackingData}
-        />
+        /> */}
         <CurriculumVisualiserLayout
           filters={
             <CurriculumVisualiserFilters
