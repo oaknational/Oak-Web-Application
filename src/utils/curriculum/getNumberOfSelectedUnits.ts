@@ -1,12 +1,11 @@
-import { CurriculumFilters } from "@/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFilters";
-import { YearData } from "./types";
+// import { CurriculumFilters } from "@/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFilters";
+// import { YearData } from "./types";
 
-export function getNumberOfSelectedUnits(
-  yearData: YearData,
-  selectedYear: string | null,
-  filter: CurriculumFilters,
-): number {
-  let count = 0;
+export function getNumberOfSelectedUnits(): number {
+// yearData: YearData,
+// selectedYear: string | null,
+// filter: CurriculumFilters,
+  // let count = 0;
 
   // Object.keys(yearData).forEach((year) => {
   //   const units = yearData[year]?.units;
@@ -24,5 +23,6 @@ export function getNumberOfSelectedUnits(
   //   }
   // });
 
-  return count;
+  // return count;
+  return 0;
 }

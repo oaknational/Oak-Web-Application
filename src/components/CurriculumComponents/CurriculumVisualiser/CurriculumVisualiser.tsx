@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
+import { CurriculumFilters } from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -21,11 +22,7 @@ import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import { sortYears } from "@/utils/curriculum/sorting";
 import { createProgrammeSlug } from "@/utils/curriculum/slugs";
-import {
-  Unit,
-  YearData,
-} from "@/utils/curriculum/types";
-import { CurriculumFilters } from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
+import { Unit, YearData } from "@/utils/curriculum/types";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -74,7 +71,6 @@ function isHighlightedUnit(unit: Unit, selectedThread: string | null) {
   return unit.threads.some((t) => t.slug === selectedThread);
 }
 
-
 // Function component
 
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
@@ -89,11 +85,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
-  function filterIncludes (key: keyof CurriculumFilters, ids: string[]) {
+  function filterIncludes(key: keyof CurriculumFilters, ids: string[]) {
     const filterValues = filters[key];
-    return ids.every(id => { 
-      return filterValues.includes(id)
-    })
+    return ids.every((id) => {
+      return filterValues.includes(id);
+    });
   }
 
   // Selection state helpers
@@ -137,7 +133,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
         subjectSlug: unitData.subject_slug,
         yearGroupName: unitData.year,
         yearGroupSlug: unitData.year,
-        unitHighlighted: isHighlightedUnit(unitData, filters.threads[0] ?? null),
+        unitHighlighted: isHighlightedUnit(
+          unitData,
+          filters.threads[0] ?? null,
+        ),
         analyticsUseCase: analyticsUseCase,
       });
     }
@@ -164,8 +163,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           .filter((year) => filterIncludes("years", [year]))
           .sort(sortYears)
           .map((year, index) => {
-            const { units, labels } =
-              yearData[year] as YearData[string];
+            const { units, labels } = yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
@@ -226,9 +224,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   }}
                 >
                   <UnitList role="list">
-                    {dedupedUnits.length < 1 && <OakP>No units for filter in this year</OakP>}
+                    {dedupedUnits.length < 1 && (
+                      <OakP>No units for filter in this year</OakP>
+                    )}
                     {dedupedUnits.map((unit: Unit, index: number) => {
-                      const isHighlighted = false
+                      const isHighlighted = false;
                       // const isHighlighted = isHighlightedUnit(
                       //   unit,
                       //   selectedThread,

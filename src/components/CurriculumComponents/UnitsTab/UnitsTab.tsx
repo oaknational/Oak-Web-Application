@@ -1,14 +1,14 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState } from "react";
 import { OakP, OakHeading, OakBox } from "@oaknational/oak-components";
 
 import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
 import CurriculumVisualiserLayout from "../CurriculumVisualiserLayout/CurriculumVisualiserLayout";
 import CurriculumVisualiserFiltersMobile from "../CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile";
-import CurriculumVisualiserFilters, { CurriculumFilters } from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
+import CurriculumVisualiserFilters, {
+  CurriculumFilters,
+} from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 
-import {
-  Unit,
-} from "@/utils/curriculum/types";
+import { Unit } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import {
@@ -19,8 +19,8 @@ import {
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
   formattedData: CurriculumUnitsFormattedData;
-  filters: CurriculumFilters,
-  onChangeFilters: (newFilter: CurriculumFilters) => void,
+  filters: CurriculumFilters;
+  onChangeFilters: (newFilter: CurriculumFilters) => void;
 };
 
 export default function UnitsTab({

@@ -4,7 +4,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { uniq } from "lodash";
@@ -47,7 +47,6 @@ import {
   VALID_TABS,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import openApiRequest from "@/utils/curriculum/openapi";
-import { usePathname, useSearchParams } from "next/navigation";
 import { CurriculumFilters } from "@/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 import { Unit } from "@/utils/curriculum/types";
 
@@ -77,23 +76,23 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     ),
   );
 
-  function getDefaultChildSubject (units: Unit[]) {
+  function getDefaultChildSubject(units: Unit[]) {
     const set = new Set<string>();
-    units.forEach(u => {
-      set.add(u.subject_slug)
+    units.forEach((u) => {
+      set.add(u.subject_slug);
     });
     return [[...set][0]!];
   }
-  function getDefaultSubjectCategories (units: Unit[]) {
+  function getDefaultSubjectCategories(units: Unit[]) {
     const set = new Set<string>();
-    units.forEach(u => {
-      u.subjectcategories?.forEach(sc => set.add(String(sc.id)))
+    units.forEach((u) => {
+      u.subjectcategories?.forEach((sc) => set.add(String(sc.id)));
     });
     return [[...set][0]!];
   }
-  function getDefaultTiers (units: Unit[]) {
+  function getDefaultTiers(units: Unit[]) {
     const set = new Set<string>();
-    units.forEach(u => {
+    units.forEach((u) => {
       if (u.tier_slug) {
         set.add(u.tier_slug);
       }
@@ -102,7 +101,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   }
 
   function unitsFrom(yearData: CurriculumUnitsYearData): Unit[] {
-    return Object.entries(yearData).flatMap(([,data]) => data.units);
+    return Object.entries(yearData).flatMap(([, data]) => data.units);
   }
   const units = unitsFrom(curriculumUnitsFormattedData.yearData);
 

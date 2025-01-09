@@ -15,12 +15,8 @@ import {
   Unit,
   SubjectCategory,
 } from "@/utils/curriculum/types";
-import { getUnitFeatures, UnitFeatures } from "@/utils/curriculum/features";
-import {
-  sortSubjectCategoriesOnFeatures,
-  sortUnits,
-  sortYears,
-} from "@/utils/curriculum/sorting";
+import { getUnitFeatures } from "@/utils/curriculum/features";
+import { sortUnits, sortYears } from "@/utils/curriculum/sorting";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
@@ -405,7 +401,7 @@ export function formatCurriculumUnitsData(
   data: CurriculumUnitsTabData,
 ): CurriculumUnitsFormattedData {
   const { units } = data;
-  const features = getUnitFeatures(units[0]);
+  // const features = getUnitFeatures(units[0]);
   // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
   const filteredUnits = ENABLE_NEW_CURRIC_MV ? units : sanatiseUnits(units);
   const yearData = createUnitsListingByYear(filteredUnits);
