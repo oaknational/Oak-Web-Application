@@ -402,39 +402,33 @@ function Modal({
 }
 
 export default function CurriculumVisualiserFiltersMobile({
-  selectedThread,
-  onSelectThread,
-  selectedYear,
+  filters,
+  onChangeFilters,
   trackingData,
-  yearSelection,
   data,
-  onSelectYear,
 }: CurriculumVisualiserFiltersProps) {
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
 
-  function handleMobileThreadModal(): void {
-    setMobileThreadModalOpen(!mobileThreadModalOpen);
-  }
-
-  return mobileThreadModalOpen ? (
-    <Modal
-      data={data}
-      selectedThread={selectedThread}
-      selectedYear={selectedYear}
-      yearSelection={yearSelection}
-      onOpenModal={handleMobileThreadModal}
-      onSelectThread={onSelectThread}
-    />
-  ) : (
-    <StickyBit
-      onOpenModal={handleMobileThreadModal}
-      data={data}
-      selectedYear={selectedYear}
-      selectedThread={selectedThread}
-      trackingData={trackingData}
-      yearSelection={yearSelection}
-      onSelectYear={onSelectYear}
-    />
-  );
+  return <div></div>
+  // return mobileThreadModalOpen ? (
+  //   <Modal
+  //     data={data}
+  //     selectedThread={selectedThread}
+  //     selectedYear={selectedYear}
+  //     yearSelection={yearSelection}
+  //     onOpenModal={handleMobileThreadModal}
+  //     onSelectThread={onSelectThread}
+  //   />
+  // ) : (
+  //   <StickyBit
+  //     onOpenModal={handleMobileThreadModal}
+  //     data={data}
+  //     selectedYear={selectedYear}
+  //     selectedThread={selectedThread}
+  //     trackingData={trackingData}
+  //     yearSelection={yearSelection}
+  //     onSelectYear={onSelectYear}
+  //   />
+  // );
 }

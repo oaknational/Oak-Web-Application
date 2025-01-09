@@ -32,15 +32,6 @@ export interface Tier {
   tier_slug: string;
 }
 
-export interface YearSelection {
-  [key: string]: {
-    subjectCategory?: SubjectCategory | null;
-    subject?: Subject | null;
-    domain?: Domain | null;
-    tier?: Tier | null;
-  };
-}
-
 export type YearData = {
   [key: string]: {
     units: Unit[];

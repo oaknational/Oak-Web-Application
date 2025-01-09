@@ -1,25 +1,25 @@
-import { YearSelection } from "./types";
+import { CurriculumFilters } from "@/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 
 export function isVisibleUnit(
-  yearSelection: YearSelection,
+  filters: CurriculumFilters,
   year: string,
   unit: CurriculumUnitsTabData["units"][number],
 ) {
-  const s = yearSelection[year];
-  if (!s) {
+  if (!filters.years.includes(year)) {
     return false;
   }
   const filterBySubject =
-    !s.subject || s.subject.subject_slug === unit.subject_slug;
-  const filterBySubjectCategory =
-    s.subjectCategory?.id == -1 ||
+    !filters.childSubjects[0] || filters.childSubjects[0] === unit.subject_slug;
+
+    const filterBySubjectCategory =
+    filters.subjectCategories.length > 0 && filters.subjectCategories[0] === '-1' ||
     unit.subjectcategories?.findIndex(
-      (subjectcategory) => subjectcategory.id === s.subjectCategory?.id,
+      (subjectcategory) => String(subjectcategory.id) === filters.subjectCategories[0]!,
     ) !== -1;
   const filterByTier =
-    !s.tier || !unit.tier_slug || s.tier?.tier_slug === unit.tier_slug;
+    !filters.tiers[0] || !unit.tier_slug || filters.tiers[0] === unit.tier_slug;
 
   return filterBySubject && filterBySubjectCategory && filterByTier;
 }

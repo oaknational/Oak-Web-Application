@@ -1,6 +1,6 @@
 import { CurriculumUnitsYearData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
-import { Unit, Thread, YearSelection } from "@/utils/curriculum/types";
+import { Unit, Thread } from "@/utils/curriculum/types";
+import { CurriculumFilters } from "./CurriculumVisualiserFilters";
 
 function isHighlightedUnit(unit: Unit, selectedThread: Thread["slug"] | null) {
   if (!selectedThread) {
@@ -12,22 +12,22 @@ function isHighlightedUnit(unit: Unit, selectedThread: Thread["slug"] | null) {
 export function highlightedUnitCount(
   yearData: CurriculumUnitsYearData,
   selectedYear: string | null,
-  yearSelection: YearSelection,
+  filters: CurriculumFilters,
   selectedThread: Thread["slug"] | null,
 ): number {
   let count = 0;
-  Object.keys(yearData).forEach((year) => {
-    const units = yearData[year]?.units;
-    if (units && (!selectedYear || selectedYear === year)) {
-      units.forEach((unit) => {
-        if (
-          isVisibleUnit(yearSelection, year, unit) &&
-          isHighlightedUnit(unit, selectedThread)
-        ) {
-          count++;
-        }
-      });
-    }
-  });
+  // Object.keys(yearData).forEach((year) => {
+  //   const units = yearData[year]?.units;
+  //   if (units && (!selectedYear || selectedYear === year)) {
+  //     units.forEach((unit) => {
+  //       if (
+  //         isVisibleUnit(yearSelection, year, unit) &&
+  //         isHighlightedUnit(unit, selectedThread)
+  //       ) {
+  //         count++;
+  //       }
+  //     });
+  //   }
+  // });
   return count;
 }

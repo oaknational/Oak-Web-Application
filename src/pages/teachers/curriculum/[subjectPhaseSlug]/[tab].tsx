@@ -4,7 +4,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { uniq } from "lodash";
@@ -41,11 +41,15 @@ import {
   CurriculumInfoPageProps,
   CurriculumTab,
   CurriculumUnitsTrackingData,
+  CurriculumUnitsYearData,
   fetchSubjectPhasePickerData,
   formatCurriculumUnitsData,
   VALID_TABS,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import openApiRequest from "@/utils/curriculum/openapi";
+import { usePathname, useSearchParams } from "next/navigation";
+import { CurriculumFilters } from "@/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFilters";
+import { Unit } from "@/utils/curriculum/types";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -73,6 +77,43 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     ),
   );
 
+  function getDefaultChildSubject (units: Unit[]) {
+    const set = new Set<string>();
+    units.forEach(u => {
+      set.add(u.subject_slug)
+    });
+    return [[...set][0]!];
+  }
+  function getDefaultSubjectCategories (units: Unit[]) {
+    const set = new Set<string>();
+    units.forEach(u => {
+      u.subjectcategories?.forEach(sc => set.add(String(sc.id)))
+    });
+    return [[...set][0]!];
+  }
+  function getDefaultTiers (units: Unit[]) {
+    const set = new Set<string>();
+    units.forEach(u => {
+      if (u.tier_slug) {
+        set.add(u.tier_slug);
+      }
+    });
+    return [[...set][0]!];
+  }
+
+  function unitsFrom(yearData: CurriculumUnitsYearData): Unit[] {
+    return Object.entries(yearData).flatMap(([,data]) => data.units);
+  }
+  const units = unitsFrom(curriculumUnitsFormattedData.yearData);
+
+  const [filters, setFilters] = useState<CurriculumFilters>({
+    childSubjects: getDefaultChildSubject(units),
+    subjectCategories: getDefaultSubjectCategories(units),
+    tiers: getDefaultTiers(units),
+    years: [],
+    threads: [],
+  });
+
   let tabContent: JSX.Element;
 
   switch (tab) {
@@ -93,6 +134,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         <UnitsTab
           formattedData={curriculumUnitsFormattedData}
           trackingData={curriculumUnitsTrackingData}
+          filters={filters}
+          onChangeFilters={setFilters}
         />
       );
       break;
