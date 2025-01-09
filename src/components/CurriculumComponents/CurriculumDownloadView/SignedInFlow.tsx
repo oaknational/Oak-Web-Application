@@ -50,6 +50,8 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
           schoolNotListed: !hubspotContact.schoolId,
         });
       }
+    } catch (error) {
+      console.error(error);
     } finally {
       setIsSubmitting(false);
     }
@@ -67,7 +69,11 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
           onChangeDownloadType={setDownloadType}
         />
       </Box>
-      <OakPrimaryButton isLoading={isSubmitting} onClick={onDownload}>
+      <OakPrimaryButton
+        data-testid="download"
+        isLoading={isSubmitting}
+        onClick={onDownload}
+      >
         Download
       </OakPrimaryButton>
     </OakFlex>
