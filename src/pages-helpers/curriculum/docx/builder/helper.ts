@@ -5,7 +5,7 @@ import {
   isValidIconName,
 } from "@oaknational/oak-components";
 
-import { Slugs } from "..";
+import { CombinedCurriculumData, Slugs } from "..";
 import { zipToSimpleObject } from "../zip";
 
 import { Unit } from "@/utils/curriculum/types";
@@ -47,6 +47,15 @@ export function uncapitalize(input: string, titleCaseWords: string[] = []) {
     i = j - 1;
   }
   return output;
+}
+
+export function subjectFromUnits(
+  units: CombinedCurriculumData["units"],
+  subject_slug?: string,
+) {
+  if (subject_slug) {
+    return units.find((u) => u.subject_slug === subject_slug)?.subject;
+  }
 }
 
 /**

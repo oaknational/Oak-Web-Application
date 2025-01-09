@@ -16,7 +16,7 @@ exports[`Fieldset all options 1`] = `
         >
           <img
             alt="info"
-            class="sc-dcJsrY dAhYsf"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -45,7 +45,7 @@ exports[`Fieldset all options 1`] = `
         >
           <img
             alt="info"
-            class="sc-dcJsrY dAhYsf"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -74,11 +74,11 @@ exports[`Fieldset all options 1`] = `
         >
           <img
             alt="success"
-            class="sc-dcJsrY dAhYsf"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
-            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895534/icons/Icon-Success_aiiprx"
+            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895534/icons/Icon-Success_aiiprx.svg"
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
         </div>
@@ -103,7 +103,7 @@ exports[`Fieldset all options 1`] = `
         >
           <img
             alt="warning"
-            class="sc-dcJsrY dAhYsf"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -132,7 +132,7 @@ exports[`Fieldset all options 1`] = `
         >
           <img
             alt="error"
-            class="sc-dcJsrY dYJCWu"
+            class="sc-dcJsrY cGPxx"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -168,7 +168,7 @@ exports[`Fieldset default options 1`] = `
         >
           <img
             alt="info"
-            class="sc-dcJsrY dAhYsf"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"

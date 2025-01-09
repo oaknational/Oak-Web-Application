@@ -314,9 +314,8 @@ export default async function generate(
                 <w:spacing
                   w:lineRule="auto"
                   w:line="240"
-                  w:before="0"
+                  w:before="${line240(1)}"
                   w:after="${line240(1)}"
-                  w:beforeAutospacing="${line240(0.2)}"
                 />
               </w:pPr>
               ${content}
