@@ -1,14 +1,16 @@
+import { useState, useEffect } from "react";
 import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakFlex,
+  OakSmallSecondaryButton,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-import { useEffect } from "react";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import getPageProps from "@/node-lib/getPageProps";
@@ -25,9 +27,10 @@ import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonO
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -42,6 +45,10 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
+  const teacherNotesEnabled = useFeatureFlagEnabled("teacher-notes");
+
+  const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
+
   const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
     lessonSlug: lesson.lessonSlug,
     source: "lesson-canonical",
@@ -59,9 +66,19 @@ export default function LessonOverviewCanonicalPage({
     if (window.location.href !== browserUrl) {
       window.history.replaceState({}, "", browserUrl);
     }
-  }, [browserUrl]);
+  }, [browserUrl, teacherNotesEnabled]);
 
-  const teacherShareButton = (
+  const teacherNotesButton = teacherNotesEnabled ? (
+    <OakSmallSecondaryButton
+      iconName="share"
+      isTrailingIcon
+      onClick={() => {
+        setTeacherNotesOpen(true);
+      }}
+    >
+      Add teacher note and share
+    </OakSmallSecondaryButton>
+  ) : (
     <TeacherShareButton
       label="Share resources with colleague"
       variant={"secondary"}
@@ -88,7 +105,7 @@ export default function LessonOverviewCanonicalPage({
             lessonMediaClips: null,
             isCanonical: true,
             isSpecialist,
-            teacherShareButton,
+            teacherShareButton: teacherNotesButton,
           }}
           isBeta={false}
         />
@@ -99,6 +116,12 @@ export default function LessonOverviewCanonicalPage({
             </MaxWidth>
           </OakFlex>
         )}
+        <TeacherNotesModal
+          isOpen={teacherNotesOpen}
+          onClose={() => {
+            setTeacherNotesOpen(false);
+          }}
+        />
       </OakThemeProvider>
     </AppLayout>
   );
