@@ -4,7 +4,6 @@ import {
   GetStaticProps,
   GetStaticPropsResult,
 } from "next";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakFlex,
   OakSmallSecondaryButton,
@@ -31,7 +30,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
-import { useOakPupil } from "@oaknational/oak-pupil-client";
+import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -46,55 +45,34 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
-  const teacherNotesEnabled = useFeatureFlagEnabled("teacher-notes");
-
   const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
 
-  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
-    lessonSlug: lesson.lessonSlug,
-    source: "lesson-canonical",
-    curriculumTrackingProps: {
-      lessonName: lesson.lessonTitle,
-      unitName: null,
-      subjectSlug: null,
-      subjectTitle: null,
-      keyStageSlug: null,
-      keyStageTitle: null,
-    },
+  const { shareUrl, browserUrl, shareActivated, shareIdRef } =
+    useShareExperiment({
+      lessonSlug: lesson.lessonSlug,
+      source: "lesson-canonical",
+      curriculumTrackingProps: {
+        lessonName: lesson.lessonTitle,
+        unitName: null,
+        subjectSlug: null,
+        subjectTitle: null,
+        keyStageSlug: null,
+        keyStageTitle: null,
+      },
+    });
+
+  const lessonUrl = window.location.href.split("?")[0];
+
+  const { teacherNote, isEditable } = useTeacherNotes({
+    lessonUrl,
+    shareId: shareIdRef.current,
   });
 
-  const { getTeacherNote } = useOakPupil();
-
   useEffect(() => {
-    const fetchTeacherNote = async () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const strippedUrl = window.location.href.split("?")[0];
-
-      if (!strippedUrl) {
-        return;
-      }
-
-      try {
-        // retrieve any existing teacher note from the url
-        const note = await getTeacherNote({ lessonUrl: strippedUrl });
-        console.log("note", note);
-        // TODO set the teacher note in the state
-        // TODO TeacherNotesModal should be able to read the teacher note from the state
-      } catch (e) {
-        console.error(e);
-
-        return;
-      }
-    };
-
     if (window.location.href !== browserUrl) {
       window.history.replaceState({}, "", browserUrl);
     }
-
-    if (teacherNotesEnabled) {
-      fetchTeacherNote();
-    }
-  }, [browserUrl, teacherNotesEnabled, getTeacherNote]);
+  }, [browserUrl]);
 
   const teacherNotesButton = teacherNotesEnabled ? (
     <OakSmallSecondaryButton
@@ -149,6 +127,7 @@ export default function LessonOverviewCanonicalPage({
           onClose={() => {
             setTeacherNotesOpen(false);
           }}
+          teacherNote={teacherNote}
         />
       </OakThemeProvider>
     </AppLayout>

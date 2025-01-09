@@ -7,6 +7,8 @@ import {
   OakTeacherNotesModal,
   OakTeacherNotesModalProps,
 } from "@oaknational/oak-components";
+import { TeacherNoteCamelCase } from "@oaknational/oak-pupil-client";
+import { useEffect } from "react";
 
 const StyledEditorContent = styled(EditorContent)`
   .tiptap:focus {
@@ -80,11 +82,14 @@ const limit = 2000;
 export type TeacherNotesModalProps = Pick<
   OakTeacherNotesModalProps,
   "isOpen" | "onClose"
->;
+> & {
+  teacherNote?: TeacherNoteCamelCase;
+};
 
 export const TeacherNotesModal = ({
   onClose,
   isOpen,
+  teacherNote,
 }: TeacherNotesModalProps) => {
   const editor = useEditor({
     extensions: [
@@ -103,6 +108,12 @@ export const TeacherNotesModal = ({
     ],
     immediatelyRender: false,
   });
+
+  useEffect(() => {
+    if (teacherNote) {
+      editor?.commands.setContent(teacherNote.noteHtml);
+    }
+  }, [teacherNote, editor]);
 
   const editorNode = (
     <StyledEditorContent
