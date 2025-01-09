@@ -7,6 +7,7 @@ import CurriculumVisualiserLayout from "../CurriculumVisualiserLayout/Curriculum
 import CurriculumVisualiserFilters, {
   CurriculumFilters,
 } from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
+import { highlightedUnitCount } from "../CurriculumVisualiserFilters/helpers";
 
 import { Unit } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
@@ -15,6 +16,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -34,7 +36,17 @@ export default function UnitsTab({
   const { ks4OptionSlug } = trackingData;
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
-  const unitCount: number = 0;
+  const unitCount =
+    getNumberOfSelectedUnits();
+    // yearData,
+    // selectedYear,
+    // yearSelection,
+  const highlightedUnits =
+    highlightedUnitCount();
+    // yearData,
+    // selectedYear,
+    // yearSelection,
+    // selectedThread,
 
   return (
     <OakBox>
@@ -96,13 +108,13 @@ export default function UnitsTab({
           <p>
             {unitCount} {unitCount === 1 ? "unit" : "units"} shown,
           </p>
-          {/* {selectedThread && (
+          {filters.threads[0] && (
             <p>
               {highlightedUnits}
               {highlightedUnits === 1 ? "unit" : "units"}
               highlighted
             </p>
-          )} */}
+          )}
         </ScreenReaderOnly>
       </OakBox>
       <UnitTabBanner />
