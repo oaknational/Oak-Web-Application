@@ -110,7 +110,7 @@ export function unitsByYear(units: Unit[]) {
     ) {
       output[year]!.push({
         ...unit,
-        order: output[year].length + 1,
+        order: output[year].length,
       });
     }
   });

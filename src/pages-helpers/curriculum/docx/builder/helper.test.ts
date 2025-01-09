@@ -186,13 +186,13 @@ describe("helper", () => {
           title: "test1",
           slug: "test1",
           year: "1",
-          order: 1,
+          order: 0,
         },
         {
           title: "test2",
           slug: "test2",
           year: "1",
-          order: 2,
+          order: 1,
         },
       ],
       "2": [
@@ -200,13 +200,13 @@ describe("helper", () => {
           title: "test3",
           slug: "test3",
           year: "2",
-          order: 1,
+          order: 2,
         },
         {
           title: "test4",
           slug: "test4",
           year: "2",
-          order: 2,
+          order: 3,
         },
       ],
     });

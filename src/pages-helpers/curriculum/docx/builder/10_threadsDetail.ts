@@ -3,11 +3,7 @@ import { CombinedCurriculumData } from "..";
 import { appendBodyElements, insertNumbering, JSZipCached } from "../docx";
 import { createThreadOptions, createUnitsListingByYear } from "../tab-helpers";
 
-import {
-  groupUnitsBySubjectCategory,
-  threadUnitByYear,
-  unitsByYear,
-} from "./helper";
+import { groupUnitsBySubjectCategory, unitsByYear } from "./helper";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { sortYears } from "@/utils/curriculum/sorting";
@@ -39,7 +35,7 @@ function renderUnits(units: Unit[], numbering: { unitNumbering: string }) {
             <w:color w:val="222222" />
             <w:sz w:val="24" />
           </w:rPr>
-          <w:t xml:space="preserve">${cdata(`Unit ${unit.order}, `)}</w:t>
+          <w:t xml:space="preserve">${cdata(`Unit ${unit.order + 1}, `)}</w:t>
         </w:r>
         <w:r>
           <w:rPr>
@@ -92,7 +88,6 @@ export default async function generate(
   });
 
   const elements = allThreadOptions.map((thread, threadIndex) => {
-    const threadInfo = threadUnitByYear(data.units, thread.slug);
     const isLast = threadIndex === allThreadOptions.length - 1;
 
     const threadTitle = safeXml`
@@ -132,50 +127,53 @@ export default async function generate(
     let contentElements: string[];
 
     // Original non-categorized format
-    contentElements = Object.entries(threadInfo)
-      .sort(([yearA], [yearB]) => sortYears(yearA, yearB))
-      .map<[string, Unit[]]>(([year, units]) => {
-        if (enableGroupBySubjectCategory) {
-          const filteredUnits = units.filter(
-            (u) => (u.subjectcategories ?? []).length < 1,
-          );
-          return [year, filteredUnits];
-        }
-        return [year, units];
-      })
-      .filter(([, units]) => {
-        return units.length > 0;
-      })
-      .map(([year, units]) => {
-        const yearTitle = getYearGroupTitle(yearData, year);
-        return safeXml`
-          <w:p>
-            <w:pPr>
-              <w:pStyle w:val="Heading4" />
-            </w:pPr>
-            <w:r>
-              <w:rPr>
-                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                <w:b />
-                <w:color w:val="222222" />
-                <w:sz w:val="28" />
-              </w:rPr>
-              <w:t>${cdata(yearTitle)}</w:t>
-            </w:r>
-          </w:p>
-          ${renderUnits(sortByOrder(units), numbering)}
-          <w:p>
-            <w:r>
-              <w:rPr>
-                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                <w:sz w:val="24" />
-              </w:rPr>
-              <w:t />
-            </w:r>
-          </w:p>
-        `;
-      });
+    contentElements = Object.values(unitsByYear(data.units)).map((units) => {
+      const yearGroupedUnits = unitsByYear(units);
+      return Object.entries(yearGroupedUnits)
+        .sort(([yearA], [yearB]) => sortYears(yearA, yearB))
+        .map<[string, Unit[]]>(([year, units]) => {
+          if (enableGroupBySubjectCategory) {
+            const filteredUnits = units.filter(
+              (u) => (u.subjectcategories ?? []).length < 1,
+            );
+            return [year, filteredUnits];
+          }
+          return [year, units];
+        })
+        .filter(([, units]) => units.length > 0)
+        .map(([year, units]) => {
+          const yearTitle = getYearGroupTitle(yearData, year);
+          return safeXml`
+              <w:p>
+                <w:pPr>
+                  <w:pStyle w:val="Heading4" />
+                </w:pPr>
+                <w:r>
+                  <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                    <w:b />
+                    <w:color w:val="222222" />
+                    <w:sz w:val="28" />
+                  </w:rPr>
+                  <w:t>${cdata(yearTitle)}</w:t>
+                </w:r>
+              </w:p>
+              ${renderUnits(sortByOrder(units), numbering)}
+              <w:p>
+                <w:r>
+                  <w:rPr>
+                    <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                    <w:sz w:val="24" />
+                  </w:rPr>
+                  <w:t />
+                </w:r>
+              </w:p>
+            `;
+        })
+        .join("");
+    });
 
+    // Subject category organised content
     if (enableGroupBySubjectCategory) {
       const groupedUnits = groupUnitsBySubjectCategory(data.units);
 
