@@ -18,7 +18,7 @@ export function getUnitFeatures(unit?: Unit | null) {
   } else if (
     unit.subject_slug === "computing" &&
     unit.pathway_slug === "gcse" &&
-    ["10", "11"].includes(unit.year)
+    unit.keystage_slug === "ks4"
   ) {
     return {
       programmes_fields_overrides: {
@@ -36,7 +36,7 @@ export function getUnitFeatures(unit?: Unit | null) {
   } else if (
     unit.subject_slug === "english" &&
     unit.phase_slug === "secondary" &&
-    ["10", "11"].includes(unit.year)
+    unit.keystage_slug === "ks4"
   ) {
     return {
       subjectcategories: {
