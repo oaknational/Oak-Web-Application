@@ -96,6 +96,28 @@ export function threadUnitByYear(units: Unit[], threadSlug: string) {
   return output;
 }
 
+export function unitsByYear(units: Unit[]) {
+  const output = {} as Record<string, Unit[]>;
+
+  units.forEach((unit: Unit) => {
+    const year =
+      getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year;
+    output[year] = output[year] ?? [];
+    if (
+      output[year] &&
+      // Check if unit is not already within output
+      !output[year]!.find((yearUnit) => yearUnit.slug === unit.slug)
+    ) {
+      output[year]!.push({
+        ...unit,
+        order: output[year].length + 1,
+      });
+    }
+  });
+
+  return output;
+}
+
 export function cmToPxDpi(cm: number) {
   return (cm / 2.54) * 300;
 }
