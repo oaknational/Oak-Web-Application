@@ -1,22 +1,25 @@
 import { FC } from "react";
-import { OakP } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakIcon,
+  OakColorFilterToken,
+  OakBox,
+  OakFlex,
+  OakFlexProps,
+} from "@oaknational/oak-components";
 
-import { OakColorName } from "@/styles/theme/types";
 import OutlineHeading from "@/components/SharedComponents/OutlineHeading";
-import Svg from "@/components/SharedComponents/Svg";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
-import Box from "@/components/SharedComponents/Box";
 
 type SupportYourTeamBubbleMessageProps = {
   outlineHeading: string;
   heading: string;
   subHeading: string;
   variant: "bubble-1" | "bubble-2";
-  background: OakColorName;
+  background: OakColorFilterToken;
 };
 
 const SupportYourTeamBubbleMessage: FC<
-  SupportYourTeamBubbleMessageProps & FlexProps
+  SupportYourTeamBubbleMessageProps & OakFlexProps
 > = ({
   outlineHeading,
   heading,
@@ -26,21 +29,29 @@ const SupportYourTeamBubbleMessage: FC<
   ...props
 }) => {
   return (
-    <Flex
+    <OakFlex
       $alignItems={"center"}
       $flexDirection={"column"}
       $position={"relative"}
-      $minHeight={360}
-      $width={380}
+      $minHeight={"all-spacing-20"}
+      $width={"all-spacing-20"}
       $justifyContent={"center"}
       {...props}
     >
-      <Svg name={variant} $color={background} $cover />
-      <Flex
-        $maxWidth={320}
+      <OakIcon
+        iconName={variant}
+        $colorFilter={background}
+        $objectFit={"fill"}
+        $position={"absolute"}
+        $width={"100%"}
+        $height={"100%"}
+      />
+      <OakFlex
+        $maxWidth={"all-spacing-20"}
         $alignItems={"center"}
         $flexDirection={"column"}
-        $zIndex={"inFront"}
+        $zIndex={"in-front"}
+        $pa={"inner-padding-s"}
       >
         <OutlineHeading
           $mb={[12, 48]}
@@ -53,14 +64,15 @@ const SupportYourTeamBubbleMessage: FC<
         </OutlineHeading>
         <OakP
           $mh={["space-between-xs", "space-between-none"]}
-          // @todo
-          // $mt={-20}
           $textAlign={"center"}
           $font={["heading-5", "heading-4"]}
         >
           {heading}
         </OakP>
-        <Box $mt={[8, 4]} $maxWidth={300}>
+        <OakBox
+          $mt={["space-between-ssx", "space-between-sssx"]}
+          $maxWidth={"all-spacing-19"}
+        >
           <OakP
             $mh={["space-between-m2", "space-between-none"]}
             $textAlign={"center"}
@@ -68,9 +80,9 @@ const SupportYourTeamBubbleMessage: FC<
           >
             {subHeading}
           </OakP>
-        </Box>
-      </Flex>
-    </Flex>
+        </OakBox>
+      </OakFlex>
+    </OakFlex>
   );
 };
 
