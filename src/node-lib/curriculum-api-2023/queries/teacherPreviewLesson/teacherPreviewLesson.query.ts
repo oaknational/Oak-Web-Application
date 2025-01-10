@@ -53,7 +53,6 @@ const teacherPreviewLessonQuery =
     });
 
     // Incomplete data will break the preview for new lessons
-    // additional files being parsed out even though its in schema
     const lessonContentData = keysToCamelCase({
       ...parsedLessonContent,
       exit_quiz: content.exit_quiz
