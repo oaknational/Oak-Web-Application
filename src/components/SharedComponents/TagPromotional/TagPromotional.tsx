@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { OakSpan, OakColorToken } from "@oaknational/oak-components";
+import { OakSpan, OakColorToken, OakIcon } from "@oaknational/oak-components";
 
-import Svg from "@/components/SharedComponents/Svg";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 const tagDimMap = {
@@ -61,11 +60,13 @@ const TagPromotional: FC<TagPromotionalProps> = ({
       data-testid={`new-icon`}
       {...flexProps}
     >
-      <Svg
-        $color={"black"}
-        name={"tag-promotional"}
-        filter={"drop-shadow(2px 2px 0px rgb(255 255 255 / 0.6))"}
-        $objectFit={"contain"}
+      <OakIcon
+        iconName="tag-promotional"
+        $width={"100%"}
+        $height={"100%"}
+        $objectFit={"cover"}
+        aria-hidden={true}
+        data-testid={`tag-promotional-icon`}
       />
       <Flex
         $left={textPosMap[size].left}
