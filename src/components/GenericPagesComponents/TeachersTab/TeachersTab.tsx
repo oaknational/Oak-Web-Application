@@ -5,10 +5,10 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import useSearch from "@/context/Search/useSearch";
@@ -47,18 +47,20 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 Get a head-start on your lesson planning using quality-checked
                 resources you can download and adapt for free.
               </OakTypography>
-              <Box $mt={16} $width={["100%", "100%", "90%"]}>
-                <SearchForm
-                  searchContext="homepage"
-                  placeholderText="Search by keyword or topic"
-                  searchTerm=""
-                  handleSubmit={(value) => {
-                    setSearchTerm(value);
-                  }}
-                  analyticsSearchSource={"homepage search box"}
-                />
-              </Box>
-              <Box $pv={32} $width={"100%"}>
+              <OakGrid $mt="space-between-s">
+                <OakGridArea $colSpan={[12, 12, 11]}>
+                  <SearchForm
+                    searchContext="homepage"
+                    placeholderText="Search by keyword or topic"
+                    searchTerm=""
+                    handleSubmit={(value) => {
+                      setSearchTerm(value);
+                    }}
+                    analyticsSearchSource={"homepage search box"}
+                  />
+                </OakGridArea>
+              </OakGrid>
+              <OakBox $pv="inner-padding-xl2" $width={"100%"}>
                 <KeyStageKeypad
                   keyStages={keyStages}
                   title="View subjects by key stage"
@@ -79,7 +81,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                     })
                   }
                 />
-              </Box>
+              </OakBox>
             </Flex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
