@@ -1,3 +1,5 @@
+import { AdditionalFiles } from "@oaknational/oak-curriculum-schema";
+
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
 
 export const constructDownloadsArray = (content: {
@@ -8,6 +10,7 @@ export const constructDownloadsArray = (content: {
   hasWorksheetAnswersAssetObject: boolean;
   hasWorksheetGoogleDriveDownloadableVersion: boolean;
   hasSupplementaryAssetObject: boolean;
+  hasAdditionalFiles: boolean;
   isLegacy: boolean;
 }): LessonDownloadsListSchema => {
   const downloads: LessonDownloadsListSchema = [
@@ -77,6 +80,21 @@ export const constructDownloadsArray = (content: {
       ext: "docx",
     },
   ];
+
+  return downloads;
+};
+
+export const constructAdditionalFilesDownloads = (
+  addFiles: AdditionalFiles,
+): LessonDownloadsListSchema => {
+  const downloads = addFiles.files.map((file) => {
+    return {
+      exists: true,
+      type: "additional-file" as const,
+      label: file.title,
+      ext: file.file_object.format,
+    };
+  });
 
   return downloads;
 };

@@ -18,6 +18,8 @@ const downloadAssets = {
   expired: true,
   geo_restricted: false,
   login_required: false,
+  has_additional_files: false,
+  additional_files: null,
 };
 
 describe("lessonDownloads()", () => {
@@ -92,6 +94,8 @@ describe("lessonDownloads()", () => {
                 expired: true,
                 geo_restricted: false,
                 login_required: false,
+                has_additional_files: false,
+                additional_files: null,
               },
             ],
             browse_data: [syntheticUnitvariantLessonsFixture()],
@@ -126,6 +130,8 @@ const downloadAssetsFixture = {
   starter_quiz: [],
   exit_quiz: [],
   is_legacy: true,
+  has_additional_files: false,
+  additional_files: null,
 };
 
 // CANONICAL TESTS
@@ -180,6 +186,8 @@ describe("lessonDownloadsCanonical()", () => {
                 is_legacy: true,
                 geo_restricted: false,
                 login_required: false,
+                has_additional_files: false,
+                additional_files: null,
               },
             ],
             browse_data: [syntheticUnitvariantLessonsFixture()],

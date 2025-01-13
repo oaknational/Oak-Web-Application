@@ -23,6 +23,7 @@ const teacherPreviewLessonQuery =
     const res = await sdk.teachersPreviewLesson({
       lessonSlug,
     });
+    console.log(res, "<<< RES");
 
     const browseFixtureData = {
       ...lessonBrowseDataFixture({

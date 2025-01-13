@@ -69,6 +69,7 @@ describe("constructDownloadsArray()", () => {
       hasWorksheetGoogleDriveDownloadableVersion: true,
       hasSupplementaryAssetObject: true,
       isLegacy: true,
+      hasAdditionalFiles: false,
     });
     expect(downloads).toEqual(downloadAssetsFixture);
   });
@@ -82,6 +83,7 @@ describe("constructDownloadsArray()", () => {
       hasWorksheetGoogleDriveDownloadableVersion: true,
       hasSupplementaryAssetObject: false,
       isLegacy: true,
+      hasAdditionalFiles: false,
     });
     const filteredDownloads = downloads.filter(
       (download) => download.exists === true,
