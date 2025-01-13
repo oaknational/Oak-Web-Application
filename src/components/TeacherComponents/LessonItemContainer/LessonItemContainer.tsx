@@ -5,6 +5,7 @@ import {
   OakSecondaryButton,
   OakThemeProvider,
   oakDefaultTheme,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import {
@@ -15,7 +16,6 @@ import { containerTitleToPreselectMap } from "@/components/TeacherComponents/hel
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import { Hr } from "@/components/SharedComponents/Typography";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Box from "@/components/SharedComponents/Box";
 import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import LessonPlayAllButton from "@/components/LessonPlayAllButton/LessonPlayAllButton";
 
@@ -176,7 +176,7 @@ export const LessonItemContainer = forwardRef<
           )}
         </OakFlex>
 
-        <Box>{children}</Box>
+        <OakBox>{children}</OakBox>
         {!props.isFinalElement && (
           <Hr $color={"pink"} $mt={[24, 56]} $mb={[12, 24]} />
         )}
