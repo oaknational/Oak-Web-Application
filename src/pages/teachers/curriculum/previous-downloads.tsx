@@ -4,6 +4,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
+  OakBox,
   OakFlex,
   OakHandDrawnHR,
   OakHeading,
@@ -111,7 +112,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       }}
       $background={"white"}
     >
-      <Box $background={"mint"} $pt={[20]}>
+      <OakBox $background={"mint"} $pt="inner-padding-l">
         <Box
           $maxWidth={1280}
           $mh={"auto"}
@@ -165,7 +166,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
                 data-testid="icon"
               />
             </Box>
-            <Box $ml={32}>
+            <OakBox $ml="space-between-m2">
               <OakHeading
                 tag={"h1"}
                 $font={["heading-4", "heading-3"]}
@@ -181,12 +182,12 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
                   curriculum principles that underpin them.
                 </OakP>
               </Box>
-            </Box>
+            </OakBox>
           </OakFlex>
         </Box>
-      </Box>
+      </OakBox>
 
-      <Box $background={"mint30"}>
+      <OakBox $background={"mint30"}>
         <Box
           $display={["block", "none", "none"]}
           $maxWidth={1280}
@@ -230,7 +231,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
             data-testid="tabularNav"
           />
         </Box>
-      </Box>
+      </OakBox>
 
       <CurriculumDownloads
         category={activeTab}

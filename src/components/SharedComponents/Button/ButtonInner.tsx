@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled, { useTheme } from "styled-components";
-import { OakBox } from "@oaknational/oak-components";
+import { OakBox, OakColorToken, OakFlex } from "@oaknational/oak-components";
 
 import {
   ButtonBackground,
@@ -75,7 +75,7 @@ export type ButtonInnerProps = {
    */
   currentStyles?: ButtonCurrentStyles;
   $font?: ResponsiveValues<FontVariant> | undefined;
-  labelColor?: OakColorName;
+  labelColor?: OakColorToken;
 };
 
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
@@ -121,7 +121,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
    * we need the value to depend on the original color of the button, in which
    * case it should come from theme.
    */
-  const currentColor: OakColorName = "grey60";
+  const currentColor: OakColorToken = "grey60";
   const displayProperty = shouldHideLabel?.map((hide) =>
     hide ? "none" : "block",
   );
@@ -135,12 +135,20 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   return (
     <>
       {icon && (
-        <Flex
+        <OakFlex
           $display={"inline-flex"}
           $position="relative"
           $alignItems="center"
-          $mr={$iconPosition === "leading" ? 8 : 0}
-          $ml={$iconPosition === "trailing" ? 8 : 0}
+          $mr={
+            $iconPosition === "leading"
+              ? "space-between-ssx"
+              : "space-between-none"
+          }
+          $ml={
+            $iconPosition === "trailing"
+              ? "space-between-ssx"
+              : "space-between-none"
+          }
           $color={color ?? labelColor}
         >
           <Icon
@@ -153,7 +161,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />
           )}
-        </Flex>
+        </OakFlex>
       )}
 
       {subjectIcon && (

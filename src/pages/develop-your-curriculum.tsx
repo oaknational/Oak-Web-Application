@@ -6,6 +6,7 @@ import {
   OakTypography,
   OakHeading,
   OakP,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -124,28 +125,34 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
           >
             {elementsOfCurriculumDesignHeadings.map((heading, index) => (
               <OakGridArea key={`${index}-${heading}`} $colSpan={[12, 4]}>
-                <Box $ph={[16, 0]} $display={["none", "block"]}>
+                <OakBox
+                  $ph={["inner-padding-m", "inner-padding-none"]}
+                  $display={["none", "block"]}
+                >
                   <OakP
                     $mb={["space-between-m", "space-between-s"]}
                     $font={"heading-light-6"}
                   >
                     {heading}
                   </OakP>
-                </Box>
+                </OakBox>
               </OakGridArea>
             ))}
             {pageData.elements.posts.map((element, index) => (
               <Fragment key={`${index}-${element.title}`}>
                 <OakGridArea $colSpan={[12, 4]}>
                   <BrushBorders hideOnMobileH color={"lemon50"} />
-                  <Box $display={["block", "none"]} $ph={[16, 0]}>
+                  <OakBox
+                    $display={["block", "none"]}
+                    $ph={["inner-padding-m", "inner-padding-none"]}
+                  >
                     <OakP
                       $mb={["space-between-m", "space-between-s"]}
                       $font={"heading-light-6"}
                     >
                       {elementsOfCurriculumDesignHeadings[index]}
                     </OakP>
-                  </Box>
+                  </OakBox>
                   <Card
                     $flexDirection={"column"}
                     $justifyContent={"center"}
@@ -156,19 +163,19 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                     $ph={[16, 24]}
                   >
                     <BoxBorders gapPosition="bottomRight" />
-                    <Box $mv={12}>
+                    <OakBox $mv="space-between-xs">
                       <OakHeading $font={"heading-7"} tag={"h5"}>
                         How to
-                        <Box $mt={8} $font={"heading-5"}>
+                        <OakBox $mt="space-between-ssx" $font={"heading-5"}>
                           <CardLink
                             page="blog-single"
                             blogSlug={element.post.slug}
                           >
                             {element.title}
                           </CardLink>
-                        </Box>
+                        </OakBox>
                       </OakHeading>
-                    </Box>
+                    </OakBox>
                   </Card>
                 </OakGridArea>
               </Fragment>

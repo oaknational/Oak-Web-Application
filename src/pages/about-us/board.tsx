@@ -7,6 +7,8 @@ import {
   OakP,
   OakTypography,
   OakHandDrawnHR,
+  OakGrid,
+  OakGridArea,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -22,8 +24,6 @@ import BioCardList from "@/components/GenericPagesComponents/BioCardList";
 import GenericSummaryCard from "@/components/GenericPagesComponents/GenericSummaryCard";
 import getPageProps from "@/node-lib/getPageProps";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
-import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 
 export type AboutPageProps = {
   pageData: AboutBoardPage;
@@ -92,13 +92,16 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             />
           </OakTypography>
 
-          <GridList $rg={[16]} $cg={[12, 20]}>
+          <OakGrid
+            $rg={"all-spacing-4"}
+            $cg={["all-spacing-3", "all-spacing-5"]}
+          >
             {documents.map((doc) => {
               const fileSizeInMB = (doc.file.asset.size / 1012 / 1012).toFixed(
                 1,
               );
               return (
-                <GridAreaListItem key={doc.title} $colSpan={[6, 3, 2]}>
+                <OakGridArea key={doc.title} $colSpan={[6, 3, 2]}>
                   <Card $height={220} $pa={16}>
                     <BoxBorders gapPosition="rightTop" />
                     <OakFlex
@@ -122,10 +125,10 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
                       </OakFlex>
                     </OakFlex>
                   </Card>
-                </GridAreaListItem>
+                </OakGridArea>
               );
             })}
-          </GridList>
+          </OakGrid>
           <OakTypography $width={"100%"}>
             <OakHandDrawnHR
               hrColor={"aqua"}

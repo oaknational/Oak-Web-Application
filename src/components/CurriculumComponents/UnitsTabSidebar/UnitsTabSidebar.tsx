@@ -1,10 +1,9 @@
 import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
-import { OakFlex, OakHandDrawnHR } from "@oaknational/oak-components";
+import { OakFlex, OakHandDrawnHR, OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import Box from "@/components/SharedComponents/Box";
 import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
@@ -61,7 +60,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
   return (
     <Transition in={displayModal} timeout={300} unmountOnExit>
       {(state) => (
-        <Box $position={"absolute"} data-testid="sidebar-modal-wrapper">
+        <OakBox $position={"absolute"} data-testid="sidebar-modal-wrapper">
           <MenuBackdrop state={state} zIndex={"modalDialog"} />
           <FocusOn
             enabled={displayModal}
@@ -82,7 +81,11 @@ const UnitsTabSidebar: FC<ModalProps> = ({
               $overflowY={"scroll"}
             >
               <OakFlex $flexDirection={"column"} $minWidth={"100%"}>
-                <Box $position={"fixed"} $top={20} $right={16}>
+                <OakBox
+                  $position={"fixed"}
+                  $top="all-spacing-5"
+                  $right="all-spacing-4"
+                >
                   <IconButtonFocusVisible
                     aria-label="Close Menu"
                     icon={"cross"}
@@ -92,7 +95,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                     data-testid="close-button"
                     aria-expanded={displayModal}
                   />
-                </Box>
+                </OakBox>
                 <OakFlex $overflowY={"auto"} $flexGrow={1}>
                   {children}
                 </OakFlex>
@@ -149,7 +152,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
               </OakFlex>
             </SideMenu>
           </FocusOn>
-        </Box>
+        </OakBox>
       )}
     </Transition>
   );

@@ -48,7 +48,6 @@ import {
   checkIsResourceCopyrightRestricted,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
-import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
@@ -285,12 +284,12 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
           </Box>
         ) : (
           <OakGrid $mt={["space-between-l"]}>
-            <GridArea
+            <OakGridArea
               $colSpan={[12, 3]}
               $alignSelf={"start"}
               $position={"sticky"}
               $display={["none", "block"]}
-              $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+              $top={"all-spacing-14"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
               <OakFlex
                 as="nav"
@@ -305,7 +304,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                   currentSectionId={currentSectionId}
                 />
               </OakFlex>
-            </GridArea>
+            </OakGridArea>
 
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>

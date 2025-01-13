@@ -6,6 +6,7 @@ import {
   OakLI,
   OakP,
   OakHandDrawnHR,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -116,7 +117,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               </Cover>
             </Box>
 
-            <Box $height={"100%"}>
+            <OakBox $height={"100%"}>
               <OakHeading
                 tag="h2"
                 $font={["heading-5", "heading-4"]}
@@ -159,7 +160,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   <Icon name={"chevron-right"} />
                 </OwaLink>
               </OakTypography>
-            </Box>
+            </OakBox>
           </Flex>
           <Flex
             $background={"grey20"}
