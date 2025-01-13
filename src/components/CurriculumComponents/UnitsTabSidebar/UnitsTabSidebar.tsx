@@ -1,14 +1,13 @@
 import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
-import { OakBox, OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakHandDrawnHR, OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import { Hr } from "@/components/SharedComponents/Typography";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
@@ -103,7 +102,11 @@ const UnitsTabSidebar: FC<ModalProps> = ({
 
                 {!unitOptionsAvailable && (
                   <OakFlex $flexDirection={"column"}>
-                    <Hr $color={"grey30"} $mt={0} $mb={24} />
+                    <OakHandDrawnHR
+                      hrColor={"grey30"}
+                      $mb={"space-between-m"}
+                      $height={"all-spacing-1"}
+                    />
                     <OakFlex
                       $justifyContent={"space-between"}
                       $alignItems={["flex-end"]}

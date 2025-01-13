@@ -52,7 +52,7 @@ const PostListAndCategories: FC<PostListAndCategoriesProps> = (props) => {
           </OakHeading>
           <PostCategoryList
             labelledBy={blogCategoriesListProps.labelId}
-            $mt={24}
+            $mt={"space-between-m"}
             categories={categories}
             selectedCategorySlug={categorySlug}
             page={page}
