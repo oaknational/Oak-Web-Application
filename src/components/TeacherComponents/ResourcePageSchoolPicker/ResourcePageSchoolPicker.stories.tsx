@@ -4,7 +4,6 @@ import { OakBox } from "@oaknational/oak-components";
 
 import Component from "./ResourcePageSchoolPicker";
 
-
 const items = [
   {
     urn: "101105",
