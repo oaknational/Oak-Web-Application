@@ -1,3 +1,10 @@
+## [1.658.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.0...v1.658.1) (2025-01-09)
+
+
+### Bug Fixes
+
+* allow singular programme factors in ui ([362c5de](https://github.com/oaknational/Oak-Web-Application/commit/362c5dee5e90d9b18ae007ab4b027c69cef56eec))
+
 # [1.658.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.657.0...v1.658.0) (2025-01-08)
 
 
