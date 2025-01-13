@@ -5,6 +5,7 @@ import {
   OakP,
   OakFlex,
   OakHandDrawnCardWithIcon,
+  OakHandDrawnHR,
   OakBox,
   OakColorToken,
 } from "@oaknational/oak-components";
@@ -12,7 +13,6 @@ import {
 import CurriculumHeaderTabNav from "../CurriculumHeaderTabNav";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import { Hr } from "@/components/SharedComponents/Typography";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
@@ -133,7 +133,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               },
             ]}
           />
-          <Hr $color={"white"} />
+
+          <OakHandDrawnHR
+            hrColor={"white"}
+            $height={"all-spacing-05"}
+            $mv={"space-between-m2"}
+          />
           <SubjectPhasePicker
             {...subjectPhaseOptions}
             currentSelection={currentSelection}

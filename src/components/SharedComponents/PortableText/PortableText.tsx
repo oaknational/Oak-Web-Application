@@ -8,7 +8,13 @@ import {
 import type { TypedObject, PortableTextBlock } from "@portabletext/types";
 import styled from "styled-components";
 import { merge } from "lodash/fp";
-import { OakLI, OakP, OakSpan, OakOL } from "@oaknational/oak-components";
+import {
+  OakLI,
+  OakP,
+  OakSpan,
+  OakOL,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import { PTActionTrigger } from "./PTActionTrigger";
 
@@ -18,7 +24,6 @@ import { CTAInternalLinkEntry } from "@/common-lib/cms-types";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Box from "@/components/SharedComponents/Box";
 
 const reportError = errorReporter("PortableText");
 
@@ -133,10 +138,10 @@ export const PTAnchorTarget: PortableTextMarkComponent<{
   }
 
   return (
-    <Box as="span" $position="relative">
+    <OakBox as="span" $position="relative">
       <AnchorTarget id={props.value.anchor} />
       {props.children}
-    </Box>
+    </OakBox>
   );
 };
 
