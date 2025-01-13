@@ -5,6 +5,7 @@ import {
   OakP,
   OakFlex,
   OakHandDrawnCardWithIcon,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import CurriculumHeaderTabNav from "../CurriculumHeaderTabNav";
@@ -103,7 +104,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
     <Box $mb={40}>
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
       <Flex $background={color1} $pv={[20]}>
-        <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
+        <OakBox
+          $maxWidth="all-spacing-24"
+          $mh={"auto"}
+          $ph="inner-padding-l"
+          $width={"100%"}
+        >
           <Breadcrumbs
             breadcrumbs={[
               {
@@ -133,14 +139,23 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             {...subjectPhaseOptions}
             currentSelection={currentSelection}
           />
-        </Box>
+        </OakBox>
       </Flex>
       <Box $background={color2}>
         {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
         <Flex $pb={[24, 24]} $pt={[20, 30]}>
-          <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
+          <OakBox
+            $maxWidth="all-spacing-24"
+            $mh={"auto"}
+            $ph="inner-padding-l"
+            $width={"100%"}
+          >
             <OakFlex>
-              <Box $minWidth={80} $mr={[12, 26]} $mv={"auto"}>
+              <OakBox
+                $minWidth="all-spacing-13"
+                $mr={["space-between-xs", "space-between-m"]}
+                $mv={"auto"}
+              >
                 <OakHandDrawnCardWithIcon
                   iconName={getValidSubjectIconName(subject.slug)}
                   fill={"mint50"}
@@ -151,7 +166,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                   data-testid="subjectIcon"
                   alt=""
                 />
-              </Box>
+              </OakBox>
 
               <OakFlex
                 $rowGap={["all-spacing-2", "all-spacing-2"]}
@@ -175,10 +190,15 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 </OakHeading>
               </OakFlex>
             </OakFlex>
-          </Box>
+          </OakBox>
         </Flex>
         <Flex $borderColor="mint30" $bt={2}>
-          <Box $maxWidth={1280} $ph={[0, 20]} $mh={"auto"} $width={"100%"}>
+          <OakBox
+            $maxWidth="all-spacing-24"
+            $ph={["inner-padding-none", "inner-padding-l"]}
+            $mh={"auto"}
+            $width={"100%"}
+          >
             <CurriculumHeaderTabNav
               data-testid="tabularNav"
               label="Curriculum Selection"
@@ -187,7 +207,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               $alignItems={"center"}
               $height={[60, 64]}
             />
-          </Box>
+          </OakBox>
         </Flex>
       </Box>
     </Box>

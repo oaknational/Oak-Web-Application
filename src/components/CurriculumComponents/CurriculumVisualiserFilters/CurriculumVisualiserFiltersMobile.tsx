@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { OakP, OakFlex, OakSpan } from "@oaknational/oak-components";
+import { OakP, OakFlex, OakSpan, OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
@@ -162,19 +162,19 @@ function StickyBit({
   }
 
   return (
-    <Box
+    <OakBox
       $position={["sticky", "static"]}
       $display={["block", "none"]}
-      $top={0}
-      $zIndex={"fixedHeader"}
+      $top="all-spacing-0"
+      $zIndex={"fixed-header"}
     >
-      <Box
+      <OakBox
         $width={"100%"}
         $background={"white"}
-        $mb={8}
+        $mb="space-between-ssx"
         data-test-id="filter-mobiles"
       >
-        <Box>
+        <OakBox>
           <Box $dropShadow="mobileFilterSelector" $ph={[16, 0]} $pb={16}>
             <Button
               label="Highlight a thread"
@@ -197,11 +197,11 @@ function StickyBit({
                   {threadDef(selectedThread)?.title}
                 </Box>
                 <Box $mh={6}> • </Box>
-                <Box data-testid="highlighted-units-box-mobile">
+                <OakBox data-testid="highlighted-units-box-mobile">
                   <OakSpan aria-live="polite" aria-atomic="true">
                     {highlightedUnits} units highlighted
                   </OakSpan>
-                </Box>
+                </OakBox>
               </OakFlex>
             )}
           </Box>
@@ -245,9 +245,9 @@ function StickyBit({
               </StyledButtonGroup>
             </ScrollableWrapper>
           </Box>
-        </Box>
-      </Box>
-    </Box>
+        </OakBox>
+      </OakBox>
+    </OakBox>
   );
 }
 
@@ -279,15 +279,20 @@ function Modal({
   );
 
   return (
-    <Box
+    <OakBox
       $background={"white"}
       $position="fixed"
-      $top={0}
+      $top="all-spacing-0"
       $height={"100%"}
-      $zIndex={"modalDialog"}
+      $zIndex={"modal-dialog"}
       $display={["block", "none"]}
     >
-      <Box $position={"absolute"} $top={20} $right={16} $zIndex={"inFront"}>
+      <OakBox
+        $position={"absolute"}
+        $top="all-spacing-6"
+        $right="all-spacing-4"
+        $zIndex={"in-front"}
+      >
         <Button
           label=""
           aria-label="Close Menu"
@@ -297,7 +302,7 @@ function Modal({
           onClick={onOpenModal}
           aria-expanded={open}
         />
-      </Box>
+      </OakBox>
       <Fieldset
         $ml={16}
         $mt={32}
@@ -318,12 +323,12 @@ function Modal({
           value={selectedThread ?? ""}
           onChange={(e) => onSelectThread(e.target.value)}
         >
-          <Box>
-            <Box
-              $mv={16}
-              $pl={12}
+          <OakBox>
+            <OakBox
+              $mv="space-between-s"
+              $pl="inner-padding-s"
               $position={"relative"}
-              $bl={1}
+              $bl="border-solid-s"
               $borderColor="transparent"
             >
               <RadioButton
@@ -333,7 +338,7 @@ function Modal({
               >
                 None highlighted
               </RadioButton>
-            </Box>
+            </OakBox>
             {threadOptions.map((threadOption) => {
               const isSelectedMobile = isSelectedThread(threadOption);
               return (
@@ -376,7 +381,7 @@ function Modal({
                 </Box>
               );
             })}
-          </Box>
+          </OakBox>
         </RadioGroup>
       </Fieldset>
       <OakFlex
@@ -397,7 +402,7 @@ function Modal({
           onClick={onOpenModal}
         />
       </OakFlex>
-    </Box>
+    </OakBox>
   );
 }
 
