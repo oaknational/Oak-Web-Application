@@ -103,7 +103,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   return (
     <Box $mb={40}>
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
-      <Flex $background={color1} $pv={[20]}>
+      <Flex $background={color1} $pv={[18]}>
         <OakBox
           $maxWidth="all-spacing-24"
           $mh={"auto"}
