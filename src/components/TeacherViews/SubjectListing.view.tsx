@@ -1,12 +1,15 @@
 import { FC } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakFlex,
+  OakGrid,
+  OakGridArea,
+} from "@oaknational/oak-components";
 
 import OwaLink from "../SharedComponents/OwaLink";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCard";
-import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 import { P } from "@/components/SharedComponents/Typography";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -57,10 +60,15 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
             </P>
           )}
         </Flex>
-        <GridList $rg={16} $cg={16} $gridAutoRows={"1fr"} $mb={72}>
+        <OakGrid
+          $rg={"all-spacing-4"}
+          $cg={"all-spacing-4"}
+          $gridAutoRows={"1fr"}
+          $mb={"space-between-xxl"}
+        >
           {subjects.map((subject, i) => {
             return (
-              <GridAreaListItem
+              <OakGridArea
                 key={`subject-list-item-${subject.slug}-${i}`}
                 $colSpan={[12, 6, 3]}
               >
@@ -70,10 +78,10 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
                   keyStageSlug={keyStageSlug}
                   keyStageTitle={sentenceCaseKeyStageTitle}
                 />
-              </GridAreaListItem>
+              </OakGridArea>
             );
           })}
-        </GridList>
+        </OakGrid>
       </MaxWidth>
     </OakFlex>
   );

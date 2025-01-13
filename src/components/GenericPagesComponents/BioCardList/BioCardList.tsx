@@ -1,13 +1,17 @@
 import { FC } from "react";
-import { OakBox, OakFlex, OakFlexProps } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakFlexProps,
+  OakGrid,
+  OakGridArea,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import BioCardListItem from "@/components/GenericPagesComponents/BioCardListItem";
 import BioCardListModal, {
   BioData,
 } from "@/components/GenericPagesComponents/BioCardListModal";
 import { useBioCardListModal } from "@/components/GenericPagesComponents/BioCardListModal/useBioCardListModal";
-import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 
 type BioCardListProps = OakFlexProps & {
   bios: BioData[];
@@ -24,14 +28,17 @@ const BioCardList: FC<BioCardListProps> = (props) => {
 
   return (
     <OakFlex $flexDirection="column" {...flexProps}>
-      <GridList $cg={16} $gridAutoRows={[null, "1fr"]}>
+      <OakGrid
+        $gridTemplateColumns={["1fr", "repeat(12, 1fr)"]}
+        $cg={"all-spacing-4"}
+      >
         {firstBio && firstBioHasOwnRow && (
           <>
-            <GridAreaListItem
+            <OakGridArea
               $colSpan={[12, 4, 6]}
               $colStart={[null, 5, 4]}
               $colEnd={[null, 9, 10]}
-              $mb={[16, 32]}
+              $mb={["space-between-s", "space-between-m2"]}
               key={`bio-card-list-gridarea-${firstBio.id}`}
             >
               <OakBox
@@ -46,9 +53,9 @@ const BioCardList: FC<BioCardListProps> = (props) => {
                   isOpen={modal.isOpen}
                 />
               </OakBox>
-            </GridAreaListItem>
-            {/* Empty GridAreaListItem to fill the gap on desktop */}
-            <GridAreaListItem
+            </OakGridArea>
+            {/* Empty OakGridArea to fill the gap on desktop */}
+            <OakGridArea
               $colSpan={[12, 3, 2]}
               $colStart={[null, 10, 11]}
               $colEnd={[null, 12, 12]}
@@ -56,9 +63,9 @@ const BioCardList: FC<BioCardListProps> = (props) => {
           </>
         )}
         {firstBio && !firstBioHasOwnRow && (
-          <GridAreaListItem
+          <OakGridArea
             $colSpan={[12, 4, 3]}
-            $mb={[16, 32]}
+            $mb={["space-between-s", "space-between-m2"]}
             key={`bio-card-list-gridarea-${firstBio.id}`}
           >
             <BioCardListItem
@@ -67,13 +74,13 @@ const BioCardList: FC<BioCardListProps> = (props) => {
               modalControllerRef={modal.modalControllerRefs[firstBio.id]}
               isOpen={modal.isOpen}
             />
-          </GridAreaListItem>
+          </OakGridArea>
         )}
         {otherBios.map((bio) => (
-          <GridAreaListItem
+          <OakGridArea
             $colSpan={[12, 4, 3]}
             key={`bio-card-list-gridarea-${bio.id}`}
-            $mb={[16, 32]}
+            $mb={["space-between-s", "space-between-m2"]}
           >
             <BioCardListItem
               {...bio}
@@ -81,9 +88,9 @@ const BioCardList: FC<BioCardListProps> = (props) => {
               modalControllerRef={modal.modalControllerRefs[bio.id]}
               isOpen={modal.isOpen}
             />
-          </GridAreaListItem>
+          </OakGridArea>
         ))}
-      </GridList>
+      </OakGrid>
       <BioCardListModal {...modal} />
     </OakFlex>
   );
