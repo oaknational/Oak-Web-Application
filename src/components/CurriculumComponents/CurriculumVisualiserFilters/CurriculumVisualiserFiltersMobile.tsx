@@ -289,7 +289,7 @@ function Modal({
     >
       <OakBox
         $position={"absolute"}
-        $top="all-spacing-6"
+        $top="all-spacing-5"
         $right="all-spacing-4"
         $zIndex={"in-front"}
       >
