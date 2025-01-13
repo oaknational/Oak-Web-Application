@@ -619,6 +619,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         $borderColor={showSubjects || showPhases ? "transparent" : "black"}
         $ba="border-solid-m"
       >
+        {/* Subject button */}
         <OakFlex
           $position="relative"
           $borderRadius="border-radius-s"
@@ -633,7 +634,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $flexDirection={"row"}
             $alignItems={"center"}
             $justifyContent={"flex-start"}
-            $width={["100%", "100%", "100%"]}
+            $width={"100%"}
           >
             <OakFlex
               $position={"relative"}
@@ -861,9 +862,11 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 </OakBox>
               </FocusOn>
             )}
+
+            {/* SEPARATOR */}
             <OakBox
               $height={"all-spacing-9"}
-              $width={3}
+              $width={"all-spacing-05"}
               $position={"relative"}
               $display={"block"}
               $visibility={showSubjects || showPhases ? "hidden" : null}
@@ -875,7 +878,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 hideRight={true}
               />
             </OakBox>
-            <OakBox $width={["50%", "60%"]} $position={"relative"}>
+
+            {/* PHASE Button */}
+            <Box $width={["50%", "60%"]} $position={"relative"}>
               <OakFlex
                 $position={"relative"}
                 $flexDirection={"row"}
@@ -1415,7 +1420,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                   </OakPrimaryButton>
                 </OakFlex>
               </OakFlex>
-            </OakBox>
+            </Box>
           </OakFlex>
         </OakFlex>
       </OakBox>
