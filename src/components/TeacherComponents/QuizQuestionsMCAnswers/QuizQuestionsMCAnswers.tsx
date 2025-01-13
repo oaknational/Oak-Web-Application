@@ -1,10 +1,9 @@
 import { VisuallyHidden } from "react-aria";
-import { OakTypography, OakFlex } from "@oaknational/oak-components";
+import { OakTypography, OakFlex, OakBox } from "@oaknational/oak-components";
 
 import QuizImage from "@/components/TeacherComponents/QuizImage";
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import QuizImageAnswer from "@/components/TeacherComponents/QuizImageAnswer";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Icon from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
@@ -73,9 +72,9 @@ export const QuizQuestionsMCAnswers = (props: {
                     $ph="inner-padding-xs"
                     $alignItems={"center"}
                   >
-                    <Box $minWidth={32} aria-hidden>
+                    <OakBox $minWidth="all-spacing-7" aria-hidden>
                       <Icon name={"tick"} />
-                    </Box>
+                    </OakBox>
                     <VisuallyHidden>
                       Correct answer: {removeMarkdown(answerItem.text)}
                     </VisuallyHidden>
