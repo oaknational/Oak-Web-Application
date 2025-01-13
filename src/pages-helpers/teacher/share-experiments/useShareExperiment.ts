@@ -81,7 +81,7 @@ export const useShareExperiment = ({
     if (urlShareId && storageShareId !== urlShareId) {
       // check for  existing conversion shareId
       if (!getConversionShareId(urlShareId)) {
-        // TODO: store the converted shareId in a storage for preventing multiple conversion events
+        // store the converted shareId in a storage for preventing multiple conversion events
         storeConversionShareId(urlShareId);
 
         // track the share converted event irrespective of whether the user is part of the experiment
