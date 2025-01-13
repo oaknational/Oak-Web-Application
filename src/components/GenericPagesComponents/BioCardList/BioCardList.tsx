@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakFlex, OakFlexProps } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakFlexProps } from "@oaknational/oak-components";
 
 import BioCardListItem from "@/components/GenericPagesComponents/BioCardListItem";
 import BioCardListModal, {
@@ -8,7 +8,6 @@ import BioCardListModal, {
 import { useBioCardListModal } from "@/components/GenericPagesComponents/BioCardListModal/useBioCardListModal";
 import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
 import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
-import Box from "@/components/SharedComponents/Box";
 
 type BioCardListProps = OakFlexProps & {
   bios: BioData[];
@@ -35,14 +34,18 @@ const BioCardList: FC<BioCardListProps> = (props) => {
               $mb={[16, 32]}
               key={`bio-card-list-gridarea-${firstBio.id}`}
             >
-              <Box $width={["100%", "100%", "50%"]} $height="100%" $mh="auto">
+              <OakBox
+                $width={["100%", "100%", "auto"]}
+                $height="100%"
+                $mh="auto"
+              >
                 <BioCardListItem
                   {...firstBio}
                   onClick={onCardClick}
                   modalControllerRef={modal.modalControllerRefs[firstBio.id]}
                   isOpen={modal.isOpen}
                 />
-              </Box>
+              </OakBox>
             </GridAreaListItem>
             {/* Empty GridAreaListItem to fill the gap on desktop */}
             <GridAreaListItem
