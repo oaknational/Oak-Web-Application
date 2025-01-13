@@ -4,13 +4,13 @@ import {
   OakFlex,
   OakGrid,
   OakGridArea,
+  OakP,
 } from "@oaknational/oak-components";
 
 import OwaLink from "../SharedComponents/OwaLink";
 
 import { SubjectListingPageProps } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDouble from "@/components/TeacherComponents/SubjectListingCard";
-import { P } from "@/components/SharedComponents/Typography";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
@@ -43,7 +43,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
             {title}
           </OakHeading>
           {isEyfs && (
-            <P $font="heading-light-7">
+            <OakP $font="heading-light-7">
               These teaching resources were made during the pandemic for parents
               to use at home with their children. Now they are used by teachers
               as inspiration for their own lesson planning. Learn about the
@@ -57,7 +57,7 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
                 here
               </OwaLink>
               .
-            </P>
+            </OakP>
           )}
         </Flex>
         <OakGrid
