@@ -26,7 +26,6 @@ import {
 } from "@/node-lib/isr";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
@@ -342,11 +341,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 >
                   {tiers.length === 0 && currentPageItems.length >= 1 && (
                     <>
-                      <Flex $minWidth={120} $mb={16} $position={"relative"}>
+                      <OakFlex
+                        $minWidth={"all-spacing-16"}
+                        $mb={"space-between-s"}
+                        $position={"relative"}
+                      >
                         <OakHeading $font={"heading-5"} tag={"h2"}>
                           {`Units (${filteredUnits.length})`}
                         </OakHeading>
-                      </Flex>
+                      </OakFlex>
                       {isFiltersAvailable && (
                         <OakBox $display={["auto", "auto", "none"]}>
                           <MobileUnitFilters
