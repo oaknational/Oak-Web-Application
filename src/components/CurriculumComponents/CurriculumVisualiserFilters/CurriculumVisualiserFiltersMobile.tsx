@@ -175,7 +175,12 @@ function StickyBit({
         data-test-id="filter-mobiles"
       >
         <OakBox>
-          <Box $dropShadow="mobileFilterSelector" $ph={[16, 0]} $pb={16}>
+          <OakBox
+            $bb={"border-solid-s"}
+            $borderColor={"grey30"}
+            $ph={["inner-padding-m", "inner-padding-none"]}
+            $pb={"inner-padding-m"}
+          >
             <Button
               label="Highlight a thread"
               icon="chevron-right"
@@ -196,7 +201,7 @@ function StickyBit({
                 >
                   {threadDef(selectedThread)?.title}
                 </Box>
-                <Box $mh={6}> • </Box>
+                <OakBox $mh="space-between-ssx"> • </OakBox>
                 <OakBox data-testid="highlighted-units-box-mobile">
                   <OakSpan aria-live="polite" aria-atomic="true">
                     {highlightedUnits} units highlighted
@@ -204,17 +209,21 @@ function StickyBit({
                 </OakBox>
               </OakFlex>
             )}
-          </Box>
-          <Box
-            $pt={2}
-            $dropShadow="mobileFilterSelector"
+          </OakBox>
+          <OakBox
+            $bb={"border-solid-s"}
+            $borderColor={"grey30"}
             $width={"100%"}
             data-testid={"year-selection-mobile"}
           >
             <ScrollableWrapper>
               <StyledButtonGroup aria-label="Select a year group">
                 {yearOptions.map((yearOption) => (
-                  <Box key={yearOption} $pt={8} $ml={5}>
+                  <OakBox
+                    key={yearOption}
+                    $pt="inner-padding-xs"
+                    $ml="space-between-sssx"
+                  >
                     <FocusIndicator
                       data-testid="year-group-focus-indicator"
                       $display={"inline-block"}
@@ -240,11 +249,11 @@ function StickyBit({
                         {getYearGroupTitle(yearData, yearOption)}
                       </StyledButton>
                     </FocusIndicator>
-                  </Box>
+                  </OakBox>
                 ))}
               </StyledButtonGroup>
             </ScrollableWrapper>
-          </Box>
+          </OakBox>
         </OakBox>
       </OakBox>
     </OakBox>
