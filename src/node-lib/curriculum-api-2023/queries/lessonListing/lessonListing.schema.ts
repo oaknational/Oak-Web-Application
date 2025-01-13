@@ -1,9 +1,9 @@
 import { z } from "zod";
-
 import {
   programmeFieldsSchema,
   syntheticUnitvariantLessonsSchema,
 } from "@oaknational/oak-curriculum-schema";
+
 import {
   lessonListItemSchema,
   lessonListSchema,
