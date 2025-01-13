@@ -103,7 +103,7 @@ exports[`CurriculumTab renders 1`] = `
                     Choose a curriculum
                   </div>
                   <div
-                    class="sc-fqkvVR kLRNCW"
+                    class="sc-fqkvVR dWZqAS"
                     data-testid="lot-picker"
                   >
                     <div
@@ -117,10 +117,10 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-9dfc1bad-0 sc-ee408585-2 euLJLN fAkCpO edknab"
+                            class="sc-fqkvVR sc-9dfc1bad-0 sc-496bff24-2 euLJLN fAkCpO cIGTbg"
                           >
                             <button
-                              class="sc-ee408585-1 kUosvO"
+                              class="sc-496bff24-1 comhih"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -143,7 +143,7 @@ exports[`CurriculumTab renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-ad0ad6f5-0 dNDqNL"
+                          class="sc-fqkvVR dTuPRp"
                         >
                           <div
                             aria-hidden="true"
@@ -165,16 +165,16 @@ exports[`CurriculumTab renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-ad0ad6f5-0 jWQsSO"
+                          class="sc-fqkvVR kHQKDO"
                         >
                           <div
                             class="sc-fqkvVR sc-gsFSXq chczcQ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-9dfc1bad-0 sc-ee408585-2 jdrOtF fAkCpO edknab"
+                              class="sc-fqkvVR sc-9dfc1bad-0 sc-496bff24-2 jdrOtF fAkCpO cIGTbg"
                             >
                               <button
-                                class="sc-ee408585-1 kUosvO"
+                                class="sc-496bff24-1 comhih"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
@@ -188,7 +188,7 @@ exports[`CurriculumTab renders 1`] = `
                                     School phase
                                   </span>
                                   <div
-                                    class="sc-ad0ad6f5-0 hCHpuh"
+                                    class="sc-fqkvVR eaVxXD"
                                   >
                                     Select
                                   </div>
@@ -280,7 +280,7 @@ exports[`CurriculumTab renders 1`] = `
                 Choose a curriculum
               </div>
               <div
-                class="sc-fqkvVR kLRNCW"
+                class="sc-fqkvVR dWZqAS"
                 data-testid="lot-picker"
               >
                 <div
@@ -294,10 +294,10 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-9dfc1bad-0 sc-ee408585-2 euLJLN fAkCpO edknab"
+                        class="sc-fqkvVR sc-9dfc1bad-0 sc-496bff24-2 euLJLN fAkCpO cIGTbg"
                       >
                         <button
-                          class="sc-ee408585-1 kUosvO"
+                          class="sc-496bff24-1 comhih"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
@@ -320,7 +320,7 @@ exports[`CurriculumTab renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-ad0ad6f5-0 dNDqNL"
+                      class="sc-fqkvVR dTuPRp"
                     >
                       <div
                         aria-hidden="true"
@@ -342,16 +342,16 @@ exports[`CurriculumTab renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-ad0ad6f5-0 jWQsSO"
+                      class="sc-fqkvVR kHQKDO"
                     >
                       <div
                         class="sc-fqkvVR sc-gsFSXq chczcQ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-9dfc1bad-0 sc-ee408585-2 jdrOtF fAkCpO edknab"
+                          class="sc-fqkvVR sc-9dfc1bad-0 sc-496bff24-2 jdrOtF fAkCpO cIGTbg"
                         >
                           <button
-                            class="sc-ee408585-1 kUosvO"
+                            class="sc-496bff24-1 comhih"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >
@@ -365,7 +365,7 @@ exports[`CurriculumTab renders 1`] = `
                                 School phase
                               </span>
                               <div
-                                class="sc-ad0ad6f5-0 hCHpuh"
+                                class="sc-fqkvVR eaVxXD"
                               >
                                 Select
                               </div>
