@@ -6,6 +6,7 @@ import {
   OakHeading,
   OakP,
   OakTypography,
+  OakHandDrawnHR,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -13,7 +14,6 @@ import { AboutBoardPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
 import Card from "@/components/SharedComponents/Card";
 import GenericContactCard from "@/components/GenericPagesComponents/GenericContactCard";
-import { Hr } from "@/components/SharedComponents/Typography";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import GenericIntroCard from "@/components/GenericPagesComponents/GenericIntroCard";
 import IconButtonAsLink from "@/components/SharedComponents/Button/IconButtonAsLink";
@@ -85,7 +85,11 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
           $flexDirection={"column"}
         >
           <OakTypography $width={"100%"}>
-            <Hr $color={"aqua"} $mv={32} />
+            <OakHandDrawnHR
+              hrColor={"aqua"}
+              $mv={"space-between-m2"}
+              $height={"all-spacing-05"}
+            />
           </OakTypography>
 
           <GridList $rg={[16]} $cg={[12, 20]}>
@@ -123,7 +127,11 @@ const AboutUsBoard: NextPage<AboutPageProps> = ({ pageData }) => {
             })}
           </GridList>
           <OakTypography $width={"100%"}>
-            <Hr $color={"aqua"} $mv={0} $mt={32} />
+            <OakHandDrawnHR
+              hrColor={"aqua"}
+              $mv={"space-between-m2"}
+              $height={"all-spacing-05"}
+            />
           </OakTypography>
         </OakFlex>
         <Card

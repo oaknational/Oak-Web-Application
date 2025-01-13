@@ -5,6 +5,7 @@ import {
   OakUL,
   OakLI,
   OakP,
+  OakHandDrawnHR,
 } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -12,7 +13,6 @@ import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Hr } from "@/components/SharedComponents/Typography";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023, {
@@ -71,7 +71,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 },
               ]}
             />
-            <Hr $color={"white"} $mb={0} />
+            <OakHandDrawnHR hrColor={"white"} $mt={"space-between-m"} />
           </Box>
           <Flex $mt={[24, 80]} $mb={[80]}>
             <HomepageCurriculumLandingHero
