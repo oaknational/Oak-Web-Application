@@ -1,7 +1,7 @@
 import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import Box from "@/components/SharedComponents/Box";
@@ -62,7 +62,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
   return (
     <Transition in={displayModal} timeout={300} unmountOnExit>
       {(state) => (
-        <Box $position={"absolute"} data-testid="sidebar-modal-wrapper">
+        <OakBox $position={"absolute"} data-testid="sidebar-modal-wrapper">
           <MenuBackdrop state={state} zIndex={"modalDialog"} />
           <FocusOn
             enabled={displayModal}
@@ -146,7 +146,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
               </OakFlex>
             </SideMenu>
           </FocusOn>
-        </Box>
+        </OakBox>
       )}
     </Transition>
   );

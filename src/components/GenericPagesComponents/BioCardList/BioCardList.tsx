@@ -4,6 +4,7 @@ import {
   OakFlexProps,
   OakGrid,
   OakGridArea,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import BioCardListItem from "@/components/GenericPagesComponents/BioCardListItem";
@@ -11,7 +12,6 @@ import BioCardListModal, {
   BioData,
 } from "@/components/GenericPagesComponents/BioCardListModal";
 import { useBioCardListModal } from "@/components/GenericPagesComponents/BioCardListModal/useBioCardListModal";
-import Box from "@/components/SharedComponents/Box";
 
 type BioCardListProps = OakFlexProps & {
   bios: BioData[];
@@ -41,14 +41,18 @@ const BioCardList: FC<BioCardListProps> = (props) => {
               $mb={["space-between-s", "space-between-m2"]}
               key={`bio-card-list-gridarea-${firstBio.id}`}
             >
-              <Box $width={["100%", "100%", "50%"]} $height="100%" $mh="auto">
+              <OakBox
+                $width={["100%", "100%", "auto"]}
+                $height="100%"
+                $mh="auto"
+              >
                 <BioCardListItem
                   {...firstBio}
                   onClick={onCardClick}
                   modalControllerRef={modal.modalControllerRefs[firstBio.id]}
                   isOpen={modal.isOpen}
                 />
-              </Box>
+              </OakBox>
             </OakGridArea>
             {/* Empty OakGridArea to fill the gap on desktop */}
             <OakGridArea
