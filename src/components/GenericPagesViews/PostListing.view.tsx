@@ -86,8 +86,8 @@ const PostListing: FC<PostListingProps> = ({
         <MobileFilters page={page} label={"Categories"}>
           <PostCategoryList
             labelledBy={triggerId}
-            $pv={28}
-            $ph={16}
+            $pv={"inner-padding-xl"}
+            $ph={"inner-padding-m"}
             categories={categories}
             selectedCategorySlug={categorySlug}
             page={page}
