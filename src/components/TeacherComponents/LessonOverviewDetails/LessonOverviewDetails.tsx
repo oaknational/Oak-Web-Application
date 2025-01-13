@@ -60,7 +60,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   return (
     <MathJaxWrapper>
       <OakGrid>
-        <OakGridArea $colSpan={[12, 7]} $rowStart={1}>
+        <OakGridArea $colSpan={[12, 8]} $rowStart={1}>
           <OakFlex
             $flexDirection={"column"}
             $flexGrow={1}
