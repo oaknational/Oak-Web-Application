@@ -6,7 +6,11 @@ import {
 } from "next";
 import React from "react";
 import { useRouter } from "next/router";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 import { uniq } from "lodash";
 
 import CMSClient from "@/node-lib/cms";
@@ -14,7 +18,6 @@ import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader
 import OverviewTab from "@/components/CurriculumComponents/OverviewTab";
 import UnitsTab from "@/components/CurriculumComponents/UnitsTab";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import Box from "@/components/SharedComponents/Box";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   decorateWithIsr,
@@ -141,7 +144,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           color2="mint"
         />
 
-        <Box $background={"white"}>{tabContent}</Box>
+        <OakBox $background={"white"}>{tabContent}</OakBox>
       </AppLayout>
     </OakThemeProvider>
   );
