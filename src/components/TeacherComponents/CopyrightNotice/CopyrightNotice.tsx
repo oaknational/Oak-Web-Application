@@ -1,9 +1,8 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakP } from "@oaknational/oak-components";
+import { OakBox, OakP } from "@oaknational/oak-components";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import Box from "@/components/SharedComponents/Box";
 import { FontProps } from "@/styles/utils/typography";
 import Icon from "@/components/SharedComponents/Icon";
 
@@ -100,7 +99,9 @@ const CopyrightNotice: FC<CopyrightNoticeProps> = ({
   fullWidth,
   ...fontProps
 }) => (
-  <Box $maxWidth={fullWidth ? null : [null, 420, 420]}>
+  <OakBox
+    $maxWidth={fullWidth ? null : [null, "all-spacing-21", "all-spacing-21"]}
+  >
     {showPostAlbCopyright ? (
       <PostAlbCopyright
         {...fontProps}
@@ -113,7 +114,7 @@ const CopyrightNotice: FC<CopyrightNoticeProps> = ({
         openLinksExternally={openLinksExternally}
       />
     )}
-  </Box>
+  </OakBox>
 );
 
 export default CopyrightNotice;
