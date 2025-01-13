@@ -8,7 +8,13 @@ import {
 import type { TypedObject, PortableTextBlock } from "@portabletext/types";
 import styled from "styled-components";
 import { merge } from "lodash/fp";
-import { OakLI, OakP, OakSpan, OakOL } from "@oaknational/oak-components";
+import {
+  OakLI,
+  OakP,
+  OakSpan,
+  OakOL,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import { PTActionTrigger } from "./PTActionTrigger";
 
@@ -132,10 +138,10 @@ export const PTAnchorTarget: PortableTextMarkComponent<{
   }
 
   return (
-    <OakSpan $position="relative">
+    <OakBox as="span" $position="relative">
       <AnchorTarget id={props.value.anchor} />
       {props.children}
-    </OakSpan>
+    </OakBox>
   );
 };
 

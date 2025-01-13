@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakBox, OakBoxProps } from "@oaknational/oak-components";
 
-import Box, { BoxProps } from "@/components/SharedComponents/Box";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import CategoryFilterList from "@/components/SharedComponents/CategoryFilterList";
 import useCategoryFilterList from "@/components/SharedComponents/CategoryFilterList/useCategoryFilterList";
@@ -13,7 +12,7 @@ import Icon from "@/components/SharedComponents/Icon";
 
 export type PostCategoryPage = "blog-index" | "webinar-index";
 
-export type PostCategoryListProps = BoxProps & {
+export type PostCategoryListProps = OakBoxProps & {
   labelledBy: string;
   categories: { slug: string; title: string }[];
   selectedCategorySlug?: string | null;
@@ -29,7 +28,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
   });
 
   return (
-    <Box {...boxProps}>
+    <OakBox {...boxProps}>
       <CategoryFilterList
         labelledBy={labelledBy}
         getIsSelected={getIsSelected}
@@ -64,7 +63,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
           />
         </OwaLink>
       </OakFlex>
-    </Box>
+    </OakBox>
   );
 };
 

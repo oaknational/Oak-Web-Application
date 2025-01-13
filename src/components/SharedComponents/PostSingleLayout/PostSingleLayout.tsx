@@ -46,8 +46,8 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
             <MobileFilters page={page} withBackButton label={"Categories"}>
               <PostCategoryList
                 labelledBy={triggerId}
-                $pv={28}
-                $ph={16}
+                $pv={"inner-padding-xl"}
+                $ph={"inner-padding-m"}
                 categories={categories}
                 page={page}
               />
@@ -86,7 +86,7 @@ const PostSingleLayout: FC<PostSingleLayoutProps> = (props) => {
             </OakHeading>
             <PostCategoryList
               labelledBy={postCategoriesListProps.labelId}
-              $mt={24}
+              $mt={"space-between-s"}
               categories={categories}
               page={page}
             />
