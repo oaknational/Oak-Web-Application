@@ -9,7 +9,6 @@ import {
 } from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import useSearch from "@/context/Search/useSearch";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -29,13 +28,15 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
       <MaxWidth $ph={[16]}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
-            <Flex
+            <OakFlex
               $flexDirection={"column"}
-              $maxWidth={[640]}
-              $pt={32}
+              $maxWidth={["all-spacing-22"]}
+              $pt={"inner-padding-xl2"}
               $alignItems={"flex-start"}
-              $gap={24}
-              $flex={"0 1 auto"}
+              $gap={"all-spacing-6"}
+              $flexGrow={0}
+              $flexShrink={1}
+              $flexBasis={"auto"}
             >
               <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
                 Teachers
@@ -82,7 +83,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                   }
                 />
               </OakBox>
-            </Flex>
+            </OakFlex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
             <ImageContainer imageSlug={"hero-pupils"}>

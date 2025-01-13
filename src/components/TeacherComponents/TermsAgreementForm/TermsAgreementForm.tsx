@@ -18,7 +18,6 @@ import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePa
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { P } from "@/components/SharedComponents/Typography";
 
 export type TermsAgreementFormProps = {
   form: {
@@ -100,11 +99,11 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 isOptional={true}
                 {...form.register("email")}
                 error={form.errors?.email?.message}
+                $mb={12}
               />
-              <P
+              <OakP
                 $font="body-3"
-                $mt={-20}
-                $mb={48}
+                $mb={"space-between-l"}
                 data-testid="newsletter-policy"
               >
                 Join over 100k teachers and get free resources and other helpful
@@ -127,7 +126,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   />
                 </OakLink>
                 .
-              </P>
+              </OakP>
               <Controller
                 control={form.control}
                 name="terms"
