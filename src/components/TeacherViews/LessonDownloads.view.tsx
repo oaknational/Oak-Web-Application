@@ -5,13 +5,12 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 import { useUser } from "@clerk/nextjs";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
-import { OakHandDrawnHR } from "@oaknational/oak-components";
+import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
 
-import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
@@ -290,9 +289,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   }, [lesson.geoRestricted, lesson.loginRequired, useAuthOwaEnabled]);
 
   return (
-    <Box $ph={[16, null]} $background={"grey20"}>
+    <OakBox
+      $ph={["inner-padding-m", "inner-padding-none"]}
+      $background={"grey20"}
+    >
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
-        <Box $mb={isDownloadSuccessful ? 0 : 32} $mt={24}>
+        <OakBox
+          $mb={isDownloadSuccessful ? "space-between-none" : "space-between-m2"}
+          $mt={"space-between-m"}
+        >
           <Breadcrumbs
             breadcrumbs={
               !isSpecialist
@@ -331,7 +336,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
             $mt={"space-between-m"}
             $mb={"space-between-m"}
           />
-        </Box>
+        </OakBox>
         {(() => {
           if (
             user &&
@@ -432,6 +437,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           );
         })()}
       </MaxWidth>
-    </Box>
+    </OakBox>
   );
 }

@@ -28,7 +28,6 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
-import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
   KeyStageTitleValueType,
@@ -274,14 +273,14 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
       />
       <MaxWidth $ph={16} $pb={80}>
         {expired ? (
-          <Box $pa={16} $mb={64}>
+          <OakBox $pa={"inner-padding-m"} $mb={"space-between-xxl"}>
             <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
               No lesson available
             </OakHeading>
             <OakTypography $font={"body-1"}>
               Sorry, this lesson no longer exists.
             </OakTypography>
-          </Box>
+          </OakBox>
         ) : (
           <OakGrid $mt={["space-between-l"]}>
             <OakGridArea

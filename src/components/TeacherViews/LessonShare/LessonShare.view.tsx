@@ -1,6 +1,5 @@
-import { OakHandDrawnHR } from "@oaknational/oak-components";
+import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
 
-import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import {
@@ -176,9 +175,9 @@ export function LessonShare(props: LessonShareProps) {
   };
 
   return (
-    <Box $ph={[16, null]} $background={"grey20"}>
+    <OakBox $ph={["inner-padding-m", null]} $background={"grey20"}>
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
-        <Box $mb={32} $mt={24}>
+        <OakBox $mb={"space-between-m2"} $mt={"space-between-m"}>
           <Breadcrumbs
             breadcrumbs={
               !isSpecialist
@@ -217,8 +216,7 @@ export function LessonShare(props: LessonShareProps) {
             $mt={"space-between-m"}
             $mb={"space-between-m"}
           />
-        </Box>
-
+        </OakBox>
         <ResourcePageLayout
           page={"share"}
           errors={form.errors}
@@ -281,6 +279,6 @@ export function LessonShare(props: LessonShareProps) {
           }
         />
       </MaxWidth>
-    </Box>
+    </OakBox>
   );
 }
