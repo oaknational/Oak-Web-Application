@@ -5,14 +5,13 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 import { useUser } from "@clerk/nextjs";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
-import { OakBox } from "@oaknational/oak-components";
+import { OakBox , OakHandDrawnHR } from "@oaknational/oak-components";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
 
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Hr } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
@@ -331,7 +330,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   ]
             }
           />
-          <Hr $color={"grey60"} $mt={24} />
+          <OakHandDrawnHR
+            hrColor={"grey60"}
+            $height={"all-spacing-1"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m"}
+          />
         </OakBox>
         {(() => {
           if (

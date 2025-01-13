@@ -1,7 +1,6 @@
-import { OakBox } from "@oaknational/oak-components";
+import { OakBox , OakHandDrawnHR } from "@oaknational/oak-components";
 
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Hr } from "@/components/SharedComponents/Typography";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
 import {
   getLessonOverviewBreadCrumb,
@@ -211,9 +210,13 @@ export function LessonShare(props: LessonShareProps) {
                   ]
             }
           />
-          <Hr $color={"grey60"} $mt={24} />
+          <OakHandDrawnHR
+            hrColor={"grey60"}
+            $height={"all-spacing-1"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m"}
+          />
         </OakBox>
-
         <ResourcePageLayout
           page={"share"}
           errors={form.errors}

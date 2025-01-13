@@ -12,6 +12,7 @@ import {
   OakPrimaryButton,
   OakSecondaryButton,
   OakSpan,
+  OakHandDrawnHR,
 } from "@oaknational/oak-components";
 import { sortBy } from "lodash";
 import { flushSync } from "react-dom";
@@ -37,7 +38,6 @@ import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitch
 import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import FocusWrap from "@/components/CurriculumComponents/OakComponentsKitchen/FocusWrap";
-import { Hr } from "@/components/SharedComponents/Typography";
 import Button from "@/components/SharedComponents/Button";
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
@@ -822,39 +822,39 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       ))}
                     </SubjectContainer>
 
-                    <Box
+                    <OakBox
                       $position="fixed"
-                      $bottom={0}
-                      $left={0}
-                      $zIndex={"modalDialog"}
+                      $bottom={"all-spacing-0"}
+                      $left={"all-spacing-0"}
+                      $zIndex={"modal-dialog"}
                       $display={["block"]}
                       $width={"100%"}
-                      $ph={30}
-                      $pb={10}
-                      $pt={12}
                       $background={"white"}
                     >
-                      <Hr
-                        $color={"grey40"}
-                        $position="absolute"
-                        $left={0}
-                        $top={-24}
-                        $height={1}
+                      <OakHandDrawnHR
+                        hrColor={"grey40"}
+                        $height={"all-spacing-05"}
                         $width="100%"
                       />
-                      <OakPrimaryButton
-                        data-testid="mobile-subject-picker-confirm-button"
-                        iconName="arrow-right"
-                        aria-label="Confirm subject"
-                        isTrailingIcon={true}
-                        onClick={handleConfirmSubject}
-                        pv="inner-padding-m"
-                        ph="inner-padding-l"
-                        disabled={!selectedSubject}
+                      <OakBox
+                        $ph={"inner-padding-xl2"}
+                        $pb={"inner-padding-s"}
+                        $pt={"inner-padding-s"}
                       >
-                        Confirm subject
-                      </OakPrimaryButton>
-                    </Box>
+                        <OakPrimaryButton
+                          data-testid="mobile-subject-picker-confirm-button"
+                          iconName="arrow-right"
+                          aria-label="Confirm subject"
+                          isTrailingIcon={true}
+                          onClick={handleConfirmSubject}
+                          pv="inner-padding-m"
+                          ph="inner-padding-l"
+                          disabled={!selectedSubject}
+                        >
+                          Confirm subject
+                        </OakPrimaryButton>
+                      </OakBox>
+                    </OakBox>
                   </OakFlex>
                 </Box>
               </FocusOn>
@@ -1351,41 +1351,41 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               </OakFlex>
                             )}
                         </PhaseContainerWrapper>
-                        <Box
+                        <OakBox
                           $position="fixed"
-                          $bottom={0}
-                          $left={0}
+                          $bottom={"all-spacing-0"}
+                          $left={"all-spacing-0"}
                           $display={["block"]}
-                          $zIndex={"modalDialog"}
+                          $zIndex={"modal-dialog"}
                           $width="100%"
-                          $ph={24}
-                          $pv={10}
                           $background="white"
                         >
-                          <Hr
-                            $color={"grey40"}
-                            $position="absolute"
-                            $left={0}
-                            $top={-24}
-                            $height={1}
+                          <OakHandDrawnHR
+                            hrColor={"grey40"}
+                            $height={"all-spacing-05"}
                             $width="100%"
                           />
-                          <OakPrimaryButton
-                            data-testid="mobile-phase-picker-confirm-button"
-                            iconName="arrow-right"
-                            aria-label="View curriculum"
-                            isTrailingIcon={true}
-                            onClick={() => {
-                              handleViewCurriculum();
-                            }}
-                            pv="inner-padding-m"
-                            ph="inner-padding-l"
-                            isLoading={isNavigating}
-                            disabled={!isPhaseSelectionComplete()}
+                          <OakBox
+                            $ph={"inner-padding-xl"}
+                            $pv={"inner-padding-s"}
                           >
-                            View curriculum
-                          </OakPrimaryButton>
-                        </Box>
+                            <OakPrimaryButton
+                              data-testid="mobile-phase-picker-confirm-button"
+                              iconName="arrow-right"
+                              aria-label="View curriculum"
+                              isTrailingIcon={true}
+                              onClick={() => {
+                                handleViewCurriculum();
+                              }}
+                              pv="inner-padding-m"
+                              ph="inner-padding-l"
+                              isLoading={isNavigating}
+                              disabled={!isPhaseSelectionComplete()}
+                            >
+                              View curriculum
+                            </OakPrimaryButton>
+                          </OakBox>
+                        </OakBox>
                       </OakFlex>
                     </Box>
                   </FocusOn>
