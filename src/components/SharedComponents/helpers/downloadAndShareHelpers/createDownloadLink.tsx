@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { getParsedData } from "./getParsedData";
+
 import OakError from "@/errors/OakError";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
@@ -58,31 +60,7 @@ const getDownloadLink = async ({
   }
   const json = await res.json();
 
-  const parsedJson = schema.safeParse(json);
-
-  if (!parsedJson.success) {
-    throw new OakError({
-      code: "downloads/failed-to-fetch",
-      originalError: parsedJson.error,
-      meta: {
-        ...meta,
-        type: "zod error",
-        error: parsedJson.error.message,
-      },
-    });
-  }
-
-  const { data, error } = parsedJson.data;
-
-  if (!data || error) {
-    throw new OakError({
-      code: "downloads/failed-to-fetch",
-      meta: {
-        ...meta,
-        error,
-      },
-    });
-  }
+  const data = getParsedData(json, schema, "downloads/failed-to-fetch", meta);
 
   return data.url;
 };

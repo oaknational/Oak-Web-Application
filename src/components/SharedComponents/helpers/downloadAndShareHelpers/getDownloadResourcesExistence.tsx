@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { Meta, getParsedData } from "./getParsedData";
+
 import { DownloadResourceType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import OakError from "@/errors/OakError";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
@@ -65,14 +67,6 @@ export type LegacyDownloadsApiCheckFilesResponseSchema = z.infer<
   typeof legacySchema
 >;
 
-type Meta =
-  | {
-      lessonSlug: string;
-      resourceTypesString: string;
-      isLegacyDownload: boolean;
-    }
-  | { unitProgrammeSlug: string };
-
 const getDownloadExistence = async (
   meta: Meta,
   checkWhichResourcesExistEndpoint: string,
@@ -88,31 +82,12 @@ const getDownloadExistence = async (
 
   const json = await res.json();
 
-  const parsedJson = schema.safeParse(json);
-
-  if (!parsedJson.success) {
-    throw new OakError({
-      code: "downloads/check-files-failed",
-      originalError: parsedJson.error,
-      meta: {
-        ...meta,
-        type: "zod error",
-        error: parsedJson.error.message,
-      },
-    });
-  }
-
-  const { data, error } = parsedJson.data;
-
-  if (!data || error) {
-    throw new OakError({
-      code: "downloads/check-files-failed",
-      meta: {
-        ...meta,
-        error,
-      },
-    });
-  }
+  const data = getParsedData(
+    json,
+    schema,
+    "downloads/check-files-failed",
+    meta,
+  );
 
   return data;
 };
