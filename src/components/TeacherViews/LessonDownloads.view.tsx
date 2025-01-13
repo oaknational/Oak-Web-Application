@@ -5,7 +5,7 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 import { useUser } from "@clerk/nextjs";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
-import { OakBox , OakHandDrawnHR } from "@oaknational/oak-components";
+import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
