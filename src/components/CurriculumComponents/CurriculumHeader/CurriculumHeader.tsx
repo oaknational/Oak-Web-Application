@@ -6,18 +6,17 @@ import {
   OakFlex,
   OakHandDrawnCardWithIcon,
   OakBox,
+  OakColorToken,
 } from "@oaknational/oak-components";
 
 import CurriculumHeaderTabNav from "../CurriculumHeaderTabNav";
 
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { Hr } from "@/components/SharedComponents/Typography";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
-import { OakColorName } from "@/styles/theme/types";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
@@ -27,8 +26,8 @@ export type CurriculumHeaderPageProps = {
   subjectPhaseOptions: SubjectPhasePickerData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   keyStages: string[];
-  color1?: OakColorName;
-  color2?: OakColorName;
+  color1?: OakColorToken;
+  color2?: OakColorToken;
 };
 
 const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
@@ -101,9 +100,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   ];
 
   return (
-    <Box $mb={40}>
+    <OakBox $mb="space-between-l">
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
-      <Flex $background={color1} $pv={[18]}>
+      <OakFlex $background={color1} $pv="inner-padding-l">
         <OakBox
           $maxWidth="all-spacing-24"
           $mh={"auto"}
@@ -140,8 +139,8 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             currentSelection={currentSelection}
           />
         </OakBox>
-      </Flex>
-      <Box $background={color2}>
+      </OakFlex>
+      <OakBox $background={color2}>
         {/* @todo replace with OakFlex - work out padding as max padding in oak-components is 24px */}
         <Flex $pb={[24, 24]} $pt={[20, 30]}>
           <OakBox
@@ -209,8 +208,8 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             />
           </OakBox>
         </Flex>
-      </Box>
-    </Box>
+      </OakBox>
+    </OakBox>
   );
 };
 export default CurriculumHeader;

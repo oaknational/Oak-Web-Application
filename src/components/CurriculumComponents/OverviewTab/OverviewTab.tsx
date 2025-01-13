@@ -313,7 +313,12 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         )}
       </OakBox>
       <OakBox $background={"bg-decorative1-subdued"} $pv="inner-padding-xl4">
-        <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
+        <OakBox
+          $maxWidth="all-spacing-24"
+          $mh={"auto"}
+          $ph="inner-padding-l"
+          $width={"100%"}
+        >
           <OakFlex
             $gap={["space-between-m", "space-between-m2"]}
             $flexDirection={"column"}
@@ -388,7 +393,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               )}
             </OakFlex>
           </OakFlex>
-        </Box>
+        </OakBox>
       </OakBox>
     </>
   );
