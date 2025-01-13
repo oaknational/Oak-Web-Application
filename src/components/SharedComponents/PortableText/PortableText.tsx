@@ -18,7 +18,6 @@ import { CTAInternalLinkEntry } from "@/common-lib/cms-types";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import getProxiedSanityAssetUrl from "@/common-lib/urls/getProxiedSanityAssetUrl";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Box from "@/components/SharedComponents/Box";
 
 const reportError = errorReporter("PortableText");
 
@@ -133,10 +132,10 @@ export const PTAnchorTarget: PortableTextMarkComponent<{
   }
 
   return (
-    <Box as="span" $position="relative">
+    <OakSpan $position="relative">
       <AnchorTarget id={props.value.anchor} />
       {props.children}
-    </Box>
+    </OakSpan>
   );
 };
 
