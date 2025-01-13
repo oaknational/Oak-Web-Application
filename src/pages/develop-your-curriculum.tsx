@@ -7,12 +7,12 @@ import {
   OakHeading,
   OakP,
   OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
 import { CurriculumPage } from "@/common-lib/cms-types";
 import Layout from "@/components/AppComponents/Layout";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Card from "@/components/SharedComponents/Card";
@@ -41,7 +41,7 @@ const elementsOfCurriculumDesignHeadings = [
 const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <MaxWidth $pt={[64, 80]}>
+      <OakMaxWidth $pt={["inner-padding-xl6", "inner-padding-xl8"]}>
         <SummaryCard {...pageData} />
         <Card
           $alignItems={["center", "flex-start"]}
@@ -232,7 +232,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
             )}
           </Flex>
         </Card>
-      </MaxWidth>
+      </OakMaxWidth>
     </Layout>
   );
 };

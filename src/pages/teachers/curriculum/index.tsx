@@ -6,13 +6,13 @@ import {
   OakLI,
   OakP,
   OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { Hr } from "@/components/SharedComponents/Typography";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
@@ -56,7 +56,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
       $background={"grey20"}
     >
       <Flex $justifyContent={"center"} $background={"mint"}>
-        <MaxWidth $ph={16}>
+        <OakMaxWidth $ph={"inner-padding-m"}>
           <Box $mt={20}>
             <Breadcrumbs
               breadcrumbs={[
@@ -79,11 +79,11 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               subjectPhaseOptions={subjectPhaseOptions}
             />
           </Flex>
-        </MaxWidth>
+        </OakMaxWidth>
       </Flex>
 
       <Flex $background={"white"} $justifyContent={"center"}>
-        <MaxWidth>
+        <OakMaxWidth>
           <Flex
             $flexDirection={["column", "row"]}
             $justifyContent={"space-between"}
@@ -199,7 +199,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               <BrushBorders color="grey20" hideOnMobileH />
             </Box>
           </Flex>
-        </MaxWidth>
+        </OakMaxWidth>
       </Flex>
     </AppLayout>
   );
