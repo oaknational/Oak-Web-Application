@@ -31,6 +31,7 @@ import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesMo
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
+import { set } from "lodash";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -46,6 +47,7 @@ export default function LessonOverviewCanonicalPage({
   isSpecialist,
 }: PageProps): JSX.Element {
   const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
+  const [lessonUrl, setLessonUrl] = useState<string | null>(null);
 
   const { shareUrl, browserUrl, shareActivated, shareIdRef } =
     useShareExperiment({
@@ -61,18 +63,21 @@ export default function LessonOverviewCanonicalPage({
       },
     });
 
-  const lessonUrl = window.location.href.split("?")[0];
-
-  const { teacherNote, isEditable } = useTeacherNotes({
-    lessonUrl,
-    shareId: shareIdRef.current,
-  });
+  const { teacherNote, isEditable, saveTeacherNote, teacherNotesEnabled } =
+    useTeacherNotes({
+      lessonUrl,
+      shareId: shareIdRef.current,
+    });
 
   useEffect(() => {
+    if (teacherNotesEnabled) {
+      setLessonUrl(window.location.href.split("?")[0] || null);
+    }
+
     if (window.location.href !== browserUrl) {
       window.history.replaceState({}, "", browserUrl);
     }
-  }, [browserUrl]);
+  }, [browserUrl, teacherNotesEnabled]);
 
   const teacherNotesButton = teacherNotesEnabled ? (
     <OakSmallSecondaryButton
@@ -128,6 +133,7 @@ export default function LessonOverviewCanonicalPage({
             setTeacherNotesOpen(false);
           }}
           teacherNote={teacherNote}
+          saveTeacherNote={saveTeacherNote}
         />
       </OakThemeProvider>
     </AppLayout>
