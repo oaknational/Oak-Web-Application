@@ -144,7 +144,7 @@ const Curriculum: NextPage<CurriculumPageProps> = ({ pageData }) => {
                   <BrushBorders hideOnMobileH color={"lemon50"} />
                   <OakBox
                     $display={["block", "none"]}
-                    $ph={["inner-padding-xl", "inner-padding-none"]}
+                    $ph={["inner-padding-m", "inner-padding-none"]}
                   >
                     <OakP
                       $mb={["space-between-m", "space-between-s"]}
