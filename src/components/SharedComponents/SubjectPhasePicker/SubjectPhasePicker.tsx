@@ -293,7 +293,7 @@ function SubjectContainer({
           <OakP>Explore our curricula for 2024/2025.</OakP>
         </OakFlex>
       </OakFlex>
-      <Box $mv={[30, 24]}>
+      <OakBox $mv={["space-between-m2", "space-between-m"]}>
         <OakFlex
           role="radiogroup"
           aria-labelledby={subjectInputId}
@@ -305,8 +305,8 @@ function SubjectContainer({
         >
           {children}
         </OakFlex>
-      </Box>
-      <Box $mb={[30, 0]} $ml={0}>
+      </OakBox>
+      <OakBox $mb={["space-between-m2", "space-between-none"]}>
         <OwaLink
           page={"curriculum-previous-downloads"}
           $textDecoration={"underline"}
@@ -316,7 +316,7 @@ function SubjectContainer({
           Previously released plans
           <Icon $color={"black"} name="arrow-right" verticalAlign="bottom" />
         </OwaLink>
-      </Box>
+      </OakBox>
     </SubjectContainerWrapper>
   );
 }
@@ -610,13 +610,16 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         $position="relative"
         data-testid="lot-picker"
         $zIndex={
-          (isMobileLotPickerModalOpen || showPhases) && isMobile ? 300 : 101
+          (isMobileLotPickerModalOpen || showPhases) && isMobile
+            ? "modal-dialog"
+            : "modal-close-button"
         }
         $maxWidth="all-spacing-23"
         $borderRadius="border-radius-s"
         $borderColor={showSubjects || showPhases ? "transparent" : "black"}
         $ba="border-solid-m"
       >
+        {/* Subject button */}
         <OakFlex
           $position="relative"
           $borderRadius="border-radius-s"
@@ -631,7 +634,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
             $flexDirection={"row"}
             $alignItems={"center"}
             $justifyContent={"flex-start"}
-            $width={["100%", "100%", "100%"]}
+            $width={"100%"}
           >
             <OakFlex
               $position={"relative"}
@@ -758,7 +761,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 scrollLock={true}
                 returnFocus
               >
-                <Box
+                <OakBox
                   data-testid="mobile-subject-picker"
                   role="dialog"
                   aria-modal="true"
@@ -767,14 +770,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     showSubjectError ? "subject-error-message" : undefined
                   }
                   $position="fixed"
-                  $bottom={0}
-                  $left={0}
-                  $right={0}
+                  $bottom={"all-spacing-0"}
+                  $left={"all-spacing-0"}
+                  $right={"all-spacing-0"}
                   $background="white"
                   $height="100%"
                   $overflowY="auto"
-                  $zIndex="modalDialog"
-                  $pa={24}
+                  $zIndex="modal-dialog"
+                  $pa={"inner-padding-xl"}
                 >
                   <OakFlex $flexDirection="column" $gap="space-between-m">
                     <OakFlex
@@ -856,12 +859,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       </OakBox>
                     </OakBox>
                   </OakFlex>
-                </Box>
+                </OakBox>
               </FocusOn>
             )}
-            <Box
-              $height={50}
-              $width={3}
+
+            {/* SEPARATOR */}
+            <OakBox
+              $height={"all-spacing-9"}
+              $width={"all-spacing-05"}
               $position={"relative"}
               $display={"block"}
               $visibility={showSubjects || showPhases ? "hidden" : null}
@@ -872,7 +877,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                 hideTop={true}
                 hideRight={true}
               />
-            </Box>
+            </OakBox>
+
+            {/* PHASE Button */}
             <Box $width={["50%", "60%"]} $position={"relative"}>
               <OakFlex
                 $position={"relative"}
@@ -909,7 +916,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       >
                         School phase
                       </OakSpan>
-                      <Box
+                      <OakBox
                         $font={"body-2"}
                         $color={
                           !showPhaseError && !showKS4OptionError
@@ -939,7 +946,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                         )}
                         {selectedPhase && !showKS4OptionError && (
                           <>
-                            <Box
+                            <OakBox
                               $textOverflow={"ellipsis"}
                               $whiteSpace={"nowrap"}
                               $overflowX={"hidden"}
@@ -948,14 +955,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                               {selectedKS4Option && (
                                 <OakSpan>, {selectedKS4Option.title}</OakSpan>
                               )}
-                            </Box>
+                            </OakBox>
                           </>
                         )}
                         {!selectedPhase &&
                           !showPhaseError &&
                           !showKS4OptionError &&
                           "Select"}
-                      </Box>
+                      </OakBox>
                     </OakBox>
                   </PickerButton>
                 </FocusIndicatorAlt>
@@ -1152,7 +1159,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     scrollLock={true}
                     returnFocus
                   >
-                    <Box
+                    <OakBox
                       data-testid="mobile-phase-picker"
                       role="dialog"
                       aria-modal="true"
@@ -1165,14 +1172,14 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                             : undefined
                       }
                       $position="fixed"
-                      $bottom={0}
-                      $left={0}
-                      $right={0}
+                      $bottom={"all-spacing-0"}
+                      $left={"all-spacing-0"}
+                      $right={"all-spacing-0"}
                       $background="white"
                       $height="100%"
                       $overflowY="auto"
-                      $zIndex="modalDialog"
-                      $pa={24}
+                      $zIndex="modal-dialog"
+                      $pa={"inner-padding-xl"}
                     >
                       <OakFlex $flexDirection="column" $gap="space-between-m">
                         <OakFlex
@@ -1387,7 +1394,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           </OakBox>
                         </OakBox>
                       </OakFlex>
-                    </Box>
+                    </OakBox>
                   </FocusOn>
                 )}
 
