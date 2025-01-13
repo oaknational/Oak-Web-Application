@@ -1,12 +1,16 @@
 {
   "cSpell.words": [
+    "analyzer",
     "arrowdown",
     "booleancheckbox",
     "chromedriver",
+    "codegen",
     "excalidraw",
     "gcloud",
+    "gleap",
     "hookform",
     "Hubspot",
+    "mathjax",
     "Nextjs",
     "oaknational",
     "pageobjects",
@@ -14,8 +18,12 @@
     "portabletext",
     "posthog",
     "sdlc",
+    "snakecase",
     "sonarcloud",
-    "Testrunner"
+    "storysource",
+    "Testrunner",
+    "webvtt",
+    "yalc"
   ],
   "deno.enable": true,
   "deno.enablePaths": ["netlify/edge-functions"],
