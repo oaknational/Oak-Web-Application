@@ -11,7 +11,6 @@ import allBlogPostsFixture from "../fixtures/allBlogPosts.json";
 import blogPostBySlugFixture from "../fixtures/blogPostBySlug.json";
 import webinarBySlugFixture from "../fixtures/webinarBySlug.json";
 import allLandingPagesFixture from "../fixtures/allLandingPages.json";
-import curriculumCorePageFixture from "../fixtures/curriculumCorePage.json";
 import contactCorePageFixture from "../fixtures/contactCorePage.json";
 import allPolicyPagesFixture from "../fixtures/allPolicyPages.json";
 import policyPageBySlugFixture from "../fixtures/policyPageBySlug.json";
@@ -37,7 +36,6 @@ export default {
   aboutBoardPage: jest.fn(() => aboutBoardPageFixture),
   aboutPartnersPage: jest.fn(() => aboutPartnersPageFixture),
   aboutWorkWithUsPage: jest.fn(() => aboutWorkWithUsPageFixture),
-  curriculumCorePage: jest.fn(() => curriculumCorePageFixture),
   contactCorePage: jest.fn(() => contactCorePageFixture),
   allPolicyPages: jest.fn(() => allPolicyPagesFixture),
   policyPageBySlug: jest.fn(() => policyPageBySlugFixture),
