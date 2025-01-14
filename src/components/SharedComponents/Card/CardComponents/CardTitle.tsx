@@ -99,38 +99,6 @@ const CardTitle: FC<CardTitleProps> = ({
           })}
           $pa={"inner-padding-none"}
         />
-        // <Icon
-        //   name={icon}
-        //   size={iconPositionArray.map((pos) =>
-        //     pos === "aboveTitle" ? 64 : iconSize,
-        //   )}
-        //   $mb={iconPositionArray.map((pos) => (pos === "aboveTitle" ? 12 : 0))}
-        //   $mr={iconPositionArray.map((pos) => {
-        //     switch (pos) {
-        //       case "leading":
-        //         return 12;
-        //       case "trailing":
-        //         return 0;
-        //       case "aboveTitle":
-        //         return "auto";
-        //       default:
-        //         return null;
-        //     }
-        //   })}
-        //   $ml={iconPositionArray.map((pos) => {
-        //     switch (pos) {
-        //       case "leading":
-        //         return 0;
-        //       case "trailing":
-        //         return 8;
-        //       case "aboveTitle":
-        //         return "auto";
-        //       default:
-        //         return null;
-        //     }
-        //   })}
-        //   $pa={0}
-        // />
       )}
       <Heading $font={$font} tag={tag}>
         {children}
