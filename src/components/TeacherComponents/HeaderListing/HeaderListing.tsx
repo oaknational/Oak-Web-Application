@@ -1,5 +1,10 @@
 import { FC } from "react";
-import { OakFlex, OakHeading, OakSpan } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakSpan,
+  OakColorFilterToken,
+} from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -20,7 +25,7 @@ export type HeaderListingProps = {
   background: OakColorName;
   subjectTitle: string;
   subjectSlug: string;
-  subjectIconBackgroundColor: OakColorName;
+  subjectIconBackgroundColor: OakColorFilterToken;
   year?: string;
   keyStageSlug?: string;
   keyStageTitle?: string;
@@ -97,6 +102,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
+            {shareButton}
           </OakFlex>
         </OakFlex>
       </OakFlex>
@@ -121,7 +127,6 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
           />
         )}
       </Flex>
-      {shareButton}
     </LessonHeaderWrapper>
   );
 };

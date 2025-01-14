@@ -1,6 +1,7 @@
 const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
 const path = require("path");
 
+const StatoscopeWebpackPlugin = require("@statoscope/webpack-plugin").default;
 const CopyPlugin = require("copy-webpack-plugin");
 const {
   BugsnagBuildReporterPlugin,
@@ -77,7 +78,7 @@ module.exports = async (phase) => {
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
-    webpack: (config, { dev, defaultLoaders }) => {
+    webpack: (config, { dev, defaultLoaders, isServer }) => {
       /**
        * Enable inlining of SVGs as components
        * @see https://react-svgr.com/docs/next/
@@ -127,6 +128,20 @@ module.exports = async (phase) => {
       );
       // Modify the file loader rule to ignore *.svg, since we have it handled now.
       fileLoaderRule.exclude = /\.svg$/i;
+
+      if (!dev && !isServer) {
+        config.plugins.push(
+          new StatoscopeWebpackPlugin({
+            saveReportTo: "./reports/report-[name]-[hash].html",
+            saveStatsTo: "./reports/stats-[name]-[hash].json",
+            open: false,
+            statsOptions: {
+              all: true,
+              source: true,
+            },
+          }),
+        );
+      }
 
       config.plugins.push(
         new CopyPlugin({

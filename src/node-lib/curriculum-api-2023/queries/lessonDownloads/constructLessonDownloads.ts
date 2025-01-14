@@ -56,7 +56,7 @@ const constructLessonDownloads = (
       presentationCount: lesson.lesson_data.asset_id_slidedeck ? 1 : 0,
       worksheetCount: lesson.lesson_data.asset_id_worksheet ? 1 : 0,
       hasCopyrightMaterial: lesson.lesson_data.copyright_content ? true : false,
-      orderInUnit: lesson.supplementary_data.order_in_unit,
+      orderInUnit: lesson.order_in_unit,
       lessonCohort: lesson.lesson_data._cohort,
     };
   });

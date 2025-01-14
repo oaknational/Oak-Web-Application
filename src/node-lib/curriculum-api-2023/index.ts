@@ -38,6 +38,8 @@ import curriculumUnitsIncludeNewSchema from "./queries/curriculumUnitsIncludeNew
 import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
 import teacherPreviewLessonQuery from "./queries/teacherPreviewLesson/teacherPreviewLesson.query";
 import curriculumSequenceQuery from "./queries/curriculumSequence/curriculumSequence.query";
+import { lessonMediaClipsQuery } from "./queries/lessonMediaClips/lessonMediaClips.query";
+import { betaLessonMediaClipsQuery } from "./queries/lessonBetaMediaClips/lessonBetaMediaClips.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -130,6 +132,7 @@ const curriculumApi2023 = {
   curriculumHeader: curriculumHeaderQuery(sdk),
   lessonListing: lessonListingQuery(sdk),
   lessonDownloads: lessonDownloadsQuery(sdk),
+  lessonMediaClips: lessonMediaClipsQuery(sdk),
   lessonShare: lessonShareQuery(sdk),
   lessonOverview: lessonOverviewQuery(sdk),
   pupilLessonQuery: pupilLessonQuery(sdk),
@@ -154,6 +157,7 @@ const curriculumApi2023 = {
     return teachersHomePageData.parse(teachersHomePage);
   },
   teacherPreviewLesson: teacherPreviewLessonQuery(sdk),
+  betaLessonMediaClipsQuery: betaLessonMediaClipsQuery(sdk),
   specialistLessonOverview: specialistLessonOverview(sdk),
   specialistLessonOverviewCanonical: specialistLessonOverviewCanonical(sdk),
   specialistSubjectListing: specialistSubjectListingQuery(sdk),

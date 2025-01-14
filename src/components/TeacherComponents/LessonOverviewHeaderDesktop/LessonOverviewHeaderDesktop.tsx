@@ -88,10 +88,14 @@ export const LessonOverviewHeaderDesktop: FC<LessonOverviewHeaderProps> = (
                   )}
                 </OakBox>
               </OakBox>
-              <OakFlex $gap="all-spacing-6">
+              <OakFlex
+                $gap="space-between-s"
+                $alignItems={"flex-start"}
+                $flexWrap={"wrap"}
+              >
                 <LessonOverviewHeaderDownloadAllButton {...props} />
-                {teacherShareButton}
                 {showShare && <LessonOverviewHeaderShareAllButton {...props} />}
+                {teacherShareButton}
               </OakFlex>
             </OakFlex>
           </OakFlex>

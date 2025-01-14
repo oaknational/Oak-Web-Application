@@ -14,10 +14,9 @@ import {
   JSZipCached,
   insertNumbering,
 } from "../docx";
+import { createThreadOptions } from "../tab-helpers";
 
 import { createCurriculumSlug } from "./helper";
-
-import { createThreadOptions } from "@/pages/teachers/curriculum/[subjectPhaseSlug]/[tab]";
 
 export default async function generate(
   zip: JSZipCached,

@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { getUpdatedUrl } from "./getUpdatedUrl";
 import {
@@ -42,21 +41,20 @@ export const useShareExperiment = ({
   unitSlug,
   programmeSlug,
   source,
+  shareBaseUrl,
   curriculumTrackingProps,
 }: {
   lessonSlug?: string;
   unitSlug?: string;
   programmeSlug?: string;
+  shareBaseUrl?: string;
   source: keyof typeof shareSources;
   curriculumTrackingProps: CurriculumTrackingProps;
 }) => {
   const shareIdRef = useRef<string | null>(null);
   const shareIdKeyRef = useRef<string | null>(null);
   const [shareUrl, setShareUrl] = useState<string | null>(null);
-
-  const shareExperimentFlag = useFeatureFlagVariantKey(
-    "delivery-sq-share-experiment",
-  );
+  const [browserUrl, setBrowserUrl] = useState<string | null>(null);
 
   const { track } = useAnalytics();
 
@@ -83,7 +81,7 @@ export const useShareExperiment = ({
     if (urlShareId && storageShareId !== urlShareId) {
       // check for  existing conversion shareId
       if (!getConversionShareId(urlShareId)) {
-        // TODO: store the converted shareId in a storage for preventing multiple conversion events
+        // store the converted shareId in a storage for preventing multiple conversion events
         storeConversionShareId(urlShareId);
 
         // track the share converted event irrespective of whether the user is part of the experiment
@@ -98,7 +96,8 @@ export const useShareExperiment = ({
       }
     }
 
-    if (!shareIdRef.current && shareExperimentFlag) {
+    if (!shareIdRef.current) {
+      // we update the url and send the share initiated event for any users in the experiment
       const { url, shareIdKey, shareId } = getUpdatedUrl({
         url: window.location.href,
         storageShareId,
@@ -107,8 +106,10 @@ export const useShareExperiment = ({
         shareMethod: "url",
       });
 
+      setBrowserUrl(url);
+
       const { url: buttonUrl } = getUpdatedUrl({
-        url: window.location.href,
+        url: shareBaseUrl || window.location.href,
         storageShareId: shareId, // we know that this will now be the shareId
         unhashedKey: key,
         source,
@@ -131,17 +132,13 @@ export const useShareExperiment = ({
 
       shareIdRef.current = shareId;
       shareIdKeyRef.current = shareIdKey;
-
-      if (window.location.href !== url) {
-        window.history.replaceState({}, "", url);
-      }
     }
   }, [
     lessonSlug,
     programmeSlug,
     unitSlug,
+    shareBaseUrl,
     curriculumTrackingProps,
-    shareExperimentFlag,
     source,
     track,
     coreTrackingProps,
@@ -168,10 +165,10 @@ export const useShareExperiment = ({
   };
 
   return {
-    shareExperimentFlag,
     shareIdRef,
     shareIdKeyRef,
     shareUrl,
+    browserUrl,
     shareActivated,
   };
 };

@@ -1,8 +1,7 @@
 import { FC, useRef, useEffect } from "react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import { OakHeading, OakP, OakIcon } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Svg from "@/components/SharedComponents/Svg";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
@@ -54,11 +53,18 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     focusRef.current?.focus();
   }, []);
 
-  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
+  // create a share URL which points at the lesson overview page
+  const pathElems = window.location.href.split("/");
+  const shareBaseUrl = pathElems
+    .splice(0, pathElems.indexOf(lessonSlug) + 1)
+    .join("/");
+
+  const { shareUrl, shareActivated } = useShareExperiment({
     lessonSlug,
-    unitSlug: unitSlug ?? undefined,
-    programmeSlug: programmeSlug ?? undefined,
+    unitSlug: isCanonical ? undefined : (unitSlug ?? undefined), // NB. unitSlug can sometimes be defined for canonical state
+    programmeSlug: isCanonical ? undefined : (programmeSlug ?? undefined),
     source: isCanonical ? "download-canonical" : "download-browse",
+    shareBaseUrl,
     curriculumTrackingProps: {
       lessonName: lessonTitle,
       unitName: unitTitle ?? "",
@@ -69,9 +75,14 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     },
   });
 
-  const teacherShareButton = shareExperimentFlag ? (
-    <TeacherShareButton shareUrl={shareUrl} shareActivated={shareActivated} />
-  ) : null;
+  const teacherShareButton = (
+    <TeacherShareButton
+      label="Share resources with colleague"
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+      variant="primary"
+    />
+  );
 
   return (
     <>
@@ -88,7 +99,11 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           $width={[140, 400]}
           $position={"relative"}
         >
-          <Svg name="tick-mark-happiness" $height={"100%"} $width={"100%"} />
+          <OakIcon
+            iconName="tick-mark-happiness"
+            $height={"100%"}
+            $width={"100%"}
+          />
         </Flex>
 
         <Flex
@@ -149,12 +164,12 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           <OakHeading tag="h1" $font={["heading-4", "heading-3"]}>
             Thanks for downloading
           </OakHeading>
-          {teacherShareButton}
 
           <OakP $font={"body-1"}>
             We hope you find the resources useful. Click the question mark in
             the bottom-right corner to share your feedback.
           </OakP>
+          {teacherShareButton}
         </Flex>
       </Flex>
 

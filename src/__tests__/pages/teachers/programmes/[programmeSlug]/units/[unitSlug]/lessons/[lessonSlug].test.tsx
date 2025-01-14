@@ -16,6 +16,7 @@ import {
   mockLoggedIn,
   mockUserWithDownloadAccess,
 } from "@/__tests__/__helpers__/mockUser";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 const props = {
   curriculumData: lessonOverviewFixture({
@@ -55,14 +56,31 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+// mock useShareExperiment
+jest.mock(
+  "@/pages-helpers/teacher/share-experiments/useShareExperiment",
+  () => {
+    return {
+      __esModule: true,
+      useShareExperiment: jest.fn(() => ({
+        shareExperimentFlag: false,
+        shareUrl: "",
+        browserUrl: "",
+        shareActivated: false,
+      })),
+    };
+  },
+);
+
 const render = renderWithProviders();
 
-describe("pages/teachers/lessons", () => {
+describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]", () => {
   beforeEach(() => {
     setUseUserReturn({
       ...mockLoggedIn,
       user: mockUserWithDownloadAccess,
     });
+    console.error = jest.fn();
   });
   it("Renders title from the props", async () => {
     render(<LessonOverviewPage {...props} />);
@@ -165,11 +183,44 @@ describe("pages/teachers/lessons", () => {
     const shareLabel = queryAllByText("Share activities with pupils");
 
     if (shareButton[0] !== undefined && shareButton.length > 0) {
-      expect(shareButton[0]).toHaveAttribute("disabled");
+      expect(shareButton[0]).toBeDisabled();
       expect(shareLabel[0]).toBeInTheDocument();
     } else {
       throw new Error("Share all button not found");
     }
+  });
+
+  it("doesn't render the share button if shareExperimentFlag is control", async () => {
+    window.history.replaceState = jest.fn();
+
+    (useShareExperiment as jest.Mock).mockReturnValueOnce({
+      shareExperimentFlag: "control",
+      shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+      browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+      shareActivated: false,
+    });
+
+    const result = render(<LessonOverviewPage {...props} />);
+
+    expect(() => result.getByText("Share resources with colleague")).toThrow();
+  });
+
+  it("updates the url if shareExperimentFlag is test or control", async () => {
+    const fn = jest.spyOn(window.history, "replaceState");
+
+    (useShareExperiment as jest.Mock).mockReturnValueOnce({
+      shareExperimentFlag: "test",
+      shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+      browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+      shareActivated: false,
+    });
+    render(<LessonOverviewPage {...props} />);
+
+    expect(fn).toHaveBeenCalledWith(
+      {},
+      "",
+      "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+    );
   });
 
   it("sign language button toggles on click", async () => {
@@ -198,6 +249,8 @@ describe("pages/teachers/lessons", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonOverviewPage {...props} />);
 
+      const { lessonSlug, unitSlug, programmeSlug } = props.curriculumData;
+
       expect(seo).toEqual({
         ...mockSeoResult,
         ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
@@ -210,7 +263,7 @@ describe("pages/teachers/lessons", () => {
         ogDescription:
           "View lesson content and choose resources to download or share",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-        canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
         robots: "index,follow",
       });
     });
@@ -219,15 +272,17 @@ describe("pages/teachers/lessons", () => {
         <LessonOverviewPage {...propsWithTier} />,
       );
 
+      const { lessonSlug, unitSlug, programmeSlug } = props.curriculumData;
+
       expect(seo).toEqual(
         expect.objectContaining({
-          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           description:
             "View lesson content and choose resources to download or share",
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogImage:
-            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2024",
+            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2025",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           ogTitle:
             "Lesson: Adverbial complex sentences | Higher | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
@@ -243,6 +298,9 @@ describe("pages/teachers/lessons", () => {
         <LessonOverviewPage {...propsWithExamBoard} />,
       );
 
+      const { lessonSlug, unitSlug, programmeSlug } =
+        propsWithExamBoard.curriculumData;
+
       expect(seo).toEqual(
         expect.objectContaining({
           title:
@@ -255,7 +313,7 @@ describe("pages/teachers/lessons", () => {
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           robots: "index,follow",
         }),
       );
@@ -264,6 +322,9 @@ describe("pages/teachers/lessons", () => {
       const { seo } = renderWithSeo()(
         <LessonOverviewPage {...propsWithTierAndExamBoard} />,
       );
+
+      const { lessonSlug, unitSlug, programmeSlug } =
+        propsWithTierAndExamBoard.curriculumData;
 
       expect(seo).toEqual(
         expect.objectContaining({
@@ -277,9 +338,9 @@ describe("pages/teachers/lessons", () => {
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
           ogImage:
-            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2024",
+            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2025",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           robots: "index,follow",
         }),
       );
@@ -462,6 +523,24 @@ describe("pages/teachers/lessons", () => {
         unitName: "Simple, Compound and Adverbial Complex Sentences",
         unitSlug: "grammar-1-simple-compound-and-adverbial-complex-sentences",
       });
+    });
+
+    it("updates the url if shareExperimentFlag is true", async () => {
+      const fn = jest.spyOn(window.history, "replaceState");
+
+      (useShareExperiment as jest.Mock).mockReturnValueOnce({
+        shareExperimentFlag: true,
+        shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+        browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+        shareActivated: false,
+      });
+      render(<LessonOverviewPage {...props} />);
+
+      expect(fn).toHaveBeenCalledWith(
+        {},
+        "",
+        "http://localhost:3000/teachers/lessons/lesson-1?test=1",
+      );
     });
   });
   describe("getStaticProps", () => {

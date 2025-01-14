@@ -17,7 +17,6 @@ const screenshotCurrentModals = async (
   label: string,
   slug: string,
   page: Page,
-  opts: { id: string },
 ): Promise<ScreenshotModalResult[]> => {
   const modals: ScreenshotModalResult[] = [];
 
@@ -68,7 +67,7 @@ const screenshotCurrentModals = async (
           path: modalScreenshotPath,
         });
 
-        console.log(`🖼️ [${opts.id}/${modalSlug}] rendered`);
+        console.log(`🖼️  [${slug}/${modalSlug}] rendered`);
 
         modals.push({
           slug: modalSlug,
@@ -90,7 +89,7 @@ const screenshotPage = async (
   label: string,
   slug: string,
   page: Page,
-  opts: { id: string; includeModals: boolean },
+  opts: { id: string; includeModals: boolean; removeOptions: boolean },
 ): Promise<ScreenshotPageResult[]> => {
   const url = `${host}/teachers/curriculum/${slug}/units`;
   const basedir = getPagePath(label);
@@ -103,6 +102,16 @@ const screenshotPage = async (
   await page.evaluate(() => {
     document.querySelector("div[data-testid=cookie-banner]")?.remove();
   });
+
+  const removeUnitOptions = async () => {
+    await page.evaluate(() => {
+      for (const el of Array.from(
+        document.querySelectorAll('div[data-testid="options-tag"]'),
+      )) {
+        el.remove();
+      }
+    });
+  };
 
   const subjectSelector =
     '*[data-testid="subjectCategory-button"], *[data-testid="subject-button"]';
@@ -167,29 +176,40 @@ const screenshotPage = async (
           await el.click();
         }
       }
-      const pagePath = getPagePath(label, buildFilenameSlug(alt) + ".png");
+
+      if (opts.removeOptions) {
+        await removeUnitOptions();
+      }
+
+      const filenameSlug = buildFilenameSlug(alt);
+      const pagePath = getPagePath(label, filenameSlug + ".png");
       await screenshotPageCurrent(page, pagePath);
+      const combinedSlug = `${slug}-${filenameSlug}`;
       console.log(
-        `📦 [${opts.id}] combined: ./${relative(process.cwd(), pagePath)}`,
+        `📦 [${combinedSlug}] combined: ./${relative(process.cwd(), pagePath)}`,
       );
       const modals = !opts.includeModals
         ? []
-        : await screenshotCurrentModals(label, slug, page, { id: opts.id });
+        : await screenshotCurrentModals(label, combinedSlug, page);
       outputJson.push({
-        slug,
+        slug: combinedSlug,
         screenshot: relative(BASE_PATH, pagePath),
         modals,
       });
     }
   } else {
+    if (opts.removeOptions) {
+      await removeUnitOptions();
+    }
+
     const pagePath = getPagePath(label, `${slug}.png`);
     await screenshotPageCurrent(page, pagePath);
     console.log(
-      `📦 [${opts.id}] combined: ./${relative(process.cwd(), pagePath)}`,
+      `📦 [${slug}] combined: ./${relative(process.cwd(), pagePath)}`,
     );
     const modals = !opts.includeModals
       ? []
-      : await screenshotCurrentModals(label, slug, page, { id: opts.id });
+      : await screenshotCurrentModals(label, slug, page);
     outputJson.push({
       slug,
       screenshot: relative(BASE_PATH, pagePath),
@@ -232,11 +252,16 @@ async function withPage(callback: (page: Page) => Promise<void>) {
 type screenshotOpts = {
   loginUrl?: string;
   includeModals?: boolean;
+  removeOptions?: boolean;
 };
 export default async function screenshot(
   host: string,
   label: string,
-  { loginUrl, includeModals = false }: screenshotOpts = {},
+  {
+    loginUrl,
+    removeOptions = false,
+    includeModals = false,
+  }: screenshotOpts = {},
 ) {
   await withPage(async (page) => {
     if (loginUrl) {
@@ -250,6 +275,7 @@ export default async function screenshot(
     for (const slug of CURRIC_SLUGS) {
       const pageJson = await screenshotPage(host, label, slug, page, {
         includeModals: includeModals,
+        removeOptions,
         id: slug,
       });
       outputJson.pages = outputJson.pages.concat(pageJson);
