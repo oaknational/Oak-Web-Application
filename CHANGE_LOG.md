@@ -1,3 +1,44 @@
+## [1.658.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.1...v1.658.2) (2025-01-14)
+
+
+### Bug Fixes
+
+* more removal of curriculumCorePage ([1c86912](https://github.com/oaknational/Oak-Web-Application/commit/1c869129c06457046947d01962691cec5fc7a199))
+
+## [1.658.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.0...v1.658.1) (2025-01-09)
+
+
+### Bug Fixes
+
+* allow singular programme factors in ui ([362c5de](https://github.com/oaknational/Oak-Web-Application/commit/362c5dee5e90d9b18ae007ab4b027c69cef56eec))
+
+# [1.658.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.657.0...v1.658.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* conflicts ([751e5eb](https://github.com/oaknational/Oak-Web-Application/commit/751e5eb0b48d7d126dd38bf4122baa7a64f075cb))
+* reinstate share experiment code ([23ddda4](https://github.com/oaknational/Oak-Web-Application/commit/23ddda4648dd05b99de906a8047e8db9a6b7e73f))
+* type issues and tests ([7ab4f00](https://github.com/oaknational/Oak-Web-Application/commit/7ab4f00f5dea9467b9ade51e18dadbe2a97a4336))
+
+
+### Features
+
+* added the modal and tiptap editor ([d571833](https://github.com/oaknational/Oak-Web-Application/commit/d571833a525f606aa808a932d54cb01485b82e94))
+
+# [1.657.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.656.0...v1.657.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* only require one option to be false to set hubspot loading finished ([9985525](https://github.com/oaknational/Oak-Web-Application/commit/99855258e334cfd00404fe43e5b0dcb22d15d8c3))
+
+
+### Features
+
+* show a loading state on downloads button when details loading from hubspot ([f3a5072](https://github.com/oaknational/Oak-Web-Application/commit/f3a5072ea746d9780d5752e46b6a3ce518c41694))
+* use 'loading' on button instead of 'downloading' ([d64c0bc](https://github.com/oaknational/Oak-Web-Application/commit/d64c0bc54003bfd1788eedf11887d72ada987ed7))
+
 # [1.656.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.4...v1.656.0) (2025-01-08)
 
 
