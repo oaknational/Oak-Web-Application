@@ -8,10 +8,10 @@ import {
   OakP,
   OakFlex,
   OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import UnitList from "@/components/TeacherComponents/UnitList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import TabularNav from "@/components/SharedComponents/TabularNav";
@@ -99,7 +99,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
         isNew={false}
       />
 
-      <MaxWidth $ph={16}>
+      <OakMaxWidth $ph={"inner-padding-m"}>
         <OakGrid data-testid="specialist-unit-grid">
           <OakGridArea
             $order={[0, 2]}
@@ -221,7 +221,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
             />
           </OakGridArea>
         </OakGrid>
-      </MaxWidth>
+      </OakMaxWidth>
     </>
   );
 };

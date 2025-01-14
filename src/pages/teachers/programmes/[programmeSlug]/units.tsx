@@ -18,6 +18,7 @@ import {
   oakDefaultTheme,
   OakFlex,
   OakFieldset,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import {
@@ -26,7 +27,6 @@ import {
 } from "@/node-lib/isr";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import UnitList from "@/components/TeacherComponents/UnitList";
@@ -209,7 +209,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
         />
-        <MaxWidth $ph={16}>
+        <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
             <OakGridArea $colSpan={[12, 12, 9]}>
               <NewContentBanner
@@ -425,7 +425,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               )}
             </OakGridArea>
           </OakGrid>
-        </MaxWidth>
+        </OakMaxWidth>
       </AppLayout>
     </OakThemeProvider>
   );

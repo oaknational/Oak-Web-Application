@@ -10,11 +10,11 @@ import {
   OakGridArea,
   OakThemeProvider,
   oakDefaultTheme,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonList from "@/components/TeacherComponents/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import {
@@ -217,7 +217,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           {...curriculumData}
           shareButton={teacherShareButton}
         />
-        <MaxWidth $ph={16}>
+        <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
             <OakGridArea
               $colSpan={[12, 9]}
@@ -244,7 +244,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               />
             </OakGridArea>
           </OakGrid>
-        </MaxWidth>
+        </OakMaxWidth>
       </OakThemeProvider>
     </AppLayout>
   );

@@ -6,16 +6,16 @@ import {
   OakHeading,
   OakFlex,
   OakIcon,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 const PupilTab: FC = () => {
   return (
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
-      <MaxWidth $ph={[16]} $pb={24}>
+      <OakMaxWidth $ph={["inner-padding-m"]} $pb={"inner-padding-xl"}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
             <OakFlex
@@ -69,7 +69,7 @@ const PupilTab: FC = () => {
             </ImageContainer>
           </OakGridArea>
         </OakGrid>
-      </MaxWidth>
+      </OakMaxWidth>
     </OakFlex>
   );
 };

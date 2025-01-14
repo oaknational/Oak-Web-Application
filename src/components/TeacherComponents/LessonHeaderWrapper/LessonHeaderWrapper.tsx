@@ -1,11 +1,14 @@
 import { FC } from "react";
-import { OakHandDrawnHR, OakBox } from "@oaknational/oak-components";
+import {
+  OakMaxWidth,
+  OakHandDrawnHR,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { OakColorName } from "@/styles/theme";
 
 /**
@@ -24,7 +27,10 @@ export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {
 
   return (
     <Flex $flexGrow={1} $background={background}>
-      <MaxWidth $ph={12} $mb={[32, 56]}>
+      <OakMaxWidth
+        $ph={"inner-padding-s"}
+        $mb={["space-between-m2", "space-between-xl"]}
+      >
         <OakBox $mt={["space-between-s", "space-between-m"]}>
           <Breadcrumbs breadcrumbs={breadcrumbs} />
         </OakBox>
@@ -35,7 +41,7 @@ export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {
           $height={"all-spacing-1"}
         />
         {children}
-      </MaxWidth>
+      </OakMaxWidth>
     </Flex>
   );
 };

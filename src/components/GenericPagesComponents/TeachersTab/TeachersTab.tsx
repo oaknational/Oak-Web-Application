@@ -6,12 +6,12 @@ import {
   OakHeading,
   OakFlex,
   OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import useSearch from "@/context/Search/useSearch";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import TeachersTabResourceSelectorCard from "@/components/GenericPagesComponents/TeachersTabResourceSelectorCard";
 import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
@@ -25,7 +25,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
   const { setSearchTerm } = useSearch({});
   return (
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
-      <MaxWidth $ph={[16]}>
+      <OakMaxWidth $ph={["inner-padding-m"]}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
             <OakFlex
@@ -114,7 +114,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
             </ImageContainer>
           </OakGridArea>
         </OakGrid>
-      </MaxWidth>
+      </OakMaxWidth>
     </OakFlex>
   );
 };

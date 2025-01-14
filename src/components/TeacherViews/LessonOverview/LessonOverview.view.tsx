@@ -6,6 +6,7 @@ import {
   OakHeading,
   OakFlex,
   OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import { hasLessonMathJax } from "./hasLessonMathJax";
@@ -24,7 +25,6 @@ import {
   getPathway,
   lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
@@ -271,7 +271,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
         showShare={showShare}
         teacherShareButton={teacherShareButton}
       />
-      <MaxWidth $ph={16} $pb={80}>
+      <OakMaxWidth $ph={"inner-padding-m"} $pb={"inner-padding-xl8"}>
         {expired ? (
           <OakBox $pa={"inner-padding-m"} $mb={"space-between-xxl"}>
             <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
@@ -638,7 +638,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
             </OakGridArea>
           </OakGrid>
         )}
-      </MaxWidth>
+      </OakMaxWidth>
     </MathJaxLessonProvider>
   );
 }
