@@ -1,7 +1,8 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakP, OakIcon, OakFlex } from "@oaknational/oak-components";
+import { OakP, OakIcon, OakFlex, OakLink } from "@oaknational/oak-components";
 
+import { resolveOakHref } from "@/common-lib/urls";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import { FontProps } from "@/styles/utils/typography";
@@ -31,21 +32,19 @@ const PreAlbCopyright = (
   <OakP $font="body-3" {...props}>
     This content is made available by Oak National Academy Limited and its
     partners and licensed under Oak’s{" "}
-    <OwaLink
-      page={"legal"}
-      legalSlug="terms-and-conditions"
-      htmlAnchorProps={{
-        target: props.openLinksExternally ? "_blank" : "_self",
-        "aria-label": `Terms and conditions${
-          props.openLinksExternally ? " (opens in a new tab)" : ""
-        }`,
-      }}
-      $display={"inline-flex"}
-      $alignItems={"center"}
+    <OakLink
+      href={resolveOakHref({
+        page: "legal",
+        legalSlug: "open-government-licence",
+      })}
+      target={props.openLinksExternally ? "_blank" : "_self"}
+      aria-label={`Terms and conditions${
+        props.openLinksExternally ? " (opens in a new tab)" : ""
+      }`}
     >
       terms &amp; conditions{" "}
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </OwaLink>{" "}
+    </OakLink>{" "}
     (Collection 1), except where otherwise stated.
   </OakP>
 );
@@ -72,11 +71,7 @@ const PostAlbCopyright = (
         href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
         target={props.openLinksExternally ? "_blank" : "_self"}
       >
-        <OakFlex
-          $display={"inline-flex"}
-          $alignItems={"center"}
-          $textDecoration={"underline"}
-        >
+        <OakFlex $display={"inline"} $alignItems={"center"}>
           Open Government Licence version 3.0{" "}
           <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
         </OakFlex>
