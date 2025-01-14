@@ -1,10 +1,13 @@
 import { FC } from "react";
-import { OakMaxWidth, OakHandDrawnHR } from "@oaknational/oak-components";
+import {
+  OakMaxWidth,
+  OakHandDrawnHR,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { OakColorName } from "@/styles/theme";
 
@@ -28,10 +31,9 @@ export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {
         $ph={"inner-padding-s"}
         $mb={["space-between-m2", "space-between-xl"]}
       >
-        <Box $mt={[20, 22]}>
+        <OakBox $mt={["space-between-s", "space-between-m"]}>
           <Breadcrumbs breadcrumbs={breadcrumbs} />
-        </Box>
-
+        </OakBox>
         <OakHandDrawnHR
           hrColor={"white"}
           $mt={"space-between-s"}

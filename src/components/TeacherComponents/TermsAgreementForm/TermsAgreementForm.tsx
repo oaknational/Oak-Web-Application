@@ -6,10 +6,9 @@ import {
   UseFormRegister,
   UseFormTrigger,
 } from "react-hook-form";
-import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
-import Box from "@/components/SharedComponents/Box";
 import OakLink from "@/components/SharedComponents/OwaLink";
 import Input from "@/components/SharedComponents/Input";
 import Icon from "@/components/SharedComponents/Icon";
@@ -77,7 +76,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
               onEditClick={handleEditDetailsCompletedClick}
             />
           ) : (
-            <Box $maxWidth={[null, 420, 420]}>
+            <OakBox $maxWidth={[null, "all-spacing-21", "all-spacing-21"]}>
               <ResourcePageSchoolDetails
                 errors={form.errors}
                 setSchool={setSchool}
@@ -149,13 +148,15 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   );
                 }}
               />
-            </Box>
+            </OakBox>
           )}
-          <CopyrightNotice
-            showPostAlbCopyright={showPostAlbCopyright}
-            openLinksExternally={true}
-            copyrightYear={copyrightYear}
-          />
+          <OakBox $width="all-spacing-21">
+            <CopyrightNotice
+              showPostAlbCopyright={showPostAlbCopyright}
+              openLinksExternally={true}
+              copyrightYear={copyrightYear}
+            />
+          </OakBox>
         </OakFlex>
       )}
     </>

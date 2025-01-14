@@ -6,6 +6,7 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
   OakHandDrawnHR,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import {
@@ -15,7 +16,6 @@ import {
 import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Box from "@/components/SharedComponents/Box";
 import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import LessonPlayAllButton from "@/components/LessonPlayAllButton/LessonPlayAllButton";
 
@@ -176,7 +176,7 @@ export const LessonItemContainer = forwardRef<
           )}
         </OakFlex>
 
-        <Box>{children}</Box>
+        <OakBox>{children}</OakBox>
         {!props.isFinalElement && (
           <OakHandDrawnHR
             data-testid="hr"
