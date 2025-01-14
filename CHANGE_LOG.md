@@ -1,3 +1,10 @@
+## [1.658.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.1...v1.658.2) (2025-01-14)
+
+
+### Bug Fixes
+
+* more removal of curriculumCorePage ([1c86912](https://github.com/oaknational/Oak-Web-Application/commit/1c869129c06457046947d01962691cec5fc7a199))
+
 ## [1.658.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.0...v1.658.1) (2025-01-09)
 
 
