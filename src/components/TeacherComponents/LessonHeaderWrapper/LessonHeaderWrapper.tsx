@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakHandDrawnHR , OakBox } from "@oaknational/oak-components";
+import { OakHandDrawnHR, OakBox } from "@oaknational/oak-components";
 
 import Breadcrumbs, {
   Breadcrumb,
