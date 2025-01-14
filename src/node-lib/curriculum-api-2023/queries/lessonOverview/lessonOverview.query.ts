@@ -157,6 +157,7 @@ export const transformedLessonOverviewData = (
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
+  const hasAddFile = content.additionalFiles;
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
@@ -222,7 +223,7 @@ export const transformedLessonOverviewData = (
     actions: browseData.actions,
     hasMediaClips: false,
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
-    additionalFiles: content.additionalFiles
+    additionalFiles: hasAddFile
       ? getAdditionalFiles(content.additionalFiles)
       : null,
   };
