@@ -172,6 +172,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     handleToggleSelectAll,
     selectAllChecked,
     setEmailInLocalStorage,
+    hubspotLoaded,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
     type: "download",
@@ -407,14 +408,19 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   }
                   text={"Download .zip"}
                   icon={"download"}
-                  isLoading={isAttemptingDownload}
-                  disabled={
-                    hasFormErrors ||
-                    noResourcesSelected ||
-                    showNoResources ||
-                    (!form.formState.isValid && !localStorageDetails)
+                  isLoading={
+                    isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
                   }
-                  loadingText={"Downloading..."}
+                  disabled={
+                    (hasFormErrors ||
+                      noResourcesSelected ||
+                      showNoResources ||
+                      (!form.formState.isValid && !localStorageDetails)) &&
+                    hubspotLoaded
+                  }
+                  loadingText={
+                    isAttemptingDownload ? "Downloading..." : "Loading..."
+                  }
                 />
               }
             />
