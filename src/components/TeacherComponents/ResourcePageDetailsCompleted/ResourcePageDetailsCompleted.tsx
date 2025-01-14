@@ -27,7 +27,7 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
 }) => {
   return (
     <OakBox
-      $width={["100%", "all-spacing-20"]}
+      $width={["100%", "all-spacing-21"]}
       $height={"max-content"}
       $position="relative"
       $background="grey30"

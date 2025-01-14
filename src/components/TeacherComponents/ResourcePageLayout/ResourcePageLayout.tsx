@@ -153,11 +153,11 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
         </Flex>
       </OakBox>
 
-      <Flex
+      <OakFlex
         $flexDirection="column"
         $alignSelf="center"
-        $gap={16}
-        $maxWidth={420}
+        $gap="space-between-s"
+        $maxWidth="all-spacing-21"
       >
         {props.showNoResources &&
           (props.page === "download" ? (
@@ -220,7 +220,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             )}
           </>
         )}
-      </Flex>
+      </OakFlex>
     </OakFlex>
   );
 }

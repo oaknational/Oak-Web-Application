@@ -76,7 +76,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
               onEditClick={handleEditDetailsCompletedClick}
             />
           ) : (
-            <OakBox $maxWidth={[null, "all-spacing-20", "all-spacing-20"]}>
+            <OakBox $maxWidth={[null, "all-spacing-21", "all-spacing-21"]}>
               <ResourcePageSchoolDetails
                 errors={form.errors}
                 setSchool={setSchool}
@@ -150,7 +150,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
               />
             </OakBox>
           )}
-          <OakBox $width="all-spacing-20">
+          <OakBox $width="all-spacing-21">
             <CopyrightNotice
               showPostAlbCopyright={showPostAlbCopyright}
               openLinksExternally={true}
