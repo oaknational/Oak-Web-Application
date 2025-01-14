@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { OakBox } from "@oaknational/oak-components";
+import { OakHandDrawnHR , OakBox } from "@oaknational/oak-components";
 
-import { Hr } from "@/components/SharedComponents/Typography";
 import Breadcrumbs, {
   Breadcrumb,
 } from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
@@ -29,7 +28,12 @@ export const LessonHeaderWrapper: FC<LessonHeaderWrapperProps> = (props) => {
         <OakBox $mt={["space-between-s", "space-between-m"]}>
           <Breadcrumbs breadcrumbs={breadcrumbs} />
         </OakBox>
-        <Hr $color={"white"} $mt={20} $mb={[24, 28]} />
+        <OakHandDrawnHR
+          hrColor={"white"}
+          $mt={"space-between-s"}
+          $mb={"space-between-m"}
+          $height={"all-spacing-1"}
+        />
         {children}
       </MaxWidth>
     </Flex>

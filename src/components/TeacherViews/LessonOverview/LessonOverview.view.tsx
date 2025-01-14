@@ -28,7 +28,6 @@ import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
-import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
   KeyStageTitleValueType,
@@ -48,7 +47,6 @@ import {
   checkIsResourceCopyrightRestricted,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
-import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
@@ -275,22 +273,22 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
       />
       <MaxWidth $ph={16} $pb={80}>
         {expired ? (
-          <Box $pa={16} $mb={64}>
+          <OakBox $pa={"inner-padding-m"} $mb={"space-between-xxl"}>
             <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
               No lesson available
             </OakHeading>
             <OakTypography $font={"body-1"}>
               Sorry, this lesson no longer exists.
             </OakTypography>
-          </Box>
+          </OakBox>
         ) : (
           <OakGrid $mt={["space-between-l"]}>
-            <GridArea
+            <OakGridArea
               $colSpan={[12, 3]}
               $alignSelf={"start"}
               $position={"sticky"}
               $display={["none", "block"]}
-              $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+              $top={"all-spacing-14"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
               <OakFlex
                 as="nav"
@@ -305,7 +303,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                   currentSectionId={currentSectionId}
                 />
               </OakFlex>
-            </GridArea>
+            </OakGridArea>
 
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>

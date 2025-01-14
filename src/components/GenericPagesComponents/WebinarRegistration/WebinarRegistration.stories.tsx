@@ -1,18 +1,18 @@
 import { StoryFn, Meta } from "@storybook/react";
+import { OakBox } from "@oaknational/oak-components";
 
 import Component from ".";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
-import Box from "@/components/SharedComponents/Box";
 
 export default {
   component: Component,
   decorators: [
     AnalyticsDecorator,
     (Story) => (
-      <Box $position="relative" $maxWidth={720} $ma="auto">
+      <OakBox $position="relative" $maxWidth="all-spacing-22" $ma="auto">
         <Story />
-      </Box>
+      </OakBox>
     ),
   ],
   argTypes: {
