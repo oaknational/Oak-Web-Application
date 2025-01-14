@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { OakBox } from "@oaknational/oak-components";
 
 import { ZIndex } from "@/styles/utils/zIndex";
 import { OakColorName } from "@/styles/theme/types";
 import Svg from "@/components/SharedComponents/Svg";
-import Box from "@/components/SharedComponents/Box";
 
 export const gapPositionMap = {
   rightTop: "90%",
@@ -54,7 +54,7 @@ export type BoxBordersProps = {
 const BoxBorders: FC<BoxBordersProps> = (props) => {
   const { gapPosition } = props;
   return (
-    <Box aria-hidden="true" data-testid="brush-borders">
+    <OakBox aria-hidden="true" data-testid="brush-borders">
       {!props.hideTop && (
         <Svg
           name="box-border-top"
@@ -96,7 +96,7 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
           $right={"unset"}
         />
       )}
-    </Box>
+    </OakBox>
   );
 };
 

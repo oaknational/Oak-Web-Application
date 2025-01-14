@@ -1,3 +1,79 @@
+## [1.658.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.1...v1.658.2) (2025-01-14)
+
+
+### Bug Fixes
+
+* more removal of curriculumCorePage ([1c86912](https://github.com/oaknational/Oak-Web-Application/commit/1c869129c06457046947d01962691cec5fc7a199))
+
+## [1.658.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.0...v1.658.1) (2025-01-09)
+
+
+### Bug Fixes
+
+* allow singular programme factors in ui ([362c5de](https://github.com/oaknational/Oak-Web-Application/commit/362c5dee5e90d9b18ae007ab4b027c69cef56eec))
+
+# [1.658.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.657.0...v1.658.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* conflicts ([751e5eb](https://github.com/oaknational/Oak-Web-Application/commit/751e5eb0b48d7d126dd38bf4122baa7a64f075cb))
+* reinstate share experiment code ([23ddda4](https://github.com/oaknational/Oak-Web-Application/commit/23ddda4648dd05b99de906a8047e8db9a6b7e73f))
+* type issues and tests ([7ab4f00](https://github.com/oaknational/Oak-Web-Application/commit/7ab4f00f5dea9467b9ade51e18dadbe2a97a4336))
+
+
+### Features
+
+* added the modal and tiptap editor ([d571833](https://github.com/oaknational/Oak-Web-Application/commit/d571833a525f606aa808a932d54cb01485b82e94))
+
+# [1.657.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.656.0...v1.657.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* only require one option to be false to set hubspot loading finished ([9985525](https://github.com/oaknational/Oak-Web-Application/commit/99855258e334cfd00404fe43e5b0dcb22d15d8c3))
+
+
+### Features
+
+* show a loading state on downloads button when details loading from hubspot ([f3a5072](https://github.com/oaknational/Oak-Web-Application/commit/f3a5072ea746d9780d5752e46b6a3ce518c41694))
+* use 'loading' on button instead of 'downloading' ([d64c0bc](https://github.com/oaknational/Oak-Web-Application/commit/d64c0bc54003bfd1788eedf11887d72ada987ed7))
+
+# [1.656.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.4...v1.656.0) (2025-01-08)
+
+
+### Bug Fixes
+
+* check if loading set to eager reduces the flicker ([f448093](https://github.com/oaknational/Oak-Web-Application/commit/f4480934a688f259b458fc9e3ad2753efe7474b1))
+* check if setting image height reduces the flicker ([6123742](https://github.com/oaknational/Oak-Web-Application/commit/612374247a6a39f06ddf613dcb405ce42b9585cd))
+* remove header underline flicker in deploy mode ([4a50639](https://github.com/oaknational/Oak-Web-Application/commit/4a506393534a335077548bfb2781c21e2d39ec1d))
+* set both width and height ot be able to see those propas on img tag ([b1f9057](https://github.com/oaknational/Oak-Web-Application/commit/b1f9057269ae016a2c2906c59f73b730b754e023))
+* test in deploy mode if it is header underline causing the flicker ([ff66b45](https://github.com/oaknational/Oak-Web-Application/commit/ff66b45d201ec003e024dee8c8e106a75a7412fb))
+* update few styles ([ad44f29](https://github.com/oaknational/Oak-Web-Application/commit/ad44f2998a158eabfa47b9b416c43f21ad8cbf7d))
+* update width and height ([1b0ef2e](https://github.com/oaknational/Oak-Web-Application/commit/1b0ef2edeff6ce213d7299554b790b74a4c4ef26))
+
+
+### Features
+
+* deprecate Svg component ([1e24c47](https://github.com/oaknational/Oak-Web-Application/commit/1e24c47548baa47f7bcb99f49d0c7f648be6f55e))
+* use OakSvg for header-underline ([b01b0ee](https://github.com/oaknational/Oak-Web-Application/commit/b01b0ee8c13cc256a3e74244912d3f2b38ab8d42))
+
+## [1.655.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.3...v1.655.4) (2025-01-08)
+
+
+### Bug Fixes
+
+* use school id from hubspot to set in localstorage if available ([c5e1752](https://github.com/oaknational/Oak-Web-Application/commit/c5e175266260f4e35ebad87cba79af5cd6c9450a))
+
+## [1.655.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.2...v1.655.3) (2025-01-08)
+
+## [1.655.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.1...v1.655.2) (2025-01-07)
+
+
+### Bug Fixes
+
+* remove duplicated back to lesson button ([60aff8b](https://github.com/oaknational/Oak-Web-Application/commit/60aff8b7799627f2657679c059790a512f26fcce))
+
 ## [1.655.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.655.0...v1.655.1) (2025-01-07)
 
 

@@ -5,13 +5,13 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
+  OakIcon,
 } from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Svg from "@/components/SharedComponents/Svg";
 
 const PupilTab: FC = () => {
   return (
@@ -54,12 +54,15 @@ const PupilTab: FC = () => {
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
             <ImageContainer imageSlug={"pupils-with-worksheet"}>
-              <Svg
+              {/* @todo check left position with marketing */}
+              <OakIcon
+                iconName="burst"
                 $position={"absolute"}
-                $top={0}
-                $left={-20}
+                $top={"all-spacing-0"}
+                $left={"all-spacing-0"}
+                $width={"100%"}
+                $height={"100%"}
                 $display={["none", "none", "block"]}
-                name="burst"
                 $transform={"scale(1.5)"}
               />
             </ImageContainer>
