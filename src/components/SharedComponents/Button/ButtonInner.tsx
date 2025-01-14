@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled, { useTheme } from "styled-components";
-import { OakColorToken, OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakColorToken, OakFlex } from "@oaknational/oak-components";
 
 import {
   ButtonBackground,
@@ -14,7 +14,6 @@ import {
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Box from "@/components/SharedComponents/Box";
 import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import ButtonBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "@/components/SharedComponents/Svg";
@@ -182,8 +181,8 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
         </Flex>
       )}
 
-      <Box $position={"relative"} $minWidth={0}>
-        <Box
+      <OakBox $position={"relative"} $minWidth={"all-spacing-0"}>
+        <OakBox
           $display={displayProperty}
           $textDecoration={textDecoration}
           $color={
@@ -198,7 +197,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
               <ScreenReaderOnly> {labelSuffixA11y}</ScreenReaderOnly>
             )}
           </ButtonLabel>
-        </Box>
+        </OakBox>
         {(variant === "minimal" || variant === "minimalNav") && (
           <ButtonMinimalFocusUnderline
             $color={underlineColor}
@@ -208,7 +207,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
         {variant === "minimal" &&
           currentStyles?.includes("underline") &&
           isCurrent && <BrushUnderline name="horizontal-rule" />}
-      </Box>
+      </OakBox>
       {(variant === "brush" || variant === "brushNav") && (
         <ButtonBorders background={background} />
       )}

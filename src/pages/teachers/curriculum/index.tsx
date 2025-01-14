@@ -5,6 +5,7 @@ import {
   OakUL,
   OakLI,
   OakP,
+  OakHandDrawnHR,
   OakBox,
   OakMaxWidth,
 } from "@oaknational/oak-components";
@@ -13,7 +14,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import { Hr } from "@/components/SharedComponents/Typography";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023, {
@@ -72,7 +72,11 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 },
               ]}
             />
-            <Hr $color={"white"} $mb={0} />
+            <OakHandDrawnHR
+              hrColor={"white"}
+              $mt={"space-between-m"}
+              $height={"all-spacing-1"}
+            />
           </Box>
           <Flex $mt={[24, 80]} $mb={[80]}>
             <HomepageCurriculumLandingHero
@@ -183,7 +187,12 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                         key={`PostList-PostListItem-${i}`}
                         data-testid="blog-list-item"
                       >
-                        {i !== 0 && <Hr thickness={4} $mv={32} />}
+                        {i !== 0 && (
+                          <OakHandDrawnHR
+                            $height={"all-spacing-1"}
+                            $mv={"space-between-m2"}
+                          />
+                        )}
                         <PostListItem
                           {...item}
                           showImageOnTablet={true}
@@ -193,7 +202,12 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                       </OakLI>
                     ))}
                   </OakUL>
-                  {<Hr thickness={4} $mt={32} $mb={0} />}
+                  {
+                    <OakHandDrawnHR
+                      $height={"all-spacing-1"}
+                      $mt={"space-between-m2"}
+                    />
+                  }
                 </>
               ) : null}
               <BrushBorders color="grey20" hideOnMobileH />

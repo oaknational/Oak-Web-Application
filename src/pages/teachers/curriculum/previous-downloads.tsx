@@ -3,7 +3,13 @@ import assert from "assert";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { OakBox, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakHandDrawnHR,
+  OakHeading,
+  OakP,
+} from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box/Box";
@@ -15,7 +21,6 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import Icon from "@/components/SharedComponents/Icon/Icon";
-import Hr from "@/components/SharedComponents/Typography/Hr";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import CurriculumDownloads, {
@@ -139,7 +144,12 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
               },
             ]}
           />
-          <Hr $color={"white"} />
+
+          <OakHandDrawnHR
+            hrColor={"white"}
+            $height={"all-spacing-05"}
+            $mv={"space-between-m"}
+          />
           <OakFlex>
             <Box
               $background={"mint30"}
