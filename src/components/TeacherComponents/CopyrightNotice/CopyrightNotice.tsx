@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { OakP, OakIcon, OakFlex, OakLink } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import OwaLink from "@/components/SharedComponents/OwaLink";
 import Box from "@/components/SharedComponents/Box";
 import { FontProps } from "@/styles/utils/typography";
 
@@ -77,22 +76,19 @@ const PostAlbCopyright = (
         </OakFlex>
       </StyledLink>{" "}
       except where otherwise stated. See{" "}
-      <OwaLink
-        page={"legal"}
-        legalSlug="terms-and-conditions"
-        htmlAnchorProps={{
-          target: props.openLinksExternally ? "_blank" : "_self",
-          "aria-label": `Terms and conditions${
-            props.openLinksExternally ? " (opens in a new tab)" : ""
-          }`,
-        }}
-        $color={"navy"}
-        $display={"inline-flex"}
-        $textDecoration={"underline"}
+      <OakLink
+        href={resolveOakHref({
+          page: "legal",
+          legalSlug: "terms-and-conditions",
+        })}
+        target={props.openLinksExternally ? "_blank" : "_self"}
+        aria-label={`Terms and conditions${
+          props.openLinksExternally ? " (opens in a new tab)" : ""
+        }`}
       >
         Oak's terms & conditions
         <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-      </OwaLink>{" "}
+      </OakLink>{" "}
       (Collection 2).
     </OakP>
   );
