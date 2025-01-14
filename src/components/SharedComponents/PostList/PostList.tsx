@@ -71,6 +71,7 @@ const PostList: FC<PostListProps> = (props) => {
       {withContainingHrs && (
         <OakHandDrawnHR
           $height={"all-spacing-1"}
+          $width={"100%"}
           $mt={"space-between-none"}
           $mb={"space-between-m2"}
         />
@@ -85,6 +86,7 @@ const PostList: FC<PostListProps> = (props) => {
           />
           {withContainingHrs && (
             <OakHandDrawnHR
+              $width={"100%"}
               $height={"all-spacing-1"}
               $mv={"space-between-m2"}
             />
@@ -98,6 +100,7 @@ const PostList: FC<PostListProps> = (props) => {
               <OakLI key={`PostList-PostListItem-${i}`}>
                 {i !== 0 && (
                   <OakHandDrawnHR
+                    $width={"100%"}
                     $height={"all-spacing-1"}
                     $mv={"space-between-m2"}
                   />
@@ -113,6 +116,7 @@ const PostList: FC<PostListProps> = (props) => {
           </OakUL>
           {withContainingHrs && (
             <OakHandDrawnHR
+              $width={"100%"}
               $height={"all-spacing-1"}
               $mt={"space-between-m2"}
               $mb={"space-between-none"}
