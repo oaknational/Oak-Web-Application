@@ -291,7 +291,6 @@ type AboutUsWorkWithUsLinkProps = { page: "about-work-with-us" };
 
 type CareersLinkProps = { page: "careers" };
 type ContactUsLinkProps = { page: "contact" };
-type DevelopYourCurriculumLinkProps = { page: "develop-your-curriculum" };
 type HelpLinkProps = { page: "help" };
 type HomeLinkProps = { page: "home" };
 type LessonPlanningLinkProps = { page: "lesson-planning" };
@@ -397,7 +396,6 @@ export type OakLinkProps =
   | AboutUsWorkWithUsLinkProps
   | CareersLinkProps
   | ContactUsLinkProps
-  | DevelopYourCurriculumLinkProps
   | HomeLinkProps
   | LessonPlanningLinkProps
   | SupportYourTeamLinkProps
@@ -592,12 +590,6 @@ export const OAK_PAGES: {
     analyticsPageName: "Contact Us",
     configType: "internal",
     pageType: "contact",
-  }),
-  "develop-your-curriculum": createOakPageConfig({
-    pathPattern: "/develop-your-curriculum",
-    analyticsPageName: "Develop Your Curriculum",
-    configType: "internal",
-    pageType: "develop-your-curriculum",
   }),
   help: createOakPageConfig({
     url: "https://support.thenational.academy",
