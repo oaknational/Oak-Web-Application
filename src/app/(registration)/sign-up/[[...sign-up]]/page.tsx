@@ -18,7 +18,6 @@ import { AuthLayout } from "../../auth-layout";
 
 import { getIllustrationAsset } from "@/image-data";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import withFeatureFlag from "@/hocs/withFeatureFlag";
 
 function ListItem({ children }: PropsWithChildren) {
   return (
@@ -86,10 +85,4 @@ function SignUpPage() {
   );
 }
 
-const SignupPageWithFeatureFlag = withFeatureFlag(
-  SignUpPage,
-  "teacher-download-auth",
-  "with-login",
-);
-
-export default SignupPageWithFeatureFlag;
+export default SignUpPage;
