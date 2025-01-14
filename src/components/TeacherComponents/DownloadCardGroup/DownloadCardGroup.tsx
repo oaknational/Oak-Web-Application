@@ -56,6 +56,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
     ? sortDownloadResources(downloads)
     : undefined;
 
+  console.log(sortedDownloads, "<< sortedDownloads");
+
   return (
     <Grid
       $position="relative"
@@ -63,8 +65,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
       $gridTemplateColumns={["1fr", "max-content max-content"]}
       $cg={16}
       $gridTemplateAreas={[
-        '"presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"',
-        '"presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx"',
+        `"presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"`,
+        `"presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx"`,
       ]}
     >
       {sortedDownloads?.map((download) => {

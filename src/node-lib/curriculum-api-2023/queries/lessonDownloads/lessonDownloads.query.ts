@@ -35,7 +35,7 @@ const lessonDownloadsQuery =
       SdkLessonDownloadsQuery["browse_data"][number]
     >({
       journey: "teacher",
-      queryName: "lessonOverviewQuery",
+      queryName: "lessonDownloadsQuery",
       browseData: res.browse_data,
     });
 
@@ -74,6 +74,7 @@ const lessonDownloadsQuery =
         has_worksheet_google_drive_downloadable_version,
       hasSupplementaryAssetObject: has_supplementary_asset_object,
       isLegacy: is_legacy,
+      hasAdditionalFiles: false,
     };
 
     const downloads = constructDownloadsArray(downloadsData);

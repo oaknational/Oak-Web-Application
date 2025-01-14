@@ -40,6 +40,7 @@ import teacherPreviewLessonQuery from "./queries/teacherPreviewLesson/teacherPre
 import curriculumSequenceQuery from "./queries/curriculumSequence/curriculumSequence.query";
 import { lessonMediaClipsQuery } from "./queries/lessonMediaClips/lessonMediaClips.query";
 import { betaLessonMediaClipsQuery } from "./queries/lessonBetaMediaClips/lessonBetaMediaClips.query";
+import lessonBetaDownloadsQuery from "./queries/lessonBetaDownloads/lessonBetaDownloads.query";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -158,6 +159,7 @@ const curriculumApi2023 = {
   },
   teacherPreviewLesson: teacherPreviewLessonQuery(sdk),
   betaLessonMediaClipsQuery: betaLessonMediaClipsQuery(sdk),
+  betaLessonDownloadsQuery: lessonBetaDownloadsQuery(sdk),
   specialistLessonOverview: specialistLessonOverview(sdk),
   specialistLessonOverviewCanonical: specialistLessonOverviewCanonical(sdk),
   specialistSubjectListing: specialistSubjectListingQuery(sdk),

@@ -47,6 +47,7 @@ const RESOURCE_TYPE_ICON_MAP: Record<
   "supplementary-docx": "additional-material",
   video: "video",
   "curriculum-pdf": "additional-material",
+  "additional-file": "additional-material",
 };
 
 const BoxWithFocusState = styled.div`
@@ -115,12 +116,16 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
           $justifyContent="center"
           $ph={16}
           $pv={16}
-          $width="100%"
+          $alignSelf={"flex-start"}
+          $width={220}
         >
           <OakP
             $font="heading-7"
             $mb="space-between-sssx"
             $textDecoration={isHovered ? "underline" : "none"}
+            $textOverflow={"ellipsis"}
+            $overflow={"hidden"}
+            $whiteSpace={"nowrap"}
           >
             {label}
           </OakP>
