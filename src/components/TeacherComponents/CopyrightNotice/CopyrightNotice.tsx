@@ -72,7 +72,11 @@ const PostAlbCopyright = (
         href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
         target={props.openLinksExternally ? "_blank" : "_self"}
       >
-        <OakFlex $display={"inline-flex"} $alignItems={"center"}>
+        <OakFlex
+          $display={"inline-flex"}
+          $alignItems={"center"}
+          $textDecoration={"underline"}
+        >
           Open Government Licence version 3.0{" "}
           <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
         </OakFlex>
@@ -89,6 +93,7 @@ const PostAlbCopyright = (
         }}
         $color={"navy"}
         $display={"inline-flex"}
+        $textDecoration={"underline"}
       >
         Oak's terms & conditions
         <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />

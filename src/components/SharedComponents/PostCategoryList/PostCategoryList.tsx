@@ -7,6 +7,7 @@ import useCategoryFilterList from "@/components/SharedComponents/CategoryFilterL
 import {
   BlogListingLinkProps,
   WebinarListingLinkProps,
+  resolveOakHref,
 } from "@/common-lib/urls";
 
 export type PostCategoryPage = "blog-index" | "webinar-index";
@@ -47,7 +48,11 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
       >
         <OakTertiaryButton
           element={"a"}
-          href={page === "webinar-index" ? "blog-index" : "webinar-index"}
+          href={
+            page === "webinar-index"
+              ? resolveOakHref({ page: "blog-index" })
+              : resolveOakHref({ page: "webinar-index" })
+          }
           iconName={"arrow-right"}
           isTrailingIcon
         >
