@@ -128,25 +128,25 @@ const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   return pathways;
 };
 
-// const bytesToMegabytes = (bytes: number): string => {
-//   const bytesInOneMegabyte = 1024 * 1024;
-//   const megabytes = bytes / bytesInOneMegabyte;
-//   return megabytes.toFixed(1);
-// };
+const bytesToMegabytes = (bytes: number): string => {
+  const bytesInOneMegabyte = 1024 * 1024;
+  const megabytes = bytes / bytesInOneMegabyte;
+  return megabytes.toFixed(1);
+};
 
-// const getAdditionalFiles = (
-//   content: LessonOverviewContent["additionalFiles"],
-// ): string[] | null => {
-//   if (!content || !content[0]) {
-//     return null;
-//   }
-//   return content[0]?.files.map((af) => {
-//     const name = af.title;
-//     const type = af.fileObject.format;
-//     const size = af.fileObject.bytes;
-//     return `${name} ${bytesToMegabytes(size)} MB (${type})`;
-//   });
-// };
+const getAdditionalFiles = (
+  content: LessonOverviewContent["additionalFiles"],
+): string[] | null => {
+  if (!content || !content[0]) {
+    return null;
+  }
+  return content[0]?.files.map((af) => {
+    const name = af.title;
+    const type = af.fileObject.format;
+    const size = af.fileObject.bytes;
+    return `${name} ${bytesToMegabytes(size)} MB (${type})`;
+  });
+};
 
 export const transformedLessonOverviewData = (
   browseData: LessonBrowseDataByKs,
@@ -157,7 +157,7 @@ export const transformedLessonOverviewData = (
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
-  // const hasAddFile = content.additionalFiles;
+  const hasAddFile = content.additionalFiles;
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
@@ -223,7 +223,9 @@ export const transformedLessonOverviewData = (
     actions: browseData.actions,
     hasMediaClips: false,
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
-    additionalFiles: null,
+    additionalFiles: hasAddFile
+      ? getAdditionalFiles(content.additionalFiles)
+      : null,
   };
 };
 
