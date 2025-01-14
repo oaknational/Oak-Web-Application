@@ -47,6 +47,32 @@ describe("UnitDownloadButton", () => {
     const button = screen.queryByText("Download (.zip 1.2MB)");
     expect(button).not.toBeInTheDocument;
   });
+
+  it("should render a continue button when logged in but not onboarded", () => {
+    setUseUserReturn({
+      ...mockLoggedIn,
+      user: {
+        ...mockLoggedIn.user,
+        publicMetadata: {
+          owa: {
+            isOnboarded: false,
+          },
+        },
+      },
+    });
+    renderWithProviders()(
+      <UnitDownloadButton
+        setDownloadError={jest.fn()}
+        setDownloadInProgress={jest.fn()}
+        setShowDownloadMessage={jest.fn()}
+        downloadInProgress={false}
+        onDownloadSuccess={jest.fn()}
+        unitFileId="mockSlug"
+      />,
+    );
+    const button = screen.getByText("Complete sign up to download this unit");
+    expect(button).toBeInTheDocument();
+  });
   it("should render a download button when logged in", () => {
     renderWithProviders()(
       <UnitDownloadButton
