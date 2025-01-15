@@ -70,6 +70,7 @@ describe("useShareExperiments", () => {
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
+        overrideExistingShareId: true,
       }),
     );
 
@@ -90,6 +91,7 @@ describe("useShareExperiments", () => {
         source: "lesson-canonical",
         shareBaseUrl: "http://localhost:3000/teachers/lessons/lesson-slug",
         curriculumTrackingProps,
+        overrideExistingShareId: true,
       }),
     );
 
@@ -113,6 +115,7 @@ describe("useShareExperiments", () => {
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
+        overrideExistingShareId: true,
       }),
     );
 
@@ -133,6 +136,7 @@ describe("useShareExperiments", () => {
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
+        overrideExistingShareId: true,
       }),
     );
 
@@ -154,6 +158,7 @@ describe("useShareExperiments", () => {
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
+        overrideExistingShareId: true,
       }),
     );
 
@@ -178,6 +183,7 @@ describe("useShareExperiments", () => {
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
+        overrideExistingShareId: true,
       }),
     );
 
@@ -198,6 +204,7 @@ describe("useShareExperiments", () => {
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
+        overrideExistingShareId: true,
       }),
     );
 
@@ -222,6 +229,7 @@ describe("useShareExperiments", () => {
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
+        overrideExistingShareId: true,
       }),
     );
 
@@ -238,6 +246,7 @@ describe("useShareExperiments", () => {
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
+        overrideExistingShareId: true,
       }),
     );
 
@@ -260,6 +269,7 @@ describe("useShareExperiments", () => {
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
+        overrideExistingShareId: true,
       }),
     );
 

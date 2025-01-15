@@ -64,6 +64,8 @@ export const getServerSideProps: GetServerSideProps<
       const networkClient = new NetworkClient({
         getLessonAttemptUrl: getBrowserConfig("oakGetLessonAttemptUrl"),
         logLessonAttemptUrl: getBrowserConfig("oakLogLessonAttemptUrl"),
+        getTeacherNoteUrl: getBrowserConfig("oakGetTeacherNoteUrl"),
+        addTeacherNoteUrl: getBrowserConfig("oakAddTeacherNoteUrl"),
       });
       const attemptData = await networkClient.getAttempt(attemptId);
       const parsedAttemptData = keysToCamelCase(attemptData[attemptId]);

@@ -6,6 +6,7 @@ import { OverlayProvider } from "react-aria";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import { ClerkProvider } from "@clerk/nextjs";
+import { OakPupilClientProvider } from "@oaknational/oak-pupil-client";
 
 /**
  * Custom global styles (which should be kept to a minimum) must all be imported in _app.tsx
@@ -26,6 +27,7 @@ import { MenuProvider } from "@/context/Menu";
 import { ToastProvider } from "@/context/Toast";
 import InlineSpriteSheet from "@/components/GenericPagesComponents/InlineSpriteSheet";
 import AppHooks from "@/components/AppComponents/App/AppHooks";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -54,21 +56,38 @@ const OakWebApplication: FC<OakWebApplicationProps> = ({
               <PostHogProvider client={posthog}>
                 <AnalyticsProvider {...analyticsOptions}>
                   <DefaultSeo />
-                  <OverlayProvider>
-                    <MenuProvider>
-                      <ToastProvider>
-                        <>
-                          <style jsx global>{`
-                            html {
-                              font-family: ${lexend.style.fontFamily};
-                            }
-                          `}</style>
-                        </>
-                        <Component {...pageProps} />
-                        <AppHooks />
-                      </ToastProvider>
-                    </MenuProvider>
-                  </OverlayProvider>
+                  <OakPupilClientProvider
+                    config={{
+                      getLessonAttemptUrl: getBrowserConfig(
+                        "oakGetLessonAttemptUrl",
+                      ),
+                      logLessonAttemptUrl: getBrowserConfig(
+                        "oakLogLessonAttemptUrl",
+                      ),
+                      getTeacherNoteUrl: getBrowserConfig(
+                        "oakGetTeacherNoteUrl",
+                      ),
+                      addTeacherNoteUrl: getBrowserConfig(
+                        "oakAddTeacherNoteUrl",
+                      ),
+                    }}
+                  >
+                    <OverlayProvider>
+                      <MenuProvider>
+                        <ToastProvider>
+                          <>
+                            <style jsx global>{`
+                              html {
+                                font-family: ${lexend.style.fontFamily};
+                              }
+                            `}</style>
+                          </>
+                          <Component {...pageProps} />
+                          <AppHooks />
+                        </ToastProvider>
+                      </MenuProvider>
+                    </OverlayProvider>
+                  </OakPupilClientProvider>
                 </AnalyticsProvider>
               </PostHogProvider>
             </ErrorBoundary>

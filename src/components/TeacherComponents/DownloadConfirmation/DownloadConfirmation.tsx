@@ -73,6 +73,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
       subjectSlug,
       subjectTitle,
     },
+    overrideExistingShareId: true,
   });
 
   const teacherShareButton = (
