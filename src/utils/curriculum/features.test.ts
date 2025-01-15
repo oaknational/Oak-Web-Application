@@ -12,6 +12,7 @@ describe("getUnitFeatures", () => {
       getUnitFeatures({
         subject_slug: "physical-education",
         year: "3",
+        keystage_slug: "ks2",
         features: { pe_swimming: true },
       } as Unit),
     ).toEqual({
@@ -27,6 +28,7 @@ describe("getUnitFeatures", () => {
     expect(
       getUnitFeatures({
         subject_slug: "physical-education",
+        keystage_slug: "ks2",
         year: "3",
       } as Unit),
     ).toEqual(undefined);
@@ -36,6 +38,7 @@ describe("getUnitFeatures", () => {
     expect(
       getUnitFeatures({
         subject_slug: "computing",
+        keystage_slug: "ks4",
         year: "11",
         pathway_slug: "gcse",
       } as Unit),
@@ -48,6 +51,7 @@ describe("getUnitFeatures", () => {
     expect(
       getUnitFeatures({
         subject_slug: "computing",
+        keystage_slug: "ks4",
         year: "11",
         pathway_slug: "core",
       } as Unit),
@@ -62,6 +66,7 @@ describe("getUnitFeatures", () => {
     expect(
       getUnitFeatures({
         subject_slug: "english",
+        keystage_slug: "ks2",
         phase_slug: "primary",
         year: "3",
       } as Unit),
@@ -69,19 +74,31 @@ describe("getUnitFeatures", () => {
       subjectcategories: {
         all_disabled: true,
         default_category_id: 4,
+        group_by_subjectcategory: true,
       },
     });
 
     expect(
       getUnitFeatures({
         subject_slug: "english",
+        keystage_slug: "ks3",
         phase_slug: "secondary",
         year: "7",
+      } as Unit),
+    ).toEqual(undefined);
+
+    expect(
+      getUnitFeatures({
+        subject_slug: "english",
+        keystage_slug: "ks4",
+        phase_slug: "secondary",
+        year: "10",
       } as Unit),
     ).toEqual({
       subjectcategories: {
         all_disabled: true,
         default_category_id: 19,
+        group_by_subjectcategory: true,
       },
     });
 
