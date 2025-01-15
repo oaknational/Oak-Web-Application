@@ -1,3 +1,34 @@
+# [1.660.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.659.0...v1.660.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* correct mock ([4cb869c](https://github.com/oaknational/Oak-Web-Application/commit/4cb869c85a4f83e3a063530eb2b4ad50402dfb42))
+* fallback icon for subject categories ([8d4a8fc](https://github.com/oaknational/Oak-Web-Application/commit/8d4a8fcd2ec462bab7120f8ec14d28a765b30ea4))
+* only append iv id if not already in slug ([12cc84d](https://github.com/oaknational/Oak-Web-Application/commit/12cc84dba69ff85eaf550b57ae63df8a7a43ffc6))
+* test import ([55c3948](https://github.com/oaknational/Oak-Web-Application/commit/55c39482ae168557a1ab5b2147d81f0c5beea0fc))
+* test imports ([dfffe53](https://github.com/oaknational/Oak-Web-Application/commit/dfffe53a17cdeb4b0d1625769430bbc2e55488fe))
+
+
+### Features
+
+* add avo branch ([1821278](https://github.com/oaknational/Oak-Web-Application/commit/1821278645a2c19687400f3be757e889fb6c551c))
+* add download button to unit listing page ([fae136f](https://github.com/oaknational/Oak-Web-Application/commit/fae136f2a8466cf85b98050c3aa8b0e50a4ffec6))
+* add download functionality to download button ([883937e](https://github.com/oaknational/Oak-Web-Application/commit/883937ed8e4a7fb574460a0465554f8b86bcf121))
+* add fns to check for unit download ([d9f0640](https://github.com/oaknational/Oak-Web-Application/commit/d9f0640f22b5687fb8f7ded2b9f20677ba442e6b))
+* add info banner on download ([f97e339](https://github.com/oaknational/Oak-Web-Application/commit/f97e3394bb08d0d5242f7d65285f27e98fc5e2dd))
+* add new tag and update button copy ([eb4a20f](https://github.com/oaknational/Oak-Web-Application/commit/eb4a20f94f6720c984429269a6a59df016622cf0))
+* navigate to onboarding on click ([bc91896](https://github.com/oaknational/Oak-Web-Application/commit/bc918963f4b44236d59f58b8bef2504f8d5018c0))
+* only require onboarding when download attempted ([f9d6ba4](https://github.com/oaknational/Oak-Web-Application/commit/f9d6ba442c7fa697ddce0476a9ff19bf3deeee3b))
+* pull avo main ([269ab99](https://github.com/oaknational/Oak-Web-Application/commit/269ab99bb1304c82b95b8e0988c323b048c3a5c5))
+* remove feature flag block from sign up and onboarding pages ([4d4f38e](https://github.com/oaknational/Oak-Web-Application/commit/4d4f38e5517b42236b729636ca69c15312a9b959))
+* require onboarding ([8a6155a](https://github.com/oaknational/Oak-Web-Application/commit/8a6155a9f87e81aeb8daf3c8fa3f340641b9c722))
+* update icon for feature flagged button ([746346e](https://github.com/oaknational/Oak-Web-Application/commit/746346e952ac266324852822b8d708bc30dd5d40))
+* update sign up page ([f849a5e](https://github.com/oaknational/Oak-Web-Application/commit/f849a5e52b83d2af62effbd91410d11cbafa9db3))
+* use feature flag for unit download button ([7113f9b](https://github.com/oaknational/Oak-Web-Application/commit/7113f9bb659424e2828e449de2bf240265147758))
+* use latest mv version and use uv id for file name ([49bbe63](https://github.com/oaknational/Oak-Web-Application/commit/49bbe63f3e325a89701f9e4639c5e056fddb9eb3))
+* use unit programme slug for download key ([55fc9f3](https://github.com/oaknational/Oak-Web-Application/commit/55fc9f3c5cf5373eb29ab7a085ad41991434fad2))
+
 # [1.659.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.2...v1.659.0) (2025-01-14)
 
 
