@@ -1,3 +1,17 @@
+# [1.663.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.662.0...v1.663.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* failing tests for new curric sequence MV ([2660f8a](https://github.com/oaknational/Oak-Web-Application/commit/2660f8a65e85ce9a80c39bbb201f1b8857879c94))
+* use unit-option-slug rather than unit-slug in new curric MVs ([f0a301c](https://github.com/oaknational/Oak-Web-Application/commit/f0a301c5c806118e155773a2a31d5899ae0951e0))
+
+
+### Features
+
+* bump to using curriculum_sequence_b_13_0_6 ([c488be9](https://github.com/oaknational/Oak-Web-Application/commit/c488be98bbadde1f42ab72ef991f40c74ad04b6f))
+* enable new curric MV, for testing in preview builds ([d926190](https://github.com/oaknational/Oak-Web-Application/commit/d92619047ce821da41d4e6b05eda015be117c51d))
+
 # [1.662.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.661.0...v1.662.0) (2025-01-15)
 
 
