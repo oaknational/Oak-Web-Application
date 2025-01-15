@@ -14,6 +14,7 @@ import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUni
 
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
+import { resolveOakHref } from "@/common-lib/urls";
 
 // teacher-unit-downloads experiment A/B test group keys and test values
 const variantKey = z
@@ -29,8 +30,12 @@ const unitButtonSignInText = {
 };
 
 // Used when a user is signed in but not onboarded
-const UnitDownloadOnboardButton = () => (
-  <OakPrimaryButton width="fit-content">
+const UnitDownloadOnboardButton = ({
+  onClick,
+}: {
+  onClick: () => Promise<boolean>;
+}) => (
+  <OakPrimaryButton width="fit-content" onClick={onClick}>
     <OakFlex $alignItems="center" $gap="space-between-xs">
       <OakTagFunctional label="New" $background="mint" $color="text-primary" />
       Complete sign up to download this unit
@@ -173,7 +178,14 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     !user.publicMetadata?.owa?.isOnboarded;
 
   return showOnboardButton ? (
-    <UnitDownloadOnboardButton />
+    <UnitDownloadOnboardButton
+      onClick={() =>
+        router.push({
+          pathname: resolveOakHref({ page: "onboarding" }),
+          query: { returnTo: router.asPath },
+        })
+      }
+    />
   ) : showSignInButton ? (
     <UnitDownloadSignInButton
       variant={parsedFeatureFlagKey.data}
