@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakP, OakHeading } from "@oaknational/oak-components";
+import { OakP, OakHeading, OakMaxWidth } from "@oaknational/oak-components";
 
 import { DEFAULT_SEO_PROPS } from "@/browser-lib/seo/Seo";
 import {
@@ -11,7 +11,6 @@ import Layout from "@/components/AppComponents/Layout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import Button from "@/components/SharedComponents/Button";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 const shadow =
@@ -38,7 +37,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
       headerVariant={headerVariant}
       footerVariant={footerVariant}
     >
-      <MaxWidth $alignItems={"flex-end"}>
+      <OakMaxWidth $alignItems={"flex-end"}>
         <Flex
           $mv={80}
           $flexDirection={"column"}
@@ -91,7 +90,7 @@ const ErrorView: FC<ErrorViewProps> = (props) => {
             />
           </ButtonGroup>
         </Flex>
-      </MaxWidth>
+      </OakMaxWidth>
     </Layout>
   );
 };

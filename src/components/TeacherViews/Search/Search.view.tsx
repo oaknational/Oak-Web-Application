@@ -11,6 +11,7 @@ import {
   OakBox,
   OakSearchFilterCheckBox,
   OakSearchFilterCheckBoxProps,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -20,7 +21,6 @@ import { isKeyStageTitleValueType, removeHTMLTags } from "./helpers";
 import { SearchResultsItemProps } from "@/components/TeacherComponents/SearchResultsItem";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import SearchFilters from "@/components/TeacherComponents/SearchFilters";
 import SearchActiveFilters from "@/components/TeacherComponents/SearchActiveFilters";
@@ -197,7 +197,7 @@ const Search: FC<SearchProps> = (props) => {
 
   return (
     <OakFlex $background="white" $flexDirection={"column"}>
-      <MaxWidth $ph={16}>
+      <OakMaxWidth $ph={"inner-padding-m"}>
         <OakGrid $mt={"space-between-l"} $cg={"all-spacing-4"}>
           <OakGridArea
             $colSpan={[12, 12, 7]}
@@ -356,7 +356,7 @@ const Search: FC<SearchProps> = (props) => {
             )}
           </OakGridArea>
         </OakGrid>
-      </MaxWidth>
+      </OakMaxWidth>
     </OakFlex>
   );
 };

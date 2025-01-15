@@ -18,6 +18,7 @@ import {
   oakDefaultTheme,
   OakFlex,
   OakFieldset,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import {
@@ -26,8 +27,6 @@ import {
 } from "@/node-lib/isr";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import UnitList from "@/components/TeacherComponents/UnitList";
@@ -210,7 +209,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
         />
-        <MaxWidth $ph={16}>
+        <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
             <OakGridArea $colSpan={[12, 12, 9]}>
               <NewContentBanner
@@ -342,11 +341,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 >
                   {tiers.length === 0 && currentPageItems.length >= 1 && (
                     <>
-                      <Flex $minWidth={120} $mb={16} $position={"relative"}>
+                      <OakFlex
+                        $minWidth={"all-spacing-16"}
+                        $mb={"space-between-s"}
+                        $position={"relative"}
+                      >
                         <OakHeading $font={"heading-5"} tag={"h2"}>
                           {`Units (${filteredUnits.length})`}
                         </OakHeading>
-                      </Flex>
+                      </OakFlex>
                       {isFiltersAvailable && (
                         <OakBox $display={["auto", "auto", "none"]}>
                           <MobileUnitFilters
@@ -422,7 +425,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               )}
             </OakGridArea>
           </OakGrid>
-        </MaxWidth>
+        </OakMaxWidth>
       </AppLayout>
     </OakThemeProvider>
   );
