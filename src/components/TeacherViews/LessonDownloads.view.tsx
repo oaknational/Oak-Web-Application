@@ -16,7 +16,7 @@ import { Hr } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
-import useDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck";
+import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
   ResourceFormProps,
@@ -264,7 +264,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     }
   };
 
-  useDownloadExistenceCheck({
+  useLessonDownloadExistenceCheck({
     lessonSlug,
     resourcesToCheck: activeResources as DownloadResourceType[],
     onComplete: setActiveResources,
