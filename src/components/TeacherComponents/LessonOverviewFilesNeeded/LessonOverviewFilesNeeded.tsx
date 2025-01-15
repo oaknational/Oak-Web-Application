@@ -37,13 +37,16 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
         <OakFlex $flexDirection={"row"} $alignItems={"center"}>
           <OakIcon iconName="additional-material" $width={"all-spacing-5"} />
           <OakP $ml={"space-between-ssx"} $font={"heading-7"}>
-            Files needed for this lesson
+            {`${isPlural ? "Files" : "File"} needed for this lesson`}
           </OakP>
         </OakFlex>
         {additionalFiles?.map((file) => {
           return <OakP>{file}</OakP>;
         })}
-        <OakP>Downloads these files to use in the lesson</OakP>
+        <OakP>
+          {`Download ${isPlural ? "these files" : "this file"} to use in the
+          lesson`}
+        </OakP>
         <OakTertiaryButton
           element="a"
           href={

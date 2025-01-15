@@ -144,7 +144,7 @@ const getAdditionalFiles = (
     const name = af.title;
     const type = af.fileObject.format;
     const size = af.fileObject.bytes;
-    return `${name} ${bytesToMegabytes(size)} MB (${type})`;
+    return `${name} ${bytesToMegabytes(size)} MB (${type.toUpperCase()})`;
   });
 };
 
