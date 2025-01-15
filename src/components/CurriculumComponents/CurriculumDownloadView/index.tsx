@@ -6,7 +6,6 @@ import { DOWNLOAD_TYPES, DownloadType, School } from "./helper";
 import SignedOutFlow from "./SignedOutFlow";
 import SignedInFlow from "./SignedInFlow";
 
-import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button";
 
 export type CurriculumDownloadViewData = {
@@ -34,7 +33,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
   return (
     <OakBox $color="black">
       {props.onBackToKs4Options && (
-        <Box $mb={24}>
+        <OakBox $mb="space-between-m">
           <Button
             variant={"buttonStyledAsLink"}
             icon="chevron-left"
@@ -43,7 +42,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
             label="Back to KS4 options"
             onClick={props.onBackToKs4Options}
           />
-        </Box>
+        </OakBox>
       )}
       {user.isLoaded && (
         <>

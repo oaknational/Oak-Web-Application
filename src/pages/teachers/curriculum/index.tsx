@@ -5,14 +5,15 @@ import {
   OakUL,
   OakLI,
   OakP,
+  OakHandDrawnHR,
+  OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Hr } from "@/components/SharedComponents/Typography";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023, {
@@ -55,7 +56,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
       $background={"grey20"}
     >
       <Flex $justifyContent={"center"} $background={"mint"}>
-        <MaxWidth $ph={16}>
+        <OakMaxWidth $ph={"inner-padding-m"}>
           <Box $mt={20}>
             <Breadcrumbs
               breadcrumbs={[
@@ -71,18 +72,22 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 },
               ]}
             />
-            <Hr $color={"white"} $mb={0} />
+            <OakHandDrawnHR
+              hrColor={"white"}
+              $mt={"space-between-m"}
+              $height={"all-spacing-1"}
+            />
           </Box>
           <Flex $mt={[24, 80]} $mb={[80]}>
             <HomepageCurriculumLandingHero
               subjectPhaseOptions={subjectPhaseOptions}
             />
           </Flex>
-        </MaxWidth>
+        </OakMaxWidth>
       </Flex>
 
       <Flex $background={"white"} $justifyContent={"center"}>
-        <MaxWidth>
+        <OakMaxWidth>
           <Flex
             $flexDirection={["column", "row"]}
             $justifyContent={"space-between"}
@@ -112,7 +117,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               </Cover>
             </Box>
 
-            <Box $height={"100%"}>
+            <OakBox $height={"100%"}>
               <OakHeading
                 tag="h2"
                 $font={["heading-5", "heading-4"]}
@@ -155,7 +160,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   <Icon name={"chevron-right"} />
                 </OwaLink>
               </OakTypography>
-            </Box>
+            </OakBox>
           </Flex>
           <Flex
             $background={"grey20"}
@@ -182,7 +187,12 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                         key={`PostList-PostListItem-${i}`}
                         data-testid="blog-list-item"
                       >
-                        {i !== 0 && <Hr thickness={4} $mv={32} />}
+                        {i !== 0 && (
+                          <OakHandDrawnHR
+                            $height={"all-spacing-1"}
+                            $mv={"space-between-m2"}
+                          />
+                        )}
                         <PostListItem
                           {...item}
                           showImageOnTablet={true}
@@ -192,13 +202,18 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                       </OakLI>
                     ))}
                   </OakUL>
-                  {<Hr thickness={4} $mt={32} $mb={0} />}
+                  {
+                    <OakHandDrawnHR
+                      $height={"all-spacing-1"}
+                      $mt={"space-between-m2"}
+                    />
+                  }
                 </>
               ) : null}
               <BrushBorders color="grey20" hideOnMobileH />
             </Box>
           </Flex>
-        </MaxWidth>
+        </OakMaxWidth>
       </Flex>
     </AppLayout>
   );

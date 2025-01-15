@@ -18,7 +18,6 @@ module.exports = {
     "/node_modules/",
     "node-lib/sanity-graphql/generated/*",
     "src/storybook-decorators/*",
-    "src/components/ArchivedComponents/*",
   ],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ["node_modules", "<rootDir>/", "src"],

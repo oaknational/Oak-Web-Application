@@ -26,7 +26,6 @@ import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/dow
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import FieldError from "@/components/SharedComponents/FieldError";
-import Box from "@/components/SharedComponents/Box";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Icon from "@/components/SharedComponents/Icon";
@@ -60,7 +59,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
   return (
-    <Box $width="100%">
+    <OakBox $width="100%">
       <OakFlex
         $alignItems={"flex-start"}
         $flexDirection={"column"}
@@ -77,7 +76,7 @@ const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
           <ResourcePageContent {...props} />
         )}
       </OakFlex>
-    </Box>
+    </OakBox>
   );
 };
 
@@ -120,7 +119,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             {props.errors?.resources?.message}
           </FieldError>
           {!props.hideSelectAll && (
-            <Box $maxWidth="max-content">
+            <OakBox $maxWidth="max-content">
               <Checkbox
                 checked={props.selectAllChecked}
                 onChange={props.handleToggleSelectAll}
@@ -130,7 +129,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                 labelText="Select all"
                 labelFontWeight={600}
               />
-            </Box>
+            </OakBox>
           )}
           {props.cardGroup}
           {!props.showTermsAgreement && (
@@ -154,11 +153,11 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
         </Flex>
       </OakBox>
 
-      <Flex
+      <OakFlex
         $flexDirection="column"
         $alignSelf="center"
-        $gap={16}
-        $maxWidth={420}
+        $gap="space-between-s"
+        $maxWidth="all-spacing-21"
       >
         {props.showNoResources &&
           (props.page === "download" ? (
@@ -221,7 +220,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             )}
           </>
         )}
-      </Flex>
+      </OakFlex>
     </OakFlex>
   );
 }

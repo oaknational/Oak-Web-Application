@@ -1,5 +1,5 @@
 import { FC, MutableRefObject } from "react";
-import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
+import { OakP, OakSpan, OakFlex, OakBox } from "@oaknational/oak-components";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import LessonResourceGraphics from "@/components/TeacherComponents/LessonResourceGraphics";
@@ -9,7 +9,6 @@ import { LessonResourceGraphicsItemProps } from "@/components/TeacherComponents/
 import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import ListItemIndexMobile from "@/components/TeacherComponents/ListItemIndexMobile";
 import ListItemIndexDesktop from "@/components/TeacherComponents/ListItemIndexDesktop";
-import Box from "@/components/SharedComponents/Box";
 import { OakColorName } from "@/styles/theme";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
 
@@ -198,9 +197,9 @@ const LessonListItem: FC<
             )}
           </OakFlex>
           {resources.length > 0 && !expired && (
-            <Box>
+            <OakBox>
               <LessonResourceGraphics items={resources} />
-            </Box>
+            </OakBox>
           )}
         </OakFlex>
       </OakFlex>

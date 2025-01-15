@@ -41,7 +41,9 @@ jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
-    default: () => getDownloadResourcesExistenceData,
+    getLessonDownloadResourcesExistence: jest.fn(
+      () => getDownloadResourcesExistenceData,
+    ),
   }),
 );
 
@@ -56,7 +58,7 @@ jest.mock(
 );
 
 jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck",
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck",
   () => {
     return jest.fn();
   },

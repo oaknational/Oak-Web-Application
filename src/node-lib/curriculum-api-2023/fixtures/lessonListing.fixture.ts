@@ -13,6 +13,7 @@ const lessonListingFixture = (
     tierTitle: null,
     unitSlug: "adding-surds-a57d",
     unitTitle: "Adding surds",
+    unitvariantId: 1,
     yearSlug: "year-10",
     yearTitle: "Year 10",
     examBoardSlug: null,
