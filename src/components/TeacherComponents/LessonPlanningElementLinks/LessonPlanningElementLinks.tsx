@@ -1,11 +1,10 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakLI } from "@oaknational/oak-components";
+import { OakGrid, OakLI } from "@oaknational/oak-components";
 
-import GraphiCircleIcon from "@/components/SharedComponents/Icon/GraphicCircleIcon";
+import GraphiCircleIcon from "@/components/SharedComponents/Icon.deprecated/GraphicCircleIcon";
 import { zIndexMap } from "@/styles/utils/zIndex";
-import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
-import { IconName } from "@/components/SharedComponents/Icon";
+import { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import Typography from "@/components/SharedComponents/Typography";
 import CardLink from "@/components/SharedComponents/Card/CardLink";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
@@ -121,11 +120,11 @@ const LessonPlanningElementLinks: FC<LessonProgressionGraphicProps> = (
   ];
 
   return (
-    <GridList
+    <OakGrid
       $gridTemplateColumns={["repeat(2, 1fr)", "repeat(4, 1fr)"]}
-      $cg={40}
-      $rg={80}
-      $mb={80}
+      $cg={"all-spacing-8"}
+      $rg={"space-between-xxxl"}
+      $mb={"space-between-xxxl"}
       $width="min-content"
     >
       {elementList.map((element) => (
@@ -140,7 +139,7 @@ const LessonPlanningElementLinks: FC<LessonProgressionGraphicProps> = (
           </GraphicContainer>
         </OakLI>
       ))}
-    </GridList>
+    </OakGrid>
   );
 };
 

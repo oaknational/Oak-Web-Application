@@ -1,9 +1,14 @@
 import { FC } from "react";
-import { OakHeading, OakHeadingTag } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakGrid,
+  OakGridArea,
+  OakHeading,
+  OakHeadingTag,
+} from "@oaknational/oak-components";
 
 import Illustration from "@/components/SharedComponents/Illustration";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type UpcomingWebinarWallProps = {
@@ -45,7 +50,7 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
       $overflow="hidden"
       $cover
     >
-      <Box $maxWidth={320} $zIndex="inFront">
+      <OakBox $maxWidth="all-spacing-20" $zIndex="in-front">
         <OakHeading tag={headingTag} $font={["heading-6", "heading-5"]}>
           {headingText}
         </OakHeading>
@@ -60,23 +65,26 @@ const UpcomingWebinarWall: FC<UpcomingWebinarWallProps> = (props) => {
           icon="chevron-right"
           $iconPosition="trailing"
         />
-      </Box>
-      <Box
-        $width={"50%"}
+      </OakBox>
+
+      <OakGrid
+        $right="all-spacing-0"
+        $bottom="all-spacing-0"
+        $height="100%"
+        $width="100%"
         $position="absolute"
-        $right={0}
-        $bottom={0}
-        $height={"100%"}
       >
-        <Illustration
-          slug={"magic-carpet"}
-          $objectFit="contain"
-          $objectPosition={"bottom right"}
-          $opacity={0.2}
-          cropRect={[0, 0, 401, 289]}
-          fill
-        />
-      </Box>
+        <OakGridArea $colSpan={6} $colStart={7} $position="relative">
+          <Illustration
+            slug={"magic-carpet"}
+            $objectFit="contain"
+            $objectPosition={"bottom right"}
+            $opacity={0.2}
+            cropRect={[0, 0, 401, 289]}
+            fill
+          />
+        </OakGridArea>
+      </OakGrid>
     </Flex>
   );
 };

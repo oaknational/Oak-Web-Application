@@ -185,7 +185,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
 
   return (
     <>
-      <Box
+      <OakBox
         $minWidth={"100%"}
         style={{ marginTop: -40 }}
         $display={["block", "block", "none"]}
@@ -197,13 +197,13 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
         >
           {contents}
         </OakBox>
-      </Box>
-      <Box
+      </OakBox>
+      <OakBox
         id="curriculum-overview"
         aria-labelledby="curriculum-overview-heading"
-        $maxWidth={1280}
+        $maxWidth="all-spacing-24"
         $mh={"auto"}
-        $ph={16}
+        $ph="inner-padding-m"
         $width={"100%"}
         role="region"
       >
@@ -217,15 +217,15 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               Explainer
             </OakHeading>
           </ScreenReaderOnly>
-          <Box
-            $minWidth={300}
+          <OakBox
+            style={{ minWidth: 300 }}
             $position={["static", "static", "sticky"]}
-            $top={20}
-            $pb={40}
+            $top="all-spacing-5"
+            $pb="inner-padding-xl3"
             $display={["none", "none", "block"]}
           >
             {contents}
-          </Box>
+          </OakBox>
           <OakFlex
             $mb="space-between-ssx"
             $mt={["space-between-m", "space-between-m", "space-between-none"]}
@@ -311,9 +311,14 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
             </Flex>
           </OakFlex>
         )}
-      </Box>
+      </OakBox>
       <OakBox $background={"bg-decorative1-subdued"} $pv="inner-padding-xl4">
-        <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"}>
+        <OakBox
+          $maxWidth="all-spacing-24"
+          $mh={"auto"}
+          $ph="inner-padding-l"
+          $width={"100%"}
+        >
           <OakFlex
             $gap={["space-between-m", "space-between-m2"]}
             $flexDirection={"column"}
@@ -388,7 +393,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
               )}
             </OakFlex>
           </OakFlex>
-        </Box>
+        </OakBox>
       </OakBox>
     </>
   );

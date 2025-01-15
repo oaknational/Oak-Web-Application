@@ -1,9 +1,5 @@
 import { FC } from "react";
-import { OakSpan } from "@oaknational/oak-components";
-
-import Svg from "@/components/SharedComponents/Svg";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Box from "@/components/SharedComponents/Box";
+import { OakSpan, OakIcon, OakBox, OakFlex } from "@oaknational/oak-components";
 
 type LessonOverviewSpeechBubbleProps = {
   text?: string | null | undefined;
@@ -20,20 +16,20 @@ const LessonOverviewSpeechBubble: FC<LessonOverviewSpeechBubbleProps> = ({
   }
 
   return (
-    <Box $width={320}>
-      <Flex
+    <OakBox $width={"all-spacing-20"}>
+      <OakFlex
         $alignItems={"center"}
         $flexDirection={"column"}
         $justifyContent={"center"}
         $position={"relative"}
-        $height={340}
+        $height={"all-spacing-20"}
       >
-        <Flex
-          $width={220}
+        <OakFlex
+          $width={"all-spacing-19"}
           $alignItems={"center"}
           $justifyContent={"center"}
-          $zIndex={"inFront"}
-          $mb={12}
+          $zIndex={"in-front"}
+          $mb={"space-between-xs"}
         >
           <OakSpan
             $textAlign={"center"}
@@ -42,20 +38,21 @@ const LessonOverviewSpeechBubble: FC<LessonOverviewSpeechBubbleProps> = ({
           >
             {text}
           </OakSpan>
-        </Flex>
-        <Svg
+        </OakFlex>
+        <OakIcon
+          iconName="speech-bubble"
           $position={"absolute"}
-          $top={4}
-          $height={350}
-          name="speech-bubble"
+          $top={"all-spacing-1"}
+          $height={"all-spacing-20"}
+          $width={"100%"}
         />
-      </Flex>
-      <Flex $justifyContent={"end"}>
+      </OakFlex>
+      <OakFlex $justifyContent={"end"}>
         <OakSpan $mt="space-between-m" $font={"heading-7"}>
           {label}
         </OakSpan>
-      </Flex>
-    </Box>
+      </OakFlex>
+    </OakBox>
   );
 };
 

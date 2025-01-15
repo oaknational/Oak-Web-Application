@@ -11,7 +11,6 @@ describe("resolveInternalHref()", () => {
     ["aboutCorePage.workWithUs", {}, `/about-us/work-with-us`],
     ["planningCorePage", {}, "/lesson-planning"],
     ["supportCorePage", {}, "/support-your-team"],
-    ["curriculumCorePage", {}, "/develop-your-curriculum"],
     ["webinar", { slug: "the-webinar" }, "/webinars/the-webinar"],
     ["webinarListingPage", {}, "/webinars"],
     ["newsPost", { slug: "the-post" }, "/blog/the-post"],

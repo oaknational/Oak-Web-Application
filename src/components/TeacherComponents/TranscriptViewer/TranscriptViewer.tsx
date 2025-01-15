@@ -1,8 +1,7 @@
 import { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { OakP, OakFlex } from "@oaknational/oak-components";
+import { OakP, OakFlex, OakBox } from "@oaknational/oak-components";
 
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export interface TranscriptViewerProps {
@@ -13,15 +12,15 @@ export const TranscriptViewer: FC<TranscriptViewerProps> = ({
   transcriptSentences,
 }) => (
   <OakFlex $width={"100%"} $justifyContent={"center"} id="transcript-viewer">
-    <Box
+    <OakBox
       role="article"
       aria-label="The video transcript"
       $width={["100%"]}
-      $maxHeight={[380, 640, 640]}
+      $maxHeight={["all-spacing-20", "all-spacing-22", "all-spacing-22"]}
       $background="grey30"
-      $ph={16}
-      $pv={32}
-      $borderRadius={[8, 3, 3]}
+      $ph="inner-padding-m"
+      $pv="inner-padding-xl2"
+      $borderRadius={["border-radius-m2", "border-radius-s", "border-radius-s"]}
     >
       <Flex
         $maxHeight={[320, 580, 580]}
@@ -32,7 +31,7 @@ export const TranscriptViewer: FC<TranscriptViewerProps> = ({
         $flexDirection={"column"}
         $alignItems={"start"}
       >
-        <Box $maxWidth={[640]}>
+        <OakBox $maxWidth={["all-spacing-22"]}>
           {transcriptSentences?.map((transcriptSentence: string) => (
             <OakP
               $mb={["space-between-m", "space-between-s"]}
@@ -42,9 +41,9 @@ export const TranscriptViewer: FC<TranscriptViewerProps> = ({
               {transcriptSentence}
             </OakP>
           ))}
-        </Box>
+        </OakBox>
       </Flex>
-    </Box>
+    </OakBox>
   </OakFlex>
 );
 

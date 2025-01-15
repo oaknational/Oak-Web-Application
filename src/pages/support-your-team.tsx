@@ -6,6 +6,7 @@ import {
   OakHeading,
   OakP,
   OakFlex,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import CMSClient from "@/node-lib/cms";
@@ -16,7 +17,6 @@ import { SupportYourTeamTextBlockCard } from "@/components/GenericPagesComponent
 import SupportYourTeamTextBlockCardImageCta from "@/components/GenericPagesComponents/SupportYourTeamTextBlockCardImageCta";
 import SupportYourTeamBubbleMessage from "@/components/GenericPagesComponents/SupportYourTeamBubbleMessage";
 import getPageProps from "@/node-lib/getPageProps";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Layout from "@/components/AppComponents/Layout";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Box from "@/components/SharedComponents/Box";
@@ -29,7 +29,10 @@ export type SupportPageProps = {
 const Support: NextPage<SupportPageProps> = ({ pageData }) => {
   return (
     <Layout seoProps={getSeoProps(pageData.seo)} $background={"white"}>
-      <MaxWidth $ph={[0, 16]} $pt={[64, 80]}>
+      <OakMaxWidth
+        $ph={["inner-padding-none", "inner-padding-m"]}
+        $pt={["inner-padding-xl6", "inner-padding-xl8"]}
+      >
         <SummaryCard {...pageData} />
         <Flex
           $justifyContent="center"
@@ -55,6 +58,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               outlineHeading={"3 hrs"}
               heading={"per week saved on lesson planning"}
               subHeading={"by nearly half of teachers using Oak"}
+              $mr={"space-between-s"}
             />
             <SupportYourTeamBubbleMessage
               background={"pink50"}
@@ -62,7 +66,11 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
               outlineHeading={"50%"}
               heading={"of teachers feel more confident"}
               subHeading={"in curriculum design"}
-              $mr={[0, -8, 8]}
+              $mr={[
+                "space-between-none",
+                "space-between-none",
+                "space-between-ssx",
+              ]}
             />
           </OakFlex>
         </OakFlex>
@@ -144,7 +152,7 @@ const Support: NextPage<SupportPageProps> = ({ pageData }) => {
             </OakFlex>
           </Box>
         </OakFlex>
-      </MaxWidth>
+      </OakMaxWidth>
     </Layout>
   );
 };

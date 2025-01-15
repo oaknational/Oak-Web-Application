@@ -1,0 +1,518 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurriculumTab renders 1`] = `
+<body>
+  <div>
+    <div
+      data-overlay-container="true"
+    >
+      <div
+        class="sc-fqkvVR jrwXkp"
+      >
+        <div
+          class="sc-fqkvVR sc-gsFSXq sc-cwHptR iTVHCe ibSZJr"
+        >
+          <div
+            class="sc-fqkvVR sc-gsFSXq dzjDLT hDihdg"
+          >
+            <div
+              class="sc-fqkvVR sc-gsFSXq fsNeVA eqRNuD"
+            >
+              <h1
+                class="sc-dhKdcB cMkAuQ"
+              >
+                Teachers & subject leads
+              </h1>
+              <h2
+                class="sc-dhKdcB bzyrBu"
+              >
+                Curriculum plans
+              </h2>
+              <div
+                class="sc-fqkvVR sc-gsFSXq dzjDLT bOTBNE"
+              >
+                 
+                <div
+                  class="sc-fqkvVR sc-eldPxv hsWGhL gvClhl"
+                >
+                  All of our curriculum plans are:
+                </div>
+                <ul
+                  class="sc-fPXMVe bXbLVZ"
+                >
+                  <li
+                    class="sc-dAlyuH cpASwR"
+                  >
+                    National curriculum-aligned
+                  </li>
+                  <li
+                    class="sc-dAlyuH cpASwR"
+                  >
+                    Sequenced across year groups
+                  </li>
+                  <li
+                    class="sc-dAlyuH cpASwR"
+                  >
+                    Designed by curriculum experts
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="sc-fqkvVR sc-gsFSXq lkDUZN erhMjA"
+              >
+                <a
+                  class="sc-JrDLc caNvwE"
+                  href="/teachers/curriculum"
+                >
+                  <span
+                    class="sc-kpDqfm psnGs"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-eldPxv gbtZoI iGHzbF"
+                    >
+                      Our curriculum planning approach
+                    </div>
+                  </span>
+                  <div
+                    class="sc-fqkvVR gBNXQv sc-fXSgeo kzeJBn"
+                  >
+                    <img
+                      alt="chevron-right"
+                      class="sc-dcJsrY cDKKvZ"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707752509/icons/vk9xxxhnsltsickom6q9.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </div>
+                </a>
+              </div>
+              <div
+                class="sc-fqkvVR fkcrAs"
+              >
+                <div
+                  aria-labelledby="choose-curriculum-label"
+                  class="sc-fqkvVR dzjDLT"
+                  role="group"
+                >
+                  <div
+                    class="sc-fqkvVR gOmLRK"
+                    id="choose-curriculum-label"
+                  >
+                    Choose a curriculum
+                  </div>
+                  <div
+                    class="sc-fqkvVR dWZqAS"
+                    data-testid="lot-picker"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-gsFSXq jPFUDL juXCUD"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-gsFSXq cbfdnE ectRTh"
+                      >
+                        <div
+                          class="sc-fqkvVR sc-gsFSXq chczcQ kHulgy"
+                          style="width: 50%;"
+                        >
+                          <div
+                            class="sc-fqkvVR sc-9dfc1bad-0 sc-a818ec31-2 euLJLN fAkCpO cmcINv"
+                          >
+                            <button
+                              class="sc-a818ec31-1 dlkXBW"
+                              data-testid="subject-picker-button"
+                              title="Subject"
+                            >
+                              <div
+                                class="sc-fqkvVR wyHpc"
+                              >
+                                <span
+                                  class="sc-kpDqfm gGqndO"
+                                  data-testid="subject-picker-button-heading"
+                                >
+                                  Subject
+                                </span>
+                                <p
+                                  class="sc-dLMFU dULECm"
+                                >
+                                  Select
+                                </p>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                        <div
+                          class="sc-fqkvVR fhxmqA"
+                        >
+                          <div
+                            aria-hidden="true"
+                            class="sc-fqkvVR dzjDLT"
+                            data-testid="brush-borders"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="sc-86d1d46f-0 eZA-DQb"
+                              height="100%"
+                              name="box-border-left"
+                              width="100%"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <use
+                                xlink:href="/images/sprite/sprite.svg#box-border-left"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div
+                          class="sc-ad0ad6f5-0 jWQsSO"
+                        >
+                          <div
+                            class="sc-fqkvVR sc-gsFSXq chczcQ ehZBcc"
+                          >
+                            <div
+                              class="sc-fqkvVR sc-9dfc1bad-0 sc-a818ec31-2 jdrOtF fAkCpO cmcINv"
+                            >
+                              <button
+                                class="sc-a818ec31-1 dlkXBW"
+                                data-testid="phase-picker-button"
+                                title="Phase"
+                              >
+                                <div
+                                  class="sc-fqkvVR gVOtfu"
+                                >
+                                  <span
+                                    class="sc-kpDqfm gGqndO"
+                                    data-testid="phase-picker-button-heading"
+                                  >
+                                    School phase
+                                  </span>
+                                  <div
+                                    class="sc-fqkvVR eaVxXD"
+                                  >
+                                    Select
+                                  </div>
+                                </div>
+                              </button>
+                            </div>
+                            <div
+                              class="sc-fqkvVR sc-gsFSXq iCvRAV bKBnOm"
+                            >
+                              <div
+                                class="sc-fqkvVR sc-iHbSHJ cYDSBE fIxqXk"
+                              >
+                                <div
+                                  class="sc-fqkvVR bBzdSm grey-shadow"
+                                />
+                                <div
+                                  class="sc-fqkvVR bBzdSm yellow-shadow"
+                                />
+                                <button
+                                  class="sc-lcIPJg sc-hRJfrW lcdeJA hWjKVP internal-button"
+                                  data-testid="lot-picker-view-curriculum-button"
+                                >
+                                  <div
+                                    class="sc-fqkvVR sc-gsFSXq dzjDLT dzOlKm"
+                                  >
+                                    <span
+                                      class="sc-kpDqfm jpmbqG"
+                                    >
+                                      View
+                                    </span>
+                                    <div
+                                      class="sc-fqkvVR elVQSD"
+                                    >
+                                      <img
+                                        alt="arrow-right"
+                                        class="sc-dcJsrY bDcxkE"
+                                        data-nimg="fill"
+                                        decoding="async"
+                                        loading="lazy"
+                                        src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                        style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                      />
+                                    </div>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="sc-fqkvVR sc-gsFSXq bKccpD gdRCvt"
+            >
+              <div
+                class="sc-fqkvVR sc-gsFSXq dzjDLT imOBLi"
+              >
+                <img
+                  alt=""
+                  class="sc-6170517-0 geyTVX"
+                  data-nimg="1"
+                  decoding="async"
+                  fetchpriority="high"
+                  height="628"
+                  src="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=1080&h=647&fm=webp&q=80&fit=clip&auto=format"
+                  srcset="https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=640&h=383&fm=webp&q=80&fit=clip&auto=format 1x, https://NEXT_PUBLIC_SANITY_ASSET_CDN_HOST/images/NEXT_PUBLIC_SANITY_PROJECT_ID/NEXT_PUBLIC_SANITY_DATASET/b63430479cc683ffce99280e132c671325d1a0fd-1048x628.jpg?w=1080&h=647&fm=webp&q=80&fit=clip&auto=format 2x"
+                  style="color: transparent;"
+                  width="520"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-fqkvVR cmcSyT"
+          >
+            <div
+              aria-labelledby="choose-curriculum-label"
+              class="sc-fqkvVR dzjDLT"
+              role="group"
+            >
+              <div
+                class="sc-fqkvVR gOmLRK"
+                id="choose-curriculum-label"
+              >
+                Choose a curriculum
+              </div>
+              <div
+                class="sc-fqkvVR dWZqAS"
+                data-testid="lot-picker"
+              >
+                <div
+                  class="sc-fqkvVR sc-gsFSXq jPFUDL juXCUD"
+                >
+                  <div
+                    class="sc-fqkvVR sc-gsFSXq cbfdnE ectRTh"
+                  >
+                    <div
+                      class="sc-fqkvVR sc-gsFSXq chczcQ kHulgy"
+                      style="width: 50%;"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-9dfc1bad-0 sc-a818ec31-2 euLJLN fAkCpO cmcINv"
+                      >
+                        <button
+                          class="sc-a818ec31-1 dlkXBW"
+                          data-testid="subject-picker-button"
+                          title="Subject"
+                        >
+                          <div
+                            class="sc-fqkvVR wyHpc"
+                          >
+                            <span
+                              class="sc-kpDqfm gGqndO"
+                              data-testid="subject-picker-button-heading"
+                            >
+                              Subject
+                            </span>
+                            <p
+                              class="sc-dLMFU dULECm"
+                            >
+                              Select
+                            </p>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-fqkvVR fhxmqA"
+                    >
+                      <div
+                        aria-hidden="true"
+                        class="sc-fqkvVR dzjDLT"
+                        data-testid="brush-borders"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="sc-86d1d46f-0 eZA-DQb"
+                          height="100%"
+                          name="box-border-left"
+                          width="100%"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <use
+                            xlink:href="/images/sprite/sprite.svg#box-border-left"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      class="sc-ad0ad6f5-0 jWQsSO"
+                    >
+                      <div
+                        class="sc-fqkvVR sc-gsFSXq chczcQ ehZBcc"
+                      >
+                        <div
+                          class="sc-fqkvVR sc-9dfc1bad-0 sc-a818ec31-2 jdrOtF fAkCpO cmcINv"
+                        >
+                          <button
+                            class="sc-a818ec31-1 dlkXBW"
+                            data-testid="phase-picker-button"
+                            title="Phase"
+                          >
+                            <div
+                              class="sc-fqkvVR gVOtfu"
+                            >
+                              <span
+                                class="sc-kpDqfm gGqndO"
+                                data-testid="phase-picker-button-heading"
+                              >
+                                School phase
+                              </span>
+                              <div
+                                class="sc-fqkvVR eaVxXD"
+                              >
+                                Select
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+                        <div
+                          class="sc-fqkvVR sc-gsFSXq iCvRAV bKBnOm"
+                        >
+                          <div
+                            class="sc-fqkvVR sc-iHbSHJ cYDSBE fIxqXk"
+                          >
+                            <div
+                              class="sc-fqkvVR bBzdSm grey-shadow"
+                            />
+                            <div
+                              class="sc-fqkvVR bBzdSm yellow-shadow"
+                            />
+                            <button
+                              class="sc-lcIPJg sc-hRJfrW lcdeJA hWjKVP internal-button"
+                              data-testid="lot-picker-view-curriculum-button"
+                            >
+                              <div
+                                class="sc-fqkvVR sc-gsFSXq dzjDLT dzOlKm"
+                              >
+                                <span
+                                  class="sc-kpDqfm jpmbqG"
+                                >
+                                  View
+                                </span>
+                                <div
+                                  class="sc-fqkvVR elVQSD"
+                                >
+                                  <img
+                                    alt="arrow-right"
+                                    class="sc-dcJsrY bDcxkE"
+                                    data-nimg="fill"
+                                    decoding="async"
+                                    loading="lazy"
+                                    src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1707149070/icons/fv0z57zerrioft52dd9n.svg"
+                                    style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                                  />
+                                </div>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-fqkvVR VdLam"
+      data-testid="cookie-banner"
+    >
+      <div
+        class="sc-fqkvVR iixGXM"
+      >
+        <div
+          class="sc-fqkvVR sc-gsFSXq hCOvyo iLFXKS"
+        >
+          <div
+            class="sc-fqkvVR jGCLGw"
+          >
+            <strong
+              class="sc-kpDqfm bwvRQn"
+            >
+              This site uses cookies to store information on your computer.
+            </strong>
+             
+            Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
+          </div>
+          <div
+            class="sc-fqkvVR sc-gsFSXq dzjDLT ftCnYI"
+          >
+            <div
+              class="sc-fqkvVR sc-gsFSXq CYcDQ gZFQMg"
+            >
+              <button
+                class="sc-JrDLc caNvwE"
+                data-testid="cookie-banner-reject"
+                type="button"
+              >
+                <span
+                  class="sc-kpDqfm psnGs"
+                >
+                  Reject non-essential cookies
+                </span>
+              </button>
+            </div>
+            <div
+              class="sc-fqkvVR sc-iHbSHJ cYDSBE fIxqXk"
+            >
+              <div
+                class="sc-fqkvVR bBzdSm grey-shadow"
+              />
+              <div
+                class="sc-fqkvVR bBzdSm yellow-shadow"
+              />
+              <button
+                class="sc-lcIPJg sc-hRJfrW kjNddQ xUaNK internal-button"
+              >
+                <div
+                  class="sc-fqkvVR sc-gsFSXq dzjDLT dzOlKm"
+                >
+                  <span
+                    class="sc-kpDqfm jpmbqG"
+                  >
+                    Cookie settings
+                  </span>
+                </div>
+              </button>
+            </div>
+            <div
+              class="sc-fqkvVR sc-iHbSHJ cYDSBE fIxqXk"
+            >
+              <div
+                class="sc-fqkvVR bBzdSm grey-shadow"
+              />
+              <div
+                class="sc-fqkvVR bBzdSm yellow-shadow"
+              />
+              <button
+                class="sc-lcIPJg sc-hRJfrW lcdeJA hWjKVP internal-button"
+                data-testid="cookie-banner-accept"
+              >
+                <div
+                  class="sc-fqkvVR sc-gsFSXq dzjDLT dzOlKm"
+                >
+                  <span
+                    class="sc-kpDqfm jpmbqG"
+                  >
+                    Accept all cookies
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

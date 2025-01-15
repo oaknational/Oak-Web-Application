@@ -1,14 +1,12 @@
 import { FC, useState } from "react";
 import { useFocusVisible, useFocusWithin } from "react-aria";
+import { OakIcon, OakBox } from "@oaknational/oak-components";
 
 import useClickableCard from "@/hooks/useClickableCard";
 import Card from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Icon from "@/components/SharedComponents/Icon";
 import Button from "@/components/SharedComponents/Button";
-import Svg from "@/components/SharedComponents/Svg";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import Box from "@/components/SharedComponents/Box";
 
 export type AccordionContainerTitles =
   | "Lessons in unit"
@@ -29,7 +27,7 @@ const CurriculumUnitDetailsAccordion: FC<
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
   const [isFocused, setIsFocused] = useState<boolean>(false);
-  const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
+  const [isToggleOpen, setIsToggleOpen] = useState<boolean>(false);
 
   const { isFocusVisible } = useFocusVisible();
   const { focusWithinProps } = useFocusWithin({
@@ -61,13 +59,14 @@ const CurriculumUnitDetailsAccordion: FC<
           isCurrent={isHovered}
           currentStyles={["underline"]}
           onClick={() => {
-            setToggleOpen(!isToggleOpen);
+            setIsToggleOpen(!isToggleOpen);
           }}
           $font={"heading-6"}
         />
-        <Icon
-          $color="black"
-          name={isToggleOpen ? "chevron-up" : "chevron-down"}
+        <OakIcon
+          iconName={isToggleOpen ? "chevron-up" : "chevron-down"}
+          $width={"all-spacing-6"}
+          $height={"all-spacing-6"}
         />
       </Card>
       {/* @todo replace with OakFlex - work out $maxHeight, why is it Flex if it has display set to either block or none? */}
@@ -82,32 +81,39 @@ const CurriculumUnitDetailsAccordion: FC<
       <BoxBorders hideLeft hideRight hideBottom={!lastAccordion || isFocused} />
 
       {isFocused && isFocusVisible && (
-        <Box
+        <OakBox
           $position={"absolute"}
-          $height={4}
+          $height={"all-spacing-1"}
           $width={"100%"}
-          $bottom={0}
-          $zIndex={"inFront"}
+          $bottom={"all-spacing-0"}
+          $zIndex={"in-front"}
         >
-          <Svg
-            name={"underline-1"}
-            $color={"black"}
-            $top={0}
+          <OakIcon
+            iconName="underline-1"
+            $width={"100%"}
+            $height={"100%"}
             $position={"absolute"}
+            $top={"all-spacing-0"}
+            $objectFit={"fill"}
           />
-          <Svg
-            name={"underline-1"}
-            $color={"black"}
-            $top={4}
+          <OakIcon
+            iconName="underline-1"
+            $width={"100%"}
+            $height={"100%"}
             $position={"absolute"}
+            $top={"all-spacing-1"}
+            $objectFit={"fill"}
           />
-          <Svg
-            name={"underline-1"}
-            $color={"lemon"}
-            $top={2}
+          <OakIcon
+            iconName="underline-1"
+            $colorFilter={"lemon"}
+            $width={"100%"}
+            $height={"100%"}
             $position={"absolute"}
+            $top={"all-spacing-05"}
+            $objectFit={"fill"}
           />
-        </Box>
+        </OakBox>
       )}
     </Card>
   );
