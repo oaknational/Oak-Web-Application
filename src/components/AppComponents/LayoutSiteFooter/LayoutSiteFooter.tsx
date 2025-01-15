@@ -10,6 +10,7 @@ import {
   OakP,
   OakFlex,
   OakIcon,
+  OakIconName,
   useCookieConsent,
   OakBox,
   OakMaxWidth,
@@ -21,7 +22,6 @@ import OwaLink from "@/components/SharedComponents/OwaLink";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
 import LayoutSiteFooterSignpost from "@/components/AppComponents/LayoutSiteFooterSignpost";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Button from "@/components/SharedComponents/Button";
 import footerSections from "@/browser-lib/fixtures/footerSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -31,7 +31,7 @@ import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 
 type LayoutFooterLinkProps = {
   text: string;
-  icon?: IconName;
+  icon?: OakIconName;
   ariaLabel?: string;
 } & (
   | {
@@ -56,7 +56,14 @@ const FooterLinkIconWrapper: React.FC<FooterLinkIconWrapperProps> = (props) => {
   return (
     <OakFlex $display={"inline-flex"} {...containerProps}>
       {children}
-      {icon && <Icon name={icon} $ml={8} />}
+      {icon && (
+        <OakIcon
+          iconName={icon}
+          $height={"all-spacing-6"}
+          $width={"all-spacing-6"}
+          $ml={"space-between-sssx"}
+        />
+      )}
     </OakFlex>
   );
 };

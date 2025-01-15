@@ -5,6 +5,7 @@ import {
   OakUL,
   OakLI,
   OakP,
+  OakIcon,
   OakHandDrawnHR,
   OakBox,
   OakMaxWidth,
@@ -24,7 +25,6 @@ import Illustration from "@/components/SharedComponents/Illustration/Illustratio
 import Cover from "@/components/SharedComponents/Cover/Cover";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import OwaLink from "@/components/SharedComponents/OwaLink/OwaLink";
-import Icon from "@/components/SharedComponents/Icon";
 import CMSClient from "@/node-lib/cms";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import { blogToPostListItem } from "@/components/GenericPagesViews/BlogIndex.view";
@@ -157,7 +157,11 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   $alignItems={"center"}
                 >
                   Read more about our approach
-                  <Icon name={"chevron-right"} />
+                  <OakIcon
+                    iconName={"chevron-right"}
+                    $width={"all-spacing-6"}
+                    $height={"all-spacing-6"}
+                  />
                 </OwaLink>
               </OakTypography>
             </OakBox>

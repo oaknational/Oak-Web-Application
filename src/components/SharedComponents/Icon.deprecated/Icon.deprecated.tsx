@@ -88,6 +88,7 @@ type IconProps = Partial<IconOuterWrapperProps> &
  * icon.
  * The exception to this is if the icon is clickable, in which case you should
  * use an `<IconButton />` component (which uses `<Icon />` internally).
+ * @deprecated use OakIcon from oak-components instead
  */
 const Icon: FC<IconProps> = (props) => {
   const {
