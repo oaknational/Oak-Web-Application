@@ -152,7 +152,7 @@
     "@graphql-codegen/typescript-operations": "^4.4.0",
     "@netlify/edge-functions": "^2.11.1",
     "@netlify/plugin-nextjs": "^5.8.1",
-    "@next/bundle-analyzer": "^14.2.20",
+    "@next/bundle-analyzer": "^15.1.4",
     "@next/env": "^14.2.20",
     "@next/eslint-plugin-next": "^14.2.20",
     "@percy/cli": "v1.30.2",
