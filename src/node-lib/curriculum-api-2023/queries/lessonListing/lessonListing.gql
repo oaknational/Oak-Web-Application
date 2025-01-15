@@ -1,5 +1,5 @@
 query lessonListing($programmeSlug: String!, $unitSlug: String!) {
-  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
+  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
     where: {
       unit_slug: { _eq: $unitSlug }
       programme_slug: { _eq: $programmeSlug }
@@ -11,6 +11,7 @@ query lessonListing($programmeSlug: String!, $unitSlug: String!) {
     programme_slug_by_year
     null_unitvariant_id
     unit_slug
+    unitvariant_id
     unit_data
     programme_slug
     is_legacy
