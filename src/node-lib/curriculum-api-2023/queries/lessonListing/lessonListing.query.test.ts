@@ -43,6 +43,7 @@ describe("lessonListing()", () => {
         subjectTitle: "Maths",
         unitSlug: "unit-slug",
         unitTitle: "unit-title",
+        unitvariantId: 1,
         tierSlug: null,
         tierTitle: null,
         examBoardSlug: null,
@@ -161,6 +162,7 @@ describe("lessonListing()", () => {
         syntheticUnitvariantLessonsByKsFixture().programme_fields,
       unitSlug: "unit-slug",
       programmeSlug: "programme-slug",
+      unitvariantId: 1,
       unitTitle:
         syntheticUnitvariantLessonsByKsFixture().programme_fields.optionality ??
         syntheticUnitvariantLessonsByKsFixture().unit_data.title,
@@ -201,6 +203,7 @@ describe("lessonListing()", () => {
         tierTitle: null,
         unitSlug: "unit-slug",
         unitTitle: "unit-title",
+        unitvariantId: 1,
         yearTitle: "Year 1",
         yearSlug: "year-1",
         pathwaySlug: null,
@@ -253,6 +256,7 @@ describe("lessonListing()", () => {
         tierTitle: null,
         unitSlug: "unit-slug",
         unitTitle: "unit-title",
+        unitvariantId: 1,
         yearTitle: "Year 1",
         yearSlug: "year-1",
         pathwaySlug: null,

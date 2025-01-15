@@ -39,6 +39,8 @@ export type HeaderListingProps = {
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
+  unitDownloadButton?: React.ReactNode;
+  banner?: React.ReactNode;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -57,6 +59,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
     shareButton,
+    unitDownloadButton,
+    banner,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -102,7 +106,16 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
-            {shareButton}
+            <OakFlex $flexDirection="column" $gap="space-between-s">
+              <OakFlex
+                $gap="space-between-s"
+                $flexDirection={["column", "row"]}
+              >
+                {unitDownloadButton}
+                {shareButton}
+              </OakFlex>
+              {banner}
+            </OakFlex>
           </OakFlex>
         </OakFlex>
       </OakFlex>

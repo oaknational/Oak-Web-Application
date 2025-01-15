@@ -5,7 +5,7 @@ import {
 } from "@react-stately/combobox";
 import { useFilter } from "@react-aria/i18n";
 import { useComboBox } from "react-aria";
-import { OakSpan } from "@oaknational/oak-components";
+import { OakFlex, OakSpan } from "@oaknational/oak-components";
 
 import { Popover } from "@/components/SharedComponents/Popover";
 import { ListBox } from "@/components/SharedComponents/ListBox";
@@ -16,7 +16,6 @@ import {
 import { DropdownFocusUnderline } from "@/components/GenericPagesComponents/Select/Select";
 import { School } from "@/components/TeacherComponents/ResourcePageSchoolPicker";
 import { OakColorName } from "@/styles/theme/types";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 // Reuse the ListBox and Popover from your component library. See below for details.
@@ -70,10 +69,10 @@ const ResourcePageSearchComboBox = <T extends School>(
   }
 
   return (
-    <Flex $width={"100%"} $position={"relative"} $display={"inline-block"}>
-      <Flex $width={"100%"} $position={"relative"}>
+    <OakFlex $width={"100%"} $position={"relative"} $display={"inline-block"}>
+      <OakFlex $width={"100%"} $position={"relative"}>
         <BoxBorders gapPosition="rightTop" />
-        <Flex $position={"absolute"}>
+        <OakFlex $position={"absolute"}>
           <RotatedInputLabel
             {...labelProps}
             aria-hidden="true"
@@ -92,7 +91,7 @@ const ResourcePageSearchComboBox = <T extends School>(
               props.label
             )}
           </RotatedInputLabel>
-        </Flex>
+        </OakFlex>
 
         <StyledInput
           {...inputProps}
@@ -116,7 +115,7 @@ const ResourcePageSearchComboBox = <T extends School>(
           name={"underline-1"}
           $font={"body-3"}
         />
-      </Flex>
+      </OakFlex>
 
       {state.isOpen && (
         <Popover
@@ -128,7 +127,7 @@ const ResourcePageSearchComboBox = <T extends School>(
           <ListBox {...listBoxProps} listBoxRef={listBoxRef} state={state} />
         </Popover>
       )}
-    </Flex>
+    </OakFlex>
   );
 };
 
