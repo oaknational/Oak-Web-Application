@@ -1,8 +1,7 @@
+import { OakBox } from "@oaknational/oak-components";
 import { StoryFn, Meta } from "@storybook/react";
 
 import Component, { ASPECT_RATIOS } from "./AspectRatio";
-
-import Box from "@/components/SharedComponents/Box";
 
 export default {
   component: Component,
@@ -12,9 +11,9 @@ export default {
 } as Meta<typeof Component>;
 
 const Template: StoryFn<typeof Component> = (args) => (
-  <Box $background="black" $width={120} $position="relative">
+  <OakBox $background="black" $width={"all-spacing-16"} $position="relative">
     <Component {...args} />
-  </Box>
+  </OakBox>
 );
 
 export const AspectRatio = {

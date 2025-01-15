@@ -1,7 +1,11 @@
 import { FC } from "react";
-import { OakFlex, OakTertiaryButton } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakTertiaryButton,
+  OakBox,
+  OakBoxProps,
+} from "@oaknational/oak-components";
 
-import Box, { BoxProps } from "@/components/SharedComponents/Box";
 import CategoryFilterList from "@/components/SharedComponents/CategoryFilterList";
 import useCategoryFilterList from "@/components/SharedComponents/CategoryFilterList/useCategoryFilterList";
 import {
@@ -12,7 +16,7 @@ import {
 
 export type PostCategoryPage = "blog-index" | "webinar-index";
 
-export type PostCategoryListProps = BoxProps & {
+export type PostCategoryListProps = OakBoxProps & {
   labelledBy: string;
   categories: { slug: string; title: string }[];
   selectedCategorySlug?: string | null;
@@ -28,7 +32,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
   });
 
   return (
-    <Box {...boxProps}>
+    <OakBox {...boxProps}>
       <CategoryFilterList
         labelledBy={labelledBy}
         getIsSelected={getIsSelected}
@@ -59,7 +63,7 @@ const PostCategoryList: FC<PostCategoryListProps> = (props) => {
           {`Switch to ${page === "blog-index" ? "webinars" : "blogs"}`}
         </OakTertiaryButton>
       </OakFlex>
-    </Box>
+    </OakBox>
   );
 };
 

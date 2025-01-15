@@ -137,7 +137,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
   return (
     <OakBox $color="black">
       {onBackToKs4Options && (
-        <Box $mb={24}>
+        <OakBox $mb="space-between-m">
           <Button
             variant={"buttonStyledAsLink"}
             icon="chevron-left"
@@ -146,7 +146,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = ({
             label="Back to KS4 options"
             onClick={onBackToKs4Options}
           />
-        </Box>
+        </OakBox>
       )}
       <Container $gap={["space-between-m2", "space-between-l"]}>
         <Box $width={["100%", 510]} $textAlign={"left"}>

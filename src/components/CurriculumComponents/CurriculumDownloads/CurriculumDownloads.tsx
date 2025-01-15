@@ -13,7 +13,6 @@ import {
   OakIcon,
 } from "@oaknational/oak-components";
 
-import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
@@ -240,15 +239,15 @@ function CurriculumDownloads(
   ]);
 
   return (
-    <Box
-      $maxWidth={1280}
+    <OakBox
+      $maxWidth="all-spacing-24"
       $mh={"auto"}
       $width={"100%"}
-      $ph={28}
-      $pb={80}
-      $pt={32}
+      $ph="inner-padding-xl"
+      $pb="inner-padding-xl8"
+      $pt="inner-padding-xl2"
     >
-      <Box $width="100%">
+      <OakBox $width="100%">
         <OakFlex
           $alignItems={"flex-start"}
           $flexDirection={"column"}
@@ -387,8 +386,8 @@ function CurriculumDownloads(
             </OakGrid>
           </form>
         </OakFlex>
-      </Box>
-    </Box>
+      </OakBox>
+    </OakBox>
   );
 }
 

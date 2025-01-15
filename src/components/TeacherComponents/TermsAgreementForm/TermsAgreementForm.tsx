@@ -11,10 +11,10 @@ import {
   OakHeading,
   OakP,
   OakIcon,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
-import Box from "@/components/SharedComponents/Box";
 import OakLink from "@/components/SharedComponents/OwaLink";
 import Input from "@/components/SharedComponents/Input";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
@@ -22,7 +22,6 @@ import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePa
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
-import { P } from "@/components/SharedComponents/Typography";
 
 export type TermsAgreementFormProps = {
   form: {
@@ -82,7 +81,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
               onEditClick={handleEditDetailsCompletedClick}
             />
           ) : (
-            <Box $maxWidth={[null, 420, 420]}>
+            <OakBox $maxWidth={[null, "all-spacing-21", "all-spacing-21"]}>
               <ResourcePageSchoolDetails
                 errors={form.errors}
                 setSchool={setSchool}
@@ -104,11 +103,11 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 isOptional={true}
                 {...form.register("email")}
                 error={form.errors?.email?.message}
+                $mb={12}
               />
-              <P
+              <OakP
                 $font="body-3"
-                $mt={-20}
-                $mb={48}
+                $mb={"space-between-l"}
                 data-testid="newsletter-policy"
               >
                 Join over 100k teachers and get free resources and other helpful
@@ -133,7 +132,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   />
                 </OakLink>
                 .
-              </P>
+              </OakP>
               <Controller
                 control={form.control}
                 name="terms"
@@ -156,13 +155,15 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   );
                 }}
               />
-            </Box>
+            </OakBox>
           )}
-          <CopyrightNotice
-            showPostAlbCopyright={showPostAlbCopyright}
-            openLinksExternally={true}
-            copyrightYear={copyrightYear}
-          />
+          <OakBox $width="all-spacing-21">
+            <CopyrightNotice
+              showPostAlbCopyright={showPostAlbCopyright}
+              openLinksExternally={true}
+              copyrightYear={copyrightYear}
+            />
+          </OakBox>
         </OakFlex>
       )}
     </>

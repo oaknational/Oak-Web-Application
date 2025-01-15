@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import { OakGrid, OakGridArea, OakMaxWidth } from "@oaknational/oak-components";
 
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonList from "@/components/TeacherComponents/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing";
@@ -81,7 +80,7 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
         title={unitTitle}
         isNew={false}
       />
-      <MaxWidth $ph={16}>
+      <OakMaxWidth $ph={"inner-padding-m"}>
         <OakGrid data-testid="specialist-lesson-grid">
           <OakGridArea
             $colSpan={[12, 9]}
@@ -99,7 +98,7 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
             />
           </OakGridArea>
         </OakGrid>
-      </MaxWidth>
+      </OakMaxWidth>
     </>
   );
 };

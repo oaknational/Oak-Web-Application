@@ -7,12 +7,12 @@ import {
   OakHeading,
   OakP,
   OakFlex,
+  OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import UnitList from "@/components/TeacherComponents/UnitList";
-import Box from "@/components/SharedComponents/Box";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
@@ -99,7 +99,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
         isNew={false}
       />
 
-      <MaxWidth $ph={16}>
+      <OakMaxWidth $ph={"inner-padding-m"}>
         <OakGrid data-testid="specialist-unit-grid">
           <OakGridArea
             $order={[0, 2]}
@@ -107,11 +107,15 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
             $display={["block", "none", "block"]}
             $pl={[undefined, "inner-padding-xl"]}
           >
-            <Box
+            <OakBox
               $position={[null, "sticky"]}
               $top={[null, HEADER_HEIGHT]}
-              $mt={[0, 0, 32]}
-              $pt={[24, 48]}
+              $mt={[
+                "space-between-none",
+                "space-between-none",
+                "space-between-m2",
+              ]}
+              $pt={["inner-padding-xl", "inner-padding-xl4"]}
             >
               {learningThemes?.length > 1 && (
                 <OakFlex
@@ -155,7 +159,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
                   </OakFlex>
                 )}
               </OakFlex>
-            </Box>
+            </OakBox>
           </OakGridArea>
           <OakGridArea $order={[1, 0]} $colSpan={[12, 12, 9]}>
             <Flex $flexDirection={["column-reverse", "column"]} $pt={[24, 48]}>
@@ -217,7 +221,7 @@ const SpecialistUnitListing: FC<SpecialistPageData> = ({ curriculumData }) => {
             />
           </OakGridArea>
         </OakGrid>
-      </MaxWidth>
+      </OakMaxWidth>
     </>
   );
 };
