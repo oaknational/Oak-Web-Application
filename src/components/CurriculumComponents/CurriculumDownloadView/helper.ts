@@ -1,7 +1,5 @@
 import { ZodType } from "zod";
 
-import { DownloadType } from ".";
-
 export type School = {
   urn: string;
   la: string;
@@ -48,3 +46,26 @@ export function assertValidDownloadType(val: string) {
   }
   return val as DownloadType;
 }
+
+export type DownloadType = (typeof validDownloadTypes)[number];
+
+export const DOWNLOAD_TYPES: {
+  id: DownloadType;
+  label: string;
+  disabled?: boolean;
+  icon: string;
+  subTitle?: string;
+}[] = [
+  {
+    id: "word",
+    label: "Curriculum plan",
+    subTitle: "Word (accessible)",
+    icon: "maths",
+  },
+  // {
+  //   id: "pdf",
+  //   label: "Curriculum plan",
+  //   subTitle: "PDF",
+  //   icon: "maths"
+  // },
+];
