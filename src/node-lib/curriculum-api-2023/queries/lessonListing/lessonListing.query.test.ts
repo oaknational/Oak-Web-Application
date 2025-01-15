@@ -43,7 +43,7 @@ describe("lessonListing()", () => {
         subjectTitle: "Maths",
         unitSlug: "unit-slug",
         unitTitle: "unit-title",
-        unitvariantId: 0,
+        unitvariantId: 1,
         tierSlug: null,
         tierTitle: null,
         examBoardSlug: null,
