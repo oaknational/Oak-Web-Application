@@ -208,11 +208,6 @@ describe("urls.ts", () => {
     it("Contact us", () => {
       expect(resolveOakHref({ page: "contact" })).toBe("/contact-us");
     });
-    it("Develop your curriculum", () => {
-      expect(resolveOakHref({ page: "develop-your-curriculum" })).toBe(
-        "/develop-your-curriculum",
-      );
-    });
     it("Home", () => {
       expect(resolveOakHref({ page: "home" })).toBe("/");
     });
