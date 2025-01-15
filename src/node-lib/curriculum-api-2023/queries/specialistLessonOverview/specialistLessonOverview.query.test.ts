@@ -61,6 +61,7 @@ describe("specialistLessonOverview()", () => {
               content_guidance: null,
               threads: null,
               video_title: null,
+              additional_files: null,
             },
             {
               synthetic_programme_slug: "specialist-programme-slug-0",
