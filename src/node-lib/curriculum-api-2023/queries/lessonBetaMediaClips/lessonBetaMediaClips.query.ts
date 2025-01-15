@@ -9,7 +9,7 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { BetaLessonMediaClipsQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import { constructMediaClips } from "@/node-lib/curriculum-api-2023/queries/teacherPreviewLesson/constructMediaClips";
 
 export const betaLessonMediaClipsQuery =
   (sdk: Sdk) =>
@@ -45,16 +45,31 @@ export const betaLessonMediaClipsQuery =
 
     const [browseDataSnake] = modifiedBrowseData;
 
+    const lessonData = {
+      ...browseDataSnake?.lesson_data,
+      key_learning_points: [],
+    };
+
+    const manipulatedData = { ...browseDataSnake, lesson_data: lessonData };
     lessonBrowseDataSchema.parse({
-      ...browseDataSnake,
+      ...manipulatedData,
+      // learning_dakey_learning_points: [],
       supplementary_data: { order_in_unit: 0, unit_order: 0 },
     });
 
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
 
+    const constructedMediaClips = constructMediaClips(
+      manipulatedData?.media_clips,
+    );
+
+    if (!constructedMediaClips) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
     const data = constructLessonMediaData(
       browseData,
-      lessonMediaClipsFixtures().mediaClips,
+      constructedMediaClips,
       [],
     );
 

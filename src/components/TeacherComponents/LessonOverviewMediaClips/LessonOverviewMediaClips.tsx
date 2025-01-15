@@ -48,7 +48,9 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
               }
               playbackPolicy={
                 firstCycleVideo.videoObject
-                  ? firstCycleVideo.videoObject.playbackPolicy
+                  ? (firstCycleVideo.videoObject.playbackPolicy as
+                      | "public"
+                      | "signed")
                   : "public"
               }
               numberOfClips={video.length}

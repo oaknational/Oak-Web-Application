@@ -24,7 +24,7 @@ export type LessonBrowseData = ConvertKeysToCamelCase<
 const mediaObjectSchema = z
   .object({
     muxPlaybackId: z.string(),
-    playbackPolicy: z.enum(["signed", "public"]),
+    playbackPolicy: z.string(),
     transcriptionSentences: z.array(z.string()).optional(),
     resourceType: z.string(),
     title: z.string(),
@@ -37,7 +37,8 @@ const mediaObjectSchema = z
 const videoObjectSchema = z
   .object({
     muxPlaybackId: z.string(),
-    playbackPolicy: z.enum(["signed", "public"]),
+    // TODO : fix playback policy
+    playbackPolicy: z.string(),
     videoWithSignLanguageMuxPlaybackId: z.string().optional(),
     transcriptionSentences: z.array(z.string()).optional(),
     resourceType: z.string(),
@@ -55,7 +56,7 @@ const mediaClipsCycleSchema = z.object({
   slug: z.string(),
   mediaClipTitle: z.string(),
   mediaObject: mediaObjectSchema,
-  mediaType: z.enum(["audio", "video"]),
+  mediaType: z.string(),
   videoId: z.number().nullable(),
   videoObject: videoObjectSchema,
 });

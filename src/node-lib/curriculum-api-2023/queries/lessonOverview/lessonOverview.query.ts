@@ -6,6 +6,7 @@ import { lessonOverviewQuizData, LessonPathway } from "../../shared.schema";
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
+import { MediaClipsList } from "../lessonMediaClips/lessonMediaClips.schema";
 
 import lessonOverviewSchema, {
   lessonContentSchema,
@@ -21,7 +22,6 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -128,15 +128,18 @@ const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   return pathways;
 };
 
+//TODO: utilise construct media function aqui
 export const transformedLessonOverviewData = (
   browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
+  constructedMediaClips: MediaClipsList | null,
 ): LessonOverviewPageData => {
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
+
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
@@ -201,7 +204,7 @@ export const transformedLessonOverviewData = (
     pathways: pathways,
     actions: browseData.actions,
     hasMediaClips: false,
-    lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
+    lessonMediaClips: constructedMediaClips,
   };
 };
 
@@ -288,7 +291,7 @@ const lessonOverviewQuery =
       ...contentSnake,
     }) as LessonOverviewContent;
     return lessonOverviewSchema.parse(
-      transformedLessonOverviewData(browseData, content, pathways),
+      transformedLessonOverviewData(browseData, content, pathways, null),
     );
   };
 

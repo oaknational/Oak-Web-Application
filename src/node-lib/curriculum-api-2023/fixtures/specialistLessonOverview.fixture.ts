@@ -116,6 +116,7 @@ const specialistLessonOverviewFixture = (
     pathways: [],
     lessonGuideUrl: null,
     hasMediaClips: false,
+    lessonMediaClips: null,
     ...partial,
   };
 };

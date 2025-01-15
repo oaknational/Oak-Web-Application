@@ -172,7 +172,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
                 playedVideos,
               )}
               playbackId={videoObject?.muxPlaybackId}
-              playbackPolicy={videoObject?.playbackPolicy}
+              playbackPolicy={
+                videoObject?.playbackPolicy as "public" | "signed"
+              }
               isAudioClip={false}
               onClick={() => onMediaClipClick(slug)}
               key={index}

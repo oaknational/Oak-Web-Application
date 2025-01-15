@@ -3,6 +3,8 @@ import {
   QuizQuestion,
 } from "@oaknational/oak-curriculum-schema";
 
+import { constructMediaClips } from "./constructMediaClips";
+
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
@@ -46,9 +48,11 @@ const teacherPreviewLessonQuery =
     if (!content) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
+    console.log(content.media_clips, "<<< media clips");
 
     const parsedLessonContent = lessonContentSchemaFull.parse({
       ...content,
+      media_clips: null,
       geo_restricted: true,
       login_required: true,
     });
@@ -65,10 +69,13 @@ const teacherPreviewLessonQuery =
     });
     const [browseData] = keysToCamelCase(res.browseData);
 
+    const constructedMediaClips = constructMediaClips(content.media_clips);
+
     const teacherPreviewData = transformedLessonOverviewData(
       browseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,
       [],
+      constructedMediaClips,
     );
 
     let subjectSlug: string = browseFixtureData.programmeFields.subjectSlug;

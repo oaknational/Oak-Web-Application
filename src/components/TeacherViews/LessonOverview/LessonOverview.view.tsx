@@ -52,7 +52,6 @@ import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -102,7 +101,8 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     teacherShareButton,
     additionalMaterialUrl,
     actions,
-    hasMediaClips,
+    // hasMediaClips,
+    lessonMediaClips,
   } = lesson;
 
   const { track } = useAnalytics();
@@ -397,7 +397,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     </LessonItemContainer>
                   )}
                 {pageLinks.find((p) => p.label === mediaClipLabel) &&
-                  hasMediaClips &&
+                  lessonMediaClips &&
                   isBeta && (
                     <LessonItemContainer
                       title={mediaClipLabel}
@@ -410,9 +410,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     >
                       <LessonOverviewMediaClips
                         lessonSlug={lessonSlug}
-                        learningCycleVideos={
-                          lessonMediaClipsFixtures().mediaClips
-                        }
+                        learningCycleVideos={lessonMediaClips}
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
                       />
