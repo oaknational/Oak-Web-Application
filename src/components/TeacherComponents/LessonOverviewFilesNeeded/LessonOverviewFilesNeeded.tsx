@@ -6,7 +6,6 @@ import {
   OakP,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { resolveOakHref } from "@/common-lib/urls";
@@ -17,10 +16,6 @@ type LessonOverviewFilesNeededProps = {
   slugs: Slugs;
 };
 
-const CustomBox = styled(OakBox)`
-  width: 320px;
-`;
-
 const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
   additionalFiles,
   slugs,
@@ -28,7 +23,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const isPlural = additionalFiles.length > 1;
   return (
-    <CustomBox $background={"aqua50"} $position={"relative"}>
+    <OakBox $background={"aqua50"} $position={"relative"}>
       <OakFlex
         $flexDirection={"column"}
         $pa={"inner-padding-xl"}
@@ -71,7 +66,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
         </OakTertiaryButton>
       </OakFlex>
       <BrushBorders color="aqua50" />
-    </CustomBox>
+    </OakBox>
   );
 };
 
