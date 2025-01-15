@@ -37,7 +37,7 @@ export const CardIconButton: StoryObj<typeof Component> = {
         <CardTitle
           icon={"download"}
           $iconPosition={"leading"}
-          iconSize={32}
+          iconSize={"all-spacing-7"}
           tag={"h4"}
         >
           Title
@@ -85,7 +85,7 @@ export const CardLargeIconCentered: StoryObj<typeof Component> = {
         <CardTitle
           icon={"download"}
           $iconPosition={"aboveTitle"}
-          iconSize={80}
+          iconSize={"all-spacing-13"}
           tag={"h4"}
         >
           Title

@@ -1,6 +1,8 @@
-import { OakFlex, OakHomepageTabButton } from "@oaknational/oak-components";
-
-import { Hr } from "@/components/SharedComponents/Typography";
+import {
+  OakFlex,
+  OakHandDrawnHR,
+  OakHomepageTabButton,
+} from "@oaknational/oak-components";
 
 export type HomePageTab = "teachers" | "curriculum" | "ai" | "pupils";
 
@@ -48,7 +50,7 @@ const HomePageTabImageNav = ({ current }: { current: HomePageTab }) => {
           isActive={current === "pupils"}
         />
       </OakFlex>
-      <Hr $mt={0} $mb={0} $color={"white"} thickness={2} />
+      <OakHandDrawnHR hrColor={"white"} $height={"all-spacing-05"} />
     </OakFlex>
   );
 };

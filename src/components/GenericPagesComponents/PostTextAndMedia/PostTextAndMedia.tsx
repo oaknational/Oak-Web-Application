@@ -1,10 +1,9 @@
 import type { PortableTextComponentProps } from "@portabletext/react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
 
 import { PortableTextJSON, TextAndMedia } from "@/common-lib/cms-types";
 import { OmitKeepDiscriminated } from "@/utils/generics";
 import { getLinkHref } from "@/utils/portableText/resolveInternalHref";
-import Box from "@/components/SharedComponents/Box";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
@@ -41,9 +40,9 @@ const PostTextAndMedia = (
         <OakHeading $font={["heading-5", "heading-4"]} tag="h2">
           {params.title}
         </OakHeading>
-        <Box $mt={32}>
+        <OakBox $mt="space-between-m2">
           <PortableTextWithDefaults value={params.body} />
-        </Box>
+        </OakBox>
         {params.cta && (
           <ButtonAsLink
             $mt={24}
@@ -55,12 +54,12 @@ const PostTextAndMedia = (
         )}
       </div>
       {params.mediaType === "image" && params.image && (
-        <Box $mr={24}>
+        <OakBox $mr="space-between-m">
           <CMSImage image={params.image} />
-        </Box>
+        </OakBox>
       )}
       {params.mediaType === "video" && params.video && (
-        <Box $mr={24}>
+        <OakBox $mr="space-between-m">
           <VideoPlayer
             title={params.video.title}
             playbackId={params.video.video.asset.playbackId}
@@ -68,7 +67,7 @@ const PostTextAndMedia = (
             playbackPolicy="public"
             isLegacy={true}
           />
-        </Box>
+        </OakBox>
       )}
     </OakFlex>
   );

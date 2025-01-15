@@ -33,7 +33,7 @@ import margin, { MarginProps } from "@/styles/utils/spacing";
 import {
   BackgroundIcon,
   IconName,
-} from "@/components/SharedComponents/Icon/Icon";
+} from "@/components/SharedComponents/Icon.deprecated/Icon.deprecated";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 

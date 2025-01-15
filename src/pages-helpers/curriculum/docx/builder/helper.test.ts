@@ -8,8 +8,12 @@ import {
   uncapitalize,
   uncapitalizeSubject,
   generateIconURL,
+  groupUnitsBySubjectCategory,
   subjectFromUnits,
+  unitsByYear,
 } from "./helper";
+
+import { Unit } from "@/utils/curriculum/types";
 
 describe("helper", () => {
   it("uncapitalize", async () => {
@@ -82,6 +86,57 @@ describe("helper", () => {
     });
   });
 
+  describe("groupUnitsBySubjectCategory", () => {
+    it("should group with subject categories", () => {
+      expect(
+        groupUnitsBySubjectCategory([
+          {
+            slug: "a",
+          },
+          {
+            slug: "b",
+          },
+        ] as CombinedCurriculumData["units"]),
+      ).toEqual([]);
+    });
+
+    it("should not group without subject categories", () => {
+      const input = [
+        {
+          slug: "a",
+          subjectcategories: [
+            {
+              id: 1,
+              title: "test1",
+              category: "test1",
+            },
+          ],
+        },
+        {
+          slug: "b",
+          subjectcategories: [
+            {
+              id: 2,
+              title: "test2",
+              category: "test2",
+            },
+          ],
+        },
+      ] as CombinedCurriculumData["units"];
+
+      const out = groupUnitsBySubjectCategory(input);
+      expect(out).toEqual([
+        {
+          subjectCategory: input[0]!.subjectcategories![0],
+          units: [input[0]!],
+        },
+        {
+          subjectCategory: input[1]!.subjectcategories![0],
+          units: [input[1]!],
+        },
+      ]);
+    });
+  });
   describe("subjectFromUnits", () => {
     const data = [
       {},
@@ -99,6 +154,61 @@ describe("helper", () => {
 
     it("undefined if no unit with subject", () => {
       expect(subjectFromUnits(data, "foobar")).toEqual(undefined);
+    });
+  });
+
+  it("unitsByYear", () => {
+    const result = unitsByYear([
+      {
+        title: "test1",
+        slug: "test1",
+        year: "1",
+      },
+      {
+        title: "test2",
+        slug: "test2",
+        year: "1",
+      },
+      {
+        title: "test3",
+        slug: "test3",
+        year: "2",
+      },
+      {
+        title: "test4",
+        slug: "test4",
+        year: "2",
+      },
+    ] as Unit[]);
+    expect(result).toEqual({
+      "1": [
+        {
+          title: "test1",
+          slug: "test1",
+          year: "1",
+          order: 0,
+        },
+        {
+          title: "test2",
+          slug: "test2",
+          year: "1",
+          order: 1,
+        },
+      ],
+      "2": [
+        {
+          title: "test3",
+          slug: "test3",
+          year: "2",
+          order: 0,
+        },
+        {
+          title: "test4",
+          slug: "test4",
+          year: "2",
+          order: 1,
+        },
+      ],
     });
   });
 });

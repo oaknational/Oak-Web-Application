@@ -8,13 +8,14 @@ import {
 import {
   OakGrid,
   OakGridArea,
+  OakInlineBanner,
   OakThemeProvider,
   oakDefaultTheme,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonList from "@/components/TeacherComponents/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import {
@@ -42,6 +43,9 @@ import {
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
+import UnitDownloadButton, {
+  useUnitDownloadButtonState,
+} from "@/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -68,6 +72,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 }) => {
   const {
     unitSlug,
+    unitvariantId,
     keyStageTitle,
     keyStageSlug,
     unitTitle,
@@ -155,6 +160,15 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 
   const isNew = hasNewContent ?? false;
 
+  const {
+    showDownloadMessage,
+    setShowDownloadMessage,
+    downloadError,
+    setDownloadError,
+    setDownloadInProgress,
+    downloadInProgress,
+  } = useUnitDownloadButtonState();
+
   return (
     <AppLayout
       seoProps={{
@@ -217,8 +231,57 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
+          unitDownloadButton={
+            <UnitDownloadButton
+              setDownloadError={setDownloadError}
+              setDownloadInProgress={setDownloadInProgress}
+              setShowDownloadMessage={setShowDownloadMessage}
+              downloadInProgress={downloadInProgress}
+              unitFileId={
+                unitSlug.endsWith(unitvariantId.toString())
+                  ? unitSlug
+                  : `${unitSlug}-${unitvariantId}`
+              }
+              onDownloadSuccess={() =>
+                track.unitDownloadInitiated({
+                  platform: "owa",
+                  product: "teacher lesson resources",
+                  engagementIntent: "use",
+                  componentType: "unit_download_button",
+                  eventVersion: "2.0.0",
+                  analyticsUseCase: "Teacher",
+                  unitName: unitTitle,
+                  unitSlug: unitSlug,
+                  keyStageSlug: keyStageSlug,
+                  keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+                  subjectSlug: subjectSlug,
+                  subjectTitle: subjectTitle,
+                })
+              }
+            />
+          }
+          banner={
+            showDownloadMessage ? (
+              <OakInlineBanner
+                isOpen={showDownloadMessage}
+                canDismiss
+                onDismiss={() => setShowDownloadMessage(false)}
+                type="neutral"
+                aria-live="polite"
+                message="Downloads may take a few minutes on slower Wi-Fi connections."
+              />
+            ) : downloadError ? (
+              <OakInlineBanner
+                isOpen
+                type="error"
+                aria-live="polite"
+                message="Sorry, download is not working. Please try again in a few minutes."
+                icon="error"
+              />
+            ) : null
+          }
         />
-        <MaxWidth $ph={16}>
+        <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
             <OakGridArea
               $colSpan={[12, 9]}
@@ -245,7 +308,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               />
             </OakGridArea>
           </OakGrid>
-        </MaxWidth>
+        </OakMaxWidth>
       </OakThemeProvider>
     </AppLayout>
   );
