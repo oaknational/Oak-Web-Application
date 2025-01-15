@@ -10,6 +10,7 @@ describe("teacherPreviewLesson()", () => {
     ...lessonBrowseDataFixture({
       lessonSlug: "lesson-slug",
     }),
+    disablePupilShare: true,
   };
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {

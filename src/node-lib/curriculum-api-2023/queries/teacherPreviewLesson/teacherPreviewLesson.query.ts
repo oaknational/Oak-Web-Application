@@ -3,12 +3,14 @@ import {
   QuizQuestion,
 } from "@oaknational/oak-curriculum-schema";
 
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
+import { TeachersPreviewLessonQuery } from "../../generated/sdk";
+
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { transformedLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query";
-import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import lessonOverviewSchema, {
   LessonBrowseDataByKs,
   LessonOverviewContent,
@@ -23,12 +25,6 @@ const teacherPreviewLessonQuery =
     const res = await sdk.teachersPreviewLesson({
       lessonSlug,
     });
-
-    const browseFixtureData = {
-      ...lessonBrowseDataFixture({
-        lessonSlug,
-      }),
-    };
 
     if (res.content.length > 1) {
       const error = new OakError({
@@ -63,15 +59,29 @@ const teacherPreviewLessonQuery =
         ? content.starter_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
     });
+
     const [browseData] = keysToCamelCase(res.browseData);
 
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      TeachersPreviewLessonQuery["browseData"][number]
+    >({
+      journey: "teacher",
+      queryName: "teacherPreviewLessonQuery",
+      browseData: res?.browseData,
+    });
+
+    if (modifiedBrowseData.length === 0) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    const modBrowseData = keysToCamelCase(modifiedBrowseData[0]);
+
     const teacherPreviewData = transformedLessonOverviewData(
-      browseData as LessonBrowseDataByKs,
+      modBrowseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,
       [],
     );
-
-    let subjectSlug: string = browseFixtureData.programmeFields.subjectSlug;
+    let subjectSlug: string = browseData?.programmeFields.subjectSlug;
 
     if (lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre") {
       subjectSlug = "german";
