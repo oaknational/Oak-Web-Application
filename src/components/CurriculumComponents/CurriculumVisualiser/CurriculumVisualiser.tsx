@@ -1,14 +1,13 @@
 import React, { FC, useState, useRef, useEffect } from "react";
-import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
+import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import Alert from "../OakComponentsKitchen/Alert";
-import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
+import { CurriculumFilters } from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import Button from "@/components/SharedComponents/Button/Button";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import UnitModal, {
   Lesson,
@@ -21,16 +20,9 @@ import {
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
-import { sortChildSubjects, sortYears } from "@/utils/curriculum/sorting";
+import { sortYears } from "@/utils/curriculum/sorting";
 import { createProgrammeSlug } from "@/utils/curriculum/slugs";
-import {
-  Subject,
-  SubjectCategory,
-  Tier,
-  Unit,
-  YearData,
-  YearSelection,
-} from "@/utils/curriculum/types";
+import { Unit, YearData } from "@/utils/curriculum/types";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -53,17 +45,9 @@ const UnitListItem = styled("li")`
 
 type CurriculumVisualiserProps = {
   unitData: Unit | null;
-  yearSelection: YearSelection;
-  selectedThread: string | null;
-  selectedYear: string | null;
   ks4OptionSlug: string | null;
   yearData: YearData;
-  handleSelectSubject: (year: string, subject: Subject) => void;
-  handleSelectTier: (year: string, tier: Tier) => void;
-  handleSelectSubjectCategory: (
-    year: string,
-    subjectCategory: SubjectCategory,
-  ) => void;
+  filters: CurriculumFilters;
   mobileHeaderScrollOffset?: number;
   setUnitData: (unit: Unit) => void;
   setVisibleMobileYearRefID: (refID: string) => void;
@@ -80,30 +64,6 @@ export function dedupUnits(units: Unit[]) {
   });
 }
 
-function isSelectedSubject(
-  yearSelection: YearSelection,
-  year: string,
-  subject: Subject,
-) {
-  return yearSelection[year]?.subject?.subject_slug === subject.subject_slug;
-}
-
-function isSelectedTier(
-  yearSelection: YearSelection,
-  year: string,
-  tier: Tier,
-) {
-  return yearSelection[year]?.tier?.tier_slug === tier.tier_slug;
-}
-
-function isSelectedSubjectCategory(
-  yearSelection: YearSelection,
-  year: string,
-  subjectCategory: SubjectCategory,
-) {
-  return yearSelection[year]?.subjectCategory?.id === subjectCategory.id;
-}
-
 function isHighlightedUnit(unit: Unit, selectedThread: string | null) {
   if (!selectedThread) {
     return false;
@@ -111,35 +71,26 @@ function isHighlightedUnit(unit: Unit, selectedThread: string | null) {
   return unit.threads.some((t) => t.slug === selectedThread);
 }
 
-const StyledButton = styled("button")`
-  all: unset;
-  color: inherit;
-  cursor: pointer;
-  padding: 12px;
-
-  &:hover:not([aria-pressed="true"]) {
-    background: #f2f2f2;
-  }
-`;
-
 // Function component
 
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   unitData,
-  yearSelection,
-  selectedYear,
   ks4OptionSlug,
   yearData,
-  handleSelectSubject,
-  handleSelectTier,
-  handleSelectSubjectCategory,
   mobileHeaderScrollOffset,
   setUnitData,
-  selectedThread,
+  filters,
   setVisibleMobileYearRefID,
 }) => {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+
+  function filterIncludes(key: keyof CurriculumFilters, ids: string[]) {
+    const filterValues = filters[key];
+    return ids.every((id) => {
+      return filterValues.includes(id);
+    });
+  }
 
   // Selection state helpers
   const [displayModal, setDisplayModal] = useState(false);
@@ -182,7 +133,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
         subjectSlug: unitData.subject_slug,
         yearGroupName: unitData.year,
         yearGroupSlug: unitData.year,
-        unitHighlighted: isHighlightedUnit(unitData, selectedThread),
+        unitHighlighted: isHighlightedUnit(
+          unitData,
+          filters.threads[0] ?? null,
+        ),
         analyticsUseCase: analyticsUseCase,
       });
     }
@@ -202,28 +156,34 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     setCurrentUnitLessons([]);
   };
 
-  // FIXME: This is kind of a HACK, currently units don't have tier_slug if
-  // they are across multiple year. So we have to do this awkward step.
-  const unitDataTier = unitData?.year
-    ? yearSelection[unitData?.year]?.tier?.tier_slug
-    : undefined;
-
   return (
     <OakBox id="content" data-testid="curriculum-visualiser">
       {yearData &&
         Object.keys(yearData)
-          .filter((year) => !selectedYear || selectedYear === year)
+          .filter((year) => filterIncludes("years", [year]))
           .sort(sortYears)
           .map((year, index) => {
-            const { units, childSubjects, tiers, subjectCategories, labels } =
+            const { units, labels, childSubjects, subjectCategories, tiers } =
               yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
             };
 
+            const yearFilters = {
+              childSubjects:
+                childSubjects.length > 1 ? filters.childSubjects : undefined,
+              subjectCategories:
+                childSubjects.length < 1 && subjectCategories.length > 1
+                  ? filters.subjectCategories
+                  : undefined,
+              tiers: tiers.length > 0 ? filters.tiers : undefined,
+              years: filters.years,
+              threads: filters.threads,
+            };
+
             const filteredUnits = units.filter((unit: Unit) =>
-              isVisibleUnit(yearSelection, year, unit),
+              isVisibleUnit(yearFilters, year, unit),
             );
             const dedupedUnits = dedupUnits(filteredUnits);
 
@@ -266,106 +226,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                     message="Swimming and water safety units should be selected based on the ability and experience of your pupils."
                   />
                 )}
-                {childSubjects.length < 1 && subjectCategories?.length > 1 && (
-                  <OakBox role="group" aria-label="Categories">
-                    {subjectCategories.map((subjectCategory, index) => {
-                      const isSelected = isSelectedSubjectCategory(
-                        yearSelection,
-                        year,
-                        subjectCategory,
-                      );
-
-                      return (
-                        <FocusIndicator
-                          key={index}
-                          $display={"inline-block"}
-                          $mb="space-between-ssx"
-                          $mr="space-between-ssx"
-                          $background={isSelected ? "black" : "white"}
-                          $color={isSelected ? "white" : "black"}
-                          $borderRadius={"border-radius-s"}
-                          $font="heading-7"
-                          disableMouseHover={isSelected}
-                        >
-                          <StyledButton
-                            data-testid="subjectCategory-button"
-                            aria-pressed={isSelected}
-                            onClick={() =>
-                              handleSelectSubjectCategory(year, subjectCategory)
-                            }
-                          >
-                            {subjectCategory.title}
-                          </StyledButton>
-                        </FocusIndicator>
-                      );
-                    })}
-                  </OakBox>
-                )}
-                {childSubjects.length > 0 && (
-                  <OakBox
-                    role="group"
-                    aria-label="Child Subjects"
-                    $mb="space-between-ssx"
-                  >
-                    {[...childSubjects]
-                      .sort(sortChildSubjects)
-                      .map((subject: Subject) => {
-                        const isSelected = isSelectedSubject(
-                          yearSelection,
-                          year,
-                          subject,
-                        );
-
-                        return (
-                          <FocusIndicator
-                            key={subject.subject_slug}
-                            $display={"inline-block"}
-                            $mb="space-between-ssx"
-                            $mr="space-between-ssx"
-                            $background={isSelected ? "black" : "white"}
-                            $color={isSelected ? "white" : "black"}
-                            $borderRadius={"border-radius-s"}
-                            $font="heading-7"
-                            disableMouseHover={isSelected}
-                          >
-                            <StyledButton
-                              data-testid="subject-button"
-                              aria-pressed={isSelected}
-                              onClick={() => handleSelectSubject(year, subject)}
-                            >
-                              {subject.subject}
-                            </StyledButton>
-                          </FocusIndicator>
-                        );
-                      })}
-                  </OakBox>
-                )}
-                {tiers.length > 0 && (
-                  <OakBox role="group" aria-label="Tiers">
-                    {tiers.map((tier: Tier) => {
-                      const isSelected = isSelectedTier(
-                        yearSelection,
-                        year,
-                        tier,
-                      );
-                      return (
-                        <Button
-                          $mb={20}
-                          $mr={24}
-                          key={tier.tier_slug}
-                          label={tier.tier}
-                          onClick={() => handleSelectTier(year, tier)}
-                          size="small"
-                          variant="minimal"
-                          isCurrent={isSelected}
-                          currentStyles={["underline"]}
-                          data-testid={`tier-button`}
-                          aria-pressed={isSelected}
-                        />
-                      );
-                    })}
-                  </OakBox>
-                )}
                 <OakFlex
                   $flexWrap={"wrap"}
                   $pt="inner-padding-s"
@@ -377,11 +237,15 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   }}
                 >
                   <UnitList role="list">
+                    {dedupedUnits.length < 1 && (
+                      <OakP>No units for filter in this year</OakP>
+                    )}
                     {dedupedUnits.map((unit: Unit, index: number) => {
-                      const isHighlighted = isHighlightedUnit(
-                        unit,
-                        selectedThread,
-                      );
+                      const isHighlighted = false;
+                      // const isHighlighted = isHighlightedUnit(
+                      //   unit,
+                      //   selectedThread,
+                      // );
                       const unitOptions = unit.unit_options.length >= 1;
 
                       return (
@@ -423,7 +287,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           programmeSlug={createProgrammeSlug(
             unitData,
             ks4OptionSlug,
-            unitDataTier,
+            filters.tiers[0],
           )}
           unitOptionsAvailable={unitOptionsAvailable}
           unitSlug={unitData?.slug}

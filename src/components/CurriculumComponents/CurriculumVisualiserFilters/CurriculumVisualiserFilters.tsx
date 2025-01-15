@@ -2,20 +2,25 @@ import { OakBox } from "@oaknational/oak-components";
 
 import CurriculumVisualiserFiltersDesktop from "./CurriculumVisualiserFiltersDesktop";
 
-import { Thread, YearSelection } from "@/utils/curriculum/types";
+import { Subject, Thread, Tier } from "@/utils/curriculum/types";
 import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
+export type CurriculumFilters = {
+  childSubjects: Subject["subject_slug"][],
+  subjectCategories: string[],
+  tiers: Tier["tier_slug"][]
+  years: string[],
+  threads: Thread["slug"][],
+}
+
 export type CurriculumVisualiserFiltersProps = {
-  selectedThread: Thread["slug"] | null;
-  onSelectThread: (newThread: Thread["slug"]) => void;
-  selectedYear: string;
-  onSelectYear: (newYear: string) => void;
+  filters: CurriculumFilters,
+  onChangeFilters: (newFilters: CurriculumFilters) => void,
   data: CurriculumUnitsFormattedData;
   trackingData: CurriculumUnitsTrackingData;
-  yearSelection: YearSelection;
 };
 
 export default function CurriculumVisualiserFilters(

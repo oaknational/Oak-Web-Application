@@ -80,7 +80,6 @@ const CurriculumVisualiserFiltersMobileFixture: CurriculumVisualiserFiltersProps
         "10": emptyMockYearData,
         "11": emptyMockYearData,
       },
-      initialYearSelection: {},
     },
     trackingData: {
       subjectSlug: "",
