@@ -21,7 +21,7 @@ const HomeSiteCards = () => {
         />
       </OakGridArea>
       <OakGridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
-        <CardLinkIcon
+        {/* <CardLinkIcon
           page="develop-your-curriculum"
           title={"Develop your curriculum"}
           titleTag={"h4"}
@@ -29,7 +29,7 @@ const HomeSiteCards = () => {
           htmlAnchorProps={{
             onClick: track.developYourCurriculumSelected,
           }}
-        />
+        /> */}
       </OakGridArea>
       <OakGridArea $transform={["translateY(50%)"]} $colSpan={[12, 4]}>
         <CardLinkIcon
