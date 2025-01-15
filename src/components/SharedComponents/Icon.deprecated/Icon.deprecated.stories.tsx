@@ -2,7 +2,7 @@ import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import { OakHeading } from "@oaknational/oak-components";
 
-import Component from "./Icon";
+import Component from "./Icon.deprecated";
 
 import { ICON_NAMES } from "@/image-data";
 

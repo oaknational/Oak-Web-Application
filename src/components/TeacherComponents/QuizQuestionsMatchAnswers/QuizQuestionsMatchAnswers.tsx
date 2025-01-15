@@ -1,9 +1,8 @@
 import { VisuallyHidden } from "react-aria";
-import { OakP, OakSpan, OakFlex } from "@oaknational/oak-components";
+import { OakP, OakSpan, OakFlex, OakIcon } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Icon from "@/components/SharedComponents/Icon";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizQuestionsMatchAnswers = ({
@@ -39,7 +38,12 @@ export const QuizQuestionsMatchAnswers = ({
                 {removeMarkdown(matchOption.text)},
                 {removeMarkdown(correctChoice.text)}
               </VisuallyHidden>
-              <Icon $mr={8} name={"tick"} />
+              <OakIcon
+                $mr={"space-between-ssx"}
+                iconName={"tick"}
+                $width={"all-spacing-6"}
+                $height={"all-spacing-6"}
+              />
               <Flex $flexWrap={"wrap"} $width={["100%", "100%", "max-content"]}>
                 <OakP
                   $whiteSpace={"nowrap"}

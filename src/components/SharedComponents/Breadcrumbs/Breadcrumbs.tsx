@@ -1,11 +1,10 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakUL } from "@oaknational/oak-components";
+import { OakUL, OakIcon } from "@oaknational/oak-components";
 
 import { BreadcrumbJsonLd } from "@/browser-lib/seo/getJsonLd";
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import { MaybeOakHref, ResolveOakHrefProps } from "@/common-lib/urls";
-import Icon from "@/components/SharedComponents/Icon";
 import ellipsis from "@/styles/ellipsis";
 
 const BreadcrumbsNav = styled.nav`
@@ -66,11 +65,12 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs }) => {
             return (
               <BreadcrumbsLi key={`${i}-${label}`}>
                 {i !== 0 && (
-                  <Icon
-                    name="chevron-right"
-                    size={20}
-                    $color={"grey60"}
-                    $mr={12}
+                  <OakIcon
+                    iconName="chevron-right"
+                    $colorFilter={"grey60"}
+                    $mr={"space-between-xs"}
+                    $width={"all-spacing-5"}
+                    $height={"all-spacing-5"}
                   />
                 )}
                 <BreadcrumbConstrainer>

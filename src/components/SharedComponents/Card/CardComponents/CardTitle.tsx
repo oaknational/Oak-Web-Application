@@ -1,11 +1,14 @@
 import { FC } from "react";
 import { CSSProperties } from "styled-components";
-import { OakFlex } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakIcon,
+  OakAllSpacingToken,
+  OakIconName,
+} from "@oaknational/oak-components";
 
-import { PixelSpacing } from "@/styles/theme";
 import { ResponsiveValues } from "@/styles/utils/responsive";
 import { FontVariant } from "@/styles/utils/typography";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import Heading, {
   HeadingTag,
 } from "@/components/SharedComponents/Typography/Heading.deprecated";
@@ -30,16 +33,16 @@ type IconPosition = "leading" | "trailing" | "aboveTitle";
 export type CardTitleProps = {
   children?: React.ReactNode;
   tag: HeadingTag;
-  icon?: IconName;
+  icon?: OakIconName;
   $iconPosition?: ResponsiveValues<IconPosition>;
-  iconSize?: PixelSpacing;
+  iconSize?: OakAllSpacingToken;
   $font?: ResponsiveValues<FontVariant>;
 };
 
 const CardTitle: FC<CardTitleProps> = ({
   icon,
   $iconPosition = "leading",
-  iconSize = 32,
+  iconSize = "all-spacing-7",
   tag,
   children,
   $font = "heading-5",
@@ -59,18 +62,23 @@ const CardTitle: FC<CardTitleProps> = ({
       $mb="space-between-m"
     >
       {icon && (
-        <Icon
-          name={icon}
-          size={iconPositionArray.map((pos) =>
-            pos === "aboveTitle" ? 64 : iconSize,
+        <OakIcon
+          iconName={icon}
+          $width={iconPositionArray.map((pos) =>
+            pos === "aboveTitle" ? "all-spacing-11" : iconSize,
           )}
-          $mb={iconPositionArray.map((pos) => (pos === "aboveTitle" ? 12 : 0))}
+          $height={iconPositionArray.map((pos) =>
+            pos === "aboveTitle" ? "all-spacing-11" : iconSize,
+          )}
+          $mb={iconPositionArray.map((pos) =>
+            pos === "aboveTitle" ? "space-between-xs" : "space-between-none",
+          )}
           $mr={iconPositionArray.map((pos) => {
             switch (pos) {
               case "leading":
-                return 12;
+                return "space-between-xs";
               case "trailing":
-                return 0;
+                return "space-between-none";
               case "aboveTitle":
                 return "auto";
               default:
@@ -80,16 +88,16 @@ const CardTitle: FC<CardTitleProps> = ({
           $ml={iconPositionArray.map((pos) => {
             switch (pos) {
               case "leading":
-                return 0;
+                return "space-between-none";
               case "trailing":
-                return 8;
+                return "space-between-ssx";
               case "aboveTitle":
                 return "auto";
               default:
                 return null;
             }
           })}
-          $pa={0}
+          $pa={"inner-padding-none"}
         />
       )}
       <Heading $font={$font} tag={tag}>

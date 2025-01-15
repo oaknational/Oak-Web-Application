@@ -58,7 +58,7 @@ exports[`Banners when cycle 2 enabled 1`] = `
           </div>
         </div>
         <a
-          class="sc-20316575-0 kubVcS"
+          class="sc-20316575-0 bMaumR"
           href="/teachers/curriculum"
           role="link"
           title="See curriculum plans"
@@ -68,12 +68,12 @@ exports[`Banners when cycle 2 enabled 1`] = `
           >
             <span
               aria-hidden="true"
-              class="sc-bea19ba6-0 bNTveO"
+              class="sc-cba1a45e-0 QRATd"
               data-testid="button-icon"
             >
               <svg
                 aria-hidden="true"
-                class="sc-86d1d46f-0 jOBmUC sc-bea19ba6-2 gvZQHW"
+                class="sc-86d1d46f-0 jOBmUC sc-cba1a45e-2 kANpiB"
                 height="100%"
                 name="icon-background"
                 width="100%"
@@ -84,7 +84,7 @@ exports[`Banners when cycle 2 enabled 1`] = `
                 />
               </svg>
               <span
-                class="sc-bea19ba6-1 fqRwJG"
+                class="sc-cba1a45e-1 jHELTF"
               >
                 <svg
                   aria-hidden="true"
@@ -116,7 +116,7 @@ exports[`Banners when cycle 2 enabled 1`] = `
           </div>
           <svg
             aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-5eadff9d-0 iaAvQW"
+            class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
             height="100%"
             name="underline-1"
             width="100%"
@@ -128,7 +128,7 @@ exports[`Banners when cycle 2 enabled 1`] = `
           </svg>
           <svg
             aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-5eadff9d-2 dqSydU"
+            class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
             height="100%"
             name="underline-1"
             width="100%"

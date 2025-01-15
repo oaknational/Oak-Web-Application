@@ -6,12 +6,17 @@ import {
   UseFormRegister,
   UseFormTrigger,
 } from "react-hook-form";
-import { OakBox, OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakP,
+  OakIcon,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
 import OakLink from "@/components/SharedComponents/OwaLink";
 import Input from "@/components/SharedComponents/Input";
-import Icon from "@/components/SharedComponents/Icon";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
@@ -110,18 +115,20 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 <OakLink
                   page="legal"
                   legalSlug="privacy-policy"
-                  $isInline
                   htmlAnchorProps={{
                     target: "_blank",
                     "aria-label": "Privacy policy (opens in a new tab)",
                   }}
+                  $display={"inline-flex"}
+                  $alignItems={"center"}
                 >
                   privacy policy
-                  <Icon
-                    name="external"
-                    verticalAlign="bottom"
-                    size={20}
+                  <OakIcon
+                    iconName="external"
+                    $width={"all-spacing-5"}
+                    $height={"all-spacing-5"}
                     data-testid="external-link-icon"
+                    $colorFilter={"navy"}
                   />
                 </OakLink>
                 .

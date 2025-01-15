@@ -14,7 +14,7 @@ import { OakColorName } from "@/styles/theme";
 import Icon, {
   IconName,
   isIconVariant,
-} from "@/components/SharedComponents/Icon";
+} from "@/components/SharedComponents/Icon.deprecated";
 
 export type IconButtonInnerProps = {
   variant: ButtonVariant;
