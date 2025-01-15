@@ -177,6 +177,8 @@ export default function SignedOutFlow({
                   isLoading={isSubmitting}
                   type="submit"
                   disabled={false}
+                  iconName="download"
+                  isTrailingIcon={true}
                 >
                   Download
                 </OakPrimaryButton>

@@ -73,6 +73,8 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
         data-testid="download"
         isLoading={isSubmitting}
         onClick={onDownload}
+        iconName="download"
+        isTrailingIcon={true}
       >
         Download
       </OakPrimaryButton>
