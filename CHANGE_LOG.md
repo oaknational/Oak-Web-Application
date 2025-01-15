@@ -1,3 +1,44 @@
+# [1.661.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.660.0...v1.661.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* 20px to 18px because interior <Box/> changed to <OakBox/> standard sizes ([1d65337](https://github.com/oaknational/Oak-Web-Application/commit/1d653371c293c45f1709867595df24836c01fded))
+* bio card list ([5afc05f](https://github.com/oaknational/Oak-Web-Application/commit/5afc05f390b2e2627592a33c3680ee24636416d9))
+* bio card list ([b4a1636](https://github.com/oaknational/Oak-Web-Application/commit/b4a1636439c4bf9411b67068dcbdf097d423a0a3))
+* correct col start ([7aabc72](https://github.com/oaknational/Oak-Web-Application/commit/7aabc720ab9d87c2527e49b0f21f9a21bda9be84))
+* deprecate MaxWidth ([b3093cf](https://github.com/oaknational/Oak-Web-Application/commit/b3093cfa463388187306e22bacda810f0bdb1306))
+* deprecate MaxWidth 2 ([a5b692a](https://github.com/oaknational/Oak-Web-Application/commit/a5b692acec5dd575822271f5a7486391cc71c85c))
+* download card group ([dbd0261](https://github.com/oaknational/Oak-Web-Application/commit/dbd0261bb874e2522b19d164a4eb691daf1b081e))
+* incorrect padding coversion when changing to <OakBox/> ([e9c23b4](https://github.com/oaknational/Oak-Web-Application/commit/e9c23b4bbea7b4720c58ae33e6311837196f53d3))
+* lesson planning element linl ([0355956](https://github.com/oaknational/Oak-Web-Application/commit/0355956636a62ccd1ea0b2a329edf3d081b9e80a))
+* linting ([0645bf6](https://github.com/oaknational/Oak-Web-Application/commit/0645bf66a10ea209494e80ed9186635616c1be09))
+* list box ([5e2b2f4](https://github.com/oaknational/Oak-Web-Application/commit/5e2b2f4dcfeea83bc6df3f68409001cb237ed32d))
+* mistake in conversion 'all-spacing-6' to 'all-spacing-5' ([4a9aae6](https://github.com/oaknational/Oak-Web-Application/commit/4a9aae6b0470d9dbdb8884e7883073dd1d13cdd9))
+* p ([edb702f](https://github.com/oaknational/Oak-Web-Application/commit/edb702fbd04ca543d8a5ec05cd1c54ae942fb27d))
+* p ([ab556c5](https://github.com/oaknational/Oak-Web-Application/commit/ab556c5a7ab24e49682940e5d312c8a462fbca3d))
+* remove box ([226d692](https://github.com/oaknational/Oak-Web-Application/commit/226d692bead8fc5aaf1ec4dfc8a5e68fc9f917fa))
+* remove Hr ([ea2fdf4](https://github.com/oaknational/Oak-Web-Application/commit/ea2fdf461866b0f6b4e5cc688d273979838df166))
+* removing instances of Box ([9df8be4](https://github.com/oaknational/Oak-Web-Application/commit/9df8be4d4b4af790bea4f6e560e3df334cc855bb))
+* replace Span with OakSpan ([8e4624c](https://github.com/oaknational/Oak-Web-Application/commit/8e4624c0921173ee64cbd8246fc6ca586fe8d72c))
+* resolve conflicts ([410c30e](https://github.com/oaknational/Oak-Web-Application/commit/410c30e23754132787682fdbe3f1a38f2fc02005))
+* resolved conflicts ([61f41b2](https://github.com/oaknational/Oak-Web-Application/commit/61f41b2d074565a2b7005f0e2d7e93059deef84d))
+* tests ([14d30e1](https://github.com/oaknational/Oak-Web-Application/commit/14d30e13d3ed6e5ce9ffd0fb9b436a8797b3cf8e))
+* trigger build ([76fc2ce](https://github.com/oaknational/Oak-Web-Application/commit/76fc2cef2f283e06520f23f8f6a18cf1ddf92f9b))
+* update Flex to OakFlex on TeachersTab ([73e207c](https://github.com/oaknational/Oak-Web-Application/commit/73e207c486b9bd5fa876f7021d28361bab514fc4))
+* update simple Flex components to OakFlex on teacher and onboarding pages ([f9bf514](https://github.com/oaknational/Oak-Web-Application/commit/f9bf514c16c350d5ffd7b2af4260a283514c0083))
+
+
+### Features
+
+* delete ArchivedComponents folder ([bfeac7a](https://github.com/oaknational/Oak-Web-Application/commit/bfeac7afec348b9b724ccfac04b6b463e0b6c1ec))
+* remove Flex from Layout component ([f3d8523](https://github.com/oaknational/Oak-Web-Application/commit/f3d852381163a935635388229648cf62e6f258d2))
+* remove old HR compoenent ([9468f80](https://github.com/oaknational/Oak-Web-Application/commit/9468f80a753e227ec7f039a285da39d5afaee146))
+* removing hr ([494e267](https://github.com/oaknational/Oak-Web-Application/commit/494e2674b790694e08f1303d031de197fc4572e1))
+* replace box in portabletext ([24cb0f5](https://github.com/oaknational/Oak-Web-Application/commit/24cb0f5a8ae3be8037f5b015cfb097bcfa332cde))
+* replace Box in PostCategoryList ([b88c1e5](https://github.com/oaknational/Oak-Web-Application/commit/b88c1e5275f883f9a8f924a491798a30da47850e))
+* replacing Box with OakBox in various locations ([3e13010](https://github.com/oaknational/Oak-Web-Application/commit/3e13010bcc5c9af918205468233f32b6470bfb33))
+
 # [1.660.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.659.0...v1.660.0) (2025-01-15)
 
 
