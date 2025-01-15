@@ -1,3 +1,23 @@
+# [1.662.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.661.0...v1.662.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* fix failing test ([123509f](https://github.com/oaknational/Oak-Web-Application/commit/123509ff6b59cc09f83178a49e52371fceb951d4))
+* pr feedback ([016a762](https://github.com/oaknational/Oak-Web-Application/commit/016a76250dd4a8bdf9d586c8a63cbf467348b376))
+* pr feedback ([9622ac1](https://github.com/oaknational/Oak-Web-Application/commit/9622ac1b32bcaf8a325470b07bc50f01ab880412))
+* pr feedback ([0aaa133](https://github.com/oaknational/Oak-Web-Application/commit/0aaa133d77651c0d33e8a9d50b29aa630a8467bc))
+* pr feedback ([a4e464f](https://github.com/oaknational/Oak-Web-Application/commit/a4e464f5e3adb6bea3714ae74f3f2271f692a663))
+* renmove redundant commented out code ([caef396](https://github.com/oaknational/Oak-Web-Application/commit/caef39601aa56a687c1ca3f75657df050c2f4091))
+* style updates to changed components ([a9d26d6](https://github.com/oaknational/Oak-Web-Application/commit/a9d26d606141e51653aff5e576bda0401a2d6c60))
+
+
+### Features
+
+* replace Icon with OakIcon pt2 ([e842630](https://github.com/oaknational/Oak-Web-Application/commit/e8426300c97b557bf320177722bbda19fa9f6780))
+* replace Icon with OakIcon where possible ([5436ab7](https://github.com/oaknational/Oak-Web-Application/commit/5436ab76bfe84fe0c7ad0836aa27b938cb733974))
+* use OakSvg for header-underline ([bfe8c6d](https://github.com/oaknational/Oak-Web-Application/commit/bfe8c6d7caef4ea5133def3dd2ec2e990b837a0f))
+
 # [1.661.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.660.0...v1.661.0) (2025-01-15)
 
 
