@@ -1,7 +1,5 @@
 import { ReactNode } from "react";
-import { OakSpan, OakFlex } from "@oaknational/oak-components";
-
-import Icon from "@/components/SharedComponents/Icon";
+import { OakSpan, OakFlex, OakIcon } from "@oaknational/oak-components";
 
 type FieldErrorVariant = "large";
 
@@ -31,7 +29,12 @@ const FieldError = (props: FieldErrorProps) => {
       aria-hidden={props.ariaHidden}
     >
       <OakFlex $alignSelf={"flex-start"} $mr="space-between-sssx">
-        <Icon name="content-guidance" $color={"red"} />
+        <OakIcon
+          iconName="content-guidance"
+          $colorFilter={"red"}
+          $width={"all-spacing-6"}
+          $height={"all-spacing-6"}
+        />
       </OakFlex>
       <OakSpan
         $color="red"

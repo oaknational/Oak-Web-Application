@@ -7,7 +7,7 @@ import { UserResource } from "clerk";
  */
 export const mockUser = {
   id: "user-123",
-  publicMetadata: {},
+  publicMetadata: { owa: { isOnboarded: true } },
   unsafeMetadata: {},
   reload: jest.fn(),
   externalAccounts: [],

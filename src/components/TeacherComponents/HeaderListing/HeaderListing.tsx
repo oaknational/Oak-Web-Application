@@ -1,5 +1,10 @@
 import { FC } from "react";
-import { OakFlex, OakHeading, OakSpan } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakSpan,
+  OakColorFilterToken,
+} from "@oaknational/oak-components";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -20,7 +25,7 @@ export type HeaderListingProps = {
   background: OakColorName;
   subjectTitle: string;
   subjectSlug: string;
-  subjectIconBackgroundColor: OakColorName;
+  subjectIconBackgroundColor: OakColorFilterToken;
   year?: string;
   keyStageSlug?: string;
   keyStageTitle?: string;
@@ -34,6 +39,8 @@ export type HeaderListingProps = {
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
+  unitDownloadButton?: React.ReactNode;
+  banner?: React.ReactNode;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -52,6 +59,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
     shareButton,
+    unitDownloadButton,
+    banner,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -97,7 +106,16 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
-            {shareButton}
+            <OakFlex $flexDirection="column" $gap="space-between-s">
+              <OakFlex
+                $gap="space-between-s"
+                $flexDirection={["column", "row"]}
+              >
+                {unitDownloadButton}
+                {shareButton}
+              </OakFlex>
+              {banner}
+            </OakFlex>
           </OakFlex>
         </OakFlex>
       </OakFlex>

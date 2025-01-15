@@ -25,6 +25,10 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
 
   const docId = extractGoogleDocId(asset);
 
+  if (!docId) {
+    return null;
+  }
+
   const srcUrl = `https://docs.google.com/viewer?srcid=${docId}&pid=explorer&efh=false&a=v&chrome=false&embedded=true`;
 
   return (

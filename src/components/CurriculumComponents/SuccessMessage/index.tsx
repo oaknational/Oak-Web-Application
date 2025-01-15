@@ -1,9 +1,14 @@
 import { FC } from "react";
-import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakP,
+  OakIcon,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import Box from "@/components/SharedComponents/Box";
 import Button, { ButtonProps } from "@/components/SharedComponents/Button";
-import Svg from "@/components/SharedComponents/Svg";
 
 type SuccessMessageProps = {
   title: string;
@@ -16,7 +21,13 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
   buttonProps,
 }) => {
   return (
-    <Box $maxWidth={1280} $mh={"auto"} $ph={18} $width={"100%"} $pb={[32, 48]}>
+    <OakBox
+      $maxWidth="all-spacing-24"
+      $mh={"auto"}
+      $ph="inner-padding-l"
+      $width={"100%"}
+      $pb={["inner-padding-xl2", "inner-padding-xl4"]}
+    >
       <OakFlex
         $width={"100%"}
         $flexDirection={["column", "row", "row"]}
@@ -30,7 +41,11 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
           $flexShrink={1}
         >
           <Box $height={[140, 240, 270]} $width={[166, 240, 320]}>
-            <Svg name="tick-mark-happiness" />
+            <OakIcon
+              iconName="tick-mark-happiness"
+              $width={"100%"}
+              $height={"100%"}
+            />
           </Box>
         </OakFlex>
         <OakFlex
@@ -55,7 +70,7 @@ const SuccessMessage: FC<SuccessMessageProps> = ({
           <OakP $font={["body-1"]}>{message}</OakP>
         </OakFlex>
       </OakFlex>
-    </Box>
+    </OakBox>
   );
 };
 

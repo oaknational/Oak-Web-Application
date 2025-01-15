@@ -29,7 +29,6 @@ describe("HomePageBanner", () => {
     expect(getByTestId("new-icon")).toBeInTheDocument();
     expect(banner).toContainElement(getByRole("link"));
     expect(banner).toContainElement(getByText("Subjects added"));
-    expect(getByTestId("hr")).toBeInTheDocument();
   });
 
   it("should display the New promo tag and its associated text", () => {
@@ -38,13 +37,13 @@ describe("HomePageBanner", () => {
     const newIcon = getByTestId("new-icon");
     expect(newIcon).toHaveAttribute("aria-hidden", "true");
 
-    // Check SVG sibling div contains "New" text
-    const svg = newIcon.querySelector("svg");
-    expect(svg).toBeInTheDocument();
-    const divAfterSvg = svg?.nextElementSibling as HTMLElement;
-    const spanInDiv = divAfterSvg?.querySelector("span");
-    expect(spanInDiv).toHaveTextContent("New");
+    // Check icon sibling div contains "New" text
+    const iconWrapper = getByTestId("tag-promotional-icon");
+    expect(iconWrapper).toBeInTheDocument();
 
+    const divAfterIconWrapper = iconWrapper?.nextElementSibling as HTMLElement;
+    const spanInDiv = divAfterIconWrapper?.querySelector("span");
+    expect(spanInDiv).toHaveTextContent("New");
     expect(getByText("Subjects added")).toBeInTheDocument();
   });
 
@@ -58,12 +57,11 @@ describe("HomePageBanner", () => {
     expect(getByText("See curriculum plans")).toBeInTheDocument();
   });
 
-  it("should render all SVG elements correctly", () => {
+  it("should render all icon and SVG elements correctly", () => {
     const { getByTestId } = renderBanner();
-    // Check promotional tag SVG
-    const tagSvg = getByTestId("new-icon").querySelector("svg");
-    expect(tagSvg).toHaveAttribute("aria-hidden", "true");
-    expect(tagSvg).toHaveAttribute("name", "tag-promotional");
+    // Check promotional tag icon
+    const tagIcon = getByTestId("tag-promotional-icon");
+    expect(tagIcon).toHaveAttribute("aria-hidden", "true");
 
     // Check chevron SVG
     const buttonIcon = getByTestId("button-icon");

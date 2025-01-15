@@ -12,7 +12,7 @@ import getColorByName from "@/styles/themeHelpers/getColorByName";
 import getTextColorForBackground from "@/styles/themeHelpers/getTextColorForBackground";
 import { OpacityProps } from "@/styles/utils/opacity";
 import { MarginProps } from "@/styles/utils/spacing";
-import { IconName } from "@/components/SharedComponents/Icon";
+import { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import { ColorProps } from "@/styles/utils/color";
 
 export type ButtonHoverStyle = "underline-link-text" | "drop-shadow";

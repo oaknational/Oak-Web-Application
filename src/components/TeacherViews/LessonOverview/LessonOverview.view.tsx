@@ -6,6 +6,7 @@ import {
   OakHeading,
   OakFlex,
   OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import { hasLessonMathJax } from "./hasLessonMathJax";
@@ -24,11 +25,9 @@ import {
   getPathway,
   lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
-import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
   KeyStageTitleValueType,
@@ -48,7 +47,6 @@ import {
   checkIsResourceCopyrightRestricted,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
-import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
@@ -268,24 +266,24 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
         showShare={showShare}
         teacherShareButton={teacherShareButton}
       />
-      <MaxWidth $ph={16} $pb={80}>
+      <OakMaxWidth $ph={"inner-padding-m"} $pb={"inner-padding-xl8"}>
         {expired ? (
-          <Box $pa={16} $mb={64}>
+          <OakBox $pa={"inner-padding-m"} $mb={"space-between-xxl"}>
             <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
               No lesson available
             </OakHeading>
             <OakTypography $font={"body-1"}>
               Sorry, this lesson no longer exists.
             </OakTypography>
-          </Box>
+          </OakBox>
         ) : (
           <OakGrid $mt={["space-between-l"]}>
-            <GridArea
+            <OakGridArea
               $colSpan={[12, 3]}
               $alignSelf={"start"}
               $position={"sticky"}
               $display={["none", "block"]}
-              $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+              $top={"all-spacing-14"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
               <OakFlex
                 as="nav"
@@ -300,7 +298,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                   currentSectionId={currentSectionId}
                 />
               </OakFlex>
-            </GridArea>
+            </OakGridArea>
 
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
@@ -609,7 +607,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
             </OakGridArea>
           </OakGrid>
         )}
-      </MaxWidth>
+      </OakMaxWidth>
     </MathJaxLessonProvider>
   );
 }

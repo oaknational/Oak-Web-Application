@@ -1,12 +1,16 @@
 import { FC } from "react";
-import { OakHeading, OakHeadingTag } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakHeadingTag,
+  OakIcon,
+  OakIconName,
+} from "@oaknational/oak-components";
 
 import Card from "./Card";
 import CardLink, { CardLinkFocusUnderline, CardLinkProps } from "./CardLink";
 
 import { OakColorName } from "@/styles/theme";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
 
 type RemoveField<Type, Key extends keyof Type> = {
   [Property in keyof Type as Exclude<Property, Key>]: Type[Property];
@@ -15,7 +19,7 @@ type RemoveField<Type, Key extends keyof Type> = {
 type CardLinkIconProps = RemoveField<CardLinkProps, "children"> & {
   title: string;
   titleTag: OakHeadingTag;
-  icon?: IconName;
+  icon?: OakIconName;
   background?: OakColorName;
 };
 const CardLinkIcon: FC<CardLinkIconProps> = ({
@@ -46,7 +50,12 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
         </CardLink>
         <CardLinkFocusUnderline />
       </OakHeading>
-      <Icon name={icon} size={[32, 48]} $ml="auto" />
+      <OakIcon
+        iconName={icon}
+        $width={["all-spacing-7", "all-spacing-9"]}
+        $height={["all-spacing-7", "all-spacing-9"]}
+        $ml="auto"
+      />
     </Card>
   );
 };
