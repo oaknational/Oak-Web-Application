@@ -1,3 +1,37 @@
+# [1.663.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.662.0...v1.663.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* failing tests for new curric sequence MV ([2660f8a](https://github.com/oaknational/Oak-Web-Application/commit/2660f8a65e85ce9a80c39bbb201f1b8857879c94))
+* use unit-option-slug rather than unit-slug in new curric MVs ([f0a301c](https://github.com/oaknational/Oak-Web-Application/commit/f0a301c5c806118e155773a2a31d5899ae0951e0))
+
+
+### Features
+
+* bump to using curriculum_sequence_b_13_0_6 ([c488be9](https://github.com/oaknational/Oak-Web-Application/commit/c488be98bbadde1f42ab72ef991f40c74ad04b6f))
+* enable new curric MV, for testing in preview builds ([d926190](https://github.com/oaknational/Oak-Web-Application/commit/d92619047ce821da41d4e6b05eda015be117c51d))
+
+# [1.662.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.661.0...v1.662.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* fix failing test ([123509f](https://github.com/oaknational/Oak-Web-Application/commit/123509ff6b59cc09f83178a49e52371fceb951d4))
+* pr feedback ([016a762](https://github.com/oaknational/Oak-Web-Application/commit/016a76250dd4a8bdf9d586c8a63cbf467348b376))
+* pr feedback ([9622ac1](https://github.com/oaknational/Oak-Web-Application/commit/9622ac1b32bcaf8a325470b07bc50f01ab880412))
+* pr feedback ([0aaa133](https://github.com/oaknational/Oak-Web-Application/commit/0aaa133d77651c0d33e8a9d50b29aa630a8467bc))
+* pr feedback ([a4e464f](https://github.com/oaknational/Oak-Web-Application/commit/a4e464f5e3adb6bea3714ae74f3f2271f692a663))
+* renmove redundant commented out code ([caef396](https://github.com/oaknational/Oak-Web-Application/commit/caef39601aa56a687c1ca3f75657df050c2f4091))
+* style updates to changed components ([a9d26d6](https://github.com/oaknational/Oak-Web-Application/commit/a9d26d606141e51653aff5e576bda0401a2d6c60))
+
+
+### Features
+
+* replace Icon with OakIcon pt2 ([e842630](https://github.com/oaknational/Oak-Web-Application/commit/e8426300c97b557bf320177722bbda19fa9f6780))
+* replace Icon with OakIcon where possible ([5436ab7](https://github.com/oaknational/Oak-Web-Application/commit/5436ab76bfe84fe0c7ad0836aa27b938cb733974))
+* use OakSvg for header-underline ([bfe8c6d](https://github.com/oaknational/Oak-Web-Application/commit/bfe8c6d7caef4ea5133def3dd2ec2e990b837a0f))
+
 # [1.661.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.660.0...v1.661.0) (2025-01-15)
 
 

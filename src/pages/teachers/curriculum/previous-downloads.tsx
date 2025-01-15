@@ -4,11 +4,12 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
-  OakBox,
   OakFlex,
-  OakHandDrawnHR,
   OakHeading,
   OakP,
+  OakIcon,
+  OakBox,
+  OakHandDrawnHR,
 } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
@@ -20,7 +21,6 @@ import curriculumPreviousDownloadsFixture, {
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
-import Icon from "@/components/SharedComponents/Icon/Icon";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import CurriculumDownloads, {
@@ -158,11 +158,10 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
               $position={"relative"}
             >
               <BrushBorders color="mint30" />
-              <Icon
-                name={"download"}
-                $color="black"
-                $width={140}
-                $height={140}
+              <OakIcon
+                iconName={"download"}
+                $width={"all-spacing-16"}
+                $height={"all-spacing-16"}
                 data-testid="icon"
               />
             </Box>

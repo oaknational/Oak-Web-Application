@@ -5,11 +5,13 @@ import Component, {
 } from "@/components/TeacherComponents/TermsAgreementForm";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import { CurriculumDownload } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
+import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
 
 type Story = StoryObj<typeof Component>;
 
 const meta: Meta<typeof Component> = {
   component: Component,
+  decorators: [AnalyticsDecorator],
   parameters: {
     controls: {
       exclude: ["form", "setSchool", "handleEditDetailsCompletedClick"],
