@@ -99,7 +99,7 @@ export const TeacherNotesModal = ({
   saveTeacherNote,
 }: TeacherNotesModalProps) => {
   const [noteSaved, setNoteSaved] = useState(false);
-  const [noteShared, setNoteShared] = useState(false);
+  const [noteShared] = useState(false);
 
   const editor = useEditor({
     extensions: [
