@@ -49,6 +49,8 @@ describe("PupilViewsLessonOverview", () => {
         config={{
           getLessonAttemptUrl: "example.com",
           logLessonAttemptUrl: "example.com",
+          getTeacherNoteUrl: "example.com",
+          addTeacherNoteUrl: "example.com",
         }}
       >
         {" "}
@@ -85,6 +87,8 @@ describe("PupilViewsLessonOverview", () => {
           config={{
             getLessonAttemptUrl: "example.com",
             logLessonAttemptUrl: "example.com",
+            getTeacherNoteUrl: "example.com",
+            addTeacherNoteUrl: "example.com",
           }}
         >
           {" "}
@@ -116,6 +120,8 @@ describe("PupilViewsLessonOverview", () => {
         config={{
           getLessonAttemptUrl: "example.com",
           logLessonAttemptUrl: "example.com",
+          getTeacherNoteUrl: "example.com",
+          addTeacherNoteUrl: "example.com",
         }}
       >
         <OakThemeProvider theme={oakDefaultTheme}>
@@ -152,6 +158,8 @@ describe("PupilViewsLessonOverview", () => {
         config={{
           getLessonAttemptUrl: "example.com",
           logLessonAttemptUrl: "example.com",
+          getTeacherNoteUrl: "example.com",
+          addTeacherNoteUrl: "example.com",
         }}
       >
         {" "}

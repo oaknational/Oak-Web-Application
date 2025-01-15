@@ -24,10 +24,33 @@ jest.mock(
         shareUrl: "",
         browserUrl: url,
         shareActivated: false,
+        shareIdRef: { current: "" },
+        shareIdKeyRef: { current: "" },
       })),
     };
   },
 );
+
+jest.mock("@/pages-helpers/teacher/share-experiments/useTeacherNotes", () => {
+  return {
+    __esModule: true,
+    useTeacherNotes: jest.fn(() => ({
+      teacherNote: {},
+      isEditable: false,
+      saveTeacherNote: jest.fn(),
+      noteSaved: false,
+      error: undefined,
+    })),
+  };
+});
+
+jest.mock("posthog-js/react", () => {
+  return {
+    __esModule: true,
+    useFeatureFlagEnabled: jest.fn(() => false),
+    useFeatureFlagVariantKey: jest.fn(() => false),
+  };
+});
 
 const render = renderWithProviders();
 
@@ -37,7 +60,7 @@ const lesson = lessonOverviewFixture({
 
 describe("Lesson Overview Canonical Page", () => {
   beforeAll(() => {
-    console.error = jest.fn();
+    // console.error = jest.fn();
   });
 
   describe("LessonOverviewCanonicalPage", () => {
@@ -102,10 +125,11 @@ describe("Lesson Overview Canonical Page", () => {
       const fn = jest.spyOn(window.history, "replaceState");
 
       (useShareExperiment as jest.Mock).mockReturnValueOnce({
-        shareExperimentFlag: "test",
         shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         shareActivated: false,
+        shareIdRef: { current: "" },
+        shareIdKeyRef: { current: "" },
       });
       render(
         <LessonOverviewCanonicalPage

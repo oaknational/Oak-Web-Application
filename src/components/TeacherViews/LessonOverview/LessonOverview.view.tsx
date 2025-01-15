@@ -57,6 +57,7 @@ import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/le
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
     teacherShareButton?: React.ReactNode;
+    teacherNoteHtml?: string;
   };
 } & { isBeta: boolean };
 
@@ -103,6 +104,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     additionalMaterialUrl,
     actions,
     hasMediaClips,
+    teacherNoteHtml,
   } = lesson;
 
   const { track } = useAnalytics();
@@ -319,6 +321,19 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     }}
                   />
                 </OakBox>
+
+                {/* Render teacher note html */}
+                {teacherNoteHtml && (
+                  <OakBox
+                    $width={"100%"}
+                    $height={"all-spacing-18"}
+                    $mb={"space-between-l"}
+                    $pa={"inner-padding-s"}
+                    $overflow={"auto"}
+                    $background={"aqua110"}
+                    dangerouslySetInnerHTML={{ __html: teacherNoteHtml }}
+                  />
+                )}
 
                 {pageLinks.find((p) => p.label === "Lesson guide") &&
                   lessonGuideUrl && (
