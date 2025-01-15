@@ -219,11 +219,11 @@ export async function buildUnit(
     (lesson) => lesson._state === "published",
   );
 
-  let reolvedUnitSlug;
+  let resolvedUnitSlug;
   if (ENABLE_NEW_CURRIC_MV) {
-    reolvedUnitSlug = unitOption?.slug ?? unit.slug;
+    resolvedUnitSlug = unitOption?.slug ?? unit.slug;
   } else {
-    reolvedUnitSlug = unitOption?.unitvariant_id
+    resolvedUnitSlug = unitOption?.unitvariant_id
       ? `${unit.slug}-${unitOption.unitvariant_id}`
       : unit.slug;
   }
@@ -233,7 +233,7 @@ export async function buildUnit(
       unit,
       slugs.ks4OptionSlug,
       slugs.tierSlug,
-    )}/units/${reolvedUnitSlug}/lessons`,
+    )}/units/${resolvedUnitSlug}/lessons`,
   });
 
   let unitDescriptions: string = "";

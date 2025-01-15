@@ -61,19 +61,19 @@ const UnitsTabSidebar: FC<ModalProps> = ({
 
   const lessonsAvailable = getLessonsAvailable(lessons);
 
-  let reolvedUnitSlug: string = "";
+  let resolvedUnitSlug: string = "";
   if (unitSlug && unitData) {
     if (ENABLE_NEW_CURRIC_MV) {
       if (unitVariantID) {
         const unitOption = unitData?.unit_options?.find(
           ({ unitvariant_id }) => unitvariant_id === unitVariantID,
         );
-        reolvedUnitSlug = unitOption?.slug ?? unitSlug;
+        resolvedUnitSlug = unitOption?.slug ?? unitSlug;
       } else {
-        reolvedUnitSlug = unitSlug;
+        resolvedUnitSlug = unitSlug;
       }
     } else {
-      reolvedUnitSlug = unitVariantID
+      resolvedUnitSlug = unitVariantID
         ? `${unitSlug}-${unitVariantID}`
         : unitSlug;
     }
@@ -159,7 +159,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                             $iconPosition="trailing"
                             variant="buttonStyledAsLink"
                             page="lesson-index"
-                            unitSlug={reolvedUnitSlug}
+                            unitSlug={resolvedUnitSlug}
                             programmeSlug={programmeSlug}
                           />
                         )}
