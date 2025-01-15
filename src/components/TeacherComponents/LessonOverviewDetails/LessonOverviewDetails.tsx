@@ -1,5 +1,10 @@
 import React, { FC, Fragment } from "react";
-import { OakBox, OakFlex } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakGrid,
+  OakGridArea,
+} from "@oaknational/oak-components";
 
 import LessonOverviewKeyLearningPoints, {
   LessonOverviewKeyLearningPointProps,
@@ -60,66 +65,63 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
   return (
     <MathJaxWrapper>
-      <OakFlex
-        $flexDirection={"row"}
-        $flexWrap={["wrap", "nowrap"]}
-        $justifyContent={["center", "normal"]}
-        $alignItems={"flex-start"}
-      >
-        <OakFlex
-          $flexDirection={"column"}
-          $flexGrow={1}
-          $mr="space-between-s"
-          $gap="all-spacing-9"
-          $mb="space-between-m"
-        >
-          {hasVocabAndTranscripts && displayVocab && (
-            <OakBox>
-              <LessonOverviewVocabButton />
-            </OakBox>
-          )}
-          {keyLearningPoints && (
-            <OakBox>
-              <LessonOverviewKeyLearningPoints
-                keyLearningPoints={keyLearningPoints}
+      <OakGrid>
+        <OakGridArea $colSpan={[12, 8]} $rowStart={1}>
+          <OakFlex
+            $flexDirection={"column"}
+            $flexGrow={1}
+            $mr="space-between-s"
+            $gap="all-spacing-9"
+            $mb="space-between-m"
+          >
+            {hasVocabAndTranscripts && displayVocab && (
+              <OakBox>
+                <LessonOverviewVocabButton />
+              </OakBox>
+            )}
+            {keyLearningPoints && (
+              <OakBox>
+                <LessonOverviewKeyLearningPoints
+                  keyLearningPoints={keyLearningPoints}
+                />
+              </OakBox>
+            )}
+            {keyWords && (
+              <OakBox>
+                <LessonOverviewKeywords keyWords={keyWords} />
+              </OakBox>
+            )}
+            {commonMisconceptions && (
+              <OakBox>
+                <LessonOverviewCommonMisconceptions
+                  commonMisconceptions={commonMisconceptions}
+                />
+              </OakBox>
+            )}
+          </OakFlex>
+        </OakGridArea>
+        <OakGridArea $colSpan={[12, 4]} $colStart={[0, 9]} $rowStart={[2, 1]}>
+          <OakFlex
+            $flexDirection={"column"}
+            $mt={["space-between-l", "space-between-none"]}
+            $gap={"all-spacing-9"}
+            $mb={"space-between-m"}
+          >
+            {additionalFiles && (
+              <LessonOverviewFilesNeeded
+                slugs={slugs}
+                additionalFiles={additionalFiles}
               />
-            </OakBox>
-          )}
-          {keyWords && (
-            <OakBox>
-              <LessonOverviewKeywords keyWords={keyWords} />
-            </OakBox>
-          )}
-          {commonMisconceptions && (
-            <OakBox>
-              <LessonOverviewCommonMisconceptions
-                commonMisconceptions={commonMisconceptions}
-              />
-            </OakBox>
-          )}
-        </OakFlex>
-        <OakFlex
-          $flexDirection={"column"}
-          $mt={["space-between-l", "space-between-none"]}
-          $gap={"all-spacing-9"}
-          $mb={"space-between-m"}
-        >
-          {additionalFiles && (
-            <LessonOverviewFilesNeeded
-              slugs={slugs}
-              additionalFiles={additionalFiles}
-            />
-          )}
-          {teacherTips && teacherTips.length > 0 && (
-            <OakBox>
-              <LessonOverviewTeacherTips teacherTips={teacherTips} />
-            </OakBox>
-          )}
-          {(equipmentAndResources && equipmentAndResources.length > 0) ||
-          (contentGuidance && contentGuidance.length > 0) ||
-          supervisionLevel ||
-          isLegacyLicense !== undefined ? (
-            <OakBox>
+            )}
+            {teacherTips && teacherTips.length > 0 && (
+              <OakBox>
+                <LessonOverviewTeacherTips teacherTips={teacherTips} />
+              </OakBox>
+            )}
+            {(equipmentAndResources && equipmentAndResources.length > 0) ||
+            (contentGuidance && contentGuidance.length > 0) ||
+            supervisionLevel ||
+            isLegacyLicense !== undefined ? (
               <LessonOverviewHelper
                 equipment={equipmentAndResources}
                 contentGuidance={contentGuidance}
@@ -127,10 +129,10 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                 isLegacyLicense={isLegacyLicense}
                 updatedAt={updatedAt}
               />
-            </OakBox>
-          ) : null}
-        </OakFlex>
-      </OakFlex>
+            ) : null}
+          </OakFlex>
+        </OakGridArea>
+      </OakGrid>
     </MathJaxWrapper>
   );
 };

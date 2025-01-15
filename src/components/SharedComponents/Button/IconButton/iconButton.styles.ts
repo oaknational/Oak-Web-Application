@@ -14,7 +14,7 @@ import {
 
 import { margin, MarginProps } from "@/styles/utils/spacing";
 import { iconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
-import { BackgroundIcon } from "@/components/SharedComponents/Icon/Icon";
+import { BackgroundIcon } from "@/components/SharedComponents/Icon.deprecated/Icon.deprecated";
 
 const disabledStyles = css`
   opacity: 0.5;

@@ -6,8 +6,6 @@ import {
   OakFlex,
 } from "@oaknational/oak-components";
 
-import { GridList } from "@/components/SharedComponents/Typography/UL.deprecated";
-import { GridAreaListItem } from "@/components/SharedComponents/Typography/LI.deprecated";
 import SpecialistSubjectCard from "@/components/TeacherComponents/SpecialistSubjectListingCard/SpecialistSubjectCard";
 import { SpecialistSubject } from "@/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.schema";
 
@@ -38,11 +36,17 @@ const SpecialistSubjectCardSection = (props: {
           <OakP>{props.summary}</OakP>
         </OakGridArea>
       </OakGrid>
-      <GridList $rg={16} $cg={16} $gridAutoRows={"1fr"}>
+      <OakGrid
+        $rg={"all-spacing-4"}
+        $cg={"all-spacing-4"}
+        $gridAutoRows={"1fr"}
+        data-testid="specialist-subject-card-section"
+      >
         {props.subjects.map((subject, i) => (
-          <GridAreaListItem
+          <OakGridArea
             key={`subject-list-item-${subject.subjectSlug}-${i}`}
             $colSpan={[12, 6, 3]}
+            data-testid="specialist-subject-card"
           >
             <SpecialistSubjectCard
               subject={subject}
@@ -50,9 +54,9 @@ const SpecialistSubjectCardSection = (props: {
                 props.heading,
               )}
             />
-          </GridAreaListItem>
+          </OakGridArea>
         ))}
-      </GridList>
+      </OakGrid>
     </OakFlex>
   );
 };

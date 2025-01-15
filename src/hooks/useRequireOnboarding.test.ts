@@ -36,13 +36,7 @@ describe(useRequireOnboarding, () => {
   describe("when the user is logged in", () => {
     describe("and the user has completed onboarding", () => {
       beforeEach(() => {
-        setUseUserReturn({
-          ...mockLoggedIn,
-          user: {
-            ...mockLoggedIn.user,
-            publicMetadata: { owa: { isOnboarded: true } },
-          },
-        });
+        setUseUserReturn(mockLoggedIn);
       });
 
       it("does nothing", () => {
@@ -54,7 +48,13 @@ describe(useRequireOnboarding, () => {
 
     describe("and the user has not completed onboarding", () => {
       beforeEach(() => {
-        setUseUserReturn(mockLoggedIn);
+        setUseUserReturn({
+          ...mockLoggedIn,
+          user: {
+            ...mockLoggedIn.user,
+            publicMetadata: { owa: { isOnboarded: false } },
+          },
+        });
       });
 
       it("redirects to the onboarding page", () => {

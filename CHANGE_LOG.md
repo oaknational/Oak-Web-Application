@@ -1,3 +1,129 @@
+# [1.663.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.662.0...v1.663.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* failing tests for new curric sequence MV ([2660f8a](https://github.com/oaknational/Oak-Web-Application/commit/2660f8a65e85ce9a80c39bbb201f1b8857879c94))
+* use unit-option-slug rather than unit-slug in new curric MVs ([f0a301c](https://github.com/oaknational/Oak-Web-Application/commit/f0a301c5c806118e155773a2a31d5899ae0951e0))
+
+
+### Features
+
+* bump to using curriculum_sequence_b_13_0_6 ([c488be9](https://github.com/oaknational/Oak-Web-Application/commit/c488be98bbadde1f42ab72ef991f40c74ad04b6f))
+* enable new curric MV, for testing in preview builds ([d926190](https://github.com/oaknational/Oak-Web-Application/commit/d92619047ce821da41d4e6b05eda015be117c51d))
+
+# [1.662.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.661.0...v1.662.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* fix failing test ([123509f](https://github.com/oaknational/Oak-Web-Application/commit/123509ff6b59cc09f83178a49e52371fceb951d4))
+* pr feedback ([016a762](https://github.com/oaknational/Oak-Web-Application/commit/016a76250dd4a8bdf9d586c8a63cbf467348b376))
+* pr feedback ([9622ac1](https://github.com/oaknational/Oak-Web-Application/commit/9622ac1b32bcaf8a325470b07bc50f01ab880412))
+* pr feedback ([0aaa133](https://github.com/oaknational/Oak-Web-Application/commit/0aaa133d77651c0d33e8a9d50b29aa630a8467bc))
+* pr feedback ([a4e464f](https://github.com/oaknational/Oak-Web-Application/commit/a4e464f5e3adb6bea3714ae74f3f2271f692a663))
+* renmove redundant commented out code ([caef396](https://github.com/oaknational/Oak-Web-Application/commit/caef39601aa56a687c1ca3f75657df050c2f4091))
+* style updates to changed components ([a9d26d6](https://github.com/oaknational/Oak-Web-Application/commit/a9d26d606141e51653aff5e576bda0401a2d6c60))
+
+
+### Features
+
+* replace Icon with OakIcon pt2 ([e842630](https://github.com/oaknational/Oak-Web-Application/commit/e8426300c97b557bf320177722bbda19fa9f6780))
+* replace Icon with OakIcon where possible ([5436ab7](https://github.com/oaknational/Oak-Web-Application/commit/5436ab76bfe84fe0c7ad0836aa27b938cb733974))
+* use OakSvg for header-underline ([bfe8c6d](https://github.com/oaknational/Oak-Web-Application/commit/bfe8c6d7caef4ea5133def3dd2ec2e990b837a0f))
+
+# [1.661.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.660.0...v1.661.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* 20px to 18px because interior <Box/> changed to <OakBox/> standard sizes ([1d65337](https://github.com/oaknational/Oak-Web-Application/commit/1d653371c293c45f1709867595df24836c01fded))
+* bio card list ([5afc05f](https://github.com/oaknational/Oak-Web-Application/commit/5afc05f390b2e2627592a33c3680ee24636416d9))
+* bio card list ([b4a1636](https://github.com/oaknational/Oak-Web-Application/commit/b4a1636439c4bf9411b67068dcbdf097d423a0a3))
+* correct col start ([7aabc72](https://github.com/oaknational/Oak-Web-Application/commit/7aabc720ab9d87c2527e49b0f21f9a21bda9be84))
+* deprecate MaxWidth ([b3093cf](https://github.com/oaknational/Oak-Web-Application/commit/b3093cfa463388187306e22bacda810f0bdb1306))
+* deprecate MaxWidth 2 ([a5b692a](https://github.com/oaknational/Oak-Web-Application/commit/a5b692acec5dd575822271f5a7486391cc71c85c))
+* download card group ([dbd0261](https://github.com/oaknational/Oak-Web-Application/commit/dbd0261bb874e2522b19d164a4eb691daf1b081e))
+* incorrect padding coversion when changing to <OakBox/> ([e9c23b4](https://github.com/oaknational/Oak-Web-Application/commit/e9c23b4bbea7b4720c58ae33e6311837196f53d3))
+* lesson planning element linl ([0355956](https://github.com/oaknational/Oak-Web-Application/commit/0355956636a62ccd1ea0b2a329edf3d081b9e80a))
+* linting ([0645bf6](https://github.com/oaknational/Oak-Web-Application/commit/0645bf66a10ea209494e80ed9186635616c1be09))
+* list box ([5e2b2f4](https://github.com/oaknational/Oak-Web-Application/commit/5e2b2f4dcfeea83bc6df3f68409001cb237ed32d))
+* mistake in conversion 'all-spacing-6' to 'all-spacing-5' ([4a9aae6](https://github.com/oaknational/Oak-Web-Application/commit/4a9aae6b0470d9dbdb8884e7883073dd1d13cdd9))
+* p ([edb702f](https://github.com/oaknational/Oak-Web-Application/commit/edb702fbd04ca543d8a5ec05cd1c54ae942fb27d))
+* p ([ab556c5](https://github.com/oaknational/Oak-Web-Application/commit/ab556c5a7ab24e49682940e5d312c8a462fbca3d))
+* remove box ([226d692](https://github.com/oaknational/Oak-Web-Application/commit/226d692bead8fc5aaf1ec4dfc8a5e68fc9f917fa))
+* remove Hr ([ea2fdf4](https://github.com/oaknational/Oak-Web-Application/commit/ea2fdf461866b0f6b4e5cc688d273979838df166))
+* removing instances of Box ([9df8be4](https://github.com/oaknational/Oak-Web-Application/commit/9df8be4d4b4af790bea4f6e560e3df334cc855bb))
+* replace Span with OakSpan ([8e4624c](https://github.com/oaknational/Oak-Web-Application/commit/8e4624c0921173ee64cbd8246fc6ca586fe8d72c))
+* resolve conflicts ([410c30e](https://github.com/oaknational/Oak-Web-Application/commit/410c30e23754132787682fdbe3f1a38f2fc02005))
+* resolved conflicts ([61f41b2](https://github.com/oaknational/Oak-Web-Application/commit/61f41b2d074565a2b7005f0e2d7e93059deef84d))
+* tests ([14d30e1](https://github.com/oaknational/Oak-Web-Application/commit/14d30e13d3ed6e5ce9ffd0fb9b436a8797b3cf8e))
+* trigger build ([76fc2ce](https://github.com/oaknational/Oak-Web-Application/commit/76fc2cef2f283e06520f23f8f6a18cf1ddf92f9b))
+* update Flex to OakFlex on TeachersTab ([73e207c](https://github.com/oaknational/Oak-Web-Application/commit/73e207c486b9bd5fa876f7021d28361bab514fc4))
+* update simple Flex components to OakFlex on teacher and onboarding pages ([f9bf514](https://github.com/oaknational/Oak-Web-Application/commit/f9bf514c16c350d5ffd7b2af4260a283514c0083))
+
+
+### Features
+
+* delete ArchivedComponents folder ([bfeac7a](https://github.com/oaknational/Oak-Web-Application/commit/bfeac7afec348b9b724ccfac04b6b463e0b6c1ec))
+* remove Flex from Layout component ([f3d8523](https://github.com/oaknational/Oak-Web-Application/commit/f3d852381163a935635388229648cf62e6f258d2))
+* remove old HR compoenent ([9468f80](https://github.com/oaknational/Oak-Web-Application/commit/9468f80a753e227ec7f039a285da39d5afaee146))
+* removing hr ([494e267](https://github.com/oaknational/Oak-Web-Application/commit/494e2674b790694e08f1303d031de197fc4572e1))
+* replace box in portabletext ([24cb0f5](https://github.com/oaknational/Oak-Web-Application/commit/24cb0f5a8ae3be8037f5b015cfb097bcfa332cde))
+* replace Box in PostCategoryList ([b88c1e5](https://github.com/oaknational/Oak-Web-Application/commit/b88c1e5275f883f9a8f924a491798a30da47850e))
+* replacing Box with OakBox in various locations ([3e13010](https://github.com/oaknational/Oak-Web-Application/commit/3e13010bcc5c9af918205468233f32b6470bfb33))
+
+# [1.660.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.659.0...v1.660.0) (2025-01-15)
+
+
+### Bug Fixes
+
+* correct mock ([4cb869c](https://github.com/oaknational/Oak-Web-Application/commit/4cb869c85a4f83e3a063530eb2b4ad50402dfb42))
+* fallback icon for subject categories ([8d4a8fc](https://github.com/oaknational/Oak-Web-Application/commit/8d4a8fcd2ec462bab7120f8ec14d28a765b30ea4))
+* only append iv id if not already in slug ([12cc84d](https://github.com/oaknational/Oak-Web-Application/commit/12cc84dba69ff85eaf550b57ae63df8a7a43ffc6))
+* test import ([55c3948](https://github.com/oaknational/Oak-Web-Application/commit/55c39482ae168557a1ab5b2147d81f0c5beea0fc))
+* test imports ([dfffe53](https://github.com/oaknational/Oak-Web-Application/commit/dfffe53a17cdeb4b0d1625769430bbc2e55488fe))
+
+
+### Features
+
+* add avo branch ([1821278](https://github.com/oaknational/Oak-Web-Application/commit/1821278645a2c19687400f3be757e889fb6c551c))
+* add download button to unit listing page ([fae136f](https://github.com/oaknational/Oak-Web-Application/commit/fae136f2a8466cf85b98050c3aa8b0e50a4ffec6))
+* add download functionality to download button ([883937e](https://github.com/oaknational/Oak-Web-Application/commit/883937ed8e4a7fb574460a0465554f8b86bcf121))
+* add fns to check for unit download ([d9f0640](https://github.com/oaknational/Oak-Web-Application/commit/d9f0640f22b5687fb8f7ded2b9f20677ba442e6b))
+* add info banner on download ([f97e339](https://github.com/oaknational/Oak-Web-Application/commit/f97e3394bb08d0d5242f7d65285f27e98fc5e2dd))
+* add new tag and update button copy ([eb4a20f](https://github.com/oaknational/Oak-Web-Application/commit/eb4a20f94f6720c984429269a6a59df016622cf0))
+* navigate to onboarding on click ([bc91896](https://github.com/oaknational/Oak-Web-Application/commit/bc918963f4b44236d59f58b8bef2504f8d5018c0))
+* only require onboarding when download attempted ([f9d6ba4](https://github.com/oaknational/Oak-Web-Application/commit/f9d6ba442c7fa697ddce0476a9ff19bf3deeee3b))
+* pull avo main ([269ab99](https://github.com/oaknational/Oak-Web-Application/commit/269ab99bb1304c82b95b8e0988c323b048c3a5c5))
+* remove feature flag block from sign up and onboarding pages ([4d4f38e](https://github.com/oaknational/Oak-Web-Application/commit/4d4f38e5517b42236b729636ca69c15312a9b959))
+* require onboarding ([8a6155a](https://github.com/oaknational/Oak-Web-Application/commit/8a6155a9f87e81aeb8daf3c8fa3f340641b9c722))
+* update icon for feature flagged button ([746346e](https://github.com/oaknational/Oak-Web-Application/commit/746346e952ac266324852822b8d708bc30dd5d40))
+* update sign up page ([f849a5e](https://github.com/oaknational/Oak-Web-Application/commit/f849a5e52b83d2af62effbd91410d11cbafa9db3))
+* use feature flag for unit download button ([7113f9b](https://github.com/oaknational/Oak-Web-Application/commit/7113f9bb659424e2828e449de2bf240265147758))
+* use latest mv version and use uv id for file name ([49bbe63](https://github.com/oaknational/Oak-Web-Application/commit/49bbe63f3e325a89701f9e4639c5e056fddb9eb3))
+* use unit programme slug for download key ([55fc9f3](https://github.com/oaknational/Oak-Web-Application/commit/55fc9f3c5cf5373eb29ab7a085ad41991434fad2))
+
+# [1.659.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.2...v1.659.0) (2025-01-14)
+
+
+### Bug Fixes
+
+* added back in thread check ([a8ed332](https://github.com/oaknational/Oak-Web-Application/commit/a8ed3320f27fcf67aece7641697c0258f6519f44))
+* added group_by_subjectcategory to english secondary and fixed thread details heading hierarchy ([cbaf219](https://github.com/oaknational/Oak-Web-Application/commit/cbaf2193c7b9d3b5409a3eea31a0276b4ee87061))
+* added logic for non-subjectcategory grouped threads to curric downloads ([ca4403d](https://github.com/oaknational/Oak-Web-Application/commit/ca4403db1c75e676341e5940c3a684c2c129bba2))
+* adjust logic for subject categories ([21e663f](https://github.com/oaknational/Oak-Web-Application/commit/21e663f34e60f6d8fcedc25971f57c1567209120))
+* enable group_by_subjectcategory for english secondary ([871cde9](https://github.com/oaknational/Oak-Web-Application/commit/871cde96a3ac20ff1c7a09a4ec027e325b04b0e2))
+* more ordering fixes for threads in curric docx ([769a754](https://github.com/oaknational/Oak-Web-Application/commit/769a754b49ffdb3cf7ce5494fea981c8ac845388))
+* unit ordering in subjectcategory grouped unit threads (curric docx) ([e4b412c](https://github.com/oaknational/Oak-Web-Application/commit/e4b412c4e06b9025bf049f253b40b9b139de17c1))
+
+
+### Features
+
+* added group_by_subjectcategory to getUnitFeatures(...) ([bbc6bf8](https://github.com/oaknational/Oak-Web-Application/commit/bbc6bf8a9295c409b0e2ef18158bb2746f59b4f7))
+* added grouping via subject categories for english ([dd48bac](https://github.com/oaknational/Oak-Web-Application/commit/dd48bacff5fd1065ac0fe3a0ebe3399f8647bdfd))
+* for primary english add newly organised thread unit listing ([ca97756](https://github.com/oaknational/Oak-Web-Application/commit/ca97756797a45d92c0a19ab5d5b6952d1e02c632))
+
 ## [1.658.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.1...v1.658.2) (2025-01-14)
 
 
