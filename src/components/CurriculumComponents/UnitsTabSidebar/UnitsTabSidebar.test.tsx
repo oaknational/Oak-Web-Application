@@ -9,6 +9,7 @@ import {
   mockOptionalityUnit,
   mockUnitKS4,
 } from "@/components/CurriculumComponents/UnitModal/UnitModal.fixture";
+import { Unit } from "@/utils/curriculum/types";
 
 const lessonsPublished: Lesson[] = [
   {
@@ -166,6 +167,13 @@ describe("Sidebar component", () => {
           onClose={jest.fn()}
           unitOptionsAvailable={false}
           unitSlug={mockUnitKS4.slug}
+          unitData={
+            {
+              unit_options: [
+                { unitvariant_id: 2, slug: `${mockUnitKS4.slug}-2` },
+              ],
+            } as Unit
+          }
           programmeSlug={"maths-primary-ks1"}
           lessons={lessonsPublished}
         />,
@@ -186,6 +194,13 @@ describe("Sidebar component", () => {
           displayModal={true}
           onClose={jest.fn()}
           unitOptionsAvailable={false}
+          unitData={
+            {
+              unit_options: [
+                { unitvariant_id: 2, slug: `${mockUnitKS4.slug}-2` },
+              ],
+            } as Unit
+          }
           programmeSlug={"maths-secondary-ks4-aqa"}
           unitSlug={mockUnitKS4.slug}
           lessons={lessonsPublished}
@@ -207,6 +222,13 @@ describe("Sidebar component", () => {
           displayModal={true}
           onClose={jest.fn()}
           unitOptionsAvailable={false}
+          unitData={
+            {
+              unit_options: [
+                { unitvariant_id: 2, slug: `${mockUnitKS4.slug}-2` },
+              ],
+            } as Unit
+          }
           programmeSlug={"maths-primary-ks1"}
           unitSlug={mockOptionalityUnit.slug}
           lessons={lessonsPublished}
