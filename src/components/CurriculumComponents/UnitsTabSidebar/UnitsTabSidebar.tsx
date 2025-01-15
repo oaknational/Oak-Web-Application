@@ -11,6 +11,8 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
+import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
+import { Unit } from "@/utils/curriculum/types";
 
 const IconButtonFocusVisible = styled(IconButton)`
   :focus ${IconFocusUnderline} {
@@ -35,6 +37,7 @@ type ModalProps = HTMLProps<HTMLButtonElement> & {
   lessons: Lesson[] | [];
   unitSlug?: string;
   unitVariantID?: number | null;
+  unitData?: Unit | null;
 };
 
 const UnitsTabSidebar: FC<ModalProps> = ({
@@ -46,6 +49,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
   lessons,
   unitSlug,
   unitVariantID,
+  unitData,
 }) => {
   const getLessonsAvailable = (lessons: Lesson[] | null): boolean => {
     return (
@@ -56,6 +60,24 @@ const UnitsTabSidebar: FC<ModalProps> = ({
   };
 
   const lessonsAvailable = getLessonsAvailable(lessons);
+
+  let resolvedUnitSlug: string = "";
+  if (unitSlug && unitData) {
+    if (ENABLE_NEW_CURRIC_MV) {
+      if (unitVariantID) {
+        const unitOption = unitData?.unit_options?.find(
+          ({ unitvariant_id }) => unitvariant_id === unitVariantID,
+        );
+        resolvedUnitSlug = unitOption?.slug ?? unitSlug;
+      } else {
+        resolvedUnitSlug = unitSlug;
+      }
+    } else {
+      resolvedUnitSlug = unitVariantID
+        ? `${unitSlug}-${unitVariantID}`
+        : unitSlug;
+    }
+  }
 
   return (
     <Transition in={displayModal} timeout={300} unmountOnExit>
@@ -137,11 +159,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                             $iconPosition="trailing"
                             variant="buttonStyledAsLink"
                             page="lesson-index"
-                            unitSlug={
-                              unitVariantID
-                                ? `${unitSlug}-${unitVariantID}`
-                                : unitSlug
-                            }
+                            unitSlug={resolvedUnitSlug}
                             programmeSlug={programmeSlug}
                           />
                         )}
