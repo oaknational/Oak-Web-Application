@@ -1,3 +1,23 @@
+# [1.659.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.2...v1.659.0) (2025-01-14)
+
+
+### Bug Fixes
+
+* added back in thread check ([a8ed332](https://github.com/oaknational/Oak-Web-Application/commit/a8ed3320f27fcf67aece7641697c0258f6519f44))
+* added group_by_subjectcategory to english secondary and fixed thread details heading hierarchy ([cbaf219](https://github.com/oaknational/Oak-Web-Application/commit/cbaf2193c7b9d3b5409a3eea31a0276b4ee87061))
+* added logic for non-subjectcategory grouped threads to curric downloads ([ca4403d](https://github.com/oaknational/Oak-Web-Application/commit/ca4403db1c75e676341e5940c3a684c2c129bba2))
+* adjust logic for subject categories ([21e663f](https://github.com/oaknational/Oak-Web-Application/commit/21e663f34e60f6d8fcedc25971f57c1567209120))
+* enable group_by_subjectcategory for english secondary ([871cde9](https://github.com/oaknational/Oak-Web-Application/commit/871cde96a3ac20ff1c7a09a4ec027e325b04b0e2))
+* more ordering fixes for threads in curric docx ([769a754](https://github.com/oaknational/Oak-Web-Application/commit/769a754b49ffdb3cf7ce5494fea981c8ac845388))
+* unit ordering in subjectcategory grouped unit threads (curric docx) ([e4b412c](https://github.com/oaknational/Oak-Web-Application/commit/e4b412c4e06b9025bf049f253b40b9b139de17c1))
+
+
+### Features
+
+* added group_by_subjectcategory to getUnitFeatures(...) ([bbc6bf8](https://github.com/oaknational/Oak-Web-Application/commit/bbc6bf8a9295c409b0e2ef18158bb2746f59b4f7))
+* added grouping via subject categories for english ([dd48bac](https://github.com/oaknational/Oak-Web-Application/commit/dd48bacff5fd1065ac0fe3a0ebe3399f8647bdfd))
+* for primary english add newly organised thread unit listing ([ca97756](https://github.com/oaknational/Oak-Web-Application/commit/ca97756797a45d92c0a19ab5d5b6952d1e02c632))
+
 ## [1.658.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.658.1...v1.658.2) (2025-01-14)
 
 
