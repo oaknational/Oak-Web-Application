@@ -7,6 +7,8 @@ import {
   OakScaleImageButton,
 } from "@oaknational/oak-components";
 
+import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
+
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import {
@@ -108,7 +110,11 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
               id={`${questionUid}-answer-${i}`}
               key={`${questionUid}-answer-${i}`}
               value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
-              label={<MathJaxWrap>{label?.text}</MathJaxWrap>}
+              label={
+                <CodeRenderWrapper>
+                  <MathJaxWrap>{label?.text}</MathJaxWrap>
+                </CodeRenderWrapper>
+              }
               feedback={feedback}
               image={ResizeableImage}
               isHighlighted={questionState?.mode === "incomplete"}
