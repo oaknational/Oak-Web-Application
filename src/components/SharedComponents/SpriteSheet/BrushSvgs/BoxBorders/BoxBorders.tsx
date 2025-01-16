@@ -1,9 +1,15 @@
 import { FC } from "react";
+import styled from "styled-components";
 import { OakBox } from "@oaknational/oak-components";
+
+import { BoxBorderTop } from "./BoxBorderTop";
+import { BoxBorderRight } from "./BoxBorderRight";
+import { BoxBorderLeft } from "./BoxBorderLeft";
+import { BoxBorderBottom } from "./BoxBorderBottom";
 
 import { ZIndex } from "@/styles/utils/zIndex";
 import { OakColorName } from "@/styles/theme/types";
-import Svg from "@/components/SharedComponents/Svg";
+import { BoxProps, box } from "@/components/SharedComponents/Box";
 
 export const gapPositionMap = {
   rightTop: "90%",
@@ -35,6 +41,43 @@ export type BoxBordersProps = {
   hideRight?: boolean;
   hideLeft?: boolean;
   $color?: OakColorName;
+  hideOnMobileH?: boolean;
+  hideOnMobileV?: boolean;
+};
+
+const StyledSvg = styled.svg<BoxProps>`
+  ${box};
+  transition: all 0.3s ease;
+`;
+
+export type BoxBorderProps = BoxProps & {
+  name:
+    | "box-border-top"
+    | "box-border-right"
+    | "box-border-bottom"
+    | "box-border-left";
+  className?: string;
+  hideOnMobileH?: boolean;
+  hideOnMobileV?: boolean;
+  color?: OakColorName;
+  filter?: string;
+};
+
+const BoxBorder: FC<BoxBorderProps> = (props) => {
+  return (
+    <StyledSvg
+      aria-hidden={true}
+      xmlns="http://www.w3.org/2000/svg"
+      width="100%"
+      height="100%"
+      {...props}
+    >
+      {props.name === "box-border-top" && <BoxBorderTop />}
+      {props.name === "box-border-right" && <BoxBorderRight />}
+      {props.name === "box-border-left" && <BoxBorderLeft />}
+      {props.name === "box-border-bottom" && <BoxBorderBottom />}
+    </StyledSvg>
+  );
 };
 
 /**
@@ -56,16 +99,16 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
   return (
     <OakBox aria-hidden="true" data-testid="brush-borders">
       {!props.hideTop && (
-        <Svg
+        <BoxBorder
           name="box-border-top"
           {...props}
           $cover
-          $height={3}
           $bottom={"unset"}
+          $height={3}
         />
       )}
       {!props.hideRight && (
-        <Svg
+        <BoxBorder
           name="box-border-right"
           {...props}
           $cover
@@ -78,7 +121,7 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
       )}
 
       {!props.hideBottom && (
-        <Svg
+        <BoxBorder
           name="box-border-bottom"
           {...props}
           $cover
@@ -88,7 +131,7 @@ const BoxBorders: FC<BoxBordersProps> = (props) => {
         />
       )}
       {!props.hideLeft && (
-        <Svg
+        <BoxBorder
           name="box-border-left"
           {...props}
           $cover
