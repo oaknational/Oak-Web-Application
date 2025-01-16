@@ -57,11 +57,13 @@ export type PupilExperienceViewProps = {
   backUrl?: string | null;
   initialSection: LessonSection;
   pageType: "preview" | "canonical" | "browse";
+  hasAdditionalFiles: boolean;
 };
 
 export const PupilPageContent = ({
   browseData,
   lessonContent,
+  hasAdditionalFiles,
   hasWorksheet,
   backUrl,
   pageType,
@@ -106,7 +108,13 @@ export const PupilPageContent = ({
         />
       );
     case "intro":
-      return <PupilViewsIntro {...lessonContent} hasWorksheet={hasWorksheet} />;
+      return (
+        <PupilViewsIntro
+          {...lessonContent}
+          hasWorksheet={hasWorksheet}
+          hasAdditionalFiles={hasAdditionalFiles}
+        />
+      );
     case "starter-quiz":
       return <PupilViewsQuiz questionsArray={starterQuiz ?? []} />;
     case "video":
@@ -163,6 +171,7 @@ const PupilExperienceLayout = ({
   browseData,
   lessonContent,
   hasWorksheet,
+  hasAdditionalFiles,
   backUrl,
   initialSection,
   pageType,
@@ -246,6 +255,7 @@ const PupilExperienceLayout = ({
                     hasWorksheet={hasWorksheet}
                     backUrl={backUrl}
                     pageType={pageType}
+                    hasAdditionalFiles={hasAdditionalFiles}
                   />
                 )}
               </OakBox>
