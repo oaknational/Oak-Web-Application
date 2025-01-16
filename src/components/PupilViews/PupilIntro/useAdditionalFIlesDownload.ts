@@ -3,7 +3,7 @@ import { useState } from "react";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 import errorReporter from "@/common-lib/error-reporter";
 
-type AdditionalFIlesDownload = {
+type AdditionalFilesDownload = {
   startAdditionalFilesDownload: () => Promise<void>;
   isAdditionalFilesDownloading: boolean;
 };
@@ -17,13 +17,14 @@ const reportError = errorReporter("useAdditionalFilesDownload");
  */
 export function useAdditionalFilesDownload(
   lessonSlug: string,
-): AdditionalFIlesDownload {
-  const [isAdditionalFilesDownloading, setIsDownloading] = useState(false);
+): AdditionalFilesDownload {
+  const [isAdditionalFilesDownloading, setIsAdditionalFilesDownloading] =
+    useState(false);
   const startAdditionalFilesDownload = async () => {
     if (isAdditionalFilesDownloading) {
       return;
     }
-    setIsDownloading(true);
+    setIsAdditionalFilesDownloading(true);
 
     try {
       await downloadLessonResources(
@@ -36,7 +37,7 @@ export function useAdditionalFilesDownload(
       reportError(error);
     }
 
-    setIsDownloading(false);
+    setIsAdditionalFilesDownloading(false);
   };
 
   return { startAdditionalFilesDownload, isAdditionalFilesDownloading };
