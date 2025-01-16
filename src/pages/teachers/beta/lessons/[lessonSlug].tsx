@@ -68,8 +68,6 @@ export const getStaticProps: GetStaticProps<
       const curriculumData = await curriculumApi2023.teacherPreviewLesson({
         lessonSlug,
       });
-
-      console.log(curriculumData, "<<< curriculumData");
       const results: GetStaticPropsResult<TeacherPreviewLessonPageProps> = {
         props: {
           curriculumData,

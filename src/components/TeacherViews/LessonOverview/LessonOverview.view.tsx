@@ -103,6 +103,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     actions,
     // hasMediaClips,
     lessonMediaClips,
+    lessonOutline,
   } = lesson;
 
   const { track } = useAnalytics();
@@ -228,7 +229,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     subjectSlug === "french" ||
     subjectSlug === "spanish" ||
     lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre";
-
+  console.log(lessonMediaClips, " << MEDIA CLIPS");
   return (
     <MathJaxLessonProvider>
       <HeaderLesson
@@ -398,6 +399,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                   )}
                 {pageLinks.find((p) => p.label === mediaClipLabel) &&
                   lessonMediaClips &&
+                  lessonOutline &&
                   isBeta && (
                     <LessonItemContainer
                       title={mediaClipLabel}
@@ -413,6 +415,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                         learningCycleVideos={lessonMediaClips}
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
+                        lessonOutline={lessonOutline}
                       />
                     </LessonItemContainer>
                   )}

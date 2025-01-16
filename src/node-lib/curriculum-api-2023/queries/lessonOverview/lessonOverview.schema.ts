@@ -83,10 +83,17 @@ export type LessonOverviewCanonical = z.infer<
   typeof lessonOverviewCanonicalSchema
 >;
 
-export const lessonBrowseDataByKsSchema =
-  syntheticUnitvariantLessonsSchema.omit({
+export const lessonBrowseDataByKsSchema = syntheticUnitvariantLessonsSchema
+  .omit({
     supplementary_data: true,
     null_unitvariant_id: true,
+  })
+  .extend({
+    lesson_data: syntheticUnitvariantLessonsSchema.shape.lesson_data.extend({
+      lesson_outline: z
+        .array(z.object({ lesson_outline: z.string() }))
+        .optional(),
+    }),
   });
 
 export type LessonBrowseDataByKs = ConvertKeysToCamelCase<

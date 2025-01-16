@@ -1,3 +1,5 @@
+import lessonMediaClipsFixtures from "../../fixtures/lessonMediaClips.fixture";
+
 import {
   canonicalLessonMediaClipsSchema,
   LessonBrowseData,
@@ -16,7 +18,6 @@ import {
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 export const lessonMediaClipsQuery =
   (sdk: Sdk) =>
@@ -89,27 +90,30 @@ export const lessonMediaClipsQuery =
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
-
-    const mediaClipsFixture = lessonMediaClipsFixtures().mediaClips;
     if (!canonicalLesson) {
-      const data = constructLessonMediaData(browseData, mediaClipsFixture);
+      const data = constructLessonMediaData({
+        ...browseData,
+        mediaClips: lessonMediaClipsFixtures().mediaClips,
+      });
       lessonMediaClipsSchema.parse({ ...data });
       return {
         ...data,
       } as T;
     } else {
-      // Pathway hardcoded
-      const data = constructLessonMediaData(browseData, mediaClipsFixture, [
-        {
-          programmeSlug: browseData.programmeSlug,
-          unitSlug: browseData.unitSlug,
-          unitTitle: browseData.unitData.title,
-          keyStageSlug: browseData.programmeFields.keystageSlug,
-          keyStageTitle: browseData.programmeFields.keystageDescription,
-          subjectSlug: browseData.programmeFields.subjectSlug,
-          subjectTitle: browseData.programmeFields.subject,
-        },
-      ]);
+      const data = constructLessonMediaData(
+        { ...browseData, mediaClips: lessonMediaClipsFixtures().mediaClips },
+        [
+          {
+            programmeSlug: browseData.programmeSlug,
+            unitSlug: browseData.unitSlug,
+            unitTitle: browseData.unitData.title,
+            keyStageSlug: browseData.programmeFields.keystageSlug,
+            keyStageTitle: browseData.programmeFields.keystageDescription,
+            subjectSlug: browseData.programmeFields.subjectSlug,
+            subjectTitle: browseData.programmeFields.subject,
+          },
+        ],
+      );
       canonicalLessonMediaClipsSchema.parse({
         ...data,
       });

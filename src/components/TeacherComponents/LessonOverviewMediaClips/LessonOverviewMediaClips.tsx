@@ -3,14 +3,15 @@ import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import LessonOverviewClipWithThumbnail from "./LessonOverviewClipWithThumbnail";
 
-import { MediaClipsList } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 
 type LessonOverviewMediaClipsProps = {
-  learningCycleVideos: MediaClipsList;
+  learningCycleVideos: MediaClipListCamelCase;
   unitSlug: string | null;
   programmeSlug: string | null;
   lessonSlug: string;
+  lessonOutline: { lessonOutline: string }[];
 };
 
 const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
@@ -18,6 +19,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   unitSlug,
   programmeSlug,
   lessonSlug,
+  lessonOutline,
 }) => {
   const videosArray = Object.values(learningCycleVideos);
   return (
@@ -40,20 +42,16 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
             $maxWidth={["100%", "100%", "all-spacing-18"]}
           >
             <LessonOverviewClipWithThumbnail
-              title={firstCycleVideo.mediaClipTitle}
-              playbackId={
-                firstCycleVideo.videoObject
-                  ? firstCycleVideo.videoObject.muxPlaybackId
-                  : ""
+              title={
+                index === 0
+                  ? "Intro"
+                  : (lessonOutline[index - 1]?.lessonOutline ?? "")
               }
-              playbackPolicy={
-                firstCycleVideo.videoObject
-                  ? (firstCycleVideo.videoObject.playbackPolicy as
-                      | "public"
-                      | "signed")
-                  : "public"
-              }
+              playbackId={firstCycleVideo.videoObject?.muxPlaybackId ?? ""}
+              // defaulted to signed cause they have both
+              playbackPolicy={"signed"}
               numberOfClips={video.length}
+              // how do these videos know which to play
               href={
                 programmeSlug && unitSlug
                   ? resolveOakHref({
@@ -61,12 +59,12 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
                       lessonSlug: lessonSlug,
                       programmeSlug,
                       unitSlug,
-                      query: { video: firstCycleVideo.slug },
+                      query: { video: firstCycleVideo.mediaId ?? "" },
                     })
                   : resolveOakHref({
                       page: "lesson-media-canonical",
                       lessonSlug: lessonSlug,
-                      query: { video: firstCycleVideo.slug },
+                      query: { video: firstCycleVideo.mediaId ?? "" },
                     })
               }
             />

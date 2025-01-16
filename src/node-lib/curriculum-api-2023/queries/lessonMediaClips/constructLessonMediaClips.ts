@@ -1,11 +1,12 @@
 import { LessonPathway } from "../../shared.schema";
 import { LessonBrowseDataByKs } from "../lessonOverview/lessonOverview.schema";
 
-import { MediaClipsList } from "./lessonMediaClips.schema";
+import { MediaClipListCamelCase } from "./lessonMediaClips.schema";
 
 export const constructLessonMediaData = (
-  browseData: LessonBrowseDataByKs,
-  mediaClips: MediaClipsList,
+  browseData: LessonBrowseDataByKs & {
+    mediaClips: MediaClipListCamelCase | null;
+  },
   pathways?: LessonPathway[] | [],
 ) => {
   const unitTitle =
@@ -14,13 +15,13 @@ export const constructLessonMediaData = (
     lessonSlug: browseData.lessonSlug,
     lessonTitle: browseData.lessonData.title,
     keyStageTitle: browseData.programmeFields.keystageDescription,
-    mediaClips: mediaClips,
+    mediaClips: browseData.mediaClips,
+    lessonOutline: browseData.lessonData.lessonOutline,
   };
 
   if (pathways) {
     return { ...result, pathways };
   }
-
   return {
     ...result,
     programmeSlug: browseData.programmeSlug,

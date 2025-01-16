@@ -6,7 +6,7 @@ import { lessonOverviewQuizData, LessonPathway } from "../../shared.schema";
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
-import { MediaClipsList } from "../lessonMediaClips/lessonMediaClips.schema";
+import { MediaClipListCamelCase } from "../lessonMediaClips/lessonMediaClips.schema";
 
 import lessonOverviewSchema, {
   lessonContentSchema,
@@ -128,18 +128,15 @@ const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   return pathways;
 };
 
-//TODO: utilise construct media function aqui
 export const transformedLessonOverviewData = (
   browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
-  constructedMediaClips: MediaClipsList | null,
 ): LessonOverviewPageData => {
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
-
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
@@ -203,8 +200,10 @@ export const transformedLessonOverviewData = (
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
     actions: browseData.actions,
-    hasMediaClips: false,
-    lessonMediaClips: constructedMediaClips,
+    hasMediaClips: Boolean(content.mediaClips),
+    // how to type index signatures?
+    lessonMediaClips: content.mediaClips?.mediaClips as MediaClipListCamelCase,
+    lessonOutline: browseData.lessonData.lessonOutline,
   };
 };
 
@@ -291,7 +290,7 @@ const lessonOverviewQuery =
       ...contentSnake,
     }) as LessonOverviewContent;
     return lessonOverviewSchema.parse(
-      transformedLessonOverviewData(browseData, content, pathways, null),
+      transformedLessonOverviewData(browseData, content, pathways),
     );
   };
 

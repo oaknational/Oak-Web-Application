@@ -3,8 +3,6 @@ import {
   QuizQuestion,
 } from "@oaknational/oak-curriculum-schema";
 
-import { constructMediaClips } from "./constructMediaClips";
-
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
@@ -25,13 +23,11 @@ const teacherPreviewLessonQuery =
     const res = await sdk.teachersPreviewLesson({
       lessonSlug,
     });
-
     const browseFixtureData = {
       ...lessonBrowseDataFixture({
         lessonSlug,
       }),
     };
-
     if (res.content.length > 1) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
@@ -44,19 +40,16 @@ const teacherPreviewLessonQuery =
     }
 
     const [content] = res.content;
-
     if (!content) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
-    console.log(content.media_clips, "<<< media clips");
-
+    //TODO : FIX SCHEMA DEFINITION REMOVE EXTRA OBJECT
     const parsedLessonContent = lessonContentSchemaFull.parse({
       ...content,
-      media_clips: null,
+      media_clips: { media_clips: content.media_clips },
       geo_restricted: true,
       login_required: true,
     });
-
     // Incomplete data will break the preview for new lessons
     const lessonContentData = keysToCamelCase({
       ...parsedLessonContent,
@@ -68,15 +61,13 @@ const teacherPreviewLessonQuery =
         : null,
     });
     const [browseData] = keysToCamelCase(res.browseData);
-
-    const constructedMediaClips = constructMediaClips(content.media_clips);
-
     const teacherPreviewData = transformedLessonOverviewData(
       browseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,
       [],
-      constructedMediaClips,
     );
+
+    console.log(teacherPreviewData.lessonMediaClips, "<<< aqui");
 
     let subjectSlug: string = browseFixtureData.programmeFields.subjectSlug;
 

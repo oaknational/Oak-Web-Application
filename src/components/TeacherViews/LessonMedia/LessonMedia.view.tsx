@@ -25,10 +25,9 @@ import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
 import type {
   MediaClip,
-  MediaClipsList,
+  MediaClipListCamelCase,
 } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import {
-  getTranscript,
   getPlaybackId,
   getPlayingState,
   getInitialCurrentClip,
@@ -38,7 +37,8 @@ type BaseLessonMedia = {
   lessonTitle: string;
   lessonSlug: string;
   keyStageTitle: string;
-  mediaClips: MediaClipsList;
+  mediaClips: MediaClipListCamelCase;
+  lessonOutline: { lessonOutline: string }[];
 };
 
 type CanonicalLesson = BaseLessonMedia & {
@@ -59,7 +59,8 @@ type LessonMediaProps =
 
 export const LessonMedia = (props: LessonMediaProps) => {
   const { isCanonical, lesson } = props;
-  const { lessonTitle, lessonSlug, keyStageTitle, mediaClips } = lesson;
+  const { lessonTitle, lessonSlug, keyStageTitle, mediaClips, lessonOutline } =
+    lesson;
 
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
@@ -72,11 +73,19 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   // construct list of all clips in one array
   const listOfAllClips = Object.keys(mediaClips)
-    .map(
-      (learningCycle) =>
-        mediaClips[learningCycle]?.map((mediaClip: MediaClip) => mediaClip) ||
-        [],
-    )
+    .map((learningCycle, index) => {
+      return (
+        mediaClips[learningCycle]?.map((mediaClip: MediaClip) => {
+          return {
+            ...mediaClip,
+            learningCycle:
+              index === 0
+                ? "Intro"
+                : (lessonOutline[index - 1]?.lessonOutline ?? ""),
+          };
+        }) || []
+      );
+    })
     .flat();
 
   const [currentClip, setCurrentClip] = useState(
@@ -89,7 +98,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   const videoPlayerWrapper = useRef<HTMLDivElement>(null);
 
-  const goToTheNextClip = (slug: string) => {
+  const goToTheNextClip = (mediaId: string) => {
     if (programmeSlug && unitSlug) {
       const newUrl = resolveOakHref({
         page: "lesson-media",
@@ -101,20 +110,20 @@ export const LessonMedia = (props: LessonMediaProps) => {
       window.history.replaceState(
         window.history.state,
         "",
-        `${newUrl}?video=${slug}`,
+        `${newUrl}?video=${mediaId}`,
       );
     }
   };
 
-  const handleVideoChange = (clip: MediaClip) => {
-    goToTheNextClip(clip.slug);
+  const handleVideoChange = (clip: MediaClip & { learningCycle: string }) => {
+    goToTheNextClip(clip.mediaId ?? "");
     setCurrentClip(clip);
     setCurrentIndex(listOfAllClips.indexOf(clip));
   };
 
   const onMediaClipClick = (clipSlug: string) => {
     const clickedMediaClip = listOfAllClips.find(
-      (clip) => clip.slug === clipSlug,
+      (clip) => clip.mediaId === clipSlug,
     );
     clickedMediaClip && handleVideoChange(clickedMediaClip);
     videoPlayerWrapper.current?.focus();
@@ -122,7 +131,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   const handleVideoEvents = (e: VideoEventCallbackArgs) => {
     if (e.event === "play") {
-      currentClip && setPlayedVideos([...playedVideos, currentClip.slug]);
+      currentClip &&
+        setPlayedVideos([...playedVideos, currentClip.mediaId ?? ""]);
     }
 
     // we use this check rather than event === "end" because Mux sometimes dispatches "pause" event when video ends
@@ -134,9 +144,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   const videoPlayer = currentClip && (
     <VideoPlayer
-      playbackId={getPlaybackId(currentClip)}
+      playbackId={getPlaybackId(currentClip) ?? ""}
       playbackPolicy={"signed"}
-      title={currentClip.mediaClipTitle}
+      title={currentClip.mediaObject?.displayName ?? ""}
       location={"lesson"}
       isLegacy={false}
       userEventCallback={handleVideoEvents}
@@ -150,52 +160,40 @@ export const LessonMedia = (props: LessonMediaProps) => {
       currentClipCounter={currentIndex + 1}
       totalClipCounter={listOfAllClips.length}
     >
-      {listOfAllClips.map((mediaClip: MediaClip, index: number) => {
-        const {
-          videoObject,
-          mediaObject,
-          mediaClipTitle,
-          learningCycleTitle,
-          slug,
-          mediaType,
-        } = mediaClip;
-
+      {listOfAllClips.map((mediaClip, index: number) => {
+        const { videoObject, mediaId, mediaType } = mediaClip;
         if (mediaType === "video" && videoObject) {
           return (
             <MediaClipWithThumbnail
-              clipName={mediaClipTitle}
-              timeCode={videoObject.duration}
-              learningCycle={learningCycleTitle}
+              clipName={mediaClip.mediaObject?.displayName ?? ""}
+              timeCode={videoObject.duration ?? 0}
+              learningCycle={mediaClip.learningCycle}
               muxPlayingState={getPlayingState(
-                currentClip?.slug,
-                slug,
+                currentClip?.mediaId,
+                mediaId ?? "",
                 playedVideos,
               )}
-              playbackId={videoObject?.muxPlaybackId}
-              playbackPolicy={
-                videoObject?.playbackPolicy as "public" | "signed"
-              }
+              playbackId={videoObject.muxPlaybackId ?? ""}
+              playbackPolicy={"public"}
               isAudioClip={false}
-              onClick={() => onMediaClipClick(slug)}
+              onClick={() => onMediaClipClick(mediaId ?? "")}
               key={index}
             />
           );
-        } else if (mediaType === "audio" && mediaObject) {
-          const { mediaClipTitle, learningCycleTitle, slug } = mediaClip;
-
+        } else if (mediaType === "audio" && videoObject) {
           return (
             <OakMediaClip
-              clipName={mediaClipTitle}
-              timeCode={mediaObject.duration}
-              learningCycle={learningCycleTitle}
+              clipName={mediaClip.mediaObject?.displayName ?? ""}
+              timeCode={videoObject.duration ?? 0}
+              learningCycle={"learningCycleTitle"}
               muxPlayingState={getPlayingState(
-                currentClip?.slug,
-                slug,
+                currentClip?.mediaId,
+                mediaId ?? "",
                 playedVideos,
               )}
               isAudioClip={false}
               imageAltText=""
-              onClick={() => onMediaClipClick(slug)}
+              onClick={() => onMediaClipClick(mediaId ?? "")}
               key={index}
             />
           );
@@ -207,11 +205,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
   // media clip info component
   const lessonMediaClipInfo = currentClip && yearTitle && subjectTitle && (
     <LessonMediaClipInfo
-      clipTitle={currentClip.mediaClipTitle}
+      clipTitle={currentClip.mediaObject?.displayName ?? ""}
       keyStageTitle={keyStageTitle}
       yearTitle={yearTitle}
       subjectTitle={subjectTitle}
-      videoTranscript={getTranscript(currentClip)}
+      // videoTranscript={getTranscript(currentClip)}
       copyLinkButtonEnabled={true}
     />
   );

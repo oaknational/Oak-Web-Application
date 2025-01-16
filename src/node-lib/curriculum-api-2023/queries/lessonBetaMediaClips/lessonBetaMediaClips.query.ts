@@ -1,6 +1,7 @@
 import {
   LessonBrowseData,
   lessonBrowseDataSchema,
+  MediaClipListCamelCase,
 } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { constructLessonMediaData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/constructLessonMediaClips";
 import errorReporter from "@/common-lib/error-reporter";
@@ -9,7 +10,6 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { BetaLessonMediaClipsQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-import { constructMediaClips } from "@/node-lib/curriculum-api-2023/queries/teacherPreviewLesson/constructMediaClips";
 
 export const betaLessonMediaClipsQuery =
   (sdk: Sdk) =>
@@ -57,21 +57,11 @@ export const betaLessonMediaClipsQuery =
       supplementary_data: { order_in_unit: 0, unit_order: 0 },
     });
 
-    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData & {
+      mediaClips: MediaClipListCamelCase;
+    };
 
-    const constructedMediaClips = constructMediaClips(
-      manipulatedData?.media_clips,
-    );
-
-    if (!constructedMediaClips) {
-      throw new OakError({ code: "curriculum-api/not-found" });
-    }
-
-    const data = constructLessonMediaData(
-      browseData,
-      constructedMediaClips,
-      [],
-    );
+    const data = constructLessonMediaData(browseData, []);
 
     return data as T;
   };

@@ -38,6 +38,7 @@ const fixtureData = {
       subjectTitle: "Physical Education",
     },
   ],
+  lessonOutline: [{ lessonOutline: "This lesson is about running as a team" }],
 };
 
 jest.mock("next/router", () => ({
