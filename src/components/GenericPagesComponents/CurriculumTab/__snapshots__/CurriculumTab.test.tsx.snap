@@ -152,18 +152,17 @@ exports[`CurriculumTab renders 1`] = `
                           >
                             <svg
                               aria-hidden="true"
-                              class="sc-7c097ad9-0 iaIkxO"
+                              class="sc-df6cb28a-0 gXqUjH"
                               height="100%"
                               name="box-border-left"
+                              style="width: 3px;"
                               width="100%"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <svg
                                 fill="none"
-                                height="359.41"
                                 preserveAspectRatio="none"
                                 viewBox="0 0 2.72 359.41"
-                                width="2.72"
                                 xmlns="http://www.w3.org/2000/svg"
                               >
                                 <path
@@ -343,18 +342,17 @@ exports[`CurriculumTab renders 1`] = `
                       >
                         <svg
                           aria-hidden="true"
-                          class="sc-7c097ad9-0 iaIkxO"
+                          class="sc-df6cb28a-0 gXqUjH"
                           height="100%"
                           name="box-border-left"
+                          style="width: 3px;"
                           width="100%"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <svg
                             fill="none"
-                            height="359.41"
                             preserveAspectRatio="none"
                             viewBox="0 0 2.72 359.41"
-                            width="2.72"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path

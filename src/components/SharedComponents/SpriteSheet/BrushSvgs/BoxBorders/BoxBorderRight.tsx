@@ -2,8 +2,6 @@ export const BoxBorderRight = () => (
   <svg
     preserveAspectRatio="none"
     fill="none"
-    height="330.09"
-    width="2.89"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 2.89 330.09"
   >

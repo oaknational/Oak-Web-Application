@@ -1,15 +1,17 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakBox } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakBoxProps,
+  oakBoxCss,
+  OakColorToken,
+  oakZIndexTokens,
+} from "@oaknational/oak-components";
 
 import { BoxBorderTop } from "./BoxBorderTop";
 import { BoxBorderRight } from "./BoxBorderRight";
 import { BoxBorderLeft } from "./BoxBorderLeft";
 import { BoxBorderBottom } from "./BoxBorderBottom";
-
-import { ZIndex } from "@/styles/utils/zIndex";
-import { OakColorName } from "@/styles/theme/types";
-import { BoxProps, box } from "@/components/SharedComponents/Box";
 
 export const gapPositionMap = {
   rightTop: "90%",
@@ -35,22 +37,22 @@ const getBorderWidth = (gapPosition: GapPosition | undefined) => {
 
 export type BoxBordersProps = {
   gapPosition?: GapPosition;
-  $zIndex?: ZIndex;
+  $zIndex?: keyof typeof oakZIndexTokens | null;
   hideTop?: boolean;
   hideBottom?: boolean;
   hideRight?: boolean;
   hideLeft?: boolean;
-  $color?: OakColorName;
+  $color?: OakColorToken;
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
 };
 
-const StyledSvg = styled.svg<BoxProps>`
-  ${box};
+const StyledSvg = styled.svg<OakBoxProps>`
+  ${oakBoxCss};
   transition: all 0.3s ease;
 `;
 
-export type BoxBorderProps = BoxProps & {
+export type StyledBoxBorderProps = OakBoxProps & {
   name:
     | "box-border-top"
     | "box-border-right"
@@ -59,23 +61,107 @@ export type BoxBorderProps = BoxProps & {
   className?: string;
   hideOnMobileH?: boolean;
   hideOnMobileV?: boolean;
-  color?: OakColorName;
+  color?: OakColorToken;
   filter?: string;
+  gapPosition?: GapPosition;
 };
 
-const BoxBorder: FC<BoxBorderProps> = (props) => {
+const StyledBoxBorderTop: FC<StyledBoxBorderProps> = (props) => {
   return (
     <StyledSvg
       aria-hidden={true}
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
       height="100%"
+      $position={"absolute"}
+      $objectFit={"cover"}
+      $top={"all-spacing-0"}
+      $right={"all-spacing-0"}
+      $left={"all-spacing-0"}
+      $bottom={"all-spacing-0"}
       {...props}
+      style={{
+        bottom: "unset",
+        height: "3px",
+      }}
     >
-      {props.name === "box-border-top" && <BoxBorderTop />}
-      {props.name === "box-border-right" && <BoxBorderRight />}
-      {props.name === "box-border-left" && <BoxBorderLeft />}
-      {props.name === "box-border-bottom" && <BoxBorderBottom />}
+      <BoxBorderTop />
+    </StyledSvg>
+  );
+};
+
+const StyledBoxBorderRight: FC<StyledBoxBorderProps> = (props) => {
+  return (
+    <StyledSvg
+      aria-hidden={true}
+      xmlns="http://www.w3.org/2000/svg"
+      width="100%"
+      height="100%"
+      $position={"absolute"}
+      $objectFit={"cover"}
+      $top={"all-spacing-0"}
+      $right={"all-spacing-0"}
+      $left={"all-spacing-0"}
+      $bottom={"all-spacing-0"}
+      {...props}
+      style={{
+        top: "unset",
+        left: "unset",
+        bottom: props.gapPosition === "bottomRightCorner" ? "5%" : undefined,
+        width: "3px",
+        height: getBorderHeight(props.gapPosition),
+      }}
+    >
+      <BoxBorderRight />
+    </StyledSvg>
+  );
+};
+
+const StyledBoxBorderBottom: FC<StyledBoxBorderProps> = (props) => {
+  return (
+    <StyledSvg
+      aria-hidden={true}
+      xmlns="http://www.w3.org/2000/svg"
+      width="100%"
+      height="100%"
+      $position={"absolute"}
+      $objectFit={"cover"}
+      $top={"all-spacing-0"}
+      $right={"all-spacing-0"}
+      $left={"all-spacing-0"}
+      $bottom={"all-spacing-0"}
+      {...props}
+      style={{
+        top: "unset",
+        height: "3px",
+        width: getBorderWidth(props.gapPosition),
+      }}
+    >
+      <BoxBorderBottom />
+    </StyledSvg>
+  );
+};
+
+const StyledBoxBorderLeft: FC<StyledBoxBorderProps> = (props) => {
+  return (
+    <StyledSvg
+      aria-hidden={true}
+      xmlns="http://www.w3.org/2000/svg"
+      width="100%"
+      height="100%"
+      $position={"absolute"}
+      $objectFit={"cover"}
+      $top={"all-spacing-0"}
+      $right={"all-spacing-0"}
+      $left={"all-spacing-0"}
+      $bottom={"all-spacing-0"}
+      {...props}
+      style={{
+        right: "unset",
+        width: "3px",
+      }}
+    >
+      <BoxBorderLeft />
     </StyledSvg>
   );
 };
@@ -95,49 +181,20 @@ const BoxBorder: FC<BoxBorderProps> = (props) => {
  * a painted or drawn line.
  */
 const BoxBorders: FC<BoxBordersProps> = (props) => {
-  const { gapPosition } = props;
   return (
     <OakBox aria-hidden="true" data-testid="brush-borders">
       {!props.hideTop && (
-        <BoxBorder
-          name="box-border-top"
-          {...props}
-          $cover
-          $bottom={"unset"}
-          $height={3}
-        />
+        <StyledBoxBorderTop name="box-border-top" {...props} />
       )}
       {!props.hideRight && (
-        <BoxBorder
-          name="box-border-right"
-          {...props}
-          $cover
-          $width={3}
-          $top={"unset"}
-          $left={"unset"}
-          $bottom={gapPosition === "bottomRightCorner" ? "5%" : undefined}
-          $height={getBorderHeight(gapPosition)}
-        />
+        <StyledBoxBorderRight name="box-border-right" {...props} />
       )}
 
       {!props.hideBottom && (
-        <BoxBorder
-          name="box-border-bottom"
-          {...props}
-          $cover
-          $height={3}
-          $top={"unset"}
-          $width={getBorderWidth(gapPosition)}
-        />
+        <StyledBoxBorderBottom name="box-border-bottom" {...props} />
       )}
       {!props.hideLeft && (
-        <BoxBorder
-          name="box-border-left"
-          {...props}
-          $cover
-          $width={3}
-          $right={"unset"}
-        />
+        <StyledBoxBorderLeft name="box-border-left" {...props} />
       )}
     </OakBox>
   );

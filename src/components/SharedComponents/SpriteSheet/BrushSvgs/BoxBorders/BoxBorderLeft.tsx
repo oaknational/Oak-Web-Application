@@ -2,8 +2,6 @@ export const BoxBorderLeft = () => (
   <svg
     preserveAspectRatio="none"
     fill="none"
-    height="359.41"
-    width="2.72"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 2.72 359.41"
   >
