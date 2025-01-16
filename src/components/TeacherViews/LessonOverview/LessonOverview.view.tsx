@@ -100,8 +100,8 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     additionalMaterialUrl,
     actions,
     hasMediaClips,
+    additionalFiles,
   } = lesson;
-
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const commonPathway = getPathway(lesson);
@@ -406,6 +406,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     keyWords={
                       lessonKeywords?.length ? lessonKeywords : undefined
                     }
+                    slugs={slugs}
                     teacherTips={teacherTips}
                     equipmentAndResources={lessonEquipmentAndResources}
                     contentGuidance={contentGuidance}
@@ -415,6 +416,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
                     displayVocab={isBeta && isMFL}
                     updatedAt={updatedAt}
+                    additionalFiles={additionalFiles}
                   />
                 </LessonItemContainer>
 

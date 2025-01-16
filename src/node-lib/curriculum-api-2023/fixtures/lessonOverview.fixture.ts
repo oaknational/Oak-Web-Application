@@ -104,6 +104,7 @@ const lessonOverviewFixture = (
       "https://docs.google.com/document/d/1sv9LuUKXMRFdOCjjb4zTxTK91Gw64bOhCXEjxC03h60/edit?usp=drivesdk",
     hasMediaClips: false,
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
+    additionalFiles: ["file1", "file2"],
     ...partial,
   };
 };
