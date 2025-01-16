@@ -24,7 +24,6 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
   };
 
   const docId = extractGoogleDocId(asset);
-
   if (!docId) {
     return null;
   }
@@ -39,7 +38,7 @@ const LessonOverviewDocPresentation: FC<LessonOverviewPresentationProps> = ({
           title={`${title} ${docType}`}
           width="100%"
           height="100%"
-          // We know the google slides aren't accessible.
+          // We know the google docs aren't accessible.
           className="pa11y-ignore"
           data-testid="overview-presentation-document"
           style={{

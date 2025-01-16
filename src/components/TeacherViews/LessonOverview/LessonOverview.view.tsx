@@ -68,7 +68,6 @@ export const getDedupedPupilLessonOutcome = (
   }
   return plo;
 };
-
 export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
   const {
     lessonTitle,
