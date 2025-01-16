@@ -1,3 +1,17 @@
+# [1.664.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.663.0...v1.664.0) (2025-01-16)
+
+
+### Bug Fixes
+
+* add storybook file, update schema version, fix typos ([9bffcf2](https://github.com/oaknational/Oak-Web-Application/commit/9bffcf2c777a823153956479ca5bd6d93286b27f))
+* pupil pages rendering ([1cd54f1](https://github.com/oaknational/Oak-Web-Application/commit/1cd54f175ed024623f8bde2a2c02a07b4653e1dd))
+
+
+### Features
+
+*  files needed component, tests, schema and mv update ([69c8f68](https://github.com/oaknational/Oak-Web-Application/commit/69c8f681b1983ee05d72cc5b24e746ab66e7999d))
+* add add file function back in ([fa29c9a](https://github.com/oaknational/Oak-Web-Application/commit/fa29c9acdcc8cbd269b9235d5f03cd74debbddf6))
+
 # [1.663.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.662.0...v1.663.0) (2025-01-15)
 
 
