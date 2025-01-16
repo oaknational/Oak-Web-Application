@@ -1,3 +1,17 @@
+# [1.666.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.665.1...v1.666.0) (2025-01-16)
+
+
+### Bug Fixes
+
+* update test for google doc presenttion ([4443d9a](https://github.com/oaknational/Oak-Web-Application/commit/4443d9a25641eae780fdcfc87911a95a95199216))
+
+
+### Features
+
+* add null for broken link so component doesn't render ([64edc1c](https://github.com/oaknational/Oak-Web-Application/commit/64edc1cd48607e7a8bf32a6cf418e893a38ba0d8))
+* implement doc viewer ([1e0c306](https://github.com/oaknational/Oak-Web-Application/commit/1e0c3066b953aaa9956ae1602ebfa5361a82361a))
+* utilise google viewer to render google docs and add mat ([275e4c5](https://github.com/oaknational/Oak-Web-Application/commit/275e4c5db5e7387979768ec029c27f313a2a96bc))
+
 ## [1.665.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.665.0...v1.665.1) (2025-01-16)
 
 
