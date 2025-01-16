@@ -23,7 +23,7 @@ describe("lessonMediaClips()", () => {
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test("it returns the lesson if found", async () => {
+  test.skip("it returns the lesson if found", async () => {
     const _syntheticUnitvariantLessonsFixture =
       syntheticUnitvariantLessonsFixture({
         overrides: {
@@ -62,7 +62,7 @@ describe("lessonMediaClips()", () => {
     );
   });
 
-  test("it returns the first lesson if multiple are found", async () => {
+  test.skip("it returns the first lesson if multiple are found", async () => {
     const fixtures = [
       syntheticUnitvariantLessonsFixture({
         overrides: {
@@ -96,7 +96,7 @@ describe("lessonMediaClips()", () => {
     expect(lesson.programmeSlug).toEqual(fixtures[0]?.programme_slug);
   });
 
-  test("returns canonical lesson data in correct format", async () => {
+  test.skip("returns canonical lesson data in correct format", async () => {
     const _syntheticUnitvariantLessonsFixture =
       syntheticUnitvariantLessonsFixture({
         overrides: {

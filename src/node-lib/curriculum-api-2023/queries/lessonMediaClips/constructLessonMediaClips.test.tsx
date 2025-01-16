@@ -44,6 +44,7 @@ describe("constructMediaClips", () => {
         keyStageTitle: "Key Stage 1",
         pathways: [pathway],
         mediaClips: null,
+        lessonOutline: null,
       });
     });
   });
@@ -70,6 +71,7 @@ describe("constructMediaClips", () => {
         tierTitle: null,
         tierSlug: null,
         mediaClips: null,
+        lessonOutline: null,
       });
     });
   });
