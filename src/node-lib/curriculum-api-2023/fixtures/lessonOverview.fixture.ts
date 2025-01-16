@@ -102,6 +102,7 @@ const lessonOverviewFixture = (
     lessonGuideUrl: "lesson-guide-url",
     hasMediaClips: false,
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
+    additionalFiles: ["file1", "file2"],
     ...partial,
   };
 };
