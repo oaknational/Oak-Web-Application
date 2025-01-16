@@ -157,7 +157,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
               />
             </OakBox>
           )}
-          <OakBox $width="all-spacing-21">
+          <OakBox $maxWidth="all-spacing-21">
             <CopyrightNotice
               showPostAlbCopyright={showPostAlbCopyright}
               openLinksExternally={true}
