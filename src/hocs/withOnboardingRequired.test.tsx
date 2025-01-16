@@ -23,7 +23,16 @@ describe(withOnboardingRequired, () => {
   describe.each<[string, UseUserReturn]>([
     ["clerk has yet to load", mockLoadingUser],
     ["the user is not signed-in", mockLoggedOut],
-    ["the user is signed in but not onboarded", mockLoggedIn],
+    [
+      "the user is signed in but not onboarded",
+      {
+        ...mockLoggedIn,
+        user: {
+          ...mockLoggedIn.user,
+          publicMetadata: { owa: { isOnboarded: false } },
+        },
+      },
+    ],
   ])("%s", (__, currentUseUserReturn) => {
     beforeEach(() => {
       setUseUserReturn(currentUseUserReturn);
@@ -56,13 +65,7 @@ describe(withOnboardingRequired, () => {
 
   describe("when the user is signed in and onboarded", () => {
     beforeEach(() => {
-      setUseUserReturn({
-        ...mockLoggedIn,
-        user: {
-          ...mockLoggedIn.user,
-          publicMetadata: { owa: { isOnboarded: true } },
-        },
-      });
+      setUseUserReturn(mockLoggedIn);
     });
 
     it("renders the component", () => {

@@ -8,34 +8,39 @@ jest.mock("better-react-mathjax", () => ({
   ),
 }));
 
-describe("LessonOverviewDetails component", () => {
-  const keyLearningPoints = [{ keyLearningPoint: "test" }];
-  const commonMisconceptions = [
+const lessonDetailProps = {
+  keyLearningPoints: [{ keyLearningPoint: "test" }],
+  displayVocab: false,
+  commonMisconceptions: [
     { misconception: "misconception", response: "response" },
-  ];
-  const keyWords = [{ keyword: "keyword", description: "description" }];
-  const equipmentAndResources = [{ equipment: "equipment" }];
-  const contentGuidance = [
+  ],
+  keyWords: [{ keyword: "keyword", description: "description" }],
+  teacherTips: [{ teacherTip: "test teacher tip" }],
+  equipmentAndResources: [{ equipment: "equipment" }],
+  contentGuidance: [
     {
       contentGuidanceLabel: "content guidance",
       contentGuidanceDescription: "content guidance",
       contentGuidanceArea: "content guidance area",
     },
-  ];
-  const supervisionLevel = "supervision level";
+  ],
+  supervisionLevel: "supervision level",
+  isMathJaxLesson: false,
+  updatedAt: "2024-01-01T00:00:00Z",
+  hasVocabAndTranscripts: false,
+  additionalFiles: ["file1", "file2"],
+  slugs: {
+    lessonSlug: "lesson-slug",
+    unitSlug: "unit-slug",
+    programmeSlug: "programme-slug",
+  },
+};
 
-  const teacherTips = [{ teacherTip: "test teacher tip" }];
+describe("LessonOverviewDetails component", () => {
   it("it should not render its own title", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
-        displayVocab={false}
-        commonMisconceptions={commonMisconceptions}
-        keyWords={keyWords}
-        teacherTips={teacherTips}
-        equipmentAndResources={equipmentAndResources}
-        contentGuidance={contentGuidance}
-        supervisionLevel={supervisionLevel}
+        {...lessonDetailProps}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
         hasVocabAndTranscripts={false}
@@ -48,14 +53,7 @@ describe("LessonOverviewDetails component", () => {
   it("should render KeyLearningPoints component with key learning points", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
-        displayVocab={false}
-        commonMisconceptions={commonMisconceptions}
-        keyWords={keyWords}
-        teacherTips={teacherTips}
-        equipmentAndResources={equipmentAndResources}
-        contentGuidance={contentGuidance}
-        supervisionLevel={supervisionLevel}
+        {...lessonDetailProps}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
         hasVocabAndTranscripts={false}
@@ -69,14 +67,7 @@ describe("LessonOverviewDetails component", () => {
   it("should render CommonMisconceptions component with common misconceptions", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
-        displayVocab={false}
-        commonMisconceptions={commonMisconceptions}
-        keyWords={keyWords}
-        teacherTips={teacherTips}
-        equipmentAndResources={equipmentAndResources}
-        contentGuidance={contentGuidance}
-        supervisionLevel={supervisionLevel}
+        {...lessonDetailProps}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
         hasVocabAndTranscripts={false}
@@ -90,14 +81,9 @@ describe("LessonOverviewDetails component", () => {
   it("should not render CommonMisconceptions when passed null/undefined", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
+        {...lessonDetailProps}
         displayVocab={false}
         commonMisconceptions={null}
-        keyWords={keyWords}
-        teacherTips={teacherTips}
-        equipmentAndResources={equipmentAndResources}
-        contentGuidance={contentGuidance}
-        supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
         hasVocabAndTranscripts={false}
@@ -111,14 +97,8 @@ describe("LessonOverviewDetails component", () => {
   it("should render KeyWords component with keywords", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
+        {...lessonDetailProps}
         displayVocab={false}
-        commonMisconceptions={commonMisconceptions}
-        keyWords={keyWords}
-        teacherTips={teacherTips}
-        equipmentAndResources={equipmentAndResources}
-        contentGuidance={contentGuidance}
-        supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
         hasVocabAndTranscripts={false}
@@ -132,14 +112,9 @@ describe("LessonOverviewDetails component", () => {
   it("should not render KeyWords when passed null/undefined", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
+        {...lessonDetailProps}
         displayVocab={false}
-        commonMisconceptions={commonMisconceptions}
         keyWords={null}
-        teacherTips={teacherTips}
-        equipmentAndResources={equipmentAndResources}
-        contentGuidance={contentGuidance}
-        supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
         hasVocabAndTranscripts={false}
@@ -153,13 +128,7 @@ describe("LessonOverviewDetails component", () => {
   it("should render Vocab button component", () => {
     const { getByText, getByRole } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
-        commonMisconceptions={commonMisconceptions}
-        keyWords={keyWords}
-        teacherTips={teacherTips}
-        equipmentAndResources={equipmentAndResources}
-        contentGuidance={contentGuidance}
-        supervisionLevel={supervisionLevel}
+        {...lessonDetailProps}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
         displayVocab={true}
@@ -180,14 +149,7 @@ describe("LessonOverviewDetails component", () => {
   it("should render TeacherTips component with keywords", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
-        displayVocab={false}
-        commonMisconceptions={commonMisconceptions}
-        keyWords={keyWords}
-        teacherTips={teacherTips}
-        equipmentAndResources={equipmentAndResources}
-        contentGuidance={contentGuidance}
-        supervisionLevel={supervisionLevel}
+        {...lessonDetailProps}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
         hasVocabAndTranscripts={false}
@@ -201,14 +163,8 @@ describe("LessonOverviewDetails component", () => {
   it("should not render TeacherTips when passed null/undefined", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
-        displayVocab={false}
-        commonMisconceptions={commonMisconceptions}
-        keyWords={keyWords}
+        {...lessonDetailProps}
         teacherTips={null}
-        equipmentAndResources={equipmentAndResources}
-        contentGuidance={contentGuidance}
-        supervisionLevel={supervisionLevel}
         isMathJaxLesson={false}
         updatedAt="2024-01-01T00:00:00Z"
         hasVocabAndTranscripts={false}
@@ -222,11 +178,8 @@ describe("LessonOverviewDetails component", () => {
   it("if equipmentAndResources, contentGuidance and supervisionLevel are null/undefined shouldn't render any of their titles", () => {
     const { queryByText } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
+        {...lessonDetailProps}
         displayVocab={false}
-        commonMisconceptions={commonMisconceptions}
-        keyWords={keyWords}
-        teacherTips={teacherTips}
         equipmentAndResources={null}
         contentGuidance={null}
         supervisionLevel={undefined}
@@ -247,10 +200,7 @@ describe("LessonOverviewDetails component", () => {
   it("it should render the correct legacy license", () => {
     const { getByText, queryByText } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
-        commonMisconceptions={commonMisconceptions}
-        keyWords={keyWords}
-        teacherTips={teacherTips}
+        {...lessonDetailProps}
         equipmentAndResources={null}
         contentGuidance={null}
         supervisionLevel={undefined}
@@ -273,10 +223,7 @@ describe("LessonOverviewDetails component", () => {
   it("it should render the correct license", () => {
     const { getByText, queryByText } = renderWithTheme(
       <LessonOverviewDetails
-        keyLearningPoints={keyLearningPoints}
-        commonMisconceptions={commonMisconceptions}
-        keyWords={keyWords}
-        teacherTips={teacherTips}
+        {...lessonDetailProps}
         equipmentAndResources={null}
         contentGuidance={null}
         supervisionLevel={undefined}

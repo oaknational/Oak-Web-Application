@@ -7,6 +7,7 @@ import {
 } from "next";
 import { useNextSanityImage } from "next-sanity-image";
 import { uniqBy } from "lodash/fp";
+import { OakBox } from "@oaknational/oak-components";
 
 import Layout from "@/components/AppComponents/Layout";
 import CMSClient from "@/node-lib/cms";
@@ -15,7 +16,6 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import Box from "@/components/SharedComponents/Box";
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
 import BlogPortableText from "@/components/GenericPagesComponents/PostPortableText/PostPortableText";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -70,9 +70,9 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
           "Blog",
         )}
       >
-        <Box $mt={[48]}>
+        <OakBox $mt="space-between-l">
           <BlogPortableText portableText={props.blog.contentPortableText} />
-        </Box>
+        </OakBox>
       </PostSingleLayout>
       <BlogJsonLd blog={props.blog} />
     </Layout>

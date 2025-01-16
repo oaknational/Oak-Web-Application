@@ -1,9 +1,12 @@
 import { VisuallyHidden } from "react-aria";
-import { OakTypography, OakFlex } from "@oaknational/oak-components";
+import {
+  OakTypography,
+  OakFlex,
+  OakIcon,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
-import Box from "@/components/SharedComponents/Box";
-import Icon from "@/components/SharedComponents/Icon";
 import { ShortAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizQuestionsShortAnswers = ({
@@ -38,9 +41,13 @@ export const QuizQuestionsShortAnswers = ({
           Correct Answer: {removeMarkdown(answerString)}
         </VisuallyHidden>
 
-        <Box $minWidth={32} aria-hidden>
-          <Icon name={"tick"} />
-        </Box>
+        <OakBox $minWidth="all-spacing-7" aria-hidden>
+          <OakIcon
+            iconName={"tick"}
+            $width={"all-spacing-6"}
+            $height={"all-spacing-6"}
+          />
+        </OakBox>
 
         <OakTypography $font={["body-2", "body-1"]} aria-hidden>
           {removeMarkdown(answerString)}
