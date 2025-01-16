@@ -11,8 +11,6 @@ jest.mock("@/common-lib/urls", () => ({
 
 const mockLearningCycleVideos = lessonMediaClipsFixtures().mediaClips;
 
-// TODO : CHANGE THE FIXTURE
-
 describe("LessonOverviewMediaClips", () => {
   it("renders correctly with given props", () => {
     const { getByText } = renderWithTheme(
@@ -25,7 +23,7 @@ describe("LessonOverviewMediaClips", () => {
       />,
     );
 
-    expect(getByText("9_task_C1_3")).toBeInTheDocument();
+    expect(getByText("Intro")).toBeInTheDocument();
   });
 
   it("calls resolveOakHref with correct arguments when programmeSlug and unitSlug are provided", () => {
