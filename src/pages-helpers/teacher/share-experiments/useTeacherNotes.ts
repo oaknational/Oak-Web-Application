@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
 import {
   TeacherNoteCamelCase,
   TeacherNote,
   useOakPupil,
 } from "@oaknational/oak-pupil-client";
-import { useEffect, useState } from "react";
 
 export type UseTeacherNotesProps = {
   lessonPath?: string | null;
