@@ -45,8 +45,8 @@ export type HeaderListingProps = {
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
-  unitDownloadFileId: string;
-  onUnitDownloadSuccess: () => void;
+  unitDownloadFileId?: string;
+  onUnitDownloadSuccess?: () => void;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -126,14 +126,16 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                 $gap="space-between-s"
                 $flexDirection={["column", "row"]}
               >
-                <UnitDownloadButton
-                  setDownloadError={setDownloadError}
-                  setDownloadInProgress={setDownloadInProgress}
-                  setShowDownloadMessage={setShowDownloadMessage}
-                  downloadInProgress={downloadInProgress}
-                  unitFileId={unitDownloadFileId}
-                  onDownloadSuccess={onUnitDownloadSuccess}
-                />
+                {unitDownloadFileId && onUnitDownloadSuccess && (
+                  <UnitDownloadButton
+                    setDownloadError={setDownloadError}
+                    setDownloadInProgress={setDownloadInProgress}
+                    setShowDownloadMessage={setShowDownloadMessage}
+                    downloadInProgress={downloadInProgress}
+                    unitFileId={unitDownloadFileId}
+                    onDownloadSuccess={onUnitDownloadSuccess}
+                  />
+                )}
                 {shareButton}
               </OakFlex>
               <OakBox aria-live="polite">
