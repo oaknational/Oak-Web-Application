@@ -216,7 +216,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         </OakGridArea>
         <OakGridArea $colSpan={[12, 12, 5]} $pb="inner-padding-xl">
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-            {hasAdditionalFiles && (
+            {hasAdditionalFiles && additionalFiles?.[0] && (
               <OakLessonInfoCard>
                 <OakCardHeader iconName="additional-material" tag="h1">
                   Files you will need for this lesson
@@ -226,15 +226,14 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                   $flexDirection={"column"}
                   $gap={"space-between-s"}
                 >
-                  {additionalFiles &&
-                    additionalFiles[0]?.files.map((file, index) => (
-                      <OakLI key={index}>
-                        <OakFlex $flexDirection={"column"}>
-                          <OakSpan>{file.title}</OakSpan>
-                          <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format})`}</OakSpan>
-                        </OakFlex>
-                      </OakLI>
-                    ))}
+                  {additionalFiles[0].files.map((file, index) => (
+                    <OakLI key={index}>
+                      <OakFlex $flexDirection={"column"}>
+                        <OakSpan>{file.title}</OakSpan>
+                        <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format})`}</OakSpan>
+                      </OakFlex>
+                    </OakLI>
+                  ))}
                 </OakUL>
                 <OakFlex $justifyContent={"flex-end"}>
                   <OakPrimaryInvertedButton
@@ -244,7 +243,9 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                     isTrailingIcon
                     $font={"heading-7"}
                   >
-                    Download files
+                    {additionalFiles.length === 1
+                      ? "Download file"
+                      : "Download files"}
                   </OakPrimaryInvertedButton>
                 </OakFlex>
               </OakLessonInfoCard>
