@@ -1,7 +1,15 @@
 import {
-  // lessonContentSchema as lessonContentSchemaFull,
+  lessonContentSchema as lessonContentSchemaFull,
   QuizQuestion,
 } from "@oaknational/oak-curriculum-schema";
+
+/**
+ * ? - Muc playback ids which to use? currently defaulted to signed
+ * ? - everything is built to new mvs not accessible on the normal journey yet
+ * ! - hide learnincg cyctes on media page for pe lessons
+ * ! - tracksId - audio
+ * ? - mp3 format v mp4 format
+ */
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -43,17 +51,15 @@ const teacherPreviewLessonQuery =
     if (!content) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
-    //TODO : FIX SCHEMA DEFINITION REMOVE EXTRA OBJECT
-    // const parsedLessonContent = lessonContentSchemaFull.parse({
-    //   ...content,
-    //   media_clips: { media_clips: content.media_clips },
-    //   geo_restricted: true,
-    //   login_required: true,
-    // });
+    const parsedLessonContent = lessonContentSchemaFull.parse({
+      ...content,
+      media_clips: content.media_clips,
+      geo_restricted: true,
+      login_required: true,
+    });
     // Incomplete data will break the preview for new lessons
     const lessonContentData = keysToCamelCase({
-      ...content,
-      media_clips: { media_clips: content.media_clips },
+      ...parsedLessonContent,
       exit_quiz: content.exit_quiz
         ? content.exit_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
@@ -63,6 +69,7 @@ const teacherPreviewLessonQuery =
       additional_files: content?.additional_files,
     });
     const [browseData] = keysToCamelCase(res.browseData);
+
     const teacherPreviewData = transformedLessonOverviewData(
       browseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,

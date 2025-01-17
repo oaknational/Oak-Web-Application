@@ -9,7 +9,7 @@ import {
   lessonPathwaySchema,
 } from "../../shared.schema";
 import { QuizQuestion } from "../pupilLesson/pupilLesson.schema";
-import { mediaClipsSchema } from "../lessonMediaClips/lessonMediaClips.schema";
+import { mediaClipsRecordCamelSchema } from "../lessonMediaClips/lessonMediaClips.schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
@@ -64,9 +64,8 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   downloads: lessonOverviewDownloads,
   updatedAt: z.string(),
   pathways: z.array(lessonPathwaySchema),
-  // temporary addition to support media clips
-  lessonMediaClips: mediaClipsSchema.nullable(),
   additionalFiles: z.array(z.string()).nullable(),
+  lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
 });
 
 export type LessonOverviewPageData = z.infer<typeof lessonOverviewSchema>;
@@ -84,17 +83,10 @@ export type LessonOverviewCanonical = z.infer<
   typeof lessonOverviewCanonicalSchema
 >;
 
-export const lessonBrowseDataByKsSchema = syntheticUnitvariantLessonsSchema
-  .omit({
+export const lessonBrowseDataByKsSchema =
+  syntheticUnitvariantLessonsSchema.omit({
     supplementary_data: true,
     null_unitvariant_id: true,
-  })
-  .extend({
-    lesson_data: syntheticUnitvariantLessonsSchema.shape.lesson_data.extend({
-      lesson_outline: z
-        .array(z.object({ lesson_outline: z.string() }))
-        .nullish(),
-    }),
   });
 
 export type LessonBrowseDataByKs = ConvertKeysToCamelCase<

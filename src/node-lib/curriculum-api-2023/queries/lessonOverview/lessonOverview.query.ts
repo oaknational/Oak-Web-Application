@@ -6,7 +6,6 @@ import { lessonOverviewQuizData, LessonPathway } from "../../shared.schema";
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
 import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
 import { getCorrectYear } from "../../helpers/getCorrectYear";
-import { MediaClipListCamelCase } from "../lessonMediaClips/lessonMediaClips.schema";
 
 import lessonOverviewSchema, {
   lessonContentSchema,
@@ -223,8 +222,7 @@ export const transformedLessonOverviewData = (
     actions: browseData.actions,
     hasMediaClips: Boolean(content.mediaClips),
     // how to type index signatures?
-    lessonMediaClips:
-      (content.mediaClips?.mediaClips as MediaClipListCamelCase) ?? null,
+    lessonMediaClips: content.mediaClips ?? null,
     lessonOutline: browseData.lessonData.lessonOutline,
     additionalFiles: hasAddFile
       ? getAdditionalFiles(content.additionalFiles)

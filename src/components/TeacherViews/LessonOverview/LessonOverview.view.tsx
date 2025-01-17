@@ -222,7 +222,6 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     subjectSlug === "french" ||
     subjectSlug === "spanish" ||
     lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre";
-  console.log(lessonMediaClips, " << MEDIA CLIPS");
   return (
     <MathJaxLessonProvider>
       <HeaderLesson
