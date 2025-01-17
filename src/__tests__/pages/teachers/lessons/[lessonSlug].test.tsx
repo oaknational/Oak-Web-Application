@@ -1,4 +1,5 @@
 import { GetStaticPropsContext, PreviewData } from "next";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import LessonOverviewCanonicalPage, {
   URLParams,
@@ -10,6 +11,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
 
 const url = "";
 
@@ -60,10 +62,14 @@ const lesson = lessonOverviewFixture({
 
 describe("Lesson Overview Canonical Page", () => {
   beforeAll(() => {
-    // console.error = jest.fn();
+    console.error = jest.fn();
   });
 
   describe("LessonOverviewCanonicalPage", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
     it("Renders title from the props", async () => {
       const result = render(
         <LessonOverviewCanonicalPage
@@ -122,7 +128,25 @@ describe("Lesson Overview Canonical Page", () => {
       );
     });
 
-    it.todo("renders the add teacher note button if teacher notes are enabled");
+    it("renders the add teacher note button if teacher notes are enabled", () => {
+      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+
+      (useTeacherNotes as jest.Mock).mockReturnValue({
+        teacherNote: {},
+        isEditable: true,
+        saveTeacherNote: jest.fn(),
+        noteSaved: false,
+        error: undefined,
+      });
+
+      const { getAllByText } = render(
+        <LessonOverviewCanonicalPage
+          lesson={{ ...lesson, pathways: [] }}
+          isSpecialist={false}
+        />,
+      );
+      expect(getAllByText("Add teacher note and share")).toHaveLength(2);
+    });
   });
 
   describe("getStaticProps", () => {
