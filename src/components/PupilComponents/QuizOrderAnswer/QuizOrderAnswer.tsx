@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { isArray } from "lodash";
 import {
   OakBox,
+  OakCodeRenderer,
   OakDraggableFeedback,
   OakDroppable,
   OakQuizOrder,
@@ -81,7 +82,7 @@ export const QuizOrderAnswer = ({ onChange }: QuizOrderAnswerProps) => {
                 feedback={currentFeedback}
                 data-testid="order-item-feedback"
               >
-                {item.label}
+                <OakCodeRenderer string={item.label} />
               </OakDraggableFeedback>
             </OakDroppable>
           );
