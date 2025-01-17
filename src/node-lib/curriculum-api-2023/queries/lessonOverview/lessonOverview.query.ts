@@ -223,7 +223,8 @@ export const transformedLessonOverviewData = (
     actions: browseData.actions,
     hasMediaClips: Boolean(content.mediaClips),
     // how to type index signatures?
-    lessonMediaClips: content.mediaClips?.mediaClips as MediaClipListCamelCase,
+    lessonMediaClips:
+      (content.mediaClips?.mediaClips as MediaClipListCamelCase) ?? null,
     lessonOutline: browseData.lessonData.lessonOutline,
     additionalFiles: hasAddFile
       ? getAdditionalFiles(content.additionalFiles)
