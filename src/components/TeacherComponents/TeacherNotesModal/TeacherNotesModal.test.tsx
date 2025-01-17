@@ -180,4 +180,38 @@ describe("TeacherNotesModal", () => {
       expect(mockSaveTeacherNote).toHaveBeenCalled();
     });
   });
+
+  it("should set note saved when the note has been saved", async () => {
+    const mockSaveTeacherNote = jest
+      .fn(() => Promise.resolve(mockTeacherNoteSnake))
+      .mockName("saveTeacherNote");
+
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={mockSaveTeacherNote}
+        teacherNote={mockTeacherNote}
+      />,
+    );
+
+    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+      typeof OakTeacherNotesModal
+    >;
+
+    const modalProps = mockModal.mock.calls?.[0]?.[0];
+    if (!modalProps) {
+      throw new Error("No modal props found");
+    }
+
+    modalProps.onSaveClicked();
+
+    await waitFor(() => {
+      const latestProps = mockModal.mock.lastCall?.[0];
+      if (!latestProps) {
+        throw new Error("No latest props found");
+      }
+      expect(latestProps.noteSaved).toBe(true);
+    });
+  });
 });
