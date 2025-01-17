@@ -1,5 +1,5 @@
 import {
-  lessonContentSchema as lessonContentSchemaFull,
+  // lessonContentSchema as lessonContentSchemaFull,
   QuizQuestion,
 } from "@oaknational/oak-curriculum-schema";
 
@@ -44,15 +44,16 @@ const teacherPreviewLessonQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
     //TODO : FIX SCHEMA DEFINITION REMOVE EXTRA OBJECT
-    const parsedLessonContent = lessonContentSchemaFull.parse({
-      ...content,
-      media_clips: { media_clips: content.media_clips },
-      geo_restricted: true,
-      login_required: true,
-    });
+    // const parsedLessonContent = lessonContentSchemaFull.parse({
+    //   ...content,
+    //   media_clips: { media_clips: content.media_clips },
+    //   geo_restricted: true,
+    //   login_required: true,
+    // });
     // Incomplete data will break the preview for new lessons
     const lessonContentData = keysToCamelCase({
-      ...parsedLessonContent,
+      ...content,
+      media_clips: { media_clips: content.media_clips },
       exit_quiz: content.exit_quiz
         ? content.exit_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
@@ -67,8 +68,6 @@ const teacherPreviewLessonQuery =
       lessonContentData as LessonOverviewContent,
       [],
     );
-
-    console.log(teacherPreviewData.lessonMediaClips, "<<< aqui");
 
     let subjectSlug: string = browseFixtureData.programmeFields.subjectSlug;
 

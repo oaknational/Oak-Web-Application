@@ -116,7 +116,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   };
 
   const handleVideoChange = (clip: MediaClip & { learningCycle: string }) => {
-    goToTheNextClip(clip.mediaId ?? "");
+    goToTheNextClip(String(clip.mediaId) ?? "");
     setCurrentClip(clip);
     setCurrentIndex(listOfAllClips.indexOf(clip));
   };
@@ -132,7 +132,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const handleVideoEvents = (e: VideoEventCallbackArgs) => {
     if (e.event === "play") {
       currentClip &&
-        setPlayedVideos([...playedVideos, currentClip.mediaId ?? ""]);
+        setPlayedVideos([...playedVideos, String(currentClip.mediaId) ?? ""]);
     }
 
     // we use this check rather than event === "end" because Mux sometimes dispatches "pause" event when video ends
@@ -169,14 +169,14 @@ export const LessonMedia = (props: LessonMediaProps) => {
               timeCode={videoObject.duration ?? 0}
               learningCycle={mediaClip.learningCycle}
               muxPlayingState={getPlayingState(
-                currentClip?.mediaId,
-                mediaId ?? "",
+                String(currentClip?.mediaId),
+                String(mediaId) ?? "",
                 playedVideos,
               )}
               playbackId={videoObject.muxPlaybackId ?? ""}
               playbackPolicy={"public"}
               isAudioClip={false}
-              onClick={() => onMediaClipClick(mediaId ?? "")}
+              onClick={() => onMediaClipClick(String(mediaId) ?? "")}
               key={index}
             />
           );
@@ -187,13 +187,13 @@ export const LessonMedia = (props: LessonMediaProps) => {
               timeCode={videoObject.duration ?? 0}
               learningCycle={"learningCycleTitle"}
               muxPlayingState={getPlayingState(
-                currentClip?.mediaId,
-                mediaId ?? "",
+                String(currentClip?.mediaId),
+                String(mediaId) ?? "",
                 playedVideos,
               )}
               isAudioClip={false}
               imageAltText=""
-              onClick={() => onMediaClipClick(mediaId ?? "")}
+              onClick={() => onMediaClipClick(String(mediaId) ?? "")}
               key={index}
             />
           );

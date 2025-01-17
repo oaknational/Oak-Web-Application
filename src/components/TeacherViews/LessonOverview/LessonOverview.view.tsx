@@ -99,7 +99,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     teacherShareButton,
     additionalMaterialUrl,
     actions,
-    // hasMediaClips,
+    hasMediaClips,
     lessonMediaClips,
     lessonOutline,
     additionalFiles,
@@ -373,7 +373,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                   )}
                 {pageLinks.find((p) => p.label === mediaClipLabel) &&
                   lessonMediaClips &&
-                  lessonOutline &&
+                  hasMediaClips &&
                   isBeta && (
                     <LessonItemContainer
                       title={mediaClipLabel}
@@ -389,7 +389,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                         learningCycleVideos={lessonMediaClips}
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
-                        lessonOutline={lessonOutline}
+                        lessonOutline={lessonOutline ?? [{ lessonOutline: "" }]}
                       />
                     </LessonItemContainer>
                   )}

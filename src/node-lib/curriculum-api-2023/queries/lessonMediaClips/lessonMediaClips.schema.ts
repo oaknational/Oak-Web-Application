@@ -2,7 +2,7 @@ import { z } from "zod";
 import {
   syntheticUnitvariantLessonsSchema,
   videoObjectSchema,
-  mediaClipSchema as cycleSchema,
+  // mediaClipSchema as cycleSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 import { lessonPathwaySchema } from "../../shared.schema";
@@ -127,8 +127,9 @@ export const videoObjectCamelSchema = z
 
 export const mediaClipCamelSchema = z
   .object({
-    order: z.string(),
-    mediaId: z.string(),
+    //both data types coming back from the API
+    order: z.number().or(z.string()),
+    mediaId: z.number().or(z.string()),
     videoId: z.number(),
     mediaType: z.string(),
     customTitle: z.string(),
@@ -168,7 +169,9 @@ export type MediaClipListCamelCase = ConvertKeysToCamelCase<
   z.infer<typeof mediaClipsSchema>
 >;
 
-export type MediaClip = ConvertKeysToCamelCase<z.infer<typeof cycleSchema>>;
+export type MediaClip = ConvertKeysToCamelCase<
+  z.infer<typeof mediaClipCamelSchema>
+>;
 
 // Page Schemas
 export type LessonMediaClipsData = z.infer<typeof lessonMediaClipsSchema>;

@@ -59,12 +59,12 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
                       lessonSlug: lessonSlug,
                       programmeSlug,
                       unitSlug,
-                      query: { video: firstCycleVideo.mediaId ?? "" },
+                      query: { video: String(firstCycleVideo.mediaId) ?? "" },
                     })
                   : resolveOakHref({
                       page: "lesson-media-canonical",
                       lessonSlug: lessonSlug,
-                      query: { video: firstCycleVideo.mediaId ?? "" },
+                      query: { video: String(firstCycleVideo.mediaId) ?? "" },
                     })
               }
             />
