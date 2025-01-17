@@ -5,14 +5,13 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
+  OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
-import Box from "@/components/SharedComponents/Box";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 import SearchForm from "@/components/SharedComponents/SearchForm";
 import useSearch from "@/context/Search/useSearch";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import TeachersTabResourceSelectorCard from "@/components/GenericPagesComponents/TeachersTabResourceSelectorCard";
 import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
@@ -26,16 +25,18 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
   const { setSearchTerm } = useSearch({});
   return (
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
-      <MaxWidth $ph={[16]}>
+      <OakMaxWidth $ph={["inner-padding-m"]}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
-            <Flex
+            <OakFlex
               $flexDirection={"column"}
-              $maxWidth={[640]}
-              $pt={32}
+              $maxWidth={["all-spacing-22"]}
+              $pt={"inner-padding-xl2"}
               $alignItems={"flex-start"}
-              $gap={24}
-              $flex={"0 1 auto"}
+              $gap={"all-spacing-6"}
+              $flexGrow={0}
+              $flexShrink={1}
+              $flexBasis={"auto"}
             >
               <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
                 Teachers
@@ -47,18 +48,20 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                 Get a head-start on your lesson planning using quality-checked
                 resources you can download and adapt for free.
               </OakTypography>
-              <Box $mt={16} $width={["100%", "100%", "90%"]}>
-                <SearchForm
-                  searchContext="homepage"
-                  placeholderText="Search by keyword or topic"
-                  searchTerm=""
-                  handleSubmit={(value) => {
-                    setSearchTerm(value);
-                  }}
-                  analyticsSearchSource={"homepage search box"}
-                />
-              </Box>
-              <Box $pv={32} $width={"100%"}>
+              <OakGrid $mt="space-between-s">
+                <OakGridArea $colSpan={[12, 12, 11]}>
+                  <SearchForm
+                    searchContext="homepage"
+                    placeholderText="Search by keyword or topic"
+                    searchTerm=""
+                    handleSubmit={(value) => {
+                      setSearchTerm(value);
+                    }}
+                    analyticsSearchSource={"homepage search box"}
+                  />
+                </OakGridArea>
+              </OakGrid>
+              <OakBox $pv="inner-padding-xl2" $width={"100%"}>
                 <KeyStageKeypad
                   keyStages={keyStages}
                   title="View subjects by key stage"
@@ -79,8 +82,8 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                     })
                   }
                 />
-              </Box>
-            </Flex>
+              </OakBox>
+            </OakFlex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
             <ImageContainer imageSlug={"hero-pupils"}>
@@ -111,7 +114,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
             </ImageContainer>
           </OakGridArea>
         </OakGrid>
-      </MaxWidth>
+      </OakMaxWidth>
     </OakFlex>
   );
 };

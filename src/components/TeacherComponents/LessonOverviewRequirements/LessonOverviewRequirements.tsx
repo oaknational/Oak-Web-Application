@@ -1,12 +1,16 @@
 import React, { FC } from "react";
-import { OakP, OakLI, OakUL, OakFlex } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakLI,
+  OakUL,
+  OakFlex,
+  OakIconName,
+} from "@oaknational/oak-components";
 
 import LessonRequirementsHeading from "../LessonRequirementsHeading/LessonRequirementsHeading";
 
-import { IconName } from "@/components/SharedComponents/Icon";
-
 type LessonOverviewRequirementsProps = {
-  helperIcon: IconName;
+  helperIcon: OakIconName;
   heading: string;
   contentGuidance?: ContentGuidance[] | null | undefined;
   equipment?: Equipment[] | null | undefined;

@@ -21,6 +21,23 @@ const fixtures = {
     });
     return output;
   },
+  "curriculumunits-english-primary": async () => {
+    const output = await sdk.curriculumUnits({
+      where: {
+        _and: [
+          {
+            _or: [
+              { subject_slug: { _eq: "english" } },
+              { subject_parent_slug: { _eq: "english" } },
+            ],
+          },
+          { phase_slug: { _eq: "primary" } },
+          { state: { _eq: "published" } },
+        ],
+      },
+    });
+    return output;
+  },
   "curriculumunits-science-secondary": async () => {
     const output = await sdk.curriculumUnits({
       where: {

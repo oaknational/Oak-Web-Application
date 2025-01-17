@@ -1,10 +1,17 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import Component from "./CurriculumUnitDetailsAccordion";
 
 const meta: Meta<typeof Component> = {
   component: Component,
-
+  decorators: [
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
+    ),
+  ],
   argTypes: {
     title: {
       defaultValue: "Lesson in unit",

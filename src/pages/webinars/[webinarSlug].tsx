@@ -6,14 +6,13 @@ import {
 } from "next";
 import { useEffect } from "react";
 import { uniqBy } from "lodash/fp";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakFlex } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Layout from "@/components/AppComponents/Layout";
 import CMSClient from "@/node-lib/cms";
 import { TeamMemberPreview, Webinar } from "@/common-lib/cms-types";
 import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
-import Box from "@/components/SharedComponents/Box";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
@@ -73,9 +72,9 @@ const WebinarSinglePage: NextPage<WebinarSinglePageProps> = (props) => {
         <OakFlex $position={"relative"} $mt="space-between-xl">
           <WebinarVideo webinar={webinar} />
         </OakFlex>
-        <Box $mt={[48]}>
+        <OakBox $mt="space-between-l">
           <BlogPortableText portableText={webinar.summaryPortableText} />
-        </Box>
+        </OakBox>
       </PostSingleLayout>
       <BlogJsonLd blog={props.webinar} />
     </Layout>
