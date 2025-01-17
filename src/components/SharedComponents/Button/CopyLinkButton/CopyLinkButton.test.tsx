@@ -17,7 +17,7 @@ describe("Copy link button", () => {
   });
 
   it("updates the title", async () => {
-    const { getByTitle, rerender } = renderWithTheme(
+    const { getByLabelText, rerender } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton />
       </ToastProvider>,
@@ -25,7 +25,7 @@ describe("Copy link button", () => {
 
     const user = userEvent.setup();
 
-    const button = getByTitle("Copy link to clipboard");
+    const button = getByLabelText("Copy link to clipboard");
     expect(button).toBeInTheDocument();
 
     await user.click(button);
@@ -36,12 +36,12 @@ describe("Copy link button", () => {
       </ToastProvider>,
     );
 
-    const clickedButton = getByTitle("Link copied to clipboard");
+    const clickedButton = getByLabelText("Link copied to clipboard");
     expect(clickedButton).toBeInTheDocument();
   });
 
   it("copies the current URL to the clipboard by default", async () => {
-    const { getByTitle } = renderWithTheme(
+    const { getByLabelText } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton />
       </ToastProvider>,
@@ -49,7 +49,7 @@ describe("Copy link button", () => {
 
     const user = userEvent.setup();
 
-    const button = getByTitle("Copy link to clipboard");
+    const button = getByLabelText("Copy link to clipboard");
     await user.click(button);
 
     const clipboardText = await navigator.clipboard.readText();
@@ -57,7 +57,7 @@ describe("Copy link button", () => {
   });
 
   it("copies the provided URL to the clipboard", async () => {
-    const { getByTitle } = renderWithTheme(
+    const { getByLabelText } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton href="https://example.com" />
       </ToastProvider>,
@@ -65,21 +65,21 @@ describe("Copy link button", () => {
 
     const user = userEvent.setup();
 
-    const button = getByTitle("Copy link to clipboard");
+    const button = getByLabelText("Copy link to clipboard");
     await user.click(button);
 
     const clipboardText = await navigator.clipboard.readText();
     expect(clipboardText).toBe("https://example.com");
   });
   it("has aria-live polite", async () => {
-    const { getByText, getByTitle } = renderWithTheme(
+    const { getByText, getByLabelText } = renderWithTheme(
       <ToastProvider>
         <CopyLinkButton />
       </ToastProvider>,
     );
     const user = userEvent.setup();
 
-    const button = getByTitle("Copy link to clipboard");
+    const button = getByLabelText("Copy link to clipboard");
     await user.click(button);
 
     const anouncement = getByText("Link copied to clipboard");

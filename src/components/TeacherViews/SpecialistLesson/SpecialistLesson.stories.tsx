@@ -55,6 +55,7 @@ export const SpecialistLessonPage: Story = {
       lessonGuideUrl: null,
       hasMediaClips: false,
       lessonMediaClips: null,
+      additionalFiles: null,
     },
   },
 };

@@ -1,10 +1,9 @@
 import { FC } from "react";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakMaxWidth } from "@oaknational/oak-components";
 
 import { SpecialistProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.schema";
 import SpecialistProgrammeHeaderListing from "@/components/TeacherComponents/SpecialistProgrammeHeaderListing";
 import SpecialistProgrammeListing from "@/components/TeacherComponents/SpecialistProgrammeListing";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 
 const specialistProgrammeDescriptions: Record<string, string> = {
   "creative-arts":
@@ -43,7 +42,7 @@ const SpecialistProgrammeListingView: FC<SpecialistProgrammeListingPageData> = (
           },
         ]}
       />
-      <MaxWidth>
+      <OakMaxWidth>
         <OakFlex
           $mv="space-between-xxxl"
           $justifyContent="center"
@@ -54,7 +53,7 @@ const SpecialistProgrammeListingView: FC<SpecialistProgrammeListingPageData> = (
             onClick={() => "TODO: what is this for"}
           />
         </OakFlex>
-      </MaxWidth>
+      </OakMaxWidth>
     </>
   );
 };

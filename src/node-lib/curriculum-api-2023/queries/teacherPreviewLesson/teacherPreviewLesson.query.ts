@@ -59,6 +59,7 @@ const teacherPreviewLessonQuery =
       starter_quiz: content.starter_quiz
         ? content.starter_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
+      additional_files: content?.additional_files,
     });
     const [browseData] = keysToCamelCase(res.browseData);
     const teacherPreviewData = transformedLessonOverviewData(
