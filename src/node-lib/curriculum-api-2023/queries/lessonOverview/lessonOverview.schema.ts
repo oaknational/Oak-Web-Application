@@ -93,7 +93,7 @@ export const lessonBrowseDataByKsSchema = syntheticUnitvariantLessonsSchema
     lesson_data: syntheticUnitvariantLessonsSchema.shape.lesson_data.extend({
       lesson_outline: z
         .array(z.object({ lesson_outline: z.string() }))
-        .optional(),
+        .nullish(),
     }),
   });
 
