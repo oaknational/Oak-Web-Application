@@ -6,9 +6,6 @@ import {
 /**
  * ? - Mux playback ids which to use? currently defaulted to signed
  * ? - everything is built to new mvs not accessible on the normal journey yet
- * ! - add tests
- * ! - remove duplications
- * ! - refactor types to zodToCamelCase for types
  * ! - create pr to plug the beta journey into normal journey
  */
 
@@ -54,10 +51,10 @@ const teacherPreviewLessonQuery =
     }
     const parsedLessonContent = lessonContentSchemaFull.parse({
       ...content,
-      media_clips: content.media_clips,
       geo_restricted: true,
       login_required: true,
     });
+
     // Incomplete data will break the preview for new lessons
     const lessonContentData = keysToCamelCase({
       ...parsedLessonContent,
