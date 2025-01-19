@@ -62,6 +62,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const { lessonTitle, lessonSlug, keyStageTitle, mediaClips, lessonOutline } =
     lesson;
 
+  const isPELesson = lessonSlug === "physical-education";
+
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
   );
@@ -116,7 +118,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   };
 
   const handleVideoChange = (clip: MediaClip & { learningCycle: string }) => {
-    goToTheNextClip(String(clip.mediaId) ?? "");
+    goToTheNextClip(String(clip.mediaId));
     setCurrentClip(clip);
     setCurrentIndex(listOfAllClips.indexOf(clip));
   };
@@ -132,7 +134,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const handleVideoEvents = (e: VideoEventCallbackArgs) => {
     if (e.event === "play") {
       currentClip &&
-        setPlayedVideos([...playedVideos, String(currentClip.mediaId) ?? ""]);
+        setPlayedVideos([...playedVideos, String(currentClip.mediaId)]);
     }
 
     // we use this check rather than event === "end" because Mux sometimes dispatches "pause" event when video ends
@@ -144,9 +146,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   const videoPlayer = currentClip && (
     <VideoPlayer
-      playbackId={getPlaybackId(currentClip) ?? ""}
+      playbackId={getPlaybackId(currentClip)}
       playbackPolicy={"signed"}
-      title={currentClip.mediaObject?.displayName ?? ""}
+      title={currentClip.mediaObject?.displayName}
       location={"lesson"}
       isLegacy={false}
       userEventCallback={handleVideoEvents}
@@ -161,39 +163,39 @@ export const LessonMedia = (props: LessonMediaProps) => {
       totalClipCounter={listOfAllClips.length}
     >
       {listOfAllClips.map((mediaClip, index: number) => {
-        const { videoObject, mediaId, mediaType } = mediaClip;
-        if (mediaType === "video" && videoObject) {
+        const { videoObject, mediaId, mediaObject } = mediaClip;
+        if (mediaObject.format === "mp4" && videoObject) {
           return (
             <MediaClipWithThumbnail
-              clipName={mediaClip.mediaObject?.displayName ?? ""}
+              clipName={mediaClip.mediaObject?.displayName}
+              timeCode={videoObject.duration ?? 0}
+              learningCycle={!isPELesson ? mediaClip.learningCycle : ""}
+              muxPlayingState={getPlayingState(
+                String(currentClip?.mediaId),
+                String(mediaId),
+                playedVideos,
+              )}
+              playbackId={videoObject.muxPlaybackId}
+              playbackPolicy={"public"}
+              isAudioClip={false}
+              onClick={() => onMediaClipClick(String(mediaId))}
+              key={index}
+            />
+          );
+        } else if (mediaObject.format === "mp3" && videoObject) {
+          return (
+            <OakMediaClip
+              clipName={mediaClip.mediaObject?.displayName}
               timeCode={videoObject.duration ?? 0}
               learningCycle={mediaClip.learningCycle}
               muxPlayingState={getPlayingState(
                 String(currentClip?.mediaId),
-                String(mediaId) ?? "",
-                playedVideos,
-              )}
-              playbackId={videoObject.muxPlaybackId ?? ""}
-              playbackPolicy={"public"}
-              isAudioClip={false}
-              onClick={() => onMediaClipClick(String(mediaId) ?? "")}
-              key={index}
-            />
-          );
-        } else if (mediaType === "audio" && videoObject) {
-          return (
-            <OakMediaClip
-              clipName={mediaClip.mediaObject?.displayName ?? ""}
-              timeCode={videoObject.duration ?? 0}
-              learningCycle={"learningCycleTitle"}
-              muxPlayingState={getPlayingState(
-                String(currentClip?.mediaId),
-                String(mediaId) ?? "",
+                String(mediaId),
                 playedVideos,
               )}
               isAudioClip={false}
               imageAltText=""
-              onClick={() => onMediaClipClick(String(mediaId) ?? "")}
+              onClick={() => onMediaClipClick(String(mediaId))}
               key={index}
             />
           );
@@ -205,7 +207,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   // media clip info component
   const lessonMediaClipInfo = currentClip && yearTitle && subjectTitle && (
     <LessonMediaClipInfo
-      clipTitle={currentClip.mediaObject?.displayName ?? ""}
+      clipTitle={currentClip.mediaObject?.displayName}
       keyStageTitle={keyStageTitle}
       yearTitle={yearTitle}
       subjectTitle={subjectTitle}

@@ -18,12 +18,11 @@ describe("lessonMediaClips()", () => {
         lessonSlug: "lesson-slug",
         unitSlug: "unit-slug",
         programmeSlug: "programme-slug",
-        isLegacy: false,
       });
     }).rejects.toThrow(`Resource not found`);
   });
 
-  test.skip("it returns the lesson if found", async () => {
+  test("it returns the lesson if found", async () => {
     const _syntheticUnitvariantLessonsFixture =
       syntheticUnitvariantLessonsFixture({
         overrides: {
@@ -31,6 +30,10 @@ describe("lessonMediaClips()", () => {
           unit_slug: "unit-slug-test",
           programme_slug: "programme-slug-test",
           is_legacy: false,
+          lesson_data: {
+            ...syntheticUnitvariantLessonsFixture().lesson_data,
+            lesson_outline: [{ lesson_outline: "test" }],
+          },
         },
       });
 
@@ -62,7 +65,7 @@ describe("lessonMediaClips()", () => {
     );
   });
 
-  test.skip("it returns the first lesson if multiple are found", async () => {
+  test("it returns the first lesson if multiple are found", async () => {
     const fixtures = [
       syntheticUnitvariantLessonsFixture({
         overrides: {
@@ -70,6 +73,10 @@ describe("lessonMediaClips()", () => {
           unit_slug: "unit-slug-test",
           programme_slug: "programme-slug-test",
           is_legacy: false,
+          lesson_data: {
+            ...syntheticUnitvariantLessonsFixture().lesson_data,
+            lesson_outline: [{ lesson_outline: "test" }],
+          },
         },
       }),
       syntheticUnitvariantLessonsFixture(),
@@ -96,7 +103,7 @@ describe("lessonMediaClips()", () => {
     expect(lesson.programmeSlug).toEqual(fixtures[0]?.programme_slug);
   });
 
-  test.skip("returns canonical lesson data in correct format", async () => {
+  test("returns canonical lesson data in correct format", async () => {
     const _syntheticUnitvariantLessonsFixture =
       syntheticUnitvariantLessonsFixture({
         overrides: {
@@ -104,6 +111,10 @@ describe("lessonMediaClips()", () => {
           unit_slug: "unit-slug-test",
           programme_slug: "programme-slug-test",
           is_legacy: false,
+          lesson_data: {
+            ...syntheticUnitvariantLessonsFixture().lesson_data,
+            lesson_outline: [{ lesson_outline: "test" }],
+          },
         },
       });
 

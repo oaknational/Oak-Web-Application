@@ -4,11 +4,12 @@ import {
 } from "@oaknational/oak-curriculum-schema";
 
 /**
- * ? - Muc playback ids which to use? currently defaulted to signed
+ * ? - Mux playback ids which to use? currently defaulted to signed
  * ? - everything is built to new mvs not accessible on the normal journey yet
- * ! - hide learnincg cyctes on media page for pe lessons
- * ! - tracksId - audio
- * ? - mp3 format v mp4 format
+ * ! - add tests
+ * ! - remove duplications
+ * ! - refactor types to zodToCamelCase for types
+ * ! - create pr to plug the beta journey into normal journey
  */
 
 import errorReporter from "@/common-lib/error-reporter";

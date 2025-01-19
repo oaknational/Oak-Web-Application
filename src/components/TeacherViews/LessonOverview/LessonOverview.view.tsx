@@ -49,7 +49,6 @@ import {
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
-// import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
 
 export type LessonOverviewProps = {
@@ -388,7 +387,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                         learningCycleVideos={lessonMediaClips}
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
-                        lessonOutline={lessonOutline ?? [{ lessonOutline: "" }]}
+                        lessonOutline={lessonOutline ?? null}
                       />
                     </LessonItemContainer>
                   )}

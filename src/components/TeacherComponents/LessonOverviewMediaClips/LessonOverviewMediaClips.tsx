@@ -11,7 +11,7 @@ type LessonOverviewMediaClipsProps = {
   unitSlug: string | null;
   programmeSlug: string | null;
   lessonSlug: string;
-  lessonOutline: { lessonOutline: string }[];
+  lessonOutline: { lessonOutline: string }[] | null;
 };
 
 const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
@@ -45,9 +45,11 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
               title={
                 index === 0
                   ? "Intro"
-                  : (lessonOutline[index - 1]?.lessonOutline ?? "")
+                  : lessonOutline
+                    ? (lessonOutline[index - 1]?.lessonOutline ?? "")
+                    : ""
               }
-              playbackId={firstCycleVideo.videoObject?.muxPlaybackId ?? ""}
+              playbackId={firstCycleVideo.videoObject?.muxPlaybackId}
               // defaulted to signed cause they have both
               playbackPolicy={"signed"}
               numberOfClips={video.length}
@@ -59,12 +61,12 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
                       lessonSlug: lessonSlug,
                       programmeSlug,
                       unitSlug,
-                      query: { video: String(firstCycleVideo.mediaId) ?? "" },
+                      query: { video: String(firstCycleVideo.mediaId) },
                     })
                   : resolveOakHref({
                       page: "lesson-media-canonical",
                       lessonSlug: lessonSlug,
-                      query: { video: String(firstCycleVideo.mediaId) ?? "" },
+                      query: { video: String(firstCycleVideo.mediaId) },
                     })
               }
             />

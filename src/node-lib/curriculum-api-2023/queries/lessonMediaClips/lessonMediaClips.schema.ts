@@ -4,11 +4,12 @@ import {
   mediaClipsRecordSchema,
   clipVideoObjectSchema,
   clipMediaObjectSchema,
+  // mediaClipCycleSchema,
 } from "@oaknational/oak-curriculum-schema";
 
-import { lessonPathwaySchema } from "../../shared.schema";
-import { baseLessonBrowseSchema } from "../lessonShare/lessonShare.schema";
-
+// import { zodToCamelCase } from "@/node-lib/curriculum-api-2023/helpers/zodToCamelCase";
+import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import { baseLessonBrowseSchema } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
@@ -87,6 +88,12 @@ export const videoObjectCamelSchema = z.object({
     })
     .optional(),
 });
+
+// const mediaObjectCamelSchema = zodToCamelCase(clipMediaObjectSchema);
+
+// export const videoObjectCamelSchema = zodToCamelCase(clipVideoObjectSchema);
+
+// export const mediaClipsCycleCamelSchema = zodToCamelCase(mediaClipCycleSchema);
 
 export const mediaClipsCycleCamelSchema = z.object({
   //both data types coming back from the API
