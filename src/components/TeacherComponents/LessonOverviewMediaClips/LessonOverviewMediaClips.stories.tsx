@@ -194,7 +194,7 @@ export const LessThan4Cycles: Story = {
             createdAt: 1736865599,
             mp4Support: "standard",
             passthrough: "VIDE-ZHHRL-39999",
-            muxAssetId: "abc901Tnpf1y83irOm00HRbvAJpttJPU78KNYzPav3xy",
+            muxAssetId: "abc901Tnpf1y83irOm00HRbvAJpttJPU78KNYz305or",
             playbackIds: [
               {
                 id: "nLK1UtOfoD1100012GNC1pCO6RvUgyGwqGoq01pYsy7WeB",
@@ -526,80 +526,6 @@ export const MoreThan4Cycles: Story = {
             maxStoredResolution: "Audio only",
             nonStandardInputReasons: {
               audioCodec: "wav",
-            },
-          },
-        },
-        {
-          order: "2",
-          mediaId: "193301",
-          videoId: 50002,
-          mediaType: "video",
-          customTitle: "Intro Video Y",
-          mediaObject: {
-            id: "opq456rst789uvw123xyz456abc000",
-            url: "http://example.com/videoY.mp3",
-            type: "upload",
-            bytes: 91234,
-            width: 0,
-            format: "mp3",
-            height: 0,
-            version: 1736873012,
-            duration: 9.123,
-            metadata: {
-              assetType: "audio_speech",
-              sourceType: "partner_created",
-              assetSource: "partner",
-              licenceType: "exclusive",
-              contentCycle: "cycle_6",
-              permissionGranted: "notRequired",
-            },
-            secureUrl: "https://example.com/videoY.mp3",
-            accessMode: "private",
-            assetFolder:
-              "Cycle 6 assets/MFL - Portuguese - Secondary/Audio/Y11/PT11U05/PT11U05L3",
-            displayName: "Intro_Audio_Y",
-            resourceType: "audio",
-          },
-          videoObject: {
-            id: "rst789uvw000xyz123abc456opq789",
-            status: "processing",
-            tracks: [
-              {
-                id: "uvw123xyz456opq789rst000lmn111",
-                type: "audio",
-                duration: 9.123,
-              },
-              {
-                id: "staging-mock-asset",
-                assetId: "rst789uvw000xyz123abc456opq789",
-              },
-            ],
-            duration: 9.134,
-            createdAt: 1736874500,
-            mp4Support: "premium",
-            passthrough: "VIDE-FGHIJ-50002",
-            muxAssetId: "rst789uvw000xyz123abc456opq789",
-            playbackIds: [
-              {
-                id: "abc000lmn123opq456rst789uvw890",
-                policy: "signed",
-              },
-              {
-                id: "xyz789rst456uvw123abc000opq111",
-                policy: "public",
-              },
-            ],
-            encodingTier: "smart",
-            videoQuality: "high",
-            muxPlaybackId: "abc000lmn123opq456rst789uvw890",
-            signedStreamId: "xyz789rst456uvw123abc000opq111",
-            staticRenditions: {
-              status: "preparing",
-            },
-            maxResolutionTier: "1080p",
-            maxStoredResolution: "720p",
-            nonStandardInputReasons: {
-              audioCodec: "aac",
             },
           },
         },
