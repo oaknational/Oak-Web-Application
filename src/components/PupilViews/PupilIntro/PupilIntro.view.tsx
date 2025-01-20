@@ -226,14 +226,21 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                   $flexDirection={"column"}
                   $gap={"space-between-s"}
                 >
-                  {additionalFiles[0].files.map((file, index) => (
-                    <OakLI key={index}>
-                      <OakFlex $flexDirection={"column"}>
-                        <OakSpan>{file.title}</OakSpan>
-                        <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format})`}</OakSpan>
-                      </OakFlex>
-                    </OakLI>
-                  ))}
+                  {additionalFiles[0].files.length === 1 ? (
+                    <OakFlex $flexDirection={"column"}>
+                      <OakSpan>{additionalFiles[0].files[0]?.title}</OakSpan>
+                      <OakSpan>{`${byteSize(additionalFiles[0].files[0] ? additionalFiles[0].files[0].fileObject.bytes : 0)} (${additionalFiles[0].files[0]?.fileObject.format.toUpperCase()})`}</OakSpan>
+                    </OakFlex>
+                  ) : (
+                    additionalFiles[0].files.map((file, index) => (
+                      <OakLI key={index}>
+                        <OakFlex $flexDirection={"column"}>
+                          <OakSpan>{file.title}</OakSpan>
+                          <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
+                        </OakFlex>
+                      </OakLI>
+                    ))
+                  )}
                 </OakUL>
                 <OakFlex $justifyContent={"flex-end"}>
                   <OakPrimaryInvertedButton

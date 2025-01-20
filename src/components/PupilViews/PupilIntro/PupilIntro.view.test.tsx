@@ -169,7 +169,7 @@ describe("PupilIntro", () => {
       it("allows the files to be downloaded", async () => {
         const { getByText } = renderWithTheme(subject);
 
-        await userEvent.click(getByText("Download file"));
+        await userEvent.click(getByText("Download files"));
 
         expect(downloadLessonResources.default).toHaveBeenCalledWith(
           curriculumData.lessonSlug,
