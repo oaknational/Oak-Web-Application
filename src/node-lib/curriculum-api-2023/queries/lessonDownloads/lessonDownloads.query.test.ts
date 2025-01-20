@@ -20,6 +20,7 @@ const downloadAssets = {
   login_required: false,
   has_additional_files: false,
   additional_files: null,
+  has_lesson_guide_object: true,
 };
 
 describe("lessonDownloads()", () => {

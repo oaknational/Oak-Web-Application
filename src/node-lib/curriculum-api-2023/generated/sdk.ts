@@ -65486,7 +65486,7 @@ export type LessonBetaDownloadsQueryVariables = Exact<{
 }>;
 
 
-export type LessonBetaDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_new_7_0_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: string | null, login_required?: string | null, additional_files?: any | null, has_additional_files?: boolean | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
+export type LessonBetaDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_new_7_0_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: string | null, login_required?: string | null, additional_files?: any | null, has_additional_files?: boolean | null, has_lesson_guide_object?: boolean | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
 
 export type BetaLessonMediaClipsQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -65895,6 +65895,7 @@ export const LessonBetaDownloadsDocument = gql`
     login_required
     additional_files
     has_additional_files
+    has_lesson_guide_object
   }
   browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}

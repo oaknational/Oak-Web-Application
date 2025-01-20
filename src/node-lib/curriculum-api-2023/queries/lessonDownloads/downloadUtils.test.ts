@@ -9,6 +9,12 @@ export const downloadAssetsFixture = [
     forbidden: null,
   },
   {
+    exists: false,
+    type: "lesson-guide",
+    label: "Lesson guide",
+    ext: "docx",
+  },
+  {
     exists: true,
     type: "intro-quiz-questions",
     label: "Starter quiz questions",
@@ -59,7 +65,7 @@ export const downloadAssetsFixture = [
 ];
 
 describe("constructDownloadsArray()", () => {
-  test("constructs correct downloadable resource", () => {
+  test.only("constructs correct downloadable resource", () => {
     const downloads = constructDownloadsArray({
       hasSlideDeckAssetObject: true,
       hasStarterQuiz: true,
@@ -70,6 +76,7 @@ describe("constructDownloadsArray()", () => {
       hasSupplementaryAssetObject: true,
       isLegacy: true,
       hasAdditionalFiles: false,
+      hasLessonGuide: false,
     });
     expect(downloads).toEqual(downloadAssetsFixture);
   });
@@ -84,6 +91,7 @@ describe("constructDownloadsArray()", () => {
       hasSupplementaryAssetObject: false,
       isLegacy: true,
       hasAdditionalFiles: false,
+      hasLessonGuide: false,
     });
     const filteredDownloads = downloads.filter(
       (download) => download.exists === true,

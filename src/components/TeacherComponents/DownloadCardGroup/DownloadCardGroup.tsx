@@ -31,6 +31,8 @@ const getGridArea = (
 ) => {
   if (type === "curriculum-pdf") {
     return "auto";
+  } else if (type === "lesson-guide") {
+    return "presentation";
   } else if (type !== "worksheet-pdf" && type !== "worksheet-pptx") {
     return type;
   } else if (worksheetsLength === 2 || !presentationExists) {
@@ -56,8 +58,6 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
     ? sortDownloadResources(downloads)
     : undefined;
 
-  console.log(sortedDownloads, "<< sortedDownloads");
-
   return (
     <OakGrid
       $position="relative"
@@ -66,7 +66,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
       $cg={"space-between-s"}
       $gridTemplateAreas={[
         `"presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"`,
-        `"presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx"`,
+        `"presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx" `,
       ]}
     >
       {sortedDownloads?.map((download) => {

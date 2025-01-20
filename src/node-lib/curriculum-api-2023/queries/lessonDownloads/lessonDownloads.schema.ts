@@ -32,7 +32,7 @@ export const downloadsAssetData = z.object({
   has_worksheet_answers_asset_object: z.boolean(),
   has_worksheet_google_drive_downloadable_version: z.boolean(),
   has_supplementary_asset_object: z.boolean(),
-  // TODO: refactor when add  files pulling through
+  has_lesson_guide_object: z.boolean().nullish(),
   has_additional_files: z.boolean(),
   additional_files: z.array(additionalFilesSchema).nullable(),
   is_legacy: z.boolean(),

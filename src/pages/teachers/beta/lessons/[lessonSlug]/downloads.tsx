@@ -22,7 +22,7 @@ export type LessonDownloadsPageProps = {
 
 const LessonDownloadsPage = ({ curriculumData }: LessonDownloadsPageProps) => {
   const { lessonTitle, keyStageSlug, subjectTitle } = curriculumData;
-  console.log("<<< curriculumData", curriculumData);
+  console.log(curriculumData.downloads);
   return (
     <AppLayout
       seoProps={{
@@ -77,7 +77,6 @@ export const getStaticProps: GetStaticProps<
             lessonSlug,
           },
         );
-      console.log(curriculumData, "<<< curriculumData");
       if (!curriculumData) {
         return {
           notFound: true,

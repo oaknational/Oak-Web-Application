@@ -74,7 +74,9 @@ const lessonDownloadsQuery =
         has_worksheet_google_drive_downloadable_version,
       hasSupplementaryAssetObject: has_supplementary_asset_object,
       isLegacy: is_legacy,
+      // defaulted until ready for downloads
       hasAdditionalFiles: false,
+      hasLessonGuide: false,
     };
 
     const downloads = constructDownloadsArray(downloadsData);

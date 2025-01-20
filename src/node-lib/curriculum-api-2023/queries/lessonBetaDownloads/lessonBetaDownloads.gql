@@ -15,6 +15,7 @@ query lessonBetaDownloads($lessonSlug: String!) {
     login_required
     additional_files
     has_additional_files
+    has_lesson_guide_object
   }
 
   browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0(

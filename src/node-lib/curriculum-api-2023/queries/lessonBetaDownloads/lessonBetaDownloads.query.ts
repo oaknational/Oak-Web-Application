@@ -23,7 +23,7 @@ const lessonBetaDownloadsQuery =
     const { lessonSlug } = args;
 
     const res = await sdk.lessonBetaDownloads({ lessonSlug });
-    // Update query types on schema
+
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       SdkLessonBetaDownloadsQuery["browse_data"][number]
     >({
@@ -42,7 +42,6 @@ const lessonBetaDownloadsQuery =
     }
 
     const { download_assets } = res;
-    console.log(download_assets[0]?.additional_files, "<< download_assets");
     const {
       has_slide_deck_asset_object,
       has_worksheet_asset_object,
@@ -57,6 +56,7 @@ const lessonBetaDownloadsQuery =
       login_required,
       has_additional_files,
       additional_files,
+      has_lesson_guide_object,
     } = downloadsAssetData.parse(download_assets[0]);
 
     const downloadsData = {
@@ -70,6 +70,7 @@ const lessonBetaDownloadsQuery =
       hasSupplementaryAssetObject: has_supplementary_asset_object,
       hasAdditionalFiles: has_additional_files,
       isLegacy: is_legacy,
+      hasLessonGuide: has_lesson_guide_object ?? false,
     };
 
     const additionalFileDownloads =
@@ -78,7 +79,10 @@ const lessonBetaDownloadsQuery =
         : null;
 
     const downloads = constructDownloadsArray(downloadsData);
-    const x = [...downloads, ...(additionalFileDownloads || [])];
+    const constructDownloads = [
+      ...downloads,
+      ...(additionalFileDownloads || []),
+    ];
     // Copyright content pre-parsed
     const currentLesson = modifiedBrowseData.find(
       (lesson) => lesson.lesson_slug === lessonSlug,
@@ -92,7 +96,7 @@ const lessonBetaDownloadsQuery =
     );
 
     const lessonDownloads = constructLessonDownloads(
-      x,
+      constructDownloads,
       lessonSlug,
       parsedBrowseData,
       copyright,
