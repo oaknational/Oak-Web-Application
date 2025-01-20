@@ -139,12 +139,20 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       schoolFromHubspot?.schoolId === schoolFromLocalStorage.schoolId &&
       schoolFromHubspot?.schoolName === schoolFromLocalStorage.schoolName;
 
-    const noDetailsInHubspot = isSignedIn === false;
+    const noDetailsInHubspot =
+      isSignedIn === false ||
+      (isSignedIn && !user?.publicMetadata?.owa?.isOnboarded); // user has signed in but not onboarded
 
     if ((detailsUpdatedFromHubspot || noDetailsInHubspot) && !hubspotLoaded) {
       setHubspotLoaded(true);
     }
-  }, [schoolFromHubspot, schoolFromLocalStorage, isSignedIn, hubspotLoaded]);
+  }, [
+    schoolFromHubspot,
+    schoolFromLocalStorage,
+    isSignedIn,
+    hubspotLoaded,
+    user,
+  ]);
 
   useEffect(() => {
     if (emailFromLocalStorage) {
