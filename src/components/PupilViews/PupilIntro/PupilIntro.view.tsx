@@ -221,27 +221,28 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                 <OakCardHeader iconName="additional-material" tag="h1">
                   Files you will need for this lesson
                 </OakCardHeader>
-                <OakUL
-                  $display={"flex"}
-                  $flexDirection={"column"}
-                  $gap={"space-between-s"}
-                >
-                  {additionalFiles[0].files.length === 1 ? (
-                    <OakFlex $flexDirection={"column"}>
-                      <OakSpan>{additionalFiles[0].files[0]?.title}</OakSpan>
-                      <OakSpan>{`${byteSize(additionalFiles[0].files[0] ? additionalFiles[0].files[0].fileObject.bytes : 0)} (${additionalFiles[0].files[0]?.fileObject.format.toUpperCase()})`}</OakSpan>
-                    </OakFlex>
-                  ) : (
-                    additionalFiles[0].files.map((file, index) => (
+
+                {additionalFiles[0].files.length === 1 ? (
+                  <OakFlex $flexDirection={"column"}>
+                    <OakSpan>{additionalFiles[0].files[0]?.title}</OakSpan>
+                    <OakSpan>{`${byteSize(additionalFiles[0].files[0] ? additionalFiles[0].files[0].fileObject.bytes : 0)} (${additionalFiles[0].files[0]?.fileObject.format.toUpperCase()})`}</OakSpan>
+                  </OakFlex>
+                ) : (
+                  <OakUL
+                    $display={"flex"}
+                    $flexDirection={"column"}
+                    $gap={"space-between-s"}
+                  >
+                    {additionalFiles[0].files.map((file, index) => (
                       <OakLI key={index}>
                         <OakFlex $flexDirection={"column"}>
                           <OakSpan>{file.title}</OakSpan>
                           <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
                         </OakFlex>
                       </OakLI>
-                    ))
-                  )}
-                </OakUL>
+                    ))}
+                  </OakUL>
+                )}
                 <OakFlex $justifyContent={"flex-end"}>
                   <OakPrimaryInvertedButton
                     onClick={handleAdditionalFilesDownloadClicked}
