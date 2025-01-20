@@ -97,7 +97,7 @@ exports[`CurriculumTab renders 1`] = `
                   role="group"
                 >
                   <div
-                    class="sc-fqkvVR gOmLRK"
+                    class="sc-fqkvVR hrHiFL"
                     id="choose-curriculum-label"
                   >
                     Choose a curriculum
@@ -117,10 +117,10 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-9dfc1bad-0 sc-a818ec31-2 euLJLN fAkCpO cmcINv"
+                            class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 euLJLN fAkCpO iBMcnq"
                           >
                             <button
-                              class="sc-a818ec31-1 dlkXBW"
+                              class="sc-945a864b-1 fEgeBn"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -184,10 +184,10 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-gsFSXq chczcQ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-9dfc1bad-0 sc-a818ec31-2 jdrOtF fAkCpO cmcINv"
+                              class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 jdrOtF fAkCpO iBMcnq"
                             >
                               <button
-                                class="sc-a818ec31-1 dlkXBW"
+                                class="sc-945a864b-1 fEgeBn"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
@@ -287,7 +287,7 @@ exports[`CurriculumTab renders 1`] = `
               role="group"
             >
               <div
-                class="sc-fqkvVR gOmLRK"
+                class="sc-fqkvVR hrHiFL"
                 id="choose-curriculum-label"
               >
                 Choose a curriculum
@@ -307,10 +307,10 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-9dfc1bad-0 sc-a818ec31-2 euLJLN fAkCpO cmcINv"
+                        class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 euLJLN fAkCpO iBMcnq"
                       >
                         <button
-                          class="sc-a818ec31-1 dlkXBW"
+                          class="sc-945a864b-1 fEgeBn"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
@@ -374,10 +374,10 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-gsFSXq chczcQ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-9dfc1bad-0 sc-a818ec31-2 jdrOtF fAkCpO cmcINv"
+                          class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 jdrOtF fAkCpO iBMcnq"
                         >
                           <button
-                            class="sc-a818ec31-1 dlkXBW"
+                            class="sc-945a864b-1 fEgeBn"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >
