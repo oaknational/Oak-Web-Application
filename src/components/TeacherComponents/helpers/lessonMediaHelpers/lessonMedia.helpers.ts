@@ -1,7 +1,7 @@
 import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
 export const getPlaybackId = (currentClip: MediaClip) => {
-  if (currentClip.videoObject) {
+  if (currentClip && currentClip.videoObject) {
     return currentClip.videoObject.muxPlaybackId;
   }
   return "";

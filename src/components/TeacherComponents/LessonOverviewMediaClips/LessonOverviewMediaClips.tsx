@@ -49,7 +49,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
                     ? (lessonOutline[index - 1]?.lessonOutline ?? "")
                     : ""
               }
-              playbackId={firstCycleVideo.videoObject?.muxPlaybackId}
+              playbackId={firstCycleVideo.videoObject?.muxPlaybackId ?? ""}
               // defaulted to signed cause they have both
               playbackPolicy={"signed"}
               numberOfClips={video.length}
