@@ -240,6 +240,12 @@ async function main() {
     NEXT_PUBLIC_GET_LESSON_ATTEMPT_URL:
       process.env.NEXT_PUBLIC_GET_LESSON_ATTEMPT_URL ||
       oakConfig.oakPupilClient?.getLessonAttemptUrl,
+    NEXT_PUBLIC_ADD_TEACHER_NOTE_URL:
+      process.env.NEXT_PUBLIC_ADD_TEACHER_NOTE_URL ||
+      oakConfig.oakPupilClient?.addTeacherNoteUrl,
+    NEXT_PUBLIC_GET_TEACHER_NOTE_URL:
+      process.env.NEXT_PUBLIC_GET_TEACHER_NOTE_URL ||
+      oakConfig.oakPupilClient?.getTeacherNoteUrl,
 
     // Clerk
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
