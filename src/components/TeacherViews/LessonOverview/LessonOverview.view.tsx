@@ -392,6 +392,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     </LessonItemContainer>
                   )}
 
+                {/* Somthing on this component is throwing a hydration error */}
                 <LessonItemContainer
                   isSpecialist={isSpecialist}
                   ref={lessonDetailsSectionRef}
