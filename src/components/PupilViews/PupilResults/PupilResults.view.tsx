@@ -134,8 +134,8 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
                 <OakHandDrawnHR $height={"all-spacing-1"} />
                 <OakQuizPrintableSubHeader
                   title={"Starter quiz"}
-                  grade={starterQuiz.grade}
-                  numQuestions={starterQuiz.numQuestions}
+                  grade={starterQuiz.grade ?? 0}
+                  numQuestions={starterQuiz.numQuestions ?? 0}
                   attempts={1}
                 />
               </>
@@ -161,8 +161,8 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
                 <OakHandDrawnHR $height={"all-spacing-1"} />
                 <OakQuizPrintableSubHeader
                   title={"Exit quiz"}
-                  grade={exitQuiz.grade}
-                  numQuestions={exitQuiz.numQuestions}
+                  grade={exitQuiz.grade ?? 0}
+                  numQuestions={exitQuiz.numQuestions ?? 0}
                   attempts={1}
                 />
               </>

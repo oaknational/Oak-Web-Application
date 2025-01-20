@@ -132,6 +132,7 @@ describe("PupilExperienceView", () => {
           lessonContent={lessonContent}
           browseData={lessonBrowseData}
           hasWorksheet={false}
+          hasAdditionalFiles={false}
           initialSection="overview"
           pageType="browse"
         />,
@@ -163,6 +164,7 @@ describe("PupilExperienceView", () => {
             lessonContent={lessonContent}
             browseData={lessonBrowseData}
             hasWorksheet={false}
+            hasAdditionalFiles={false}
             initialSection="overview"
             pageType="browse"
           />,
@@ -190,6 +192,7 @@ describe("PupilExperienceView", () => {
         lessonContent={lessonContent}
         browseData={lessonBrowseData}
         hasWorksheet={false}
+        hasAdditionalFiles={false}
         initialSection="overview"
         pageType="browse"
       />,
@@ -224,6 +227,7 @@ describe("PupilExperienceView", () => {
         lessonContent={lessonContent}
         browseData={lessonBrowseData}
         hasWorksheet={false}
+        hasAdditionalFiles={false}
         initialSection="overview"
         pageType="browse"
       />,
@@ -267,6 +271,7 @@ describe("PupilExperienceView", () => {
         lessonContent={lessonContent}
         browseData={lessonBrowseData}
         hasWorksheet={false}
+        hasAdditionalFiles={false}
         initialSection="overview"
         pageType="browse"
       />,
@@ -306,6 +311,7 @@ describe("PupilExperienceView", () => {
         lessonContent={lessonContent}
         browseData={lessonBrowseData}
         hasWorksheet={false}
+        hasAdditionalFiles={false}
         initialSection="overview"
         pageType="browse"
       />,
@@ -345,6 +351,7 @@ describe("PupilExperienceView", () => {
         lessonContent={lessonContent}
         browseData={lessonBrowseData}
         hasWorksheet={false}
+        hasAdditionalFiles={false}
         initialSection="overview"
         pageType="browse"
       />,
@@ -386,6 +393,7 @@ describe("PupilExperienceView", () => {
         lessonContent={lessonContent}
         browseData={lessonBrowseData}
         hasWorksheet={false}
+        hasAdditionalFiles={false}
         initialSection="overview"
         pageType="browse"
       />,
@@ -420,6 +428,7 @@ describe("PupilExperienceView", () => {
         lessonContent={lessonContent}
         browseData={lessonBrowseData}
         hasWorksheet={false}
+        hasAdditionalFiles={false}
         initialSection="review"
         pageType="browse"
       />,
@@ -446,6 +455,7 @@ describe("PupilExperienceView", () => {
         lessonContent={lessonContent}
         browseData={lessonBrowseData}
         hasWorksheet={false}
+        hasAdditionalFiles={false}
         initialSection="overview"
         pageType="browse"
       />,
