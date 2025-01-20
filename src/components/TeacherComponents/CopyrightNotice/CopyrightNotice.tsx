@@ -25,8 +25,8 @@ const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
       iconName="external"
       $width={"all-spacing-5"}
       $height={"all-spacing-5"}
-      $display={"inline-flex"}
       data-testid="external-link-icon"
+      $display={"inline-flex"}
       $colorFilter={"navy"}
     />
   ) : null;

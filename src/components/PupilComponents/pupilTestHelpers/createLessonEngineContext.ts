@@ -18,6 +18,7 @@ export function createLessonEngineContext(
     proceedToNextSection: jest.fn(),
     updateSectionResult: jest.fn(),
     updateWorksheetDownloaded: jest.fn(),
+    updateAdditionalFilesDownloaded: jest.fn(),
     ...overrides,
   };
 }
