@@ -369,6 +369,22 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     default: null,
     description: "URL to log the lesson attempt",
   },
+  oakGetTeacherNoteUrl: {
+    value: process.env.NEXT_PUBLIC_GET_TEACHER_NOTE_URL,
+    envName: "NEXT_PUBLIC_GET_TEACHER_NOTE_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description: "URL to get the teacher note",
+  },
+  oakAddTeacherNoteUrl: {
+    value: process.env.NEXT_PUBLIC_ADD_TEACHER_NOTE_URL,
+    envName: "NEXT_PUBLIC_ADD_TEACHER_NOTE_URL",
+    required: true,
+    availableInBrowser: true,
+    default: null,
+    description: "URL to add the teacher note",
+  },
   developmentUserRegion: {
     value: process.env.DEVELOPMENT_USER_REGION,
     envName: "DEVELOPMENT_USER_REGION",

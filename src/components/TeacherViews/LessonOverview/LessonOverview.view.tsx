@@ -54,6 +54,7 @@ import LessonOverviewDocPresentation from "@/components/TeacherComponents/Lesson
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
     teacherShareButton?: React.ReactNode;
+    teacherNoteHtml?: string;
   };
 } & { isBeta: boolean };
 
@@ -101,6 +102,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     hasMediaClips,
     lessonMediaClips,
     lessonOutline,
+    teacherNoteHtml,
     additionalFiles,
   } = lesson;
   const { track } = useAnalytics();
@@ -311,6 +313,19 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     }}
                   />
                 </OakBox>
+
+                {/* Render teacher note html */}
+                {teacherNoteHtml && (
+                  <OakBox
+                    $width={"100%"}
+                    $height={"all-spacing-18"}
+                    $mb={"space-between-l"}
+                    $pa={"inner-padding-s"}
+                    $overflow={"auto"}
+                    $background={"aqua110"}
+                    dangerouslySetInnerHTML={{ __html: teacherNoteHtml }}
+                  />
+                )}
 
                 {pageLinks.find((p) => p.label === "Lesson guide") &&
                   lessonGuideUrl && (
