@@ -1,3 +1,21 @@
+# [1.667.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.666.2...v1.667.0) (2025-01-20)
+
+
+### Bug Fixes
+
+* add needed env vars to test config ([b1baef2](https://github.com/oaknational/Oak-Web-Application/commit/b1baef25517c85aea8609e8e707370f1fa1ada42))
+* add needed env vars to test config ([839c9fb](https://github.com/oaknational/Oak-Web-Application/commit/839c9fbd3e74ae9d452f5334881169597da95230))
+* broken tests and types ([bab4bb8](https://github.com/oaknational/Oak-Web-Application/commit/bab4bb81f82b5dd34b664190bbb6cb84d6b15c19))
+* lint error ([df83bac](https://github.com/oaknational/Oak-Web-Application/commit/df83bac991b4f21b5940ed1165a6f700fd092cc4))
+* merge conflicts ([bb090d1](https://github.com/oaknational/Oak-Web-Application/commit/bb090d1f041abf0d61e206ca5f7b01f1eed3dbcb))
+* merge conflicts ([997bea9](https://github.com/oaknational/Oak-Web-Application/commit/997bea9f0adde223b89cf2df6d07ef50cbd0840c))
+
+
+### Features
+
+* refactored pupilClientProvider to top level ([e444d93](https://github.com/oaknational/Oak-Web-Application/commit/e444d93ba676177b3501b54d1c224c4709f97704))
+* updating config with new endpoints ([c353cfb](https://github.com/oaknational/Oak-Web-Application/commit/c353cfbbaa048f6ae7a95696e5a11d4af1923214))
+
 ## [1.666.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.666.1...v1.666.2) (2025-01-17)
 
 
