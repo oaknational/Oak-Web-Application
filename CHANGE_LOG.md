@@ -1,3 +1,14 @@
+## [1.668.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.0...v1.668.1) (2025-01-20)
+
+
+### Bug Fixes
+
+* fix copyright width on download page ([9ad2a40](https://github.com/oaknational/Oak-Web-Application/commit/9ad2a4084eec703dc97850c85d43fa7ee44226a3))
+* fix link alignment ([94857d1](https://github.com/oaknational/Oak-Web-Application/commit/94857d12b012404c7171f84c05f161d5e7bfe2b8))
+* fix link alignment ([79de113](https://github.com/oaknational/Oak-Web-Application/commit/79de1135025a30ec428c1d51bec3d3be25bf0193))
+* refactor BoxBorders aso it doesn't use Svg component ([4e01fb8](https://github.com/oaknational/Oak-Web-Application/commit/4e01fb847916bfcfe46b1f511d7a7b545f805b3e))
+* refactor BoxBorders so it doesn't use Box but uses OakBox instead ([4016fc8](https://github.com/oaknational/Oak-Web-Application/commit/4016fc8d5a0859643241f2b4e564d93626483104))
+
 # [1.668.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.667.0...v1.668.0) (2025-01-20)
 
 
