@@ -31,6 +31,7 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -45,47 +46,68 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
+  const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
+  const [lessonPath, setLessonPath] = useState<string | null>(null);
   const teacherNotesEnabled = useFeatureFlagEnabled("teacher-notes");
 
-  const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
+  const { shareUrl, browserUrl, shareActivated, shareIdRef, shareIdKeyRef } =
+    useShareExperiment({
+      lessonSlug: lesson.lessonSlug,
+      source: "lesson-canonical",
+      curriculumTrackingProps: {
+        lessonName: lesson.lessonTitle,
+        unitName: null,
+        subjectSlug: null,
+        subjectTitle: null,
+        keyStageSlug: null,
+        keyStageTitle: null,
+      },
+      overrideExistingShareId:
+        teacherNotesEnabled === undefined ? null : !teacherNotesEnabled,
+    });
 
-  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
-    lessonSlug: lesson.lessonSlug,
-    source: "lesson-canonical",
-    curriculumTrackingProps: {
-      lessonName: lesson.lessonTitle,
-      unitName: null,
-      subjectSlug: null,
-      subjectTitle: null,
-      keyStageSlug: null,
-      keyStageTitle: null,
-    },
-  });
+  const { teacherNote, isEditable, saveTeacherNote, noteSaved, error } =
+    useTeacherNotes({
+      lessonPath,
+      shareId: shareIdRef.current,
+      sidKey: shareIdKeyRef.current,
+      enabled: Boolean(teacherNotesEnabled),
+    });
 
   useEffect(() => {
+    if (teacherNotesEnabled) {
+      setLessonPath(window.location.href.split("?")[0] || null);
+    }
+
     if (window.location.href !== browserUrl) {
       window.history.replaceState({}, "", browserUrl);
     }
   }, [browserUrl, teacherNotesEnabled]);
 
-  const teacherNotesButton = teacherNotesEnabled ? (
-    <OakSmallSecondaryButton
-      iconName="share"
-      isTrailingIcon
-      onClick={() => {
-        setTeacherNotesOpen(true);
-      }}
-    >
-      Add teacher note and share
-    </OakSmallSecondaryButton>
-  ) : (
-    <TeacherShareButton
-      label="Share resources with colleague"
-      variant={"secondary"}
-      shareUrl={shareUrl}
-      shareActivated={shareActivated}
-    />
-  );
+  const teacherNotesButton =
+    teacherNotesEnabled && isEditable ? (
+      <OakSmallSecondaryButton
+        iconName="share"
+        isTrailingIcon
+        onClick={() => {
+          setTeacherNotesOpen(true);
+        }}
+      >
+        {noteSaved
+          ? "Edit teacher note and share"
+          : "Add teacher note and share"}
+      </OakSmallSecondaryButton>
+    ) : (
+      <TeacherShareButton
+        label="Share resources with colleague"
+        variant={"secondary"}
+        shareUrl={shareUrl}
+        shareActivated={shareActivated}
+      />
+    );
+
+  const teacherNoteHtml =
+    teacherNotesEnabled && !isEditable ? teacherNote?.noteHtml : undefined;
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
@@ -106,6 +128,7 @@ export default function LessonOverviewCanonicalPage({
             isCanonical: true,
             isSpecialist,
             teacherShareButton: teacherNotesButton,
+            teacherNoteHtml: error ?? teacherNoteHtml,
           }}
           isBeta={false}
         />
@@ -116,12 +139,16 @@ export default function LessonOverviewCanonicalPage({
             </MaxWidth>
           </OakFlex>
         )}
-        <TeacherNotesModal
-          isOpen={teacherNotesOpen}
-          onClose={() => {
-            setTeacherNotesOpen(false);
-          }}
-        />
+        {teacherNote && isEditable && (
+          <TeacherNotesModal
+            isOpen={teacherNotesOpen}
+            onClose={() => {
+              setTeacherNotesOpen(false);
+            }}
+            teacherNote={teacherNote}
+            saveTeacherNote={saveTeacherNote}
+          />
+        )}
       </OakThemeProvider>
     </AppLayout>
   );

@@ -7,7 +7,6 @@ import {
   oakDefaultTheme,
   OakPupilJourneyContentGuidance,
 } from "@oaknational/oak-components";
-import { OakPupilClientProvider } from "@oaknational/oak-pupil-client";
 
 import {
   LessonEngineProvider,
@@ -34,7 +33,6 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
 export const pickAvailableSectionsForLesson = (lessonContent: LessonContent) =>
   allLessonReviewSections.filter((section) => {
@@ -214,56 +212,49 @@ const PupilExperienceLayout = ({
   }
 
   return (
-    <OakPupilClientProvider
-      config={{
-        getLessonAttemptUrl: getBrowserConfig("oakGetLessonAttemptUrl"),
-        logLessonAttemptUrl: getBrowserConfig("oakLogLessonAttemptUrl"),
+    <PupilLayout
+      seoProps={{
+        ...getSeoProps({
+          title: browseData.lessonData.title,
+          description: browseData.lessonData.pupilLessonOutcome,
+        }),
+        noIndex: isSensitive,
+        noFollow: isSensitive,
       }}
     >
-      <PupilLayout
-        seoProps={{
-          ...getSeoProps({
-            title: browseData.lessonData.title,
-            description: browseData.lessonData.pupilLessonOutcome,
-          }),
-          noIndex: isSensitive,
-          noFollow: isSensitive,
-        }}
-      >
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <CookieConsentStyles />
-          <LessonEngineProvider
-            initialLessonReviewSections={availableSections}
-            initialSection={initialSection}
-          >
-            <OakPupilJourneyContentGuidance
-              isOpen={isOpen}
-              onAccept={handleContentGuidanceAccept}
-              onDecline={handleContentGuidanceDecline}
-              contentGuidance={lessonContent.contentGuidance}
-              supervisionLevel={lessonContent.supervisionLevel}
-            />
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <CookieConsentStyles />
+        <LessonEngineProvider
+          initialLessonReviewSections={availableSections}
+          initialSection={initialSection}
+        >
+          <OakPupilJourneyContentGuidance
+            isOpen={isOpen}
+            onAccept={handleContentGuidanceAccept}
+            onDecline={handleContentGuidanceDecline}
+            contentGuidance={lessonContent.contentGuidance}
+            supervisionLevel={lessonContent.supervisionLevel}
+          />
 
-            <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
-              <OakBox $height={"100vh"}>
-                {browseData.lessonData.deprecatedFields?.expired ? (
-                  <PupilExpiredView lessonTitle={browseData.lessonData.title} />
-                ) : (
-                  <PupilPageContent
-                    browseData={browseData}
-                    lessonContent={lessonContent}
-                    hasWorksheet={hasWorksheet}
-                    backUrl={backUrl}
-                    pageType={pageType}
-                    hasAdditionalFiles={hasAdditionalFiles}
-                  />
-                )}
-              </OakBox>
+          <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
+            <OakBox $height={"100vh"}>
+              {browseData.lessonData.deprecatedFields?.expired ? (
+                <PupilExpiredView lessonTitle={browseData.lessonData.title} />
+              ) : (
+                <PupilPageContent
+                  browseData={browseData}
+                  lessonContent={lessonContent}
+                  hasWorksheet={hasWorksheet}
+                  backUrl={backUrl}
+                  pageType={pageType}
+                  hasAdditionalFiles={hasAdditionalFiles}
+                />
+              )}
             </OakBox>
-          </LessonEngineProvider>
-        </OakThemeProvider>
-      </PupilLayout>
-    </OakPupilClientProvider>
+          </OakBox>
+        </LessonEngineProvider>
+      </OakThemeProvider>
+    </PupilLayout>
   );
 };
 
