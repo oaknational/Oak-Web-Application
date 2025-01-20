@@ -1,3 +1,10 @@
+## [1.666.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.666.1...v1.666.2) (2025-01-17)
+
+
+### Bug Fixes
+
+* remove geoblocking for lesson downloads ([644aaf0](https://github.com/oaknational/Oak-Web-Application/commit/644aaf0d0266c34d5ed16b2507fe665de22705a5))
+
 ## [1.666.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.666.0...v1.666.1) (2025-01-16)
 
 
