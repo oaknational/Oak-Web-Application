@@ -7,14 +7,6 @@ export const getPlaybackId = (currentClip: MediaClip) => {
   return "";
 };
 
-// export const getTranscript = (currentClip: MediaClip) => {
-//   if (currentClip.mediaType === "video" && currentClip.videoObject) {
-//     return currentClip.videoObject.transcriptionSentences?.join(" ");
-//   } else if (currentClip.mediaType === "audio" && currentClip.mediaObject) {
-//     return currentClip.mediaObject.transcriptionSentences?.join(" ");
-//   } else return "";
-// };
-
 export const getPlayingState = (
   currentClipMediaId: string | undefined,
   mediaId: string,

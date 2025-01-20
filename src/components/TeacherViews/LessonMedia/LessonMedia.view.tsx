@@ -148,7 +148,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
     <VideoPlayer
       playbackId={getPlaybackId(currentClip)}
       playbackPolicy={"signed"}
-      title={currentClip.mediaObject?.displayName}
+      title={currentClip.mediaObject.displayName}
       location={"lesson"}
       isLegacy={false}
       userEventCallback={handleVideoEvents}
@@ -167,7 +167,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
         if (mediaObject.format === "mp4" && videoObject) {
           return (
             <MediaClipWithThumbnail
-              clipName={mediaClip.mediaObject?.displayName}
+              clipName={mediaClip.mediaObject.displayName}
               timeCode={videoObject.duration ?? 0}
               learningCycle={!isPELesson ? mediaClip.learningCycle : ""}
               muxPlayingState={getPlayingState(
@@ -185,7 +185,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
         } else if (mediaObject.format === "mp3" && videoObject) {
           return (
             <OakMediaClip
-              clipName={mediaClip.mediaObject?.displayName}
+              clipName={mediaClip.mediaObject.displayName}
               timeCode={videoObject.duration ?? 0}
               learningCycle={mediaClip.learningCycle}
               muxPlayingState={getPlayingState(

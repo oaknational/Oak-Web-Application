@@ -221,7 +221,6 @@ export const transformedLessonOverviewData = (
     pathways: pathways,
     actions: browseData.actions,
     hasMediaClips: Boolean(content.mediaClips),
-    // how to type index signatures?
     lessonMediaClips: content.mediaClips ?? null,
     lessonOutline: browseData.lessonData.lessonOutline,
     additionalFiles: hasAddFile

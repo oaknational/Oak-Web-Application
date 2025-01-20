@@ -80,7 +80,6 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
-      //TODO: LessonMediaClips is getting parsed out from api request func
       const results: GetStaticPropsResult<SpecialistLessonOverviewPageProps> = {
         props: {
           curriculumData: { ...curriculumData, lessonMediaClips: null },

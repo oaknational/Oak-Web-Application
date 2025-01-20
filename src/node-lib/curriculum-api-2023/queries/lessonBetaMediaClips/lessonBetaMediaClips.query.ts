@@ -53,7 +53,6 @@ export const betaLessonMediaClipsQuery =
     const manipulatedData = { ...browseDataSnake, lesson_data: lessonData };
     lessonBrowseDataSchema.parse({
       ...manipulatedData,
-      // learning_dakey_learning_points: [],
       supplementary_data: { order_in_unit: 0, unit_order: 0 },
     });
 
