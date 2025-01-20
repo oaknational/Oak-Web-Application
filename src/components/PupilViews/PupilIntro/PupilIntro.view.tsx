@@ -243,7 +243,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                     isTrailingIcon
                     $font={"heading-7"}
                   >
-                    {additionalFiles.length === 1
+                    {additionalFiles[0].files.length === 1
                       ? "Download file"
                       : "Download files"}
                   </OakPrimaryInvertedButton>
