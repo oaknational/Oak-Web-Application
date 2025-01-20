@@ -26,6 +26,7 @@ const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
       $width={"all-spacing-5"}
       $height={"all-spacing-5"}
       data-testid="external-link-icon"
+      $display={"inline-flex"}
       $colorFilter={"navy"}
     />
   ) : null;
@@ -46,10 +47,8 @@ const PreAlbCopyright = (
         props.openLinksExternally ? " (opens in a new tab)" : ""
       }`}
     >
-      <OakFlex>
-        terms &amp; conditions{" "}
-        <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-      </OakFlex>
+      terms &amp; conditions{" "}
+      <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
     </OakLink>{" "}
     (Collection 1), except where otherwise stated.
   </OakP>

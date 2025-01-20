@@ -12,12 +12,11 @@ import {
   OakP,
   OakIcon,
   OakBox,
-  OakLink,
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
 import Input from "@/components/SharedComponents/Input";
-import { resolveOakHref } from "@/common-lib/urls";
+import OakLink from "@/components/SharedComponents/OwaLink";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
@@ -114,12 +113,15 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 Join over 100k teachers and get free resources and other helpful
                 content by email. Unsubscribe at any time. Read our{" "}
                 <OakLink
-                  href={resolveOakHref({
-                    page: "legal",
-                    legalSlug: "privacy-policy",
-                  })}
-                  target="_blank"
-                  aria-label="Privacy policy (opens in a new tab)"
+                  page="legal"
+                  legalSlug="privacy-policy"
+                  htmlAnchorProps={{
+                    target: "_blank",
+                    "aria-label": "Privacy policy (opens in a new tab)",
+                  }}
+                  $display={"inline-flex"}
+                  $alignItems={"center"}
+                  $color={"navy"}
                 >
                   <OakFlex>
                     privacy policy
