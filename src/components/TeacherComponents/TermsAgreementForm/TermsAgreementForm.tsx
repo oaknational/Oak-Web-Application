@@ -12,11 +12,12 @@ import {
   OakP,
   OakIcon,
   OakBox,
+  OakLink,
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
-import OakLink from "@/components/SharedComponents/OwaLink";
 import Input from "@/components/SharedComponents/Input";
+import { resolveOakHref } from "@/common-lib/urls";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
@@ -113,23 +114,23 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 Join over 100k teachers and get free resources and other helpful
                 content by email. Unsubscribe at any time. Read our{" "}
                 <OakLink
-                  page="legal"
-                  legalSlug="privacy-policy"
-                  htmlAnchorProps={{
-                    target: "_blank",
-                    "aria-label": "Privacy policy (opens in a new tab)",
-                  }}
-                  $display={"inline-flex"}
-                  $alignItems={"center"}
+                  href={resolveOakHref({
+                    page: "legal",
+                    legalSlug: "privacy-policy",
+                  })}
+                  target="_blank"
+                  aria-label="Privacy policy (opens in a new tab)"
                 >
-                  privacy policy
-                  <OakIcon
-                    iconName="external"
-                    $width={"all-spacing-5"}
-                    $height={"all-spacing-5"}
-                    data-testid="external-link-icon"
-                    $colorFilter={"navy"}
-                  />
+                  <OakFlex>
+                    privacy policy
+                    <OakIcon
+                      iconName="external"
+                      $width={"all-spacing-5"}
+                      $height={"all-spacing-5"}
+                      data-testid="external-link-icon"
+                      $colorFilter={"navy"}
+                    />
+                  </OakFlex>
                 </OakLink>
                 .
               </OakP>
