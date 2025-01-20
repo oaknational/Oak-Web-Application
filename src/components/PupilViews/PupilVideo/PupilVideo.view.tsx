@@ -1,16 +1,28 @@
 import { useState, useRef } from "react";
 import {
   OakBackLink,
+  OakCardHeader,
+  OakFlex,
   OakGrid,
   OakGridArea,
+  OakHandDrawnHR,
+  OakInfo,
   OakLessonBottomNav,
+  OakLessonInfoCard,
   OakLessonLayout,
   OakLessonTopNav,
   OakLessonVideoTranscript,
+  OakLI,
   OakP,
   OakPrimaryButton,
+  OakPrimaryInvertedButton,
+  OakSpan,
   OakTertiaryButton,
+  OakUL,
 } from "@oaknational/oak-components";
+import byteSize from "byte-size";
+
+import { useAdditionalFilesDownload } from "../PupilIntro/useAdditionalFilesDownload";
 
 import {
   VideoResult,
@@ -24,7 +36,10 @@ import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsPr
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 import { useGetVideoTrackingData } from "@/hooks/useGetVideoTrackingData";
 import { getPupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
-import { LessonBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import {
+  LessonBrowseData,
+  LessonContent,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 type PupilViewsVideoProps = {
   lessonTitle: string;
@@ -33,7 +48,8 @@ type PupilViewsVideoProps = {
   transcriptSentences: string[];
   isLegacy: boolean;
   browseData: LessonBrowseData;
-};
+  hasAdditionalFiles: boolean;
+} & Pick<LessonContent, "additionalFiles">;
 
 export const PupilViewsVideo = ({
   lessonTitle,
@@ -42,6 +58,8 @@ export const PupilViewsVideo = ({
   transcriptSentences,
   isLegacy,
   browseData,
+  hasAdditionalFiles,
+  additionalFiles,
 }: PupilViewsVideoProps) => {
   const {
     completeActivity,
@@ -50,8 +68,11 @@ export const PupilViewsVideo = ({
     sectionResults,
     proceedToNextSection,
     lessonReviewSections,
+    updateAdditionalFilesDownloaded,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+  const { startAdditionalFilesDownload, isAdditionalFilesDownloading } =
+    useAdditionalFilesDownload(browseData.lessonSlug);
   const { track } = usePupilAnalytics();
   const { getVideoTrackingData } = useGetVideoTrackingData();
   const { trackSectionStarted } = useTrackSectionStarted();
@@ -109,6 +130,14 @@ export const PupilViewsVideo = ({
         track.lessonActivityCompletedLessonVideo(getVideoTrackingData());
       }
     }
+  };
+
+  const handleAdditionalFilesDownloadClicked = () => {
+    updateAdditionalFilesDownloaded({
+      filesDownloaded: true,
+      additionalFilesAvailable: true,
+    });
+    startAdditionalFilesDownload();
   };
 
   return (
@@ -203,6 +232,60 @@ export const PupilViewsVideo = ({
               ))}
             </OakLessonVideoTranscript>
           )}
+          <OakHandDrawnHR
+            $height={"all-spacing-1"}
+            hrColor={"border-neutral-lighter"}
+            $width={"100%"}
+          />
+          <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+            {hasAdditionalFiles && additionalFiles?.[0] && (
+              <OakLessonInfoCard>
+                <OakFlex $gap={"space-between-s"}>
+                  <OakCardHeader iconName="additional-material" tag="h1">
+                    Files you will need for this lesson
+                  </OakCardHeader>
+                  <OakInfo
+                    hint={"Download these files to use in the lesson."}
+                    id={"quiz-video-aditional-files"}
+                    tooltipPosition={"top-right"}
+                  />
+                </OakFlex>
+                <OakUL
+                  $display={"flex"}
+                  $flexDirection={"row"}
+                  $gap={"space-between-l"}
+                  $flexWrap={"wrap"}
+                >
+                  {additionalFiles[0].files.length === 1 ? (
+                    <OakFlex $flexDirection={"column"}>
+                      <OakSpan>{additionalFiles[0].files[0]?.title}</OakSpan>
+                      <OakSpan>{`${byteSize(additionalFiles[0].files[0] ? additionalFiles[0].files[0].fileObject.bytes : 0)} (${additionalFiles[0].files[0]?.fileObject.format.toUpperCase()})`}</OakSpan>
+                    </OakFlex>
+                  ) : (
+                    additionalFiles[0].files.map((file, index) => (
+                      <OakLI key={index}>
+                        <OakFlex $flexDirection={"column"}>
+                          <OakSpan>{file.title}</OakSpan>
+                          <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
+                        </OakFlex>
+                      </OakLI>
+                    ))
+                  )}
+                </OakUL>
+                <OakPrimaryInvertedButton
+                  onClick={handleAdditionalFilesDownloadClicked}
+                  isLoading={isAdditionalFilesDownloading}
+                  iconName="download"
+                  isTrailingIcon
+                  $font={"heading-7"}
+                >
+                  {additionalFiles[0].files.length === 1
+                    ? "Download file"
+                    : "Download files"}
+                </OakPrimaryInvertedButton>
+              </OakLessonInfoCard>
+            )}
+          </OakFlex>
         </OakGridArea>
       </OakGrid>
     </OakLessonLayout>
