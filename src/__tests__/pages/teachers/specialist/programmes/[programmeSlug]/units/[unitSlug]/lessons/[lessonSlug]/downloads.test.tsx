@@ -60,7 +60,8 @@ describe("when downloads are region restricted", () => {
       });
     });
 
-    it("disallows downloads", () => {
+    // TODO: reinstate when geoblocking live
+    it.skip("disallows downloads", () => {
       render(<SpecialistLessonDownloadsPage curriculumData={curriculumData} />);
 
       expect(
