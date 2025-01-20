@@ -1,3 +1,26 @@
+# [1.668.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.667.0...v1.668.0) (2025-01-20)
+
+
+### Bug Fixes
+
+* file count ([09bfa63](https://github.com/oaknational/Oak-Web-Application/commit/09bfa633bb8da65eaab4427c2a00187e3ef2106f))
+* review style fixes ([b700acd](https://github.com/oaknational/Oak-Web-Application/commit/b700acd7e58433cc2423e29d2ecb51c7f91d2f8c))
+
+
+### Features
+
+* add addtional files downloads to pupil ([fa11016](https://github.com/oaknational/Oak-Web-Application/commit/fa11016d9400aa64f16db91ca73d707181fa6730))
+* add addtional files downloads to pupil ([05f7bb2](https://github.com/oaknational/Oak-Web-Application/commit/05f7bb2660fbf00257612f0f4f3f2956c535914b))
+* add addtional files downloads to pupil ([d3f0cf2](https://github.com/oaknational/Oak-Web-Application/commit/d3f0cf28019f8e0cc23c554d06bc2a6f1c67f97d))
+* add addtional files downloads to pupil ([cd72ba9](https://github.com/oaknational/Oak-Web-Application/commit/cd72ba9b9b22229abc6174aa413a392a08443cd1))
+* merge main ([408500a](https://github.com/oaknational/Oak-Web-Application/commit/408500afae84397778e0cac8b9e4a5ed22aa44fa))
+* merge main ([5aa8219](https://github.com/oaknational/Oak-Web-Application/commit/5aa82198a6ce13c067d59c952004300b728597e6))
+* merge main ([2ab956c](https://github.com/oaknational/Oak-Web-Application/commit/2ab956c72985f7ebb4699c835d7f80fec3cd900c))
+* pluril or singular label ([dba1883](https://github.com/oaknational/Oak-Web-Application/commit/dba18835a84c7dea63259bec7bbf1b54ae3f3660))
+* pluril or singular label ([2c799f3](https://github.com/oaknational/Oak-Web-Application/commit/2c799f36fc9ce1b37b6905f41e8a219829d77e48))
+* pluril or singular label ([232f2f4](https://github.com/oaknational/Oak-Web-Application/commit/232f2f42b1680ade6c932898722c6be4b6d50fcc))
+* test coverage ([75ee24e](https://github.com/oaknational/Oak-Web-Application/commit/75ee24e5634fbeb5cd6d4deeb3a921d2ad15522c))
+
 # [1.667.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.666.2...v1.667.0) (2025-01-20)
 
 
