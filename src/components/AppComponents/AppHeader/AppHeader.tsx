@@ -1,5 +1,5 @@
 import { FC, useRef } from "react";
-import { oakColorTokens, OakFlex } from "@oaknational/oak-components";
+import { OakBox, oakColorTokens, OakFlex } from "@oaknational/oak-components";
 import { UserButton, useUser } from "@clerk/nextjs";
 
 import Logo from "@/components/AppComponents/Logo";
@@ -10,7 +10,6 @@ import { useMenuContext } from "@/context/Menu";
 import AppHeaderBurgerMenuSections from "@/components/AppComponents/AppHeaderBurgerMenuSections";
 import { ActiveLinkUnderline } from "@/components/SharedComponents/OwaLink/OwaLink";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
-import Box from "@/components/SharedComponents/Box";
 import { StyledHeader } from "@/components/AppComponents/StyledHeader";
 import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderline";
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
@@ -54,12 +53,12 @@ const AppHeader: FC<HeaderProps> = () => {
         >
           <OakFlex $justifyContent={"center"} $alignItems={"center"}>
             <OwaLink page={"home"}>
-              <Box $display={["block", "none"]}>
+              <OakBox $display={["block", "none"]}>
                 <Logo height={48} width={31} variant="without text" />
-              </Box>
-              <Box $display={["none", "block"]}>
+              </OakBox>
+              <OakBox $display={["none", "block"]}>
                 <Logo variant="with text" height={48} width={104} />
-              </Box>
+              </OakBox>
             </OwaLink>
           </OakFlex>
           <OakFlex

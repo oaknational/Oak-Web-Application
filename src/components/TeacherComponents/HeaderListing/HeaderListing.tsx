@@ -4,7 +4,13 @@ import {
   OakHeading,
   OakSpan,
   OakColorFilterToken,
+  OakBox,
+  OakInlineBanner,
 } from "@oaknational/oak-components";
+
+import UnitDownloadButton, {
+  useUnitDownloadButtonState,
+} from "../UnitDownloadButton/UnitDownloadButton";
 
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
@@ -39,6 +45,8 @@ export type HeaderListingProps = {
   programmeFactor: string;
   hasCurriculumDownload?: boolean;
   shareButton?: React.ReactNode;
+  unitDownloadFileId?: string;
+  onUnitDownloadSuccess?: () => void;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -57,10 +65,21 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     tierTitle,
     yearTitle,
     shareButton,
+    unitDownloadFileId,
+    onUnitDownloadSuccess,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
   const specialistDownloadLink = `/teachers/curriculum/previous-downloads#Specialist`;
+
+  const {
+    showDownloadMessage,
+    setShowDownloadMessage,
+    downloadError,
+    setDownloadError,
+    setDownloadInProgress,
+    downloadInProgress,
+  } = useUnitDownloadButtonState();
 
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
@@ -102,7 +121,42 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
-            {shareButton}
+            <OakFlex $flexDirection="column" $gap="space-between-s">
+              <OakFlex
+                $gap="space-between-s"
+                $flexDirection={["column", "row"]}
+              >
+                {unitDownloadFileId && onUnitDownloadSuccess && (
+                  <UnitDownloadButton
+                    setDownloadError={setDownloadError}
+                    setDownloadInProgress={setDownloadInProgress}
+                    setShowDownloadMessage={setShowDownloadMessage}
+                    downloadInProgress={downloadInProgress}
+                    unitFileId={unitDownloadFileId}
+                    onDownloadSuccess={onUnitDownloadSuccess}
+                  />
+                )}
+                {shareButton}
+              </OakFlex>
+              <OakBox aria-live="polite">
+                {downloadError ? (
+                  <OakInlineBanner
+                    isOpen
+                    type="error"
+                    message="Sorry, download is not working. Please try again in a few minutes."
+                    icon="error"
+                  />
+                ) : showDownloadMessage ? (
+                  <OakInlineBanner
+                    isOpen={showDownloadMessage}
+                    canDismiss
+                    onDismiss={() => setShowDownloadMessage(false)}
+                    type="neutral"
+                    message="Downloads may take a few minutes on slower Wi-Fi connections."
+                  />
+                ) : null}
+              </OakBox>
+            </OakFlex>
           </OakFlex>
         </OakFlex>
       </OakFlex>

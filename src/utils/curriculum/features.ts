@@ -18,7 +18,7 @@ export function getUnitFeatures(unit?: Unit | null) {
   } else if (
     unit.subject_slug === "computing" &&
     unit.pathway_slug === "gcse" &&
-    ["10", "11"].includes(unit.year)
+    unit.keystage_slug === "ks4"
   ) {
     return {
       programmes_fields_overrides: {
@@ -30,16 +30,19 @@ export function getUnitFeatures(unit?: Unit | null) {
       subjectcategories: {
         all_disabled: true,
         default_category_id: 4,
+        group_by_subjectcategory: true,
       },
     };
   } else if (
     unit.subject_slug === "english" &&
-    unit.phase_slug === "secondary"
+    unit.phase_slug === "secondary" &&
+    unit.keystage_slug === "ks4"
   ) {
     return {
       subjectcategories: {
         all_disabled: true,
         default_category_id: 19,
+        group_by_subjectcategory: true,
       },
     };
   }

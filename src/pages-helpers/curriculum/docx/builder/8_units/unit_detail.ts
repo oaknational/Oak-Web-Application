@@ -17,6 +17,7 @@ import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { getUnitFeatures } from "@/utils/curriculum/features";
 import { createProgrammeSlug } from "@/utils/curriculum/slugs";
 import { SubjectCategory } from "@/utils/curriculum/types";
+import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
 
 const DISABLE_COLUMN_BREAKS = true;
 
@@ -218,14 +219,21 @@ export async function buildUnit(
     (lesson) => lesson._state === "published",
   );
 
+  let resolvedUnitSlug;
+  if (ENABLE_NEW_CURRIC_MV) {
+    resolvedUnitSlug = unitOption?.slug ?? unit.slug;
+  } else {
+    resolvedUnitSlug = unitOption?.unitvariant_id
+      ? `${unit.slug}-${unitOption.unitvariant_id}`
+      : unit.slug;
+  }
+
   const links = await insertLinks(zip, {
     onlineResources: `https://www.thenational.academy/teachers/programmes/${createProgrammeSlug(
       unit,
       slugs.ks4OptionSlug,
       slugs.tierSlug,
-    )}/units/${unit.slug}${
-      unitOption?.unitvariant_id ? `-${unitOption.unitvariant_id}` : ""
-    }/lessons`,
+    )}/units/${resolvedUnitSlug}/lessons`,
   });
 
   let unitDescriptions: string = "";

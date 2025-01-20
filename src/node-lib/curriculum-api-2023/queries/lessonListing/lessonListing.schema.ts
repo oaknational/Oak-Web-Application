@@ -12,6 +12,7 @@ import {
 export const lessonListingPageDataSchema = z.object({
   programmeSlug: z.string(),
   unitSlug: z.string(),
+  unitvariantId: z.number(),
   unitTitle: z.string(),
   subjectSlug: programmeFieldsSchema.shape.subject_slug,
   subjectTitle: programmeFieldsSchema.shape.subject,

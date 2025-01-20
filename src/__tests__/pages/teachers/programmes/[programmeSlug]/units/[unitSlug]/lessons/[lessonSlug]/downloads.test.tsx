@@ -41,7 +41,9 @@ jest.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
-    default: () => getDownloadResourcesExistenceData,
+    getLessonDownloadResourcesExistence: jest.fn(
+      () => getDownloadResourcesExistenceData,
+    ),
   }),
 );
 
@@ -56,7 +58,7 @@ jest.mock(
 );
 
 jest.mock(
-  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck",
+  "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck",
   () => {
     return jest.fn();
   },
@@ -581,7 +583,8 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         });
       });
 
-      it("disallows downloads", () => {
+      // TODO: reinstate when geoblocking live
+      it.skip("disallows downloads", () => {
         render(<LessonDownloadsPage curriculumData={curriculumData} />);
 
         expect(

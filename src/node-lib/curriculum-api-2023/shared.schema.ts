@@ -205,6 +205,7 @@ export const baseLessonOverviewSchema = z.object({
   phonicsOutcome: z.string().nullish(),
   actions: camelActionSchema.nullish(),
   hasMediaClips: z.boolean(),
+  additionalFiles: z.array(z.string()).nullable(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 

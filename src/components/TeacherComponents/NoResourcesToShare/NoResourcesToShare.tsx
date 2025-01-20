@@ -1,10 +1,8 @@
 import { FC } from "react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
-
-import Box from "@/components/SharedComponents/Box";
+import { OakBox, OakHeading, OakP } from "@oaknational/oak-components";
 
 const NoResourcesToShare: FC = () => (
-  <Box $ph={24} $mb={64} $mt={56}>
+  <OakBox $ph="inner-padding-xl" $mb="space-between-xl" $mt="space-between-xl">
     <OakHeading
       $mb="space-between-s"
       $mt="space-between-m"
@@ -16,7 +14,7 @@ const NoResourcesToShare: FC = () => (
     <OakP $mb="space-between-m" $font={["body-2", "body-1"]}>
       Sorry, there are no teaching resources available to share for this lesson.
     </OakP>
-  </Box>
+  </OakBox>
 );
 
 export default NoResourcesToShare;

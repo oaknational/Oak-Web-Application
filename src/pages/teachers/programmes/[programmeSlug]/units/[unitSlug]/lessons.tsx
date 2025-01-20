@@ -10,11 +10,11 @@ import {
   OakGridArea,
   OakThemeProvider,
   oakDefaultTheme,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonList from "@/components/TeacherComponents/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import {
@@ -68,6 +68,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 }) => {
   const {
     unitSlug,
+    unitvariantId,
     keyStageTitle,
     keyStageSlug,
     unitTitle,
@@ -93,6 +94,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
       keyStageSlug,
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
     },
+    overrideExistingShareId: true,
   });
 
   useEffect(() => {
@@ -216,8 +218,29 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
+          unitDownloadFileId={
+            unitSlug.endsWith(unitvariantId.toString())
+              ? unitSlug
+              : `${unitSlug}-${unitvariantId}`
+          }
+          onUnitDownloadSuccess={() =>
+            track.unitDownloadInitiated({
+              platform: "owa",
+              product: "teacher lesson resources",
+              engagementIntent: "use",
+              componentType: "unit_download_button",
+              eventVersion: "2.0.0",
+              analyticsUseCase: "Teacher",
+              unitName: unitTitle,
+              unitSlug: unitSlug,
+              keyStageSlug: keyStageSlug,
+              keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+              subjectSlug: subjectSlug,
+              subjectTitle: subjectTitle,
+            })
+          }
         />
-        <MaxWidth $ph={16}>
+        <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
             <OakGridArea
               $colSpan={[12, 9]}
@@ -244,7 +267,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               />
             </OakGridArea>
           </OakGrid>
-        </MaxWidth>
+        </OakMaxWidth>
       </OakThemeProvider>
     </AppLayout>
   );

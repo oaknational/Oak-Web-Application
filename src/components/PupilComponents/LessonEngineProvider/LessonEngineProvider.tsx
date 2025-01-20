@@ -64,6 +64,8 @@ export type VideoResult = {
 export type IntroResult = Partial<{
   worksheetAvailable: boolean;
   worksheetDownloaded: boolean;
+  filesDownloaded?: boolean;
+  additionalFilesAvailable?: boolean;
 }>;
 
 type LessonEngineAction =
@@ -190,6 +192,7 @@ export type LessonEngineContextType = {
   proceedToNextSection: () => void;
   updateSectionResult: (vals: QuizResult | VideoResult | IntroResult) => void;
   updateWorksheetDownloaded: (result: IntroResult) => void;
+  updateAdditionalFilesDownloaded: (result: IntroResult) => void;
   lessonReviewSections: Readonly<LessonReviewSection[]>;
   lessonStarted: boolean;
 } | null;
@@ -288,6 +291,10 @@ export const LessonEngineProvider = memo(
       dispatch({ type: "updateSectionResult", result });
     };
 
+    const updateAdditionalFilesDownloaded = (result: IntroResult) => {
+      dispatch({ type: "updateSectionResult", result });
+    };
+
     const isLessonComplete = state.lessonReviewSections.every(
       (section) => state.sections[section]?.isComplete,
     );
@@ -306,6 +313,7 @@ export const LessonEngineProvider = memo(
           lessonReviewSections: state.lessonReviewSections,
           lessonStarted: state.lessonStarted,
           updateWorksheetDownloaded,
+          updateAdditionalFilesDownloaded,
         }}
       >
         {children}

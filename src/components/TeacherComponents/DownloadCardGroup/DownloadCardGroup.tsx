@@ -9,8 +9,8 @@ import type {
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { sortDownloadResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
 import Box from "@/components/SharedComponents/Box";
-import Grid from "@/components/SharedComponents/Grid.deprecated";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { OakGrid } from "@/styles/oakThemeApp";
 
 export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsPageData["downloads"];
@@ -59,11 +59,11 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   console.log(sortedDownloads, "<< sortedDownloads");
 
   return (
-    <Grid
+    <OakGrid
       $position="relative"
       $width="max-content"
       $gridTemplateColumns={["1fr", "max-content max-content"]}
-      $cg={16}
+      $cg={"space-between-s"}
       $gridTemplateAreas={[
         `"presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"`,
         `"presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx"`,
@@ -123,7 +123,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
           );
         }
       })}
-    </Grid>
+    </OakGrid>
   );
 };
 

@@ -6,6 +6,7 @@ import {
   OakUnitListOptionalityItem,
   OakPagination,
   OakAnchorTarget,
+  OakBox,
 } from "@oaknational/oak-components";
 import { NextRouter, useRouter } from "next/router";
 
@@ -17,7 +18,6 @@ import {
   UnitListItemProps,
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
-import Box from "@/components/SharedComponents/Box";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
@@ -310,15 +310,20 @@ const UnitList: FC<UnitListProps> = (props) => {
         )
       ) : null}
       {units.length > 5 ? (
-        <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
+        <OakBox
+          $width="100%"
+          $mt={["space-between-none", "auto"]}
+          $pb={["inner-padding-xl2", "inner-padding-xl4"]}
+          $pt={["inner-padding-xl4", "inner-padding-xl2"]}
+        >
           <OakPagination
             {...paginationProps}
             pageName={props.subjectTitle}
             paginationHref={paginationRoute}
           />
-        </Box>
+        </OakBox>
       ) : (
-        <Box $pb={32} />
+        <OakBox $pb="inner-padding-xl2" />
       )}
     </OakFlex>
   );
