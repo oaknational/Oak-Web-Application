@@ -1,6 +1,8 @@
-import { OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakPrimaryButton } from "@oaknational/oak-components";
 import { useState } from "react";
 import { useUser } from "@clerk/nextjs";
+
+import Terms from "../OakComponentsKitchen/Terms";
 
 import { DOWNLOAD_TYPES, DownloadType, School } from "./helper";
 import { CurriculumResourcesSelector } from "./CurriculumResourcesSelector";
@@ -68,6 +70,9 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
           downloadType={downloadType}
           onChangeDownloadType={setDownloadType}
         />
+        <OakBox $mt="space-between-m">
+          <Terms />
+        </OakBox>
       </Box>
       <OakPrimaryButton
         data-testid="download"
