@@ -16,7 +16,7 @@ const lesson = {
   lessonOutline: [{ lessonOutline: "Sample outline" }],
 };
 const mediaClips = lesson.mediaClips;
-const firstMediaClip = mediaClips["intro"];
+const firstMediaClip = mediaClips ? mediaClips["intro"] : null;
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),

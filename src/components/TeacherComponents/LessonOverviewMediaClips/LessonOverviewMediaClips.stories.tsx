@@ -27,7 +27,7 @@ type Story = StoryObj<typeof Component>;
 
 const LessonOverviewMediaClipsComponent = (
   args: JSX.IntrinsicAttributes & {
-    learningCycleVideos: MediaClipListCamelCase;
+    learningCycleVideos: MediaClipListCamelCase | null;
     lessonSlug: string;
     unitSlug: string | null;
     programmeSlug: string | null;

@@ -33,10 +33,9 @@ describe("constructMediaClips", () => {
         tierSlug: null,
       };
 
-      const result = constructLessonMediaData(
-        { ...lessonMediaClipsFixture, mediaClips: null },
-        [pathway],
-      );
+      const result = constructLessonMediaData({ ...lessonMediaClipsFixture }, [
+        pathway,
+      ]);
 
       expect(result).toStrictEqual({
         lessonSlug: "running-as-a-team",
@@ -53,7 +52,6 @@ describe("constructMediaClips", () => {
     it("should construct LessonMediaData correctly", () => {
       const result = constructLessonMediaData({
         ...lessonMediaClipsFixture,
-        mediaClips: null,
       });
       expect(result).toStrictEqual({
         programmeSlug: "physical-education-ks4",

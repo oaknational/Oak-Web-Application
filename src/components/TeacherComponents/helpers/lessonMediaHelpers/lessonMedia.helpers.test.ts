@@ -9,7 +9,7 @@ import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/le
 describe("lessonMedia helpers", () => {
   describe("getPlaybackId", () => {
     it("should get correct playback id for video clip", () => {
-      const introClips = lessonMediaClipsFixtures().mediaClips["intro"];
+      const introClips = lessonMediaClipsFixtures()?.mediaClips?.["intro"];
       const clip = introClips ? introClips[0] : null;
       const playbackId = clip && getPlaybackId(clip);
       expect(playbackId).toEqual(
@@ -18,7 +18,8 @@ describe("lessonMedia helpers", () => {
     });
 
     it("should get correct playback id for audio clip", () => {
-      const introClips = lessonMediaClipsFixtures().mediaClips["intro"];
+      const mediaClips = lessonMediaClipsFixtures()?.mediaClips;
+      const introClips = mediaClips ? mediaClips["intro"] : null;
       const clip = introClips ? introClips[1] : null;
       const playbackId = clip && getPlaybackId(clip);
       expect(playbackId).toEqual(
@@ -49,7 +50,8 @@ describe("lessonMedia helpers", () => {
 
   describe("getInitialCurrentClip", () => {
     it("should get initital current clip correctly", () => {
-      const listOfAllClips = lessonMediaClipsFixtures().mediaClips["cycle3"];
+      const mediaClips = lessonMediaClipsFixtures()?.mediaClips;
+      const listOfAllClips = mediaClips ? mediaClips["cycle3"] : null;
       const addedLearningCycle = listOfAllClips?.map((clips) => {
         return {
           ...clips,

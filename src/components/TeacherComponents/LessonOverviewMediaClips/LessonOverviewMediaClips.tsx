@@ -7,7 +7,7 @@ import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/l
 import { resolveOakHref } from "@/common-lib/urls";
 
 type LessonOverviewMediaClipsProps = {
-  learningCycleVideos: MediaClipListCamelCase;
+  learningCycleVideos: MediaClipListCamelCase | null;
   unitSlug: string | null;
   programmeSlug: string | null;
   lessonSlug: string;
@@ -21,6 +21,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   lessonSlug,
   lessonOutline,
 }) => {
+  if (!learningCycleVideos) return null;
   const videosArray = Object.values(learningCycleVideos);
   return (
     <OakGrid

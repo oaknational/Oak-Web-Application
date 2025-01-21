@@ -37,7 +37,7 @@ type BaseLessonMedia = {
   lessonTitle: string;
   lessonSlug: string;
   keyStageTitle: string;
-  mediaClips: MediaClipListCamelCase;
+  mediaClips: MediaClipListCamelCase | null;
   lessonOutline: { lessonOutline: string }[];
 };
 
@@ -74,21 +74,24 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const { query } = router;
 
   // construct list of all clips in one array
-  const listOfAllClips = Object.keys(mediaClips)
-    .map((learningCycle, index) => {
-      return (
-        mediaClips[learningCycle]?.map((mediaClip: MediaClip) => {
-          return {
-            ...mediaClip,
-            learningCycle:
-              index === 0
-                ? "Intro"
-                : (lessonOutline[index - 1]?.lessonOutline ?? ""),
-          };
-        }) || []
-      );
-    })
-    .flat();
+
+  const listOfAllClips = mediaClips
+    ? Object.keys(mediaClips)
+        .map((learningCycle, index) => {
+          return (
+            mediaClips[learningCycle]?.map((mediaClip: MediaClip) => {
+              return {
+                ...mediaClip,
+                learningCycle:
+                  index === 0
+                    ? "Intro"
+                    : (lessonOutline[index - 1]?.lessonOutline ?? ""),
+              };
+            }) || []
+          );
+        })
+        .flat()
+    : [];
 
   const [currentClip, setCurrentClip] = useState(
     getInitialCurrentClip(listOfAllClips, query.video),
