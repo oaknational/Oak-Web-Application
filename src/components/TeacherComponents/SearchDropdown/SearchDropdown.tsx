@@ -105,6 +105,7 @@ const SearchDropdown: FC<
                   $mb="space-between-none"
                   $textAlign="left"
                 >
+                  {/* where to test? */}
                   <OwaLink
                     $color={"navy"}
                     data-testid="search-dropdown-link"

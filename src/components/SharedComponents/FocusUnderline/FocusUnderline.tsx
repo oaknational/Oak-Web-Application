@@ -1,14 +1,15 @@
 import styled, { css } from "styled-components";
+import { OakSvg } from "@oaknational/oak-components";
 
 import { OakColorName } from "@/styles/theme";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
-import Svg from "@/components/SharedComponents/Svg";
 
-const FocusUnderline = styled(Svg).attrs({ name: "underline-1" })<{
+const FocusUnderline = styled(OakSvg).attrs({ name: "underline" })<{
   $color: OakColorName;
 }>`
   color: ${(props) => getColorByName(props.$color)};
   position: absolute;
+  width: 100%;
 `;
 
 export const focusUnderlineStyles = css`

@@ -139,7 +139,7 @@ export function Select<
       <DropdownFocusUnderline
         isFocusVisible={isFocusVisible}
         aria-hidden="true"
-        name={"underline-1"}
+        name={"underline"}
         $font={"body-3"}
       />
       <Flex $position={"absolute"}>

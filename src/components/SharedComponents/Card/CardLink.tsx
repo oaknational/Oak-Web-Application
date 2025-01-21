@@ -1,6 +1,7 @@
 import { forwardRef, ReactNode } from "react";
 import styled, { css } from "styled-components";
 import Link from "next/link";
+import { OakSvg } from "@oaknational/oak-components";
 
 import {
   OwaLinkProps,
@@ -10,11 +11,10 @@ import { zIndexMap } from "@/styles/utils/zIndex";
 import { DROP_SHADOW } from "@/styles/utils/dropShadow";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { HOVER_SHADOW_TRANSITION } from "@/styles/transitions";
-import Svg from "@/components/SharedComponents/Svg";
 
-export const CardLinkFocusUnderline = styled(Svg).attrs((props) => ({
+export const CardLinkFocusUnderline = styled(OakSvg).attrs((props) => ({
   ...props,
-  name: "underline-1",
+  name: "underline",
 }))`
   display: none;
   position: absolute;

@@ -1,9 +1,9 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
+import { OakSvg } from "@oaknational/oak-components";
 
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { ButtonBackground } from "@/components/SharedComponents/Button/common";
-import Svg from "@/components/SharedComponents/Svg";
 
 const buttonBorder = css<{ background: ButtonBackground }>`
   position: absolute;
@@ -128,40 +128,40 @@ const leftOuter = css`
   height: calc(100% + 14px);
 `;
 
-const ButtonBorderTopInner = styled(Svg)`
+const ButtonBorderTopInner = styled(OakSvg)`
   ${topInner}
 `;
-const ButtonBorderTopMiddle = styled(Svg)`
+const ButtonBorderTopMiddle = styled(OakSvg)`
   ${topMiddle}
 `;
-const ButtonBorderTopOuter = styled(Svg)`
+const ButtonBorderTopOuter = styled(OakSvg)`
   ${topOuter}
 `;
-const ButtonBorderRightInner = styled(Svg)`
+const ButtonBorderRightInner = styled(OakSvg)`
   ${rightInner}
 `;
-const ButtonBorderRightMiddle = styled(Svg)`
+const ButtonBorderRightMiddle = styled(OakSvg)`
   ${rightMiddle}
 `;
-const ButtonBorderRightOuter = styled(Svg)`
+const ButtonBorderRightOuter = styled(OakSvg)`
   ${rightOuter}
 `;
-const ButtonBorderBottomInner = styled(Svg)`
+const ButtonBorderBottomInner = styled(OakSvg)`
   ${bottomInner}
 `;
-const ButtonBorderBottomMiddle = styled(Svg)`
+const ButtonBorderBottomMiddle = styled(OakSvg)`
   ${bottomMiddle}
 `;
-const ButtonBorderBottomOuter = styled(Svg)`
+const ButtonBorderBottomOuter = styled(OakSvg)`
   ${bottomOuter}
 `;
-const ButtonBorderLeftInner = styled(Svg)`
+const ButtonBorderLeftInner = styled(OakSvg)`
   ${leftInner}
 `;
-const ButtonBorderLeftMiddle = styled(Svg)`
+const ButtonBorderLeftMiddle = styled(OakSvg)`
   ${leftMiddle}
 `;
-const ButtonBorderLeftOuter = styled(Svg)`
+const ButtonBorderLeftOuter = styled(OakSvg)`
   ${leftOuter}
 `;
 
