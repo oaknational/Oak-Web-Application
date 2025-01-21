@@ -12,6 +12,7 @@ type LessonOverviewMediaClipsProps = {
   programmeSlug: string | null;
   lessonSlug: string;
   lessonOutline: { lessonOutline: string }[] | null;
+  isCanonical?: boolean;
 };
 
 const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
@@ -20,8 +21,10 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   programmeSlug,
   lessonSlug,
   lessonOutline,
+  isCanonical,
 }) => {
   if (!learningCycleVideos) return null;
+
   const videosArray = Object.values(learningCycleVideos);
   return (
     <OakGrid
@@ -36,6 +39,9 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
       {videosArray.map((video, index) => {
         const firstCycleVideo = video[0];
         if (!firstCycleVideo) return null;
+
+        const isAudioClip = firstCycleVideo.mediaObject?.format === "mp3";
+
         return (
           <OakGridArea
             key={index}
@@ -50,11 +56,15 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
                     ? (lessonOutline[index - 1]?.lessonOutline ?? "")
                     : ""
               }
-              playbackId={firstCycleVideo.videoObject?.muxPlaybackId ?? ""}
-              playbackPolicy={"public"}
+              playbackId={
+                isAudioClip
+                  ? (firstCycleVideo.videoObject?.muxPlaybackId ?? "")
+                  : (firstCycleVideo.videoObject?.playbackIds?.[1]?.id ?? "")
+              }
+              playbackPolicy={"signed"}
               numberOfClips={video.length}
               href={
-                programmeSlug && unitSlug
+                !isCanonical && programmeSlug && unitSlug
                   ? resolveOakHref({
                       page: "lesson-media",
                       lessonSlug: lessonSlug,

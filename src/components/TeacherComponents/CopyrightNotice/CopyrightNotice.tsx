@@ -59,7 +59,7 @@ const PreAlbCopyright = (
 //   text-decoration: underline;
 //   color: ${(props) => props.theme.colors.navy};
 // `;
-
+// TODO: FIX HYDRATION ERROR HERE
 const PostAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean; copyrightYear: string },
 ) => {

@@ -7,18 +7,20 @@ type LessonPlayAllButtonProps = {
   lessonSlug: string;
   programmeSlug: string | null;
   unitSlug: string | null;
+  isCanonical?: boolean;
 };
 
 const LessonPlayAllButton: FC<LessonPlayAllButtonProps> = ({
   unitSlug,
   lessonSlug,
   programmeSlug,
+  isCanonical,
 }) => {
   return (
     <OakTertiaryButton
       element="a"
       href={
-        programmeSlug && unitSlug
+        !isCanonical && programmeSlug && unitSlug
           ? resolveOakHref({
               page: "lesson-media",
               lessonSlug: lessonSlug,

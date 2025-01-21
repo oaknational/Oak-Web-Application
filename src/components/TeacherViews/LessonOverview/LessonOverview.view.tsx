@@ -396,10 +396,12 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                       slugs={slugs}
                       pageLinks={pageLinks}
                       displayMediaClipButton={true}
+                      isCanonical={isCanonical}
                     >
                       <LessonOverviewMediaClips
                         lessonSlug={lessonSlug}
                         learningCycleVideos={lessonMediaClips}
+                        isCanonical={isCanonical}
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
                         lessonOutline={lessonOutline ?? null}
