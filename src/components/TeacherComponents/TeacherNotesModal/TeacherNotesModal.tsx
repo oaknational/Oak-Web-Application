@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import styled from "styled-components";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -11,7 +12,6 @@ import {
   TeacherNoteCamelCase,
   TeacherNote,
 } from "@oaknational/oak-pupil-client";
-import { useEffect, useState } from "react";
 
 const StyledEditorContent = styled(EditorContent)`
   .tiptap:focus {
@@ -81,6 +81,7 @@ export const shouldAutoLink = (url: string) => {
 };
 
 const limit = 2000;
+const saveProgressAfter = 50;
 
 export type TeacherNotesModalProps = Pick<
   OakTeacherNotesModalProps,
@@ -90,6 +91,7 @@ export type TeacherNotesModalProps = Pick<
   saveTeacherNote: (
     note: Partial<TeacherNoteCamelCase>,
   ) => Promise<TeacherNote>;
+  sharingUrl: string | null;
 };
 
 export const TeacherNotesModal = ({
@@ -97,9 +99,12 @@ export const TeacherNotesModal = ({
   isOpen,
   teacherNote,
   saveTeacherNote,
+  sharingUrl,
 }: TeacherNotesModalProps) => {
   const [noteSaved, setNoteSaved] = useState(false);
-  const [noteShared] = useState(false);
+  const [noteShared, setNoteShared] = useState(false);
+  const lastSavedAtRemaining = useRef(limit);
+  const [remainingCharacters, setRemainingCharacters] = useState(limit);
 
   const editor = useEditor({
     extensions: [
@@ -117,15 +122,31 @@ export const TeacherNotesModal = ({
       }),
     ],
     immediatelyRender: false,
+    onCreate: ({ editor }) => {
+      editor.commands.setContent(teacherNote?.noteHtml ?? "");
+      const r = limit - (editor?.storage.characterCount.characters() ?? 0);
+      setRemainingCharacters(r);
+      lastSavedAtRemaining.current = r;
+    },
+    onUpdate: ({ editor }) => {
+      setRemainingCharacters(
+        limit - (editor?.storage.characterCount.characters() ?? 0),
+      );
+      const delta = Math.abs(
+        lastSavedAtRemaining.current - remainingCharacters,
+      );
+      if (delta > saveProgressAfter) {
+        lastSavedAtRemaining.current = remainingCharacters;
+        handleSave(true);
+      }
+    },
+    onBlur: () => {
+      handleSave(true);
+      lastSavedAtRemaining.current = remainingCharacters;
+    },
   });
 
-  useEffect(() => {
-    if (teacherNote) {
-      editor?.commands.setContent(teacherNote.noteHtml);
-    }
-  }, [teacherNote, editor]);
-
-  const editorNode = (
+  const editorNode = editor && (
     <StyledEditorContent
       editor={editor}
       style={{ flexDirection: "column", flex: 1 }}
@@ -140,7 +161,7 @@ export const TeacherNotesModal = ({
     editor?.chain().focus().toggleBulletList().run();
   };
 
-  const handleSave = async () => {
+  const handleSave = async (displayFeedback: boolean) => {
     const noteHtml = editor?.getHTML() ?? "";
     const noteText = editor?.getText() ?? "";
 
@@ -152,7 +173,7 @@ export const TeacherNotesModal = ({
 
     const res = await saveTeacherNote(note);
 
-    if (res) {
+    if (res && displayFeedback) {
       setNoteSaved(true);
       setTimeout(() => {
         setNoteSaved(false);
@@ -160,12 +181,24 @@ export const TeacherNotesModal = ({
     }
   };
 
-  const remainingCharacters =
-    limit - (editor?.storage.characterCount.characters() ?? 0);
+  const handleShare = () => {
+    handleSave(false);
+    if (sharingUrl) {
+      navigator.clipboard.writeText(sharingUrl);
+    }
+
+    setNoteShared(true);
+    setTimeout(() => {
+      setNoteShared(false);
+    }, 3000);
+  };
 
   return (
     <OakTeacherNotesModal
-      onClose={onClose}
+      onClose={() => {
+        handleSave(false);
+        onClose();
+      }}
       isOpen={isOpen}
       editorNode={editorNode}
       onBulletListClick={handleBulletListToggle}
@@ -173,9 +206,8 @@ export const TeacherNotesModal = ({
       isBold={editor?.isActive("bold") ?? false}
       isBulletList={editor?.isActive("bulletList") ?? false}
       remainingCharacters={remainingCharacters}
-      onSaveClicked={handleSave}
-      onShareClicked={() => {}}
-      noteSaved={noteSaved}
+      onShareClicked={handleShare}
+      progressSaved={noteSaved}
       noteShared={noteShared}
     />
   );

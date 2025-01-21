@@ -96,6 +96,7 @@ export const useTeacherNotes = ({
     const t = { ...teacherNote, ...updatedTeacherNote } as TeacherNoteCamelCase;
     const res = addTeacherNote({ teacherNote: t });
     setTeacherNote(t);
+    setNoteSaved(true);
     return res.promise;
   };
 

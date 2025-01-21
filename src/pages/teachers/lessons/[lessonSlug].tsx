@@ -87,7 +87,7 @@ export default function LessonOverviewCanonicalPage({
   const teacherNotesButton =
     teacherNotesEnabled && isEditable ? (
       <OakSmallSecondaryButton
-        iconName="share"
+        iconName={noteSaved ? "edit" : "share"}
         isTrailingIcon
         onClick={() => {
           setTeacherNotesOpen(true);
@@ -147,6 +147,7 @@ export default function LessonOverviewCanonicalPage({
             }}
             teacherNote={teacherNote}
             saveTeacherNote={saveTeacherNote}
+            sharingUrl={shareUrl}
           />
         )}
       </OakThemeProvider>
