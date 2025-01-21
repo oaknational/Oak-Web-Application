@@ -50,10 +50,8 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
                     : ""
               }
               playbackId={firstCycleVideo.videoObject?.muxPlaybackId ?? ""}
-              // defaulted to signed cause they have both
-              playbackPolicy={"signed"}
+              playbackPolicy={"public"}
               numberOfClips={video.length}
-              // how do these videos know which to play
               href={
                 programmeSlug && unitSlug
                   ? resolveOakHref({

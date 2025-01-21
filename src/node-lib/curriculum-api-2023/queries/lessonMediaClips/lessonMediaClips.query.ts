@@ -1,5 +1,3 @@
-import lessonMediaClipsFixtures from "../../fixtures/lessonMediaClips.fixture";
-
 import {
   canonicalLessonMediaClipsSchema,
   LessonBrowseData,
@@ -85,31 +83,26 @@ export const lessonMediaClipsQuery =
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
-
     if (!canonicalLesson) {
       const data = constructLessonMediaData({
         ...browseData,
-        mediaClips: lessonMediaClipsFixtures().mediaClips,
       });
       lessonMediaClipsSchema.parse({ ...data });
       return {
         ...data,
       } as T;
     } else {
-      const data = constructLessonMediaData(
-        { ...browseData, mediaClips: lessonMediaClipsFixtures().mediaClips },
-        [
-          {
-            programmeSlug: browseData.programmeSlug,
-            unitSlug: browseData.unitSlug,
-            unitTitle: browseData.unitData.title,
-            keyStageSlug: browseData.programmeFields.keystageSlug,
-            keyStageTitle: browseData.programmeFields.keystageDescription,
-            subjectSlug: browseData.programmeFields.subjectSlug,
-            subjectTitle: browseData.programmeFields.subject,
-          },
-        ],
-      );
+      const data = constructLessonMediaData(browseData, [
+        {
+          programmeSlug: browseData.programmeSlug,
+          unitSlug: browseData.unitSlug,
+          unitTitle: browseData.unitData.title,
+          keyStageSlug: browseData.programmeFields.keystageSlug,
+          keyStageTitle: browseData.programmeFields.keystageDescription,
+          subjectSlug: browseData.programmeFields.subjectSlug,
+          subjectTitle: browseData.programmeFields.subject,
+        },
+      ]);
       canonicalLessonMediaClipsSchema.parse({
         ...data,
       });

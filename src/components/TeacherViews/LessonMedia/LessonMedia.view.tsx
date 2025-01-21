@@ -147,7 +147,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const videoPlayer = currentClip && (
     <VideoPlayer
       playbackId={getPlaybackId(currentClip) || ""}
-      playbackPolicy={"signed"}
+      playbackPolicy={"public"}
       title={currentClip?.mediaObject?.displayName ?? ""}
       location={"lesson"}
       isLegacy={false}

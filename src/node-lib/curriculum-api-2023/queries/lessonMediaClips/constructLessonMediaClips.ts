@@ -1,12 +1,8 @@
 import { LessonPathway } from "../../shared.schema";
 import { LessonBrowseDataByKs } from "../lessonOverview/lessonOverview.schema";
 
-import { MediaClipListCamelCase } from "./lessonMediaClips.schema";
-
 export const constructLessonMediaData = (
-  browseData: LessonBrowseDataByKs & {
-    mediaClips: MediaClipListCamelCase | null;
-  },
+  browseData: LessonBrowseDataByKs,
   pathways?: LessonPathway[] | [],
 ) => {
   const unitTitle =
@@ -15,7 +11,7 @@ export const constructLessonMediaData = (
     lessonSlug: browseData.lessonSlug,
     lessonTitle: browseData.lessonData.title,
     keyStageTitle: browseData.programmeFields.keystageDescription,
-    mediaClips: browseData.mediaClips,
+    mediaClips: browseData.lessonData.mediaClips,
     lessonOutline: browseData.lessonData.lessonOutline ?? null,
   };
 

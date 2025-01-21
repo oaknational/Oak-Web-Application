@@ -49,7 +49,7 @@ export default function LessonOverviewCanonicalPage({
   const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
   const [lessonPath, setLessonPath] = useState<string | null>(null);
   const teacherNotesEnabled = useFeatureFlagEnabled("teacher-notes");
-
+  console.log(lesson, "<< LESSON");
   const { shareUrl, browserUrl, shareActivated, shareIdRef, shareIdKeyRef } =
     useShareExperiment({
       lessonSlug: lesson.lessonSlug,
@@ -124,7 +124,6 @@ export default function LessonOverviewCanonicalPage({
         <LessonOverview
           lesson={{
             ...lesson,
-            lessonMediaClips: null,
             isCanonical: true,
             isSpecialist,
             teacherShareButton: teacherNotesButton,
@@ -203,7 +202,7 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           lesson = await populateLessonWithTranscript(lesson);
         }
       }
-
+      console.log(lesson, "<< LESSON");
       if (!lesson) {
         return {
           notFound: true,

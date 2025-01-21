@@ -36,9 +36,11 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
             {`${isPlural ? "Files" : "File"} needed for this lesson`}
           </OakP>
         </OakFlex>
-        {additionalFiles?.map((file) => {
-          return <OakP>{file}</OakP>;
-        })}
+        <OakBox>
+          {additionalFiles?.map((file) => {
+            return <OakP>{file}</OakP>;
+          })}
+        </OakBox>
         <OakP>
           {`Download ${isPlural ? "these files" : "this file"} to use in the
           lesson`}

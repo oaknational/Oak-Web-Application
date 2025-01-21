@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import {
   OakP,
   OakIcon,
@@ -54,11 +54,11 @@ const PreAlbCopyright = (
   </OakP>
 );
 
-const StyledLink = styled.a`
-  display: inline;
-  text-decoration: underline;
-  color: ${(props) => props.theme.colors.navy};
-`;
+// const StyledLink = styled.a`
+//   display: inline;
+//   text-decoration: underline;
+//   color: ${(props) => props.theme.colors.navy};
+// `;
 
 const PostAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean; copyrightYear: string },
@@ -68,7 +68,7 @@ const PostAlbCopyright = (
   return (
     <OakP $font="body-3" {...props}>
       This content is © Oak National Academy Limited ({year}), licensed on{" "}
-      <StyledLink
+      <OakLink
         aria-label={`Open Government License version 3.0${
           props.openLinksExternally ? " (opens in a new tab)" : ""
         }`}
@@ -80,7 +80,7 @@ const PostAlbCopyright = (
           Open Government Licence version 3.0{" "}
           <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
         </OakFlex>
-      </StyledLink>{" "}
+      </OakLink>{" "}
       except where otherwise stated. See{" "}
       <OwaLink
         page={"legal"}

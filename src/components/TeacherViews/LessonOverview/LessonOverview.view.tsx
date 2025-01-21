@@ -105,6 +105,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     teacherNoteHtml,
     additionalFiles,
   } = lesson;
+
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const commonPathway = getPathway(lesson);
@@ -386,8 +387,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                   )}
                 {pageLinks.find((p) => p.label === mediaClipLabel) &&
                   lessonMediaClips &&
-                  hasMediaClips &&
-                  isBeta && (
+                  hasMediaClips && (
                     <LessonItemContainer
                       title={mediaClipLabel}
                       ref={lessonMediaClipsSectionRef}

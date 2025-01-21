@@ -152,6 +152,7 @@ export const transformedLessonOverviewData = (
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
 ): LessonOverviewPageData => {
+  console.log(browseData.lessonData.mediaClips, "<<< BROWSE DATA MEDIA CLIPS");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
@@ -220,8 +221,8 @@ export const transformedLessonOverviewData = (
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
     actions: browseData.actions,
-    hasMediaClips: Boolean(content.mediaClips),
-    lessonMediaClips: content.mediaClips ?? null,
+    hasMediaClips: Boolean(browseData.lessonData.mediaClips),
+    lessonMediaClips: browseData.lessonData.mediaClips ?? null,
     lessonOutline: browseData.lessonData.lessonOutline,
     additionalFiles: hasAddFile
       ? getAdditionalFiles(content.additionalFiles)
@@ -260,6 +261,8 @@ const lessonOverviewQuery =
       browseDataWhere,
       lessonSlug,
     });
+
+    console.log(res.browseData[0]?.lesson_data.media_clips, " <<< Lesson data");
 
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       LessonOverviewQuery["browseData"][number]
@@ -308,6 +311,8 @@ const lessonOverviewQuery =
      *  */
 
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
+
+    console.log(browseData.lessonData, " <<< BROWSE Lesson data");
     const content = keysToCamelCase({
       ...contentSnake,
     }) as LessonOverviewContent;

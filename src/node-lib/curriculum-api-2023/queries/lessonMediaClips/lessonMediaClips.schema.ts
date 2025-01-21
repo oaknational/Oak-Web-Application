@@ -4,8 +4,6 @@ import {
   mediaClipsRecordSchema,
 } from "@oaknational/oak-curriculum-schema";
 
-import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
-import { baseLessonBrowseSchema } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
 export const lessonBrowseDataSchema = syntheticUnitvariantLessonsSchema.omit({
@@ -64,6 +62,20 @@ export const mediaClipCycleCamel = z
   .nullish();
 
 // const mediaClipCycleCamel = zodToCamelCase(mediaClipCycleSchema);
+const lessonPathwaySchema = z.object({
+  programmeSlug: z.string(),
+  unitSlug: z.string(),
+  unitTitle: z.string(),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  lessonCohort: z.string().nullish(),
+  examBoardSlug: z.string().nullish(),
+  examBoardTitle: z.string().nullish(),
+  tierSlug: z.string().nullish(),
+  tierTitle: z.string().nullish(),
+});
 
 export const mediaClipsRecordCamelSchema = z.record(
   z.string(),
@@ -74,12 +86,12 @@ const baseLessonMediaClipsPageSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   keyStageTitle: z.string(),
-  mediaClips: mediaClipsRecordCamelSchema,
+  mediaClips: mediaClipsRecordCamelSchema.nullable(),
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })),
 });
 
 export const lessonMediaClipsSchema = baseLessonMediaClipsPageSchema.extend({
-  ...baseLessonBrowseSchema.shape,
+  ...lessonPathwaySchema.shape,
 });
 
 export const canonicalLessonMediaClipsSchema =
