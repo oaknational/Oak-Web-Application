@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import styled, { css } from "styled-components";
-import { OakSvg } from "@oaknational/oak-components";
 
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OakColorName } from "@/styles/theme/types";
 import { getBreakpoint } from "@/styles/utils/responsive";
+import Svg from "@/components/SharedComponents/Svg";
 import { $selectedStyle } from "@/components/SharedComponents/OwaLink/OwaLink";
 
 const brushBorder = css<{ color: OakColorName }>`
@@ -58,19 +58,19 @@ const brushBorderLeft = css`
   height: calc(100% + 4px + ${BOTTOM_THICKNESS}px);
 `;
 
-const BrushBorderTop = styled(OakSvg)`
+const BrushBorderTop = styled(Svg)`
   ${brushBorderTop}
   ${(props) => props.hideOnMobileV && hideBrushOnMobile}
 `;
-const BrushBorderRight = styled(OakSvg)`
+const BrushBorderRight = styled(Svg)`
   ${brushBorderRight}
   ${(props) => props.hideOnMobileH && hideBrushOnMobile}
 `;
-const BrushBorderBottom = styled(OakSvg)`
+const BrushBorderBottom = styled(Svg)`
   ${brushBorderBottom}
   ${(props) => props.hideOnMobileV && hideBrushOnMobile}
 `;
-const BrushBorderLeft = styled(OakSvg)`
+const BrushBorderLeft = styled(Svg)`
   ${brushBorderLeft}
   ${(props) => props.hideOnMobileH && hideBrushOnMobile}
 `;
