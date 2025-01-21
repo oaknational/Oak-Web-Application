@@ -15,14 +15,12 @@ import {
   OakP,
   OakPrimaryButton,
   OakPrimaryInvertedButton,
-  OakSpan,
   OakTertiaryButton,
   OakUL,
 } from "@oaknational/oak-components";
-import byteSize from "byte-size";
 
 import { useAdditionalFilesDownload } from "../PupilIntro/useAdditionalFilesDownload";
-import { additionalFileListItem } from "../PupilIntro";
+import { additionalFileListItem, additionalFileSingle } from "../PupilIntro";
 
 import {
   VideoResult,
@@ -238,7 +236,7 @@ export const PupilViewsVideo = ({
             $width={"100%"}
           />
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-            {hasAdditionalFiles && additionalFiles?.[0] && (
+            {hasAdditionalFiles && additionalFiles?.[0]?.files[0] && (
               <OakLessonInfoCard>
                 <OakFlex $gap={"space-between-s"}>
                   <OakCardHeader iconName="additional-material" tag="h1">
@@ -252,10 +250,7 @@ export const PupilViewsVideo = ({
                 </OakFlex>
 
                 {additionalFiles[0].files.length === 1 ? (
-                  <OakFlex $flexDirection={"column"}>
-                    <OakSpan>{additionalFiles[0].files[0]?.title}</OakSpan>
-                    <OakSpan>{`${byteSize(additionalFiles[0].files[0] ? additionalFiles[0].files[0].fileObject.bytes : 0)} (${additionalFiles[0].files[0]?.fileObject.format.toUpperCase()})`}</OakSpan>
-                  </OakFlex>
+                  additionalFileSingle(additionalFiles[0].files[0])
                 ) : (
                   <OakUL
                     $display={"flex"}

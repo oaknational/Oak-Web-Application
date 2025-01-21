@@ -216,17 +216,13 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         </OakGridArea>
         <OakGridArea $colSpan={[12, 12, 5]} $pb="inner-padding-xl">
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-            {hasAdditionalFiles && additionalFiles?.[0] && (
+            {hasAdditionalFiles && additionalFiles?.[0]?.files[0] && (
               <OakLessonInfoCard>
                 <OakCardHeader iconName="additional-material" tag="h1">
                   Files you will need for this lesson
                 </OakCardHeader>
-
                 {additionalFiles[0].files.length === 1 ? (
-                  <OakFlex $flexDirection={"column"}>
-                    <OakSpan>{additionalFiles[0].files[0]?.title}</OakSpan>
-                    <OakSpan>{`${byteSize(additionalFiles[0].files[0] ? additionalFiles[0].files[0].fileObject.bytes : 0)} (${additionalFiles[0].files[0]?.fileObject.format.toUpperCase()})`}</OakSpan>
-                  </OakFlex>
+                  additionalFileSingle(additionalFiles[0].files[0])
                 ) : (
                   <OakUL
                     $display={"flex"}
@@ -339,5 +335,17 @@ export function additionalFileListItem(
         <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
       </OakFlex>
     </OakLI>
+  );
+}
+
+export function additionalFileSingle(file: {
+  title: string;
+  fileObject: { bytes: number; format: string };
+}) {
+  return (
+    <OakFlex $flexDirection={"column"}>
+      <OakSpan>{file.title}</OakSpan>
+      <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
+    </OakFlex>
   );
 }
