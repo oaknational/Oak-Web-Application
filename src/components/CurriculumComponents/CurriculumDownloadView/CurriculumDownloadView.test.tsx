@@ -129,7 +129,7 @@ describe("CurriculumDownloadView", () => {
       expect(onSubmit).toHaveBeenCalledWith({
         downloadType: "word",
         email: "EMAIL",
-        schoolId: "SCHOOL_ID",
+        schoolId: "SCHOOL_ID-SCHOOL_NAME",
         schoolName: "SCHOOL_NAME",
         schoolNotListed: false,
         schools: [],

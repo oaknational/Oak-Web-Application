@@ -44,7 +44,9 @@ export default function SignedInFlow({ onSubmit, schools }: SignedInFlowProps) {
       if (onSubmit && hubspotContact) {
         onSubmit({
           schools,
-          schoolId: hubspotContact.schoolId ?? undefined,
+          schoolId:
+            [hubspotContact.schoolId, hubspotContact.schoolName].join("-") ??
+            undefined,
           schoolName: hubspotContact.schoolName ?? undefined,
           email: hubspotContact?.email,
           downloadType: downloadType,
