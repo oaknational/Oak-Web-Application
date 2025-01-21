@@ -1,3 +1,10 @@
+## [1.668.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.1...v1.668.2) (2025-01-20)
+
+
+### Bug Fixes
+
+* make params optional ([cfd1a54](https://github.com/oaknational/Oak-Web-Application/commit/cfd1a54f39f33438c4fa43fa32d186f62364af3d))
+
 ## [1.668.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.0...v1.668.1) (2025-01-20)
 
 
