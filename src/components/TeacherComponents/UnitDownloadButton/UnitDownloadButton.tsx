@@ -6,8 +6,6 @@ import {
   OakPrimaryButton,
   OakTagFunctional,
 } from "@oaknational/oak-components";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
-import { z } from "zod";
 import { useRouter } from "next/router";
 
 import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck";
@@ -15,19 +13,6 @@ import useUnitDownloadExistenceCheck from "../hooks/downloadAndShareHooks/useUni
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
 import { createUnitDownloadLink } from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink";
 import { resolveOakHref } from "@/common-lib/urls";
-
-// teacher-unit-downloads experiment A/B test group keys and test values
-const variantKey = z
-  .literal("option-a")
-  .or(z.literal("option-b"))
-  .or(z.literal("control"));
-type VariantKey = z.infer<typeof variantKey>;
-
-const unitButtonSignInText = {
-  "option-a": "Download unit",
-  "option-b": "Create a free account to download unit",
-  control: "Download unit", // should not be used
-};
 
 // Used when a user is signed in but not onboarded
 const UnitDownloadOnboardButton = ({
@@ -44,26 +29,16 @@ const UnitDownloadOnboardButton = ({
 );
 
 // Used when a user is not signed in
-const UnitDownloadSignInButton = ({
-  variant,
-  redirectUrl,
-}: {
-  variant: VariantKey;
-  redirectUrl: string;
-}) => (
+const UnitDownloadSignInButton = ({ redirectUrl }: { redirectUrl: string }) => (
   <SignUpButton forceRedirectUrl={redirectUrl}>
-    <OakPrimaryButton
-      iconName={variant === "option-a" ? "download" : undefined}
-      isTrailingIcon
-      width="fit-content"
-    >
+    <OakPrimaryButton iconName={"download"} isTrailingIcon width="fit-content">
       <OakFlex $alignItems="center" $gap="space-between-xs">
         <OakTagFunctional
           label="New"
           $background="mint"
           $color="text-primary"
         />
-        {unitButtonSignInText[variant]}
+        Download unit
       </OakFlex>
     </OakPrimaryButton>
   </SignUpButton>
@@ -129,8 +104,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
   const { unitFileId } = props;
   const { isSignedIn, isLoaded, user } = useUser();
   const router = useRouter();
-  const featureFlag = useFeatureFlagVariantKey("teacher-unit-downloads");
-  const parsedFeatureFlagKey = variantKey.safeParse(featureFlag);
 
   const {
     onDownloadSuccess,
@@ -163,19 +136,12 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     setDownloadInProgress(false);
   };
 
-  const unitDownloadDisabled =
-    !parsedFeatureFlagKey.success || parsedFeatureFlagKey.data === "control";
+  const showDownloadButton = hasCheckedFiles && exists;
 
-  const showDownloadButton = !unitDownloadDisabled && hasCheckedFiles && exists;
-
-  const showSignInButton =
-    showDownloadButton && !unitDownloadDisabled && isLoaded && !isSignedIn;
+  const showSignInButton = showDownloadButton && isLoaded && !isSignedIn;
 
   const showOnboardButton =
-    showDownloadButton &&
-    !unitDownloadDisabled &&
-    user &&
-    !user.publicMetadata?.owa?.isOnboarded;
+    showDownloadButton && user && !user.publicMetadata?.owa?.isOnboarded;
 
   return showOnboardButton ? (
     <UnitDownloadOnboardButton
@@ -188,7 +154,6 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     />
   ) : showSignInButton ? (
     <UnitDownloadSignInButton
-      variant={parsedFeatureFlagKey.data}
       redirectUrl={`/onboarding?returnTo=${router.asPath}`}
     />
   ) : showDownloadButton ? (
