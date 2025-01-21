@@ -12,7 +12,6 @@ import {
   OakLessonLayout,
   OakLessonTopNav,
   OakLessonVideoTranscript,
-  OakLI,
   OakP,
   OakPrimaryButton,
   OakPrimaryInvertedButton,
@@ -23,6 +22,7 @@ import {
 import byteSize from "byte-size";
 
 import { useAdditionalFilesDownload } from "../PupilIntro/useAdditionalFilesDownload";
+import { additionalFileListItem } from "../PupilIntro";
 
 import {
   VideoResult,
@@ -263,14 +263,9 @@ export const PupilViewsVideo = ({
                     $gap={"space-between-l"}
                     $flexWrap={"wrap"}
                   >
-                    {additionalFiles[0].files.map((file, index) => (
-                      <OakLI key={index}>
-                        <OakFlex $flexDirection={"column"}>
-                          <OakSpan>{file.title}</OakSpan>
-                          <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
-                        </OakFlex>
-                      </OakLI>
-                    ))}
+                    {additionalFiles[0].files.map((file, index) =>
+                      additionalFileListItem(file, index),
+                    )}
                   </OakUL>
                 )}
                 <OakPrimaryInvertedButton

@@ -233,14 +233,9 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                     $flexDirection={"column"}
                     $gap={"space-between-s"}
                   >
-                    {additionalFiles[0].files.map((file, index) => (
-                      <OakLI key={index}>
-                        <OakFlex $flexDirection={"column"}>
-                          <OakSpan>{file.title}</OakSpan>
-                          <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
-                        </OakFlex>
-                      </OakLI>
-                    ))}
+                    {additionalFiles[0].files.map((file, index) =>
+                      additionalFileListItem(file, index),
+                    )}
                   </OakUL>
                 )}
                 <OakFlex $justifyContent={"flex-end"}>
@@ -332,3 +327,17 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     </OakLessonLayout>
   );
 };
+
+export function additionalFileListItem(
+  file: { title: string; fileObject: { bytes: number; format: string } },
+  index: number,
+) {
+  return (
+    <OakLI key={index}>
+      <OakFlex $flexDirection={"column"}>
+        <OakSpan>{file.title}</OakSpan>
+        <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
+      </OakFlex>
+    </OakLI>
+  );
+}
