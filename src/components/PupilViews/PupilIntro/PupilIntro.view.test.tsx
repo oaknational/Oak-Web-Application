@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { additionalFilesFixture } from "@oaknational/oak-curriculum-schema";
 
 import { PupilViewsIntro } from "./PupilIntro.view";
 
@@ -13,6 +14,7 @@ import * as downloadLessonResources from "@/components/SharedComponents/helpers/
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const usePupilAnalyticsMock = {
   track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
@@ -142,7 +144,7 @@ describe("PupilIntro", () => {
   });
 
   describe("additional download", () => {
-    describe("when there is additional files", () => {
+    describe("when there is multiple additional files", () => {
       const subject = (
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={createLessonEngineContext()}>
@@ -162,7 +164,7 @@ describe("PupilIntro", () => {
           queryByText("Files you will need for this lesson"),
         ).toBeInTheDocument();
         expect(
-          queryByRole("button", { name: /Download file/i }),
+          queryByRole("button", { name: /Download files/i }),
         ).toBeInTheDocument();
       });
 
@@ -178,7 +180,39 @@ describe("PupilIntro", () => {
         );
       });
     });
+    describe("when there is a single additional file", () => {
+      const snake = additionalFilesFixture({}).files[0];
+      const camel = keysToCamelCase(snake);
+      const curriculumDataSingleFile =
+        camel !== undefined
+          ? lessonContentFixture({
+              additionalFiles: [{ files: [camel] }],
+            })
+          : lessonContentFixture({});
 
+      const subject = (
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsIntro
+              {...curriculumDataSingleFile}
+              hasAdditionalFiles
+              hasWorksheet
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>
+      );
+
+      it("displays the additional downloads card", () => {
+        const { queryByText, queryByRole } = renderWithTheme(subject);
+
+        expect(
+          queryByText("Files you will need for this lesson"),
+        ).toBeInTheDocument();
+        expect(
+          queryByRole("button", { name: /Download file/i }),
+        ).toBeInTheDocument();
+      });
+    });
     describe("when there is no additional files", () => {
       const subject = (
         <OakThemeProvider theme={oakDefaultTheme}>
