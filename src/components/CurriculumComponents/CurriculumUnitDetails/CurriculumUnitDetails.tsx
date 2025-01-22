@@ -77,7 +77,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
               <TagFunctional
                 key={thread}
                 text={thread}
-                color={"grey"}
+                color={"lavender"}
                 data-testid="thread-tag"
               />
             ))}
