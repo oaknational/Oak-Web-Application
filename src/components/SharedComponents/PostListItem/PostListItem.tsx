@@ -120,7 +120,7 @@ const PostListItem: FC<PostListItemProps> = (props) => {
           $mb={[32, 0]}
         >
           <BoxBorders
-            $zIndex={"inFront"}
+            $zIndex={"in-front"}
             gapPosition={
               props.contentType === "webinar" ? undefined : "bottomRight"
             }

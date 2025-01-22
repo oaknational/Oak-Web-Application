@@ -59,6 +59,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
       keyStageSlug,
       keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
     },
+    overrideExistingShareId: true,
   });
 
   useEffect(() => {

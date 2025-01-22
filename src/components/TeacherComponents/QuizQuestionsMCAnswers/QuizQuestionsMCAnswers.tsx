@@ -1,11 +1,15 @@
 import { VisuallyHidden } from "react-aria";
-import { OakTypography, OakFlex, OakBox } from "@oaknational/oak-components";
+import {
+  OakTypography,
+  OakFlex,
+  OakIcon,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import QuizImage from "@/components/TeacherComponents/QuizImage";
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import QuizImageAnswer from "@/components/TeacherComponents/QuizImageAnswer";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Icon from "@/components/SharedComponents/Icon";
 import Typography from "@/components/SharedComponents/Typography";
 import { MCAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -73,7 +77,11 @@ export const QuizQuestionsMCAnswers = (props: {
                     $alignItems={"center"}
                   >
                     <OakBox $minWidth="all-spacing-7" aria-hidden>
-                      <Icon name={"tick"} />
+                      <OakIcon
+                        iconName={"tick"}
+                        $width={"all-spacing-6"}
+                        $height={"all-spacing-6"}
+                      />
                     </OakBox>
                     <VisuallyHidden>
                       Correct answer: {removeMarkdown(answerItem.text)}

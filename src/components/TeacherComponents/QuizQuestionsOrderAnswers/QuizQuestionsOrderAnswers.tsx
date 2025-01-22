@@ -1,8 +1,12 @@
 import { VisuallyHidden } from "react-aria";
-import { OakTypography, OakFlex, OakBox } from "@oaknational/oak-components";
+import {
+  OakTypography,
+  OakFlex,
+  OakIcon,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
-import Icon from "@/components/SharedComponents/Icon";
 import { OrderAnswer } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export const QuizQuestionsOrderAnswers = ({
@@ -37,7 +41,11 @@ export const QuizQuestionsOrderAnswers = ({
                 {item.correctOrder} - {removeMarkdown(orderAnswer.text)}
               </VisuallyHidden>
               <OakBox $minWidth="all-spacing-7" aria-hidden>
-                <Icon name={"tick"} />
+                <OakIcon
+                  iconName={"tick"}
+                  $width={"all-spacing-6"}
+                  $height={"all-spacing-6"}
+                />
               </OakBox>
 
               <OakTypography $font={["body-2-bold", "body-1-bold"]} aria-hidden>

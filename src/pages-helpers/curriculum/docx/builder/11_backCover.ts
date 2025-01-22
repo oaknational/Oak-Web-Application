@@ -187,31 +187,31 @@ export default async function generate(
         ${wrapInLinkTo(
           links.ogl,
           safeXml`
-          <w:r>
-            <w:rPr>
-              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-              <w:b />
-              <w:color w:val="222222" />
-              <w:sz w:val="24" />
-              <w:u w:val="single" />
-            </w:rPr>
-            <w:t>Open Government Licence v3.0</w:t>
-          </w:r>
-          <w:r>
-            <w:rPr>
-              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-              <w:b />
-              <w:color w:val="222222" />
-              <w:sz w:val="24" />
-              <w:u w:val="none" />
-            </w:rPr>
-            ${createImage(images.jumpOutArrow, {
-              width: cmToEmu(0.41),
-              height: cmToEmu(0.35),
-              isDecorative: true,
-            })}
-          </w:r>
-        `,
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:b />
+                <w:color w:val="222222" />
+                <w:sz w:val="24" />
+                <w:u w:val="single" />
+              </w:rPr>
+              <w:t>Open Government Licence v3.0</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:b />
+                <w:color w:val="222222" />
+                <w:sz w:val="24" />
+                <w:u w:val="none" />
+              </w:rPr>
+              ${createImage(images.jumpOutArrow, {
+                width: cmToEmu(0.41),
+                height: cmToEmu(0.35),
+                isDecorative: true,
+              })}
+            </w:r>
+          `,
         )}
         <w:r>
           <w:rPr>
@@ -224,31 +224,31 @@ export default async function generate(
         ${wrapInLinkTo(
           links.terms,
           safeXml`
-          <w:r>
-            <w:rPr>
-              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-              <w:b />
-              <w:color w:val="222222" />
-              <w:sz w:val="24" />
-              <w:u w:val="single" />
-            </w:rPr>
-            <w:t>Oak terms and conditions</w:t>
-          </w:r>
-          <w:r>
-            <w:rPr>
-              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-              <w:b />
-              <w:color w:val="222222" />
-              <w:sz w:val="24" />
-              <w:u w:val="none" />
-            </w:rPr>
-            ${createImage(images.jumpOutArrow, {
-              width: cmToEmu(0.41),
-              height: cmToEmu(0.35),
-              isDecorative: true,
-            })}
-          </w:r>
-        `,
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:b />
+                <w:color w:val="222222" />
+                <w:sz w:val="24" />
+                <w:u w:val="single" />
+              </w:rPr>
+              <w:t>Oak terms and conditions</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:b />
+                <w:color w:val="222222" />
+                <w:sz w:val="24" />
+                <w:u w:val="none" />
+              </w:rPr>
+              ${createImage(images.jumpOutArrow, {
+                width: cmToEmu(0.41),
+                height: cmToEmu(0.35),
+                isDecorative: true,
+              })}
+            </w:r>
+          `,
         )}
         <w:r>
           <w:rPr>

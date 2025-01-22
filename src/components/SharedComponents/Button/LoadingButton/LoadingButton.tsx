@@ -1,13 +1,17 @@
 import { FC, MouseEventHandler } from "react";
 import styled, { css } from "styled-components";
 import Link from "next/link";
-import { OakBox, OakFlex } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakIcon,
+  OakIconName,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import { Spinner } from "./Spinner";
 
 import UnstyledButton from "@/components/SharedComponents/UnstyledButton";
 import { DoubleButtonBorders } from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders/DoubleButtonBorders";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { OakColorName } from "@/styles/theme";
@@ -16,7 +20,7 @@ type LoadingButtonProps = {
   isLoading: boolean;
   text: string;
   loadingText?: string;
-  icon: IconName;
+  icon: OakIconName;
   disabled: boolean;
   success?: boolean;
   ariaLabel?: string;
@@ -102,7 +106,14 @@ const ButtonContent: FC<LoadingButtonProps> = (props) => {
             <Spinner />
           </OakBox>
         ) : (
-          <Icon name={props.success ? "tick" : props.icon} $color="white" />
+          <OakIcon
+            iconName={props.success ? "tick" : props.icon}
+            $colorFilter="white"
+            width={"24"}
+            height={"24"}
+            $width={"all-spacing-6"}
+            $height={"all-spacing-6"}
+          />
         )}
       </OakFlex>
       <FocusDoubleBorder

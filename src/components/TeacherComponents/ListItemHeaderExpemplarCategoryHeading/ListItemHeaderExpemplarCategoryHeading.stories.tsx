@@ -8,15 +8,12 @@ export default {
 
 const Template: StoryFn<typeof Component> = () => (
   <Component
-    linkTargetIds={{
-      worksheet: "",
-      exitQuiz: "",
-      introQuiz: "",
-      video: "",
-    }}
+    keyStageTitle="keyStageTitle"
+    yearTitle={"yearTitle"}
+    subjectTitle={"subjectTitle"}
   />
 );
 
-export const LessonPlanningElementLinks = {
+export const ListItemHeaderExpemplarCategoryHeading = {
   render: Template,
 };

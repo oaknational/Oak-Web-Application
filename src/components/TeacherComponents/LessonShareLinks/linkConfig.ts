@@ -1,13 +1,13 @@
-import { SharingMetadata } from "./getSharingMetadata";
+import { OakIconName } from "@oaknational/oak-components";
 
-import { IconName } from "@/components/SharedComponents/Icon";
+import { SharingMetadata } from "./getSharingMetadata";
 
 export type ShareLinkConfig = {
   name: "Email" | "Google Classroom" | "Microsoft Teams" | "Copy link";
   network?: "email" | "google-classroom" | "microsoft-teams";
   medium: "social" | "email" | "lms" | "copy-link";
   avoMedium: "microsoft-teams" | "google-classroom" | "email" | "copy-link";
-  icon: IconName;
+  icon: OakIconName;
   url: (params: SharingMetadata) => string;
 };
 

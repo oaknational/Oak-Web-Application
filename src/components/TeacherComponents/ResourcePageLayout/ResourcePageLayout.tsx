@@ -13,6 +13,7 @@ import {
   OakFlex,
   OakBox,
   OakLoadingSpinner,
+  OakIcon,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -28,7 +29,6 @@ import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShar
 import FieldError from "@/components/SharedComponents/FieldError";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Icon from "@/components/SharedComponents/Icon";
 
 /** Generic layout component for Downloads and Share page */
 
@@ -188,7 +188,12 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             )}
             {hasFormErrors && (
               <OakFlex $flexDirection={"row"}>
-                <Icon name="content-guidance" $color={"red"} />
+                <OakIcon
+                  iconName="content-guidance"
+                  $colorFilter={"red"}
+                  $width={"all-spacing-6"}
+                  $height={"all-spacing-6"}
+                />
                 <OakFlex $flexDirection={"column"}>
                   <OakP $ml="space-between-sssx" $color={"red"}>
                     To complete correct the following:
