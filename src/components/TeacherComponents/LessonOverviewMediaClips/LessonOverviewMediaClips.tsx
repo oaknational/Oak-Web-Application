@@ -20,7 +20,6 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   unitSlug,
   programmeSlug,
   lessonSlug,
-  lessonOutline,
   isCanonical,
 }) => {
   if (!learningCycleVideos) return null;
@@ -54,7 +53,9 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
           >
             <LessonOverviewClipWithThumbnail
               title={
-                lessonOutline ? (lessonOutline[index]?.lessonOutline ?? "") : ""
+                firstCycleVideo.customTitle
+                  ? firstCycleVideo.customTitle
+                  : (firstCycleVideo.mediaObject?.displayName ?? "")
               }
               playbackId={
                 isAudioClip

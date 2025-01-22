@@ -2,7 +2,10 @@ import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMed
 
 export const getPlaybackId = (currentClip: MediaClip) => {
   if (currentClip && currentClip.videoObject) {
-    return currentClip.videoObject.muxPlaybackId;
+    const signed = currentClip.videoObject.playbackIds?.find((p) => {
+      return p?.policy === "signed";
+    });
+    return signed?.id;
   }
   return "";
 };

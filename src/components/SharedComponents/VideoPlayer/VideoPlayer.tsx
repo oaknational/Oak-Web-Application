@@ -43,6 +43,7 @@ export type VideoPlayerProps = {
   isLegacy: boolean;
   userEventCallback?: (event: VideoEventCallbackArgs) => void;
   pathwayData?: PupilPathwayData;
+  isAudioClip?: boolean;
 };
 
 export type VideoEventCallbackArgs = {
@@ -62,6 +63,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     isLegacy,
     userEventCallback = () => {},
     pathwayData,
+    isAudioClip,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement>(null);
@@ -223,8 +225,10 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
 
   const tokens: Tokens = {
     playback: videoToken?.playbackToken ? videoToken.playbackToken : undefined,
-    thumbnail: thumbnailToken?.playbackToken
-      ? thumbnailToken.playbackToken
+    thumbnail: !isAudioClip
+      ? thumbnailToken?.playbackToken
+        ? thumbnailToken.playbackToken
+        : undefined
       : undefined,
     storyboard: storyboardToken?.playbackToken
       ? storyboardToken.playbackToken

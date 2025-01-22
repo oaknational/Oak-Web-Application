@@ -147,7 +147,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const videoPlayer = currentClip && (
     <VideoPlayer
       playbackId={getPlaybackId(currentClip) || ""}
-      playbackPolicy={"public"}
+      playbackPolicy={"signed"}
       title={
         currentClip.customTitle
           ? (currentClip?.mediaObject?.displayName ?? "")
@@ -155,6 +155,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       }
       location={"lesson"}
       isLegacy={false}
+      isAudioClip={currentClip.mediaObject?.format === "mp3"}
       userEventCallback={handleVideoEvents}
     />
   );
@@ -174,13 +175,13 @@ export const LessonMedia = (props: LessonMediaProps) => {
               return playbackId?.policy === "signed";
             },
           );
+          const title =
+            mediaClip.customTitle !== ""
+              ? mediaClip.customTitle
+              : mediaClip.mediaObject?.displayName;
           return (
             <MediaClipWithThumbnail
-              clipName={
-                mediaClip.customTitle
-                  ? (mediaClip?.mediaObject?.displayName ?? "")
-                  : ""
-              }
+              clipName={title ?? ""}
               timeCode={videoObject.duration ?? 0}
               learningCycle={!isPELesson ? mediaClip.learningCycle : ""}
               muxPlayingState={getPlayingState(
@@ -196,13 +197,13 @@ export const LessonMedia = (props: LessonMediaProps) => {
             />
           );
         } else if (mediaObject?.format === "mp3" && videoObject) {
+          const title =
+            mediaClip.customTitle !== ""
+              ? mediaClip.customTitle
+              : mediaClip.mediaObject?.displayName;
           return (
             <OakMediaClip
-              clipName={
-                mediaClip.customTitle
-                  ? (mediaClip?.mediaObject?.displayName ?? "")
-                  : ""
-              }
+              clipName={title ?? ""}
               timeCode={videoObject.duration ?? 0}
               learningCycle={mediaClip.learningCycle}
               muxPlayingState={getPlayingState(
@@ -314,7 +315,10 @@ export const LessonMedia = (props: LessonMediaProps) => {
             <OakBox $display={["block", "block", "none"]} $width={"100%"}>
               {lessonMediaClipInfo}
             </OakBox>
-            <OakBox $width={["auto", "auto", "all-spacing-21"]}>
+            <OakBox
+              $width={["auto", "auto", "all-spacing-21"]}
+              $minWidth={["auto", "auto", "all-spacing-21"]}
+            >
               {mediaClipList}
             </OakBox>
           </OakFlex>
