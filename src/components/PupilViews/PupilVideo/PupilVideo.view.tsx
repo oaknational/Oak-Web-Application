@@ -269,6 +269,8 @@ export const PupilViewsVideo = ({
                   iconName="download"
                   isTrailingIcon
                   $font={"heading-7"}
+                  $pl={"inner-padding-none"}
+                  $pr={"inner-padding-none"}
                 >
                   {additionalFiles[0].files.length === 1
                     ? "Download file"
