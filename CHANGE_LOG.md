@@ -1,3 +1,10 @@
+## [1.668.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.2...v1.668.3) (2025-01-22)
+
+
+### Bug Fixes
+
+* revert '@prettier/plugin-xml' to fix linting of embedded safeXml statements ([70eb81f](https://github.com/oaknational/Oak-Web-Application/commit/70eb81f0b47668e7a7f773babdde7c6c9a76125b))
+
 ## [1.668.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.1...v1.668.2) (2025-01-20)
 
 
