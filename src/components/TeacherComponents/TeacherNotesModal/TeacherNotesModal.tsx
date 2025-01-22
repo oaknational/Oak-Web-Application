@@ -96,9 +96,9 @@ export const TeacherNotesModal = ({
   onClose,
   isOpen,
   teacherNote,
-  saveTeacherNote,
+  // saveTeacherNote,
 }: TeacherNotesModalProps) => {
-  const [noteSaved, setNoteSaved] = useState(false);
+  // const [noteSaved, setNoteSaved] = useState(false);
   const [noteShared] = useState(false);
 
   const editor = useEditor({
@@ -140,25 +140,25 @@ export const TeacherNotesModal = ({
     editor?.chain().focus().toggleBulletList().run();
   };
 
-  const handleSave = async () => {
-    const noteHtml = editor?.getHTML() ?? "";
-    const noteText = editor?.getText() ?? "";
+  // const handleSave = async () => {
+  //   const noteHtml = editor?.getHTML() ?? "";
+  //   const noteText = editor?.getText() ?? "";
 
-    const note: Partial<TeacherNoteCamelCase> = {
-      ...teacherNote,
-      noteHtml,
-      noteText,
-    };
+  //   const note: Partial<TeacherNoteCamelCase> = {
+  //     ...teacherNote,
+  //     noteHtml,
+  //     noteText,
+  //   };
 
-    const res = await saveTeacherNote(note);
+  //   const res = await saveTeacherNote(note);
 
-    if (res) {
-      setNoteSaved(true);
-      setTimeout(() => {
-        setNoteSaved(false);
-      }, 3000);
-    }
-  };
+  //   if (res) {
+  //     setNoteSaved(true);
+  //     setTimeout(() => {
+  //       setNoteSaved(false);
+  //     }, 3000);
+  //   }
+  // };
 
   const remainingCharacters =
     limit - (editor?.storage.characterCount.characters() ?? 0);
@@ -173,9 +173,10 @@ export const TeacherNotesModal = ({
       isBold={editor?.isActive("bold") ?? false}
       isBulletList={editor?.isActive("bulletList") ?? false}
       remainingCharacters={remainingCharacters}
-      onSaveClicked={handleSave}
+      // onSaveClicked={handleSave}
       onShareClicked={() => {}}
-      noteSaved={noteSaved}
+      progressSaved={false}
+      // noteSaved={noteSaved}
       noteShared={noteShared}
     />
   );
