@@ -23,7 +23,7 @@ describe("LessonOverviewMediaClips", () => {
       />,
     );
 
-    expect(getByText("This is the lesson outline")).toBeInTheDocument();
+    expect(getByText("Intro Video 1")).toBeInTheDocument();
   });
 
   it("calls resolveOakHref with correct arguments when programmeSlug and unitSlug are provided", () => {

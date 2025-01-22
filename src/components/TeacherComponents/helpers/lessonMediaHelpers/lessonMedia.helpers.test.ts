@@ -13,7 +13,7 @@ describe("lessonMedia helpers", () => {
       const clip = introClips ? introClips[0] : null;
       const playbackId = clip && getPlaybackId(clip);
       expect(playbackId).toEqual(
-        "BW00NkK9R01jB8PPO7R00YCFl2XBDn13GTkhd0001PNtheF00",
+        "mVkKUtOfoD1100012GNC1pCO6RvUgyGwqGoq01pYsy7WeA",
       );
     });
 
@@ -23,7 +23,7 @@ describe("lessonMedia helpers", () => {
       const clip = introClips ? introClips[1] : null;
       const playbackId = clip && getPlaybackId(clip);
       expect(playbackId).toEqual(
-        "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
       );
     });
   });
