@@ -82,10 +82,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
             mediaClips[learningCycle]?.map((mediaClip: MediaClip) => {
               return {
                 ...mediaClip,
-                learningCycle:
-                  index === 0
-                    ? "Intro"
-                    : (lessonOutline[index - 1]?.lessonOutline ?? ""),
+                learningCycle: lessonOutline[index]?.lessonOutline ?? "",
               };
             }) || []
           );
@@ -168,6 +165,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
       {listOfAllClips.map((mediaClip, index: number) => {
         const { videoObject, mediaId, mediaObject } = mediaClip;
         if (mediaObject?.format === "mp4" && videoObject) {
+          const signedPlaybackId = videoObject?.playbackIds?.find(
+            (playbackId) => {
+              return playbackId?.policy === "signed";
+            },
+          );
           return (
             <MediaClipWithThumbnail
               clipName={mediaClip?.mediaObject?.displayName ?? ""}
@@ -178,7 +180,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
                 String(mediaId),
                 playedVideos,
               )}
-              playbackId={videoObject.playbackIds?.[1]?.id ?? ""}
+              playbackId={signedPlaybackId?.id ?? ""}
               playbackPolicy={"signed"}
               isAudioClip={false}
               onClick={() => onMediaClipClick(String(mediaId))}

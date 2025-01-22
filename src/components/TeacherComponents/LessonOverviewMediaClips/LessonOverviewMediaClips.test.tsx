@@ -12,7 +12,7 @@ jest.mock("@/common-lib/urls", () => ({
 const mockLearningCycleVideos = lessonMediaClipsFixtures().mediaClips;
 
 describe("LessonOverviewMediaClips", () => {
-  it.only("renders correctly with given props", () => {
+  it("renders correctly with given props", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewMediaClips
         learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
