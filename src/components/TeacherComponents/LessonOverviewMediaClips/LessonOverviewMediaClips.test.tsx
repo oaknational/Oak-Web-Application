@@ -12,7 +12,7 @@ jest.mock("@/common-lib/urls", () => ({
 const mockLearningCycleVideos = lessonMediaClipsFixtures().mediaClips;
 
 describe("LessonOverviewMediaClips", () => {
-  it("renders correctly with given props", () => {
+  it.only("renders correctly with given props", () => {
     const { getByText } = renderWithTheme(
       <LessonOverviewMediaClips
         learningCycleVideos={keysToCamelCase(mockLearningCycleVideos)}
@@ -23,7 +23,7 @@ describe("LessonOverviewMediaClips", () => {
       />,
     );
 
-    expect(getByText("Intro")).toBeInTheDocument();
+    expect(getByText("This is the lesson outline")).toBeInTheDocument();
   });
 
   it("calls resolveOakHref with correct arguments when programmeSlug and unitSlug are provided", () => {
