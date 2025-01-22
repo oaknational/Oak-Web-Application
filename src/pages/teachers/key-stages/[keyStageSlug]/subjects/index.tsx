@@ -32,7 +32,7 @@ export type Subjects = {
 }[];
 
 export type SubjectListingPageProps = {
-  subjects: Subjects;
+  subjects: Subjects[];
   keyStageSlug: string;
   keyStageTitle: string;
   keyStages: KeyStageData[];
@@ -139,21 +139,24 @@ export const getStaticProps: GetStaticProps<
 
       const combinedAndFilteredSubjects = uniqueSubjectSlugs
         .map((subjectSlug) => {
-          const combinedSubject = getCombinedSubjects(
+          const combinedSubjectArray = getCombinedSubjects(
             curriculumData,
             subjectSlug,
             isEyfs,
           );
-          return {
+
+          return combinedSubjectArray?.map((combinedSubject) => ({
             slug: subjectSlug,
             data: combinedSubject,
-            hasNewContent: combinedSubject?.isNew,
-          };
+            hasNewContent: combinedSubject.isNew,
+          }));
         })
         // Filter out subjects that don't exist in either curriculum
-        .filter((subject) => subject.data !== null)
+        .filter((subjectArray) =>
+          subjectArray?.map((subject) => subject.data !== null),
+        )
         // sort by slug so the old and new subjects are intermingled
-        .sort((a, b) => (a.slug > b.slug ? 1 : -1));
+        .sort((a, b) => (a?.[0] && b?.[0] && a[0].slug > b[0].slug ? 1 : -1));
 
       const results = {
         props: {

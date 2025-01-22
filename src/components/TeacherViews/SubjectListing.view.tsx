@@ -66,20 +66,46 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           $gridAutoRows={"1fr"}
           $mb={"space-between-xxl"}
         >
-          {subjects.map((subject, i) => {
-            return (
-              <OakGridArea
-                key={`subject-list-item-${subject.slug}-${i}`}
-                $colSpan={[12, 6, 3]}
-              >
-                <SubjectListingCardDouble
-                  subject={subject}
-                  subjectSlug={subject.slug}
-                  keyStageSlug={keyStageSlug}
-                  keyStageTitle={sentenceCaseKeyStageTitle}
-                />
-              </OakGridArea>
-            );
+          {subjects.map((subjectArray, i) => {
+            if (subjectArray.length === 1 && subjectArray[0]) {
+              return (
+                <OakGridArea
+                  key={`subject-list-item-${subjectArray[0]?.slug}-${i}`}
+                  $colSpan={[12, 6, 3]}
+                >
+                  <SubjectListingCardDouble
+                    subject={subjectArray[0]}
+                    subjectSlug={subjectArray[0].slug}
+                    keyStageSlug={keyStageSlug}
+                    keyStageTitle={sentenceCaseKeyStageTitle}
+                  />
+                </OakGridArea>
+              );
+            } else if (
+              subjectArray.length === 2 &&
+              subjectArray[0] &&
+              subjectArray[1]
+            ) {
+              console.log(
+                "subjectArray double  >>>>>>",
+                subjectArray[0].data.pathwaySlug,
+                subjectArray[1].data.pathwaySlug,
+              );
+              return (
+                <OakGridArea
+                  key={`subject-list-item-${subjectArray[0]?.slug}-${i}`}
+                  $colSpan={[12, 6, 3]}
+                >
+                  double card here
+                  {/* <SubjectListingCardDouble
+                    subject={subjectArray[1]}
+                    subjectSlug={subjectArray[1].slug}
+                    keyStageSlug={keyStageSlug}
+                    keyStageTitle={sentenceCaseKeyStageTitle}
+                  /> */}
+                </OakGridArea>
+              );
+            }
           })}
         </OakGrid>
       </MaxWidth>

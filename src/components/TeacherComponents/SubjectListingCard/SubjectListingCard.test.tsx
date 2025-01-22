@@ -7,7 +7,7 @@ import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import subjectPagePropsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
 
-const subjects: Subjects = subjectPagePropsFixture().subjects;
+const subjects: Subjects[] = subjectPagePropsFixture().subjects;
 
 const subjectSelected = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
@@ -19,7 +19,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
-describe("SubjectListingCardDouble", () => {
+describe.only("SubjectListingCardDouble", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -27,7 +27,7 @@ describe("SubjectListingCardDouble", () => {
   test("render a Card with the Name of the Subject", () => {
     renderWithTheme(
       <SubjectListingCard
-        subject={subjects[0] as Subjects[number]}
+        subject={subjects?.[0]?.[0] as Subjects[number]}
         subjectSlug={"biology"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
@@ -38,7 +38,7 @@ describe("SubjectListingCardDouble", () => {
   test("new units with 1 programme take you to 'teachers' view unit listing page", () => {
     const { getByRole } = renderWithTheme(
       <SubjectListingCard
-        subject={subjects[0] as Subjects[number]}
+        subject={subjects?.[0]?.[0] as Subjects[number]}
         subjectSlug={"biology"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
@@ -56,7 +56,7 @@ describe("SubjectListingCardDouble", () => {
   test("new units are labeled as 'new'", () => {
     const { getByText } = renderWithTheme(
       <SubjectListingCard
-        subject={subjects[2] as Subjects[number]}
+        subject={subjects?.[2]?.[0] as Subjects[number]}
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
@@ -68,7 +68,7 @@ describe("SubjectListingCardDouble", () => {
   test("new label is not visible on old units", () => {
     const { queryByText } = renderWithTheme(
       <SubjectListingCard
-        subject={subjects[3] as Subjects[number]}
+        subject={subjects?.[3]?.[0] as Subjects[number]}
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}
@@ -81,7 +81,7 @@ describe("SubjectListingCardDouble", () => {
   test("calls tracking.subjectSelected once, with correct props", async () => {
     const { getByRole } = renderWithTheme(
       <SubjectListingCard
-        subject={subjects[0] as Subjects[number]}
+        subject={subjects?.[0]?.[0] as Subjects[number]}
         subjectSlug={"maths"}
         keyStageSlug={"ks4"}
         keyStageTitle={"Key stage 4"}

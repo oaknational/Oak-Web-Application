@@ -12,6 +12,7 @@ interface UnprocessedSubject {
     unitIds: Set<number>;
     lessonIds: Set<number>;
     programmeSlugs: Set<string>;
+    pathwaySlug: string | null;
   };
 }
 
@@ -22,6 +23,7 @@ interface ProcessedSubject {
   unitCount: number;
   lessonCount: number;
   programmeCount: number;
+  pathwaySlug: string | null;
 }
 
 export const constructSubjectsFromUnitData = (
@@ -38,6 +40,7 @@ export const constructSubjectsFromUnitData = (
       subject_slug,
       tier_slug,
       examboard_slug,
+      pathway_slug,
     } = unit.programme_fields;
     const { unit_id } = unit_data;
     const originalProgrammeSlug = programme_slug;
@@ -65,6 +68,7 @@ export const constructSubjectsFromUnitData = (
         unitIds: new Set([unit_id]),
         lessonIds: new Set(lesson_ids),
         programmeSlugs: new Set([originalProgrammeSlug]),
+        pathwaySlug: pathway_slug,
       };
     }
 
@@ -80,6 +84,7 @@ export const constructSubjectsFromUnitData = (
       unitCount: subject.unitIds.size,
       lessonCount: subject.lessonIds.size,
       programmeCount: subject.programmeSlugs.size,
+      pathwaySlug: subject.pathwaySlug,
     }),
   );
 

@@ -15,54 +15,66 @@ const subjectPagePropsFixture = (
       { slug: "ks4", title: "Key Stage 4", shortCode: "KS4" },
     ],
     subjects: [
-      {
-        slug: "biology",
-        data: {
-          subjectSlug: "biology",
-          subjectTitle: "Biology",
-          unitCount: 6,
-          lessonCount: 35,
-          programmeSlug: "biology-secondary-ks4-higher-aqa",
-          programmeCount: 12,
+      [
+        {
+          slug: "biology",
+          data: {
+            subjectSlug: "biology",
+            subjectTitle: "Biology",
+            unitCount: 6,
+            lessonCount: 35,
+            programmeSlug: "biology-secondary-ks4-higher-aqa",
+            programmeCount: 12,
+            pathwaySlug: null,
+          },
+          hasNewContent: true,
         },
-        hasNewContent: true,
-      },
-      {
-        slug: "maths",
-        data: {
-          subjectSlug: "maths",
-          subjectTitle: "Maths",
-          unitCount: 1,
-          lessonCount: 6,
-          programmeSlug: "maths-secondary-ks4",
-          programmeCount: 2,
+      ],
+      [
+        {
+          slug: "maths",
+          data: {
+            subjectSlug: "maths",
+            subjectTitle: "Maths",
+            unitCount: 1,
+            lessonCount: 6,
+            programmeSlug: "maths-secondary-ks4",
+            programmeCount: 2,
+            pathwaySlug: null,
+          },
+          hasNewContent: true,
         },
-        hasNewContent: true,
-      },
-      {
-        slug: "computing",
-        data: {
-          subjectSlug: "computing",
-          subjectTitle: "Computing",
-          unitCount: 6,
-          lessonCount: 35,
-          programmeSlug: "computing-secondary-ks4",
-          programmeCount: 1,
+      ],
+      [
+        {
+          slug: "computing",
+          data: {
+            subjectSlug: "computing",
+            subjectTitle: "Computing",
+            unitCount: 6,
+            lessonCount: 35,
+            programmeSlug: "computing-secondary-ks4",
+            programmeCount: 1,
+            pathwaySlug: null,
+          },
+          hasNewContent: true,
         },
-        hasNewContent: true,
-      },
-      {
-        slug: "music",
-        data: {
-          subjectSlug: "music",
-          subjectTitle: "Music",
-          unitCount: 6,
-          lessonCount: 35,
-          programmeSlug: "music-secondary-ks4",
-          programmeCount: 1,
+      ],
+      [
+        {
+          slug: "music",
+          data: {
+            subjectSlug: "music",
+            subjectTitle: "Music",
+            unitCount: 6,
+            lessonCount: 35,
+            programmeSlug: "music-secondary-ks4",
+            programmeCount: 1,
+            pathwaySlug: null,
+          },
+          hasNewContent: false,
         },
-        hasNewContent: false,
-      },
+      ],
     ],
     ...partial,
   };
@@ -88,6 +100,7 @@ export const subjectListingFixture2023 = (
         lessonCount: 23,
         unitCount: 4,
         programmeCount: 1,
+        pathwaySlug: null,
       },
       {
         subjectSlug: "chemistry",
@@ -96,6 +109,7 @@ export const subjectListingFixture2023 = (
         lessonCount: 23,
         unitCount: 4,
         programmeCount: 2,
+        pathwaySlug: null,
       },
       {
         subjectSlug: "chemistry",
@@ -104,6 +118,7 @@ export const subjectListingFixture2023 = (
         lessonCount: 5,
         unitCount: 2,
         programmeCount: 1,
+        pathwaySlug: null,
       },
       {
         subjectSlug: "music",
@@ -112,6 +127,7 @@ export const subjectListingFixture2023 = (
         lessonCount: 23,
         unitCount: 4,
         programmeCount: 1,
+        pathwaySlug: null,
       },
     ],
     ...partial,
