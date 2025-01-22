@@ -50,11 +50,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
           >
             <LessonOverviewClipWithThumbnail
               title={
-                index === 0
-                  ? "Intro"
-                  : lessonOutline
-                    ? (lessonOutline[index - 1]?.lessonOutline ?? "")
-                    : ""
+                lessonOutline ? (lessonOutline[index]?.lessonOutline ?? "") : ""
               }
               playbackId={
                 isAudioClip
