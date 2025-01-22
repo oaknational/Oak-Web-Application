@@ -1,27 +1,44 @@
-import { StoryFn, Meta } from "@storybook/react";
+import React from "react";
+import { Meta, StoryFn } from "@storybook/react";
 
-import Component from ".";
-
-import Card from "@/components/SharedComponents/Card";
-import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
+import BoxBorders, { BoxBordersProps } from "./BoxBorders";
 
 export default {
-  component: Component,
-} as Meta<typeof Component>;
+  // title: 'SharedComponents/SpriteSheet/BrushSvgs/BoxBorders',
+  component: BoxBorders,
+  argTypes: {
+    gapPosition: {
+      control: {
+        type: "select",
+        options: ["bottomRight", "bottomRightCorner", "rightTop"],
+      },
+    },
+    hideTop: { control: "boolean" },
+    hideBottom: { control: "boolean" },
+    hideRight: { control: "boolean" },
+    hideLeft: { control: "boolean" },
+    hideOnMobileH: { control: "boolean" },
+    hideOnMobileV: { control: "boolean" },
+  },
+} as Meta;
 
-const Template: StoryFn<typeof Component> = () => (
-  <Card>
-    <CardTitle tag="h2">Did you know about our lessons?</CardTitle>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    <Component />
-  </Card>
-);
+const Template: StoryFn<BoxBordersProps> = (args) => <BoxBorders {...args} />;
 
-export const BoxBorders = {
-  render: Template,
+export const Default = Template.bind({});
+Default.args = {
+  gapPosition: undefined,
+  $zIndex: null,
+  hideTop: false,
+  hideBottom: false,
+  hideRight: false,
+  hideLeft: false,
+  $color: "black",
+  hideOnMobileH: false,
+  hideOnMobileV: false,
+};
+
+export const WithGapPosition = Template.bind({});
+WithGapPosition.args = {
+  ...Default.args,
+  gapPosition: "bottomRight",
 };
