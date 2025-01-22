@@ -7,7 +7,7 @@ describe("curriculum sequence query", () => {
     await expect(async () => {
       await curriculumSequenceQuery({
         ...sdk,
-        curriculumUnits: jest.fn(() => Promise.resolve({ units: [] })),
+        curriculumSequence: jest.fn(() => Promise.resolve({ units: [] })),
       })({
         subjectSlug: "",
         phaseSlug: "",

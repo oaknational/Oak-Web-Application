@@ -4,7 +4,7 @@ import { format } from "date-fns";
 
 import type {
   CurriculumOverviewMVData,
-  CurriculumUnitsTabDataIncludeNew,
+  CurriculumUnitsTabData,
 } from "../../../node-lib/curriculum-api-2023";
 import type { CurriculumOverviewSanityData } from "../../../common-lib/cms-types";
 
@@ -18,19 +18,9 @@ import {
   insertImages,
 } from "./docx";
 
-type CurriculumUnitsTabDataIncludeNewUnit =
-  CurriculumUnitsTabDataIncludeNew["units"][number] & {
-    order: NonNullable<
-      CurriculumUnitsTabDataIncludeNew["units"][number]["order"]
-    >;
-  };
-export type CurriculumUnitsTabDataIncludeNewWithOrder = {
-  units: CurriculumUnitsTabDataIncludeNewUnit[];
-};
-
-export type CombinedCurriculumData = CurriculumOverviewMVData &
-  CurriculumOverviewSanityData &
-  CurriculumUnitsTabDataIncludeNewWithOrder;
+export type CombinedCurriculumData = CurriculumUnitsTabData &
+  CurriculumOverviewMVData &
+  CurriculumOverviewSanityData;
 
 export type Slugs = {
   subjectSlug: string;

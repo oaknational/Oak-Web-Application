@@ -34,10 +34,7 @@ import {
   isValidSubjectPhaseSlug,
   parseSubjectPhaseSlug,
 } from "@/utils/curriculum/slugs";
-import {
-  ENABLE_NEW_CURRIC_MV,
-  ENABLE_OPEN_API,
-} from "@/utils/curriculum/constants";
+import { ENABLE_OPEN_API } from "@/utils/curriculum/constants";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   createDownloadsData,
@@ -239,11 +236,9 @@ export const getStaticProps: GetStaticProps<
           context.params.subjectPhaseSlug,
           slugs,
         );
-      } else if (ENABLE_NEW_CURRIC_MV) {
+      } else {
         curriculumUnitsTabData =
           await curriculumApi2023.curriculumSequence(slugs);
-      } else {
-        curriculumUnitsTabData = await curriculumApi2023.curriculumUnits(slugs);
       }
 
       // Sort the units to have examboard versions first - this is so non-examboard units are removed

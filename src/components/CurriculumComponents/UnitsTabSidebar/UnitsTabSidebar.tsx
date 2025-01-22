@@ -11,7 +11,6 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
-import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
 import { Unit } from "@/utils/curriculum/types";
 
 const IconButtonFocusVisible = styled(IconButton)`
@@ -63,19 +62,13 @@ const UnitsTabSidebar: FC<ModalProps> = ({
 
   let resolvedUnitSlug: string = "";
   if (unitSlug && unitData) {
-    if (ENABLE_NEW_CURRIC_MV) {
-      if (unitVariantID) {
-        const unitOption = unitData?.unit_options?.find(
-          ({ unitvariant_id }) => unitvariant_id === unitVariantID,
-        );
-        resolvedUnitSlug = unitOption?.slug ?? unitSlug;
-      } else {
-        resolvedUnitSlug = unitSlug;
-      }
+    if (unitVariantID) {
+      const unitOption = unitData?.unit_options?.find(
+        ({ unitvariant_id }) => unitvariant_id === unitVariantID,
+      );
+      resolvedUnitSlug = unitOption?.slug ?? unitSlug;
     } else {
-      resolvedUnitSlug = unitVariantID
-        ? `${unitSlug}-${unitVariantID}`
-        : unitSlug;
+      resolvedUnitSlug = unitSlug;
     }
   }
 

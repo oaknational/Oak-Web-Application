@@ -17,7 +17,6 @@ import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import { mockPrerelease } from "@/utils/mocks";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import "@/__tests__/__helpers__/ResizeObserverMock";
-import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
 import {
   createInitialYearFilterSelection,
   createThreadOptions,
@@ -570,7 +569,6 @@ jest.mock("next-sanity-image", () => ({
     height: 400,
   }),
 }));
-const mockedCurriculumUnits = curriculumApi.curriculumUnits as jest.Mock;
 const mockedCurriculumSequence = curriculumApi.curriculumSequence as jest.Mock;
 const mockedFetchSubjectPhasePickerData =
   fetchSubjectPhasePickerData as jest.Mock;
@@ -750,11 +748,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         ],
       });
       mockedCurriculumOverview.mockResolvedValue(curriculumOverviewMVFixture());
-      if (ENABLE_NEW_CURRIC_MV) {
-        mockedCurriculumSequence.mockResolvedValue(unitsTabFixture);
-      } else {
-        mockedCurriculumUnits.mockResolvedValue(unitsTabFixture);
-      }
+      mockedCurriculumSequence.mockResolvedValue(unitsTabFixture);
       mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
 
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
