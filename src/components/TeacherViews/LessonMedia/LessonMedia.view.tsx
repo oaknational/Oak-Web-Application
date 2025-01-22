@@ -148,7 +148,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
     <VideoPlayer
       playbackId={getPlaybackId(currentClip) || ""}
       playbackPolicy={"public"}
-      title={currentClip?.mediaObject?.displayName ?? ""}
+      title={
+        currentClip.customTitle
+          ? (currentClip?.mediaObject?.displayName ?? "")
+          : ""
+      }
       location={"lesson"}
       isLegacy={false}
       userEventCallback={handleVideoEvents}
@@ -172,7 +176,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
           );
           return (
             <MediaClipWithThumbnail
-              clipName={mediaClip?.mediaObject?.displayName ?? ""}
+              clipName={
+                mediaClip.customTitle
+                  ? (mediaClip?.mediaObject?.displayName ?? "")
+                  : ""
+              }
               timeCode={videoObject.duration ?? 0}
               learningCycle={!isPELesson ? mediaClip.learningCycle : ""}
               muxPlayingState={getPlayingState(
@@ -190,7 +198,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
         } else if (mediaObject?.format === "mp3" && videoObject) {
           return (
             <OakMediaClip
-              clipName={mediaClip?.mediaObject?.displayName ?? ""}
+              clipName={
+                mediaClip.customTitle
+                  ? (mediaClip?.mediaObject?.displayName ?? "")
+                  : ""
+              }
               timeCode={videoObject.duration ?? 0}
               learningCycle={mediaClip.learningCycle}
               muxPlayingState={getPlayingState(
@@ -212,7 +224,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
   // media clip info component
   const lessonMediaClipInfo = currentClip && yearTitle && subjectTitle && (
     <LessonMediaClipInfo
-      clipTitle={currentClip?.mediaObject?.displayName ?? ""}
+      clipTitle={
+        currentClip.customTitle
+          ? (currentClip?.mediaObject?.displayName ?? "")
+          : ""
+      }
       keyStageTitle={keyStageTitle}
       yearTitle={yearTitle}
       subjectTitle={subjectTitle}

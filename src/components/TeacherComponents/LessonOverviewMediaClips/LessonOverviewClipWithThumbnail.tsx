@@ -14,6 +14,7 @@ export type LessonOverviewClipWithThumbnail = Omit<
   playbackId: string;
   playbackPolicy: PlaybackPolicy;
   numberOfClips: number;
+  isAudioClip: boolean;
 };
 
 const LessonOverviewClipWithThumbnail: FC<LessonOverviewClipWithThumbnail> = ({
@@ -22,6 +23,7 @@ const LessonOverviewClipWithThumbnail: FC<LessonOverviewClipWithThumbnail> = ({
   playbackPolicy,
   numberOfClips,
   href,
+  isAudioClip,
 }: LessonOverviewClipWithThumbnail) => {
   const thumbnailImage = useMediaClipThumbnailUrl({
     playbackId,
@@ -36,6 +38,7 @@ const LessonOverviewClipWithThumbnail: FC<LessonOverviewClipWithThumbnail> = ({
       imageAltText=""
       href={href}
       numberOfClips={numberOfClips}
+      isAudioClip={isAudioClip}
     />
   );
 };

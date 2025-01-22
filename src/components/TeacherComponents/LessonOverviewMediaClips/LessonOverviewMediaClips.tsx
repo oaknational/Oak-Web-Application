@@ -46,7 +46,6 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
             return playbackId?.policy === "signed";
           },
         );
-
         return (
           <OakGridArea
             key={index}
@@ -62,6 +61,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
                   ? (firstCycleVideo.videoObject?.muxAssetId ?? "")
                   : (signedPlaybackId?.id ?? "")
               }
+              isAudioClip={isAudioClip}
               playbackPolicy={"signed"}
               numberOfClips={video.length}
               href={
