@@ -1,3 +1,16 @@
+# [1.669.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.3...v1.669.0) (2025-01-22)
+
+
+### Bug Fixes
+
+* added missing <Terms/> to signin flow ([2b0fff9](https://github.com/oaknational/Oak-Web-Application/commit/2b0fff9f74609b7f6cb107263de954ee7eeb3abf))
+* added school URN hack ([29c9e55](https://github.com/oaknational/Oak-Web-Application/commit/29c9e5589f8bb96b9a92f11e0f2e2e921a6a8c24))
+
+
+### Features
+
+* initial curric login interim solution for docx downloads ([47cfe53](https://github.com/oaknational/Oak-Web-Application/commit/47cfe53be0396187523980bcffeb40320ff3f905))
+
 ## [1.668.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.2...v1.668.3) (2025-01-22)
 
 
