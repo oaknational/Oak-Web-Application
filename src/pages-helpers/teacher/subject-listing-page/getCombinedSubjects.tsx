@@ -17,47 +17,51 @@ export const getCombinedSubjects = (
     return null;
   }
 
-  const newSubject = subject.filter((s) => !isSlugLegacy(s.programmeSlug));
-  const legacySubject = subject.filter((s) => isSlugLegacy(s.programmeSlug));
+  const newSubjectArray = subject.filter((s) => !isSlugLegacy(s.programmeSlug));
+  const legacySubjectArray = subject.filter((s) =>
+    isSlugLegacy(s.programmeSlug),
+  );
 
   // programme count is the maximum of the subject programme count
-  const newSubjectProgrammeCountArray = newSubject.map((s) => s.programmeCount);
+  const newSubjectProgrammeCountArray = newSubjectArray.map(
+    (s) => s.programmeCount,
+  );
   const newSubjectMaxProgrammeCount = Math.max(
     ...newSubjectProgrammeCountArray,
   );
 
   const programmeCount = Math.max(
     newSubjectMaxProgrammeCount,
-    legacySubject[0]?.programmeCount ?? 0,
+    legacySubjectArray[0]?.programmeCount ?? 0,
   );
 
   // unit count is the sum of the subject unit count
-  const newSubjectUnitCountArray = newSubject.map((s) => s.unitCount);
+  const newSubjectUnitCountArray = newSubjectArray.map((s) => s.unitCount);
   const newSubjectTotalUnitCount = newSubjectUnitCountArray.reduce(
     (partialSum, a) => partialSum + a,
     0,
   );
 
   const unitCount = isEyfs
-    ? (legacySubject[0]?.unitCount ?? 0)
-    : newSubjectTotalUnitCount + (legacySubject[0]?.unitCount ?? 0);
+    ? (legacySubjectArray[0]?.unitCount ?? 0)
+    : newSubjectTotalUnitCount + (legacySubjectArray[0]?.unitCount ?? 0);
 
   // lesson count is the sum of the subject lesson count
-  const newSubjectLessonCountArray = newSubject.map((s) => s.lessonCount);
+  const newSubjectLessonCountArray = newSubjectArray.map((s) => s.lessonCount);
   const newSubjectTotalLessonCount = newSubjectLessonCountArray.reduce(
     (partialSum, a) => partialSum + a,
     0,
   );
 
   const lessonCount = isEyfs
-    ? (legacySubject[0]?.lessonCount ?? 0)
-    : newSubjectTotalLessonCount + (legacySubject[0]?.lessonCount ?? 0);
+    ? (legacySubjectArray[0]?.lessonCount ?? 0)
+    : newSubjectTotalLessonCount + (legacySubjectArray[0]?.lessonCount ?? 0);
 
   type CombinedSubject = KeyStageSubjectData & { isNew: boolean };
 
   const combinedSubjectArray: CombinedSubject[] =
-    newSubject.length > 0
-      ? newSubject.map((newSubject) => ({
+    newSubjectArray.length > 0
+      ? newSubjectArray.map((newSubject) => ({
           programmeSlug: newSubject.programmeSlug,
           programmeCount: programmeCount,
           subjectSlug: newSubject.subjectSlug,
@@ -70,7 +74,7 @@ export const getCombinedSubjects = (
           pathwayTitle: newSubject.pathwayTitle,
           isNew: true,
         }))
-      : legacySubject.map((legacySubject) => ({
+      : legacySubjectArray.map((legacySubject) => ({
           programmeSlug: legacySubject.programmeSlug,
           programmeCount,
           subjectSlug: legacySubject.subjectSlug,

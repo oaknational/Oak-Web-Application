@@ -56,6 +56,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
                 programmeSlug: "maths-early-years-foundation-stage",
                 programmeCount: 2,
                 pathwaySlug: null,
+                pathwayTitle: null,
               },
               hasNewContent: true,
             },
@@ -147,6 +148,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
             programmeSlug: "maths-secondary-ks3",
             programmeCount: 1,
             pathwaySlug: null,
+            pathwayTitle: null,
           },
         ],
         keyStages: [
@@ -170,6 +172,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
             programmeSlug: "maths-secondary-ks3-l",
             programmeCount: 1,
             pathwaySlug: null,
+            pathwayTitle: null,
           },
         ],
         keyStages: [],

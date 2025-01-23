@@ -14,8 +14,8 @@ export const subjectSchema = z.object({
   lessonCount: z.number(),
   programmeSlug: z.string(),
   programmeCount: z.number(),
-  pathwaySlug: pathwaySlugs.nullish(),
-  pathwayTitle: pathways.nullish(),
+  pathwaySlug: pathwaySlugs.nullable(),
+  pathwayTitle: pathways.nullable(),
 });
 
 const keyStageDataRaw = z.object({

@@ -19,6 +19,7 @@ describe("getCombinedSubjects", () => {
         subjectTitle: "Biology",
         unitCount: 4,
         pathwaySlug: null,
+        pathwayTitle: null,
       },
     ]);
   });
@@ -38,6 +39,7 @@ describe("getCombinedSubjects", () => {
         subjectSlug: "music",
         subjectTitle: "Music",
         pathwaySlug: null,
+        pathwayTitle: null,
       },
     ]);
   });
@@ -57,6 +59,7 @@ describe("getCombinedSubjects", () => {
         subjectTitle: "Chemistry",
         unitCount: 6,
         pathwaySlug: null,
+        pathwayTitle: null,
       },
     ]);
   });
