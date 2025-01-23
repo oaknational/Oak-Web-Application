@@ -8,13 +8,14 @@ import {
 
 import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/SubjectListingCardCountCard";
+import SubjectListingCardCountCardWithPathways from "@/components/TeacherComponents/SubjectListingCardCountCardWithPathways";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type SubjectListingCardProps = Omit<CardProps, "children"> & {
   titleTag?: OakHeadingTag;
 } & {
-  subject: Subjects[number];
+  subject: Subjects;
   subjectSlug: string;
   keyStageSlug: string;
   keyStageTitle: string;
@@ -67,7 +68,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
             $font={"heading-6"}
             tag={titleTag}
           >
-            {subject.data.subjectTitle}
+            {subject?.[0]?.data.subjectTitle}
           </OakHeading>
         </OakFlex>
       </OakFlex>
@@ -79,12 +80,20 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
         $width={"100%"}
       >
         <OakFlex role={"listitem"} $flexGrow={1}>
-          <SubjectListingCardDoubleCountCard
-            isLegacyLesson={!subject.hasNewContent}
-            keyStageSlug={keyStageSlug}
-            keyStageTitle={keyStageTitle}
-            {...subject.data}
-          />
+          {subject.length === 1 && subject[0] ? (
+            <SubjectListingCardDoubleCountCard
+              isLegacyLesson={!subject?.[0]?.hasNewContent}
+              keyStageSlug={keyStageSlug}
+              keyStageTitle={keyStageTitle}
+              {...subject[0].data}
+            />
+          ) : (
+            <SubjectListingCardCountCardWithPathways
+              keyStageSlug={keyStageSlug}
+              keyStageTitle={keyStageTitle}
+              subjectPathwaysArray={subject}
+            />
+          )}
         </OakFlex>
       </OakFlex>
     </Card>
