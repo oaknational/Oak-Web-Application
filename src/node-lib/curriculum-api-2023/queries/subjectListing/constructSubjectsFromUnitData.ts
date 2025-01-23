@@ -12,7 +12,8 @@ interface UnprocessedSubject {
     unitIds: Set<number>;
     lessonIds: Set<number>;
     programmeSlugs: Set<string>;
-    pathwaySlug: string | null;
+    pathwaySlug: "core" | "gcse" | null;
+    pathwayTitle: "Core" | "GCSE" | null;
   };
 }
 
@@ -23,7 +24,9 @@ interface ProcessedSubject {
   unitCount: number;
   lessonCount: number;
   programmeCount: number;
-  pathwaySlug: string | null;
+  // @todo why is there typescript error when I try to do typeof pathwaySlugs
+  pathwaySlug: "core" | "gcse" | null;
+  pathwayTitle: "Core" | "GCSE" | null;
 }
 
 export const constructSubjectsFromUnitData = (
@@ -41,6 +44,7 @@ export const constructSubjectsFromUnitData = (
       tier_slug,
       examboard_slug,
       pathway_slug,
+      pathway,
     } = unit.programme_fields;
     const { unit_id } = unit_data;
     const originalProgrammeSlug = programme_slug;
@@ -69,6 +73,7 @@ export const constructSubjectsFromUnitData = (
         lessonIds: new Set(lesson_ids),
         programmeSlugs: new Set([originalProgrammeSlug]),
         pathwaySlug: pathway_slug,
+        pathwayTitle: pathway,
       };
     }
 
@@ -85,6 +90,7 @@ export const constructSubjectsFromUnitData = (
       lessonCount: subject.lessonIds.size,
       programmeCount: subject.programmeSlugs.size,
       pathwaySlug: subject.pathwaySlug,
+      pathwayTitle: subject.pathwayTitle,
     }),
   );
 

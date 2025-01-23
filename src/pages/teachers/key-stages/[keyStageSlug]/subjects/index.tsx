@@ -32,7 +32,7 @@ export type Subjects = {
 }[];
 
 export type SubjectListingPageProps = {
-  subjects: Subjects[];
+  subjects: [Subjects, ...Subjects[]];
   keyStageSlug: string;
   keyStageTitle: string;
   keyStages: KeyStageData[];

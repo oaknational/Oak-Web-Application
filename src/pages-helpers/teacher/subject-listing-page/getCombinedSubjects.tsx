@@ -59,12 +59,15 @@ export const getCombinedSubjects = (
     newSubject.length > 0
       ? newSubject.map((newSubject) => ({
           programmeSlug: newSubject.programmeSlug,
-          programmeCount,
+          programmeCount: programmeCount,
           subjectSlug: newSubject.subjectSlug,
           subjectTitle: newSubject.subjectTitle,
-          unitCount,
-          lessonCount,
+          unitCount: newSubject.pathwaySlug ? newSubject.unitCount : unitCount,
+          lessonCount: newSubject.pathwaySlug
+            ? newSubject.lessonCount
+            : lessonCount,
           pathwaySlug: newSubject.pathwaySlug,
+          pathwayTitle: newSubject.pathwayTitle,
           isNew: true,
         }))
       : legacySubject.map((legacySubject) => ({
@@ -75,6 +78,7 @@ export const getCombinedSubjects = (
           unitCount,
           lessonCount,
           pathwaySlug: legacySubject.pathwaySlug,
+          pathwayTitle: legacySubject.pathwayTitle,
           isNew: false,
         }));
 

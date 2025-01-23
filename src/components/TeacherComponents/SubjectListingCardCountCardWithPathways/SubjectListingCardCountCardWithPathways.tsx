@@ -36,6 +36,7 @@ const SubjectListingCardCountCardWithPathways: FC<
           lessonCount,
           unitCount,
           pathwaySlug,
+          pathwayTitle,
         } = subjectPathway.data;
 
         const ariaLabel = `${subjectTitle}: ${unitCount} ${
@@ -90,7 +91,7 @@ const SubjectListingCardCountCardWithPathways: FC<
                   $pa={"inner-padding-m"}
                   $font={"body-3-bold"}
                 >
-                  {pathwaySlug}
+                  {pathwayTitle}
                 </OakBox>
                 <OakFlex
                   $flexDirection={"column"}

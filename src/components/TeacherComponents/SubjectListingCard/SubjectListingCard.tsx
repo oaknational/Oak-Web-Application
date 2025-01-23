@@ -43,13 +43,15 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
         $mb={["space-between-xs", "space-between-none"]}
         $ml={["space-between-xs", "space-between-none"]}
         $mt="space-between-xs"
+        $flexGrow={1}
+        $justifyContent={"center"}
       >
         <OakFlex
           $mr={["space-between-ssx", "space-between-none"]}
           $mb={["space-between-none", "space-between-ssx"]}
-          $height={["all-spacing-10", "all-spacing-12"]}
-          $width={["all-spacing-10", "all-spacing-12"]}
-          $minWidth={["all-spacing-10", "all-spacing-12"]}
+          $height={["all-spacing-10", "all-spacing-13"]}
+          $width={["all-spacing-10", "all-spacing-13"]}
+          $minWidth={["all-spacing-10", "all-spacing-13"]}
         >
           <OakIcon
             iconName={getValidSubjectIconName(subjectSlug)}
@@ -61,7 +63,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
         <OakFlex
           $mh={["space-between-none", "space-between-xs"]}
           $alignItems={["start", "center"]}
-          $minHeight={["all-spacing-0", "all-spacing-12"]}
+          $minHeight={["all-spacing-0", "all-spacing-11"]}
         >
           <OakHeading
             $textAlign={["start", "center"]}
@@ -80,14 +82,15 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
         $width={"100%"}
       >
         <OakFlex role={"listitem"} $flexGrow={1}>
-          {subject.length === 1 && subject[0] ? (
+          {subject.length === 1 && subject[0] && (
             <SubjectListingCardDoubleCountCard
               isLegacyLesson={!subject?.[0]?.hasNewContent}
               keyStageSlug={keyStageSlug}
               keyStageTitle={keyStageTitle}
               {...subject[0].data}
             />
-          ) : (
+          )}
+          {subject.length > 1 && (
             <SubjectListingCardCountCardWithPathways
               keyStageSlug={keyStageSlug}
               keyStageTitle={keyStageTitle}

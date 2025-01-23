@@ -21,6 +21,7 @@ describe("constructSubjectsFromUnitData", () => {
         lessonCount: 1,
         programmeCount: 1,
         pathwaySlug: null,
+        pathwayTitle: null,
       },
     ]);
   });
