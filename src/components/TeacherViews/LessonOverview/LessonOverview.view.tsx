@@ -101,7 +101,6 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     actions,
     hasMediaClips,
     lessonMediaClips,
-    lessonOutline,
     teacherNoteHtml,
     additionalFiles,
   } = lesson;
@@ -404,7 +403,6 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                         isCanonical={isCanonical}
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
-                        lessonOutline={lessonOutline ?? null}
                       />
                     </LessonItemContainer>
                   )}

@@ -2,6 +2,7 @@ import {
   getPlaybackId,
   getPlayingState,
   getInitialCurrentClip,
+  joinTranscript,
 } from "./lessonMedia.helpers";
 
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
@@ -24,6 +25,24 @@ describe("lessonMedia helpers", () => {
       const playbackId = clip && getPlaybackId(clip);
       expect(playbackId).toEqual(
         "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+      );
+    });
+  });
+
+  describe("joinTranscript", () => {
+    it("should get transcript sentences joined with a space", () => {
+      const introClips = {
+        ...lessonMediaClipsFixtures()?.mediaClips?.["intro"],
+        transcriptSentences: [
+          "There will be some transcript sentences here.",
+          "Welcome to the lesson.",
+        ],
+      };
+
+      const transcript = joinTranscript(introClips);
+      console.log(transcript);
+      expect(transcript).toEqual(
+        "There will be some transcript sentences here. Welcome to the lesson.",
       );
     });
   });

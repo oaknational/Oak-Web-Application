@@ -31,7 +31,6 @@ const LessonOverviewMediaClipsComponent = (
     lessonSlug: string;
     unitSlug: string | null;
     programmeSlug: string | null;
-    lessonOutline: { lessonOutline: string }[] | null;
   },
 ) => {
   return (
@@ -66,11 +65,6 @@ export const LessonOverviewMediaClips: Story = {
       ...additionalCycles,
     },
     lessonSlug: "lesson-slug",
-    lessonOutline: [
-      { lessonOutline: "Cycle 1" },
-      { lessonOutline: "Cycle 2" },
-      { lessonOutline: "Cycle 3" },
-    ],
   },
   render: (args) => <LessonOverviewMediaClipsComponent {...args} />,
 };

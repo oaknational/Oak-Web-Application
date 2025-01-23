@@ -31,7 +31,7 @@ import {
   getPlaybackId,
   getPlayingState,
   getInitialCurrentClip,
-  getTranscript,
+  joinTranscript,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 
 type BaseLessonMedia = {
@@ -63,7 +63,12 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const { lessonTitle, lessonSlug, keyStageTitle, mediaClips, lessonOutline } =
     lesson;
 
-  const isPELesson = lessonSlug === "physical-education";
+  const subjectSlug = isCanonical
+    ? (lesson?.pathways[0]?.subjectSlug ?? "")
+    : (lesson.subjectSlug ?? "");
+  const isPELesson = isCanonical
+    ? lesson?.pathways[0]?.subjectSlug === "physical-education"
+    : lesson.subjectSlug === "physical-education";
 
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
@@ -234,7 +239,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       keyStageTitle={keyStageTitle}
       yearTitle={yearTitle}
       subjectTitle={subjectTitle}
-      videoTranscript={getTranscript(currentClip)}
+      videoTranscript={joinTranscript(currentClip)}
       copyLinkButtonEnabled={true}
     />
   );
@@ -256,6 +261,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
               lessonSlug,
               programmeSlug,
               unitSlug,
+              subjectSlug,
               disabled: true,
             }),
           ]}

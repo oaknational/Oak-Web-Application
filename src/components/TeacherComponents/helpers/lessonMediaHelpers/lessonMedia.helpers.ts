@@ -10,7 +10,7 @@ export const getPlaybackId = (currentClip: MediaClip) => {
   return "";
 };
 
-export const getTranscript = (currentClip: MediaClip) => {
+export const joinTranscript = (currentClip: MediaClip) => {
   return currentClip?.transcriptSentences?.join(" ");
 };
 

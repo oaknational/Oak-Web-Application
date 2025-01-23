@@ -60,7 +60,17 @@ export const betaLessonMediaClipsQuery =
       mediaClips: MediaClipListCamelCase;
     };
 
-    const data = constructLessonMediaData(browseData, []);
+    const data = constructLessonMediaData(browseData, [
+      {
+        programmeSlug: browseData.programmeSlug,
+        unitSlug: browseData.unitSlug,
+        unitTitle: browseData.unitData.title,
+        keyStageSlug: browseData.programmeFields.keystageSlug,
+        keyStageTitle: browseData.programmeFields.keystageDescription,
+        subjectSlug: browseData.programmeFields.subjectSlug,
+        subjectTitle: browseData.programmeFields.subject,
+      },
+    ]);
 
     return data as T;
   };

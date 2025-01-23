@@ -19,7 +19,6 @@ describe("LessonOverviewMediaClips", () => {
         lessonSlug="lesson-slug"
         unitSlug="unit-slug"
         programmeSlug="programme-slug"
-        lessonOutline={[{ lessonOutline: "This is the lesson outline" }]}
       />,
     );
 
@@ -33,7 +32,6 @@ describe("LessonOverviewMediaClips", () => {
         lessonSlug="lesson-slug"
         unitSlug="unit-slug"
         programmeSlug="programme-slug"
-        lessonOutline={[{ lessonOutline: "This is the lesson outline" }]}
       />,
     );
 
@@ -61,7 +59,6 @@ describe("LessonOverviewMediaClips", () => {
         lessonSlug="lesson-slug"
         unitSlug={null}
         programmeSlug={null}
-        lessonOutline={[{ lessonOutline: "This is the lesson outline" }]}
       />,
     );
 
@@ -76,5 +73,17 @@ describe("LessonOverviewMediaClips", () => {
       lessonSlug: "lesson-slug",
       query: { video: "191188" },
     });
+  });
+
+  it("if no learning cycle videos component returns null", () => {
+    const { container } = renderWithTheme(
+      <LessonOverviewMediaClips
+        learningCycleVideos={null}
+        lessonSlug="lesson-slug"
+        unitSlug="unit-slug"
+        programmeSlug="programme-slug"
+      />,
+    );
+    expect(container.firstChild).toBeNull();
   });
 });

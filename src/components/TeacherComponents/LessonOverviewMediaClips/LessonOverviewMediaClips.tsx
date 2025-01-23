@@ -11,7 +11,6 @@ type LessonOverviewMediaClipsProps = {
   unitSlug: string | null;
   programmeSlug: string | null;
   lessonSlug: string;
-  lessonOutline: { lessonOutline: string }[] | null;
   isCanonical?: boolean;
 };
 

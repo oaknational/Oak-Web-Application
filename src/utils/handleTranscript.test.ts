@@ -128,6 +128,26 @@ const mockParse = jest
     cues: [{ text: "sentence 1" }, { text: "sentence 2" }],
     errors: [],
     time: 0,
+  })
+  .mockReturnValueOnce({
+    cues: [{ text: "sentence 3" }, { text: "sentence 4" }],
+    errors: [],
+    time: 0,
+  })
+  .mockReturnValueOnce({
+    cues: [{ text: "sentence 5" }, { text: "sentence 6" }],
+    errors: [],
+    time: 0,
+  })
+  .mockReturnValueOnce({
+    cues: [{ text: "sentence 7" }, { text: "sentence 8" }],
+    errors: [],
+    time: 0,
+  })
+  .mockReturnValueOnce({
+    cues: [{ text: "sentence 9" }, { text: "sentence 10" }],
+    errors: [],
+    time: 0,
   });
 
 jest.mock("webvtt-parser", () => ({
@@ -191,27 +211,24 @@ describe("extractIdFromUrl", () => {
     expect(result).toBe("");
   });
 });
-
-describe.skip("populateMediaClipsWithTranscripts", () => {
-  const mediaClips = keysToCamelCase(mediaClipsFixture().media_clips);
-
+describe("populateMediaClipsWithTranscripts", () => {
   it("populates media clips with transcripts", async () => {
+    const mediaClips = keysToCamelCase(mediaClipsFixture().media_clips);
     const result = await populateMediaClipsWithTranscripts(mediaClips);
 
     if (result && result["intro"] && result["intro"][0]) {
       expect(result["intro"][0].transcriptSentences).toEqual([
-        "Hi, welcome to today's lesson on the area of a triangle.",
-        "By the end of today's lesson, you'll be able to derive the formula for the area of a triangle.",
-        "Now, in our lesson today, we're going to be using some specific mathematical terminology.",
-        "For two words that we're going to be using today, in particular, our base and the phrase perpendicular height.",
+        "sentence 3 sentence 4.",
       ]);
     }
     if (result && result["intro"] && result["intro"][1]) {
-      expect(result["intro"][1].transcriptSentences).toBeNull();
+      expect(result["intro"][1].transcriptSentences).toEqual([
+        "sentence 5 sentence 6.",
+      ]);
     }
     if (result && result["cycle2"] && result["cycle2"][0]) {
       expect(result["cycle2"][0].transcriptSentences).toEqual([
-        "sentence 1 sentence 2.",
+        "sentence 7 sentence 8.",
       ]);
     }
   });
