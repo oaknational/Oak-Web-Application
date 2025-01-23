@@ -229,7 +229,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   );
 
   // media clip info component
-  const lessonMediaClipInfo = currentClip && yearTitle && subjectTitle && (
+  const lessonMediaClipInfo = currentClip && subjectTitle && (
     <LessonMediaClipInfo
       clipTitle={
         currentClip.customTitle
@@ -237,7 +237,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
           : ""
       }
       keyStageTitle={keyStageTitle}
-      yearTitle={yearTitle}
+      yearTitle={yearTitle ?? ""}
       subjectTitle={subjectTitle}
       videoTranscript={joinTranscript(currentClip)}
       copyLinkButtonEnabled={true}

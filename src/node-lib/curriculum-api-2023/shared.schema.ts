@@ -129,6 +129,8 @@ export const lessonPathwaySchema = z.object({
   examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
+  yearGroupSlug: z.string().nullish(),
+  yearGroupTitle: z.string().nullish(),
 });
 
 export type LessonPathway = z.infer<typeof lessonPathwaySchema>;

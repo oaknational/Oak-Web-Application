@@ -69,9 +69,10 @@ export const betaLessonMediaClipsQuery =
         keyStageTitle: browseData.programmeFields.keystageDescription,
         subjectSlug: browseData.programmeFields.subjectSlug,
         subjectTitle: browseData.programmeFields.subject,
+        yearGroupSlug: browseData.programmeFields.yearSlug,
+        yearGroupTitle: browseData.programmeFields.yearDescription,
       },
     ]);
-
     return data as T;
   };
 
