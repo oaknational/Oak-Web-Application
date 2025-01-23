@@ -1,3 +1,4 @@
+import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { getFileFromBucket } from "@/utils/gCloudStorage";
 import { Cue, WebVTTParser } from "webvtt-parser";
@@ -70,4 +71,32 @@ export const populateLessonWithTranscript = async (
   }
 
   return lesson;
+};
+
+export const extractIdFromUrl = (url: string): string => {
+  const segments = url.split("/");
+  const lastSegment = segments[segments.length - 1];
+  const id = lastSegment?.split(".")[0];
+  return id ?? "";
+};
+
+export const populateMediaClipsWithTranscripts = async (
+  mediaClips: MediaClipListCamelCase,
+): Promise<MediaClipListCamelCase | null> => {
+  const populatedMediaClip = {} as MediaClipListCamelCase;
+  for (const cycle in mediaClips) {
+    const cycleClips = mediaClips[cycle];
+    if (!cycleClips) return null;
+
+    const populateMediaClip = cycleClips.map(async (mediaClip) => {
+      const id = extractIdFromUrl(mediaClip?.mediaObject?.url ?? "");
+      const transcriptSentences = await getCaptionsFromFile(`${id}.vtt`);
+
+      return { ...mediaClip, transcriptSentences: transcriptSentences ?? null };
+    });
+
+    const populatedClips = await Promise.all(populateMediaClip);
+    populatedMediaClip[cycle] = populatedClips;
+  }
+  return populatedMediaClip;
 };

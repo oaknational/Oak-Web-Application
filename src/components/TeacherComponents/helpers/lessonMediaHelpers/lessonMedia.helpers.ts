@@ -10,6 +10,10 @@ export const getPlaybackId = (currentClip: MediaClip) => {
   return "";
 };
 
+export const getTranscript = (currentClip: MediaClip) => {
+  return currentClip?.transcriptSentences?.join(" ");
+};
+
 export const getPlayingState = (
   currentClipMediaId: string | undefined,
   mediaId: string,

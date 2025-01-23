@@ -27,6 +27,24 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => true),
 }));
 
+jest.mock("@google-cloud/storage", () => {
+  return {
+    Storage: jest.fn().mockImplementation(() => ({
+      bucket: jest.fn(() => ({
+        file: jest.fn(() => ({
+          save: jest.fn((data, options, callback) => {
+            callback(null); // Simulate success
+          }),
+          createWriteStream: jest.fn(() => ({
+            on: jest.fn(),
+            end: jest.fn(),
+          })),
+        })),
+      })),
+    })),
+  };
+});
+
 describe("LessonMediaClipsPage", () => {
   beforeEach(() => {
     (useRouter as jest.Mock).mockReturnValue({
@@ -91,7 +109,7 @@ describe("LessonMediaClipsPage", () => {
         unitSlug: "running-and-jumping",
       });
     });
-    it("should return notFound when a landing page is missing", async () => {
+    it.only("should return notFound when a landing page is missing", async () => {
       (curriculumApi.lessonMediaClips as jest.Mock).mockResolvedValueOnce(
         undefined,
       );

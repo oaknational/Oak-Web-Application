@@ -1,7 +1,7 @@
 import { z } from "zod";
 import {
   syntheticUnitvariantLessonsSchema,
-  mediaClipsRecordSchema,
+  // mediaClipsRecordSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
@@ -57,11 +57,11 @@ export const mediaClipCycleCamel = z
     customTitle: z.string().nullish(),
     mediaObject: clipMediaObjectSchema,
     videoObject: clipVideoObjectSchema,
+    transcriptSentences: z.array(z.string()).nullish(),
   })
   .partial()
   .nullish();
 
-// const mediaClipCycleCamel = zodToCamelCase(mediaClipCycleSchema);
 const lessonPathwaySchema = z.object({
   programmeSlug: z.string(),
   unitSlug: z.string(),
@@ -100,7 +100,7 @@ export const canonicalLessonMediaClipsSchema =
   });
 
 export type MediaClipListCamelCase = ConvertKeysToCamelCase<
-  z.infer<typeof mediaClipsRecordSchema>
+  z.infer<typeof mediaClipsRecordCamelSchema>
 >;
 
 export type MediaClip = ConvertKeysToCamelCase<

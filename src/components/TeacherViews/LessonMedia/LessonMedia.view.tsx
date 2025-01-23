@@ -31,6 +31,7 @@ import {
   getPlaybackId,
   getPlayingState,
   getInitialCurrentClip,
+  getTranscript,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 
 type BaseLessonMedia = {
@@ -233,7 +234,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       keyStageTitle={keyStageTitle}
       yearTitle={yearTitle}
       subjectTitle={subjectTitle}
-      // videoTranscript={getTranscript(currentClip)}
+      videoTranscript={getTranscript(currentClip)}
       copyLinkButtonEnabled={true}
     />
   );

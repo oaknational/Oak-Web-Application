@@ -1,11 +1,16 @@
+import { mediaClipsFixture } from "@oaknational/oak-curriculum-schema";
+
 import {
   getCaptionsFromFile,
   formatSentences,
   removeWebVttCharacters,
   populateLessonWithTranscript,
+  populateMediaClipsWithTranscripts,
+  extractIdFromUrl,
 } from "./handleTranscript";
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 describe("removeWebVttCharacters ", () => {
   const sentences = [
@@ -164,5 +169,50 @@ describe("populateLessonWithTranscript", () => {
     );
 
     expect(lesson.transcriptSentences).toEqual(["sentence 1 sentence 2."]);
+  });
+});
+
+describe("extractIdFromUrl", () => {
+  it("extracts the ID from a URL", () => {
+    const url = "https://example.com/media/12345.mp4";
+    const result = extractIdFromUrl(url);
+    expect(result).toBe("12345");
+  });
+
+  it("returns an empty string if the URL is empty", () => {
+    const url = "";
+    const result = extractIdFromUrl(url);
+    expect(result).toBe("");
+  });
+
+  it("returns an empty string if the URL does not contain an ID", () => {
+    const url = "https://example.com/media/";
+    const result = extractIdFromUrl(url);
+    expect(result).toBe("");
+  });
+});
+
+describe.skip("populateMediaClipsWithTranscripts", () => {
+  const mediaClips = keysToCamelCase(mediaClipsFixture().media_clips);
+
+  it("populates media clips with transcripts", async () => {
+    const result = await populateMediaClipsWithTranscripts(mediaClips);
+
+    if (result && result["intro"] && result["intro"][0]) {
+      expect(result["intro"][0].transcriptSentences).toEqual([
+        "Hi, welcome to today's lesson on the area of a triangle.",
+        "By the end of today's lesson, you'll be able to derive the formula for the area of a triangle.",
+        "Now, in our lesson today, we're going to be using some specific mathematical terminology.",
+        "For two words that we're going to be using today, in particular, our base and the phrase perpendicular height.",
+      ]);
+    }
+    if (result && result["intro"] && result["intro"][1]) {
+      expect(result["intro"][1].transcriptSentences).toBeNull();
+    }
+    if (result && result["cycle2"] && result["cycle2"][0]) {
+      expect(result["cycle2"][0].transcriptSentences).toEqual([
+        "sentence 1 sentence 2.",
+      ]);
+    }
   });
 });

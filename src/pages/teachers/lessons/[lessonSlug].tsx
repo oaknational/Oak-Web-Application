@@ -202,7 +202,6 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           lesson = await populateLessonWithTranscript(lesson);
         }
       }
-      console.log(lesson, "<< LESSON");
       if (!lesson) {
         return {
           notFound: true,

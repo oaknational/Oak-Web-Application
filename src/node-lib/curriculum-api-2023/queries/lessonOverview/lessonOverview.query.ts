@@ -262,8 +262,6 @@ const lessonOverviewQuery =
       lessonSlug,
     });
 
-    console.log(res.browseData[0]?.lesson_data.media_clips, " <<< Lesson data");
-
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       LessonOverviewQuery["browseData"][number]
     >({
@@ -311,8 +309,6 @@ const lessonOverviewQuery =
      *  */
 
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
-
-    console.log(browseData.lessonData, " <<< BROWSE Lesson data");
     const content = keysToCamelCase({
       ...contentSnake,
     }) as LessonOverviewContent;
