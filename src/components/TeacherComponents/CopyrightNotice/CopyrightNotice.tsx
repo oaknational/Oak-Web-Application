@@ -66,8 +66,10 @@ const PostAlbCopyright = (
   const { copyrightYear } = props;
   const year = new Date(copyrightYear).getFullYear();
   return (
-    <OakP $font="body-3" {...props}>
-      This content is © Oak National Academy Limited ({year}), licensed on{" "}
+    <>
+      <OakP $font="body-3" {...props}>
+        This content is © Oak National Academy Limited ({year}), licensed on{" "}
+      </OakP>
       <OakLink
         aria-label={`Open Government License version 3.0${
           props.openLinksExternally ? " (opens in a new tab)" : ""
@@ -98,8 +100,8 @@ const PostAlbCopyright = (
         Oak's terms & conditions
         <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
       </OwaLink>{" "}
-      (Collection 2).
-    </OakP>
+      <OakP>(Collection 2).</OakP>
+    </>
   );
 };
 
