@@ -62,7 +62,6 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const { isCanonical, lesson } = props;
   const { lessonTitle, lessonSlug, keyStageTitle, mediaClips, lessonOutline } =
     lesson;
-
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
     : (lesson.subjectSlug ?? "");
@@ -199,7 +198,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
               playbackPolicy={"signed"}
               isAudioClip={false}
               onClick={() => onMediaClipClick(String(mediaId))}
-              key={index}
+              key={`${title} ${index}`}
             />
           );
         } else if (mediaObject?.format === "mp3" && videoObject) {
@@ -220,7 +219,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
               isAudioClip={false}
               imageAltText=""
               onClick={() => onMediaClipClick(String(mediaId))}
-              key={index}
+              key={`${title} ${index}`}
             />
           );
         }

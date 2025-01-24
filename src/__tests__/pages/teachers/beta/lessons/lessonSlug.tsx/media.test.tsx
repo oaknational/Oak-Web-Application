@@ -1,22 +1,21 @@
 import { GetStaticPropsContext, PreviewData } from "next";
 import { useRouter } from "next/router";
-// import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
-// import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import {
   getStaticProps,
   getStaticPaths,
   URLParams,
 } from "@/pages/teachers/beta/lessons/[lessonSlug]/media";
-// import { LessonMediaClipsPage } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media";
+import { LessonMediaClipsPage } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
-// import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { CanonicalLessonMediaClipsPageProps } from "@/pages/teachers/lessons/[lessonSlug]/media";
-// import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-// const render = renderWithProviders();
+const render = renderWithProviders();
 
-// const lessonFixtureData = lessonMediaClipsFixtures();
+const lessonFixtureData = lessonMediaClipsFixtures();
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
@@ -30,10 +29,6 @@ jest.mock("@google-cloud/storage", () => {
           save: jest.fn((data, options, callback) => {
             callback(null); // Simulate success
           }),
-          createWriteStream: jest.fn(() => ({
-            on: jest.fn(),
-            end: jest.fn(),
-          })),
         })),
       })),
     })),
@@ -49,6 +44,16 @@ describe("BetaLessonMediaClipsPage", () => {
       query: {},
       asPath: "/teachers/beta/lessons/running-as-a-team/media",
     });
+  });
+
+  it.skip("Renders breadcrumbs", async () => {
+    const result = render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonMediaClipsPage curriculumData={lessonFixtureData} />,
+      </OakThemeProvider>,
+    );
+
+    expect(result.queryByText("Extra video and audio")).toBeInTheDocument();
   });
 
   describe("getStaticPaths", () => {

@@ -77,7 +77,6 @@ export const getStaticProps: GetStaticProps<
         await curriculumApi2023.lessonMediaClips<CanonicalLessonMediaClips>({
           lessonSlug,
         });
-
       if (!curriculumData || !curriculumData.mediaClips) {
         return {
           notFound: true,
