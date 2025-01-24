@@ -40,7 +40,6 @@ describe("lessonMedia helpers", () => {
       };
 
       const transcript = joinTranscript(introClips);
-      console.log(transcript);
       expect(transcript).toEqual(
         "There will be some transcript sentences here. Welcome to the lesson.",
       );

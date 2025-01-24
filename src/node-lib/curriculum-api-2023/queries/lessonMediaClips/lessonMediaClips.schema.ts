@@ -1,8 +1,5 @@
 import { z } from "zod";
-import {
-  syntheticUnitvariantLessonsSchema,
-  // mediaClipsRecordSchema,
-} from "@oaknational/oak-curriculum-schema";
+import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 

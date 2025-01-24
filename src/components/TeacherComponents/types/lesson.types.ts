@@ -60,7 +60,7 @@ export const getPathway = (lesson: LessonOverviewAll) => {
 export type LessonOverviewCanonical = LessonBase & {
   isCanonical: true;
   pathways: LessonPathway[];
-  lessonMediaClips: MediaClipListCamelCase | null | undefined;
+  lessonMediaClips?: MediaClipListCamelCase | null;
 };
 
 export type LessonOverviewInPathway = LessonBase & {
@@ -73,7 +73,7 @@ export type LessonOverviewInPathway = LessonBase & {
   unitSlug: string;
   programmeSlug: string;
   updatedAt: string;
-  lessonMediaClips: MediaClipListCamelCase | null | undefined;
+  lessonMediaClips?: MediaClipListCamelCase | null;
 };
 
 export type LessonOverviewAll = { isSpecialist: boolean } & (
