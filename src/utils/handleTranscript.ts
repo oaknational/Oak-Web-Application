@@ -45,8 +45,8 @@ export const removeWebVttCharacters = (
   // The opening sentence of the vtt file is wrapped in <v ->> </v>
   // I'm not sure why but we want to remove it
   const sentence1 = sentences[0]!
-    .replace(/<v\s+[^>]*>/g, "")
-    .replace("</v>", "");
+    .replace(/<v\s+[^>]*>/, "")
+    .replace(/<\/v>/, "");
   return [sentence1, ...sentences.slice(1)];
 };
 
