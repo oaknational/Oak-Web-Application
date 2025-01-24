@@ -158,10 +158,12 @@ export const LessonMedia = (props: LessonMediaProps) => {
           ? (currentClip?.mediaObject?.displayName ?? "")
           : ""
       }
+      // avo events need updating
       location={"lesson"}
       isLegacy={false}
       isAudioClip={currentClip.mediaObject?.format === "mp3"}
       userEventCallback={handleVideoEvents}
+      loadingTextColor="white"
     />
   );
 

@@ -2,7 +2,7 @@ import React, { FC, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
-import { OakP, OakFlex } from "@oaknational/oak-components";
+import { OakP, OakFlex, OakColorToken } from "@oaknational/oak-components";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
@@ -44,6 +44,7 @@ export type VideoPlayerProps = {
   userEventCallback?: (event: VideoEventCallbackArgs) => void;
   pathwayData?: PupilPathwayData;
   isAudioClip?: boolean;
+  loadingTextColor?: OakColorToken;
 };
 
 export type VideoEventCallbackArgs = {
@@ -64,6 +65,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     userEventCallback = () => {},
     pathwayData,
     isAudioClip,
+    loadingTextColor = "black",
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement>(null);
@@ -218,7 +220,9 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
           boxSizing: "content-box",
         }}
       >
-        <OakP $textAlign="center">Loading...</OakP>
+        <OakP $color={loadingTextColor} $textAlign="center">
+          Loading...
+        </OakP>
       </OakFlex>
     );
   }
