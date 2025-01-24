@@ -147,7 +147,6 @@ export const getLessonMediaBreadCrumb = ({
 }): Breadcrumb => {
   const mediaClipLabel = getMediaClipLabel(subjectSlug);
   if (programmeSlug && unitSlug) {
-    getMediaClipLabel;
     return {
       oakLinkProps: {
         page: "lesson-media",
