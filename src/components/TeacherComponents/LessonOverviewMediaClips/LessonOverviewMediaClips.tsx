@@ -54,11 +54,11 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
               title={
                 firstCycleVideo.customTitle
                   ? firstCycleVideo.customTitle
-                  : (firstCycleVideo.mediaObject?.displayName ?? "")
+                  : firstCycleVideo.mediaObject?.displayName
               }
               playbackId={
                 isAudioClip
-                  ? (firstCycleVideo.videoObject?.muxAssetId ?? "")
+                  ? firstCycleVideo.videoObject.muxAssetId
                   : (signedPlaybackId?.id ?? "")
               }
               isAudioClip={isAudioClip}

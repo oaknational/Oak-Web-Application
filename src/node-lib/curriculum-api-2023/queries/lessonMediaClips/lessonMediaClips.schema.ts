@@ -11,53 +11,41 @@ export type LessonBrowseData = ConvertKeysToCamelCase<
   z.infer<typeof lessonBrowseDataSchema>
 >;
 
-export const clipMediaObjectSchema = z
-  .object({
-    id: z.string(),
-    url: z.string(),
-    type: z.string(),
-    bytes: z.number(),
-    format: z.string(),
-    duration: z.number().nullable(),
-    displayName: z.string(),
-    resourceType: z.string(),
-  })
-  .partial()
-  .nullish();
+export const clipMediaObjectSchema = z.object({
+  id: z.string(),
+  url: z.string(),
+  type: z.string(),
+  bytes: z.number(),
+  format: z.string(),
+  duration: z.number().nullable(),
+  displayName: z.string(),
+  resourceType: z.string(),
+});
 
-export const clipVideoObjectSchema = z
-  .object({
-    id: z.string(),
-    duration: z.number().nullable(),
-    muxAssetId: z.string(),
-    playbackIds: z.array(
-      z
-        .object({
-          id: z.string(),
-          policy: z.string(),
-        })
-        .partial()
-        .nullish(),
-    ),
-    muxPlaybackId: z.string(),
-  })
-  .partial()
-  .nullish();
+export const clipVideoObjectSchema = z.object({
+  id: z.string(),
+  duration: z.number().nullable(),
+  muxAssetId: z.string(),
+  playbackIds: z.array(
+    z.object({
+      id: z.string(),
+      policy: z.string(),
+    }),
+  ),
+  muxPlaybackId: z.string(),
+});
 
-export const mediaClipCycleCamel = z
-  .object({
-    // Test data had mixture of numbers and strings
-    order: z.number().or(z.string()),
-    mediaId: z.number().or(z.string()),
-    videoId: z.number().nullable(),
-    mediaType: z.string().nullish(),
-    customTitle: z.string().nullish(),
-    mediaObject: clipMediaObjectSchema,
-    videoObject: clipVideoObjectSchema,
-    transcriptSentences: z.array(z.string()).nullish(),
-  })
-  .partial()
-  .nullish();
+export const mediaClipCycleCamel = z.object({
+  // Test data had mixture of numbers and strings
+  order: z.number().or(z.string()),
+  mediaId: z.number().or(z.string()),
+  videoId: z.number().nullable(),
+  mediaType: z.string().nullish(),
+  customTitle: z.string().nullish(),
+  mediaObject: clipMediaObjectSchema,
+  videoObject: clipVideoObjectSchema,
+  transcriptSentences: z.array(z.string()).nullish(),
+});
 
 const lessonPathwaySchema = z.object({
   programmeSlug: z.string(),

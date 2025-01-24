@@ -5,6 +5,7 @@ import {
   joinTranscript,
 } from "./lessonMedia.helpers";
 
+import { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 describe("lessonMedia helpers", () => {
@@ -37,7 +38,7 @@ describe("lessonMedia helpers", () => {
           "There will be some transcript sentences here.",
           "Welcome to the lesson.",
         ],
-      };
+      } as MediaClip;
 
       const transcript = joinTranscript(introClips);
       expect(transcript).toEqual(

@@ -21,6 +21,7 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -157,6 +158,9 @@ export const transformedLessonOverviewData = (
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
   const hasAddFile = content.additionalFiles;
+  const mediaClips = browseData.lessonData.mediaClips
+    ? mediaClipsRecordCamelSchema.parse(browseData.lessonData.mediaClips)
+    : null;
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
@@ -221,7 +225,7 @@ export const transformedLessonOverviewData = (
     pathways: pathways,
     actions: browseData.actions,
     hasMediaClips: Boolean(browseData.lessonData.mediaClips),
-    lessonMediaClips: browseData.lessonData.mediaClips ?? null,
+    lessonMediaClips: mediaClips,
     additionalFiles: hasAddFile
       ? getAdditionalFiles(content.additionalFiles)
       : null,
@@ -301,10 +305,6 @@ const lessonOverviewQuery =
 
     lessonBrowseDataByKsSchema.parse(browseDataSnake);
     lessonContentSchema.parse({ ...contentSnake, additional_files: null });
-
-    /**
-     * ! - We've already parsed this data with Zod so we can safely cast it to the correct type
-     *  */
 
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
     const content = keysToCamelCase({

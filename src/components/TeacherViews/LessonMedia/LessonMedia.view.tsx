@@ -153,11 +153,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
     <VideoPlayer
       playbackId={getPlaybackId(currentClip) || ""}
       playbackPolicy={"signed"}
-      title={
-        currentClip.customTitle
-          ? (currentClip?.mediaObject?.displayName ?? "")
-          : ""
-      }
+      title={currentClip.customTitle ?? currentClip?.mediaObject?.displayName}
       // avo events need updating
       location={"lesson"}
       isLegacy={false}
@@ -182,13 +178,12 @@ export const LessonMedia = (props: LessonMediaProps) => {
               return playbackId?.policy === "signed";
             },
           );
-          const title =
-            mediaClip.customTitle !== ""
-              ? mediaClip.customTitle
-              : mediaClip.mediaObject?.displayName;
+          const title = mediaClip.customTitle
+            ? mediaClip.customTitle
+            : mediaClip.mediaObject?.displayName;
           return (
             <MediaClipWithThumbnail
-              clipName={title ?? ""}
+              clipName={title}
               timeCode={videoObject.duration ?? 0}
               learningCycle={!isPELesson ? mediaClip.learningCycle : ""}
               muxPlayingState={getPlayingState(
@@ -204,13 +199,12 @@ export const LessonMedia = (props: LessonMediaProps) => {
             />
           );
         } else if (mediaObject?.format === "mp3" && videoObject) {
-          const title =
-            mediaClip.customTitle !== ""
-              ? mediaClip.customTitle
-              : mediaClip.mediaObject?.displayName;
+          const title = mediaClip.customTitle
+            ? mediaClip.customTitle
+            : mediaClip.mediaObject.displayName;
           return (
             <OakMediaClip
-              clipName={title ?? ""}
+              clipName={title}
               timeCode={videoObject.duration ?? 0}
               learningCycle={mediaClip.learningCycle}
               muxPlayingState={getPlayingState(
@@ -234,8 +228,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
     <LessonMediaClipInfo
       clipTitle={
         currentClip.customTitle
-          ? (currentClip?.mediaObject?.displayName ?? "")
-          : ""
+          ? currentClip.customTitle
+          : currentClip.mediaObject.displayName
       }
       keyStageTitle={keyStageTitle}
       yearTitle={yearTitle ?? ""}

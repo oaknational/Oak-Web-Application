@@ -87,7 +87,7 @@ export const lessonMediaClipsQuery =
       const data = constructLessonMediaData({
         ...browseData,
       });
-      lessonMediaClipsSchema.parse({ ...data });
+      lessonMediaClipsSchema.safeParse({ ...data });
       return {
         ...data,
       } as T;
@@ -103,7 +103,7 @@ export const lessonMediaClipsQuery =
           subjectTitle: browseData.programmeFields.subject,
         },
       ]);
-      canonicalLessonMediaClipsSchema.parse({
+      canonicalLessonMediaClipsSchema.safeParse({
         ...data,
       });
       return data as T;

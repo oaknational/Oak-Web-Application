@@ -1,6 +1,9 @@
 import { mediaClipsFixture } from "@oaknational/oak-curriculum-schema";
 
-import { LessonMediaClipsData } from "../queries/lessonMediaClips/lessonMediaClips.schema";
+import {
+  LessonMediaClipsData,
+  MediaClipListCamelCase,
+} from "../queries/lessonMediaClips/lessonMediaClips.schema";
 
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
@@ -21,7 +24,9 @@ const lessonMediaClipsFixtures = (
     examBoardTitle: null,
     tierSlug: null,
     tierTitle: null,
-    mediaClips: keysToCamelCase(mediaClipsFixture().media_clips),
+    mediaClips: keysToCamelCase(
+      mediaClipsFixture().media_clips,
+    ) as MediaClipListCamelCase,
     lessonOutline: [
       { lessonOutline: "This lesson is about running as a team" },
     ],

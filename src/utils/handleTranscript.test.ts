@@ -11,6 +11,7 @@ import {
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
 describe("removeWebVttCharacters ", () => {
   const sentences = [
@@ -208,7 +209,9 @@ describe("extractIdFromUrl", () => {
 });
 describe("populateMediaClipsWithTranscripts", () => {
   it("populates media clips with transcripts", async () => {
-    const mediaClips = keysToCamelCase(mediaClipsFixture().media_clips);
+    const mediaClips = keysToCamelCase(
+      mediaClipsFixture().media_clips,
+    ) as MediaClipListCamelCase;
     const result = await populateMediaClipsWithTranscripts(mediaClips);
 
     if (result && result["intro"] && result["intro"][0]) {
