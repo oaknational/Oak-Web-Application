@@ -49,7 +49,6 @@ export default function LessonOverviewCanonicalPage({
   const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
   const [lessonPath, setLessonPath] = useState<string | null>(null);
   const teacherNotesEnabled = useFeatureFlagEnabled("teacher-notes");
-  console.log(lesson, "<< LESSON");
   const { shareUrl, browserUrl, shareActivated, shareIdRef, shareIdKeyRef } =
     useShareExperiment({
       lessonSlug: lesson.lessonSlug,

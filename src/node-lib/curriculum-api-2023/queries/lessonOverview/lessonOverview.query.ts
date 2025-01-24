@@ -152,7 +152,6 @@ export const transformedLessonOverviewData = (
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
 ): LessonOverviewPageData => {
-  console.log(browseData.lessonData.mediaClips, "<<< BROWSE DATA MEDIA CLIPS");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
@@ -223,7 +222,6 @@ export const transformedLessonOverviewData = (
     actions: browseData.actions,
     hasMediaClips: Boolean(browseData.lessonData.mediaClips),
     lessonMediaClips: browseData.lessonData.mediaClips ?? null,
-    lessonOutline: browseData.lessonData.lessonOutline,
     additionalFiles: hasAddFile
       ? getAdditionalFiles(content.additionalFiles)
       : null,

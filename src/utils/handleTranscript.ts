@@ -12,7 +12,7 @@ export const getCaptionsFromFile = async (fileName: string) => {
 
     const tree = parser.parse(file, "metadata");
 
-    if (tree?.errors.length) {
+    if (tree.errors.length) {
       console.error(
         `Error parsing captions file: ${fileName}, errors: ${JSON.stringify(
           tree.errors,

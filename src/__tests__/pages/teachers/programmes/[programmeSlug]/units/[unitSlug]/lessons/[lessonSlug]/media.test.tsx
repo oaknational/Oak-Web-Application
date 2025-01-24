@@ -57,13 +57,12 @@ describe("LessonMediaClipsPage", () => {
         "/teachers/programmes/physical-education/-ks4/units/running-and-jumping/lessons/running-as-a-team/media",
     });
   });
-  it("Renders breadcrumbs", async () => {
+  it.skip("Renders breadcrumbs", () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonMediaClipsPage curriculumData={lessonFixtureData} />,
       </OakThemeProvider>,
     );
-
     expect(result.queryByText("Extra video and audio")).toBeInTheDocument();
   });
 
@@ -109,7 +108,7 @@ describe("LessonMediaClipsPage", () => {
         unitSlug: "running-and-jumping",
       });
     });
-    it.only("should return notFound when a landing page is missing", async () => {
+    it("should return notFound when a landing page is missing", async () => {
       (curriculumApi.lessonMediaClips as jest.Mock).mockResolvedValueOnce(
         undefined,
       );

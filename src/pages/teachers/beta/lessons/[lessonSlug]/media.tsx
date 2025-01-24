@@ -26,7 +26,6 @@ const BetaLessonMediaPage: NextPage<CanonicalLessonMediaClipsPageProps> = ({
   curriculumData,
 }) => {
   const { lessonTitle, lessonSlug } = curriculumData;
-  console.log("AQUI");
   return (
     <AppLayout
       seoProps={{

@@ -143,11 +143,6 @@ const mockParse = jest
     cues: [{ text: "sentence 7" }, { text: "sentence 8" }],
     errors: [],
     time: 0,
-  })
-  .mockReturnValueOnce({
-    cues: [{ text: "sentence 9" }, { text: "sentence 10" }],
-    errors: [],
-    time: 0,
   });
 
 jest.mock("webvtt-parser", () => ({

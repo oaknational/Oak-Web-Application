@@ -140,6 +140,8 @@ export const TeacherNotesModal = ({
     editor?.chain().focus().toggleBulletList().run();
   };
 
+  //TODO: Component Lib update threw type errors, commented out for now
+
   // const handleSave = async () => {
   //   const noteHtml = editor?.getHTML() ?? "";
   //   const noteText = editor?.getText() ?? "";

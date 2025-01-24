@@ -1,5 +1,5 @@
 import { FC } from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import {
   OakP,
   OakIcon,
@@ -54,36 +54,36 @@ const PreAlbCopyright = (
   </OakP>
 );
 
-// const StyledLink = styled.a`
-//   display: inline;
-//   text-decoration: underline;
-//   color: ${(props) => props.theme.colors.navy};
-// `;
-// TODO: FIX HYDRATION ERROR HERE
+const StyledLink = styled.a`
+  display: inline;
+  text-decoration: underline;
+  color: ${(props) => props.theme.colors.navy};
+`;
+
 const PostAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean; copyrightYear: string },
 ) => {
   const { copyrightYear } = props;
   const year = new Date(copyrightYear).getFullYear();
   return (
-    <>
-      <OakP $font="body-3" {...props}>
-        This content is © Oak National Academy Limited ({year}), licensed on{" "}
-      </OakP>
-      <OakLink
-        aria-label={`Open Government License version 3.0${
-          props.openLinksExternally ? " (opens in a new tab)" : ""
-        }`}
-        role="link"
-        href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
-        target={props.openLinksExternally ? "_blank" : "_self"}
-      >
-        <OakFlex $display={"inline"} $alignItems={"center"}>
-          Open Government Licence version 3.0{" "}
-          <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-        </OakFlex>
-      </OakLink>{" "}
-      except where otherwise stated. See{" "}
+    <OakBox $font="body-3" {...props}>
+      This content is © Oak National Academy Limited ({year}), licensed on{" "}
+      <span>
+        <StyledLink
+          aria-label={`Open Government License version 3.0${
+            props.openLinksExternally ? " (opens in a new tab)" : ""
+          }`}
+          role="link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          target={props.openLinksExternally ? "_blank" : "_self"}
+        >
+          <OakFlex $display={"inline"} $alignItems={"center"}>
+            Open Government Licence version 3.0{" "}
+            <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+          </OakFlex>
+        </StyledLink>{" "}
+        except where otherwise stated. See{" "}
+      </span>
       <OwaLink
         page={"legal"}
         legalSlug="terms-and-conditions"
@@ -100,8 +100,8 @@ const PostAlbCopyright = (
         Oak's terms & conditions
         <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
       </OwaLink>{" "}
-      <OakP>(Collection 2).</OakP>
-    </>
+      (Collection 2).
+    </OakBox>
   );
 };
 

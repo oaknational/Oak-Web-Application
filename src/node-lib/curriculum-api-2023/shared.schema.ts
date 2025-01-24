@@ -208,7 +208,6 @@ export const baseLessonOverviewSchema = z.object({
   phonicsOutcome: z.string().nullish(),
   actions: camelActionSchema.nullish(),
   hasMediaClips: z.boolean(),
-  lessonOutline: z.array(z.object({ lessonOutline: z.string() })).nullish(),
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
 });
