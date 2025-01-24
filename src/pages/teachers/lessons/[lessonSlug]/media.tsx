@@ -18,7 +18,6 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import withFeatureFlag from "@/hocs/withFeatureFlag";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 
 export type CanonicalLessonMediaClipsPageProps = {
@@ -103,9 +102,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-const CanoncicalLessonMediaPageWithFeatureFlag = withFeatureFlag(
-  CanonicalLessonMediaClipsPage,
-  "is_media_page_content_enabled",
-);
-
-export default CanoncicalLessonMediaPageWithFeatureFlag;
+export default CanonicalLessonMediaClipsPage;

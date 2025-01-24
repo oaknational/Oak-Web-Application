@@ -19,7 +19,6 @@ import {
   LessonMediaClipsData,
   MediaClipListCamelCase,
 } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import withFeatureFlag from "@/hocs/withFeatureFlag";
 import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 
 export type LessonMediaClipsPageProps = {
@@ -123,9 +122,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-const LessonMediaPageWithFeatureFlag = withFeatureFlag(
-  LessonMediaClipsPage,
-  "is_media_page_content_enabled",
-);
-
-export default LessonMediaPageWithFeatureFlag;
+export default LessonMediaClipsPage;
