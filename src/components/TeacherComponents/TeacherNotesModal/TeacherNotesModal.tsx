@@ -92,6 +92,7 @@ export type TeacherNotesModalProps = Pick<
     note: Partial<TeacherNoteCamelCase>,
   ) => Promise<TeacherNote>;
   sharingUrl: string | null;
+  error: string | null;
 };
 
 export const TeacherNotesModal = ({
@@ -100,6 +101,7 @@ export const TeacherNotesModal = ({
   teacherNote,
   saveTeacherNote,
   sharingUrl,
+  error,
 }: TeacherNotesModalProps) => {
   const [noteSaved, setNoteSaved] = useState(false);
   const [noteShared, setNoteShared] = useState(false);
@@ -107,6 +109,7 @@ export const TeacherNotesModal = ({
   const [remainingCharacters, setRemainingCharacters] = useState(limit);
 
   const editor = useEditor({
+    editable: !error,
     extensions: [
       StarterKit,
       CharacterCount.configure({
@@ -123,6 +126,9 @@ export const TeacherNotesModal = ({
     ],
     immediatelyRender: false,
     onCreate: ({ editor }) => {
+      if (error) {
+        editor.setEditable(false);
+      }
       editor.commands.setContent(teacherNote?.noteHtml ?? "");
       const r = limit - (editor?.storage.characterCount.characters() ?? 0);
       setRemainingCharacters(r);
@@ -162,8 +168,17 @@ export const TeacherNotesModal = ({
   };
 
   const handleSave = async (displayFeedback: boolean) => {
-    const noteHtml = editor?.getHTML() ?? "";
-    const noteText = editor?.getText() ?? "";
+    if (error || !editor) {
+      return;
+    }
+
+    const noteHtml = editor.getHTML() ?? "";
+    const noteText = editor.getText() ?? "";
+
+    // don't dave if there's no change
+    if (teacherNote?.noteHtml === noteHtml) {
+      return;
+    }
 
     const note: Partial<TeacherNoteCamelCase> = {
       ...teacherNote,
@@ -209,6 +224,7 @@ export const TeacherNotesModal = ({
       onShareClicked={handleShare}
       progressSaved={noteSaved}
       noteShared={noteShared}
+      error={Boolean(error)}
     />
   );
 };

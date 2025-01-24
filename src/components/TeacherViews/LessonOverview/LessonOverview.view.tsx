@@ -57,6 +57,7 @@ export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
     teacherShareButton?: React.ReactNode;
     teacherNoteHtml?: string;
+    teacherNoteError?: string | null;
   };
 } & { isBeta: boolean };
 
@@ -103,6 +104,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     actions,
     hasMediaClips,
     teacherNoteHtml,
+    teacherNoteError,
     additionalFiles,
   } = lesson;
   const { track } = useAnalytics();
@@ -315,7 +317,10 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                   />
                 </OakBox>
 
-                <TeacherNoteInline unsafeHtml={teacherNoteHtml} />
+                <TeacherNoteInline
+                  unsafeHtml={teacherNoteHtml}
+                  error={teacherNoteError ?? "hello"}
+                />
 
                 {pageLinks.find((p) => p.label === "Lesson guide") &&
                   lessonGuideUrl && (

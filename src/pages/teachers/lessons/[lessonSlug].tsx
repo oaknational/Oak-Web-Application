@@ -128,7 +128,8 @@ export default function LessonOverviewCanonicalPage({
             isCanonical: true,
             isSpecialist,
             teacherShareButton: teacherNotesButton,
-            teacherNoteHtml: error ?? teacherNoteHtml,
+            teacherNoteHtml: teacherNoteHtml,
+            teacherNoteError: error,
           }}
           isBeta={false}
         />
@@ -148,6 +149,7 @@ export default function LessonOverviewCanonicalPage({
             teacherNote={teacherNote}
             saveTeacherNote={saveTeacherNote}
             sharingUrl={shareUrl}
+            error={error}
           />
         )}
       </OakThemeProvider>

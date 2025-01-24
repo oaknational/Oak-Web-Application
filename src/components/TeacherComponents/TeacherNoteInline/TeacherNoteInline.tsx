@@ -8,7 +8,7 @@ import {
 
 export type TeacherNoteInlineProps = {
   unsafeHtml?: string;
-  error?: string;
+  error?: string | null;
 };
 
 export const TeacherNoteInline = ({
