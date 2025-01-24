@@ -222,7 +222,7 @@ export const TeacherNotesModal = ({
       isBulletList={editor?.isActive("bulletList") ?? false}
       remainingCharacters={remainingCharacters}
       onShareClicked={handleShare}
-      progressSaved={noteSaved}
+      progressSaved={noteSaved && !noteShared}
       noteShared={noteShared}
       error={Boolean(error)}
     />

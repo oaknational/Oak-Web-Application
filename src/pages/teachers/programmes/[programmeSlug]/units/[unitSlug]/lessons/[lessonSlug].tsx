@@ -1,11 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { useFeatureFlagEnabled } from "posthog-js/react";
+import {
+  OakSmallSecondaryButton,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 
 import {
   getFallbackBlockingConfig,
@@ -24,6 +29,8 @@ import {
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
+import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -46,36 +53,70 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     keyStageTitle,
   } = curriculumData;
 
-  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
-    lessonSlug,
-    unitSlug,
-    programmeSlug,
-    source: "lesson-browse",
-    curriculumTrackingProps: {
-      lessonName: lessonTitle,
-      unitName: unitTitle,
-      subjectSlug,
-      subjectTitle,
-      keyStageSlug,
-      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
-    },
-    overrideExistingShareId: true,
-  });
+  const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
+  const [lessonPath, setLessonPath] = useState<string | null>(null);
+  const teacherNotesEnabled = useFeatureFlagEnabled("teacher-notes");
+
+  const { shareUrl, browserUrl, shareActivated, shareIdKeyRef, shareIdRef } =
+    useShareExperiment({
+      lessonSlug,
+      unitSlug,
+      programmeSlug,
+      source: "lesson-browse",
+      curriculumTrackingProps: {
+        lessonName: lessonTitle,
+        unitName: unitTitle,
+        subjectSlug,
+        subjectTitle,
+        keyStageSlug,
+        keyStageTitle:
+          keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+      },
+      overrideExistingShareId: true,
+    });
+
+  const { teacherNote, isEditable, saveTeacherNote, noteSaved, error } =
+    useTeacherNotes({
+      lessonPath,
+      shareId: shareIdRef.current,
+      sidKey: shareIdKeyRef.current,
+      enabled: Boolean(teacherNotesEnabled),
+    });
 
   useEffect(() => {
+    if (teacherNotesEnabled) {
+      setLessonPath(window.location.href.split("?")[0] || null);
+    }
+
     if (window.location.href !== browserUrl) {
       window.history.replaceState({}, "", browserUrl);
     }
-  }, [browserUrl]);
+  }, [browserUrl, teacherNotesEnabled]);
 
-  const teacherShareButton = (
-    <TeacherShareButton
-      label="Share resources with colleague"
-      variant={"secondary"}
-      shareUrl={shareUrl}
-      shareActivated={shareActivated}
-    />
-  );
+  const teacherNotesButton =
+    teacherNotesEnabled && isEditable ? (
+      <OakSmallSecondaryButton
+        iconName={noteSaved ? "edit" : "share"}
+        isTrailingIcon
+        onClick={() => {
+          setTeacherNotesOpen(true);
+        }}
+      >
+        {noteSaved
+          ? "Edit teacher note and share"
+          : "Add teacher note and share"}
+      </OakSmallSecondaryButton>
+    ) : (
+      <TeacherShareButton
+        label="Share resources with colleague"
+        variant={"secondary"}
+        shareUrl={shareUrl}
+        shareActivated={shareActivated}
+      />
+    );
+
+  const teacherNoteHtml =
+    teacherNotesEnabled && !isEditable ? teacherNote?.noteHtml : undefined;
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
@@ -104,10 +145,24 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             ...curriculumData,
             isCanonical: false,
             isSpecialist: false,
-            teacherShareButton: teacherShareButton,
+            teacherShareButton: teacherNotesButton,
+            teacherNoteHtml,
+            teacherNoteError: error,
           }}
           isBeta={false}
         />
+        {teacherNote && isEditable && (
+          <TeacherNotesModal
+            isOpen={teacherNotesOpen}
+            onClose={() => {
+              setTeacherNotesOpen(false);
+            }}
+            teacherNote={teacherNote}
+            saveTeacherNote={saveTeacherNote}
+            sharingUrl={shareUrl}
+            error={error}
+          />
+        )}
       </OakThemeProvider>
     </AppLayout>
   );
