@@ -27,7 +27,7 @@ export const TeacherNoteInline = ({
     setSafeHtml(DOMPurify.sanitize(unsafeHtml));
   }, [unsafeHtml]);
 
-  if (safeHtml === null || error !== undefined) {
+  if (safeHtml === null || error) {
     return null;
   }
 

@@ -319,7 +319,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
 
                 <TeacherNoteInline
                   unsafeHtml={teacherNoteHtml}
-                  error={teacherNoteError ?? "hello"}
+                  error={teacherNoteError}
                 />
 
                 {pageLinks.find((p) => p.label === "Lesson guide") &&
