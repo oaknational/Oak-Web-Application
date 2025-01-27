@@ -214,6 +214,39 @@ describe("TeacherNotesModal", () => {
     expect(saveTeacherNote).toHaveBeenCalled();
   });
 
+  it("should save the teacher note when the modal is closed", () => {
+    const saveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+
+    const onClose = jest.fn();
+    // render the component
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={onClose}
+        saveTeacherNote={saveTeacherNote}
+        teacherNote={mockTeacherNote}
+        sharingUrl={"https://example.com"}
+        error={null}
+      />,
+    );
+
+    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+      typeof OakTeacherNotesModal
+    >;
+
+    const modalProps = mockModal.mock.calls?.[0]?.[0];
+    if (!modalProps) {
+      throw new Error("No modal props found");
+    }
+
+    modalProps.onClose();
+
+    expect(saveTeacherNote).toHaveBeenCalledTimes(1);
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
   it("should set note saved when the note has been saved", async () => {
     const mockSaveTeacherNote = jest.fn(() =>
       Promise.resolve(mockTeacherNoteSnake),
@@ -251,5 +284,43 @@ describe("TeacherNotesModal", () => {
       }
       expect(latestProps.progressSaved).toBe(true);
     });
+  });
+
+  it("displays the 'progress saved' message when the note has been saved for 3 seconds", async () => {
+    jest.spyOn(global, "setTimeout");
+
+    const mockSaveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={mockSaveTeacherNote}
+        teacherNote={mockTeacherNote}
+        sharingUrl={"https://example.com"}
+        error={null}
+      />,
+    );
+
+    const mockEditorArgs = useEditorMock.mock.calls?.[0];
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+
+    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+      typeof OakTeacherNotesModal
+    >;
+
+    await waitFor(() => {
+      expect(mockModal).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          progressSaved: true,
+        }),
+        {},
+      );
+    });
+
+    expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
   });
 });
