@@ -1,22 +1,22 @@
 import sdk from "../../sdk";
 
-import subjectPhaseOptions from "./subjectPhaseOptions.query";
+import curriculumPhaseOptions from "./curriculumPhaseOptions.query";
 
-describe("subjectPhaseOptions()", () => {
+describe("curriculumPhaseOptions()", () => {
   test("throws a not found error if no options are found", async () => {
     await expect(async () => {
-      await subjectPhaseOptions({
+      await curriculumPhaseOptions({
         ...sdk,
-        subjectPhaseOptions: jest.fn(() => Promise.resolve({ options: [] })),
+        curriculumPhaseOptions: jest.fn(() => Promise.resolve({ options: [] })),
       })();
     }).rejects.toThrow(`Resource not found`);
   });
 
   test("throws a Zod error if the response is invalid", async () => {
     await expect(async () => {
-      await subjectPhaseOptions({
+      await curriculumPhaseOptions({
         ...sdk,
-        subjectPhaseOptions: jest.fn(() =>
+        curriculumPhaseOptions: jest.fn(() =>
           Promise.resolve({
             options: [
               {

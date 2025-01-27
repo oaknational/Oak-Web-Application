@@ -1,5 +1,5 @@
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
-import { SubjectPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/subjectPhaseOptions/subjectPhaseOptions.query";
+import { SubjectPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;

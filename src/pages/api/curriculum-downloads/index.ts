@@ -185,13 +185,11 @@ async function getData(opts: {
     };
   }
 
-  const subjectPhaseOptions = {
-    subjects: await curriculumApi2023.subjectPhaseOptions({
-      cycle: "2",
-    }),
+  const curriculumPhaseOptions = {
+    subjects: await curriculumApi2023.curriculumPhaseOptions(),
   };
 
-  const subject = subjectPhaseOptions.subjects.find((subject) => {
+  const subject = curriculumPhaseOptions.subjects.find((subject) => {
     return subject.slug === subjectSlug;
   }) as SubjectPhasePickerData["subjects"][number] | undefined;
   const ks4Option =

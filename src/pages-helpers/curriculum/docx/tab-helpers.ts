@@ -5,7 +5,7 @@ import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import curriculumApi2023, {
   CurriculumUnitsTabData,
   CurriculumOverviewMVData,
-  SubjectPhaseOption,
+  CurriculumPhaseOptions,
 } from "@/node-lib/curriculum-api-2023";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import {
@@ -68,7 +68,7 @@ export type CurriculumUnitsFormattedData<T = Unit> = {
 
 export type CurriculumInfoPageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
-  subjectPhaseOptions: SubjectPhasePickerData;
+  curriculumPhaseOptions: SubjectPhasePickerData;
   curriculumOverviewTabData: CurriculumOverviewMVData;
   curriculumOverviewSanityData: CurriculumOverviewSanityData;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
@@ -425,7 +425,9 @@ export function formatCurriculumUnitsData(
   return formattedDataCurriculumUnits;
 }
 
-export function filterValidSubjectPhaseOptions(subjects: SubjectPhaseOption[]) {
+export function filterValidCurriculumPhaseOptions(
+  subjects: CurriculumPhaseOptions,
+) {
   subjects.forEach(({ ks4_options }) => {
     if (
       ks4_options &&
@@ -443,10 +445,8 @@ export function filterValidSubjectPhaseOptions(subjects: SubjectPhaseOption[]) {
 }
 
 export async function fetchSubjectPhasePickerData() {
-  const subjects = await curriculumApi2023.subjectPhaseOptions({
-    cycle: "2",
-  });
+  const subjects = await curriculumApi2023.curriculumPhaseOptions();
   return {
-    subjects: filterValidSubjectPhaseOptions(subjects),
+    subjects: filterValidCurriculumPhaseOptions(subjects),
   };
 }

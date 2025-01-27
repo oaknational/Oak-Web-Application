@@ -6,7 +6,7 @@ import {
   parseSubjectPhaseSlug,
 } from "./slugs";
 
-import { SubjectPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/subjectPhaseOptions/subjectPhaseOptions.query";
+import { SubjectPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 
 describe("parseSubjectPhaseSlug", () => {
   it("should extract from a valid slug", () => {
@@ -42,7 +42,6 @@ const testSubjectPhaseOptions: SubjectPhaseOptions = [
       { title: "KS1", slug: "ks1" },
       { title: "KS3", slug: "ks3" },
     ],
-    cycle: "1",
   },
 ];
 

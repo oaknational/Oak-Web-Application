@@ -56,8 +56,8 @@ const fixtures = {
     });
     return output;
   },
-  subjectPhaseOptions: async () => {
-    return await sdk.subjectPhaseOptions();
+  curriculumPhaseOptions: async () => {
+    return await sdk.curriculumPhaseOptions();
   },
   "curriculumOverview-english-secondary": async () => {
     return await sdk.curriculumOverview({

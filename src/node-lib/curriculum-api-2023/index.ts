@@ -7,7 +7,6 @@ import subjectListingQuery from "./queries/subjectListing/subjectListing.query";
 import lessonDownloadsQuery from "./queries/lessonDownloads/lessonDownloads.query";
 import programmeListingQuery from "./queries/programmeListing/programmeListing.query";
 import unitListingQuery from "./queries/unitListing/unitListing.query";
-import subjectPhaseOptionsQuery from "./queries/subjectPhaseOptions/subjectPhaseOptions.query";
 import curriculumOverviewQuery from "./queries/curriculumOverview/curriculumOverview.query";
 import curriculumHeaderQuery from "./queries/curriculumHeader/curriculumHeader.query";
 import curriculumDownloadsQuery from "./queries/curriculumDownloads/curriculumDownloads.query";
@@ -32,7 +31,6 @@ import { pupilUnitListingQuery } from "./queries/pupilUnitListing/pupilUnitListi
 import { pupilSubjectListingQuery } from "./queries/pupilSubjectListing/pupilSubjectListing.query";
 import teachersSitemap from "./queries/teachersSitemap/teacherSitemap.query";
 import pupilsSitemap from "./queries/pupilsSitemap/pupilsSitemap.query";
-import subjectPhaseOptionsIncludeNewQuery from "./queries/subjectPhaseOptionsIncludeNew/subjectPhaseOptionsIncludeNew.query";
 import curriculumUnitsIncludeNewQuery from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.query";
 import curriculumUnitsIncludeNewSchema from "./queries/curriculumUnitsIncludeNew/curriculumUnitsIncludeNew.schema";
 import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
@@ -40,6 +38,8 @@ import teacherPreviewLessonQuery from "./queries/teacherPreviewLesson/teacherPre
 import curriculumSequenceQuery from "./queries/curriculumSequence/curriculumSequence.query";
 import { lessonMediaClipsQuery } from "./queries/lessonMediaClips/lessonMediaClips.query";
 import { betaLessonMediaClipsQuery } from "./queries/lessonBetaMediaClips/lessonBetaMediaClips.query";
+import curriculumPhaseOptionsQuery from "./queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
+import curriculumPhaseOptionsSchema from "./queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 export const keyStageSchema = z.object({
   slug: z.string(),
@@ -95,6 +95,10 @@ export type Phase = z.infer<typeof genericFilteringGroup>;
 export type Subject = z.infer<typeof genericFilteringGroup>;
 export type KS4Option = z.infer<typeof genericFilteringGroup>;
 export type SubjectPhaseOption = z.infer<typeof subjectPhaseOptionSchema>;
+export type CurriculumPhaseOptions = z.infer<
+  typeof curriculumPhaseOptionsSchema
+>;
+export type CurriculumPhaseOption = CurriculumPhaseOptions[number];
 export type TeachersHomePageData = z.infer<typeof teachersHomePageData>;
 export type CurriculumOverviewMVData = z.infer<typeof curriculumOverviewSchema>;
 export type SearchPageData = z.infer<typeof searchPageSchema>;
@@ -146,8 +150,7 @@ const curriculumApi2023 = {
   refreshedMVTime: refreshedMVTimeQuery(sdk),
   searchPage: searchPageQuery(sdk),
   subjectListingPage: subjectListingQuery(sdk),
-  subjectPhaseOptions: subjectPhaseOptionsQuery(sdk),
-  subjectPhaseOptionsIncludeNew: subjectPhaseOptionsIncludeNewQuery(sdk),
+  curriculumPhaseOptions: curriculumPhaseOptionsQuery(sdk),
   unitListing: unitListingQuery(sdk),
   teachersHomePage: async () => {
     const res = await sdk.teachersHomePage();

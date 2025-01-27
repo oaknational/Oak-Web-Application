@@ -23,7 +23,7 @@ import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 export type CurriculumHeaderPageProps = {
-  subjectPhaseOptions: SubjectPhasePickerData;
+  curriculumPhaseOptions: SubjectPhasePickerData;
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
   keyStages: string[];
   color1?: OakColorToken;
@@ -34,12 +34,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   color1,
   color2,
   curriculumSelectionSlugs,
-  subjectPhaseOptions,
+  curriculumPhaseOptions,
   keyStages,
 }) => {
   const router = useRouter();
   const tab = router.query.tab as CurriculumTab;
-  const subject = subjectPhaseOptions.subjects.find(
+  const subject = curriculumPhaseOptions.subjects.find(
     (subject) => subject.slug === curriculumSelectionSlugs.subjectSlug,
   ) as SubjectPhasePickerData["subjects"][number] | undefined;
   const phase = subject?.phases.find(
@@ -140,7 +140,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             $mv={"space-between-m2"}
           />
           <SubjectPhasePicker
-            {...subjectPhaseOptions}
+            {...curriculumPhaseOptions}
             currentSelection={currentSelection}
           />
         </OakBox>

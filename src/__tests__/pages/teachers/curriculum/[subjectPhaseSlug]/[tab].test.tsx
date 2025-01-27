@@ -13,7 +13,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
+import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import { mockPrerelease } from "@/utils/mocks";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import "@/__tests__/__helpers__/ResizeObserverMock";
@@ -549,7 +549,7 @@ jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumSequence: jest.fn(),
   curriculumUnits: jest.fn(),
   refreshedMVTime: jest.fn(),
-  subjectPhaseOptions: jest.fn(() => subjectPhaseOptions.subjects),
+  curriculumPhaseOptions: jest.fn(() => curriculumPhaseOptions.subjects),
 }));
 const mockedCurriculumOverview = curriculumApi.curriculumOverview as jest.Mock;
 const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as jest.Mock;
@@ -617,7 +617,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
-          subjectPhaseOptions={subjectPhaseOptions}
+          curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
           curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
@@ -657,7 +657,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
             mvRefreshTime={1721314874829}
             curriculumUnitsFormattedData={curriculumUnitsFormattedData}
             curriculumSelectionSlugs={slugs}
-            subjectPhaseOptions={subjectPhaseOptions}
+            curriculumPhaseOptions={curriculumPhaseOptions}
             curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
             curriculumOverviewTabData={curriculumOverviewMVFixture()}
             curriculumDownloadsTabData={{
@@ -695,7 +695,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
-          subjectPhaseOptions={subjectPhaseOptions}
+          curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
           curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
@@ -718,7 +718,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
-          subjectPhaseOptions={subjectPhaseOptions}
+          curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
           curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
@@ -755,7 +755,9 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       } else {
         mockedCurriculumUnits.mockResolvedValue(unitsTabFixture);
       }
-      mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
+      mockedFetchSubjectPhasePickerData.mockResolvedValue(
+        curriculumPhaseOptions,
+      );
 
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const props = await getStaticProps({
@@ -769,7 +771,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         props: {
           mvRefreshTime: 1720310404016,
           curriculumSelectionSlugs: slugs,
-          subjectPhaseOptions: subjectPhaseOptions,
+          curriculumPhaseOptions: curriculumPhaseOptions,
           curriculumOverviewSanityData: curriculumOverviewCMSFixture(),
           curriculumOverviewTabData: curriculumOverviewMVFixture(),
           curriculumUnitsFormattedData:

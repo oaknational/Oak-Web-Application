@@ -18,7 +18,7 @@ import Flex from "@/components/SharedComponents/Flex.deprecated";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023, {
-  SubjectPhaseOption,
+  CurriculumPhaseOptions,
 } from "@/node-lib/curriculum-api-2023";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/SharedComponents/Illustration/Illustration";
@@ -35,12 +35,12 @@ import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pag
 import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 
 export type CurriculumHomePageProps = {
-  subjectPhaseOptions: SubjectPhasePickerData;
+  curriculumPhaseOptions: SubjectPhasePickerData;
   posts: SerializedBlogPostPreview[];
 };
 
 const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
-  const { subjectPhaseOptions, posts } = props;
+  const { curriculumPhaseOptions, posts } = props;
   const curriculumBlogs = posts.map(blogToPostListItem);
 
   return (
@@ -80,7 +80,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
           </Box>
           <Flex $mt={[24, 80]} $mb={[80]}>
             <HomepageCurriculumLandingHero
-              subjectPhaseOptions={subjectPhaseOptions}
+              curriculumPhaseOptions={curriculumPhaseOptions}
             />
           </Flex>
         </OakMaxWidth>
@@ -223,7 +223,9 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
   );
 };
 
-const filterValidSubjectPhaseOptions = (subjects: SubjectPhaseOption[]) => {
+const filterValidCurriculumPhaseOptions = (
+  subjects: CurriculumPhaseOptions,
+) => {
   subjects.forEach(({ ks4_options }) => {
     if (
       ks4_options &&
@@ -242,11 +244,11 @@ const filterValidSubjectPhaseOptions = (subjects: SubjectPhaseOption[]) => {
 
 const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
-    const subjects = await curriculumApi2023.subjectPhaseOptions({
+    const subjects = await curriculumApi2023.curriculumPhaseOptions({
       cycle: "2",
     });
     return {
-      subjects: filterValidSubjectPhaseOptions(subjects),
+      subjects: filterValidCurriculumPhaseOptions(subjects),
     };
   };
 
@@ -303,7 +305,7 @@ export const getStaticProps: GetStaticProps<
 
   const results: GetStaticPropsResult<CurriculumHomePageProps> = {
     props: {
-      subjectPhaseOptions: data,
+      curriculumPhaseOptions: data,
       posts,
     },
   };
