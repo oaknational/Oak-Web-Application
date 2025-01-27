@@ -1,3 +1,10 @@
+# [1.671.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.670.0...v1.671.0) (2025-01-27)
+
+
+### Features
+
+* remove feature flag teacer-unit-downloads and promote option a ([a247b5a](https://github.com/oaknational/Oak-Web-Application/commit/a247b5add9c09ff71b1331238c5f99b61726cc37))
+
 # [1.670.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.669.0...v1.670.0) (2025-01-27)
 
 
