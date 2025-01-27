@@ -1,3 +1,15 @@
+# [1.670.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.669.0...v1.670.0) (2025-01-27)
+
+
+### Bug Fixes
+
+* set hubspot loading true when user not onboarded ([bfac2d6](https://github.com/oaknational/Oak-Web-Application/commit/bfac2d6643c8ebb5603eeae28dfa3a2c4bc7b529))
+
+
+### Features
+
+* remove requirement for feature flag on hubspot request for school details ([f8ea235](https://github.com/oaknational/Oak-Web-Application/commit/f8ea2353fe128b889e1a5a56334b8d8fa4044f35))
+
 # [1.669.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.3...v1.669.0) (2025-01-22)
 
 
