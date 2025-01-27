@@ -15,8 +15,8 @@ import {
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
-import OakLink from "@/components/SharedComponents/OwaLink";
 import Input from "@/components/SharedComponents/Input";
+import OakLink from "@/components/SharedComponents/OwaLink";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
@@ -121,15 +121,18 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   }}
                   $display={"inline-flex"}
                   $alignItems={"center"}
+                  $color={"navy"}
                 >
-                  privacy policy
-                  <OakIcon
-                    iconName="external"
-                    $width={"all-spacing-5"}
-                    $height={"all-spacing-5"}
-                    data-testid="external-link-icon"
-                    $colorFilter={"navy"}
-                  />
+                  <OakFlex>
+                    privacy policy
+                    <OakIcon
+                      iconName="external"
+                      $width={"all-spacing-5"}
+                      $height={"all-spacing-5"}
+                      data-testid="external-link-icon"
+                      $colorFilter={"navy"}
+                    />
+                  </OakFlex>
                 </OakLink>
                 .
               </OakP>
@@ -157,7 +160,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
               />
             </OakBox>
           )}
-          <OakBox $width="all-spacing-21">
+          <OakBox $maxWidth="all-spacing-21">
             <CopyrightNotice
               showPostAlbCopyright={showPostAlbCopyright}
               openLinksExternally={true}

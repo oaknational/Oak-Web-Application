@@ -128,6 +128,26 @@ const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   return pathways;
 };
 
+const bytesToMegabytes = (bytes: number): string => {
+  const bytesInOneMegabyte = 1024 * 1024;
+  const megabytes = bytes / bytesInOneMegabyte;
+  return megabytes.toFixed(1);
+};
+
+const getAdditionalFiles = (
+  content: LessonOverviewContent["additionalFiles"],
+): string[] | null => {
+  if (!content || !content[0]) {
+    return null;
+  }
+  return content[0]?.files.map((af) => {
+    const name = af.title;
+    const type = af.fileObject.format;
+    const size = af.fileObject.bytes;
+    return `${name} ${bytesToMegabytes(size)} MB (${type.toUpperCase()})`;
+  });
+};
+
 export const transformedLessonOverviewData = (
   browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
@@ -137,6 +157,7 @@ export const transformedLessonOverviewData = (
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
+  const hasAddFile = content.additionalFiles;
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
@@ -202,6 +223,9 @@ export const transformedLessonOverviewData = (
     actions: browseData.actions,
     hasMediaClips: false,
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
+    additionalFiles: hasAddFile
+      ? getAdditionalFiles(content.additionalFiles)
+      : null,
     disablePupilShare: browseData?.actions?.disablePupilShare ?? false,
   };
 };
@@ -278,7 +302,7 @@ const lessonOverviewQuery =
     const pathways = canonicalLesson ? getPathways(res) : [];
 
     lessonBrowseDataByKsSchema.parse(browseDataSnake);
-    lessonContentSchema.parse({ ...contentSnake });
+    lessonContentSchema.parse({ ...contentSnake, additional_files: null });
 
     /**
      * ! - We've already parsed this data with Zod so we can safely cast it to the correct type

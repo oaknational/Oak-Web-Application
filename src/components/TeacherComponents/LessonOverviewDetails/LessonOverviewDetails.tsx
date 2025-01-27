@@ -25,6 +25,8 @@ import {
 } from "@/components/TeacherComponents/LessonOverviewRequirements/LessonOverviewRequirements";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import LessonOverviewVocabButton from "@/components/TeacherComponents/LessonOverviewVocabButton";
+import LessonOverviewFilesNeeded from "@/components/TeacherComponents/LessonOverviewFilesNeeded";
+import { Slugs } from "@/components/TeacherComponents/LessonItemContainer/LessonItemContainer";
 
 type LessonOverviewDetailsProps = {
   keyLearningPoints: LessonOverviewKeyLearningPointProps[] | null | undefined;
@@ -40,6 +42,8 @@ type LessonOverviewDetailsProps = {
   isLegacyLicense?: boolean;
   isMathJaxLesson: boolean;
   updatedAt: string;
+  additionalFiles: string[] | null | undefined;
+  slugs: Slugs;
 };
 
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
@@ -55,6 +59,8 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   updatedAt,
   hasVocabAndTranscripts,
   displayVocab,
+  additionalFiles,
+  slugs,
 }) => {
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
   return (
@@ -101,6 +107,12 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
             $gap={"all-spacing-9"}
             $mb={"space-between-m"}
           >
+            {additionalFiles && (
+              <LessonOverviewFilesNeeded
+                slugs={slugs}
+                additionalFiles={additionalFiles}
+              />
+            )}
             {teacherTips && teacherTips.length > 0 && (
               <OakBox>
                 <LessonOverviewTeacherTips teacherTips={teacherTips} />

@@ -1,14 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   examboards,
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
-import { useUser } from "@clerk/nextjs";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
-import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
 
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
@@ -102,8 +99,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     copyrightContent,
     updatedAt,
   } = lesson;
-
-  const { user } = useUser();
 
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical
@@ -275,19 +270,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     Boolean(expired) ||
     downloadsFilteredByCopyright.length === 0;
 
-  // TODO remove once we're confident that restrictions are being
-  // applied correctly in production
-  const useAuthOwaEnabled =
-    useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
-  useEffect(() => {
-    if (useAuthOwaEnabled) {
-      console.log("restrictions", {
-        geoRestricted: lesson.geoRestricted,
-        loginRequired: lesson.loginRequired,
-      });
-    }
-  }, [lesson.geoRestricted, lesson.loginRequired, useAuthOwaEnabled]);
-
   return (
     <OakBox
       $ph={["inner-padding-m", "inner-padding-none"]}
@@ -338,13 +320,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
           />
         </OakBox>
         {(() => {
-          if (
-            user &&
-            lesson.geoRestricted &&
-            !user.publicMetadata.owa?.isRegionAuthorised
-          ) {
-            return <LessonDownloadRegionBlocked />;
-          }
+          // TODO: configure georestriction and login required rules for downloads
 
           if (isDownloadSuccessful) {
             return (

@@ -122,6 +122,7 @@ export const getStaticProps: GetStaticProps<
           },
           browseData,
           hasWorksheet: content.hasWorksheetAssetObject ? true : false,
+          hasAdditionalFiles: false,
           backUrl,
           initialSection: section,
           pageType: "canonical",

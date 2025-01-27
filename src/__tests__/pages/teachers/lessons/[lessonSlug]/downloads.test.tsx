@@ -68,7 +68,8 @@ describe("LessonDownloadsCanonicalPage", () => {
         });
       });
 
-      it("disallows downloads", () => {
+      // TODO: reinstate when geoblocking live
+      it.skip("disallows downloads", () => {
         const result = render(
           <LessonDownloadsCanonicalPage curriculumData={curriculumData} />,
         );

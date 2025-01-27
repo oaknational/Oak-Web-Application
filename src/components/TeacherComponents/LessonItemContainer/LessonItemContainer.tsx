@@ -41,7 +41,7 @@ export type LessonItemTitle =
   | "Audio clips"
   | "Video & audio clips";
 
-type Slugs = {
+export type Slugs = {
   lessonSlug: string;
   unitSlug: string | null;
   programmeSlug: string | null;

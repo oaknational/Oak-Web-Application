@@ -583,7 +583,8 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
         });
       });
 
-      it("disallows downloads", () => {
+      // TODO: reinstate when geoblocking live
+      it.skip("disallows downloads", () => {
         render(<LessonDownloadsPage curriculumData={curriculumData} />);
 
         expect(

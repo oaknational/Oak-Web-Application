@@ -1,3 +1,163 @@
+# [1.671.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.670.0...v1.671.0) (2025-01-27)
+
+
+### Features
+
+* remove feature flag teacer-unit-downloads and promote option a ([a247b5a](https://github.com/oaknational/Oak-Web-Application/commit/a247b5add9c09ff71b1331238c5f99b61726cc37))
+
+# [1.670.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.669.0...v1.670.0) (2025-01-27)
+
+
+### Bug Fixes
+
+* set hubspot loading true when user not onboarded ([bfac2d6](https://github.com/oaknational/Oak-Web-Application/commit/bfac2d6643c8ebb5603eeae28dfa3a2c4bc7b529))
+
+
+### Features
+
+* remove requirement for feature flag on hubspot request for school details ([f8ea235](https://github.com/oaknational/Oak-Web-Application/commit/f8ea2353fe128b889e1a5a56334b8d8fa4044f35))
+
+# [1.669.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.3...v1.669.0) (2025-01-22)
+
+
+### Bug Fixes
+
+* added missing <Terms/> to signin flow ([2b0fff9](https://github.com/oaknational/Oak-Web-Application/commit/2b0fff9f74609b7f6cb107263de954ee7eeb3abf))
+* added school URN hack ([29c9e55](https://github.com/oaknational/Oak-Web-Application/commit/29c9e5589f8bb96b9a92f11e0f2e2e921a6a8c24))
+
+
+### Features
+
+* initial curric login interim solution for docx downloads ([47cfe53](https://github.com/oaknational/Oak-Web-Application/commit/47cfe53be0396187523980bcffeb40320ff3f905))
+
+## [1.668.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.2...v1.668.3) (2025-01-22)
+
+
+### Bug Fixes
+
+* revert '@prettier/plugin-xml' to fix linting of embedded safeXml statements ([70eb81f](https://github.com/oaknational/Oak-Web-Application/commit/70eb81f0b47668e7a7f773babdde7c6c9a76125b))
+
+## [1.668.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.1...v1.668.2) (2025-01-20)
+
+
+### Bug Fixes
+
+* make params optional ([cfd1a54](https://github.com/oaknational/Oak-Web-Application/commit/cfd1a54f39f33438c4fa43fa32d186f62364af3d))
+
+## [1.668.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.0...v1.668.1) (2025-01-20)
+
+
+### Bug Fixes
+
+* fix copyright width on download page ([9ad2a40](https://github.com/oaknational/Oak-Web-Application/commit/9ad2a4084eec703dc97850c85d43fa7ee44226a3))
+* fix link alignment ([94857d1](https://github.com/oaknational/Oak-Web-Application/commit/94857d12b012404c7171f84c05f161d5e7bfe2b8))
+* fix link alignment ([79de113](https://github.com/oaknational/Oak-Web-Application/commit/79de1135025a30ec428c1d51bec3d3be25bf0193))
+* refactor BoxBorders aso it doesn't use Svg component ([4e01fb8](https://github.com/oaknational/Oak-Web-Application/commit/4e01fb847916bfcfe46b1f511d7a7b545f805b3e))
+* refactor BoxBorders so it doesn't use Box but uses OakBox instead ([4016fc8](https://github.com/oaknational/Oak-Web-Application/commit/4016fc8d5a0859643241f2b4e564d93626483104))
+
+# [1.668.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.667.0...v1.668.0) (2025-01-20)
+
+
+### Bug Fixes
+
+* file count ([09bfa63](https://github.com/oaknational/Oak-Web-Application/commit/09bfa633bb8da65eaab4427c2a00187e3ef2106f))
+* review style fixes ([b700acd](https://github.com/oaknational/Oak-Web-Application/commit/b700acd7e58433cc2423e29d2ecb51c7f91d2f8c))
+
+
+### Features
+
+* add addtional files downloads to pupil ([fa11016](https://github.com/oaknational/Oak-Web-Application/commit/fa11016d9400aa64f16db91ca73d707181fa6730))
+* add addtional files downloads to pupil ([05f7bb2](https://github.com/oaknational/Oak-Web-Application/commit/05f7bb2660fbf00257612f0f4f3f2956c535914b))
+* add addtional files downloads to pupil ([d3f0cf2](https://github.com/oaknational/Oak-Web-Application/commit/d3f0cf28019f8e0cc23c554d06bc2a6f1c67f97d))
+* add addtional files downloads to pupil ([cd72ba9](https://github.com/oaknational/Oak-Web-Application/commit/cd72ba9b9b22229abc6174aa413a392a08443cd1))
+* merge main ([408500a](https://github.com/oaknational/Oak-Web-Application/commit/408500afae84397778e0cac8b9e4a5ed22aa44fa))
+* merge main ([5aa8219](https://github.com/oaknational/Oak-Web-Application/commit/5aa82198a6ce13c067d59c952004300b728597e6))
+* merge main ([2ab956c](https://github.com/oaknational/Oak-Web-Application/commit/2ab956c72985f7ebb4699c835d7f80fec3cd900c))
+* pluril or singular label ([dba1883](https://github.com/oaknational/Oak-Web-Application/commit/dba18835a84c7dea63259bec7bbf1b54ae3f3660))
+* pluril or singular label ([2c799f3](https://github.com/oaknational/Oak-Web-Application/commit/2c799f36fc9ce1b37b6905f41e8a219829d77e48))
+* pluril or singular label ([232f2f4](https://github.com/oaknational/Oak-Web-Application/commit/232f2f42b1680ade6c932898722c6be4b6d50fcc))
+* test coverage ([75ee24e](https://github.com/oaknational/Oak-Web-Application/commit/75ee24e5634fbeb5cd6d4deeb3a921d2ad15522c))
+
+# [1.667.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.666.2...v1.667.0) (2025-01-20)
+
+
+### Bug Fixes
+
+* add needed env vars to test config ([b1baef2](https://github.com/oaknational/Oak-Web-Application/commit/b1baef25517c85aea8609e8e707370f1fa1ada42))
+* add needed env vars to test config ([839c9fb](https://github.com/oaknational/Oak-Web-Application/commit/839c9fbd3e74ae9d452f5334881169597da95230))
+* broken tests and types ([bab4bb8](https://github.com/oaknational/Oak-Web-Application/commit/bab4bb81f82b5dd34b664190bbb6cb84d6b15c19))
+* lint error ([df83bac](https://github.com/oaknational/Oak-Web-Application/commit/df83bac991b4f21b5940ed1165a6f700fd092cc4))
+* merge conflicts ([bb090d1](https://github.com/oaknational/Oak-Web-Application/commit/bb090d1f041abf0d61e206ca5f7b01f1eed3dbcb))
+* merge conflicts ([997bea9](https://github.com/oaknational/Oak-Web-Application/commit/997bea9f0adde223b89cf2df6d07ef50cbd0840c))
+
+
+### Features
+
+* refactored pupilClientProvider to top level ([e444d93](https://github.com/oaknational/Oak-Web-Application/commit/e444d93ba676177b3501b54d1c224c4709f97704))
+* updating config with new endpoints ([c353cfb](https://github.com/oaknational/Oak-Web-Application/commit/c353cfbbaa048f6ae7a95696e5a11d4af1923214))
+
+## [1.666.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.666.1...v1.666.2) (2025-01-17)
+
+
+### Bug Fixes
+
+* remove geoblocking for lesson downloads ([644aaf0](https://github.com/oaknational/Oak-Web-Application/commit/644aaf0d0266c34d5ed16b2507fe665de22705a5))
+
+## [1.666.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.666.0...v1.666.1) (2025-01-16)
+
+
+### Bug Fixes
+
+* adjust z-indexes for elements and add z-index for survey container ([7b47ae8](https://github.com/oaknational/Oak-Web-Application/commit/7b47ae862c005a8f5a7d937d012bf1a0403f5815))
+
+# [1.666.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.665.1...v1.666.0) (2025-01-16)
+
+
+### Bug Fixes
+
+* update test for google doc presenttion ([4443d9a](https://github.com/oaknational/Oak-Web-Application/commit/4443d9a25641eae780fdcfc87911a95a95199216))
+
+
+### Features
+
+* add null for broken link so component doesn't render ([64edc1c](https://github.com/oaknational/Oak-Web-Application/commit/64edc1cd48607e7a8bf32a6cf418e893a38ba0d8))
+* implement doc viewer ([1e0c306](https://github.com/oaknational/Oak-Web-Application/commit/1e0c3066b953aaa9956ae1602ebfa5361a82361a))
+* utilise google viewer to render google docs and add mat ([275e4c5](https://github.com/oaknational/Oak-Web-Application/commit/275e4c5db5e7387979768ec029c27f313a2a96bc))
+
+## [1.665.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.665.0...v1.665.1) (2025-01-16)
+
+
+### Bug Fixes
+
+* remove unused components ([314e691](https://github.com/oaknational/Oak-Web-Application/commit/314e69106812c4e5ec2ac7b29f2d98f5c2b7b81a))
+
+# [1.665.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.664.0...v1.665.0) (2025-01-16)
+
+
+### Features
+
+* add tests to code renderer wrapper ([e06fcae](https://github.com/oaknational/Oak-Web-Application/commit/e06fcaea203350b91761bfe1290b9ef3d8f7be94))
+* apply code in quizzes on pupil experience ([000436b](https://github.com/oaknational/Oak-Web-Application/commit/000436b1f5b73fb5ff0cf99e5eb9fb338de92698))
+* merge main ([27d42ad](https://github.com/oaknational/Oak-Web-Application/commit/27d42adf0d0ad7c6957c5bfcab37b9c40edb1fac))
+* merge main ([dc80d88](https://github.com/oaknational/Oak-Web-Application/commit/dc80d887b2cf0d39594fe2e99df958d208d84b40))
+* update package ([34bec93](https://github.com/oaknational/Oak-Web-Application/commit/34bec937914d891035742c7c8a4d737927842ad5))
+* update package ([52a71d8](https://github.com/oaknational/Oak-Web-Application/commit/52a71d8d229662f3a07c738b6d84296b6473890d))
+* update package ([0f04707](https://github.com/oaknational/Oak-Web-Application/commit/0f04707a7b08c35f37eee4abac54e50afb08b1d0))
+
+# [1.664.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.663.0...v1.664.0) (2025-01-16)
+
+
+### Bug Fixes
+
+* add storybook file, update schema version, fix typos ([9bffcf2](https://github.com/oaknational/Oak-Web-Application/commit/9bffcf2c777a823153956479ca5bd6d93286b27f))
+* pupil pages rendering ([1cd54f1](https://github.com/oaknational/Oak-Web-Application/commit/1cd54f175ed024623f8bde2a2c02a07b4653e1dd))
+
+
+### Features
+
+*  files needed component, tests, schema and mv update ([69c8f68](https://github.com/oaknational/Oak-Web-Application/commit/69c8f681b1983ee05d72cc5b24e746ab66e7999d))
+* add add file function back in ([fa29c9a](https://github.com/oaknational/Oak-Web-Application/commit/fa29c9acdcc8cbd269b9235d5f03cd74debbddf6))
+
 # [1.663.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.662.0...v1.663.0) (2025-01-15)
 
 

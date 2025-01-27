@@ -42,7 +42,6 @@ const teacherPreviewLessonQuery =
     if (!content) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
-
     const parsedLessonContent = lessonContentSchemaFull.parse({
       ...content,
       geo_restricted: true,
@@ -58,6 +57,7 @@ const teacherPreviewLessonQuery =
       starter_quiz: content.starter_quiz
         ? content.starter_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
+      additional_files: content?.additional_files,
     });
 
     const [browseData] = keysToCamelCase(res.browseData);

@@ -141,6 +141,66 @@ describe("PupilIntro", () => {
     expect(getByText("supervision level")).toBeInTheDocument();
   });
 
+  describe("additional download", () => {
+    describe("when there is additional files", () => {
+      const subject = (
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsIntro
+              {...curriculumData}
+              hasAdditionalFiles
+              hasWorksheet
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>
+      );
+
+      it("displays the additional downloads card", () => {
+        const { queryByText, queryByRole } = renderWithTheme(subject);
+
+        expect(
+          queryByText("Files you will need for this lesson"),
+        ).toBeInTheDocument();
+        expect(
+          queryByRole("button", { name: /Download file/i }),
+        ).toBeInTheDocument();
+      });
+
+      it("allows the files to be downloaded", async () => {
+        const { getByText } = renderWithTheme(subject);
+
+        await userEvent.click(getByText("Download files"));
+
+        expect(downloadLessonResources.default).toHaveBeenCalledWith(
+          curriculumData.lessonSlug,
+          ["worksheet-pdf-questions"],
+          curriculumData.isLegacy,
+        );
+      });
+    });
+
+    describe("when there is no additional files", () => {
+      const subject = (
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsIntro
+              {...curriculumData}
+              hasWorksheet={false}
+              hasAdditionalFiles={false}
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>
+      );
+
+      it("does not display the additional files card", () => {
+        const { queryByText } = renderWithTheme(subject);
+
+        expect(
+          queryByText("Files you will need for this lesson"),
+        ).not.toBeInTheDocument();
+      });
+    });
+  });
   describe("worksheet download", () => {
     describe("when there is a worksheet", () => {
       const subject = (
