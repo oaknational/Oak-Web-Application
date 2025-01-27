@@ -38,7 +38,7 @@ type BaseLessonMedia = {
   lessonTitle: string;
   lessonSlug: string;
   keyStageTitle: string;
-  mediaClips: MediaClipListCamelCase | null;
+  mediaClips: MediaClipListCamelCase;
   lessonOutline: { lessonOutline: string }[];
 };
 
@@ -65,9 +65,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
     : (lesson.subjectSlug ?? "");
-  const isPELesson = isCanonical
-    ? lesson?.pathways[0]?.subjectSlug === "physical-education"
-    : lesson.subjectSlug === "physical-education";
+  const isPELesson = subjectSlug === "physical-education";
 
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],

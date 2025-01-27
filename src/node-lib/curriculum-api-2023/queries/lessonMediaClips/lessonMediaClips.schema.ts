@@ -71,7 +71,7 @@ const baseLessonMediaClipsPageSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   keyStageTitle: z.string(),
-  mediaClips: mediaClipsRecordCamelSchema.nullable(),
+  mediaClips: mediaClipsRecordCamelSchema,
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })),
 });
 

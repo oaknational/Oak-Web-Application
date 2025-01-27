@@ -37,13 +37,14 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
       {videosArray.map((video, index) => {
         const firstCycleVideo = video[0];
         if (!firstCycleVideo) return null;
-
         const isAudioClip = firstCycleVideo.mediaObject?.format === "mp3";
-        const signedPlaybackId = firstCycleVideo.videoObject?.playbackIds?.find(
+        const signedPlaybackId = firstCycleVideo.videoObject.playbackIds.find(
           (playbackId) => {
-            return playbackId?.policy === "signed";
+            return playbackId.policy === "signed";
           },
         );
+
+        if (!signedPlaybackId) return null;
         return (
           <OakGridArea
             key={index}
@@ -59,7 +60,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
               playbackId={
                 isAudioClip
                   ? firstCycleVideo.videoObject.muxAssetId
-                  : (signedPlaybackId?.id ?? "")
+                  : signedPlaybackId.id
               }
               isAudioClip={isAudioClip}
               playbackPolicy={"signed"}

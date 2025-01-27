@@ -68,22 +68,20 @@ const PostAlbCopyright = (
   return (
     <OakBox $font="body-3" {...props}>
       This content is © Oak National Academy Limited ({year}), licensed on{" "}
-      <span>
-        <StyledLink
-          aria-label={`Open Government License version 3.0${
-            props.openLinksExternally ? " (opens in a new tab)" : ""
-          }`}
-          role="link"
-          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
-          target={props.openLinksExternally ? "_blank" : "_self"}
-        >
-          <OakFlex $display={"inline"} $alignItems={"center"}>
-            Open Government Licence version 3.0{" "}
-            <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-          </OakFlex>
-        </StyledLink>{" "}
-        except where otherwise stated. See{" "}
-      </span>
+      <StyledLink
+        aria-label={`Open Government License version 3.0${
+          props.openLinksExternally ? " (opens in a new tab)" : ""
+        }`}
+        role="link"
+        href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+        target={props.openLinksExternally ? "_blank" : "_self"}
+      >
+        <OakFlex $display={"inline"} $alignItems={"center"}>
+          Open Government Licence version 3.0{" "}
+          <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+        </OakFlex>
+      </StyledLink>{" "}
+      except where otherwise stated. See{" "}
       <OwaLink
         page={"legal"}
         legalSlug="terms-and-conditions"

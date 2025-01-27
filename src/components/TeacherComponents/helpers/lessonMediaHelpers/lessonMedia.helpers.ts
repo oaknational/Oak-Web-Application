@@ -11,7 +11,7 @@ export const getPlaybackId = (currentClip: MediaClip) => {
 };
 
 export const joinTranscript = (currentClip: MediaClip) => {
-  return currentClip?.transcriptSentences?.join(" ");
+  return currentClip.transcriptSentences?.join(" ");
 };
 
 export const getPlayingState = (
