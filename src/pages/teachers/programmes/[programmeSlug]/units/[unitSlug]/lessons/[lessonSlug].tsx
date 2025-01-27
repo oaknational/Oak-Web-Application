@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   GetStaticPathsResult,
   GetStaticProps,
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import {
@@ -19,14 +18,10 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-import {
-  useShareExperiment,
-  CurriculumTrackingProps,
-} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
-import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
-import { TeacherShareNotesButton } from "@/components/TeacherComponents/TeacherShareNotesButton/TeacherShareNotesButton";
+import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -49,59 +44,30 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     keyStageTitle,
   } = curriculumData;
 
-  const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
-  const [lessonPath, setLessonPath] = useState<string | null>(null);
-  const teacherNotesEnabled = useFeatureFlagEnabled("teacher-notes");
-
-  const { shareUrl, browserUrl, shareActivated, shareIdKeyRef, shareIdRef } =
-    useShareExperiment({
-      lessonSlug,
-      unitSlug,
-      programmeSlug,
-      source: "lesson-browse",
-      curriculumTrackingProps: {
-        lessonName: lessonTitle,
-        unitName: unitTitle,
-        subjectSlug,
-        subjectTitle,
-        keyStageSlug,
-        keyStageTitle:
-          keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
-      },
-      overrideExistingShareId: true,
-    });
-
-  const { teacherNote, isEditable, saveTeacherNote, noteSaved, error } =
-    useTeacherNotes({
-      lessonPath,
-      shareId: shareIdRef.current,
-      sidKey: shareIdKeyRef.current,
-      enabled: Boolean(teacherNotesEnabled),
-    });
-
-  useEffect(() => {
-    if (teacherNotesEnabled) {
-      setLessonPath(window.location.href.split("?")[0] || null);
-    }
-
-    if (window.location.href !== browserUrl) {
-      window.history.replaceState({}, "", browserUrl);
-    }
-  }, [browserUrl, teacherNotesEnabled]);
-
-  const teacherNotesButton = (
-    <TeacherShareNotesButton
-      teacherNotesEnabled={teacherNotesEnabled ?? false}
-      isEditable={isEditable}
-      noteSaved={noteSaved}
-      setTeacherNotesOpen={setTeacherNotesOpen}
-      shareUrl={shareUrl}
-      shareActivated={shareActivated}
-    />
-  );
-
-  const teacherNoteHtml =
-    teacherNotesEnabled && !isEditable ? teacherNote?.noteHtml : undefined;
+  const {
+    teacherNotesButton,
+    teacherNoteHtml,
+    teacherNotesOpen,
+    setTeacherNotesOpen,
+    teacherNote,
+    isEditable,
+    saveTeacherNote,
+    shareUrl,
+    error,
+  } = useLesson({
+    lessonSlug,
+    unitSlug,
+    programmeSlug,
+    source: "lesson-browse",
+    curriculumTrackingProps: {
+      lessonName: lessonTitle,
+      unitName: unitTitle,
+      subjectSlug,
+      subjectTitle,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+    },
+  });
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
