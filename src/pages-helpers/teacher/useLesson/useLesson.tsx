@@ -5,7 +5,10 @@ import {
   TeacherNoteCamelCase,
 } from "@oaknational/oak-pupil-client";
 
-import { CurriculumTrackingProps , useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import {
+  CurriculumTrackingProps,
+  useShareExperiment,
+} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
 import { TeacherShareNotesButton } from "@/components/TeacherComponents/TeacherShareNotesButton/TeacherShareNotesButton";
 
