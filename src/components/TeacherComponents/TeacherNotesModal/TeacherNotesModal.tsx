@@ -135,14 +135,12 @@ export const TeacherNotesModal = ({
       lastSavedAtRemaining.current = r;
     },
     onUpdate: ({ editor }) => {
-      setRemainingCharacters(
-        limit - (editor?.storage.characterCount.characters() ?? 0),
-      );
-      const delta = Math.abs(
-        lastSavedAtRemaining.current - remainingCharacters,
-      );
+      const numChars = editor?.storage.characterCount.characters() ?? 0;
+      const r = limit - numChars;
+      setRemainingCharacters(r);
+      const delta = Math.abs(lastSavedAtRemaining.current - r);
       if (delta > saveProgressAfter) {
-        lastSavedAtRemaining.current = remainingCharacters;
+        lastSavedAtRemaining.current = r;
         handleSave(true);
       }
     },

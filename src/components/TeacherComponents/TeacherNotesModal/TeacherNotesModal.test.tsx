@@ -21,19 +21,24 @@ jest.mock("@tiptap/react", () => {
   return {
     __esModule: true,
     ...jest.requireActual("@tiptap/react"),
-    useEditor: jest.fn().mockReturnValue({
-      commands: {
-        getHTML: jest.fn().mockReturnValue("<p>test</p>"),
-        setContent: jest.fn(),
-      },
-      storage: {
-        characterCount: {
-          characters: jest.fn().mockReturnValue(0),
+    useEditor: jest.fn(({ onCreate, onUpdate, onBlur }) => {
+      return {
+        commands: {
+          getHTML: jest.fn().mockReturnValue("<p>test</p>"),
+          setContent: jest.fn(),
         },
-      },
-      isActive: jest.fn().mockReturnValue(false),
-      getHTML: jest.fn().mockReturnValue(""),
-      getText: jest.fn().mockReturnValue(""),
+        storage: {
+          characterCount: {
+            characters: jest.fn().mockReturnValue(0),
+          },
+        },
+        isActive: jest.fn().mockReturnValue(false),
+        getHTML: jest.fn().mockReturnValue(""),
+        getText: jest.fn().mockReturnValue(""),
+        onCreate,
+        onUpdate,
+        onBlur,
+      };
     }),
   };
 });
@@ -134,8 +139,7 @@ describe("TeacherNotesModal", () => {
     });
   });
 
-  it.skip("should populate the editor with the html from the teacher note", async () => {
-    const mockEditorSetContent = useEditorMock().commands.setContent;
+  it("should populate the editor with the html from the teacher note when the onCreate event callback is triggered", async () => {
     // render the component
     render(
       <TeacherNotesModal
@@ -148,14 +152,72 @@ describe("TeacherNotesModal", () => {
       />,
     );
 
-    await waitFor(() => {
-      expect(mockEditorSetContent).toHaveBeenCalledWith("<p>test</p>");
-    });
+    // get the call to useEditor
+    const mockEditorArgs = useEditorMock.mock.calls?.[0];
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    mockEditorArgs?.[0]?.onCreate({ editor: mockEditorInstance });
+
+    expect(mockEditorInstance.commands.setContent).toHaveBeenCalledWith(
+      mockTeacherNoteSnake.note_html,
+    );
   });
-  it.skip("should call save teacher note when the save button is clicked", async () => {
-    const mockSaveTeacherNote = jest
-      .fn(() => Promise.resolve(mockTeacherNoteSnake))
-      .mockName("saveTeacherNote");
+
+  it("should save the teacher note when the editor loses focus", async () => {
+    const saveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+    // render the component
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={saveTeacherNote}
+        teacherNote={mockTeacherNote}
+        sharingUrl={"https://example.com"}
+        error={null}
+      />,
+    );
+
+    // get the call to useEditor
+    const mockEditorArgs = useEditorMock.mock.calls?.[0];
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    expect(saveTeacherNote).toHaveBeenCalled();
+  });
+
+  it("should save the teacher note when the character count has changed by more than 50 chars", () => {
+    const saveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+    // render the component
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={saveTeacherNote}
+        teacherNote={mockTeacherNote}
+        sharingUrl={"https://example.com"}
+        error={null}
+      />,
+    );
+
+    // get the call to useEditor
+    const mockEditorArgs = useEditorMock.mock.calls?.[0];
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+    mockEditorInstance.storage.characterCount.characters.mockReturnValueOnce(
+      51,
+    );
+
+    mockEditorArgs?.[0]?.onUpdate({ editor: mockEditorInstance });
+    expect(saveTeacherNote).toHaveBeenCalled();
+  });
+
+  it("should set note saved when the note has been saved", async () => {
+    const mockSaveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
 
     render(
       <TeacherNotesModal
@@ -177,40 +239,10 @@ describe("TeacherNotesModal", () => {
       throw new Error("No modal props found");
     }
 
-    // modalProps.onSaveClicked();
+    const mockEditorArgs = useEditorMock.mock.calls?.[0];
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
 
-    await waitFor(() => {
-      console.log(mockSaveTeacherNote.getMockName());
-      expect(mockSaveTeacherNote).toHaveBeenCalled();
-    });
-  });
-
-  it.skip("should set note saved when the note has been saved", async () => {
-    const mockSaveTeacherNote = jest
-      .fn(() => Promise.resolve(mockTeacherNoteSnake))
-      .mockName("saveTeacherNote");
-
-    render(
-      <TeacherNotesModal
-        isOpen={true}
-        onClose={jest.fn()}
-        saveTeacherNote={mockSaveTeacherNote}
-        teacherNote={mockTeacherNote}
-        sharingUrl={"https://example.com"}
-        error={null}
-      />,
-    );
-
-    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
-      typeof OakTeacherNotesModal
-    >;
-
-    const modalProps = mockModal.mock.calls?.[0]?.[0];
-    if (!modalProps) {
-      throw new Error("No modal props found");
-    }
-
-    // modalProps.onSaveClicked();
+    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
 
     await waitFor(() => {
       const latestProps = mockModal.mock.lastCall?.[0];
