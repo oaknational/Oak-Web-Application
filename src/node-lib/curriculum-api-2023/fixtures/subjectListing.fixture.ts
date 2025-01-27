@@ -79,6 +79,36 @@ const subjectPagePropsFixture = (
           hasNewContent: false,
         },
       ],
+      [
+        {
+          slug: "citizenship",
+          data: {
+            subjectSlug: "citizenship",
+            subjectTitle: "Citizenship",
+            unitCount: 2,
+            lessonCount: 3,
+            programmeSlug: "citizenship-secondary-ks4-core",
+            programmeCount: 1,
+            pathwaySlug: "gcse",
+            pathwayTitle: "GCSE",
+          },
+          hasNewContent: true,
+        },
+        {
+          slug: "citizenship",
+          data: {
+            subjectSlug: "citizenship",
+            subjectTitle: "Citizenship",
+            unitCount: 4,
+            lessonCount: 6,
+            programmeSlug: "citizenship-secondary-ks4-gcse",
+            programmeCount: 1,
+            pathwaySlug: "core",
+            pathwayTitle: "Core",
+          },
+          hasNewContent: false,
+        },
+      ],
     ],
     ...partial,
   };

@@ -6,6 +6,7 @@ import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import UnitListingPage, {
   getStaticPaths,
   getStaticProps,
+  getLegacySlug,
 } from "@/pages/teachers/programmes/[programmeSlug]/units";
 import unitListingFixture, {
   unitListingWithTiers,
@@ -225,5 +226,22 @@ describe("tracking", () => {
       tierName: null,
       examBoard: null,
     });
+  });
+});
+
+describe("getLegacySlug", () => {
+  it('replaces "core" with "l"', () => {
+    const result = getLegacySlug("citizenship-secondary-ks4-core");
+    expect(result).toBe("citizenship-secondary-ks4-l");
+  });
+
+  it('replaces "gcse" with "l"', () => {
+    const result = getLegacySlug("citizenship-secondary-ks4-gcse");
+    expect(result).toBe("citizenship-secondary-ks4-l");
+  });
+
+  it('appends "-l" if no "core" or "gcse" is present', () => {
+    const result = getLegacySlug("history");
+    expect(result).toBe("history-l");
   });
 });
