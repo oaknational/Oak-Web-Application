@@ -63,4 +63,36 @@ describe("getCombinedSubjects", () => {
       },
     ]);
   });
+
+  test("it combines old and new for programmes with pathways", () => {
+    const result = getCombinedSubjects(
+      subjectListingFixture2023(),
+      "citizenship",
+      false,
+    );
+    expect(result).toEqual([
+      {
+        isNew: true,
+        lessonCount: 2,
+        programmeCount: 1,
+        programmeSlug: "citizenship-secondary-ks4-core",
+        subjectSlug: "citizenship",
+        subjectTitle: "Citizenship",
+        unitCount: 4,
+        pathwaySlug: "core",
+        pathwayTitle: "Core",
+      },
+      {
+        isNew: true,
+        lessonCount: 8,
+        programmeCount: 1,
+        programmeSlug: "citizenship-secondary-ks4-gcse",
+        subjectSlug: "citizenship",
+        subjectTitle: "Citizenship",
+        unitCount: 8,
+        pathwaySlug: "gcse",
+        pathwayTitle: "GCSE",
+      },
+    ]);
+  });
 });

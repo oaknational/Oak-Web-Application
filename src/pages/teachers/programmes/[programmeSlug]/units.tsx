@@ -447,14 +447,6 @@ export const getStaticPaths = async () => {
   return config;
 };
 
-export const getLegacySlug = (programmeSlug: string) => {
-  if (programmeSlug.includes("core")) {
-    return programmeSlug.split("core").join("l");
-  } else if (programmeSlug.includes("gcse")) {
-    return programmeSlug.split("gcse").join("l");
-  } else return programmeSlug + "-l";
-};
-
 export const getStaticProps: GetStaticProps<
   UnitListingPageProps,
   URLParams
@@ -484,7 +476,7 @@ export const getStaticProps: GetStaticProps<
         const legacyCurriculumData = isLegacy
           ? null
           : await curriculumApi2023.unitListing({
-              programmeSlug: getLegacySlug(programmeSlug),
+              programmeSlug: programmeSlug + "-l",
             });
 
         if (legacyCurriculumData) {
