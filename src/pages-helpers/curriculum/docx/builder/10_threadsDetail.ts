@@ -19,34 +19,36 @@ function renderUnits(units: Unit[], numbering: { unitNumbering: string }) {
     ${units
       .map(
         (unit) => safeXml`
-      <w:p>
-        <w:pPr>
-          <w:numPr>
-            <w:ilvl w:val="0" />
-            <w:numId w:val="${numbering.unitNumbering}" />
-          </w:numPr>
-          <w:spacing w:line="276" w:lineRule="auto" />
-          <w:ind w:left="425" w:right="-17" w:hanging="360" />
-        </w:pPr>
-        <w:r>
-          <w:rPr>
-            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-            <w:b />
-            <w:color w:val="222222" />
-            <w:sz w:val="24" />
-          </w:rPr>
-          <w:t xml:space="preserve">${cdata(`Unit ${unit.order + 1}, `)}</w:t>
-        </w:r>
-        <w:r>
-          <w:rPr>
-            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-            <w:color w:val="222222" />
-            <w:sz w:val="24" />
-          </w:rPr>
-          <w:t>${cdata(`'${unit.title}'`)}</w:t>
-        </w:r>
-      </w:p>
-    `,
+          <w:p>
+            <w:pPr>
+              <w:numPr>
+                <w:ilvl w:val="0" />
+                <w:numId w:val="${numbering.unitNumbering}" />
+              </w:numPr>
+              <w:spacing w:line="276" w:lineRule="auto" />
+              <w:ind w:left="425" w:right="-17" w:hanging="360" />
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:b />
+                <w:color w:val="222222" />
+                <w:sz w:val="24" />
+              </w:rPr>
+              <w:t xml:space="preserve">${cdata(
+                  `Unit ${unit.order + 1}, `,
+                )}</w:t>
+            </w:r>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:color w:val="222222" />
+                <w:sz w:val="24" />
+              </w:rPr>
+              <w:t>${cdata(`'${unit.title}'`)}</w:t>
+            </w:r>
+          </w:p>
+        `,
       )
       .join("")}
   `;
@@ -91,37 +93,39 @@ export default async function generate(
     const isLast = threadIndex === allThreadOptions.length - 1;
 
     const threadTitle = safeXml`
-      <w:p>
-        <w:pPr>
-          <w:pStyle w:val="Heading3" />
-        </w:pPr>
-        <w:r>
-          <w:rPr>
-            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-            <w:color w:val="222222" />
-            <w:sz w:val="36" />
-          </w:rPr>
-          <w:t xml:space="preserve">${cdata(`Thread, `)}</w:t>
-        </w:r>
-        <w:r>
-          <w:rPr>
-            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-            <w:b />
-            <w:color w:val="222222" />
-            <w:sz w:val="36" />
-          </w:rPr>
-          <w:t>${cdata(`'${thread.title}'`)}</w:t>
-        </w:r>
-      </w:p>
-      <w:p>
-        <w:r>
-          <w:rPr>
-            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-            <w:sz w:val="24" />
-          </w:rPr>
-          <w:t xml:space="preserve"> </w:t>
-        </w:r>
-      </w:p>
+      <XML_FRAGMENT>
+        <w:p>
+          <w:pPr>
+            <w:pStyle w:val="Heading3" />
+          </w:pPr>
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+              <w:color w:val="222222" />
+              <w:sz w:val="36" />
+            </w:rPr>
+            <w:t xml:space="preserve">${cdata(`Thread, `)}</w:t>
+          </w:r>
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+              <w:b />
+              <w:color w:val="222222" />
+              <w:sz w:val="36" />
+            </w:rPr>
+            <w:t>${cdata(`'${thread.title}'`)}</w:t>
+          </w:r>
+        </w:p>
+        <w:p>
+          <w:r>
+            <w:rPr>
+              <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+              <w:sz w:val="24" />
+            </w:rPr>
+            <w:t xml:space="preserve"> </w:t>
+          </w:r>
+        </w:p>
+      </XML_FRAGMENT>
     `;
 
     let contentElements: string[];
@@ -146,6 +150,7 @@ export default async function generate(
         .map(([year, units]) => {
           const yearTitle = getYearGroupTitle(yearData, year);
           return safeXml`
+            <XML_FRAGMENT>
               <w:p>
                 <w:pPr>
                   <w:pStyle w:val="Heading4" />
@@ -170,7 +175,8 @@ export default async function generate(
                   <w:t />
                 </w:r>
               </w:p>
-            `;
+            </XML_FRAGMENT>
+          `;
         })
         .join("");
     });
@@ -234,31 +240,41 @@ export default async function generate(
                   .map(([year, units]) => {
                     const yearTitle = getYearGroupTitle(yearData, year);
                     return safeXml`
-                      <w:p>
-                        <w:pPr>
-                          <w:pStyle w:val="Heading5" />
-                        </w:pPr>
-                        <w:r>
-                          <w:rPr>
-                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                            <w:b />
-                            <w:i w:val="0" />
-                            <w:color w:val="222222" />
-                            <w:sz w:val="24" />
-                          </w:rPr>
-                          <w:t>${cdata(yearTitle)}</w:t>
-                        </w:r>
-                      </w:p>
-                      ${renderUnits(sortByOrder(units), numbering)}
-                      <w:p>
-                        <w:r>
-                          <w:rPr>
-                            <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                            <w:sz w:val="24" />
-                          </w:rPr>
-                          <w:t />
-                        </w:r>
-                      </w:p>
+                      <XML_FRAGMENT>
+                        <w:p>
+                          <w:pPr>
+                            <w:pStyle w:val="Heading5" />
+                          </w:pPr>
+                          <w:r>
+                            <w:rPr>
+                              <w:rFonts
+                                w:ascii="Arial"
+                                w:hAnsi="Arial"
+                                w:cs="Arial"
+                              />
+                              <w:b />
+                              <w:i w:val="0" />
+                              <w:color w:val="222222" />
+                              <w:sz w:val="24" />
+                            </w:rPr>
+                            <w:t>${cdata(yearTitle)}</w:t>
+                          </w:r>
+                        </w:p>
+                        ${renderUnits(sortByOrder(units), numbering)}
+                        <w:p>
+                          <w:r>
+                            <w:rPr>
+                              <w:rFonts
+                                w:ascii="Arial"
+                                w:hAnsi="Arial"
+                                w:cs="Arial"
+                              />
+                              <w:sz w:val="24" />
+                            </w:rPr>
+                            <w:t />
+                          </w:r>
+                        </w:p>
+                      </XML_FRAGMENT>
                     `;
                   })
                   .join("")}
@@ -273,17 +289,15 @@ export default async function generate(
       <XML_FRAGMENT>
         ${threadTitle}
         ${contentElements.join("")}
-        ${
-          !isLast
-            ? safeXml`
+        ${!isLast
+          ? safeXml`
               <w:p>
                 <w:r>
                   <w:br w:type="page" />
                 </w:r>
               </w:p>
             `
-            : ""
-        }
+          : ""}
       </XML_FRAGMENT>
     `;
   });
