@@ -66,16 +66,14 @@ describe("LessonMediaClipsCanonicalPage", () => {
     });
   });
 
-  it.skip("Renders breadcrumbs", async () => {
+  it("Renders component", async () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <CanonicalLessonMediaClipsPage curriculumData={fixtureData} />,
       </OakThemeProvider>,
     );
 
-    expect(
-      result.queryAllByText("Lesson Share: Running as a team"),
-    ).toBeInTheDocument();
+    expect(result.getByTestId("media-view")).toBeInTheDocument();
   });
 
   describe("getStaticProps", () => {

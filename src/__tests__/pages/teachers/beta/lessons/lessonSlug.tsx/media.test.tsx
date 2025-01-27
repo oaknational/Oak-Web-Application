@@ -38,14 +38,14 @@ describe("BetaLessonMediaClipsPage", () => {
     });
   });
 
-  it.skip("Renders breadcrumbs", async () => {
+  it("Renders component", async () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonMediaClipsPage curriculumData={lessonFixtureData} />,
       </OakThemeProvider>,
     );
 
-    expect(result.queryByText("Extra video and audio")).toBeInTheDocument();
+    expect(result.getByTestId("media-view")).toBeInTheDocument();
   });
 
   describe("getStaticPaths", () => {

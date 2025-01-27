@@ -62,6 +62,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const { isCanonical, lesson } = props;
   const { lessonTitle, lessonSlug, keyStageTitle, mediaClips, lessonOutline } =
     lesson;
+  console.log("COMPONET IS HERE");
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
     : (lesson.subjectSlug ?? "");
@@ -241,7 +242,11 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   return (
     <OakMaxWidth $pb={"inner-padding-xl8"} $ph={"inner-padding-s"}>
-      <OakBox $mb={"space-between-m2"} $mt={"space-between-m"}>
+      <OakBox
+        $mb={"space-between-m2"}
+        $mt={"space-between-m"}
+        data-testid="media-view"
+      >
         <Breadcrumbs
           breadcrumbs={[
             ...getBreadcrumbsForLessonPathway(commonPathway),
