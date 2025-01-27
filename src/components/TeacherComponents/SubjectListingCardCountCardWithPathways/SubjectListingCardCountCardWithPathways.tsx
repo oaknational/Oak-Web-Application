@@ -39,7 +39,7 @@ const SubjectListingCardCountCardWithPathways: FC<
           pathwayTitle,
         } = subjectPathway.data;
 
-        const ariaLabel = `${subjectTitle}: ${unitCount} ${
+        const ariaLabel = `${subjectTitle} ${pathwayTitle}: ${unitCount} ${
           unitCount > 1 ? "units" : "unit"
         }, ${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"} ${
           !isLegacyLesson ? "- new content" : ""
@@ -86,13 +86,15 @@ const SubjectListingCardCountCardWithPathways: FC<
               }}
             >
               <OakBox $borderRadius={"border-radius-s"} $overflow={"hidden"}>
-                <OakBox
+                <OakFlex
                   $background={"bg-decorative3-very-subdued"}
-                  $pa={"inner-padding-m"}
+                  $ph={"inner-padding-m"}
+                  $height={"all-spacing-7"}
                   $font={"body-3-bold"}
+                  $alignItems={"center"}
                 >
                   {pathwayTitle}
-                </OakBox>
+                </OakFlex>
                 <OakFlex
                   $flexDirection={"column"}
                   $pa="inner-padding-m"

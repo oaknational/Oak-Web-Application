@@ -28,6 +28,8 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
   keyStageTitle,
   subjectSlug,
 }) => {
+  const hasPathways = (subject: Subjects) => !!subject?.[0]?.data.pathwaySlug;
+
   return (
     <Card
       $flexDirection={"column"}
@@ -44,7 +46,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
         $ml={["space-between-xs", "space-between-none"]}
         $mt="space-between-xs"
         $flexGrow={1}
-        $justifyContent={"center"}
+        $justifyContent={["flex-start", "center"]}
       >
         <OakFlex
           $mr={["space-between-ssx", "space-between-none"]}
@@ -82,7 +84,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
         $width={"100%"}
       >
         <OakFlex role={"listitem"} $flexGrow={1}>
-          {subject.length === 1 && subject[0] && (
+          {!hasPathways(subject) && subject.length === 1 && subject[0] && (
             <SubjectListingCardDoubleCountCard
               isLegacyLesson={!subject?.[0]?.hasNewContent}
               keyStageSlug={keyStageSlug}
@@ -90,7 +92,7 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
               {...subject[0].data}
             />
           )}
-          {subject.length > 1 && (
+          {hasPathways(subject) && subject.length >= 1 && (
             <SubjectListingCardCountCardWithPathways
               keyStageSlug={keyStageSlug}
               keyStageTitle={keyStageTitle}

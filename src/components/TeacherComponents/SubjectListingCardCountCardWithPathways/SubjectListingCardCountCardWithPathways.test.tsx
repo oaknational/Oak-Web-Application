@@ -44,10 +44,10 @@ describe("SubjectListingCardCountCardWithPathways", () => {
       );
 
       const citizenshipCoreAriaLabel = screen.getByLabelText(
-        "Citizenship: 4 units, 6 lessons",
+        "Citizenship Core: 4 units, 6 lessons",
       );
       const citizenshipGCSEAriaLabel = screen.getByLabelText(
-        "Citizenship: 2 units, 3 lessons - new content",
+        "Citizenship GCSE: 2 units, 3 lessons - new content",
       );
 
       expect(citizenshipGCSEAriaLabel).toBeInTheDocument();
