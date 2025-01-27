@@ -3,7 +3,7 @@
 exports[`Banners when cycle 2 enabled 1`] = `
 <div>
   <div
-    class="sc-fqkvVR fgBWrW"
+    class="sc-fqkvVR dzjDLT"
     role="banner"
   >
     <div
@@ -22,7 +22,7 @@ exports[`Banners when cycle 2 enabled 1`] = `
           >
             <div
               aria-hidden="true"
-              class="sc-fqkvVR bHatqy"
+              class="sc-fqkvVR bqktJH"
               data-testid="tag-promotional-icon"
             >
               <img
@@ -46,7 +46,7 @@ exports[`Banners when cycle 2 enabled 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-eldPxv kJPpVN imhqNK"
+            class="sc-fqkvVR sc-eldPxv jGCLGw imhqNK"
           >
             <span
               class="sc-50f33a24-0 ehBjeG"
@@ -64,7 +64,7 @@ exports[`Banners when cycle 2 enabled 1`] = `
           title="See curriculum plans"
         >
           <div
-            class="sc-fqkvVR sc-gsFSXq gHxmiG iKAPmA"
+            class="sc-fqkvVR sc-gsFSXq kzBnsT iKAPmA"
           >
             <span
               aria-hidden="true"
@@ -102,10 +102,10 @@ exports[`Banners when cycle 2 enabled 1`] = `
             </span>
           </div>
           <div
-            class="sc-fqkvVR gxmQRM"
+            class="sc-fqkvVR kMoIUV"
           >
             <div
-              class="sc-fqkvVR fgBWrW"
+              class="sc-fqkvVR dzjDLT"
             >
               <span
                 class="sc-kpDqfm sc-ca3376e3-0 fsPjOh eEriKr"
@@ -142,10 +142,10 @@ exports[`Banners when cycle 2 enabled 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR cRarTX"
+      class="sc-fqkvVR iqufSa"
     >
       <div
-        class="sc-fqkvVR sc-gsFSXq sc-jxOSlx hGVAzf hDihdg"
+        class="sc-fqkvVR sc-gsFSXq sc-jxOSlx enaHlq hDihdg"
       >
         <svg
           class="sc-hmdomO hyWSZl"
