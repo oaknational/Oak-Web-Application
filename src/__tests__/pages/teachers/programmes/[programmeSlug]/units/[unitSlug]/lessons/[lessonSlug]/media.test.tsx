@@ -29,19 +29,7 @@ jest.mock("posthog-js/react", () => ({
 
 jest.mock("@google-cloud/storage", () => {
   return {
-    Storage: jest.fn().mockImplementation(() => ({
-      bucket: jest.fn(() => ({
-        file: jest.fn(() => ({
-          save: jest.fn((data, options, callback) => {
-            callback(null); // Simulate success
-          }),
-          createWriteStream: jest.fn(() => ({
-            on: jest.fn(),
-            end: jest.fn(),
-          })),
-        })),
-      })),
-    })),
+    Storage: jest.fn().mockImplementation(() => ({})),
   };
 });
 
