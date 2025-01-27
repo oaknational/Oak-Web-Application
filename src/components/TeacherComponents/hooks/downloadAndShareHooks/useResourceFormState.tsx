@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { useUser } from "@clerk/nextjs";
 
 import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
@@ -65,8 +64,6 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     schoolName: string;
   }>(null);
 
-  const authFlagEnabled =
-    useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
   const { isSignedIn, user } = useUser();
 
   const {
@@ -123,12 +120,11 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       }
     };
 
-    if (userEmail && authFlagEnabled && isSignedIn) {
+    if (userEmail && isSignedIn) {
       updateUserDetailsFromHubspot(userEmail);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    authFlagEnabled,
     isSignedIn,
     setEmailInLocalStorage,
     setSchoolInLocalStorage,
@@ -144,7 +140,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       schoolFromHubspot?.schoolName === schoolFromLocalStorage.schoolName;
 
     const noDetailsInHubspot =
-      authFlagEnabled === false || isSignedIn === false;
+      isSignedIn === false ||
+      (isSignedIn && !user?.publicMetadata?.owa?.isOnboarded); // user has signed in but not onboarded
 
     if ((detailsUpdatedFromHubspot || noDetailsInHubspot) && !hubspotLoaded) {
       setHubspotLoaded(true);
@@ -152,9 +149,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   }, [
     schoolFromHubspot,
     schoolFromLocalStorage,
-    authFlagEnabled,
     isSignedIn,
     hubspotLoaded,
+    user,
   ]);
 
   useEffect(() => {
