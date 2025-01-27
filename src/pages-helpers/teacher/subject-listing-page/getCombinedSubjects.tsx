@@ -35,27 +35,8 @@ export const getCombinedSubjects = (
     legacySubjectArray[0]?.programmeCount ?? 0,
   );
 
-  // unit count is the sum of the subject unit count
-  const newSubjectUnitCountArray = newSubjectArray.map((s) => s.unitCount);
-  const newSubjectTotalUnitCount = newSubjectUnitCountArray.reduce(
-    (partialSum, a) => partialSum + a,
-    0,
-  );
-
-  const unitCount = isEyfs
-    ? (legacySubjectArray[0]?.unitCount ?? 0)
-    : newSubjectTotalUnitCount + (legacySubjectArray[0]?.unitCount ?? 0);
-
-  // lesson count is the sum of the subject lesson count
-  const newSubjectLessonCountArray = newSubjectArray.map((s) => s.lessonCount);
-  const newSubjectTotalLessonCount = newSubjectLessonCountArray.reduce(
-    (partialSum, a) => partialSum + a,
-    0,
-  );
-
-  const lessonCount = isEyfs
-    ? (legacySubjectArray[0]?.lessonCount ?? 0)
-    : newSubjectTotalLessonCount + (legacySubjectArray[0]?.lessonCount ?? 0);
+  const legacySubjectUnitCount = legacySubjectArray[0]?.unitCount ?? 0;
+  const legacySubjectLessonCount = legacySubjectArray[0]?.lessonCount ?? 0;
 
   type CombinedSubject = KeyStageSubjectData & { isNew: boolean };
 
@@ -66,10 +47,12 @@ export const getCombinedSubjects = (
           programmeCount: programmeCount,
           subjectSlug: newSubject.subjectSlug,
           subjectTitle: newSubject.subjectTitle,
-          unitCount: newSubject.pathwaySlug ? newSubject.unitCount : unitCount,
-          lessonCount: newSubject.pathwaySlug
-            ? newSubject.lessonCount
-            : lessonCount,
+          unitCount: isEyfs
+            ? legacySubjectUnitCount
+            : newSubject.unitCount + legacySubjectUnitCount,
+          lessonCount: isEyfs
+            ? legacySubjectLessonCount
+            : newSubject.lessonCount + legacySubjectLessonCount,
           pathwaySlug: newSubject.pathwaySlug,
           pathwayTitle: newSubject.pathwayTitle,
           isNew: true,
@@ -79,8 +62,8 @@ export const getCombinedSubjects = (
           programmeCount,
           subjectSlug: legacySubject.subjectSlug,
           subjectTitle: legacySubject.subjectTitle,
-          unitCount,
-          lessonCount,
+          unitCount: legacySubject.unitCount,
+          lessonCount: legacySubject.lessonCount,
           pathwaySlug: legacySubject.pathwaySlug,
           pathwayTitle: legacySubject.pathwayTitle,
           isNew: false,

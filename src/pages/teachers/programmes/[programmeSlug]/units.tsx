@@ -459,6 +459,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context.params");
       }
       const { programmeSlug } = context.params;
+
       try {
         const curriculumData = await curriculumApi2023.unitListing({
           programmeSlug,
@@ -472,11 +473,18 @@ export const getStaticProps: GetStaticProps<
 
         // need to account for if it's already a legacy programme
         const isLegacy = isSlugLegacy(programmeSlug);
+        const getLegacySlug = (programmeSlug: string) => {
+          if (programmeSlug.includes("core")) {
+            return programmeSlug.split("core").join("l");
+          } else if (programmeSlug.includes("gcse")) {
+            return programmeSlug.split("gcse").join("l");
+          } else return programmeSlug + "-l";
+        };
 
         const legacyCurriculumData = isLegacy
           ? null
           : await curriculumApi2023.unitListing({
-              programmeSlug: programmeSlug + "-l",
+              programmeSlug: getLegacySlug(programmeSlug),
             });
 
         if (legacyCurriculumData) {
