@@ -7,7 +7,6 @@ import {
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
   OakFlex,
-  OakSmallSecondaryButton,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
@@ -30,8 +29,8 @@ import { populateLessonWithTranscript } from "@/utils/handleTranscript";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
-import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
+import { TeacherShareNotesButton } from "@/components/TeacherComponents/TeacherShareNotesButton/TeacherShareNotesButton";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -84,27 +83,16 @@ export default function LessonOverviewCanonicalPage({
     }
   }, [browserUrl, teacherNotesEnabled]);
 
-  const teacherNotesButton =
-    teacherNotesEnabled && isEditable ? (
-      <OakSmallSecondaryButton
-        iconName={noteSaved ? "edit" : "share"}
-        isTrailingIcon
-        onClick={() => {
-          setTeacherNotesOpen(true);
-        }}
-      >
-        {noteSaved
-          ? "Edit teacher note and share"
-          : "Add teacher note and share"}
-      </OakSmallSecondaryButton>
-    ) : (
-      <TeacherShareButton
-        label="Share resources with colleague"
-        variant={"secondary"}
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-      />
-    );
+  const teacherNotesButton = (
+    <TeacherShareNotesButton
+      teacherNotesEnabled={teacherNotesEnabled ?? false}
+      isEditable={isEditable}
+      noteSaved={noteSaved}
+      setTeacherNotesOpen={setTeacherNotesOpen}
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+    />
+  );
 
   const teacherNoteHtml =
     teacherNotesEnabled && !isEditable ? teacherNote?.noteHtml : undefined;

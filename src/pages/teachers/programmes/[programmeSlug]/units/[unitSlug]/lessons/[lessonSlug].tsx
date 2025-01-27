@@ -6,11 +6,7 @@ import {
   NextPage,
 } from "next";
 import { useFeatureFlagEnabled } from "posthog-js/react";
-import {
-  OakSmallSecondaryButton,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@oaknational/oak-components";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import {
   getFallbackBlockingConfig,
@@ -27,10 +23,10 @@ import {
   useShareExperiment,
   CurriculumTrackingProps,
 } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
-import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
+import { TeacherShareNotesButton } from "@/components/TeacherComponents/TeacherShareNotesButton/TeacherShareNotesButton";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -93,27 +89,16 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     }
   }, [browserUrl, teacherNotesEnabled]);
 
-  const teacherNotesButton =
-    teacherNotesEnabled && isEditable ? (
-      <OakSmallSecondaryButton
-        iconName={noteSaved ? "edit" : "share"}
-        isTrailingIcon
-        onClick={() => {
-          setTeacherNotesOpen(true);
-        }}
-      >
-        {noteSaved
-          ? "Edit teacher note and share"
-          : "Add teacher note and share"}
-      </OakSmallSecondaryButton>
-    ) : (
-      <TeacherShareButton
-        label="Share resources with colleague"
-        variant={"secondary"}
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-      />
-    );
+  const teacherNotesButton = (
+    <TeacherShareNotesButton
+      teacherNotesEnabled={teacherNotesEnabled ?? false}
+      isEditable={isEditable}
+      noteSaved={noteSaved}
+      setTeacherNotesOpen={setTeacherNotesOpen}
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+    />
+  );
 
   const teacherNoteHtml =
     teacherNotesEnabled && !isEditable ? teacherNote?.noteHtml : undefined;
