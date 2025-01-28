@@ -1,3 +1,27 @@
+# [1.674.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.673.0...v1.674.0) (2025-01-28)
+
+
+### Bug Fixes
+
+* amend removeWebVtt function ([ececf1e](https://github.com/oaknational/Oak-Web-Application/commit/ececf1e32ef65665e8249a9839fdf0d7d184c3cb))
+* amend test ([cd6c299](https://github.com/oaknational/Oak-Web-Application/commit/cd6c299cc65de53e325f314181c10c67fa56bffe))
+* amend test ([92c3a2f](https://github.com/oaknational/Oak-Web-Application/commit/92c3a2fe6bdbd6c3f151a1161c7329c5b23cf3fd))
+* amend tests ([0c3240e](https://github.com/oaknational/Oak-Web-Application/commit/0c3240e0a4ca274971c9037883a04dd9bc1b7621))
+* amend tests ([e000b67](https://github.com/oaknational/Oak-Web-Application/commit/e000b670987d50355969695e6d4f611884434197))
+* lesson outines matching correct lesson ([96c1955](https://github.com/oaknational/Oak-Web-Application/commit/96c19555606b25e6ee01c0dbd5f194eee1aa906b))
+* link to correct pages ([804a82f](https://github.com/oaknational/Oak-Web-Application/commit/804a82fa369feb6afc53792d489dda2619645143))
+* media page bug fixes ([a21dfea](https://github.com/oaknational/Oak-Web-Application/commit/a21dfeabee21e5bda5f384c012e627bb2569b168))
+* update failing snapshot test ([e3dee56](https://github.com/oaknational/Oak-Web-Application/commit/e3dee5611ee20dc9e7cb4bf8ae1d9e162cef339a))
+
+
+### Features
+
+* add video transcripts ([d55ca56](https://github.com/oaknational/Oak-Web-Application/commit/d55ca568b8269e8586765333b52ea516c8220e3d))
+* adds real data to beta pages ([a54c020](https://github.com/oaknational/Oak-Web-Application/commit/a54c0208630b333ff12139541d4870052eebe269))
+* initial plug in for media clips page and overview page ([072b0cd](https://github.com/oaknational/Oak-Web-Application/commit/072b0cdc3f0a650ec90633e2b23e645aeb26f236))
+* rename breadcrumb, mock transcript function ([caf0a43](https://github.com/oaknational/Oak-Web-Application/commit/caf0a436a48f4ce171d0a83f65d95fa6d1840d34))
+* upgard package and use media image ([44db7f1](https://github.com/oaknational/Oak-Web-Application/commit/44db7f14525028b60ef7a02ed35e642af7041d2d))
+
 # [1.673.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.672.0...v1.673.0) (2025-01-28)
 
 
