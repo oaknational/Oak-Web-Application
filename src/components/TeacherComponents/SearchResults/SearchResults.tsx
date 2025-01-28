@@ -30,7 +30,7 @@ interface SearchResultsProps {
     searchHit: SearchResultsItemProps,
     searchRank: number,
   ) => void;
-  query: SearchQuery;
+  query?: SearchQuery;
 }
 
 export const RESULTS_PER_PAGE = 20;
