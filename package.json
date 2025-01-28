@@ -97,6 +97,7 @@
     "byte-size": "^9.0.1",
     "crypto-browserify": "^3.12.1",
     "date-fns": "^4.1.0",
+    "dompurify": "^3.2.3",
     "favicons": "^7.1.5",
     "gleap": "^14.0.8",
     "html-react-parser": "^4.2.2",

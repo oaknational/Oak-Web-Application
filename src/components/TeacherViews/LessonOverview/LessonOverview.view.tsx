@@ -50,11 +50,13 @@ import {
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
+import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
     teacherShareButton?: React.ReactNode;
     teacherNoteHtml?: string;
+    teacherNoteError?: string | null;
   };
 } & { isBeta: boolean };
 
@@ -102,6 +104,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     hasMediaClips,
     lessonMediaClips,
     teacherNoteHtml,
+    teacherNoteError,
     additionalFiles,
   } = lesson;
 
@@ -314,18 +317,10 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                   />
                 </OakBox>
 
-                {/* Render teacher note html */}
-                {teacherNoteHtml && (
-                  <OakBox
-                    $width={"100%"}
-                    $height={"all-spacing-18"}
-                    $mb={"space-between-l"}
-                    $pa={"inner-padding-s"}
-                    $overflow={"auto"}
-                    $background={"aqua110"}
-                    dangerouslySetInnerHTML={{ __html: teacherNoteHtml }}
-                  />
-                )}
+                <TeacherNoteInline
+                  unsafeHtml={teacherNoteHtml}
+                  error={teacherNoteError}
+                />
 
                 {pageLinks.find((p) => p.label === "Lesson guide") &&
                   lessonGuideUrl && (
