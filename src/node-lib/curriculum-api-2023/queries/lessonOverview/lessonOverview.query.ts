@@ -230,7 +230,6 @@ export const transformedLessonOverviewData = (
     additionalFiles: hasAddFile
       ? getAdditionalFiles(content.additionalFiles)
       : null,
-    disablePupilShare: browseData?.actions?.disablePupilShare ?? false,
   };
 };
 
