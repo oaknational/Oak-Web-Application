@@ -1,4 +1,10 @@
-import { OakSpan, OakBox, OakHeading } from "@oaknational/oak-components";
+import {
+  OakSpan,
+  OakBox,
+  OakHeading,
+  OakRadioGroup,
+  OakRadioAsButton,
+} from "@oaknational/oak-components";
 import { isEqual } from "lodash";
 
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
@@ -78,6 +84,13 @@ export default function CurriculumVisualiserFiltersDesktop({
   return (
     <OakBox $mr={"space-between-s"}>
       <SkipLink href="#content">Skip to units</SkipLink>
+
+      <h2 id="subject-label">Choose a subject</h2>
+      <OakRadioGroup name="test" aria-labelledby="subject-label">
+        <OakRadioAsButton value="Option 1" displayValue="Year 1" />
+        <OakRadioAsButton value="Option 2" displayValue="Year 2" />
+      </OakRadioGroup>
+
       <OakHeading tag="h3">Filter and highlight</OakHeading>
 
       <Fieldset>
@@ -196,12 +209,11 @@ export default function CurriculumVisualiserFiltersDesktop({
           </Box>
           {threadOptions.map((threadOption) => {
             const isSelected = isSelectedThread(threadOption);
-            const highlightedCount =
-              highlightedUnitCount();
-              // yearData,
-              // selectedYear,
-              // yearSelection,
-              // selectedThread,
+            const highlightedCount = highlightedUnitCount();
+            // yearData,
+            // selectedYear,
+            // yearSelection,
+            // selectedThread,
 
             return (
               <Box
