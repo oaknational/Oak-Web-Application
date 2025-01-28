@@ -136,13 +136,16 @@ export const getLessonMediaBreadCrumb = ({
   lessonSlug,
   programmeSlug,
   unitSlug,
+  subjectSlug,
   disabled,
 }: {
   lessonSlug: string;
   programmeSlug: string | null;
   unitSlug: string | null;
+  subjectSlug: string;
   disabled?: boolean;
 }): Breadcrumb => {
+  const mediaClipLabel = getMediaClipLabel(subjectSlug);
   if (programmeSlug && unitSlug) {
     return {
       oakLinkProps: {
@@ -151,7 +154,7 @@ export const getLessonMediaBreadCrumb = ({
         unitSlug,
         lessonSlug,
       },
-      label: "Extra video and audio",
+      label: mediaClipLabel,
       disabled,
     };
   } else {
@@ -160,7 +163,7 @@ export const getLessonMediaBreadCrumb = ({
         page: "lesson-media-canonical",
         lessonSlug,
       },
-      label: "Extra video and audio",
+      label: mediaClipLabel,
       disabled,
     };
   }

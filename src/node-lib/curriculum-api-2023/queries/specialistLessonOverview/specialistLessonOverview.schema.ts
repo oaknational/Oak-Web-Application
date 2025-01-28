@@ -28,6 +28,7 @@ export type SpecialistLessonOverviewData = Omit<
   phaseSlug: string | null;
   threads?: Threads[] | null;
   updatedAt: string;
+  lessonMediaClips: null;
 };
 
 const content_guidance_schema = z.object({

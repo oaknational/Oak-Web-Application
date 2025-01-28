@@ -1,3 +1,98 @@
+# [1.674.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.673.0...v1.674.0) (2025-01-28)
+
+
+### Bug Fixes
+
+* amend removeWebVtt function ([ececf1e](https://github.com/oaknational/Oak-Web-Application/commit/ececf1e32ef65665e8249a9839fdf0d7d184c3cb))
+* amend test ([cd6c299](https://github.com/oaknational/Oak-Web-Application/commit/cd6c299cc65de53e325f314181c10c67fa56bffe))
+* amend test ([92c3a2f](https://github.com/oaknational/Oak-Web-Application/commit/92c3a2fe6bdbd6c3f151a1161c7329c5b23cf3fd))
+* amend tests ([0c3240e](https://github.com/oaknational/Oak-Web-Application/commit/0c3240e0a4ca274971c9037883a04dd9bc1b7621))
+* amend tests ([e000b67](https://github.com/oaknational/Oak-Web-Application/commit/e000b670987d50355969695e6d4f611884434197))
+* lesson outines matching correct lesson ([96c1955](https://github.com/oaknational/Oak-Web-Application/commit/96c19555606b25e6ee01c0dbd5f194eee1aa906b))
+* link to correct pages ([804a82f](https://github.com/oaknational/Oak-Web-Application/commit/804a82fa369feb6afc53792d489dda2619645143))
+* media page bug fixes ([a21dfea](https://github.com/oaknational/Oak-Web-Application/commit/a21dfeabee21e5bda5f384c012e627bb2569b168))
+* update failing snapshot test ([e3dee56](https://github.com/oaknational/Oak-Web-Application/commit/e3dee5611ee20dc9e7cb4bf8ae1d9e162cef339a))
+
+
+### Features
+
+* add video transcripts ([d55ca56](https://github.com/oaknational/Oak-Web-Application/commit/d55ca568b8269e8586765333b52ea516c8220e3d))
+* adds real data to beta pages ([a54c020](https://github.com/oaknational/Oak-Web-Application/commit/a54c0208630b333ff12139541d4870052eebe269))
+* initial plug in for media clips page and overview page ([072b0cd](https://github.com/oaknational/Oak-Web-Application/commit/072b0cdc3f0a650ec90633e2b23e645aeb26f236))
+* rename breadcrumb, mock transcript function ([caf0a43](https://github.com/oaknational/Oak-Web-Application/commit/caf0a436a48f4ce171d0a83f65d95fa6d1840d34))
+* upgard package and use media image ([44db7f1](https://github.com/oaknational/Oak-Web-Application/commit/44db7f14525028b60ef7a02ed35e642af7041d2d))
+
+# [1.673.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.672.0...v1.673.0) (2025-01-28)
+
+
+### Features
+
+* add addtion downloads to video page ([aafacfd](https://github.com/oaknational/Oak-Web-Application/commit/aafacfd1292add55ea7ff206d8be684221a8e907))
+* button padding ([c7c1c97](https://github.com/oaknational/Oak-Web-Application/commit/c7c1c974486780a307551409d8defd4df597a955))
+* remove duplications ([3b03eea](https://github.com/oaknational/Oak-Web-Application/commit/3b03eea5dfbc595c645eab168fa920cbdcdfc706))
+* remove duplications ([425b8dd](https://github.com/oaknational/Oak-Web-Application/commit/425b8dd5cc3254925b5bc4cd42a21cd5baad848e))
+* remove duplications ([ef0a401](https://github.com/oaknational/Oak-Web-Application/commit/ef0a401b552223521c4c61380535c66f4e0dba91))
+* remove list tag for single ([2df5b1c](https://github.com/oaknational/Oak-Web-Application/commit/2df5b1cb1f55cc37e8cdf918eed42babeae3e5c1))
+
+# [1.672.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.671.0...v1.672.0) (2025-01-28)
+
+
+### Bug Fixes
+
+* ensure correct messaging for note shared ([7416a65](https://github.com/oaknational/Oak-Web-Application/commit/7416a65cf64edea8e6eacef76b14413bebc4e2bc))
+* formatting ([ebcf2ca](https://github.com/oaknational/Oak-Web-Application/commit/ebcf2ca5d34b74ebe1aeafe1e0dce352b458ed3f))
+* remove debug code ([6787e05](https://github.com/oaknational/Oak-Web-Application/commit/6787e0502a3ea87ac670bbe6e8dda896090a2ffb))
+* tests ([b77da98](https://github.com/oaknational/Oak-Web-Application/commit/b77da983bca3dbc77e8e8597bf6ce71602fe6011))
+* type errors ([8147553](https://github.com/oaknational/Oak-Web-Application/commit/81475530d844d6294fa9a28f4ce839205f46d0fd))
+* updating snapshots ([8d2929a](https://github.com/oaknational/Oak-Web-Application/commit/8d2929aee93d64ede0a94bb00241561a559a8122))
+
+
+### Features
+
+* intermittent saving and new inline component ([75fdee2](https://github.com/oaknational/Oak-Web-Application/commit/75fdee25133d7acf0c6d23fa7c817d45e4a2c3a7))
+* minor refactor to remove code duplication ([84b27bd](https://github.com/oaknational/Oak-Web-Application/commit/84b27bd103cf318c164ae979008777425d47256d))
+* refactor to reduce code duplications ([96e850d](https://github.com/oaknational/Oak-Web-Application/commit/96e850dd9a145ba0ea9c19ccf4cffc15cf3155c1))
+* refining teacher note error handliung ([9d38c0e](https://github.com/oaknational/Oak-Web-Application/commit/9d38c0ea638e5e3a82e7ec9f53956fd2d69e7376))
+
+# [1.671.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.670.0...v1.671.0) (2025-01-27)
+
+
+### Features
+
+* remove feature flag teacer-unit-downloads and promote option a ([a247b5a](https://github.com/oaknational/Oak-Web-Application/commit/a247b5add9c09ff71b1331238c5f99b61726cc37))
+
+# [1.670.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.669.0...v1.670.0) (2025-01-27)
+
+
+### Bug Fixes
+
+* set hubspot loading true when user not onboarded ([bfac2d6](https://github.com/oaknational/Oak-Web-Application/commit/bfac2d6643c8ebb5603eeae28dfa3a2c4bc7b529))
+
+
+### Features
+
+* remove requirement for feature flag on hubspot request for school details ([f8ea235](https://github.com/oaknational/Oak-Web-Application/commit/f8ea2353fe128b889e1a5a56334b8d8fa4044f35))
+
+# [1.669.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.3...v1.669.0) (2025-01-22)
+
+
+### Bug Fixes
+
+* added missing <Terms/> to signin flow ([2b0fff9](https://github.com/oaknational/Oak-Web-Application/commit/2b0fff9f74609b7f6cb107263de954ee7eeb3abf))
+* added school URN hack ([29c9e55](https://github.com/oaknational/Oak-Web-Application/commit/29c9e5589f8bb96b9a92f11e0f2e2e921a6a8c24))
+
+
+### Features
+
+* initial curric login interim solution for docx downloads ([47cfe53](https://github.com/oaknational/Oak-Web-Application/commit/47cfe53be0396187523980bcffeb40320ff3f905))
+
+## [1.668.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.2...v1.668.3) (2025-01-22)
+
+
+### Bug Fixes
+
+* revert '@prettier/plugin-xml' to fix linting of embedded safeXml statements ([70eb81f](https://github.com/oaknational/Oak-Web-Application/commit/70eb81f0b47668e7a7f773babdde7c6c9a76125b))
+
 ## [1.668.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.1...v1.668.2) (2025-01-20)
 
 

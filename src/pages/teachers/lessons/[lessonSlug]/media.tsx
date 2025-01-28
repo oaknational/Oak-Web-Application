@@ -12,10 +12,13 @@ import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import { CanonicalLessonMediaClips } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import {
+  CanonicalLessonMediaClips,
+  MediaClipListCamelCase,
+} from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import withFeatureFlag from "@/hocs/withFeatureFlag";
+import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 
 export type CanonicalLessonMediaClipsPageProps = {
   curriculumData: CanonicalLessonMediaClips;
@@ -73,11 +76,19 @@ export const getStaticProps: GetStaticProps<
         await curriculumApi2023.lessonMediaClips<CanonicalLessonMediaClips>({
           lessonSlug,
         });
-
-      if (!curriculumData) {
+      if (!curriculumData || !curriculumData.mediaClips) {
         return {
           notFound: true,
         };
+      }
+
+      const mediaClipsWithTranscripts = curriculumData.mediaClips
+        ? await populateMediaClipsWithTranscripts(curriculumData.mediaClips)
+        : [];
+
+      if (mediaClipsWithTranscripts) {
+        curriculumData.mediaClips =
+          mediaClipsWithTranscripts as MediaClipListCamelCase;
       }
 
       const results: GetStaticPropsResult<CanonicalLessonMediaClipsPageProps> =
@@ -91,9 +102,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-const CanoncicalLessonMediaPageWithFeatureFlag = withFeatureFlag(
-  CanonicalLessonMediaClipsPage,
-  "is_media_page_content_enabled",
-);
-
-export default CanoncicalLessonMediaPageWithFeatureFlag;
+export default CanonicalLessonMediaClipsPage;

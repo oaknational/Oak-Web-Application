@@ -1,13 +1,10 @@
 import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curriculum-schema";
 
-import lessonMediaClipsFixtures from "../../fixtures/lessonMediaClips.fixture";
-
 import { constructLessonMediaData } from "./constructLessonMediaClips";
 
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 describe("constructMediaClips", () => {
-  const mediaClipsFixture = lessonMediaClipsFixtures().mediaClips;
   const fixture = syntheticUnitvariantLessonsByKsFixture({
     overrides: {
       lesson_slug: "running-as-a-team",
@@ -36,28 +33,26 @@ describe("constructMediaClips", () => {
         tierSlug: null,
       };
 
-      const result = constructLessonMediaData(
-        lessonMediaClipsFixture,
-        mediaClipsFixture,
-        [pathway],
-      );
+      const result = constructLessonMediaData({ ...lessonMediaClipsFixture }, [
+        pathway,
+      ]);
 
       expect(result).toStrictEqual({
         lessonSlug: "running-as-a-team",
         lessonTitle: "lesson-title",
         keyStageTitle: "Key Stage 1",
         pathways: [pathway],
-        mediaClips: mediaClipsFixture,
+        mediaClips: null,
+        lessonOutline: null,
       });
     });
   });
 
   describe("constructLessonMediaData", () => {
     it("should construct LessonMediaData correctly", () => {
-      const result = constructLessonMediaData(
-        lessonMediaClipsFixture,
-        mediaClipsFixture,
-      );
+      const result = constructLessonMediaData({
+        ...lessonMediaClipsFixture,
+      });
       expect(result).toStrictEqual({
         programmeSlug: "physical-education-ks4",
         unitSlug: "running-and-jumping",
@@ -73,7 +68,8 @@ describe("constructMediaClips", () => {
         lessonTitle: "lesson-title",
         tierTitle: null,
         tierSlug: null,
-        mediaClips: mediaClipsFixture,
+        mediaClips: null,
+        lessonOutline: null,
       });
     });
   });

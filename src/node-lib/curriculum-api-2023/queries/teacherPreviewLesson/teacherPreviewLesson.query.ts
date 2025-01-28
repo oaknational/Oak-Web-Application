@@ -8,7 +8,6 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { transformedLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query";
-import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import lessonOverviewSchema, {
   LessonBrowseDataByKs,
   LessonOverviewContent,
@@ -24,12 +23,6 @@ const teacherPreviewLessonQuery =
       lessonSlug,
     });
 
-    const browseFixtureData = {
-      ...lessonBrowseDataFixture({
-        lessonSlug,
-      }),
-    };
-
     if (res.content.length > 1) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
@@ -42,7 +35,6 @@ const teacherPreviewLessonQuery =
     }
 
     const [content] = res.content;
-
     if (!content) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
@@ -71,19 +63,10 @@ const teacherPreviewLessonQuery =
       [],
     );
 
-    let subjectSlug: string = browseFixtureData.programmeFields.subjectSlug;
-
-    if (lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre") {
-      subjectSlug = "german";
-    } else if (lessonSlug === "running-as-a-team") {
-      subjectSlug = "physical-education";
-    }
-
     const parsedLessonPreviewData = lessonOverviewSchema.parse({
       ...teacherPreviewData,
       lessonTitle: lessonContentData.lessonTitle,
       hasMediaClips: true,
-      subjectSlug: subjectSlug,
     });
 
     return parsedLessonPreviewData;
