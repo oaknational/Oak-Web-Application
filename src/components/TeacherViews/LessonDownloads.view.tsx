@@ -1,4 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useUser } from "@clerk/nextjs";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
+import { z } from "zod";
 import {
   examboards,
   tierDescriptions,
@@ -37,6 +40,7 @@ import {
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
+import LessonDownloadSignInButtons from "@/components/TeacherComponents/LessonDownloadSignInButtons/LessonDownloadSignInButtons";
 import {
   LessonDownloadsPageData,
   NextLesson,
@@ -171,7 +175,39 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     downloadResources: downloadsFilteredByCopyright,
     type: "download",
   });
+
+  // teacher-download-sign-in experiment A/B test group keys and test values
+  const variantKey = z.literal("control").or(z.literal("with-buttons"));
+  const featureFlag = useFeatureFlagVariantKey("teacher-download-sign-in");
+  const parsedFeatureFlagKey = variantKey.safeParse(featureFlag);
+  const optionalDownloadSignInEnabled =
+    parsedFeatureFlagKey.success &&
+    parsedFeatureFlagKey.data === "with-buttons";
+
+  const [showDownloadSignInButtons, setShowDownloadSignInButtons] =
+    useState(false);
+  const [showTermsAgreement, setShowTermsAgreement] = useState(false);
+
+  const { isSignedIn, isLoaded } = useUser();
   const onboardingStatus = useOnboardingStatus();
+
+  useEffect(() => {
+    setShowDownloadSignInButtons(
+      optionalDownloadSignInEnabled && isLoaded && !isSignedIn,
+    );
+    setShowTermsAgreement(
+      optionalDownloadSignInEnabled
+        ? false
+        : onboardingStatus === "not-onboarded" ||
+            onboardingStatus === "unknown",
+    );
+  }, [optionalDownloadSignInEnabled, isLoaded, isSignedIn, onboardingStatus]);
+
+  const onDownloadWithoutSignInClick = () => {
+    setShowTermsAgreement(
+      onboardingStatus === "not-onboarded" || onboardingStatus === "unknown",
+    );
+  };
 
   const noResourcesSelected =
     form.watch().resources === undefined || form.watch().resources.length === 0;
@@ -371,10 +407,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               hideSelectAll={Boolean(expired)}
               updatedAt={updatedAt}
               withHomeschool={true}
-              showTermsAgreement={
-                onboardingStatus === "not-onboarded" ||
-                onboardingStatus === "unknown"
-              }
+              showTermsAgreement={showTermsAgreement}
               isLoading={onboardingStatus === "loading"}
               cardGroup={
                 !showNoResources && (
@@ -408,6 +441,16 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                     isAttemptingDownload ? "Downloading..." : "Loading..."
                   }
                 />
+              }
+              showDownloadSignInButtons={showDownloadSignInButtons}
+              signInButtons={
+                showDownloadSignInButtons &&
+                !showTermsAgreement && (
+                  <LessonDownloadSignInButtons
+                    showDownloadSignInButtons={showDownloadSignInButtons}
+                    onDownloadWithoutSignInClick={onDownloadWithoutSignInClick}
+                  />
+                )
               }
             />
           );
