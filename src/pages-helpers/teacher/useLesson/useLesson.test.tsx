@@ -28,7 +28,9 @@ describe("useLesson", () => {
     source: "lesson-browse" as const,
     curriculumTrackingProps: {
       lessonName: "Test Lesson",
+      lessonSlug: "test-lesson",
       unitName: "Test Unit",
+      unitSlug: "test-unit",
       subjectSlug: "test-subject",
       subjectTitle: "Test Subject",
       keyStageSlug: "test-ks",
@@ -157,7 +159,7 @@ describe("useLesson", () => {
     renderHook(() => useLesson(defaultProps));
 
     expect(useShareExperiment).toHaveBeenCalledWith({
-      lessonSlug: "test-lesson",
+      programmeSlug: undefined,
       source: "lesson-browse",
       curriculumTrackingProps: defaultProps.curriculumTrackingProps,
       overrideExistingShareId: false,

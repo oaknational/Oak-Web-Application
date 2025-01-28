@@ -5,12 +5,10 @@ import {
   TeacherNoteCamelCase,
 } from "@oaknational/oak-pupil-client";
 
-import {
-  CurriculumTrackingProps,
-  useShareExperiment,
-} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
 import { TeacherShareNotesButton } from "@/components/TeacherComponents/TeacherShareNotesButton/TeacherShareNotesButton";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 
 export type UseLessonProps = {
   lessonSlug: string;
@@ -36,8 +34,6 @@ type UseLessonReturn = {
 };
 
 export const useLesson = ({
-  lessonSlug,
-  unitSlug,
   programmeSlug,
   source,
   curriculumTrackingProps,
@@ -51,8 +47,6 @@ export const useLesson = ({
 
   const { shareUrl, browserUrl, shareActivated, shareIdRef, shareIdKeyRef } =
     useShareExperiment({
-      lessonSlug,
-      unitSlug,
       programmeSlug,
       source,
       curriculumTrackingProps,
@@ -67,6 +61,7 @@ export const useLesson = ({
       shareId: shareIdRef.current,
       sidKey: shareIdKeyRef.current,
       enabled: Boolean(teacherNotesEnabled),
+      curriculumTrackingProps,
     });
 
   useEffect(() => {

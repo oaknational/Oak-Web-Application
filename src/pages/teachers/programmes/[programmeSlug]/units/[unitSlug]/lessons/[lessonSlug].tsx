@@ -18,10 +18,10 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -61,7 +61,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     source: "lesson-browse",
     curriculumTrackingProps: {
       lessonName: lessonTitle,
+      lessonSlug: lessonSlug,
       unitName: unitTitle,
+      unitSlug: unitSlug,
       subjectSlug,
       subjectTitle,
       keyStageSlug,
