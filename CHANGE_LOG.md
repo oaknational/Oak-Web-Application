@@ -1,3 +1,42 @@
+# [1.672.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.671.0...v1.672.0) (2025-01-28)
+
+
+### Bug Fixes
+
+* ensure correct messaging for note shared ([7416a65](https://github.com/oaknational/Oak-Web-Application/commit/7416a65cf64edea8e6eacef76b14413bebc4e2bc))
+* formatting ([ebcf2ca](https://github.com/oaknational/Oak-Web-Application/commit/ebcf2ca5d34b74ebe1aeafe1e0dce352b458ed3f))
+* remove debug code ([6787e05](https://github.com/oaknational/Oak-Web-Application/commit/6787e0502a3ea87ac670bbe6e8dda896090a2ffb))
+* tests ([b77da98](https://github.com/oaknational/Oak-Web-Application/commit/b77da983bca3dbc77e8e8597bf6ce71602fe6011))
+* type errors ([8147553](https://github.com/oaknational/Oak-Web-Application/commit/81475530d844d6294fa9a28f4ce839205f46d0fd))
+* updating snapshots ([8d2929a](https://github.com/oaknational/Oak-Web-Application/commit/8d2929aee93d64ede0a94bb00241561a559a8122))
+
+
+### Features
+
+* intermittent saving and new inline component ([75fdee2](https://github.com/oaknational/Oak-Web-Application/commit/75fdee25133d7acf0c6d23fa7c817d45e4a2c3a7))
+* minor refactor to remove code duplication ([84b27bd](https://github.com/oaknational/Oak-Web-Application/commit/84b27bd103cf318c164ae979008777425d47256d))
+* refactor to reduce code duplications ([96e850d](https://github.com/oaknational/Oak-Web-Application/commit/96e850dd9a145ba0ea9c19ccf4cffc15cf3155c1))
+* refining teacher note error handliung ([9d38c0e](https://github.com/oaknational/Oak-Web-Application/commit/9d38c0ea638e5e3a82e7ec9f53956fd2d69e7376))
+
+# [1.671.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.670.0...v1.671.0) (2025-01-27)
+
+
+### Features
+
+* remove feature flag teacer-unit-downloads and promote option a ([a247b5a](https://github.com/oaknational/Oak-Web-Application/commit/a247b5add9c09ff71b1331238c5f99b61726cc37))
+
+# [1.670.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.669.0...v1.670.0) (2025-01-27)
+
+
+### Bug Fixes
+
+* set hubspot loading true when user not onboarded ([bfac2d6](https://github.com/oaknational/Oak-Web-Application/commit/bfac2d6643c8ebb5603eeae28dfa3a2c4bc7b529))
+
+
+### Features
+
+* remove requirement for feature flag on hubspot request for school details ([f8ea235](https://github.com/oaknational/Oak-Web-Application/commit/f8ea2353fe128b889e1a5a56334b8d8fa4044f35))
+
 # [1.669.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.668.3...v1.669.0) (2025-01-22)
 
 
