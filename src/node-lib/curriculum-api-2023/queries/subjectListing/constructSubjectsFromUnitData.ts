@@ -24,7 +24,6 @@ interface ProcessedSubject {
   unitCount: number;
   lessonCount: number;
   programmeCount: number;
-  // @todo why is there typescript error when I try to do typeof pathwaySlugs
   pathwaySlug: "core" | "gcse" | null;
   pathwayTitle: "Core" | "GCSE" | null;
 }

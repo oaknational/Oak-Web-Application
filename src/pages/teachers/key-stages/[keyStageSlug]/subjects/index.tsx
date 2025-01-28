@@ -25,14 +25,16 @@ export type KeyStagePageProps = {
   keyStageSlug: string;
 };
 
-export type Subjects = {
+export type SubjectPathway = {
   slug: string;
   data: KeyStageSubjectData;
   hasNewContent: boolean;
-}[];
+};
+
+export type SubjectPathwayArray = [SubjectPathway, ...SubjectPathway[]];
 
 export type SubjectListingPageProps = {
-  subjects: [Subjects, ...Subjects[]];
+  subjects: [SubjectPathwayArray, ...SubjectPathwayArray[]];
   keyStageSlug: string;
   keyStageTitle: string;
   keyStages: KeyStageData[];
@@ -158,10 +160,6 @@ export const getStaticProps: GetStaticProps<
         // sort by slug so the old and new subjects are intermingled
         .sort((a, b) => (a?.[0] && b?.[0] && a[0].slug > b[0].slug ? 1 : -1));
 
-      console.log(
-        ">>>>>> combinedAndFilteredSubjects",
-        combinedAndFilteredSubjects,
-      );
       const results = {
         props: {
           ...curriculumData,

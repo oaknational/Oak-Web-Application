@@ -6,7 +6,7 @@ import {
   OakIcon,
 } from "@oaknational/oak-components";
 
-import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
+import { SubjectPathwayArray } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/SubjectListingCardCountCard";
 import SubjectListingCardCountCardWithPathways from "@/components/TeacherComponents/SubjectListingCardCountCardWithPathways";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
@@ -15,7 +15,7 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 export type SubjectListingCardProps = Omit<CardProps, "children"> & {
   titleTag?: OakHeadingTag;
 } & {
-  subject: Subjects;
+  subject: SubjectPathwayArray;
   subjectSlug: string;
   keyStageSlug: string;
   keyStageTitle: string;
@@ -28,7 +28,8 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
   keyStageTitle,
   subjectSlug,
 }) => {
-  const hasPathways = (subject: Subjects) => !!subject?.[0]?.data.pathwaySlug;
+  const hasPathways = (subject: SubjectPathwayArray) =>
+    !!subject?.[0]?.data.pathwaySlug;
 
   return (
     <Card

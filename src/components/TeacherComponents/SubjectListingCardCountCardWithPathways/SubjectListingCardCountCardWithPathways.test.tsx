@@ -2,11 +2,10 @@ import { screen } from "@testing-library/react";
 
 import SubjectListingCardCountCardWithPathways from "./SubjectListingCardCountCardWithPathways";
 
-import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import subjectListingFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
 
-const subjects: [Subjects, ...Subjects[]] = subjectListingFixture().subjects;
+const subjects = subjectListingFixture().subjects;
 
 const subjectSelected = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({

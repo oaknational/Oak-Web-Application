@@ -21,6 +21,7 @@ export const getTransformedProgrammeData = (
     keystage_slug: keyStageSlug,
     subject_slug: subjectSlug,
     subject: subjectTitle,
+    pathway: pathwayTitle,
   } = programmeFields;
 
   const programmes = programmeData.map((programme): Programme => {
@@ -51,6 +52,7 @@ export const getTransformedProgrammeData = (
     keyStageSlug,
     subjectSlug,
     subjectTitle,
+    pathwayTitle,
     programmes: sortedProgrammes,
     legacy: programmeFields.legacy ? true : false,
   };

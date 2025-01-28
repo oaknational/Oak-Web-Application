@@ -10,13 +10,13 @@ import {
   ProgrammeListingLinkProps,
   UnitListingLinkProps,
 } from "@/common-lib/urls";
-import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
+import { SubjectPathwayArray } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 
 export type SubjectListingCardCountCardWithPathwaysProps = Pick<
   SubjectListingCardProps,
   "keyStageSlug" | "keyStageTitle"
 > & {
-  subjectPathwaysArray: Subjects;
+  subjectPathwaysArray: SubjectPathwayArray;
 };
 
 const SubjectListingCardCountCardWithPathways: FC<

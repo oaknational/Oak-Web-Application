@@ -3,11 +3,10 @@ import userEvent from "@testing-library/user-event";
 
 import SubjectListingCard from "./SubjectListingCard";
 
-import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import subjectPagePropsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
 
-const subjects: [Subjects, ...Subjects[]] = subjectPagePropsFixture().subjects;
+const subjects = subjectPagePropsFixture().subjects;
 
 const subjectSelected = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
