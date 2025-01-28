@@ -4,17 +4,13 @@ import { useFeatureFlagVariantKey } from "posthog-js/react";
 import useOptionalDownloadSignIn from "./useOptionalDownloadSignIn";
 
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
-import {
-  mockLoggedIn,
-  mockLoggedInNotOnboarded,
-  mockLoggedOut,
-} from "@/__tests__/__helpers__/mockUser";
+import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(),
 }));
 
-describe.only("useOptionalDownloadSignIn", () => {
+describe("useOptionalDownloadSignIn", () => {
   beforeEach(() => {
     jest.resetAllMocks();
   });
@@ -39,7 +35,17 @@ describe.only("useOptionalDownloadSignIn", () => {
     });
 
     test("should return showDownloadSignInButtons true and showTermsAgreement false for logged in but not onboarded user", async () => {
-      setUseUserReturn(mockLoggedInNotOnboarded);
+      setUseUserReturn({
+        ...mockLoggedIn,
+        user: {
+          ...mockLoggedIn.user,
+          publicMetadata: {
+            owa: {
+              isOnboarded: false,
+            },
+          },
+        },
+      });
 
       const { result } = renderHook(useOptionalDownloadSignIn);
 
