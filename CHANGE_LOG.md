@@ -1,3 +1,15 @@
+# [1.673.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.672.0...v1.673.0) (2025-01-28)
+
+
+### Features
+
+* add addtion downloads to video page ([aafacfd](https://github.com/oaknational/Oak-Web-Application/commit/aafacfd1292add55ea7ff206d8be684221a8e907))
+* button padding ([c7c1c97](https://github.com/oaknational/Oak-Web-Application/commit/c7c1c974486780a307551409d8defd4df597a955))
+* remove duplications ([3b03eea](https://github.com/oaknational/Oak-Web-Application/commit/3b03eea5dfbc595c645eab168fa920cbdcdfc706))
+* remove duplications ([425b8dd](https://github.com/oaknational/Oak-Web-Application/commit/425b8dd5cc3254925b5bc4cd42a21cd5baad848e))
+* remove duplications ([ef0a401](https://github.com/oaknational/Oak-Web-Application/commit/ef0a401b552223521c4c61380535c66f4e0dba91))
+* remove list tag for single ([2df5b1c](https://github.com/oaknational/Oak-Web-Application/commit/2df5b1cb1f55cc37e8cdf918eed42babeae3e5c1))
+
 # [1.672.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.671.0...v1.672.0) (2025-01-28)
 
 
