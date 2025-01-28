@@ -112,6 +112,7 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
       buttonIconName="chevron-right"
       href={resolveHref}
       videoPlaybackID={videoPlaybackID}
+      textUnderVideo="Play new resources video"
     />
   );
 };

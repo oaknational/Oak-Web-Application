@@ -22,6 +22,7 @@ type PromoBannerWithVideoProps = {
   onClick?: () => void;
   videoPlaybackID: string;
   buttonIconName: OakIconName;
+  textUnderVideo?: string;
 };
 
 const StyledOakFlex = styled(OakFlex)`
@@ -36,6 +37,7 @@ const PromoBannerWithVideo = ({
   onClick,
   videoPlaybackID,
   buttonIconName,
+  textUnderVideo,
 }: PromoBannerWithVideoProps) => {
   const [expandVideo, setExpandVideo] = useState(false);
   const handleVideoEvent = (event: VideoEventCallbackArgs) => {
@@ -89,6 +91,7 @@ const PromoBannerWithVideo = ({
           thumbnailTime={30.8}
           userEventCallback={handleVideoEvent}
         />
+        {textUnderVideo && <OakP $font={"body-3-bold"}>{textUnderVideo}</OakP>}
       </StyledVideoFlex>
     </StyledOakFlex>
   );
