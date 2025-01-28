@@ -220,7 +220,9 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
 
   const showDownloadAll = downloadsFilteredByCopyright.length > 0;
   const showShare =
-    !isSpecialist && keyStageSlug !== "early-years-foundation-stage";
+    !isSpecialist &&
+    keyStageSlug !== "early-years-foundation-stage" &&
+    !actions?.disablePupilShare;
 
   // TODO: use actions and exceptions for this
   const isPELesson = subjectSlug === "physical-education";
@@ -259,7 +261,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
-        isShareable={!expired}
+        isShareable={!expired && !actions?.disablePupilShare}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
