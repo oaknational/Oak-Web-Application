@@ -7,6 +7,7 @@ import {
 import { useRouter } from "next/router";
 
 import { resolveOakHref } from "@/common-lib/urls";
+import useOptionalDownloadSignIn from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useOptionalDownloadSignIn";
 
 // Used when a user is signed in but not onboarded
 const LessonDownloadOnboardButton = ({
@@ -41,7 +42,6 @@ const LessonDownloadWithoutSignInButton = ({
 );
 
 export type LessonDownloadSignInButtonsProps = {
-  showDownloadSignInButtons: boolean;
   onDownloadWithoutSignInClick: () => void;
 };
 
@@ -53,17 +53,21 @@ export type LessonDownloadSignInButtonsProps = {
 export default function LessonDownloadSignInButtons(
   props: LessonDownloadSignInButtonsProps,
 ) {
-  const { showDownloadSignInButtons, onDownloadWithoutSignInClick } = props;
-  const { isSignedIn, isLoaded, user } = useUser();
+  const { onDownloadWithoutSignInClick } = props;
   const router = useRouter();
+  const { isSignedIn, isLoaded, user } = useUser();
+  const { showDownloadSignInButtons } = useOptionalDownloadSignIn();
 
   const showSignInButton = showDownloadSignInButtons && isLoaded && !isSignedIn;
-
   const showOnboardButton =
     showDownloadSignInButtons && user && !user.publicMetadata?.owa?.isOnboarded;
 
   return (
-    <OakFlex $gap={"space-between-m"} $mt={"space-between-xl"}>
+    <OakFlex
+      $gap={"space-between-m"}
+      $mt={"space-between-xl"}
+      $flexDirection={["column", "row"]}
+    >
       {showOnboardButton ? (
         <LessonDownloadOnboardButton
           onClick={() =>

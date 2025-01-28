@@ -1,7 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
-import { useUser } from "@clerk/nextjs";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
-import { z } from "zod";
+import { useMemo, useState } from "react";
 import {
   examboards,
   tierDescriptions,
@@ -17,6 +14,7 @@ import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
+import useOptionalDownloadSignIn from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useOptionalDownloadSignIn";
 import {
   ResourceFormProps,
   DownloadResourceType,
@@ -176,32 +174,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     type: "download",
   });
 
-  // teacher-download-sign-in experiment A/B test group keys and test values
-  const variantKey = z.literal("control").or(z.literal("with-buttons"));
-  const featureFlag = useFeatureFlagVariantKey("teacher-download-sign-in");
-  const parsedFeatureFlagKey = variantKey.safeParse(featureFlag);
-  const optionalDownloadSignInEnabled =
-    parsedFeatureFlagKey.success &&
-    parsedFeatureFlagKey.data === "with-buttons";
-
-  const [showDownloadSignInButtons, setShowDownloadSignInButtons] =
-    useState(false);
-  const [showTermsAgreement, setShowTermsAgreement] = useState(false);
-
-  const { isSignedIn, isLoaded } = useUser();
   const onboardingStatus = useOnboardingStatus();
-
-  useEffect(() => {
-    setShowDownloadSignInButtons(
-      optionalDownloadSignInEnabled && isLoaded && !isSignedIn,
-    );
-    setShowTermsAgreement(
-      optionalDownloadSignInEnabled
-        ? false
-        : onboardingStatus === "not-onboarded" ||
-            onboardingStatus === "unknown",
-    );
-  }, [optionalDownloadSignInEnabled, isLoaded, isSignedIn, onboardingStatus]);
+  const {
+    showDownloadSignInButtons,
+    showTermsAgreement,
+    setShowTermsAgreement,
+  } = useOptionalDownloadSignIn();
 
   const onDownloadWithoutSignInClick = () => {
     setShowTermsAgreement(
@@ -447,7 +425,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                 showDownloadSignInButtons &&
                 !showTermsAgreement && (
                   <LessonDownloadSignInButtons
-                    showDownloadSignInButtons={showDownloadSignInButtons}
                     onDownloadWithoutSignInClick={onDownloadWithoutSignInClick}
                   />
                 )

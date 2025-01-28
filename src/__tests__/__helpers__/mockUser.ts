@@ -31,6 +31,15 @@ export const mockOnboardedUser: UserResource = {
   },
 };
 
+export const mockNotOnboardedUser: UserResource = {
+  ...mockUser,
+  publicMetadata: {
+    owa: {
+      isOnboarded: false,
+    },
+  },
+};
+
 export const mockUserWithDownloadAccess: UserResource = {
   ...mockUser,
   publicMetadata: {
@@ -81,6 +90,18 @@ export const mockLoggedIn: UseUserReturn & { user: UserResource } = {
   isLoaded: true,
   isSignedIn: true,
 };
+
+/**
+ * Mock return value for a logged in, but not onboarded state
+ *
+ * Use with the `useUser` hook
+ */
+export const mockLoggedInNotOnboarded: UseUserReturn & { user: UserResource } =
+  {
+    user: mockNotOnboardedUser,
+    isLoaded: true,
+    isSignedIn: true,
+  };
 
 /**
  * Mock return value for a logged out state
