@@ -1,3 +1,10 @@
+# [1.675.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.674.0...v1.675.0) (2025-01-28)
+
+
+### Features
+
+* makes share unavailble for practical pe lessons ([1b0adec](https://github.com/oaknational/Oak-Web-Application/commit/1b0adec3aa7371d22bda2f73a77a76ee0f0793dd))
+
 # [1.674.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.673.0...v1.674.0) (2025-01-28)
 
 
