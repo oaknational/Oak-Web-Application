@@ -19,6 +19,8 @@ describe("LessonOverviewMediaClips", () => {
         lessonSlug="lesson-slug"
         unitSlug="unit-slug"
         programmeSlug="programme-slug"
+        lessonOutline={[{ lessonOutline: "Intro Video 1" }]}
+        isPELesson={false}
       />,
     );
 
@@ -32,6 +34,8 @@ describe("LessonOverviewMediaClips", () => {
         lessonSlug="lesson-slug"
         unitSlug="unit-slug"
         programmeSlug="programme-slug"
+        lessonOutline={null}
+        isPELesson={false}
       />,
     );
 
@@ -59,6 +63,8 @@ describe("LessonOverviewMediaClips", () => {
         lessonSlug="lesson-slug"
         unitSlug={null}
         programmeSlug={null}
+        lessonOutline={null}
+        isPELesson={false}
       />,
     );
 
@@ -82,6 +88,8 @@ describe("LessonOverviewMediaClips", () => {
         lessonSlug="lesson-slug"
         unitSlug="unit-slug"
         programmeSlug="programme-slug"
+        lessonOutline={null}
+        isPELesson={false}
       />,
     );
     expect(container.firstChild).toBeNull();

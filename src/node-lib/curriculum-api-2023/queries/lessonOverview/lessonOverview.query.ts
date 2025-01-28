@@ -225,6 +225,7 @@ export const transformedLessonOverviewData = (
     pathways: pathways,
     actions: browseData.actions,
     hasMediaClips: Boolean(browseData.lessonData.mediaClips),
+    lessonOutline: browseData.lessonData.lessonOutline ?? null,
     lessonMediaClips: mediaClips,
     additionalFiles: hasAddFile
       ? getAdditionalFiles(content.additionalFiles)

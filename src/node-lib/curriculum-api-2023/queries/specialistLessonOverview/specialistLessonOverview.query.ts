@@ -137,6 +137,7 @@ export const generateLessonOverviewFromRaw = (
     hasMediaClips: false,
     lessonMediaClips: null,
     additionalFiles: null,
+    lessonOutline: null,
   };
 
   return specialistLessonOverviewSchema.parse({

@@ -118,6 +118,7 @@ const specialistLessonOverviewFixture = (
     hasMediaClips: false,
     lessonMediaClips: null,
     additionalFiles: null,
+    lessonOutline: null,
     ...partial,
   };
 };

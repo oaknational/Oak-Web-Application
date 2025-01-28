@@ -12,6 +12,8 @@ type LessonOverviewMediaClipsProps = {
   programmeSlug: string | null;
   lessonSlug: string;
   isCanonical?: boolean;
+  lessonOutline: { lessonOutline: string }[] | null;
+  isPELesson: boolean;
 };
 
 const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
@@ -20,6 +22,8 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   programmeSlug,
   lessonSlug,
   isCanonical,
+  lessonOutline,
+  isPELesson,
 }) => {
   if (!learningCycleVideos) return null;
 
@@ -43,6 +47,13 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
             return playbackId.policy === "signed";
           },
         );
+        const PETitle = firstCycleVideo.customTitle
+          ? firstCycleVideo.customTitle
+          : firstCycleVideo.mediaObject?.displayName;
+        const lessonOutlineTitle =
+          lessonOutline && lessonOutline[index]
+            ? lessonOutline[index].lessonOutline
+            : "";
 
         if (!signedPlaybackId) return null;
         return (
@@ -52,11 +63,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
             $maxWidth={["100%", "100%", "all-spacing-18"]}
           >
             <LessonOverviewClipWithThumbnail
-              title={
-                firstCycleVideo.customTitle
-                  ? firstCycleVideo.customTitle
-                  : firstCycleVideo.mediaObject?.displayName
-              }
+              title={isPELesson ? PETitle : lessonOutlineTitle}
               playbackId={
                 isAudioClip
                   ? firstCycleVideo.videoObject.muxAssetId

@@ -106,6 +106,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     teacherNoteHtml,
     teacherNoteError,
     additionalFiles,
+    lessonOutline,
   } = lesson;
 
   const { track } = useAnalytics();
@@ -220,6 +221,9 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
   const showDownloadAll = downloadsFilteredByCopyright.length > 0;
   const showShare =
     !isSpecialist && keyStageSlug !== "early-years-foundation-stage";
+
+  // TODO: use actions and exceptions for this
+  const isPELesson = subjectSlug === "physical-education";
 
   const isMFL =
     subjectSlug === "german" ||
@@ -398,6 +402,8 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                         isCanonical={isCanonical}
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
+                        lessonOutline={lessonOutline}
+                        isPELesson={isPELesson}
                       />
                     </LessonItemContainer>
                   )}

@@ -210,6 +210,7 @@ export const baseLessonOverviewSchema = z.object({
   hasMediaClips: z.boolean(),
   additionalFiles: z.array(z.string()).nullable(),
   lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
+  lessonOutline: z.array(z.object({ lessonOutline: z.string() })).nullable(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 

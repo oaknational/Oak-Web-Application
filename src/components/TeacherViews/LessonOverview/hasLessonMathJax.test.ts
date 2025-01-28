@@ -44,6 +44,7 @@ describe("hasLessonMathJax", () => {
     hasMediaClips: false,
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
     additionalFiles: null,
+    lessonOutline: null,
   };
 
   it("detects MathJax in keyLearningPoints", () => {
