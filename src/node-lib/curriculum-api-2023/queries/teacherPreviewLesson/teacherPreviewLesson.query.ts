@@ -3,6 +3,9 @@ import {
   QuizQuestion,
 } from "@oaknational/oak-curriculum-schema";
 
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
+import { TeachersPreviewLessonQuery } from "../../generated/sdk";
+
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
@@ -55,10 +58,23 @@ const teacherPreviewLessonQuery =
         : null,
       additional_files: content?.additional_files,
     });
-    const [browseData] = keysToCamelCase(res.browseData);
+
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      TeachersPreviewLessonQuery["browseData"][number]
+    >({
+      journey: "teacher",
+      queryName: "teacherPreviewLessonQuery",
+      browseData: res?.browseData,
+    });
+
+    if (modifiedBrowseData.length === 0) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    const modBrowseData = keysToCamelCase(modifiedBrowseData[0]);
 
     const teacherPreviewData = transformedLessonOverviewData(
-      browseData as LessonBrowseDataByKs,
+      modBrowseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,
       [],
     );
