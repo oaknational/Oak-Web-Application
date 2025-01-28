@@ -28,6 +28,7 @@ import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignPostToAila";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
@@ -324,7 +325,22 @@ const Search: FC<SearchProps> = (props) => {
               )}
               {shouldShowLoading && <p>Loading...</p>}
               {shouldShowNoResultsMessage && (
-                <NoSearchResults searchTerm={query.term} />
+                <>
+                  <NoSearchResults searchTerm={query.term} />
+                  <OakBox $mt="space-between-m">
+                    <SignPostToAila
+                      title="Can't find what you need?"
+                      text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
+                      searchExpression={query.term}
+                      keyStage={
+                        query.keyStages?.length === 1 ? query.keyStages[0] : ""
+                      }
+                      subject={
+                        query.subjects?.length === 1 ? query.subjects[0] : ""
+                      }
+                    />
+                  </OakBox>
+                </>
               )}
               {shouldShowResults && (
                 <OakBox $display={["none", "block"]}>
@@ -340,6 +356,7 @@ const Search: FC<SearchProps> = (props) => {
               <SearchResults
                 hits={results}
                 allKeyStages={allKeyStages}
+                query={query}
                 searchResultExpanded={(searchHit, searchRank) =>
                   searchResultExpanded({
                     searchHit,
