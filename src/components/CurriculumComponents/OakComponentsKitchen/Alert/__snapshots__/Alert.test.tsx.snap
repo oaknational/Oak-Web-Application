@@ -4,14 +4,14 @@ exports[`Fieldset all options 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-gsFSXq cuUXqb gXxntV"
+      class="sc-fqkvVR sc-gsFSXq hVjNbq gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR fgBWrW"
+        class="sc-fqkvVR dzjDLT"
       >
         <div
-          class="sc-fqkvVR erqloa"
+          class="sc-fqkvVR gBNXQv"
           data-testid="inline-banner-icon"
         >
           <img
@@ -26,21 +26,21 @@ exports[`Fieldset all options 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR TgDlp"
+        class="sc-fqkvVR ZQNWU"
         data-testid="inline-banner-message"
       >
         Info example
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq kIGjQG gXxntV"
+      class="sc-fqkvVR sc-gsFSXq gxFeVr gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR fgBWrW"
+        class="sc-fqkvVR dzjDLT"
       >
         <div
-          class="sc-fqkvVR erqloa"
+          class="sc-fqkvVR gBNXQv"
           data-testid="inline-banner-icon"
         >
           <img
@@ -55,21 +55,21 @@ exports[`Fieldset all options 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR TgDlp"
+        class="sc-fqkvVR ZQNWU"
         data-testid="inline-banner-message"
       >
         Neutral example
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq gIcfVA gXxntV"
+      class="sc-fqkvVR sc-gsFSXq llcuhN gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR fgBWrW"
+        class="sc-fqkvVR dzjDLT"
       >
         <div
-          class="sc-fqkvVR erqloa"
+          class="sc-fqkvVR gBNXQv"
           data-testid="inline-banner-icon"
         >
           <img
@@ -84,21 +84,21 @@ exports[`Fieldset all options 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR TgDlp"
+        class="sc-fqkvVR ZQNWU"
         data-testid="inline-banner-message"
       >
         Success example
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq WVWoR gXxntV"
+      class="sc-fqkvVR sc-gsFSXq cmcFkU gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR fgBWrW"
+        class="sc-fqkvVR dzjDLT"
       >
         <div
-          class="sc-fqkvVR erqloa"
+          class="sc-fqkvVR gBNXQv"
           data-testid="inline-banner-icon"
         >
           <img
@@ -113,21 +113,21 @@ exports[`Fieldset all options 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR TgDlp"
+        class="sc-fqkvVR ZQNWU"
         data-testid="inline-banner-message"
       >
         Alert example
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq dDVBBt gXxntV"
+      class="sc-fqkvVR sc-gsFSXq kBBbOQ gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR fgBWrW"
+        class="sc-fqkvVR dzjDLT"
       >
         <div
-          class="sc-fqkvVR erqloa"
+          class="sc-fqkvVR gBNXQv"
           data-testid="inline-banner-icon"
         >
           <img
@@ -142,7 +142,7 @@ exports[`Fieldset all options 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR TgDlp"
+        class="sc-fqkvVR ZQNWU"
         data-testid="inline-banner-message"
       >
         Error example
@@ -156,14 +156,14 @@ exports[`Fieldset default options 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-gsFSXq cuUXqb gXxntV"
+      class="sc-fqkvVR sc-gsFSXq hVjNbq gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR fgBWrW"
+        class="sc-fqkvVR dzjDLT"
       >
         <div
-          class="sc-fqkvVR erqloa"
+          class="sc-fqkvVR gBNXQv"
           data-testid="inline-banner-icon"
         >
           <img
@@ -178,7 +178,7 @@ exports[`Fieldset default options 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR TgDlp"
+        class="sc-fqkvVR ZQNWU"
         data-testid="inline-banner-message"
       >
         Default example

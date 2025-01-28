@@ -7,16 +7,16 @@ exports[`CurriculumTab renders 1`] = `
       data-overlay-container="true"
     >
       <div
-        class="sc-fqkvVR iKBTzE"
+        class="sc-fqkvVR jrwXkp"
       >
         <div
-          class="sc-fqkvVR sc-gsFSXq sc-cwHptR itRfeb ibSZJr"
+          class="sc-fqkvVR sc-gsFSXq sc-cwHptR iTVHCe ibSZJr"
         >
           <div
-            class="sc-fqkvVR sc-gsFSXq fgBWrW hDihdg"
+            class="sc-fqkvVR sc-gsFSXq dzjDLT hDihdg"
           >
             <div
-              class="sc-fqkvVR sc-gsFSXq blCXVh eqRNuD"
+              class="sc-fqkvVR sc-gsFSXq fsNeVA eqRNuD"
             >
               <h1
                 class="sc-dhKdcB cMkAuQ"
@@ -29,36 +29,36 @@ exports[`CurriculumTab renders 1`] = `
                 Curriculum plans
               </h2>
               <div
-                class="sc-fqkvVR sc-gsFSXq fgBWrW bOTBNE"
+                class="sc-fqkvVR sc-gsFSXq dzjDLT bOTBNE"
               >
                  
                 <div
-                  class="sc-fqkvVR sc-eldPxv iGOzG gvClhl"
+                  class="sc-fqkvVR sc-eldPxv hsWGhL gvClhl"
                 >
                   All of our curriculum plans are:
                 </div>
                 <ul
-                  class="sc-fPXMVe lpuqhW"
+                  class="sc-fPXMVe jMkDPX"
                 >
                   <li
-                    class="sc-dAlyuH kPmtoE"
+                    class="sc-dAlyuH cpASwR"
                   >
                     National curriculum-aligned
                   </li>
                   <li
-                    class="sc-dAlyuH kPmtoE"
+                    class="sc-dAlyuH cpASwR"
                   >
                     Sequenced across year groups
                   </li>
                   <li
-                    class="sc-dAlyuH kPmtoE"
+                    class="sc-dAlyuH cpASwR"
                   >
                     Designed by curriculum experts
                   </li>
                 </ul>
               </div>
               <div
-                class="sc-fqkvVR sc-gsFSXq bmnVAU erhMjA"
+                class="sc-fqkvVR sc-gsFSXq lkDUZN erhMjA"
               >
                 <a
                   class="sc-JrDLc caNvwE"
@@ -68,13 +68,13 @@ exports[`CurriculumTab renders 1`] = `
                     class="sc-kpDqfm psnGs"
                   >
                     <div
-                      class="sc-fqkvVR sc-eldPxv dWmZcx iGHzbF"
+                      class="sc-fqkvVR sc-eldPxv gbtZoI iGHzbF"
                     >
                       Our curriculum planning approach
                     </div>
                   </span>
                   <div
-                    class="sc-fqkvVR erqloa sc-fXSgeo kzeJBn"
+                    class="sc-fqkvVR gBNXQv sc-fXSgeo kzeJBn"
                   >
                     <img
                       alt="chevron-right"
@@ -89,35 +89,35 @@ exports[`CurriculumTab renders 1`] = `
                 </a>
               </div>
               <div
-                class="sc-fqkvVR hEDAbB"
+                class="sc-fqkvVR fkcrAs"
               >
                 <div
                   aria-labelledby="choose-curriculum-label"
-                  class="sc-fqkvVR fgBWrW"
+                  class="sc-fqkvVR dzjDLT"
                   role="group"
                 >
                   <div
-                    class="sc-fqkvVR iKkOLq"
+                    class="sc-fqkvVR hrHiFL"
                     id="choose-curriculum-label"
                   >
                     Choose a curriculum
                   </div>
                   <div
-                    class="sc-fqkvVR czELrn"
+                    class="sc-fqkvVR dWZqAS"
                     data-testid="lot-picker"
                   >
                     <div
-                      class="sc-fqkvVR sc-gsFSXq iRyopa juXCUD"
+                      class="sc-fqkvVR sc-gsFSXq jPFUDL juXCUD"
                     >
                       <div
-                        class="sc-fqkvVR sc-gsFSXq gJgCTZ ectRTh"
+                        class="sc-fqkvVR sc-gsFSXq cbfdnE ectRTh"
                       >
                         <div
-                          class="sc-fqkvVR sc-gsFSXq fxkSvJ kHulgy"
+                          class="sc-fqkvVR sc-gsFSXq chczcQ kHulgy"
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 jEHEPk fAkCpO iBMcnq"
+                            class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 euLJLN fAkCpO iBMcnq"
                           >
                             <button
                               class="sc-945a864b-1 fEgeBn"
@@ -125,7 +125,7 @@ exports[`CurriculumTab renders 1`] = `
                               title="Subject"
                             >
                               <div
-                                class="sc-fqkvVR iHZIMJ"
+                                class="sc-fqkvVR wyHpc"
                               >
                                 <span
                                   class="sc-kpDqfm gGqndO"
@@ -143,16 +143,16 @@ exports[`CurriculumTab renders 1`] = `
                           </div>
                         </div>
                         <div
-                          class="sc-fqkvVR eIwgYx"
+                          class="sc-fqkvVR fhxmqA"
                         >
                           <div
                             aria-hidden="true"
-                            class="sc-fqkvVR fgBWrW"
+                            class="sc-fqkvVR dzjDLT"
                             data-testid="brush-borders"
                           >
                             <svg
                               aria-hidden="true"
-                              class="sc-df6cb28a-0 glfkwM"
+                              class="sc-df6cb28a-0 gXqUjH"
                               height="100%"
                               name="box-border-left"
                               style="width: 3px;"
@@ -181,10 +181,10 @@ exports[`CurriculumTab renders 1`] = `
                           class="sc-ad0ad6f5-0 jWQsSO"
                         >
                           <div
-                            class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
+                            class="sc-fqkvVR sc-gsFSXq chczcQ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 eMDDOo fAkCpO iBMcnq"
+                              class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 jdrOtF fAkCpO iBMcnq"
                             >
                               <button
                                 class="sc-945a864b-1 fEgeBn"
@@ -192,7 +192,7 @@ exports[`CurriculumTab renders 1`] = `
                                 title="Phase"
                               >
                                 <div
-                                  class="sc-fqkvVR bBVkkf"
+                                  class="sc-fqkvVR gVOtfu"
                                 >
                                   <span
                                     class="sc-kpDqfm gGqndO"
@@ -201,7 +201,7 @@ exports[`CurriculumTab renders 1`] = `
                                     School phase
                                   </span>
                                   <div
-                                    class="sc-fqkvVR iiKnvq"
+                                    class="sc-fqkvVR eaVxXD"
                                   >
                                     Select
                                   </div>
@@ -209,23 +209,23 @@ exports[`CurriculumTab renders 1`] = `
                               </button>
                             </div>
                             <div
-                              class="sc-fqkvVR sc-gsFSXq edMMHU bKBnOm"
+                              class="sc-fqkvVR sc-gsFSXq iCvRAV bKBnOm"
                             >
                               <div
-                                class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+                                class="sc-fqkvVR sc-iHbSHJ cYDSBE fIxqXk"
                               >
                                 <div
-                                  class="sc-fqkvVR iPpXCP grey-shadow"
+                                  class="sc-fqkvVR bBzdSm grey-shadow"
                                 />
                                 <div
-                                  class="sc-fqkvVR iPpXCP yellow-shadow"
+                                  class="sc-fqkvVR bBzdSm yellow-shadow"
                                 />
                                 <button
-                                  class="sc-lcIPJg sc-hRJfrW lcdeJA eJSoyq internal-button"
+                                  class="sc-lcIPJg sc-hRJfrW lcdeJA hWjKVP internal-button"
                                   data-testid="lot-picker-view-curriculum-button"
                                 >
                                   <div
-                                    class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                                    class="sc-fqkvVR sc-gsFSXq dzjDLT dzOlKm"
                                   >
                                     <span
                                       class="sc-kpDqfm jpmbqG"
@@ -233,7 +233,7 @@ exports[`CurriculumTab renders 1`] = `
                                       View
                                     </span>
                                     <div
-                                      class="sc-fqkvVR kbnxKi"
+                                      class="sc-fqkvVR elVQSD"
                                     >
                                       <img
                                         alt="arrow-right"
@@ -258,10 +258,10 @@ exports[`CurriculumTab renders 1`] = `
               </div>
             </div>
             <div
-              class="sc-fqkvVR sc-gsFSXq ivrxlG gdRCvt"
+              class="sc-fqkvVR sc-gsFSXq bKccpD gdRCvt"
             >
               <div
-                class="sc-fqkvVR sc-gsFSXq fgBWrW imOBLi"
+                class="sc-fqkvVR sc-gsFSXq dzjDLT imOBLi"
               >
                 <img
                   alt=""
@@ -279,35 +279,35 @@ exports[`CurriculumTab renders 1`] = `
             </div>
           </div>
           <div
-            class="sc-fqkvVR gEooAa"
+            class="sc-fqkvVR cmcSyT"
           >
             <div
               aria-labelledby="choose-curriculum-label"
-              class="sc-fqkvVR fgBWrW"
+              class="sc-fqkvVR dzjDLT"
               role="group"
             >
               <div
-                class="sc-fqkvVR iKkOLq"
+                class="sc-fqkvVR hrHiFL"
                 id="choose-curriculum-label"
               >
                 Choose a curriculum
               </div>
               <div
-                class="sc-fqkvVR czELrn"
+                class="sc-fqkvVR dWZqAS"
                 data-testid="lot-picker"
               >
                 <div
-                  class="sc-fqkvVR sc-gsFSXq iRyopa juXCUD"
+                  class="sc-fqkvVR sc-gsFSXq jPFUDL juXCUD"
                 >
                   <div
-                    class="sc-fqkvVR sc-gsFSXq gJgCTZ ectRTh"
+                    class="sc-fqkvVR sc-gsFSXq cbfdnE ectRTh"
                   >
                     <div
-                      class="sc-fqkvVR sc-gsFSXq fxkSvJ kHulgy"
+                      class="sc-fqkvVR sc-gsFSXq chczcQ kHulgy"
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 jEHEPk fAkCpO iBMcnq"
+                        class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 euLJLN fAkCpO iBMcnq"
                       >
                         <button
                           class="sc-945a864b-1 fEgeBn"
@@ -315,7 +315,7 @@ exports[`CurriculumTab renders 1`] = `
                           title="Subject"
                         >
                           <div
-                            class="sc-fqkvVR iHZIMJ"
+                            class="sc-fqkvVR wyHpc"
                           >
                             <span
                               class="sc-kpDqfm gGqndO"
@@ -333,16 +333,16 @@ exports[`CurriculumTab renders 1`] = `
                       </div>
                     </div>
                     <div
-                      class="sc-fqkvVR eIwgYx"
+                      class="sc-fqkvVR fhxmqA"
                     >
                       <div
                         aria-hidden="true"
-                        class="sc-fqkvVR fgBWrW"
+                        class="sc-fqkvVR dzjDLT"
                         data-testid="brush-borders"
                       >
                         <svg
                           aria-hidden="true"
-                          class="sc-df6cb28a-0 glfkwM"
+                          class="sc-df6cb28a-0 gXqUjH"
                           height="100%"
                           name="box-border-left"
                           style="width: 3px;"
@@ -371,10 +371,10 @@ exports[`CurriculumTab renders 1`] = `
                       class="sc-ad0ad6f5-0 jWQsSO"
                     >
                       <div
-                        class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
+                        class="sc-fqkvVR sc-gsFSXq chczcQ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 eMDDOo fAkCpO iBMcnq"
+                          class="sc-fqkvVR sc-9dfc1bad-0 sc-945a864b-2 jdrOtF fAkCpO iBMcnq"
                         >
                           <button
                             class="sc-945a864b-1 fEgeBn"
@@ -382,7 +382,7 @@ exports[`CurriculumTab renders 1`] = `
                             title="Phase"
                           >
                             <div
-                              class="sc-fqkvVR bBVkkf"
+                              class="sc-fqkvVR gVOtfu"
                             >
                               <span
                                 class="sc-kpDqfm gGqndO"
@@ -391,7 +391,7 @@ exports[`CurriculumTab renders 1`] = `
                                 School phase
                               </span>
                               <div
-                                class="sc-fqkvVR iiKnvq"
+                                class="sc-fqkvVR eaVxXD"
                               >
                                 Select
                               </div>
@@ -399,23 +399,23 @@ exports[`CurriculumTab renders 1`] = `
                           </button>
                         </div>
                         <div
-                          class="sc-fqkvVR sc-gsFSXq edMMHU bKBnOm"
+                          class="sc-fqkvVR sc-gsFSXq iCvRAV bKBnOm"
                         >
                           <div
-                            class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+                            class="sc-fqkvVR sc-iHbSHJ cYDSBE fIxqXk"
                           >
                             <div
-                              class="sc-fqkvVR iPpXCP grey-shadow"
+                              class="sc-fqkvVR bBzdSm grey-shadow"
                             />
                             <div
-                              class="sc-fqkvVR iPpXCP yellow-shadow"
+                              class="sc-fqkvVR bBzdSm yellow-shadow"
                             />
                             <button
-                              class="sc-lcIPJg sc-hRJfrW lcdeJA eJSoyq internal-button"
+                              class="sc-lcIPJg sc-hRJfrW lcdeJA hWjKVP internal-button"
                               data-testid="lot-picker-view-curriculum-button"
                             >
                               <div
-                                class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                                class="sc-fqkvVR sc-gsFSXq dzjDLT dzOlKm"
                               >
                                 <span
                                   class="sc-kpDqfm jpmbqG"
@@ -423,7 +423,7 @@ exports[`CurriculumTab renders 1`] = `
                                   View
                                 </span>
                                 <div
-                                  class="sc-fqkvVR kbnxKi"
+                                  class="sc-fqkvVR elVQSD"
                                 >
                                   <img
                                     alt="arrow-right"
@@ -450,17 +450,17 @@ exports[`CurriculumTab renders 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR grAKRD"
+      class="sc-fqkvVR VdLam"
       data-testid="cookie-banner"
     >
       <div
-        class="sc-fqkvVR jMNzyV"
+        class="sc-fqkvVR iixGXM"
       >
         <div
-          class="sc-fqkvVR sc-gsFSXq krbSaB iLFXKS"
+          class="sc-fqkvVR sc-gsFSXq hCOvyo iLFXKS"
         >
           <div
-            class="sc-fqkvVR kJPpVN"
+            class="sc-fqkvVR jGCLGw"
           >
             <strong
               class="sc-kpDqfm bwvRQn"
@@ -471,10 +471,10 @@ exports[`CurriculumTab renders 1`] = `
             Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.
           </div>
           <div
-            class="sc-fqkvVR sc-gsFSXq fgBWrW ftCnYI"
+            class="sc-fqkvVR sc-gsFSXq dzjDLT ftCnYI"
           >
             <div
-              class="sc-fqkvVR sc-gsFSXq fOyTgd gZFQMg"
+              class="sc-fqkvVR sc-gsFSXq CYcDQ gZFQMg"
             >
               <button
                 class="sc-JrDLc caNvwE"
@@ -489,19 +489,19 @@ exports[`CurriculumTab renders 1`] = `
               </button>
             </div>
             <div
-              class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+              class="sc-fqkvVR sc-iHbSHJ cYDSBE fIxqXk"
             >
               <div
-                class="sc-fqkvVR iPpXCP grey-shadow"
+                class="sc-fqkvVR bBzdSm grey-shadow"
               />
               <div
-                class="sc-fqkvVR iPpXCP yellow-shadow"
+                class="sc-fqkvVR bBzdSm yellow-shadow"
               />
               <button
-                class="sc-lcIPJg sc-hRJfrW kjNddQ dpmFSv internal-button"
+                class="sc-lcIPJg sc-hRJfrW kjNddQ xUaNK internal-button"
               >
                 <div
-                  class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                  class="sc-fqkvVR sc-gsFSXq dzjDLT dzOlKm"
                 >
                   <span
                     class="sc-kpDqfm jpmbqG"
@@ -512,20 +512,20 @@ exports[`CurriculumTab renders 1`] = `
               </button>
             </div>
             <div
-              class="sc-fqkvVR sc-iHbSHJ eJBGXR fIxqXk"
+              class="sc-fqkvVR sc-iHbSHJ cYDSBE fIxqXk"
             >
               <div
-                class="sc-fqkvVR iPpXCP grey-shadow"
+                class="sc-fqkvVR bBzdSm grey-shadow"
               />
               <div
-                class="sc-fqkvVR iPpXCP yellow-shadow"
+                class="sc-fqkvVR bBzdSm yellow-shadow"
               />
               <button
-                class="sc-lcIPJg sc-hRJfrW lcdeJA eJSoyq internal-button"
+                class="sc-lcIPJg sc-hRJfrW lcdeJA hWjKVP internal-button"
                 data-testid="cookie-banner-accept"
               >
                 <div
-                  class="sc-fqkvVR sc-gsFSXq fgBWrW dzOlKm"
+                  class="sc-fqkvVR sc-gsFSXq dzjDLT dzOlKm"
                 >
                   <span
                     class="sc-kpDqfm jpmbqG"
