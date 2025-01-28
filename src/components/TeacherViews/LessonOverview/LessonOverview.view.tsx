@@ -49,7 +49,6 @@ import {
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 
@@ -103,11 +102,13 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     additionalMaterialUrl,
     actions,
     hasMediaClips,
+    lessonMediaClips,
     teacherNoteHtml,
     teacherNoteError,
     additionalFiles,
-    disablePupilShare,
+    lessonOutline,
   } = lesson;
+
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const commonPathway = getPathway(lesson);
@@ -221,14 +222,16 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
   const showShare =
     !isSpecialist &&
     keyStageSlug !== "early-years-foundation-stage" &&
-    !disablePupilShare;
+    !actions?.disablePupilShare;
+
+  // TODO: use actions and exceptions for this
+  const isPELesson = subjectSlug === "physical-education";
 
   const isMFL =
     subjectSlug === "german" ||
     subjectSlug === "french" ||
     subjectSlug === "spanish" ||
     lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre";
-
   return (
     <MathJaxLessonProvider>
       <HeaderLesson
@@ -258,7 +261,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
-        isShareable={!expired && !disablePupilShare}
+        isShareable={!expired && !actions?.disablePupilShare}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
@@ -383,8 +386,8 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     </LessonItemContainer>
                   )}
                 {pageLinks.find((p) => p.label === mediaClipLabel) &&
-                  hasMediaClips &&
-                  isBeta && (
+                  lessonMediaClips &&
+                  hasMediaClips && (
                     <LessonItemContainer
                       title={mediaClipLabel}
                       ref={lessonMediaClipsSectionRef}
@@ -393,14 +396,16 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                       slugs={slugs}
                       pageLinks={pageLinks}
                       displayMediaClipButton={true}
+                      isCanonical={isCanonical}
                     >
                       <LessonOverviewMediaClips
                         lessonSlug={lessonSlug}
-                        learningCycleVideos={
-                          lessonMediaClipsFixtures().mediaClips
-                        }
+                        learningCycleVideos={lessonMediaClips}
+                        isCanonical={isCanonical}
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
+                        lessonOutline={lessonOutline}
+                        isPELesson={isPELesson}
                       />
                     </LessonItemContainer>
                   )}

@@ -670,6 +670,7 @@ describe("getLessonMediaBreadCrumb", () => {
         lessonSlug: "lesson-1",
         programmeSlug: "programme-2",
         unitSlug: "unit-3",
+        subjectSlug: "math",
         disabled: false,
       }),
     ).toEqual({
@@ -679,7 +680,7 @@ describe("getLessonMediaBreadCrumb", () => {
         unitSlug: "unit-3",
         lessonSlug: "lesson-1",
       },
-      label: "Extra video and audio",
+      label: "Video & audio clips",
       disabled: false,
     });
   });
@@ -688,6 +689,7 @@ describe("getLessonMediaBreadCrumb", () => {
     expect(
       getLessonMediaBreadCrumb({
         lessonSlug: "lesson-1",
+        subjectSlug: "math",
         programmeSlug: null,
         unitSlug: null,
       }),
@@ -696,7 +698,7 @@ describe("getLessonMediaBreadCrumb", () => {
         page: "lesson-media-canonical",
         lessonSlug: "lesson-1",
       },
-      label: "Extra video and audio",
+      label: "Video & audio clips",
       disabled: undefined,
     });
   });

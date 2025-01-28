@@ -47,7 +47,6 @@ describe("teacherPreviewLesson()", () => {
     })({
       lessonSlug: _lessonContentFixture.lesson_slug,
     });
-
     expect(lesson.lessonSlug).toEqual(_lessonContentFixture.lesson_slug);
     expect(lesson.lessonTitle).toEqual(_lessonContentFixture.lesson_title);
     expect(lesson.lessonGuideUrl).toEqual("lesson-guide-url");

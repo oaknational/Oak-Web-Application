@@ -38,7 +38,6 @@ const teacherPreviewLessonQuery =
     }
 
     const [content] = res.content;
-
     if (!content) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
@@ -60,8 +59,6 @@ const teacherPreviewLessonQuery =
       additional_files: content?.additional_files,
     });
 
-    const [browseData] = keysToCamelCase(res.browseData);
-
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       TeachersPreviewLessonQuery["browseData"][number]
     >({
@@ -81,19 +78,11 @@ const teacherPreviewLessonQuery =
       lessonContentData as LessonOverviewContent,
       [],
     );
-    let subjectSlug: string = browseData?.programmeFields.subjectSlug;
-
-    if (lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre") {
-      subjectSlug = "german";
-    } else if (lessonSlug === "running-as-a-team") {
-      subjectSlug = "physical-education";
-    }
 
     const parsedLessonPreviewData = lessonOverviewSchema.parse({
       ...teacherPreviewData,
       lessonTitle: lessonContentData.lessonTitle,
       hasMediaClips: true,
-      subjectSlug: subjectSlug,
     });
 
     return parsedLessonPreviewData;
