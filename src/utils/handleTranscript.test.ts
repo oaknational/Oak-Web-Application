@@ -1,11 +1,17 @@
+import { mediaClipsFixture } from "@oaknational/oak-curriculum-schema";
+
 import {
   getCaptionsFromFile,
   formatSentences,
   removeWebVttCharacters,
   populateLessonWithTranscript,
+  populateMediaClipsWithTranscripts,
+  extractIdFromUrl,
 } from "./handleTranscript";
 
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
 describe("removeWebVttCharacters ", () => {
   const sentences = [
@@ -123,6 +129,21 @@ const mockParse = jest
     cues: [{ text: "sentence 1" }, { text: "sentence 2" }],
     errors: [],
     time: 0,
+  })
+  .mockReturnValueOnce({
+    cues: [{ text: "sentence 3" }, { text: "sentence 4" }],
+    errors: [],
+    time: 0,
+  })
+  .mockReturnValueOnce({
+    cues: [{ text: "sentence 5" }, { text: "sentence 6" }],
+    errors: [],
+    time: 0,
+  })
+  .mockReturnValueOnce({
+    cues: [{ text: "sentence 7" }, { text: "sentence 8" }],
+    errors: [],
+    time: 0,
   });
 
 jest.mock("webvtt-parser", () => ({
@@ -164,5 +185,49 @@ describe("populateLessonWithTranscript", () => {
     );
 
     expect(lesson.transcriptSentences).toEqual(["sentence 1 sentence 2."]);
+  });
+});
+
+describe("extractIdFromUrl", () => {
+  it("extracts the ID from a URL", () => {
+    const url = "https://example.com/media/12345.mp4";
+    const result = extractIdFromUrl(url);
+    expect(result).toBe("12345");
+  });
+
+  it("returns an empty string if the URL is empty", () => {
+    const url = "";
+    const result = extractIdFromUrl(url);
+    expect(result).toBe("");
+  });
+
+  it("returns an empty string if the URL does not contain an ID", () => {
+    const url = "https://example.com/media/";
+    const result = extractIdFromUrl(url);
+    expect(result).toBe("");
+  });
+});
+describe("populateMediaClipsWithTranscripts", () => {
+  it("populates media clips with transcripts", async () => {
+    const mediaClips = keysToCamelCase(
+      mediaClipsFixture().media_clips,
+    ) as MediaClipListCamelCase;
+    const result = await populateMediaClipsWithTranscripts(mediaClips);
+
+    if (result && result["intro"] && result["intro"][0]) {
+      expect(result["intro"][0].transcriptSentences).toEqual([
+        "sentence 3 sentence 4.",
+      ]);
+    }
+    if (result && result["intro"] && result["intro"][1]) {
+      expect(result["intro"][1].transcriptSentences).toEqual([
+        "sentence 5 sentence 6.",
+      ]);
+    }
+    if (result && result["cycle2"] && result["cycle2"][0]) {
+      expect(result["cycle2"][0].transcriptSentences).toEqual([
+        "sentence 7 sentence 8.",
+      ]);
+    }
   });
 });

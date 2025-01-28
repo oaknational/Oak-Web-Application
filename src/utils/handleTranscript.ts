@@ -1,3 +1,4 @@
+import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { getFileFromBucket } from "@/utils/gCloudStorage";
 import { Cue, WebVTTParser } from "webvtt-parser";
@@ -8,6 +9,7 @@ export const getCaptionsFromFile = async (fileName: string) => {
   const file = await getFileFromBucket(bucketName, fileName);
   if (file) {
     const parser = new WebVTTParser();
+
     const tree = parser.parse(file, "metadata");
 
     if (tree.errors.length) {
@@ -41,8 +43,15 @@ export const removeWebVttCharacters = (
   sentences: Array<string>,
 ): Array<string> => {
   // The opening sentence of the vtt file is wrapped in <v ->> </v>
+  // Some <v> tags have data enclosed,i.e. <v Instructor> this allows removal of the v tag in full
   // I'm not sure why but we want to remove it
-  const sentence1 = sentences[0]!.replace("<v ->", "").replace("</v>", "");
+  let sentence1 = sentences[0]!;
+  const startTagEnd = sentence1.indexOf(">") + 1;
+  if (startTagEnd > 0) {
+    sentence1 = sentence1.substring(startTagEnd);
+  }
+  sentence1 = sentence1.replace("</v>", "");
+
   return [sentence1, ...sentences.slice(1)];
 };
 
@@ -68,6 +77,33 @@ export const populateLessonWithTranscript = async (
 
     lesson.transcriptSentences = formattedTranscript;
   }
-
   return lesson;
+};
+
+export const extractIdFromUrl = (url: string): string => {
+  const segments = url.split("/");
+  const lastSegment = segments[segments.length - 1];
+  const id = lastSegment?.split(".")[0];
+  return id ?? "";
+};
+
+export const populateMediaClipsWithTranscripts = async (
+  mediaClips: MediaClipListCamelCase,
+): Promise<MediaClipListCamelCase | null> => {
+  const populatedMediaClip = {} as MediaClipListCamelCase;
+  for (const cycle in mediaClips) {
+    const cycleClips = mediaClips[cycle];
+    if (!cycleClips) return null;
+
+    const populateMediaClip = cycleClips.map(async (mediaClip) => {
+      const id = extractIdFromUrl(mediaClip?.mediaObject?.url ?? "");
+      const transcriptSentences = await getCaptionsFromFile(`${id}.vtt`);
+
+      return { ...mediaClip, transcriptSentences: transcriptSentences ?? null };
+    });
+
+    const populatedClips = await Promise.all(populateMediaClip);
+    populatedMediaClip[cycle] = populatedClips;
+  }
+  return populatedMediaClip;
 };
