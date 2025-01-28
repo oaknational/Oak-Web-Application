@@ -244,9 +244,7 @@ const filterValidCurriculumPhaseOptions = (
 
 const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
-    const subjects = await curriculumApi2023.curriculumPhaseOptions({
-      cycle: "2",
-    });
+    const subjects = await curriculumApi2023.curriculumPhaseOptions();
     return {
       subjects: filterValidCurriculumPhaseOptions(subjects),
     };

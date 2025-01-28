@@ -192,11 +192,8 @@ export const getStaticProps: GetStaticProps<
         });
       }
 
-      const validSubjectPhases = await curriculumApi2023.curriculumPhaseOptions(
-        {
-          cycle: "2",
-        },
-      );
+      const validSubjectPhases =
+        await curriculumApi2023.curriculumPhaseOptions();
 
       const isValid = isValidSubjectPhaseSlug(validSubjectPhases, slugs);
       if (!isValid) {
