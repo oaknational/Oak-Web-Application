@@ -2,6 +2,7 @@ import { z } from "zod";
 import { actionsSchema } from "@oaknational/oak-curriculum-schema";
 
 import { zodToCamelCase } from "./helpers/zodToCamelCase";
+import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
 export const contentGuidanceSchema = z.object({
   contentGuidanceLabel: z.string(),
@@ -128,6 +129,8 @@ export const lessonPathwaySchema = z.object({
   examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
+  yearGroupSlug: z.string().nullish(),
+  yearGroupTitle: z.string().nullish(),
 });
 
 export type LessonPathway = z.infer<typeof lessonPathwaySchema>;
@@ -206,6 +209,8 @@ export const baseLessonOverviewSchema = z.object({
   actions: camelActionSchema.nullish(),
   hasMediaClips: z.boolean(),
   additionalFiles: z.array(z.string()).nullable(),
+  lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
+  lessonOutline: z.array(z.object({ lessonOutline: z.string() })).nullable(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 

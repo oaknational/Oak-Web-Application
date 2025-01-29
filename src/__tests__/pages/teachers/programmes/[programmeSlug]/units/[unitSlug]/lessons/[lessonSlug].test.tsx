@@ -67,10 +67,25 @@ jest.mock(
         shareUrl: "",
         browserUrl: "",
         shareActivated: false,
+        shareIdRef: { current: "" },
+        shareIdKeyRef: { current: "" },
       })),
     };
   },
 );
+
+jest.mock("@/pages-helpers/teacher/share-experiments/useTeacherNotes", () => {
+  return {
+    __esModule: true,
+    useTeacherNotes: jest.fn(() => ({
+      teacherNote: {},
+      isEditable: false,
+      saveTeacherNote: jest.fn(),
+      noteSaved: false,
+      error: undefined,
+    })),
+  };
+});
 
 const render = renderWithProviders();
 
@@ -190,29 +205,15 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     }
   });
 
-  it("doesn't render the share button if shareExperimentFlag is control", async () => {
-    window.history.replaceState = jest.fn();
-
-    (useShareExperiment as jest.Mock).mockReturnValueOnce({
-      shareExperimentFlag: "control",
-      shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-      browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-      shareActivated: false,
-    });
-
-    const result = render(<LessonOverviewPage {...props} />);
-
-    expect(() => result.getByText("Share resources with colleague")).toThrow();
-  });
-
-  it("updates the url if shareExperimentFlag is test or control", async () => {
+  it("updates the url", async () => {
     const fn = jest.spyOn(window.history, "replaceState");
 
     (useShareExperiment as jest.Mock).mockReturnValueOnce({
-      shareExperimentFlag: "test",
       shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
       browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
       shareActivated: false,
+      shareIdRef: { current: "" },
+      shareIdKeyRef: { current: "" },
     });
     render(<LessonOverviewPage {...props} />);
 
@@ -533,6 +534,8 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         shareActivated: false,
+        shareIdRef: { current: "" },
+        shareIdKeyRef: { current: "" },
       });
       render(<LessonOverviewPage {...props} />);
 

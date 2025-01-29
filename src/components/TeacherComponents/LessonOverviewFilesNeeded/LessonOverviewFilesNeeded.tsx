@@ -22,6 +22,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const isPlural = additionalFiles.length > 1;
+  const filesText = isPlural ? `Download lesson files` : `Download lesson file`;
   return (
     <OakBox $background={"aqua50"} $position={"relative"}>
       <OakFlex
@@ -35,9 +36,11 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
             {`${isPlural ? "Files" : "File"} needed for this lesson`}
           </OakP>
         </OakFlex>
-        {additionalFiles?.map((file) => {
-          return <OakP>{file}</OakP>;
-        })}
+        <OakBox>
+          {additionalFiles.map((file) => {
+            return <OakP>{file}</OakP>;
+          })}
+        </OakBox>
         <OakP>
           {`Download ${isPlural ? "these files" : "this file"} to use in the
           lesson`}
@@ -64,7 +67,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           isTrailingIcon
           iconName="arrow-right"
         >
-          {isPlural ? `Download lesson files` : `Download lesson file`}
+          {filesText}
         </OakTertiaryButton>
       </OakFlex>
       <BrushBorders color="aqua50" />
