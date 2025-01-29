@@ -16,11 +16,11 @@ describe("getYearGroupTitle", () => {
               childSubjects: [],
               tiers: [],
               subjectCategories: [],
-              labels: [],
+              isSwimming: true,
               groupAs: "Swimming",
             },
           },
-          "all-years",
+          "All years",
         ),
       ).toEqual("Swimming (all years)");
     });
@@ -34,7 +34,7 @@ describe("getYearGroupTitle", () => {
               childSubjects: [],
               tiers: [],
               subjectCategories: [],
-              labels: [],
+              isSwimming: false,
               groupAs: null,
             },
           },
@@ -45,20 +45,20 @@ describe("getYearGroupTitle", () => {
   });
 
   describe("with suffix", () => {
-    it("support all-years", () => {
+    it("support all years", () => {
       expect(
         getYearGroupTitle(
           {
-            ["all-years"]: {
+            ["All years"]: {
               units: [],
               childSubjects: [],
               tiers: [],
               subjectCategories: [],
-              labels: [],
+              isSwimming: true,
               groupAs: "Swimming",
             },
           },
-          "all-years",
+          "All years",
           "units",
         ),
       ).toEqual("Swimming units (all years)");
@@ -73,7 +73,7 @@ describe("getYearGroupTitle", () => {
               childSubjects: [],
               tiers: [],
               subjectCategories: [],
-              labels: [],
+              isSwimming: false,
               groupAs: null,
             },
           },
@@ -215,7 +215,7 @@ describe("getSuffixFromFeatures", () => {
   it("value if override present", () => {
     expect(
       getSuffixFromFeatures({
-        programmes_fields_overrides: {
+        programme_field_overrides: {
           subject: "test",
         },
       }),

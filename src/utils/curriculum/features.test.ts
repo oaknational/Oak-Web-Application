@@ -18,9 +18,9 @@ describe("getUnitFeatures", () => {
     ).toEqual({
       labels: ["swimming"],
       exclusions: ["pupils"],
-      group_as: "Swimming and water safety",
-      programmes_fields_overrides: {
-        year: "all-years",
+      group_units_as: "Swimming and water safety",
+      programme_field_overrides: {
+        year: "All years",
         keystage: "All keystages",
       },
     });
@@ -43,7 +43,7 @@ describe("getUnitFeatures", () => {
         pathway_slug: "gcse",
       } as Unit),
     ).toEqual({
-      programmes_fields_overrides: {
+      programme_field_overrides: {
         subject: "Computer Science",
       },
     });
