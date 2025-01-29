@@ -105,6 +105,7 @@ const lessonOverviewFixture = (
     hasMediaClips: false,
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
     additionalFiles: ["file1", "file2"],
+    lessonOutline: [{ lessonOutline: "This is the lesson outline" }],
     ...partial,
   };
 };
