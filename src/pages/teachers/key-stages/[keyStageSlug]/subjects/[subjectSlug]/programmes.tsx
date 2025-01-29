@@ -24,6 +24,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
     subjectSlug,
     keyStageTitle,
     subjectTitle,
+    pathwayTitle,
     legacy,
   } = props;
   if (!programmes[0]) {
@@ -136,7 +137,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         ]}
         background={"lavender30"}
         subjectIconBackgroundColor={"lavender"}
-        title={subjectTitle}
+        title={`${subjectTitle} ${pathwayTitle ?? ""}`}
         programmeFactor={keyStageTitle}
         hasCurriculumDownload={legacy}
         {...props}
