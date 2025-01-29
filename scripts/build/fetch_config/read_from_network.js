@@ -1,6 +1,4 @@
 /** @todo replace with native fetch once we are using Node 18 */
-const fetch = require("node-fetch");
-
 const readConfigFromNetwork = async (fileUrl) => {
   let parsedUrl;
   try {
