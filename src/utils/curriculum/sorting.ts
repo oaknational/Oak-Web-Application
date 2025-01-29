@@ -2,7 +2,7 @@ import { UnitFeatures } from "./features";
 import { Subject, SubjectCategory, Unit } from "./types";
 
 export function sortYears(a: string, b: string) {
-  if (a === "all-years") {
+  if (a === "All years") {
     return -1;
   }
   return parseInt(a) - parseInt(b);
@@ -16,7 +16,7 @@ export function sortSubjectCategoriesOnFeatures(
   features: UnitFeatures | null,
 ): sortSubjectCategoriesOnFeaturesReturn {
   const default_category_id =
-    features?.subjectcategories?.default_category_id ?? -1;
+    features?.subject_category_actions?.default_category_id ?? -1;
   if (default_category_id > -1) {
     return (a, b) => {
       if (a.id === default_category_id) {
