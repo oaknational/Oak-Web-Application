@@ -11,7 +11,7 @@ describe("getYearGroupTitle", () => {
       expect(
         getYearGroupTitle(
           {
-            ["all-years"]: {
+            ["All years"]: {
               units: [],
               childSubjects: [],
               tiers: [],
