@@ -215,8 +215,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           .filter((year) => !selectedYear || selectedYear === year)
           .sort(sortYears)
           .map((year, index) => {
-            const { units, childSubjects, tiers, subjectCategories, labels } =
-              yearData[year] as YearData[string];
+            const {
+              units,
+              childSubjects,
+              tiers,
+              subjectCategories,
+              isSwimming,
+            } = yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
@@ -259,7 +264,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 >
                   {yearTitle}
                 </OakHeading>
-                {labels.includes("swimming") && (
+                {isSwimming && (
                   <Alert
                     $mb="space-between-s"
                     type="info"

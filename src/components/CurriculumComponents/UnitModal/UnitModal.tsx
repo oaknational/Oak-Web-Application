@@ -69,13 +69,13 @@ const UnitModal: FC<UnitModalProps> = ({
   ]);
 
   const subjectTitle =
-    getUnitFeatures(unitData)?.programmes_fields_overrides?.subject ??
+    getUnitFeatures(unitData)?.programme_field_overrides?.subject ??
     unitData?.subject;
 
   const yearTitle = unitData
     ? getYearGroupTitle(
         yearData,
-        getUnitFeatures(unitData)?.programmes_fields_overrides?.year ??
+        getUnitFeatures(unitData)?.programme_field_overrides?.Year ??
           unitData.year,
       )
     : "";
