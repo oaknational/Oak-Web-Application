@@ -231,11 +231,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             );
             const dedupedUnits = dedupUnits(filteredUnits);
 
-            const features = units[0]?.actions;
+            const actions = units[0]?.actions;
+
             const yearTitle = getYearGroupTitle(
               yearData,
               year,
-              getSuffixFromFeatures(features),
+              getSuffixFromFeatures(actions),
             );
 
             return (
