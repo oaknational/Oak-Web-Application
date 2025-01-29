@@ -88,6 +88,7 @@ describe("programmeListing()", () => {
     expect(programmeListingSchema.parse(res)).toEqual({
       keyStageSlug: "ks1",
       keyStageTitle: "Key Stage 1",
+      pathwayTitle: null,
       programmes: [
         {
           examBoardDisplayOrder: 1,
@@ -148,6 +149,7 @@ describe("programmeListing()", () => {
     expect(transformedProgrammes).toEqual({
       keyStageSlug: "ks1",
       keyStageTitle: "Key Stage 1",
+      pathwayTitle: null,
       legacy: false,
       programmes: [
         {

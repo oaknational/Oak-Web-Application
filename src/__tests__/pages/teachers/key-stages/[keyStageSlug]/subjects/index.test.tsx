@@ -45,18 +45,22 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         keyStageSlug="early-years-foundation-stage"
         keyStageTitle="Early years foundation stage"
         subjects={[
-          {
-            slug: "maths",
-            data: {
-              subjectSlug: "maths",
-              subjectTitle: "Maths",
-              unitCount: 1,
-              lessonCount: 6,
-              programmeSlug: "maths-early-years-foundation-stage",
-              programmeCount: 2,
+          [
+            {
+              slug: "maths",
+              data: {
+                subjectSlug: "maths",
+                subjectTitle: "Maths",
+                unitCount: 1,
+                lessonCount: 6,
+                programmeSlug: "maths-early-years-foundation-stage",
+                programmeCount: 2,
+                pathwaySlug: null,
+                pathwayTitle: null,
+              },
+              hasNewContent: true,
             },
-            hasNewContent: true,
-          },
+          ],
         ]}
       />,
     );
@@ -143,6 +147,8 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
             lessonCount: 390,
             programmeSlug: "maths-secondary-ks3",
             programmeCount: 1,
+            pathwaySlug: null,
+            pathwayTitle: null,
           },
         ],
         keyStages: [
@@ -165,6 +171,8 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
             lessonCount: 432,
             programmeSlug: "maths-secondary-ks3-l",
             programmeCount: 1,
+            pathwaySlug: null,
+            pathwayTitle: null,
           },
         ],
         keyStages: [],
@@ -175,23 +183,27 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         },
       })) as { props: SubjectListingPageProps };
 
-      const maths = res?.props.subjects.find((s) => s.slug === "maths");
-      expect(maths?.hasNewContent).toBe(true);
-      expect(maths?.data.subjectSlug).toBe("maths");
+      const maths = res?.props.subjects.find((subjectArray) =>
+        subjectArray.some((s) => s.slug === "maths"),
+      );
+      expect(maths?.[0]?.hasNewContent).toBe(true);
+      expect(maths?.[0]?.data.subjectSlug).toBe("maths");
     });
     it("should not combine counts for EYFS maths", async () => {
       const mockEyfsMathsResponse = {
         keyStageSlug: "early-years-foundation-stage",
         keyStageTitle: "Early years foundation stage",
         subjects: [
-          {
-            subjectSlug: "maths",
-            subjectTitle: "Maths",
-            unitCount: 1,
-            lessonCount: 6,
-            programmeSlug: "maths-early-years-foundation-stage-l",
-            programmeCount: 1,
-          },
+          [
+            {
+              subjectSlug: "maths",
+              subjectTitle: "Maths",
+              unitCount: 1,
+              lessonCount: 6,
+              programmeSlug: "maths-early-years-foundation-stage-l",
+              programmeCount: 1,
+            },
+          ],
         ],
         keyStages: [],
       };
@@ -207,9 +219,12 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
         },
       })) as { props: SubjectListingPageProps };
 
-      const maths = res?.props.subjects.find((s) => s.slug === "maths");
-      expect(maths?.data).not.toBeNull();
-      expect(maths?.hasNewContent).toBe(false);
+      const maths = res?.props.subjects.find((subjectArray) =>
+        subjectArray.some((s) => s.slug === "maths"),
+      );
+
+      expect(maths?.[0]?.data).not.toBeNull();
+      expect(maths?.[0]?.hasNewContent).toBe(false);
     });
   });
 });
