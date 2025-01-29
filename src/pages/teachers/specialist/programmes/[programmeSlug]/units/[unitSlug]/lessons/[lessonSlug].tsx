@@ -80,10 +80,9 @@ export const getStaticProps: GetStaticProps<
           notFound: true,
         };
       }
-
       const results: GetStaticPropsResult<SpecialistLessonOverviewPageProps> = {
         props: {
-          curriculumData,
+          curriculumData: { ...curriculumData, lessonMediaClips: null },
         },
       };
 
