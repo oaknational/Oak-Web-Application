@@ -11,6 +11,7 @@ const curriculumUnitsIncludeNewSchema = z.object({
       why_this_why_now: z.string().nullable(),
       cycle: z.string(),
       features: z.any(),
+      actions: z.any(),
       domain: z.string().nullable(),
       domain_id: z.number().nullable(),
       examboard: z.string().nullable(),

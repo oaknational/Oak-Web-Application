@@ -1,6 +1,6 @@
-import { getUnitFeatures } from "./features";
 import { YearData } from "./types";
 
+import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Phase } from "@/node-lib/curriculum-api-2023";
 
 export function getYearGroupTitle(
@@ -65,9 +65,7 @@ function buildPhaseText(
   return "";
 }
 
-export function getSuffixFromFeatures(
-  features: ReturnType<typeof getUnitFeatures>,
-) {
+export function getSuffixFromFeatures(features: Actions) {
   if (features?.programme_field_overrides?.subject) {
     return `(${features.programme_field_overrides?.subject})`;
   }

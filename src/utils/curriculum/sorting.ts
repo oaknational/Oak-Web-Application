@@ -1,5 +1,6 @@
-import { UnitFeatures } from "./features";
 import { Subject, SubjectCategory, Unit } from "./types";
+
+import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export function sortYears(a: string, b: string) {
   if (a === "All years") {
@@ -13,7 +14,7 @@ type sortSubjectCategoriesOnFeaturesReturn = (
   b: Pick<SubjectCategory, "id">,
 ) => number;
 export function sortSubjectCategoriesOnFeatures(
-  features: UnitFeatures | null,
+  features: Actions | null,
 ): sortSubjectCategoriesOnFeaturesReturn {
   const default_category_id =
     features?.subject_category_actions?.default_category_id ?? -1;
