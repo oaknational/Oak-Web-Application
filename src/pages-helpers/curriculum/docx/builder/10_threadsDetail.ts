@@ -36,8 +36,8 @@ function renderUnits(units: Unit[], numbering: { unitNumbering: string }) {
                 <w:sz w:val="24" />
               </w:rPr>
               <w:t xml:space="preserve">${cdata(
-                  `Unit ${unit.order + 1}, `,
-                )}</w:t>
+                `Unit ${unit.order + 1}, `,
+              )}</w:t>
             </w:r>
             <w:r>
               <w:rPr>
@@ -86,7 +86,7 @@ export default async function generate(
 
   const enableGroupBySubjectCategory = data.units.some((unit) => {
     const features = getUnitFeatures(unit);
-    return features?.subjectcategories?.group_by_subjectcategory;
+    return features?.subject_category_actions?.group_by_subjectcategory;
   });
 
   const elements = allThreadOptions.map((thread, threadIndex) => {
@@ -289,15 +289,17 @@ export default async function generate(
       <XML_FRAGMENT>
         ${threadTitle}
         ${contentElements.join("")}
-        ${!isLast
-          ? safeXml`
+        ${
+          !isLast
+            ? safeXml`
               <w:p>
                 <w:r>
                   <w:br w:type="page" />
                 </w:r>
               </w:p>
             `
-          : ""}
+            : ""
+        }
       </XML_FRAGMENT>
     `;
   });
