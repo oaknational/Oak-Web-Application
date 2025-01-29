@@ -1,7 +1,10 @@
 import styled, { css } from "styled-components";
 import { OakSvg } from "@oaknational/oak-components";
 
-const NewFocusUnderline = styled(OakSvg).attrs({ name: "underline-3" })`
+const NewFocusUnderline = styled(OakSvg).attrs({
+  name: "underline-3",
+  color: "black",
+})`
   position: absolute;
 `;
 
