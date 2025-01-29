@@ -1,16 +1,26 @@
 import userEvent from "@testing-library/user-event";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import {
+  OakThemeProvider,
+  oakDefaultTheme,
+  installMockIntersectionObserver,
+  installMockResizeObserver,
+} from "@oaknational/oak-components";
 import { fireEvent } from "@testing-library/dom";
 
 import { PupilViewsVideo } from "./PupilVideo.view";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { LessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
+import * as downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 
+installMockResizeObserver();
+installMockIntersectionObserver();
+const MockLessonContent = lessonContentFixture({});
 const MockBrowseData = lessonBrowseDataFixture({});
 const usePupilAnalyticsMock = {
   track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
@@ -36,6 +46,10 @@ jest.mock("@/hooks/useTrackSectionStarted", () => {
     useTrackSectionStarted: () => useTrackSectionStartedMock,
   };
 });
+
+jest.mock(
+  "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources",
+);
 
 const useGetVideoTrackingDataMock = {
   getVideoTrackingData: jest.fn(),
@@ -77,6 +91,7 @@ describe(PupilViewsVideo, () => {
             transcriptSentences={[]}
             isLegacy={false}
             browseData={MockBrowseData}
+            hasAdditionalFiles={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -96,6 +111,7 @@ describe(PupilViewsVideo, () => {
             transcriptSentences={["hello there"]}
             isLegacy={false}
             browseData={MockBrowseData}
+            hasAdditionalFiles={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -122,6 +138,7 @@ describe(PupilViewsVideo, () => {
             transcriptSentences={["hello there"]}
             isLegacy={false}
             browseData={MockBrowseData}
+            hasAdditionalFiles={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -146,6 +163,7 @@ describe(PupilViewsVideo, () => {
             transcriptSentences={["hello there"]}
             isLegacy={false}
             browseData={MockBrowseData}
+            hasAdditionalFiles={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -169,6 +187,7 @@ describe(PupilViewsVideo, () => {
             transcriptSentences={["hello there"]}
             isLegacy
             browseData={MockBrowseData}
+            hasAdditionalFiles={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -190,6 +209,7 @@ describe(PupilViewsVideo, () => {
             transcriptSentences={["hello there"]}
             isLegacy={false}
             browseData={MockBrowseData}
+            hasAdditionalFiles={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -215,6 +235,7 @@ describe(PupilViewsVideo, () => {
             transcriptSentences={["hello there"]}
             isLegacy={false}
             browseData={MockBrowseData}
+            hasAdditionalFiles={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -246,6 +267,7 @@ describe(PupilViewsVideo, () => {
             transcriptSentences={["hello there"]}
             isLegacy={false}
             browseData={MockBrowseData}
+            hasAdditionalFiles={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -272,6 +294,7 @@ describe(PupilViewsVideo, () => {
             transcriptSentences={["hello there"]}
             isLegacy={false}
             browseData={MockBrowseData}
+            hasAdditionalFiles={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -310,6 +333,7 @@ describe(PupilViewsVideo, () => {
             transcriptSentences={["hello there"]}
             isLegacy={false}
             browseData={MockBrowseData}
+            hasAdditionalFiles={false}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -317,5 +341,85 @@ describe(PupilViewsVideo, () => {
 
     fireEvent.click(getByRole("link", { name: /Continue lesson/i }));
     expect(trackSectionStarted).toHaveBeenCalledTimes(1);
+  });
+  describe("additional download", () => {
+    let downloadSpy: jest.SpyInstance;
+
+    beforeEach(() => {
+      downloadSpy = jest
+        .spyOn(downloadLessonResources, "default")
+        .mockResolvedValue();
+    });
+
+    afterEach(() => {
+      downloadSpy.mockRestore();
+    });
+    describe("when there is additional files", () => {
+      const subject = (
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsVideo
+              videoMuxPlaybackId="123"
+              videoWithSignLanguageMuxPlaybackId="234"
+              lessonTitle="Introduction to The Canterbury Tales"
+              transcriptSentences={["hello there"]}
+              isLegacy={false}
+              browseData={MockBrowseData}
+              hasAdditionalFiles={true}
+              additionalFiles={MockLessonContent.additionalFiles}
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>
+      );
+
+      it("displays the additional downloads card", () => {
+        const { queryByText, queryByRole } = renderWithTheme(subject);
+
+        expect(
+          queryByText("Files you will need for this lesson"),
+        ).toBeInTheDocument();
+        expect(
+          queryByRole("button", { name: /Download file/i }),
+        ).toBeInTheDocument();
+      });
+
+      it("allows the files to be downloaded", async () => {
+        const { getByText } = renderWithTheme(subject);
+
+        await userEvent.click(getByText("Download files"));
+
+        expect(downloadLessonResources.default).toHaveBeenCalledWith(
+          MockBrowseData.lessonSlug,
+          ["worksheet-pdf-questions"],
+          false,
+        );
+      });
+    });
+
+    describe("when there is no additional files", () => {
+      const subject = (
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsVideo
+              videoMuxPlaybackId="123"
+              videoWithSignLanguageMuxPlaybackId="234"
+              lessonTitle="Introduction to The Canterbury Tales"
+              transcriptSentences={["hello there"]}
+              isLegacy={false}
+              browseData={MockBrowseData}
+              hasAdditionalFiles={false}
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>
+      );
+
+      it("does not display the additional files card", () => {
+        const { queryByText } = renderWithTheme(subject);
+
+        expect(
+          queryByText("Files you will need for this lesson"),
+        ).not.toBeInTheDocument();
+      });
+    });
   });
 });

@@ -103,6 +103,7 @@ const unitListingQuery =
       hasNewContent,
       subjectCategories,
       yearGroups,
+      pathwayTitle: programmeFields.pathway,
     };
   };
 

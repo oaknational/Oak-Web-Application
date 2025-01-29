@@ -128,6 +128,8 @@ export const PupilPageContent = ({
           )}
           isLegacy={isLegacy ?? false}
           browseData={browseData}
+          hasAdditionalFiles={hasAdditionalFiles}
+          additionalFiles={lessonContent.additionalFiles}
         />
       );
     case "exit-quiz":

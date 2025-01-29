@@ -10,6 +10,7 @@ describe("teacherPreviewLesson()", () => {
     ...lessonBrowseDataFixture({
       lessonSlug: "lesson-slug",
     }),
+    disablePupilShare: true,
   };
   test("throws a not found error if no lesson is found", async () => {
     await expect(async () => {
@@ -46,7 +47,6 @@ describe("teacherPreviewLesson()", () => {
     })({
       lessonSlug: _lessonContentFixture.lesson_slug,
     });
-
     expect(lesson.lessonSlug).toEqual(_lessonContentFixture.lesson_slug);
     expect(lesson.lessonTitle).toEqual(_lessonContentFixture.lesson_title);
     expect(lesson.lessonGuideUrl).toEqual("lesson-guide-url");

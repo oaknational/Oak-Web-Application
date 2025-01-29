@@ -6,15 +6,16 @@ import {
   OakIcon,
 } from "@oaknational/oak-components";
 
-import { Subjects } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
+import { SubjectPathwayArray } from "@/pages/teachers/key-stages/[keyStageSlug]/subjects";
 import SubjectListingCardDoubleCountCard from "@/components/TeacherComponents/SubjectListingCardCountCard";
+import SubjectListingCardCountCardWithPathways from "@/components/TeacherComponents/SubjectListingCardCountCardWithPathways";
 import Card, { CardProps } from "@/components/SharedComponents/Card";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
 export type SubjectListingCardProps = Omit<CardProps, "children"> & {
   titleTag?: OakHeadingTag;
 } & {
-  subject: Subjects[number];
+  subject: SubjectPathwayArray;
   subjectSlug: string;
   keyStageSlug: string;
   keyStageTitle: string;
@@ -27,6 +28,9 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
   keyStageTitle,
   subjectSlug,
 }) => {
+  const hasPathways = (subject: SubjectPathwayArray) =>
+    !!subject?.[0]?.data.pathwaySlug;
+
   return (
     <Card
       $flexDirection={"column"}
@@ -42,13 +46,15 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
         $mb={["space-between-xs", "space-between-none"]}
         $ml={["space-between-xs", "space-between-none"]}
         $mt="space-between-xs"
+        $flexGrow={1}
+        $justifyContent={["flex-start", "center"]}
       >
         <OakFlex
           $mr={["space-between-ssx", "space-between-none"]}
           $mb={["space-between-none", "space-between-ssx"]}
-          $height={["all-spacing-10", "all-spacing-12"]}
-          $width={["all-spacing-10", "all-spacing-12"]}
-          $minWidth={["all-spacing-10", "all-spacing-12"]}
+          $height={["all-spacing-10", "all-spacing-13"]}
+          $width={["all-spacing-10", "all-spacing-13"]}
+          $minWidth={["all-spacing-10", "all-spacing-13"]}
         >
           <OakIcon
             iconName={getValidSubjectIconName(subjectSlug)}
@@ -60,14 +66,14 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
         <OakFlex
           $mh={["space-between-none", "space-between-xs"]}
           $alignItems={["start", "center"]}
-          $minHeight={["all-spacing-0", "all-spacing-12"]}
+          $minHeight={["all-spacing-0", "all-spacing-11"]}
         >
           <OakHeading
             $textAlign={["start", "center"]}
             $font={"heading-6"}
             tag={titleTag}
           >
-            {subject.data.subjectTitle}
+            {subject?.[0]?.data.subjectTitle}
           </OakHeading>
         </OakFlex>
       </OakFlex>
@@ -79,12 +85,21 @@ const SubjectListingCard: FC<SubjectListingCardProps> = ({
         $width={"100%"}
       >
         <OakFlex role={"listitem"} $flexGrow={1}>
-          <SubjectListingCardDoubleCountCard
-            isLegacyLesson={!subject.hasNewContent}
-            keyStageSlug={keyStageSlug}
-            keyStageTitle={keyStageTitle}
-            {...subject.data}
-          />
+          {!hasPathways(subject) && subject.length === 1 && subject[0] && (
+            <SubjectListingCardDoubleCountCard
+              isLegacyLesson={!subject?.[0]?.hasNewContent}
+              keyStageSlug={keyStageSlug}
+              keyStageTitle={keyStageTitle}
+              {...subject[0].data}
+            />
+          )}
+          {hasPathways(subject) && subject.length >= 1 && (
+            <SubjectListingCardCountCardWithPathways
+              keyStageSlug={keyStageSlug}
+              keyStageTitle={keyStageTitle}
+              subjectPathwaysArray={subject}
+            />
+          )}
         </OakFlex>
       </OakFlex>
     </Card>
