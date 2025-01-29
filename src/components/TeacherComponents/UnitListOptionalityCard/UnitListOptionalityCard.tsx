@@ -1,7 +1,6 @@
 import React, { FC } from "react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import { OakBox, OakHeading, OakP } from "@oaknational/oak-components";
 
-import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import UnitListItem, {
   SpecialistListItemProps,
@@ -28,10 +27,10 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
   const unitYear = unitOptions[0]?.yearTitle;
 
   return (
-    <Box
+    <OakBox
       $background={"lavender30"}
-      $mb={16}
-      $borderRadius={4}
+      $mb="space-between-s"
+      $borderRadius="border-radius-s"
       data-testid="unit-optionality-card"
       role="listitem"
     >
@@ -105,7 +104,7 @@ const UnitListOptionalityCard: FC<UnitListOptionalityCardProps> = ({
           </Flex>
         </Flex>
       </Flex>
-    </Box>
+    </OakBox>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useRef, Fragment } from "react";
+import React, { useRef, Fragment, useState } from "react";
 import {
   OakGrid,
   OakGridArea,
@@ -6,6 +6,7 @@ import {
   OakHeading,
   OakFlex,
   OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import { hasLessonMathJax } from "./hasLessonMathJax";
@@ -24,11 +25,9 @@ import {
   getPathway,
   lessonIsSpecialist,
 } from "@/components/TeacherComponents/types/lesson.types";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonOverviewPresentation from "@/components/TeacherComponents/LessonOverviewPresentation";
 import LessonOverviewVideo from "@/components/TeacherComponents/LessonOverviewVideo";
 import QuizContainerNew from "@/components/TeacherComponents/LessonOverviewQuizContainer";
-import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import type {
   KeyStageTitleValueType,
@@ -48,15 +47,16 @@ import {
   checkIsResourceCopyrightRestricted,
   getIsResourceDownloadable,
 } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
-import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
-import { GridArea } from "@/components/SharedComponents/Grid.deprecated";
-import AspectRatio from "@/components/SharedComponents/AspectRatio";
+import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
+import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
     teacherShareButton?: React.ReactNode;
+    teacherNoteHtml?: string;
+    teacherNoteError?: string | null;
   };
 } & { isBeta: boolean };
 
@@ -70,7 +70,6 @@ export const getDedupedPupilLessonOutcome = (
   }
   return plo;
 };
-
 export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
   const {
     lessonTitle,
@@ -101,7 +100,13 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     lessonGuideUrl,
     teacherShareButton,
     additionalMaterialUrl,
+    actions,
     hasMediaClips,
+    lessonMediaClips,
+    teacherNoteHtml,
+    teacherNoteError,
+    additionalFiles,
+    lessonOutline,
   } = lesson;
 
   const { track } = useAnalytics();
@@ -129,6 +134,11 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
     : "Video & audio clips";
 
   const MathJaxLessonProvider = isMathJaxLesson ? MathJaxProvider : Fragment;
+
+  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
+    useState<boolean>(actions?.displayExpiringBanner);
+
+  const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
 
   const trackDownloadResourceButtonClicked = ({
     downloadResourceButtonName,
@@ -210,19 +220,18 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
 
   const showDownloadAll = downloadsFilteredByCopyright.length > 0;
   const showShare =
-    !isSpecialist && keyStageSlug !== "early-years-foundation-stage";
+    !isSpecialist &&
+    keyStageSlug !== "early-years-foundation-stage" &&
+    !actions?.disablePupilShare;
 
-  // TODO: Currently lessonGuideUrl is in edit mode, once published remove
-  const getPreviewUrl = (url: string): string => {
-    return url.replace(/\/edit.*$/, "/preview");
-  };
-  const previewLessonGuideUrl = getPreviewUrl(lessonGuideUrl || "");
+  // TODO: use actions and exceptions for this
+  const isPELesson = subjectSlug === "physical-education";
+
   const isMFL =
     subjectSlug === "german" ||
     subjectSlug === "french" ||
     subjectSlug === "spanish" ||
     lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre";
-
   return (
     <MathJaxLessonProvider>
       <HeaderLesson
@@ -252,7 +261,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
         track={track}
         analyticsUseCase={analyticsUseCase}
         isNew={isNew}
-        isShareable={!expired}
+        isShareable={!expired && !actions?.disablePupilShare}
         onClickDownloadAll={() => {
           trackDownloadResourceButtonClicked({
             downloadResourceButtonName: "all",
@@ -267,31 +276,24 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
         showShare={showShare}
         teacherShareButton={teacherShareButton}
       />
-      <MaxWidth $ph={16} $pb={80}>
-        <NewContentBanner
-          keyStageSlug={keyStageSlug ?? ""}
-          subjectSlug={subjectSlug ?? ""}
-          subjectTitle={subjectTitle ? subjectTitle.toLowerCase() : ""}
-          programmeSlug={programmeSlug ?? ""}
-          isLegacy={lessonCohort === LEGACY_COHORT}
-        />
+      <OakMaxWidth $ph={"inner-padding-m"} $pb={"inner-padding-xl8"}>
         {expired ? (
-          <Box $pa={16} $mb={64}>
+          <OakBox $pa={"inner-padding-m"} $mb={"space-between-xxl"}>
             <OakHeading $font={"heading-7"} tag={"h2"} $mb="space-between-s">
               No lesson available
             </OakHeading>
             <OakTypography $font={"body-1"}>
               Sorry, this lesson no longer exists.
             </OakTypography>
-          </Box>
+          </OakBox>
         ) : (
           <OakGrid $mt={["space-between-l"]}>
-            <GridArea
+            <OakGridArea
               $colSpan={[12, 3]}
               $alignSelf={"start"}
               $position={"sticky"}
               $display={["none", "block"]}
-              $top={96} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
+              $top={"all-spacing-14"} // FIXME: ideally we'd dynamically calculate this based on the height of the header using the next allowed size. This could be achieved with a new helperFunction get nextAvailableSize
             >
               <OakFlex
                 as="nav"
@@ -306,9 +308,26 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                   currentSectionId={currentSectionId}
                 />
               </OakFlex>
-            </GridArea>
+            </OakGridArea>
+
             <OakGridArea $colSpan={[12, 9]}>
               <OakFlex $flexDirection={"column"} $position={"relative"}>
+                <OakBox $pb={"inner-padding-m"}>
+                  <ExpiringBanner
+                    isOpen={showExpiredLessonsBanner}
+                    isResourcesMessage={true}
+                    onwardHref={unitListingHref}
+                    onClose={() => {
+                      setShowExpiredLessonsBanner(false);
+                    }}
+                  />
+                </OakBox>
+
+                <TeacherNoteInline
+                  unsafeHtml={teacherNoteHtml}
+                  error={teacherNoteError}
+                />
+
                 {pageLinks.find((p) => p.label === "Lesson guide") &&
                   lessonGuideUrl && (
                     <LessonItemContainer
@@ -327,34 +346,15 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                       anchorId="lesson-guide"
                       pageLinks={pageLinks}
                     >
-                      <OakBox
-                        $width={"100%"}
-                        $ba={"border-solid-m"}
-                        style={{ height: "100%" }}
-                        $position={"relative"}
-                      >
-                        <AspectRatio ratio={"16:9"}>
-                          <iframe
-                            tabIndex={-1}
-                            data-testid="lesson-guide-iframe"
-                            src={`${previewLessonGuideUrl}`}
-                            title={`lesson guide: ${lessonTitle}`}
-                            width="auto"
-                            height="100%"
-                            style={{
-                              border: "none",
-                            }}
-                            //small render bug fix to make sure the iframe assumes 100% width. Docs are still in unpublished currently so temporary
-                            onLoad={(e) => {
-                              const iframe = e.target as HTMLIFrameElement;
-                              iframe.style.width = "100%";
-                              iframe.style.height = "100%";
-                            }}
-                          />
-                        </AspectRatio>
-                      </OakBox>
+                      <LessonOverviewDocPresentation
+                        asset={lessonGuideUrl}
+                        title={lessonTitle}
+                        isWorksheetLandscape={true}
+                        docType="lesson guide"
+                      />
                     </LessonItemContainer>
                   )}
+
                 {pageLinks.find((p) => p.label === "Slide deck") &&
                   !checkIsResourceCopyrightRestricted(
                     "presentation",
@@ -386,6 +386,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     </LessonItemContainer>
                   )}
                 {pageLinks.find((p) => p.label === mediaClipLabel) &&
+                  lessonMediaClips &&
                   hasMediaClips && (
                     <LessonItemContainer
                       title={mediaClipLabel}
@@ -395,14 +396,16 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                       slugs={slugs}
                       pageLinks={pageLinks}
                       displayMediaClipButton={true}
+                      isCanonical={isCanonical}
                     >
                       <LessonOverviewMediaClips
                         lessonSlug={lessonSlug}
-                        learningCycleVideos={
-                          lessonMediaClipsFixtures().mediaClips
-                        }
+                        learningCycleVideos={lessonMediaClips}
+                        isCanonical={isCanonical}
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
+                        lessonOutline={lessonOutline}
+                        isPELesson={isPELesson}
                       />
                     </LessonItemContainer>
                   )}
@@ -421,16 +424,17 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     keyWords={
                       lessonKeywords?.length ? lessonKeywords : undefined
                     }
+                    slugs={slugs}
                     teacherTips={teacherTips}
                     equipmentAndResources={lessonEquipmentAndResources}
                     contentGuidance={contentGuidance}
                     supervisionLevel={supervisionLevel}
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
-                    // change
                     hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
                     displayVocab={isBeta && isMFL}
                     updatedAt={updatedAt}
+                    additionalFiles={additionalFiles}
                   />
                 </LessonItemContainer>
 
@@ -576,59 +580,53 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     )}
                   </LessonItemContainer>
                 )}
-                {pageLinks.find((p) => p.label === "Additional material") && (
-                  <LessonItemContainer
-                    isSpecialist={isSpecialist}
-                    ref={additionalMaterialSectionRef}
-                    pageLinks={pageLinks}
-                    title={"Additional material"}
-                    anchorId="additional-material"
-                    downloadable={
-                      getIsResourceDownloadable(
-                        "supplementary-docx",
-                        downloads,
-                        copyrightContent,
-                      ) ||
-                      getIsResourceDownloadable(
-                        "supplementary-pdf",
-                        downloads,
-                        copyrightContent,
-                      )
-                    }
-                    shareable={isLegacyLicense && showShare}
-                    onDownloadButtonClick={() => {
-                      trackDownloadResourceButtonClicked({
-                        downloadResourceButtonName: "additional material",
-                      });
-                    }}
-                    slugs={slugs}
-                    isFinalElement={
-                      pageLinks.findIndex(
-                        (p) => p.label === "Additional material",
-                      ) ===
-                      pageLinks.length - 1
-                    }
-                  >
-                    <OakTypography $font={"body-1"}>
-                      We're sorry, but preview is not currently available.
-                      Download to see additional material.
-                    </OakTypography>
-                    {/* 
-                    Temporary fix for additional material due to unexpected poor rendering of google docs
-                    <OverviewPresentation
-                    asset={additionalMaterialUrl}
-                    isAdditionalMaterial={true}
-                    title={lessonTitle}
-                    isWorksheetLandscape={isWorksheetLandscape}
-                    isWorksheet={true}
-                  /> */}
-                  </LessonItemContainer>
-                )}
+                {pageLinks.find((p) => p.label === "Additional material") &&
+                  additionalMaterialUrl && (
+                    <LessonItemContainer
+                      isSpecialist={isSpecialist}
+                      ref={additionalMaterialSectionRef}
+                      pageLinks={pageLinks}
+                      title={"Additional material"}
+                      anchorId="additional-material"
+                      downloadable={
+                        getIsResourceDownloadable(
+                          "supplementary-docx",
+                          downloads,
+                          copyrightContent,
+                        ) ||
+                        getIsResourceDownloadable(
+                          "supplementary-pdf",
+                          downloads,
+                          copyrightContent,
+                        )
+                      }
+                      shareable={isLegacyLicense && showShare}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "additional material",
+                        });
+                      }}
+                      slugs={slugs}
+                      isFinalElement={
+                        pageLinks.findIndex(
+                          (p) => p.label === "Additional material",
+                        ) ===
+                        pageLinks.length - 1
+                      }
+                    >
+                      <LessonOverviewDocPresentation
+                        asset={additionalMaterialUrl}
+                        title={lessonTitle}
+                        isWorksheetLandscape={false}
+                        docType="additional material"
+                      />
+                    </LessonItemContainer>
+                  )}
               </OakFlex>
             </OakGridArea>
           </OakGrid>
         )}
-      </MaxWidth>
+      </OakMaxWidth>
     </MathJaxLessonProvider>
   );
 }

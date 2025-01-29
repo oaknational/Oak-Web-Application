@@ -24,8 +24,9 @@ import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonO
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
-import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
+import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 
 type PageProps = {
   lesson: LessonOverviewCanonical;
@@ -40,33 +41,28 @@ export default function LessonOverviewCanonicalPage({
   lesson,
   isSpecialist,
 }: PageProps): JSX.Element {
-  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
-    useShareExperiment({
-      lessonSlug: lesson.lessonSlug,
-      source: "lesson-canonical",
-      curriculumTrackingProps: {
-        lessonName: lesson.lessonTitle,
-        unitName: null,
-        subjectSlug: null,
-        subjectTitle: null,
-        keyStageSlug: null,
-        keyStageTitle: null,
-      },
-    });
-
-  if (shareExperimentFlag && window.location.href !== browserUrl) {
-    window.history.replaceState({}, "", browserUrl);
-  }
-
-  const teacherShareButton =
-    shareExperimentFlag === "test" ? (
-      <TeacherShareButton
-        label="Share resources with colleague"
-        variant={"secondary"}
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-      />
-    ) : null;
+  const {
+    teacherNotesButton,
+    teacherNoteHtml,
+    teacherNotesOpen,
+    setTeacherNotesOpen,
+    teacherNote,
+    isEditable,
+    saveTeacherNote,
+    error,
+    shareUrl,
+  } = useLesson({
+    lessonSlug: lesson.lessonSlug,
+    source: "lesson-canonical",
+    curriculumTrackingProps: {
+      lessonName: lesson.lessonTitle,
+      unitName: null,
+      subjectSlug: null,
+      subjectTitle: null,
+      keyStageSlug: null,
+      keyStageTitle: null,
+    },
+  });
 
   const pathwayGroups = groupLessonPathways(lesson.pathways);
   return (
@@ -75,6 +71,7 @@ export default function LessonOverviewCanonicalPage({
         ...getSeoProps({
           title: `Lesson: ${lesson.lessonTitle}`,
           description: "Overview of lesson",
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/lessons/${lesson.lessonSlug}`,
         }),
       }}
     >
@@ -82,10 +79,11 @@ export default function LessonOverviewCanonicalPage({
         <LessonOverview
           lesson={{
             ...lesson,
-            lessonMediaClips: null,
             isCanonical: true,
             isSpecialist,
-            teacherShareButton,
+            teacherShareButton: teacherNotesButton,
+            teacherNoteHtml: teacherNoteHtml,
+            teacherNoteError: error,
           }}
           isBeta={false}
         />
@@ -95,6 +93,18 @@ export default function LessonOverviewCanonicalPage({
               <LessonAppearsIn headingTag="h2" {...pathwayGroups} />
             </MaxWidth>
           </OakFlex>
+        )}
+        {teacherNote && isEditable && (
+          <TeacherNotesModal
+            isOpen={teacherNotesOpen}
+            onClose={() => {
+              setTeacherNotesOpen(false);
+            }}
+            teacherNote={teacherNote}
+            saveTeacherNote={saveTeacherNote}
+            sharingUrl={shareUrl}
+            error={error}
+          />
         )}
       </OakThemeProvider>
     </AppLayout>
@@ -150,7 +160,6 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           lesson = await populateLessonWithTranscript(lesson);
         }
       }
-
       if (!lesson) {
         return {
           notFound: true,

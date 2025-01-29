@@ -28,7 +28,11 @@ yargs(hideBin(process.argv))
         describe: 'URL to login with',
       })
       .option('modals', {
-        describe: 'include-modals',
+        describe: 'include modals in screenshots',
+        type: "boolean"
+      })
+      .option('remove-options', {
+        describe: 'remove unit options from UI',
         type: "boolean"
       })
   }, async (argv) => {
@@ -39,7 +43,7 @@ yargs(hideBin(process.argv))
       }
       label = argv.label.replace(/^:/, "")
     }
-    await screenshot(argv.basepath, label, {loginUrl: argv.loginUrl, includeModals: argv.modals});
+    await screenshot(argv.basepath, label, {loginUrl: argv.loginUrl, includeModals: argv.modals, removeOptions: argv.removeOptions});
   })
   .command('compare <basepath> <targetpath>', 'compare two sets of screenshots', (yargs) => {
     return yargs

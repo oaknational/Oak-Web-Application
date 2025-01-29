@@ -1,7 +1,5 @@
 import React, { FC } from "react";
-import { OakTypography } from "@oaknational/oak-components";
-
-import Icon from "@/components/SharedComponents/Icon";
+import { OakTypography, OakIcon } from "@oaknational/oak-components";
 
 type ListItemHeaderExpemplarCategoryHeadingProps = {
   keyStageTitle?: string;
@@ -18,8 +16,24 @@ const ListItemHeaderExpemplarCategoryHeading: FC<
       $color={"grey60"}
       $mb="space-between-sssx"
     >
-      {keyStageTitle} <Icon name="dot" size={6} $mb={2} $mr={4} />
-      {yearTitle} <Icon name="dot" size={6} $mb={2} $mr={4} />
+      {keyStageTitle}{" "}
+      <OakIcon
+        iconName="dot"
+        $width={"all-spacing-1"}
+        $height={"all-spacing-1"}
+        $mb={"space-between-sssx"}
+        $mr={"space-between-sssx"}
+        $display={"inline-flex"}
+      />
+      {yearTitle}{" "}
+      <OakIcon
+        iconName="dot"
+        $width={"all-spacing-1"}
+        $height={"all-spacing-1"}
+        $mb={"space-between-sssx"}
+        $mr={"space-between-sssx"}
+        $display={"inline-flex"}
+      />
       {subjectTitle}
     </OakTypography>
   );

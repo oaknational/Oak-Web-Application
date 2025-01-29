@@ -38,7 +38,7 @@ const NewsletterFormWrap: FC<NewsletterFormWrapProps> = (props) => {
       {anchorTargetId && <AnchorTarget id={anchorTargetId} />}
       <OakGrid>
         <OakGridArea $colSpan={[12, desktopColSpan]}>
-          <CardTitle tag="h2" icon="magic-carpet" iconSize={56}>
+          <CardTitle tag="h2" icon="magic-carpet" iconSize={"all-spacing-10"}>
             Don’t miss out
           </CardTitle>
           <OakP

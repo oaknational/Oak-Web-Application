@@ -18,7 +18,6 @@ import { AuthLayout } from "../../auth-layout";
 
 import { getIllustrationAsset } from "@/image-data";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import withFeatureFlag from "@/hocs/withFeatureFlag";
 
 function ListItem({ children }: PropsWithChildren) {
   return (
@@ -71,7 +70,7 @@ function SignUpPage() {
             Our resources will always be free. Creating an account gives you:
           </OakHeading>
           <OakUL $font="heading-light-7" $reset $mh="space-between-xl">
-            <ListItem>Unlimited downloads</ListItem>
+            <ListItem>Full unit downloads</ListItem>
             <ListItem>Instant access to Aila, our AI lesson assistant</ListItem>
             <ListItem>Priority access to new products and features</ListItem>
           </OakUL>
@@ -86,10 +85,4 @@ function SignUpPage() {
   );
 }
 
-const SignupPageWithFeatureFlag = withFeatureFlag(
-  SignUpPage,
-  "teacher-download-auth",
-  "with-login",
-);
-
-export default SignupPageWithFeatureFlag;
+export default SignUpPage;

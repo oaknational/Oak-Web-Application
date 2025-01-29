@@ -17,29 +17,91 @@ export const getCombinedSubjects = (
     return null;
   }
 
-  const newSubject = subject.find((s) => !isSlugLegacy(s.programmeSlug));
-  const legacySubject = subject.find((s) => isSlugLegacy(s.programmeSlug));
+  const newSubjectArray = subject.filter((s) => !isSlugLegacy(s.programmeSlug));
+  const legacySubjectArray = subject.filter((s) =>
+    isSlugLegacy(s.programmeSlug),
+  );
+
+  // programme count is the maximum of the subject programme count
+  const newSubjectProgrammeCountArray = newSubjectArray.map(
+    (s) => s.programmeCount,
+  );
+  const newSubjectMaxProgrammeCount = Math.max(
+    ...newSubjectProgrammeCountArray,
+  );
 
   const programmeCount = Math.max(
-    newSubject?.programmeCount ?? 0,
-    legacySubject?.programmeCount ?? 0,
+    newSubjectMaxProgrammeCount,
+    legacySubjectArray[0]?.programmeCount ?? 0,
   );
-  const unitCount = isEyfs
-    ? legacySubject!.unitCount
-    : (newSubject?.unitCount ?? 0) + (legacySubject?.unitCount ?? 0);
-  const lessonCount = isEyfs
-    ? legacySubject!.lessonCount
-    : (newSubject?.lessonCount ?? 0) + (legacySubject?.lessonCount ?? 0);
 
-  const combinedSubject: KeyStageSubjectData & { isNew: boolean } = {
-    programmeSlug: newSubject?.programmeSlug ?? legacySubject!.programmeSlug,
-    programmeCount,
-    subjectSlug: newSubject?.subjectSlug ?? legacySubject!.subjectSlug,
-    subjectTitle: newSubject?.subjectTitle ?? legacySubject!.subjectTitle,
-    unitCount,
-    lessonCount,
-    isNew: !!newSubject,
+  const getLegacySubjectUnitCount = (
+    pathwaySlug: string | null,
+    legacySubjectArray: KeyStageSubjectData[],
+  ) => {
+    return (
+      legacySubjectArray.find(
+        (legacySubject) => legacySubject.pathwaySlug === pathwaySlug,
+      )?.unitCount ?? 0
+    );
   };
 
-  return combinedSubject;
+  const getLegacySubjectLessonCount = (
+    pathwaySlug: string | null,
+    legacySubjectArray: KeyStageSubjectData[],
+  ) => {
+    return (
+      legacySubjectArray.find(
+        (legacySubject) => legacySubject.pathwaySlug === pathwaySlug,
+      )?.lessonCount ?? 0
+    );
+  };
+
+  type CombinedSubject = KeyStageSubjectData & { isNew: boolean };
+
+  const combinedSubjectArray: CombinedSubject[] =
+    newSubjectArray.length > 0
+      ? newSubjectArray.map((newSubject) => {
+          const eyfsUnitCount = legacySubjectArray[0]?.unitCount ?? 0;
+          const eyfsLessonCount = legacySubjectArray[0]?.lessonCount ?? 0;
+
+          const legacyPathwayUnitCount = getLegacySubjectUnitCount(
+            newSubject.pathwaySlug,
+            legacySubjectArray,
+          );
+          const totalPathwayUnitCount =
+            newSubject.unitCount + legacyPathwayUnitCount;
+
+          const legacyPathwayLessonCount = getLegacySubjectLessonCount(
+            newSubject.pathwaySlug,
+            legacySubjectArray,
+          );
+          const totalPathwayLessonCount =
+            newSubject.lessonCount + legacyPathwayLessonCount;
+
+          return {
+            programmeSlug: newSubject.programmeSlug,
+            programmeCount: programmeCount,
+            subjectSlug: newSubject.subjectSlug,
+            subjectTitle: newSubject.subjectTitle,
+            unitCount: isEyfs ? eyfsUnitCount : totalPathwayUnitCount,
+            lessonCount: isEyfs ? eyfsLessonCount : totalPathwayLessonCount,
+            pathwaySlug: newSubject.pathwaySlug,
+            pathwayTitle: newSubject.pathwayTitle,
+            isNew: true,
+          };
+        })
+      : legacySubjectArray.map((legacySubject) => ({
+          programmeSlug: legacySubject.programmeSlug,
+          programmeCount,
+          subjectSlug: legacySubject.subjectSlug,
+          subjectTitle: legacySubject.subjectTitle,
+          unitCount: legacySubject.unitCount,
+          lessonCount: legacySubject.lessonCount,
+          pathwaySlug: legacySubject.pathwaySlug,
+          pathwayTitle: legacySubject.pathwayTitle,
+          isNew: false,
+        }));
+
+  return combinedSubjectArray;
 };

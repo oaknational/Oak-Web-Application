@@ -1,4 +1,8 @@
 import { z } from "zod";
+import { actionsSchema } from "@oaknational/oak-curriculum-schema";
+
+import { zodToCamelCase } from "./helpers/zodToCamelCase";
+import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
 export const contentGuidanceSchema = z.object({
   contentGuidanceLabel: z.string(),
@@ -125,6 +129,8 @@ export const lessonPathwaySchema = z.object({
   examBoardTitle: z.string().nullish(),
   tierSlug: z.string().nullish(),
   tierTitle: z.string().nullish(),
+  yearGroupSlug: z.string().nullish(),
+  yearGroupTitle: z.string().nullish(),
 });
 
 export type LessonPathway = z.infer<typeof lessonPathwaySchema>;
@@ -158,6 +164,10 @@ export const lessonOverviewQuizData = z
   .optional();
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
+
+const camelActionSchema = zodToCamelCase(actionsSchema);
+
+export type Actions = z.infer<typeof camelActionSchema>;
 
 export const baseLessonOverviewSchema = z.object({
   isLegacy: z.boolean(),
@@ -196,7 +206,11 @@ export const baseLessonOverviewSchema = z.object({
   updatedAt: z.string(),
   lessonGuideUrl: z.string().nullable(),
   phonicsOutcome: z.string().nullish(),
+  actions: camelActionSchema.nullish(),
   hasMediaClips: z.boolean(),
+  additionalFiles: z.array(z.string()).nullable(),
+  lessonMediaClips: mediaClipsRecordCamelSchema.nullish(),
+  lessonOutline: z.array(z.object({ lessonOutline: z.string() })).nullable(),
 });
 export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 
@@ -237,22 +251,23 @@ export const baseLessonDownloadsSchema = z.object({
   loginRequired: z.boolean().nullable(),
 });
 
-export const lessonListSchema = z.array(
-  z.object({
-    lessonSlug: z.string(),
-    lessonTitle: z.string(),
-    description: z.string(),
-    pupilLessonOutcome: z.string().nullish(),
-    expired: z.boolean().nullable(),
-    quizCount: z.number().nullish(),
-    videoCount: z.number().nullish(),
-    presentationCount: z.number().nullish(),
-    worksheetCount: z.number().nullish(),
-    hasCopyrightMaterial: z.boolean().nullish(),
-    orderInUnit: z.number().nullish(),
-    lessonCohort: z.string().nullish(),
-  }),
-);
+export const lessonListItemSchema = z.object({
+  lessonSlug: z.string(),
+  lessonTitle: z.string(),
+  description: z.string(),
+  pupilLessonOutcome: z.string().nullish(),
+  expired: z.boolean().nullable(),
+  quizCount: z.number().nullish(),
+  videoCount: z.number().nullish(),
+  presentationCount: z.number().nullish(),
+  worksheetCount: z.number().nullish(),
+  hasCopyrightMaterial: z.boolean().nullish(),
+  orderInUnit: z.number().nullish(),
+  lessonCohort: z.string().nullish(),
+  actions: camelActionSchema.nullish(),
+});
+
+export const lessonListSchema = z.array(lessonListItemSchema);
 
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
 

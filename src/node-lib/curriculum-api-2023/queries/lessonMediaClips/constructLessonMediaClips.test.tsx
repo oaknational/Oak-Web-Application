@@ -20,37 +20,45 @@ describe("constructMediaClips", () => {
 
   describe("constructCanonicalLessonMediaData", () => {
     it("should construct CanonicalLessonMediaData correctly", () => {
-      const result = constructLessonMediaData(lessonMediaClipsFixture, []);
-
-      expect(result).toStrictEqual({
+      const pathway = {
         programmeSlug: "physical-education-ks4",
         unitSlug: "running-and-jumping",
         unitTitle: "unit-title",
         keyStageSlug: "ks1",
-        keyStageTitle: "Key stage 1",
+        keyStageTitle: "Key Stage 1",
         subjectSlug: "maths",
         subjectTitle: "Maths",
-        yearTitle: "Year 1",
         examBoardTitle: null,
-        updatedAt: "2024-02-28T08:09:20.247619+00:00",
-        lessonSlug: "running-as-a-team",
-        lessonTitle: "lesson-title",
         tierTitle: null,
         tierSlug: null,
-        pathways: [],
+      };
+
+      const result = constructLessonMediaData({ ...lessonMediaClipsFixture }, [
+        pathway,
+      ]);
+
+      expect(result).toStrictEqual({
+        lessonSlug: "running-as-a-team",
+        lessonTitle: "lesson-title",
+        keyStageTitle: "Key Stage 1",
+        pathways: [pathway],
+        mediaClips: null,
+        lessonOutline: null,
       });
     });
   });
 
   describe("constructLessonMediaData", () => {
     it("should construct LessonMediaData correctly", () => {
-      const result = constructLessonMediaData(lessonMediaClipsFixture);
+      const result = constructLessonMediaData({
+        ...lessonMediaClipsFixture,
+      });
       expect(result).toStrictEqual({
         programmeSlug: "physical-education-ks4",
         unitSlug: "running-and-jumping",
         unitTitle: "unit-title",
         keyStageSlug: "ks1",
-        keyStageTitle: "Key stage 1",
+        keyStageTitle: "Key Stage 1",
         subjectSlug: "maths",
         subjectTitle: "Maths",
         yearTitle: "Year 1",
@@ -60,6 +68,8 @@ describe("constructMediaClips", () => {
         lessonTitle: "lesson-title",
         tierTitle: null,
         tierSlug: null,
+        mediaClips: null,
+        lessonOutline: null,
       });
     });
   });

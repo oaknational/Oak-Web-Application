@@ -18,11 +18,10 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-import {
-  useShareExperiment,
-  CurriculumTrackingProps,
-} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
-import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
+import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -45,36 +44,30 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     keyStageTitle,
   } = curriculumData;
 
-  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
-    useShareExperiment({
-      lessonSlug,
-      unitSlug,
-      programmeSlug,
-      source: "lesson-browse",
-      curriculumTrackingProps: {
-        lessonName: lessonTitle,
-        unitName: unitTitle,
-        subjectSlug,
-        subjectTitle,
-        keyStageSlug,
-        keyStageTitle:
-          keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
-      },
-    });
-
-  if (shareExperimentFlag && window.location.href !== browserUrl) {
-    window.history.replaceState({}, "", browserUrl);
-  }
-
-  const teacherShareButton =
-    shareExperimentFlag === "test" ? (
-      <TeacherShareButton
-        label="Share resources with colleague"
-        variant={"secondary"}
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-      />
-    ) : null;
+  const {
+    teacherNotesButton,
+    teacherNoteHtml,
+    teacherNotesOpen,
+    setTeacherNotesOpen,
+    teacherNote,
+    isEditable,
+    saveTeacherNote,
+    shareUrl,
+    error,
+  } = useLesson({
+    lessonSlug,
+    unitSlug,
+    programmeSlug,
+    source: "lesson-browse",
+    curriculumTrackingProps: {
+      lessonName: lessonTitle,
+      unitName: unitTitle,
+      subjectSlug,
+      subjectTitle,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+    },
+  });
 
   const getLessonData = () => {
     if (tierTitle && examBoardTitle) {
@@ -93,6 +86,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
           title: `Lesson: ${lessonTitle}${getLessonData()} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
           description:
             "View lesson content and choose resources to download or share",
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
         }),
       }}
     >
@@ -102,10 +96,24 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             ...curriculumData,
             isCanonical: false,
             isSpecialist: false,
-            teacherShareButton: teacherShareButton,
+            teacherShareButton: teacherNotesButton,
+            teacherNoteHtml,
+            teacherNoteError: error,
           }}
           isBeta={false}
         />
+        {teacherNote && isEditable && (
+          <TeacherNotesModal
+            isOpen={teacherNotesOpen}
+            onClose={() => {
+              setTeacherNotesOpen(false);
+            }}
+            teacherNote={teacherNote}
+            saveTeacherNote={saveTeacherNote}
+            sharingUrl={shareUrl}
+            error={error}
+          />
+        )}
       </OakThemeProvider>
     </AppLayout>
   );
@@ -155,7 +163,6 @@ export const getStaticProps: GetStaticProps<
       }
 
       const lessonPageData = await populateLessonWithTranscript(curriculumData);
-
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
         props: {
           curriculumData: lessonPageData,

@@ -1,22 +1,18 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   examboards,
   tierDescriptions,
 } from "@oaknational/oak-curriculum-schema";
-import { useUser } from "@clerk/nextjs";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
+import { OakBox, OakHandDrawnHR } from "@oaknational/oak-components";
 
 import { filterDownloadsByCopyright } from "../TeacherComponents/helpers/downloadAndShareHelpers/downloadsCopyright";
-import { LessonDownloadRegionBlocked } from "../TeacherComponents/LessonDownloadRegionBlocked/LessonDownloadRegionBlocked";
 import { useOnboardingStatus } from "../TeacherComponents/hooks/useOnboardingStatus";
 
-import Box from "@/components/SharedComponents/Box";
 import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Hr } from "@/components/SharedComponents/Typography";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
-import useDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useDownloadExistenceCheck";
+import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
   ResourceFormProps,
@@ -104,8 +100,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     updatedAt,
   } = lesson;
 
-  const { user } = useUser();
-
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical
       ? {
@@ -172,6 +166,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     handleToggleSelectAll,
     selectAllChecked,
     setEmailInLocalStorage,
+    hubspotLoaded,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
     type: "download",
@@ -263,7 +258,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     }
   };
 
-  useDownloadExistenceCheck({
+  useLessonDownloadExistenceCheck({
     lessonSlug,
     resourcesToCheck: activeResources as DownloadResourceType[],
     onComplete: setActiveResources,
@@ -275,23 +270,16 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     Boolean(expired) ||
     downloadsFilteredByCopyright.length === 0;
 
-  // TODO remove once we're confident that restrictions are being
-  // applied correctly in production
-  const useAuthOwaEnabled =
-    useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
-  useEffect(() => {
-    if (useAuthOwaEnabled) {
-      console.log("restrictions", {
-        geoRestricted: lesson.geoRestricted,
-        loginRequired: lesson.loginRequired,
-      });
-    }
-  }, [lesson.geoRestricted, lesson.loginRequired, useAuthOwaEnabled]);
-
   return (
-    <Box $ph={[16, null]} $background={"grey20"}>
+    <OakBox
+      $ph={["inner-padding-m", "inner-padding-none"]}
+      $background={"grey20"}
+    >
       <MaxWidth $pb={80} $maxWidth={[480, 840, 1280]}>
-        <Box $mb={isDownloadSuccessful ? 0 : 32} $mt={24}>
+        <OakBox
+          $mb={isDownloadSuccessful ? "space-between-none" : "space-between-m2"}
+          $mt={"space-between-m"}
+        >
           <Breadcrumbs
             breadcrumbs={
               !isSpecialist
@@ -324,16 +312,15 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   ]
             }
           />
-          <Hr $color={"grey60"} $mt={24} />
-        </Box>
+          <OakHandDrawnHR
+            hrColor={"grey60"}
+            $height={"all-spacing-1"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m"}
+          />
+        </OakBox>
         {(() => {
-          if (
-            user &&
-            lesson.geoRestricted &&
-            !user.publicMetadata.owa?.isRegionAuthorised
-          ) {
-            return <LessonDownloadRegionBlocked />;
-          }
+          // TODO: configure georestriction and login required rules for downloads
 
           if (isDownloadSuccessful) {
             return (
@@ -407,20 +394,25 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   }
                   text={"Download .zip"}
                   icon={"download"}
-                  isLoading={isAttemptingDownload}
-                  disabled={
-                    hasFormErrors ||
-                    noResourcesSelected ||
-                    showNoResources ||
-                    (!form.formState.isValid && !localStorageDetails)
+                  isLoading={
+                    isAttemptingDownload || !hubspotLoaded // show loading state when waiting for latest school values to be populated from hubspot
                   }
-                  loadingText={"Downloading..."}
+                  disabled={
+                    (hasFormErrors ||
+                      noResourcesSelected ||
+                      showNoResources ||
+                      (!form.formState.isValid && !localStorageDetails)) &&
+                    hubspotLoaded
+                  }
+                  loadingText={
+                    isAttemptingDownload ? "Downloading..." : "Loading..."
+                  }
                 />
               }
             />
           );
         })()}
       </MaxWidth>
-    </Box>
+    </OakBox>
   );
 }

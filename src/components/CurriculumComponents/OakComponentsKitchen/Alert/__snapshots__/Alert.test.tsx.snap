@@ -4,19 +4,19 @@ exports[`Fieldset all options 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-gsFSXq hVjNbq gXxntV"
+      class="sc-fqkvVR sc-gsFSXq cuUXqb gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR dzjDLT"
+        class="sc-fqkvVR fgBWrW"
       >
         <div
-          class="sc-fqkvVR gBNXQv"
+          class="sc-fqkvVR erqloa"
           data-testid="inline-banner-icon"
         >
           <img
             alt="info"
-            class="sc-dcJsrY dAhYsf"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -26,26 +26,26 @@ exports[`Fieldset all options 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR ZQNWU"
+        class="sc-fqkvVR TgDlp"
         data-testid="inline-banner-message"
       >
         Info example
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq gxFeVr gXxntV"
+      class="sc-fqkvVR sc-gsFSXq kIGjQG gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR dzjDLT"
+        class="sc-fqkvVR fgBWrW"
       >
         <div
-          class="sc-fqkvVR gBNXQv"
+          class="sc-fqkvVR erqloa"
           data-testid="inline-banner-icon"
         >
           <img
             alt="info"
-            class="sc-dcJsrY dAhYsf"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -55,55 +55,55 @@ exports[`Fieldset all options 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR ZQNWU"
+        class="sc-fqkvVR TgDlp"
         data-testid="inline-banner-message"
       >
         Neutral example
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq llcuhN gXxntV"
+      class="sc-fqkvVR sc-gsFSXq gIcfVA gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR dzjDLT"
+        class="sc-fqkvVR fgBWrW"
       >
         <div
-          class="sc-fqkvVR gBNXQv"
+          class="sc-fqkvVR erqloa"
           data-testid="inline-banner-icon"
         >
           <img
             alt="success"
-            class="sc-dcJsrY dAhYsf"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
-            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895534/icons/Icon-Success_aiiprx"
+            src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1699895534/icons/Icon-Success_aiiprx.svg"
             style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
           />
         </div>
       </div>
       <div
-        class="sc-fqkvVR ZQNWU"
+        class="sc-fqkvVR TgDlp"
         data-testid="inline-banner-message"
       >
         Success example
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq cmcFkU gXxntV"
+      class="sc-fqkvVR sc-gsFSXq WVWoR gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR dzjDLT"
+        class="sc-fqkvVR fgBWrW"
       >
         <div
-          class="sc-fqkvVR gBNXQv"
+          class="sc-fqkvVR erqloa"
           data-testid="inline-banner-icon"
         >
           <img
             alt="warning"
-            class="sc-dcJsrY dAhYsf"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -113,26 +113,26 @@ exports[`Fieldset all options 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR ZQNWU"
+        class="sc-fqkvVR TgDlp"
         data-testid="inline-banner-message"
       >
         Alert example
       </div>
     </div>
     <div
-      class="sc-fqkvVR sc-gsFSXq kBBbOQ gXxntV"
+      class="sc-fqkvVR sc-gsFSXq dDVBBt gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR dzjDLT"
+        class="sc-fqkvVR fgBWrW"
       >
         <div
-          class="sc-fqkvVR gBNXQv"
+          class="sc-fqkvVR erqloa"
           data-testid="inline-banner-icon"
         >
           <img
             alt="error"
-            class="sc-dcJsrY dYJCWu"
+            class="sc-dcJsrY cGPxx"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -142,7 +142,7 @@ exports[`Fieldset all options 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR ZQNWU"
+        class="sc-fqkvVR TgDlp"
         data-testid="inline-banner-message"
       >
         Error example
@@ -156,19 +156,19 @@ exports[`Fieldset default options 1`] = `
 <body>
   <div>
     <div
-      class="sc-fqkvVR sc-gsFSXq hVjNbq gXxntV"
+      class="sc-fqkvVR sc-gsFSXq cuUXqb gXxntV"
       data-testid="oak-inline-banner"
     >
       <div
-        class="sc-fqkvVR dzjDLT"
+        class="sc-fqkvVR fgBWrW"
       >
         <div
-          class="sc-fqkvVR gBNXQv"
+          class="sc-fqkvVR erqloa"
           data-testid="inline-banner-icon"
         >
           <img
             alt="info"
-            class="sc-dcJsrY dAhYsf"
+            class="sc-dcJsrY beWtwI"
             data-nimg="fill"
             decoding="async"
             loading="lazy"
@@ -178,7 +178,7 @@ exports[`Fieldset default options 1`] = `
         </div>
       </div>
       <div
-        class="sc-fqkvVR ZQNWU"
+        class="sc-fqkvVR TgDlp"
         data-testid="inline-banner-message"
       >
         Default example

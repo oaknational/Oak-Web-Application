@@ -4,18 +4,22 @@ import type { AriaListBoxOptions } from "@react-aria/listbox";
 import type { Node } from "@react-types/shared";
 import type { ListState } from "react-stately";
 import { useListBox, useOption } from "react-aria";
-import { OakLI, OakFlex } from "@oaknational/oak-components";
+import {
+  OakLI,
+  OakFlex,
+  OakSpan,
+  OakCombinedColorToken,
+} from "@oaknational/oak-components";
 
 import { InputFocusUnderline } from "@/components/SharedComponents/Input/Input";
 import theme, { OakColorName } from "@/styles/theme";
-import { Span } from "@/components/SharedComponents/Typography";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
 export type SelectListBoxConfig = {
   states: {
     default: {
       background: OakColorName;
-      color: OakColorName;
+      color: OakCombinedColorToken;
     };
     isFocused: {
       background: OakColorName;
@@ -138,9 +142,9 @@ function Option({ item, state }: OptionProps) {
 export function Label({ children }: { children: React.ReactNode }) {
   const { labelProps } = useContext(OptionContext);
   return (
-    <Span $color={theme.selectListBox.states.default.color} {...labelProps}>
+    <OakSpan $color={theme.selectListBox.states.default.color} {...labelProps}>
       {children}
-    </Span>
+    </OakSpan>
   );
 }
 

@@ -1,9 +1,9 @@
 import { StoryFn, Meta } from "@storybook/react";
+import { OakBox } from "@oaknational/oak-components";
 
 import Component from ".";
 
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
-import Box from "@/components/SharedComponents/Box";
 
 export default {
   component: Component,
@@ -14,11 +14,11 @@ export default {
   },
   decorators: [
     (Story) => (
-      <Box $position="relative" $maxWidth={720} $ma="auto">
+      <OakBox $position="relative" $maxWidth="all-spacing-22" $ma="auto">
         <AspectRatio ratio={"16:9"}>
           <Story />
         </AspectRatio>
-      </Box>
+      </OakBox>
     ),
   ],
   argTypes: {

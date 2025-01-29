@@ -314,9 +314,8 @@ export default async function generate(
                 <w:spacing
                   w:lineRule="auto"
                   w:line="240"
-                  w:before="0"
+                  w:before="${line240(1)}"
                   w:after="${line240(1)}"
-                  w:beforeAutospacing="${line240(0.2)}"
                 />
               </w:pPr>
               ${content}
@@ -379,34 +378,34 @@ export default async function generate(
   );
 
   const pageXml = safeXml`
-      <root>
-        <w:p>
-          <w:pPr>
-            <w:pStyle w:val="Heading2" />
-          </w:pPr>
-          ${wrapInBookmarkPoint(
-            "section_curriculum_overview",
-            safeXml`
-              <w:r>
-                <w:rPr>
-                  <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
-                  <w:b />
-                  <w:color w:val="222222" />
-                  <w:sz w:val="56" />
-                </w:rPr>
-                <w:t>${cdata(`${data.subjectTitle} curriculum explainer`)}</w:t>
-              </w:r>
-            `,
-          )}
-        </w:p>
-        <w:p />
-        <w:p />
-        ${explainerXml}
+    <root>
+      <w:p>
+        <w:pPr>
+          <w:pStyle w:val="Heading2" />
+        </w:pPr>
+        ${wrapInBookmarkPoint(
+          "section_curriculum_overview",
+          safeXml`
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial" />
+                <w:b />
+                <w:color w:val="222222" />
+                <w:sz w:val="56" />
+              </w:rPr>
+              <w:t>${cdata(`${data.subjectTitle} curriculum explainer`)}</w:t>
+            </w:r>
+          `,
+        )}
+      </w:p>
+      <w:p />
+      <w:p />
+      ${explainerXml}
         ${Array(4)
-          .fill(true)
-          .map(() => safeXml`<w:p />`)}
-      </root>
-    `;
+        .fill(true)
+        .map(() => safeXml`<w:p />`)}
+    </root>
+  `;
 
   await appendBodyElements(zip, xmlElementToJson(pageXml)?.elements);
 }

@@ -7,7 +7,6 @@ import {
   resourceFormValuesSchema,
 } from "@/components/TeacherComponents/downloadAndShare.schema";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
-import { ExpandingContainerTitle } from "@/components/ArchivedComponents/ExpandingContainer/ExpandingContainer";
 import {
   LessonShareData,
   LessonShareResourceData,
@@ -47,6 +46,16 @@ export type DownloadableLessonTitles = Exclude<
   LessonItemTitle,
   "Demonstration videos" | "Audio clips" | "Video & audio clips"
 >;
+
+export type ExpandingContainerTitle =
+  | "Slide deck"
+  | "Exit quiz"
+  | "Starter quiz"
+  | "Worksheet"
+  | "Lesson video"
+  | "Transcript"
+  | "Lesson overview"
+  | "Additional material";
 
 export type CombinedDownloadsShareType = Record<
   ExpandingContainerTitle | DownloadableLessonTitles,

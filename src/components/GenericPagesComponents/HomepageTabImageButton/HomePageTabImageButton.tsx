@@ -18,7 +18,6 @@ import UnstyledButton, {
   UnstyledButtonProps,
 } from "@/components/SharedComponents/UnstyledButton";
 import CMSImage from "@/components/SharedComponents/CMSImage/CMSImage";
-import Box from "@/components/SharedComponents/Box";
 import TagPromotional from "@/components/SharedComponents/TagPromotional";
 import {
   ButtonHoverStyle,
@@ -138,7 +137,7 @@ const HomePageTabImageButton = forwardRef<
             data-testid={imageSlug}
           />
         </OakFlex>
-        <Box $display={"flex"} $position={"relative"} $minWidth={0}>
+        <OakFlex $position={"relative"} $minWidth={0}>
           <OakFlex $alignItems={"center"} $minHeight="all-spacing-9">
             <HopePageTabButtonLabelWithScreenReaderTitle
               $font={["body-3-bold", "heading-7"]}
@@ -161,7 +160,7 @@ const HomePageTabImageButton = forwardRef<
             $color={underlineColor}
             data-testid={`${defaultTitle} underline`}
           />
-        </Box>
+        </OakFlex>
       </OakFlex>
     </StyledButton>
   );

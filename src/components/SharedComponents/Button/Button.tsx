@@ -1,5 +1,6 @@
 import { forwardRef, MouseEventHandler } from "react";
 import styled from "styled-components";
+import { OakColorToken } from "@oaknational/oak-components";
 
 import button, {
   ButtonStylesProps,
@@ -17,7 +18,6 @@ import typography, { FontVariant } from "@/styles/utils/typography";
 import UnstyledButton, {
   UnstyledButtonProps,
 } from "@/components/SharedComponents/UnstyledButton";
-import { OakColorName } from "@/styles/theme";
 
 const StyledButton = styled(UnstyledButton)<
   ButtonStylesProps & UnstyledButtonProps
@@ -35,7 +35,7 @@ export type ButtonProps = CommonButtonProps & {
   isCurrent?: boolean;
   currentStyles?: ButtonCurrentStyles;
   role?: string;
-  labelColor?: OakColorName;
+  labelColor?: OakColorToken;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {

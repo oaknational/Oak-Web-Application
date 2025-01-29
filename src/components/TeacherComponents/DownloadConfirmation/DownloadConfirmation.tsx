@@ -1,8 +1,7 @@
 import { FC, useRef, useEffect } from "react";
-import { OakHeading, OakP } from "@oaknational/oak-components";
+import { OakHeading, OakP, OakIcon } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Svg from "@/components/SharedComponents/Svg";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
@@ -60,7 +59,7 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     .splice(0, pathElems.indexOf(lessonSlug) + 1)
     .join("/");
 
-  const { shareExperimentFlag, shareUrl, shareActivated } = useShareExperiment({
+  const { shareUrl, shareActivated } = useShareExperiment({
     lessonSlug,
     unitSlug: isCanonical ? undefined : (unitSlug ?? undefined), // NB. unitSlug can sometimes be defined for canonical state
     programmeSlug: isCanonical ? undefined : (programmeSlug ?? undefined),
@@ -74,17 +73,17 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
       subjectSlug,
       subjectTitle,
     },
+    overrideExistingShareId: true,
   });
 
-  const teacherShareButton =
-    shareExperimentFlag === "test" ? (
-      <TeacherShareButton
-        label="Share resources with colleague"
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-        variant="primary"
-      />
-    ) : null;
+  const teacherShareButton = (
+    <TeacherShareButton
+      label="Share resources with colleague"
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+      variant="primary"
+    />
+  );
 
   return (
     <>
@@ -101,7 +100,11 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
           $width={[140, 400]}
           $position={"relative"}
         >
-          <Svg name="tick-mark-happiness" $height={"100%"} $width={"100%"} />
+          <OakIcon
+            iconName="tick-mark-happiness"
+            $height={"100%"}
+            $width={"100%"}
+          />
         </Flex>
 
         <Flex
