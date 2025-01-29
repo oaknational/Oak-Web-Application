@@ -1,5 +1,4 @@
 import { MutableRefObject } from "react";
-import { isEqual } from "lodash";
 
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import curriculumApi2023, {
@@ -46,7 +45,7 @@ export type CurriculumUnitsYearData<T = Unit> = {
     subjectCategories: SubjectCategory[];
     tiers: Tier[];
     pathways: Pathway[];
-    labels: string[];
+    isSwimming: boolean;
     groupAs: string | null;
     ref?: MutableRefObject<HTMLDivElement>;
   };
@@ -120,7 +119,7 @@ export function createYearOptions(units: Unit[]): string[] {
   units.forEach((unit: Unit) => {
     // Populate years object
     const year =
-      getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year;
+      getUnitFeatures(unit)?.programme_field_overrides?.Year ?? unit.year;
     if (yearOptions.every((yo) => yo !== year)) {
       yearOptions.push(year);
     }
@@ -149,7 +148,7 @@ export function createInitialYearFilterSelection(
 
     const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
     // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
-    if (!features?.subjectcategories?.all_disabled) {
+    if (!features?.subject_category_actions) {
       if (filters.subjectCategories.length >= 2) {
         filters.subjectCategories.unshift(allSubjectCategoryTag);
       }
@@ -160,7 +159,7 @@ export function createInitialYearFilterSelection(
         (s) => s.subject_slug === "combined-science",
       ) ?? null;
     const subjectCategory =
-      features?.subjectcategories?.all_disabled &&
+      features?.subject_category_actions?.all_disabled &&
       filters.subjectCategories.length > 0
         ? filters.subjectCategories[0]
         : allSubjectCategoryTag;
@@ -184,7 +183,7 @@ export function createUnitsListingByYear(
     // If not, initialize it with default values
 
     const year =
-      getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year;
+      getUnitFeatures(unit)?.programme_field_overrides?.Year ?? unit.year;
 
     let currentYearData = yearData[year];
     if (!currentYearData) {
@@ -194,7 +193,7 @@ export function createUnitsListingByYear(
         subjectCategories: [],
         tiers: [],
         pathways: [],
-        labels: [],
+        isSwimming: false,
         groupAs: null,
       };
       yearData[year] = currentYearData;
@@ -261,23 +260,15 @@ export function createUnitsListingByYear(
 
   for (const year of Object.keys(yearData)) {
     const data = yearData[year]!;
-    if (data.units.length > 0) {
-      const labels = getUnitFeatures(data.units[0]!)?.labels ?? [];
-      if (
-        data.units.every((unit) =>
-          isEqual(getUnitFeatures(unit)?.labels, labels),
-        )
-      ) {
-        data.labels = data.labels.concat(labels);
-      }
-    }
+
+    data.isSwimming = data.units[0]?.features?.pe_swimming === true;
 
     if (data.units.length > 0) {
-      const groupAs = getUnitFeatures(data.units[0]!)?.group_as;
+      const groupAs = getUnitFeatures(data.units[0]!)?.group_units_as;
       if (groupAs) {
         if (
           data.units.every(
-            (unit) => getUnitFeatures(unit)?.group_as === groupAs,
+            (unit) => getUnitFeatures(unit)?.group_units_as === groupAs,
           )
         ) {
           data.groupAs = groupAs;

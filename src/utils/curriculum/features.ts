@@ -5,29 +5,9 @@ export function getUnitFeatures(unit?: Unit | null) {
     return;
   }
 
-  if (unit.features?.pe_swimming) {
+  if (unit.subject_slug === "english" && unit.phase_slug === "primary") {
     return {
-      labels: ["swimming"],
-      exclusions: ["pupils"],
-      group_as: "Swimming and water safety",
-      programmes_fields_overrides: {
-        year: "all-years",
-        keystage: "All keystages",
-      },
-    };
-  } else if (
-    unit.subject_slug === "computing" &&
-    unit.pathway_slug === "gcse" &&
-    unit.keystage_slug === "ks4"
-  ) {
-    return {
-      programmes_fields_overrides: {
-        subject: "Computer Science",
-      },
-    };
-  } else if (unit.subject_slug === "english" && unit.phase_slug === "primary") {
-    return {
-      subjectcategories: {
+      subject_category_actions: {
         all_disabled: true,
         default_category_id: 4,
         group_by_subjectcategory: true,
@@ -39,12 +19,14 @@ export function getUnitFeatures(unit?: Unit | null) {
     unit.keystage_slug === "ks4"
   ) {
     return {
-      subjectcategories: {
+      subject_category_actions: {
         all_disabled: true,
         default_category_id: 19,
         group_by_subjectcategory: true,
       },
     };
   }
+
+  return unit.actions;
 }
 export type UnitFeatures = ReturnType<typeof getUnitFeatures>;
