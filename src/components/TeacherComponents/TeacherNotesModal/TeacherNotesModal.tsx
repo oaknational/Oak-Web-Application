@@ -173,8 +173,8 @@ export const TeacherNotesModal = ({
     const noteHtml = editor.getHTML() ?? "";
     const noteText = editor.getText() ?? "";
 
-    // don't dave if there's no change
-    if (teacherNote?.noteHtml === noteHtml) {
+    // don't save if there's no change or no note text
+    if (teacherNote?.noteHtml === noteHtml || noteText.length === 0) {
       return;
     }
 

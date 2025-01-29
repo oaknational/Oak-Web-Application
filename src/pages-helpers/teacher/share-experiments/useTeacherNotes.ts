@@ -117,6 +117,7 @@ export const useTeacherNotes = ({
     const res = addTeacherNote({ teacherNote: t });
     setTeacherNote(t);
     setNoteSaved(true);
+    // No need to dedupe this event
     track.teacherNoteSaved({
       shareId: t.noteId,
       linkUrl: window.location.href,
