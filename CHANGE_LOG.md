@@ -1,3 +1,10 @@
+# [1.677.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.676.0...v1.677.0) (2025-01-29)
+
+
+### Features
+
+* hide curriculum download button for rshe ([f67bfd3](https://github.com/oaknational/Oak-Web-Application/commit/f67bfd34c0844c3246845b50e67c0fcf49cd6f1e))
+
 # [1.676.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.675.0...v1.676.0) (2025-01-29)
 
 
