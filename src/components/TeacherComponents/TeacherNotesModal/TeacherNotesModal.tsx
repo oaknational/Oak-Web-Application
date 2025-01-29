@@ -91,6 +91,7 @@ export type TeacherNotesModalProps = Pick<
   saveTeacherNote: (
     note: Partial<TeacherNoteCamelCase>,
   ) => Promise<TeacherNote>;
+  shareActivated?: () => void;
   sharingUrl: string | null;
   error: string | null;
 };
@@ -100,6 +101,7 @@ export const TeacherNotesModal = ({
   isOpen,
   teacherNote,
   saveTeacherNote,
+  shareActivated,
   sharingUrl,
   error,
 }: TeacherNotesModalProps) => {
@@ -198,6 +200,10 @@ export const TeacherNotesModal = ({
     handleSave(false);
     if (sharingUrl) {
       navigator.clipboard.writeText(sharingUrl);
+    }
+
+    if (shareActivated) {
+      shareActivated();
     }
 
     setNoteShared(true);

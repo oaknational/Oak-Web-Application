@@ -46,6 +46,7 @@ export default function LessonOverviewCanonicalPage({
     teacherNoteHtml,
     teacherNotesOpen,
     setTeacherNotesOpen,
+    shareActivated,
     teacherNote,
     isEditable,
     saveTeacherNote,
@@ -107,6 +108,7 @@ export default function LessonOverviewCanonicalPage({
             saveTeacherNote={saveTeacherNote}
             sharingUrl={shareUrl}
             error={error}
+            shareActivated={shareActivated}
           />
         )}
       </OakThemeProvider>

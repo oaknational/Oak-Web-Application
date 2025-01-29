@@ -27,6 +27,7 @@ type UseLessonReturn = {
   teacherNoteHtml: string | undefined;
   teacherNotesOpen: boolean;
   setTeacherNotesOpen: (open: boolean) => void;
+  shareActivated: () => void;
   teacherNote: TeacherNoteCamelCase | null;
   isEditable: boolean;
   saveTeacherNote: (
@@ -119,6 +120,7 @@ export const useLesson = ({
     teacherNoteHtml,
     teacherNotesOpen,
     setTeacherNotesOpen,
+    shareActivated,
     teacherNote,
     isEditable,
     saveTeacherNote,
