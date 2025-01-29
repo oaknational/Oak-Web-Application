@@ -18,7 +18,6 @@ import {
   getSuffixFromFeatures,
   getYearGroupTitle,
 } from "@/utils/curriculum/formatting";
-import { getUnitFeatures } from "@/utils/curriculum/features";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import { sortChildSubjects, sortYears } from "@/utils/curriculum/sorting";
@@ -232,7 +231,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             );
             const dedupedUnits = dedupUnits(filteredUnits);
 
-            const features = getUnitFeatures(units[0]);
+            const features = units[0]?.actions;
             const yearTitle = getYearGroupTitle(
               yearData,
               year,

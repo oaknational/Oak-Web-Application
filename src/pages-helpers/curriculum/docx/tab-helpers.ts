@@ -15,7 +15,6 @@ import {
   SubjectCategory,
   YearSelection,
 } from "@/utils/curriculum/types";
-import { getUnitFeatures, UnitFeatures } from "@/utils/curriculum/features";
 import {
   sortSubjectCategoriesOnFeatures,
   sortUnits,
@@ -24,6 +23,7 @@ import {
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
+import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type CurriculumUnitsYearGroup = {
   units: Unit[];
@@ -118,8 +118,7 @@ export function createYearOptions(units: Unit[]): string[] {
 
   units.forEach((unit: Unit) => {
     // Populate years object
-    const year =
-      getUnitFeatures(unit)?.programme_field_overrides?.Year ?? unit.year;
+    const year = unit.actions?.programme_field_overrides?.Year ?? unit.year;
     if (yearOptions.every((yo) => yo !== year)) {
       yearOptions.push(year);
     }
@@ -132,7 +131,7 @@ export function createYearOptions(units: Unit[]): string[] {
 
 export function createInitialYearFilterSelection(
   yearData: CurriculumUnitsYearData,
-  features: UnitFeatures | null,
+  actions: Actions | null,
 ): YearSelection {
   const initialYearSelection = {} as YearSelection;
   Object.keys(yearData).forEach((year) => {
@@ -144,11 +143,11 @@ export function createInitialYearFilterSelection(
     // Sort subject categories
     filters.subjectCategories
       .sort((a, b) => a.title.localeCompare(b.title))
-      .sort(sortSubjectCategoriesOnFeatures(features));
+      .sort(sortSubjectCategoriesOnFeatures(actions));
 
     const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
     // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
-    if (!features?.subject_category_actions) {
+    if (!actions?.subject_category_actions) {
       if (filters.subjectCategories.length >= 2) {
         filters.subjectCategories.unshift(allSubjectCategoryTag);
       }
@@ -159,7 +158,7 @@ export function createInitialYearFilterSelection(
         (s) => s.subject_slug === "combined-science",
       ) ?? null;
     const subjectCategory =
-      features?.subject_category_actions?.all_disabled &&
+      actions?.subject_category_actions?.all_disabled &&
       filters.subjectCategories.length > 0
         ? filters.subjectCategories[0]
         : allSubjectCategoryTag;
@@ -182,8 +181,7 @@ export function createUnitsListingByYear(
     // Check if the yearData object has an entry for the unit's year
     // If not, initialize it with default values
 
-    const year =
-      getUnitFeatures(unit)?.programme_field_overrides?.Year ?? unit.year;
+    const year = unit.actions?.programme_field_overrides?.Year ?? unit.year;
 
     let currentYearData = yearData[year];
     if (!currentYearData) {
@@ -264,12 +262,10 @@ export function createUnitsListingByYear(
     data.isSwimming = data.units[0]?.features?.pe_swimming === true;
 
     if (data.units.length > 0) {
-      const groupAs = getUnitFeatures(data.units[0]!)?.group_units_as;
+      const groupAs = data.units[0]?.actions?.group_units_as;
       if (groupAs) {
         if (
-          data.units.every(
-            (unit) => getUnitFeatures(unit)?.group_units_as === groupAs,
-          )
+          data.units.every((unit) => unit.actions?.group_units_as === groupAs)
         ) {
           data.groupAs = groupAs;
         }
@@ -397,7 +393,7 @@ export function formatCurriculumUnitsData(
   data: CurriculumUnitsTabData,
 ): CurriculumUnitsFormattedData {
   const { units } = data;
-  const features = getUnitFeatures(units[0]);
+  const actions = units[0]?.actions;
   // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
   const filteredUnits = ENABLE_NEW_CURRIC_MV ? units : sanatiseUnits(units);
   const yearData = createUnitsListingByYear(filteredUnits);
@@ -405,7 +401,7 @@ export function formatCurriculumUnitsData(
   const yearOptions = createYearOptions(filteredUnits);
   const initialYearSelection = createInitialYearFilterSelection(
     yearData,
-    features,
+    actions,
   );
   const formattedDataCurriculumUnits = {
     yearData,

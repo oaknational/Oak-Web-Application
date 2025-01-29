@@ -11,7 +11,6 @@ import {
   CurriculumUnitDetailsProps,
   CurriculumUnitDetails,
 } from "@/components/CurriculumComponents/CurriculumUnitDetails";
-import { getUnitFeatures } from "@/utils/curriculum/features";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { notUndefined, Unit, YearData } from "@/utils/curriculum/types";
 
@@ -69,14 +68,12 @@ const UnitModal: FC<UnitModalProps> = ({
   ]);
 
   const subjectTitle =
-    getUnitFeatures(unitData)?.programme_field_overrides?.subject ??
-    unitData?.subject;
+    unitData?.actions?.programme_field_overrides?.subject ?? unitData?.subject;
 
   const yearTitle = unitData
     ? getYearGroupTitle(
         yearData,
-        getUnitFeatures(unitData)?.programme_field_overrides?.Year ??
-          unitData.year,
+        unitData.actions?.programme_field_overrides?.Year ?? unitData.year,
       )
     : "";
 
