@@ -30,6 +30,7 @@ query curriculumSequence(
     description
     cycle
     features
+    actions
     unit_options
     threads
     year
