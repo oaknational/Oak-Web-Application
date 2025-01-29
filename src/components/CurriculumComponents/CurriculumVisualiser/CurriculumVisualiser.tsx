@@ -427,6 +427,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           )}
           unitOptionsAvailable={unitOptionsAvailable}
           unitSlug={unitData?.slug}
+          unitData={unitData}
           unitVariantID={unitVariantID}
         >
           <UnitModal

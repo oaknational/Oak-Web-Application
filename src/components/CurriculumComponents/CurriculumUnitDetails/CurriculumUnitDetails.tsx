@@ -8,7 +8,6 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 
-import Box from "@/components/SharedComponents/Box";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import CurriculumUnitDetailsAccordion from "@/components/CurriculumComponents/CurriculumUnitDetailsAccordion";
@@ -64,7 +63,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
       </OakP>
 
       {uniqueThreadsArray.length >= 1 && (
-        <Box $mb={[24, 32]}>
+        <OakBox $mb={["space-between-m", "space-between-m2"]}>
           <OakHeading tag="h3" $font={"heading-6"} $mb="space-between-ssx">
             Threads
           </OakHeading>
@@ -78,12 +77,12 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
               <TagFunctional
                 key={thread}
                 text={thread}
-                color={"grey"}
+                color={"lavender"}
                 data-testid="thread-tag"
               />
             ))}
           </OakFlex>
-        </Box>
+        </OakBox>
       )}
       <OakFlex $flexDirection={"column"}>
         {cycle === "2" && (

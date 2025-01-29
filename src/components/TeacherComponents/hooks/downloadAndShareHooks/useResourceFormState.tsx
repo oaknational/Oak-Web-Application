@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
-import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { useUser } from "@clerk/nextjs";
 
 import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
@@ -58,8 +57,13 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);
   const [schoolUrn, setSchoolUrn] = useState("");
-  const authFlagEnabled =
-    useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
+
+  const [hubspotLoaded, setHubspotLoaded] = useState(false);
+  const [schoolFromHubspot, setSchoolFromHubspot] = useState<null | {
+    schoolId: string;
+    schoolName: string;
+  }>(null);
+
   const { isSignedIn, user } = useUser();
 
   const {
@@ -85,6 +89,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       const subscriptionStatus = await getSubscriptionStatus();
       setTermsInLocalStorage(true);
       setValue("terms", true);
+
       if (subscriptionStatus) {
         setEmailInLocalStorage(email);
         setValue("email", email);
@@ -96,33 +101,57 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         const schoolId = hubspotContact.schoolId;
         const schoolName = hubspotContact.schoolName;
 
-        setSchoolInLocalStorage({
-          schoolId: schoolIdFromLocalStorage ?? "notListed",
+        const school = {
+          schoolId: schoolId ?? "notListed",
           schoolName: schoolName ?? "notListed",
-        });
+        };
+
+        setSchoolInLocalStorage(school);
+
+        setSchoolFromHubspot(school);
 
         if (schoolName) {
           setValue("schoolName", schoolName);
         }
 
         if (schoolId) {
-          setValue("school", schoolIdFromLocalStorage);
+          setValue("school", schoolId);
         }
       }
     };
 
-    if (userEmail && authFlagEnabled && isSignedIn) {
+    if (userEmail && isSignedIn) {
       updateUserDetailsFromHubspot(userEmail);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    authFlagEnabled,
     isSignedIn,
     setEmailInLocalStorage,
     setSchoolInLocalStorage,
     setTermsInLocalStorage,
     setValue,
     user?.emailAddresses,
+  ]);
+
+  // Set finished loading when local storage matches hubspot or when no details expected in hubspot
+  useEffect(() => {
+    const detailsUpdatedFromHubspot =
+      schoolFromHubspot?.schoolId === schoolFromLocalStorage.schoolId &&
+      schoolFromHubspot?.schoolName === schoolFromLocalStorage.schoolName;
+
+    const noDetailsInHubspot =
+      isSignedIn === false ||
+      (isSignedIn && !user?.publicMetadata?.owa?.isOnboarded); // user has signed in but not onboarded
+
+    if ((detailsUpdatedFromHubspot || noDetailsInHubspot) && !hubspotLoaded) {
+      setHubspotLoaded(true);
+    }
+  }, [
+    schoolFromHubspot,
+    schoolFromLocalStorage,
+    isSignedIn,
+    hubspotLoaded,
+    user,
   ]);
 
   useEffect(() => {
@@ -322,6 +351,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setActiveResources,
     handleToggleSelectAll,
     selectAllChecked,
+    hubspotLoaded,
     form: {
       trigger,
       setValue,

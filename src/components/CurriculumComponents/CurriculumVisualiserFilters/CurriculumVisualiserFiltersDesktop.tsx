@@ -1,4 +1,4 @@
-import { OakP, OakSpan } from "@oaknational/oak-components";
+import { OakBox, OakP, OakSpan } from "@oaknational/oak-components";
 
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
@@ -7,7 +7,6 @@ import SkipLink from "../OakComponentsKitchen/SkipLink";
 import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "./helpers";
 
-import Box from "@/components/SharedComponents/Box";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { Thread } from "@/utils/curriculum/types";
 
@@ -46,7 +45,12 @@ export default function CurriculumVisualiserFiltersDesktop({
           value={selectedThread ?? ""}
         >
           <SkipLink href="#content">Skip to units</SkipLink>
-          <Box $mv={16} $pl={12} $bl={1} $borderColor="transparent">
+          <OakBox
+            $mv="space-between-s"
+            $pl="inner-padding-s"
+            $bl="border-solid-s"
+            $borderColor="transparent"
+          >
             <RadioButton
               aria-label={"None highlighted"}
               value={""}
@@ -54,7 +58,7 @@ export default function CurriculumVisualiserFiltersDesktop({
             >
               None highlighted
             </RadioButton>
-          </Box>
+          </OakBox>
           {threadOptions.map((threadOption) => {
             const isSelected = isSelectedThread(threadOption);
             const highlightedCount = highlightedUnitCount(
@@ -65,16 +69,16 @@ export default function CurriculumVisualiserFiltersDesktop({
             );
 
             return (
-              <Box
-                $ba={1}
+              <OakBox
+                $ba="border-solid-s"
                 $background={isSelected ? "black" : "white"}
                 $borderColor={isSelected ? "black" : "grey40"}
-                $borderRadius={4}
+                $borderRadius="border-radius-s"
                 $color={isSelected ? "white" : "black"}
                 $font={isSelected ? "heading-light-7" : "body-2"}
-                $ph={12}
-                $pt={12}
-                $mb={8}
+                $ph="inner-padding-s"
+                $pt="inner-padding-s"
+                $mb="space-between-ssx"
                 key={threadOption.slug}
               >
                 <RadioButton
@@ -98,7 +102,7 @@ export default function CurriculumVisualiserFiltersDesktop({
                     </OakSpan>
                   </OakSpan>
                 </RadioButton>
-              </Box>
+              </OakBox>
             );
           })}
         </RadioGroup>
@@ -117,7 +121,7 @@ export default function CurriculumVisualiserFiltersDesktop({
           value={selectedYear}
           onChange={(e) => onSelectYear(e.target.value)}
         >
-          <Box $mb={16}>
+          <OakBox $mb="space-between-s">
             <RadioButton
               aria-label="All year groups"
               value={""}
@@ -125,9 +129,9 @@ export default function CurriculumVisualiserFiltersDesktop({
             >
               All
             </RadioButton>
-          </Box>
+          </OakBox>
           {yearOptions.map((yearOption) => (
-            <Box key={yearOption} $mb={16}>
+            <OakBox key={yearOption} $mb="space-between-s">
               <RadioButton
                 value={yearOption}
                 data-testid={"year-radio"}
@@ -135,7 +139,7 @@ export default function CurriculumVisualiserFiltersDesktop({
               >
                 {getYearGroupTitle(yearData, yearOption)}
               </RadioButton>
-            </Box>
+            </OakBox>
           ))}
         </RadioGroup>
       </Fieldset>

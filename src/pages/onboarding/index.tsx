@@ -2,8 +2,6 @@ import { NextPage } from "next";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import OnboardingView from "@/components/TeacherViews/Onboarding/Onboarding.view";
-import withFeatureFlag from "@/hocs/withFeatureFlag";
-import { withPageAuthRequired } from "@/hocs/withPageAuthRequired";
 
 const OnboardingComponent: NextPage = () => {
   return (
@@ -13,10 +11,4 @@ const OnboardingComponent: NextPage = () => {
   );
 };
 
-const OnboardingPage = withFeatureFlag(
-  withPageAuthRequired(OnboardingComponent),
-  "teacher-download-auth",
-  "with-login",
-);
-
-export default OnboardingPage;
+export default OnboardingComponent;

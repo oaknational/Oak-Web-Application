@@ -25,8 +25,6 @@ export const resolveInternalHref = (entry: CTAInternalLinkEntry): string => {
       return resolveOakHref({ page: "lesson-planning" });
     case "supportCorePage":
       return resolveOakHref({ page: "support-your-team" });
-    case "curriculumCorePage":
-      return resolveOakHref({ page: "develop-your-curriculum" });
     case "contactCorePage":
       return resolveOakHref({ page: "contact" });
     case "landingPage":

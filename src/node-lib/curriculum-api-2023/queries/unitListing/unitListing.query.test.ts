@@ -110,6 +110,7 @@ describe("unitListing()", () => {
       programmeSlug: "subject-phase-ks-foundation",
       keyStageSlug: "ks1",
       keyStageTitle: "Key Stage 1",
+      pathwayTitle: null,
       examBoardSlug: null,
       examBoardTitle: null,
       subjectSlug: "maths",

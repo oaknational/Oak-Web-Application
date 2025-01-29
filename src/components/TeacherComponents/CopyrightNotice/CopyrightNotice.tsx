@@ -1,11 +1,16 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { OakP } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakIcon,
+  OakFlex,
+  OakLink,
+  OakBox,
+} from "@oaknational/oak-components";
 
+import { resolveOakHref } from "@/common-lib/urls";
 import OwaLink from "@/components/SharedComponents/OwaLink";
-import Box from "@/components/SharedComponents/Box";
 import { FontProps } from "@/styles/utils/typography";
-import Icon from "@/components/SharedComponents/Icon";
 
 type CopyrightNoticeProps = FontProps & {
   showPostAlbCopyright: boolean;
@@ -16,11 +21,13 @@ type CopyrightNoticeProps = FontProps & {
 
 const ExternalLinkIcon = (props: { openLinksExternally: boolean }) =>
   props.openLinksExternally ? (
-    <Icon
-      name="external"
-      verticalAlign="bottom"
-      size={20}
+    <OakIcon
+      iconName="external"
+      $width={"all-spacing-5"}
+      $height={"all-spacing-5"}
       data-testid="external-link-icon"
+      $display={"inline-flex"}
+      $colorFilter={"navy"}
     />
   ) : null;
 
@@ -30,20 +37,19 @@ const PreAlbCopyright = (
   <OakP $font="body-3" {...props}>
     This content is made available by Oak National Academy Limited and its
     partners and licensed under Oak’s{" "}
-    <OwaLink
-      page={"legal"}
-      legalSlug="terms-and-conditions"
-      $isInline
-      htmlAnchorProps={{
-        target: props.openLinksExternally ? "_blank" : "_self",
-        "aria-label": `Terms and conditions${
-          props.openLinksExternally ? " (opens in a new tab)" : ""
-        }`,
-      }}
+    <OakLink
+      href={resolveOakHref({
+        page: "legal",
+        legalSlug: "open-government-licence",
+      })}
+      target={props.openLinksExternally ? "_blank" : "_self"}
+      aria-label={`Terms and conditions${
+        props.openLinksExternally ? " (opens in a new tab)" : ""
+      }`}
     >
       terms &amp; conditions{" "}
       <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
-    </OwaLink>{" "}
+    </OakLink>{" "}
     (Collection 1), except where otherwise stated.
   </OakP>
 );
@@ -60,7 +66,7 @@ const PostAlbCopyright = (
   const { copyrightYear } = props;
   const year = new Date(copyrightYear).getFullYear();
   return (
-    <OakP $font="body-3" {...props}>
+    <OakBox $font="body-3" {...props}>
       This content is © Oak National Academy Limited ({year}), licensed on{" "}
       <StyledLink
         aria-label={`Open Government License version 3.0${
@@ -70,26 +76,30 @@ const PostAlbCopyright = (
         href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
         target={props.openLinksExternally ? "_blank" : "_self"}
       >
-        Open Government Licence version 3.0{" "}
-        <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+        <OakFlex $display={"inline"} $alignItems={"center"}>
+          Open Government Licence version 3.0{" "}
+          <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
+        </OakFlex>
       </StyledLink>{" "}
       except where otherwise stated. See{" "}
       <OwaLink
         page={"legal"}
         legalSlug="terms-and-conditions"
-        $isInline
         htmlAnchorProps={{
           target: props.openLinksExternally ? "_blank" : "_self",
           "aria-label": `Terms and conditions${
             props.openLinksExternally ? " (opens in a new tab)" : ""
           }`,
         }}
+        $color={"navy"}
+        $display={"inline"}
+        $textDecoration={"underline"}
       >
         Oak's terms & conditions
         <ExternalLinkIcon openLinksExternally={props.openLinksExternally} />
       </OwaLink>{" "}
       (Collection 2).
-    </OakP>
+    </OakBox>
   );
 };
 
@@ -100,7 +110,9 @@ const CopyrightNotice: FC<CopyrightNoticeProps> = ({
   fullWidth,
   ...fontProps
 }) => (
-  <Box $maxWidth={fullWidth ? null : [null, 420, 420]}>
+  <OakBox
+    $maxWidth={fullWidth ? null : [null, "all-spacing-21", "all-spacing-21"]}
+  >
     {showPostAlbCopyright ? (
       <PostAlbCopyright
         {...fontProps}
@@ -113,7 +125,7 @@ const CopyrightNotice: FC<CopyrightNoticeProps> = ({
         openLinksExternally={openLinksExternally}
       />
     )}
-  </Box>
+  </OakBox>
 );
 
 export default CopyrightNotice;

@@ -155,12 +155,6 @@ describe("getPageViewProps()", () => {
       analyticsUseCase: null,
     });
   });
-  it("Develop your curriculum", () => {
-    expect(getPageViewProps("/develop-your-curriculum")).toEqual({
-      pageName: "Develop Your Curriculum",
-      analyticsUseCase: null,
-    });
-  });
   it("Home", () => {
     expect(getPageViewProps("/")).toEqual({
       pageName: "Homepage",

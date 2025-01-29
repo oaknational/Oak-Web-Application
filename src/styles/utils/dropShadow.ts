@@ -9,7 +9,6 @@ type DropShadowVariant =
   | "subjectCardHover"
   | "subjectCard"
   | "expandableContainerHover"
-  | "mobileFilterSelector"
   | "none";
 export type DropShadowProps = {
   $dropShadow?: DropShadowVariant;
@@ -21,7 +20,6 @@ export const DROP_SHADOW: Record<DropShadowVariant, string> = {
   subjectCardHover: "0px 8px 0px 0px rgba(0, 0, 0, 1)",
   subjectCard: "0px 0px 0px 0px rgba(0, 0, 0, 0)",
   expandableContainerHover: "inset 0px -8px 0px 0px rgba(0, 0, 0, 1)",
-  mobileFilterSelector: "0px 1px 0px 0px rgba(170, 170, 170, 0.50)",
   none: "none",
 };
 const parseDropShadow = (variant?: DropShadowVariant | null) => {

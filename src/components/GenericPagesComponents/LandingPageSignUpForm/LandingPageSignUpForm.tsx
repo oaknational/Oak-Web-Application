@@ -1,11 +1,11 @@
 import { FC, useId } from "react";
+import { OakBox } from "@oaknational/oak-components";
 
 import NewsletterForm, { useNewsletterForm } from "../NewsletterForm";
 
 import Card from "@/components/SharedComponents/Card";
 import CardTitle from "@/components/SharedComponents/Card/CardComponents/CardTitle";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Box from "@/components/SharedComponents/Box";
 
 export const LandingPageSignUpForm: FC<{
   formTitle: string;
@@ -38,13 +38,13 @@ export const LandingPageSignUpForm: FC<{
       >
         {formTitle}
       </CardTitle>
-      <Box $mt={12}>
+      <OakBox $mt="space-between-xs">
         <NewsletterForm
           onSubmit={onSubmit}
           id={id}
           descriptionId={dontDescribe ? undefined : descriptionId}
         />
-      </Box>
+      </OakBox>
     </Card>
   );
 };

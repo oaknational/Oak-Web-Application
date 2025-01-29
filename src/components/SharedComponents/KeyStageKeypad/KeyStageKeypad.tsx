@@ -1,5 +1,6 @@
 import { FC } from "react";
 import {
+  OakBox,
   OakGrid,
   OakGridArea,
   OakHeading,
@@ -7,8 +8,6 @@ import {
   OakP,
   OakUL,
 } from "@oaknational/oak-components";
-
-import Box from "../Box";
 
 import OwaLink from "@/components/SharedComponents/OwaLink";
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
@@ -107,22 +106,22 @@ const KeyStageKeypad: FC<KeyStageKeypadProps> = ({
       <OakP $color={"black"} $mb="space-between-s" $font={"heading-7"}>
         {title}
       </OakP>
-      <Box $display={["none", "block"]}>
+      <OakBox $display={["none", "block"]}>
         <KeyPadGrid
           keyStages={keyStages}
           years={years}
           ksButtonSpan={ksButtonSpanDesktop}
           trackingOnClick={trackingOnClick}
         />
-      </Box>
-      <Box $display={["block", "none"]}>
+      </OakBox>
+      <OakBox $display={["block", "none"]}>
         <KeyPadGrid
           keyStages={keyStagesMobileOrder}
           years={years}
           ksButtonSpan={3}
           trackingOnClick={trackingOnClick}
         />
-      </Box>
+      </OakBox>
       {years && (
         <>
           <OakHeading

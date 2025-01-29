@@ -1,9 +1,8 @@
 import React, { FC } from "react";
-import { OakGrid, OakGridArea } from "@oaknational/oak-components";
+import { OakBox, OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import LessonRequirementsHeading from "@/components/TeacherComponents/LessonRequirementsHeading";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
-import Box from "@/components/SharedComponents/Box";
 import LessonOverviewRequirements, {
   Equipment,
   ContentGuidance,
@@ -26,7 +25,7 @@ const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
   updatedAt,
 }) => {
   return (
-    <Box $background={"aqua50"} $position={"relative"} $width={320}>
+    <OakBox $background={"aqua50"} $position={"relative"}>
       <OakGrid $rg={"all-spacing-7"} $pa={"inner-padding-xl"}>
         {equipment && equipment?.length > 0 && (
           <OakGridArea $colStart={1} $colSpan={[12]}>
@@ -60,18 +59,18 @@ const LessonOverviewHelper: FC<LessonOverviewHelperProps> = ({
             helperIcon={"copyright"}
             heading="Licence"
           />
-          <Box $pt={8}>
+          <OakBox $pt="inner-padding-xs">
             <CopyrightNotice
               $font={"body-2"}
               showPostAlbCopyright={!isLegacyLicense}
               openLinksExternally={false}
               copyrightYear={updatedAt}
             />
-          </Box>
+          </OakBox>
         </OakGridArea>
       </OakGrid>
       <BrushBorders color="aqua50" />
-    </Box>
+    </OakBox>
   );
 };
 

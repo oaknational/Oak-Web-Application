@@ -1,8 +1,7 @@
 import { PortableTextComponents } from "@portabletext/react";
-import { OakLI, OakUL, OakSpan } from "@oaknational/oak-components";
+import { OakLI, OakUL, OakSpan, OakIcon } from "@oaknational/oak-components";
 
 import Circle from "@/components/SharedComponents/Circle";
-import Icon from "@/components/SharedComponents/Icon";
 
 export const SupportYourTeamTextBlockCardULTick: PortableTextComponents = {
   list: {
@@ -30,7 +29,11 @@ export const SupportYourTeamTextBlockCardULTick: PortableTextComponents = {
           $alignItems={"center"}
         >
           <Circle $mr={24} size={36} $background={"white"}>
-            <Icon size={28} name={"tick"} />
+            <OakIcon
+              iconName={"tick"}
+              $width={"all-spacing-7"}
+              $height={"all-spacing-7"}
+            />
           </Circle>
           <OakSpan $font={"heading-7"}>{listItemText}</OakSpan>
         </OakLI>

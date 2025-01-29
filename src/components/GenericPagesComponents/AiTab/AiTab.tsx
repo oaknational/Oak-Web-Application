@@ -5,16 +5,16 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 
 const AiTab: FC = () => {
   return (
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
-      <MaxWidth $ph={[16]} $pb={24}>
+      <OakMaxWidth $ph={["inner-padding-m"]} $pb={"inner-padding-xl"}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
             <OakFlex
@@ -57,7 +57,7 @@ const AiTab: FC = () => {
             <ImageContainer imageSlug={"hero-aila"} />
           </OakGridArea>
         </OakGrid>
-      </MaxWidth>
+      </OakMaxWidth>
     </OakFlex>
   );
 };

@@ -9,7 +9,7 @@ import {
 } from "@/styles/theme";
 import getColorByLocation from "@/styles/themeHelpers/getColorByLocation";
 import getFontFamily from "@/styles/themeHelpers/getFontFamily";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
+import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type BadgeConfig = {

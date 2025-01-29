@@ -75,6 +75,7 @@ const curriculumUnitsIncludeNewSchema = z.object({
           why_this_why_now: z.string().nullable(),
           state: z.string(),
           title: z.string(),
+          slug: z.string().optional(),
           unitvariant_id: z.number(),
           lessons: z.array(
             z.object({

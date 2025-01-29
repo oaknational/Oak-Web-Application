@@ -29,10 +29,6 @@ const shareProps: UseResourceFormStateProps = {
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(() => "with-login"),
-}));
-
 jest.mock("../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails");
 jest.mock("../../OnboardingForm/onboardingActions");
 
@@ -254,7 +250,7 @@ describe("useResourceFormState", () => {
 
       await waitFor(() =>
         expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
-          schoolId: "1-local",
+          schoolId: "1",
           schoolName: "test-school",
         }),
       );

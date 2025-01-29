@@ -1,8 +1,8 @@
 query lessonOverview(
-  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0_bool_exp
+  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0_bool_exp
   $lessonSlug: String!
 ) {
-  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
     where: $browseDataWhere
   ) {
     lesson_slug
@@ -17,7 +17,7 @@ query lessonOverview(
     features
     order_in_unit
   }
-  content: published_mv_lesson_content_published_3_0_0(
+  content: published_mv_lesson_content_published_5_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id

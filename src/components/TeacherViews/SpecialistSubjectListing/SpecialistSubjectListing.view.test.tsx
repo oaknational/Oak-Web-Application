@@ -42,12 +42,14 @@ describe("SpecialistSubjectListing", () => {
 
     expect(specialistSummary).toBeInTheDocument();
 
-    const subjectCardLists = screen.getAllByRole("list");
+    const subjectCardLists = screen.getAllByTestId(
+      "specialist-subject-card-section",
+    );
     expect(subjectCardLists).toHaveLength(2);
 
     if (!subjectCardLists[0]) throw new Error("No subject card list found");
-    const specialistSubjectCards = within(subjectCardLists[0]).getAllByRole(
-      "listitem",
+    const specialistSubjectCards = within(subjectCardLists[0]).getAllByTestId(
+      "specialist-subject-card",
     );
     expect(specialistSubjectCards).toHaveLength(5);
   });
@@ -70,12 +72,14 @@ describe("SpecialistSubjectListing", () => {
     );
     expect(therapiesSummary).toBeInTheDocument();
 
-    const subjectCardLists = screen.getAllByRole("list");
+    const subjectCardLists = screen.getAllByTestId(
+      "specialist-subject-card-section",
+    );
     expect(subjectCardLists).toHaveLength(2);
 
     if (!subjectCardLists[1]) throw new Error("No subject card list found");
-    const therapySubjectCards = within(subjectCardLists[1]).getAllByRole(
-      "listitem",
+    const therapySubjectCards = within(subjectCardLists[1]).getAllByTestId(
+      "specialist-subject-card",
     );
     expect(therapySubjectCards).toHaveLength(4);
   });

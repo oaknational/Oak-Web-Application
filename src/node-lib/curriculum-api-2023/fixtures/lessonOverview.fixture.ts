@@ -20,7 +20,8 @@ const lessonOverviewFixture = (
     subjectSlug: "english",
     subjectTitle: "English",
     yearTitle: "Year 3",
-    additionalMaterialUrl: "www.google.com",
+    additionalMaterialUrl:
+      "https://docs.google.com/document/d/1p2UbFuK3HmRH4yzs1QRgTi-Vh--l0PmhblLoa52rV7U/edit?usp=drivesdk",
     misconceptionsAndCommonMistakes: [{ response: "", misconception: "" }],
     lessonEquipmentAndResources: null,
     teacherTips: null,
@@ -99,9 +100,12 @@ const lessonOverviewFixture = (
       { exists: true, type: "presentation" },
     ],
     updatedAt: "2024-09-29T14:00:00.000Z",
-    lessonGuideUrl: "lesson-guide-url",
+    lessonGuideUrl:
+      "https://docs.google.com/document/d/1sv9LuUKXMRFdOCjjb4zTxTK91Gw64bOhCXEjxC03h60/edit?usp=drivesdk",
     hasMediaClips: false,
     lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
+    additionalFiles: ["file1", "file2"],
+    lessonOutline: [{ lessonOutline: "This is the lesson outline" }],
     ...partial,
   };
 };

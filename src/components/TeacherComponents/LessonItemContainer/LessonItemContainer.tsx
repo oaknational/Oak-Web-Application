@@ -5,6 +5,8 @@ import {
   OakSecondaryButton,
   OakThemeProvider,
   oakDefaultTheme,
+  OakHandDrawnHR,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import {
@@ -13,9 +15,7 @@ import {
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { containerTitleToPreselectMap } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/containerTitleToPreselectMap";
 import { LessonItemContainerLink } from "@/components/TeacherComponents/LessonItemContainerLink";
-import { Hr } from "@/components/SharedComponents/Typography";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import Box from "@/components/SharedComponents/Box";
 import { DownloadableLessonTitles } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import LessonPlayAllButton from "@/components/LessonPlayAllButton/LessonPlayAllButton";
 
@@ -41,7 +41,7 @@ export type LessonItemTitle =
   | "Audio clips"
   | "Video & audio clips";
 
-type Slugs = {
+export type Slugs = {
   lessonSlug: string;
   unitSlug: string | null;
   programmeSlug: string | null;
@@ -59,6 +59,7 @@ export interface LessonItemContainerProps {
   isFinalElement?: boolean;
   isSpecialist: boolean;
   pageLinks: ReturnType<typeof getPageLinksForLesson>;
+  isCanonical?: boolean;
 }
 
 const getPreselectedDownloadFromTitle = (title: DownloadableLessonTitles) => {
@@ -83,6 +84,7 @@ export const LessonItemContainer = forwardRef<
     anchorId,
     shareable,
     pageLinks,
+    isCanonical,
   } = props;
   const preselectedDownload = getPreselectedDownloadFromTitle(
     title as DownloadableLessonTitles,
@@ -132,7 +134,7 @@ export const LessonItemContainer = forwardRef<
             </OakHeading>
           )}
           {displayMediaClipButton && slugs && (
-            <LessonPlayAllButton {...slugs} />
+            <LessonPlayAllButton {...slugs} isCanonical={isCanonical} />
           )}
           {downloadable && slugs && (
             <LessonItemContainerLink
@@ -176,9 +178,15 @@ export const LessonItemContainer = forwardRef<
           )}
         </OakFlex>
 
-        <Box>{children}</Box>
+        <OakBox>{children}</OakBox>
         {!props.isFinalElement && (
-          <Hr $color={"pink"} $mt={[24, 56]} $mb={[12, 24]} />
+          <OakHandDrawnHR
+            data-testid="hr"
+            hrColor={"pink"}
+            $height={"all-spacing-1"}
+            $mt={["space-between-m", "space-between-xl"]}
+            $mb={["space-between-xs", "space-between-m"]}
+          />
         )}
       </OakFlex>
     </OakThemeProvider>

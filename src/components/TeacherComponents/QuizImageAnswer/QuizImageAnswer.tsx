@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { VisuallyHidden } from "react-aria";
+import { OakIcon } from "@oaknational/oak-components";
 
 import {
   calcDims,
@@ -9,7 +10,6 @@ import {
 import QuizOakImage from "@/components/TeacherComponents/QuizOakImage";
 import { StemImageObject } from "@/node-lib/curriculum-api-2023/shared.schema";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Icon from "@/components/SharedComponents/Icon";
 
 type ImageProps = {
   src: StemImageObject["imageObject"];
@@ -36,7 +36,14 @@ const QuizImageAnswer: FC<ImageProps> = ({ src, alt, answerIsCorrect }) => {
         $minWidth={32}
         aria-hidden
       >
-        {answerIsCorrect && <Icon data-testid={"answer-tick"} name={"tick"} />}
+        {answerIsCorrect && (
+          <OakIcon
+            data-testid={"answer-tick"}
+            iconName={"tick"}
+            $width={"all-spacing-6"}
+            $height={"all-spacing-6"}
+          />
+        )}
       </Flex>
       <Flex $ba={1} $background={"white"} $borderRadius={8}>
         <Flex

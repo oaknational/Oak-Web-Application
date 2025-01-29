@@ -8,7 +8,6 @@ import {
   aboutWhoWeArePageSchema,
   aboutWorkWithUsPageSchema,
   homePageSchema,
-  curriculumPageSchema,
   contactPageSchema,
   blogPostPreviewSchema,
   blogPostSchema,
@@ -162,11 +161,6 @@ const getSanityClient = () => ({
           }
         : undefined;
     },
-  ),
-  curriculumPage: getSingleton(
-    sanityGraphqlApi.curriculumCorePage,
-    curriculumPageSchema,
-    (result) => result?.allCurriculumCorePage?.[0],
   ),
   supportPage: getSingleton(
     sanityGraphqlApi.supportCorePage,

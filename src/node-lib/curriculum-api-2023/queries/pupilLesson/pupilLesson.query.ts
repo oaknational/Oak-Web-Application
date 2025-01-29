@@ -117,7 +117,7 @@ export const pupilLessonQuery =
     }
 
     lessonBrowseDataSchema.parse(browseDataSnake);
-    lessonContentSchema.parse(contentSnake);
+    lessonContentSchema.parse({ ...contentSnake, additional_files: null });
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;

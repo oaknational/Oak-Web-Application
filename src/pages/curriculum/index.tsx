@@ -10,8 +10,23 @@ import {
   getPropsFunction,
   HomePageProps,
 } from "@/pages-helpers/home/getBlogPosts";
+import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { filterValidSubjectPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
-const Curriculum: NextPage<HomePageProps> = (props) => (
+const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
+  async () => {
+    const subjects = await curriculumApi2023.subjectPhaseOptions({
+      cycle: "2",
+    });
+    return {
+      subjects: filterValidSubjectPhaseOptions(subjects),
+    };
+  };
+
+const Curriculum: NextPage<
+  HomePageProps & { subjectPhaseOptions: SubjectPhasePickerData }
+> = (props) => (
   <AppLayout
     seoProps={{
       title:
@@ -23,7 +38,10 @@ const Curriculum: NextPage<HomePageProps> = (props) => (
   >
     <Banners />
     <HomePageTabImageNav current={"curriculum"} />
-    <CurriculumTab aria-current="page" />
+    <CurriculumTab
+      aria-current="page"
+      subjectPhaseOptions={props.subjectPhaseOptions}
+    />
     <HomePageLowerView posts={props.posts} />
   </AppLayout>
 );
@@ -31,11 +49,20 @@ const Curriculum: NextPage<HomePageProps> = (props) => (
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context,
 ) => {
-  return getPageProps({
+  const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+  const data = await getPageProps({
     page: "curriculum-home-page::getStaticProps",
     context,
     getProps: getPropsFunction(context),
   });
+  return {
+    ...data,
+    props: {
+      // @ts-expect-error: 'props' exists on data, but typescript doesn't know about it.
+      ...data.props,
+      subjectPhaseOptions,
+    },
+  };
 };
 
 export default Curriculum;

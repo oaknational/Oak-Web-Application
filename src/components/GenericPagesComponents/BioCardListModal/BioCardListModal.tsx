@@ -4,6 +4,10 @@ import {
   OakGridArea,
   OakHeading,
   OakP,
+  OakIcon,
+  OakBox,
+  OakFlex,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import { ModalControllerRefs } from "./useBioCardListModal";
@@ -15,16 +19,12 @@ import {
   TeamMemberSocials,
 } from "@/common-lib/cms-types";
 import AspectRatio from "@/components/SharedComponents/AspectRatio";
-import Box from "@/components/SharedComponents/Box";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import BioCardListModalDialog from "@/components/GenericPagesComponents/BioCardListModalDialog";
 import useBioCardListModalDialog from "@/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
-import Svg from "@/components/SharedComponents/Svg";
 import { PortableTextWithDefaults } from "@/components/SharedComponents/PortableText";
 
 export type BioData = {
@@ -76,12 +76,15 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
   return (
     <BioCardListModalDialog {...modalDialogProps}>
       {/* @todo replace with OakFlex - work out the padding */}
-      <Flex $width={"100%"} $ph={[0, 72]}>
-        <Box
+      <OakFlex
+        $width={"100%"}
+        $ph={["inner-padding-none", "inner-padding-xl7"]}
+      >
+        <OakBox
           $position={"absolute"}
-          $top={[16, 32]}
-          $right={[16, 32]}
-          $zIndex={"modalCloseButton"}
+          $top={["all-spacing-4", "all-spacing-7"]}
+          $right={["all-spacing-4", "all-spacing-7"]}
+          $zIndex={"modal-close-button"}
         >
           <IconButton
             icon="cross"
@@ -92,10 +95,10 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
             ref={closeButtonRef}
             aria-expanded={isOpen}
           />
-        </Box>
-        <MaxWidth
+        </OakBox>
+        <OakMaxWidth
           $position="relative"
-          $maxWidth={[480, 720, 1280]}
+          $maxWidth={["all-spacing-21", "all-spacing-22", "all-spacing-24"]}
           /**
            * Use margin for centering to avoid overflow issue
            * @see https://stackoverflow.com/a/33455342/4031364
@@ -113,7 +116,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
             ]}
           >
             <OakGridArea $colSpan={[12, 5, 3]} $order={[1, 0]}>
-              <Box $position={"relative"} $zIndex={"inFront"}>
+              <OakBox $position={"relative"} $zIndex={"in-front"}>
                 <OakHeading
                   {...titleProps}
                   tag="h2"
@@ -134,34 +137,36 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                 >
                   {role}
                 </OakP>
-              </Box>
+              </OakBox>
             </OakGridArea>
             <OakGridArea
               $colSpan={[12, 7, 4]}
               $order={[0, 1]}
               $pt={["inner-padding-xl", "inner-padding-none"]}
             >
-              <Box
+              <OakBox
                 $position="relative"
-                $mb={[20, 0]}
-                $width={[240, "100%"]}
+                $mb={["space-between-m", "space-between-none"]}
+                $width={["all-spacing-19", "100%"]}
                 $mh={["auto"]}
               >
-                <BoxBorders gapPosition="rightTop" $zIndex={"inFront"} />
-                <Svg
+                <BoxBorders gapPosition="rightTop" $zIndex={"in-front"} />
+                <OakIcon
+                  iconName="looping-arrow-1"
+                  $colorFilter={"oakGreen"}
                   $display={["none", "block"]}
-                  name="looping-arrow-1"
                   $position={"absolute"}
-                  $width={[null, "28vw", 320]}
+                  $top={"all-spacing-15"}
                   $transform={[
                     null,
                     "translate(-57%, 5%)",
                     "translate(-57%, -10%)",
                   ]}
-                  $color="oakGreen"
+                  $width={[null, "all-spacing-19", "all-spacing-20"]}
+                  $height={[null, "all-spacing-19", "all-spacing-20"]}
                 />
                 <AspectRatio ratio={["7:8", "7:8", "2:3"]}>
-                  <Box $background="white" $cover />
+                  <OakBox $background="white" $objectFit={"cover"} />
                   {image && (
                     <CMSImage
                       image={image}
@@ -173,29 +178,37 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                     />
                   )}
                 </AspectRatio>
-              </Box>
+              </OakBox>
             </OakGridArea>
             <OakGridArea $colSpan={[12, 12, 5]} $order={[2, 2]}>
               {bioPortableText && (
-                <Box
-                  $ml={[0, 0, 72]}
-                  $mb={[72]}
-                  $mt={[0, 72, 0]}
+                <OakBox
+                  $ml={[
+                    "space-between-none",
+                    "space-between-none",
+                    "space-between-xxl",
+                  ]}
+                  $mb={["space-between-xxl"]}
+                  $mt={[
+                    "space-between-none",
+                    "space-between-xxl",
+                    "space-between-none",
+                  ]}
                   $font={["body-2", "body-1"]}
-                  $minHeight={["auto", 270]}
+                  $minHeight={["auto", "all-spacing-19"]}
                 >
                   <PortableTextWithDefaults value={bioPortableText} />
-                </Box>
+                </OakBox>
               )}
             </OakGridArea>
           </OakGrid>
-          <Flex
+          <OakFlex
             $position={["fixed", "absolute"]}
-            $bottom={[0]}
-            $left={[16]}
-            $right={[16]}
-            $pb={[16, 16, 0]}
-            $pt={[16, 0]}
+            $bottom={["all-spacing-0"]}
+            $left={["all-spacing-4"]}
+            $right={["all-spacing-4"]}
+            $pb={["inner-padding-m", "inner-padding-m", "inner-padding-none"]}
+            $pt={["inner-padding-m", "inner-padding-none"]}
             $alignItems="center"
             $background={["white", "transparent"]}
           >
@@ -214,9 +227,9 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
               nextBio={nextBio}
               defaultFocusRef={closeButtonRef}
             />
-          </Flex>
-        </MaxWidth>
-      </Flex>
+          </OakFlex>
+        </OakMaxWidth>
+      </OakFlex>
     </BioCardListModalDialog>
   );
 };
