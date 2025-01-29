@@ -182,6 +182,11 @@ describe("TeacherNotesModal", () => {
     // get the call to useEditor
     const mockEditorArgs = useEditorMock.mock.calls?.[0];
     const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
 
     mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
     expect(saveTeacherNote).toHaveBeenCalled();
@@ -206,6 +211,13 @@ describe("TeacherNotesModal", () => {
     // get the call to useEditor
     const mockEditorArgs = useEditorMock.mock.calls?.[0];
     const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
+
     mockEditorInstance.storage.characterCount.characters.mockReturnValueOnce(
       51,
     );
@@ -235,11 +247,18 @@ describe("TeacherNotesModal", () => {
     const mockModal = OakTeacherNotesModal as jest.MockedFunction<
       typeof OakTeacherNotesModal
     >;
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
 
     const modalProps = mockModal.mock.calls?.[0]?.[0];
     if (!modalProps) {
       throw new Error("No modal props found");
     }
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
 
     modalProps.onClose();
 
@@ -275,6 +294,12 @@ describe("TeacherNotesModal", () => {
     const mockEditorArgs = useEditorMock.mock.calls?.[0];
     const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
 
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
+
     mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
 
     await waitFor(() => {
@@ -306,6 +331,13 @@ describe("TeacherNotesModal", () => {
 
     const mockEditorArgs = useEditorMock.mock.calls?.[0];
     const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
+
     mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
 
     const mockModal = OakTeacherNotesModal as jest.MockedFunction<

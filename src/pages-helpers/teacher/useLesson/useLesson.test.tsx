@@ -22,6 +22,13 @@ jest.mock("@/pages-helpers/teacher/share-experiments/useTeacherNotes", () => ({
   useTeacherNotes: jest.fn(),
 }));
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: jest.fn(() => ({
+    track: { teacherNoteDialogOpened: jest.fn() },
+  })),
+}));
+
 describe("useLesson", () => {
   const defaultProps: UseLessonProps = {
     lessonSlug: "test-lesson",

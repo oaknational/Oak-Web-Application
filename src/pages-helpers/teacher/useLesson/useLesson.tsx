@@ -8,7 +8,11 @@ import {
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
 import { TeacherShareNotesButton } from "@/components/TeacherComponents/TeacherShareNotesButton/TeacherShareNotesButton";
-import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import {
+  CoreProperties,
+  CurriculumTrackingProps,
+} from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 export type UseLessonProps = {
   lessonSlug: string;
@@ -64,6 +68,17 @@ export const useLesson = ({
       curriculumTrackingProps,
     });
 
+  const { track } = useAnalytics();
+
+  const coreTrackingProps: CoreProperties = {
+    platform: "owa",
+    product: "teacher lesson resources",
+    engagementIntent: "advocate",
+    componentType: "page view",
+    eventVersion: "2.0.0",
+    analyticsUseCase: "Teacher",
+  };
+
   useEffect(() => {
     if (teacherNotesEnabled) {
       setLessonPath(window.location.href.split("?")[0] || null);
@@ -74,12 +89,23 @@ export const useLesson = ({
     }
   }, [browserUrl, teacherNotesEnabled]);
 
+  const handleTeacherNotesOpen = () => {
+    setTeacherNotesOpen(true);
+    track.teacherNoteDialogueOpened({
+      sourcePageSlug: lessonPath,
+      ...curriculumTrackingProps,
+      ...coreTrackingProps,
+      shareId: shareIdRef.current,
+      linkUrl: window.location.href,
+    });
+  };
+
   const teacherNotesButton = (
     <TeacherShareNotesButton
       teacherNotesEnabled={teacherNotesEnabled ?? false}
       isEditable={isEditable}
       noteSaved={noteSaved}
-      setTeacherNotesOpen={setTeacherNotesOpen}
+      onTeacherNotesOpen={handleTeacherNotesOpen}
       shareUrl={shareUrl}
       shareActivated={shareActivated}
     />
