@@ -1,10 +1,5 @@
 import React, { FC, MouseEvent } from "react";
 import { NextRouter, useRouter } from "next/router";
-
-import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
-
-import { getPageItems, getProgrammeFactors } from "./helpers";
-
 import {
   OakFlex,
   OakUnitsContainer,
@@ -14,6 +9,11 @@ import {
   OakAnchorTarget,
   OakBox,
 } from "@oaknational/oak-components";
+
+import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
+
+import { getPageItems, getProgrammeFactors } from "./helpers";
+
 import {
   UnitListItemProps,
   SpecialistListItemProps,
