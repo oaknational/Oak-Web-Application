@@ -27,6 +27,12 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => true),
 }));
 
+jest.mock("@google-cloud/storage", () => {
+  return {
+    Storage: jest.fn().mockImplementation(() => ({})),
+  };
+});
+
 describe("LessonMediaClipsPage", () => {
   beforeEach(() => {
     (useRouter as jest.Mock).mockReturnValue({
@@ -39,14 +45,14 @@ describe("LessonMediaClipsPage", () => {
         "/teachers/programmes/physical-education/-ks4/units/running-and-jumping/lessons/running-as-a-team/media",
     });
   });
-  it("Renders breadcrumbs", async () => {
+  it("Renders component", () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonMediaClipsPage curriculumData={lessonFixtureData} />,
       </OakThemeProvider>,
     );
 
-    expect(result.queryByText("Extra video and audio")).toBeInTheDocument();
+    expect(result.getByTestId("media-view")).toBeInTheDocument();
   });
 
   describe("getStaticPaths", () => {

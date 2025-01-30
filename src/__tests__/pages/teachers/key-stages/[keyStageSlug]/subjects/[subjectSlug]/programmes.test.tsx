@@ -10,7 +10,9 @@ import ProgrammesListingPage, {
 import { mockSeoResult } from "@/__tests__/__helpers__/cms";
 import renderWithSeo from "@/__tests__/__helpers__/renderWithSeo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
+import programmeListingFixture, {
+  programmeListingWithPathwayFixture,
+} from "@/node-lib/curriculum-api-2023/fixtures/programmeListing.fixture";
 import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__";
 import { ProgrammeListingPageData } from "@/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.schema";
 
@@ -124,6 +126,16 @@ describe("programmes listing page", () => {
       );
 
       expect(getByRole("heading", { level: 1 })).toHaveTextContent("Maths");
+    });
+
+    it("renders title with pathway from props ", () => {
+      const { getByRole } = render(
+        <ProgrammesListingPage {...programmeListingWithPathwayFixture()} />,
+      );
+
+      expect(getByRole("heading", { level: 1 })).toHaveTextContent(
+        "Citizenship Core",
+      );
     });
 
     it("renders the correct number of tiers and tier cards", () => {
