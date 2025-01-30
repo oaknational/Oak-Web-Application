@@ -35,7 +35,7 @@ const lessonDownloadsQuery =
       SdkLessonDownloadsQuery["browse_data"][number]
     >({
       journey: "teacher",
-      queryName: "lessonOverviewQuery",
+      queryName: "lessonDownloadsQuery",
       browseData: res.browse_data,
     });
 
