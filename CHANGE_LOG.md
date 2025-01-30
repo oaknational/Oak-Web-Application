@@ -1,3 +1,10 @@
+## [1.678.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.1...v1.678.2) (2025-01-30)
+
+
+### Bug Fixes
+
+* incorrect override details ([842667b](https://github.com/oaknational/Oak-Web-Application/commit/842667bf4bb7963538dda5084ae92e43648c74d1))
+
 ## [1.678.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.0...v1.678.1) (2025-01-30)
 
 
