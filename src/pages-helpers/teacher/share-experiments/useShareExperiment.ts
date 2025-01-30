@@ -6,7 +6,7 @@ import {
   getConversionShareId,
   getShareId,
   getShareIdKey,
-  shareSources,
+  ShareSource,
   storeActivationKey,
   storeConversionShareId,
 } from "./createShareId";
@@ -26,7 +26,7 @@ export const useShareExperiment = ({
 }: {
   programmeSlug?: string;
   shareBaseUrl?: string;
-  source: keyof typeof shareSources;
+  source: ShareSource;
   curriculumTrackingProps: CurriculumTrackingProps;
   overrideExistingShareId: boolean | null;
 }) => {
@@ -146,7 +146,7 @@ export const useShareExperiment = ({
     overrideExistingShareId,
   ]);
 
-  const shareActivated = () => {
+  const shareActivated = (noteLengthChars?: number) => {
     if (!shareIdRef.current || !shareIdKeyRef.current) {
       return;
     }
@@ -158,6 +158,7 @@ export const useShareExperiment = ({
         sourcePageSlug: window.location.pathname,
         ...coreTrackingProps,
         ...curriculumTrackingProps,
+        noteLengthChars,
       });
 
       storeActivationKey(shareIdKeyRef.current);

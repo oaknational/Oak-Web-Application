@@ -91,7 +91,7 @@ export type TeacherNotesModalProps = Pick<
   saveTeacherNote: (
     note: Partial<TeacherNoteCamelCase>,
   ) => Promise<TeacherNote>;
-  shareActivated?: () => void;
+  shareActivated?: (noteLengthChars?: number) => void;
   sharingUrl: string | null;
   error: string | null;
 };
@@ -203,7 +203,7 @@ export const TeacherNotesModal = ({
     }
 
     if (shareActivated) {
-      shareActivated();
+      shareActivated(editor?.getText()?.length);
     }
 
     setNoteShared(true);

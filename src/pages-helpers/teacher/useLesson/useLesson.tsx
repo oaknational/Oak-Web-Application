@@ -13,6 +13,7 @@ import {
   CurriculumTrackingProps,
 } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import useAnalytics from "@/context/Analytics/useAnalytics";
+import { ShareSource } from "@/pages-helpers/teacher/share-experiments/createShareId";
 
 export type UseLessonProps = {
   lessonSlug: string;
@@ -27,7 +28,7 @@ type UseLessonReturn = {
   teacherNoteHtml: string | undefined;
   teacherNotesOpen: boolean;
   setTeacherNotesOpen: (open: boolean) => void;
-  shareActivated: () => void;
+  shareActivated: (noteLengthChars?: number) => void;
   teacherNote: TeacherNoteCamelCase | null;
   isEditable: boolean;
   saveTeacherNote: (
@@ -50,10 +51,14 @@ export const useLesson = ({
   const overrideExistingShareId =
     teacherNotesEnabled === undefined ? null : !teacherNotesEnabled;
 
+  const appendedSource: ShareSource = teacherNotesEnabled
+    ? `${source}-w-note`
+    : source;
+
   const { shareUrl, browserUrl, shareActivated, shareIdRef, shareIdKeyRef } =
     useShareExperiment({
       programmeSlug,
-      source,
+      source: appendedSource,
       curriculumTrackingProps,
       overrideExistingShareId:
         overrideExistingShareId ??

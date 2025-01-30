@@ -124,6 +124,7 @@ export const useTeacherNotes = ({
       sourcePageSlug: lessonPath,
       ...coreTrackingProps,
       ...curriculumTrackingProps,
+      noteLengthChars: t.noteText.length,
     });
     return res.promise;
   };
