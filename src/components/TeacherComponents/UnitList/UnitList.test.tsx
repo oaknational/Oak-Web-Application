@@ -177,4 +177,40 @@ describe("components/UnitList", () => {
     });
     expect(legacyHeader).not.toBeInTheDocument();
   });
+  test("renders a curriculum download button for new units", () => {
+    render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...unitListingFixture()}
+          paginationProps={mockPaginationProps}
+          currentPageItems={unitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
+    );
+
+    const curriculumDownloadLink = screen.getByText(
+      "Full secondary curriculum",
+    );
+
+    expect(curriculumDownloadLink).toBeInTheDocument();
+  });
+  test("does not render a curriculum download button for excluded subjects", () => {
+    render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...unitListingFixture({ subjectSlug: "rshe-pshe" })}
+          paginationProps={mockPaginationProps}
+          currentPageItems={unitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
+    );
+
+    const curriculumDownloadLink = screen.queryByText(
+      "Full secondary curriculum",
+    );
+
+    expect(curriculumDownloadLink).not.toBeInTheDocument;
+  });
 });

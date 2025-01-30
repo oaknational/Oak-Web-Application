@@ -70,7 +70,7 @@ export const getDedupedPupilLessonOutcome = (
   }
   return plo;
 };
-export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
+export function LessonOverview({ lesson }: LessonOverviewProps) {
   const {
     lessonTitle,
     lessonSlug,
@@ -230,8 +230,8 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
   const isMFL =
     subjectSlug === "german" ||
     subjectSlug === "french" ||
-    subjectSlug === "spanish" ||
-    lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre";
+    subjectSlug === "spanish";
+
   return (
     <MathJaxLessonProvider>
       <HeaderLesson
@@ -432,7 +432,7 @@ export function LessonOverview({ lesson, isBeta }: LessonOverviewProps) {
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
                     hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
-                    displayVocab={isBeta && isMFL}
+                    displayVocab={isMFL}
                     updatedAt={updatedAt}
                     additionalFiles={additionalFiles}
                   />

@@ -8,6 +8,7 @@ export const programmeListingFixture = (
     keyStageTitle: "Key Stage 4",
     subjectSlug: "maths",
     subjectTitle: "Maths",
+    pathwayTitle: null,
     legacy: false,
     programmes: [
       {
@@ -35,6 +36,35 @@ export const programmeListingFixture = (
         pathwayDisplayOrder: null,
         pathwaySlug: null,
         pathwayTitle: null,
+      },
+    ],
+    ...partial,
+  };
+};
+
+export const programmeListingWithPathwayFixture = (
+  partial?: Partial<ProgrammeListingPageData>,
+): ProgrammeListingPageData => {
+  return {
+    keyStageSlug: "ks4",
+    keyStageTitle: "Key Stage 4",
+    subjectSlug: "citizenship",
+    subjectTitle: "Citizenship",
+    pathwayTitle: "Core",
+    legacy: false,
+    programmes: [
+      {
+        programmeSlug: "citizenship-secondary-ks4-core",
+        subjectTitle: "Citizenship",
+        tierSlug: null,
+        tierTitle: null,
+        tierDisplayOrder: 1,
+        examBoardSlug: null,
+        examBoardTitle: null,
+        examBoardDisplayOrder: null,
+        pathwayDisplayOrder: null,
+        pathwaySlug: "core",
+        pathwayTitle: "Core",
       },
     ],
     ...partial,
@@ -78,6 +108,7 @@ export const examBoardProgrammeListingFixture = (
     keyStageTitle: "Key Stage 3",
     subjectSlug: "maths",
     subjectTitle: "Maths",
+    pathwayTitle: null,
     legacy: false,
     programmes: [
       {

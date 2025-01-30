@@ -1,3 +1,54 @@
+## [1.678.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.1...v1.678.2) (2025-01-30)
+
+
+### Bug Fixes
+
+* incorrect override details ([842667b](https://github.com/oaknational/Oak-Web-Application/commit/842667bf4bb7963538dda5084ae92e43648c74d1))
+
+## [1.678.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.0...v1.678.1) (2025-01-30)
+
+
+### Bug Fixes
+
+* show legacy lessons for exam boards ([0ec6a79](https://github.com/oaknational/Oak-Web-Application/commit/0ec6a7919b52fa555322dc1d87c6270c8dfbb88d))
+
+# [1.678.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.677.1...v1.678.0) (2025-01-30)
+
+
+### Features
+
+* remove old curric MV code behind switches ([1ce20da](https://github.com/oaknational/Oak-Web-Application/commit/1ce20dad4ed4a9097b9f1a30cfc7287f4c319ace))
+
+## [1.677.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.677.0...v1.677.1) (2025-01-29)
+
+# [1.677.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.676.0...v1.677.0) (2025-01-29)
+
+
+### Features
+
+* hide curriculum download button for rshe ([f67bfd3](https://github.com/oaknational/Oak-Web-Application/commit/f67bfd34c0844c3246845b50e67c0fcf49cd6f1e))
+
+# [1.676.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.675.0...v1.676.0) (2025-01-29)
+
+
+### Bug Fixes
+
+* add tests and story ([8f0331e](https://github.com/oaknational/Oak-Web-Application/commit/8f0331e613f8599f249d24be3d23709fdfd892d2))
+* amend unit and lesson counts and display legacy for both pathways ([449e87e](https://github.com/oaknational/Oak-Web-Application/commit/449e87e6d5a30b59fdcd2025ffe19c12ee12f5f4))
+* prettifier ([0575eeb](https://github.com/oaknational/Oak-Web-Application/commit/0575eeb8ba1d3973a92bc68d68556aecec04558c))
+* update snapshots ([e7d964f](https://github.com/oaknational/Oak-Web-Application/commit/e7d964fb624aa9cb62a935c22d813315c25b2892))
+
+
+### Features
+
+* add pathway slug and work out lesson and unit count ([1b23707](https://github.com/oaknational/Oak-Web-Application/commit/1b2370713e125297ecccf599454e914b9d9ac5eb))
+* add SubjectListingCardCountWithPathways component ([9457d78](https://github.com/oaknational/Oak-Web-Application/commit/9457d78f7ce02b691bd1ea921aa1d2a8271e1e43))
+* amend title on unit listing page, update fixtures ([68b4c6e](https://github.com/oaknational/Oak-Web-Application/commit/68b4c6e5a9aee41a69cf53dcb5f2e858a92e60bc))
+* display correct pathway legacy units and correct counts ([9c1b64f](https://github.com/oaknational/Oak-Web-Application/commit/9c1b64f2401d64b7b3312b26c6b14ce7e055a956))
+* show pathway card even if there is only one patway ([1aa30d7](https://github.com/oaknational/Oak-Web-Application/commit/1aa30d738dcc6a2e83cc713faaa2d0d83f14a73d))
+* type amends ([163a4d7](https://github.com/oaknational/Oak-Web-Application/commit/163a4d7545935cf43331704bc1693de0a65c9184))
+* update handle pathways on subject listing page ([d7f6157](https://github.com/oaknational/Oak-Web-Application/commit/d7f61577ae45406609384f323c55779cd8cc246b))
+
 # [1.675.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.674.0...v1.675.0) (2025-01-28)
 
 
