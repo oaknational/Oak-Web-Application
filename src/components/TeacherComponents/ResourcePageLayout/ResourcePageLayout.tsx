@@ -28,7 +28,6 @@ import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementFor
 import NoResourcesToShare from "@/components/TeacherComponents/NoResourcesToShare";
 import FieldError from "@/components/SharedComponents/FieldError";
 import Checkbox from "@/components/SharedComponents/Checkbox";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 /** Generic layout component for Downloads and Share page */
 
@@ -56,6 +55,13 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     showTermsAgreement: boolean;
     isLoading: boolean;
   };
+
+const CustomFlex = styled(OakFlex)`
+  width: 720px;
+  @media (max-width: 768px) {
+    width: "100%";
+  }
+`;
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
   return (
@@ -109,7 +115,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             {`Select resources to ${props.page}`}
           </OakBox>
         )}
-        <Flex $flexDirection="column" $gap={24} $width={["100%", 720]}>
+        <CustomFlex $flexDirection="column" $gap="all-spacing-6">
           {props.resourcesHeader && (
             <OakHeading tag="h2" $font={["heading-6", "heading-5"]}>
               {props.resourcesHeader}
@@ -131,7 +137,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
               />
             </OakBox>
           )}
-          {props.cardGroup}
+          <OakBox>{props.cardGroup}</OakBox>
           {!props.showTermsAgreement && (
             <>
               <OakBox
@@ -150,7 +156,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
               {props.cta}
             </>
           )}
-        </Flex>
+        </CustomFlex>
       </OakBox>
 
       <OakFlex

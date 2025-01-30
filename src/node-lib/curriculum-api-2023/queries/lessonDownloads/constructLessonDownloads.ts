@@ -1,3 +1,5 @@
+import { LessonAdditionalFilesDownloadsListSchema } from "../../shared.schema";
+
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
 import {
   RawSyntheticUVLesson,
@@ -11,18 +13,19 @@ const constructLessonDownloads = (
   lessonSlug: string,
   parsedBrowseData: RawSyntheticUVLesson[],
   lessonCopyRight: { copyrightInfo: string }[] | null,
+  additionalFileDownloads: LessonAdditionalFilesDownloadsListSchema | null,
   expired?: boolean | null,
 ) => {
   const currentLesson = parsedBrowseData.find(
     (lesson) => lesson.lesson_slug === lessonSlug,
   );
-
   const parsedCurrentLesson = rawSyntheticUVLessonSchema.parse(currentLesson);
   const unitTitle =
     parsedCurrentLesson.programme_fields.optionality ??
     parsedCurrentLesson.unit_data.title;
   const downloadsPageData = {
     downloads,
+    additionalFilesDownloads: additionalFileDownloads,
     programmeSlug: parsedCurrentLesson.programme_slug,
     keyStageSlug: parsedCurrentLesson.programme_fields.keystage_slug,
     keyStageTitle: toSentenceCase(

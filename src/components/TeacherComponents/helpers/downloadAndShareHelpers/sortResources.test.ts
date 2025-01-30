@@ -19,8 +19,8 @@ const sortOrderKey = {
   "supplementary-docx": 9,
   video: 10,
   "curriculum-pdf": 11,
-  "additional-file": 12,
   "lesson-guide": 1,
+  "additional-file": 20,
 };
 
 describe("sortResources", () => {

@@ -112,6 +112,7 @@ const lessonDownloadsQuery =
         lessonSlug,
         parsedBrowseData,
         copyright,
+        null,
         expired,
       );
 

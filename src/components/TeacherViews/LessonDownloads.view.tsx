@@ -54,6 +54,7 @@ type BaseLessonDownload = {
   lessonSlug: string;
   lessonCohort?: string | null;
   downloads: LessonDownloadsPageData["downloads"];
+  additionalFilesDownloads?: LessonDownloadsPageData["additionalFilesDownloads"];
   copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
@@ -72,7 +73,9 @@ type NonCanonicalLesson = BaseLessonDownload & {
   updatedAt: string;
 } & LessonPathway;
 
-type SpecialistLesson = SpecialistLessonDownloads["lesson"];
+type SpecialistLesson = SpecialistLessonDownloads["lesson"] & {
+  additionalFilesDownloads?: LessonDownloadsPageData["additionalFilesDownloads"];
+};
 
 type LessonDownloadsProps =
   | {
@@ -98,8 +101,8 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     isSpecialist,
     copyrightContent,
     updatedAt,
+    additionalFilesDownloads,
   } = lesson;
-
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical
       ? {
@@ -381,6 +384,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   <DownloadCardGroup
                     control={form.control}
                     downloads={downloadsFilteredByCopyright}
+                    additionalFiles={additionalFilesDownloads}
                     hasError={form.errors?.resources ? true : false}
                     triggerForm={form.trigger}
                   />

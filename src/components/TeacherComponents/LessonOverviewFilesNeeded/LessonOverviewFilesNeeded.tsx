@@ -55,13 +55,13 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
                   programmeSlug: programmeSlug,
                   unitSlug: unitSlug,
                   downloads: "downloads",
-                  query: { preselected: "additional file" },
+                  // query: { preselected: "additional file" },
                 })
               : resolveOakHref({
                   page: "lesson-downloads-canonical",
                   lessonSlug: lessonSlug,
                   downloads: "downloads",
-                  query: { preselected: "additional file" },
+                  // query: { preselected: "additional file" },
                 })
           }
           isTrailingIcon

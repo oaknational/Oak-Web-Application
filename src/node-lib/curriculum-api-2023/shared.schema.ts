@@ -228,8 +228,8 @@ export const lessonDownloadsListSchema = z.array(
       "supplementary-pdf",
       "supplementary-docx",
       "curriculum-pdf",
-      "additional-file",
       "lesson-guide",
+      // "additional-file",
     ]),
     label: z.string(),
     ext: z.string(),
@@ -240,11 +240,30 @@ export const lessonDownloadsListSchema = z.array(
   }),
 );
 
+export const additionalLessonDownloadsListSchema = z.array(
+  z.object({
+    exists: z.boolean().nullable(),
+    type: z.string().regex(/^additional-file-\d+$/),
+
+    label: z.string(),
+    ext: z.string(),
+    forbidden: z.union([
+      z.array(z.object({ copyright_info: z.string() })),
+      z.boolean().optional().nullish(),
+    ]),
+  }),
+);
+
+export type LessonAdditionalFilesDownloadsListSchema = z.infer<
+  typeof additionalLessonDownloadsListSchema
+>;
+
 export const baseLessonDownloadsSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   downloads: lessonDownloadsListSchema,
+  additionalFilesDownloads: additionalLessonDownloadsListSchema.nullish(),
   expired: z.boolean().nullable(),
   isSpecialist: z.literal(false),
   copyrightContent: copyrightContentSchema,

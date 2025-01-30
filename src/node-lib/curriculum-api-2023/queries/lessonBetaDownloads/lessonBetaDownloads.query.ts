@@ -78,10 +78,12 @@ const lessonBetaDownloadsQuery =
         ? constructAdditionalFilesDownloads(additional_files[0])
         : null;
 
+    console.log(additionalFileDownloads, "<<vquery");
+
     const downloads = constructDownloadsArray(downloadsData);
     const constructDownloads = [
       ...downloads,
-      ...(additionalFileDownloads || []),
+      // ...(additionalFileDownloads || []),
     ];
     // Copyright content pre-parsed
     const currentLesson = modifiedBrowseData.find(
@@ -100,9 +102,11 @@ const lessonBetaDownloadsQuery =
       lessonSlug,
       parsedBrowseData,
       copyright,
+      additionalFileDownloads,
       expired,
     );
 
+    console.log(lessonDownloads, "<< DOWNLOADS");
     return lessonDownloadsSchema.parse({
       ...lessonDownloads,
       isLegacy: false,

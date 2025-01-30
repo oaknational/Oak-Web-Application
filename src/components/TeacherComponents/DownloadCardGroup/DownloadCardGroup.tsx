@@ -10,10 +10,11 @@ import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { sortDownloadResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
 import Box from "@/components/SharedComponents/Box";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { OakGrid } from "@/styles/oakThemeApp";
+import { OakFlex, OakGrid } from "@/styles/oakThemeApp";
 
 export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsPageData["downloads"];
+  additionalFiles?: LessonDownloadsPageData["additionalFilesDownloads"];
   control: Control<ResourceFormProps>;
   hasError?: boolean;
   triggerForm: () => void;
@@ -44,6 +45,7 @@ const getGridArea = (
 
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   downloads,
+  additionalFiles,
   control,
   hasError = false,
   triggerForm,
@@ -57,73 +59,122 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   const sortedDownloads = downloads
     ? sortDownloadResources(downloads)
     : undefined;
-
   return (
-    <OakGrid
-      $position="relative"
-      $width="max-content"
-      $gridTemplateColumns={["1fr", "max-content max-content"]}
-      $cg={"space-between-s"}
-      $gridTemplateAreas={[
-        `"presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"`,
-        `"presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx" `,
-      ]}
-    >
-      {sortedDownloads?.map((download) => {
-        if (download.exists && !download.forbidden) {
+    <>
+      <OakGrid
+        $position="relative"
+        $width="max-content"
+        $gridTemplateColumns={["1fr", "max-content max-content"]}
+        $cg={"space-between-s"}
+        $gridTemplateAreas={[
+          `"presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"`,
+          `"presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx" `,
+        ]}
+      >
+        {sortedDownloads?.map((download) => {
+          if (download.exists && !download.forbidden) {
+            return (
+              <DownloadCardArea
+                area={getGridArea(
+                  download.type,
+                  presentationExists,
+                  worksheetsLength,
+                )}
+                key={download.type}
+              >
+                <Controller
+                  control={control}
+                  name="resources"
+                  defaultValue={[]}
+                  render={({
+                    field: { value: fieldValue, onChange, name, onBlur },
+                  }) => {
+                    const onChangeHandler = (
+                      e: ChangeEvent<HTMLInputElement>,
+                    ) => {
+                      if (e.target.checked) {
+                        onChange([...fieldValue, download.type]);
+                      } else {
+                        onChange(
+                          fieldValue.filter(
+                            (val: DownloadResourceType | string) =>
+                              val !== download.type,
+                          ),
+                        );
+                      }
+                      // Trigger the form to reevaluate errors
+                      triggerForm();
+                    };
+                    return (
+                      <ResourceCard
+                        id={download.type}
+                        name={name}
+                        label={download.label}
+                        subtitle={download.ext.toUpperCase()}
+                        resourceType={download.type}
+                        onChange={onChangeHandler}
+                        checked={fieldValue.includes(download.type)}
+                        onBlur={onBlur}
+                        hasError={hasError}
+                        data-testid={`download-card-${download.type}`}
+                      />
+                    );
+                  }}
+                />
+              </DownloadCardArea>
+            );
+          }
+        })}
+      </OakGrid>
+      <OakFlex
+        $width={"max-content"}
+        $maxWidth={"all-spacing-23"}
+        $gap={"space-between-s"}
+        $flexWrap={"wrap"}
+      >
+        {additionalFiles?.map((additionalFile) => {
           return (
-            <DownloadCardArea
-              area={getGridArea(
-                download.type,
-                presentationExists,
-                worksheetsLength,
-              )}
-              key={download.type}
-            >
-              <Controller
-                control={control}
-                name="resources"
-                defaultValue={[]}
-                render={({
-                  field: { value: fieldValue, onChange, name, onBlur },
-                }) => {
-                  const onChangeHandler = (
-                    e: ChangeEvent<HTMLInputElement>,
-                  ) => {
-                    if (e.target.checked) {
-                      onChange([...fieldValue, download.type]);
-                    } else {
-                      onChange(
-                        fieldValue.filter(
-                          (val: DownloadResourceType | string) =>
-                            val !== download.type,
-                        ),
-                      );
-                    }
-                    // Trigger the form to reevaluate errors
-                    triggerForm();
-                  };
-                  return (
-                    <ResourceCard
-                      id={download.type}
-                      name={name}
-                      label={download.label}
-                      subtitle={download.ext.toUpperCase()}
-                      resourceType={download.type}
-                      onChange={onChangeHandler}
-                      checked={fieldValue.includes(download.type)}
-                      onBlur={onBlur}
-                      hasError={hasError}
-                      data-testid={`download-card-${download.type}`}
-                    />
-                  );
-                }}
-              />
-            </DownloadCardArea>
+            <Controller
+              control={control}
+              name="resources"
+              defaultValue={[]}
+              render={({
+                field: { value: fieldValue, onChange, name, onBlur },
+              }) => {
+                const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                  if (e.target.checked) {
+                    onChange([...fieldValue, additionalFile.type]);
+                  } else {
+                    onChange(
+                      fieldValue.filter(
+                        (val: DownloadResourceType | string) =>
+                          val !== additionalFile.type,
+                      ),
+                    );
+                  }
+                  // Trigger the form to reevaluate errors
+                  triggerForm();
+                };
+                return (
+                  <ResourceCard
+                    id={additionalFile.type}
+                    name={name}
+                    label={additionalFile.label}
+                    subtitle={additionalFile.ext.toUpperCase()}
+                    resourceType={"supplementary-pdf"}
+                    onChange={onChangeHandler}
+                    checked={fieldValue.includes(additionalFile.type)}
+                    onBlur={onBlur}
+                    hasError={hasError}
+                    data-testid={`additionalFile-card-${additionalFile.type}`}
+                  />
+                );
+              }}
+            />
           );
-        }
-      })}
-    </OakGrid>
+        })}
+      </OakFlex>
+    </>
   );
 };
 

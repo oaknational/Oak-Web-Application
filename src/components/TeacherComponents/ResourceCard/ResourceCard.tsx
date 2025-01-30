@@ -47,7 +47,7 @@ const RESOURCE_TYPE_ICON_MAP: Record<
   "supplementary-docx": "additional-material",
   video: "video",
   "curriculum-pdf": "additional-material",
-  "additional-file": "additional-material",
+  // "additional-file": "additional-material",
   "lesson-guide": "slide-deck",
 };
 

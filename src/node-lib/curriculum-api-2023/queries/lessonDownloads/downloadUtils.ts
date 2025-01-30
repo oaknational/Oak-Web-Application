@@ -1,5 +1,7 @@
 import { AdditionalFiles } from "@oaknational/oak-curriculum-schema";
 
+import { LessonAdditionalFilesDownloadsListSchema } from "../../shared.schema";
+
 import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
 
 export const constructDownloadsArray = (content: {
@@ -93,11 +95,11 @@ export const constructDownloadsArray = (content: {
 
 export const constructAdditionalFilesDownloads = (
   addFiles: AdditionalFiles,
-): LessonDownloadsListSchema => {
-  const downloads = addFiles.files.map((file) => {
+): LessonAdditionalFilesDownloadsListSchema => {
+  const downloads = addFiles.files.map((file, i) => {
     return {
       exists: true,
-      type: "additional-file" as const,
+      type: `additional-file-${i}` as const,
       label: file.title,
       ext: file.file_object.format,
     };

@@ -17,7 +17,7 @@ export const combinedPreselectedTypeMap: CombinedPreselectedTypeMap = {
   "additional material": {
     downloadType: ["supplementary-pdf", "supplementary-docx"],
   },
-  "additional file": { downloadType: ["additional-file"] },
+  // "additional file": { downloadType: ["additional-file"] },
   all: { downloadType: "all", shareType: "all" },
   video: { shareType: ["video"] },
 };

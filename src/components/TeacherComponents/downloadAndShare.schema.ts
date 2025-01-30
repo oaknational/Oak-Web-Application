@@ -13,7 +13,7 @@ export const preselectedDownloadType = z.union([
     z.literal("worksheet"),
     z.literal("additional material"),
     z.literal("slide deck"),
-    z.literal("additional file"),
+    // z.literal("additional file"),
   ]),
 ]);
 
