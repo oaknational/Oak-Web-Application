@@ -53,9 +53,9 @@ const SearchResults = (props: SearchResultsProps) => {
   const { currentPageItems, currentPage, firstItemRef, paginationRoute } =
     paginationProps;
   const currentPageItemsWithSignPost = [
-    ...currentPageItems.slice(0, 10),
+    ...currentPageItems.slice(0, 3),
     "aila-sign-post",
-    ...currentPageItems.slice(10),
+    ...currentPageItems.slice(3),
   ];
   const searchRank = (index: number) => {
     return (currentPage - 1) * 20 + index + 1;

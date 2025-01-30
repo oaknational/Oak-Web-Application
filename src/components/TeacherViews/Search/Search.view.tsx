@@ -282,37 +282,39 @@ const Search: FC<SearchProps> = (props) => {
             </OakFlex>
             <SearchActiveFilters searchFilters={searchFilters} />
           </OakGridArea>
-          <OakGridArea $colSpan={[12, 3]} $colStart={[1, 10]} $rowStart={2}>
-            <CustomWidthFlex
-              $flexDirection="column"
-              $mb="space-between-m2"
-              $display={["none", "flex"]}
-            >
-              <OakFlex
-                $mb="space-between-s"
+          {!shouldShowNoResultsMessage && (
+            <OakGridArea $colSpan={[12, 3]} $colStart={[1, 10]} $rowStart={2}>
+              <CustomWidthFlex
                 $flexDirection="column"
-                $gap="space-between-ssx"
+                $mb="space-between-m2"
+                $display={["none", "flex"]}
               >
-                <OakHeading tag="h2" $font="heading-6">
-                  Filters
-                </OakHeading>
-                <OakSecondaryButton
-                  element="a"
-                  href="#search-results"
-                  onFocus={() => setFilterButtonFocussed(true)}
-                  onBlur={() => setFilterButtonFocussed(false)}
-                  style={
-                    filterButtonFocussed
-                      ? {}
-                      : { position: "absolute", top: "-600px" }
-                  }
+                <OakFlex
+                  $mb="space-between-s"
+                  $flexDirection="column"
+                  $gap="space-between-ssx"
                 >
-                  Skip to results
-                </OakSecondaryButton>
-              </OakFlex>
-              <SearchFilters {...searchFilters} />
-            </CustomWidthFlex>
-          </OakGridArea>
+                  <OakHeading tag="h2" $font="heading-6">
+                    Filters
+                  </OakHeading>
+                  <OakSecondaryButton
+                    element="a"
+                    href="#search-results"
+                    onFocus={() => setFilterButtonFocussed(true)}
+                    onBlur={() => setFilterButtonFocussed(false)}
+                    style={
+                      filterButtonFocussed
+                        ? {}
+                        : { position: "absolute", top: "-600px" }
+                    }
+                  >
+                    Skip to results
+                  </OakSecondaryButton>
+                </OakFlex>
+                <SearchFilters {...searchFilters} />
+              </CustomWidthFlex>
+            </OakGridArea>
+          )}
           <OakGridArea
             $colSpan={[12, 9]}
             $colStart={1}
@@ -325,7 +327,7 @@ const Search: FC<SearchProps> = (props) => {
               )}
               {shouldShowLoading && <p>Loading...</p>}
               {shouldShowNoResultsMessage && (
-                <>
+                <div id="search-results">
                   <NoSearchResults searchTerm={query.term} />
                   <OakBox $mt="space-between-m">
                     <SignPostToAila
@@ -340,7 +342,7 @@ const Search: FC<SearchProps> = (props) => {
                       }
                     />
                   </OakBox>
-                </>
+                </div>
               )}
               {shouldShowResults && (
                 <OakBox $display={["none", "block"]}>
