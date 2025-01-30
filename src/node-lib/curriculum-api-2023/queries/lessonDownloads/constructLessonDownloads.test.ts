@@ -44,6 +44,7 @@ describe("constructLessonDownloads", () => {
       nextLessons: [],
       tierTitle: null,
       examBoardTitle: null,
+      additionalFilesDownloads: null,
     };
 
     expect(result).toEqual(expectedResult);
