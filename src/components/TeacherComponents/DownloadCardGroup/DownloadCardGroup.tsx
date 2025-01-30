@@ -25,7 +25,7 @@ const DownloadCardArea = styled(Box)<{ area: string }>`
   margin-bottom: 16px;
 `;
 
-const getGridArea = (
+export const getGridArea = (
   type: DownloadResourceType,
   presentationExists: boolean,
   worksheetsLength?: number,

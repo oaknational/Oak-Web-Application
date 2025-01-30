@@ -16,24 +16,23 @@ import { LessonDownloads } from "@/components/TeacherViews/LessonDownloads.view"
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
-export type LessonDownloadsPageProps = {
+export type BetaLessonDownloadsPageProps = {
   curriculumData: LessonDownloadsPageData;
 };
 
-const LessonDownloadsPage = ({ curriculumData }: LessonDownloadsPageProps) => {
-  const { lessonTitle, keyStageSlug, subjectTitle } = curriculumData;
+const BetaLessonDownloadsPage = ({
+  curriculumData,
+}: BetaLessonDownloadsPageProps) => {
+  const { lessonTitle, subjectTitle } = curriculumData;
   return (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Lesson Download: ${lessonTitle} | ${keyStageSlug.toUpperCase()} ${subjectTitle}`,
-          description:
-            "Select and download free lesson resources, including slide decks, worksheets and quizzes",
-          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/programmes/${
-            curriculumData.programmeSlug
-          }/units/${curriculumData.unitSlug}/lessons/${
+          title: `Beta Lesson Download: ${lessonTitle} | ${subjectTitle}`,
+          description: "View downloads for new lessons",
+          canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/beta/lessons/${
             curriculumData.lessonSlug
-          }`,
+          }/downloads`,
         }),
       }}
     >
@@ -59,7 +58,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  LessonDownloadsPageProps,
+  BetaLessonDownloadsPageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
@@ -82,7 +81,7 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const results: GetStaticPropsResult<LessonDownloadsPageProps> = {
+      const results: GetStaticPropsResult<BetaLessonDownloadsPageProps> = {
         props: {
           curriculumData,
         },
@@ -92,4 +91,4 @@ export const getStaticProps: GetStaticProps<
   });
 };
 
-export default LessonDownloadsPage;
+export default BetaLessonDownloadsPage;

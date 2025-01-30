@@ -25,6 +25,7 @@ const constructLessonDownloads = (
     parsedCurrentLesson.unit_data.title;
   const downloadsPageData = {
     downloads,
+    // DEFAULTED TO NULL
     additionalFilesDownloads: additionalFileDownloads,
     programmeSlug: parsedCurrentLesson.programme_slug,
     keyStageSlug: parsedCurrentLesson.programme_fields.keystage_slug,
