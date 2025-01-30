@@ -59,49 +59,68 @@ export const getCombinedSubjects = (
 
   type CombinedSubject = KeyStageSubjectData & { isNew: boolean };
 
+  const compareByPathway = (a: CombinedSubject, b: CombinedSubject) => {
+    const pathwaySlugA = a.pathwaySlug;
+    const pathwaySlugB = b.pathwaySlug;
+
+    if (pathwaySlugA && pathwaySlugB) {
+      if (pathwaySlugA < pathwaySlugB) {
+        return -1;
+      }
+      if (pathwaySlugA > pathwaySlugB) {
+        return 1;
+      }
+    }
+    return 0;
+  };
+
   const combinedSubjectArray: CombinedSubject[] =
     newSubjectArray.length > 0
-      ? newSubjectArray.map((newSubject) => {
-          const eyfsUnitCount = legacySubjectArray[0]?.unitCount ?? 0;
-          const eyfsLessonCount = legacySubjectArray[0]?.lessonCount ?? 0;
+      ? newSubjectArray
+          .map((newSubject) => {
+            const eyfsUnitCount = legacySubjectArray[0]?.unitCount ?? 0;
+            const eyfsLessonCount = legacySubjectArray[0]?.lessonCount ?? 0;
 
-          const legacyPathwayUnitCount = getLegacySubjectUnitCount(
-            newSubject.pathwaySlug,
-            legacySubjectArray,
-          );
-          const totalPathwayUnitCount =
-            newSubject.unitCount + legacyPathwayUnitCount;
+            const legacyPathwayUnitCount = getLegacySubjectUnitCount(
+              newSubject.pathwaySlug,
+              legacySubjectArray,
+            );
+            const totalPathwayUnitCount =
+              newSubject.unitCount + legacyPathwayUnitCount;
 
-          const legacyPathwayLessonCount = getLegacySubjectLessonCount(
-            newSubject.pathwaySlug,
-            legacySubjectArray,
-          );
-          const totalPathwayLessonCount =
-            newSubject.lessonCount + legacyPathwayLessonCount;
+            const legacyPathwayLessonCount = getLegacySubjectLessonCount(
+              newSubject.pathwaySlug,
+              legacySubjectArray,
+            );
+            const totalPathwayLessonCount =
+              newSubject.lessonCount + legacyPathwayLessonCount;
 
-          return {
-            programmeSlug: newSubject.programmeSlug,
-            programmeCount: programmeCount,
-            subjectSlug: newSubject.subjectSlug,
-            subjectTitle: newSubject.subjectTitle,
-            unitCount: isEyfs ? eyfsUnitCount : totalPathwayUnitCount,
-            lessonCount: isEyfs ? eyfsLessonCount : totalPathwayLessonCount,
-            pathwaySlug: newSubject.pathwaySlug,
-            pathwayTitle: newSubject.pathwayTitle,
-            isNew: true,
-          };
-        })
-      : legacySubjectArray.map((legacySubject) => ({
-          programmeSlug: legacySubject.programmeSlug,
-          programmeCount,
-          subjectSlug: legacySubject.subjectSlug,
-          subjectTitle: legacySubject.subjectTitle,
-          unitCount: legacySubject.unitCount,
-          lessonCount: legacySubject.lessonCount,
-          pathwaySlug: legacySubject.pathwaySlug,
-          pathwayTitle: legacySubject.pathwayTitle,
-          isNew: false,
-        }));
+            return {
+              programmeSlug: newSubject.programmeSlug,
+              programmeCount: programmeCount,
+              subjectSlug: newSubject.subjectSlug,
+              subjectTitle: newSubject.subjectTitle,
+              unitCount: isEyfs ? eyfsUnitCount : totalPathwayUnitCount,
+              lessonCount: isEyfs ? eyfsLessonCount : totalPathwayLessonCount,
+              pathwaySlug: newSubject.pathwaySlug,
+              pathwayTitle: newSubject.pathwayTitle,
+              isNew: true,
+            };
+          })
+          .sort(compareByPathway)
+      : legacySubjectArray
+          .map((legacySubject) => ({
+            programmeSlug: legacySubject.programmeSlug,
+            programmeCount,
+            subjectSlug: legacySubject.subjectSlug,
+            subjectTitle: legacySubject.subjectTitle,
+            unitCount: legacySubject.unitCount,
+            lessonCount: legacySubject.lessonCount,
+            pathwaySlug: legacySubject.pathwaySlug,
+            pathwayTitle: legacySubject.pathwayTitle,
+            isNew: false,
+          }))
+          .sort(compareByPathway);
 
   return combinedSubjectArray;
 };

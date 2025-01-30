@@ -1,3 +1,11 @@
+## [1.678.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.2...v1.678.3) (2025-01-30)
+
+
+### Bug Fixes
+
+* display pathways in alphabetical order ([2837d0b](https://github.com/oaknational/Oak-Web-Application/commit/2837d0b1a7d3d22a10a47f69e3e9c1f046616f4c))
+* display pathways in alphabetical order also for legacy programmes ([0f5b168](https://github.com/oaknational/Oak-Web-Application/commit/0f5b1683b6f86bc253d5a20749ff3d2036b340d6))
+
 ## [1.678.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.1...v1.678.2) (2025-01-30)
 
 
