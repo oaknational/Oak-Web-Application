@@ -238,7 +238,7 @@ describe("TeacherNotesModal", () => {
         isOpen={true}
         onClose={onClose}
         saveTeacherNote={saveTeacherNote}
-        teacherNote={mockTeacherNote}
+        teacherNote={{ ...mockTeacherNote }}
         sharingUrl={"https://example.com"}
         error={null}
       />,
@@ -264,6 +264,84 @@ describe("TeacherNotesModal", () => {
 
     expect(saveTeacherNote).toHaveBeenCalledTimes(1);
     expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("should not save the teacher note when the note has not changed", () => {
+    const mockSaveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={mockSaveTeacherNote}
+        teacherNote={{
+          ...mockTeacherNote,
+          noteHtml: "<p>no change</p>",
+          noteText: "no change",
+        }}
+        sharingUrl={"https://example.com"}
+        error={null}
+      />,
+    );
+
+    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+      typeof OakTeacherNotesModal
+    >;
+
+    const modalProps = mockModal.mock.calls?.[0]?.[0];
+    if (!modalProps) {
+      throw new Error("No modal props found");
+    }
+
+    const mockEditorArgs = useEditorMock.mock.calls?.[0];
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce("<p>no change</p>");
+    mockEditorInstance.getText.mockReturnValueOnce("no change");
+
+    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+
+    expect(mockSaveTeacherNote).not.toHaveBeenCalled();
+  });
+
+  it("should not save the teacher note when note length is zero", () => {
+    const mockSaveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={mockSaveTeacherNote}
+        teacherNote={mockTeacherNote}
+        sharingUrl={"https://example.com"}
+        error={null}
+      />,
+    );
+
+    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+      typeof OakTeacherNotesModal
+    >;
+
+    const modalProps = mockModal.mock.calls?.[0]?.[0];
+    if (!modalProps) {
+      throw new Error("No modal props found");
+    }
+
+    const mockEditorArgs = useEditorMock.mock.calls?.[0];
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce("");
+    mockEditorInstance.getText.mockReturnValueOnce("");
+
+    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+
+    expect(mockSaveTeacherNote).not.toHaveBeenCalled();
   });
 
   it("should set note saved when the note has been saved", async () => {
