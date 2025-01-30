@@ -167,7 +167,7 @@ describe("useLesson", () => {
 
     expect(useShareExperiment).toHaveBeenCalledWith({
       programmeSlug: undefined,
-      source: "lesson-browse",
+      source: "lesson-browse-w-note",
       curriculumTrackingProps: defaultProps.curriculumTrackingProps,
       overrideExistingShareId: false,
     });
