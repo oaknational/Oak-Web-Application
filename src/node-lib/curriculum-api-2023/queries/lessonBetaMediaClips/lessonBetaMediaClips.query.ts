@@ -1,6 +1,7 @@
 import {
   LessonBrowseData,
   lessonBrowseDataSchema,
+  MediaClipListCamelCase,
 } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { constructLessonMediaData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/constructLessonMediaClips";
 import errorReporter from "@/common-lib/error-reporter";
@@ -9,7 +10,6 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { BetaLessonMediaClipsQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 export const betaLessonMediaClipsQuery =
   (sdk: Sdk) =>
@@ -45,19 +45,34 @@ export const betaLessonMediaClipsQuery =
 
     const [browseDataSnake] = modifiedBrowseData;
 
+    const lessonData = {
+      ...browseDataSnake?.lesson_data,
+      key_learning_points: [],
+    };
+
+    const manipulatedData = { ...browseDataSnake, lesson_data: lessonData };
     lessonBrowseDataSchema.parse({
-      ...browseDataSnake,
+      ...manipulatedData,
       supplementary_data: { order_in_unit: 0, unit_order: 0 },
     });
 
-    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
+    const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData & {
+      mediaClips: MediaClipListCamelCase;
+    };
 
-    const data = constructLessonMediaData(
-      browseData,
-      lessonMediaClipsFixtures().mediaClips,
-      [],
-    );
-
+    const data = constructLessonMediaData(browseData, [
+      {
+        programmeSlug: browseData.programmeSlug,
+        unitSlug: browseData.unitSlug,
+        unitTitle: browseData.unitData.title,
+        keyStageSlug: browseData.programmeFields.keystageSlug,
+        keyStageTitle: browseData.programmeFields.keystageDescription,
+        subjectSlug: browseData.programmeFields.subjectSlug,
+        subjectTitle: browseData.programmeFields.subject,
+        yearGroupSlug: browseData.programmeFields.yearSlug,
+        yearGroupTitle: browseData.programmeFields.yearDescription,
+      },
+    ]);
     return data as T;
   };
 

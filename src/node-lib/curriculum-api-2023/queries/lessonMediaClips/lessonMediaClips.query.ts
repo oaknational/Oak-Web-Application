@@ -16,7 +16,6 @@ import {
   Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 export const lessonMediaClipsQuery =
   (sdk: Sdk) =>
@@ -24,9 +23,8 @@ export const lessonMediaClipsQuery =
     lessonSlug: string;
     unitSlug?: string;
     programmeSlug?: string;
-    isLegacy?: boolean;
   }): Promise<T> => {
-    const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
+    const { lessonSlug, unitSlug, programmeSlug } = args;
 
     const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp> =
       { lesson_slug: { _eq: lessonSlug } };
@@ -37,10 +35,6 @@ export const lessonMediaClipsQuery =
 
     if (programmeSlug) {
       browseDataWhere["programme_slug"] = { _eq: programmeSlug };
-    }
-
-    if (isLegacy !== undefined) {
-      browseDataWhere["is_legacy"] = { _eq: isLegacy };
     }
 
     const res = await sdk.lessonMediaClips({
@@ -89,17 +83,16 @@ export const lessonMediaClipsQuery =
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
-
-    const mediaClipsFixture = lessonMediaClipsFixtures().mediaClips;
     if (!canonicalLesson) {
-      const data = constructLessonMediaData(browseData, mediaClipsFixture);
-      lessonMediaClipsSchema.parse({ ...data });
+      const data = constructLessonMediaData({
+        ...browseData,
+      });
+      lessonMediaClipsSchema.safeParse({ ...data });
       return {
         ...data,
       } as T;
     } else {
-      // Pathway hardcoded
-      const data = constructLessonMediaData(browseData, mediaClipsFixture, [
+      const data = constructLessonMediaData(browseData, [
         {
           programmeSlug: browseData.programmeSlug,
           unitSlug: browseData.unitSlug,
@@ -110,7 +103,7 @@ export const lessonMediaClipsQuery =
           subjectTitle: browseData.programmeFields.subject,
         },
       ]);
-      canonicalLessonMediaClipsSchema.parse({
+      canonicalLessonMediaClipsSchema.safeParse({
         ...data,
       });
       return data as T;

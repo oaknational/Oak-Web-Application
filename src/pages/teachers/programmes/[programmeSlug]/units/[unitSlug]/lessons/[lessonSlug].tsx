@@ -165,7 +165,6 @@ export const getStaticProps: GetStaticProps<
       }
 
       const lessonPageData = await populateLessonWithTranscript(curriculumData);
-
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
         props: {
           curriculumData: lessonPageData,

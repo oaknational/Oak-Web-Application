@@ -66,21 +66,22 @@ const SubjectListingPage: FC<SubjectListingPageProps> = (props) => {
           $gridAutoRows={"1fr"}
           $mb={"space-between-xxl"}
         >
-          {subjects.map((subject, i) => {
-            return (
-              <OakGridArea
-                key={`subject-list-item-${subject.slug}-${i}`}
-                $colSpan={[12, 6, 3]}
-              >
-                <SubjectListingCardDouble
-                  subject={subject}
-                  subjectSlug={subject.slug}
-                  keyStageSlug={keyStageSlug}
-                  keyStageTitle={sentenceCaseKeyStageTitle}
-                />
-              </OakGridArea>
-            );
-          })}
+          {subjects.map(
+            (subjectArray, i) =>
+              subjectArray[0] && (
+                <OakGridArea
+                  key={`subject-list-item-${subjectArray[0]?.slug}-${i}`}
+                  $colSpan={[12, 6, 3]}
+                >
+                  <SubjectListingCardDouble
+                    subject={subjectArray}
+                    subjectSlug={subjectArray[0].slug}
+                    keyStageSlug={keyStageSlug}
+                    keyStageTitle={sentenceCaseKeyStageTitle}
+                  />
+                </OakGridArea>
+              ),
+          )}
         </OakGrid>
       </MaxWidth>
     </OakFlex>

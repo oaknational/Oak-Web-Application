@@ -1,29 +1,27 @@
 import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
 export const getPlaybackId = (currentClip: MediaClip) => {
-  if (currentClip.mediaType === "video" && currentClip.videoObject) {
-    return currentClip.videoObject.muxPlaybackId;
-  } else if (currentClip.mediaType === "audio" && currentClip.mediaObject) {
-    return currentClip.mediaObject.muxPlaybackId;
-  } else return "";
+  if (currentClip && currentClip.videoObject) {
+    const signed = currentClip.videoObject.playbackIds?.find((p) => {
+      return p?.policy === "signed";
+    });
+    return signed?.id;
+  }
+  return "";
 };
 
-export const getTranscript = (currentClip: MediaClip) => {
-  if (currentClip.mediaType === "video" && currentClip.videoObject) {
-    return currentClip.videoObject.transcriptionSentences?.join(" ");
-  } else if (currentClip.mediaType === "audio" && currentClip.mediaObject) {
-    return currentClip.mediaObject.transcriptionSentences?.join(" ");
-  } else return "";
+export const joinTranscript = (currentClip: MediaClip) => {
+  return currentClip.transcriptSentences?.join(" ");
 };
 
 export const getPlayingState = (
-  currentClipSlug: string | undefined,
-  slug: string,
+  currentClipMediaId: string | undefined,
+  mediaId: string,
   playedVideosList?: string[],
 ) => {
-  if (slug === currentClipSlug) {
+  if (mediaId === currentClipMediaId) {
     return "playing";
-  } else if (playedVideosList?.includes(slug)) {
+  } else if (playedVideosList?.includes(mediaId)) {
     return "played";
   } else {
     return "standard";
@@ -31,11 +29,11 @@ export const getPlayingState = (
 };
 
 export const getInitialCurrentClip = (
-  listOfAllClips: MediaClip[],
+  listOfAllClips: (MediaClip & { learningCycle: string })[],
   videoQueryParam?: string | string[] | undefined,
 ) => {
   if (videoQueryParam) {
-    return listOfAllClips.find((clip) => clip.slug === videoQueryParam);
+    return listOfAllClips.find((clip) => clip.mediaId === videoQueryParam);
   } else {
     return listOfAllClips[0];
   }

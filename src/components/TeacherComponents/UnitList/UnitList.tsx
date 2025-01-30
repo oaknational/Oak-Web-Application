@@ -1,4 +1,5 @@
 import React, { FC, MouseEvent } from "react";
+import { NextRouter, useRouter } from "next/router";
 import {
   OakFlex,
   OakUnitsContainer,
@@ -8,7 +9,6 @@ import {
   OakAnchorTarget,
   OakBox,
 } from "@oaknational/oak-components";
-import { NextRouter, useRouter } from "next/router";
 
 import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
 
@@ -245,18 +245,25 @@ const UnitList: FC<UnitListProps> = (props) => {
     });
   };
 
+  //TODO: Temporary measure until curriculum downloads are ready for RSHE
+  const hideNewCurriculumDownloadButton = subjectSlug === "rshe-pshe";
+
   const NewUnits = ({ category }: { category?: string }) =>
     newPageItems.length && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={false}
         subject={category ?? subjectSlug}
         phase={phaseSlug}
-        curriculumHref={resolveOakHref({
-          page: "curriculum-units",
-          subjectPhaseSlug: `${linkSubject}-${phaseSlug}${
-            examBoardSlug ? `-${examBoardSlug}` : ""
-          }`,
-        })}
+        curriculumHref={
+          hideNewCurriculumDownloadButton
+            ? null
+            : resolveOakHref({
+                page: "curriculum-units",
+                subjectPhaseSlug: `${linkSubject}-${phaseSlug}${
+                  examBoardSlug ? `-${examBoardSlug}` : ""
+                }`,
+              })
+        }
         showHeader={paginationProps.currentPage === 1}
         unitCards={getUnitCards(newPageItems)}
       />

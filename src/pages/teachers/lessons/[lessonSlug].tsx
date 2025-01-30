@@ -82,7 +82,6 @@ export default function LessonOverviewCanonicalPage({
         <LessonOverview
           lesson={{
             ...lesson,
-            lessonMediaClips: null,
             isCanonical: true,
             isSpecialist,
             teacherShareButton: teacherNotesButton,
@@ -165,7 +164,6 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           lesson = await populateLessonWithTranscript(lesson);
         }
       }
-
       if (!lesson) {
         return {
           notFound: true,

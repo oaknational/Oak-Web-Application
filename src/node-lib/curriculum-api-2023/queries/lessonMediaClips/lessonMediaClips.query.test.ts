@@ -18,7 +18,6 @@ describe("lessonMediaClips()", () => {
         lessonSlug: "lesson-slug",
         unitSlug: "unit-slug",
         programmeSlug: "programme-slug",
-        isLegacy: false,
       });
     }).rejects.toThrow(`Resource not found`);
   });
@@ -31,6 +30,10 @@ describe("lessonMediaClips()", () => {
           unit_slug: "unit-slug-test",
           programme_slug: "programme-slug-test",
           is_legacy: false,
+          lesson_data: {
+            ...syntheticUnitvariantLessonsFixture().lesson_data,
+            lesson_outline: [{ lesson_outline: "test" }],
+          },
         },
       });
 
@@ -70,6 +73,10 @@ describe("lessonMediaClips()", () => {
           unit_slug: "unit-slug-test",
           programme_slug: "programme-slug-test",
           is_legacy: false,
+          lesson_data: {
+            ...syntheticUnitvariantLessonsFixture().lesson_data,
+            lesson_outline: [{ lesson_outline: "test" }],
+          },
         },
       }),
       syntheticUnitvariantLessonsFixture(),
@@ -104,6 +111,10 @@ describe("lessonMediaClips()", () => {
           unit_slug: "unit-slug-test",
           programme_slug: "programme-slug-test",
           is_legacy: false,
+          lesson_data: {
+            ...syntheticUnitvariantLessonsFixture().lesson_data,
+            lesson_outline: [{ lesson_outline: "test" }],
+          },
         },
       });
 

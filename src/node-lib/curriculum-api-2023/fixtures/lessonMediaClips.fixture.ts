@@ -1,6 +1,11 @@
-import { LessonMediaClipsData } from "../queries/lessonMediaClips/lessonMediaClips.schema";
+import { mediaClipsFixture } from "@oaknational/oak-curriculum-schema";
 
-import { PlaybackPolicy } from "@/components/SharedComponents/VideoPlayer/useSignedVideoToken";
+import {
+  LessonMediaClipsData,
+  MediaClipListCamelCase,
+} from "../queries/lessonMediaClips/lessonMediaClips.schema";
+
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const lessonMediaClipsFixtures = (
   partial?: Partial<LessonMediaClipsData>,
@@ -19,199 +24,169 @@ const lessonMediaClipsFixtures = (
     examBoardTitle: null,
     tierSlug: null,
     tierTitle: null,
-    mediaClips: {
-      intro: [
-        {
-          order: 1,
-          learningCycleTitle: "Intro",
-          mediaId: 137156,
-          mediaClipTitle: "Introduction physical exercise video",
-          slug: "introduction-physical-exercise-video",
-          mediaObject: null,
-          mediaType: "video",
-          videoId: 33,
-          videoObject: {
-            muxPlaybackId: "WfJkoCV01EvqXpkLiaY01axFcTk7O9nurFXrXxZgV02Q004",
-            playbackPolicy: "signed" as PlaybackPolicy,
-            transcriptionSentences: [
-              "There will be some transcript sentences here.",
-              "Welcome to the lesson.",
-            ],
-            resourceType: "video",
-            title: "Introduction physical exercise video",
-            usageRestrictions: "No restrictions",
-            attributionRequired: "No attribution required",
-            duration: 180.34,
-          },
-        },
-        {
-          order: 2,
-          learningCycleTitle: "Intro",
-          mediaClipTitle: "Running",
-          slug: "running",
-          mediaId: 137156,
-          mediaObject: {
-            muxPlaybackId: "DS00Spx1CV902MCtPj5WknGlR102V5HFkDe",
-            playbackPolicy: "public",
-            resourceType: "audio",
-            title: "Running",
-            usageRestrictions: "No restrictions",
-            attributionRequired: "No attribution required",
-            duration: 180.34,
-          },
-          mediaType: "audio",
-          videoId: null,
-          videoObject: null,
-        },
-      ],
-      cycle1: [
-        {
-          order: 1,
-          learningCycleTitle: "Learning cycle 1",
-          mediaClipTitle: "Cycle 1 running video",
-          slug: "cycle-1-running-video",
-          mediaId: 137156,
-          mediaObject: null,
-          mediaType: "video",
-          videoId: 4,
-          videoObject: {
-            muxPlaybackId: "xnNJ4SyxV00cNer3TBej00JopgOSTJsF9ArTY6NAd6hFk",
-            playbackPolicy: "signed" as PlaybackPolicy,
-            resourceType: "video",
-            title: "Cycle 1 Video",
-            usageRestrictions: "No restrictions",
-            attributionRequired: "No attribution required",
-            duration: 150,
-          },
-        },
-        {
-          order: 2,
-          learningCycleTitle: "Learning cycle 1",
-          mediaClipTitle: "Cycle 1 Audio",
-          slug: "cycle-1-audio",
-          mediaId: 137139,
-          mediaObject: {
-            muxPlaybackId: "KHUK004YVrDuBlZH1YK01J2KQw2AyxGwpy00l016qIO3jDU",
-            playbackPolicy: "signed" as PlaybackPolicy,
-            resourceType: "audio",
-            title: "Cycle 1 Audio",
-            usageRestrictions: "No restrictions",
-            attributionRequired: "No attribution required",
-            duration: 180.34,
-          },
-          mediaType: "audio",
-          videoId: 23,
-          videoObject: null,
-        },
-      ],
-      cycle2: [
-        {
-          order: 1,
-          learningCycleTitle: "Learning cycle 2",
-          mediaClipTitle: "Cycle 2 video",
-          slug: "cycle-2-video",
-          mediaId: 137120,
-          mediaObject: null,
-          mediaType: "video",
-          videoId: 50,
-          videoObject: {
-            muxPlaybackId: "RbYhKv5301Ppzel6vddKyTwgptFZ1AhfYUH5u1P3AqRs",
-            playbackPolicy: "signed" as PlaybackPolicy,
-            videoWithSignLanguageMuxPlaybackId:
-              "YEPHo9rLrwNEIh02YUkNnqX6CFELAVtmlw5R4lYJESDs",
-            transcriptionSentences: ["This is the transcription sentence"],
-            resourceType: "video",
-            title: "Cycle 2 Video",
-            usageRestrictions: "No restrictions",
-            attributionRequired: "No attribution required",
-            duration: 180,
-          },
-        },
-      ],
-      cycle3: [
-        {
-          order: 1,
-          learningCycleTitle: "Learning cycle 3",
-          mediaClipTitle: "Cycle 3 video",
-          slug: "cycle-3-video",
-          mediaId: 137156,
-          mediaObject: null,
-          mediaType: "video",
-          videoId: 223422,
-          videoObject: {
-            muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
-            playbackPolicy: "signed" as PlaybackPolicy,
-            resourceType: "video",
-            title: "Cycle 3 Video",
-            usageRestrictions: "No restrictions",
-            attributionRequired: "No attribution required",
-            duration: 200,
-          },
-        },
-        {
-          order: 2,
-          learningCycleTitle: "Learning cycle 3",
-          mediaClipTitle: "Cycle 3 audio",
-          slug: "cycle-3-audio",
-          mediaId: 137108,
-          mediaObject: {
-            muxPlaybackId: "FJ8WDFTLqK9b02U01Vqc4PGMii01Dj6Zu2rsSTambKVLeI",
-            playbackPolicy: "signed" as PlaybackPolicy,
-            resourceType: "audio",
-            title: "Cycle 3 Audio - Track 30",
-            usageRestrictions: "No restrictions",
-            attributionRequired: "No attribution required",
-            duration: 180.34,
-          },
-          mediaType: "audio",
-          videoId: null,
-          videoObject: null,
-        },
-        {
-          order: 4,
-          learningCycleTitle: "Learning cycle 3",
-          mediaClipTitle: "Cycle 3 Audio - Track 30",
-          slug: "cycle-3-audio-track-30",
-          mediaId: 137146,
-          mediaObject: {
-            muxPlaybackId: "FJ8WDFTLqK9b02U01Vqc4PGMii01Dj6Zu2rsSTambKVLeI",
-            playbackPolicy: "signed" as PlaybackPolicy,
-            resourceType: "audio",
-            title: "Cycle 3 Audio - Track 30",
-            usageRestrictions: "No restrictions",
-            attributionRequired: "No attribution required",
-            duration: 180.34,
-          },
-          mediaType: "audio",
-          videoId: null,
-          videoObject: null,
-        },
-        {
-          order: 5,
-          learningCycleTitle: "Learning cycle 3",
-          mediaClipTitle: "Cycle 3 running video",
-          slug: "cycle-3-running-video",
-          mediaId: 137156,
-          mediaObject: null,
-          mediaType: "video",
-          videoId: 12325,
-          videoObject: {
-            muxPlaybackId: "muf1AAfWwMkra00gpPPpwcN9gYxRFckwYPbrYcAq001JE",
-            playbackPolicy: "signed" as PlaybackPolicy,
-            transcriptionSentences: [
-              "There will be some transcript sentences here",
-            ],
-            resourceType: "video",
-            title: "Cycle 3 running video",
-            usageRestrictions: "No restrictions",
-            attributionRequired: "No attribution required",
-            duration: 240,
-          },
-        },
-      ],
-    },
+    mediaClips: keysToCamelCase(
+      mediaClipsFixture().media_clips,
+    ) as MediaClipListCamelCase,
+    lessonOutline: [
+      { lessonOutline: "This lesson is about running as a team" },
+    ],
     ...partial,
   };
+};
+
+export const additionalCycles = {
+  cycle3: [
+    {
+      order: "1",
+      mediaId: "2321312",
+      customTitle: "Cycle3 Video 1",
+      mediaObject: {
+        id: "4de4d70775b95bbc722d4d259fb033ad",
+        url: "http://example.com/video1.mp3",
+        type: "upload",
+        bytes: 81127,
+        width: 0,
+        format: "mp3",
+        height: 0,
+        version: 1736860290,
+        duration: 5.041633,
+        metadata: {
+          assetType: "audio_speech",
+          sourceType: "partner_created",
+          assetSource: "partner_created",
+          licenceType: "no_licence",
+          contentCycle: "cycle_2",
+          permissionGranted: "notRequired",
+        },
+        secureUrl: "https://example.com/video1.mp3",
+        accessMode: "public",
+        assetFolder:
+          "Cycle 2 assets/MFL - French - Secondary/Audio/Y7/FR7U15/FR7U15L1",
+        displayName: "9_task_C1_3",
+        resourceType: "video",
+      },
+      mediaType: "video",
+      videoId: 33,
+      videoObject: {
+        id: "hug9i01Tnpf1y83irOm00HRbvAJpttJPU78KNYzPav3mg",
+        status: "ready",
+        tracks: [
+          {
+            id: "32v67aMKIr5Z014b3n3AVwNHjAPnWSuhJCm008E026lYOQ",
+            type: "audio",
+            duration: 5.041633,
+          },
+          {
+            id: "staging-mock-asset",
+            assetId: "hug9i01Tnpf1y83irOm00HRbvAJpttJPU78KNYzPav3mg",
+          },
+        ],
+        duration: 5.055667,
+        createdAt: 1736864397,
+        mp4Support: "standard",
+        passthrough: "VIDE-ZHHRL-29844",
+        muxAssetId: "hug9i01Tnpf1y83irOm00HRbvAJpttJPU78KNYzPav3mg",
+        playbackIds: [
+          {
+            id: "mVkKUtOfoD1100012GNC1pCO6RvUgyGwqGoq01pYsy7WeA",
+            policy: "signed",
+          },
+          {
+            id: "BW00NkK9R01jB8PPO7R00YCFl2XBDn13GTkhd0001PNtheF00",
+            policy: "public",
+          },
+        ],
+        encodingTier: "smart",
+        videoQuality: "plus",
+        muxPlaybackId: "BW00NkK9R01jB8PPO7R00YCFl2XBDn13GTkhd0001PNtheF00",
+        signedStreamId: "mVkKUtOfoD1100012GNC1pCO6RvUgyGwqGoq01pYsy7WeA",
+        staticRenditions: {
+          status: "preparing",
+        },
+        maxResolutionTier: "1080p",
+        maxStoredResolution: "Audio only",
+        nonStandardInputReasons: {
+          audioCodec: "mp3",
+        },
+      },
+    },
+  ],
+  cycle4: [
+    {
+      order: "1",
+      mediaId: "8765432",
+      customTitle: "Cycle4 Video 1",
+      mediaObject: {
+        id: "9ab7d60775b95bbc722d4d259fb033cd",
+        url: "http://example.com/video2.mp4",
+        type: "upload",
+        bytes: 120345,
+        width: 1920,
+        format: "mp4",
+        height: 1080,
+        version: 1736860391,
+        duration: 10.245789,
+        metadata: {
+          assetType: "video_instructional",
+          sourceType: "partner_created",
+          assetSource: "partner_created",
+          licenceType: "standard",
+          contentCycle: "cycle_3",
+          permissionGranted: "required",
+        },
+        secureUrl: "https://example.com/video2.mp4",
+        accessMode: "private",
+        assetFolder:
+          "Cycle 4 assets/MFL - Spanish - Secondary/Video/Y8/ES8U20/ES8U20L2",
+        displayName: "Task_Video_2",
+        resourceType: "video",
+      },
+      mediaType: "video",
+      videoId: 44,
+      videoObject: {
+        id: "abc901Tnpf1y83irOm00HRbvAJpttJPU78KNYzPav3xy",
+        status: "ready",
+        tracks: [
+          {
+            id: "54v67aMKIr5Z014b3n3AVwNHjAPnWSuhJCm008E026lZZX",
+            type: "video",
+            duration: 10.245789,
+          },
+          {
+            id: "staging-mock-asset-2",
+            assetId: "abc901Tnpf1y83irOm00HRbvAJpttJPU78KNYzPav3xy",
+          },
+        ],
+        duration: 10.245789,
+        createdAt: 1736865599,
+        mp4Support: "standard",
+        passthrough: "VIDE-ZHHRL-39999",
+        muxAssetId: "abc901Tnpf1y83irOm00HRbvAJpttJPU78KNYz305or",
+        playbackIds: [
+          {
+            id: "nLK1UtOfoD1100012GNC1pCO6RvUgyGwqGoq01pYsy7WeB",
+            policy: "signed",
+          },
+          {
+            id: "CC11NkK9R01jB8PPO7R00YCFl2XBDn13GTkhd0001PNtheF11",
+            policy: "public",
+          },
+        ],
+        encodingTier: "premium",
+        videoQuality: "high",
+        muxPlaybackId: "CC11NkK9R01jB8PPO7R00YCFl2XBDn13GTkhd0001PNtheF11",
+        signedStreamId: "nLK1UtOfoD1100012GNC1pCO6RvUgyGwqGoq01pYsy7WeB",
+        staticRenditions: {
+          status: "ready",
+        },
+        maxResolutionTier: "4K",
+        maxStoredResolution: "1080p",
+        nonStandardInputReasons: {
+          audioCodec: "h264",
+        },
+      },
+    },
+  ],
 };
 
 export default lessonMediaClipsFixtures;
