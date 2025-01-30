@@ -1,4 +1,9 @@
-import { constructDownloadsArray } from "./downloadUtils";
+import { additionalFilesFixture } from "@oaknational/oak-curriculum-schema";
+
+import {
+  constructAdditionalFilesDownloads,
+  constructDownloadsArray,
+} from "./downloadUtils";
 
 export const downloadAssetsFixture = [
   {
@@ -65,7 +70,7 @@ export const downloadAssetsFixture = [
 ];
 
 describe("constructDownloadsArray()", () => {
-  test.only("constructs correct downloadable resource", () => {
+  test("constructs correct downloadable resource", () => {
     const downloads = constructDownloadsArray({
       hasSlideDeckAssetObject: true,
       hasStarterQuiz: true,
@@ -98,5 +103,27 @@ describe("constructDownloadsArray()", () => {
     );
 
     expect(filteredDownloads.length).toEqual(5);
+  });
+});
+
+describe("construct additional file downloads", () => {
+  it("constructs additional file downloads correctly", () => {
+    const constructedFileDownloads = constructAdditionalFilesDownloads(
+      additionalFilesFixture(),
+    );
+    expect(constructedFileDownloads).toEqual([
+      {
+        exists: true,
+        type: "additional-file-0",
+        label: "Sample File 1",
+        ext: "jpg",
+      },
+      {
+        exists: true,
+        type: "additional-file-1",
+        label: "Sample File 2",
+        ext: "mp4",
+      },
+    ]);
   });
 });

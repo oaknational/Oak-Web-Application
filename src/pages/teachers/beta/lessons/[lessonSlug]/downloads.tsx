@@ -22,7 +22,6 @@ export type LessonDownloadsPageProps = {
 
 const LessonDownloadsPage = ({ curriculumData }: LessonDownloadsPageProps) => {
   const { lessonTitle, keyStageSlug, subjectTitle } = curriculumData;
-  console.log(curriculumData.downloads);
   return (
     <AppLayout
       seoProps={{

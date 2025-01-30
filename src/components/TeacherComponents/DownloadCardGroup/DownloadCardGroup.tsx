@@ -135,6 +135,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
         {additionalFiles?.map((additionalFile) => {
           return (
             <Controller
+              key={additionalFile.label}
               control={control}
               name="resources"
               defaultValue={[]}

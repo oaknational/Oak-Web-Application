@@ -53,6 +53,7 @@ const curriculumApi: Pick<
   | "teacherPreviewLesson"
   | "lessonMediaClips"
   | "betaLessonMediaClipsQuery"
+  | "betaLessonDownloadsQuery"
 > = {
   subjectPhaseOptions: jest.fn(async () => {
     return subjectPhaseOptionsFixture();
@@ -154,6 +155,11 @@ const curriculumApi: Pick<
   pupilsSitemap: jest.fn(async () => {
     return mockedSiteMapResponse;
   }),
+  betaLessonDownloadsQuery: jest.fn(async () => {
+    return {
+      ...lessonDownloadsFixtures(),
+    };
+  }) as jest.Mocked<LessonDownloadsQuery>,
 };
 
 export default curriculumApi;

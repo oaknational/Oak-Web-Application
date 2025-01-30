@@ -74,17 +74,12 @@ const lessonBetaDownloadsQuery =
     };
 
     const additionalFileDownloads =
-      additional_files && additional_files[0] && has_additional_files
+      additional_files?.[0] && has_additional_files
         ? constructAdditionalFilesDownloads(additional_files[0])
         : null;
 
-    console.log(additionalFileDownloads, "<<vquery");
-
     const downloads = constructDownloadsArray(downloadsData);
-    const constructDownloads = [
-      ...downloads,
-      // ...(additionalFileDownloads || []),
-    ];
+    const constructDownloads = [...downloads];
     // Copyright content pre-parsed
     const currentLesson = modifiedBrowseData.find(
       (lesson) => lesson.lesson_slug === lessonSlug,
@@ -106,7 +101,6 @@ const lessonBetaDownloadsQuery =
       expired,
     );
 
-    console.log(lessonDownloads, "<< DOWNLOADS");
     return lessonDownloadsSchema.parse({
       ...lessonDownloads,
       isLegacy: false,
