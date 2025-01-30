@@ -448,6 +448,14 @@ export const getStaticPaths = async () => {
   return config;
 };
 
+export const getLegacyProgrammeSlug = (
+  programmeSlug: string,
+  examBoardSlug: string | null,
+) =>
+  examBoardSlug && programmeSlug.endsWith(examBoardSlug)
+    ? programmeSlug.split(examBoardSlug).join("l")
+    : programmeSlug + "-l";
+
 export const getStaticProps: GetStaticProps<
   UnitListingPageProps,
   URLParams
@@ -477,7 +485,10 @@ export const getStaticProps: GetStaticProps<
         const legacyCurriculumData = isLegacy
           ? null
           : await curriculumApi2023.unitListing({
-              programmeSlug: programmeSlug + "-l",
+              programmeSlug: getLegacyProgrammeSlug(
+                programmeSlug,
+                curriculumData.examBoardSlug,
+              ),
             });
 
         if (legacyCurriculumData) {

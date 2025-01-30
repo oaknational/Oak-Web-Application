@@ -1,3 +1,17 @@
+## [1.678.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.0...v1.678.1) (2025-01-30)
+
+
+### Bug Fixes
+
+* show legacy lessons for exam boards ([0ec6a79](https://github.com/oaknational/Oak-Web-Application/commit/0ec6a7919b52fa555322dc1d87c6270c8dfbb88d))
+
+# [1.678.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.677.1...v1.678.0) (2025-01-30)
+
+
+### Features
+
+* remove old curric MV code behind switches ([1ce20da](https://github.com/oaknational/Oak-Web-Application/commit/1ce20dad4ed4a9097b9f1a30cfc7287f4c319ace))
+
 ## [1.677.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.677.0...v1.677.1) (2025-01-29)
 
 # [1.677.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.676.0...v1.677.0) (2025-01-29)
