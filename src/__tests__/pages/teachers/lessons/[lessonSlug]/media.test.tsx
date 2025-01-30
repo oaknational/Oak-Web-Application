@@ -38,6 +38,7 @@ const fixtureData = {
       subjectTitle: "Physical Education",
     },
   ],
+  lessonOutline: [{ lessonOutline: "This lesson is about running as a team" }],
 };
 
 jest.mock("next/router", () => ({
@@ -47,6 +48,12 @@ jest.mock("next/router", () => ({
 jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(() => true),
 }));
+
+jest.mock("@google-cloud/storage", () => {
+  return {
+    Storage: jest.fn().mockImplementation(() => ({})),
+  };
+});
 
 describe("LessonMediaClipsCanonicalPage", () => {
   beforeEach(() => {
@@ -58,14 +65,15 @@ describe("LessonMediaClipsCanonicalPage", () => {
       asPath: "/teachers/lessons/running-as-a-team/media",
     });
   });
-  it("Renders breadcrumbs", async () => {
+
+  it("Renders component", async () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <CanonicalLessonMediaClipsPage curriculumData={fixtureData} />,
       </OakThemeProvider>,
     );
 
-    expect(result.queryByText("Extra video and audio")).toBeInTheDocument();
+    expect(result.getByTestId("media-view")).toBeInTheDocument();
   });
 
   describe("getStaticProps", () => {
@@ -78,7 +86,6 @@ describe("LessonMediaClipsCanonicalPage", () => {
       } as GetStaticPropsContext<URLParams, PreviewData>)) as {
         props: CanonicalLessonMediaClipsPageProps;
       };
-
       expect(propsResult.props.curriculumData.lessonSlug).toEqual(
         "running-as-a-team",
       );

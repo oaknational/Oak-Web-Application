@@ -216,32 +216,24 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         </OakGridArea>
         <OakGridArea $colSpan={[12, 12, 5]} $pb="inner-padding-xl">
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-            {hasAdditionalFiles && additionalFiles?.[0] && (
+            {hasAdditionalFiles && additionalFiles?.[0]?.files[0] && (
               <OakLessonInfoCard>
                 <OakCardHeader iconName="additional-material" tag="h1">
                   Files you will need for this lesson
                 </OakCardHeader>
-                <OakUL
-                  $display={"flex"}
-                  $flexDirection={"column"}
-                  $gap={"space-between-s"}
-                >
-                  {additionalFiles[0].files.length === 1 ? (
-                    <OakFlex $flexDirection={"column"}>
-                      <OakSpan>{additionalFiles[0].files[0]?.title}</OakSpan>
-                      <OakSpan>{`${byteSize(additionalFiles[0].files[0] ? additionalFiles[0].files[0].fileObject.bytes : 0)} (${additionalFiles[0].files[0]?.fileObject.format.toUpperCase()})`}</OakSpan>
-                    </OakFlex>
-                  ) : (
-                    additionalFiles[0].files.map((file, index) => (
-                      <OakLI key={index}>
-                        <OakFlex $flexDirection={"column"}>
-                          <OakSpan>{file.title}</OakSpan>
-                          <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
-                        </OakFlex>
-                      </OakLI>
-                    ))
-                  )}
-                </OakUL>
+                {additionalFiles[0].files.length === 1 ? (
+                  additionalFileSingle(additionalFiles[0].files[0])
+                ) : (
+                  <OakUL
+                    $display={"flex"}
+                    $flexDirection={"column"}
+                    $gap={"space-between-s"}
+                  >
+                    {additionalFiles[0].files.map((file, index) =>
+                      additionalFileListItem(file, index),
+                    )}
+                  </OakUL>
+                )}
                 <OakFlex $justifyContent={"flex-end"}>
                   <OakPrimaryInvertedButton
                     onClick={handleAdditionalFilesDownloadClicked}
@@ -331,3 +323,29 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     </OakLessonLayout>
   );
 };
+
+export function additionalFileListItem(
+  file: { title: string; fileObject: { bytes: number; format: string } },
+  index: number,
+) {
+  return (
+    <OakLI key={index}>
+      <OakFlex $flexDirection={"column"}>
+        <OakSpan>{file.title}</OakSpan>
+        <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
+      </OakFlex>
+    </OakLI>
+  );
+}
+
+export function additionalFileSingle(file: {
+  title: string;
+  fileObject: { bytes: number; format: string };
+}) {
+  return (
+    <OakFlex $flexDirection={"column"}>
+      <OakSpan>{file.title}</OakSpan>
+      <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
+    </OakFlex>
+  );
+}
