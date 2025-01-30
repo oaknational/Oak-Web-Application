@@ -1,3 +1,10 @@
+## [1.678.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.0...v1.678.1) (2025-01-30)
+
+
+### Bug Fixes
+
+* show legacy lessons for exam boards ([0ec6a79](https://github.com/oaknational/Oak-Web-Application/commit/0ec6a7919b52fa555322dc1d87c6270c8dfbb88d))
+
 # [1.678.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.677.1...v1.678.0) (2025-01-30)
 
 
