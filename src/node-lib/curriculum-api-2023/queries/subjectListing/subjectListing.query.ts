@@ -18,8 +18,8 @@ const subjectListingQuery =
     const modifiedSubjectUnits = applyGenericOverridesAndExceptions<
       SubjectListingQuery["subjectUnits"][number]
     >({
-      journey: "pupil",
-      queryName: "pupilSubjectListingQuery",
+      journey: "teacher",
+      queryName: "subjectListingQuery",
       browseData: subjectUnits,
     });
 
