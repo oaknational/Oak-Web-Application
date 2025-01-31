@@ -5,11 +5,19 @@ import {
   useOakPupil,
 } from "@oaknational/oak-pupil-client";
 
+import {
+  CoreProperties,
+  CurriculumTrackingProps,
+} from "./shareExperimentTypes";
+
+import useAnalytics from "@/context/Analytics/useAnalytics";
+
 export type UseTeacherNotesProps = {
   lessonPath?: string | null;
   sidKey: string | null;
   shareId: string | null;
   enabled: boolean;
+  curriculumTrackingProps: CurriculumTrackingProps;
 };
 
 export const useTeacherNotes = ({
@@ -17,9 +25,12 @@ export const useTeacherNotes = ({
   lessonPath,
   shareId,
   enabled,
+  curriculumTrackingProps,
 }: UseTeacherNotesProps) => {
   const { getTeacherNote, addTeacherNote, getTeacherNoteIsEditable } =
     useOakPupil();
+
+  const { track } = useAnalytics();
   const [teacherNote, setTeacherNote] = useState<TeacherNoteCamelCase | null>(
     null,
   );
@@ -27,6 +38,15 @@ export const useTeacherNotes = ({
 
   const [isEditable, setIsEditable] = useState(false);
   const [noteSaved, setNoteSaved] = useState(false);
+
+  const coreTrackingProps: CoreProperties = {
+    platform: "owa",
+    product: "teacher lesson resources",
+    engagementIntent: "advocate",
+    componentType: "page view",
+    eventVersion: "2.0.0",
+    analyticsUseCase: "Teacher",
+  };
 
   useEffect(() => {
     const fetchTeacherNote = async () => {
@@ -97,6 +117,15 @@ export const useTeacherNotes = ({
     const res = addTeacherNote({ teacherNote: t });
     setTeacherNote(t);
     setNoteSaved(true);
+    // No need to dedupe this event
+    track.teacherNoteSaved({
+      shareId: t.noteId,
+      linkUrl: window.location.href,
+      sourcePageSlug: lessonPath,
+      ...coreTrackingProps,
+      ...curriculumTrackingProps,
+      noteLengthChars: t.noteText.length,
+    });
     return res.promise;
   };
 
