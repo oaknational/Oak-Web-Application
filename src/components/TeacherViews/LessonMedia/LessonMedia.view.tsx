@@ -77,6 +77,10 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const { query } = router;
 
   // construct list of all clips in one array
+  const hasIntroCycle = Object.keys(mediaClips).includes("intro");
+  const introLessonOverview = hasIntroCycle
+    ? [{ lessonOutline: "Intro" }, ...lessonOutline]
+    : lessonOutline;
 
   const listOfAllClips = mediaClips
     ? Object.keys(mediaClips)
@@ -85,7 +89,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
             mediaClips[learningCycle]?.map((mediaClip: MediaClip) => {
               return {
                 ...mediaClip,
-                learningCycle: lessonOutline[index]?.lessonOutline ?? "",
+                learningCycle: introLessonOverview[index]?.lessonOutline ?? "",
               };
             }) || []
           );

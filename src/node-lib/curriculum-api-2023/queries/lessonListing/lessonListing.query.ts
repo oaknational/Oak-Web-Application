@@ -116,8 +116,8 @@ const lessonListingQuery =
     const modifiedLessons = applyGenericOverridesAndExceptions<
       LessonListingQuery["lessons"][number]
     >({
-      journey: "pupil",
-      queryName: "pupilLessonListingQuery",
+      journey: "teacher",
+      queryName: "lessonListingQuery",
       browseData: res.lessons,
     });
 
