@@ -54,6 +54,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     saveTeacherNote,
     shareUrl,
     error,
+    shareActivated,
   } = useLesson({
     lessonSlug,
     unitSlug,
@@ -114,6 +115,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             saveTeacherNote={saveTeacherNote}
             sharingUrl={shareUrl}
             error={error}
+            shareActivated={shareActivated}
           />
         )}
       </OakThemeProvider>
