@@ -25,7 +25,6 @@ const teacherPreviewLessonQuery =
     const res = await sdk.teachersPreviewLesson({
       lessonSlug,
     });
-    console.log(res, "<<< RES");
 
     if (res.content.length > 1) {
       const error = new OakError({
