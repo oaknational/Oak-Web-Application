@@ -1,10 +1,8 @@
 import { renderHook } from "@testing-library/react";
 
-import {
-  CurriculumTrackingProps,
-  useShareExperiment,
-} from "./useShareExperiment";
+import { useShareExperiment } from "./useShareExperiment";
 import { getShareIdKey, createAndStoreShareId } from "./createShareId";
+import { CurriculumTrackingProps } from "./shareExperimentTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
 
@@ -37,7 +35,9 @@ interface MockLocation {
 describe("useShareExperiments", () => {
   const curriculumTrackingProps: CurriculumTrackingProps = {
     lessonName: "lessonName",
+    lessonSlug: "lesson-slug",
     unitName: "unitName",
+    unitSlug: "unit-slug",
     subjectSlug: "subjectSlug",
     subjectTitle: "subjectTitle",
     keyStageSlug: "keyStageSlug",
@@ -65,8 +65,6 @@ describe("useShareExperiments", () => {
     // hook wrapper
     const { result } = renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -85,8 +83,6 @@ describe("useShareExperiments", () => {
     // hook wrapper
     const { result } = renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         shareBaseUrl: "http://localhost:3000/teachers/lessons/lesson-slug",
@@ -95,7 +91,7 @@ describe("useShareExperiments", () => {
       }),
     );
 
-    const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+    const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
     const { shareUrl, browserUrl } = result.current;
 
     expect(browserUrl).toBe(`http://localhost?${key}=xxxxxxxxxx&sm=0&src=1`);
@@ -110,8 +106,6 @@ describe("useShareExperiments", () => {
     // hook wrapper
     renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -126,13 +120,11 @@ describe("useShareExperiments", () => {
     const mockTrack = useAnalytics().track;
 
     // set the storage
-    createAndStoreShareId("lessonSlug_unitSlug_programmeSlug");
+    createAndStoreShareId("lesson-slug_unit-slug_programmeSlug");
 
     // hook wrapper
     renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -146,15 +138,13 @@ describe("useShareExperiments", () => {
   it("should call track shareConverted the url shareId is present and there is no storageId", () => {
     const mockTrack = useAnalytics().track;
 
-    const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+    const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
 
     window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
 
     // hook wrapper
     renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -168,18 +158,16 @@ describe("useShareExperiments", () => {
   it("should not call track shareConverted if the url shareId matches storageId ", () => {
     const mockTrack = useAnalytics().track;
 
-    const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+    const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
 
     // set the storage
-    createAndStoreShareId("lessonSlug_unitSlug_programmeSlug");
+    createAndStoreShareId("lesson-slug_unit-slug_programmeSlug");
 
     window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
 
     // hook wrapper
     renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -191,7 +179,7 @@ describe("useShareExperiments", () => {
   });
 
   it("should store the conversion shareId in a storage", () => {
-    const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+    const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
 
     window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
     const fn = jest.spyOn(Storage.prototype, "setItem");
@@ -199,8 +187,6 @@ describe("useShareExperiments", () => {
     // hook wrapper
     renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -214,7 +200,7 @@ describe("useShareExperiments", () => {
   it("should not send a conversion event if the conversion shareId is already present", () => {
     const mockTrack = useAnalytics().track;
 
-    const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+    const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
 
     window.location.search = `?${key}=xxxxxxxxxx&sm=0&src=1`;
 
@@ -224,8 +210,6 @@ describe("useShareExperiments", () => {
     // hook wrapper
     renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -241,8 +225,6 @@ describe("useShareExperiments", () => {
 
     const { result } = renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -258,14 +240,12 @@ describe("useShareExperiments", () => {
   it("doesn't send an activation event when shareActivated is called and the storage is already present", () => {
     const mockTrack = useAnalytics().track;
 
-    const key = getShareIdKey("lessonSlug_unitSlug_programmeSlug");
+    const key = getShareIdKey("lesson-slug_unit-slug_programmeSlug");
 
     localStorage.setItem(`av-${key}`, JSON.stringify(true));
 
     const { result } = renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         curriculumTrackingProps,
@@ -281,8 +261,6 @@ describe("useShareExperiments", () => {
   it("should not update browserUrl if overrideExistingShareId is null", () => {
     const { result } = renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         shareBaseUrl: "http://localhost:3000/teachers/lessons/lesson-slug",
@@ -297,8 +275,6 @@ describe("useShareExperiments", () => {
   it("should not update browserUrl if overrideExistingShareId is false and urlShareId is present", () => {
     const { result } = renderHook(() =>
       useShareExperiment({
-        lessonSlug: "lessonSlug",
-        unitSlug: "unitSlug",
         programmeSlug: "programmeSlug",
         source: "lesson-canonical",
         shareBaseUrl: "http://localhost:3000/teachers/lessons/lesson-slug",
