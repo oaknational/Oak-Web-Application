@@ -52,6 +52,13 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
+// mock navigator.clipboard
+Object.assign(navigator, {
+  clipboard: {
+    writeText: jest.fn(),
+  },
+});
+
 describe("TeacherNotesModal", () => {
   const useEditorMock = useEditor as jest.Mock;
   const mockTeacherNote: TeacherNoteCamelCase = {
@@ -432,5 +439,82 @@ describe("TeacherNotesModal", () => {
     });
 
     expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
+  });
+
+  it("calls shareActivated with the note length when the share button is clicked", async () => {
+    const mockSaveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+
+    const mockShareActivated = jest.fn();
+
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={mockSaveTeacherNote}
+        teacherNote={mockTeacherNote}
+        sharingUrl={"https://example.com"}
+        error={null}
+        shareActivated={mockShareActivated}
+      />,
+    );
+
+    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+      typeof OakTeacherNotesModal
+    >;
+
+    const modalProps = mockModal.mock.calls?.[0]?.[0];
+    if (!modalProps) {
+      throw new Error("No modal props found");
+    }
+
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValue(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValue("this content has changed");
+
+    modalProps.onShareClicked();
+
+    await waitFor(() => {
+      expect(mockShareActivated).toHaveBeenCalledWith(24);
+    });
+  });
+
+  it("copies the share url to clipboard when the share button is clicked", async () => {
+    const mockSaveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={mockSaveTeacherNote}
+        teacherNote={mockTeacherNote}
+        sharingUrl={"https://example.com"}
+        error={null}
+      />,
+    );
+
+    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+      typeof OakTeacherNotesModal
+    >;
+
+    const modalProps = mockModal.mock.calls?.[0]?.[0];
+    if (!modalProps) {
+      throw new Error("No modal props found");
+    }
+
+    modalProps.onShareClicked();
+
+    await waitFor(() => {
+      expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+        "https://example.com",
+      );
+    });
   });
 });
