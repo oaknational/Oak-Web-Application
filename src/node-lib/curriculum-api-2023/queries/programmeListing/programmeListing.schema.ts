@@ -36,6 +36,7 @@ export const programmeListingSchema = z.object({
   keyStageSlug: programmeFieldsSchema.shape.keystage_slug,
   subjectSlug: programmeFieldsSchema.shape.subject_slug,
   subjectTitle: programmeFieldsSchema.shape.subject,
+  pathwayTitle: programmeFieldsSchema.shape.pathway,
   programmes: z.array(programmeSchema),
 });
 

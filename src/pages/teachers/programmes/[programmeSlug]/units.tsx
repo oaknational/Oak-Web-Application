@@ -72,6 +72,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     hasNewContent,
     subjectCategories,
     yearGroups,
+    pathwayTitle,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -203,7 +204,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           ]}
           background={"lavender30"}
           subjectIconBackgroundColor={"lavender"}
-          title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
+          title={`${subjectTitle} ${examBoardTitle ? examBoardTitle + " " : ""}${pathwayTitle ?? ""}`}
           programmeFactor={toSentenceCase(keyStageTitle)}
           isNew={hasNewContent ?? false}
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
@@ -447,6 +448,14 @@ export const getStaticPaths = async () => {
   return config;
 };
 
+export const getLegacyProgrammeSlug = (
+  programmeSlug: string,
+  examBoardSlug: string | null,
+) =>
+  examBoardSlug && programmeSlug.endsWith(examBoardSlug)
+    ? programmeSlug.split(examBoardSlug).join("l")
+    : programmeSlug + "-l";
+
 export const getStaticProps: GetStaticProps<
   UnitListingPageProps,
   URLParams
@@ -459,6 +468,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context.params");
       }
       const { programmeSlug } = context.params;
+
       try {
         const curriculumData = await curriculumApi2023.unitListing({
           programmeSlug,
@@ -472,11 +482,13 @@ export const getStaticProps: GetStaticProps<
 
         // need to account for if it's already a legacy programme
         const isLegacy = isSlugLegacy(programmeSlug);
-
         const legacyCurriculumData = isLegacy
           ? null
           : await curriculumApi2023.unitListing({
-              programmeSlug: programmeSlug + "-l",
+              programmeSlug: getLegacyProgrammeSlug(
+                programmeSlug,
+                curriculumData.examBoardSlug,
+              ),
             });
 
         if (legacyCurriculumData) {

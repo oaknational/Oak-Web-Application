@@ -1,7 +1,7 @@
 import { getCommonPathway } from "../helpers/lessonHelpers/lesson.helpers";
 
+import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { SpecialistLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.schema";
-import { MediaClipsList } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
 export type { LessonBase } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -60,7 +60,7 @@ export const getPathway = (lesson: LessonOverviewAll) => {
 export type LessonOverviewCanonical = LessonBase & {
   isCanonical: true;
   pathways: LessonPathway[];
-  lessonMediaClips: MediaClipsList | null;
+  lessonMediaClips?: MediaClipListCamelCase | null;
 };
 
 export type LessonOverviewInPathway = LessonBase & {
@@ -73,7 +73,7 @@ export type LessonOverviewInPathway = LessonBase & {
   unitSlug: string;
   programmeSlug: string;
   updatedAt: string;
-  lessonMediaClips: MediaClipsList | null;
+  lessonMediaClips?: MediaClipListCamelCase | null;
 };
 
 export type LessonOverviewAll = { isSpecialist: boolean } & (
