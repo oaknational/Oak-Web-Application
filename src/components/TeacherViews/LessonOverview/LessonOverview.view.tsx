@@ -397,7 +397,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
                         lessonOutline={lessonOutline}
-                        isPELesson={actions.displayPETitle}
+                        isPELesson={actions?.displayPETitle}
                       />
                     </LessonItemContainer>
                   )}
@@ -424,7 +424,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
                     hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
-                    displayVocab={actions.displayVocabButton}
+                    displayVocab={actions?.displayVocabButton}
                     updatedAt={updatedAt}
                     additionalFiles={additionalFiles}
                   />

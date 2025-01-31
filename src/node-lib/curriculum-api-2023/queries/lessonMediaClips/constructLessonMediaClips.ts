@@ -13,6 +13,7 @@ export const constructLessonMediaData = (
     keyStageTitle: browseData.programmeFields.keystageDescription,
     mediaClips: browseData.lessonData.mediaClips,
     lessonOutline: browseData.lessonData.lessonOutline ?? null,
+    actions: browseData.actions ?? null,
   };
 
   if (pathways) {
