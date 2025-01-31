@@ -51,12 +51,13 @@ export type LessonDownloadSignInButtonsProps = {
 };
 
 /**
- * Two buttons that allow the user to choose to sign in to download:
- * - Sign in to download or continue onboarding to download
- * - Download without signing in
+ * Buttons to choose to sign in or download without signing in
+ * - Logged out: Download & sign in and Download without signing in buttons
+ * - Logged in: No buttons
+ * - Logged in but not onboarded: only Download button which redirects to onboarding
  */
 export default function LessonDownloadSignInButtons(
-  props: LessonDownloadSignInButtonsProps,
+  props: Readonly<LessonDownloadSignInButtonsProps>,
 ) {
   const { onDownloadWithoutSignInClick } = props;
   const router = useRouter();
@@ -73,7 +74,7 @@ export default function LessonDownloadSignInButtons(
       $mt={"space-between-xl"}
       $flexDirection={["column", "row"]}
     >
-      {showOnboardButton ? (
+      {showOnboardButton && (
         <LessonDownloadOnboardButton
           onClick={() =>
             router.push({
@@ -82,7 +83,8 @@ export default function LessonDownloadSignInButtons(
             })
           }
         />
-      ) : showSignInButton ? (
+      )}
+      {showSignInButton && (
         <>
           <LessonDownloadSignInButton
             redirectUrl={`/onboarding?returnTo=${router.asPath}`}
@@ -91,7 +93,7 @@ export default function LessonDownloadSignInButtons(
             onClick={onDownloadWithoutSignInClick}
           />
         </>
-      ) : null}
+      )}
     </OakFlex>
   );
 }
