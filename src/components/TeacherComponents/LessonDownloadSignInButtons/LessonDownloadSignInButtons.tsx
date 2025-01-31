@@ -15,8 +15,13 @@ const LessonDownloadOnboardButton = ({
 }: {
   onClick: () => Promise<boolean>;
 }) => (
-  <OakPrimaryButton width="fit-content" onClick={onClick}>
-    Complete sign up to download
+  <OakPrimaryButton
+    width="fit-content"
+    onClick={onClick}
+    iconName="download"
+    isTrailingIcon
+  >
+    Download .zip
   </OakPrimaryButton>
 );
 
@@ -78,13 +83,15 @@ export default function LessonDownloadSignInButtons(
           }
         />
       ) : showSignInButton ? (
-        <LessonDownloadSignInButton
-          redirectUrl={`/onboarding?returnTo=${router.asPath}`}
-        />
+        <>
+          <LessonDownloadSignInButton
+            redirectUrl={`/onboarding?returnTo=${router.asPath}`}
+          />
+          <LessonDownloadWithoutSignInButton
+            onClick={onDownloadWithoutSignInClick}
+          />
+        </>
       ) : null}
-      <LessonDownloadWithoutSignInButton
-        onClick={onDownloadWithoutSignInClick}
-      />
     </OakFlex>
   );
 }
