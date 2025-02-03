@@ -43,7 +43,7 @@
     "storybook:static-serve": "storybook build --quiet && http-server ./storybook-static --port=6006",
     "test": "jest --watch --collectCoverage=false",
     "test:coverage": "jest --watch",
-    "test:ci": "jest",
+    "test:ci": "jest -c ./jest.components.config.js ./src/components",
     "test:pages": "jest -c ./jest.pages.config.js ./src/__tests__",
     "test:components": "jest -c ./jest.components.config.js ./src/components",
     "test:storybook": "jest --config=jest.storybook.config.js",
