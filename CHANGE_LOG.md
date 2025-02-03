@@ -1,3 +1,34 @@
+## [1.680.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.1...v1.680.2) (2025-02-03)
+
+
+### Bug Fixes
+
+* added in hack for ks4Options issues in previous work ([fee2e09](https://github.com/oaknational/Oak-Web-Application/commit/fee2e093f11c024484fe38269492fb0d3e9c1867))
+* replace createProgrammeSlug with createTeacherProgrammeSlug ([f65210d](https://github.com/oaknational/Oak-Web-Application/commit/f65210d168919d09e177932b618a5f97fc707d73))
+
+## [1.680.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.0...v1.680.1) (2025-02-03)
+
+
+### Bug Fixes
+
+* reorg component in wrong place ([9e9b2b9](https://github.com/oaknational/Oak-Web-Application/commit/9e9b2b9c78bf2046433baf269fb427123800a1eb))
+
+# [1.680.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.679.0...v1.680.0) (2025-02-03)
+
+
+### Bug Fixes
+
+* bump oak-components and update snapshots ([423c84d](https://github.com/oaknational/Oak-Web-Application/commit/423c84d73a90176f4b9e3c66e326a66a1f05de6f))
+* deprecate styled svg instances ([e7d9a71](https://github.com/oaknational/Oak-Web-Application/commit/e7d9a71700078c03fe683496cfd3705366d49dcb))
+* fix underline color ([7ffc425](https://github.com/oaknational/Oak-Web-Application/commit/7ffc425471ef6b46e2f71777999acf8b4c83eccc))
+* remove unused components ([0dbee53](https://github.com/oaknational/Oak-Web-Application/commit/0dbee53c71b66a490b4e1fac5a9eb041101b8adb))
+* revert back to svg where there are theme related type errors ([8244cd8](https://github.com/oaknational/Oak-Web-Application/commit/8244cd8256c51e01b31b63e4969b13e3fe957a6f))
+
+
+### Features
+
+* bump oak-components version ([ef6b32a](https://github.com/oaknational/Oak-Web-Application/commit/ef6b32a1eb259db1c5744cff002bf87b9a6497d3))
+
 # [1.679.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.4...v1.679.0) (2025-01-31)
 
 
