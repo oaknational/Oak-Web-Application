@@ -1,5 +1,4 @@
-import { isVisibleUnit } from "./isVisibleUnit";
-import { YearSelection } from "./types";
+import { isVisibleUnit, PartialFilters } from "./isVisibleUnit";
 
 import { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
 
@@ -14,14 +13,6 @@ const baseUnit = {
   subject_slug: "biology",
   subject_parent: "Science",
   subject_parent_slug: "science",
-  subjectcategories: [
-    {
-      id: 1,
-      title: "Biology",
-    },
-  ],
-  tier: "Foundation",
-  tier_slug: "foundation",
   title: "Biological molecules and enzymes",
 
   cycle: "1",
@@ -33,7 +24,16 @@ const baseUnit = {
 
 describe("isVisibleUnit", () => {
   it("empty", () => {
-    expect(isVisibleUnit({}, "7", baseUnit)).toEqual(false);
+    expect(
+      isVisibleUnit(
+        {
+          years: ["10"],
+          threads: [],
+        },
+        "7",
+        baseUnit,
+      ),
+    ).toEqual(false);
   });
 
   it("matches subject", () => {
@@ -44,25 +44,19 @@ describe("isVisibleUnit", () => {
       tier_slug: null,
     } as CombinedCurriculumData["units"][number];
 
-    const yearSelection: YearSelection = {
-      "10": {
-        subjectCategory: null,
-        subject: {
-          subject_slug: "biology",
-          subject: "Biology",
-        },
-        domain: null,
-        tier: null,
-      },
+    const filters: PartialFilters = {
+      subjectCategories: [],
+      childSubjects: ["biology"],
+      tiers: ["foundation"],
+      years: ["10"],
+      threads: [],
     };
-    expect(isVisibleUnit(yearSelection, "10", unit)).toEqual(true);
+    expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
   });
 
-  it("matches subject & subject category", () => {
+  it("matches subject category", () => {
     const unit = {
       ...baseUnit,
-      tier: null,
-      tier_slug: null,
       subjectcategories: [
         {
           id: 1,
@@ -71,24 +65,17 @@ describe("isVisibleUnit", () => {
       ],
     };
 
-    const yearSelection = {
-      "10": {
-        subjectCategory: {
-          id: 1,
-          title: "Biology",
-        },
-        subject: {
-          subject_slug: "biology",
-          subject: "Biology",
-        },
-        domain: null,
-        tier: null,
-      },
+    const filters: PartialFilters = {
+      subjectCategories: ["1"],
+      childSubjects: [],
+      tiers: [],
+      years: ["10"],
+      threads: [],
     };
-    expect(isVisibleUnit(yearSelection, "10", unit)).toEqual(true);
+    expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
   });
 
-  it("matches subject, subject category & tier", () => {
+  it("matches subject category & tier", () => {
     const unit = {
       ...baseUnit,
       subjectcategories: [
@@ -101,23 +88,13 @@ describe("isVisibleUnit", () => {
       tier_slug: "foundation",
     };
 
-    const yearSelection = {
-      "10": {
-        subjectCategory: {
-          id: 1,
-          title: "Biology",
-        },
-        subject: {
-          subject_slug: "biology",
-          subject: "Biology",
-        },
-        domain: null,
-        tier: {
-          tier: "Foundation",
-          tier_slug: "foundation",
-        },
-      },
+    const filters: PartialFilters = {
+      subjectCategories: ["1"],
+      childSubjects: [],
+      tiers: ["foundation"],
+      years: ["10"],
+      threads: [],
     };
-    expect(isVisibleUnit(yearSelection, "10", unit)).toEqual(true);
+    expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
   });
 });

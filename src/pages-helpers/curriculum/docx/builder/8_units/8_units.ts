@@ -126,6 +126,8 @@ export default async function generate(
   const yearXml: string[] = [];
   const groupedUnits = generateGroupedUnits(formattedData);
 
+  console.log("groupedUnits[0].units=", groupedUnits[0]?.units);
+
   for (const { units, year, childSubject, tier, pathway } of groupedUnits) {
     yearXml.push(
       await buildYear(

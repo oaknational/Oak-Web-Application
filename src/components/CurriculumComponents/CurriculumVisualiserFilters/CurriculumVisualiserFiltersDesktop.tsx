@@ -29,6 +29,7 @@ function getFilterData(
   const tiers = new Map<string, Tier>();
   years.forEach((year) => {
     const obj = yearData[year]!;
+    console.log(">>>> HERE", obj, Object.keys(yearData));
     obj.childSubjects.forEach((childSubject) =>
       childSubjects.set(childSubject.subject_slug, childSubject),
     );
@@ -62,6 +63,8 @@ export default function CurriculumVisualiserFiltersDesktop({
     filters.years,
   );
 
+  console.log({ childSubjects, subjectCategories, tiers });
+
   function isSelectedThread(thread: Thread) {
     return filters.threads.includes(thread.slug);
   }
@@ -79,7 +82,7 @@ export default function CurriculumVisualiserFiltersDesktop({
       <SkipLink href="#content">Skip to units</SkipLink>
       <OakHeading tag="h3">Filter and highlight</OakHeading>
 
-      <Fieldset>
+      <Fieldset data-testid="years">
         <FieldsetLegend $font={"heading-7"} $mb="space-between-xs">
           Year group
         </FieldsetLegend>
@@ -130,7 +133,7 @@ export default function CurriculumVisualiserFiltersDesktop({
       )}
 
       {tiers.length > 0 && (
-        <Fieldset>
+        <Fieldset data-testid="tiers">
           <FieldsetLegend $font={"heading-7"} $mb="space-between-xs">
             Learning tier (KS4)
           </FieldsetLegend>
