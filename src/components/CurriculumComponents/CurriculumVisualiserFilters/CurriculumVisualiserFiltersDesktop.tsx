@@ -135,8 +135,6 @@ export default function CurriculumVisualiserFiltersDesktop({
 
       {subjectCategories.length > 0 && (
         <>
-          <Hr thickness={2} $color={"grey40"} $mt={30} $mb={40} />
-
           <OakHeading
             id="subject-categories-label"
             tag="h4"
@@ -170,7 +168,6 @@ export default function CurriculumVisualiserFiltersDesktop({
 
       {childSubjects.length > 0 && (
         <>
-          <Hr thickness={2} $color={"grey40"} $mt={30} $mb={40} />
           <OakHeading
             id="child-subjects-label"
             tag="h4"
@@ -202,7 +199,6 @@ export default function CurriculumVisualiserFiltersDesktop({
 
       {tiers.length > 0 && (
         <>
-          <Hr thickness={2} $color={"grey40"} $mt={30} $mb={40} />
           <OakHeading
             id="tiers-label"
             tag="h4"
@@ -230,8 +226,6 @@ export default function CurriculumVisualiserFiltersDesktop({
           </OakRadioGroup>
         </>
       )}
-
-      <Hr thickness={2} $color={"grey40"} $mt={30} $mb={40} />
 
       <Fieldset data-testid={"threads-filter-desktop"}>
         <FieldsetLegend $font={"heading-6"} $mt="space-between-m2">
