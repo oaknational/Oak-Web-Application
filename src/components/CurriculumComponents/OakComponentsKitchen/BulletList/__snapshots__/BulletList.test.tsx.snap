@@ -1,4 +1,43 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BulletList > render 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-eldPxv dzjDLT bfvuFR"
+    >
+      one
+    </div>
+    <div
+      aria-hidden="true"
+      class="sc-fqkvVR sc-eldPxv dzjDLT bfvuFR"
+    >
+      •
+    </div>
+    <div
+      class="sc-fqkvVR sc-eldPxv dzjDLT bfvuFR"
+    >
+      two
+    </div>
+    <div
+      aria-hidden="true"
+      class="sc-fqkvVR sc-eldPxv dzjDLT bfvuFR"
+    >
+      •
+    </div>
+    <div
+      class="sc-fqkvVR sc-eldPxv dzjDLT bfvuFR"
+    >
+      three
+    </div>
+    <div
+      class="sc-fqkvVR sc-eldPxv dzjDLT bfvuFR"
+    >
+      single
+    </div>
+  </div>
+</body>
+`;
 
 exports[`BulletList render 1`] = `
 <body>

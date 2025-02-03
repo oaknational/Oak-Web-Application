@@ -6,7 +6,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const width = 100;
 const height = 100;
-const observeSpy = jest.fn();
+const observeSpy = vi.fn();
 window.ResizeObserver = class MockedResizeObserver {
   constructor(cb: ResizeObserverCallback) {
     setTimeout(() => {
@@ -25,13 +25,13 @@ window.ResizeObserver = class MockedResizeObserver {
   }
   // Attaching spy to "observe" function.
   observe = observeSpy;
-  unobserve = jest.fn();
-  disconnect = jest.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
 };
 
 describe("SizeMonitor", () => {
   beforeEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
   test("render", () => {
     const { baseElement } = renderWithTheme(
@@ -42,10 +42,7 @@ describe("SizeMonitor", () => {
   });
 
   test("resize", async () => {
-    const spy = jest.spyOn(
-      window.HTMLElement.prototype,
-      "getBoundingClientRect",
-    );
+    const spy = vi.spyOn(window.HTMLElement.prototype, "getBoundingClientRect");
     spy.mockImplementation(
       () =>
         ({
@@ -58,7 +55,7 @@ describe("SizeMonitor", () => {
         }) as DOMRect,
     );
 
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { getByTestId } = renderWithTheme(
       <SizeMonitor onChange={onChange}>
         <div style={{ width, height }}>testing</div>

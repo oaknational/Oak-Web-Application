@@ -1,3 +1,4 @@
+import { MockInstance, vi } from "vitest";
 import {
   createEvent,
   fireEvent,
@@ -14,7 +15,7 @@ import {
   useNavigateToSection,
 } from "./lessonNavigation";
 
-jest.mock("next/router", () => jest.requireActual("next-router-mock"));
+vi.mock("next/router", async () => await vi.importActual("next-router-mock"));
 
 mockRouter.useParser(
   createDynamicRouteParser(["/pupils/lessons/[lessonSlug]/[section]"]),
@@ -22,12 +23,12 @@ mockRouter.useParser(
 mockRouter.push("/pupils/lessons/slug-ccuk0d/overview");
 
 describe(useNavigateToSection, () => {
-  let pushStateSpy: jest.SpyInstance;
-  let replaceStateSpy: jest.SpyInstance;
+  let pushStateSpy: MockInstance;
+  let replaceStateSpy: MockInstance;
 
   beforeEach(() => {
-    pushStateSpy = jest.spyOn(window.history, "pushState");
-    replaceStateSpy = jest.spyOn(window.history, "replaceState");
+    pushStateSpy = vi.spyOn(window.history, "pushState");
+    replaceStateSpy = vi.spyOn(window.history, "replaceState");
   });
 
   afterEach(() => {
@@ -73,13 +74,13 @@ describe(useGetSectionLinkProps, () => {
   });
 
   it("calls the callback with the section when onClick is called", () => {
-    const callback = jest.fn();
+    const callback = vi.fn();
     const { result } = renderHook(() => useGetSectionLinkProps());
     const { getByRole } = render(
       <a {...result.current("video", callback)}>Video</a>,
     );
     const event = createEvent.click(getByRole("link"));
-    jest.spyOn(event, "preventDefault");
+    vi.spyOn(event, "preventDefault");
 
     act(() => {
       fireEvent(getByRole("link"), event);
@@ -92,7 +93,7 @@ describe(useGetSectionLinkProps, () => {
 
 describe(useLessonPopStateHandler, () => {
   it("calls the callback with the section when the popstate event is fired", () => {
-    const callback = jest.fn();
+    const callback = vi.fn();
     renderHook(() => useLessonPopStateHandler(callback));
 
     fireEvent(
@@ -106,7 +107,7 @@ describe(useLessonPopStateHandler, () => {
   });
 
   it('defaults to the "overview" section when the popstate event has no state', () => {
-    const callback = jest.fn();
+    const callback = vi.fn();
     renderHook(() => useLessonPopStateHandler(callback));
 
     fireEvent(window, new window.PopStateEvent("popstate"));

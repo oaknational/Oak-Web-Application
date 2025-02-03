@@ -8,7 +8,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockPrerelease } from "@/utils/mocks";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 
-jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+vi.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
   default: () => ({
     isMobile: false,
@@ -19,7 +19,7 @@ const render = renderWithProviders();
 
 describe("Component - Curriculum Header", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   const renderComponent = (overrides = {}) => {
     const defaultProps = {

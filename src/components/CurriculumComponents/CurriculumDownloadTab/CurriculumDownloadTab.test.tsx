@@ -39,7 +39,7 @@ const childSubjectsMock = [
 
 describe("Component - Curriculum Download Tab", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   const renderComponent = (overrides = {}) => {
@@ -196,12 +196,12 @@ describe("Downloads tab: unit tests", () => {
 
 describe("trackCurriculumDownload", () => {
   const mockTrack = {
-    curriculumResourcesDownloadedCurriculumDocument: jest.fn(),
+    curriculumResourcesDownloadedCurriculumDocument: vi.fn(),
   } as unknown as TrackFns;
-  const mockOnHubspotSubmit = jest.fn().mockResolvedValue("mockResponse");
+  const mockOnHubspotSubmit = vi.fn().mockResolvedValue("mockResponse");
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("calls onHubspotSubmit and track.curriculumResourcesDownloadedCurriculumDocument with correct parameters", async () => {

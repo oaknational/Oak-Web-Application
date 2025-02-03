@@ -22,7 +22,7 @@ const programme: ProgrammeListingPageData["programmes"][number] = {
 
 describe("ProgrammeListItem", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("renders SubjectProgrammeListItem", () => {
@@ -34,7 +34,7 @@ describe("ProgrammeListItem", () => {
   });
 
   it("calls tracking.browseRefined once, with correct props", async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
 
     renderWithTheme(
       <SubjectProgrammeListItem onClick={onClick} programme={programme} />,

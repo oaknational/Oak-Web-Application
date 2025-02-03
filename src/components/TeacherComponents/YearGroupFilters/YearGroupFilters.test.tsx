@@ -6,20 +6,20 @@ import YearGroupFilters from "./YearGroupFilters";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const browseRefined = jest.fn();
-jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
+const browseRefined = vi.fn();
+vi.mock("next/router", () => ({
+  useRouter: vi.fn(),
 }));
 
 describe("YearGroupFilters", () => {
   const mockRouter = {
     query: {},
-    replace: jest.fn(),
+    replace: vi.fn(),
 
     pathname: "/test-path",
   };
   beforeEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
   });
 
@@ -115,7 +115,7 @@ describe("YearGroupFilters", () => {
   });
 
   it("on mobile, passed in setYear function invoked with selected input", () => {
-    const mockSetYear = jest.fn();
+    const mockSetYear = vi.fn();
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <YearGroupFilters

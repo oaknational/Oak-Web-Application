@@ -1,19 +1,22 @@
-import fetchMock from "jest-fetch-mock";
+import { vi } from "vitest";
+import createFetchMock from "vitest-fetch-mock";
 
 import { onboardUser } from "./onboardUser";
 
 import OakError from "@/errors/OakError";
 
+const fetchMocker = createFetchMock(vi);
+
 describe(onboardUser, () => {
   beforeAll(() => {
-    fetchMock.enableMocks();
+    fetchMocker.enableMocks();
     fetchMock.doMock(
       JSON.stringify({ owa: { isOnboarded: true, isTeacher: true } }),
     );
   });
 
   afterAll(() => {
-    fetchMock.disableMocks();
+    fetchMocker.disableMocks();
   });
 
   it("makes a request to mark the user as onboarded", async () => {

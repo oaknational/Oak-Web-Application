@@ -189,8 +189,8 @@ describe("BrowseExamboardSelector", () => {
     });
   });
   it("should fire the onClick callback when a factor link is clicked", () => {
-    const onClick = jest.fn();
-    const onClickCallback = jest.fn();
+    const onClick = vi.fn();
+    const onClickCallback = vi.fn();
 
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -222,7 +222,7 @@ describe("BrowseExamboardSelector", () => {
     expect(onClickCallback).toHaveBeenCalled();
   });
   it("should fire the onClick callback when a factor button is clicked", () => {
-    const onClickCallback = jest.fn();
+    const onClickCallback = vi.fn();
 
     const { getByText } = render(
       <OakThemeProvider theme={oakDefaultTheme}>

@@ -9,7 +9,7 @@ import optionalityProps from "@/node-lib/curriculum-api-2023/fixtures/optionalit
 import UnitList from "@/components/TeacherComponents/UnitList/UnitList";
 import { mockPaginationProps } from "@/__tests__/__helpers__/mockPaginationProps";
 
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 const render = (children: React.ReactNode) =>
   renderWithProviders()(

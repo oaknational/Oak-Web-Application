@@ -1,20 +1,18 @@
+import mockRouter from "next-router-mock";
+
 import LayoutPreviewControls from "./LayoutPreviewControls";
 
 import { ToastProvider } from "@/context/Toast";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
-
 describe("LayoutPreviewControls", () => {
   beforeEach(() => {
-    jest.resetAllMocks();
-    jest.clearAllMocks();
+    mockRouter.setCurrentUrl("/");
   });
 
   it("renders a link to exit preview mode including the current URL", () => {
-    useRouter.mockReturnValue({
-      asPath: "/blog/some-blog-post",
+    mockRouter.push({
+      pathname: "/blog/some-blog-post",
       query: {},
     });
 

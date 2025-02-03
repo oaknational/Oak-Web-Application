@@ -7,11 +7,11 @@ import CurriculumVisualiser from "./CurriculumVisualiser";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
-const curriculumThreadHighlighted = jest.fn();
-const yearGroupSelected = jest.fn();
-const unitInformationViewed = jest.fn();
+const curriculumThreadHighlighted = vi.fn();
+const yearGroupSelected = vi.fn();
+const unitInformationViewed = vi.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -25,15 +25,15 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 const curriculumVisualiserFixture = {
-  updateMobileHeaderScroll: jest.fn(() => {}),
-  handleSelectThread: jest.fn(() => {}),
-  handleSelectTier: jest.fn(() => {}),
-  handleSelectSubjectCategory: jest.fn(() => {}),
-  handleSelectSubject: jest.fn(() => {}),
-  isSelectedThread: jest.fn(() => true),
-  setUnitData: jest.fn(() => {}),
-  highlightedUnitCount: jest.fn(() => 1),
-  trackSelectYear: jest.fn(() => {}),
+  updateMobileHeaderScroll: vi.fn(() => {}),
+  handleSelectThread: vi.fn(() => {}),
+  handleSelectTier: vi.fn(() => {}),
+  handleSelectSubjectCategory: vi.fn(() => {}),
+  handleSelectSubject: vi.fn(() => {}),
+  isSelectedThread: vi.fn(() => true),
+  setUnitData: vi.fn(() => {}),
+  highlightedUnitCount: vi.fn(() => 1),
+  trackSelectYear: vi.fn(() => {}),
   unitData: null,
   yearSelection: {
     "7": {
@@ -138,19 +138,19 @@ const curriculumVisualiserFixture = {
     },
   },
   selectedThread: null,
-  setVisibleMobileYearRefID: jest.fn(() => {}),
+  setVisibleMobileYearRefID: vi.fn(() => {}),
 };
 
 describe("visualiser", () => {
   beforeEach(() => {
-    const mockIntersectionObserver = jest.fn();
+    const mockIntersectionObserver = vi.fn();
     mockIntersectionObserver.mockReturnValue({
       observe: () => null,
       unobserve: () => null,
       disconnect: () => null,
     });
     window.IntersectionObserver = mockIntersectionObserver;
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   const resizeWindow = (x: number, y: number) => {

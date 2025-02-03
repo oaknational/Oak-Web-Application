@@ -6,7 +6,7 @@ describe("generateUrl", () => {
   const originalState = { url: originalUrl };
 
   beforeEach(() => {
-    jest.spyOn(window.history, "state", "get").mockReturnValue(originalState);
+    vi.spyOn(window.history, "state", "get").mockReturnValue(originalState);
 
     Object.defineProperty(window, "location", {
       configurable: true,
@@ -15,7 +15,7 @@ describe("generateUrl", () => {
   });
 
   afterEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('should generate URL with learning-theme when yearGroupSlug or categorySlug is provided and theme.slug is not "all"', () => {

@@ -8,25 +8,27 @@ import OakError from "@/errors/OakError";
 
 const reportError = errorReporter("SchoolPicker");
 
-export const fetcher = (queryUrl: string) =>
-  fetch(queryUrl).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      const error = new OakError({
-        code: "school-picker/fetch-suggestions",
-        meta: {
-          status: res.status,
-          statusText: res.statusText,
-          queryUrl,
-          json: res.json,
-        },
-      });
+export const fetcher = async (queryUrl: string) => {
+  const res = await fetch(queryUrl);
+  if (res.ok) {
+    return res.json();
+  } else {
+    // bug here
+    const json = await res.json();
+    const error = new OakError({
+      code: "school-picker/fetch-suggestions",
+      meta: {
+        status: res.status,
+        statusText: res.statusText,
+        queryUrl,
+        json,
+      },
+    });
 
-      reportError(error);
-      throw error;
-    }
-  });
+    reportError(error);
+    throw error;
+  }
+};
 
 export const HOMESCHOOL_URN = "homeschool";
 

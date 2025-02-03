@@ -23,7 +23,7 @@ describe("UpcomingWebinarWall", () => {
     expect(heading).toHaveTextContent("Register to view");
   });
   test("clicking button (link) calls onClick()", async () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { getByRole } = renderWithTheme(
       <UpcomingWebinarWall {...props} buttonOnClick={onClick} />,
     );
@@ -35,7 +35,7 @@ describe("UpcomingWebinarWall", () => {
   });
   test("button (link) has a11y name with enough context", async () => {
     // visible label is just "Register", which on its own lacks context
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     const { getByRole } = renderWithTheme(
       <UpcomingWebinarWall {...props} buttonOnClick={onClick} />,
     );

@@ -8,12 +8,12 @@ const render = renderWithProviders();
 
 describe("Component - subject phase picker", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("onWrapEnd", async () => {
-    const onWrapStart = jest.fn();
-    const onWrapEnd = jest.fn();
+    const onWrapStart = vi.fn();
+    const onWrapEnd = vi.fn();
     const { getByTestId } = render(
       <FocusWrap onWrapStart={onWrapStart} onWrapEnd={onWrapEnd}>
         <button data-testid="first">one</button>
@@ -42,8 +42,8 @@ describe("Component - subject phase picker", () => {
   });
 
   test("onWrapStart", async () => {
-    const onWrapStart = jest.fn();
-    const onWrapEnd = jest.fn();
+    const onWrapStart = vi.fn();
+    const onWrapEnd = vi.fn();
     const { getByTestId } = render(
       <FocusWrap onWrapStart={onWrapStart} onWrapEnd={onWrapEnd}>
         <button data-testid="first">one</button>

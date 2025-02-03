@@ -1,7 +1,8 @@
 import { screen, waitFor } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
-import fetchMock from "jest-fetch-mock";
+import createFetchMock from "vitest-fetch-mock";
+import { vi } from "vitest";
 
 import HowCanOakSupport, { oakSupportMap } from "./HowCanOakSupport.view";
 
@@ -11,9 +12,8 @@ import renderWithProviders, {
 import { encodeOnboardingDataQueryParam } from "@/components/TeacherComponents/OnboardingForm/onboardingDataQueryParam";
 import { OnboardingFormProps } from "@/components/TeacherComponents/OnboardingForm/OnboardingForm.schema";
 
-jest.mock("next/router", () => require("next-router-mock"));
-
-fetchMock.enableMocks();
+const fetchMocker = createFetchMock(vi);
+fetchMocker.enableMocks();
 
 describe("HowCanOakSupport", () => {
   beforeEach(() => {

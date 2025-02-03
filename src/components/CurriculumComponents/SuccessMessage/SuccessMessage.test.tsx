@@ -28,7 +28,7 @@ describe("SuccessMessage", () => {
   });
 
   test("component renders fires button click", async () => {
-    const mockFn = jest.fn();
+    const mockFn = vi.fn();
     const { baseElement } = renderWithTheme(
       <SuccessMessage
         title="Success"

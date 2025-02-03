@@ -24,12 +24,12 @@ import { invariant } from "@/utils/invariant";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const usePupilAnalyticsMock = {
-  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
-  identify: jest.fn(),
+  track: Object.fromEntries(trackingEvents.map((event) => [event, vi.fn()])),
+  identify: vi.fn(),
   posthogDistinctId: "123",
 };
 
-jest.mock(
+vi.mock(
   "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
   () => {
     return {
@@ -592,14 +592,14 @@ describe("QuizEngineContext", () => {
 
 describe("useQuizEngineContext", () => {
   it("throws an error when there is no context", () => {
-    jest.spyOn(console, "error").mockImplementation(() => jest.fn()); // suppress console.error
+    vi.spyOn(console, "error").mockImplementation(() => vi.fn()); // suppress console.error
     expect(() => renderHook(() => useQuizEngineContext())).toThrow(
       "`QuizEngineProvider` is not available",
     );
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 });
 

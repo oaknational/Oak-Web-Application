@@ -1,12 +1,15 @@
+import { vi } from "vitest";
+import type { Mock } from "vitest";
+
 import { createLessonDownloadLink } from "./createDownloadLink";
 import downloadLessonResources from "./downloadLessonResources";
 
 import type { ResourcesToDownloadArrayType } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
-jest.mock("./createDownloadLink", () => ({
-  createLessonDownloadLink: jest.fn(),
+vi.mock("./createDownloadLink", () => ({
+  createLessonDownloadLink: vi.fn(),
 }));
-jest.mock("./createAndClickHiddenDownloadLink");
+vi.mock("./createAndClickHiddenDownloadLink");
 
 const data = {
   url: "downloadUrl",
@@ -27,11 +30,11 @@ const resourcesToDownload: ResourcesToDownloadArrayType = [
 
 describe("downloadLessonResources", () => {
   beforeEach(() => {
-    global.fetch = jest.fn(() => Promise.resolve(successResponse)) as jest.Mock;
+    global.fetch = vi.fn(() => Promise.resolve(successResponse)) as Mock;
   });
 
   it("should return when no resource types are passed", async () => {
-    console.log = jest.fn();
+    console.log = vi.fn();
     await downloadLessonResources("lesson-slug", [], true);
 
     expect(console.log).toHaveBeenCalledWith("no resources to download");

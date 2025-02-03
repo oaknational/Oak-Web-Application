@@ -8,12 +8,12 @@ const schoolData: OnboardingFormProps = {
   newsletterSignUp: false,
   school: "Grange Hill",
   schoolName: "Grange Hill",
-  onSubmit: jest.fn(),
+  onSubmit: vi.fn(),
 };
 const worksInSchoolData: OnboardingFormProps = {
   newsletterSignUp: true,
   worksInSchool: true,
-  onSubmit: jest.fn(),
+  onSubmit: vi.fn(),
 };
 
 describe(encodeOnboardingDataQueryParam, () => {

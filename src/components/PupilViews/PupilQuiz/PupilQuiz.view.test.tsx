@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import "@testing-library/jest-dom";
 import {
@@ -32,12 +33,12 @@ import * as QuizEngineProvider from "@/components/PupilComponents/QuizEngineProv
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const usePupilAnalyticsMock = {
-  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
-  identify: jest.fn(),
+  track: Object.fromEntries(trackingEvents.map((event) => [event, vi.fn()])),
+  identify: vi.fn(),
   posthogDistinctId: "123",
 };
 
-jest.mock(
+vi.mock(
   "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
   () => {
     return {
@@ -47,24 +48,24 @@ jest.mock(
 );
 
 const useGetQuizTrackingDataMock = {
-  getQuizTrackingData: jest.fn(),
+  getQuizTrackingData: vi.fn(),
 };
 
-jest.mock("@/hooks/useGetQuizTrackingData", () => {
+vi.mock("@/hooks/useGetQuizTrackingData", () => {
   return {
     useGetQuizTrackingData: () => useGetQuizTrackingDataMock,
   };
 });
 
 // Mock the module and retain actual exports
-jest.mock("@/components/PupilComponents/QuizEngineProvider", () => ({
-  ...jest.requireActual("@/components/PupilComponents/QuizEngineProvider"),
-  useQuizEngineContext: jest.fn(),
+vi.mock("@/components/PupilComponents/QuizEngineProvider", async () => ({
+  ...(await vi.importActual("@/components/PupilComponents/QuizEngineProvider")),
+  useQuizEngineContext: vi.fn(),
 }));
 
-jest.mock("@oaknational/oak-components", () => {
+vi.mock("@oaknational/oak-components", async () => {
   return {
-    ...jest.requireActual("@oaknational/oak-components"),
+    ...(await vi.importActual("@oaknational/oak-components")),
     OakQuizMatch: () => null,
     OakQuizOrder: () => null,
     OakTooltip: ({ children, tooltip }: OakTooltipProps) => (
@@ -76,35 +77,32 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(),
-}));
-
-// Mock the module and retain actual exports
-jest.mock("@/components/PupilComponents/QuizEngineProvider", () => ({
-  ...jest.requireActual("@/components/PupilComponents/QuizEngineProvider"),
-  useQuizEngineContext: jest.fn(),
+vi.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: vi.fn(),
 }));
 
 describe("PupilQuizView", () => {
-  beforeEach(() => {
-    // Restore the original implementation for all tests
-    (QuizEngineProvider.useQuizEngineContext as jest.Mock).mockImplementation(
-      jest.requireActual("@/components/PupilComponents/QuizEngineProvider")
-        .useQuizEngineContext,
+  beforeEach(async () => {
+    const actual = await vi.importActual<
+      typeof import("@/components/PupilComponents/QuizEngineProvider")
+    >("@/components/PupilComponents/QuizEngineProvider");
+
+    vi.mocked(QuizEngineProvider.useQuizEngineContext).mockImplementation(
+      actual.useQuizEngineContext,
     );
-  }),
-    it("renders heading, mode and answer when there is currentQuestionData", () => {
-      const { getByText } = renderWithTheme(
-        <OakThemeProvider theme={oakDefaultTheme}>
-          <LessonEngineContext.Provider value={createLessonEngineContext()}>
-            <PupilViewsQuiz questionsArray={quizQuestions} />
-          </LessonEngineContext.Provider>
-        </OakThemeProvider>,
-      );
-      const heading = getByText("Starter Quiz");
-      expect(heading).toBeInTheDocument();
-    });
+  });
+
+  it("renders heading, mode and answer when there is currentQuestionData", () => {
+    const { getByText } = renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <LessonEngineContext.Provider value={createLessonEngineContext()}>
+          <PupilViewsQuiz questionsArray={quizQuestions} />
+        </LessonEngineContext.Provider>
+      </OakThemeProvider>,
+    );
+    const heading = getByText("Starter Quiz");
+    expect(heading).toBeInTheDocument();
+  });
 
   it("renders Next button when questionState.mode is feedback", () => {
     const { getByLabelText, getByRole } = renderWithTheme(
@@ -211,11 +209,12 @@ describe("PupilQuizView", () => {
     },
   );
   it("sends tracking data when a quiz is completed", () => {
-    const lessonActivityCompletedStarterQuiz = jest.fn();
+    const lessonActivityCompletedStarterQuiz = vi.fn();
 
-    jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonActivityCompletedStarterQuiz")
-      .mockImplementation(lessonActivityCompletedStarterQuiz);
+    vi.spyOn(
+      usePupilAnalyticsMock.track,
+      "lessonActivityCompletedStarterQuiz",
+    ).mockImplementation(lessonActivityCompletedStarterQuiz);
 
     const context = createLessonEngineContext({
       currentSection: "starter-quiz",
@@ -228,7 +227,7 @@ describe("PupilQuizView", () => {
       },
     });
 
-    jest.spyOn(QuizEngineProvider, "useQuizEngineContext").mockReturnValue({
+    vi.spyOn(QuizEngineProvider, "useQuizEngineContext").mockReturnValue({
       currentQuestionData: quizQuestions[5],
       currentQuestionIndex: 5,
       currentQuestionDisplayIndex: 5,
@@ -251,13 +250,13 @@ describe("PupilQuizView", () => {
       score: 0,
       numQuestions: 6,
       numInteractiveQuestions: 6,
-      updateQuestionMode: jest.fn(),
-      updateHintOffered: jest.fn(),
-      handleSubmitMCAnswer: jest.fn(),
-      handleSubmitShortAnswer: jest.fn(),
-      handleSubmitOrderAnswer: jest.fn(),
-      handleSubmitMatchAnswer: jest.fn(),
-      handleNextQuestion: jest.fn(),
+      updateQuestionMode: vi.fn(),
+      updateHintOffered: vi.fn(),
+      handleSubmitMCAnswer: vi.fn(),
+      handleSubmitShortAnswer: vi.fn(),
+      handleSubmitOrderAnswer: vi.fn(),
+      handleSubmitMatchAnswer: vi.fn(),
+      handleNextQuestion: vi.fn(),
     });
 
     const { getByRole } = renderWithTheme(
@@ -272,11 +271,12 @@ describe("PupilQuizView", () => {
     expect(lessonActivityCompletedStarterQuiz).toHaveBeenCalledTimes(1);
   });
   it("sends abandoned event data when backbutton clicked", () => {
-    const lessonActivityAbandonedStarterQuiz = jest.fn();
+    const lessonActivityAbandonedStarterQuiz = vi.fn();
 
-    jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonActivityAbandonedStarterQuiz")
-      .mockImplementation(lessonActivityAbandonedStarterQuiz);
+    vi.spyOn(
+      usePupilAnalyticsMock.track,
+      "lessonActivityAbandonedStarterQuiz",
+    ).mockImplementation(lessonActivityAbandonedStarterQuiz);
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>

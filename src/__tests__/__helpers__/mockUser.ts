@@ -1,3 +1,5 @@
+import { vi } from "vitest";
+
 import { UseUserReturn } from "./mockClerk";
 
 import { UserResource } from "clerk";
@@ -9,7 +11,7 @@ export const mockUser = {
   id: "user-123",
   publicMetadata: { owa: { isOnboarded: true } },
   unsafeMetadata: {},
-  reload: jest.fn(),
+  reload: vi.fn(),
   externalAccounts: [],
   emailAddresses: [
     { emailAddress: "test-email", verification: { status: "verified" } },

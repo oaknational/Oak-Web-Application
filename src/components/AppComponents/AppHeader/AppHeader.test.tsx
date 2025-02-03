@@ -9,13 +9,13 @@ import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
 
 const render = renderWithProviders();
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(() => "with-login"),
+vi.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: vi.fn(() => "with-login"),
 }));
 
 describe("components/AppHeader", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("header should be in the document", () => {
     const { getByRole } = render(<AppHeader />);

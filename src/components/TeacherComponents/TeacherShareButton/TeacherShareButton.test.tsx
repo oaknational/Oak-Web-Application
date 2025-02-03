@@ -19,7 +19,7 @@ describe("TeacherShareButton", () => {
 
   it("copies a link to the clipboard when the button is clicked", async () => {
     // Mock the clipboard API
-    const clipboardWriteTextMock = jest.fn();
+    const clipboardWriteTextMock = vi.fn();
     Object.assign(navigator, {
       clipboard: {
         writeText: clipboardWriteTextMock,
@@ -45,7 +45,7 @@ describe("TeacherShareButton", () => {
   });
 
   it("calls shareActivated when the button is clicked the first time", async () => {
-    const shareActivatedMock = jest.fn();
+    const shareActivatedMock = vi.fn();
 
     render(
       <OakThemeProvider theme={oakDefaultTheme}>

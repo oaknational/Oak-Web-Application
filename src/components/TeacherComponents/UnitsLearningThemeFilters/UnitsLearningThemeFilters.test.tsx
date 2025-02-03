@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
@@ -5,8 +6,8 @@ import UnitsLearningThemeFilters from "./UnitsLearningThemeFilters";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const browseRefined = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const browseRefined = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -18,7 +19,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 describe("UnitsLearningThemeFilters", () => {
   beforeAll(() => {
     // Mock window.history.state
-    jest.spyOn(window.history, "state", "get").mockReturnValue({
+    vi.spyOn(window.history, "state", "get").mockReturnValue({
       url: "https://example.com/some-path",
     });
   });
@@ -46,7 +47,7 @@ describe("UnitsLearningThemeFilters", () => {
           programmeSlug: "maths-secondary-ks3",
         }}
         idSuffix="desktop"
-        onChangeCallback={jest.fn}
+        onChangeCallback={vi.fn()}
         programmeSlug="maths-secondary-ks3"
         browseRefined={browseRefined}
       />,
@@ -57,7 +58,7 @@ describe("UnitsLearningThemeFilters", () => {
     expect(themes[2]).toBe(screen.getByLabelText("No theme 1"));
   });
   test("should call callback method with correct value", async () => {
-    const onChangeCallback = jest.fn();
+    const onChangeCallback = vi.fn();
     renderWithProviders()(
       <UnitsLearningThemeFilters
         labelledBy={"Learning Theme Filter"}
@@ -109,7 +110,7 @@ describe("UnitsLearningThemeFilters", () => {
           subjectTitle: "English",
         }}
         browseRefined={browseRefined}
-        onChangeCallback={jest.fn}
+        onChangeCallback={vi.fn()}
       />,
     );
 
@@ -129,7 +130,7 @@ describe("UnitsLearningThemeFilters", () => {
   });
 
   test("on mobile, invokes setMobileFilter with correct value", async () => {
-    const setMobileFilter = jest.fn();
+    const setMobileFilter = vi.fn();
     renderWithProviders()(
       <UnitsLearningThemeFilters
         programmeSlug="maths-secondary-ks3"
@@ -154,7 +155,7 @@ describe("UnitsLearningThemeFilters", () => {
           subjectTitle: "English",
         }}
         browseRefined={browseRefined}
-        onChangeCallback={jest.fn}
+        onChangeCallback={vi.fn()}
       />,
     );
 

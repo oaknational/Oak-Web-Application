@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { fireEvent, screen, waitFor } from "@testing-library/dom";
 import { DefaultValues, useForm } from "react-hook-form";
 import { renderHook } from "@testing-library/react";
@@ -5,47 +6,48 @@ import userEvent, {
   PointerEventsCheckLevel,
 } from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
-import fetchMock from "jest-fetch-mock";
+import createFetchMock from "vitest-fetch-mock";
 
 import OnboardingForm from "./OnboardingForm";
 import { OnboardingFormProps } from "./OnboardingForm.schema";
 import * as onboardingActions from "./onboardingActions";
+import { onboardUser } from "./onboardingActions";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 import type { OnboardingSchema } from "@/common-lib/schemas/onboarding";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 
-const setEmailInLocalStorage = jest.fn();
-const setSchoolInLocalStorage = jest.fn();
-const setTermsInLocalStorage = jest.fn();
+const setEmailInLocalStorage = vi.fn();
+const setSchoolInLocalStorage = vi.fn();
+const setTermsInLocalStorage = vi.fn();
 
-jest.mock("../hooks/downloadAndShareHooks/useLocalStorageForDownloads", () => {
-  return jest.fn(() => ({
-    setEmailInLocalStorage,
-    setSchoolInLocalStorage,
-    setTermsInLocalStorage,
-  }));
-});
-
-jest.mock("@/browser-lib/hubspot/forms");
-jest.mock("./onboardingActions", () => {
-  const actual = jest.requireActual("./onboardingActions");
+vi.mock("../hooks/downloadAndShareHooks/useLocalStorageForDownloads", () => {
   return {
-    ...actual,
-    onboardUser: jest.fn(),
+    default: vi.fn(() => ({
+      setEmailInLocalStorage,
+      setSchoolInLocalStorage,
+      setTermsInLocalStorage,
+    })),
   };
 });
-jest.mock("@clerk/nextjs");
+
+vi.mock("@/browser-lib/hubspot/forms");
+vi.mock("./onboardingActions", async () => ({
+  ...(await vi.importActual("./onboardingActions")),
+  onboardUser: vi.fn(),
+}));
 
 type OnboardingFormState = DefaultValues<OnboardingFormProps>;
 
+const fetchMocker = createFetchMock(vi);
+
 describe("Onboarding form", () => {
   beforeAll(() => {
-    fetchMock.enableMocks();
+    fetchMocker.enableMocks();
   });
   afterAll(() => {
-    fetchMock.disableMocks();
+    fetchMocker.disableMocks();
   });
   beforeEach(() => {
     setUseUserReturn(mockLoggedIn);
@@ -115,7 +117,7 @@ describe("Onboarding form", () => {
     });
 
     afterEach(() => {
-      jest.spyOn(onboardingActions, "onboardUser").mockReset();
+      vi.spyOn(onboardingActions, "onboardUser").mockReset();
     });
 
     it("only allows the form to be submitted once", async () => {
@@ -139,9 +141,9 @@ describe("Onboarding form", () => {
     });
 
     it("redirects the user back to the page they came from", async () => {
-      jest
-        .spyOn(onboardingActions, "onboardUser")
-        .mockResolvedValue({ owa: { isTeacher: true, isOnboarded: true } });
+      vi.spyOn(onboardingActions, "onboardUser").mockResolvedValue({
+        owa: { isTeacher: true, isOnboarded: true },
+      });
 
       await submitForm(formState);
 
@@ -152,9 +154,9 @@ describe("Onboarding form", () => {
 
     describe("when Clerk onboarding fails", () => {
       beforeEach(() => {
-        jest
-          .spyOn(onboardingActions, "onboardUser")
-          .mockRejectedValue(new Error());
+        vi.spyOn(onboardingActions, "onboardUser").mockRejectedValue(
+          new Error(),
+        );
       });
 
       it("displays an error", async () => {
@@ -175,9 +177,9 @@ describe("Onboarding form", () => {
       it("email and terms is set in local storage if ", async () => {
         fetchMock.mockResponse(JSON.stringify(true));
 
-        jest
-          .spyOn(onboardingActions, "onboardUser")
-          .mockResolvedValue({ owa: { isTeacher: true, isOnboarded: true } });
+        vi.spyOn(onboardingActions, "onboardUser").mockResolvedValue({
+          owa: { isTeacher: true, isOnboarded: true },
+        });
 
         await submitForm(formState, false);
 
@@ -190,9 +192,9 @@ describe("Onboarding form", () => {
       });
       it("school is set in local storage", async () => {
         fetchMock.mockResponse(JSON.stringify(true));
-        jest
-          .spyOn(onboardingActions, "onboardUser")
-          .mockResolvedValue({ owa: { isTeacher: true, isOnboarded: true } });
+        vi.mocked(onboardUser).mockResolvedValue({
+          owa: { isTeacher: true, isOnboarded: true },
+        });
 
         await submitForm(formState, false);
 

@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React, { forwardRef } from "react";
 import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -7,69 +8,96 @@ import VideoPlayer, {
   VideoPlayerProps,
 } from "./VideoPlayer";
 
+import OakError from "@/errors/OakError";
+
 let currentErrorEvent = { detail: { data: { type: "networkError" } } };
 // Override the global mock for @mux/mux-player-react/lazy
-jest.mock("@mux/mux-player-react/lazy", () => {
-  // @ts-expect-error - MuxPlayer mock
-  return forwardRef(({ onError, onPlay, onPause }, ref) => {
-    ref; // This prevents warning about ref not being used
-    return (
-      <div data-testid="mux-player">
-        <button
-          data-testid="error-button"
-          onClick={() => {
-            onError(currentErrorEvent);
-          }}
-        >
-          Error
-        </button>
-        <button data-testid="play-button" onClick={onPlay}>
-          Play
-        </button>
-        <button data-testid="pause-button" onClick={onPause}>
-          Pause
-        </button>
-      </div>
-    );
-  });
+vi.mock("@mux/mux-player-react/lazy", async () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const MuxPlayer = forwardRef<HTMLDivElement, any>(
+    ({ onError, onPlay, onPause }, ref) => {
+      ref; // This prevents warning about ref not being used
+      return (
+        <div data-testid="mux-player">
+          <button
+            data-testid="error-button"
+            onClick={() => {
+              onError(currentErrorEvent);
+            }}
+          >
+            Error
+          </button>
+          <button data-testid="play-button" onClick={onPlay}>
+            Play
+          </button>
+          <button data-testid="pause-button" onClick={onPause}>
+            Pause
+          </button>
+        </div>
+      );
+    },
+  );
+
+  return {
+    __esModule: true,
+    default: MuxPlayer,
+  };
 });
 
 // Mocking custom hooks and utility functions
-jest.mock("./useVideoTracking", () =>
-  jest.fn(() => ({
-    onPlay: jest.fn(),
-    onPause: jest.fn(),
-    onEnd: jest.fn(),
-  })),
-);
-jest.mock("./useSignedVideoToken", () => ({
-  useSignedVideoToken: jest.fn(() => ({
-    loading: false,
-    playbackToken: "mockVideoToken",
-  })),
-  useSignedThumbnailToken: jest.fn(() => ({
-    loading: false,
-    playbackToken: "mockThumbnailToken",
-  })),
-  useSignedStoryboardToken: jest.fn(() => ({
-    loading: false,
-    playbackToken: "mockStoryboardToken",
-  })),
+vi.mock("./useVideoTracking", () => ({
+  default: () => ({
+    onPlay: vi.fn(),
+    onPause: vi.fn(),
+    onEnd: vi.fn(),
+  }),
 }));
-jest.mock("./getTimeElapsed", () => jest.fn(() => 0));
-jest.mock("./getSubtitleTrack", () => jest.fn(() => null));
-jest.mock("./getDuration", () => jest.fn(() => 100));
-jest.mock("./getPercentageElapsed", () => jest.fn(() => 50));
 
-const mockErrorReporter = jest.fn();
-jest.mock("@/common-lib/error-reporter", () =>
-  jest.fn(() => mockErrorReporter),
-);
+vi.mock("./useSignedVideoToken", async () => {
+  return {
+    __esModule: true,
+    useSignedVideoToken: vi.fn(() => ({
+      loading: false,
+      playbackToken: "mockVideoToken",
+    })),
+    useSignedThumbnailToken: vi.fn(() => ({
+      loading: false,
+      playbackToken: "mockThumbnailToken",
+    })),
+    useSignedStoryboardToken: vi.fn(() => ({
+      loading: false,
+      playbackToken: "mockStoryboardToken",
+    })),
+  };
+});
 
-type MockVideoCallbackArgs = jest.Mock<void, [VideoEventCallbackArgs]>;
+vi.mock("./getTimeElapsed", () => ({
+  default: () => 0,
+}));
+
+vi.mock("./getSubtitleTrack", () => ({
+  default: () => null,
+}));
+
+vi.mock("./getDuration", () => ({
+  default: () => 100,
+}));
+
+vi.mock("./getPercentageElapsed", () => ({
+  default: () => 50,
+}));
+
+const mockErrorReporter = vi.fn();
+vi.mock("@/common-lib/error-reporter", () => ({
+  default: () => mockErrorReporter,
+}));
+
+type MockVideoCallbackArgs = ReturnType<
+  typeof vi.fn<(args: VideoEventCallbackArgs) => void>
+>;
 
 describe("VideoPlayer", () => {
-  const userEventCallbackMock = jest.fn() as MockVideoCallbackArgs;
+  const userEventCallbackMock = vi.fn() as MockVideoCallbackArgs;
   const defaultProps: VideoPlayerProps = {
     playbackId: "testPlaybackId",
     playbackPolicy: "public",
@@ -99,7 +127,16 @@ describe("VideoPlayer", () => {
     await userEvent.click(errorButton);
 
     expect(mockErrorReporter).toHaveBeenCalledWith(
-      new Error("Sorry this video couldn't play, please try again"),
+      new OakError({
+        code: "video/unknown",
+        meta: {
+          "metadata-video-id": "testPlaybackId",
+          "metadata-video-title": "Test Video",
+        },
+        originalError: {
+          ...currentErrorEvent,
+        },
+      }),
       {
         captioned: false,
         duration: 100,
@@ -115,7 +152,7 @@ describe("VideoPlayer", () => {
   it("handles and reports onPlay event", async () => {
     render(<VideoPlayer {...defaultProps} />);
     const playButton = screen.getByTestId("play-button");
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     await userEvent.click(playButton);
 
     expect(defaultProps.userEventCallback).toHaveBeenCalledWith({
@@ -129,7 +166,7 @@ describe("VideoPlayer", () => {
   it("handles and reports onPause event", async () => {
     render(<VideoPlayer {...defaultProps} />);
     const pauseButton = screen.getByTestId("pause-button");
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     await userEvent.click(pauseButton);
 
     expect(defaultProps.userEventCallback).toHaveBeenCalledWith({

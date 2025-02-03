@@ -46,7 +46,7 @@ describe("QuizShortAnswer", () => {
 
   it("calls onChange when there is user input", () => {
     const context = getContext();
-    const onChange = jest.fn();
+    const onChange = vi.fn();
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>

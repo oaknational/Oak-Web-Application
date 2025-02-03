@@ -4,7 +4,7 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("HomePageTabImageButton", () => {
   it("renders a button with role as link", () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByRole } = renderWithTheme(
       <HomePageTabImageButton
@@ -49,7 +49,7 @@ describe("HomePageTabImageButton", () => {
   });
 
   it("calls onClick function when button is clicked", () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByRole } = renderWithTheme(
       <HomePageTabImageButton
@@ -68,7 +68,7 @@ describe("HomePageTabImageButton", () => {
   });
 
   it("does nothing onClick if button is disabled", () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
 
     const { getByRole } = renderWithTheme(
       <HomePageTabImageButton

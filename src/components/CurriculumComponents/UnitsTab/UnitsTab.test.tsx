@@ -9,9 +9,9 @@ import "@/__tests__/__helpers__/ResizeObserverMock";
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 const render = renderWithProviders();
-const curriculumThreadHighlighted = jest.fn();
-const yearGroupSelected = jest.fn();
-const unitInformationViewed = jest.fn();
+const curriculumThreadHighlighted = vi.fn();
+const yearGroupSelected = vi.fn();
+const unitInformationViewed = vi.fn();
 
 const trackingDataSecondaryScience = {
   subjectTitle: "Science",
@@ -204,7 +204,7 @@ const primaryEnglishData = {
   ],
 };
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -218,8 +218,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    const mockIntersectionObserver = jest.fn();
+    vi.clearAllMocks();
+    const mockIntersectionObserver = vi.fn();
     mockIntersectionObserver.mockReturnValue({
       observe: () => null,
       unobserve: () => null,

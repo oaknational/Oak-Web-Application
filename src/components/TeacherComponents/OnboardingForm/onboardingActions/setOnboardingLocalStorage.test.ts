@@ -4,11 +4,11 @@ import { SchoolSelectFormProps } from "../OnboardingForm.schema";
 import { setOnboardingLocalStorage } from "./setOnboardingLocalStorage";
 
 const mockLocalStorageForDownloads = {
-  setSchoolInLocalStorage: jest.fn(),
-  setEmailInLocalStorage: jest.fn(),
-  setTermsInLocalStorage: jest.fn(),
+  setSchoolInLocalStorage: vi.fn(),
+  setEmailInLocalStorage: vi.fn(),
+  setTermsInLocalStorage: vi.fn(),
 } as unknown as ReturnType<typeof useLocalStorageForDownloads>;
-const submit = jest.fn();
+const submit = vi.fn();
 const data: SchoolSelectFormProps = {
   school: "123",
   schoolName: "Test School",
@@ -26,7 +26,7 @@ const userSubscribed = true;
 
 describe("setOnboardingLocalStorage", () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("should set school in local storage when data contains school", () => {

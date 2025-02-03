@@ -1,6 +1,6 @@
 import { UseSearchFiltersReturnType } from "@/context/Search/search.types";
 
-export const mockOnChange = jest.fn();
+export const mockOnChange = vi.fn();
 export const searchFilters: UseSearchFiltersReturnType = {
   legacyFilter: {
     slug: "new",
@@ -21,7 +21,7 @@ export const searchFilters: UseSearchFiltersReturnType = {
       slug: "ks4",
       title: "Key stage 4",
       shortCode: "KS4",
-      onChange: jest.fn(),
+      onChange: vi.fn(),
       checked: true,
     },
   ],
@@ -35,7 +35,7 @@ export const searchFilters: UseSearchFiltersReturnType = {
     {
       slug: "science",
       title: "Science",
-      onChange: jest.fn(),
+      onChange: vi.fn(),
       checked: true,
     },
   ],

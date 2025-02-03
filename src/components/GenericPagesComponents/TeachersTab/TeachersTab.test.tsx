@@ -5,12 +5,12 @@ import TeachersTab from "./TeachersTab";
 
 import keyStageKeypad from "@/browser-lib/fixtures/keyStageKeypad";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-jest.mock("posthog-js/react", () => ({
+vi.mock("posthog-js/react", () => ({
   useFeatureFlagEnabled: () => false,
 }));
 
-const browseRefined = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const browseRefined = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {

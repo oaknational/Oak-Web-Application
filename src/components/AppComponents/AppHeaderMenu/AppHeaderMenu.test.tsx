@@ -2,6 +2,7 @@ import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 import { createRef } from "react";
+import { vi } from "vitest";
 
 import AppHeaderMenu from "./AppHeaderMenu";
 
@@ -10,7 +11,7 @@ import { menuContext } from "@/context/Menu/MenuProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 describe("AppHeaderMenu", () => {
   beforeEach(() => {
@@ -42,8 +43,8 @@ describe("AppHeaderMenu", () => {
   test("if menu context open is true it is visible and expanded", () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText, getByTestId } = renderWithTheme(
@@ -60,8 +61,8 @@ describe("AppHeaderMenu", () => {
   test("clicking the close button invokes the closeMenu callback", async () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText } = renderWithTheme(
@@ -79,8 +80,8 @@ describe("AppHeaderMenu", () => {
   test("it has aria-expanded true when open", async () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText } = renderWithTheme(
@@ -98,8 +99,8 @@ describe("AppHeaderMenu", () => {
   test("it has aria-expanded false when closed", async () => {
     const menuValue = {
       open: false,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { getByLabelText } = renderWithTheme(
@@ -122,8 +123,8 @@ describe("AppHeaderMenu", () => {
   test.skip("pressing the escape key invokes the closeMenu callback", async () => {
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     renderWithTheme(
@@ -146,8 +147,8 @@ describe("AppHeaderMenu", () => {
 
     const menuValue = {
       open: true,
-      openMenu: jest.fn(),
-      closeMenu: jest.fn(),
+      openMenu: vi.fn(),
+      closeMenu: vi.fn(),
     };
 
     const { rerender, getByLabelText } = renderWithTheme(
@@ -158,7 +159,7 @@ describe("AppHeaderMenu", () => {
           variant={"minimal"}
           size={"large"}
           ref={menuButtonRef}
-          onClick={jest.fn}
+          onClick={vi.fn()}
         />
         <AppHeaderMenu menuButtonRef={menuButtonRef} />
       </menuContext.Provider>,
@@ -174,7 +175,7 @@ describe("AppHeaderMenu", () => {
           variant={"minimal"}
           size={"large"}
           ref={menuButtonRef}
-          onClick={jest.fn}
+          onClick={vi.fn()}
         />
         <AppHeaderMenu menuButtonRef={menuButtonRef} />
       </menuContext.Provider>,

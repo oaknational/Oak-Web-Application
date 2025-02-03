@@ -6,7 +6,7 @@ import RoleSelectionView from "./RoleSelection.view";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import * as onboardingActions from "@/components/TeacherComponents/OnboardingForm/onboardingActions";
 
-jest.mock("@/components/TeacherComponents/OnboardingForm/onboardingActions");
+vi.mock("@/components/TeacherComponents/OnboardingForm/onboardingActions");
 
 describe("RoleSelection", () => {
   it("renders a group of radio buttons in a form", () => {
@@ -76,7 +76,7 @@ describe("RoleSelection", () => {
     ).toBeNull();
   });
   it("can submit when a role is selected", async () => {
-    jest.spyOn(onboardingActions, "onboardUser");
+    vi.spyOn(onboardingActions, "onboardUser");
 
     renderWithProviders()(<RoleSelectionView />);
 

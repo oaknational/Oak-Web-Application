@@ -6,19 +6,19 @@ import SubjectCategoryFilters from "./SubjectCategoryFilters";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-const browseRefined = jest.fn();
-jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
+const browseRefined = vi.fn();
+vi.mock("next/router", () => ({
+  useRouter: vi.fn(),
 }));
 
 describe("SubjectCategoryFilters", () => {
   const mockRouter = {
     query: {},
-    replace: jest.fn(),
+    replace: vi.fn(),
     pathname: "/test-path",
   };
   beforeEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
   });
 
@@ -118,7 +118,7 @@ describe("SubjectCategoryFilters", () => {
   });
 
   it("on mobile, setCategory function invoked with selected category", () => {
-    const mockSetCategory = jest.fn();
+    const mockSetCategory = vi.fn();
 
     const category = {
       slug: "test-category",

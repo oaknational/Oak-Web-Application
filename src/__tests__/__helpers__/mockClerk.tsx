@@ -1,6 +1,7 @@
-import clerk, { useUser } from "@clerk/nextjs";
+import { vi } from "vitest";
+import { useUser } from "@clerk/nextjs";
 export type UseUserReturn = ReturnType<typeof useUser>;
 
 export function setUseUserReturn(newUseUserReturn: UseUserReturn) {
-  jest.spyOn(clerk, "useUser").mockReturnValue(newUseUserReturn);
+  vi.mocked(useUser).mockReturnValue(newUseUserReturn);
 }

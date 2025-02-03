@@ -1,3 +1,4 @@
+import { Mock, vi } from "vitest";
 import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
@@ -17,7 +18,7 @@ import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/l
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
-const writeText = jest.fn();
+const writeText = vi.fn();
 
 Object.assign(navigator, {
   clipboard: {
@@ -27,13 +28,13 @@ Object.assign(navigator, {
 
 Object.defineProperty(window, "open", {
   configurable: true,
-  value: jest.fn(),
+  value: vi.fn(),
 });
 
-jest.mock("@oaknational/oak-pupil-client", () => ({
-  ...jest.requireActual("@oaknational/oak-pupil-client"),
-  OakPupilClientProvider: jest.fn(({ children }) => children),
-  useOakPupil: jest.fn(() => ({
+vi.mock("@oaknational/oak-pupil-client", async () => ({
+  ...(await vi.importActual("@oaknational/oak-pupil-client")),
+  OakPupilClientProvider: vi.fn(({ children }) => children),
+  useOakPupil: vi.fn(() => ({
     logAttempt: () => console.log("logAttempt"),
   })),
 }));
@@ -46,12 +47,12 @@ const mockBroweData = lessonBrowseDataFixture({
 });
 
 const usePupilAnalyticsMock = {
-  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
-  identify: jest.fn(),
+  track: Object.fromEntries(trackingEvents.map((event) => [event, vi.fn()])),
+  identify: vi.fn(),
   posthogDistinctId: "123",
 };
 
-jest.mock(
+vi.mock(
   "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
   () => {
     return {
@@ -146,8 +147,8 @@ describe("PupilReview", () => {
   });
 
   it("displays a special message when the lesson is complete", () => {
-    const logAttemptSpy = jest.fn(() => Promise.resolve("attempt-id"));
-    (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+    const logAttemptSpy = vi.fn(() => Promise.resolve("attempt-id"));
+    (useOakPupil as Mock).mockReturnValue({ logAttempt: logAttemptSpy });
 
     const { getByText } = renderWithTheme(
       <OakPupilClientProvider
@@ -214,8 +215,8 @@ describe("PupilReview", () => {
     });
     it("logAttempt function is called when button is clicked", () => {
       //spy on the track function
-      const logAttemptSpy = jest.fn(() => "some-attempt-id");
-      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+      const logAttemptSpy = vi.fn(() => "some-attempt-id");
+      (useOakPupil as Mock).mockReturnValue({ logAttempt: logAttemptSpy });
 
       const { getByText } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
@@ -254,16 +255,14 @@ describe("PupilReview", () => {
       // Assert that logAttempt has been called once
       expect(logAttemptSpy).toHaveBeenCalledTimes(1);
     });
-    it("throws error if promise returns null", () => {
-      //spy on the track function
-      const logAttemptSpy = jest.fn(() => ({
-        promise: Promise.reject(new Error("Test error")), // Simulate a rejected promise
+    it("throws error if promise returns null", async () => {
+      const logAttemptSpy = vi.fn(() => ({
+        promise: Promise.reject(new Error("Test error")),
         attemptId: "some-attempt-id",
       }));
-      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
-      // Mock console.error
+      (useOakPupil as Mock).mockReturnValue({ logAttempt: logAttemptSpy });
 
-      const consoleErrorSpy = jest
+      const consoleErrorSpy = vi
         .spyOn(console, "error")
         .mockImplementation(() => {});
 
@@ -297,25 +296,26 @@ describe("PupilReview", () => {
         </OakThemeProvider>,
       );
 
-      consoleErrorSpy.mockRestore();
-
       const button = getByText("Copy link");
 
-      userEvent.click(button).then(() => {
-        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-        expect(consoleErrorSpy).toHaveBeenCalledWith(
-          "Error sharing results: Test error",
-        );
-      });
+      // Use await to properly wait for the click and promise rejection (bug here)
+      await userEvent.click(button);
+
+      // Move assertions before spy restoration
+      expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(consoleErrorSpy).toHaveBeenCalledWith(new Error("Test error"));
+
+      // Restore the spy after assertions
+      consoleErrorSpy.mockRestore();
     });
     it("copies the correct url to the clipboard when logAttempt returns a promise", () => {
-      const logAttemptSpy = jest.fn(() => ({
+      const logAttemptSpy = vi.fn(() => ({
         promise: Promise.reject(new Error("Test error")),
         attemptId: "some-attempt-id",
       }));
 
       // Mock useOakPupil to return an object with logAttempt
-      (useOakPupil as jest.Mock).mockReturnValue({
+      (useOakPupil as Mock).mockReturnValue({
         logAttempt: logAttemptSpy,
       });
       // Render the component
@@ -365,10 +365,10 @@ describe("PupilReview", () => {
     });
     it("copies correct url to clipboard when logAttempt returns a string", () => {
       // Enable the feature flag
-      const logAttemptSpy = jest.fn(() => "some-attempt-id");
+      const logAttemptSpy = vi.fn(() => "some-attempt-id");
 
       // Mock useOakPupil to return an object with logAttempt
-      (useOakPupil as jest.Mock).mockReturnValue({
+      (useOakPupil as Mock).mockReturnValue({
         logAttempt: logAttemptSpy,
       });
       // Render the component
@@ -420,8 +420,8 @@ describe("PupilReview", () => {
   describe("Printable results button", () => {
     it("should display the print button and log attempt after timeout", () => {
       // Mock the logAttempt function
-      const logAttemptSpy = jest.fn(() => "attempt-id");
-      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+      const logAttemptSpy = vi.fn(() => "attempt-id");
+      (useOakPupil as Mock).mockReturnValue({ logAttempt: logAttemptSpy });
 
       // Render the component
       const { getByText } = renderWithTheme(
@@ -465,8 +465,8 @@ describe("PupilReview", () => {
     });
 
     it("Printable results link takes you to correct printable results page", async () => {
-      const logAttemptSpy = jest.fn(() => "attempt-id");
-      (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
+      const logAttemptSpy = vi.fn(() => "attempt-id");
+      vi.mocked(useOakPupil).mockReturnValue({ logAttempt: logAttemptSpy });
       const { getByText } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider

@@ -1,3 +1,5 @@
+import { vi } from "vitest";
+
 import { QuizEngineContextType } from "../QuizEngineProvider";
 
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
@@ -19,13 +21,13 @@ export function createQuizEngineContext(
       },
     ],
     score: 0,
-    updateQuestionMode: jest.fn(),
-    updateHintOffered: jest.fn(),
-    handleSubmitMCAnswer: jest.fn(),
-    handleNextQuestion: jest.fn(),
-    handleSubmitShortAnswer: jest.fn(),
-    handleSubmitOrderAnswer: jest.fn(),
-    handleSubmitMatchAnswer: jest.fn(),
+    updateQuestionMode: vi.fn(),
+    updateHintOffered: vi.fn(),
+    handleSubmitMCAnswer: vi.fn(),
+    handleNextQuestion: vi.fn(),
+    handleSubmitShortAnswer: vi.fn(),
+    handleSubmitOrderAnswer: vi.fn(),
+    handleSubmitMatchAnswer: vi.fn(),
     ...overrides,
   };
 }

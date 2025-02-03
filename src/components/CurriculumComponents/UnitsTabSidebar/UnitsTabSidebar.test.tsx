@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
 import { Lesson } from "../UnitModal/UnitModal";
@@ -11,8 +12,8 @@ import {
 } from "@/components/CurriculumComponents/UnitModal/UnitModal.fixture";
 import { Unit } from "@/utils/curriculum/types";
 
-const CurricConstantsMock = jest.requireMock("@/utils/curriculum/constants");
-jest.mock("@/utils/curriculum/constants", () => ({
+const CurricConstantsMock = vi.importMock("@/utils/curriculum/constants");
+vi.mock("@/utils/curriculum/constants", () => ({
   ENABLE_NEW_CURRIC_MV: false,
 }));
 
@@ -42,8 +43,8 @@ const lessonsUnpublished = [
   },
 ];
 
-const unitInformationViewed = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const unitInformationViewed = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -63,7 +64,7 @@ describe("Sidebar component", () => {
         const { getByTestId } = renderWithTheme(
           <UnitsTabSidebar
             displayModal={true}
-            onClose={jest.fn()}
+            onClose={vi.fn()}
             lessons={[]}
           />,
         );
@@ -73,7 +74,7 @@ describe("Sidebar component", () => {
 
       test("should render the sidebar with children", () => {
         const { getByTestId } = renderWithTheme(
-          <UnitsTabSidebar displayModal={true} onClose={jest.fn()} lessons={[]}>
+          <UnitsTabSidebar displayModal={true} onClose={vi.fn()} lessons={[]}>
             <div data-testid="sidebar-children" />
           </UnitsTabSidebar>,
         );
@@ -82,7 +83,7 @@ describe("Sidebar component", () => {
       });
 
       test("onClose state function called when close button selected", async () => {
-        const mockClose = jest.fn();
+        const mockClose = vi.fn();
         const { getByTestId } = renderWithTheme(
           <UnitsTabSidebar
             displayModal={true}
@@ -104,7 +105,7 @@ describe("Sidebar component", () => {
           const { getByTestId } = renderWithTheme(
             <UnitsTabSidebar
               displayModal={true}
-              onClose={jest.fn()}
+              onClose={vi.fn()}
               unitSlug={mockUnitKS4.slug}
               programmeSlug="maths-secondary-ks4-aqa"
               lessons={lessonsPublished}
@@ -118,7 +119,7 @@ describe("Sidebar component", () => {
           const { queryByTestId } = renderWithTheme(
             <UnitsTabSidebar
               displayModal={true}
-              onClose={jest.fn()}
+              onClose={vi.fn()}
               unitOptionsAvailable={true}
               unitSlug={mockOptionalityUnit.slug}
               lessons={[]}
@@ -132,7 +133,7 @@ describe("Sidebar component", () => {
           const { queryByTestId } = renderWithTheme(
             <UnitsTabSidebar
               displayModal={true}
-              onClose={jest.fn()}
+              onClose={vi.fn()}
               unitOptionsAvailable={true}
               unitSlug={mockOptionalityUnit.slug}
               lessons={[]}
@@ -148,7 +149,7 @@ describe("Sidebar component", () => {
           const { queryByTestId } = renderWithTheme(
             <UnitsTabSidebar
               displayModal={true}
-              onClose={jest.fn()}
+              onClose={vi.fn()}
               unitOptionsAvailable={false}
               unitSlug={mockOptionalityUnit.slug}
               lessons={lessonsUnpublished}
@@ -166,7 +167,7 @@ describe("Sidebar component", () => {
           const { queryByTestId } = renderWithTheme(
             <UnitsTabSidebar
               displayModal={true}
-              onClose={jest.fn()}
+              onClose={vi.fn()}
               unitOptionsAvailable={false}
               unitSlug={mockUnitKS4.slug}
               lessons={lessonsPublished}
@@ -182,7 +183,7 @@ describe("Sidebar component", () => {
           const { findByRole } = renderWithTheme(
             <UnitsTabSidebar
               displayModal={true}
-              onClose={jest.fn()}
+              onClose={vi.fn()}
               unitOptionsAvailable={false}
               unitSlug={mockUnitKS4.slug}
               unitData={
@@ -210,7 +211,7 @@ describe("Sidebar component", () => {
           const { findByRole } = renderWithTheme(
             <UnitsTabSidebar
               displayModal={true}
-              onClose={jest.fn()}
+              onClose={vi.fn()}
               unitOptionsAvailable={false}
               unitData={
                 {
@@ -238,7 +239,7 @@ describe("Sidebar component", () => {
           const { findByRole, queryByTestId } = renderWithTheme(
             <UnitsTabSidebar
               displayModal={true}
-              onClose={jest.fn()}
+              onClose={vi.fn()}
               unitOptionsAvailable={false}
               unitData={
                 {

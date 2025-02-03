@@ -26,10 +26,10 @@ const bio = {
 const defaultProps = {
   bio,
   isOpen: true,
-  closeModal: jest.fn(),
-  openModal: jest.fn(),
-  nextBio: jest.fn(),
-  prevBio: jest.fn(),
+  closeModal: vi.fn(),
+  openModal: vi.fn(),
+  nextBio: vi.fn(),
+  prevBio: vi.fn(),
   modalControllerRefs: {},
 };
 
@@ -85,7 +85,7 @@ describe("BioCardListModal", () => {
   });
 
   test("pressing 'next' button calls 'nextBio'", async () => {
-    const nextBio = jest.fn();
+    const nextBio = vi.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} nextBio={nextBio} />
@@ -97,7 +97,7 @@ describe("BioCardListModal", () => {
     expect(nextBio).toHaveBeenCalled();
   });
   test("pressing 'prev' button calls 'prevBio'", async () => {
-    const prevBio = jest.fn();
+    const prevBio = vi.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} prevBio={prevBio} />
@@ -109,7 +109,7 @@ describe("BioCardListModal", () => {
     expect(prevBio).toHaveBeenCalled();
   });
   test("pressing 'close' button calls 'closeModal'", async () => {
-    const closeModal = jest.fn();
+    const closeModal = vi.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} closeModal={closeModal} />
@@ -121,7 +121,7 @@ describe("BioCardListModal", () => {
     expect(closeModal).toHaveBeenCalled();
   });
   test("opening modal sets aria-expanded to true", async () => {
-    const closeModal = jest.fn();
+    const closeModal = vi.fn();
     const { getByRole } = renderWithTheme(
       <OverlayProvider>
         <BioCardListModal {...defaultProps} closeModal={closeModal} />

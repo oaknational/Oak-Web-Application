@@ -17,15 +17,15 @@ const getDownloadResourcesExistenceData = Object.entries(resources).map((v) => [
   { exists: v[1] },
 ]);
 
-const getDownloadResourcesExistenceMock = jest.fn(() => ({
+const getDownloadResourcesExistenceMock = vi.fn(() => ({
   resources: getDownloadResourcesExistenceData,
 }));
 
-jest.mock(
+vi.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence",
   () => ({
     __esModule: true,
-    getLessonDownloadResourcesExistence: jest.fn((...args: []) =>
+    getLessonDownloadResourcesExistence: vi.fn((...args: []) =>
       getDownloadResourcesExistenceMock(...args),
     ),
   }),
@@ -33,7 +33,7 @@ jest.mock(
 
 describe("useLessonDownloadExistenceCheck", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("it calls onComplete with correct argument when all resources are available", async () => {
@@ -42,7 +42,7 @@ describe("useLessonDownloadExistenceCheck", () => {
       "exit-quiz-answers",
       "worksheet-pdf",
     ];
-    const onComplete = jest.fn();
+    const onComplete = vi.fn();
     const isLegacyDownload = true;
 
     renderHook(() =>
@@ -74,7 +74,7 @@ describe("useLessonDownloadExistenceCheck", () => {
       "exit-quiz-answers",
       "worksheet-pdf",
     ];
-    const onComplete = jest.fn();
+    const onComplete = vi.fn();
 
     getDownloadResourcesExistenceMock.mockImplementationOnce(() => ({
       resources: [

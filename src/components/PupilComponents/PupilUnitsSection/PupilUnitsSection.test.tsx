@@ -105,7 +105,7 @@ describe("PupilUnitsSection", () => {
     expect(getByText("Unit-2")).toBeInTheDocument();
   });
   it("should fire the onClick callback when a unit is clicked", () => {
-    const onClickCallback = jest.fn();
+    const onClickCallback = vi.fn();
     const { getByText } = render(
       <PupilUnitsSection
         units={units}
@@ -131,7 +131,7 @@ describe("PupilUnitsSection", () => {
     expect(onClickCallback).toHaveBeenCalled();
   });
   it("Should fire the onClick callback when a unit is clicked for multiple optionality units", () => {
-    const onClickCallback = jest.fn();
+    const onClickCallback = vi.fn();
     units.push([
       unitBrowseDataFixture({
         programmeFields: {

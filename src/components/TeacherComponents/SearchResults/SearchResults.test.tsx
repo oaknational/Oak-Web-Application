@@ -11,7 +11,7 @@ import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPag
 import truthy from "@/utils/truthy";
 import { hitsFixture } from "@/context/Search/search-api/2023/searchResults.fixture";
 
-jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+vi.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
   default: () => ({
     isMobile: false,
@@ -45,8 +45,8 @@ const props = {
   allKeyStages: searchPageFixture().keyStages,
 };
 
-const searchResultOpened = jest.fn();
-const searchResultExpanded = jest.fn();
+const searchResultOpened = vi.fn();
+const searchResultExpanded = vi.fn();
 
 const render = renderWithProviders();
 

@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { within } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 import { LessonMedia } from "./LessonMedia.view";
 
@@ -15,19 +16,19 @@ const lesson = lessonMediaClipsFixtures();
 const mediaClips = lesson.mediaClips;
 const firstMediaClip = mediaClips["intro"];
 
-jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
+vi.mock("next/router", () => ({
+  useRouter: vi.fn(),
 }));
 
-window.history.replaceState = jest.fn();
+window.history.replaceState = vi.fn();
 
 const mockRouter = {
   query: {},
-  replace: jest.fn(),
+  replace: vi.fn(),
   pathname: "/test-path",
 };
 
-const onPlay = jest.fn();
+const onPlay = vi.fn();
 
 const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
   if (userEventCallback) {
@@ -47,28 +48,28 @@ const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
   );
 };
 
-jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
-  return ({ userEventCallback }: Partial<VideoPlayerProps>) => (
+vi.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => ({
+  default: ({ userEventCallback }: Partial<VideoPlayerProps>) => (
     <VideoPlayerMock userEventCallback={userEventCallback} />
-  );
-});
+  ),
+}));
+
+vi.mock(
+  "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers",
+  async () => ({
+    ...(await vi.importActual(
+      "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers",
+    )),
+    getInitialCurrentClip: () => firstMediaClip,
+  }),
+);
 
 describe("LessonMedia view", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.resetAllMocks();
+    vi.clearAllMocks();
+    vi.resetAllMocks();
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
   });
-
-  jest.mock(
-    "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers",
-    () => ({
-      __esModule: true,
-      default: () => ({
-        getInitialCurrentClip: () => firstMediaClip,
-      }),
-    }),
-  );
 
   it("renders 'Back to lesson' button with correct link", () => {
     const { getByTestId } = render(

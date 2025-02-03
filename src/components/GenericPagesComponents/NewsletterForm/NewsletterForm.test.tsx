@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { computeAccessibleDescription } from "dom-accessibility-api";
 
@@ -7,15 +8,17 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import OakError from "@/errors/OakError";
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 
-jest.setTimeout(10000);
+vi.setConfig({
+  testTimeout: 10000,
+});
 
-const onSubmit = jest.fn();
+const onSubmit = vi.fn();
 
 const render = renderWithProviders();
 
 describe("NewsletterForm", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("user can fill out and submit form with keyboard", async () => {
     render(<NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />);
@@ -121,7 +124,7 @@ describe("NewsletterForm", () => {
     expect(description).toBe("Enter a valid email");
   });
   test("form cannot be submitted if not complete", async () => {
-    const onSubmit = jest.fn();
+    const onSubmit = vi.fn();
     const { getByRole, getByPlaceholderText } = render(
       <NewsletterForm descriptionId="id1" id={"1"} onSubmit={onSubmit} />,
     );

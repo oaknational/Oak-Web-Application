@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import NewContentBanner, { StyledVideoFlex } from "./NewContentBanner";
@@ -20,17 +21,17 @@ const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
   return <video data-testid="video-player" />;
 };
 
-jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
-  return ({ userEventCallback }: Partial<VideoPlayerProps>) => (
+vi.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => ({
+  default: ({ userEventCallback }: Partial<VideoPlayerProps>) => (
     <VideoPlayerMock userEventCallback={userEventCallback} />
-  );
-});
+  ),
+}));
 
-jest.mock("@/common-lib/urls"); // Mock the resolveOakHref function
+vi.mock("@/common-lib/urls"); // Mock the resolveOakHref function
 
 describe("NewContentBanner component", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("renders NewContentBanner component", () => {

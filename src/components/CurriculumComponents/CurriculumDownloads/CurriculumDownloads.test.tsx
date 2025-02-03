@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useRouter } from "next/router";
 import userEvent from "@testing-library/user-event";
 import { act } from "@testing-library/react";
+import type { Mock } from "vitest";
 
 import CurriculumDownloads, {
   CurriculumDownloadsRef,
@@ -11,16 +12,16 @@ import createAndClickHiddenDownloadLink from "@/components/SharedComponents/help
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 
-jest.mock(
+vi.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink",
   () => ({
     __esModule: true,
-    default: jest.fn(),
+    default: vi.fn(),
   }),
 );
 
 let hubspotShouldError = false;
-jest.mock(
+vi.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit",
   () => ({
     useHubspotSubmit: () => ({
@@ -31,8 +32,8 @@ jest.mock(
   }),
 );
 
-jest.mock("next/router", () => ({
-  useRouter: jest.fn().mockReturnValue({
+vi.mock("next/router", () => ({
+  useRouter: vi.fn().mockReturnValue({
     query: { subject: "" },
     asPath: "",
   }),
@@ -62,8 +63,8 @@ describe("Component - Curriculum Header", () => {
   };
 
   afterEach(() => {
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.clearAllMocks();
+    vi.resetModules();
   });
 
   test("Clears selection with external trigger", async () => {
@@ -180,7 +181,7 @@ describe("Component - Curriculum Header", () => {
   });
 
   test("selects subject when specified in URL", async () => {
-    (useRouter as jest.Mock).mockReturnValue({
+    (useRouter as Mock).mockReturnValue({
       query: { subject: testSubject, keystage: "eyfs" },
       asPath: "/some-path",
     });

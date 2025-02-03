@@ -1,10 +1,14 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import fetchMock from "jest-fetch-mock";
+import createFetchMock from "vitest-fetch-mock";
+import { vi } from "vitest";
 
 import SchoolSelectionView from "./SchoolSelection.view";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+
+const fetchMocker = createFetchMock(vi);
+fetchMocker.enableMocks();
 
 describe("Onboarding view", () => {
   beforeAll(() => {

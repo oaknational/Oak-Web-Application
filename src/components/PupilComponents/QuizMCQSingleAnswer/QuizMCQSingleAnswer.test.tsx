@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import "@testing-library/jest-dom";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
@@ -22,8 +23,8 @@ import {
 import { isText } from "@/components/PupilComponents/QuizUtils/stemUtils";
 import { QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
-jest.mock("@oaknational/oak-components", () => {
-  const oakComponents = jest.requireActual("@oaknational/oak-components");
+vi.mock("@oaknational/oak-components", async () => {
+  const oakComponents = await vi.importActual("@oaknational/oak-components");
   return {
     ...oakComponents,
     OakScaleImageButton: ({

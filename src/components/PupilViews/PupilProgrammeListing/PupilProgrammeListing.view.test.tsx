@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import {
   OakInfoProps,
   OakThemeProvider,
@@ -15,9 +16,9 @@ import {
 } from "@/node-lib/curriculum-api-2023/fixtures/pupilProgrammeListing.fixture";
 import { getAvailableProgrammeFactor } from "@/pages-helpers/pupil/options-pages/getAvailableProgrammeFactor";
 
-const programmeSelected = jest.fn();
+const programmeSelected = vi.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -55,9 +56,9 @@ const pathways = getAvailableProgrammeFactor({
 
 const render = renderWithProviders();
 
-jest.mock("@oaknational/oak-components", () => {
+vi.mock("@oaknational/oak-components", async () => {
   return {
-    ...jest.requireActual("@oaknational/oak-components"),
+    ...(await vi.importActual("@oaknational/oak-components")),
     OakInfo: ({ hint }: OakInfoProps) => (
       <>
         <div role="tooltip">{hint}</div>
@@ -67,13 +68,13 @@ jest.mock("@oaknational/oak-components", () => {
 });
 
 // mock browse factor selector component
-jest.mock("@/components/PupilComponents/BrowseFactorSelector", () => {
-  const originalModule = jest.requireActual<typeof BrowseFactorSelector>(
+vi.mock("@/components/PupilComponents/BrowseFactorSelector", async () => {
+  const originalModule = await vi.importActual<typeof BrowseFactorSelector>(
     "@/components/PupilComponents/BrowseFactorSelector",
   );
   return {
     ...originalModule,
-    BrowseFactorSelector: jest.fn(
+    BrowseFactorSelector: vi.fn(
       (props: { onTrackingCallback: (factor: string) => void }) => {
         const { onTrackingCallback } = props;
         return (

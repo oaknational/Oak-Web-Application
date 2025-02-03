@@ -9,8 +9,8 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 
-const resourceContainerExpanded = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const resourceContainerExpanded = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -132,7 +132,7 @@ describe("LessonItemContainer", () => {
 
   it("calls trackingCallback on Download Button click if provided in props", async () => {
     const user = userEvent.setup();
-    const onDownloadButtonClick = jest.fn();
+    const onDownloadButtonClick = vi.fn();
 
     renderWithTheme(
       <LessonItemContainer

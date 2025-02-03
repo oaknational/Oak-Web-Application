@@ -6,7 +6,7 @@ import OnboardingView from "./Onboarding.view";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-jest.mock("posthog-js/react", () => ({
+vi.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: () => "with-login",
 }));
 describe("Onboarding view", () => {

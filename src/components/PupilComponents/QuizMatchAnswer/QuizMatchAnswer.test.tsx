@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import "@testing-library/jest-dom";
 import { act } from "@testing-library/react";
@@ -12,10 +13,10 @@ import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvid
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
-jest.mock("@oaknational/oak-components", () => {
+vi.mock("@oaknational/oak-components", async () => {
   return {
-    ...jest.requireActual("@oaknational/oak-components"),
-    OakQuizMatch: jest.fn().mockReturnValue(null),
+    ...(await vi.importActual("@oaknational/oak-components")),
+    OakQuizMatch: vi.fn().mockReturnValue(null),
   };
 });
 
@@ -93,7 +94,7 @@ describe(QuizMatchAnswer, () => {
   let onChange: oakComponents.OakQuizMatchProps["onChange"];
 
   beforeEach(() => {
-    jest.spyOn(oakComponents, "OakQuizMatch").mockImplementation((props) => {
+    vi.spyOn(oakComponents, "OakQuizMatch").mockImplementation((props) => {
       onChange = props.onChange;
       return <div />;
     });
@@ -126,7 +127,7 @@ describe(QuizMatchAnswer, () => {
   it('sets the question mode to "input" when all matches are made', () => {
     const contextWithUpdateSpy = {
       ...context,
-      updateQuestionMode: jest.fn(),
+      updateQuestionMode: vi.fn(),
     };
 
     renderWithTheme(

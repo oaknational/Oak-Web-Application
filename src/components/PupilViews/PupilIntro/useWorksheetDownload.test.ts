@@ -1,20 +1,22 @@
+import { vi } from "vitest";
+import type { MockInstance } from "vitest";
 import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { useWorksheetDownload } from "./useWorksheetDownload";
 
 import * as downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 
-jest.mock(
+vi.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources",
 );
 
-window.alert = jest.fn();
+window.alert = vi.fn();
 
 describe(useWorksheetDownload, () => {
-  let downloadSpy: jest.SpyInstance;
+  let downloadSpy: MockInstance;
 
   beforeEach(() => {
-    downloadSpy = jest
+    downloadSpy = vi
       .spyOn(downloadLessonResources, "default")
       .mockResolvedValue();
   });
@@ -78,7 +80,7 @@ describe(useWorksheetDownload, () => {
 
   it("handles failed downloads", async () => {
     downloadSpy.mockRejectedValue(new Error("whoops"));
-    const alertSpy = jest.spyOn(window, "alert");
+    const alertSpy = vi.spyOn(window, "alert");
     const { result } = renderHook(() =>
       useWorksheetDownload("lesson-slug", false),
     );

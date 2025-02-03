@@ -94,7 +94,7 @@ describe("Autocomplete", () => {
     });
 
     test("interactive / selecting an item", async () => {
-      const mockOnInputChange = jest.fn();
+      const mockOnInputChange = vi.fn();
 
       const { getByTestId, getByRole, getAllByTestId } = renderWithTheme(
         <UncontrolledWrapper mockOnInputChange={mockOnInputChange} />,
@@ -124,7 +124,7 @@ describe("Autocomplete", () => {
     });
 
     test("interactive / escaping", async () => {
-      const mockOnInputChange = jest.fn();
+      const mockOnInputChange = vi.fn();
 
       const { getByTestId, getByRole } = renderWithTheme(
         <UncontrolledWrapper mockOnInputChange={mockOnInputChange} />,
@@ -224,8 +224,8 @@ describe("Autocomplete", () => {
     });
 
     test("interactive / selecting an item", async () => {
-      const mockOnInputChange = jest.fn();
-      const mockChange = jest.fn();
+      const mockOnInputChange = vi.fn();
+      const mockChange = vi.fn();
 
       const { rerender, getByTestId, getByRole, getAllByTestId } =
         renderWithTheme(
@@ -276,8 +276,8 @@ describe("Autocomplete", () => {
     });
 
     test("interactive / escaping", async () => {
-      const mockOnInputChange = jest.fn();
-      const mockChange = jest.fn();
+      const mockOnInputChange = vi.fn();
+      const mockChange = vi.fn();
 
       const { rerender, getByTestId, getByRole } = renderWithTheme(
         <ControlledWrapper
@@ -323,8 +323,8 @@ describe("Autocomplete", () => {
     });
 
     test("interactive / updating", async () => {
-      const mockOnInputChange = jest.fn();
-      const mockChange = jest.fn();
+      const mockOnInputChange = vi.fn();
+      const mockChange = vi.fn();
 
       const { rerender, getByRole, getByTestId, getAllByTestId } =
         renderWithTheme(

@@ -1,4 +1,5 @@
 import { act } from "@testing-library/react";
+import { vi, Mock } from "vitest";
 
 import OverviewTab from "./OverviewTab";
 
@@ -6,26 +7,31 @@ import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixture
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockVideoAsset } from "@/__tests__/__helpers__/cms";
 
-const routeReplaceMock = jest.fn((url: string) => {
+const routeReplaceMock = vi.fn((url: string) => {
   console.log(url);
 });
-jest.mock("next/router", () => ({
-  __esModule: true,
-  ...jest.requireActual("next/router"),
-  useRouter: () => ({
-    ...jest.requireActual("next/router").useRouter,
-    replace: (url: string) => routeReplaceMock(url),
-  }),
-}));
+
+vi.mock("next/router", async () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const actual: any = await vi.importActual("next/router");
+  return {
+    __esModule: true,
+    ...actual,
+    useRouter: () => ({
+      ...actual.useRouter,
+      replace: (url: string) => routeReplaceMock(url),
+    }),
+  };
+});
 
 describe("Component - Overview Tab", () => {
   beforeEach(() => {
-    jest.resetAllMocks();
-    jest.clearAllMocks();
+    vi.resetAllMocks();
+    vi.clearAllMocks();
 
     // Not supported in jsdom
-    Element.prototype.checkVisibility = jest.fn(() => true) as jest.Mock;
-    Element.prototype.scrollIntoView = jest.fn(() => {}) as jest.Mock;
+    Element.prototype.checkVisibility = vi.fn(() => true) as Mock;
+    Element.prototype.scrollIntoView = vi.fn(() => {}) as Mock;
   });
 
   test("explainer displayed", async () => {
@@ -89,13 +95,13 @@ describe("Component - Overview Tab", () => {
     });
     expect(routeReplaceMock).toHaveBeenCalledWith("#header-aims-and-purpose");
     routeReplaceMock.mockClear();
-    (Element.prototype.checkVisibility as jest.Mock).mockClear();
+    (Element.prototype.checkVisibility as Mock).mockClear();
 
     act(() => {
       links[1]!.click();
     });
     expect(routeReplaceMock).toHaveBeenCalledWith("#header-heading-1");
     routeReplaceMock.mockClear();
-    (Element.prototype.checkVisibility as jest.Mock).mockClear();
+    (Element.prototype.checkVisibility as Mock).mockClear();
   });
 });

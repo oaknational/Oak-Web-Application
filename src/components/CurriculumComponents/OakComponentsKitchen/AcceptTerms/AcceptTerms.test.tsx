@@ -45,7 +45,7 @@ describe("AcceptTerms", () => {
   });
 
   test("action", async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <AcceptTerms value={true} onChange={onChange} />

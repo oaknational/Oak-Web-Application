@@ -1,4 +1,37 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SkipLink > functions as expected 1`] = `
+<body>
+  <div>
+    <div
+      class="sc-fqkvVR sc-iHbSHJ cYDSBE fIxqXk"
+    >
+      <div
+        class="sc-fqkvVR bBzdSm grey-shadow"
+      />
+      <div
+        class="sc-fqkvVR bBzdSm yellow-shadow"
+      />
+      <a
+        class="sc-lcIPJg sc-hRJfrW kjNddQ xUaNK internal-button"
+        data-testid="skip-link"
+        href="foo"
+        style=""
+      >
+        <div
+          class="sc-fqkvVR sc-gsFSXq dzjDLT dzOlKm"
+        >
+          <span
+            class="sc-kpDqfm jpmbqG"
+          >
+            test
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+`;
 
 exports[`SkipLink functions as expected 1`] = `
 <body>

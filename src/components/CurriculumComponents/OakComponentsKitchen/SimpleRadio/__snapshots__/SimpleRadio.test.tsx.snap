@@ -1,4 +1,87 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Fieldset > render / none 1`] = `
+<body>
+  <div>
+    <label
+      style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
+    >
+      <div
+        style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+      >
+        <input
+          name="testing"
+          type="radio"
+          value="one"
+        />
+      </div>
+      <span
+        class="sc-aXZVg hfNRtI"
+      />
+      one
+    </label>
+    <label
+      style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
+    >
+      <div
+        style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+      >
+        <input
+          name="testing"
+          type="radio"
+          value="two"
+        />
+      </div>
+      <span
+        class="sc-aXZVg hfNRtI"
+      />
+      two
+    </label>
+  </div>
+</body>
+`;
+
+exports[`Fieldset > render / selected 1`] = `
+<body>
+  <div>
+    <label
+      style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
+    >
+      <div
+        style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+      >
+        <input
+          checked=""
+          name="testing"
+          type="radio"
+          value="one"
+        />
+      </div>
+      <span
+        class="sc-aXZVg jduPt"
+      />
+      one
+    </label>
+    <label
+      style="display: flex; align-items: center; margin-bottom: 12px; opacity: 1;"
+    >
+      <div
+        style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+      >
+        <input
+          name="testing"
+          type="radio"
+          value="two"
+        />
+      </div>
+      <span
+        class="sc-aXZVg hfNRtI"
+      />
+      two
+    </label>
+  </div>
+</body>
+`;
 
 exports[`Fieldset render / none 1`] = `
 <body>

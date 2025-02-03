@@ -1,13 +1,13 @@
-import { converter } from "js-cookie";
+import { vi } from "vitest";
 
 export function mockCookieGet(input: Record<string, unknown>) {
   const cookieStringPartial = Object.entries(input)
     .map(([key, val]) => {
-      return `${key}=${converter.write(JSON.stringify(val), key)}`;
+      return `${key}=${encodeURIComponent(JSON.stringify(val))}`;
     })
     .join("; ");
   const cookieString = `${cookieStringPartial}; `;
-  jest.spyOn(document, "cookie", "get").mockReturnValue(cookieString);
+  vi.spyOn(document, "cookie", "get").mockReturnValue(cookieString);
 }
 
 export function mockPrerelease(key: string) {

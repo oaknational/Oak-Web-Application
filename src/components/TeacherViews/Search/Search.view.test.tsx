@@ -1,3 +1,4 @@
+import { Mock, vi } from "vitest";
 import { act, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
@@ -10,7 +11,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 import { LEGACY_COHORT } from "@/config/cohort";
 
-const searchRefined = jest.fn();
+const searchRefined = vi.fn();
 
 const createSearchResult = (): SearchHit => {
   return {
@@ -92,9 +93,9 @@ const validQuery: SearchQuery = {
   keyStages: [],
 };
 
-const setSearchStartTime = jest.fn();
+const setSearchStartTime = vi.fn();
 
-const onChange = jest.fn();
+const onChange = vi.fn();
 
 const props: SearchProps = {
   status: "not-asked",
@@ -102,12 +103,12 @@ const props: SearchProps = {
   setSearchStartTime: setSearchStartTime,
   results: [],
   query: validQuery,
-  setQuery: jest.fn(),
+  setQuery: vi.fn(),
   searchFilters: {
     legacyFilter: {
       slug: "new",
       title: "Show new only",
-      onChange: jest.fn(),
+      onChange: vi.fn(),
       checked: false,
     },
     keyStageFilters: [
@@ -115,7 +116,7 @@ const props: SearchProps = {
         slug: "ks1",
         title: "Key-stage 1",
         shortCode: "KS1",
-        onChange: jest.fn(),
+        onChange: vi.fn(),
         checked: false,
       },
     ],
@@ -124,7 +125,7 @@ const props: SearchProps = {
         slug: "year-10",
         title: "Year 10",
         displayOrder: 1,
-        onChange: jest.fn(),
+        onChange: vi.fn(),
         checked: false,
       },
     ],
@@ -132,7 +133,7 @@ const props: SearchProps = {
       {
         slug: "computing",
         title: "Computing",
-        onChange: jest.fn(),
+        onChange: vi.fn(),
         checked: false,
       },
     ],
@@ -143,7 +144,7 @@ const props: SearchProps = {
       {
         slug: "aqa",
         title: "AQA",
-        onChange: jest.fn(),
+        onChange: vi.fn(),
         checked: false,
       },
     ],
@@ -170,16 +171,16 @@ const props: SearchProps = {
       shortCode: "KS4",
     },
   ],
-  setSearchTerm: jest.fn(),
+  setSearchTerm: vi.fn(),
 };
 
-const searchAttempted = jest.fn();
-const searchResultOpened = jest.fn();
-const searchJourneyInitiated = jest.fn();
-const searchResultExpanded = jest.fn();
-const searchAccessed = jest.fn();
+const searchAttempted = vi.fn();
+const searchResultOpened = vi.fn();
+const searchJourneyInitiated = vi.fn();
+const searchResultExpanded = vi.fn();
+const searchAccessed = vi.fn();
 
-jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
+vi.mock("@/context/Analytics/useAnalytics.ts", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -195,9 +196,9 @@ jest.mock("@/context/Analytics/useAnalytics.ts", () => ({
   }),
 }));
 
-jest.mock("next/router", () => jest.requireActual("next-router-mock"));
+vi.mock("next/router", async () => await vi.importActual("next-router-mock"));
 
-jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+vi.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
   default: () => ({
     isMobile: false,
@@ -214,7 +215,7 @@ const SearchComponent = (props: SearchProps) => (
 
 describe("Search.page.tsx", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockRouter.setCurrentUrl("/teachers/search");
   });
 
@@ -286,7 +287,7 @@ describe("Search.page.tsx", () => {
   test("search term is set on enter", async () => {
     const { getByRole } = render(<SearchComponent {...props} />);
     const user = userEvent.setup();
-    const setSearchTerm = props.setSearchTerm as jest.Mock;
+    const setSearchTerm = props.setSearchTerm as Mock;
     setSearchTerm.mockClear();
     getByRole("searchbox").focus();
     await user.keyboard("macb");
@@ -296,7 +297,7 @@ describe("Search.page.tsx", () => {
   test("query is set on submit button click", async () => {
     const { getByRole } = render(<SearchComponent {...props} />);
     const user = userEvent.setup();
-    const setSearchTerm = props.setSearchTerm as jest.Mock;
+    const setSearchTerm = props.setSearchTerm as Mock;
     setSearchTerm.mockClear();
     const submit = getByRole("button", { name: "Submit" });
     await user.click(submit);
@@ -328,7 +329,7 @@ describe("Search.page.tsx", () => {
     const link = getByRole("link", {
       name: "See lesson: lesson title",
     });
-    const onLinkClick = jest.fn();
+    const onLinkClick = vi.fn();
     link.addEventListener(
       "click",
       (event) => {

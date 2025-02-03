@@ -1,4 +1,20 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Fieldset > render 1`] = `
+<body>
+  <div>
+    <fieldset
+      class="sc-ERObt sc-dNsVcS imJFus jeJqUH"
+    >
+      <legend
+        class="sc-dLMFU sc-fulCBj gvLBvO bwgoWY"
+      >
+        testing
+      </legend>
+    </fieldset>
+  </div>
+</body>
+`;
 
 exports[`Fieldset render 1`] = `
 <body>

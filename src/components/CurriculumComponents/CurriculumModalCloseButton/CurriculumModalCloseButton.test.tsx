@@ -10,7 +10,7 @@ describe("CurriculumModalCloseButton", () => {
   it("renders the button", () => {
     const { getByTestId } = render(
       <ThemeProvider theme={oakTheme}>
-        <CurriculumModalCloseButton onClose={() => jest.fn()} />
+        <CurriculumModalCloseButton onClose={() => vi.fn()} />
       </ThemeProvider>,
     );
 

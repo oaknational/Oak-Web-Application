@@ -1,3 +1,5 @@
+import { vi } from "vitest";
+
 import {
   PaginationProps,
   UsePaginationProps,
@@ -17,5 +19,5 @@ export const mockPaginationProps: PaginationProps & UsePaginationProps = {
   isFirstPage: true,
   isLastPage: false,
   paginationRoute: "/current-path",
-  onPageChange: jest.fn(),
+  onPageChange: vi.fn(),
 };

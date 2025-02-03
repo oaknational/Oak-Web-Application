@@ -11,16 +11,16 @@ import "@/__tests__/__helpers__/LocalStorageMock";
 import theme from "@/styles/theme";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 
-const consoleLogSpy = jest.spyOn(console, "log");
-const consoleErrorSpy = jest.spyOn(console, "error");
+const consoleLogSpy = vi.spyOn(console, "log");
+const consoleErrorSpy = vi.spyOn(console, "error");
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
+const useRouter = vi.spyOn(require("next/router"), "useRouter");
 useRouter.mockReturnValue({
   asPath: "test asPath value",
 });
 
-const mockNotify = jest.fn(async (err, cb) => cb(event));
+const mockNotify = vi.fn(async (err, cb) => cb(event));
 Bugsnag.notify = mockNotify;
 
 const TantrumChild = () => {

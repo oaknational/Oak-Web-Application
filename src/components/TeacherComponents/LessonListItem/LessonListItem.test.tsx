@@ -5,7 +5,7 @@ import LessonListItem, { LessonListItemProps } from "./LessonListItem";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 const props: LessonListItemProps = {
   unitTitle: "Adding surds",
@@ -40,7 +40,7 @@ describe("Lesson List Item", () => {
   });
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("It shows lesson title", () => {

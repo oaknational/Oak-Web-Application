@@ -1,3 +1,4 @@
+import type { Mock } from "vitest";
 import { useUser } from "@clerk/nextjs";
 import { act, waitFor } from "@testing-library/react";
 
@@ -7,14 +8,14 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
-jest.mock("@clerk/nextjs", () => ({
-  useUser: jest.fn(() => ({
+vi.mock("@clerk/nextjs", () => ({
+  useUser: vi.fn(() => ({
     isLoaded: true,
     isSignedIn: false,
   })),
 }));
 
-jest.mock(
+vi.mock(
   "@/components/TeacherComponents/helpers/downloadAndShareHelpers/fetchHubspotContactDetails",
   () => ({
     fetchHubspotContactDetails: async () => {
@@ -89,12 +90,12 @@ describe("CurriculumDownloadView", () => {
   });
 
   test("logged in", async () => {
-    (useUser as jest.Mock).mockReturnValue({
+    (useUser as Mock).mockReturnValue({
       isLoaded: true,
       isSignedIn: true,
     });
 
-    const onSubmit = jest.fn();
+    const onSubmit = vi.fn();
 
     const initialData: CurriculumDownloadViewData = {
       schoolId: undefined,

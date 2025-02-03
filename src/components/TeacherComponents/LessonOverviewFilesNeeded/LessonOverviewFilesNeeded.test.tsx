@@ -5,8 +5,8 @@ import LessonOverviewFilesNeeded from "./LessonOverviewFilesNeeded";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { resolveOakHref } from "@/common-lib/urls";
 
-jest.mock("@/common-lib/urls", () => ({
-  resolveOakHref: jest.fn(),
+vi.mock("@/common-lib/urls", () => ({
+  resolveOakHref: vi.fn(),
 }));
 
 describe("LessonOverviewFilesNeeded", () => {

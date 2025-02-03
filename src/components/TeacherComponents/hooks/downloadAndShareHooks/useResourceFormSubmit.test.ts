@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 
 import useResourceFormSubmit from "./useResourceFormSubmit";
@@ -5,28 +6,28 @@ import useResourceFormSubmit from "./useResourceFormSubmit";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
-jest.mock(
+vi.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources",
   () => ({
     __esModule: true,
-    default: jest.fn(),
+    default: vi.fn(),
   }),
 );
 
-const mockSetEmailInLocalStorageFn = jest.fn();
-const mockSetSchoolInLocalStorageFn = jest.fn();
-const mockSetTermsInLocalStorageFn = jest.fn();
+const mockSetEmailInLocalStorageFn = vi.fn();
+const mockSetSchoolInLocalStorageFn = vi.fn();
+const mockSetTermsInLocalStorageFn = vi.fn();
 
-jest.mock("./useLocalStorageForDownloads", () => {
-  return jest.fn(() => ({
+vi.mock("./useLocalStorageForDownloads", () => ({
+  default: () => ({
     setEmailInLocalStorage: mockSetEmailInLocalStorageFn,
     setSchoolInLocalStorage: mockSetSchoolInLocalStorageFn,
     setTermsInLocalStorage: mockSetTermsInLocalStorageFn,
-  }));
-});
+  }),
+}));
 
 const data: ResourceFormProps = {
-  onSubmit: jest.fn(),
+  onSubmit: vi.fn(),
   email: "test@test.com",
   school: "222-Sample school",
   schoolName: "Sample school",
@@ -36,7 +37,7 @@ const data: ResourceFormProps = {
 
 describe("useResourceFormSubmit", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     window.localStorage.clear();
   });
   it("should set email in local storage if passed in props", async () => {
@@ -67,7 +68,7 @@ describe("useResourceFormSubmit", () => {
 
   it("should correctly set school in local storage if 'homeschool' passed in props", async () => {
     const data: ResourceFormProps = {
-      onSubmit: jest.fn(),
+      onSubmit: vi.fn(),
       email: "test@test.com",
       school: "homeschool",
       terms: true,
@@ -88,7 +89,7 @@ describe("useResourceFormSubmit", () => {
 
   it("should correctly set school in local storage if 'notListed' passed in props", async () => {
     const data: ResourceFormProps = {
-      onSubmit: jest.fn(),
+      onSubmit: vi.fn(),
       email: "test@test.com",
       school: "notListed",
       terms: true,

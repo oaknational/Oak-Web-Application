@@ -1,18 +1,16 @@
 import { PropsWithChildren } from "react";
+import { vi } from "vitest";
 
 function RenderChildren({ children }: PropsWithChildren) {
   return <>{children}</>;
 }
 
 module.exports = {
-  useUser() {
-    return {
-      isLoaded: true,
-      isSignedIn: false,
-      user: null,
-    };
-  },
-
+  useUser: vi.fn().mockReturnValue({
+    isLoaded: true,
+    isSignedIn: false,
+    user: null,
+  }),
   UserButton: () => <div data-testid="clerk-user-button" />,
   useAuth() {
     return {

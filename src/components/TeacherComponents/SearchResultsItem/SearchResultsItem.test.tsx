@@ -8,7 +8,7 @@ import { getSearchHitObject } from "@/context/Search/search.helpers";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { hitsFixture } from "@/context/Search/search-api/2023/searchResults.fixture";
 
-const searchResultClicked = jest.fn();
+const searchResultClicked = vi.fn();
 
 const allKeyStages = searchPageFixture().keyStages;
 const hitLesson = hitsFixture.find((h) => h._source.type === "lesson");
@@ -32,7 +32,7 @@ const hitObjectUnit = getSearchHitObject(hitUnit, allKeyStages);
 const legacyHitObject = getSearchHitObject(legacyHit, allKeyStages);
 const render = renderWithProviders();
 
-jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+vi.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
   default: () => ({
     isMobile: false,

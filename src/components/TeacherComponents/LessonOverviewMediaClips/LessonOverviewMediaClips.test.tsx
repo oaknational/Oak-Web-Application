@@ -4,8 +4,8 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { resolveOakHref } from "@/common-lib/urls";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
-jest.mock("@/common-lib/urls", () => ({
-  resolveOakHref: jest.fn(),
+vi.mock("@/common-lib/urls", () => ({
+  resolveOakHref: vi.fn(),
 }));
 
 const mockLearningCycleVideos = lessonMediaClipsFixtures().mediaClips;

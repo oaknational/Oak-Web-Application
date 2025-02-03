@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { QuizResultMatch } from "./QuizResultMatch";
@@ -8,7 +9,7 @@ import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 
 describe("QuizResultMatch", () => {
   beforeAll(() => {
-    jest.spyOn(console, "error").mockImplementation(() => {});
+    vi.spyOn(console, "error").mockImplementation(() => {});
   });
 
   it.each([
@@ -95,6 +96,6 @@ describe("QuizResultMatch", () => {
   });
 
   afterAll(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 });

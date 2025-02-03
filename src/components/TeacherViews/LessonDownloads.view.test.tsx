@@ -15,13 +15,13 @@ const lesson = lessonDownloadsFixture({
   lessonTitle: "The meaning of time",
 });
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(() => "with-login"),
+vi.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: vi.fn(() => "with-login"),
 }));
 
 describe("Hiding 'Your details", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   it("should show 'Your Details' when not logged in", () => {
     const result = render(

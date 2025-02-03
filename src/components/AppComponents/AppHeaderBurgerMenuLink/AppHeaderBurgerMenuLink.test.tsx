@@ -14,11 +14,11 @@ const link = {
   external: true,
 };
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      browseRefinedAccessed: jest.fn(),
+      browseRefinedAccessed: vi.fn(),
     },
   }),
 }));

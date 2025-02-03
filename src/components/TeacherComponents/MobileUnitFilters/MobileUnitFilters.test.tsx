@@ -10,8 +10,8 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const mockProps: MobileUnitFiltersProps = {
   numberOfUnits: 10,
-  browseRefined: jest.fn() as TrackFns["browseRefined"],
-  setSelectedThemeSlug: jest.fn(),
+  browseRefined: vi.fn() as TrackFns["browseRefined"],
+  setSelectedThemeSlug: vi.fn(),
   learningThemesFilterId: "theme1",
   yearGroups: [
     { yearTitle: "Year 1", year: "year-1" },
@@ -43,14 +43,14 @@ const mockProps: MobileUnitFiltersProps = {
 
 describe("MobileUnitFilters", () => {
   beforeAll(() => {
-    global.IntersectionObserver = jest.fn(() => ({
-      observe: jest.fn(),
-      unobserve: jest.fn(),
-      disconnect: jest.fn(),
+    global.IntersectionObserver = vi.fn(() => ({
+      observe: vi.fn(),
+      unobserve: vi.fn(),
+      disconnect: vi.fn(),
       root: null,
       rootMargin: "",
       thresholds: [],
-      takeRecords: jest.fn(),
+      takeRecords: vi.fn(),
     }));
   });
 

@@ -33,7 +33,7 @@ describe("YourDetails", () => {
     });
 
     it("choose", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { rerender, getByRole, getAllByTestId } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
@@ -99,7 +99,7 @@ describe("YourDetails", () => {
     });
 
     it("clear", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
@@ -157,7 +157,7 @@ describe("YourDetails", () => {
       expect(inputElement).toBeChecked();
     });
     it("change", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
@@ -205,7 +205,7 @@ describe("YourDetails", () => {
     });
 
     it("change", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { getByTestId } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails
@@ -236,7 +236,7 @@ describe("YourDetails", () => {
     });
 
     it("clear", () => {
-      const onChange = jest.fn();
+      const onChange = vi.fn();
       const { getByTestId } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <YourDetails

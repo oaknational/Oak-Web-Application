@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { fireEvent } from "@testing-library/dom";
@@ -13,12 +14,12 @@ import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures
 
 const MockBrowseData = lessonBrowseDataFixture({});
 const usePupilAnalyticsMock = {
-  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
-  identify: jest.fn(),
+  track: Object.fromEntries(trackingEvents.map((event) => [event, vi.fn()])),
+  identify: vi.fn(),
   posthogDistinctId: "123",
 };
 
-jest.mock(
+vi.mock(
   "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
   () => {
     return {
@@ -28,20 +29,20 @@ jest.mock(
 );
 
 const useTrackSectionStartedMock = {
-  trackSectionStarted: jest.fn(),
+  trackSectionStarted: vi.fn(),
 };
 
-jest.mock("@/hooks/useTrackSectionStarted", () => {
+vi.mock("@/hooks/useTrackSectionStarted", () => {
   return {
     useTrackSectionStarted: () => useTrackSectionStartedMock,
   };
 });
 
 const useGetVideoTrackingDataMock = {
-  getVideoTrackingData: jest.fn(),
+  getVideoTrackingData: vi.fn(),
 };
 
-jest.mock("@/hooks/useGetVideoTrackingData", () => {
+vi.mock("@/hooks/useGetVideoTrackingData", () => {
   return {
     useGetVideoTrackingData: () => useGetVideoTrackingDataMock,
   };
@@ -59,11 +60,11 @@ const VideoPlayerMock = ({ userEventCallback }: Partial<VideoPlayerProps>) => {
   return <span data-testid="video-player" />;
 };
 
-jest.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => {
-  return ({ userEventCallback }: Partial<VideoPlayerProps>) => (
+vi.mock("@/components/SharedComponents/VideoPlayer/VideoPlayer", () => ({
+  default: ({ userEventCallback }: Partial<VideoPlayerProps>) => (
     <VideoPlayerMock userEventCallback={userEventCallback} />
-  );
-});
+  ),
+}));
 
 describe(PupilViewsVideo, () => {
   it("renders a video player", () => {
@@ -109,7 +110,7 @@ describe(PupilViewsVideo, () => {
   });
 
   it('completes the section when "I\'ve finished the video" is clicked', async () => {
-    const completeActivity = jest.fn();
+    const completeActivity = vi.fn();
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider
@@ -133,7 +134,7 @@ describe(PupilViewsVideo, () => {
   });
 
   it('sets the current section to "overview" when the back button is clicked', async () => {
-    const updateCurrentSection = jest.fn();
+    const updateCurrentSection = vi.fn();
     const { getByLabelText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider
@@ -157,7 +158,7 @@ describe(PupilViewsVideo, () => {
   });
 
   it("displays a message when there is no video ", async () => {
-    const updateCurrentSection = jest.fn();
+    const updateCurrentSection = vi.fn();
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider
@@ -201,7 +202,7 @@ describe(PupilViewsVideo, () => {
   });
 
   it("updates the section result when the video plays", () => {
-    const updateSectionResult = jest.fn();
+    const updateSectionResult = vi.fn();
 
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -230,11 +231,12 @@ describe(PupilViewsVideo, () => {
     });
   });
   it("sends tracking data when a video is completed", () => {
-    const lessonActivityCompletedLessonVideo = jest.fn();
+    const lessonActivityCompletedLessonVideo = vi.fn();
 
-    jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonActivityCompletedLessonVideo")
-      .mockImplementation(lessonActivityCompletedLessonVideo);
+    vi.spyOn(
+      usePupilAnalyticsMock.track,
+      "lessonActivityCompletedLessonVideo",
+    ).mockImplementation(lessonActivityCompletedLessonVideo);
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -256,11 +258,12 @@ describe(PupilViewsVideo, () => {
     expect(lessonActivityCompletedLessonVideo).toHaveBeenCalled();
   });
   it("sends abandoned event data when backbutton clicked", () => {
-    const lessonActivityAbandonedLessonVideo = jest.fn();
+    const lessonActivityAbandonedLessonVideo = vi.fn();
 
-    jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonActivityAbandonedLessonVideo")
-      .mockImplementation(lessonActivityAbandonedLessonVideo);
+    vi.spyOn(
+      usePupilAnalyticsMock.track,
+      "lessonActivityAbandonedLessonVideo",
+    ).mockImplementation(lessonActivityAbandonedLessonVideo);
 
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -281,10 +284,11 @@ describe(PupilViewsVideo, () => {
     expect(lessonActivityAbandonedLessonVideo).toHaveBeenCalledTimes(1);
   });
   it("calls trackSectionStarted when video is complete and when continue lesson button is pressed", () => {
-    const trackSectionStarted = jest.fn();
-    jest
-      .spyOn(useTrackSectionStartedMock, "trackSectionStarted")
-      .mockImplementation(trackSectionStarted);
+    const trackSectionStarted = vi.fn();
+    vi.spyOn(
+      useTrackSectionStartedMock,
+      "trackSectionStarted",
+    ).mockImplementation(trackSectionStarted);
     const context = createLessonEngineContext({
       currentSection: "video",
       sectionResults: {

@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import "@testing-library/jest-dom";
 import {
   OakInfoProps,
@@ -12,14 +13,14 @@ import { unitBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/u
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 
 // Mock the useAnalytics hook
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
-  default: jest.fn(() => ({ track: jest.fn() })),
+  default: vi.fn(() => ({ track: vi.fn() })),
 }));
 
-jest.mock("@oaknational/oak-components", () => {
+vi.mock("@oaknational/oak-components", async () => {
   return {
-    ...jest.requireActual("@oaknational/oak-components"),
+    ...(await vi.importActual("@oaknational/oak-components")),
     OakInfo: ({ hint }: OakInfoProps) => (
       <>
         <div role="tooltip">{hint}</div>

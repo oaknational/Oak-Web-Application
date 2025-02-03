@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import "@testing-library/jest-dom";
 import { act } from "@testing-library/react";
@@ -12,10 +13,10 @@ import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvid
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { OrderAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
-jest.mock("@oaknational/oak-components", () => {
+vi.mock("@oaknational/oak-components", async () => {
   return {
-    ...jest.requireActual("@oaknational/oak-components"),
-    OakQuizOrder: jest.fn().mockReturnValue(null),
+    ...(await vi.importActual("@oaknational/oak-components")),
+    OakQuizOrder: vi.fn().mockReturnValue(null),
   };
 });
 
@@ -95,11 +96,11 @@ describe(QuizOrderAnswer, () => {
   it("calls onInitialChange when items are re-ordered", () => {
     let onItemOrderChange: oakComponents.OakQuizOrderProps["onChange"];
 
-    jest.spyOn(oakComponents, "OakQuizOrder").mockImplementation((props) => {
+    vi.spyOn(oakComponents, "OakQuizOrder").mockImplementation((props) => {
       onItemOrderChange = props.onChange;
       return <div />;
     });
-    const onChange = jest.fn();
+    const onChange = vi.fn();
 
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -133,7 +134,7 @@ describe(QuizOrderAnswer, () => {
     it('displays the feedback when "feedback" is present', () => {
       let onItemOrderChange: oakComponents.OakQuizOrderProps["onChange"];
 
-      jest.spyOn(oakComponents, "OakQuizOrder").mockImplementation((props) => {
+      vi.spyOn(oakComponents, "OakQuizOrder").mockImplementation((props) => {
         onItemOrderChange = props.onChange;
         return <div />;
       });

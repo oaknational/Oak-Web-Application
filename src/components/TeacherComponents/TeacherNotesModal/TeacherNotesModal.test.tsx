@@ -1,3 +1,4 @@
+import { Mock, MockedFunction, vi } from "vitest";
 import { useEditor } from "@tiptap/react";
 import { waitFor } from "@testing-library/react";
 import {
@@ -17,38 +18,38 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 
 // mock the useEditor hook
-jest.mock("@tiptap/react", () => {
+vi.mock("@tiptap/react", async () => {
   return {
     __esModule: true,
-    ...jest.requireActual("@tiptap/react"),
-    useEditor: jest.fn().mockReturnValue({
+    ...(await vi.importActual("@tiptap/react")),
+    useEditor: vi.fn().mockReturnValue({
       commands: {
-        getHTML: jest.fn().mockReturnValue("<p>test</p>"),
-        setContent: jest.fn(),
+        getHTML: vi.fn().mockReturnValue("<p>test</p>"),
+        setContent: vi.fn(),
       },
       storage: {
         characterCount: {
-          characters: jest.fn().mockReturnValue(0),
+          characters: vi.fn().mockReturnValue(0),
         },
       },
-      isActive: jest.fn().mockReturnValue(false),
-      getHTML: jest.fn().mockReturnValue(""),
-      getText: jest.fn().mockReturnValue(""),
+      isActive: vi.fn().mockReturnValue(false),
+      getHTML: vi.fn().mockReturnValue(""),
+      getText: vi.fn().mockReturnValue(""),
     }),
   };
 });
 
 // mock OakTeacherNotesModal
-jest.mock("@oaknational/oak-components", () => {
+vi.mock("@oaknational/oak-components", async () => {
   return {
     __esModule: true,
-    ...jest.requireActual("@oaknational/oak-components"),
-    OakTeacherNotesModal: jest.fn(() => null),
+    ...(await vi.importActual("@oaknational/oak-components")),
+    OakTeacherNotesModal: vi.fn(() => null),
   };
 });
 
 describe("TeacherNotesModal", () => {
-  const useEditorMock = useEditor as jest.Mock;
+  const useEditorMock = useEditor as Mock;
   const mockTeacherNote: TeacherNoteCamelCase = {
     noteHtml: "<p>test</p>",
     sidKey: "sid-ARHMdf",
@@ -66,14 +67,14 @@ describe("TeacherNotesModal", () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe("isAllowedUri", () => {
     // mock context
     const context = {
       defaultProtocol: "https",
-      defaultValidate: jest.fn().mockReturnValue(true),
+      defaultValidate: vi.fn().mockReturnValue(true),
       protocols: ["http", "https"],
     };
 
@@ -140,8 +141,8 @@ describe("TeacherNotesModal", () => {
     render(
       <TeacherNotesModal
         isOpen={true}
-        onClose={jest.fn()}
-        saveTeacherNote={jest.fn()}
+        onClose={vi.fn()}
+        saveTeacherNote={vi.fn()}
         teacherNote={mockTeacherNote}
       />,
     );
@@ -151,20 +152,20 @@ describe("TeacherNotesModal", () => {
     });
   });
   it("should call save teacher note when the save button is clicked", async () => {
-    const mockSaveTeacherNote = jest
+    const mockSaveTeacherNote = vi
       .fn(() => Promise.resolve(mockTeacherNoteSnake))
       .mockName("saveTeacherNote");
 
     render(
       <TeacherNotesModal
         isOpen={true}
-        onClose={jest.fn()}
+        onClose={vi.fn()}
         saveTeacherNote={mockSaveTeacherNote}
         teacherNote={mockTeacherNote}
       />,
     );
 
-    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+    const mockModal = OakTeacherNotesModal as MockedFunction<
       typeof OakTeacherNotesModal
     >;
 
@@ -182,20 +183,20 @@ describe("TeacherNotesModal", () => {
   });
 
   it("should set note saved when the note has been saved", async () => {
-    const mockSaveTeacherNote = jest
+    const mockSaveTeacherNote = vi
       .fn(() => Promise.resolve(mockTeacherNoteSnake))
       .mockName("saveTeacherNote");
 
     render(
       <TeacherNotesModal
         isOpen={true}
-        onClose={jest.fn()}
+        onClose={vi.fn()}
         saveTeacherNote={mockSaveTeacherNote}
         teacherNote={mockTeacherNote}
       />,
     );
 
-    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+    const mockModal = OakTeacherNotesModal as MockedFunction<
       typeof OakTeacherNotesModal
     >;
 

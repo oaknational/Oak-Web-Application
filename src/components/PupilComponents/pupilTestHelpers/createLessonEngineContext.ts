@@ -13,12 +13,12 @@ export function createLessonEngineContext(
     sectionResults: {},
     timeStamp: { section: "overview", time: 0 },
     lessonReviewSections: allLessonReviewSections,
-    completeActivity: jest.fn(),
-    updateCurrentSection: jest.fn(),
-    proceedToNextSection: jest.fn(),
-    updateSectionResult: jest.fn(),
-    updateWorksheetDownloaded: jest.fn(),
-    updateAdditionalFilesDownloaded: jest.fn(),
+    completeActivity: vi.fn(),
+    updateCurrentSection: vi.fn(),
+    proceedToNextSection: vi.fn(),
+    updateSectionResult: vi.fn(),
+    updateWorksheetDownloaded: vi.fn(),
+    updateAdditionalFilesDownloaded: vi.fn(),
     ...overrides,
   };
 }

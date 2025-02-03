@@ -1,4 +1,17 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SizeMonitor > render 1`] = `
+<body>
+  <div>
+    <div
+      data-testid="size-container"
+      style="position: relative;"
+    >
+      testing
+    </div>
+  </div>
+</body>
+`;
 
 exports[`SizeMonitor render 1`] = `
 <body>

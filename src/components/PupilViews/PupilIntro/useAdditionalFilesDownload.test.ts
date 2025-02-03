@@ -4,17 +4,17 @@ import { useAdditionalFilesDownload } from "./useAdditionalFilesDownload";
 
 import * as downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 
-jest.mock(
+vi.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources",
 );
 
-window.alert = jest.fn();
+window.alert = vi.fn();
 
 describe(useAdditionalFilesDownload, () => {
   let downloadSpy: jest.SpyInstance;
 
   beforeEach(() => {
-    downloadSpy = jest
+    downloadSpy = vi
       .spyOn(downloadLessonResources, "default")
       .mockResolvedValue();
   });
@@ -78,7 +78,7 @@ describe(useAdditionalFilesDownload, () => {
 
   it("handles failed downloads", async () => {
     downloadSpy.mockRejectedValue(new Error("whoops"));
-    const alertSpy = jest.spyOn(window, "alert");
+    const alertSpy = vi.spyOn(window, "alert");
     const { result } = renderHook(() =>
       useAdditionalFilesDownload("lesson-slug"),
     );

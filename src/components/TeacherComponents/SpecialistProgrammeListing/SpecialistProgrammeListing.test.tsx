@@ -9,7 +9,7 @@ import { specialistProgrammeListingPageDataFixture } from "@/node-lib/curriculum
 const curriculumData = specialistProgrammeListingPageDataFixture();
 
 const render = renderWithProviders();
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 describe("SpecialistProgrammeListing", () => {
   test("render a tier subject component with heading ", () => {

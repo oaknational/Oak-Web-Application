@@ -8,14 +8,14 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import waitForNextTick from "@/__tests__/__helpers__/waitForNextTick";
 import useSchoolPicker from "@/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker";
 
-const setSchool = jest.fn();
+const setSchool = vi.fn();
 const props = {
   setSchool: setSchool,
   errors: {},
   withHomeschool: true,
 };
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
 
 const render = renderWithProviders();
 

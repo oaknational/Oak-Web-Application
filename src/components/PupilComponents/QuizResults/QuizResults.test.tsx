@@ -9,27 +9,21 @@ import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { exitQuizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 
-jest.mock("@/components/PupilComponents/QuizResultMCQ/QuizResultMCQ", () => ({
+vi.mock("@/components/PupilComponents/QuizResultMCQ/QuizResultMCQ", () => ({
   QuizResultMCQ: () => <div>Multiple Choice Question</div>,
 }));
-jest.mock(
+vi.mock(
   "@/components/PupilComponents/QuizResultShortAnswer/QuizResultShortAnswer",
   () => ({
     QuizResultShortAnswer: () => <div>Short Answer Question</div>,
   }),
 );
-jest.mock(
-  "@/components/PupilComponents/QuizResultOrder/QuizResultOrder",
-  () => ({
-    QuizResultOrder: () => <div>Order Question</div>,
-  }),
-);
-jest.mock(
-  "@/components/PupilComponents/QuizResultMatch/QuizResultMatch",
-  () => ({
-    QuizResultMatch: () => <div>Match Question</div>,
-  }),
-);
+vi.mock("@/components/PupilComponents/QuizResultOrder/QuizResultOrder", () => ({
+  QuizResultOrder: () => <div>Order Question</div>,
+}));
+vi.mock("@/components/PupilComponents/QuizResultMatch/QuizResultMatch", () => ({
+  QuizResultMatch: () => <div>Match Question</div>,
+}));
 
 describe("QuizResult", () => {
   it("renders the right number of results", () => {

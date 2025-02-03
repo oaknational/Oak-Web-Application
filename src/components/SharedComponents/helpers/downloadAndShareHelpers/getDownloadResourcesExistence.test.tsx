@@ -29,7 +29,7 @@ describe("checkIfDownloadResourcesExist()", () => {
   let downloadResourcesExist;
 
   beforeEach(() => {
-    global.fetch = jest.fn((url) => {
+    global.fetch = vi.fn((url) => {
       if (
         url ===
         "https://mockdownloads.com/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf"

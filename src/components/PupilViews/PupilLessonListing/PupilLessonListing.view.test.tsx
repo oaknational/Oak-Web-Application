@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import {
   OakInfoProps,
   OakThemeProvider,
@@ -11,9 +12,9 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
 
-jest.mock("@oaknational/oak-components", () => {
+vi.mock("@oaknational/oak-components", async () => {
   return {
-    ...jest.requireActual("@oaknational/oak-components"),
+    ...(await vi.importActual("@oaknational/oak-components")),
     OakInfo: ({ hint }: OakInfoProps) => (
       <>
         <div role="tooltip">{hint}</div>

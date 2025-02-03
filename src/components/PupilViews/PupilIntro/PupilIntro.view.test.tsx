@@ -1,3 +1,4 @@
+import { MockInstance, vi } from "vitest";
 import React from "react";
 import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
@@ -15,14 +16,14 @@ import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesso
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const usePupilAnalyticsMock = {
-  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
-  identify: jest.fn(),
+  track: Object.fromEntries(trackingEvents.map((event) => [event, vi.fn()])),
+  identify: vi.fn(),
   posthogDistinctId: "123",
 };
 const useTrackSectionStartedMock = {
-  trackSectionStarted: jest.fn(),
+  trackSectionStarted: vi.fn(),
 };
-jest.mock(
+vi.mock(
   "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
   () => {
     return {
@@ -31,13 +32,13 @@ jest.mock(
   },
 );
 
-jest.mock("@/hooks/useTrackSectionStarted", () => {
+vi.mock("@/hooks/useTrackSectionStarted", () => {
   return {
     useTrackSectionStarted: () => useTrackSectionStartedMock,
   };
 });
 
-jest.mock(
+vi.mock(
   "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources",
 );
 
@@ -53,10 +54,10 @@ const contentGuidance: LessonContent["contentGuidance"] = [
 const supervisionLevel = "supervision level";
 
 describe("PupilIntro", () => {
-  let downloadSpy: jest.SpyInstance;
+  let downloadSpy: MockInstance;
 
   beforeEach(() => {
-    downloadSpy = jest
+    downloadSpy = vi
       .spyOn(downloadLessonResources, "default")
       .mockResolvedValue();
   });
@@ -305,11 +306,12 @@ describe("PupilIntro", () => {
     });
   });
   it("sends tracking data when a intro is completed", () => {
-    const lessonSectionCompletedIntroduction = jest.fn();
+    const lessonSectionCompletedIntroduction = vi.fn();
 
-    jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonActivityCompletedIntroduction")
-      .mockImplementation(lessonSectionCompletedIntroduction);
+    vi.spyOn(
+      usePupilAnalyticsMock.track,
+      "lessonActivityCompletedIntroduction",
+    ).mockImplementation(lessonSectionCompletedIntroduction);
 
     const context = createLessonEngineContext();
     const { getByRole } = renderWithTheme(
@@ -323,11 +325,12 @@ describe("PupilIntro", () => {
     expect(lessonSectionCompletedIntroduction).toHaveBeenCalledTimes(1);
   });
   it("sends abandoned event data when backbutton clicked", () => {
-    const lessonActivityAbandonedIntroduction = jest.fn();
+    const lessonActivityAbandonedIntroduction = vi.fn();
 
-    jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonActivityAbandonedIntroduction")
-      .mockImplementation(lessonActivityAbandonedIntroduction);
+    vi.spyOn(
+      usePupilAnalyticsMock.track,
+      "lessonActivityAbandonedIntroduction",
+    ).mockImplementation(lessonActivityAbandonedIntroduction);
 
     const context = createLessonEngineContext();
     const { getByRole } = renderWithTheme(
@@ -342,10 +345,11 @@ describe("PupilIntro", () => {
     expect(lessonActivityAbandonedIntroduction).toHaveBeenCalledTimes(1);
   });
   it("calls trackSectionStarted when intro is complete and when continue lesson button is pressed", () => {
-    const trackSectionStarted = jest.fn();
-    jest
-      .spyOn(useTrackSectionStartedMock, "trackSectionStarted")
-      .mockImplementation(trackSectionStarted);
+    const trackSectionStarted = vi.fn();
+    vi.spyOn(
+      useTrackSectionStartedMock,
+      "trackSectionStarted",
+    ).mockImplementation(trackSectionStarted);
     const context = createLessonEngineContext({
       currentSection: "intro",
       sectionResults: {

@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import { ReactNode } from "react";
 import { OakP } from "@oaknational/oak-components";
@@ -16,12 +17,14 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import errorReporter from "@/common-lib/error-reporter";
 
 // Mock the useAnalytics hook
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
-  default: jest.fn(() => ({ track: jest.fn() })),
+  default: vi.fn(() => ({ track: vi.fn() })),
 }));
 
-jest.mock("@/common-lib/error-reporter", () => jest.fn(() => jest.fn()));
+vi.mock("@/common-lib/error-reporter", () => ({
+  default: vi.fn(() => vi.fn()),
+}));
 
 const render = renderWithProviders();
 
@@ -43,18 +46,18 @@ describe("PupilAnalyticsProvider", () => {
 
   describe("track", () => {
     beforeEach(() => {
-      jest.spyOn(console, "error").mockImplementation(() => {});
+      vi.spyOn(console, "error").mockImplementation(() => {});
     });
 
     afterEach(() => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
     });
 
     it.each(trackingEvents)(
       "calls track on the analytics object adding additional fields - %s",
       (eventName) => {
         //spy on the track function
-        const trackSpy = { [eventName]: jest.fn() };
+        const trackSpy = { [eventName]: vi.fn() };
         (useAnalytics as jest.Mock).mockReturnValue({ track: trackSpy });
 
         const { result } = renderHook(() => usePupilAnalytics(), {
@@ -88,10 +91,10 @@ describe("PupilAnalyticsProvider", () => {
     "lessonActivityAbandonedLessonAudio",
   ])("reports an error if the audio data is missing", (eventName) => {
     //spy on the track function
-    const trackSpy = { [eventName]: jest.fn() };
+    const trackSpy = { [eventName]: vi.fn() };
     (useAnalytics as jest.Mock).mockReturnValue({ track: trackSpy });
 
-    const reporter = jest.fn();
+    const reporter = vi.fn();
     (errorReporter as jest.Mock).mockReturnValue(reporter);
 
     const { result } = renderHook(() => usePupilAnalytics(), {
@@ -119,10 +122,10 @@ describe("PupilAnalyticsProvider", () => {
     "lessonActivityAbandonedLessonVideo",
   ])("reports an error if the video data is missing", (eventName) => {
     //spy on the track function
-    const trackSpy = { [eventName]: jest.fn() };
+    const trackSpy = { [eventName]: vi.fn() };
     (useAnalytics as jest.Mock).mockReturnValue({ track: trackSpy });
 
-    const reporter = jest.fn();
+    const reporter = vi.fn();
     (errorReporter as jest.Mock).mockReturnValue(reporter);
 
     const { result } = renderHook(() => usePupilAnalytics(), {

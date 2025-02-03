@@ -14,7 +14,7 @@ import {
 
 describe("CurriculumDownloadTab / helper", () => {
   beforeEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   describe("defaultValueWhenThrown", () => {
@@ -48,9 +48,8 @@ describe("CurriculumDownloadTab / helper", () => {
     });
 
     it("localstorage", () => {
-      jest
-        .spyOn(Storage.prototype, "getItem")
-        .mockImplementation((key: string) => {
+      vi.spyOn(Storage.prototype, "getItem").mockImplementation(
+        (key: string) => {
           if (key === LS_KEY_EMAIL) {
             return JSON.stringify("test@example.com");
           }
@@ -64,7 +63,8 @@ describe("CurriculumDownloadTab / helper", () => {
             return JSON.stringify(true);
           }
           throw "Invalid";
-        });
+        },
+      );
 
       const { result } = renderHook(() => useDownloadsLocalStorage());
       expect(result.current).toEqual({
@@ -83,7 +83,7 @@ describe("CurriculumDownloadTab / helper", () => {
 
   describe("saveDownloadsDataToLocalStorage", () => {
     it("valid", () => {
-      const fn = jest.spyOn(Storage.prototype, "setItem");
+      const fn = vi.spyOn(Storage.prototype, "setItem");
 
       saveDownloadsDataToLocalStorage({
         schoolId: "VALID_ID",

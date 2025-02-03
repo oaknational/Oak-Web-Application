@@ -7,22 +7,19 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 
 const onwardContentSelected =
-  jest.fn() as unknown as TrackFns["onwardContentSelected"];
+  vi.fn() as unknown as TrackFns["onwardContentSelected"];
 
-jest.mock(
-  "@/pages-helpers/teacher/share-experiments/useShareExperiment",
-  () => ({
-    __esModule: true,
-    useShareExperiment: jest.fn(() => ({
-      shareIdRef: { current: "test-share-id" },
-      shareIdKeyRef: { current: "test-share-id-key" },
-    })),
-  }),
-);
+vi.mock("@/pages-helpers/teacher/share-experiments/useShareExperiment", () => ({
+  __esModule: true,
+  useShareExperiment: vi.fn(() => ({
+    shareIdRef: { current: "test-share-id" },
+    shareIdKeyRef: { current: "test-share-id-key" },
+  })),
+}));
 
 describe("DownloadConfirmation component", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   const curriculumTrackingProps: CurriculumTrackingProps = {

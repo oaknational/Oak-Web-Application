@@ -9,8 +9,8 @@ describe("ExpiringBanner", () => {
     isOpen: true,
     isResourcesMessage: false,
     onwardHref: "/new-lessons",
-    onClose: jest.fn(),
-    onViewNewLessons: jest.fn(),
+    onClose: vi.fn(),
+    onViewNewLessons: vi.fn(),
   };
 
   it("should render the banner when isOpen is true", () => {

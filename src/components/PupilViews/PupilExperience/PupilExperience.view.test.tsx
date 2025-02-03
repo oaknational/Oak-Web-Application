@@ -1,7 +1,9 @@
+import { vi } from "vitest";
 import { waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mockRouter from "next-router-mock";
 import { OakTooltipProps } from "@oaknational/oak-components";
+import { NextSeo } from "next-seo";
 
 import {
   PupilExperienceView,
@@ -18,18 +20,20 @@ import { createLessonEngineContext } from "@/components/PupilComponents/pupilTes
 import "@/__tests__/__helpers__/IntersectionObserverMock";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 
-jest.mock("next/router", () => jest.requireActual("next-router-mock"));
+vi.mock("next/router", async () => await vi.importActual("next-router-mock"));
 
-jest.mock("@/components/PupilComponents/LessonEngineProvider", () => ({
-  ...jest.requireActual("@/components/PupilComponents/LessonEngineProvider"),
-  useLessonEngineContext: jest.fn(),
+vi.mock("@/components/PupilComponents/LessonEngineProvider", async () => ({
+  ...(await vi.importActual(
+    "@/components/PupilComponents/LessonEngineProvider",
+  )),
+  useLessonEngineContext: vi.fn(),
 }));
 
-jest.mock("@/components/PupilViews/PupilExpired/PupilExpired.view", () => ({
-  PupilExpiredView: jest.fn(() => "PupilExpiredView"),
+vi.mock("@/components/PupilViews/PupilExpired/PupilExpired.view", () => ({
+  PupilExpiredView: vi.fn(() => "PupilExpiredView"),
 }));
 
-jest.mock("@/components/PupilViews/PupilReview", () => {
+vi.mock("@/components/PupilViews/PupilReview", () => {
   return {
     PupilViewsReview: () => (
       <div>
@@ -41,7 +45,7 @@ jest.mock("@/components/PupilViews/PupilReview", () => {
   };
 });
 
-jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
+vi.mock("@/components/PupilViews/PupilLessonOverview", () => {
   return {
     PupilViewsLessonOverview: () => (
       <div>
@@ -53,9 +57,9 @@ jest.mock("@/components/PupilViews/PupilLessonOverview", () => {
   };
 });
 
-jest.mock("@oaknational/oak-components", () => {
+vi.mock("@oaknational/oak-components", async () => {
   return {
-    ...jest.requireActual("@oaknational/oak-components"),
+    ...(await vi.importActual("@oaknational/oak-components")),
     OakTooltip: ({ children, tooltip }: OakTooltipProps) => (
       <>
         {children}
@@ -65,8 +69,12 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(),
+vi.mock("next-seo", () => ({
+  NextSeo: vi.fn(),
+}));
+
+vi.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: vi.fn(),
 }));
 
 const render = renderWithProviders();
@@ -107,7 +115,7 @@ describe("PupilExperienceView", () => {
 
   describe("PupilPageContent", () => {
     afterEach(() => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
     });
 
     it("should render", () => {
@@ -120,13 +128,11 @@ describe("PupilExperienceView", () => {
         unitSlug: "unit-slug",
       });
 
-      jest
-        .spyOn(LessonEngineProvider, "useLessonEngineContext")
-        .mockReturnValue(
-          createLessonEngineContext({
-            currentSection: "overview",
-          }),
-        );
+      vi.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+        createLessonEngineContext({
+          currentSection: "overview",
+        }),
+      );
       const { getByText } = render(
         <PupilExperienceView
           lessonContent={lessonContent}
@@ -151,13 +157,14 @@ describe("PupilExperienceView", () => {
         const lessonContent = lessonContentFixture({});
         const lessonBrowseData = lessonBrowseDataFixture({});
 
-        jest
-          .spyOn(LessonEngineProvider, "useLessonEngineContext")
-          .mockReturnValue(
-            createLessonEngineContext({
-              currentSection: section as LessonEngineProvider.LessonSection,
-            }),
-          );
+        vi.spyOn(
+          LessonEngineProvider,
+          "useLessonEngineContext",
+        ).mockReturnValue(
+          createLessonEngineContext({
+            currentSection: section as LessonEngineProvider.LessonSection,
+          }),
+        );
 
         const { getByText } = render(
           <PupilExperienceView
@@ -181,7 +188,7 @@ describe("PupilExperienceView", () => {
     const lessonBrowseData = lessonBrowseDataFixture({});
     lessonBrowseData.lessonData.deprecatedFields = { expired: true };
 
-    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+    vi.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
         currentSection: "overview",
       }),
@@ -217,7 +224,7 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
 
-    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+    vi.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
         currentSection: "overview",
       }),
@@ -261,7 +268,7 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
 
-    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+    vi.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
         currentSection: "overview",
       }),
@@ -298,7 +305,7 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
 
-    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+    vi.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
         currentSection: "overview",
       }),
@@ -339,7 +346,7 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
 
-    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+    vi.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
         currentSection: "overview",
       }),
@@ -357,9 +364,10 @@ describe("PupilExperienceView", () => {
       />,
     );
 
-    expect(
-      document.querySelector("meta[name=robots]")?.getAttribute("content"),
-    ).toEqual("index,follow");
+    expect(NextSeo).toHaveBeenCalledWith(
+      expect.objectContaining({ noindex: false, nofollow: false }),
+      {},
+    );
   });
 
   it("should have robots meta tag with noindex & nofollow", async () => {
@@ -381,7 +389,7 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
 
-    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+    vi.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
         currentSection: "overview",
       }),
@@ -399,9 +407,10 @@ describe("PupilExperienceView", () => {
       />,
     );
 
-    expect(
-      document.querySelector("meta[name=robots]")?.getAttribute("content"),
-    ).toEqual("noindex,nofollow");
+    expect(NextSeo).toHaveBeenCalledWith(
+      expect.objectContaining({ noindex: true, nofollow: true }),
+      {},
+    );
   });
 
   it("should render with phase secondary and no lessonContent title", async () => {
@@ -417,7 +426,7 @@ describe("PupilExperienceView", () => {
     lessonBrowseData.programmeFields.phase = "secondary";
     lessonContent.lessonTitle = null;
 
-    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+    vi.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
         currentSection: "review",
       }),
@@ -444,7 +453,7 @@ describe("PupilExperienceView", () => {
     });
     const lessonBrowseData = lessonBrowseDataFixture({});
 
-    jest.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
+    vi.spyOn(LessonEngineProvider, "useLessonEngineContext").mockReturnValue(
       createLessonEngineContext({
         currentSection: undefined,
       }),

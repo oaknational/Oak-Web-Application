@@ -1,12 +1,14 @@
+import { MockInstance, vi } from "vitest";
+
 import { requestLessonResources } from "./requestLessonResources";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
 
-jest.mock("@/utils/handleTranscript", () => {
+vi.mock("@/utils/handleTranscript", async () => {
   return {
-    ...jest.requireActual("@/utils/handleTranscript"),
-    getCaptionsFromFile: jest.fn().mockResolvedValue([]),
+    ...(await vi.importActual("@/utils/handleTranscript")),
+    getCaptionsFromFile: vi.fn().mockResolvedValue([]),
   };
 });
 
@@ -22,9 +24,9 @@ describe("requestLessonResources", () => {
     updatedAt: "2021-01-01T00:00:00.000Z",
   };
 
-  let getDownloadResourcesExistenceSpy: jest.SpyInstance;
+  let getDownloadResourcesExistenceSpy: MockInstance;
   beforeEach(() => {
-    getDownloadResourcesExistenceSpy = jest
+    getDownloadResourcesExistenceSpy = vi
       .spyOn(curriculumApi2023, "lessonDownloads")
       .mockResolvedValue({
         ...lessonDownloadsCanonicalResponse,

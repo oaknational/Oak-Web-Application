@@ -2,7 +2,7 @@ import LessonOverviewDetails from "./LessonOverviewDetails";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-jest.mock("better-react-mathjax", () => ({
+vi.mock("better-react-mathjax", () => ({
   MathJax: ({ children }: { children: React.ReactNode }) => (
     <div>{children}</div>
   ),

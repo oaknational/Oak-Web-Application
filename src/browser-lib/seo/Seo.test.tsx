@@ -29,6 +29,8 @@ describe.skip("SEO", () => {
       container: document.head,
     });
 
+    console.log("Fake head element:", document.querySelector("fake-head"));
+
     expect(document.title).toBe("Maths lesson");
   });
 

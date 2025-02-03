@@ -13,12 +13,12 @@ import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const usePupilAnalyticsMock = {
-  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
-  identify: jest.fn(),
+  track: Object.fromEntries(trackingEvents.map((event) => [event, vi.fn()])),
+  identify: vi.fn(),
   posthogDistinctId: "123",
 };
 
-jest.mock(
+vi.mock(
   "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
   () => {
     return {
@@ -80,7 +80,7 @@ describe("PupilViewsLessonOverview", () => {
     [/Lesson video/, "video"],
   ].forEach(([name, section]) => {
     it(`allows navigation to the "${section}" section of the quiz`, () => {
-      const updateCurrentSection = jest.fn();
+      const updateCurrentSection = vi.fn();
 
       const { getByRole } = renderWithTheme(
         <OakPupilClientProvider

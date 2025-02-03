@@ -11,9 +11,9 @@ import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("Unit modal", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
-  const stateFn = jest.fn();
+  const stateFn = vi.fn();
 
   test("renders with correct heading", () => {
     const { getByText } = renderWithTheme(

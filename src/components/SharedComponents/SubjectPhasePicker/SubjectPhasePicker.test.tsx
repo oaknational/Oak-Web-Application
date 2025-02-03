@@ -5,15 +5,15 @@ import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+vi.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
   default: () => false,
 }));
 
 const render = renderWithProviders();
 
-const curriculumVisualiserAccessed = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const curriculumVisualiserAccessed = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -25,7 +25,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 
 describe("Component - subject phase picker", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   test("populates selection if supplied", () => {
     const currentSelection = {
@@ -375,7 +375,7 @@ describe("Component - subject phase picker", () => {
     });
 
     test("tab focus breaks outside of phases modal", async () => {
-      Element.prototype.checkVisibility = jest.fn(() => true) as jest.Mock;
+      Element.prototype.checkVisibility = vi.fn(() => true) as jest.Mock;
 
       const { getByTestId } = render(
         <SubjectPhasePicker {...subjectPhaseOptions} />,

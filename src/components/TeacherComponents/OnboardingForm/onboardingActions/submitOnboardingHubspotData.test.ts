@@ -1,3 +1,5 @@
+import { Mock, vi } from "vitest";
+
 import { SchoolSelectFormProps } from "../OnboardingForm.schema";
 
 import { submitOnboardingHubspotData } from "./submitOnboardingHubspotData";
@@ -8,10 +10,10 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
 import OakError from "@/errors/OakError";
 
-jest.mock("@/browser-lib/hubspot/forms");
-jest.mock("@/browser-lib/hubspot/forms/getHubspotFormPayloads");
-const reportError = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
+vi.mock("@/browser-lib/hubspot/forms");
+vi.mock("@/browser-lib/hubspot/forms/getHubspotFormPayloads");
+const reportError = vi.fn();
+vi.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -27,7 +29,7 @@ const utmParams = {
   utm_term: "utm_term",
   utm_content: "utm_content",
 };
-const submit = jest.fn();
+const submit = vi.fn();
 const data: SchoolSelectFormProps = {
   school: "123",
   schoolName: "Test School",
@@ -45,9 +47,9 @@ describe("submitHubspotData", () => {
     school: "Grange Hill",
   };
   beforeEach(() => {
-    jest.spyOn(hubspotForms, "hubspotSubmitForm").mockResolvedValue(undefined);
-    jest.clearAllMocks();
-    jest.resetModules();
+    vi.spyOn(hubspotForms, "hubspotSubmitForm").mockResolvedValue(undefined);
+    vi.clearAllMocks();
+    vi.resetModules();
   });
   test("should call getHubspotOnboardingFormPayload with the correct values", async () => {
     await submitOnboardingHubspotData({
@@ -87,7 +89,7 @@ describe("submitHubspotData", () => {
       userEmail,
     });
 
-    expect(jest.spyOn(hubspotForms, "hubspotSubmitForm")).toHaveBeenCalledWith({
+    expect(vi.spyOn(hubspotForms, "hubspotSubmitForm")).toHaveBeenCalledWith({
       hubspotFormId: getBrowserConfig("hubspotOnboardingFormId"),
       payload: getHubspotOnboardingFormPayload({
         hutk: getHubspotUserToken(),
@@ -100,9 +102,7 @@ describe("submitHubspotData", () => {
     reportError.mockReset();
     const oakError = new OakError({ code: "hubspot/not-loaded" });
 
-    jest
-      .spyOn(hubspotForms, "hubspotSubmitForm")
-      .mockRejectedValueOnce(oakError);
+    vi.spyOn(hubspotForms, "hubspotSubmitForm").mockRejectedValueOnce(oakError);
 
     await submitOnboardingHubspotData({
       hutk,
@@ -126,7 +126,7 @@ describe("submitHubspotData", () => {
       userEmail,
     });
 
-    expect(jest.spyOn(hubspotForms, "hubspotSubmitForm")).toHaveBeenCalledWith({
+    expect(vi.spyOn(hubspotForms, "hubspotSubmitForm")).toHaveBeenCalledWith({
       hubspotFormId: getBrowserConfig("hubspotOnboardingFormId"),
       payload: getHubspotOnboardingFormPayload({
         hutk: getHubspotUserToken(),
@@ -139,7 +139,7 @@ describe("submitHubspotData", () => {
     reportError.mockReset();
     const error = new Error();
 
-    jest.spyOn(hubspotForms, "hubspotSubmitForm").mockRejectedValueOnce(error);
+    vi.spyOn(hubspotForms, "hubspotSubmitForm").mockRejectedValueOnce(error);
 
     await submitOnboardingHubspotData({
       hutk,
@@ -159,7 +159,7 @@ describe("submitHubspotData", () => {
   });
 
   test("should throw and report error if failed to submit to hubspot", async () => {
-    (hubspotForms.hubspotSubmitForm as jest.Mock).mockRejectedValue(
+    (hubspotForms.hubspotSubmitForm as Mock).mockRejectedValue(
       new OakError({ code: "hubspot/unknown" }),
     );
 

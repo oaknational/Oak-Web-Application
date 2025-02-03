@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { act, renderHook } from "@testing-library/react";
 
 import { useOnboardingStatus } from "./useOnboardingStatus";
@@ -37,26 +38,26 @@ describe(useOnboardingStatus, () => {
   });
 
   it("times out if Clerk doesn't load in 10 seconds", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     setUseUserReturn(mockLoadingUser);
 
     const { result } = renderHook(useOnboardingStatus);
 
     act(() => {
-      jest.advanceTimersByTime(10000);
+      vi.advanceTimersByTime(10000);
     });
 
     expect(result.current).toEqual("unknown");
   });
 
   it("updates if Clerk eventually loads", () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     setUseUserReturn(mockLoadingUser);
 
     const { result, rerender } = renderHook(useOnboardingStatus);
 
     act(() => {
-      jest.advanceTimersByTime(10000);
+      vi.advanceTimersByTime(10000);
     });
 
     setUseUserReturn({

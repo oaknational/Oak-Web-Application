@@ -11,7 +11,7 @@ describe("Input", () => {
         id="test-input"
         label="An input"
         value="Hello world"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     );
 
@@ -25,7 +25,7 @@ describe("Input", () => {
         id="test-input"
         label="A particular label"
         value="Hello world"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
       />,
     );
     const input = getByRole("textbox");
@@ -37,7 +37,7 @@ describe("Input", () => {
         id="test-input"
         label="A particular label"
         value="Hello world"
-        onChange={jest.fn()}
+        onChange={vi.fn()}
         error="You done wrong"
       />,
     );

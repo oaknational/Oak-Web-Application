@@ -6,10 +6,10 @@ import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters"
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 const render = renderWithProviders();
-const curriculumThreadHighlighted = jest.fn();
-const yearGroupSelected = jest.fn();
+const curriculumThreadHighlighted = vi.fn();
+const yearGroupSelected = vi.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
@@ -32,11 +32,11 @@ const emptyMockYearData = {
 
 const CurriculumVisualiserFiltersMobileFixture: CurriculumVisualiserFiltersProps =
   {
-    //   updateMobileHeaderScroll: jest.fn(() => {}),
-    onSelectThread: jest.fn(() => {}),
+    //   updateMobileHeaderScroll: vi.fn(() => {}),
+    onSelectThread: vi.fn(() => {}),
     selectedThread: null,
     selectedYear: "7",
-    onSelectYear: jest.fn(() => {}),
+    onSelectYear: vi.fn(() => {}),
     yearSelection: {},
     data: {
       threadOptions: [
@@ -92,9 +92,9 @@ const CurriculumVisualiserFiltersMobileFixture: CurriculumVisualiserFiltersProps
 
 describe("<CurriculumVisualiserFiltersMobile/>", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
 
-    const mockIntersectionObserver = jest.fn();
+    const mockIntersectionObserver = vi.fn();
     mockIntersectionObserver.mockReturnValue({
       observe: () => null,
       unobserve: () => null,

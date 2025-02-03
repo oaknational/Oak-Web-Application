@@ -4,7 +4,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
 
-jest.mock("src/node-lib/cms");
+vi.mock("src/node-lib/cms");
 
 const mockPosts = [
   {

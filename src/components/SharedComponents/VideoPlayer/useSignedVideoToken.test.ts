@@ -1,19 +1,20 @@
+import { vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 
 import { useSignedMuxToken } from "./useSignedVideoToken";
 
-const mockUseSWR = jest.fn<{ data: unknown; error: unknown }, []>(() => ({
+const mockUseSWR = vi.fn(() => ({
   data: null,
   error: null,
 }));
 
-jest.mock("swr", () => ({
+vi.mock("swr", () => ({
   __esModule: true,
   default: (...args: []) => mockUseSWR(...args),
 }));
 
-const reportError = jest.fn();
-jest.mock("@/common-lib/error-reporter", () => ({
+const reportError = vi.fn();
+vi.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>
@@ -21,12 +22,12 @@ jest.mock("@/common-lib/error-reporter", () => ({
       reportError(...args),
 }));
 
-jest.mock("./getSignedVideoToken", () => ({
+vi.mock("./getSignedVideoToken", () => ({
   __esModule: true,
-  default: jest.fn().mockReturnValue(Promise.resolve([])),
+  default: vi.fn().mockReturnValue(Promise.resolve([])),
 }));
 
-jest.mock("@/common-lib/error-reporter", () => ({
+vi.mock("@/common-lib/error-reporter", () => ({
   __esModule: true,
   default:
     () =>

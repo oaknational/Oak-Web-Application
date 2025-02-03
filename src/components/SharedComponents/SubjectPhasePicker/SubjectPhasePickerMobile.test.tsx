@@ -5,15 +5,15 @@ import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
-jest.mock("@/hooks/useMediaQuery.tsx", () => ({
+vi.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
   default: () => true,
 }));
 
 const render = renderWithProviders();
 
-const curriculumVisualiserAccessed = jest.fn();
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+const curriculumVisualiserAccessed = vi.fn();
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {

@@ -7,11 +7,11 @@ import WebinarRegistration, {
 import noop from "@/__tests__/__helpers__/noop";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
-jest.mock("@/context/Analytics/useAnalytics", () => ({
+vi.mock("next/dist/client/router", () => require("next-router-mock"));
+vi.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
-    identify: jest.fn(),
+    identify: vi.fn(),
   }),
 }));
 
@@ -27,7 +27,7 @@ describe("WebinarRegistration", () => {
     expect(heading).toHaveTextContent("Almost there");
   });
   test("clicking button does not call onSubmit() if form not filled out", async () => {
-    const onSubmit = jest.fn();
+    const onSubmit = vi.fn();
     const { getByRole } = renderWithTheme(
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
     );
@@ -38,7 +38,7 @@ describe("WebinarRegistration", () => {
     expect(onSubmit).not.toHaveBeenCalled();
   });
   test("clicking button calls onSubmit() if form filled out", async () => {
-    const onSubmit = jest.fn();
+    const onSubmit = vi.fn();
     const { getByRole, getByPlaceholderText } = renderWithTheme(
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
     );
@@ -57,7 +57,7 @@ describe("WebinarRegistration", () => {
   });
   test("button has a11y name with enough context", async () => {
     // visible label is just "Register", which on its own lacks context
-    const onSubmit = jest.fn();
+    const onSubmit = vi.fn();
     const { getByRole } = renderWithTheme(
       <WebinarRegistration {...props} onSubmit={onSubmit} />,
     );

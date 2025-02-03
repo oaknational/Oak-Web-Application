@@ -12,7 +12,7 @@ const curriculumData = programmeListingFixture();
 const examBoardCurriculumData = examBoardProgrammeListingFixture();
 
 const render = renderWithProviders();
-const onClick = jest.fn();
+const onClick = vi.fn();
 
 describe("SubjectProgrammeListing", () => {
   test("render a tier subject component with heading", () => {

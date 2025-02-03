@@ -1,3 +1,4 @@
+import { Mock, vi } from "vitest";
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
@@ -10,25 +11,30 @@ import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
 
 const props = headerListingProps as unknown as HeaderListingProps;
 
-jest.mock(
+vi.mock(
   "@/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck",
   () => {
-    return jest.fn(() => ({
-      exists: true,
-      fileSize: "1.2MB",
-      hasCheckedFiles: true,
-    }));
+    return {
+      __esModule: true,
+      default: vi.fn(() => ({
+        exists: true,
+        fileSize: "1.2MB",
+        hasCheckedFiles: true,
+      })),
+    };
   },
 );
-jest.mock("posthog-js/react", () => ({
-  useFeatureFlagVariantKey: jest.fn(() => "option-a"),
+
+vi.mock("posthog-js/react", () => ({
+  useFeatureFlagVariantKey: vi.fn(() => "option-a"),
 }));
 
 describe("HeaderListing", () => {
   beforeEach(() => {
-    jest.restoreAllMocks();
-    global.fetch = jest.fn(() => Promise.resolve({})) as jest.Mock;
+    vi.restoreAllMocks();
+    global.fetch = vi.fn(() => Promise.resolve({})) as Mock;
   });
+
   it("renders the title with the correct level", () => {
     const { getAllByRole } = renderWithTheme(<HeaderListing {...props} />);
     const subjectHeading = getAllByRole("heading", { level: 1 });
@@ -46,7 +52,7 @@ describe("HeaderListing", () => {
       <HeaderListing
         {...props}
         unitDownloadFileId="123"
-        onUnitDownloadSuccess={jest.fn}
+        onUnitDownloadSuccess={vi.fn}
       />,
     );
     const unitDownloadButton = screen.getByRole("button");
@@ -58,7 +64,7 @@ describe("HeaderListing", () => {
       <HeaderListing
         {...props}
         unitDownloadFileId="123"
-        onUnitDownloadSuccess={jest.fn}
+        onUnitDownloadSuccess={vi.fn}
       />,
     );
     const unitDownloadButton = screen.getByRole("button");

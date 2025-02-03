@@ -1,10 +1,12 @@
-import fetchMock from "jest-fetch-mock";
+import { vi } from "vitest";
+import createFetchMock from "vitest-fetch-mock";
 
 import { fetchHubspotContactDetails } from "./fetchHubspotContactDetails";
 
 import OakError from "@/errors/OakError";
 
-fetchMock.enableMocks();
+const fetchMocker = createFetchMock(vi);
+fetchMocker.enableMocks();
 
 describe(fetchHubspotContactDetails, () => {
   it("returns the contact from the response", async () => {
@@ -18,7 +20,13 @@ describe(fetchHubspotContactDetails, () => {
   });
 
   it("returns null when there is no contact", async () => {
-    fetchMock.mockResponseOnce("", { status: 204 });
+    fetchMock.mockResponseOnce(() =>
+      Promise.resolve({
+        ok: true,
+        status: 204,
+        json: () => Promise.resolve(null),
+      }),
+    );
 
     expect(await fetchHubspotContactDetails()).toEqual(null);
   });

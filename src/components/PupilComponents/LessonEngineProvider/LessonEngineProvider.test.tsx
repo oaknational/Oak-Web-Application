@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { ReactNode } from "react";
 import { act, renderHook, render } from "@testing-library/react";
 import { OakSpan } from "@oaknational/oak-components";
@@ -14,12 +15,12 @@ import {
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 
 const usePupilAnalyticsMock = {
-  track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
-  identify: jest.fn(),
+  track: Object.fromEntries(trackingEvents.map((event) => [event, vi.fn()])),
+  identify: vi.fn(),
   posthogDistinctId: "123",
 };
 
-jest.mock(
+vi.mock(
   "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics",
   () => {
     return {
@@ -47,7 +48,7 @@ describe("LessonEngineProvider", () => {
   };
 
   afterEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it("renders children correctly", () => {
@@ -208,11 +209,11 @@ describe("LessonEngineProvider", () => {
   });
 
   it("sends tracking data when the lesson is started", () => {
-    const lessonStarted = jest.fn();
+    const lessonStarted = vi.fn();
 
-    jest
-      .spyOn(usePupilAnalyticsMock.track, "lessonStarted")
-      .mockImplementation(lessonStarted);
+    vi.spyOn(usePupilAnalyticsMock.track, "lessonStarted").mockImplementation(
+      lessonStarted,
+    );
 
     const { result } = renderHook(() => useLessonEngineContext(), {
       wrapper: ProviderWrapper,

@@ -6,11 +6,11 @@ import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 const onwardContentSelected =
-  jest.fn() as unknown as TrackFns["onwardContentSelected"];
+  vi.fn() as unknown as TrackFns["onwardContentSelected"];
 
 describe("DownloadConfirmationNextLessonCard", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
   it("should render component", () => {
     const { getByText } = renderWithTheme(
