@@ -1,4 +1,77 @@
 {
+  "declarations": {
+    "useToastContext": "./src/context/Toast/useToastContext.tsx",
+    "useSearch": "./src/context/Search/useSearch.ts",
+    "useSearchQuery": "./src/context/Search/useSearch.ts",
+    "useSearchFilters": "./src/context/Search/useSearchFilters.ts",
+    "useMenuContext": "./src/context/Menu/useMenuContext.tsx",
+    "useAnalytics": "./src/context/Analytics/useAnalytics.ts",
+    "useLesson": "./src/pages-helpers/teacher/useLesson/useLesson.tsx",
+    "useTeacherNotes": "./src/pages-helpers/teacher/share-experiments/useTeacherNotes.ts",
+    "useShareExperiment": "./src/pages-helpers/teacher/share-experiments/useShareExperiment.ts",
+    "useSchoolsFromApi": "./src/components/CurriculumComponents/OakComponentsKitchen/YourDetails/index.tsx",
+    "useDownloadsLocalStorage": "./src/components/CurriculumComponents/CurriculumDownloadTab/helper.ts",
+    "useQuizEngineContext": "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.tsx",
+    "useGetSectionLinkProps": "./src/components/PupilComponents/pupilUtils/lessonNavigation.tsx",
+    "useLessonPopStateHandler": "./src/components/PupilComponents/pupilUtils/lessonNavigation.tsx",
+    "useLessonSectionHref": "./src/components/PupilComponents/pupilUtils/lessonNavigation.tsx",
+    "useNavigateToSection": "./src/components/PupilComponents/pupilUtils/lessonNavigation.tsx",
+    "usePupilAnalytics": "./src/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics.ts",
+    "useLessonEngineContext": "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.tsx",
+    "useIsCurrent": "./src/components/SharedComponents/useIsCurrent/useIsCurrent.ts",
+    "usePagination": "./src/components/SharedComponents/Pagination/usePagination.ts",
+    "useCategoryFilterList": "./src/components/SharedComponents/CategoryFilterList/useCategoryFilterList.ts",
+    "useMediaClipThumbnailUrl": "./src/components/SharedComponents/VideoPlayer/useMediaClipThumbnailsUrl.ts",
+    "useSignedMuxToken": "./src/components/SharedComponents/VideoPlayer/useSignedVideoToken.ts",
+    "useSignedStoryboardToken": "./src/components/SharedComponents/VideoPlayer/useSignedVideoToken.ts",
+    "useSignedThumbnailToken": "./src/components/SharedComponents/VideoPlayer/useSignedVideoToken.ts",
+    "useSignedVideoToken": "./src/components/SharedComponents/VideoPlayer/useSignedVideoToken.ts",
+    "useVideoTracking": "./src/components/SharedComponents/VideoPlayer/useVideoTracking.ts",
+    "useIconAnimation": "./src/components/SharedComponents/Icon.deprecated/useIconAnimation.ts",
+    "useButtonAsLinkProps": "./src/components/SharedComponents/Button/useButtonAsLinkProps.ts",
+    "usePostCategoryList": "./src/components/SharedComponents/PostCategoryList/usePostCategoryList.ts",
+    "usePostList": "./src/components/SharedComponents/PostList/usePostList.ts",
+    "useUpcomingWebinarWall": "./src/components/GenericPagesComponents/UpcomingWebinarWall/useUpcomingWebinarWall.ts",
+    "useWebinarRegistration": "./src/components/GenericPagesComponents/WebinarRegistration/useWebinarRegistration.ts",
+    "useBioCardListModal": "./src/components/GenericPagesComponents/BioCardListModal/useBioCardListModal.ts",
+    "useNewsletterForm": "./src/components/GenericPagesComponents/NewsletterForm/useNewsletterForm.ts",
+    "useBioCardListModalDialog": "./src/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog.ts",
+    "useAppHooks": "./src/components/AppComponents/App/AppHooks.tsx",
+    "useUnitDownloadButtonState": "./src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton.tsx",
+    "useOnboardingStatus": "./src/components/TeacherComponents/hooks/useOnboardingStatus.ts",
+    "useResourceFormSubmit": "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit.ts",
+    "useResourceFormState": "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.tsx",
+    "useLocalStorageForDownloads": "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads.ts",
+    "useLessonDownloadExistenceCheck": "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck.tsx",
+    "useHubspotSubmit": "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit.ts",
+    "useUnitDownloadExistenceCheck": "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck.tsx",
+    "useSchoolPicker": "./src/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker.tsx",
+    "useCurrentSection": "./src/components/TeacherComponents/helpers/lessonHelpers/useCurrentSection.ts",
+    "useWorksheetDownload": "./src/components/PupilViews/PupilIntro/useWorksheetDownload.ts",
+    "useAdditionalFilesDownload": "./src/components/PupilViews/PupilIntro/useAdditionalFilesDownload.ts",
+    "useBackHref": "./src/components/PupilViews/PupilUnitListing/useBackHref.ts",
+    "useLessonReviewFeedback": "./src/components/PupilViews/PupilReview/useLessonReviewFeedback.ts",
+    "usePrereleaseFlag": "./src/hooks/usePrereleaseFlag.tsx",
+    "useTrackRegistration": "./src/hooks/useTrackRegistration.ts",
+    "useSelectedArea": "./src/hooks/useSelectedArea.ts",
+    "useUtmParams": "./src/hooks/useUtmParams.ts",
+    "useOakTheme": "./src/hooks/useOakTheme.ts",
+    "useGetQuizTrackingData": "./src/hooks/useGetQuizTrackingData.ts",
+    "useReferrer": "./src/hooks/useReferrer.ts",
+    "useIsomorphicLayoutEffect": "./src/hooks/useStableCallback.tsx",
+    "useStableCallback": "./src/hooks/useStableCallback.tsx",
+    "useRequireOnboarding": "./src/hooks/useRequireOnboarding.ts",
+    "useLocalStorage": "./src/hooks/useLocalStorage.ts",
+    "useTrackSectionStarted": "./src/hooks/useTrackSectionStarted.ts",
+    "useAnalyticsPageProps": "./src/hooks/useAnalyticsPageProps.ts",
+    "useGetVideoTrackingData": "./src/hooks/useGetVideoTrackingData.ts",
+    "useMediaQuery": "./src/hooks/useMediaQuery.tsx",
+    "useEventListener": "./src/hooks/useEventListener.ts",
+    "useGleap": "./src/browser-lib/gleap/useGleap.ts",
+    "useBugsnag": "./src/browser-lib/bugsnag/useBugsnag.ts",
+    "useAxe": "./src/browser-lib/axe/useAxe.ts",
+    "useAnalyticsService": "./src/browser-lib/analytics/useAnalyticsService.ts"
+  },
   "dependencies": {
     "useSearchQuery": ["./src/context/Search/useSearch.ts"],
     "useStableCallback": [
@@ -358,9 +431,7 @@
       "useOnboardingStatus",
       "useResourceFormSubmit",
       "useSearch",
-      "useShareExperiment",
-      "useUnitDownloadButtonState",
-      "useUnitDownloadExistenceCheck"
+      "useShareExperiment"
     ],
     "pages-helpers/hooks": [
       "useLesson",
@@ -376,51 +447,67 @@
       "useLocalStorageForDownloads",
       "useMediaQuery",
       "usePostCategoryList",
-      "useReferrer",
       "useResourceFormState",
       "useSchoolPicker",
       "useUtmParams"
     ],
-    "components/genericPagesHooks": [
-      "useBioCardListModal",
-      "useBioCardListModalDialog",
-      "useNewsletterForm",
-      "useUpcomingWebinarWall",
-      "useWebinarRegistration"
-    ],
-    "components/curriculumHooks": [
-      "useDownloadsLocalStorage",
+    "components/genericPagesHooks": ["useNewsletterForm"],
+    "components/CurriculumComponents/OakComponentsKitchen/YourDetails/hooks": [
       "useSchoolsFromApi"
     ],
+    "components/curriculumHooks": ["useDownloadsLocalStorage"],
     "components/pupilHooks": [
       "useAdditionalFilesDownload",
-      "useBackHref",
       "useGetSectionLinkProps",
       "useLessonPopStateHandler",
-      "useLessonReviewFeedback",
-      "useLessonSectionHref",
       "useNavigateToSection",
       "useQuizEngineContext",
       "useTrackSectionStarted",
       "useWorksheetDownload"
     ],
+    "components/PupilComponents/pupilUtils/hooks": ["useLessonSectionHref"],
+    "components/PupilComponents/SignpostTeachersInlineBanner/hooks": [
+      "useReferrer"
+    ],
     "components/sharedHooks": [
       "useButtonAsLinkProps",
       "useCategoryFilterList",
-      "useIconAnimation",
+      "useSignedThumbnailToken"
+    ],
+    "components/SharedComponents/VideoPlayer/hooks": [
       "useSignedMuxToken",
       "useSignedStoryboardToken",
-      "useSignedThumbnailToken",
       "useSignedVideoToken",
-      "useToastContext",
       "useVideoTracking"
     ],
-    "components/appHooks": [
+    "components/SharedComponents/Icon.deprecated/hooks": ["useIconAnimation"],
+    "components/SharedComponents/Button/CopyLinkButton/hooks": [
+      "useToastContext"
+    ],
+    "components/GenericPagesComponents/BioCardListModal/hooks": [
+      "useBioCardListModalDialog"
+    ],
+    "components/GenericPagesComponents/BioCardList/hooks": [
+      "useBioCardListModal"
+    ],
+    "components/GenericPagesComponents/WebinarVideo/hooks": [
+      "useUpcomingWebinarWall",
+      "useWebinarRegistration"
+    ],
+    "components/AppComponents/App/hooks": [
       "useAppHooks",
       "useAxe",
       "useBugsnag",
-      "useGleap",
-      "useSelectedArea"
-    ]
+      "useGleap"
+    ],
+    "components/AppComponents/AppHeader/hooks": ["useSelectedArea"],
+    "components/TeacherComponents/UnitDownloadButton/hooks": [
+      "useUnitDownloadExistenceCheck"
+    ],
+    "components/TeacherComponents/HeaderListing/hooks": [
+      "useUnitDownloadButtonState"
+    ],
+    "components/PupilViews/PupilUnitListing/hooks": ["useBackHref"],
+    "components/PupilViews/PupilReview/hooks": ["useLessonReviewFeedback"]
   }
 }

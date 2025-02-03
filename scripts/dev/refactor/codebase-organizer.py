@@ -6,10 +6,6 @@ import argparse
 from collections import defaultdict
 from typing import Dict, List, Set, Tuple
 
-# TODO
-# - only include hooks and functions which are declare in the code base
-# - categorize the pages helpers hooks (actually split the categrisation between pages/ components/ apis and then teacher/pupils/curriculum)
-# - revisit api helpers hooks categorization
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -24,17 +20,6 @@ class NextJsCodebaseAnalyzer:
             r'function\s+use[A-Z]\w+',  # Matches function declarations
             r'const\s+use[A-Z]\w+'  # Matches const declarations
         ]
-        # TODO: split these into declarations and calls
-        self.util_patterns = [
-            r'export\s+(?:const|function|class)\s+(?!use[A-Z])[a-z]\w+',  
-            r'const\s+(?!use[A-Z])[a-z]\w+\s*=\s*(?:\(.*\)|async\s*\(.*\))\s*=>'
-        ]
-        self.excluded_hooks = {
-            'useEffect', 'useState', 'useContext', 'useReducer', 
-            'useCallback', 'useMemo', 'useRef', 'useRouter',
-            'useLayoutEffect', 'useImperativeHandle', 'useDebugValue',
-            'useQuery', 'useMutation', 'useQueryClient'
-        }
         # Define hook and utility categorization patterns
         self.hook_categories = {
             'components/teacherHooks': ['Teacher'],
@@ -44,14 +29,7 @@ class NextJsCodebaseAnalyzer:
             'components/appHooks': ['App'],
             'components/sharedHooks': ['Shared'],
         }
-        self.util_categories = {
-            'components/teacherUtils': ['Teacher'],
-            'components/pupilUtils': ['Pupil'],
-            'components/curriculumUtils': ['Curriculum'],
-            'components/genericPagesUtils': ['Generic', 'Page'],
-            'components/appUtils': ['App'],
-            'components/sharedUtils': ['Shared'],
-        }
+
         
     def is_schema_file(self, file_path: str) -> bool:
         return file_path.endswith('schema.ts') or file_path.endswith('schema.js')
@@ -62,42 +40,27 @@ class NextJsCodebaseAnalyzer:
     def is_test_file(self, file_path: str) -> bool:
         return file_path.endswith(('.test.ts', '.spec.ts', '.test.js', '.spec.js', 'test.tsx', 'spec.tsx'))
 
-    def is_fixture_function(self, func_name: str) -> bool:
-        return 'fixture' in func_name.lower()
-
-    def get_component_directory(self, file_path: str) -> str:
-        """
-        Extracts the component directory from a file path.
-        Assumes components are organized as `components/ComponentName/...`.
-        """
-        parts = file_path.split(os.sep)
-        if 'components' in parts:
-            component_index = parts.index('components')
-            if component_index + 1 < len(parts):
-                return os.path.join('components', parts[component_index + 1])
-        return None
 
     def get_hook_category(self, hook_name: str, dependencies: Set[str]) -> str:
 
-        if len(dependencies) == 0:
-            return 'unused-hooks'
-        
+        is_debug = hook_name == 'useLessonDownloadExistenceCheck'
+
+        dependencies_copy = dependencies.copy()
         # check if hook is used exclusively by components
         is_component_hook = all('components' in dep for dep in dependencies)
 
         if is_component_hook:
             # Check if the hook is used exclusively by a single component
-            component_dirs = set()
-            for dep in dependencies:
-                component_dir = self.get_component_directory(dep)
-                if component_dir:
-                    component_dirs.add(component_dir)
-            if len(component_dirs) == 1:
-                component_dir = component_dirs.pop()
-                paths = component_dir.split(os.sep)
-                if len(paths) > 2:
+            if len(dependencies) == 1:
+                component_dir = dependencies_copy.pop().replace('./src', '')
+                component_dir = component_dir.split('/')
+                component_dir.pop()
+                # remove empty strings from the list
+                component_dir = [x for x in component_dir if x != '']
+                if(len(component_dir) > 2):
+                    component_dir = '/'.join(component_dir)
                     return os.path.join(component_dir, 'hooks')
-        
+
             # Check if the hook is used in multiple domains
             domains = set()
             for category, prefixes in self.hook_categories.items():
@@ -105,6 +68,8 @@ class NextJsCodebaseAnalyzer:
                     domains.add(category)
             if len(domains) > 1:
                 return 'components/hooks'
+            else:
+                return list(domains)[0]
             
 
         # check if the hook is used in pages
@@ -113,7 +78,6 @@ class NextJsCodebaseAnalyzer:
         if all(any(prefix in dep for prefix in possible_page_paths) for dep in dependencies):
             is_page_hook = True
         
-
         if is_page_hook:
             return 'pages-helpers/hooks'
         
@@ -127,11 +91,10 @@ class NextJsCodebaseAnalyzer:
                 return category
         if all('components/' in dep for dep in dependencies):
             return 'components/hooks'
-        elif any('api' in dep for dep in dependencies):
+        elif all('api' in dep for dep in dependencies):
             return 'api-helpers/hooks'
         return 'hooks'
 
-    def get_util_category(self, util_name: str, dependencies: Set[str]) -> str:
         # Check if the utility is used exclusively by a single component
         component_dirs = set()
         for dep in dependencies:
@@ -166,7 +129,7 @@ class NextJsCodebaseAnalyzer:
         
         for root, _, files in os.walk(self.root_dir):
             for file in files:
-                if file.endswith(('.ts', '.tsx', '.js', '.jsx')):
+                if file.endswith(('.ts', '.tsx')):
                     file_path = os.path.join(root, file)
                     if self.is_schema_file(file_path) or self.is_fixture_file(file_path) or self.is_test_file(file_path):
                         continue
@@ -206,6 +169,7 @@ class NextJsCodebaseAnalyzer:
     def analyze_dependencies(self, hook_calls: Dict[str, List[str]], hook_declarations: Dict[str, List[str]]) -> Dict[str, Set[str]]:
         dependencies = defaultdict(set)
         no_dependencies = set()
+        declarations = defaultdict(str)
 
         all_hook_declarations = {hook for hooks in hook_declarations.values() for hook in hooks}
         all_hook_calls = {hook for hooks in hook_calls.values() for hook in hooks}
@@ -214,13 +178,15 @@ class NextJsCodebaseAnalyzer:
             for hook in hook_calls[file_path]:
                 if hook in all_hook_declarations:
                     dependencies[hook].add(file_path)
-
+              
         for file_path in hook_declarations.keys():
             for hook in hook_declarations[file_path]:
                 if hook not in all_hook_calls:
                     no_dependencies.add(hook)
+                else:
+                    declarations[hook] = file_path
                     
-        return dependencies, no_dependencies
+        return dependencies, declarations, no_dependencies
     
     def suggest_organization(self, dependencies: Dict[str, Set[str]]) -> Dict[str, List[str]]:
         suggestions = defaultdict(set)
@@ -237,14 +203,17 @@ class NextJsCodebaseAnalyzer:
 def generate_json_report(root_dir: str) -> str:
     analyzer = NextJsCodebaseAnalyzer(root_dir)
     hook_calls, hook_declarations = analyzer.scan_files()
-    dependencies, no_dependencies = analyzer.analyze_dependencies(hook_calls, hook_declarations)
+    dependencies, declarations, no_dependencies = analyzer.analyze_dependencies(hook_calls, hook_declarations)
+
     suggestions = analyzer.suggest_organization(dependencies)
     
     dependencies = {k: sorted(list(v)) for k, v in dependencies.items()}
+
     no_dependencies = sorted(list(no_dependencies))
     suggestions = {k: v for k, v in suggestions.items() if v}
     
     report = {
+        "declarations": declarations,
         "dependencies": dependencies,
         "unused_hooks": no_dependencies,
         "suggested_organization": suggestions
