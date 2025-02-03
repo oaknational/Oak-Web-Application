@@ -1,3 +1,10 @@
+## [1.680.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.0...v1.680.1) (2025-02-03)
+
+
+### Bug Fixes
+
+* reorg component in wrong place ([9e9b2b9](https://github.com/oaknational/Oak-Web-Application/commit/9e9b2b9c78bf2046433baf269fb427123800a1eb))
+
 # [1.680.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.679.0...v1.680.0) (2025-02-03)
 
 
