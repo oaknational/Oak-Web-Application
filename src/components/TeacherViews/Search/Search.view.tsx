@@ -280,7 +280,9 @@ const Search: FC<SearchProps> = (props) => {
                 </OakFlex>
               </OakBox>
             </OakFlex>
-            <SearchActiveFilters searchFilters={searchFilters} />
+            <OakBox $pl={["inner-padding-none", "inner-padding-xl"]}>
+              <SearchActiveFilters searchFilters={searchFilters} />
+            </OakBox>
           </OakGridArea>
           {!shouldShowNoResultsMessage && (
             <OakGridArea $colSpan={[12, 3]} $colStart={[1, 10]} $rowStart={2}>
@@ -327,12 +329,12 @@ const Search: FC<SearchProps> = (props) => {
               )}
               {shouldShowLoading && <p>Loading...</p>}
               {shouldShowNoResultsMessage && (
-                <div id="search-results">
+                <OakBox id="search-results" $mb={"space-between-xxl"}>
                   <NoSearchResults searchTerm={query.term} />
                   <OakBox $mt="space-between-m">
                     <SignPostToAila
                       title="Can't find what you need?"
-                      text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
+                      text="Create a tailor-made lesson plan and resources on any topic with Alia, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
                       searchExpression={query.term}
                       keyStage={
                         query.keyStages?.length === 1 ? query.keyStages[0] : ""
@@ -342,7 +344,7 @@ const Search: FC<SearchProps> = (props) => {
                       }
                     />
                   </OakBox>
-                </div>
+                </OakBox>
               )}
               {shouldShowResults && (
                 <OakBox $display={["none", "block"]}>
