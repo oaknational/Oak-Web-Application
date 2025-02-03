@@ -1,3 +1,36 @@
+# [1.680.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.679.0...v1.680.0) (2025-02-03)
+
+
+### Bug Fixes
+
+* bump oak-components and update snapshots ([423c84d](https://github.com/oaknational/Oak-Web-Application/commit/423c84d73a90176f4b9e3c66e326a66a1f05de6f))
+* deprecate styled svg instances ([e7d9a71](https://github.com/oaknational/Oak-Web-Application/commit/e7d9a71700078c03fe683496cfd3705366d49dcb))
+* fix underline color ([7ffc425](https://github.com/oaknational/Oak-Web-Application/commit/7ffc425471ef6b46e2f71777999acf8b4c83eccc))
+* remove unused components ([0dbee53](https://github.com/oaknational/Oak-Web-Application/commit/0dbee53c71b66a490b4e1fac5a9eb041101b8adb))
+* revert back to svg where there are theme related type errors ([8244cd8](https://github.com/oaknational/Oak-Web-Application/commit/8244cd8256c51e01b31b63e4969b13e3fe957a6f))
+
+
+### Features
+
+* bump oak-components version ([ef6b32a](https://github.com/oaknational/Oak-Web-Application/commit/ef6b32a1eb259db1c5744cff002bf87b9a6497d3))
+
+# [1.679.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.4...v1.679.0) (2025-01-31)
+
+
+### Bug Fixes
+
+* implement share tracking on browse lesson overview ([334fc8a](https://github.com/oaknational/Oak-Web-Application/commit/334fc8ad4dbe814245dfbc543b0e3eace7442388))
+* test to account for new behaviour ([452ac37](https://github.com/oaknational/Oak-Web-Application/commit/452ac370a64e333b2be7ee4141a6fb5e2af8d794))
+* type and test errors ([f0fb1ef](https://github.com/oaknational/Oak-Web-Application/commit/f0fb1ef1ee243c7bbbe82b9056196b4b991e89a4))
+* update test for new behaviour ([a802541](https://github.com/oaknational/Oak-Web-Application/commit/a802541b7ca4de0faf68ff5bfcc53b6986d21198))
+
+
+### Features
+
+* send num chars with teacher notes events ([c1d2b9c](https://github.com/oaknational/Oak-Web-Application/commit/c1d2b9cf2f6048dfe0d2d2cf131bc6013b2e12d1))
+* send tracking for note saved ([7d25d1e](https://github.com/oaknational/Oak-Web-Application/commit/7d25d1e3b02535c1a07ce47b8ee50f4911fb6214))
+* share activated from sharing event ([3f635eb](https://github.com/oaknational/Oak-Web-Application/commit/3f635ebc16972fecc6019e9e794ded70d0869979))
+
 ## [1.678.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.3...v1.678.4) (2025-01-31)
 
 ## [1.678.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.2...v1.678.3) (2025-01-30)
