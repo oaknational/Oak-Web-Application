@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from "react";
-import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
+import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
@@ -112,6 +112,7 @@ const UnitModal: FC<UnitModalProps> = ({
                 }}
               />
             </OakBox>
+
             <OakFlex $gap="all-spacing-2" $flexWrap={"wrap"}>
               <BulletList
                 items={[subjectTitle, yearTitle]
@@ -119,6 +120,17 @@ const UnitModal: FC<UnitModalProps> = ({
                   .map((text) => ({ text }))}
               />
             </OakFlex>
+
+            {curriculumUnitDetails && (
+              <OakP
+                $mt={"space-between-ssx"}
+                $mb={"space-between-xs"}
+                data-testid="unit-optionality-title"
+              >
+                {unitData.title}
+              </OakP>
+            )}
+
             <OakHeading tag="h2" $font={"heading-5"}>
               {!curriculumUnitDetails
                 ? unitData.title
