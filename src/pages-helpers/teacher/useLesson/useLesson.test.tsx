@@ -22,13 +22,22 @@ jest.mock("@/pages-helpers/teacher/share-experiments/useTeacherNotes", () => ({
   useTeacherNotes: jest.fn(),
 }));
 
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: jest.fn(() => ({
+    track: { teacherNoteDialogOpened: jest.fn() },
+  })),
+}));
+
 describe("useLesson", () => {
   const defaultProps: UseLessonProps = {
     lessonSlug: "test-lesson",
     source: "lesson-browse" as const,
     curriculumTrackingProps: {
       lessonName: "Test Lesson",
+      lessonSlug: "test-lesson",
       unitName: "Test Unit",
+      unitSlug: "test-unit",
       subjectSlug: "test-subject",
       subjectTitle: "Test Subject",
       keyStageSlug: "test-ks",
@@ -157,8 +166,8 @@ describe("useLesson", () => {
     renderHook(() => useLesson(defaultProps));
 
     expect(useShareExperiment).toHaveBeenCalledWith({
-      lessonSlug: "test-lesson",
-      source: "lesson-browse",
+      programmeSlug: undefined,
+      source: "lesson-browse-w-note",
       curriculumTrackingProps: defaultProps.curriculumTrackingProps,
       overrideExistingShareId: false,
     });
