@@ -7,6 +7,7 @@ import {
 } from "@oaknational/oak-pupil-client";
 
 import { useTeacherNotes } from "./useTeacherNotes";
+import { CurriculumTrackingProps } from "./shareExperimentTypes";
 
 // Create a single mock client that will be returned by useOakPupil
 const mockClient = {
@@ -15,11 +16,17 @@ const mockClient = {
   getTeacherNoteIsEditable: jest.fn(),
 };
 
-// TODO mock the pupil client
 jest.mock("@oaknational/oak-pupil-client", () => ({
   __esModule: true,
   ...jest.requireActual("@oaknational/oak-pupil-client"),
   useOakPupil: jest.fn(() => mockClient),
+}));
+
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: jest.fn(() => ({
+    track: { teacherNoteSaved: jest.fn() },
+  })),
 }));
 
 const mockTeacherNote: TeacherNoteCamelCase = {
@@ -32,6 +39,17 @@ const mockTeacherNote: TeacherNoteCamelCase = {
 
 describe("useTeacherNotes", () => {
   const useOakPupilMock = useOakPupil as jest.Mock;
+
+  const curriculumTrackingProps: CurriculumTrackingProps = {
+    lessonName: "lessonName",
+    lessonSlug: "lesson-slug",
+    unitName: "unitName",
+    unitSlug: "unit-slug",
+    subjectSlug: "subjectSlug",
+    subjectTitle: "subjectTitle",
+    keyStageSlug: "keyStageSlug",
+    keyStageTitle: "Key stage 1",
+  };
 
   const createWrapper = () => {
     const config = {
@@ -64,6 +82,7 @@ describe("useTeacherNotes", () => {
           lessonPath: "lessonPath",
           shareId: "shareId",
           enabled: false,
+          curriculumTrackingProps,
         }),
       { wrapper },
     );
@@ -85,6 +104,7 @@ describe("useTeacherNotes", () => {
           lessonPath: "lessonPath",
           shareId: "shareId",
           enabled: true,
+          curriculumTrackingProps,
         }),
       { wrapper },
     );
@@ -113,6 +133,7 @@ describe("useTeacherNotes", () => {
           lessonPath: "lessonPath",
           shareId: "shareId",
           enabled: true,
+          curriculumTrackingProps,
         }),
       { wrapper },
     );
@@ -138,6 +159,7 @@ describe("useTeacherNotes", () => {
           lessonPath: null,
           shareId: "shareId",
           enabled: true,
+          curriculumTrackingProps,
         }),
       { wrapper },
     );
@@ -164,6 +186,7 @@ describe("useTeacherNotes", () => {
           lessonPath: "lessonPath",
           shareId: "shareId",
           enabled: true,
+          curriculumTrackingProps,
         }),
       { wrapper },
     );
@@ -200,6 +223,7 @@ describe("useTeacherNotes", () => {
           lessonPath: "lessonPath",
           shareId: "shareId",
           enabled: true,
+          curriculumTrackingProps,
         }),
       { wrapper },
     );
@@ -231,6 +255,7 @@ describe("useTeacherNotes", () => {
             lessonPath: "lessonPath",
             shareId: "shareId",
             enabled: false,
+            curriculumTrackingProps,
           }),
         { wrapper },
       );

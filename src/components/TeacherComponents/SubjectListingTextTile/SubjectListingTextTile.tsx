@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { OakSvg } from "@oaknational/oak-components";
 
-import Svg from "@/components/SharedComponents/Svg";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import { zIndexMap } from "@/styles/utils/zIndex";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
@@ -10,7 +10,7 @@ export type SubjectListingTextTile = {
   children: React.ReactNode;
 } & FlexProps;
 
-const TileFocusUnderline = styled(Svg)`
+const TileFocusUnderline = styled(OakSvg)`
   display: none;
   position: absolute;
   bottom: -4px;
@@ -40,10 +40,17 @@ const SubjectListingTextTile: FC<SubjectListingTextTile> = (
       $flex={1}
       $borderRadius={4}
       $outline={"none"}
+      $width={"100%"}
       {...flexProps}
     >
       {children}
-      <TileFocusUnderline name="underline-1" $color={"mint50"} />
+      <TileFocusUnderline
+        name="underline"
+        $color={"mint50"}
+        $width={"100%"}
+        $height={"100%"}
+        $position={"relative"}
+      />
     </TextTileWrap>
   );
 };

@@ -76,4 +76,8 @@ export const shareSources = {
   "download-browse": 2,
   "download-canonical": 2,
   "lesson-listing": 3,
+  "lesson-browse-w-note": 4,
+  "lesson-canonical-w-note": 5,
 };
+
+export type ShareSource = keyof typeof shareSources;

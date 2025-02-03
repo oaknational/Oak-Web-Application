@@ -6,14 +6,14 @@ export const TeacherShareNotesButton = ({
   teacherNotesEnabled,
   isEditable,
   noteSaved,
-  setTeacherNotesOpen,
+  onTeacherNotesOpen,
   shareUrl,
   shareActivated,
 }: {
   teacherNotesEnabled: boolean;
   isEditable: boolean;
   noteSaved: boolean;
-  setTeacherNotesOpen: (value: boolean) => void;
+  onTeacherNotesOpen: () => void;
   shareUrl: string | null;
   shareActivated?: () => void;
 }) => {
@@ -21,9 +21,7 @@ export const TeacherShareNotesButton = ({
     <OakSmallSecondaryButton
       iconName={noteSaved ? "edit" : "share"}
       isTrailingIcon
-      onClick={() => {
-        setTeacherNotesOpen(true);
-      }}
+      onClick={onTeacherNotesOpen}
     >
       {noteSaved ? "Edit teacher note and share" : "Add teacher note and share"}
     </OakSmallSecondaryButton>

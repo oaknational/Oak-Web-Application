@@ -1,10 +1,10 @@
 import { FC } from "react";
 import styled, { css } from "styled-components";
+import { OakSvg } from "@oaknational/oak-components";
 
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { ButtonBackground } from "@/components/SharedComponents/Button/common";
 import { HOVER_SHADOW_TRANSITION } from "@/styles/transitions";
-import Svg from "@/components/SharedComponents/Svg";
 
 const buttonBorder = css<{ background: ButtonBackground }>`
   position: absolute;
@@ -46,16 +46,16 @@ const buttonBorderLeft = css`
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const ButtonBorderTop = styled(Svg)`
+const ButtonBorderTop = styled(OakSvg)`
   ${buttonBorderTop}
 `;
-const ButtonBorderRight = styled(Svg)`
+const ButtonBorderRight = styled(OakSvg)`
   ${buttonBorderRight}
 `;
-const ButtonBorderBottom = styled(Svg)`
+const ButtonBorderBottom = styled(OakSvg)`
   ${buttonBorderBottom}
 `;
-const ButtonBorderLeft = styled(Svg)`
+const ButtonBorderLeft = styled(OakSvg)`
   ${buttonBorderLeft}
 `;
 
