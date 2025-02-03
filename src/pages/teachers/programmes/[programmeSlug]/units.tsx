@@ -89,7 +89,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     yearGroups.length > 1 ||
     subjectCategories.length > 1 ||
     learningThemes.length > 1;
-
   const [selectedThemeSlug, setSelectedThemeSlug] = useState<
     string | undefined
   >(themeSlug);
@@ -340,7 +339,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                   $justifyContent={"space-between"}
                   $position={"relative"}
                 >
-                  {tiers.length === 0 && currentPageItems.length >= 1 && (
+                  {tiers.length === 0 && (
                     <>
                       <OakFlex
                         $minWidth={"all-spacing-16"}
@@ -365,7 +364,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     </>
                   )}
                 </OakFlex>
-                {tiers.length > 0 && currentPageItems.length >= 1 && (
+                {tiers.length > 0 && (
                   <OakFlex $justifyContent={"space-between"}>
                     <nav aria-label="tiers" data-testid="tiers-nav">
                       <TabularNav
