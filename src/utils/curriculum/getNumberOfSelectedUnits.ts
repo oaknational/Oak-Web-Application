@@ -2,9 +2,9 @@
 // import { YearData } from "./types";
 
 export function getNumberOfSelectedUnits(): number {
-// yearData: YearData,
-// selectedYear: string | null,
-// filter: CurriculumFilters,
+  // yearData: YearData,
+  // selectedYear: string | null,
+  // filter: CurriculumFilters,
   // let count = 0;
 
   // Object.keys(yearData).forEach((year) => {

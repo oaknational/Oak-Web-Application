@@ -9,16 +9,16 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 export type CurriculumFilters = {
-  childSubjects: Subject["subject_slug"][],
-  subjectCategories: string[],
-  tiers: Tier["tier_slug"][]
-  years: string[],
-  threads: Thread["slug"][],
-}
+  childSubjects: Subject["subject_slug"][];
+  subjectCategories: string[];
+  tiers: Tier["tier_slug"][];
+  years: string[];
+  threads: Thread["slug"][];
+};
 
 export type CurriculumVisualiserFiltersProps = {
-  filters: CurriculumFilters,
-  onChangeFilters: (newFilters: CurriculumFilters) => void,
+  filters: CurriculumFilters;
+  onChangeFilters: (newFilters: CurriculumFilters) => void;
   data: CurriculumUnitsFormattedData;
   trackingData: CurriculumUnitsTrackingData;
 };

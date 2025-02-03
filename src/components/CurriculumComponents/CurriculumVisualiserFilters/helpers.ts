@@ -10,10 +10,10 @@
 // }
 
 export function highlightedUnitCount(): number {
-// yearData: CurriculumUnitsYearData,
-// selectedYear: string | null,
-// filters: CurriculumFilters,
-// selectedThread: Thread["slug"] | null,
+  // yearData: CurriculumUnitsYearData,
+  // selectedYear: string | null,
+  // filters: CurriculumFilters,
+  // selectedThread: Thread["slug"] | null,
   // let count = 0;
   // Object.keys(yearData).forEach((year) => {
   //   const units = yearData[year]?.units;

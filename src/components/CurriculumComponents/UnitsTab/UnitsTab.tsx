@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { OakP, OakHeading, OakBox } from "@oaknational/oak-components";
+import { OakHeading, OakBox } from "@oaknational/oak-components";
 
 import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
 import CurriculumVisualiserLayout from "../CurriculumVisualiserLayout/CurriculumVisualiserLayout";
@@ -36,17 +36,15 @@ export default function UnitsTab({
   const { ks4OptionSlug } = trackingData;
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
-  const unitCount =
-    getNumberOfSelectedUnits();
-    // yearData,
-    // selectedYear,
-    // yearSelection,
-  const highlightedUnits =
-    highlightedUnitCount();
-    // yearData,
-    // selectedYear,
-    // yearSelection,
-    // selectedThread,
+  const unitCount = getNumberOfSelectedUnits();
+  // yearData,
+  // selectedYear,
+  // yearSelection,
+  const highlightedUnits = highlightedUnitCount();
+  // yearData,
+  // selectedYear,
+  // yearSelection,
+  // selectedThread,
 
   return (
     <OakBox>
@@ -70,14 +68,6 @@ export default function UnitsTab({
             Unit sequence
           </OakHeading>
         </ScreenReaderOnly>
-        <OakP
-          $mh={["space-between-s", "space-between-none"]}
-          $mb={"space-between-xl"}
-          data-testid="units-heading"
-        >
-          Units that make up our curricula are fully sequenced, and aligned to
-          the national curriculum.
-        </OakP>
         {/* <CurriculumVisualiserFiltersMobile
           filters={filters}
           onChangeFilters={onChangeFilters}
