@@ -39,6 +39,7 @@ describe("TeacherShareNotesButton", () => {
     setTeacherNotesOpen: jest.fn(),
     shareUrl: "https://example.com/share",
     shareActivated: jest.fn(),
+    onTeacherNotesOpen: jest.fn(),
   };
 
   beforeEach(() => {
@@ -106,18 +107,18 @@ describe("TeacherShareNotesButton", () => {
     });
 
     it("calls setTeacherNotesOpen when clicked", () => {
-      const setTeacherNotesOpen = jest.fn();
+      const onTeacherNotesOpen = jest.fn();
       render(
         <TeacherShareNotesButton
           {...defaultProps}
           teacherNotesEnabled={true}
           isEditable={true}
-          setTeacherNotesOpen={setTeacherNotesOpen}
+          onTeacherNotesOpen={onTeacherNotesOpen}
         />,
       );
 
       fireEvent.click(screen.getByText("Add teacher note and share"));
-      expect(setTeacherNotesOpen).toHaveBeenCalledWith(true);
+      expect(onTeacherNotesOpen).toHaveBeenCalled();
     });
   });
 

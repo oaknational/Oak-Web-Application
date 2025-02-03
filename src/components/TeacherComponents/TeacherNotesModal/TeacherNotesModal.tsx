@@ -91,6 +91,7 @@ export type TeacherNotesModalProps = Pick<
   saveTeacherNote: (
     note: Partial<TeacherNoteCamelCase>,
   ) => Promise<TeacherNote>;
+  shareActivated?: (noteLengthChars?: number) => void;
   sharingUrl: string | null;
   error: string | null;
 };
@@ -100,6 +101,7 @@ export const TeacherNotesModal = ({
   isOpen,
   teacherNote,
   saveTeacherNote,
+  shareActivated,
   sharingUrl,
   error,
 }: TeacherNotesModalProps) => {
@@ -173,8 +175,8 @@ export const TeacherNotesModal = ({
     const noteHtml = editor.getHTML() ?? "";
     const noteText = editor.getText() ?? "";
 
-    // don't dave if there's no change
-    if (teacherNote?.noteHtml === noteHtml) {
+    // don't save if there's no change or no note text
+    if (teacherNote?.noteHtml === noteHtml || noteText.length === 0) {
       return;
     }
 
@@ -198,6 +200,12 @@ export const TeacherNotesModal = ({
     handleSave(false);
     if (sharingUrl) {
       navigator.clipboard.writeText(sharingUrl);
+    }
+
+    console.log(editor?.getText());
+
+    if (shareActivated) {
+      shareActivated(editor?.getText()?.length);
     }
 
     setNoteShared(true);
