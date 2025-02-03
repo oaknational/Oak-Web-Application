@@ -8,7 +8,7 @@ from typing import Dict, List, Set, Tuple
 
 # TODO
 # - only include hooks and functions which are declare in the code base
-# - categorize the pages helpers hooks
+# - categorize the pages helpers hooks (actually split the categrisation between pages/ components/ apis and then teacher/pupils/curriculum)
 # - revisit api helpers hooks categorization
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -16,9 +16,11 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 class NextJsCodebaseAnalyzer:
     def __init__(self, root_dir: str):
         self.root_dir = root_dir
-        # TODO: split these into declarations and calls
-        self.hook_patterns = [
-            r'use[A-Z]\w+',  # Matches useEffect, useState, etc.
+
+        self.hook_call_patterns = [
+            r'use[A-Z]\w+\s*\('  # Matches hook calls
+        ]
+        self.hook_declaration_patterns = [
             r'function\s+use[A-Z]\w+',  # Matches function declarations
             r'const\s+use[A-Z]\w+'  # Matches const declarations
         ]
@@ -58,7 +60,7 @@ class NextJsCodebaseAnalyzer:
         return file_path.endswith('fixture.ts') or file_path.endswith('fixture.js')
 
     def is_test_file(self, file_path: str) -> bool:
-        return file_path.endswith(('.test.ts', '.spec.ts', '.test.js', '.spec.js'))
+        return file_path.endswith(('.test.ts', '.spec.ts', '.test.js', '.spec.js', 'test.tsx', 'spec.tsx'))
 
     def is_fixture_function(self, func_name: str) -> bool:
         return 'fixture' in func_name.lower()
@@ -158,9 +160,9 @@ class NextJsCodebaseAnalyzer:
             return 'api-helpers/utils'
         return 'utils'
         
-    def scan_files(self) -> Tuple[Dict[str, List[str]], Dict[str, List[str]]]:
-        hooks = defaultdict(set)
-        utils = defaultdict(set)
+    def scan_files(self) ->  Tuple[Dict[str, List[str]], Dict[str, List[str]]]:
+        hook_calls = defaultdict(set)
+        hook_declarations = defaultdict(set)
         
         for root, _, files in os.walk(self.root_dir):
             for file in files:
@@ -171,21 +173,21 @@ class NextJsCodebaseAnalyzer:
                     try:
                         with open(file_path, 'r', encoding='utf-8') as f:
                             content = f.read()
-                        found_hooks = self._find_patterns(content, self.hook_patterns)
-                        found_hooks = {h for h in found_hooks if h not in self.excluded_hooks}
-                        if found_hooks:
-                            hooks[file_path].update(found_hooks)
-                        found_utils = self._find_patterns(content, self.util_patterns)
-                        found_utils = {u for u in found_utils if not u[0].isupper() and not self.is_fixture_function(u)}
-                        if found_utils:
-                            utils[file_path].update(found_utils)
+                        found_hook_calls = self._find_patterns(content, self.hook_call_patterns)
+                        found_hook_declarations = self._find_patterns(content, self.hook_declaration_patterns)
+                        if found_hook_calls:
+                            hook_calls[file_path].update(found_hook_calls)
+                        if found_hook_declarations:
+                            hook_declarations[file_path].update(found_hook_declarations)
                     except Exception as e:
                         logging.error(f"Error processing {file_path}: {e}")
+
+        
+
                         
-        return (
-            {k: sorted(list(v)) for k, v in hooks.items()},
-            {k: sorted(list(v)) for k, v in utils.items()}
-        )
+        return ({k: sorted(list(v)) for k, v in hook_calls.items()}, 
+                {k: sorted(list(v)) for k, v in hook_declarations.items()})
+        
     
     def _find_patterns(self, content: str, patterns: List[str]) -> Set[str]:
         found = set()
@@ -194,71 +196,57 @@ class NextJsCodebaseAnalyzer:
             for match in matches:
                 name = match.group(0).split()[-1]
                 name = name.replace('=>', '').strip()
+                name = name.replace('(', '').strip()
                 if (name and 
                     not name.startswith(('(', '{', '=>')) and 
                     not (name[0].isupper() and 'use' not in name)):
                     found.add(name)
         return found
     
-    def analyze_dependencies(self, hooks: Dict[str, List[str]], utils: Dict[str, List[str]]) -> Dict[str, Set[str]]:
+    def analyze_dependencies(self, hook_calls: Dict[str, List[str]], hook_declarations: Dict[str, List[str]]) -> Dict[str, Set[str]]:
         dependencies = defaultdict(set)
-        all_functions = {func: file for file, funcs in {**hooks, **utils}.items() for func in funcs}
+        no_dependencies = set()
+
+        all_hook_declarations = {hook for hooks in hook_declarations.values() for hook in hooks}
+        all_hook_calls = {hook for hooks in hook_calls.values() for hook in hooks}
         
-        for file_path in {**hooks, **utils}.keys():
-            if self.is_schema_file(file_path) or self.is_fixture_file(file_path) or self.is_test_file(file_path):
-                continue
-            try:
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                for func_name in all_functions:
-                    if file_path != all_functions[func_name]:
-                        func_call = f"{func_name}("
-                        if func_call in content:
-                            dependencies[func_name].add(file_path)
-            except Exception as e:
-                logging.error(f"Error analyzing dependencies in {file_path}: {e}")
+        for file_path in hook_calls.keys():
+            for hook in hook_calls[file_path]:
+                if hook in all_hook_declarations:
+                    dependencies[hook].add(file_path)
+
+        for file_path in hook_declarations.keys():
+            for hook in hook_declarations[file_path]:
+                if hook not in all_hook_calls:
+                    no_dependencies.add(hook)
                     
-        return dependencies
+        return dependencies, no_dependencies
     
-    def suggest_organization(self, hooks: Dict[str, List[str]], utils: Dict[str, List[str]], 
-                           dependencies: Dict[str, Set[str]]) -> Dict[str, List[str]]:
+    def suggest_organization(self, dependencies: Dict[str, Set[str]]) -> Dict[str, List[str]]:
         suggestions = defaultdict(set)
         
         # Analyze hooks
-        for file, hook_list in hooks.items():
-            for hook in hook_list:
-                deps = dependencies.get(hook, set())
-                category = self.get_hook_category(hook, deps)
-                suggestions[category].add(hook)
-                logging.info(f"Categorized hook {hook} as {category} based on dependencies: {deps}")
-        
-        # Analyze utils
-        # for file, util_list in utils.items():
-        #     if self.is_schema_file(file) or self.is_fixture_file(file) or self.is_test_file(file):
-        #         continue
-        #     for util in util_list:
-        #         deps = dependencies.get(util, set())
-        #         category = self.get_util_category(util, deps)
-        #         suggestions[category].add(util)
-        #         logging.info(f"Categorized utility {util} as {category} based on dependencies: {deps}")
+        for hook in dependencies.keys():
+            deps = dependencies.get(hook, set())
+            category = self.get_hook_category(hook, deps)
+            suggestions[category].add(hook)
+            logging.info(f"Categorized hook {hook} as {category} based on dependencies: {deps}")
         
         return {k: sorted(list(v)) for k, v in suggestions.items()}
 
 def generate_json_report(root_dir: str) -> str:
     analyzer = NextJsCodebaseAnalyzer(root_dir)
-    hooks, utils = analyzer.scan_files()
-    dependencies = analyzer.analyze_dependencies(hooks, utils)
-    suggestions = analyzer.suggest_organization(hooks, utils, dependencies)
+    hook_calls, hook_declarations = analyzer.scan_files()
+    dependencies, no_dependencies = analyzer.analyze_dependencies(hook_calls, hook_declarations)
+    suggestions = analyzer.suggest_organization(dependencies)
     
     dependencies = {k: sorted(list(v)) for k, v in dependencies.items()}
+    no_dependencies = sorted(list(no_dependencies))
     suggestions = {k: v for k, v in suggestions.items() if v}
     
     report = {
-        "current_structure": {
-            "hooks": {file: funcs for file, funcs in hooks.items() if funcs},
-            "utils": {file: funcs for file, funcs in utils.items() if funcs}
-        },
         "dependencies": dependencies,
+        "unused_hooks": no_dependencies,
         "suggested_organization": suggestions
     }
     
