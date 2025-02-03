@@ -168,6 +168,145 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     }
   };
 
+  const MobileUnitFilterButton = () => {
+    return isFiltersAvailable ? (
+      <OakBox $display={["auto", "auto", "none"]}>
+        <MobileUnitFilters
+          {...curriculumData}
+          numberOfUnits={filteredUnits.length}
+          browseRefined={track.browseRefined}
+          setSelectedThemeSlug={setSelectedThemeSlug}
+          learningThemesFilterId={learningThemesFilterId}
+        />
+      </OakBox>
+    ) : null;
+  };
+
+  const TierTabsOrUnitCountHeader = () => {
+    return tiers.length > 0 ? (
+      <nav aria-label="tiers" data-testid="tiers-nav">
+        <TabularNav
+          $mb={[10, 10, 24]}
+          label="tiers"
+          links={tiers.map(
+            ({ tierTitle: title, tierSlug: slug, tierProgrammeSlug }) => ({
+              label: title,
+              programmeSlug: tierProgrammeSlug,
+              page: "unit-index",
+              isCurrent: tierSlug === slug,
+              currentStyles: ["underline"],
+            }),
+          )}
+        />
+      </nav>
+    ) : (
+      <OakFlex
+        $minWidth={"all-spacing-16"}
+        $mb={"space-between-s"}
+        $position={"relative"}
+      >
+        <OakHeading $font={"heading-5"} tag={"h2"}>
+          {`Units (${filteredUnits.length})`}
+        </OakHeading>
+      </OakFlex>
+    );
+  };
+
+  const DesktopFilters = () => {
+    return (
+      <OakBox
+        $display={["none", "none", "block"]}
+        $position={[null, null, "sticky"]}
+        $pt={["inner-padding-xl4"]}
+        $maxWidth={"all-spacing-20"}
+      >
+        <OakFieldset>
+          {isFiltersAvailable && (
+            <OakBox $mb={"space-between-m2"}>
+              <OakHeading tag="h3" $font="heading-6" $mb={"space-between-ssx"}>
+                Filters
+              </OakHeading>
+
+              <OakBox ref={filtersRef}>
+                <OakSecondaryButton
+                  element="a"
+                  aria-label="Skip to units"
+                  href="#unit-list"
+                  onFocus={() => setSkipFiltersButton(true)}
+                  onBlur={() => setSkipFiltersButton(false)}
+                  style={
+                    skipFiltersButton
+                      ? {}
+                      : {
+                          position: "absolute",
+                          top: "-9999px",
+                          left: "-9999px",
+                        }
+                  }
+                >
+                  Skip to units
+                </OakSecondaryButton>
+              </OakBox>
+            </OakBox>
+          )}
+          {yearGroups.length > 1 && (
+            <YearGroupFilters
+              yearGroups={yearGroups}
+              idSuffix="desktop"
+              browseRefined={track.browseRefined}
+              selectedThemeSlug={selectedThemeSlug}
+              programmeSlug={programmeSlug}
+            />
+          )}
+          {subjectCategories && subjectCategories.length > 1 && (
+            <SubjectCategoryFilters
+              idSuffix="desktop"
+              subjectCategories={subjectCategories}
+              categorySlug={categorySlug}
+              browseRefined={track.browseRefined}
+              programmeSlug={programmeSlug}
+              selectedThemeSlug={selectedThemeSlug}
+            />
+          )}
+          {learningThemes?.length > 1 && (
+            <OakFlex $flexDirection={"column"}>
+              <OakHeading
+                id={learningThemesId}
+                tag="h3"
+                $font="heading-7"
+                $mb="space-between-s"
+              >
+                {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
+                Threads
+              </OakHeading>
+              <UnitsLearningThemeFilters
+                idSuffix="desktop"
+                onChangeCallback={setSelectedThemeSlug}
+                labelledBy={learningThemesId}
+                learningThemes={learningThemes}
+                selectedThemeSlug={selectedThemeSlug ?? "all"}
+                categorySlug={categorySlug}
+                yearGroupSlug={yearGroupSlug}
+                programmeSlug={programmeSlug}
+                linkProps={{
+                  page: "unit-index",
+                  programmeSlug,
+                }}
+                trackingProps={{
+                  keyStageSlug,
+                  keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+                  subjectTitle,
+                  subjectSlug,
+                }}
+                browseRefined={track.browseRefined}
+              />
+            </OakFlex>
+          )}
+        </OakFieldset>
+      </OakBox>
+    );
+  };
+
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout seoProps={unitsSEO}>
@@ -210,6 +349,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           {...curriculumData}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
+          {/* Legacy content banner, only shown on certain legacy unit listing pages  */}
           <OakGrid>
             <OakGridArea $colSpan={[12, 12, 9]}>
               <NewContentBanner
@@ -223,108 +363,16 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
             </OakGridArea>
           </OakGrid>
           <OakGrid>
+            {/* Desktop filters side bar */}
             <OakGridArea
               $order={[0, 2, 2]}
               $colSpan={[12, 12, 3]}
               $pl={["inner-padding-xl"]}
             >
-              <OakBox
-                $display={["none", "none", "block"]}
-                $position={[null, null, "sticky"]}
-                $pt={["inner-padding-xl4"]}
-                $maxWidth={"all-spacing-20"}
-              >
-                <OakFieldset>
-                  {isFiltersAvailable && (
-                    <OakBox $mb={"space-between-m2"}>
-                      <OakHeading
-                        tag="h3"
-                        $font="heading-6"
-                        $mb={"space-between-ssx"}
-                      >
-                        Filters
-                      </OakHeading>
-
-                      <OakBox ref={filtersRef}>
-                        <OakSecondaryButton
-                          element="a"
-                          aria-label="Skip to units"
-                          href="#unit-list"
-                          onFocus={() => setSkipFiltersButton(true)}
-                          onBlur={() => setSkipFiltersButton(false)}
-                          style={
-                            skipFiltersButton
-                              ? {}
-                              : {
-                                  position: "absolute",
-                                  top: "-9999px",
-                                  left: "-9999px",
-                                }
-                          }
-                        >
-                          Skip to units
-                        </OakSecondaryButton>
-                      </OakBox>
-                    </OakBox>
-                  )}
-                  {yearGroups.length > 1 && (
-                    <YearGroupFilters
-                      yearGroups={yearGroups}
-                      idSuffix="desktop"
-                      browseRefined={track.browseRefined}
-                      selectedThemeSlug={selectedThemeSlug}
-                      programmeSlug={programmeSlug}
-                    />
-                  )}
-                  {subjectCategories && subjectCategories.length > 1 && (
-                    <SubjectCategoryFilters
-                      idSuffix="desktop"
-                      subjectCategories={subjectCategories}
-                      categorySlug={categorySlug}
-                      browseRefined={track.browseRefined}
-                      programmeSlug={programmeSlug}
-                      selectedThemeSlug={selectedThemeSlug}
-                    />
-                  )}
-                  {learningThemes?.length > 1 && (
-                    <OakFlex $flexDirection={"column"}>
-                      <OakHeading
-                        id={learningThemesId}
-                        tag="h3"
-                        $font="heading-7"
-                        $mb="space-between-s"
-                      >
-                        {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
-                        Threads
-                      </OakHeading>
-                      <UnitsLearningThemeFilters
-                        idSuffix="desktop"
-                        onChangeCallback={setSelectedThemeSlug}
-                        labelledBy={learningThemesId}
-                        learningThemes={learningThemes}
-                        selectedThemeSlug={selectedThemeSlug ?? "all"}
-                        categorySlug={categorySlug}
-                        yearGroupSlug={yearGroupSlug}
-                        programmeSlug={programmeSlug}
-                        linkProps={{
-                          page: "unit-index",
-                          programmeSlug,
-                        }}
-                        trackingProps={{
-                          keyStageSlug,
-                          keyStageTitle:
-                            keyStageTitle as KeyStageTitleValueType,
-                          subjectTitle,
-                          subjectSlug,
-                        }}
-                        browseRefined={track.browseRefined}
-                      />
-                    </OakFlex>
-                  )}
-                </OakFieldset>
-              </OakBox>
+              <DesktopFilters />
             </OakGridArea>
 
+            {/* Header Row */}
             <OakGridArea
               $order={[1, 1, 0]}
               $colSpan={[12, 12, 9]}
@@ -334,71 +382,17 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 $flexDirection={["column-reverse", "column-reverse", "column"]}
               >
                 <OakFlex
+                  $justifyContent={"space-between"}
                   $flexDirection={"row"}
                   $minWidth={["100%", "auto"]}
-                  $justifyContent={"space-between"}
                   $position={"relative"}
                 >
-                  {tiers.length === 0 && (
-                    <>
-                      <OakFlex
-                        $minWidth={"all-spacing-16"}
-                        $mb={"space-between-s"}
-                        $position={"relative"}
-                      >
-                        <OakHeading $font={"heading-5"} tag={"h2"}>
-                          {`Units (${filteredUnits.length})`}
-                        </OakHeading>
-                      </OakFlex>
-                      {isFiltersAvailable && (
-                        <OakBox $display={["auto", "auto", "none"]}>
-                          <MobileUnitFilters
-                            {...curriculumData}
-                            numberOfUnits={filteredUnits.length}
-                            browseRefined={track.browseRefined}
-                            setSelectedThemeSlug={setSelectedThemeSlug}
-                            learningThemesFilterId={learningThemesFilterId}
-                          />
-                        </OakBox>
-                      )}
-                    </>
-                  )}
+                  <TierTabsOrUnitCountHeader />
+                  <MobileUnitFilterButton />
                 </OakFlex>
-                {tiers.length > 0 && (
-                  <OakFlex $justifyContent={"space-between"}>
-                    <nav aria-label="tiers" data-testid="tiers-nav">
-                      <TabularNav
-                        $mb={[10, 10, 24]}
-                        label="tiers"
-                        links={tiers.map(
-                          ({
-                            tierTitle: title,
-                            tierSlug: slug,
-                            tierProgrammeSlug,
-                          }) => ({
-                            label: title,
-                            programmeSlug: tierProgrammeSlug,
-                            page: "unit-index",
-                            isCurrent: tierSlug === slug,
-                            currentStyles: ["underline"],
-                          }),
-                        )}
-                      />
-                    </nav>
-                    {isFiltersAvailable && (
-                      <OakBox $display={["auto", "auto", "none"]}>
-                        <MobileUnitFilters
-                          {...curriculumData}
-                          numberOfUnits={filteredUnits.length}
-                          browseRefined={track.browseRefined}
-                          setSelectedThemeSlug={setSelectedThemeSlug}
-                          learningThemesFilterId={learningThemesFilterId}
-                        />
-                      </OakBox>
-                    )}
-                  </OakFlex>
-                )}
               </OakFlex>
+
+              {/* Main Content */}
               {currentPageItems.length >= 1 ? (
                 <UnitList
                   {...curriculumData}
