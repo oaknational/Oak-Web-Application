@@ -6,6 +6,7 @@ import curriculumApi from "@/node-lib/curriculum-api-2023/__mocks__/index";
 import UnitListingPage, {
   getStaticPaths,
   getStaticProps,
+  getLegacyProgrammeSlug,
 } from "@/pages/teachers/programmes/[programmeSlug]/units";
 import unitListingFixture, {
   unitListingWithTiers,
@@ -225,5 +226,17 @@ describe("tracking", () => {
       tierName: null,
       examBoard: null,
     });
+  });
+});
+
+describe("getLegacyProgrammeSlug", () => {
+  it('replaces examBoardSlug with "l" if examBoardSlug is present at the end of programmeSlug', () => {
+    const result = getLegacyProgrammeSlug("spanish-secondary-ks4-aqa", "aqa");
+    expect(result).toBe("spanish-secondary-ks4-l");
+  });
+
+  it('appends "-l" if examBoardSlug is null', () => {
+    const result = getLegacyProgrammeSlug("history-programme", null);
+    expect(result).toBe("history-programme-l");
   });
 });

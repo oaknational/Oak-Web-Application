@@ -18,10 +18,10 @@ import getPageProps from "@/node-lib/getPageProps";
 import { LessonOverview } from "@/components/TeacherViews/LessonOverview/LessonOverview.view";
 import { LessonOverviewPageData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { populateLessonWithTranscript } from "@/utils/handleTranscript";
-import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 
 export type LessonOverviewPageProps = {
   curriculumData: LessonOverviewPageData;
@@ -54,6 +54,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     saveTeacherNote,
     shareUrl,
     error,
+    shareActivated,
   } = useLesson({
     lessonSlug,
     unitSlug,
@@ -61,7 +62,9 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
     source: "lesson-browse",
     curriculumTrackingProps: {
       lessonName: lessonTitle,
+      lessonSlug: lessonSlug,
       unitName: unitTitle,
+      unitSlug: unitSlug,
       subjectSlug,
       subjectTitle,
       keyStageSlug,
@@ -112,6 +115,7 @@ const LessonOverviewPage: NextPage<LessonOverviewPageProps> = ({
             saveTeacherNote={saveTeacherNote}
             sharingUrl={shareUrl}
             error={error}
+            shareActivated={shareActivated}
           />
         )}
       </OakThemeProvider>
@@ -163,7 +167,6 @@ export const getStaticProps: GetStaticProps<
       }
 
       const lessonPageData = await populateLessonWithTranscript(curriculumData);
-
       const results: GetStaticPropsResult<LessonOverviewPageProps> = {
         props: {
           curriculumData: lessonPageData,

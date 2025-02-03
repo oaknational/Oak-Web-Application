@@ -46,6 +46,7 @@ export default function LessonOverviewCanonicalPage({
     teacherNoteHtml,
     teacherNotesOpen,
     setTeacherNotesOpen,
+    shareActivated,
     teacherNote,
     isEditable,
     saveTeacherNote,
@@ -56,7 +57,9 @@ export default function LessonOverviewCanonicalPage({
     source: "lesson-canonical",
     curriculumTrackingProps: {
       lessonName: lesson.lessonTitle,
+      lessonSlug: lesson.lessonSlug,
       unitName: null,
+      unitSlug: null,
       subjectSlug: null,
       subjectTitle: null,
       keyStageSlug: null,
@@ -79,7 +82,6 @@ export default function LessonOverviewCanonicalPage({
         <LessonOverview
           lesson={{
             ...lesson,
-            lessonMediaClips: null,
             isCanonical: true,
             isSpecialist,
             teacherShareButton: teacherNotesButton,
@@ -105,6 +107,7 @@ export default function LessonOverviewCanonicalPage({
             saveTeacherNote={saveTeacherNote}
             sharingUrl={shareUrl}
             error={error}
+            shareActivated={shareActivated}
           />
         )}
       </OakThemeProvider>
@@ -161,7 +164,6 @@ export const getStaticProps: GetStaticProps<PageProps, URLParams> = async (
           lesson = await populateLessonWithTranscript(lesson);
         }
       }
-
       if (!lesson) {
         return {
           notFound: true,

@@ -8,14 +8,11 @@ import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPha
 import CMSClient from "@/node-lib/cms";
 import curriculumApi2023, {
   CurriculumOverviewMVData,
+  CurriculumUnitsTabData,
 } from "@/node-lib/curriculum-api-2023";
-import docx, {
-  CombinedCurriculumData,
-  CurriculumUnitsTabDataIncludeNewWithOrder,
-} from "@/pages-helpers/curriculum/docx";
+import docx, { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
 import { getMvRefreshTime } from "@/pages-helpers/curriculum/docx/getMvRefreshTime";
 import { logErrorMessage } from "@/utils/curriculum/testing";
-import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
 
 export const curriculumDownloadQuerySchema = z.object({
   mvRefreshTime: z.string(),
@@ -63,7 +60,7 @@ async function getData(opts: {
 
   let curriculumOverviewSanityData: CurriculumOverviewSanityData | null;
   let curriculumOverviewTabData: CurriculumOverviewMVData | null;
-  let curriculumData: CurriculumUnitsTabDataIncludeNewWithOrder | null;
+  let curriculumData: CurriculumUnitsTabData | null;
   const dataWarnings: string[] = [];
 
   try {
@@ -72,14 +69,8 @@ async function getData(opts: {
       phaseSlug,
       ks4OptionSlug: ks4OptionSlug ?? null,
     };
-    let curriculumDataUnsorted;
-    if (ENABLE_NEW_CURRIC_MV) {
-      curriculumDataUnsorted =
-        await curriculumApi2023.curriculumSequence(queryOpts);
-    } else {
-      curriculumDataUnsorted =
-        await curriculumApi2023.curriculumUnits(queryOpts);
-    }
+    const curriculumDataUnsorted =
+      await curriculumApi2023.curriculumSequence(queryOpts);
 
     // HACK: This sorts by examboard to push NULLs to the bottom of the list, to fix picking up the correct `unit_options`
     curriculumData = {
