@@ -100,7 +100,11 @@ const AppHeader: FC<HeaderProps> = () => {
             >
               Teachers
               {selectedArea == siteAreas.teachers && (
-                <ActiveLinkUnderline name="horizontal-rule" />
+                <ActiveLinkUnderline
+                  name="horizontal-rule"
+                  $width="100%"
+                  $height={"all-spacing-2"}
+                />
               )}
             </OwaLink>
             <OakFlex $alignItems="center" $gap="all-spacing-1">
@@ -115,7 +119,11 @@ const AppHeader: FC<HeaderProps> = () => {
               >
                 Pupils
                 {selectedArea == siteAreas.pupils && (
-                  <ActiveLinkUnderline name="horizontal-rule" />
+                  <ActiveLinkUnderline
+                    name="horizontal-rule"
+                    $width="100%"
+                    $height={"all-spacing-2"}
+                  />
                 )}
               </OwaLink>
             </OakFlex>
