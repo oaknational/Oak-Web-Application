@@ -7627,10 +7627,3 @@ export const data: CombinedCurriculumData = {
   videoExplainer:
     "Here, our English subject lead Chris Fountain, talks to Sam Barnsley from Twyford Academies Trust to highlight some of the thinking behind the design of our secondary English curriculum. They offer suggestions on what you might need to consider when exploring it for your school too. ",
 };
-
-export const slugs = {
-  subjectSlug: "english",
-  phaseSlug: "secondary",
-  keyStageSlug: "secondary",
-  ks4OptionSlug: "aqa",
-};

@@ -1,7 +1,7 @@
 import { CurriculumFilters } from "@/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
 
-type PartialFilters = {
+export type PartialFilters = {
   childSubjects?: CurriculumFilters["childSubjects"];
   subjectCategories?: CurriculumFilters["subjectCategories"];
   tiers?: CurriculumFilters["tiers"];

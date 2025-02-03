@@ -17,7 +17,6 @@ import {
 } from "./CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "./helpers";
 
-import { Hr } from "@/components/SharedComponents/Typography";
 import Box from "@/components/SharedComponents/Box";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import {

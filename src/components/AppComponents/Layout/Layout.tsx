@@ -1,19 +1,18 @@
 import Head from "next/head";
 import React, { FC } from "react";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 import {
   OakBox,
+  OakFlex,
   oakDefaultTheme,
   OakThemeProvider,
+  OakColorToken,
 } from "@oaknational/oak-components";
 
 import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
 import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import { OrganizationJsonLd } from "@/browser-lib/seo/getJsonLd";
-import background, { BackgroundProps } from "@/styles/utils/background";
-import { OakColorName } from "@/styles/theme";
 import LayoutPreviewControls from "@/components/AppComponents/LayoutPreviewControls";
 import LayoutClientErrorHeader from "@/components/AppComponents/LayoutClientErrorHeader";
 import LayoutClientErrorFooter from "@/components/AppComponents/LayoutClientErrorFooter";
@@ -24,18 +23,6 @@ import { CTA } from "@/common-lib/cms-types";
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import SkipLink from "@/components/CurriculumComponents/OakComponentsKitchen/SkipLink";
 
-const Container = styled.div<BackgroundProps>`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  ${background}
-`;
-const StyledLayout = styled.main`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  width: 100%;
-`;
 export type HeaderProps = {
   children?: React.ReactNode;
   breadcrumbs?: Breadcrumb[];
@@ -63,7 +50,7 @@ export type LayoutProps = {
   headerVariant?: HeaderVariant;
   footerVariant?: FooterVariant;
   breadcrumbs?: Breadcrumb[];
-  $background?: OakColorName;
+  $background?: OakColorToken;
   headerCta?: CTA | null;
   banner?: React.ReactNode;
 };
@@ -90,7 +77,11 @@ const Layout: FC<LayoutProps> = (props) => {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <OrganizationJsonLd />
-        <Container $background={$background}>
+        <OakFlex
+          $flexDirection="column"
+          $flexGrow={1}
+          $background={$background}
+        >
           <OakBox
             $position={"absolute"}
             $height={"all-spacing-13"}
@@ -103,10 +94,18 @@ const Layout: FC<LayoutProps> = (props) => {
           </OakBox>
           {banner}
           <Header breadcrumbs={breadcrumbs} headerCta={props.headerCta} />
-          <StyledLayout id="main">{children}</StyledLayout>
+          <OakFlex
+            $flexDirection="column"
+            $flexGrow={1}
+            $width="100%"
+            as="main"
+            id="main"
+          >
+            {children}
+          </OakFlex>
           <Footer />
           {isPreview && <LayoutPreviewControls />}
-        </Container>
+        </OakFlex>
       </OakThemeProvider>
     </>
   );

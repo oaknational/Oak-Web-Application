@@ -17,7 +17,13 @@ describe(useOnboardingStatus, () => {
 
     expect(result.current).toEqual("loading");
 
-    setUseUserReturn(mockLoggedIn);
+    setUseUserReturn({
+      ...mockLoggedIn,
+      user: {
+        ...mockLoggedIn.user,
+        publicMetadata: { owa: { isOnboarded: false } },
+      },
+    });
 
     rerender();
 
@@ -53,7 +59,13 @@ describe(useOnboardingStatus, () => {
       jest.advanceTimersByTime(10000);
     });
 
-    setUseUserReturn(mockLoggedIn);
+    setUseUserReturn({
+      ...mockLoggedIn,
+      user: {
+        ...mockLoggedIn.user,
+        publicMetadata: { owa: { isOnboarded: false } },
+      },
+    });
 
     rerender();
 

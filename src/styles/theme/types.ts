@@ -5,7 +5,6 @@ import { BadgeConfig } from "@/components/GenericPagesComponents/CurriculumTabBa
 import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
 import { SelectListBoxConfig } from "@/components/SharedComponents/ListBox/ListBox";
 import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";
-import { ToggleStyleConfig } from "@/components/ArchivedComponents/Toggle/Toggle";
 import { VideoStyleConfig } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import { HeaderConfig } from "@/components/AppComponents/StyledHeader/StyledHeader";
 
@@ -238,6 +237,24 @@ type InputStateConfig = {
   icon: OakColorName;
   border: OakColorName;
   background: OakColorName;
+};
+
+type ToggleStyleConfig = {
+  on: {
+    labelColor: OakColorName;
+    background: OakColorName;
+    switchColor: OakColorName;
+  };
+  off: {
+    labelColor: OakColorName;
+    background: OakColorName;
+    switchColor: OakColorName;
+  };
+  disabled: {
+    labelColor: OakColorName;
+    background: OakColorName;
+    switchColor: OakColorName;
+  };
 };
 
 export type OakTheme = {

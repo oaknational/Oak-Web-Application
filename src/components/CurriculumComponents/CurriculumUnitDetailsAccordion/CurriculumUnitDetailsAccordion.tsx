@@ -5,7 +5,6 @@ import { OakIcon, OakBox } from "@oaknational/oak-components";
 import useClickableCard from "@/hooks/useClickableCard";
 import Card from "@/components/SharedComponents/Card";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Icon from "@/components/SharedComponents/Icon";
 import Button from "@/components/SharedComponents/Button";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 
@@ -28,7 +27,7 @@ const CurriculumUnitDetailsAccordion: FC<
   const { containerProps, isHovered, primaryTargetProps } =
     useClickableCard<HTMLButtonElement>();
   const [isFocused, setIsFocused] = useState<boolean>(false);
-  const [isToggleOpen, setToggleOpen] = useState<boolean>(false);
+  const [isToggleOpen, setIsToggleOpen] = useState<boolean>(false);
 
   const { isFocusVisible } = useFocusVisible();
   const { focusWithinProps } = useFocusWithin({
@@ -60,13 +59,14 @@ const CurriculumUnitDetailsAccordion: FC<
           isCurrent={isHovered}
           currentStyles={["underline"]}
           onClick={() => {
-            setToggleOpen(!isToggleOpen);
+            setIsToggleOpen(!isToggleOpen);
           }}
           $font={"heading-6"}
         />
-        <Icon
-          $color="black"
-          name={isToggleOpen ? "chevron-up" : "chevron-down"}
+        <OakIcon
+          iconName={isToggleOpen ? "chevron-up" : "chevron-down"}
+          $width={"all-spacing-6"}
+          $height={"all-spacing-6"}
         />
       </Card>
       {/* @todo replace with OakFlex - work out $maxHeight, why is it Flex if it has display set to either block or none? */}

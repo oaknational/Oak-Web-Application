@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
+import { OakHeading, OakP, OakFlex, OakBox } from "@oaknational/oak-components";
 
 import Button from "@/components/SharedComponents/Button";
-import Box from "@/components/SharedComponents/Box";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 
 export type ResourcePageDetailsCompletedProps = {
@@ -27,8 +26,8 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
   onEditClick,
 }) => {
   return (
-    <Box
-      $width={["100%", 420]}
+    <OakBox
+      $width={["100%", "all-spacing-21"]}
       $height={"max-content"}
       $position="relative"
       $background="grey30"
@@ -72,7 +71,7 @@ const ResourcePageDetailsCompleted: FC<ResourcePageDetailsCompletedProps> = ({
           aria-label="Edit details"
         />
       </OakFlex>
-    </Box>
+    </OakBox>
   );
 };
 

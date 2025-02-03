@@ -1,12 +1,12 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { OakIcon } from "@oaknational/oak-components";
 
 import type { CheckboxVariant } from "./Checkbox";
 
 import position, { PositionProps } from "@/styles/utils/position";
 import { ZIndex, parseZIndex } from "@/styles/utils/zIndex";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
-import Icon from "@/components/SharedComponents/Icon";
 
 type VisualCheckboxProps = {
   checked: boolean;
@@ -79,10 +79,11 @@ const VisualCheckbox: FC<VisualCheckboxProps> = (props) => {
       zIndex={props.zIndex}
     >
       {props.checked && (
-        <Icon
-          name={"tick"}
-          $color={"white"}
-          size={20}
+        <OakIcon
+          iconName={"tick"}
+          $colorFilter={"white"}
+          $width={"all-spacing-5"}
+          $height={"all-spacing-5"}
           data-testid="tick-icon"
         />
       )}

@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
+import { OakTertiaryButton } from "@oaknational/oak-components";
 
 import { useToastContext, SHOW_DURATION } from "@/context/Toast";
-import IconButton from "@/components/SharedComponents/Button/IconButton";
 
 type CopyLinkButtonProps = {
   href?: string;
@@ -44,13 +44,11 @@ const CopyLinkButton: FC<CopyLinkButtonProps> = (props) => {
 
   return (
     <>
-      <IconButton
-        icon={"share"}
-        htmlButtonProps={{ title: label }}
-        aria-label={label}
+      <OakTertiaryButton
         onClick={copyLink}
-        background={"blue"}
-        iconAnimateTo={active ? "tick" : undefined}
+        iconName={active ? "tick" : "share"}
+        aria-label={label}
+        isTrailingIcon
       />
       {/* Live region for aria-live announcements */}
       {announce && (

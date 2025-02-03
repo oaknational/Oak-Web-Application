@@ -1,28 +1,30 @@
-// import { CurriculumFilters } from "@/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFilters";
-// import { YearData } from "./types";
+import { isVisibleUnit, PartialFilters } from "./isVisibleUnit";
+import { Unit, YearData } from "./types";
 
-export function getNumberOfSelectedUnits(): number {
-  // yearData: YearData,
-  // selectedYear: string | null,
-  // filter: CurriculumFilters,
-  // let count = 0;
+import { dedupUnits } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
-  // Object.keys(yearData).forEach((year) => {
-  //   const units = yearData[year]?.units;
+export function getNumberOfSelectedUnits(
+  yearData: YearData,
+  selectedYear: string | null,
+  filter: PartialFilters,
+): number {
+  let count = 0;
 
-  //   if (units && (selectedYear === "" || selectedYear === year)) {
-  //     const filteredUnits = units.filter((unit) => {
-  //       return isVisibleUnit(yearSelection, year, unit);
-  //     });
+  Object.keys(yearData).forEach((year) => {
+    const units = yearData[year]?.units;
 
-  //     const dedupedUnits = dedupUnits(filteredUnits);
+    if (units && (selectedYear === "" || selectedYear === year)) {
+      const filteredUnits = units.filter((unit: Unit) => {
+        return isVisibleUnit(filter, year, unit);
+      });
 
-  //     dedupedUnits.forEach(() => {
-  //       count += 1;
-  //     });
-  //   }
-  // });
+      const dedupedUnits = dedupUnits(filteredUnits);
 
-  // return count;
-  return 0;
+      dedupedUnits.forEach(() => {
+        count += 1;
+      });
+    }
+  });
+
+  return count;
 }

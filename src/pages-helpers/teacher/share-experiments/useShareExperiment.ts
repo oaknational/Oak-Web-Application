@@ -6,50 +6,29 @@ import {
   getConversionShareId,
   getShareId,
   getShareIdKey,
-  shareSources,
+  ShareSource,
   storeActivationKey,
   storeConversionShareId,
 } from "./createShareId";
+import {
+  CoreProperties,
+  CurriculumTrackingProps,
+} from "./shareExperimentTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import {
-  KeyStageTitleValueType,
-  TeacherShareInitiatedProperties,
-} from "@/browser-lib/avo/Avo";
-
-export type CurriculumTrackingProps = {
-  lessonName: string | null;
-  unitName: string | null;
-  subjectSlug: string | null;
-  subjectTitle: string | null;
-  keyStageSlug: string | null;
-  keyStageTitle: KeyStageTitleValueType | null;
-};
-
-type CoreProperties = Pick<
-  TeacherShareInitiatedProperties,
-  | "platform"
-  | "product"
-  | "engagementIntent"
-  | "componentType"
-  | "eventVersion"
-  | "analyticsUseCase"
->;
 
 export const useShareExperiment = ({
-  lessonSlug,
-  unitSlug,
   programmeSlug,
   source,
   shareBaseUrl,
   curriculumTrackingProps,
+  overrideExistingShareId,
 }: {
-  lessonSlug?: string;
-  unitSlug?: string;
   programmeSlug?: string;
   shareBaseUrl?: string;
-  source: keyof typeof shareSources;
+  source: ShareSource;
   curriculumTrackingProps: CurriculumTrackingProps;
+  overrideExistingShareId: boolean | null;
 }) => {
   const shareIdRef = useRef<string | null>(null);
   const shareIdKeyRef = useRef<string | null>(null);
@@ -57,6 +36,8 @@ export const useShareExperiment = ({
   const [browserUrl, setBrowserUrl] = useState<string | null>(null);
 
   const { track } = useAnalytics();
+
+  const { lessonSlug, unitSlug } = curriculumTrackingProps;
 
   const coreTrackingProps: CoreProperties = useMemo(
     () => ({
@@ -75,28 +56,37 @@ export const useShareExperiment = ({
 
     // get the current url params
     const urlParams = new URLSearchParams(window.location.search);
-    const urlShareId = urlParams.get(getShareIdKey(key));
+    const hashedKey = getShareIdKey(key);
+    const urlShareId = urlParams.get(hashedKey);
     const storageShareId = getShareId(key);
 
     if (urlShareId && storageShareId !== urlShareId) {
       // check for  existing conversion shareId
       if (!getConversionShareId(urlShareId)) {
-        // TODO: store the converted shareId in a storage for preventing multiple conversion events
+        // store the converted shareId in a storage for preventing multiple conversion events
         storeConversionShareId(urlShareId);
 
         // track the share converted event irrespective of whether the user is part of the experiment
         track.teacherShareConverted({
           shareId: urlShareId,
           linkUrl: window.location.href,
-          lessonSlug,
-          unitSlug,
           ...coreTrackingProps,
           ...curriculumTrackingProps,
         });
       }
     }
 
-    if (!shareIdRef.current) {
+    // don't continue if feature flag is not yet ready
+    if (overrideExistingShareId === null) {
+      return;
+    }
+
+    // don't continue if we already have a shareId
+    if (shareIdRef.current) {
+      return;
+    }
+
+    if (overrideExistingShareId || !urlShareId) {
       // we update the url and send the share initiated event for any users in the experiment
       const { url, shareIdKey, shareId } = getUpdatedUrl({
         url: window.location.href,
@@ -110,7 +100,7 @@ export const useShareExperiment = ({
 
       const { url: buttonUrl } = getUpdatedUrl({
         url: shareBaseUrl || window.location.href,
-        storageShareId: shareId, // we know that this will now be the shareId
+        storageShareId: shareId,
         unhashedKey: key,
         source,
         shareMethod: "button",
@@ -121,8 +111,6 @@ export const useShareExperiment = ({
       if (!storageShareId) {
         // track the share initiated event
         track.teacherShareInitiated({
-          unitSlug,
-          lessonSlug,
           shareId,
           sourcePageSlug: window.location.pathname,
           ...coreTrackingProps,
@@ -132,6 +120,19 @@ export const useShareExperiment = ({
 
       shareIdRef.current = shareId;
       shareIdKeyRef.current = shareIdKey;
+    } else {
+      const { url: buttonUrl } = getUpdatedUrl({
+        url: shareBaseUrl || window.location.href,
+        storageShareId: urlShareId,
+        unhashedKey: key,
+        source,
+        shareMethod: "button",
+      });
+
+      setShareUrl(buttonUrl);
+
+      shareIdRef.current = urlShareId;
+      shareIdKeyRef.current = hashedKey;
     }
   }, [
     lessonSlug,
@@ -142,9 +143,10 @@ export const useShareExperiment = ({
     source,
     track,
     coreTrackingProps,
+    overrideExistingShareId,
   ]);
 
-  const shareActivated = () => {
+  const shareActivated = (noteLengthChars?: number) => {
     if (!shareIdRef.current || !shareIdKeyRef.current) {
       return;
     }
@@ -153,11 +155,10 @@ export const useShareExperiment = ({
       track.teacherShareActivated({
         shareId: shareIdRef.current,
         linkUrl: window.location.href,
-        lessonSlug,
-        unitSlug,
         sourcePageSlug: window.location.pathname,
         ...coreTrackingProps,
         ...curriculumTrackingProps,
+        noteLengthChars,
       });
 
       storeActivationKey(shareIdKeyRef.current);

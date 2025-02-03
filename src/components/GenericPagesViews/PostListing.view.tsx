@@ -1,4 +1,5 @@
 import { FC, useId } from "react";
+import { OakMaxWidth } from "@oaknational/oak-components";
 
 import PostCategoryList, {
   PostCategoryPage,
@@ -20,7 +21,6 @@ import {
 } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
 import SummaryCard from "@/components/SharedComponents/Card/SummaryCard";
 import Layout from "@/components/AppComponents/Layout";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import MobileFilters from "@/components/SharedComponents/MobileFilters";
 import {
   PostListingPageProps,
@@ -68,7 +68,7 @@ const PostListing: FC<PostListingProps> = ({
 
   return (
     <Layout seoProps={getSeoProps(seo)} $background="white">
-      <MaxWidth $pt={20} $display={["none", "flex"]}>
+      <OakMaxWidth $pt={"inner-padding-l"} $display={["none", "flex"]}>
         <Breadcrumbs
           breadcrumbs={getBlogWebinarListBreadcrumbs(
             categories,
@@ -77,8 +77,11 @@ const PostListing: FC<PostListingProps> = ({
             variant.title,
           )}
         />
-      </MaxWidth>
-      <MaxWidth $mb={[56, 80]} $pt={[0, 26, 26]}>
+      </OakMaxWidth>
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $pt={["inner-padding-none", "inner-padding-xl", "inner-padding-xl"]}
+      >
         <SummaryCard
           {...pageData}
           heading={categoryHeading || pageData.heading}
@@ -86,8 +89,8 @@ const PostListing: FC<PostListingProps> = ({
         <MobileFilters page={page} label={"Categories"}>
           <PostCategoryList
             labelledBy={triggerId}
-            $pv={28}
-            $ph={16}
+            $pv={"inner-padding-xl"}
+            $ph={"inner-padding-m"}
             categories={categories}
             selectedCategorySlug={categorySlug}
             page={page}
@@ -99,7 +102,7 @@ const PostListing: FC<PostListingProps> = ({
           blogs={postListItems}
           page={page}
         />
-      </MaxWidth>
+      </OakMaxWidth>
       <PostListJsonLd blogs={posts} />
     </Layout>
   );

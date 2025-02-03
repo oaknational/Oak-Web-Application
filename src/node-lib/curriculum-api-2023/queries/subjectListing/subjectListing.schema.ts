@@ -3,6 +3,8 @@ import {
   keystageSlugs,
   keystageDescriptions,
   syntheticUnitvariantsWithLessonIdsByKsSchema,
+  pathwaySlugs,
+  pathways,
 } from "@oaknational/oak-curriculum-schema";
 
 export const subjectSchema = z.object({
@@ -12,6 +14,8 @@ export const subjectSchema = z.object({
   lessonCount: z.number(),
   programmeSlug: z.string(),
   programmeCount: z.number(),
+  pathwaySlug: pathwaySlugs.nullable(),
+  pathwayTitle: pathways.nullable(),
 });
 
 const keyStageDataRaw = z.object({

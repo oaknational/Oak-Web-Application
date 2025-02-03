@@ -36,10 +36,10 @@ export default function UnitsTab({
   const { ks4OptionSlug } = trackingData;
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
-  const unitCount = getNumberOfSelectedUnits();
-  // yearData,
-  // selectedYear,
-  // yearSelection,
+  const selectedYear = filters.years.length === 1 ? filters.years[0]! : "all";
+
+  const unitCount = getNumberOfSelectedUnits(yearData, selectedYear, filters);
+
   const highlightedUnits = highlightedUnitCount();
   // yearData,
   // selectedYear,

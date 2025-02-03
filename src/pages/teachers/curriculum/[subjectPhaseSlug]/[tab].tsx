@@ -6,7 +6,11 @@ import {
 } from "next";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@oaknational/oak-components";
 import { uniq } from "lodash";
 
 import CMSClient from "@/node-lib/cms";
@@ -14,7 +18,6 @@ import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader
 import OverviewTab from "@/components/CurriculumComponents/OverviewTab";
 import UnitsTab from "@/components/CurriculumComponents/UnitsTab";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import Box from "@/components/SharedComponents/Box";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import {
   decorateWithIsr,
@@ -31,10 +34,7 @@ import {
   isValidSubjectPhaseSlug,
   parseSubjectPhaseSlug,
 } from "@/utils/curriculum/slugs";
-import {
-  ENABLE_NEW_CURRIC_MV,
-  ENABLE_OPEN_API,
-} from "@/utils/curriculum/constants";
+import { ENABLE_OPEN_API } from "@/utils/curriculum/constants";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import {
   createDownloadsData,
@@ -183,7 +183,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           color2="mint"
         />
 
-        <Box $background={"white"}>{tabContent}</Box>
+        <OakBox $background={"white"}>{tabContent}</OakBox>
       </AppLayout>
     </OakThemeProvider>
   );
@@ -278,11 +278,9 @@ export const getStaticProps: GetStaticProps<
           context.params.subjectPhaseSlug,
           slugs,
         );
-      } else if (ENABLE_NEW_CURRIC_MV) {
+      } else {
         curriculumUnitsTabData =
           await curriculumApi2023.curriculumSequence(slugs);
-      } else {
-        curriculumUnitsTabData = await curriculumApi2023.curriculumUnits(slugs);
       }
 
       // Sort the units to have examboard versions first - this is so non-examboard units are removed

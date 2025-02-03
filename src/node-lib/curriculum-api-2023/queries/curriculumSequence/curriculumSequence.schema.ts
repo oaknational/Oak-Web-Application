@@ -74,6 +74,7 @@ const curriculumSequenceSchema = z.object({
           why_this_why_now: z.string().nullable(),
           title: z.string(),
           unitvariant_id: z.number(),
+          slug: z.string().optional(),
           lessons: z.array(
             z.object({
               slug: z.string().optional(),

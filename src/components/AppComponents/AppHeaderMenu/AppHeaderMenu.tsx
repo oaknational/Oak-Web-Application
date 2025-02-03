@@ -16,7 +16,6 @@ import {
 import { useMenuContext } from "@/context/Menu/";
 import Logo from "@/components/AppComponents/Logo";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
-import AppHeaderMenuSidebarSignpost from "@/components/AppComponents/AppHeaderMenuSidebarSignpost";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import { OakColorName, PixelSpacing } from "@/styles/theme/types";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
@@ -77,7 +76,6 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
   const { pathname } = useRouter();
   const ref = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const displaySignpost = pathname.startsWith("/beta");
 
   useEffect(() => {
     closeMenu();
@@ -163,9 +161,6 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
                 $ph={["inner-padding-m", "inner-padding-xl7"]}
               >
                 {/* Mobile logo */}
-                {displaySignpost && (
-                  <AppHeaderMenuSidebarSignpost display={["none", "flex"]} />
-                )}
                 <OakFlex
                   $justifyContent={"left"}
                   $display={["flex", "none"]}
@@ -173,9 +168,6 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
                 >
                   <Logo variant="with text" height={48} width={104} />
                 </OakFlex>
-                {displaySignpost && (
-                  <AppHeaderMenuSidebarSignpost display={["flex", "none"]} />
-                )}
                 {children}
                 {/* Desktop logo */}
                 <OakFlex

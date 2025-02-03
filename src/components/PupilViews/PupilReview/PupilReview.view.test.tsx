@@ -154,6 +154,8 @@ describe("PupilReview", () => {
         config={{
           getLessonAttemptUrl: "example.com",
           logLessonAttemptUrl: "example.com",
+          getTeacherNoteUrl: "example.com",
+          addTeacherNoteUrl: "example.com",
         }}
       >
         {" "}
@@ -188,6 +190,8 @@ describe("PupilReview", () => {
           config={{
             getLessonAttemptUrl: "example.com",
             logLessonAttemptUrl: "example.com",
+            getTeacherNoteUrl: "example.com",
+            addTeacherNoteUrl: "example.com",
           }}
         >
           <OakThemeProvider theme={oakDefaultTheme}>
@@ -224,6 +228,8 @@ describe("PupilReview", () => {
               config={{
                 getLessonAttemptUrl: "example.com",
                 logLessonAttemptUrl: "example.com",
+                getTeacherNoteUrl: "example.com",
+                addTeacherNoteUrl: "example.com",
               }}
             >
               <PupilViewsReview
@@ -273,6 +279,8 @@ describe("PupilReview", () => {
               config={{
                 getLessonAttemptUrl: "example.com",
                 logLessonAttemptUrl: "example.com",
+                getTeacherNoteUrl: "example.com",
+                addTeacherNoteUrl: "example.com",
               }}
             >
               <PupilViewsReview
@@ -322,6 +330,8 @@ describe("PupilReview", () => {
               config={{
                 getLessonAttemptUrl: "example.com",
                 logLessonAttemptUrl: "example.com",
+                getTeacherNoteUrl: "example.com",
+                addTeacherNoteUrl: "example.com",
               }}
             >
               <PupilViewsReview
@@ -373,6 +383,8 @@ describe("PupilReview", () => {
               config={{
                 getLessonAttemptUrl: "example.com",
                 logLessonAttemptUrl: "example.com",
+                getTeacherNoteUrl: "example.com",
+                addTeacherNoteUrl: "example.com",
               }}
             >
               <PupilViewsReview
@@ -417,6 +429,8 @@ describe("PupilReview", () => {
           config={{
             getLessonAttemptUrl: "example.com",
             logLessonAttemptUrl: "example.com",
+            getTeacherNoteUrl: "example.com",
+            addTeacherNoteUrl: "example.com",
           }}
         >
           <OakThemeProvider theme={oakDefaultTheme}>
@@ -465,6 +479,8 @@ describe("PupilReview", () => {
               config={{
                 getLessonAttemptUrl: "example.com",
                 logLessonAttemptUrl: "example.com",
+                getTeacherNoteUrl: "example.com",
+                addTeacherNoteUrl: "example.com",
               }}
             >
               <PupilViewsReview

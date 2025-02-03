@@ -1,9 +1,9 @@
 import React from "react";
 import { GetStaticPathsResult, GetStaticProps, NextPage } from "next";
+import { OakMaxWidth } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import SubjectProgrammeListing from "@/components/TeacherComponents/SubjectProgrammeListing";
 import {
   getFallbackBlockingConfig,
@@ -24,6 +24,7 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
     subjectSlug,
     keyStageTitle,
     subjectTitle,
+    pathwayTitle,
     legacy,
   } = props;
   if (!programmes[0]) {
@@ -136,16 +137,20 @@ const ProgrammesListingPage: NextPage<ProgrammeListingPageData> = (props) => {
         ]}
         background={"lavender30"}
         subjectIconBackgroundColor={"lavender"}
-        title={subjectTitle}
+        title={`${subjectTitle} ${pathwayTitle ?? ""}`}
         programmeFactor={keyStageTitle}
         hasCurriculumDownload={legacy}
         {...props}
         subjectSlug={subjectSlug}
         isNew={!legacy} // we have no way to know if it's new based on cohort information at this level
       />
-      <MaxWidth $mb={[56, 80]} $mt={[56, 72]} $ph={16}>
+      <OakMaxWidth
+        $mb={["space-between-xl", "space-between-xxxl"]}
+        $mt={["space-between-xl", "space-between-xxl"]}
+        $ph={"inner-padding-m"}
+      >
         <SubjectProgrammeListing {...props} onClick={handleProgrammeClick} />
-      </MaxWidth>
+      </OakMaxWidth>
     </AppLayout>
   );
 };

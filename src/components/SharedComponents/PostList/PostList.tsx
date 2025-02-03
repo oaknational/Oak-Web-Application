@@ -1,5 +1,10 @@
 import { FC } from "react";
-import { OakLI, OakPagination, OakUL } from "@oaknational/oak-components";
+import {
+  OakLI,
+  OakPagination,
+  OakUL,
+  OakHandDrawnHR,
+} from "@oaknational/oak-components";
 
 import UpcomingWebinarListItem from "../PostListUpcomingWebinarListItem";
 
@@ -7,7 +12,6 @@ import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import PostListItem, {
   PostListItemProps,
 } from "@/components/SharedComponents/PostListItem";
-import { Hr } from "@/components/SharedComponents/Typography";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -64,7 +68,14 @@ const PostList: FC<PostListProps> = (props) => {
       $alignItems="flex-start"
       $minHeight={[0, 840]}
     >
-      {withContainingHrs && <Hr thickness={4} $mt={0} $mb={32} />}
+      {withContainingHrs && (
+        <OakHandDrawnHR
+          $height={"all-spacing-1"}
+          $width={"100%"}
+          $mt={"space-between-none"}
+          $mb={"space-between-m2"}
+        />
+      )}
 
       {withUpcomingItem && upcomingItem && (
         <>
@@ -73,7 +84,13 @@ const PostList: FC<PostListProps> = (props) => {
             signUpHref={getBrowserConfig("webinarSignUpUrl")}
             signUpOnClick={() => null}
           />
-          {withContainingHrs && <Hr thickness={4} $mv={32} />}
+          {withContainingHrs && (
+            <OakHandDrawnHR
+              $width={"100%"}
+              $height={"all-spacing-1"}
+              $mv={"space-between-m2"}
+            />
+          )}
         </>
       )}
       {currentPageItems.length ? (
@@ -81,7 +98,13 @@ const PostList: FC<PostListProps> = (props) => {
           <OakUL $reset $width={"100%"}>
             {currentPageItems.map((item, i) => (
               <OakLI key={`PostList-PostListItem-${i}`}>
-                {i !== 0 && <Hr thickness={4} $mv={32} />}
+                {i !== 0 && (
+                  <OakHandDrawnHR
+                    $width={"100%"}
+                    $height={"all-spacing-1"}
+                    $mv={"space-between-m2"}
+                  />
+                )}
                 <PostListItem
                   {...item}
                   withImage={withImage}
@@ -91,7 +114,14 @@ const PostList: FC<PostListProps> = (props) => {
               </OakLI>
             ))}
           </OakUL>
-          {withContainingHrs && <Hr thickness={4} $mt={32} $mb={0} />}
+          {withContainingHrs && (
+            <OakHandDrawnHR
+              $width={"100%"}
+              $height={"all-spacing-1"}
+              $mt={"space-between-m2"}
+              $mb={"space-between-none"}
+            />
+          )}
         </>
       ) : null}
       {withPagination && (

@@ -135,7 +135,9 @@ export const generateLessonOverviewFromRaw = (
     pathways: [],
     lessonGuideUrl: null,
     hasMediaClips: false,
-    // lessonMediaClips: null,
+    lessonMediaClips: null,
+    additionalFiles: null,
+    lessonOutline: null,
   };
 
   return specialistLessonOverviewSchema.parse({

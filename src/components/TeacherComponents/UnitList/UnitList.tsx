@@ -1,4 +1,5 @@
 import React, { FC, MouseEvent } from "react";
+import { NextRouter, useRouter } from "next/router";
 import {
   OakFlex,
   OakUnitsContainer,
@@ -6,8 +7,8 @@ import {
   OakUnitListOptionalityItem,
   OakPagination,
   OakAnchorTarget,
+  OakBox,
 } from "@oaknational/oak-components";
-import { NextRouter, useRouter } from "next/router";
 
 import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
 
@@ -17,7 +18,6 @@ import {
   UnitListItemProps,
   SpecialistListItemProps,
 } from "@/components/TeacherComponents/UnitListItem/UnitListItem";
-import Box from "@/components/SharedComponents/Box";
 import {
   SpecialistUnit,
   SpecialistUnitListingData,
@@ -245,18 +245,25 @@ const UnitList: FC<UnitListProps> = (props) => {
     });
   };
 
+  //TODO: Temporary measure until curriculum downloads are ready for RSHE
+  const hideNewCurriculumDownloadButton = subjectSlug === "rshe-pshe";
+
   const NewUnits = ({ category }: { category?: string }) =>
     newPageItems.length && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={false}
         subject={category ?? subjectSlug}
         phase={phaseSlug}
-        curriculumHref={resolveOakHref({
-          page: "curriculum-units",
-          subjectPhaseSlug: `${linkSubject}-${phaseSlug}${
-            examBoardSlug ? `-${examBoardSlug}` : ""
-          }`,
-        })}
+        curriculumHref={
+          hideNewCurriculumDownloadButton
+            ? null
+            : resolveOakHref({
+                page: "curriculum-units",
+                subjectPhaseSlug: `${linkSubject}-${phaseSlug}${
+                  examBoardSlug ? `-${examBoardSlug}` : ""
+                }`,
+              })
+        }
         showHeader={paginationProps.currentPage === 1}
         unitCards={getUnitCards(newPageItems)}
       />
@@ -310,15 +317,20 @@ const UnitList: FC<UnitListProps> = (props) => {
         )
       ) : null}
       {units.length > 5 ? (
-        <Box $width="100%" $mt={[0, "auto"]} $pb={[30, 44]} $pt={[46, 36]}>
+        <OakBox
+          $width="100%"
+          $mt={["space-between-none", "auto"]}
+          $pb={["inner-padding-xl2", "inner-padding-xl4"]}
+          $pt={["inner-padding-xl4", "inner-padding-xl2"]}
+        >
           <OakPagination
             {...paginationProps}
             pageName={props.subjectTitle}
             paginationHref={paginationRoute}
           />
-        </Box>
+        </OakBox>
       ) : (
-        <Box $pb={32} />
+        <OakBox $pb="inner-padding-xl2" />
       )}
     </OakFlex>
   );

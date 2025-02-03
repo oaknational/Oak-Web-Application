@@ -3,7 +3,14 @@ import assert from "assert";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { OakFlex, OakHeading, OakP } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHeading,
+  OakP,
+  OakIcon,
+  OakBox,
+  OakHandDrawnHR,
+} from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box/Box";
@@ -14,8 +21,6 @@ import curriculumPreviousDownloadsFixture, {
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import TabularNav from "@/components/SharedComponents/TabularNav";
-import Icon from "@/components/SharedComponents/Icon/Icon";
-import Hr from "@/components/SharedComponents/Typography/Hr";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import { ButtonAsLinkProps } from "@/components/SharedComponents/Button/ButtonAsLink";
 import CurriculumDownloads, {
@@ -107,7 +112,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
       }}
       $background={"white"}
     >
-      <Box $background={"mint"} $pt={[20]}>
+      <OakBox $background={"mint"} $pt="inner-padding-l">
         <Box
           $maxWidth={1280}
           $mh={"auto"}
@@ -139,7 +144,12 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
               },
             ]}
           />
-          <Hr $color={"white"} />
+
+          <OakHandDrawnHR
+            hrColor={"white"}
+            $height={"all-spacing-05"}
+            $mv={"space-between-m"}
+          />
           <OakFlex>
             <Box
               $background={"mint30"}
@@ -148,15 +158,14 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
               $position={"relative"}
             >
               <BrushBorders color="mint30" />
-              <Icon
-                name={"download"}
-                $color="black"
-                $width={140}
-                $height={140}
+              <OakIcon
+                iconName={"download"}
+                $width={"all-spacing-16"}
+                $height={"all-spacing-16"}
                 data-testid="icon"
               />
             </Box>
-            <Box $ml={32}>
+            <OakBox $ml="space-between-m2">
               <OakHeading
                 tag={"h1"}
                 $font={["heading-4", "heading-3"]}
@@ -172,12 +181,12 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
                   curriculum principles that underpin them.
                 </OakP>
               </Box>
-            </Box>
+            </OakBox>
           </OakFlex>
         </Box>
-      </Box>
+      </OakBox>
 
-      <Box $background={"mint30"}>
+      <OakBox $background={"mint30"}>
         <Box
           $display={["block", "none", "none"]}
           $maxWidth={1280}
@@ -221,7 +230,7 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
             data-testid="tabularNav"
           />
         </Box>
-      </Box>
+      </OakBox>
 
       <CurriculumDownloads
         category={activeTab}

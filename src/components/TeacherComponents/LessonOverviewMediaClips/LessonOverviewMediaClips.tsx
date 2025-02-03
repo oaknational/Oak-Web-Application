@@ -3,14 +3,17 @@ import { OakGrid, OakGridArea } from "@oaknational/oak-components";
 
 import LessonOverviewClipWithThumbnail from "./LessonOverviewClipWithThumbnail";
 
-import { MediaClipsList } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { resolveOakHref } from "@/common-lib/urls";
 
 type LessonOverviewMediaClipsProps = {
-  learningCycleVideos: MediaClipsList;
+  learningCycleVideos: MediaClipListCamelCase | null;
   unitSlug: string | null;
   programmeSlug: string | null;
   lessonSlug: string;
+  isCanonical?: boolean;
+  lessonOutline: { lessonOutline: string }[] | null;
+  isPELesson: boolean;
 };
 
 const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
@@ -18,7 +21,17 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   unitSlug,
   programmeSlug,
   lessonSlug,
+  isCanonical,
+  lessonOutline,
+  isPELesson,
 }) => {
+  if (!learningCycleVideos) return null;
+  const hasIntroCycle = Object.keys(learningCycleVideos).includes("intro");
+  const introLessonOverview =
+    hasIntroCycle && lessonOutline
+      ? [{ lessonOutline: "Intro" }, ...lessonOutline]
+      : lessonOutline;
+
   const videosArray = Object.values(learningCycleVideos);
   return (
     <OakGrid
@@ -33,6 +46,22 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
       {videosArray.map((video, index) => {
         const firstCycleVideo = video[0];
         if (!firstCycleVideo) return null;
+        const isAudioClip = firstCycleVideo.mediaObject?.format === "mp3";
+        const signedPlaybackId = firstCycleVideo.videoObject.playbackIds.find(
+          (playbackId) => {
+            return playbackId.policy === "signed";
+          },
+        );
+
+        const PETitle = firstCycleVideo.customTitle
+          ? firstCycleVideo.customTitle
+          : firstCycleVideo.mediaObject?.displayName;
+        const lessonOutlineTitle =
+          lessonOutline && introLessonOverview && introLessonOverview[index]
+            ? introLessonOverview[index]?.lessonOutline
+            : (lessonOutline?.[index]?.lessonOutline ?? "");
+
+        if (!signedPlaybackId) return null;
         return (
           <OakGridArea
             key={index}
@@ -40,31 +69,28 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
             $maxWidth={["100%", "100%", "all-spacing-18"]}
           >
             <LessonOverviewClipWithThumbnail
-              title={firstCycleVideo.mediaClipTitle}
+              title={isPELesson ? PETitle : lessonOutlineTitle}
               playbackId={
-                firstCycleVideo.videoObject
-                  ? firstCycleVideo.videoObject.muxPlaybackId
-                  : ""
+                isAudioClip
+                  ? firstCycleVideo.videoObject.muxAssetId
+                  : signedPlaybackId.id
               }
-              playbackPolicy={
-                firstCycleVideo.videoObject
-                  ? firstCycleVideo.videoObject.playbackPolicy
-                  : "public"
-              }
+              isAudioClip={isAudioClip}
+              playbackPolicy={"signed"}
               numberOfClips={video.length}
               href={
-                programmeSlug && unitSlug
+                !isCanonical && programmeSlug && unitSlug
                   ? resolveOakHref({
                       page: "lesson-media",
                       lessonSlug: lessonSlug,
                       programmeSlug,
                       unitSlug,
-                      query: { video: firstCycleVideo.slug },
+                      query: { video: String(firstCycleVideo.mediaId) },
                     })
                   : resolveOakHref({
                       page: "lesson-media-canonical",
                       lessonSlug: lessonSlug,
-                      query: { video: firstCycleVideo.slug },
+                      query: { video: String(firstCycleVideo.mediaId) },
                     })
               }
             />

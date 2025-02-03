@@ -1,10 +1,9 @@
+import { OakUL, OakBoxProps } from "@oaknational/oak-components";
+
 import CategoryFilterListItem, {
   Category,
   CategoryLinkProps,
 } from "./CategoryFilterListItem";
-
-import { BoxProps } from "@/components/SharedComponents/Box";
-import { UL } from "@/components/SharedComponents/Typography";
 
 export type LearningThemeSelectedTrackingProps = {
   keyStageSlug: string;
@@ -14,7 +13,7 @@ export type LearningThemeSelectedTrackingProps = {
 };
 
 export interface CategoryFilterListProps<T extends CategoryLinkProps>
-  extends BoxProps {
+  extends OakBoxProps {
   labelledBy: string;
   categories: Category<T>[];
   getIsSelected: (category: T) => boolean;
@@ -35,7 +34,7 @@ const CategoryFilterList = <T extends CategoryLinkProps>(
 
   return (
     <nav aria-labelledby={labelledBy}>
-      <UL {...boxProps} $gap={0} $reset $mr={30}>
+      <OakUL {...boxProps} $reset $mr={"space-between-m2"}>
         {categories.map((category) => {
           return (
             <CategoryFilterListItem
@@ -47,7 +46,7 @@ const CategoryFilterList = <T extends CategoryLinkProps>(
             />
           );
         })}
-      </UL>
+      </OakUL>
     </nav>
   );
 };

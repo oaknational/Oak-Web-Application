@@ -61,5 +61,11 @@
     "publishableKey": "clerk public key",
     "secretKey": "clerk super secret",
     "developmentUserRegion": "GB"
+  },
+  "oakPupilClient": {
+    "getLessonAttemptUrl": "https://pupil-api-beta.thenational.academy/v1/get-lesson-attempt",
+    "logLessonAttemptUrl": "https://pupil-api-beta.thenational.academy/v1/log-lesson-attempt",
+    "addTeacherNoteUrl": "https://pupil-api-beta.thenational.academy/v1/add-teacher-note",
+    "getTeacherNoteUrl": "https://pupil-api-beta.thenational.academy/v1/get-teacher-note"
   }
 }

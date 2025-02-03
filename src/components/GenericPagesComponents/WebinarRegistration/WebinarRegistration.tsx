@@ -60,7 +60,7 @@ const WebinarRegistration: FC<WebinarRegistrationProps> = (props) => {
           <CardTitle
             tag={headingTag}
             icon="magic-carpet"
-            iconSize={56}
+            iconSize={"all-spacing-10"}
             $iconPosition={["leading", "aboveTitle"]}
           >
             Almost there!

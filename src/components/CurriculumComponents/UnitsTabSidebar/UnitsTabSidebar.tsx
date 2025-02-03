@@ -1,18 +1,17 @@
 import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
-import { OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakHandDrawnHR, OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import Box from "@/components/SharedComponents/Box";
 import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import { Hr } from "@/components/SharedComponents/Typography";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
+import { Unit } from "@/utils/curriculum/types";
 
 const IconButtonFocusVisible = styled(IconButton)`
   :focus ${IconFocusUnderline} {
@@ -37,6 +36,7 @@ type ModalProps = HTMLProps<HTMLButtonElement> & {
   lessons: Lesson[] | [];
   unitSlug?: string;
   unitVariantID?: number | null;
+  unitData?: Unit | null;
 };
 
 const UnitsTabSidebar: FC<ModalProps> = ({
@@ -48,6 +48,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
   lessons,
   unitSlug,
   unitVariantID,
+  unitData,
 }) => {
   const getLessonsAvailable = (lessons: Lesson[] | null): boolean => {
     return (
@@ -59,10 +60,22 @@ const UnitsTabSidebar: FC<ModalProps> = ({
 
   const lessonsAvailable = getLessonsAvailable(lessons);
 
+  let resolvedUnitSlug: string = "";
+  if (unitSlug && unitData) {
+    if (unitVariantID) {
+      const unitOption = unitData?.unit_options?.find(
+        ({ unitvariant_id }) => unitvariant_id === unitVariantID,
+      );
+      resolvedUnitSlug = unitOption?.slug ?? unitSlug;
+    } else {
+      resolvedUnitSlug = unitSlug;
+    }
+  }
+
   return (
     <Transition in={displayModal} timeout={300} unmountOnExit>
       {(state) => (
-        <Box $position={"absolute"} data-testid="sidebar-modal-wrapper">
+        <OakBox $position={"absolute"} data-testid="sidebar-modal-wrapper">
           <MenuBackdrop state={state} zIndex={"modalDialog"} />
           <FocusOn
             enabled={displayModal}
@@ -83,7 +96,11 @@ const UnitsTabSidebar: FC<ModalProps> = ({
               $overflowY={"scroll"}
             >
               <OakFlex $flexDirection={"column"} $minWidth={"100%"}>
-                <Box $position={"fixed"} $top={20} $right={16}>
+                <OakBox
+                  $position={"fixed"}
+                  $top="all-spacing-5"
+                  $right="all-spacing-4"
+                >
                   <IconButtonFocusVisible
                     aria-label="Close Menu"
                     icon={"cross"}
@@ -93,14 +110,18 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                     data-testid="close-button"
                     aria-expanded={displayModal}
                   />
-                </Box>
+                </OakBox>
                 <OakFlex $overflowY={"auto"} $flexGrow={1}>
                   {children}
                 </OakFlex>
 
                 {!unitOptionsAvailable && (
                   <OakFlex $flexDirection={"column"}>
-                    <Hr $color={"grey30"} $mt={0} $mb={24} />
+                    <OakHandDrawnHR
+                      hrColor={"grey30"}
+                      $mb={"space-between-m"}
+                      $height={"all-spacing-1"}
+                    />
                     <OakFlex
                       $justifyContent={"space-between"}
                       $alignItems={["flex-end"]}
@@ -131,11 +152,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                             $iconPosition="trailing"
                             variant="buttonStyledAsLink"
                             page="lesson-index"
-                            unitSlug={
-                              unitVariantID
-                                ? `${unitSlug}-${unitVariantID}`
-                                : unitSlug
-                            }
+                            unitSlug={resolvedUnitSlug}
                             programmeSlug={programmeSlug}
                           />
                         )}
@@ -146,7 +163,7 @@ const UnitsTabSidebar: FC<ModalProps> = ({
               </OakFlex>
             </SideMenu>
           </FocusOn>
-        </Box>
+        </OakBox>
       )}
     </Transition>
   );

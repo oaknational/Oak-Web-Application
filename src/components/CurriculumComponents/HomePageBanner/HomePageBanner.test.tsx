@@ -29,7 +29,6 @@ describe("HomePageBanner", () => {
     expect(getByTestId("new-icon")).toBeInTheDocument();
     expect(banner).toContainElement(getByRole("link"));
     expect(banner).toContainElement(getByText("Subjects added"));
-    expect(getByTestId("hr")).toBeInTheDocument();
   });
 
   it("should display the New promo tag and its associated text", () => {
