@@ -125,7 +125,15 @@ export function createTeacherProgrammeSlug(
     parts.push(unitData.keystage_slug);
     if (tierSlug) parts.push(tierSlug);
     if (pathwaySlug) parts.push(pathwaySlug);
-    if (examboardSlug) parts.push(examboardSlug);
+
+    if (
+      examboardSlug &&
+      // TODO: This is a massive hack, curric decided to make examboardSlug
+      // the pathway is there isn't an examboard. This was a mistake which
+      // we'll resolve in upcoming work.
+      examboardSlug !== pathwaySlug
+    )
+      parts.push(examboardSlug);
     return parts.join("-");
   } else if (unitData) {
     return [
