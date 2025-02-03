@@ -1,3 +1,10 @@
+# [1.681.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.2...v1.681.0) (2025-02-03)
+
+
+### Features
+
+* add optionality title to unit modal ([c8cee67](https://github.com/oaknational/Oak-Web-Application/commit/c8cee67efb742986264b7d72466b8a631544a83d))
+
 ## [1.680.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.1...v1.680.2) (2025-02-03)
 
 
