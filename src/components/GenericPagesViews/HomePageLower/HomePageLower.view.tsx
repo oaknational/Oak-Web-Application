@@ -1,7 +1,5 @@
-import { OakFlex } from "@oaknational/oak-components";
+import { OakFlex, OakMaxWidth } from "@oaknational/oak-components";
 
-// FIXME: Would be great to remove these two deprecated components but would require some design decisions due to use of non-valid pixel values
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
 import NewsletterFormWrap from "@/components/GenericPagesComponents/NewsletterFormWrap";
@@ -33,7 +31,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
 
   return (
     <>
-      <MaxWidth>
+      <OakMaxWidth>
         <BlogAndWebinarList
           blogListPosts={blogListProps}
           showImageOnTablet={true}
@@ -42,19 +40,19 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
           isBackgroundWhite={true}
           title={"Stay up to date"}
         />
-      </MaxWidth>
+      </OakMaxWidth>
       <OakFlex $background={"lavender50"} $width={"100%"}>
-        <MaxWidth
+        <OakMaxWidth
           $alignItems={"center"}
           $background={"lavender50"}
-          $mt={58}
-          $mb={80}
-          $ph={16}
+          $mt={"space-between-xl"}
+          $mb={"space-between-xxxl"}
+          $ph={"inner-padding-m"}
         >
           <Flex $maxWidth={["100%", 870]}>
             <NewsletterFormWrap desktopColSpan={6} {...newsletterFormProps} />
           </Flex>
-        </MaxWidth>
+        </OakMaxWidth>
       </OakFlex>
     </>
   );

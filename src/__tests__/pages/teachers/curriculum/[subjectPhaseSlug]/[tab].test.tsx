@@ -545,6 +545,7 @@ const mockCurriculumDownloadsData = {
 jest.mock("next/router");
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumOverview: jest.fn(),
+  curriculumSequence: jest.fn(),
   curriculumUnits: jest.fn(),
   refreshedMVTime: jest.fn(),
   subjectPhaseOptions: jest.fn(() => subjectPhaseOptions.subjects),
@@ -568,7 +569,7 @@ jest.mock("next-sanity-image", () => ({
     height: 400,
   }),
 }));
-const mockedCurriculumUnits = curriculumApi.curriculumUnits as jest.Mock;
+const mockedCurriculumSequence = curriculumApi.curriculumSequence as jest.Mock;
 const mockedFetchSubjectPhasePickerData =
   fetchSubjectPhasePickerData as jest.Mock;
 
@@ -747,7 +748,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         ],
       });
       mockedCurriculumOverview.mockResolvedValue(curriculumOverviewMVFixture());
-      mockedCurriculumUnits.mockResolvedValue(unitsTabFixture);
+      mockedCurriculumSequence.mockResolvedValue(unitsTabFixture);
       mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
 
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");

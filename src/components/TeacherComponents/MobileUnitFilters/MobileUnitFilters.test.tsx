@@ -39,6 +39,7 @@ const mockProps: MobileUnitFiltersProps = {
   tiers: [],
   hasNewContent: false,
   phase: "primary",
+  pathwayTitle: null,
 };
 
 describe("MobileUnitFilters", () => {

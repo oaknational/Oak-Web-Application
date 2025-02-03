@@ -150,7 +150,7 @@ const BioCardListModal: FC<BioCardListModalProps> = (props) => {
                 $width={["all-spacing-19", "100%"]}
                 $mh={["auto"]}
               >
-                <BoxBorders gapPosition="rightTop" $zIndex={"inFront"} />
+                <BoxBorders gapPosition="rightTop" $zIndex={"in-front"} />
                 <OakIcon
                   iconName="looping-arrow-1"
                   $colorFilter={"oakGreen"}

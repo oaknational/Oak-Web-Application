@@ -11,7 +11,6 @@ import {
 } from "./CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "./helpers";
 
-import Box from "@/components/SharedComponents/Box";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import {
   Thread,
@@ -185,7 +184,12 @@ export default function CurriculumVisualiserFiltersDesktop({
           }
           value={filters.threads[0] ?? ""}
         >
-          <Box $mv={16} $pl={12} $bl={1} $borderColor="transparent">
+          <OakBox
+            $mv="space-between-s"
+            $pl="inner-padding-s"
+            $bl="border-solid-s"
+            $borderColor="transparent"
+          >
             <RadioButton
               aria-label={"None highlighted"}
               value={""}
@@ -193,27 +197,26 @@ export default function CurriculumVisualiserFiltersDesktop({
             >
               None highlighted
             </RadioButton>
-          </Box>
+          </OakBox>
           {threadOptions.map((threadOption) => {
             const isSelected = isSelectedThread(threadOption);
-            const highlightedCount =
-              highlightedUnitCount();
-              // yearData,
-              // selectedYear,
-              // yearSelection,
-              // selectedThread,
+            const highlightedCount = highlightedUnitCount();
+            // yearData,
+            // selectedYear,
+            // yearSelection,
+            // selectedThread,
 
             return (
-              <Box
-                $ba={1}
+              <OakBox
+                $ba="border-solid-s"
                 $background={isSelected ? "black" : "white"}
                 $borderColor={isSelected ? "black" : "grey40"}
-                $borderRadius={4}
+                $borderRadius="border-radius-s"
                 $color={isSelected ? "white" : "black"}
                 $font={isSelected ? "heading-light-7" : "body-2"}
-                $ph={12}
-                $pt={12}
-                $mb={8}
+                $ph="inner-padding-s"
+                $pt="inner-padding-s"
+                $mb="space-between-ssx"
                 key={threadOption.slug}
               >
                 <RadioButton
@@ -237,7 +240,7 @@ export default function CurriculumVisualiserFiltersDesktop({
                     </OakSpan>
                   </OakSpan>
                 </RadioButton>
-              </Box>
+              </OakBox>
             );
           })}
         </RadioGroup>

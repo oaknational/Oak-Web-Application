@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import { OverlayContainer, OverlayProvider } from "react-aria";
+import { OakBox } from "@oaknational/oak-components";
 
 import Component from ".";
 
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import Button from "@/components/SharedComponents/Button";
-import Box from "@/components/SharedComponents/Box";
 
 export default {
   component: Component,
@@ -25,14 +25,18 @@ const Template: StoryFn<typeof Component> = (args) => {
       {isOpen && (
         <OverlayContainer>
           <Component {...args}>
-            <Box $position={"absolute"} $top={32} $right={32}>
+            <OakBox
+              $position={"absolute"}
+              $top={"all-spacing-7"}
+              $right={"all-spacing-7"}
+            >
               <IconButton
                 icon="cross"
                 onClick={() => setIsOpen(false)}
                 aria-label="close modal"
                 background="blue"
               />
-            </Box>
+            </OakBox>
           </Component>
         </OverlayContainer>
       )}

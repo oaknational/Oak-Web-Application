@@ -107,6 +107,7 @@ export const Default: Story = {
             ],
             lessonStarted: true,
             updateWorksheetDownloaded: () => {},
+            updateAdditionalFilesDownloaded: () => {},
           }}
         >
           <PupilViewsReview

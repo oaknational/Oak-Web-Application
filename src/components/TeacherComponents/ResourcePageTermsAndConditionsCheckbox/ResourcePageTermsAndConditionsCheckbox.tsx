@@ -1,8 +1,8 @@
 import { FC } from "react";
+import { OakBox } from "@oaknational/oak-components";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
 import Checkbox from "@/components/SharedComponents/Checkbox";
-import Box from "@/components/SharedComponents/Box";
 import FieldError from "@/components/SharedComponents/FieldError";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 
@@ -15,18 +15,18 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
 > = ({ checked, onChange, errorMessage, ...props }) => (
   <>
     {errorMessage && (
-      <Box $mb={16}>
+      <OakBox $mb="space-between-s">
         <FieldError ariaLive="polite" id={"terms-error"} withoutMarginBottom>
           {errorMessage}
         </FieldError>
-      </Box>
+      </OakBox>
     )}
-    <Box
+    <OakBox
       $position={"relative"}
       $background={"grey30"}
-      $pv={8}
-      $ph={8}
-      $mb={24}
+      $pv="inner-padding-xs"
+      $ph="inner-padding-xs"
+      $mb="space-between-m"
       data-testid="termsCheckbox"
     >
       <BrushBorders hideOnMobileH hideOnMobileV color={"grey30"} />
@@ -41,7 +41,7 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
         variant="withLabel"
         {...props}
       />
-    </Box>
+    </OakBox>
   </>
 );
 

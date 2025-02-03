@@ -18,6 +18,7 @@ import {
   oakDefaultTheme,
   OakFlex,
   OakFieldset,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import {
@@ -26,8 +27,6 @@ import {
 } from "@/node-lib/isr";
 import type { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import AppLayout from "@/components/SharedComponents/AppLayout";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import UnitList from "@/components/TeacherComponents/UnitList";
@@ -73,6 +72,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     hasNewContent,
     subjectCategories,
     yearGroups,
+    pathwayTitle,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -204,13 +204,13 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           ]}
           background={"lavender30"}
           subjectIconBackgroundColor={"lavender"}
-          title={`${subjectTitle} ${examBoardTitle ? examBoardTitle : ""}`}
+          title={`${subjectTitle} ${examBoardTitle ? examBoardTitle + " " : ""}${pathwayTitle ?? ""}`}
           programmeFactor={toSentenceCase(keyStageTitle)}
           isNew={hasNewContent ?? false}
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
         />
-        <MaxWidth $ph={16}>
+        <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
             <OakGridArea $colSpan={[12, 12, 9]}>
               <NewContentBanner
@@ -342,11 +342,15 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 >
                   {tiers.length === 0 && currentPageItems.length >= 1 && (
                     <>
-                      <Flex $minWidth={120} $mb={16} $position={"relative"}>
+                      <OakFlex
+                        $minWidth={"all-spacing-16"}
+                        $mb={"space-between-s"}
+                        $position={"relative"}
+                      >
                         <OakHeading $font={"heading-5"} tag={"h2"}>
                           {`Units (${filteredUnits.length})`}
                         </OakHeading>
-                      </Flex>
+                      </OakFlex>
                       {isFiltersAvailable && (
                         <OakBox $display={["auto", "auto", "none"]}>
                           <MobileUnitFilters
@@ -422,7 +426,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               )}
             </OakGridArea>
           </OakGrid>
-        </MaxWidth>
+        </OakMaxWidth>
       </AppLayout>
     </OakThemeProvider>
   );
@@ -444,6 +448,14 @@ export const getStaticPaths = async () => {
   return config;
 };
 
+export const getLegacyProgrammeSlug = (
+  programmeSlug: string,
+  examBoardSlug: string | null,
+) =>
+  examBoardSlug && programmeSlug.endsWith(examBoardSlug)
+    ? programmeSlug.split(examBoardSlug).join("l")
+    : programmeSlug + "-l";
+
 export const getStaticProps: GetStaticProps<
   UnitListingPageProps,
   URLParams
@@ -456,6 +468,7 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No context.params");
       }
       const { programmeSlug } = context.params;
+
       try {
         const curriculumData = await curriculumApi2023.unitListing({
           programmeSlug,
@@ -469,11 +482,13 @@ export const getStaticProps: GetStaticProps<
 
         // need to account for if it's already a legacy programme
         const isLegacy = isSlugLegacy(programmeSlug);
-
         const legacyCurriculumData = isLegacy
           ? null
           : await curriculumApi2023.unitListing({
-              programmeSlug: programmeSlug + "-l",
+              programmeSlug: getLegacyProgrammeSlug(
+                programmeSlug,
+                curriculumData.examBoardSlug,
+              ),
             });
 
         if (legacyCurriculumData) {

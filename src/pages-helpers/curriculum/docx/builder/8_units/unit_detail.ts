@@ -218,14 +218,14 @@ export async function buildUnit(
     (lesson) => lesson._state === "published",
   );
 
+  const resolvedUnitSlug = unitOption?.slug ?? unit.slug;
+
   const links = await insertLinks(zip, {
     onlineResources: `https://www.thenational.academy/teachers/programmes/${createProgrammeSlug(
       unit,
       slugs.ks4OptionSlug,
       slugs.tierSlug,
-    )}/units/${unit.slug}${
-      unitOption?.unitvariant_id ? `-${unitOption.unitvariant_id}` : ""
-    }/lessons`,
+    )}/units/${resolvedUnitSlug}/lessons`,
   });
 
   let unitDescriptions: string = "";
@@ -267,10 +267,9 @@ export async function buildUnit(
             <w:t>${cdata(priorUnitTitle)}</w:t>
           </w:r>
         </w:p>
-        ${
-          !unitOptionIfAvailable.connection_prior_unit_description
-            ? ""
-            : safeXml`
+        ${!unitOptionIfAvailable.connection_prior_unit_description
+          ? ""
+          : safeXml`
               <w:p>
                 <w:r>
                   <w:rPr>
@@ -283,8 +282,7 @@ export async function buildUnit(
                   </w:t>
                 </w:r>
               </w:p>
-            `
-        }
+            `}
         <w:p>
           <w:r>
             <w:rPr>
@@ -333,10 +331,9 @@ export async function buildUnit(
             <w:t>${cdata(futureUnitTitle)}</w:t>
           </w:r>
         </w:p>
-        ${
-          !unitOptionIfAvailable.connection_future_unit_description
-            ? ""
-            : safeXml`
+        ${!unitOptionIfAvailable.connection_future_unit_description
+          ? ""
+          : safeXml`
               <w:p>
                 <w:r>
                   <w:rPr>
@@ -349,8 +346,7 @@ export async function buildUnit(
                   </w:t>
                 </w:r>
               </w:p>
-            `
-        }
+            `}
       </XML_FRAGMENT>
     `;
   } else {
@@ -518,10 +514,9 @@ export async function buildUnit(
 
       <w:p />
 
-      ${
-        !hasPublishedLessons
-          ? ""
-          : safeXml`
+      ${!hasPublishedLessons
+        ? ""
+        : safeXml`
             <w:p>
               ${wrapInLinkTo(
                 links.onlineResources,
@@ -561,8 +556,7 @@ export async function buildUnit(
                 `,
               )}
             </w:p>
-          `
-      }
+          `}
       <w:p>
         <w:r>
           <w:rPr>
@@ -594,11 +588,9 @@ export async function buildUnit(
         </w:r>
       </w:p>
       <w:p />
-      ${
-        unitOption && unitOptionIndex !== undefined
-          ? buildUnitOptionTitle(unitOption, unitOptionIndex, images)
-          : ""
-      }
+      ${unitOption && unitOptionIndex !== undefined
+        ? buildUnitOptionTitle(unitOption, unitOptionIndex, images)
+        : ""}
       <w:p>
         <w:pPr>
           <w:sectPr>
@@ -651,13 +643,11 @@ export async function buildUnit(
         <w:pPr>
           <w:pStyle w:val="Heading4" />
         </w:pPr>
-        ${
-          DISABLE_COLUMN_BREAKS
-            ? ""
-            : `<w:r>
+        ${DISABLE_COLUMN_BREAKS
+          ? ""
+          : `<w:r>
           <w:br w:type="column" />
-        </w:r>`
-        }
+        </w:r>`}
         <w:r>
           <w:rPr>
             <w:rFonts

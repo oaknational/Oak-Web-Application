@@ -1,7 +1,11 @@
-import { OakHeading, OakP, OakFlex } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  OakFlex,
+  OakIcon,
+} from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Icon from "@/components/SharedComponents/Icon";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 
 const UnitTabBanner = () => {
@@ -24,13 +28,12 @@ const UnitTabBanner = () => {
         $gap="all-spacing-6"
       >
         <OakFlex $alignItems={"flex-start"} $flexDirection={["column", "row"]}>
-          <Icon
-            name="books"
-            size={92}
-            $background={"red"}
-            $mr={40}
-            $mb={[24, 0]}
-            $color={"black"}
+          <OakIcon
+            iconName="books"
+            $width={"all-spacing-14"}
+            $height={"all-spacing-14"}
+            $mr={"space-between-l"}
+            $mb={["space-between-m", "space-between-none"]}
           />
 
           {/* @todo replace with OakFlex - work out width value */}

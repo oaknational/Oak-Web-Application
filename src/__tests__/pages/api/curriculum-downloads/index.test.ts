@@ -13,8 +13,8 @@ const fetch = jest.spyOn(global, "fetch") as jest.Mock;
 const LAST_REFRESH = new Date();
 const LAST_REFRESH_AS_TIME = new Date().getTime();
 
-const curriculumUnitsMock = jest.fn<
-  ReturnType<typeof curriculumApi2023.curriculumUnits>,
+const curriculumSequenceMock = jest.fn<
+  ReturnType<typeof curriculumApi2023.curriculumSequence>,
   []
 >(async () => {
   throw new Error("missing");
@@ -44,7 +44,7 @@ const subjectPhaseOptionsMock = jest.fn(
 jest.mock("../../../../node-lib/curriculum-api-2023", () => ({
   __esModule: true,
   default: {
-    curriculumUnits: () => curriculumUnitsMock(),
+    curriculumSequence: () => curriculumSequenceMock(),
     curriculumOverview: () => curriculumOverviewMock(),
     refreshedMVTime: () => refreshedMVTimeMock(),
     subjectPhaseOptions: () => subjectPhaseOptionsMock(),
@@ -99,7 +99,7 @@ describe("/api/preview/[[...path]]", () => {
   });
 
   it("return 200 if correct cache slug", async () => {
-    curriculumUnitsMock.mockResolvedValue(curriculumUnitsEnglishSecondary);
+    curriculumSequenceMock.mockResolvedValue(curriculumUnitsEnglishSecondary);
     const { req, res } = createNextApiMocks({
       query: {
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
@@ -116,7 +116,7 @@ describe("/api/preview/[[...path]]", () => {
   });
 
   it("return 200 if correct cache slug", async () => {
-    curriculumUnitsMock.mockResolvedValue(curriculumUnitsEnglishSecondary);
+    curriculumSequenceMock.mockResolvedValue(curriculumUnitsEnglishSecondary);
     const { req, res } = createNextApiMocks({
       query: {
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
@@ -133,7 +133,7 @@ describe("/api/preview/[[...path]]", () => {
   });
 
   it("returns 404 if units is not present", async () => {
-    curriculumUnitsMock.mockRejectedValue(new Error("Missing"));
+    curriculumSequenceMock.mockRejectedValue(new Error("Missing"));
     const { req, res } = createNextApiMocks({
       query: {
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),
@@ -148,8 +148,8 @@ describe("/api/preview/[[...path]]", () => {
     expect(res._getStatusCode()).toBe(404);
   });
 
-  it("returns 200 if examboard not present", async () => {
-    curriculumUnitsMock.mockRejectedValue(new Error("Missing"));
+  it("returns 404 if examboard not present", async () => {
+    curriculumSequenceMock.mockRejectedValue(new Error("Missing"));
     const { req, res } = createNextApiMocks({
       query: {
         mvRefreshTime: LAST_REFRESH_AS_TIME.toString(),

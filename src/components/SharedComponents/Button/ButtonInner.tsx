@@ -1,5 +1,6 @@
 import { FC } from "react";
 import styled, { useTheme } from "styled-components";
+import { OakBox, OakColorToken, OakFlex } from "@oaknational/oak-components";
 
 import {
   ButtonBackground,
@@ -13,8 +14,7 @@ import {
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Box from "@/components/SharedComponents/Box";
-import Icon, { IconName } from "@/components/SharedComponents/Icon";
+import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import ButtonBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "@/components/SharedComponents/Svg";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
@@ -75,7 +75,7 @@ export type ButtonInnerProps = {
    */
   currentStyles?: ButtonCurrentStyles;
   $font?: ResponsiveValues<FontVariant> | undefined;
-  labelColor?: OakColorName;
+  labelColor?: OakColorToken;
 };
 
 const ButtonInner: FC<ButtonInnerProps> = (props) => {
@@ -121,7 +121,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
    * we need the value to depend on the original color of the button, in which
    * case it should come from theme.
    */
-  const currentColor: OakColorName = "grey60";
+  const currentColor: OakColorToken = "grey60";
   const displayProperty = shouldHideLabel?.map((hide) =>
     hide ? "none" : "block",
   );
@@ -135,12 +135,20 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   return (
     <>
       {icon && (
-        <Flex
+        <OakFlex
           $display={"inline-flex"}
           $position="relative"
           $alignItems="center"
-          $mr={$iconPosition === "leading" ? 8 : 0}
-          $ml={$iconPosition === "trailing" ? 8 : 0}
+          $mr={
+            $iconPosition === "leading"
+              ? "space-between-ssx"
+              : "space-between-none"
+          }
+          $ml={
+            $iconPosition === "trailing"
+              ? "space-between-ssx"
+              : "space-between-none"
+          }
           $color={color ?? labelColor}
         >
           <Icon
@@ -153,7 +161,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
           {(variant === "minimal" || variant === "minimalNav") && (
             <IconFocusUnderline $color={underlineColor} />
           )}
-        </Flex>
+        </OakFlex>
       )}
 
       {subjectIcon && (
@@ -173,8 +181,8 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
         </Flex>
       )}
 
-      <Box $position={"relative"} $minWidth={0}>
-        <Box
+      <OakBox $position={"relative"} $minWidth={"all-spacing-0"}>
+        <OakBox
           $display={displayProperty}
           $textDecoration={textDecoration}
           $color={
@@ -189,7 +197,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
               <ScreenReaderOnly> {labelSuffixA11y}</ScreenReaderOnly>
             )}
           </ButtonLabel>
-        </Box>
+        </OakBox>
         {(variant === "minimal" || variant === "minimalNav") && (
           <ButtonMinimalFocusUnderline
             $color={underlineColor}
@@ -199,7 +207,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
         {variant === "minimal" &&
           currentStyles?.includes("underline") &&
           isCurrent && <BrushUnderline name="horizontal-rule" />}
-      </Box>
+      </OakBox>
       {(variant === "brush" || variant === "brushNav") && (
         <ButtonBorders background={background} />
       )}

@@ -1,16 +1,12 @@
 import styled, { css } from "styled-components";
+import { OakAllSpacingToken } from "@oaknational/oak-components";
 
-import {
-  OakColorName,
-  OakTheme,
-  PixelSpacing,
-  PropsWithTheme,
-} from "@/styles/theme";
+import { OakColorName, OakTheme, PropsWithTheme } from "@/styles/theme";
 import background, { BackgroundProps } from "@/styles/utils/background";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type HeaderConfig = {
-  height: PixelSpacing;
+  height: OakAllSpacingToken;
   color: OakColorName;
   background: OakColorName;
 };

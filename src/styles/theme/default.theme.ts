@@ -196,7 +196,7 @@ const theme: OakTheme = {
     textColor: "white",
   },
   header: {
-    height: 72,
+    height: "all-spacing-12",
     background: "mint50",
     color: "black",
   },

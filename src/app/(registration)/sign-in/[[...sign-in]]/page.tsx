@@ -9,7 +9,6 @@ import { AuthLayout } from "../../auth-layout";
 
 import { getIllustrationAsset } from "@/image-data";
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import withFeatureFlag from "@/hocs/withFeatureFlag";
 
 function SignInPage() {
   return (
@@ -29,10 +28,4 @@ function SignInPage() {
   );
 }
 
-const SigninPageWithFeatureFlag = withFeatureFlag(
-  SignInPage,
-  "teacher-download-auth",
-  "with-login",
-);
-
-export default SigninPageWithFeatureFlag;
+export default SignInPage;

@@ -6,34 +6,37 @@ import {
 } from "next";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { LessonMediaClipsData } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import {
+  CanonicalLessonMediaClips,
+  MediaClipListCamelCase,
+} from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import {
   getFallbackBlockingConfig,
   shouldSkipInitialBuild,
 } from "@/node-lib/isr";
-import { LessonMediaClipsPageProps } from "@/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 import { LessonMedia } from "@/components/TeacherViews/LessonMedia/LessonMedia.view";
+import { CanonicalLessonMediaClipsPageProps } from "@/pages/teachers/lessons/[lessonSlug]/media";
+import { populateMediaClipsWithTranscripts } from "@/utils/handleTranscript";
 
-const BetaLessonMediaPage: NextPage<LessonMediaClipsPageProps> = ({
+const BetaLessonMediaPage: NextPage<CanonicalLessonMediaClipsPageProps> = ({
   curriculumData,
 }) => {
-  const { lessonTitle, subjectTitle, lessonSlug } = curriculumData;
-
+  const { lessonTitle, lessonSlug } = curriculumData;
   return (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: `Beta Lesson Media: ${lessonTitle} |  ${subjectTitle}`,
+          title: `Beta Lesson Media: ${lessonTitle} `,
           description: "View beta extra video and audio for the lesson",
           canonicalURL: `${getBrowserConfig("seoAppUrl")}/teachers/beta/lessons/${lessonSlug}`,
         }),
       }}
     >
-      <LessonMedia isCanonical={false} lesson={curriculumData} />
+      <LessonMedia isCanonical={true} lesson={curriculumData} />
     </AppLayout>
   );
 };
@@ -55,7 +58,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<
-  LessonMediaClipsPageProps,
+  CanonicalLessonMediaClipsPageProps,
   URLParams
 > = async (context) => {
   return getPageProps({
@@ -67,23 +70,32 @@ export const getStaticProps: GetStaticProps<
       }
       const { lessonSlug } = context.params;
       const curriculumData =
-        await curriculumApi2023.betaLessonMediaClipsQuery<LessonMediaClipsData>(
+        await curriculumApi2023.betaLessonMediaClipsQuery<CanonicalLessonMediaClips>(
           {
             lessonSlug,
           },
         );
 
-      if (!curriculumData) {
+      if (!curriculumData || !curriculumData.mediaClips) {
         return {
           notFound: true,
         };
       }
 
-      const results: GetStaticPropsResult<LessonMediaClipsPageProps> = {
-        props: {
-          curriculumData,
-        },
-      };
+      const mediaClipsWithTranscripts = curriculumData.mediaClips
+        ? await populateMediaClipsWithTranscripts(curriculumData.mediaClips)
+        : [];
+
+      if (mediaClipsWithTranscripts) {
+        curriculumData.mediaClips =
+          mediaClipsWithTranscripts as MediaClipListCamelCase;
+      }
+      const results: GetStaticPropsResult<CanonicalLessonMediaClipsPageProps> =
+        {
+          props: {
+            curriculumData,
+          },
+        };
       return results;
     },
   });

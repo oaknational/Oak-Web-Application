@@ -5,12 +5,12 @@ import {
   OakHeadingTag,
   OakFlex,
   OakPagination,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import LessonListItem, {
   LessonListItemProps,
 } from "@/components/TeacherComponents/LessonListItem";
-import Box from "@/components/SharedComponents/Box";
 import {
   UsePaginationProps,
   PaginationProps,
@@ -84,11 +84,11 @@ const LessonList: FC<LessonListProps> = (props) => {
         </>
       ) : null}
       {lessonCount > LESSONS_PER_PAGE ? (
-        <Box
+        <OakBox
           $width="100%"
-          $mt={[0, "auto"]}
-          $pb={[30, 44]}
-          $pt={[46, 36]}
+          $mt={["space-between-none", "auto"]}
+          $pb={["inner-padding-xl2", "inner-padding-xl4"]}
+          $pt={["inner-padding-xl4", "inner-padding-xl3"]}
           data-testid="pagination-box"
         >
           <OakPagination
@@ -96,9 +96,9 @@ const LessonList: FC<LessonListProps> = (props) => {
             pageName={unitTitle}
             paginationHref={paginationRoute}
           />
-        </Box>
+        </OakBox>
       ) : (
-        <Box $pb={32} />
+        <OakBox $pb="inner-padding-xl2" />
       )}
     </OakFlex>
   );

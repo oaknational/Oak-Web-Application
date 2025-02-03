@@ -80,9 +80,9 @@ export const PupilViewsProgrammeListing = ({
 
   const availableFactors = orderedFactors.filter(
     (f) =>
-      (f === "pathway" && pathways.length > 1) ||
-      (f === "tier" && tiers.length > 1) ||
-      (f === "examboard" && examboards.length > 1),
+      (f === "pathway" && pathways.length >= 1) ||
+      (f === "tier" && tiers.length >= 1) ||
+      (f === "examboard" && examboards.length >= 1),
   );
 
   const currentFactor =
