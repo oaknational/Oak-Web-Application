@@ -40,11 +40,11 @@ export default function UnitsTab({
 
   const unitCount = getNumberOfSelectedUnits(yearData, selectedYear, filters);
 
-  const highlightedUnits = highlightedUnitCount();
-  // yearData,
-  // selectedYear,
-  // yearSelection,
-  // selectedThread,
+  const highlightedUnits = highlightedUnitCount(
+    yearData,
+    filters,
+    filters.threads,
+  );
 
   return (
     <OakBox>

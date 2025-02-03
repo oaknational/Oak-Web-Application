@@ -64,11 +64,13 @@ export function dedupUnits(units: Unit[]) {
   });
 }
 
-function isHighlightedUnit(unit: Unit, selectedThread: string | null) {
-  if (!selectedThread) {
+function isHighlightedUnit(unit: Unit, selectedThreads: string[] | null) {
+  if (!selectedThreads || selectedThreads?.length < 1) {
     return false;
   }
-  return unit.threads.some((t) => t.slug === selectedThread);
+  return unit.threads.some((t) => {
+    return selectedThreads.includes(t.slug);
+  });
 }
 
 // Function component
@@ -133,10 +135,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
         subjectSlug: unitData.subject_slug,
         yearGroupName: unitData.year,
         yearGroupSlug: unitData.year,
-        unitHighlighted: isHighlightedUnit(
-          unitData,
-          filters.threads[0] ?? null,
-        ),
+        unitHighlighted: isHighlightedUnit(unitData, filters.threads),
         analyticsUseCase: analyticsUseCase,
       });
     }
@@ -241,11 +240,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                       <OakP>No units for filter in this year</OakP>
                     )}
                     {dedupedUnits.map((unit: Unit, index: number) => {
-                      const isHighlighted = false;
-                      // const isHighlighted = isHighlightedUnit(
-                      //   unit,
-                      //   selectedThread,
-                      // );
+                      const isHighlighted = isHighlightedUnit(
+                        unit,
+                        filters.threads,
+                      );
                       const unitOptions = unit.unit_options.length >= 1;
 
                       return (
