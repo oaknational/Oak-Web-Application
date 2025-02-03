@@ -1,3 +1,19 @@
+# [1.680.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.679.0...v1.680.0) (2025-02-03)
+
+
+### Bug Fixes
+
+* bump oak-components and update snapshots ([423c84d](https://github.com/oaknational/Oak-Web-Application/commit/423c84d73a90176f4b9e3c66e326a66a1f05de6f))
+* deprecate styled svg instances ([e7d9a71](https://github.com/oaknational/Oak-Web-Application/commit/e7d9a71700078c03fe683496cfd3705366d49dcb))
+* fix underline color ([7ffc425](https://github.com/oaknational/Oak-Web-Application/commit/7ffc425471ef6b46e2f71777999acf8b4c83eccc))
+* remove unused components ([0dbee53](https://github.com/oaknational/Oak-Web-Application/commit/0dbee53c71b66a490b4e1fac5a9eb041101b8adb))
+* revert back to svg where there are theme related type errors ([8244cd8](https://github.com/oaknational/Oak-Web-Application/commit/8244cd8256c51e01b31b63e4969b13e3fe957a6f))
+
+
+### Features
+
+* bump oak-components version ([ef6b32a](https://github.com/oaknational/Oak-Web-Application/commit/ef6b32a1eb259db1c5744cff002bf87b9a6497d3))
+
 # [1.679.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.4...v1.679.0) (2025-01-31)
 
 
