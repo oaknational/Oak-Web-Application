@@ -21,7 +21,7 @@ import { getUnitFeatures } from "@/utils/curriculum/features";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import { sortYears } from "@/utils/curriculum/sorting";
-import { createProgrammeSlug } from "@/utils/curriculum/slugs";
+import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import { Unit, YearData } from "@/utils/curriculum/types";
 
 const UnitList = styled("ol")`
@@ -284,10 +284,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           displayModal={displayModal}
           onClose={handleCloseModal}
           lessons={currentUnitLessons}
-          programmeSlug={createProgrammeSlug(
+          programmeSlug={createTeacherProgrammeSlug(
             unitData,
             ks4OptionSlug,
             filters.tiers[0],
+            unitData?.pathway_slug ?? undefined,
           )}
           unitOptionsAvailable={unitOptionsAvailable}
           unitSlug={unitData?.slug}

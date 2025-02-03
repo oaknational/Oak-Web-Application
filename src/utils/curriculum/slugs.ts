@@ -111,3 +111,36 @@ export function createProgrammeSlug(
     ? `${unitData.subject_slug}-${unitData.phase_slug}-${unitData.keystage_slug}`
     : "";
 }
+
+export function createTeacherProgrammeSlug(
+  unitData?: CurriculumUnitsTabData["units"][number] | null,
+  examboardSlug?: string | null,
+  tierSlug?: string,
+  pathwaySlug?: string,
+) {
+  if (unitData?.keystage_slug === "ks4") {
+    const parts: string[] = [];
+    parts.push(unitData.subject_slug);
+    parts.push(unitData.phase_slug);
+    parts.push(unitData.keystage_slug);
+    if (tierSlug) parts.push(tierSlug);
+    if (pathwaySlug) parts.push(pathwaySlug);
+
+    if (
+      examboardSlug &&
+      // TODO: This is a massive hack, curric decided to make examboardSlug
+      // the pathway is there isn't an examboard. This was a mistake which
+      // we'll resolve in upcoming work.
+      examboardSlug !== pathwaySlug
+    )
+      parts.push(examboardSlug);
+    return parts.join("-");
+  } else if (unitData) {
+    return [
+      unitData.subject_slug,
+      unitData.phase_slug,
+      unitData.keystage_slug,
+    ].join("-");
+  }
+  return "";
+}

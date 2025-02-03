@@ -1,3 +1,11 @@
+## [1.680.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.1...v1.680.2) (2025-02-03)
+
+
+### Bug Fixes
+
+* added in hack for ks4Options issues in previous work ([fee2e09](https://github.com/oaknational/Oak-Web-Application/commit/fee2e093f11c024484fe38269492fb0d3e9c1867))
+* replace createProgrammeSlug with createTeacherProgrammeSlug ([f65210d](https://github.com/oaknational/Oak-Web-Application/commit/f65210d168919d09e177932b618a5f97fc707d73))
+
 ## [1.680.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.0...v1.680.1) (2025-02-03)
 
 
