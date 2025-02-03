@@ -15,6 +15,8 @@ const curriculumPhaseOptionsQuery = (sdk: Sdk) => async () => {
   return results;
 };
 
-export type SubjectPhaseOptions = z.infer<typeof curriculumPhaseOptionsSchema>;
+export type CurriculumPhaseOptions = z.infer<
+  typeof curriculumPhaseOptionsSchema
+>;
 
 export default curriculumPhaseOptionsQuery;

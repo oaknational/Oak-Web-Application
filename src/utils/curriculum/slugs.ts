@@ -1,5 +1,5 @@
 import { CurriculumUnitsTabData } from "@/node-lib/curriculum-api-2023";
-import { SubjectPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
+import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 
 export type CurriculumSelectionSlugs = {
   phaseSlug: string;
@@ -33,7 +33,7 @@ export const parseSubjectPhaseSlug = (
 };
 
 export function isValidSubjectPhaseSlug(
-  allSubjectPhases: SubjectPhaseOptions,
+  allSubjectPhases: CurriculumPhaseOptions,
   slugs: CurriculumSelectionSlugs,
 ) {
   const isValid = allSubjectPhases.find((sp) => {
@@ -67,7 +67,7 @@ export const KS4_EXAMBOARD_PREFERENCE: Record<string, string> = {
 };
 
 export function getKs4RedirectSlug(
-  allSubjectPhases: SubjectPhaseOptions,
+  allSubjectPhases: CurriculumPhaseOptions,
   slugs: CurriculumSelectionSlugs,
 ) {
   if (slugs.ks4OptionSlug) {
