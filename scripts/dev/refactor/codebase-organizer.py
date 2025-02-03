@@ -6,16 +6,23 @@ import argparse
 from collections import defaultdict
 from typing import Dict, List, Set, Tuple
 
+# TODO
+# - only include hooks and functions which are declare in the code base
+# - categorize the pages helpers hooks
+# - revisit api helpers hooks categorization
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class NextJsCodebaseAnalyzer:
     def __init__(self, root_dir: str):
         self.root_dir = root_dir
+        # TODO: split these into declarations and calls
         self.hook_patterns = [
             r'use[A-Z]\w+',  # Matches useEffect, useState, etc.
             r'function\s+use[A-Z]\w+',  # Matches function declarations
             r'const\s+use[A-Z]\w+'  # Matches const declarations
         ]
+        # TODO: split these into declarations and calls
         self.util_patterns = [
             r'export\s+(?:const|function|class)\s+(?!use[A-Z])[a-z]\w+',  
             r'const\s+(?!use[A-Z])[a-z]\w+\s*=\s*(?:\(.*\)|async\s*\(.*\))\s*=>'
@@ -28,20 +35,20 @@ class NextJsCodebaseAnalyzer:
         }
         # Define hook and utility categorization patterns
         self.hook_categories = {
-            'components/teacher/hooks': ['Teacher'],
-            'components/pupil/hooks': ['Pupil'],
-            'components/curriculum/hooks': ['Curriculum'],
-            'components/genericPages/hooks': ['Generic', 'Page'],
-            'components/app/hooks': ['App'],
-            'components/shared/hooks': ['Shared'],
+            'components/teacherHooks': ['Teacher'],
+            'components/pupilHooks': ['Pupil'],
+            'components/curriculumHooks': ['Curriculum'],
+            'components/genericPagesHooks': ['Generic', 'Page'],
+            'components/appHooks': ['App'],
+            'components/sharedHooks': ['Shared'],
         }
         self.util_categories = {
-            'components/teacher/utils': ['Teacher'],
-            'components/pupil/utils': ['Pupil'],
-            'components/curriculum/utils': ['Curriculum'],
-            'components/genericPages/utils': ['Generic', 'Page'],
-            'components/app/utils': ['App'],
-            'components/shared/utils': ['Shared'],
+            'components/teacherUtils': ['Teacher'],
+            'components/pupilUtils': ['Pupil'],
+            'components/curriculumUtils': ['Curriculum'],
+            'components/genericPagesUtils': ['Generic', 'Page'],
+            'components/appUtils': ['App'],
+            'components/sharedUtils': ['Shared'],
         }
         
     def is_schema_file(self, file_path: str) -> bool:
@@ -69,23 +76,46 @@ class NextJsCodebaseAnalyzer:
         return None
 
     def get_hook_category(self, hook_name: str, dependencies: Set[str]) -> str:
-        # Check if the hook is used exclusively by a single component
-        component_dirs = set()
-        for dep in dependencies:
-            component_dir = self.get_component_directory(dep)
-            if component_dir:
-                component_dirs.add(component_dir)
-        if len(component_dirs) == 1:
-            component_dir = component_dirs.pop()
-            return os.path.join(component_dir, 'hooks')
+
+        if len(dependencies) == 0:
+            return 'unused-hooks'
         
-        # Check if the hook is used in multiple domains
-        domains = set()
-        for category, prefixes in self.hook_categories.items():
-            if any(prefix.lower() in dep.lower() for dep in dependencies for prefix in prefixes):
-                domains.add(category)
-        if len(domains) > 1:
-            return 'components/shared/hooks'
+        # check if hook is used exclusively by components
+        is_component_hook = all('components' in dep for dep in dependencies)
+
+        if is_component_hook:
+            # Check if the hook is used exclusively by a single component
+            component_dirs = set()
+            for dep in dependencies:
+                component_dir = self.get_component_directory(dep)
+                if component_dir:
+                    component_dirs.add(component_dir)
+            if len(component_dirs) == 1:
+                component_dir = component_dirs.pop()
+                paths = component_dir.split(os.sep)
+                if len(paths) > 2:
+                    return os.path.join(component_dir, 'hooks')
+        
+            # Check if the hook is used in multiple domains
+            domains = set()
+            for category, prefixes in self.hook_categories.items():
+                if any(prefix.lower() in dep.lower() for dep in dependencies for prefix in prefixes):
+                    domains.add(category)
+            if len(domains) > 1:
+                return 'components/hooks'
+            
+
+        # check if the hook is used in pages
+        is_page_hook = False
+        possible_page_paths = ['pages/', 'pages-helpers/']
+        if all(any(prefix in dep for prefix in possible_page_paths) for dep in dependencies):
+            is_page_hook = True
+        
+
+        if is_page_hook:
+            return 'pages-helpers/hooks'
+        
+                
         # Default categorization logic
         for category, prefixes in self.hook_categories.items():
             if dependencies and all(
@@ -93,7 +123,7 @@ class NextJsCodebaseAnalyzer:
                 for dep in dependencies
             ):
                 return category
-        if any('components' in dep for dep in dependencies):
+        if all('components/' in dep for dep in dependencies):
             return 'components/hooks'
         elif any('api' in dep for dep in dependencies):
             return 'api-helpers/hooks'
@@ -181,8 +211,10 @@ class NextJsCodebaseAnalyzer:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
                 for func_name in all_functions:
-                    if func_name in content and file_path != all_functions[func_name]:
-                        dependencies[func_name].add(file_path)
+                    if file_path != all_functions[func_name]:
+                        func_call = f"{func_name}("
+                        if func_call in content:
+                            dependencies[func_name].add(file_path)
             except Exception as e:
                 logging.error(f"Error analyzing dependencies in {file_path}: {e}")
                     
@@ -201,14 +233,14 @@ class NextJsCodebaseAnalyzer:
                 logging.info(f"Categorized hook {hook} as {category} based on dependencies: {deps}")
         
         # Analyze utils
-        for file, util_list in utils.items():
-            if self.is_schema_file(file) or self.is_fixture_file(file) or self.is_test_file(file):
-                continue
-            for util in util_list:
-                deps = dependencies.get(util, set())
-                category = self.get_util_category(util, deps)
-                suggestions[category].add(util)
-                logging.info(f"Categorized utility {util} as {category} based on dependencies: {deps}")
+        # for file, util_list in utils.items():
+        #     if self.is_schema_file(file) or self.is_fixture_file(file) or self.is_test_file(file):
+        #         continue
+        #     for util in util_list:
+        #         deps = dependencies.get(util, set())
+        #         category = self.get_util_category(util, deps)
+        #         suggestions[category].add(util)
+        #         logging.info(f"Categorized utility {util} as {category} based on dependencies: {deps}")
         
         return {k: sorted(list(v)) for k, v in suggestions.items()}
 
@@ -235,10 +267,10 @@ def generate_json_report(root_dir: str) -> str:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Analyze and reorganize a Next.js codebase.")
     parser.add_argument("--root_dir", default="./src", help="Root directory of the codebase.")
-    parser.add_argument("--output", default="codebase_organization.json", help="Output JSON file path.")
+    parser.add_argument("--output", default="scripts/dev/refactor/codebase_organization.json", help="Output JSON file path.")
     args = parser.parse_args()
 
     json_report = generate_json_report(args.root_dir)
     with open(args.output, 'w') as f:
         f.write(json_report)
-    print(json_report)
+    logging.info(f"Report saved to {args.output}")

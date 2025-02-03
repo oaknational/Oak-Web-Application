@@ -41,22 +41,26 @@
         "useLocalDpi"
       ],
       "./src/pages-helpers/teacher/useLesson/useLesson.tsx": [
+        "useAnalytics",
         "useFeatureFlagEnabled",
         "useLesson",
         "useShareExperiment",
         "useTeacherNotes"
       ],
       "./src/pages-helpers/teacher/useLesson/useLesson.test.tsx": [
+        "useAnalytics",
         "useFeatureFlagEnabled",
         "useLesson",
         "useShareExperiment",
         "useTeacherNotes"
       ],
       "./src/pages-helpers/teacher/share-experiments/useTeacherNotes.ts": [
+        "useAnalytics",
         "useOakPupil",
         "useTeacherNotes"
       ],
       "./src/pages-helpers/teacher/share-experiments/useTeacherNotes.test.tsx": [
+        "useAnalytics",
         "useOakPupil",
         "useOakPupilMock",
         "useTeacherNotes"
@@ -514,10 +518,6 @@
       ],
       "./src/components/GenericPagesComponents/BioCardListItem/BioCardListItem.tsx": [
         "useClickableCard"
-      ],
-      "./src/components/GenericPagesComponents/HomepageTabImageButton/HomePageTabImageButton.tsx": [
-        "useEventHandler",
-        "useTheme"
       ],
       "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.test.tsx": [
         "useAnalytics",
@@ -1181,8 +1181,7 @@
         "useShareExperiment"
       ],
       "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx": [
-        "useLesson",
-        "useShareExperiment"
+        "useLesson"
       ],
       "./src/pages/blog/[blogSlug].tsx": [
         "useNextSanityImage"
@@ -1693,9 +1692,6 @@
       "./src/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink.tsx": [
         "createLessonDownloadLink",
         "createUnitDownloadLink"
-      ],
-      "./src/components/GenericPagesComponents/HomePageTabFocusUnderline/HomePageTabFocusUnderline.tsx": [
-        "newIconFocusUnderline"
       ],
       "./src/components/GenericPagesComponents/PostFootnotes/PostFootnotes.tsx": [
         "extractFootnotes"
@@ -2544,6 +2540,8 @@
         "subjectSelected",
         "supportYourTeamSelected",
         "teacherHubSelected",
+        "teacherNoteDialogueOpened",
+        "teacherNoteSaved",
         "teacherShareActivated",
         "teacherShareConverted",
         "teacherShareInitiated",
@@ -2612,29 +2610,10 @@
     }
   },
   "dependencies": {
-    "useToastContext": [
-      "./src/context/Toast/index.ts",
-      "./src/context/Toast/useToastContext.tsx"
-    ],
-    "toastContext": [
-      "./src/context/Toast/useToastContext.tsx"
-    ],
-    "useSearch": [
-      "./src/components/TeacherViews/Search/search.view.types.ts",
-      "./src/context/Search/useSearch.ts",
-      "./src/context/Search/useSearchFilters.ts",
-      "./src/pages/teachers/search.tsx"
-    ],
     "useStableCallback": [
       "./src/context/Analytics/AnalyticsProvider.tsx",
       "./src/context/Search/useSearch.ts",
       "./src/hooks/useLocalStorage.ts"
-    ],
-    "getFilterForQuery": [
-      "./src/context/Search/useSearch.ts"
-    ],
-    "isFilterItem": [
-      "./src/context/Search/useSearch.ts"
     ],
     "resolveOakHref": [
       "./src/components/CurriculumComponents/OakComponentsKitchen/YourDetails/index.tsx",
@@ -2660,180 +2639,10 @@
       "./src/pages/pupils/years.tsx",
       "./src/utils/portableText/resolveInternalHref.ts"
     ],
-    "subjects": [
-      "./src/__tests__/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].test.tsx",
-      "./src/__tests__/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.test.tsx",
-      "./src/__tests__/pages/teachers/search.test.tsx",
-      "./src/browser-lib/avo/Avo.ts",
-      "./src/common-lib/urls/urls.ts",
-      "./src/components/CurriculumComponents/CurriculumDownloadTab/index.tsx",
-      "./src/components/CurriculumComponents/CurriculumHeader/CurriculumHeader.test.tsx",
-      "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.tsx",
-      "./src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.tsx",
-      "./src/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view.test.tsx",
-      "./src/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.test.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
-      "./src/components/TeacherComponents/SubjectListingCard/SubjectListingCard.test.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCardWithPathways/SubjectListingCardCountCardWithPathways.test.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCardWithPathways/SubjectListingCardCountCardWithPathways.tsx",
-      "./src/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers.ts",
-      "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx",
-      "./src/components/TeacherViews/Onboarding/HowCanOakSupport/HowCanOakSupport.view.tsx",
-      "./src/components/TeacherViews/Search/Search.view.test.tsx",
-      "./src/components/TeacherViews/Search/Search.view.tsx",
-      "./src/context/Search/search.helpers.ts",
-      "./src/context/Search/useSearch.ts",
-      "./src/context/Search/useSearchFilters.ts",
-      "./src/node-lib/curriculum-api-2023/generated/sdk.ts",
-      "./src/node-lib/curriculum-api-2023/helpers/index.ts",
-      "./src/node-lib/curriculum-api-2023/index.ts",
-      "./src/node-lib/curriculum-api-2023/queries/subjectListing/constructSubjectsFromUnitData.ts",
-      "./src/pages-helpers/curriculum/docx/tab-helpers.ts",
-      "./src/pages-helpers/teacher/subject-listing-page/getCombinedSubjects.tsx",
-      "./src/pages/api/curriculum-downloads/index.ts",
-      "./src/pages/curriculum/index.tsx",
-      "./src/pages/pupils/years/[yearSlug]/subjects.tsx",
-      "./src/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].tsx",
-      "./src/pages/teachers/curriculum/index.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/index.tsx",
-      "./src/pages/teachers/key-stages/sitemap.xml/index.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/teachers/search.tsx",
-      "./src/pages/teachers/specialist/subjects/index.tsx",
-      "./src/utils/getValidSubjectIconName.ts"
-    ],
-    "box": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
-      "./src/__tests__/pages/teachers/search.test.tsx",
-      "./src/app/(registration)/formAppearanceStyles.ts",
-      "./src/app/layout.tsx",
-      "./src/browser-lib/avo/Avo.ts",
-      "./src/common-lib/forms/FormDefinition.ts",
-      "./src/common-lib/forms/formToZod.ts",
-      "./src/components/AppComponents/AppHeader/AppHeader.tsx",
-      "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.test.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.tsx",
-      "./src/components/CurriculumComponents/OakComponentsKitchen/Autocomplete/index.tsx",
-      "./src/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator/index.tsx",
-      "./src/components/CurriculumComponents/OakComponentsKitchen/SimpleRadio/index.tsx",
-      "./src/components/CurriculumComponents/UnitsTab/UnitsTab.test.tsx",
-      "./src/components/GenericPagesComponents/NewsletterForm/NewsletterForm.tsx",
-      "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.tsx",
-      "./src/components/GenericPagesComponents/WebinarVideo/WebinarVideo.tsx",
-      "./src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.test.tsx",
-      "./src/components/SharedComponents/Button/button.styles.ts",
-      "./src/components/SharedComponents/Icon.deprecated/Icon.deprecated.tsx",
-      "./src/components/SharedComponents/ListBox/ListBox.tsx",
-      "./src/components/SharedComponents/OwaLink/OwaLink.tsx",
-      "./src/components/SharedComponents/PostCategoryList/PostCategoryList.tsx",
-      "./src/components/SharedComponents/RadioButtons/Radio.tsx",
-      "./src/components/SharedComponents/SearchForm/SearchForm.test.tsx",
-      "./src/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
-      "./src/components/SharedComponents/VideoPlayer/VideoPlayer.tsx",
-      "./src/components/TeacherComponents/LessonItemContainer/LessonItemContainer.test.tsx",
-      "./src/components/TeacherComponents/LessonList/LessonList.tsx",
-      "./src/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils/index.tsx",
-      "./src/components/TeacherComponents/LessonShareCardGroup/LessonShareCardGroup.test.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.test.tsx",
-      "./src/components/TeacherComponents/ResourceCard/ResourceCard.tsx",
-      "./src/components/TeacherComponents/ResourcePageLayout/ResourcePageLayout.test.tsx",
-      "./src/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails.test.tsx",
-      "./src/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails.tsx",
-      "./src/components/TeacherComponents/ResourcePageSchoolPicker/ResourcePageSchoolPicker.tsx",
-      "./src/components/TeacherComponents/ResourcePageSearchComboBox/ResourcePageSearchComboBox.tsx",
-      "./src/components/TeacherComponents/SearchResultsItem/SearchResultsItem.tsx",
-      "./src/components/TeacherComponents/TermsAgreementForm/TermsAgreementForm.test.tsx",
-      "./src/components/TeacherViews/LessonShare/LessonShare.view.tsx",
-      "./src/components/TeacherViews/Search/Search.view.test.tsx",
-      "./src/components/TeacherViews/Search/Search.view.tsx",
-      "./src/context/Search/useSearchFilters.ts",
-      "./src/node-lib/hubspot-forms/hubspotSchemas.ts"
-    ],
     "useMenuContext": [
       "./src/components/AppComponents/AppHeader/AppHeader.tsx",
       "./src/components/SharedComponents/MobileFilters/MobileFilters.tsx",
-      "./src/context/Menu/index.tsx",
       "./src/context/Menu/useMenuContext.tsx"
-    ],
-    "menuContext": [
-      "./src/components/AppComponents/AppHeaderMenu/AppHeaderMenu.test.tsx",
-      "./src/context/Menu/useMenuContext.tsx"
-    ],
-    "useAnalytics": [
-      "./src/__tests__/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].test.tsx",
-      "./src/__tests__/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessonListing.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/unitListing.test.tsx",
-      "./src/__tests__/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/__tests__/pages/webinars/[webinarSlug].test.tsx",
-      "./src/browser-lib/analytics/useAnalyticsService.ts",
-      "./src/components/AppComponents/App/AppHooks.tsx",
-      "./src/components/AppComponents/AppHeader/AppHeader.tsx",
-      "./src/components/AppComponents/AppHeaderBurgerMenuLink/AppHeaderBurgerMenuLink.test.tsx",
-      "./src/components/AppComponents/AppHeaderBurgerMenuLink/AppHeaderBurgerMenuLink.tsx",
-      "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx",
-      "./src/components/CurriculumComponents/CurriculumDownloadTab/index.tsx",
-      "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.test.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.test.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.tsx",
-      "./src/components/CurriculumComponents/UnitsTab/UnitsTab.test.tsx",
-      "./src/components/CurriculumComponents/UnitsTabSidebar/UnitsTabSidebar.test.tsx",
-      "./src/components/GenericPagesComponents/NewsletterForm/useNewsletterForm.ts",
-      "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.test.tsx",
-      "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.tsx",
-      "./src/components/GenericPagesComponents/WebinarRegistration/WebinarRegistration.test.tsx",
-      "./src/components/GenericPagesViews/HomePageLower/HomePageLower.view.tsx",
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.test.tsx",
-      "./src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.tsx",
-      "./src/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view.test.tsx",
-      "./src/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view.tsx",
-      "./src/components/PupilViews/PupilUnitListing/PupilUnitListing.view.test.tsx",
-      "./src/components/PupilViews/PupilUnitListing/PupilUnitListing.view.tsx",
-      "./src/components/SharedComponents/CategoryFilterList/CategoryFilterListItem.tsx",
-      "./src/components/SharedComponents/PostCategoryList/PostCategoryList.test.tsx",
-      "./src/components/SharedComponents/SearchForm/SearchForm.test.tsx",
-      "./src/components/SharedComponents/SearchForm/SearchForm.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.test.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePickerMobile.test.tsx",
-      "./src/components/SharedComponents/VideoPlayer/useVideoTracking.ts",
-      "./src/components/TeacherComponents/LessonItemContainer/LessonItemContainer.test.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.tsx",
-      "./src/components/TeacherComponents/SpecialistProgrammeHeaderListing/SpecialistProgrammeHeaderListing.test.tsx",
-      "./src/components/TeacherComponents/SubjectListingCard/SubjectListingCard.test.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCard/SubjectListingCardDoubleCountCard.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCardWithPathways/SubjectListingCardCountCardWithPathways.test.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCardWithPathways/SubjectListingCardCountCardWithPathways.tsx",
-      "./src/components/TeacherComponents/UnitsLearningThemeFilters/UnitsLearningThemeFilters.test.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit.ts",
-      "./src/components/TeacherViews/LessonDownloads.view.tsx",
-      "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx",
-      "./src/components/TeacherViews/LessonShare/LessonShare.view.tsx",
-      "./src/components/TeacherViews/Search/Search.view.test.tsx",
-      "./src/components/TeacherViews/Search/Search.view.tsx",
-      "./src/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view.tsx",
-      "./src/context/Analytics/AnalyticsProvider.test.tsx",
-      "./src/context/Analytics/AnalyticsProvider.tsx",
-      "./src/context/Analytics/useAnalytics.ts",
-      "./src/hooks/useAnalyticsPageProps.ts",
-      "./src/hooks/useTrackRegistration.ts",
-      "./src/pages-helpers/teacher/share-experiments/useShareExperiment.ts",
-      "./src/pages/pupils/years.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/index.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/webinars/[webinarSlug].tsx"
     ],
     "useOakConsent": [
       "./src/components/AppComponents/App/AppHooks.tsx",
@@ -2842,123 +2651,64 @@
     "useAnalyticsService": [
       "./src/context/Analytics/AnalyticsProvider.tsx"
     ],
-    "config": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/browser-lib/analytics/getPageViewProps.ts",
-      "./src/browser-lib/analytics/useAnalyticsService.ts",
-      "./src/browser-lib/avo/Avo.ts",
-      "./src/browser-lib/bugsnag/useBugsnag.ts",
-      "./src/common-lib/error-reporter/errorReporter.ts",
-      "./src/common-lib/urls/urls.ts",
-      "./src/components/AppComponents/App/AppHooks.tsx",
-      "./src/components/CurriculumComponents/CurriculumDownloadTab/helper.ts",
-      "./src/components/GenericPagesComponents/WebinarRegistration/useWebinarRegistration.ts",
-      "./src/components/GenericPagesViews/WebinarsIndex.view.tsx",
-      "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.test.tsx",
-      "./src/components/PupilViews/PupilReview/PupilReview.view.test.tsx",
-      "./src/components/SharedComponents/Button/common.ts",
-      "./src/components/SharedComponents/CMSImage/sanityImageBuilder.ts",
-      "./src/components/TeacherComponents/SearchResultsItem/SearchResultsItem.test.tsx",
-      "./src/components/TeacherComponents/SearchResultsItem/SearchResultsItem.tsx",
-      "./src/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads.ts",
-      "./src/components/TeacherViews/LessonDownloads.view.tsx",
-      "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx",
-      "./src/components/TeacherViews/Search/Search.view.test.tsx",
-      "./src/context/Analytics/AnalyticsProvider.tsx",
-      "./src/context/Search/search.helpers.ts",
-      "./src/errors/OakError.ts",
-      "./src/hooks/useOakTheme.ts",
-      "./src/hooks/useUtmParams.ts",
-      "./src/pages-helpers/get-static-paths.ts",
-      "./src/pages-helpers/teacher/share-experiments/createShareId.ts",
-      "./src/pages-helpers/teacher/share-experiments/useTeacherNotes.test.tsx",
-      "./src/pages/_app.tsx",
-      "./src/pages/api/preview/[[...path]].ts",
-      "./src/pages/blog/[blogSlug].tsx",
-      "./src/pages/blog/categories/[categorySlug].tsx",
-      "./src/pages/blog/categories/sitemap.xml/index.tsx",
-      "./src/pages/blog/sitemap.xml/index.tsx",
-      "./src/pages/legal/[policyPageSlug].tsx",
-      "./src/pages/pupils/beta/ab-demos/client-actions.tsx",
-      "./src/pages/pupils/beta/ab-demos/server-side-render.tsx",
-      "./src/pages/pupils/l/[redirectFrom]/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/teachers/beta/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/index.tsx",
-      "./src/pages/teachers/key-stages/sitemap.xml/index.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/share.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/specialist/subjects/[subjectSlug]/programmes.tsx",
-      "./src/pages/webinars/[webinarSlug].tsx",
-      "./src/pages/webinars/categories/[categorySlug].tsx",
-      "./src/pages/webinars/categories/sitemap.xml/index.tsx",
-      "./src/pages/webinars/sitemap.xml/index.tsx",
-      "./src/utils/handleTranscript.ts"
-    ],
-    "aboutSelected": [
-      "./src/context/Analytics/AnalyticsProvider.tsx"
-    ],
-    "avoInspectorApiKey": [
-      "./src/context/Analytics/AnalyticsProvider.tsx"
-    ],
-    "classroomSelected": [
-      "./src/components/AppComponents/AppHeader/AppHeader.tsx",
-      "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx",
-      "./src/context/Analytics/AnalyticsProvider.tsx"
-    ],
-    "developYourCurriculumSelected": [
-      "./src/context/Analytics/AnalyticsProvider.tsx"
-    ],
     "initAvo": [
       "./src/context/Analytics/AnalyticsProvider.tsx"
     ],
-    "notificationSelected": [
-      "./src/context/Analytics/AnalyticsProvider.tsx"
-    ],
     "pageview": [
-      "./src/browser-lib/analytics/getPageViewProps.ts",
-      "./src/browser-lib/posthog/posthog.ts",
-      "./src/context/Analytics/AnalyticsProvider.tsx"
-    ],
-    "planALessonSelected": [
-      "./src/context/Analytics/AnalyticsProvider.tsx"
-    ],
-    "teacherHubSelected": [
-      "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx",
       "./src/context/Analytics/AnalyticsProvider.tsx"
     ],
     "getPageViewProps": [
       "./src/context/Analytics/AnalyticsProvider.tsx",
       "./src/hooks/useAnalyticsPageProps.ts"
     ],
-    "analyticsContext": [
-      "./src/__tests__/__helpers__/MockedAnalyticsProvider.tsx",
-      "./src/context/Analytics/useAnalytics.ts"
-    ],
     "getMockAnalytics": [
       "./src/context/Analytics/useAnalytics.ts"
+    ],
+    "useAnalytics": [
+      "./src/components/AppComponents/App/AppHooks.tsx",
+      "./src/components/AppComponents/AppHeader/AppHeader.tsx",
+      "./src/components/AppComponents/AppHeaderBurgerMenuLink/AppHeaderBurgerMenuLink.tsx",
+      "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx",
+      "./src/components/CurriculumComponents/CurriculumDownloadTab/index.tsx",
+      "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx",
+      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
+      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.tsx",
+      "./src/components/GenericPagesComponents/NewsletterForm/useNewsletterForm.ts",
+      "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.tsx",
+      "./src/components/GenericPagesViews/HomePageLower/HomePageLower.view.tsx",
+      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
+      "./src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.tsx",
+      "./src/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view.tsx",
+      "./src/components/PupilViews/PupilUnitListing/PupilUnitListing.view.tsx",
+      "./src/components/SharedComponents/CategoryFilterList/CategoryFilterListItem.tsx",
+      "./src/components/SharedComponents/SearchForm/SearchForm.tsx",
+      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
+      "./src/components/SharedComponents/VideoPlayer/useVideoTracking.ts",
+      "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.tsx",
+      "./src/components/TeacherComponents/SubjectListingCardCountCard/SubjectListingCardDoubleCountCard.tsx",
+      "./src/components/TeacherComponents/SubjectListingCardCountCardWithPathways/SubjectListingCardCountCardWithPathways.tsx",
+      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit.ts",
+      "./src/components/TeacherViews/LessonDownloads.view.tsx",
+      "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx",
+      "./src/components/TeacherViews/LessonShare/LessonShare.view.tsx",
+      "./src/components/TeacherViews/Search/Search.view.tsx",
+      "./src/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view.tsx",
+      "./src/context/Analytics/AnalyticsProvider.test.tsx",
+      "./src/hooks/useTrackRegistration.ts",
+      "./src/pages-helpers/teacher/share-experiments/useShareExperiment.ts",
+      "./src/pages-helpers/teacher/share-experiments/useTeacherNotes.ts",
+      "./src/pages-helpers/teacher/useLesson/useLesson.tsx",
+      "./src/pages/pupils/years.tsx",
+      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.tsx",
+      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/index.tsx",
+      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx",
+      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
+      "./src/pages/webinars/[webinarSlug].tsx"
     ],
     "collapseFragments": [
       "./src/pages-helpers/curriculum/docx/docx.ts"
     ],
     "jsonXmlToXmlString": [
-      "./src/pages-helpers/curriculum/docx/docx.ts"
-    ],
-    "safeXml": [
       "./src/pages-helpers/curriculum/docx/docx.ts"
     ],
     "xmlElementToJson": [
@@ -2967,69 +2717,29 @@
     "xmlRootToJson": [
       "./src/pages-helpers/curriculum/docx/docx.ts"
     ],
-    "notUndefined": [
-      "./src/pages-helpers/curriculum/docx/docx.ts"
-    ],
     "useFeatureFlagEnabled": [
-      "./src/__tests__/pages/about-us/board.test.tsx",
-      "./src/__tests__/pages/teachers/search.test.tsx",
-      "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.test.tsx",
-      "./src/pages-helpers/teacher/useLesson/useLesson.test.tsx",
       "./src/pages-helpers/teacher/useLesson/useLesson.tsx",
       "./src/pages/about-us/board.tsx"
     ],
-    "useLesson": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
-      "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test.tsx",
-      "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.tsx",
-      "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.tsx",
-      "./src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.tsx",
-      "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.tsx",
-      "./src/components/PupilComponents/QuizShortAnswer/QuizShortAnswer.tsx",
-      "./src/components/PupilComponents/pupilUtils/lessonNavigation.test.tsx",
-      "./src/components/PupilComponents/pupilUtils/lessonNavigation.tsx",
-      "./src/components/PupilViews/PupilExperience/PupilExperience.view.test.tsx",
-      "./src/components/PupilViews/PupilExperience/PupilExperience.view.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx",
-      "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.tsx",
-      "./src/components/PupilViews/PupilReview/PupilReview.view.tsx",
-      "./src/components/PupilViews/PupilReview/useLessonReviewFeedback.ts",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck.test.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck.tsx",
-      "./src/components/TeacherViews/LessonDownloads.view.tsx",
-      "./src/hooks/useGetQuizTrackingData.ts",
-      "./src/hooks/useGetVideoTrackingData.ts",
-      "./src/hooks/useTrackSectionStarted.ts",
-      "./src/pages-helpers/teacher/useLesson/useLesson.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx"
-    ],
     "useShareExperiment": [
-      "./src/__tests__/pages/teachers/lessons/[lessonSlug].test.tsx",
-      "./src/components/TeacherComponents/DownloadConfirmation/DownloadConfirmation.test.tsx",
       "./src/components/TeacherComponents/DownloadConfirmation/DownloadConfirmation.tsx",
-      "./src/pages-helpers/teacher/share-experiments/useShareExperiment.ts",
-      "./src/pages-helpers/teacher/useLesson/useLesson.test.tsx",
       "./src/pages-helpers/teacher/useLesson/useLesson.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx"
+      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx"
     ],
     "useTeacherNotes": [
-      "./src/__tests__/pages/teachers/lessons/[lessonSlug].test.tsx",
       "./src/pages-helpers/teacher/share-experiments/useTeacherNotes.test.tsx",
-      "./src/pages-helpers/teacher/share-experiments/useTeacherNotes.ts",
-      "./src/pages-helpers/teacher/useLesson/useLesson.test.tsx",
+      "./src/pages-helpers/teacher/useLesson/useLesson.tsx"
+    ],
+    "teacherNoteDialogueOpened": [
       "./src/pages-helpers/teacher/useLesson/useLesson.tsx"
     ],
     "useOakPupil": [
-      "./src/components/PupilViews/PupilReview/PupilReview.view.test.tsx",
       "./src/components/PupilViews/PupilReview/PupilReview.view.tsx",
-      "./src/pages-helpers/teacher/share-experiments/useTeacherNotes.test.tsx",
       "./src/pages-helpers/teacher/share-experiments/useTeacherNotes.ts",
       "./src/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/printable.tsx"
+    ],
+    "teacherNoteSaved": [
+      "./src/pages-helpers/teacher/share-experiments/useTeacherNotes.ts"
     ],
     "getActivationKey": [
       "./src/pages-helpers/teacher/share-experiments/useShareExperiment.ts"
@@ -3038,14 +2748,9 @@
       "./src/pages-helpers/teacher/share-experiments/useShareExperiment.ts"
     ],
     "getShareId": [
-      "./src/pages-helpers/teacher/share-experiments/getUpdatedUrl.ts",
       "./src/pages-helpers/teacher/share-experiments/useShareExperiment.ts"
     ],
     "getShareIdKey": [
-      "./src/pages-helpers/teacher/share-experiments/getUpdatedUrl.ts",
-      "./src/pages-helpers/teacher/share-experiments/useShareExperiment.ts"
-    ],
-    "shareSources": [
       "./src/pages-helpers/teacher/share-experiments/getUpdatedUrl.ts",
       "./src/pages-helpers/teacher/share-experiments/useShareExperiment.ts"
     ],
@@ -3072,101 +2777,24 @@
       "./src/components/SharedComponents/PostSingleLayout/PostSingleLayout.tsx"
     ],
     "usePostList": [
-      "./src/components/GenericPagesViews/BlogIndex.view.tsx",
       "./src/components/GenericPagesViews/HomePageLower/HomePageLower.view.tsx",
       "./src/components/GenericPagesViews/PostListAndCategories.view.tsx",
-      "./src/components/GenericPagesViews/WebinarsIndex.view.tsx",
       "./src/components/SharedComponents/PostList/PostList.tsx",
       "./src/pages/lesson-planning.tsx"
     ],
     "useTheme": [
       "./src/components/AppComponents/AppHeaderMenu/AppHeaderMenu.tsx",
       "./src/components/GenericPagesComponents/CurriculumTabBadge/CurriculumTabBadge.tsx",
-      "./src/components/GenericPagesComponents/HomepageTabImageButton/HomePageTabImageButton.tsx",
       "./src/components/GenericPagesViews/PostListAndCategories.view.tsx",
       "./src/components/SharedComponents/Button/ButtonInner.tsx",
       "./src/components/SharedComponents/Button/IconButtonInner.tsx",
       "./src/components/SharedComponents/Icon.deprecated/Icon.deprecated.tsx",
       "./src/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view.tsx"
     ],
-    "padding": [
-      "./src/app/(registration)/formAppearanceStyles.ts",
-      "./src/app/layout.tsx",
-      "./src/components/AppComponents/AppHeaderMenu/AppHeaderMenu.tsx",
-      "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx",
-      "./src/components/AppComponents/StyledHeader/StyledHeader.tsx",
-      "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx",
-      "./src/components/CurriculumComponents/CurriculumUnitCard/CurriculumUnitCard.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.tsx",
-      "./src/components/CurriculumComponents/OverviewTab/OverviewTab.tsx",
-      "./src/components/GenericPagesComponents/BioCardListItem/BioCardListItem.tsx",
-      "./src/components/GenericPagesComponents/BioCardListModal/BioCardListModal.tsx",
-      "./src/components/GenericPagesComponents/GenericContactCard/GenericContactCard.tsx",
-      "./src/components/GenericPagesComponents/GenericSummaryCardNavButton/GenericSummaryCardNavButton.tsx",
-      "./src/components/GenericPagesComponents/PostFootnotes/PostFootnotes.tsx",
-      "./src/components/GenericPagesComponents/Select/Select.tsx",
-      "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.tsx",
-      "./src/components/GenericPagesViews/HomePageLower/HomePageLower.view.tsx",
-      "./src/components/GenericPagesViews/PostListAndCategories.view.tsx",
-      "./src/components/GenericPagesViews/PostListing.view.tsx",
-      "./src/components/PupilComponents/QuizMatchAnswer/QuizMatchAnswer.tsx",
-      "./src/components/PupilComponents/QuizRenderer/QuizRenderer.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx",
-      "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.tsx",
-      "./src/components/PupilViews/PupilReview/PupilReview.view.tsx",
-      "./src/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx",
-      "./src/components/SharedComponents/Button/LoadingButton/LoadingButton.tsx",
-      "./src/components/SharedComponents/Button/button.styles.ts",
-      "./src/components/SharedComponents/Button/common.ts",
-      "./src/components/SharedComponents/Card/CardComponents/CardTitle.tsx",
-      "./src/components/SharedComponents/KeyStageKeypad/KeyStageKeypad.tsx",
-      "./src/components/SharedComponents/ListBox/ListBox.tsx",
-      "./src/components/SharedComponents/PostSingleLayout/PostSingleLayout.tsx",
-      "./src/components/SharedComponents/ScreenReaderOnly/ScreenReaderOnly.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
-      "./src/components/TeacherComponents/LessonItemContainer/LessonItemContainer.tsx",
-      "./src/components/TeacherComponents/LessonList/LessonList.tsx",
-      "./src/components/TeacherComponents/LessonListItem/LessonListItem.tsx",
-      "./src/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils/index.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.tsx",
-      "./src/components/TeacherComponents/ResourceCard/ResourceCard.tsx",
-      "./src/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails.tsx",
-      "./src/components/TeacherComponents/SearchResults/SearchResults.tsx",
-      "./src/components/TeacherComponents/SearchResultsItem/SearchResultsItem.tsx",
-      "./src/components/TeacherComponents/SpecialistProgrammeListItem/SpecialistProgrammeListItem.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCard/SubjectListingCardDoubleCountCard.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCardWithPathways/SubjectListingCardCountCardWithPathways.tsx",
-      "./src/components/TeacherComponents/SubjectProgrammeListItem/SubjectProgrammeListItem.tsx",
-      "./src/components/TeacherComponents/UnitList/UnitList.tsx",
-      "./src/components/TeacherComponents/UnitListItem/UnitListItem.tsx",
-      "./src/components/TeacherViews/LessonDownloads.view.tsx",
-      "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx",
-      "./src/components/TeacherViews/LessonShare/LessonShare.view.tsx",
-      "./src/components/TeacherViews/Search/Search.view.tsx",
-      "./src/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view.tsx",
-      "./src/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view.tsx",
-      "./src/pages/about-us/board.tsx",
-      "./src/pages/about-us/leadership.tsx",
-      "./src/pages/about-us/who-we-are.tsx",
-      "./src/pages/legal/[policyPageSlug].tsx",
-      "./src/pages/lesson-planning.tsx",
-      "./src/pages/pupils/years.tsx",
-      "./src/pages/support-your-team.tsx",
-      "./src/pages/teachers/curriculum/index.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx"
-    ],
     "usePagination": [
-      "./src/__tests__/__helpers__/mockPaginationProps.ts",
       "./src/components/GenericPagesViews/BlogIndex.view.tsx",
       "./src/components/GenericPagesViews/WebinarsIndex.view.tsx",
-      "./src/components/SharedComponents/Pagination/usePagination.ts",
-      "./src/components/SharedComponents/PostList/PostList.tsx",
       "./src/components/SharedComponents/PostList/usePostList.ts",
-      "./src/components/TeacherComponents/LessonList/LessonList.tsx",
       "./src/components/TeacherComponents/SearchResults/SearchResults.tsx",
       "./src/components/TeacherViews/SpecialistLessonListing/SpecialistLessonListing.view.tsx",
       "./src/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view.tsx",
@@ -3202,8 +2830,7 @@
     ],
     "blogToPostListItem": [
       "./src/components/GenericPagesViews/HomePageLower/HomePageLower.view.tsx",
-      "./src/components/GenericPagesViews/PostListing.view.tsx",
-      "./src/pages/teachers/curriculum/index.tsx"
+      "./src/components/GenericPagesViews/PostListing.view.tsx"
     ],
     "getBlogWebinarListBreadcrumbs": [
       "./src/components/GenericPagesViews/PostListing.view.tsx"
@@ -3253,38 +2880,18 @@
     ],
     "useNewsletterForm": [
       "./src/components/GenericPagesComponents/LandingPageSignUpForm/LandingPageSignUpForm.tsx",
-      "./src/components/GenericPagesComponents/NewsletterForm/index.ts",
-      "./src/components/GenericPagesComponents/NewsletterForm/useNewsletterForm.ts",
       "./src/components/GenericPagesComponents/WebinarRegistration/WebinarRegistration.tsx",
       "./src/components/GenericPagesViews/HomePageLower/HomePageLower.view.tsx",
       "./src/pages/contact-us.tsx"
     ],
-    "getBlogPosts": [
-      "./src/__tests__/pages/teachers/index.test.tsx",
-      "./src/components/GenericPagesViews/HomePageLower/HomePageLower.view.tsx",
-      "./src/pages/ai/index.tsx",
-      "./src/pages/curriculum/index.tsx",
-      "./src/pages/index.tsx",
-      "./src/pages/lesson-planning.tsx",
-      "./src/pages/pupils/index.tsx",
-      "./src/pages/teachers/index.tsx"
-    ],
-    "newsletterSignUpCompleted": [
-      "./src/components/GenericPagesViews/HomePageLower/HomePageLower.view.tsx"
-    ],
     "useHubspotSubmit": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
       "./src/components/CurriculumComponents/CurriculumDownloadTab/index.tsx",
-      "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.test.tsx",
       "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit.ts",
       "./src/components/TeacherViews/LessonDownloads.view.tsx",
       "./src/components/TeacherViews/LessonShare/LessonShare.view.tsx"
     ],
     "useLessonDownloadExistenceCheck": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
       "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck.test.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck.tsx",
       "./src/components/TeacherViews/LessonDownloads.view.tsx"
     ],
     "useOnboardingStatus": [
@@ -3294,7 +2901,6 @@
     "useResourceFormState": [
       "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx",
       "./src/components/TeacherComponents/TermsAgreementForm/TermsAgreementForm.stories.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.tsx",
       "./src/components/TeacherViews/LessonDownloads.view.tsx",
       "./src/components/TeacherViews/LessonShare/LessonShare.view.tsx"
     ],
@@ -3338,75 +2944,7 @@
       "./src/components/TeacherViews/LessonShare/LessonShare.view.tsx"
     ],
     "lessonResourcesDownloaded": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx",
       "./src/components/TeacherViews/LessonDownloads.view.tsx"
-    ],
-    "onwardContentSelected": [
-      "./src/components/TeacherComponents/DownloadConfirmation/DownloadConfirmation.test.tsx",
-      "./src/components/TeacherComponents/DownloadConfirmation/DownloadConfirmation.tsx",
-      "./src/components/TeacherViews/LessonDownloads.view.tsx"
-    ],
-    "useFeatureFlagVariantKey": [
-      "./src/__tests__/pages/onboarding/index.test.tsx",
-      "./src/__tests__/pages/onboarding/role-selection.test.tsx",
-      "./src/__tests__/pages/onboarding/school-selection.test.tsx",
-      "./src/__tests__/pages/teachers/lessons/[lessonSlug].test.tsx",
-      "./src/__tests__/pages/teachers/lessons/[lessonSlug]/media.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media.test.tsx",
-      "./src/components/AppComponents/AppHeader/AppHeader.test.tsx",
-      "./src/components/PupilViews/PupilExperience/PupilExperience.view.test.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.test.tsx",
-      "./src/components/TeacherComponents/HeaderListing/HeaderListing.test.tsx",
-      "./src/components/TeacherComponents/LessonItemContainerLink/LessonItemContainerLink.tsx",
-      "./src/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton/LessonOverviewHeaderDownloadAllButton.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit.ts",
-      "./src/components/TeacherViews/LessonDownloads.view.test.tsx",
-      "./src/components/TeacherViews/Onboarding/ONboarding.test.tsx",
-      "./src/hocs/withFeatureFlag.test.tsx",
-      "./src/pages/pupils/beta/ab-demos/client-actions.tsx"
-    ],
-    "mockLoggedIn": [
-      "./src/__tests__/pages/onboarding/index.test.tsx",
-      "./src/__tests__/pages/onboarding/role-selection.test.tsx",
-      "./src/__tests__/pages/onboarding/school-selection.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx",
-      "./src/__tests__/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/components/AppComponents/AppHeader/AppHeader.test.tsx",
-      "./src/components/TeacherComponents/HeaderListing/HeaderListing.test.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.test.tsx",
-      "./src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton.test.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.test.tsx",
-      "./src/components/TeacherViews/LessonDownloads.view.test.tsx",
-      "./src/hocs/withOnboardingRequired.test.tsx"
-    ],
-    "mockTeacherUserWithDownloadAccess": [
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.test.tsx",
-      "./src/components/TeacherViews/LessonDownloads.view.test.tsx"
-    ],
-    "mockUser": [
-      "./src/__tests__/pages/onboarding/index.test.tsx",
-      "./src/__tests__/pages/onboarding/role-selection.test.tsx",
-      "./src/__tests__/pages/onboarding/school-selection.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx",
-      "./src/__tests__/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/components/AppComponents/AppHeader/AppHeader.test.tsx",
-      "./src/components/TeacherComponents/HeaderListing/HeaderListing.test.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.test.tsx",
-      "./src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton.test.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.test.tsx",
-      "./src/components/TeacherViews/LessonDownloads.view.test.tsx",
-      "./src/hocs/withOnboardingRequired.test.tsx"
-    ],
-    "mockUserWithDownloadAccess": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx",
-      "./src/__tests__/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/components/TeacherViews/LessonDownloads.view.test.tsx"
-    ],
-    "mockUserWithDownloadAccessNotOnboarded": [
-      "./src/components/TeacherViews/LessonDownloads.view.test.tsx"
     ],
     "setUseUserReturn": [
       "./src/__tests__/pages/onboarding/index.test.tsx",
@@ -3424,7 +2962,6 @@
       "./src/hocs/withOnboardingRequired.test.tsx"
     ],
     "useAnalyticsPageProps": [
-      "./src/__tests__/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].test.tsx",
       "./src/components/CurriculumComponents/CurriculumDownloadTab/index.tsx",
       "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx",
       "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
@@ -3443,12 +2980,6 @@
       "./src/components/TeacherViews/Search/Search.view.tsx",
       "./src/context/Search/search.helpers.ts"
     ],
-    "searchFilters": [
-      "./src/components/TeacherViews/Search/Search.view.test.tsx",
-      "./src/components/TeacherViews/Search/Search.view.tsx",
-      "./src/components/TeacherViews/Search/search.view.types.ts",
-      "./src/pages/teachers/search.tsx"
-    ],
     "searchAccessed": [
       "./src/components/TeacherViews/Search/Search.view.test.tsx",
       "./src/components/TeacherViews/Search/Search.view.tsx"
@@ -3458,27 +2989,14 @@
       "./src/components/TeacherViews/Search/Search.view.tsx"
     ],
     "searchResultExpanded": [
-      "./src/components/TeacherComponents/SearchResults/SearchResults.test.tsx",
       "./src/components/TeacherComponents/SearchResults/SearchResults.tsx",
       "./src/components/TeacherViews/Search/Search.view.test.tsx",
       "./src/components/TeacherViews/Search/Search.view.tsx"
     ],
     "searchResultOpened": [
-      "./src/components/TeacherComponents/SearchResults/SearchResults.test.tsx",
       "./src/components/TeacherComponents/SearchResults/SearchResults.tsx",
       "./src/components/TeacherViews/Search/Search.view.test.tsx",
       "./src/components/TeacherViews/Search/Search.view.tsx"
-    ],
-    "useMediaQuery": [
-      "./src/__tests__/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].test.tsx",
-      "./src/components/CurriculumComponents/CurriculumHeader/CurriculumHeader.test.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.test.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePickerMobile.test.tsx",
-      "./src/components/TeacherComponents/SearchResults/SearchResults.test.tsx",
-      "./src/components/TeacherComponents/SearchResultsItem/SearchResultsItem.test.tsx",
-      "./src/components/TeacherComponents/SearchResultsItem/SearchResultsItem.tsx",
-      "./src/components/TeacherViews/Search/Search.view.test.tsx"
     ],
     "searchJourneyInitiated": [
       "./src/components/SharedComponents/SearchForm/SearchForm.test.tsx",
@@ -3492,8 +3010,7 @@
       "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx"
     ],
     "getPathway": [
-      "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx",
-      "./src/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query.ts"
+      "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx"
     ],
     "checkIsResourceCopyrightRestricted": [
       "./src/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers.ts",
@@ -3509,42 +3026,15 @@
       "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx"
     ],
     "getPageLinksForLesson": [
-      "./src/components/TeacherComponents/LessonItemContainer/LessonItemContainer.tsx",
       "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx"
     ],
     "lessonResourceDownloadStarted": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
       "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx"
     ],
     "lessonShareStarted": [
       "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
       "./src/__tests__/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
       "./src/components/TeacherViews/LessonOverview/LessonOverview.view.tsx"
-    ],
-    "browseRefined": [
-      "./src/__tests__/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.test.tsx",
-      "./src/components/AppComponents/AppHeaderBurgerMenuLink/AppHeaderBurgerMenuLink.test.tsx",
-      "./src/components/AppComponents/AppHeaderBurgerMenuLink/AppHeaderBurgerMenuLink.tsx",
-      "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx",
-      "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.test.tsx",
-      "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.tsx",
-      "./src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.test.tsx",
-      "./src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.tsx",
-      "./src/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view.tsx",
-      "./src/components/SharedComponents/CategoryFilterList/CategoryFilterListItem.tsx",
-      "./src/components/TeacherComponents/SubjectListingCard/SubjectListingCard.test.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCard/SubjectListingCardDoubleCountCard.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCardWithPathways/SubjectListingCardCountCardWithPathways.test.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCardWithPathways/SubjectListingCardCountCardWithPathways.tsx",
-      "./src/components/TeacherComponents/UnitsLearningThemeFilters/UnitsLearningThemeFilters.test.tsx",
-      "./src/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.view.tsx",
-      "./src/pages/pupils/years.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/index.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx"
-    ],
-    "shareLinkConfig": [
-      "./src/components/TeacherViews/LessonShare/LessonShare.view.tsx"
     ],
     "getHrefForSocialSharing": [
       "./src/components/TeacherViews/LessonShare/LessonShare.view.tsx"
@@ -3566,23 +3056,6 @@
       "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
       "./src/components/TeacherViews/LessonShare/LessonShare.view.tsx"
     ],
-    "useForm": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
-      "./src/components/GenericPagesComponents/NewsletterForm/NewsletterForm.tsx",
-      "./src/components/TeacherComponents/DownloadCardGroup/DownloadCardGroup.stories.tsx",
-      "./src/components/TeacherComponents/LessonShareCardGroup/LessonShareCardGroup.stories.tsx",
-      "./src/components/TeacherComponents/LessonShareCardGroup/LessonShareCardGroup.test.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.test.tsx",
-      "./src/components/TeacherComponents/ResourcePageLayout/ResourcePageLayout.stories.tsx",
-      "./src/components/TeacherComponents/ResourcePageLayout/ResourcePageLayout.test.tsx",
-      "./src/components/TeacherComponents/TermsAgreementForm/TermsAgreementForm.test.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.test.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.tsx",
-      "./src/components/TeacherViews/Onboarding/HowCanOakSupport/HowCanOakSupport.view.tsx",
-      "./src/components/TeacherViews/Onboarding/Onboarding.view.tsx",
-      "./src/components/TeacherViews/Onboarding/RoleSelection/RoleSelection.view.tsx",
-      "./src/components/TeacherViews/Onboarding/SchoolSelection/SchoolSelection.view.tsx"
-    ],
     "decodeOnboardingDataQueryParam": [
       "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.tsx",
       "./src/components/TeacherViews/Onboarding/HowCanOakSupport/HowCanOakSupport.view.tsx"
@@ -3593,55 +3066,6 @@
       "./src/components/TeacherComponents/ResourcePageSchoolPicker/ResourcePageSchoolPicker.tsx",
       "./src/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker.tsx",
       "./src/components/TeacherViews/Onboarding/SchoolSelection/SchoolSelection.view.tsx"
-    ],
-    "onboardingRoleOptions": [
-      "./src/components/TeacherComponents/OnboardingForm/onboardingActions/collectOnboardingTrackingProps.ts",
-      "./src/components/TeacherViews/Onboarding/RoleSelection/RoleSelection.view.tsx"
-    ],
-    "options": [
-      "./src/__tests__/__helpers__/renderWithProviders.tsx",
-      "./src/__tests__/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].test.tsx",
-      "./src/browser-lib/avo/Avo.ts",
-      "./src/browser-lib/seo/getSeoProps.tsx",
-      "./src/common-lib/forms/FormDefinition.ts",
-      "./src/common-lib/forms/formToZod.ts",
-      "./src/components/CurriculumComponents/CurriculumDownloadView/index.tsx",
-      "./src/components/CurriculumComponents/CurriculumUnitCard/CurriculumUnitCard.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.test.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.test.tsx",
-      "./src/components/CurriculumComponents/UnitsTab/UnitsTab.test.tsx",
-      "./src/components/CurriculumComponents/UnitsTabSidebar/UnitsTabSidebar.test.tsx",
-      "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.tsx",
-      "./src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.test.tsx",
-      "./src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.tsx",
-      "./src/components/PupilViews/PupilReview/PupilReview.view.tsx",
-      "./src/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view.tsx",
-      "./src/components/PupilViews/PupilUnitListing/useBackHref.ts",
-      "./src/components/SharedComponents/RadioButtons/RadioGroup.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.test.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePickerMobile.test.tsx",
-      "./src/components/TeacherComponents/ResourcePageLayout/ResourcePageLayout.stories.tsx",
-      "./src/context/Search/search-api/2023/fetchResults.ts",
-      "./src/node-lib/curriculum-api-2023/generated/sdk.ts",
-      "./src/node-lib/curriculum-api-2023/index.ts",
-      "./src/node-lib/hubspot-forms/hubspotSchemas.ts",
-      "./src/node-lib/hubspot-forms/transformHubspotForm.ts",
-      "./src/pages-helpers/curriculum/docx/tab-helpers.ts",
-      "./src/pages-helpers/curriculum/docx/xml.ts",
-      "./src/pages-helpers/pupil/options-pages/getFactorDataFromSlug.ts",
-      "./src/pages-helpers/pupil/options-pages/options-pages-helpers.ts",
-      "./src/pages/api/curriculum-downloads/index.ts",
-      "./src/pages/blog/[blogSlug].tsx",
-      "./src/pages/contact-us.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/options.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/options/examboard/[examboardSlug].tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/options/pathway/[pathwaySlug].tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/teachers/curriculum/index.tsx",
-      "./src/pages/teachers/curriculum/sitemap.xml/index.tsx",
-      "./src/utils/curriculum/slugs.ts"
     ],
     "unitInformationViewed": [
       "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.test.tsx",
@@ -3654,130 +3078,33 @@
       "./src/components/CurriculumComponents/UnitsTab/UnitsTab.test.tsx",
       "./src/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].tsx"
     ],
-    "curriculumThreadHighlighted": [
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.test.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.test.tsx",
-      "./src/components/CurriculumComponents/UnitsTab/UnitsTab.test.tsx"
-    ],
-    "yearGroupSelected": [
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.test.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.test.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.tsx",
-      "./src/components/CurriculumComponents/UnitsTab/UnitsTab.test.tsx"
-    ],
     "useLocalStorageForDownloads": [
       "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
       "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.test.tsx",
       "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/onboardingActions/setOnboardingLocalStorage.ts",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads.ts",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.test.tsx",
       "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.tsx",
       "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit.ts"
-    ],
-    "useRadio": [
-      "./src/components/CurriculumComponents/CurriculumDownloadView/CurriculumResourcesSelector.tsx",
-      "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx",
-      "./src/components/SharedComponents/RadioButtons/Radio.tsx",
-      "./src/components/SharedComponents/RadioButtons/RadioGroup.tsx"
-    ],
-    "useLocalStorage": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
-      "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx",
-      "./src/components/GenericPagesComponents/WebinarRegistration/useWebinarRegistration.ts",
-      "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.test.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/onboardingActions/setOnboardingLocalStorage.ts",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads.ts",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.test.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit.ts",
-      "./src/hooks/useLocalStorage.ts",
-      "./src/hooks/useUtmParams.ts"
-    ],
-    "margin": [
-      "./src/app/(registration)/formAppearanceStyles.ts",
-      "./src/app/layout.tsx",
-      "./src/components/AppComponents/AppHeader/AppHeader.tsx",
-      "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx",
-      "./src/components/CurriculumComponents/CurriculumUnitCard/CurriculumUnitCard.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.tsx",
-      "./src/components/CurriculumComponents/OakComponentsKitchen/SimpleRadio/index.tsx",
-      "./src/components/CurriculumComponents/OverviewTab/OverviewTab.tsx",
-      "./src/components/GenericPagesComponents/BioCardListModal/BioCardListModal.tsx",
-      "./src/components/SharedComponents/Button/IconButton/iconButton.styles.ts",
-      "./src/components/SharedComponents/Button/button.styles.ts",
-      "./src/components/SharedComponents/ListBox/ListBox.tsx",
-      "./src/components/SharedComponents/OutlineHeading/OutlineHeading.tsx",
-      "./src/components/SharedComponents/PortableText/PortableText.tsx",
-      "./src/components/SharedComponents/RadioButtons/Radio.tsx",
-      "./src/components/SharedComponents/ScreenReaderOnly/ScreenReaderOnly.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
-      "./src/components/SharedComponents/Typography/Heading.deprecated.tsx",
-      "./src/pages/contact-us.tsx"
-    ],
-    "getDownloadFormErrorMessage": [
-      "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx"
     ],
     "getFormErrorMessages": [
       "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx"
     ],
     "curriculumResourcesDownloaded": [
-      "./src/components/CurriculumComponents/CurriculumDownloadTab/index.tsx",
       "./src/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads.tsx"
     ],
-    "useHover": [
-      "./src/components/CurriculumComponents/CurriculumUnitCard/CurriculumUnitCard.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.tsx",
-      "./src/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator/index.tsx",
-      "./src/components/SharedComponents/PostListItem/PostListItem.tsx",
-      "./src/components/SharedComponents/PostListUpcomingWebinarListItem/PostListUpcomingWebinarListItem.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
-      "./src/components/TeacherComponents/ResourceCard/ResourceCard.tsx"
+    "curriculumThreadHighlighted": [
+      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.test.tsx",
+      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.test.tsx"
+    ],
+    "yearGroupSelected": [
+      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.test.tsx",
+      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.test.tsx",
+      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.tsx"
     ],
     "getYearGroupTitle": [
       "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
       "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.tsx"
     ],
-    "border": [
-      "./src/app/(registration)/formAppearanceStyles.ts",
-      "./src/app/layout.tsx",
-      "./src/components/AppComponents/MenuBackdrop/MenuBackdrop.tsx",
-      "./src/components/CurriculumComponents/CurriculumUnitCard/CurriculumUnitCard.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
-      "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.tsx",
-      "./src/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator/index.tsx",
-      "./src/components/CurriculumComponents/OakComponentsKitchen/SimpleRadio/index.tsx",
-      "./src/components/CurriculumComponents/OverviewTab/OverviewTab.tsx",
-      "./src/components/GenericPagesComponents/CurriculumTabBadge/CurriculumTabBadge.tsx",
-      "./src/components/GenericPagesComponents/NewsletterFormWrap/NewsletterFormWrap.tsx",
-      "./src/components/GenericPagesComponents/Select/Select.tsx",
-      "./src/components/GenericPagesComponents/WebinarVideo/WebinarVideo.tsx",
-      "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.tsx",
-      "./src/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx",
-      "./src/components/SharedComponents/Box/Box.tsx",
-      "./src/components/SharedComponents/Button/LoadingButton/LoadingButton.tsx",
-      "./src/components/SharedComponents/Button/button.styles.ts",
-      "./src/components/SharedComponents/RadioButtons/Radio.tsx",
-      "./src/components/SharedComponents/ScreenReaderOnly/ScreenReaderOnly.tsx",
-      "./src/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders/BoxBorders.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
-      "./src/components/SharedComponents/VideoPlayer/VideoPlayer.tsx",
-      "./src/components/TeacherComponents/LessonItemContainer/LessonItemContainer.test.tsx",
-      "./src/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils/index.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.tsx",
-      "./src/components/TeacherComponents/SearchResultsItem/SearchResultsItem.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCard/SubjectListingCardDoubleCountCard.tsx",
-      "./src/components/TeacherComponents/SubjectListingCardCountCardWithPathways/SubjectListingCardCountCardWithPathways.tsx",
-      "./src/pages/pupils/years.tsx"
-    ],
     "highlightedUnitCount": [
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.test.tsx",
       "./src/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile.tsx"
     ],
     "parseSchoolToListItems": [
@@ -3815,63 +3142,15 @@
     "getUnitFeatures": [
       "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
       "./src/pages-helpers/curriculum/docx/builder/helper.ts",
-      "./src/pages-helpers/curriculum/docx/tab-helpers.ts",
-      "./src/utils/curriculum/formatting.ts"
+      "./src/pages-helpers/curriculum/docx/tab-helpers.ts"
     ],
     "isVisibleUnit": [
       "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
       "./src/components/CurriculumComponents/CurriculumVisualiserFilters/helpers.ts",
       "./src/utils/curriculum/getNumberOfSelectedUnits.ts"
     ],
-    "sortChildSubjects": [
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx"
-    ],
-    "sortYears": [
-      "./src/components/CurriculumComponents/CurriculumVisualiser/CurriculumVisualiser.tsx",
-      "./src/pages-helpers/curriculum/docx/tab-helpers.ts"
-    ],
-    "useEvent": [
-      "./src/components/CurriculumComponents/OverviewTab/OverviewTab.tsx",
-      "./src/components/GenericPagesComponents/HomepageTabImageButton/HomePageTabImageButton.tsx",
-      "./src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.test.tsx",
-      "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.test.tsx",
-      "./src/components/PupilComponents/pupilUtils/lessonNavigation.tsx",
-      "./src/components/SharedComponents/Box/Box.tsx",
-      "./src/components/SharedComponents/Button/Button.tsx",
-      "./src/components/SharedComponents/Button/ButtonAsLink/ButtonAsLink.tsx",
-      "./src/components/SharedComponents/Button/IconButton/IconButton.tsx",
-      "./src/components/SharedComponents/Button/LoadingButton/LoadingButton.tsx",
-      "./src/components/SharedComponents/MobileFilters/MobileFilters.tsx",
-      "./src/components/TeacherComponents/ListItemCard/ListItemCard.tsx",
-      "./src/components/TeacherComponents/UnitList/UnitList.tsx",
-      "./src/hooks/useClickableCard.test.tsx",
-      "./src/hooks/useClickableCard.ts",
-      "./src/hooks/useEventListener.ts",
-      "./src/hooks/useLocalStorage.ts"
-    ],
     "findContainingAnchor": [
       "./src/components/CurriculumComponents/OverviewTab/OverviewTab.tsx"
-    ],
-    "basePortableTextComponents": [
-      "./src/components/CurriculumComponents/OverviewTab/OverviewTab.tsx"
-    ],
-    "metadata": [
-      "./src/common-lib/error-reporter/errorReporter.ts",
-      "./src/components/CurriculumComponents/CurriculumHeader/CurriculumHeader.test.tsx",
-      "./src/components/CurriculumComponents/helpers/curriculumMetadata.ts",
-      "./src/components/SharedComponents/VideoPlayer/VideoPlayer.tsx",
-      "./src/components/TeacherComponents/LessonShareCardGroup/LessonShareCardGroup.test.tsx",
-      "./src/components/TeacherComponents/SearchResultsItem/SearchResultsItem.test.tsx",
-      "./src/components/TeacherComponents/SearchResultsItem/SearchResultsItem.tsx",
-      "./src/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers.ts",
-      "./src/errors/OakError.ts",
-      "./src/hooks/useTrackRegistration.ts",
-      "./src/node-lib/curriculum-api-2023/generated/sdk.ts",
-      "./src/node-lib/curriculum-api-2023/queries/lessonShare/constructShareableResources.ts",
-      "./src/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.query.ts",
-      "./src/node-lib/sanity-graphql/generated/sdk.ts",
-      "./src/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].tsx",
-      "./src/utils/handleTranscript.ts"
     ],
     "mockPrerelease": [
       "./src/__tests__/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].test.tsx",
@@ -3882,32 +3161,11 @@
       "./src/components/CurriculumComponents/CurriculumHeader/CurriculumHeader.test.tsx",
       "./src/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].tsx"
     ],
-    "subjectPhaseOptions": [
-      "./src/__tests__/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].test.tsx",
-      "./src/components/CurriculumComponents/CurriculumHeader/CurriculumHeader.test.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.test.tsx",
-      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePickerMobile.test.tsx",
-      "./src/node-lib/curriculum-api-2023/generated/sdk.ts",
-      "./src/node-lib/curriculum-api-2023/index.ts",
-      "./src/pages-helpers/curriculum/docx/tab-helpers.ts",
-      "./src/pages/api/curriculum-downloads/index.ts",
-      "./src/pages/curriculum/index.tsx",
-      "./src/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].tsx",
-      "./src/pages/teachers/curriculum/index.tsx",
-      "./src/pages/teachers/curriculum/sitemap.xml/index.tsx",
-      "./src/utils/curriculum/slugs.ts"
-    ],
     "useUser": [
-      "./src/__tests__/__helpers__/mockClerk.ts",
-      "./src/__tests__/__helpers__/mockUser.ts",
       "./src/components/AppComponents/AppHeader/AppHeader.tsx",
-      "./src/components/CurriculumComponents/CurriculumDownloadView/CurriculumDownloadView.test.tsx",
-      "./src/components/CurriculumComponents/CurriculumDownloadView/SignedInFlow.tsx",
       "./src/components/CurriculumComponents/CurriculumDownloadView/index.tsx",
       "./src/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton/LessonOverviewHeaderDownloadAllButton.tsx",
       "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.tsx",
-      "./src/components/TeacherComponents/OnboardingForm/onboardingActions/collectOnboardingTrackingProps.ts",
-      "./src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton.test.tsx",
       "./src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton.tsx",
       "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.tsx",
       "./src/components/TeacherComponents/hooks/useOnboardingStatus.ts",
@@ -3922,99 +3180,8 @@
     "assertValidDownloadType": [
       "./src/components/CurriculumComponents/CurriculumDownloadView/CurriculumResourcesSelector.tsx"
     ],
-    "isUnitOption": [
-      "./src/components/CurriculumComponents/CurriculumUnitCard/CurriculumUnitCard.tsx",
-      "./src/components/TeacherComponents/ListItemCard/ListItemCard.tsx",
-      "./src/components/TeacherComponents/UnitList/UnitList.tsx",
-      "./src/components/TeacherComponents/UnitListItem/UnitListItem.tsx"
-    ],
-    "useClickableCard": [
-      "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx",
-      "./src/components/CurriculumComponents/CurriculumUnitDetailsAccordion/CurriculumUnitDetailsAccordion.tsx",
-      "./src/components/GenericPagesComponents/BioCardListItem/BioCardListItem.tsx",
-      "./src/components/SharedComponents/Box/Box.tsx",
-      "./src/components/SharedComponents/PostListItem/PostListItem.tsx",
-      "./src/components/SharedComponents/PostListUpcomingWebinarListItem/PostListUpcomingWebinarListItem.tsx",
-      "./src/components/TeacherComponents/LessonListItem/LessonListItem.tsx",
-      "./src/components/TeacherComponents/SpecialistProgrammeListItem/SpecialistProgrammeListItem.tsx",
-      "./src/components/TeacherComponents/SubjectProgrammeListItem/SubjectProgrammeListItem.tsx",
-      "./src/components/TeacherComponents/UnitListItem/UnitListItem.tsx",
-      "./src/hooks/useClickableCard.ts",
-      "./src/hooks/useSelectedArea.test.tsx"
-    ],
-    "getProps": [
-      "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx",
-      "./src/components/CurriculumComponents/CurriculumUnitDetailsAccordion/CurriculumUnitDetailsAccordion.tsx",
-      "./src/components/GenericPagesComponents/BioCardListItem/BioCardListItem.tsx",
-      "./src/components/SharedComponents/PostListItem/PostListItem.tsx",
-      "./src/components/SharedComponents/PostListUpcomingWebinarListItem/PostListUpcomingWebinarListItem.tsx",
-      "./src/components/TeacherComponents/LessonListItem/LessonListItem.tsx",
-      "./src/components/TeacherComponents/ListItemHeader/ListItemHeader.tsx",
-      "./src/components/TeacherComponents/SpecialistProgrammeListItem/SpecialistProgrammeListItem.tsx",
-      "./src/components/TeacherComponents/SubjectProgrammeListItem/SubjectProgrammeListItem.tsx",
-      "./src/components/TeacherComponents/UnitListItem/UnitListItem.tsx",
-      "./src/hooks/useClickableCard.test.tsx",
-      "./src/hooks/useClickableCard.ts",
-      "./src/pages-helpers/home/getBlogPosts.ts",
-      "./src/pages/about-us/board.tsx",
-      "./src/pages/about-us/leadership.tsx",
-      "./src/pages/about-us/partners.tsx",
-      "./src/pages/about-us/who-we-are.tsx",
-      "./src/pages/about-us/work-with-us.tsx",
-      "./src/pages/ai/index.tsx",
-      "./src/pages/blog/[blogSlug].tsx",
-      "./src/pages/blog/index.tsx",
-      "./src/pages/contact-us.tsx",
-      "./src/pages/curriculum/index.tsx",
-      "./src/pages/legal/[policyPageSlug].tsx",
-      "./src/pages/lesson-planning.tsx",
-      "./src/pages/lp/[landingPageSlug].tsx",
-      "./src/pages/pupils/beta/previews/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/index.tsx",
-      "./src/pages/pupils/l/[redirectFrom]/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/printable.tsx",
-      "./src/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/share.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/years/[yearSlug]/subjects.tsx",
-      "./src/pages/support-your-team.tsx",
-      "./src/pages/teachers/beta/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/beta/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].tsx",
-      "./src/pages/teachers/index.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/index.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/share.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.tsx",
-      "./src/pages/teachers/search.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/specialist/subjects/[subjectSlug]/programmes.tsx",
-      "./src/pages/teachers/specialist/subjects/index.tsx",
-      "./src/pages/webinars/[webinarSlug].tsx",
-      "./src/pages/webinars/index.tsx"
-    ],
     "saveDownloadsDataToLocalStorage": [
       "./src/components/CurriculumComponents/CurriculumDownloadTab/index.tsx"
-    ],
-    "useFetch": [
-      "./src/components/CurriculumComponents/CurriculumDownloadTab/index.tsx"
-    ],
-    "unionOrNull": [
-      "./src/components/CurriculumComponents/CurriculumDownloadTab/index.tsx",
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx"
     ],
     "extractUrnAndSchool": [
       "./src/browser-lib/hubspot/forms/getHubspotFormPayloads.ts",
@@ -4022,9 +3189,6 @@
       "./src/components/TeacherComponents/OnboardingForm/onboardingActions/collectOnboardingTrackingProps.ts"
     ],
     "curriculumResourcesDownloadedCurriculumDocument": [
-      "./src/components/CurriculumComponents/CurriculumDownloadTab/index.tsx"
-    ],
-    "tierSelected": [
       "./src/components/CurriculumComponents/CurriculumDownloadTab/index.tsx"
     ],
     "getLocalstorageWithSchema": [
@@ -4036,12 +3200,10 @@
     ],
     "useLessonEngineContext": [
       "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test.tsx",
-      "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.tsx",
       "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.tsx",
       "./src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.tsx",
       "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.tsx",
       "./src/components/PupilComponents/QuizShortAnswer/QuizShortAnswer.tsx",
-      "./src/components/PupilViews/PupilExperience/PupilExperience.view.test.tsx",
       "./src/components/PupilViews/PupilExperience/PupilExperience.view.tsx",
       "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx",
       "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.tsx",
@@ -4052,35 +3214,15 @@
       "./src/hooks/useTrackSectionStarted.ts"
     ],
     "usePupilAnalytics": [
-      "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test.tsx",
       "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.tsx",
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
-      "./src/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics.ts",
-      "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.test.tsx",
       "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.tsx",
       "./src/components/PupilViews/PupilExperience/PupilExperience.view.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.test.tsx",
       "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx",
-      "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.test.tsx",
       "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.test.tsx",
       "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.tsx",
-      "./src/components/PupilViews/PupilReview/PupilReview.view.test.tsx",
       "./src/components/PupilViews/PupilReview/PupilReview.view.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.test.tsx",
       "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx"
-    ],
-    "useQuizEngineContext": [
-      "./src/components/PupilComponents/QuizCorrectAnswers/QuizCorrectAnswers.tsx",
-      "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.test.tsx",
-      "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.tsx",
-      "./src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.tsx",
-      "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.tsx",
-      "./src/components/PupilComponents/QuizMatchAnswer/QuizMatchAnswer.tsx",
-      "./src/components/PupilComponents/QuizOrderAnswer/QuizOrderAnswer.tsx",
-      "./src/components/PupilComponents/QuizRenderer/QuizRenderer.tsx",
-      "./src/components/PupilComponents/QuizShortAnswer/QuizShortAnswer.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.tsx"
     ],
     "isLessonReviewSection": [
       "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test.tsx",
@@ -4094,18 +3236,6 @@
       "./src/components/PupilComponents/QuizMatchAnswer/QuizMatchAnswer.tsx",
       "./src/components/PupilComponents/QuizOrderAnswer/QuizOrderAnswer.tsx",
       "./src/pages-helpers/pupil/lessons-pages/getProps.ts"
-    ],
-    "isImage": [
-      "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.tsx",
-      "./src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.tsx",
-      "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.tsx"
-    ],
-    "isText": [
-      "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.test.tsx",
-      "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.tsx",
-      "./src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.tsx",
-      "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.test.tsx",
-      "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.tsx"
     ],
     "isMatchAnswer": [
       "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.tsx",
@@ -4127,32 +3257,19 @@
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
       "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.tsx"
     ],
-    "usePupilAnalyticsMock": [
-      "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test.tsx",
+    "useQuizEngineContext": [
+      "./src/components/PupilComponents/QuizCorrectAnswers/QuizCorrectAnswers.tsx",
       "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.test.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.test.tsx",
-      "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.test.tsx",
-      "./src/components/PupilViews/PupilReview/PupilReview.view.test.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.test.tsx"
-    ],
-    "trackingEvents": [
-      "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test.tsx",
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
-      "./src/components/PupilComponents/PupilAnalyticsProvider/getMockPupilAnalytics.ts",
-      "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.test.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.test.tsx",
-      "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.test.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.test.tsx",
-      "./src/components/PupilViews/PupilReview/PupilReview.view.test.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.test.tsx"
+      "./src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.tsx",
+      "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.tsx",
+      "./src/components/PupilComponents/QuizMatchAnswer/QuizMatchAnswer.tsx",
+      "./src/components/PupilComponents/QuizOrderAnswer/QuizOrderAnswer.tsx",
+      "./src/components/PupilComponents/QuizRenderer/QuizRenderer.tsx",
+      "./src/components/PupilComponents/QuizShortAnswer/QuizShortAnswer.tsx",
+      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.tsx"
     ],
     "createQuestionData": [
       "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.test.tsx"
-    ],
-    "createQuizEngineContext": [
-      "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.test.tsx",
-      "./src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.test.tsx",
-      "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.test.tsx"
     ],
     "createLessonEngineContext": [
       "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.test.tsx",
@@ -4164,6 +3281,14 @@
       "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.test.tsx",
       "./src/components/PupilViews/PupilReview/PupilReview.view.test.tsx",
       "./src/components/PupilViews/PupilVideo/PupilVideo.test.tsx"
+    ],
+    "isText": [
+      "./src/components/PupilComponents/QuizEngineProvider/QuizEngineProvider.test.tsx",
+      "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.test.tsx"
+    ],
+    "createQuizEngineContext": [
+      "./src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.test.tsx",
+      "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.test.tsx"
     ],
     "getSizes": [
       "./src/components/PupilComponents/QuizMCQMultiAnswer/QuizMCQMultiAnswer.tsx",
@@ -4192,14 +3317,8 @@
       "./src/pages-helpers/pupil/lessons-pages/getProps.ts",
       "./src/pages/pupils/l/[redirectFrom]/lessons/[lessonSlug]/[section].tsx"
     ],
-    "pupilAnalyticsContext": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics.ts"
-    ],
     "getMockPupilAnalytics": [
       "./src/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics.ts"
-    ],
-    "noVideo": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx"
     ],
     "activityResultsShared": [
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
@@ -4218,20 +3337,9 @@
       "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.tsx"
     ],
     "lessonAccessed": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessonListing.test.tsx",
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
       "./src/components/PupilViews/PupilExperience/PupilExperience.view.tsx",
       "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx"
-    ],
-    "lessonActivityAbandoned": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.test.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.test.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.test.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx"
     ],
     "lessonActivityAbandonedExitQuiz": [
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
@@ -4239,33 +3347,18 @@
     ],
     "lessonActivityAbandonedIntroduction": [
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.test.tsx",
       "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx"
     ],
     "lessonActivityAbandonedLessonAudio": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx"
     ],
     "lessonActivityAbandonedLessonVideo": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.test.tsx",
       "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx"
     ],
     "lessonActivityAbandonedStarterQuiz": [
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.test.tsx",
       "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.tsx"
-    ],
-    "lessonActivityCompleted": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.test.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.test.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.test.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx"
     ],
     "lessonActivityCompletedExitQuiz": [
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
@@ -4273,36 +3366,22 @@
     ],
     "lessonActivityCompletedIntroduction": [
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.test.tsx",
       "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx"
     ],
     "lessonActivityCompletedLessonAudio": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx"
     ],
     "lessonActivityCompletedLessonVideo": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.test.tsx",
       "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx"
     ],
     "lessonActivityCompletedStarterQuiz": [
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.test.tsx",
       "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.tsx"
-    ],
-    "lessonActivityDownloaded": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx"
     ],
     "lessonActivityDownloadedWorksheet": [
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
       "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx"
-    ],
-    "lessonActivityStarted": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/hooks/useTrackSectionStarted.ts"
     ],
     "lessonActivityStartedExitQuiz": [
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
@@ -4313,11 +3392,9 @@
       "./src/hooks/useTrackSectionStarted.ts"
     ],
     "lessonActivityStartedLessonAudio": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx"
     ],
     "lessonActivityStartedLessonVideo": [
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.test.tsx",
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
       "./src/hooks/useTrackSectionStarted.ts"
     ],
@@ -4330,12 +3407,8 @@
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx"
     ],
     "lessonStarted": [
-      "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test.tsx",
       "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.tsx",
-      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
-      "./src/components/PupilComponents/pupilTestHelpers/createLessonEngineContext.ts",
-      "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.test.tsx",
-      "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.tsx"
+      "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx"
     ],
     "lessonSummaryReviewed": [
       "./src/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider.tsx",
@@ -4353,30 +3426,19 @@
       "./src/components/PupilComponents/QuizMCQSingleAnswer/QuizMCQSingleAnswer.tsx"
     ],
     "useReferrer": [
-      "./src/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner.tsx",
-      "./src/hooks/useReferrer.ts"
-    ],
-    "referrerSources": [
-      "./src/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner.tsx",
-      "./src/hooks/useReferrer.test.tsx"
+      "./src/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner.tsx"
     ],
     "getStemTextData": [
       "./src/components/PupilComponents/QuizMatchAnswer/QuizMatchAnswer.tsx"
-    ],
-    "allLessonReviewSections": [
-      "./src/components/PupilComponents/LessonEngineProvider/LessonEngineProvider.test.tsx",
-      "./src/components/PupilComponents/pupilTestHelpers/createLessonEngineContext.ts",
-      "./src/components/PupilViews/PupilExperience/PupilExperience.view.test.tsx",
-      "./src/components/PupilViews/PupilExperience/PupilExperience.view.tsx"
-    ],
-    "useIsCurrent": [
-      "./src/components/SharedComponents/KeyStageKeypad/KeyStageKeypad.tsx",
-      "./src/components/SharedComponents/useIsCurrent/useIsCurrent.ts"
     ],
     "curriculumVisualiserAccessed": [
       "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.test.tsx",
       "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
       "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePickerMobile.test.tsx"
+    ],
+    "useMediaQuery": [
+      "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
+      "./src/components/TeacherComponents/SearchResultsItem/SearchResultsItem.tsx"
     ],
     "isExamboardSlug": [
       "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx",
@@ -4390,42 +3452,29 @@
     "getPhaseText": [
       "./src/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker.tsx"
     ],
-    "useEventHandler": [
-      "./src/components/GenericPagesComponents/HomepageTabImageButton/HomePageTabImageButton.tsx",
-      "./src/components/SharedComponents/Box/Box.tsx",
-      "./src/components/SharedComponents/Button/Button.tsx",
-      "./src/components/SharedComponents/Button/IconButton/IconButton.tsx",
-      "./src/components/SharedComponents/Button/LoadingButton/LoadingButton.tsx",
-      "./src/components/TeacherComponents/ListItemCard/ListItemCard.tsx",
-      "./src/hooks/useClickableCard.ts"
+    "browseRefined": [
+      "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.test.tsx",
+      "./src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.tsx",
+      "./src/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view.tsx",
+      "./src/components/SharedComponents/CategoryFilterList/CategoryFilterListItem.tsx",
+      "./src/components/TeacherComponents/SubjectListingCardCountCard/SubjectListingCardDoubleCountCard.tsx",
+      "./src/components/TeacherComponents/SubjectListingCardCountCardWithPathways/SubjectListingCardCountCardWithPathways.tsx",
+      "./src/components/TeacherComponents/UnitsLearningThemeFilters/UnitsLearningThemeFilters.test.tsx",
+      "./src/pages/pupils/years.tsx",
+      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.tsx",
+      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/index.tsx"
     ],
     "useCategoryFilterList": [
-      "./src/components/SharedComponents/CategoryFilterList/CategoryFilterList.stories.tsx",
-      "./src/components/SharedComponents/CategoryFilterList/useCategoryFilterList.ts"
+      "./src/components/SharedComponents/CategoryFilterList/CategoryFilterList.stories.tsx"
     ],
-    "useMediaClipThumbnailUrl": [
-      "./src/components/SharedComponents/VideoPlayer/useMediaClipThumbnailsUrl.ts",
-      "./src/components/TeacherComponents/LessonOverviewMediaClips/LessonOverviewClipWithThumbnail.tsx"
+    "useHover": [
+      "./src/components/SharedComponents/PostListItem/PostListItem.tsx",
+      "./src/components/SharedComponents/PostListUpcomingWebinarListItem/PostListUpcomingWebinarListItem.tsx",
+      "./src/components/TeacherComponents/ResourceCard/ResourceCard.tsx"
     ],
     "useSignedThumbnailToken": [
       "./src/components/SharedComponents/VideoPlayer/VideoPlayer.tsx",
-      "./src/components/SharedComponents/VideoPlayer/useMediaClipThumbnailsUrl.ts",
-      "./src/components/SharedComponents/VideoPlayer/useSignedVideoToken.ts"
-    ],
-    "useSignedVideoToken": [
-      "./src/components/SharedComponents/VideoPlayer/VideoPlayer.test.tsx",
-      "./src/components/SharedComponents/VideoPlayer/VideoPlayer.tsx",
-      "./src/components/SharedComponents/VideoPlayer/getSignedVideoToken.ts",
-      "./src/components/SharedComponents/VideoPlayer/useMediaClipThumbnailsUrl.ts",
-      "./src/components/SharedComponents/VideoPlayer/useSignedVideoToken.ts",
-      "./src/components/TeacherComponents/LessonOverviewMediaClips/LessonOverviewClipWithThumbnail.tsx"
-    ],
-    "useSignedStoryboardToken": [
-      "./src/components/SharedComponents/VideoPlayer/VideoPlayer.tsx",
-      "./src/components/SharedComponents/VideoPlayer/useSignedVideoToken.ts"
-    ],
-    "useSignedPlaybackId": [
-      "./src/components/SharedComponents/VideoPlayer/useSignedVideoToken.ts"
+      "./src/components/SharedComponents/VideoPlayer/useMediaClipThumbnailsUrl.ts"
     ],
     "reportError": [
       "./src/browser-lib/hubspot/hubspot.ts",
@@ -4442,7 +3491,6 @@
       "./src/components/SharedComponents/VideoPlayer/getSignedVideoToken.ts",
       "./src/components/SharedComponents/VideoPlayer/useSignedVideoToken.ts",
       "./src/components/SharedComponents/VideoPlayer/useVideoTracking.ts",
-      "./src/components/TeacherComponents/OnboardingForm/onboardingActions/setOnboardingLocalStorage.ts",
       "./src/components/TeacherComponents/OnboardingForm/onboardingActions/submitOnboardingHubspotData.ts",
       "./src/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker.test.tsx",
       "./src/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker.tsx",
@@ -4461,10 +3509,6 @@
       "./src/components/SharedComponents/VideoPlayer/useSignedVideoToken.ts",
       "./src/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker.tsx"
     ],
-    "useVideoTracking": [
-      "./src/components/SharedComponents/VideoPlayer/VideoPlayer.tsx",
-      "./src/components/SharedComponents/VideoPlayer/useVideoTracking.ts"
-    ],
     "videoFinished": [
       "./src/components/SharedComponents/VideoPlayer/useVideoTracking.ts"
     ],
@@ -4478,14 +3522,20 @@
     "videoStarted": [
       "./src/components/SharedComponents/VideoPlayer/useVideoTracking.ts"
     ],
-    "useButton": [
-      "./src/components/SharedComponents/Button/ButtonAsLink/ButtonAsLink.tsx",
-      "./src/components/SharedComponents/Button/IconButtonAsLink/IconButtonAsLink.tsx",
-      "./src/components/SharedComponents/Button/useButtonAsLinkProps.ts",
-      "./src/components/SharedComponents/VideoPlayer/VideoPlayer.test.tsx"
+    "useSignedVideoToken": [
+      "./src/components/SharedComponents/VideoPlayer/VideoPlayer.tsx"
+    ],
+    "useVideoTracking": [
+      "./src/components/SharedComponents/VideoPlayer/VideoPlayer.tsx"
+    ],
+    "useSignedStoryboardToken": [
+      "./src/components/SharedComponents/VideoPlayer/VideoPlayer.tsx"
     ],
     "useIconAnimation": [
       "./src/components/SharedComponents/Icon.deprecated/Icon.deprecated.tsx"
+    ],
+    "useIsCurrent": [
+      "./src/components/SharedComponents/KeyStageKeypad/KeyStageKeypad.tsx"
     ],
     "useEventListener": [
       "./src/components/SharedComponents/MobileFilters/MobileFilters.tsx",
@@ -4493,12 +3543,6 @@
     ],
     "useOverlay": [
       "./src/components/SharedComponents/Popover/Popover.tsx"
-    ],
-    "zIndexMap": [
-      "./src/components/SharedComponents/Popover/Popover.tsx"
-    ],
-    "buttonIconSizeMap": [
-      "./src/components/SharedComponents/Button/ButtonInner.tsx"
     ],
     "getButtonIconBackground": [
       "./src/components/SharedComponents/Button/ButtonInner.tsx"
@@ -4510,16 +3554,11 @@
       "./src/components/SharedComponents/Button/IconButton/iconButton.styles.ts",
       "./src/components/SharedComponents/Button/IconButtonInner.tsx"
     ],
-    "useButtonAsLinkProps": [
-      "./src/components/SharedComponents/Button/ButtonAsLink/ButtonAsLink.tsx",
-      "./src/components/SharedComponents/Button/useButtonAsLinkProps.ts"
-    ],
-    "defaultButtonProps": [
+    "getButtonStylesProps": [
       "./src/components/SharedComponents/Button/Button.tsx",
       "./src/components/SharedComponents/Button/ButtonAsLink/ButtonAsLink.tsx"
     ],
-    "getButtonStylesProps": [
-      "./src/components/SharedComponents/Button/Button.tsx",
+    "useButtonAsLinkProps": [
       "./src/components/SharedComponents/Button/ButtonAsLink/ButtonAsLink.tsx"
     ],
     "transformOwaLinkProps": [
@@ -4532,42 +3571,25 @@
     ],
     "useCookieConsent": [
       "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx",
-      "./src/components/SharedComponents/PortableText/PTActionTrigger.tsx",
-      "./src/components/SharedComponents/PortableText/PortableText.test.tsx"
+      "./src/components/SharedComponents/PortableText/PTActionTrigger.tsx"
     ],
-    "useUpcomingWebinarWall": [
-      "./src/components/GenericPagesComponents/UpcomingWebinarWall/index.ts",
-      "./src/components/GenericPagesComponents/UpcomingWebinarWall/useUpcomingWebinarWall.ts"
+    "useRadio": [
+      "./src/components/SharedComponents/RadioButtons/Radio.tsx"
     ],
-    "useWebinarRegistration": [
-      "./src/components/GenericPagesComponents/WebinarRegistration/WebinarRegistration.tsx",
-      "./src/components/GenericPagesComponents/WebinarRegistration/index.ts",
-      "./src/components/GenericPagesComponents/WebinarRegistration/useWebinarRegistration.ts"
-    ],
-    "newIconFocusUnderline": [
-      "./src/components/GenericPagesComponents/HomepageTabImageButton/HomePageTabImageButton.tsx"
+    "useLocalStorage": [
+      "./src/components/GenericPagesComponents/WebinarRegistration/useWebinarRegistration.ts",
+      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads.ts"
     ],
     "browseRefinedAccessed": [
-      "./src/components/AppComponents/AppHeaderBurgerMenuLink/AppHeaderBurgerMenuLink.test.tsx",
       "./src/components/AppComponents/AppHeaderBurgerMenuLink/AppHeaderBurgerMenuLink.tsx",
       "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx",
-      "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.test.tsx",
       "./src/components/GenericPagesComponents/TeachersTab/TeachersTab.tsx"
-    ],
-    "useBioCardListModal": [
-      "./src/components/GenericPagesComponents/BioCardListModal/BioCardListModal.tsx",
-      "./src/components/GenericPagesComponents/BioCardListModal/useBioCardListModal.ts",
-      "./src/components/GenericPagesComponents/BioCardListModalDialog/BioCardListModalDialog.tsx",
-      "./src/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog.test.tsx",
-      "./src/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog.ts"
     ],
     "useBioCardListModalDialog": [
       "./src/components/GenericPagesComponents/BioCardListModal/BioCardListModal.tsx",
-      "./src/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog.test.tsx",
-      "./src/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog.ts"
+      "./src/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog.test.tsx"
     ],
     "useUtmParams": [
-      "./src/browser-lib/hubspot/forms/getHubspotFormPayloads.ts",
       "./src/components/GenericPagesComponents/NewsletterForm/useNewsletterForm.ts",
       "./src/components/TeacherComponents/OnboardingForm/OnboardingForm.tsx",
       "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit.ts"
@@ -4581,43 +3603,29 @@
     "usePreventScroll": [
       "./src/components/GenericPagesComponents/BioCardListModalDialog/useBioCardListModalDialog.ts"
     ],
-    "toSentenceCase": [
-      "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx",
-      "./src/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query.ts",
-      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx"
+    "classroomSelected": [
+      "./src/components/AppComponents/AppHeader/AppHeader.tsx",
+      "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx"
+    ],
+    "teacherHubSelected": [
+      "./src/components/AppComponents/LayoutSiteFooter/LayoutSiteFooter.tsx"
     ],
     "useAxe": [
       "./src/components/AppComponents/App/AppHooks.tsx"
     ],
     "useBugsnag": [
-      "./src/browser-lib/bugsnag/useBugsnag.ts",
       "./src/components/AppComponents/App/AppHooks.tsx"
     ],
     "useGleap": [
-      "./src/browser-lib/gleap/useGleap.ts",
       "./src/components/AppComponents/App/AppHooks.tsx"
     ],
     "bugsnagInitialised": [
       "./src/components/AppComponents/ErrorBoundary/ErrorBoundary.tsx"
     ],
-    "mockLoggedOut": [
-      "./src/components/AppComponents/AppHeader/AppHeader.test.tsx",
-      "./src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton.test.tsx",
-      "./src/hocs/withOnboardingRequired.test.tsx"
-    ],
-    "useSelect": [
-      "./src/components/AppComponents/AppHeader/AppHeader.tsx",
-      "./src/hooks/useSelectedArea.test.tsx",
-      "./src/hooks/useSelectedArea.ts"
-    ],
     "useSelectedArea": [
-      "./src/components/AppComponents/AppHeader/AppHeader.tsx",
-      "./src/hooks/useSelectedArea.ts"
-    ],
-    "getBreakpoint": [
       "./src/components/AppComponents/AppHeader/AppHeader.tsx"
     ],
-    "burgerMenuSections": [
+    "getBreakpoint": [
       "./src/components/AppComponents/AppHeader/AppHeader.tsx"
     ],
     "subjectSelected": [
@@ -4631,16 +3639,21 @@
     "resourceContainerExpanded": [
       "./src/components/TeacherComponents/LessonItemContainer/LessonItemContainer.test.tsx"
     ],
-    "useUnitDownloadButtonState": [
-      "./src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton.tsx"
-    ],
     "useUnitDownloadExistenceCheck": [
-      "./src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton.test.tsx",
-      "./src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck.tsx"
+      "./src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton.tsx"
     ],
     "createUnitDownloadLink": [
       "./src/components/TeacherComponents/UnitDownloadButton/UnitDownloadButton.tsx"
+    ],
+    "useForm": [
+      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
+      "./src/components/TeacherComponents/LessonShareCardGroup/LessonShareCardGroup.stories.tsx"
+    ],
+    "useFeatureFlagVariantKey": [
+      "./src/components/TeacherComponents/LessonItemContainerLink/LessonItemContainerLink.tsx",
+      "./src/components/TeacherComponents/LessonOverviewHeaderDownloadAllButton/LessonOverviewHeaderDownloadAllButton.tsx",
+      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit.ts",
+      "./src/pages/pupils/beta/ab-demos/client-actions.tsx"
     ],
     "getPageItems": [
       "./src/components/TeacherComponents/UnitList/UnitList.tsx"
@@ -4651,9 +3664,8 @@
     "isUnitListData": [
       "./src/components/TeacherComponents/UnitList/UnitList.tsx"
     ],
-    "isSpecialistUnit": [
-      "./src/components/TeacherComponents/UnitList/UnitList.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx"
+    "isUnitOption": [
+      "./src/components/TeacherComponents/UnitList/UnitList.tsx"
     ],
     "convertSubjectToSlug": [
       "./src/components/TeacherComponents/UnitList/UnitList.tsx"
@@ -4684,12 +3696,7 @@
     "getSchoolUrn": [
       "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState.tsx"
     ],
-    "useDownloadExistenceCheck": [
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck.tsx"
-    ],
     "getLessonDownloadResourcesExistence": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx",
-      "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck.test.tsx",
       "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck.tsx"
     ],
     "getHubspotDownloadsFormPayload": [
@@ -4698,10 +3705,13 @@
     "getUnitDownloadFileExistence": [
       "./src/components/TeacherComponents/hooks/downloadAndShareHooks/useUnitDownloadExistenceCheck.tsx"
     ],
+    "onwardContentSelected": [
+      "./src/components/TeacherComponents/DownloadConfirmation/DownloadConfirmation.tsx"
+    ],
     "fetcher": [
       "./src/components/TeacherComponents/ResourcePageSchoolPicker/useSchoolPicker.test.tsx"
     ],
-    "useMediaClipThumbnailsUrl": [
+    "useMediaClipThumbnailUrl": [
       "./src/components/TeacherComponents/LessonOverviewMediaClips/LessonOverviewClipWithThumbnail.tsx"
     ],
     "collectOnboardingTrackingProps": [
@@ -4719,42 +3729,27 @@
     "curriculumMapDownloaded": [
       "./src/components/TeacherComponents/SpecialistProgrammeHeaderListing/SpecialistProgrammeHeaderListing.test.tsx"
     ],
-    "headerListingProps": [
-      "./src/components/TeacherComponents/HeaderListing/HeaderListing.test.tsx"
-    ],
     "useWorksheetDownload": [
       "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx"
     ],
     "useTrackSectionStarted": [
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.test.tsx",
       "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx",
       "./src/components/PupilViews/PupilLessonOverview/PupilLessonOverview.view.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.test.tsx",
       "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx"
     ],
     "useAdditionalFilesDownload": [
       "./src/components/PupilViews/PupilIntro/PupilIntro.view.tsx",
       "./src/components/PupilViews/PupilIntro/useAdditionalFilesDownload.ts"
     ],
-    "useTrackSectionStartedMock": [
-      "./src/components/PupilViews/PupilIntro/PupilIntro.view.test.tsx"
-    ],
     "generateKeyStageTitle": [
       "./src/components/PupilViews/PupilUnitListing/PupilUnitListing.view.tsx"
     ],
     "useBackHref": [
-      "./src/components/PupilViews/PupilUnitListing/PupilUnitListing.view.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/units.tsx"
+      "./src/components/PupilViews/PupilUnitListing/PupilUnitListing.view.tsx"
     ],
     "unitAccessed": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/unitListing.test.tsx",
       "./src/components/PupilViews/PupilUnitListing/PupilUnitListing.view.tsx",
       "./src/pages/teachers/programmes/[programmeSlug]/units.tsx"
-    ],
-    "useGetVideoTrackingData": [
-      "./src/components/PupilViews/PupilVideo/PupilVideo.test.tsx",
-      "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx",
-      "./src/hooks/useTrackSectionStarted.ts"
     ],
     "additionalFileListItem": [
       "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx"
@@ -4762,10 +3757,12 @@
     "additionalFileSingle": [
       "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx"
     ],
+    "useGetVideoTrackingData": [
+      "./src/components/PupilViews/PupilVideo/PupilVideo.view.tsx",
+      "./src/hooks/useTrackSectionStarted.ts"
+    ],
     "getAvailableProgrammeFactor": [
       "./src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.test.tsx",
-      "./src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.tsx",
-      "./src/pages-helpers/pupil/options-pages/getFactorDataFromSlug.ts",
       "./src/pages-helpers/pupil/options-pages/options-pages-helpers.ts"
     ],
     "getFactorDataFromSlug": [
@@ -4776,13 +3773,8 @@
       "./src/pages-helpers/pupil/lessons-pages/getProps.ts",
       "./src/pages/pupils/l/[redirectFrom]/lessons/[lessonSlug]/[section].tsx"
     ],
-    "useLessonReviewFeedback": [
-      "./src/components/PupilViews/PupilReview/useLessonReviewFeedback.ts"
-    ],
     "useGetQuizTrackingData": [
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.test.tsx",
-      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.tsx",
-      "./src/hooks/useGetQuizTrackingData.ts"
+      "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.tsx"
     ],
     "isMultiAnswerMCQ": [
       "./src/components/PupilComponents/QuizUtils/pickAnswerComponent.ts",
@@ -4795,11 +3787,6 @@
     "isSingleAnswerMCQ": [
       "./src/components/PupilComponents/QuizUtils/pickAnswerComponent.ts",
       "./src/components/PupilViews/PupilQuiz/PupilQuiz.view.tsx"
-    ],
-    "useOakTheme": [
-      "./src/__tests__/pages/_app.test.tsx",
-      "./src/browser-lib/oak-globals/oakGlobals.ts",
-      "./src/hooks/useOakTheme.ts"
     ],
     "getStaticProps": [
       "./src/__tests__/pages/about-us/board.test.tsx",
@@ -4817,106 +3804,12 @@
       "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
       "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/unitListing.test.tsx",
       "./src/__tests__/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/__tests__/pages/webinars/[webinarSlug].test.tsx",
-      "./src/pages/about-us/board.tsx",
-      "./src/pages/about-us/leadership.tsx",
-      "./src/pages/about-us/partners.tsx",
-      "./src/pages/about-us/who-we-are.tsx",
-      "./src/pages/about-us/work-with-us.tsx",
-      "./src/pages/ai/index.tsx",
-      "./src/pages/blog/[blogSlug].tsx",
-      "./src/pages/blog/categories/[categorySlug].tsx",
-      "./src/pages/blog/index.tsx",
-      "./src/pages/contact-us.tsx",
-      "./src/pages/curriculum/index.tsx",
-      "./src/pages/index.tsx",
-      "./src/pages/lesson-planning.tsx",
-      "./src/pages/pupils/beta/previews/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/index.tsx",
-      "./src/pages/pupils/l/[redirectFrom]/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/printable.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/options.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/options/examboard/[examboardSlug].tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/options/pathway/[pathwaySlug].tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/years/[yearSlug]/subjects.tsx",
-      "./src/pages/support-your-team.tsx",
-      "./src/pages/teachers/beta/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/beta/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].tsx",
-      "./src/pages/teachers/curriculum/index.tsx",
-      "./src/pages/teachers/index.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/index.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/share.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.tsx",
-      "./src/pages/teachers/search.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/specialist/subjects/[subjectSlug]/programmes.tsx",
-      "./src/pages/teachers/specialist/subjects/index.tsx",
-      "./src/pages/webinars/[webinarSlug].tsx",
-      "./src/pages/webinars/categories/[categorySlug].tsx",
-      "./src/pages/webinars/index.tsx"
-    ],
-    "pupilLessonQuery": [
-      "./src/__tests__/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/printable.test.tsx",
-      "./src/node-lib/curriculum-api-2023/index.ts",
-      "./src/pages-helpers/pupil/lessons-pages/getProps.ts",
-      "./src/pages/pupils/l/[redirectFrom]/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/printable.tsx",
-      "./src/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/share.tsx"
-    ],
-    "useNextSanityImage": [
-      "./src/__tests__/pages/about-us/board.test.tsx",
-      "./src/__tests__/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].test.tsx",
-      "./src/pages/blog/[blogSlug].tsx"
-    ],
-    "mockSeo": [
-      "./src/__tests__/pages/about-us/about-us.fixtures.ts",
-      "./src/__tests__/pages/about-us/board.test.tsx",
-      "./src/__tests__/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessonListing.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/unitListing.test.tsx",
-      "./src/__tests__/pages/teachers/search.test.tsx",
-      "./src/__tests__/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/__tests__/pages/webinars/[webinarSlug].test.tsx"
-    ],
-    "mockSeoResult": [
-      "./src/__tests__/pages/about-us/board.test.tsx",
-      "./src/__tests__/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessonListing.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/unitListing.test.tsx",
-      "./src/__tests__/pages/teachers/search.test.tsx",
-      "./src/__tests__/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].test.tsx",
       "./src/__tests__/pages/webinars/[webinarSlug].test.tsx"
     ],
     "portableTextFromString": [
       "./src/__tests__/pages/about-us/about-us.fixtures.ts",
       "./src/__tests__/pages/about-us/board.test.tsx",
       "./src/__tests__/pages/webinars/webinar.fixtures.ts"
-    ],
-    "testAboutPageBaseData": [
-      "./src/__tests__/pages/about-us/board.test.tsx"
     ],
     "getStaticPaths": [
       "./src/__tests__/pages/blog/[blogSlug].test.tsx",
@@ -4926,43 +3819,7 @@
       "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media.test.tsx",
       "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.test.tsx",
       "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/unitListing.test.tsx",
-      "./src/__tests__/pages/webinars/[webinarSlug].test.tsx",
-      "./src/pages-helpers/get-static-paths.ts",
-      "./src/pages/blog/[blogSlug].tsx",
-      "./src/pages/blog/categories/[categorySlug].tsx",
-      "./src/pages/pupils/beta/previews/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/l/[redirectFrom]/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/printable.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/options.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/options/examboard/[examboardSlug].tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/options/pathway/[pathwaySlug].tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/[section].tsx",
-      "./src/pages/pupils/years/[yearSlug]/subjects.tsx",
-      "./src/pages/teachers/beta/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/beta/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/[subjectSlug]/programmes.tsx",
-      "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/index.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/lessons/[lessonSlug]/share.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/media.tsx",
-      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/share.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx",
-      "./src/pages/teachers/specialist/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.tsx",
-      "./src/pages/teachers/specialist/subjects/[subjectSlug]/programmes.tsx",
-      "./src/pages/webinars/[webinarSlug].tsx",
-      "./src/pages/webinars/categories/[categorySlug].tsx"
+      "./src/__tests__/pages/webinars/[webinarSlug].test.tsx"
     ],
     "mockVideoAsset": [
       "./src/__tests__/pages/webinars/[webinarSlug].test.tsx"
@@ -4989,9 +3846,6 @@
     "lessonSelected": [
       "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessonListing.test.tsx"
     ],
-    "mockUserWithoutDownloadAccess": [
-      "./src/__tests__/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/downloads.test.tsx"
-    ],
     "getSdk": [
       "./src/node-lib/curriculum-api-2023/sdk.ts",
       "./src/node-lib/sanity-graphql/generated/sdk.ts",
@@ -5015,24 +3869,8 @@
     "userSignUpCompleted": [
       "./src/hooks/useTrackRegistration.ts"
     ],
-    "siteAreas": [
-      "./src/hooks/useSelectedArea.test.tsx",
-      "./src/hooks/useSelectedArea.ts"
-    ],
-    "getServerSideProps": [
-      "./src/hooks/useSelectedArea.ts",
-      "./src/pages/blog/sitemap.xml/index.tsx",
-      "./src/pages/lp/[landingPageSlug].tsx",
-      "./src/pages/pupils/beta/ab-demos/server-side-render.tsx",
-      "./src/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/share.tsx",
-      "./src/pages/pupils/sitemap-1.xml/index.tsx",
-      "./src/pages/pupils/sitemap.xml/index.tsx",
-      "./src/pages/teachers/curriculum/sitemap.xml/index.tsx",
-      "./src/pages/teachers/key-stages/sitemap.xml/index.tsx",
-      "./src/pages/teachers/sitemap-1.xml/index.tsx",
-      "./src/pages/teachers/sitemap.xml/index.tsx",
-      "./src/pages/webinars/categories/sitemap.xml/index.tsx",
-      "./src/pages/webinars/sitemap.xml/index.tsx"
+    "useClickableCard": [
+      "./src/hooks/useSelectedArea.test.tsx"
     ],
     "dispatchLocalStorageEvent": [
       "./src/hooks/useOakTheme.ts"
@@ -5046,9 +3884,6 @@
     "getMediaQuery": [
       "./src/hooks/useMediaQuery.tsx"
     ],
-    "postToPostListItem": [
-      "./src/pages/lesson-planning.tsx"
-    ],
     "getNavItems": [
       "./src/pages/lesson-planning.tsx"
     ],
@@ -5056,32 +3891,15 @@
       "./src/pages-helpers/home/getBlogPosts.ts",
       "./src/pages/lesson-planning.tsx"
     ],
-    "imageBuilder": [
-      "./src/pages/blog/[blogSlug].tsx",
-      "./src/pages/lesson-planning.tsx"
-    ],
-    "bodyPortableText": [
-      "./src/__tests__/pages/teachers/index.test.tsx",
-      "./src/common-lib/cms-types/blocks.ts",
-      "./src/common-lib/cms-types/contactPage.ts",
-      "./src/common-lib/cms-types/homePage.ts",
-      "./src/common-lib/cms-types/landingPage.ts",
-      "./src/common-lib/cms-types/planALessonPage.ts",
-      "./src/common-lib/cms-types/policyPage.ts",
-      "./src/common-lib/cms-types/supportPage.ts",
-      "./src/node-lib/sanity-graphql/generated/sdk.ts",
-      "./src/pages/about-us/board.tsx",
-      "./src/pages/about-us/leadership.tsx",
-      "./src/pages/about-us/partners.tsx",
-      "./src/pages/about-us/who-we-are.tsx",
-      "./src/pages/about-us/work-with-us.tsx",
-      "./src/pages/contact-us.tsx",
-      "./src/pages/legal/[policyPageSlug].tsx",
-      "./src/pages/lesson-planning.tsx",
-      "./src/pages/lp/[landingPageSlug].tsx"
-    ],
     "browseAccessed": [
       "./src/pages/pupils/years.tsx"
+    ],
+    "pupilLessonQuery": [
+      "./src/node-lib/curriculum-api-2023/index.ts",
+      "./src/pages-helpers/pupil/lessons-pages/getProps.ts",
+      "./src/pages/pupils/l/[redirectFrom]/lessons/[lessonSlug]/[section].tsx",
+      "./src/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/printable.tsx",
+      "./src/pages/pupils/lessons/[lessonSlug]/results/[attemptId]/share.tsx"
     ],
     "extractBaseSlug": [
       "./src/pages/pupils/programmes/[programmeSlug]/units.tsx"
@@ -5102,11 +3920,18 @@
       "./src/pages/blog/index.tsx",
       "./src/pages/webinars/[webinarSlug].tsx"
     ],
+    "useSearch": [
+      "./src/pages/teachers/search.tsx"
+    ],
     "useSearchFilters": [
       "./src/pages/teachers/search.tsx"
     ],
     "getCombinedSubjects": [
       "./src/pages/teachers/key-stages/[keyStageSlug]/subjects/index.tsx"
+    ],
+    "useLesson": [
+      "./src/pages/teachers/lessons/[lessonSlug].tsx",
+      "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug].tsx"
     ],
     "populateLessonWithTranscript": [
       "./src/pages/teachers/lessons/[lessonSlug].tsx",
@@ -5115,35 +3940,30 @@
     "groupLessonPathways": [
       "./src/pages/teachers/lessons/[lessonSlug].tsx"
     ],
+    "isSpecialistUnit": [
+      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx"
+    ],
+    "toSentenceCase": [
+      "./src/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query.ts",
+      "./src/pages/teachers/programmes/[programmeSlug]/units.tsx"
+    ],
     "isLessonListItem": [
       "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx"
     ],
     "unitDownloadInitiated": [
       "./src/pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons.tsx"
     ],
-    "sanityClientLike": [
+    "useNextSanityImage": [
       "./src/pages/blog/[blogSlug].tsx"
     ],
     "hasLoaded": [
       "./src/browser-lib/gleap/useGleap.ts"
     ],
-    "oakSupportMap": [
-      "./src/browser-lib/hubspot/forms/getHubspotFormPayloads.ts"
-    ],
     "initialiseBugsnag": [
       "./src/browser-lib/bugsnag/useBugsnag.ts"
     ],
-    "consentClient": [
-      "./src/browser-lib/cookie-consent/CookieConsentProvider.tsx",
-      "./src/browser-lib/hubspot/hubspot.ts",
-      "./src/browser-lib/posthog/posthog.ts",
-      "./src/common-lib/error-reporter/errorReporter.ts"
-    ],
     "useRequireOnboarding": [
       "./src/hocs/withOnboardingRequired.tsx"
-    ],
-    "mockLoadingUser": [
-      "./src/hocs/withOnboardingRequired.test.tsx"
     ],
     "withOnboardingRequired": [
       "./src/hocs/withOnboardingRequired.test.tsx"
@@ -5154,8 +3974,14 @@
     "sortSubjectCategoriesOnFeatures": [
       "./src/pages-helpers/curriculum/docx/tab-helpers.ts"
     ],
-    "sortUnits": [
-      "./src/pages-helpers/curriculum/docx/tab-helpers.ts"
+    "subjectPhaseOptions": [
+      "./src/node-lib/curriculum-api-2023/generated/sdk.ts",
+      "./src/pages-helpers/curriculum/docx/tab-helpers.ts",
+      "./src/pages/api/curriculum-downloads/index.ts",
+      "./src/pages/curriculum/index.tsx",
+      "./src/pages/teachers/curriculum/[subjectPhaseSlug]/[tab].tsx",
+      "./src/pages/teachers/curriculum/index.tsx",
+      "./src/pages/teachers/curriculum/sitemap.xml/index.tsx"
     ],
     "requestLessonResources": [
       "./src/pages-helpers/pupil/lessons-pages/getProps.ts",
@@ -5174,15 +4000,6 @@
     ],
     "createAndStoreShareId": [
       "./src/pages-helpers/teacher/share-experiments/getUpdatedUrl.ts"
-    ],
-    "shareMethods": [
-      "./src/pages-helpers/teacher/share-experiments/getUpdatedUrl.ts"
-    ],
-    "serializeDate": [
-      "./src/pages/blog/index.tsx",
-      "./src/pages/teachers/curriculum/index.tsx",
-      "./src/pages/webinars/index.tsx",
-      "./src/utils/getAndMergeWebinarsAndBlogs.ts"
     ],
     "getCookiesWithSchema": [
       "./src/utils/getPrereleaseFlag.ts"
@@ -5205,22 +4022,8 @@
     "getCaptionsFromFile": [
       "./src/components/PupilComponents/pupilUtils/requestLessonResources.ts"
     ],
-    "focusUnderlineStyles": [
-      "./src/components/SharedComponents/OwaLink/OwaLink.tsx"
-    ],
-    "newFocusUnderlineStyles": [
-      "./src/components/SharedComponents/OwaLink/OwaLink.tsx"
-    ],
     "isExternalHref": [
       "./src/components/SharedComponents/OwaLink/OwaLink.tsx"
-    ],
-    "breakpoints": [
-      "./src/components/SharedComponents/Button/common.ts",
-      "./src/components/SharedComponents/CMSImage/getSizes.ts"
-    ],
-    "iconFocusUnderline": [
-      "./src/components/SharedComponents/Button/IconButton/iconButton.styles.ts",
-      "./src/components/SharedComponents/Button/button.styles.ts"
     ],
     "getButtonBackground": [
       "./src/components/SharedComponents/Button/button.styles.ts"
@@ -5243,50 +4046,34 @@
     ],
     "resolveInternalHref": [
       "./src/components/SharedComponents/PortableText/PortableText.tsx",
-      "./src/pages/about-us/who-we-are.tsx",
       "./src/pages/legal/[policyPageSlug].tsx"
-    ],
-    "resolveSanityReferences": [
-      "./src/components/SharedComponents/PortableText/PortableText.tsx",
-      "./src/node-lib/cms/sanity-client/cmsMethods.ts",
-      "./src/node-lib/cms/sanity-client/getAllPaths.ts"
     ],
     "getParsedData": [
       "./src/components/SharedComponents/helpers/downloadAndShareHelpers/createDownloadLink.tsx",
       "./src/components/SharedComponents/helpers/downloadAndShareHelpers/getDownloadResourcesExistence.tsx"
     ],
-    "containerTitleToPreselectMap": [
-      "./src/components/TeacherComponents/LessonItemContainer/LessonItemContainer.tsx"
-    ],
     "getSharingMetadata": [
-      "./src/components/TeacherComponents/LessonShareLinks/getHrefForSocialSharing.ts",
-      "./src/components/TeacherComponents/LessonShareLinks/linkConfig.ts"
+      "./src/components/TeacherComponents/LessonShareLinks/getHrefForSocialSharing.ts"
     ],
     "getHubspotOnboardingFormPayload": [
       "./src/components/TeacherComponents/OnboardingForm/onboardingActions/submitOnboardingHubspotData.ts"
     ],
-    "combinedPreselectedTypeMap": [
-      "./src/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadResourceType.tsx"
-    ],
-    "getFakeFetch": [
-      "./src/__tests__/__helpers__/fakeFetch/generics.ts"
-    ],
     "buildFetchMatcher": [
       "./src/__tests__/__helpers__/fakeFetch/hubspot.ts"
     ],
-    "buildHubspotFetchMatcher": [
-      "./src/__tests__/__helpers__/fakeFetch/index.ts"
+    "mockSeo": [
+      "./src/__tests__/pages/about-us/about-us.fixtures.ts"
     ],
     "transformHubspotForm": [
       "./src/node-lib/hubspot-forms/index.ts"
-    ],
-    "hubspotFormDefinitionSchema": [
-      "./src/node-lib/hubspot-forms/transformHubspotForm.ts"
     ],
     "resolveHubspotFromReferences": [
       "./src/node-lib/cms/sanity-client/cmsMethods.ts"
     ],
     "parseResults": [
+      "./src/node-lib/cms/sanity-client/cmsMethods.ts"
+    ],
+    "resolveSanityReferences": [
       "./src/node-lib/cms/sanity-client/cmsMethods.ts"
     ],
     "getHubspotFormById": [
@@ -5299,9 +4086,6 @@
     "isRecord": [
       "./src/node-lib/cms/sanity-client/resolveHubspotFromReferences.ts"
     ],
-    "portableTextReferencedEntrySchema": [
-      "./src/node-lib/cms/sanity-client/resolveSanityReferences.ts"
-    ],
     "pupilSubjectListingQuery": [
       "./src/node-lib/curriculum-api-2023/index.ts",
       "./src/pages/pupils/years/[yearSlug]/subjects.tsx"
@@ -5310,8 +4094,7 @@
       "./src/node-lib/curriculum-api-2023/index.ts"
     ],
     "lessonMediaClipsQuery": [
-      "./src/node-lib/curriculum-api-2023/index.ts",
-      "./src/node-lib/curriculum-api-2023/queries/lessonBetaMediaClips/lessonBetaMediaClips.query.ts"
+      "./src/node-lib/curriculum-api-2023/index.ts"
     ],
     "pupilLessonListingQuery": [
       "./src/node-lib/curriculum-api-2023/index.ts",
@@ -5321,43 +4104,22 @@
       "./src/node-lib/curriculum-api-2023/index.ts"
     ],
     "betaLessonMediaClipsQuery": [
-      "./src/node-lib/curriculum-api-2023/index.ts",
-      "./src/pages/teachers/beta/lessons/[lessonSlug]/media.tsx"
-    ],
-    "subjectUnits": [
-      "./src/node-lib/curriculum-api-2023/generated/sdk.ts"
+      "./src/node-lib/curriculum-api-2023/index.ts"
     ],
     "getBatchedRequests": [
       "./src/node-lib/curriculum-api-2023/queries/specialistProgrammeListing/specialistProgrammeListing.query.ts",
       "./src/node-lib/curriculum-api-2023/queries/specialistSubjectListing/specialistSubjectListing.query.ts",
       "./src/node-lib/curriculum-api-2023/queries/specialistUnitListing/specialistUnitListing.query.ts"
     ],
-    "applyGenericOverridesAndExceptions": [
-      "./src/node-lib/curriculum-api-2023/queries/lessonBetaMediaClips/lessonBetaMediaClips.query.ts",
-      "./src/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.query.ts",
-      "./src/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.query.ts",
-      "./src/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query.ts",
-      "./src/node-lib/curriculum-api-2023/queries/programmeListing/programmeListing.query.ts",
-      "./src/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.query.ts",
-      "./src/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.query.ts",
-      "./src/node-lib/curriculum-api-2023/queries/pupilProgrammeListing/pupilProgrammeListing.query.ts",
-      "./src/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.query.ts",
-      "./src/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.query.ts"
-    ],
     "constructShareableResources": [
       "./src/node-lib/curriculum-api-2023/queries/specialistLessonShare/specialistLessonShare.query.ts"
     ],
     "constructDownloadsArray": [
-      "./src/node-lib/curriculum-api-2023/queries/lessonDownloads/downloadUtils.ts",
       "./src/node-lib/curriculum-api-2023/queries/specialistLessonOverview/specialistLessonOverview.query.ts"
     ],
     "constructLessonMediaData": [
       "./src/node-lib/curriculum-api-2023/queries/lessonBetaMediaClips/lessonBetaMediaClips.query.ts",
       "./src/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.query.ts"
-    ],
-    "getIntersection": [
-      "./src/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.query.ts",
-      "./src/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.query.ts"
     ],
     "getCorrectYear": [
       "./src/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.query.ts",
@@ -5372,10 +4134,18 @@
     "convertKey": [
       "./src/node-lib/curriculum-api-2023/helpers/zodToCamelCase.ts"
     ],
+    "config": [
+      "./src/errors/OakError.ts"
+    ],
     "getPropsFunction": [
       "./src/pages/ai/index.tsx",
       "./src/pages/curriculum/index.tsx",
       "./src/pages/pupils/index.tsx"
+    ],
+    "getProps": [
+      "./src/pages/pupils/beta/previews/lessons/[lessonSlug]/[section].tsx",
+      "./src/pages/pupils/lessons/[lessonSlug]/[section].tsx",
+      "./src/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/[section].tsx"
     ],
     "getFeatureFlag": [
       "./src/pages/pupils/beta/ab-demos/server-side-render.tsx"
@@ -5394,9 +4164,16 @@
     "getLinkHref": [
       "./src/pages/about-us/who-we-are.tsx"
     ],
+    "serializeDate": [
+      "./src/pages/blog/index.tsx",
+      "./src/pages/webinars/index.tsx"
+    ],
     "filterValidSubjectPhaseOptions": [
       "./src/pages/curriculum/index.tsx",
       "./src/pages/teachers/curriculum/index.tsx"
+    ],
+    "getBlogPosts": [
+      "./src/pages/teachers/index.tsx"
     ],
     "populateMediaClipsWithTranscripts": [
       "./src/pages/teachers/beta/lessons/[lessonSlug]/media.tsx",
@@ -5420,154 +4197,25 @@
     ],
     "logErrorMessage": [
       "./src/pages/api/curriculum-downloads/index.ts"
-    ],
-    "documentSchema": [
-      "./src/common-lib/cms-types/abTest.ts",
-      "./src/common-lib/cms-types/aboutPages.ts",
-      "./src/common-lib/cms-types/blog.ts",
-      "./src/common-lib/cms-types/blogListingPage.ts",
-      "./src/common-lib/cms-types/contactPage.ts",
-      "./src/common-lib/cms-types/curriculumOverview.ts",
-      "./src/common-lib/cms-types/curriculumPage.ts",
-      "./src/common-lib/cms-types/homePage.ts",
-      "./src/common-lib/cms-types/landingPage.ts",
-      "./src/common-lib/cms-types/planALessonPage.ts",
-      "./src/common-lib/cms-types/planningPage.ts",
-      "./src/common-lib/cms-types/policyPage.ts",
-      "./src/common-lib/cms-types/supportPage.ts",
-      "./src/common-lib/cms-types/teamMember.ts",
-      "./src/common-lib/cms-types/webinar.ts",
-      "./src/common-lib/cms-types/webinarsListingPage.ts"
-    ],
-    "slugSchema": [
-      "./src/common-lib/cms-types/abTest.ts",
-      "./src/common-lib/cms-types/blog.ts",
-      "./src/common-lib/cms-types/landingPage.ts",
-      "./src/common-lib/cms-types/policyPage.ts",
-      "./src/common-lib/cms-types/webinar.ts"
-    ],
-    "landingPageSchema": [
-      "./src/common-lib/cms-types/abTest.ts"
-    ],
-    "internalLinkEntrySchema": [
-      "./src/common-lib/cms-types/cta.ts"
-    ],
-    "dateSchema": [
-      "./src/common-lib/cms-types/blog.ts",
-      "./src/common-lib/cms-types/policyPage.ts",
-      "./src/common-lib/cms-types/webinar.ts"
-    ],
-    "seoSchema": [
-      "./src/common-lib/cms-types/aboutPages.ts",
-      "./src/common-lib/cms-types/blog.ts",
-      "./src/common-lib/cms-types/blogListingPage.ts",
-      "./src/common-lib/cms-types/contactPage.ts",
-      "./src/common-lib/cms-types/curriculumPage.ts",
-      "./src/common-lib/cms-types/homePage.ts",
-      "./src/common-lib/cms-types/landingPage.ts",
-      "./src/common-lib/cms-types/planALessonPage.ts",
-      "./src/common-lib/cms-types/planningPage.ts",
-      "./src/common-lib/cms-types/policyPage.ts",
-      "./src/common-lib/cms-types/supportPage.ts",
-      "./src/common-lib/cms-types/webinar.ts",
-      "./src/common-lib/cms-types/webinarsListingPage.ts"
-    ],
-    "portableTextSchema": [
-      "./src/common-lib/cms-types/aboutPages.ts",
-      "./src/common-lib/cms-types/blocks.ts",
-      "./src/common-lib/cms-types/blog.ts",
-      "./src/common-lib/cms-types/blogListingPage.ts",
-      "./src/common-lib/cms-types/contactPage.ts",
-      "./src/common-lib/cms-types/curriculumOverview.ts",
-      "./src/common-lib/cms-types/curriculumPage.ts",
-      "./src/common-lib/cms-types/homePage.ts",
-      "./src/common-lib/cms-types/landingPage.ts",
-      "./src/common-lib/cms-types/planALessonPage.ts",
-      "./src/common-lib/cms-types/planningPage.ts",
-      "./src/common-lib/cms-types/policyPage.ts",
-      "./src/common-lib/cms-types/supportPage.ts",
-      "./src/common-lib/cms-types/teamMember.ts",
-      "./src/common-lib/cms-types/webinar.ts",
-      "./src/common-lib/cms-types/webinarsListingPage.ts"
-    ],
-    "imageSchema": [
-      "./src/common-lib/cms-types/aboutPages.ts",
-      "./src/common-lib/cms-types/blocks.ts",
-      "./src/common-lib/cms-types/blog.ts",
-      "./src/common-lib/cms-types/blogListingPage.ts",
-      "./src/common-lib/cms-types/contactPage.ts",
-      "./src/common-lib/cms-types/curriculumOverview.ts",
-      "./src/common-lib/cms-types/curriculumPage.ts",
-      "./src/common-lib/cms-types/homePage.ts",
-      "./src/common-lib/cms-types/landingPage.ts",
-      "./src/common-lib/cms-types/planALessonPage.ts",
-      "./src/common-lib/cms-types/planningPage.ts",
-      "./src/common-lib/cms-types/supportPage.ts",
-      "./src/common-lib/cms-types/teamMember.ts",
-      "./src/common-lib/cms-types/webinarsListingPage.ts"
-    ],
-    "videoSchema": [
-      "./src/common-lib/cms-types/blocks.ts",
-      "./src/common-lib/cms-types/curriculumOverview.ts",
-      "./src/common-lib/cms-types/webinar.ts"
-    ],
-    "blogWebinarCategorySchema": [
-      "./src/common-lib/cms-types/blog.ts",
-      "./src/common-lib/cms-types/webinar.ts"
-    ],
-    "teamMemberPreviewSchema": [
-      "./src/common-lib/cms-types/blog.ts",
-      "./src/common-lib/cms-types/webinar.ts"
-    ],
-    "linkSchema": [
-      "./src/common-lib/cms-types/homePage.ts"
-    ],
-    "cardSchema": [
-      "./src/common-lib/cms-types/aboutPages.ts",
-      "./src/common-lib/cms-types/homePage.ts",
-      "./src/common-lib/cms-types/planningPage.ts"
-    ],
-    "textBlockSchema": [
-      "./src/common-lib/cms-types/aboutPages.ts",
-      "./src/common-lib/cms-types/curriculumPage.ts",
-      "./src/common-lib/cms-types/supportPage.ts"
-    ],
-    "blogPostPreviewSchema": [
-      "./src/common-lib/cms-types/curriculumPage.ts"
-    ],
-    "formSchema": [
-      "./src/common-lib/cms-types/landingPage.ts",
-      "./src/common-lib/cms-types/planALessonPage.ts"
-    ],
-    "teamMemberSchema": [
-      "./src/common-lib/cms-types/aboutPages.ts",
-      "./src/common-lib/cms-types/planALessonPage.ts"
-    ],
-    "textAndMediaSchema": [
-      "./src/common-lib/cms-types/aboutPages.ts",
-      "./src/common-lib/cms-types/landingPage.ts",
-      "./src/common-lib/cms-types/planningPage.ts"
-    ],
-    "quoteSchema": [
-      "./src/common-lib/cms-types/landingPage.ts",
-      "./src/common-lib/cms-types/supportPage.ts"
-    ],
-    "attachmentSchema": [
-      "./src/common-lib/cms-types/aboutPages.ts"
     ]
   },
   "suggested_organization": {
-    "hooks": [
-      "useAnalyticsService",
+    "unused-hooks": [
       "useAppHooks",
       "useAuth",
+      "useBioCardListModal",
       "useBioModal",
+      "useButton",
       "useCDN",
       "useCookieConsentUI",
       "useDialog",
+      "useDownloadExistenceCheck",
       "useDownloadsLocalStorage",
       "useEditorMock",
       "useEnter",
+      "useEvent",
+      "useEventHandler",
+      "useFetch",
       "useFocusVisible",
       "useFocusWithin",
       "useFoobar",
@@ -5576,795 +4224,135 @@
       "useGetVideoTrackingDataMock",
       "useIsomorphicLayoutEffect",
       "useLeave",
+      "useLessonReviewFeedback",
       "useLessonSectionHref",
       "useListBox",
       "useLocalDpi",
+      "useMediaClipThumbnailsUrl",
       "useModal",
       "useOakPupilMock",
+      "useOakTheme",
       "useObjectRef",
       "useOfOakSchema",
       "useOption",
       "useParser",
       "usePostHog",
-      "usePrereleaseFlag",
+      "usePupilAnalyticsMock",
       "useRadioGroup",
       "useRadioGroupState",
-      "useRequireOnboarding",
       "useSchoolPickerHook",
       "useSchoolsFromApi",
       "useSearchQuery",
+      "useSelect",
       "useSelectState",
       "useServerInsertedHTML",
       "useSession",
       "useSignedMuxToken",
-      "useStableCallback",
+      "useSignedPlaybackId",
       "useToastContext",
-      "useTrackRegistration",
-      "useTransition"
-    ],
-    "components/TeacherViews/hooks": [
-      "useCurrentSection",
-      "useOnboardingStatus",
-      "useResourceFormSubmit",
-      "useSearch"
-    ],
-    "components/shared/hooks": [
-      "useAnalytics",
-      "useAnalyticsPageProps",
-      "useClickableCard",
-      "useCookieConsent",
-      "useEvent",
-      "useEventHandler",
-      "useFeatureFlagVariantKey",
-      "useFocusRing",
-      "useForm",
-      "useHover",
-      "useHubspotSubmit",
-      "useId",
-      "useLesson",
-      "useLessonDownloadExistenceCheck",
-      "useLocalStorage",
-      "useLocalStorageForDownloads",
-      "useMediaClipThumbnailUrl",
-      "useMediaQuery",
-      "useMenuContext",
-      "useNextSanityImage",
-      "useOakTheme",
-      "usePagination",
-      "usePostCategoryList",
-      "usePostList",
-      "useRadio",
-      "useResourceFormState",
-      "useSWR",
-      "useSchoolPicker",
-      "useSearchFilters",
-      "useSignedVideoToken",
-      "useTeacherNotes",
-      "useTheme",
-      "useUser",
-      "useUtmParams"
-    ],
-    "components/AppComponents/hooks": [
-      "useAxe",
-      "useBugsnag",
-      "useGleap",
-      "useOakConsent",
-      "useSelect",
-      "useSelectedArea"
-    ],
-    "components/GenericPagesComponents/hooks": [
-      "useBioCardListModal",
-      "useBioCardListModalDialog",
-      "useFeatureFlagEnabled",
-      "useKeyboard",
-      "usePreventScroll",
+      "useTrackSectionStartedMock",
+      "useTransition",
+      "useUnitDownloadButtonState",
       "useUpcomingWebinarWall",
       "useWebinarRegistration"
     ],
-    "components/TeacherComponents/hooks": [
-      "useDownloadExistenceCheck",
+    "pages-helpers/hooks": [
+      "useFeatureFlagEnabled",
+      "useLesson",
+      "useNextSanityImage",
+      "useSearch",
+      "useSearchFilters",
+      "useTeacherNotes"
+    ],
+    "hooks": [
+      "useAnalytics",
+      "useAnalyticsService",
+      "useClickableCard",
+      "useEventListener",
+      "useFeatureFlagVariantKey",
+      "useGetVideoTrackingData",
+      "useId",
+      "useLessonEngineContext",
+      "useLocalStorageForDownloads",
+      "useMenuContext",
+      "useOakConsent",
+      "useOakPupil",
+      "usePagination",
+      "usePostList",
+      "usePrereleaseFlag",
+      "useRequireOnboarding",
+      "useStableCallback",
+      "useTrackRegistration",
+      "useUser"
+    ],
+    "components/teacherHooks": [
+      "useCurrentSection",
       "useEditor",
-      "useMediaClipThumbnailsUrl",
+      "useForm",
+      "useLessonDownloadExistenceCheck",
+      "useMediaClipThumbnailUrl",
+      "useOnboardingStatus",
+      "useResourceFormSubmit",
       "useShareExperiment",
-      "useUnitDownloadButtonState",
       "useUnitDownloadExistenceCheck"
     ],
-    "components/PupilViews/hooks": [
-      "useAdditionalFilesDownload",
-      "useBackHref",
-      "useGetQuizTrackingData",
-      "useGetVideoTrackingData",
-      "useLessonReviewFeedback",
-      "useOakPupil",
-      "useTrackSectionStarted",
-      "useTrackSectionStartedMock",
-      "useWorksheetDownload"
-    ],
-    "components/genericPages/hooks": [
-      "useNewsletterForm"
-    ],
-    "components/CurriculumComponents/hooks": [
-      "useArgs",
-      "useComboBox",
-      "useComboBoxState",
-      "useFetch",
-      "useFilter"
-    ],
     "components/hooks": [
-      "useLessonEngineContext"
+      "useAnalyticsPageProps",
+      "useCookieConsent",
+      "useFocusRing",
+      "useHover",
+      "useHubspotSubmit",
+      "useLocalStorage",
+      "useMediaQuery",
+      "usePostCategoryList",
+      "useReferrer",
+      "useResourceFormState",
+      "useSWR",
+      "useSchoolPicker",
+      "useTheme",
+      "useUtmParams"
     ],
-    "components/pupil/hooks": [
-      "useGetSectionLinkProps",
-      "usePupilAnalytics",
-      "usePupilAnalyticsMock",
-      "useQuizEngineContext"
+    "components/genericPagesHooks": [
+      "useBioCardListModalDialog",
+      "useKeyboard",
+      "useNewsletterForm",
+      "usePreventScroll"
     ],
-    "components/PupilComponents/hooks": [
-      "useLessonPopStateHandler",
-      "useNavigateToSection",
-      "useReferrer"
-    ],
-    "components/SharedComponents/hooks": [
-      "useButton",
+    "components/sharedHooks": [
       "useButtonAsLinkProps",
       "useCategoryFilterList",
-      "useEventListener",
       "useIconAnimation",
       "useIsCurrent",
       "useOverlay",
-      "useSignedPlaybackId",
+      "useRadio",
       "useSignedStoryboardToken",
       "useSignedThumbnailToken",
+      "useSignedVideoToken",
       "useVideoTracking"
     ],
-    "components/shared/utils": [
-      "applyGenericOverridesAndExceptions",
-      "betaLessonMediaClipsQuery",
-      "blogPostPreviewSchema",
-      "bodyPortableText",
-      "border",
-      "box",
-      "browseAccessed",
-      "browseRefined",
-      "browseRefinedAccessed",
-      "buildCurriculumMetadata",
-      "collapseFragments",
-      "config",
-      "createAndStoreShareId",
-      "createDownloadsData",
-      "createInitialYearFilterSelection",
-      "createThreadOptions",
-      "createUnitsListingByYear",
-      "createYearOptions",
-      "documentSchema",
-      "extractBaseSlug",
-      "extractUrnAndSchool",
-      "filterValidSubjectPhaseOptions",
-      "formatSchoolName",
-      "getActivationKey",
-      "getCombinedSubjects",
-      "getCommonPathway",
-      "getConversionShareId",
-      "getFeatureFlag",
-      "getIntersection",
-      "getKs4RedirectSlug",
-      "getLegacyProgrammeSlug",
-      "getNullableLocalstorageWithSchema",
-      "getPosthogIdFromCookie",
-      "getProps",
-      "getPropsFunction",
-      "getPupilOptionData",
-      "getSecondUnitSection",
-      "getSeoProps",
-      "getServerSideProps",
-      "getShareId",
-      "getShareIdKey",
-      "getStaticPaths",
-      "getStaticProps",
-      "getUpdatedUrl",
-      "getValidSubjectIconName",
-      "groupLessonPathways",
-      "imageSchema",
-      "isLessonListItem",
-      "isUnitOption",
-      "isValidSubjectPhaseSlug",
-      "jsonXmlToXmlString",
-      "lessonAccessed",
-      "lessonSelected",
-      "logErrorMessage",
-      "margin",
-      "metadata",
-      "mockLoggedIn",
-      "mockLoggedOut",
-      "mockSeo",
-      "mockSeoResult",
-      "mockUser",
-      "mockUserWithoutDownloadAccess",
-      "notUndefined",
-      "options",
-      "padding",
-      "populateLessonWithTranscript",
-      "populateMediaClipsWithTranscripts",
-      "portableTextSchema",
-      "pupilLessonListingQuery",
-      "pupilLessonQuery",
-      "pupilPreviewLessonQuery",
-      "pupilProgrammeListingQuery",
-      "pupilSubjectListingQuery",
-      "pupilUnitListingQuery",
-      "reportError",
-      "requestLessonResources",
-      "resolveOakHref",
-      "safeXml",
-      "searchJourneyInitiated",
-      "seoSchema",
-      "serializeDate",
-      "setUseUserReturn",
-      "shareMethods",
-      "shareSources",
-      "sortSubjectCategoriesOnFeatures",
-      "sortUnits",
-      "storeActivationKey",
-      "storeConversionShareId",
-      "subjectPhaseOptions",
-      "subjects",
-      "teacherShareActivated",
-      "teacherShareConverted",
-      "teacherShareInitiated",
-      "textBlockSchema",
-      "unionOrNull",
-      "unitDownloadInitiated",
-      "validateProgrammeSlug",
-      "xmlElementToJson",
-      "xmlRootToJson"
+    "components/curriculumHooks": [
+      "useArgs",
+      "useComboBox",
+      "useComboBoxState",
+      "useFilter"
     ],
-    "utils": [
-      "aboutBoardPageSchema",
-      "aboutLeadershipPageSchema",
-      "aboutPageSchema",
-      "aboutPartnersPageSchema",
-      "aboutSelected",
-      "aboutWhoWeArePageSchema",
-      "aboutWorkWithUsPageSchema",
-      "allProviders",
-      "analyticsContext",
-      "apiEndpoint",
-      "applySlugsToUnitCategories",
-      "assertUnreachable",
-      "asyncNoop",
-      "avoInspectorApiKey",
-      "baseHeaderStyles",
-      "blogListingPageSchema",
-      "blogPostSchema",
-      "blogWebinarCategorySchema",
-      "buildFetchMatcher",
-      "buildHubspotFetchMatcher",
-      "buttonFlexDirectionMap",
-      "buttonSizeHeightMap",
-      "calcDims",
-      "cdata",
-      "cdataJson",
-      "checkWithinElement",
-      "cmToDxa",
-      "cmToEmu",
-      "cmToPxDpi",
-      "cmToTwip",
-      "combineSearchFilters",
-      "consentClient",
-      "constrainHeight",
-      "constructLessonBrowseQuery",
-      "constructSubjectsFromUnitData",
-      "contactPageSchema",
-      "contactResponseSchema",
-      "containsMathJax",
-      "convertUnitSlugToTitle",
-      "createCurriculumDownloadsQuery",
-      "createCurriculumSlug",
-      "createFooter",
-      "createFragment",
-      "createHeader",
-      "createImage",
-      "createInvalidRejectingSchema",
-      "createLessonDownloadLink",
-      "createLink",
-      "createNextApiMocks",
-      "createNode",
-      "createOakPageConfig",
-      "curriculumDownloadQuerySchema",
-      "curriculumOverviewCMSSchema",
-      "curriculumOverviewEnglishSecondary",
-      "curriculumPageSchema",
-      "curriculumUnitsEnglishPrimary",
-      "curriculumUnitsEnglishSecondary",
-      "curriculumUnitsScienceSecondary",
-      "dateSchema",
-      "decommissionedKeys",
-      "defaultValueWhenThrown",
-      "degreeToOoxmlDegree",
-      "dependentFieldFilterObject",
-      "developYourCurriculumSelected",
-      "dispatchLocalStorageEvent",
-      "elasticKeyStageSlugToKeyStage",
-      "emuToCm",
-      "extractFootnotes",
-      "extractIdFromUrl",
-      "fetchSubjectDevelopmentStages",
-      "fieldToZod",
-      "filterProgrammesBySubject",
-      "formAppearanceStyles",
-      "formDefinitionSchema",
-      "gapPositionMap",
-      "generateGridCols",
-      "generateHash",
-      "generateIconURL",
-      "generateLessonOverviewFromRaw",
-      "generateURLFields",
-      "generateUrl",
-      "getABTestSchema",
-      "getAllCategories",
-      "getAllLearningThemes",
-      "getAllPaths",
-      "getAllTabFocusableElements",
-      "getAllYearGroups",
-      "getBatchRequestVariables",
-      "getBugsnagOnError",
-      "getBySlug",
-      "getContainerId",
-      "getContentGuidance",
-      "getCookiesWithSchema",
-      "getCopyrightContent",
-      "getDedupedPupilLessonOutcome",
-      "getDevelopmentStagesBatchRequests",
-      "getDownloadsArray",
-      "getDownloadsSnakeCaseData",
-      "getDraftFilterParam",
-      "getErrorMessage",
-      "getExpandedDevelopmentStages",
-      "getExpandedSpecialistUnits",
-      "getExpandedSubjects",
-      "getFakeFetchWithNetworkError",
-      "getFilterForQuery",
-      "getFiltersFromQuery",
-      "getFirstResultOrNull",
-      "getFooterFilenameFromContent",
-      "getHubspotFormById",
-      "getIconFlexPosition",
-      "getIllustrationAsset",
-      "getImageDimensions",
-      "getInitialCurrentClip",
-      "getInitialProps",
-      "getLessonMediaBreadCrumb",
-      "getLessonObject",
-      "getList",
-      "getMediaQuery",
-      "getMockAnalytics",
-      "getMockedProviders",
-      "getNextHeadingTag",
-      "getNumberOfSelectedUnits",
-      "getOakGlobals",
-      "getOwaLinkHref",
-      "getPackagedUnit",
-      "getPageViewProps",
-      "getPartialDevelopmentStageArray",
-      "getPayload",
-      "getPlaybackId",
-      "getPlayingState",
-      "getPrereleaseFlag",
-      "getPupilAudioData",
-      "getPupilVideoData",
-      "getRemUnits",
-      "getSanityRefId",
-      "getShortPhaseText",
-      "getSingleton",
-      "getSnakeCaseData",
-      "getStemImageData",
-      "getSubjectIconAsset",
-      "getTextFromCues",
-      "getThemes",
-      "getTransformedLessons",
-      "getTransformedProgrammeData",
-      "getUnitBatchRequests",
-      "getUnitListingPageData",
-      "getUnitObject",
-      "getUtmSnakeCaseData",
-      "getYearSlug",
-      "groupUnitsBySubjectCategory",
-      "hasLoaded",
-      "helpCentreSelected",
-      "hideAndClickDownloadLink",
-      "homePageSchema",
-      "hubspotFormDefinitionSchema",
-      "hubspotFormFieldSchema",
-      "hubspotWithoutQueue",
-      "imageAssetSchema",
-      "initAvo",
-      "initialiseBugsnag",
-      "installMockClerkClient",
-      "internalLinkEntrySchema",
-      "isCurrentPageItems",
-      "isFilterItem",
-      "isInUnion",
-      "isLessonSearchHit",
-      "isOakPage",
-      "isPathwaySlug",
-      "isRecord",
-      "isResourceTypeSubjectToCopyright",
-      "isTierValid",
-      "isUnitSearchHit",
-      "joinTranscript",
-      "keyStageSchema",
-      "keyStageSelected",
-      "keyStageToSentenceCase",
-      "landingPagePreviewSchema",
-      "landingPageSchema",
-      "lessonSections",
-      "line240",
-      "lineHeight",
-      "linkIsHref",
-      "makeTransparentIfSanity",
-      "matchesIgnoredError",
-      "matchesUserAgent",
-      "mockCookieGet",
-      "mockGetAuthSignedIn",
-      "mockGetAuthSignedOut",
-      "mockImageAsset",
-      "mockLoadingUser",
-      "mockOnChange",
-      "mockOnboardedUser",
-      "mockPaginationProps",
-      "mockPosts",
-      "mockServerUser",
-      "mockServerUserWithNoEmailAddresses",
-      "mockWebinar",
-      "noVideoNoExitQuiz",
-      "notificationSelected",
-      "oakSupportMap",
-      "onClickSearchHit",
-      "onboardingSchema",
-      "outlineShadow",
-      "pageview",
-      "parseFromLocalStorageData",
-      "parseJSON",
-      "parseResults",
-      "parseZIndex",
-      "planALessonPageSchema",
-      "planALessonSelected",
-      "planningPageSchema",
-      "pointToDxa",
-      "policyPagePreviewSchema",
-      "policyPageSchema",
-      "populateUnitsWithBatchResponses",
-      "portableTextReferencedEntrySchema",
-      "posthogToAnalyticsServiceWithoutQueue",
-      "removeMarkdown",
-      "removeSensitiveValues",
-      "removeWebVttCharacters",
-      "renderHookWithInitialState",
-      "renderHookWithProviders",
-      "requestWithLogging",
-      "resetUseTrackingRegistration",
-      "reshapeUnitData",
-      "resolveEmbeddedReferences",
-      "resolveHubspotFromReferences",
-      "sanityConfig",
-      "sanityGraphqlClient",
-      "searchPageSchema",
-      "setAvoLogger",
-      "setCurrentUser",
-      "setGetAuth",
-      "setOakGlobals",
-      "shortAnswerTitleFormatter",
-      "siteAreas",
-      "slugSchema",
-      "slugStringSchema",
-      "sortDownloadResources",
-      "sortResourcesByOrder",
-      "sortShareResources",
-      "splitURLsInHalf",
-      "srOnlyCss",
-      "subjectFromUnits",
-      "subjectPhaseOptionSchema",
-      "supportPageSchema",
-      "supportYourTeamSelected",
-      "teachersSitemapDataSchema",
-      "teamMemberPreviewSchema",
-      "testPosthogDistinctId",
-      "textAndMediaSchemaBase",
-      "threadUnitByYear",
-      "throwIfNotInUnion",
-      "toastContext",
-      "trackCurriculumDownload",
-      "transformAndParseSearchResponseData",
-      "transformHubspotFilter",
-      "transformHubspotForm",
-      "transformProgrammes",
-      "transformedLessonOverviewData",
-      "uncapitalize",
-      "uncapitalizeSubject",
-      "unitsByYear",
-      "userSignIn",
-      "userSignOut",
-      "userSignUpCompleted",
-      "validDownloadTypes",
-      "videoSchema",
-      "webinarPreviewSchema",
-      "webinarSchema",
-      "webinarsListingPageSchema",
-      "withOnboardingRequired",
-      "withPageAuthRequired",
-      "wrapInBookmarkPoint",
-      "wrapInLinkTo",
-      "wrapInLinkToBookmark",
-      "wrapPreRelease",
-      "zipToSnapshotObject",
-      "zodToCamelCase"
+    "components/pupilHooks": [
+      "useAdditionalFilesDownload",
+      "useBackHref",
+      "useGetQuizTrackingData",
+      "useGetSectionLinkProps",
+      "useLessonPopStateHandler",
+      "useNavigateToSection",
+      "usePupilAnalytics",
+      "useQuizEngineContext",
+      "useTrackSectionStarted",
+      "useWorksheetDownload"
     ],
-    "api-helpers/utils": [
-      "getHighlightFromAllFields",
-      "getSdk"
-    ],
-    "components/TeacherComponents/utils": [
-      "collectOnboardingTrackingProps",
-      "combinedPreselectedTypeMap",
-      "containerTitleToPreselectMap",
-      "convertSubjectToSlug",
-      "createUnitDownloadLink",
-      "curriculumMapDownloaded",
-      "encodeOnboardingDataQueryParam",
-      "fetcher",
-      "getHubspotDownloadsFormPayload",
-      "getHubspotOnboardingFormPayload",
-      "getLessonDownloadResourcesExistence",
-      "getPageItems",
-      "getPreselectedDownloadResourceTypes",
-      "getPreselectedShareResourceTypes",
-      "getProgrammeFactors",
-      "getSchoolUrn",
-      "getSearchHitObject",
-      "getSharingMetadata",
-      "getUnitDownloadFileExistence",
-      "headerListingProps",
-      "isAllowedUri",
-      "isPreselectedDownloadType",
-      "isPreselectedShareType",
-      "isSpecialistUnit",
-      "isUnitListData",
-      "resourceContainerExpanded",
-      "shouldAutoLink",
-      "subjectSelected",
-      "userOnboardingCompleted",
-      "userOnboardingProgressed"
-    ],
-    "components/TeacherViews/utils": [
-      "createAttributionObject",
-      "filterDownloadsByCopyright",
-      "getBreadCrumbForSpecialistDownload",
-      "getBreadCrumbForSpecialistShare",
-      "getBreadcrumbsForLessonPathway",
-      "getBreadcrumbsForSpecialistLessonPathway",
-      "getHrefForSocialSharing",
-      "getIsResourceDownloadable",
-      "getLessonDownloadsBreadCrumb",
-      "getLessonOverviewBreadCrumb",
-      "getLessonShareBreadCrumb",
-      "getMediaClipLabel",
-      "getPathway",
-      "getSchoolName",
-      "getSortedSearchFiltersSelected",
-      "hasLessonMathJax",
-      "isKeyStageTitleValueType",
-      "lessonIsSpecialist",
-      "lessonResourceDownloadStarted",
-      "lessonResourcesDownloaded",
-      "lessonShareStarted",
-      "lessonShared",
-      "mockUserWithDownloadAccess",
-      "mockUserWithDownloadAccessNotOnboarded",
-      "removeHTMLTags",
-      "searchAccessed",
-      "searchFilters",
-      "searchRefined",
-      "shareLinkConfig"
-    ],
-    "components/AppComponents/utils": [
-      "bugsnagInitialised",
-      "burgerMenuSections",
-      "classroomSelected",
-      "getBreakpoint",
-      "menuContext",
-      "teacherHubSelected",
-      "toSentenceCase"
-    ],
-    "components/GenericPagesViews/utils": [
-      "blogToPostListItem",
-      "getBlogPosts",
-      "getBlogWebinarListBreadcrumbs",
-      "getVideoThumbnail",
-      "newsletterSignUpCompleted",
-      "webinarToPostListItem"
-    ],
-    "components/genericPages/utils": [
-      "attachmentSchema",
-      "cardSchema",
-      "createHandler",
-      "formSchema",
-      "getAndMergeWebinarsAndBlogs",
-      "getBlogWebinarPostBreadcrumbs",
-      "getFakeFetch",
-      "getLinkHref",
-      "getNavItems",
-      "imageBuilder",
-      "linkSchema",
-      "mockVideoAsset",
-      "portableTextFromString",
-      "postToPostListItem",
-      "quoteSchema",
-      "sanityClientLike",
-      "teamMemberSchema",
-      "testAboutPageBaseData",
-      "textAndMediaSchema",
-      "uniqBy",
-      "webinarPageViewed"
-    ],
-    "components/CurriculumComponents/utils": [
-      "anchorIntersectionObserver",
-      "assertValidDownloadType",
-      "basePortableTextComponents",
-      "createProgrammeSlug",
-      "curriculumResourcesDownloaded",
-      "curriculumResourcesDownloadedCurriculumDocument",
-      "curriculumThreadHighlighted",
-      "findContainingAnchor",
-      "formatCurriculumUnitsData",
-      "getDownloadFormErrorMessage",
-      "getFormErrorMessages",
-      "getLocalstorageWithSchema",
-      "getSuffixFromFeatures",
-      "getUnitFeatures",
-      "getYearGroupTitle",
-      "highlightedUnitCount",
-      "isVisibleUnit",
-      "mockPrerelease",
-      "parseSchoolToListItems",
-      "parseSubjectPhaseSlug",
-      "runSchema",
-      "saveDownloadsDataToLocalStorage",
-      "setLocalstorageWithSchema",
-      "sortChildSubjects",
-      "sortYears",
-      "tierSelected",
-      "unitInformationViewed",
-      "yearGroupSelected"
-    ],
-    "components/SharedComponents/utils": [
-      "breakpoints",
-      "buttonIconSizeMap",
-      "curriculumVisualiserAccessed",
-      "defaultButtonProps",
-      "focusUnderlineStyles",
-      "getButtonBackground",
-      "getButtonColor",
-      "getButtonDropShadowColor",
-      "getButtonFlexDirection",
-      "getButtonHeight",
-      "getButtonIconBackground",
-      "getButtonPadding",
-      "getButtonStylesProps",
-      "getIconButtonHeight",
-      "getIconButtonStylesProps",
-      "getParsedData",
-      "getPhaseText",
-      "iconFocusUnderline",
-      "isExamboardSlug",
-      "isExternalHref",
-      "isIconVariant",
-      "newFocusUnderlineStyles",
-      "resolveInternalHref",
-      "resolveSanityReferences",
-      "transformOwaLinkProps",
-      "videoFinished",
-      "videoPaused",
-      "videoPlayed",
-      "videoStarted",
-      "zIndexMap"
-    ],
-    "components/PupilViews/utils": [
-      "additionalFileListItem",
-      "additionalFileSingle",
-      "generateKeyStageTitle",
-      "getAvailableProgrammeFactor",
-      "getFactorDataFromSlug",
-      "pickAvailableSectionsForLesson",
-      "unitAccessed"
-    ],
-    "components/PupilComponents/utils": [
-      "createQuestionData",
-      "createQuizEngineContext",
-      "formatSentences",
-      "getCaptionsFromFile",
-      "getMockPupilAnalytics",
-      "getSizes",
-      "getStemImage",
-      "getStemTextData",
-      "invariant",
-      "isImage",
-      "isLessonReviewSection",
-      "isLessonSection",
-      "isText",
-      "lessonActivityAbandonedLessonAudio",
-      "lessonActivityCompletedLessonAudio",
-      "lessonActivityStarted",
-      "lessonActivityStartedExitQuiz",
-      "lessonActivityStartedIntroduction",
-      "lessonActivityStartedLessonAudio",
-      "lessonActivityStartedLessonVideo",
-      "lessonActivityStartedStarterQuiz",
-      "lessonCompleted",
-      "noVideo",
-      "pickAnswerComponent",
-      "pupilAnalyticsContext",
-      "questionAttemptSubmitted",
-      "referrerSources"
-    ],
-    "components/curriculum/utils": [
-      "constructDownloadsArray",
-      "constructLessonMediaData",
-      "constructPathwayLesson",
-      "constructShareableResources",
-      "convertKey",
-      "dedupUnits",
-      "getBatchedRequests",
-      "getCorrectYear",
-      "lessonMediaClipsQuery",
-      "sortByDevelopmentStage",
-      "specialistLessonDownloadQuery",
-      "specialistLessonShareQuery",
-      "subjectUnits"
-    ],
-    "components/pupil/utils": [
-      "activityResultsShared",
-      "allLessonReviewSections",
-      "contentGuidanceAccepted",
-      "contentGuidanceDeclined",
-      "createLessonEngineContext",
-      "getInteractiveQuestions",
-      "getPupilPathwayData",
-      "isMatchAnswer",
-      "isMultiAnswerMCQ",
-      "isOrderAnswer",
-      "isShortAnswer",
-      "isSingleAnswerMCQ",
-      "lessonAbandoned",
-      "lessonActivityAbandoned",
-      "lessonActivityAbandonedExitQuiz",
-      "lessonActivityAbandonedIntroduction",
-      "lessonActivityAbandonedLessonVideo",
-      "lessonActivityAbandonedStarterQuiz",
-      "lessonActivityCompleted",
-      "lessonActivityCompletedExitQuiz",
-      "lessonActivityCompletedIntroduction",
-      "lessonActivityCompletedLessonVideo",
-      "lessonActivityCompletedStarterQuiz",
-      "lessonActivityDownloaded",
-      "lessonActivityDownloadedWorksheet",
-      "lessonStarted",
-      "lessonSummaryReviewed",
-      "trackingEvents"
-    ],
-    "components/GenericPagesComponents/utils": [
-      "getHubspotNewsletterPayload",
-      "newIconFocusUnderline"
-    ],
-    "components/teacher/utils": [
-      "checkIsResourceCopyrightRestricted",
-      "decodeOnboardingDataQueryParam",
-      "getPageLinksForLesson",
-      "getSchoolOption",
-      "mockTeacherUserWithDownloadAccess",
-      "onboardingRoleOptions",
-      "onwardContentSelected",
-      "searchResultExpanded",
-      "searchResultOpened"
+    "components/appHooks": [
+      "useAxe",
+      "useBugsnag",
+      "useGleap",
+      "useSelectedArea"
     ]
   }
 }
