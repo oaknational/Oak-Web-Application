@@ -192,6 +192,9 @@ describe("Unit modal", () => {
 
         expect(getByTestId("curriculum-unit-details")).toBeVisible();
 
+        const titleElement = getByTestId("unit-optionality-title");
+        expect(titleElement).toBeInTheDocument();
+        expect(titleElement).toHaveTextContent(mockOptionalityUnit.title);
         expect(getByText("Threads")).toBeInTheDocument();
       } else {
         throw new Error("Optionality button not found");
