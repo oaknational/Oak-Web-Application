@@ -25,7 +25,7 @@ jobs:
           cache: "npm"
 
       # Install.
-#      - run: npm ci
+      - run: npm ci
 
       # Check formatting adheres to our config.
 #      - run: npm run format:check
