@@ -41,15 +41,13 @@ import {
   CurriculumInfoPageProps,
   CurriculumTab,
   CurriculumUnitsTrackingData,
-  CurriculumUnitsYearData,
   fetchSubjectPhasePickerData,
   formatCurriculumUnitsData,
   VALID_TABS,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import openApiRequest from "@/utils/curriculum/openapi";
 import { CurriculumFilters } from "@/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFilters";
-import { Unit } from "@/utils/curriculum/types";
-import { sortYears } from "@/utils/curriculum/sorting";
+import { getDefaultFilter } from "@/utils/curriculum/filtering";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -77,53 +75,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     ),
   );
 
-  function getDefaultChildSubject(units: Unit[]) {
-    const set = new Set<string>();
-    units.forEach((u) => {
-      if (u.subject_parent) {
-        set.add(u.subject_slug);
-      }
-    });
-    return [[...set][0]!];
-  }
-  function getDefaultSubjectCategories(units: Unit[]) {
-    const set = new Set<string>();
-    units.forEach((u) => {
-      u.subjectcategories?.forEach((sc) => set.add(String(sc.id)));
-    });
-    return [[...set][0]!];
-  }
-  function getDefaultTiers(units: Unit[]) {
-    const set = new Set<string>();
-    units.forEach((u) => {
-      if (u.tier_slug) {
-        set.add(u.tier_slug);
-      }
-    });
-    return [[...set][0]!];
-  }
-
-  function getDefaultYears(units: Unit[]) {
-    const years = new Set<string>();
-    for (const unit of units) {
-      years.add(unit.year);
-    }
-    return [...years].toSorted(sortYears);
-  }
-
-  function unitsFrom(yearData: CurriculumUnitsYearData): Unit[] {
-    return Object.entries(yearData).flatMap(([, data]) => data.units);
-  }
-  const units = unitsFrom(curriculumUnitsFormattedData.yearData);
-
   const [filters, setFilters] = useState<CurriculumFilters>(() => {
-    return {
-      childSubjects: getDefaultChildSubject(units),
-      subjectCategories: getDefaultSubjectCategories(units),
-      tiers: getDefaultTiers(units),
-      years: getDefaultYears(units),
-      threads: [],
-    };
+    return getDefaultFilter(curriculumUnitsFormattedData);
   });
 
   let tabContent: JSX.Element;
