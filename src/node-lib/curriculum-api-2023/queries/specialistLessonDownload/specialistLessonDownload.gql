@@ -27,7 +27,7 @@ query specialistLessonDownloads(
     slidedeck_asset_object
     starter_quiz_asset_object
   }
-  restrictions: published_mv_lesson_content_published_2_1_0(
+  restrictions: published_mv_lesson_content_published_5_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     geo_restricted
