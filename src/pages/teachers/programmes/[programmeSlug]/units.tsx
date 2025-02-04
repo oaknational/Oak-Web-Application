@@ -13,11 +13,9 @@ import {
   OakGrid,
   OakGridArea,
   OakHeading,
-  OakSecondaryButton,
   OakThemeProvider,
   oakDefaultTheme,
   OakFlex,
-  OakFieldset,
   OakMaxWidth,
 } from "@oaknational/oak-components";
 
@@ -30,7 +28,6 @@ import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import UnitList from "@/components/TeacherComponents/UnitList";
-import UnitsLearningThemeFilters from "@/components/TeacherComponents/UnitsLearningThemeFilters";
 import TabularNav from "@/components/SharedComponents/TabularNav";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import getPageProps from "@/node-lib/getPageProps";
@@ -48,9 +45,8 @@ import {
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
-import SubjectCategoryFilters from "@/components/TeacherComponents/SubjectCategoryFilters";
-import YearGroupFilters from "@/components/TeacherComponents/YearGroupFilters";
 import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters";
+import DesktopUnitFilters from "@/components/TeacherComponents/DesktopUnitFilters/DesktopUnitFilters";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -212,101 +208,6 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     );
   };
 
-  const DesktopFilters = () => {
-    return (
-      <OakBox
-        $display={["none", "none", "block"]}
-        $position={[null, null, "sticky"]}
-        $pt={["inner-padding-xl4"]}
-        $maxWidth={"all-spacing-20"}
-      >
-        <OakFieldset>
-          {isFiltersAvailable && (
-            <OakBox $mb={"space-between-m2"}>
-              <OakHeading tag="h3" $font="heading-6" $mb={"space-between-ssx"}>
-                Filters
-              </OakHeading>
-
-              <OakBox ref={filtersRef}>
-                <OakSecondaryButton
-                  element="a"
-                  aria-label="Skip to units"
-                  href="#unit-list"
-                  onFocus={() => setSkipFiltersButton(true)}
-                  onBlur={() => setSkipFiltersButton(false)}
-                  style={
-                    skipFiltersButton
-                      ? {}
-                      : {
-                          position: "absolute",
-                          top: "-9999px",
-                          left: "-9999px",
-                        }
-                  }
-                >
-                  Skip to units
-                </OakSecondaryButton>
-              </OakBox>
-            </OakBox>
-          )}
-          {yearGroups.length > 1 && (
-            <YearGroupFilters
-              yearGroups={yearGroups}
-              idSuffix="desktop"
-              browseRefined={track.browseRefined}
-              selectedThemeSlug={selectedThemeSlug}
-              programmeSlug={programmeSlug}
-            />
-          )}
-          {subjectCategories && subjectCategories.length > 1 && (
-            <SubjectCategoryFilters
-              idSuffix="desktop"
-              subjectCategories={subjectCategories}
-              categorySlug={categorySlug}
-              browseRefined={track.browseRefined}
-              programmeSlug={programmeSlug}
-              selectedThemeSlug={selectedThemeSlug}
-            />
-          )}
-          {learningThemes?.length > 1 && (
-            <OakFlex $flexDirection={"column"}>
-              <OakHeading
-                id={learningThemesId}
-                tag="h3"
-                $font="heading-7"
-                $mb="space-between-s"
-              >
-                {/* Though still called "Learning themes" internally, these should be referred to as "Threads" in user facing displays */}
-                Threads
-              </OakHeading>
-              <UnitsLearningThemeFilters
-                idSuffix="desktop"
-                onChangeCallback={setSelectedThemeSlug}
-                labelledBy={learningThemesId}
-                learningThemes={learningThemes}
-                selectedThemeSlug={selectedThemeSlug ?? "all"}
-                categorySlug={categorySlug}
-                yearGroupSlug={yearGroupSlug}
-                programmeSlug={programmeSlug}
-                linkProps={{
-                  page: "unit-index",
-                  programmeSlug,
-                }}
-                trackingProps={{
-                  keyStageSlug,
-                  keyStageTitle: keyStageTitle as KeyStageTitleValueType,
-                  subjectTitle,
-                  subjectSlug,
-                }}
-                browseRefined={track.browseRefined}
-              />
-            </OakFlex>
-          )}
-        </OakFieldset>
-      </OakBox>
-    );
-  };
-
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
       <AppLayout seoProps={unitsSEO}>
@@ -369,7 +270,27 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               $colSpan={[12, 12, 3]}
               $pl={["inner-padding-xl"]}
             >
-              <DesktopFilters />
+              <DesktopUnitFilters
+                showFilters={isFiltersAvailable}
+                onFocus={() => setSkipFiltersButton(true)}
+                onBlur={() => setSkipFiltersButton(false)}
+                yearGroups={yearGroups}
+                subjectCategories={subjectCategories}
+                learningThemes={learningThemes}
+                filtersRef={filtersRef}
+                skipFiltersButton={skipFiltersButton}
+                programmeSlug={programmeSlug}
+                selectedThemeSlug={selectedThemeSlug}
+                categorySlug={categorySlug}
+                yearGroupSlug={yearGroupSlug}
+                subjectSlug={subjectSlug}
+                subjectTitle={subjectTitle}
+                keyStageSlug={keyStageSlug}
+                keyStageTitle={keyStageTitle}
+                learningThemesId={learningThemesId}
+                browseRefined={track.browseRefined}
+                setSelectedThemeSlug={setSelectedThemeSlug}
+              />
             </OakGridArea>
 
             {/* Header Row */}
