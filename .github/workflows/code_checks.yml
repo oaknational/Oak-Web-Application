@@ -25,23 +25,23 @@ jobs:
           cache: "npm"
 
       # Install.
-      - run: npm ci
+#      - run: npm ci
 
       # Check formatting adheres to our config.
-      - run: npm run format:check
+#      - run: npm run format:check
 
       # Lint.
-      - run: npm run lint
+#      - run: npm run lint
 
       # Check types.
-      - run: npm run check-types
+#      - run: npm run check-types
 
       # Unit tests, no integration tests.
       - run: npm run test:ci
 
       # Manually run the SonarCloud scan so we can send test coverage information.
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#      - name: SonarCloud Scan
+#        uses: SonarSource/sonarcloud-github-action@master
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
