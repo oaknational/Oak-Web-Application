@@ -5,41 +5,41 @@ import { z } from "zod";
 
 import { useOnboardingStatus } from "../useOnboardingStatus";
 
-const useOptionalDownloadSignIn = () => {
+const useOptionalDownloadSignUp = () => {
   // teacher-download-sign-in experiment A/B test groups
   const variantKey = z.literal("control").or(z.literal("with-buttons"));
   const featureFlag = useFeatureFlagVariantKey("teacher-download-sign-in");
   const parsedFeatureFlagKey = variantKey.safeParse(featureFlag);
-  const optionalDownloadSignInEnabled =
+  const optionalDownloadSignUpEnabled =
     parsedFeatureFlagKey.success &&
     parsedFeatureFlagKey.data === "with-buttons";
 
   const { isSignedIn, isLoaded } = useUser();
   const onboardingStatus = useOnboardingStatus();
 
-  const [showDownloadSignInButtons, setShowDownloadSignInButtons] =
+  const [showDownloadSignUpButtons, setShowDownloadSignUpButtons] =
     useState(false);
   const [showTermsAgreement, setShowTermsAgreement] = useState(false);
 
   useEffect(() => {
-    setShowDownloadSignInButtons(
-      optionalDownloadSignInEnabled &&
+    setShowDownloadSignUpButtons(
+      optionalDownloadSignUpEnabled &&
         isLoaded &&
         (!isSignedIn || (isSignedIn && onboardingStatus !== "onboarded")),
     );
     setShowTermsAgreement(
-      optionalDownloadSignInEnabled && isLoaded
+      optionalDownloadSignUpEnabled && isLoaded
         ? false
         : onboardingStatus === "not-onboarded" ||
             onboardingStatus === "unknown",
     );
-  }, [optionalDownloadSignInEnabled, isLoaded, isSignedIn, onboardingStatus]);
+  }, [optionalDownloadSignUpEnabled, isLoaded, isSignedIn, onboardingStatus]);
 
   return {
-    showDownloadSignInButtons,
+    showDownloadSignUpButtons,
     showTermsAgreement,
     setShowTermsAgreement,
   };
 };
 
-export default useOptionalDownloadSignIn;
+export default useOptionalDownloadSignUp;

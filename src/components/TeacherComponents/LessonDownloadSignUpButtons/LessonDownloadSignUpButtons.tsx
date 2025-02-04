@@ -7,7 +7,7 @@ import {
 import { useRouter } from "next/router";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import useOptionalDownloadSignIn from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useOptionalDownloadSignIn";
+import useOptionalDownloadSignUp from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useOptionalDownloadSignUp";
 
 // Used when a user is signed in but not onboarded
 const LessonDownloadOnboardButton = ({
@@ -26,47 +26,47 @@ const LessonDownloadOnboardButton = ({
 );
 
 // Used when a user is not signed in
-const LessonDownloadSignInButton = ({
+const LessonDownloadSignUpButton = ({
   redirectUrl,
 }: {
   redirectUrl: string;
 }) => (
   <SignUpButton forceRedirectUrl={redirectUrl}>
-    <OakPrimaryButton width="fit-content">Download & sign in</OakPrimaryButton>
+    <OakPrimaryButton width="fit-content">Download & sign up</OakPrimaryButton>
   </SignUpButton>
 );
 
-const LessonDownloadWithoutSignInButton = ({
+const LessonDownloadWithoutSignUpButton = ({
   onClick,
 }: {
   onClick: () => void;
 }) => (
   <OakTertiaryButton iconName="chevron-right" isTrailingIcon onClick={onClick}>
-    Download without signing in
+    Download without signing up
   </OakTertiaryButton>
 );
 
-export type LessonDownloadSignInButtonsProps = {
-  onDownloadWithoutSignInClick: () => void;
+export type LessonDownloadSignUpButtonsProps = {
+  onDownloadWithoutSignUpClick: () => void;
 };
 
 /**
- * Buttons to choose to sign in or download without signing in
- * - Logged out: Download & sign in and Download without signing in buttons
- * - Logged in: No buttons
- * - Logged in but not onboarded: only Download button which redirects to onboarding
+ * Buttons to choose to sign up/in or download without signing up/in
+ * - Signed out: Download & sign up and Download without signing up buttons
+ * - Signed in: No buttons
+ * - Signed in but not onboarded: only Download button which redirects to onboarding
  */
-export default function LessonDownloadSignInButtons(
-  props: Readonly<LessonDownloadSignInButtonsProps>,
+export default function LessonDownloadSignUpButtons(
+  props: Readonly<LessonDownloadSignUpButtonsProps>,
 ) {
-  const { onDownloadWithoutSignInClick } = props;
+  const { onDownloadWithoutSignUpClick } = props;
   const router = useRouter();
   const { isSignedIn, isLoaded, user } = useUser();
-  const { showDownloadSignInButtons } = useOptionalDownloadSignIn();
+  const { showDownloadSignUpButtons } = useOptionalDownloadSignUp();
 
-  const showSignInButton = showDownloadSignInButtons && isLoaded && !isSignedIn;
+  const showSignUpButton = showDownloadSignUpButtons && isLoaded && !isSignedIn;
   const showOnboardButton =
-    showDownloadSignInButtons && user && !user.publicMetadata?.owa?.isOnboarded;
+    showDownloadSignUpButtons && user && !user.publicMetadata?.owa?.isOnboarded;
 
   return (
     <OakFlex
@@ -84,13 +84,13 @@ export default function LessonDownloadSignInButtons(
           }
         />
       )}
-      {showSignInButton && (
+      {showSignUpButton && (
         <>
-          <LessonDownloadSignInButton
+          <LessonDownloadSignUpButton
             redirectUrl={`/onboarding?returnTo=${router.asPath}`}
           />
-          <LessonDownloadWithoutSignInButton
-            onClick={onDownloadWithoutSignInClick}
+          <LessonDownloadWithoutSignUpButton
+            onClick={onDownloadWithoutSignUpClick}
           />
         </>
       )}

@@ -14,7 +14,7 @@ import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
-import useOptionalDownloadSignIn from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useOptionalDownloadSignIn";
+import useOptionalDownloadSignUp from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useOptionalDownloadSignUp";
 import {
   ResourceFormProps,
   DownloadResourceType,
@@ -38,7 +38,7 @@ import {
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
-import LessonDownloadSignInButtons from "@/components/TeacherComponents/LessonDownloadSignInButtons/LessonDownloadSignInButtons";
+import LessonDownloadSignUpButtons from "@/components/TeacherComponents/LessonDownloadSignUpButtons/LessonDownloadSignUpButtons";
 import {
   LessonDownloadsPageData,
   NextLesson,
@@ -176,12 +176,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
 
   const onboardingStatus = useOnboardingStatus();
   const {
-    showDownloadSignInButtons,
+    showDownloadSignUpButtons,
     showTermsAgreement,
     setShowTermsAgreement,
-  } = useOptionalDownloadSignIn();
+  } = useOptionalDownloadSignUp();
 
-  const onDownloadWithoutSignInClick = () => {
+  const onDownloadWithoutSignUpClick = () => {
     setShowTermsAgreement(
       onboardingStatus === "not-onboarded" || onboardingStatus === "unknown",
     );
@@ -420,12 +420,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   }
                 />
               }
-              showDownloadSignInButtons={showDownloadSignInButtons}
-              signInButtons={
-                showDownloadSignInButtons &&
+              showDownloadSignUpButtons={showDownloadSignUpButtons}
+              signUpButtons={
+                showDownloadSignUpButtons &&
                 !showTermsAgreement && (
-                  <LessonDownloadSignInButtons
-                    onDownloadWithoutSignInClick={onDownloadWithoutSignInClick}
+                  <LessonDownloadSignUpButtons
+                    onDownloadWithoutSignUpClick={onDownloadWithoutSignUpClick}
                   />
                 )
               }

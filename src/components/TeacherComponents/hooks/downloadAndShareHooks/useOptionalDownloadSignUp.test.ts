@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
-import useOptionalDownloadSignIn from "./useOptionalDownloadSignIn";
+import useOptionalDownloadSignUp from "./useOptionalDownloadSignUp";
 
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn, mockLoggedOut } from "@/__tests__/__helpers__/mockUser";
@@ -10,7 +10,7 @@ jest.mock("posthog-js/react", () => ({
   useFeatureFlagVariantKey: jest.fn(),
 }));
 
-describe("useOptionalDownloadSignIn", () => {
+describe("useOptionalDownloadSignUp", () => {
   beforeEach(() => {
     jest.resetAllMocks();
   });
@@ -22,19 +22,19 @@ describe("useOptionalDownloadSignIn", () => {
       );
     });
 
-    test("should return showDownloadSignInButtons true and showTermsAgreement false for logged out user", async () => {
+    test("should return showDownloadSignUpButtons true and showTermsAgreement false for logged out user", async () => {
       setUseUserReturn(mockLoggedOut);
 
-      const { result } = renderHook(useOptionalDownloadSignIn);
+      const { result } = renderHook(useOptionalDownloadSignUp);
 
       expect(result.current).toEqual({
-        showDownloadSignInButtons: true,
+        showDownloadSignUpButtons: true,
         showTermsAgreement: false,
         setShowTermsAgreement: expect.any(Function),
       });
     });
 
-    test("should return showDownloadSignInButtons true and showTermsAgreement false for logged in but not onboarded user", async () => {
+    test("should return showDownloadSignUpButtons true and showTermsAgreement false for logged in but not onboarded user", async () => {
       setUseUserReturn({
         ...mockLoggedIn,
         user: {
@@ -47,22 +47,22 @@ describe("useOptionalDownloadSignIn", () => {
         },
       });
 
-      const { result } = renderHook(useOptionalDownloadSignIn);
+      const { result } = renderHook(useOptionalDownloadSignUp);
 
       expect(result.current).toEqual({
-        showDownloadSignInButtons: true,
+        showDownloadSignUpButtons: true,
         showTermsAgreement: false,
         setShowTermsAgreement: expect.any(Function),
       });
     });
 
-    test("should return showDownloadSignInButtons false and showTermsAgreement false for logged in user", async () => {
+    test("should return showDownloadSignUpButtons false and showTermsAgreement false for logged in user", async () => {
       setUseUserReturn(mockLoggedIn);
 
-      const { result } = renderHook(useOptionalDownloadSignIn);
+      const { result } = renderHook(useOptionalDownloadSignUp);
 
       expect(result.current).toEqual({
-        showDownloadSignInButtons: false,
+        showDownloadSignUpButtons: false,
         showTermsAgreement: false,
         setShowTermsAgreement: expect.any(Function),
       });
@@ -76,13 +76,13 @@ describe("useOptionalDownloadSignIn", () => {
       );
     });
 
-    test("should return showDownloadSignInButtons false and showTermsAgreement true for logged out user", async () => {
+    test("should return showDownloadSignUpButtons false and showTermsAgreement true for logged out user", async () => {
       setUseUserReturn(mockLoggedOut);
 
-      const { result } = renderHook(useOptionalDownloadSignIn);
+      const { result } = renderHook(useOptionalDownloadSignUp);
 
       expect(result.current).toEqual({
-        showDownloadSignInButtons: false,
+        showDownloadSignUpButtons: false,
         showTermsAgreement: true,
         setShowTermsAgreement: expect.any(Function),
       });

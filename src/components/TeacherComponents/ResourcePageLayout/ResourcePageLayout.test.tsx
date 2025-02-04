@@ -32,8 +32,6 @@ const props: PropsWithoutForm = {
   withHomeschool: true,
   showTermsAgreement: true,
   isLoading: false,
-  showDownloadSignInButtons: false,
-  signInButtons: null,
 };
 
 const ComponentWrapper = (props: PropsWithoutForm) => {
