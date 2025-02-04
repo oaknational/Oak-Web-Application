@@ -1,33 +1,36 @@
-// import { CurriculumUnitsYearData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-// import { Unit, Thread } from "@/utils/curriculum/types";
-// import { CurriculumFilters } from "./CurriculumVisualiserFilters";
+import { CurriculumFilters } from "./CurriculumVisualiserFilters";
 
-// function isHighlightedUnit(unit: Unit, selectedThread: Thread["slug"] | null) {
-//   if (!selectedThread) {
-//     return false;
-//   }
-//   return unit.threads.some((t) => t.slug === selectedThread);
-// }
+import { Unit, Thread, YearData } from "@/utils/curriculum/types";
+import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 
-export function highlightedUnitCount(): number {
-  // yearData: CurriculumUnitsYearData,
-  // selectedYear: string | null,
-  // filters: CurriculumFilters,
-  // selectedThread: Thread["slug"] | null,
-  // let count = 0;
-  // Object.keys(yearData).forEach((year) => {
-  //   const units = yearData[year]?.units;
-  //   if (units && (!selectedYear || selectedYear === year)) {
-  //     units.forEach((unit) => {
-  //       if (
-  //         isVisibleUnit(yearSelection, year, unit) &&
-  //         isHighlightedUnit(unit, selectedThread)
-  //       ) {
-  //         count++;
-  //       }
-  //     });
-  //   }
-  // });
-  // return count;
-  return 0;
+function isHighlightedUnit(
+  unit: Unit,
+  selectedThreads: Thread["slug"][] | null,
+) {
+  if (!selectedThreads) {
+    return false;
+  }
+  return unit.threads.some((t) => selectedThreads.includes(t.slug));
+}
+
+export function highlightedUnitCount(
+  yearData: YearData,
+  filters: CurriculumFilters,
+  selectedThreads: Thread["slug"][] | null,
+): number {
+  let count = 0;
+  Object.keys(yearData).forEach((year) => {
+    const units = yearData[year]?.units;
+    if (units && filters.years.includes(year)) {
+      units.forEach((unit) => {
+        if (
+          isVisibleUnit(filters, year, unit) &&
+          isHighlightedUnit(unit, selectedThreads)
+        ) {
+          count++;
+        }
+      });
+    }
+  });
+  return count;
 }

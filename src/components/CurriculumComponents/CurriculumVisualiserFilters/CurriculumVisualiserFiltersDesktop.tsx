@@ -253,11 +253,11 @@ export default function CurriculumVisualiserFiltersDesktop({
           </OakBox>
           {threadOptions.map((threadOption) => {
             const isSelected = isSelectedThread(threadOption);
-            const highlightedCount = highlightedUnitCount();
-            // yearData,
-            // selectedYear,
-            // yearSelection,
-            // selectedThread,
+            const highlightedCount = highlightedUnitCount(
+              yearData,
+              filters,
+              filters.threads,
+            );
 
             return (
               <OakBox
