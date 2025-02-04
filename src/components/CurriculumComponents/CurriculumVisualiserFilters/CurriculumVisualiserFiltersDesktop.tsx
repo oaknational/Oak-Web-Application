@@ -148,7 +148,7 @@ export default function CurriculumVisualiserFiltersDesktop({
             onChange={(e) =>
               setSingleInFilter("subjectCategories", e.target.value)
             }
-            value={filters.subjectCategories[0]!}
+            value={String(filters.subjectCategories[0]!)}
             $flexDirection="row"
             $flexWrap="wrap"
             $gap="space-between-ssx"
@@ -178,7 +178,7 @@ export default function CurriculumVisualiserFiltersDesktop({
           <OakRadioGroup
             name="childSubjects"
             onChange={(e) => setSingleInFilter("childSubjects", e.target.value)}
-            value={filters.childSubjects[0]!}
+            value={String(filters.childSubjects[0]!)}
             $flexDirection="row"
             $flexWrap="wrap"
             $gap="space-between-ssx"

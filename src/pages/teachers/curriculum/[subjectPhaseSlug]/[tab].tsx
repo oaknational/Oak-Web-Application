@@ -49,6 +49,7 @@ import {
 import openApiRequest from "@/utils/curriculum/openapi";
 import { CurriculumFilters } from "@/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 import { Unit } from "@/utils/curriculum/types";
+import { sortYears } from "@/utils/curriculum/sorting";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -79,7 +80,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   function getDefaultChildSubject(units: Unit[]) {
     const set = new Set<string>();
     units.forEach((u) => {
-      set.add(u.subject_slug);
+      if (u.subject_parent) {
+        set.add(u.subject_slug);
+      }
     });
     return [[...set][0]!];
   }
@@ -100,17 +103,27 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     return [[...set][0]!];
   }
 
+  function getDefaultYears(units: Unit[]) {
+    const years = new Set<string>();
+    for (const unit of units) {
+      years.add(unit.year);
+    }
+    return [...years].toSorted(sortYears);
+  }
+
   function unitsFrom(yearData: CurriculumUnitsYearData): Unit[] {
     return Object.entries(yearData).flatMap(([, data]) => data.units);
   }
   const units = unitsFrom(curriculumUnitsFormattedData.yearData);
 
-  const [filters, setFilters] = useState<CurriculumFilters>({
-    childSubjects: getDefaultChildSubject(units),
-    subjectCategories: getDefaultSubjectCategories(units),
-    tiers: getDefaultTiers(units),
-    years: [],
-    threads: [],
+  const [filters, setFilters] = useState<CurriculumFilters>(() => {
+    return {
+      childSubjects: getDefaultChildSubject(units),
+      subjectCategories: getDefaultSubjectCategories(units),
+      tiers: getDefaultTiers(units),
+      years: getDefaultYears(units),
+      threads: [],
+    };
   });
 
   let tabContent: JSX.Element;
