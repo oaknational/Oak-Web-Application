@@ -1,3 +1,10 @@
+# [1.682.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.681.2...v1.682.0) (2025-02-04)
+
+
+### Features
+
+* lesson downloads optional sign in ([ec866a7](https://github.com/oaknational/Oak-Web-Application/commit/ec866a7d6a26731c2e6a730e22408b3c1a2b6c39))
+
 ## [1.681.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.681.1...v1.681.2) (2025-02-04)
 
 ## [1.681.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.681.0...v1.681.1) (2025-02-04)
