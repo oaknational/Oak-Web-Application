@@ -1,3 +1,12 @@
+## [1.682.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.682.0...v1.682.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **generateSitemapUrlFields:** generate lastmod date once to improve test reliability ([6cda217](https://github.com/oaknational/Oak-Web-Application/commit/6cda217594fc26a2d7fc22ed22b211919b376bed))
+* **PupilReview:** correct console.error spy/expect in testing error cases ([1d2635d](https://github.com/oaknational/Oak-Web-Application/commit/1d2635d430bedad9b4f55f7846c86a30e508d2f9))
+* **useSchoolPicker:** properly execute res.json() method in fetcher error handling ([0a37409](https://github.com/oaknational/Oak-Web-Application/commit/0a37409f21efb7bd37fa95f9292701ef9357a295))
+
 # [1.682.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.681.2...v1.682.0) (2025-02-04)
 
 
