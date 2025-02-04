@@ -1,6 +1,6 @@
 import {
   InputMaybe,
-  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp,
 } from "../generated/sdk";
 import { RawSyntheticUVLesson } from "../queries/lessonDownloads/rawSyntheticUVLesson.schema";
 import { lessonPathwaySchema } from "../shared.schema";
@@ -58,7 +58,7 @@ export const constructLessonBrowseQuery = ({
   programmeSlug?: string;
   lessonSlug?: string;
 }) => {
-  const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
+  const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp> =
     {};
 
   browseDataWhere["lesson_slug"] = { _eq: lessonSlug };
