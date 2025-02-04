@@ -52,6 +52,13 @@ jest.mock("@oaknational/oak-components", () => {
   };
 });
 
+// mock navigator.clipboard
+Object.assign(navigator, {
+  clipboard: {
+    writeText: jest.fn(),
+  },
+});
+
 describe("TeacherNotesModal", () => {
   const useEditorMock = useEditor as jest.Mock;
   const mockTeacherNote: TeacherNoteCamelCase = {
@@ -182,6 +189,11 @@ describe("TeacherNotesModal", () => {
     // get the call to useEditor
     const mockEditorArgs = useEditorMock.mock.calls?.[0];
     const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
 
     mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
     expect(saveTeacherNote).toHaveBeenCalled();
@@ -206,6 +218,13 @@ describe("TeacherNotesModal", () => {
     // get the call to useEditor
     const mockEditorArgs = useEditorMock.mock.calls?.[0];
     const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
+
     mockEditorInstance.storage.characterCount.characters.mockReturnValueOnce(
       51,
     );
@@ -226,6 +245,85 @@ describe("TeacherNotesModal", () => {
         isOpen={true}
         onClose={onClose}
         saveTeacherNote={saveTeacherNote}
+        teacherNote={{ ...mockTeacherNote }}
+        sharingUrl={"https://example.com"}
+        error={null}
+      />,
+    );
+
+    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+      typeof OakTeacherNotesModal
+    >;
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    const modalProps = mockModal.mock.calls?.[0]?.[0];
+    if (!modalProps) {
+      throw new Error("No modal props found");
+    }
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
+
+    modalProps.onClose();
+
+    expect(saveTeacherNote).toHaveBeenCalledTimes(1);
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("should not save the teacher note when the note has not changed", () => {
+    const mockSaveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={mockSaveTeacherNote}
+        teacherNote={{
+          ...mockTeacherNote,
+          noteHtml: "<p>no change</p>",
+          noteText: "no change",
+        }}
+        sharingUrl={"https://example.com"}
+        error={null}
+      />,
+    );
+
+    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+      typeof OakTeacherNotesModal
+    >;
+
+    const modalProps = mockModal.mock.calls?.[0]?.[0];
+    if (!modalProps) {
+      throw new Error("No modal props found");
+    }
+
+    const mockEditorArgs = useEditorMock.mock.calls?.[0];
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce("<p>no change</p>");
+    mockEditorInstance.getText.mockReturnValueOnce("no change");
+
+    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+
+    expect(mockSaveTeacherNote).not.toHaveBeenCalled();
+  });
+
+  it("should not save the teacher note when note length is zero", () => {
+    const mockSaveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={mockSaveTeacherNote}
         teacherNote={mockTeacherNote}
         sharingUrl={"https://example.com"}
         error={null}
@@ -241,10 +339,16 @@ describe("TeacherNotesModal", () => {
       throw new Error("No modal props found");
     }
 
-    modalProps.onClose();
+    const mockEditorArgs = useEditorMock.mock.calls?.[0];
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
 
-    expect(saveTeacherNote).toHaveBeenCalledTimes(1);
-    expect(onClose).toHaveBeenCalledTimes(1);
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce("");
+    mockEditorInstance.getText.mockReturnValueOnce("");
+
+    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+
+    expect(mockSaveTeacherNote).not.toHaveBeenCalled();
   });
 
   it("should set note saved when the note has been saved", async () => {
@@ -274,6 +378,12 @@ describe("TeacherNotesModal", () => {
 
     const mockEditorArgs = useEditorMock.mock.calls?.[0];
     const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
 
     mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
 
@@ -306,6 +416,13 @@ describe("TeacherNotesModal", () => {
 
     const mockEditorArgs = useEditorMock.mock.calls?.[0];
     const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValueOnce(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
+
     mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
 
     const mockModal = OakTeacherNotesModal as jest.MockedFunction<
@@ -322,5 +439,82 @@ describe("TeacherNotesModal", () => {
     });
 
     expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 3000);
+  });
+
+  it("calls shareActivated with the note length when the share button is clicked", async () => {
+    const mockSaveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+
+    const mockShareActivated = jest.fn();
+
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={mockSaveTeacherNote}
+        teacherNote={mockTeacherNote}
+        sharingUrl={"https://example.com"}
+        error={null}
+        shareActivated={mockShareActivated}
+      />,
+    );
+
+    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+      typeof OakTeacherNotesModal
+    >;
+
+    const modalProps = mockModal.mock.calls?.[0]?.[0];
+    if (!modalProps) {
+      throw new Error("No modal props found");
+    }
+
+    const mockEditorInstance = useEditorMock.mock.results?.[0]?.value;
+
+    // mock results of getHTML and getText
+    mockEditorInstance.getHTML.mockReturnValue(
+      "<p>this content has changed</p>",
+    );
+    mockEditorInstance.getText.mockReturnValue("this content has changed");
+
+    modalProps.onShareClicked();
+
+    await waitFor(() => {
+      expect(mockShareActivated).toHaveBeenCalledWith(24);
+    });
+  });
+
+  it("copies the share url to clipboard when the share button is clicked", async () => {
+    const mockSaveTeacherNote = jest.fn(() =>
+      Promise.resolve(mockTeacherNoteSnake),
+    );
+
+    render(
+      <TeacherNotesModal
+        isOpen={true}
+        onClose={jest.fn()}
+        saveTeacherNote={mockSaveTeacherNote}
+        teacherNote={mockTeacherNote}
+        sharingUrl={"https://example.com"}
+        error={null}
+      />,
+    );
+
+    const mockModal = OakTeacherNotesModal as jest.MockedFunction<
+      typeof OakTeacherNotesModal
+    >;
+
+    const modalProps = mockModal.mock.calls?.[0]?.[0];
+    if (!modalProps) {
+      throw new Error("No modal props found");
+    }
+
+    modalProps.onShareClicked();
+
+    await waitFor(() => {
+      expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+        "https://example.com",
+      );
+    });
   });
 });

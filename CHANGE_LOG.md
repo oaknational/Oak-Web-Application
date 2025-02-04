@@ -1,3 +1,116 @@
+## [1.682.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.682.0...v1.682.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **generateSitemapUrlFields:** generate lastmod date once to improve test reliability ([6cda217](https://github.com/oaknational/Oak-Web-Application/commit/6cda217594fc26a2d7fc22ed22b211919b376bed))
+* **PupilReview:** correct console.error spy/expect in testing error cases ([1d2635d](https://github.com/oaknational/Oak-Web-Application/commit/1d2635d430bedad9b4f55f7846c86a30e508d2f9))
+* **useSchoolPicker:** properly execute res.json() method in fetcher error handling ([0a37409](https://github.com/oaknational/Oak-Web-Application/commit/0a37409f21efb7bd37fa95f9292701ef9357a295))
+
+# [1.682.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.681.2...v1.682.0) (2025-02-04)
+
+
+### Features
+
+* lesson downloads optional sign in ([ec866a7](https://github.com/oaknational/Oak-Web-Application/commit/ec866a7d6a26731c2e6a730e22408b3c1a2b6c39))
+
+## [1.681.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.681.1...v1.681.2) (2025-02-04)
+
+## [1.681.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.681.0...v1.681.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* show filter button and units header when no results ([15b6318](https://github.com/oaknational/Oak-Web-Application/commit/15b6318f9433b769b46d205436d582c78dd30d63))
+
+# [1.681.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.2...v1.681.0) (2025-02-03)
+
+
+### Features
+
+* add optionality title to unit modal ([c8cee67](https://github.com/oaknational/Oak-Web-Application/commit/c8cee67efb742986264b7d72466b8a631544a83d))
+
+## [1.680.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.1...v1.680.2) (2025-02-03)
+
+
+### Bug Fixes
+
+* added in hack for ks4Options issues in previous work ([fee2e09](https://github.com/oaknational/Oak-Web-Application/commit/fee2e093f11c024484fe38269492fb0d3e9c1867))
+* replace createProgrammeSlug with createTeacherProgrammeSlug ([f65210d](https://github.com/oaknational/Oak-Web-Application/commit/f65210d168919d09e177932b618a5f97fc707d73))
+
+## [1.680.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.0...v1.680.1) (2025-02-03)
+
+
+### Bug Fixes
+
+* reorg component in wrong place ([9e9b2b9](https://github.com/oaknational/Oak-Web-Application/commit/9e9b2b9c78bf2046433baf269fb427123800a1eb))
+
+# [1.680.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.679.0...v1.680.0) (2025-02-03)
+
+
+### Bug Fixes
+
+* bump oak-components and update snapshots ([423c84d](https://github.com/oaknational/Oak-Web-Application/commit/423c84d73a90176f4b9e3c66e326a66a1f05de6f))
+* deprecate styled svg instances ([e7d9a71](https://github.com/oaknational/Oak-Web-Application/commit/e7d9a71700078c03fe683496cfd3705366d49dcb))
+* fix underline color ([7ffc425](https://github.com/oaknational/Oak-Web-Application/commit/7ffc425471ef6b46e2f71777999acf8b4c83eccc))
+* remove unused components ([0dbee53](https://github.com/oaknational/Oak-Web-Application/commit/0dbee53c71b66a490b4e1fac5a9eb041101b8adb))
+* revert back to svg where there are theme related type errors ([8244cd8](https://github.com/oaknational/Oak-Web-Application/commit/8244cd8256c51e01b31b63e4969b13e3fe957a6f))
+
+
+### Features
+
+* bump oak-components version ([ef6b32a](https://github.com/oaknational/Oak-Web-Application/commit/ef6b32a1eb259db1c5744cff002bf87b9a6497d3))
+
+# [1.679.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.4...v1.679.0) (2025-01-31)
+
+
+### Bug Fixes
+
+* implement share tracking on browse lesson overview ([334fc8a](https://github.com/oaknational/Oak-Web-Application/commit/334fc8ad4dbe814245dfbc543b0e3eace7442388))
+* test to account for new behaviour ([452ac37](https://github.com/oaknational/Oak-Web-Application/commit/452ac370a64e333b2be7ee4141a6fb5e2af8d794))
+* type and test errors ([f0fb1ef](https://github.com/oaknational/Oak-Web-Application/commit/f0fb1ef1ee243c7bbbe82b9056196b4b991e89a4))
+* update test for new behaviour ([a802541](https://github.com/oaknational/Oak-Web-Application/commit/a802541b7ca4de0faf68ff5bfcc53b6986d21198))
+
+
+### Features
+
+* send num chars with teacher notes events ([c1d2b9c](https://github.com/oaknational/Oak-Web-Application/commit/c1d2b9cf2f6048dfe0d2d2cf131bc6013b2e12d1))
+* send tracking for note saved ([7d25d1e](https://github.com/oaknational/Oak-Web-Application/commit/7d25d1e3b02535c1a07ce47b8ee50f4911fb6214))
+* share activated from sharing event ([3f635eb](https://github.com/oaknational/Oak-Web-Application/commit/3f635ebc16972fecc6019e9e794ded70d0869979))
+
+## [1.678.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.3...v1.678.4) (2025-01-31)
+
+## [1.678.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.2...v1.678.3) (2025-01-30)
+
+
+### Bug Fixes
+
+* display pathways in alphabetical order ([2837d0b](https://github.com/oaknational/Oak-Web-Application/commit/2837d0b1a7d3d22a10a47f69e3e9c1f046616f4c))
+* display pathways in alphabetical order also for legacy programmes ([0f5b168](https://github.com/oaknational/Oak-Web-Application/commit/0f5b1683b6f86bc253d5a20749ff3d2036b340d6))
+
+## [1.678.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.1...v1.678.2) (2025-01-30)
+
+
+### Bug Fixes
+
+* incorrect override details ([842667b](https://github.com/oaknational/Oak-Web-Application/commit/842667bf4bb7963538dda5084ae92e43648c74d1))
+
+## [1.678.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.678.0...v1.678.1) (2025-01-30)
+
+
+### Bug Fixes
+
+* show legacy lessons for exam boards ([0ec6a79](https://github.com/oaknational/Oak-Web-Application/commit/0ec6a7919b52fa555322dc1d87c6270c8dfbb88d))
+
+# [1.678.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.677.1...v1.678.0) (2025-01-30)
+
+
+### Features
+
+* remove old curric MV code behind switches ([1ce20da](https://github.com/oaknational/Oak-Web-Application/commit/1ce20dad4ed4a9097b9f1a30cfc7287f4c319ace))
+
+## [1.677.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.677.0...v1.677.1) (2025-01-29)
+
 # [1.677.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.676.0...v1.677.0) (2025-01-29)
 
 
