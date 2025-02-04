@@ -224,7 +224,7 @@ export default function CurriculumVisualiserFiltersDesktop({
             $gap="space-between-ssx"
             aria-labelledby="tiers-label"
           >
-            {tiers.toSorted(sortTiers).map((tier) => (
+            {tiers.map((tier) => (
               <OakRadioAsButton
                 key={tier.tier_slug}
                 value={tier.tier_slug}
