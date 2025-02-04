@@ -56,7 +56,7 @@ export const constructLessonBrowseQuery = ({
 }: {
   unitSlug?: string;
   programmeSlug?: string;
-  lessonSlug: string;
+  lessonSlug?: string;
 }) => {
   const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_10_0_0_Bool_Exp> =
     {};

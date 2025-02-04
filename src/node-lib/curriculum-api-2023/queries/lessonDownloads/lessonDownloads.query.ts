@@ -26,7 +26,6 @@ const lessonDownloadsQuery =
     const browseDataWhere = constructLessonBrowseQuery({
       programmeSlug,
       unitSlug,
-      lessonSlug,
     });
 
     const res = await sdk.lessonDownloads({ lessonSlug, browseDataWhere });
