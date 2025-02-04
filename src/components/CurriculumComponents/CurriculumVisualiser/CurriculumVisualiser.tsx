@@ -22,7 +22,7 @@ import { getUnitFeatures } from "@/utils/curriculum/features";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import { sortChildSubjects, sortYears } from "@/utils/curriculum/sorting";
-import { createProgrammeSlug } from "@/utils/curriculum/slugs";
+import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import {
   Subject,
   SubjectCategory,
@@ -420,10 +420,11 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           displayModal={displayModal}
           onClose={handleCloseModal}
           lessons={currentUnitLessons}
-          programmeSlug={createProgrammeSlug(
+          programmeSlug={createTeacherProgrammeSlug(
             unitData,
             ks4OptionSlug,
             unitDataTier,
+            unitData?.pathway_slug ?? undefined,
           )}
           unitOptionsAvailable={unitOptionsAvailable}
           unitSlug={unitData?.slug}

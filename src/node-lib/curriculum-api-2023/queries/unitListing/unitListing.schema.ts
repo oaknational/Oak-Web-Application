@@ -32,6 +32,11 @@ const subjectCategorySchema = z.object({
 });
 export type SubjectCategory = z.infer<typeof subjectCategorySchema>;
 
+const yearGroupsSchema = z.array(
+  z.object({ year: yearSlugs, yearTitle: yearDescriptions }),
+);
+export type YearGroups = z.infer<typeof yearGroupsSchema>;
+
 const reshapedUnitData = z.object({
   slug: z.string(),
   title: z.string(),
@@ -101,9 +106,7 @@ const unitListingData = z.object({
   hasNewContent: z.boolean(),
   learningThemes: learningThemes,
   phase: phaseSlugs,
-  yearGroups: z.array(
-    z.object({ year: yearSlugs, yearTitle: yearDescriptions }),
-  ),
+  yearGroups: yearGroupsSchema,
   subjectCategories: z.array(subjectCategorySchema),
   pathwayTitle: pathways.nullable(),
 });

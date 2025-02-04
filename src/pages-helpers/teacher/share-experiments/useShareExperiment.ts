@@ -6,50 +6,27 @@ import {
   getConversionShareId,
   getShareId,
   getShareIdKey,
-  shareSources,
+  ShareSource,
   storeActivationKey,
   storeConversionShareId,
 } from "./createShareId";
+import {
+  CoreProperties,
+  CurriculumTrackingProps,
+} from "./shareExperimentTypes";
 
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import {
-  KeyStageTitleValueType,
-  TeacherShareInitiatedProperties,
-} from "@/browser-lib/avo/Avo";
-
-export type CurriculumTrackingProps = {
-  lessonName: string | null;
-  unitName: string | null;
-  subjectSlug: string | null;
-  subjectTitle: string | null;
-  keyStageSlug: string | null;
-  keyStageTitle: KeyStageTitleValueType | null;
-};
-
-type CoreProperties = Pick<
-  TeacherShareInitiatedProperties,
-  | "platform"
-  | "product"
-  | "engagementIntent"
-  | "componentType"
-  | "eventVersion"
-  | "analyticsUseCase"
->;
 
 export const useShareExperiment = ({
-  lessonSlug,
-  unitSlug,
   programmeSlug,
   source,
   shareBaseUrl,
   curriculumTrackingProps,
   overrideExistingShareId,
 }: {
-  lessonSlug?: string;
-  unitSlug?: string;
   programmeSlug?: string;
   shareBaseUrl?: string;
-  source: keyof typeof shareSources;
+  source: ShareSource;
   curriculumTrackingProps: CurriculumTrackingProps;
   overrideExistingShareId: boolean | null;
 }) => {
@@ -59,6 +36,8 @@ export const useShareExperiment = ({
   const [browserUrl, setBrowserUrl] = useState<string | null>(null);
 
   const { track } = useAnalytics();
+
+  const { lessonSlug, unitSlug } = curriculumTrackingProps;
 
   const coreTrackingProps: CoreProperties = useMemo(
     () => ({
@@ -91,8 +70,6 @@ export const useShareExperiment = ({
         track.teacherShareConverted({
           shareId: urlShareId,
           linkUrl: window.location.href,
-          lessonSlug,
-          unitSlug,
           ...coreTrackingProps,
           ...curriculumTrackingProps,
         });
@@ -134,8 +111,6 @@ export const useShareExperiment = ({
       if (!storageShareId) {
         // track the share initiated event
         track.teacherShareInitiated({
-          unitSlug,
-          lessonSlug,
           shareId,
           sourcePageSlug: window.location.pathname,
           ...coreTrackingProps,
@@ -171,7 +146,7 @@ export const useShareExperiment = ({
     overrideExistingShareId,
   ]);
 
-  const shareActivated = () => {
+  const shareActivated = (noteLengthChars?: number) => {
     if (!shareIdRef.current || !shareIdKeyRef.current) {
       return;
     }
@@ -180,11 +155,10 @@ export const useShareExperiment = ({
       track.teacherShareActivated({
         shareId: shareIdRef.current,
         linkUrl: window.location.href,
-        lessonSlug,
-        unitSlug,
         sourcePageSlug: window.location.pathname,
         ...coreTrackingProps,
         ...curriculumTrackingProps,
+        noteLengthChars,
       });
 
       storeActivationKey(shareIdKeyRef.current);

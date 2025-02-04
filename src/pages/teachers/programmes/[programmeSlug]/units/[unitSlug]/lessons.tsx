@@ -36,12 +36,10 @@ import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 import { isLessonListItem } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
-import {
-  CurriculumTrackingProps,
-  useShareExperiment,
-} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -83,12 +81,13 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 
   const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
   const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
-    unitSlug: unitSlug ?? undefined,
     programmeSlug: programmeSlug ?? undefined,
     source: "lesson-listing",
     curriculumTrackingProps: {
       lessonName: null,
+      lessonSlug: null,
       unitName: unitTitle,
+      unitSlug: unitSlug,
       subjectSlug,
       subjectTitle,
       keyStageSlug,
