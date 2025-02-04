@@ -1,5 +1,5 @@
 query pupilUnitListing($baseSlug: String!) {
-  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_12_0_0(
+  browseData: published_mv_synthetic_unitvariants_with_lesson_ids_by_year_14_0_0(
     where: { base_slug: { _eq: $baseSlug } }
   ) {
     base_slug
