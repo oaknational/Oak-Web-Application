@@ -7,9 +7,7 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    types: [opened, synchronize, reopened]
-  merge_group:
+      - test/eng-1102-benchmark-vitest
 
 jobs:
   lint_test_sonar:
