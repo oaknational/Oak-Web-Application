@@ -13,6 +13,7 @@ import {
   syntheticUnitvariantsWithLessonIdsByKsSchema,
   ProgrammeFields,
   tierDescriptions,
+  pathways,
 } from "@oaknational/oak-curriculum-schema";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
@@ -30,6 +31,11 @@ const subjectCategorySchema = z.object({
   iconName: z.string().optional().nullable(),
 });
 export type SubjectCategory = z.infer<typeof subjectCategorySchema>;
+
+const yearGroupsSchema = z.array(
+  z.object({ year: yearSlugs, yearTitle: yearDescriptions }),
+);
+export type YearGroups = z.infer<typeof yearGroupsSchema>;
 
 const reshapedUnitData = z.object({
   slug: z.string(),
@@ -100,10 +106,9 @@ const unitListingData = z.object({
   hasNewContent: z.boolean(),
   learningThemes: learningThemes,
   phase: phaseSlugs,
-  yearGroups: z.array(
-    z.object({ year: yearSlugs, yearTitle: yearDescriptions }),
-  ),
+  yearGroups: yearGroupsSchema,
   subjectCategories: z.array(subjectCategorySchema),
+  pathwayTitle: pathways.nullable(),
 });
 
 export type UnitListingData = z.infer<typeof unitListingData>;
