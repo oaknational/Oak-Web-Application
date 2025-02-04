@@ -1,8 +1,8 @@
 query lessonShare(
   $lessonSlug: String!
-  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0_bool_exp
+  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0_bool_exp
 ) {
-  share: published_mv_lesson_content_published_3_0_0(
+  share: published_mv_lesson_content_published_5_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_title
@@ -13,7 +13,7 @@ query lessonShare(
     worksheet_asset_object_url
     expired: deprecated_fields(path: "expired")
   }
-  browse: published_mv_synthetic_unitvariant_lessons_by_keystage_13_0_0(
+  browse: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
     where: $browseDataWhere
   ) {
     unit_title: unit_data(path: "title")
