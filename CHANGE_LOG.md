@@ -1,3 +1,17 @@
+## [1.681.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.681.0...v1.681.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* show filter button and units header when no results ([15b6318](https://github.com/oaknational/Oak-Web-Application/commit/15b6318f9433b769b46d205436d582c78dd30d63))
+
+# [1.681.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.2...v1.681.0) (2025-02-03)
+
+
+### Features
+
+* add optionality title to unit modal ([c8cee67](https://github.com/oaknational/Oak-Web-Application/commit/c8cee67efb742986264b7d72466b8a631544a83d))
+
 ## [1.680.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.680.1...v1.680.2) (2025-02-03)
 
 
