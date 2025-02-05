@@ -1,3 +1,10 @@
+## [1.683.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.1...v1.683.2) (2025-02-05)
+
+
+### Bug Fixes
+
+* use subject title instead of slug for header ([0604def](https://github.com/oaknational/Oak-Web-Application/commit/0604defa38acebdbc6fa9573a65ee56268c1455d))
+
 ## [1.683.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.0...v1.683.1) (2025-02-05)
 
 
