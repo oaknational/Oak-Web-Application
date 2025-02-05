@@ -120,6 +120,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     subjectSlug,
     subjectParent,
     filteredUnits,
+    subjectTitle,
   } = props;
 
   const linkSubject = subjectParent
@@ -252,7 +253,7 @@ const UnitList: FC<UnitListProps> = (props) => {
     newPageItems.length && phaseSlug ? (
       <OakUnitsContainer
         isLegacy={false}
-        subject={category ?? subjectSlug}
+        subject={category ?? subjectTitle}
         phase={phaseSlug}
         curriculumHref={
           hideNewCurriculumDownloadButton

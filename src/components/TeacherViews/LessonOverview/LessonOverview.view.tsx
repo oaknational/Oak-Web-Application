@@ -224,14 +224,6 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     keyStageSlug !== "early-years-foundation-stage" &&
     !actions?.disablePupilShare;
 
-  // TODO: use actions and exceptions for this
-  const isPELesson = subjectSlug === "physical-education";
-
-  const isMFL =
-    subjectSlug === "german" ||
-    subjectSlug === "french" ||
-    subjectSlug === "spanish";
-
   return (
     <MathJaxLessonProvider>
       <HeaderLesson
@@ -405,7 +397,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         unitSlug={unitSlug ?? null}
                         programmeSlug={programmeSlug ?? null}
                         lessonOutline={lessonOutline}
-                        isPELesson={isPELesson}
+                        isPELesson={actions?.displayPETitle}
                       />
                     </LessonItemContainer>
                   )}
@@ -432,7 +424,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     isLegacyLicense={isLegacyLicense}
                     isMathJaxLesson={isMathJaxLesson}
                     hasVocabAndTranscripts={Boolean(additionalMaterialUrl)}
-                    displayVocab={isMFL}
+                    displayVocab={actions?.displayVocabButton}
                     updatedAt={updatedAt}
                     additionalFiles={additionalFiles}
                   />
