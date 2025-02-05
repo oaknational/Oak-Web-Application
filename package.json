@@ -76,7 +76,7 @@
     "@mdx-js/loader": "^3.1.0",
     "@mux/mux-node": "^8.8.0",
     "@mux/mux-player-react": "^3.1.0",
-    "@oaknational/oak-components": "^1.79.0",
+    "@oaknational/oak-components": "^1.81.0",
     "@oaknational/oak-consent-client": "^2.1.1",
     "@oaknational/oak-curriculum-schema": "^1.48.0",
     "@oaknational/oak-pupil-client": "^2.14.0",
