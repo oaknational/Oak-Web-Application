@@ -1,3 +1,10 @@
+# [1.683.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.682.1...v1.683.0) (2025-02-05)
+
+
+### Features
+
+* add actions to owa ([1f7152d](https://github.com/oaknational/Oak-Web-Application/commit/1f7152de8df779a8552d6113658f5820c2765397))
+
 ## [1.682.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.682.0...v1.682.1) (2025-02-04)
 
 
