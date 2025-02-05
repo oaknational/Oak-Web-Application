@@ -45,6 +45,7 @@ describe("generateURLFields function", () => {
       { urls: "https://example.org" },
     ];
     const result = generateURLFields(urls);
+    expect(result).toHaveLength(2);
     expect(result[0]?.lastmod).toBe(result[1]?.lastmod);
   });
 });
