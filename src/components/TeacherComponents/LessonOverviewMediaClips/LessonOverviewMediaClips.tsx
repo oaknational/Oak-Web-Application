@@ -26,6 +26,11 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   isPELesson,
 }) => {
   if (!learningCycleVideos) return null;
+  const hasIntroCycle = Object.keys(learningCycleVideos).includes("intro");
+  const introLessonOverview =
+    hasIntroCycle && lessonOutline
+      ? [{ lessonOutline: "Intro" }, ...lessonOutline]
+      : lessonOutline;
 
   const videosArray = Object.values(learningCycleVideos);
   return (
@@ -47,13 +52,14 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
             return playbackId.policy === "signed";
           },
         );
+
         const PETitle = firstCycleVideo.customTitle
           ? firstCycleVideo.customTitle
           : firstCycleVideo.mediaObject?.displayName;
         const lessonOutlineTitle =
-          lessonOutline && lessonOutline[index]
-            ? lessonOutline[index].lessonOutline
-            : "";
+          lessonOutline && introLessonOverview && introLessonOverview[index]
+            ? introLessonOverview[index]?.lessonOutline
+            : (lessonOutline?.[index]?.lessonOutline ?? "");
 
         if (!signedPlaybackId) return null;
         return (

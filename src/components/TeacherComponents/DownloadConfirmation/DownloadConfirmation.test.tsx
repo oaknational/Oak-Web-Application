@@ -4,7 +4,7 @@ import DownloadConfirmation from "./DownloadConfirmation";
 
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
-import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 
 const onwardContentSelected =
   jest.fn() as unknown as TrackFns["onwardContentSelected"];
@@ -27,7 +27,9 @@ describe("DownloadConfirmation component", () => {
 
   const curriculumTrackingProps: CurriculumTrackingProps = {
     lessonName: "Test lesson",
+    lessonSlug: "test-lesson",
     unitName: "Test unit",
+    unitSlug: "test-unit",
     keyStageSlug: "test-key-stage",
     keyStageTitle: "Key stage 1",
     subjectSlug: "test-subject",
@@ -37,11 +39,9 @@ describe("DownloadConfirmation component", () => {
   it("should render", () => {
     const { getByText } = renderWithTheme(
       <DownloadConfirmation
-        lessonSlug="test-lesson"
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
         unitTitle="Test unit"
-        unitSlug="test-unit"
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
@@ -54,11 +54,9 @@ describe("DownloadConfirmation component", () => {
   it("Back to lesson link", () => {
     const { getByTestId } = renderWithTheme(
       <DownloadConfirmation
-        lessonSlug="test-lesson"
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
         unitTitle="Test unit"
-        unitSlug="test-unit"
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
@@ -75,11 +73,9 @@ describe("DownloadConfirmation component", () => {
   it("Back to lesson link specialist", () => {
     const { getByTestId } = renderWithTheme(
       <DownloadConfirmation
-        lessonSlug="test-lesson"
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
         unitTitle="Test unit"
-        unitSlug="test-unit"
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
         isSpecialist={true}
@@ -98,10 +94,8 @@ describe("DownloadConfirmation component", () => {
   it("when unitSlug or programmeSlug is null renders link to cannonical lesson", () => {
     const { getByTestId } = renderWithTheme(
       <DownloadConfirmation
-        lessonSlug="test-lesson"
         lessonTitle="Test lesson"
         programmeSlug={null}
-        unitSlug={null}
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
@@ -117,11 +111,9 @@ describe("DownloadConfirmation component", () => {
     const user = userEvent.setup();
     const { getByRole } = renderWithTheme(
       <DownloadConfirmation
-        lessonSlug="test-lesson"
         lessonTitle="Test lesson"
         programmeSlug="test-programme"
         unitTitle="Test unit"
-        unitSlug="test-unit"
         isCanonical={false}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}
@@ -146,10 +138,8 @@ describe("DownloadConfirmation component", () => {
     const user = userEvent.setup();
     const { getByRole } = renderWithTheme(
       <DownloadConfirmation
-        lessonSlug="test-lesson"
         lessonTitle="Test lesson"
         programmeSlug={null}
-        unitSlug={null}
         isCanonical={true}
         onwardContentSelected={onwardContentSelected}
         {...curriculumTrackingProps}

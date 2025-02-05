@@ -6,14 +6,12 @@ import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import DownloadConfirmationNextLessonContainer from "@/components/TeacherComponents/DownloadConfirmationNextLessonContainer";
 import { NextLesson } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { TrackFns } from "@/context/Analytics/AnalyticsProvider";
-import {
-  useShareExperiment,
-  CurriculumTrackingProps,
-} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 
 type DownloadConfirmationProps = {
-  lessonSlug: string;
+  lessonSlug: string | null;
   lessonTitle: string;
   programmeSlug: string | null;
   unitSlug: string | null;
@@ -53,6 +51,10 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     focusRef.current?.focus();
   }, []);
 
+  if (lessonSlug === null) {
+    throw new Error("lessonSlug is required");
+  }
+
   // create a share URL which points at the lesson overview page
   const pathElems = window.location.href.split("/");
   const shareBaseUrl = pathElems
@@ -60,13 +62,13 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     .join("/");
 
   const { shareUrl, shareActivated } = useShareExperiment({
-    lessonSlug,
-    unitSlug: isCanonical ? undefined : (unitSlug ?? undefined), // NB. unitSlug can sometimes be defined for canonical state
     programmeSlug: isCanonical ? undefined : (programmeSlug ?? undefined),
     source: isCanonical ? "download-canonical" : "download-browse",
     shareBaseUrl,
     curriculumTrackingProps: {
       lessonName: lessonTitle,
+      lessonSlug: lessonSlug,
+      unitSlug: isCanonical ? null : unitSlug,
       unitName: unitTitle ?? "",
       keyStageSlug,
       keyStageTitle,

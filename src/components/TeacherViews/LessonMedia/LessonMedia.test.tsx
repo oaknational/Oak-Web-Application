@@ -14,6 +14,7 @@ const render = renderWithProviders();
 const lesson = {
   ...lessonMediaClipsFixtures(),
   lessonOutline: [{ lessonOutline: "Sample outline" }],
+  actions: [{ action: "Sample action" }],
 };
 const mediaClips = lesson.mediaClips;
 const firstMediaClip = mediaClips ? mediaClips["intro"] : null;
