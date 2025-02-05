@@ -4,6 +4,7 @@ import {
   OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
+  OakHandDrawnHR,
 } from "@oaknational/oak-components";
 import { isEqual } from "lodash";
 
@@ -143,6 +144,11 @@ export default function CurriculumVisualiserFiltersDesktop({
 
       {subjectCategories.length > 0 && (
         <>
+          <OakHandDrawnHR
+            hrColor={"grey40"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m2"}
+          />
           <OakHeading
             id="subject-categories-label"
             tag="h4"
@@ -176,6 +182,12 @@ export default function CurriculumVisualiserFiltersDesktop({
 
       {childSubjects.length > 0 && (
         <>
+          <OakHandDrawnHR
+            hrColor={"grey40"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m2"}
+          />
+
           <OakHeading
             id="child-subjects-label"
             tag="h4"
@@ -207,6 +219,12 @@ export default function CurriculumVisualiserFiltersDesktop({
 
       {tiers.length > 0 && (
         <>
+          <OakHandDrawnHR
+            hrColor={"grey40"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m2"}
+          />
+
           <OakHeading
             id="tiers-label"
             tag="h4"
@@ -235,6 +253,11 @@ export default function CurriculumVisualiserFiltersDesktop({
         </>
       )}
 
+      <OakHandDrawnHR
+        hrColor={"grey40"}
+        $mt={"space-between-m"}
+        $mb={"space-between-m2"}
+      />
       <Fieldset data-testid={"threads-filter-desktop"}>
         <FieldsetLegend $font={"heading-6"} $mt="space-between-m2">
           Highlight a thread
