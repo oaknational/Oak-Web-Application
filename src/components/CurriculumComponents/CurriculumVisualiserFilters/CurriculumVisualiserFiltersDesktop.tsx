@@ -26,6 +26,11 @@ import {
 } from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import {
+  sortChildSubjects,
+  sortSubjectCategoriesOnFeatures,
+  sortTiers,
+} from "@/utils/curriculum/sorting";
 
 function getFilterData(
   yearData: CurriculumUnitsFormattedData["yearData"],
@@ -45,9 +50,13 @@ function getFilterData(
     );
   });
 
-  const childSubjectsArray = [...childSubjects.values()];
-  const subjectCategoriesArray = [...subjectCategories.values()];
-  const tiersArray = [...tiers.values()];
+  const childSubjectsArray = [...childSubjects.values()].toSorted(
+    sortChildSubjects,
+  );
+  const subjectCategoriesArray = [...subjectCategories.values()].toSorted(
+    sortSubjectCategoriesOnFeatures(null),
+  );
+  const tiersArray = [...tiers.values()].toSorted(sortTiers);
 
   return {
     childSubjects: childSubjectsArray.length > 1 ? childSubjectsArray : [],
@@ -148,7 +157,7 @@ export default function CurriculumVisualiserFiltersDesktop({
             onChange={(e) =>
               setSingleInFilter("subjectCategories", e.target.value)
             }
-            value={filters.subjectCategories[0]!}
+            value={String(filters.subjectCategories[0]!)}
             $flexDirection="row"
             $flexWrap="wrap"
             $gap="space-between-ssx"
@@ -178,7 +187,7 @@ export default function CurriculumVisualiserFiltersDesktop({
           <OakRadioGroup
             name="childSubjects"
             onChange={(e) => setSingleInFilter("childSubjects", e.target.value)}
-            value={filters.childSubjects[0]!}
+            value={String(filters.childSubjects[0]!)}
             $flexDirection="row"
             $flexWrap="wrap"
             $gap="space-between-ssx"

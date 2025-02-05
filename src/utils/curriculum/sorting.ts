@@ -1,5 +1,5 @@
 import { UnitFeatures } from "./features";
-import { Subject, SubjectCategory, Unit } from "./types";
+import { Subject, SubjectCategory, Tier, Unit } from "./types";
 
 export function sortYears(a: string, b: string) {
   if (a === "all-years") {
@@ -27,6 +27,16 @@ export function sortSubjectCategoriesOnFeatures(
     };
   }
   return (a, b) => a.id - b.id;
+}
+
+export function sortTiers(a: Tier, b: Tier) {
+  if (a.tier_slug < b.tier_slug) {
+    return -1;
+  } else if (a.tier_slug > b.tier_slug) {
+    return 1;
+  } else {
+    return 0;
+  }
 }
 
 export function sortChildSubjects(a: Subject, b: Subject) {
