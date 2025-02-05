@@ -143,8 +143,12 @@ export default async function generate(
                 u.threads.findIndex((t) => t.slug === thread.slug) > -1,
             );
             return [year, filteredUnits];
+          } else {
+            const filteredUnits = units.filter(
+              (u) => u.threads.findIndex((t) => t.slug === thread.slug) > -1,
+            );
+            return [year, filteredUnits];
           }
-          return [year, units];
         })
         .filter(([, units]) => units.length > 0)
         .map(([year, units]) => {
