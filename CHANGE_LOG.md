@@ -1,3 +1,12 @@
+## [1.683.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.0...v1.683.1) (2025-02-05)
+
+
+### Bug Fixes
+
+* get all lessons for unit on downloads page so we can find next in sequence ([0abbcf5](https://github.com/oaknational/Oak-Web-Application/commit/0abbcf58ff07c412745fcb30b1134bfa01ec83c7))
+* sort lessons by order in unit so correct lessons are returned ([99a650b](https://github.com/oaknational/Oak-Web-Application/commit/99a650b3d0daf3ef7709c092133d2bd2b40e1dcd))
+* use lesson slug for canonical download page queries ([5e12d23](https://github.com/oaknational/Oak-Web-Application/commit/5e12d234ad68578d31aeba5fa4352befee59f2d5))
+
 # [1.683.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.682.1...v1.683.0) (2025-02-05)
 
 
