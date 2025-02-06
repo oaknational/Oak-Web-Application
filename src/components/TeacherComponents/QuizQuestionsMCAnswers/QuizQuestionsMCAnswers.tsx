@@ -68,6 +68,7 @@ export const QuizQuestionsMCAnswers = (props: {
                     <OakCodeRenderer
                       string={removeMarkdown(answerItem.text)}
                       $font="code-3"
+                      $mt={"space-between-none"}
                     />
                   </Typography>
                 );
@@ -95,6 +96,7 @@ export const QuizQuestionsMCAnswers = (props: {
                       <OakCodeRenderer
                         string={removeMarkdown(answerItem.text)}
                         $font="code-3"
+                        $mt={"space-between-none"}
                       />
                     </OakTypography>
                   </OakFlex>

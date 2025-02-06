@@ -59,6 +59,7 @@ export const QuizQuestionsMatchAnswers = ({
                   <OakCodeRenderer
                     string={removeMarkdown(matchOption.text)}
                     $font="code-3"
+                    $mt={"space-between-none"}
                   />
                   <OakSpan>{" -"}&nbsp;</OakSpan>
                 </OakP>
@@ -69,6 +70,7 @@ export const QuizQuestionsMatchAnswers = ({
                   <OakCodeRenderer
                     string={removeMarkdown(correctChoice.text)}
                     $font="code-3"
+                    $mt={"space-between-none"}
                   />
                 </OakP>
               </Flex>

@@ -26,11 +26,21 @@ export const shortAnswerTitleFormatter = (
           title="An empty space to write an answer in"
           data-testid="underline"
         />{" "}
-        <OakCodeRenderer string={match} $font="code-3" />
+        <OakCodeRenderer
+          string={match}
+          $font="code-3"
+          $mt={"space-between-none"}
+        />
       </React.Fragment>
     ));
   } else {
-    return <OakCodeRenderer string={title} $font="code-3" />;
+    return (
+      <OakCodeRenderer
+        string={title}
+        $font="code-3"
+        $mt={"space-between-none"}
+      />
+    );
   }
 };
 
