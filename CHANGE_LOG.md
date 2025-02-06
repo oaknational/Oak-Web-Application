@@ -1,3 +1,10 @@
+## [1.683.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.2...v1.683.3) (2025-02-06)
+
+
+### Bug Fixes
+
+* lock mux to v3.1.0 ([10e72d9](https://github.com/oaknational/Oak-Web-Application/commit/10e72d9d53770deabe3d7c72d177ff0c6f9cef5b))
+
 ## [1.683.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.1...v1.683.2) (2025-02-05)
 
 
