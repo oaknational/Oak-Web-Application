@@ -1,3 +1,15 @@
+# [1.685.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.684.0...v1.685.0) (2025-02-06)
+
+
+### Bug Fixes
+
+* correct the usage of curriculumPhaseOptions() ([1195e1b](https://github.com/oaknational/Oak-Web-Application/commit/1195e1b22ca0ad254edac1177217f925e9d3ec60))
+
+
+### Features
+
+* switch over to new MVs to exclude rshe-pshe ([1e9b1cc](https://github.com/oaknational/Oak-Web-Application/commit/1e9b1cc1ed23e135adb49011704c5251b1b1bd8a))
+
 # [1.684.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.5...v1.684.0) (2025-02-06)
 
 
