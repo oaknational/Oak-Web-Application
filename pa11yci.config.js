@@ -32,7 +32,7 @@ const config = {
        * Avo
        * Anything labelled with .pa11y-ignore (doesn't work if element has shadow-dom children for some reason)
        */
-      "#mtm-root-container, #mtm-frame-container, #avo-debugger, .pa11y-ignore",
+      '#mtm-root-container, #mtm-frame-container, #avo-debugger, .pa11y-ignore, div[class^="PostHogSurvey"]',
     ignore: [
       // We have multiple instances of high-contrast text being detected as low-contrast
       // because of low-contrast text shadows.
