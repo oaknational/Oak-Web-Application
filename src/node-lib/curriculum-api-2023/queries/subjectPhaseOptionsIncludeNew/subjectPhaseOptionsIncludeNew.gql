@@ -1,9 +1,0 @@
-query subjectPhaseOptionsIncludeNew {
-  options: published_mv_subject_phase_options_including_new_0_0_1 {
-    title
-    slug
-    state
-    phases
-    examboards
-  }
-}

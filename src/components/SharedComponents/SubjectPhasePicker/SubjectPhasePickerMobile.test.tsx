@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/react";
 
-import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
+import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -27,7 +27,7 @@ describe("Component - Mobile subject phase picker", () => {
   describe("Subject picker interaction", () => {
     test("shows subject list when clicking picker", async () => {
       const { getByTitle, findAllByTitle, getByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
       const control = getByTitle("Subject");
       expect(control).toBeTruthy();
@@ -42,7 +42,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("links to previous curriculum plans", async () => {
       const { getByTestId, getByTitle } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
       await userEvent.click(getByTitle("Subject"));
       const link = getByTestId("subject-picker-previous-plans-link");
@@ -54,7 +54,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("selects subject when clicked", async () => {
       const { findAllByTitle, getByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       const control = getByTestId("subject-picker-button");
@@ -76,7 +76,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("disables confirm button until subject is selected", async () => {
       const { findAllByTitle, getByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       const control = getByTestId("subject-picker-button");
@@ -99,7 +99,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("shows phase picker after confirming subject", async () => {
       const { findAllByTitle, getByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       const control = getByTestId("subject-picker-button");
@@ -130,7 +130,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("traps focus within subject picker", async () => {
       const { getByTitle, findByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       await userEvent.click(getByTitle("Subject"));
@@ -165,7 +165,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("closes subject picker with close button", async () => {
       const { getByTestId, queryByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       await userEvent.click(getByTestId("subject-picker-button-heading"));
@@ -182,7 +182,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("closes subject picker with escape key", async () => {
       const { getByTestId, queryByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       await userEvent.click(getByTestId("subject-picker-button-heading"));
@@ -200,7 +200,7 @@ describe("Component - Mobile subject phase picker", () => {
   describe("Phase picker interaction", () => {
     test("user can navigate back from phase picker to subject picker", async () => {
       const { findAllByTitle, getByTestId, queryByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       const control = getByTestId("subject-picker-button");
@@ -237,7 +237,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("user cannot click view curriculum button until a valid phase selection is made", async () => {
       const { getByTitle, findAllByTitle, findByTitle, getByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       await userEvent.click(getByTitle("Subject"));
@@ -267,7 +267,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("an error is shown if a phase is confirmed without a subject having been selected first", async () => {
       const { getByTitle, getByTestId, getByRole } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       await userEvent.click(getByTestId("phase-picker-button"));
@@ -294,7 +294,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("traps focus within phase picker modal", async () => {
       const { getByTestId, findByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       await userEvent.click(getByTestId("phase-picker-button"));
@@ -329,7 +329,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("close button closes mobile phase picker", async () => {
       const { getByTestId, queryByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       await userEvent.click(getByTestId("phase-picker-button"));
@@ -348,7 +348,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("escape key closes mobile phase picker", async () => {
       const { getByTestId, queryByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       await userEvent.click(getByTestId("phase-picker-button"));
@@ -368,7 +368,7 @@ describe("Component - Mobile subject phase picker", () => {
   describe("Pathways are shown correctly", () => {
     test("shows primary options when selecting English", async () => {
       const { getByTitle, findAllByTitle, getByTestId } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       const control = getByTestId("subject-picker-button");
@@ -396,7 +396,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("shows two KS4 options when selecting English and secondary", async () => {
       const { getByTitle, findAllByTitle, getByTestId, findAllByTestId } =
-        render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+        render(<SubjectPhasePicker {...curriculumPhaseOptions} />);
 
       const control = getByTestId("subject-picker-button");
       await userEvent.click(control);
@@ -437,7 +437,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("shows PE examboards in alphabetical order when selecting secondary", async () => {
       const { getByTitle, findAllByTitle, getByTestId, findAllByTestId } =
-        render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+        render(<SubjectPhasePicker {...curriculumPhaseOptions} />);
 
       const control = getByTestId("subject-picker-button");
       await userEvent.click(control);
@@ -481,7 +481,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("shows correct Computing options with no GCSE option", async () => {
       const { getByTitle, findAllByTitle, getByTestId, findAllByTestId } =
-        render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+        render(<SubjectPhasePicker {...curriculumPhaseOptions} />);
 
       const control = getByTestId("subject-picker-button");
       await userEvent.click(control);
@@ -524,7 +524,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("shows both Core and GCSE options for Citizenship", async () => {
       const { getByTitle, findAllByTestId, findAllByTitle, getByTestId } =
-        render(<SubjectPhasePicker {...subjectPhaseOptions} />);
+        render(<SubjectPhasePicker {...curriculumPhaseOptions} />);
 
       const control = getByTestId("subject-picker-button");
       await userEvent.click(control);
@@ -570,7 +570,7 @@ describe("Component - Mobile subject phase picker", () => {
 
     test("No KS4 options displayed for Geography", async () => {
       const { queryByTestId, getByTestId, findAllByTitle } = render(
-        <SubjectPhasePicker {...subjectPhaseOptions} />,
+        <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );
 
       const control = getByTestId("subject-picker-button");
@@ -613,7 +613,7 @@ describe("Component - Mobile subject phase picker", () => {
       };
       const { getByTitle } = render(
         <SubjectPhasePicker
-          {...subjectPhaseOptions}
+          {...curriculumPhaseOptions}
           currentSelection={currentSelection}
         />,
       );

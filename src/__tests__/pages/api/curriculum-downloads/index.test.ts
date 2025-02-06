@@ -4,7 +4,7 @@ import { createNextApiMocks } from "../../../__helpers__/createNextApiMocks";
 import {
   curriculumOverviewEnglishSecondary,
   curriculumUnitsEnglishSecondary,
-  subjectPhaseOptions,
+  curriculumPhaseOptions,
 } from "@/utils/curriculum/fixtures";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
@@ -37,8 +37,8 @@ const refreshedMVTimeMock = jest.fn<
   };
 });
 
-const subjectPhaseOptionsMock = jest.fn(
-  async () => subjectPhaseOptions.options,
+const curriculumPhaseOptionsMock = jest.fn(
+  async () => curriculumPhaseOptions.options,
 );
 
 jest.mock("../../../../node-lib/curriculum-api-2023", () => ({
@@ -47,7 +47,7 @@ jest.mock("../../../../node-lib/curriculum-api-2023", () => ({
     curriculumSequence: () => curriculumSequenceMock(),
     curriculumOverview: () => curriculumOverviewMock(),
     refreshedMVTime: () => refreshedMVTimeMock(),
-    subjectPhaseOptions: () => subjectPhaseOptionsMock(),
+    curriculumPhaseOptions: () => curriculumPhaseOptionsMock(),
   },
 }));
 

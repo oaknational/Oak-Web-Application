@@ -16,10 +16,10 @@ import { resolveOakHref } from "@/common-lib/urls";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 type CurriculumDownloadTabProps = {
-  subjectPhaseOptions: SubjectPhasePickerData;
+  curriculumPhaseOptions: SubjectPhasePickerData;
 };
 const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
-  subjectPhaseOptions,
+  curriculumPhaseOptions,
 }) => {
   return (
     <OakBox $background={"mint"} $pv="inner-padding-xl" $ph={"inner-padding-m"}>
@@ -77,7 +77,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
               $display={["none", "none", "block"]}
               $maxWidth={"all-spacing-22"}
             >
-              <SubjectPhasePicker {...subjectPhaseOptions} />
+              <SubjectPhasePicker {...curriculumPhaseOptions} />
             </OakBox>
           </OakFlex>
           {/* @todo replace with OakFlex - work out $flex prop */}
@@ -109,7 +109,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
           $maxWidth={"all-spacing-23"}
           $pt={"inner-padding-xl"}
         >
-          <SubjectPhasePicker {...subjectPhaseOptions} />
+          <SubjectPhasePicker {...curriculumPhaseOptions} />
         </OakBox>
       </OakMaxWidth>
     </OakBox>
