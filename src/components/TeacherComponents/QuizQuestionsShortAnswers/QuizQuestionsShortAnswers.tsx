@@ -54,7 +54,7 @@ export const QuizQuestionsShortAnswers = ({
           <OakCodeRenderer
             string={removeMarkdown(answerString)}
             $font="code-3"
-            $mt={"space-between-none"}
+            $mt={"space-between-ssx"}
           />
         </OakTypography>
       </OakFlex>

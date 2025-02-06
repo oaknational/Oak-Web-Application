@@ -29,7 +29,7 @@ export const shortAnswerTitleFormatter = (
         <OakCodeRenderer
           string={match}
           $font="code-3"
-          $mt={"space-between-none"}
+          $mt={"space-between-ssx"}
         />
       </React.Fragment>
     ));
@@ -38,7 +38,7 @@ export const shortAnswerTitleFormatter = (
       <OakCodeRenderer
         string={title}
         $font="code-3"
-        $mt={"space-between-none"}
+        $mt={"space-between-ssx"}
       />
     );
   }
