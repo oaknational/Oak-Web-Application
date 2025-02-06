@@ -1,3 +1,59 @@
+# [1.684.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.5...v1.684.0) (2025-02-06)
+
+
+### Bug Fixes
+
+* retrigger build ([7b319c1](https://github.com/oaknational/Oak-Web-Application/commit/7b319c14e974b482051a88fd8907f457edff3bc8))
+
+
+### Features
+
+* use code renderer in hint and feedback ([04eaea5](https://github.com/oaknational/Oak-Web-Application/commit/04eaea5cd254dbb79cc1170ea044a54690f2fa37))
+
+## [1.683.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.4...v1.683.5) (2025-02-06)
+
+
+### Bug Fixes
+
+* remove references to old MVs ([6f77694](https://github.com/oaknational/Oak-Web-Application/commit/6f77694e6d21c4e3c2aa012a460e86a79c03b365))
+
+## [1.683.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.3...v1.683.4) (2025-02-06)
+
+
+### Bug Fixes
+
+* for threads details pages listing all units ([ec39a8f](https://github.com/oaknational/Oak-Web-Application/commit/ec39a8fc8af688d1746f927baeae230b7de37a2c))
+
+## [1.683.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.2...v1.683.3) (2025-02-06)
+
+
+### Bug Fixes
+
+* lock mux to v3.1.0 ([10e72d9](https://github.com/oaknational/Oak-Web-Application/commit/10e72d9d53770deabe3d7c72d177ff0c6f9cef5b))
+
+## [1.683.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.1...v1.683.2) (2025-02-05)
+
+
+### Bug Fixes
+
+* use subject title instead of slug for header ([0604def](https://github.com/oaknational/Oak-Web-Application/commit/0604defa38acebdbc6fa9573a65ee56268c1455d))
+
+## [1.683.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.0...v1.683.1) (2025-02-05)
+
+
+### Bug Fixes
+
+* get all lessons for unit on downloads page so we can find next in sequence ([0abbcf5](https://github.com/oaknational/Oak-Web-Application/commit/0abbcf58ff07c412745fcb30b1134bfa01ec83c7))
+* sort lessons by order in unit so correct lessons are returned ([99a650b](https://github.com/oaknational/Oak-Web-Application/commit/99a650b3d0daf3ef7709c092133d2bd2b40e1dcd))
+* use lesson slug for canonical download page queries ([5e12d23](https://github.com/oaknational/Oak-Web-Application/commit/5e12d234ad68578d31aeba5fa4352befee59f2d5))
+
+# [1.683.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.682.1...v1.683.0) (2025-02-05)
+
+
+### Features
+
+* add actions to owa ([1f7152d](https://github.com/oaknational/Oak-Web-Application/commit/1f7152de8df779a8552d6113658f5820c2765397))
+
 ## [1.682.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.682.0...v1.682.1) (2025-02-04)
 
 

@@ -128,21 +128,32 @@ export default async function generate(
 
     let contentElements: string[];
 
+    const filterByThreads = ([year, units]: [string, Unit[]]): [
+      string,
+      Unit[],
+    ] => {
+      if (enableGroupBySubjectCategory) {
+        const filteredUnits = units.filter(
+          (u) =>
+            (u.subjectcategories ?? []).length < 1 &&
+            u.threads.findIndex((t) => t.slug === thread.slug) > -1,
+        );
+        return [year, filteredUnits];
+      } else {
+        const filteredUnits = units.filter(
+          (u) => u.threads.findIndex((t) => t.slug === thread.slug) > -1,
+        );
+        return [year, filteredUnits];
+      }
+    };
+
     // Original non-categorized format
     contentElements = Object.values(unitsByYear(data.units)).map((units) => {
       const yearGroupedUnits = unitsByYear(units);
       return Object.entries(yearGroupedUnits)
         .sort(([yearA], [yearB]) => sortYears(yearA, yearB))
         .map<[string, Unit[]]>(([year, units]) => {
-          if (enableGroupBySubjectCategory) {
-            const filteredUnits = units.filter(
-              (u) =>
-                (u.subjectcategories ?? []).length < 1 &&
-                u.threads.findIndex((t) => t.slug === thread.slug) > -1,
-            );
-            return [year, filteredUnits];
-          }
-          return [year, units];
+          return filterByThreads([year, units]);
         })
         .filter(([, units]) => units.length > 0)
         .map(([year, units]) => {
