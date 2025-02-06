@@ -31,7 +31,7 @@ const refreshedMVTimeMock = jest.fn<
     data: [
       {
         last_refresh_finish: LAST_REFRESH.toISOString(),
-        materializedview_name: "mv_curriculum_units_including_new_0_0_16",
+        materializedview_name: "mv_curriculum_sequence_b_13_0_6",
       },
     ],
   };

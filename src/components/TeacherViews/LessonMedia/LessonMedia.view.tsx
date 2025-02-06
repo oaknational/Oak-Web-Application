@@ -33,6 +33,7 @@ import {
   getInitialCurrentClip,
   joinTranscript,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
+import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type BaseLessonMedia = {
   lessonTitle: string;
@@ -40,6 +41,7 @@ type BaseLessonMedia = {
   keyStageTitle: string;
   mediaClips: MediaClipListCamelCase;
   lessonOutline: { lessonOutline: string }[];
+  actions?: Actions;
 };
 
 type CanonicalLesson = BaseLessonMedia & {
@@ -60,12 +62,17 @@ type LessonMediaProps =
 
 export const LessonMedia = (props: LessonMediaProps) => {
   const { isCanonical, lesson } = props;
-  const { lessonTitle, lessonSlug, keyStageTitle, mediaClips, lessonOutline } =
-    lesson;
+  const {
+    lessonTitle,
+    lessonSlug,
+    keyStageTitle,
+    mediaClips,
+    lessonOutline,
+    actions,
+  } = lesson;
   const subjectSlug = isCanonical
     ? (lesson?.pathways[0]?.subjectSlug ?? "")
     : (lesson.subjectSlug ?? "");
-  const isPELesson = subjectSlug === "physical-education";
 
   const commonPathway = getCommonPathway(
     props.isCanonical ? props.lesson.pathways : [props.lesson],
@@ -187,7 +194,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
             <MediaClipWithThumbnail
               clipName={title}
               timeCode={videoObject.duration ?? 0}
-              learningCycle={!isPELesson ? mediaClip.learningCycle : ""}
+              learningCycle={
+                !actions?.displayPETitle ? mediaClip.learningCycle : ""
+              }
               muxPlayingState={getPlayingState(
                 String(currentClip?.mediaId),
                 String(mediaId),

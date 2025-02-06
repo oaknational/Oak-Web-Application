@@ -61,17 +61,13 @@ const constructLessonDownloads = (
     };
   });
 
-  const lessonInUnit = unitLessonsArray.find(
+  const lessonsInOrder = unitLessonsArray.sort((a, b) =>
+    (a.orderInUnit ?? 0) > (b.orderInUnit ?? 0) ? 1 : -1,
+  );
+  const lessonPositionIndex = lessonsInOrder.findIndex(
     (lesson) => lesson.lessonSlug === lessonSlug,
   );
-  const lessonPosition = lessonInUnit?.orderInUnit;
-  const nextLessons =
-    lessonPosition &&
-    unitLessonsArray
-      .filter((lesson) =>
-        lesson.orderInUnit ? lesson.orderInUnit > lessonPosition : [],
-      )
-      .splice(0, 3);
+  const nextLessons = lessonsInOrder.splice(lessonPositionIndex + 1, 3);
 
   return {
     ...downloadsPageData,

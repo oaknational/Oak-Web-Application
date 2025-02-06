@@ -55,6 +55,8 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     updatedAt: string;
     showTermsAgreement: boolean;
     isLoading: boolean;
+    showDownloadSignUpButtons?: boolean;
+    signUpButtons?: React.ReactNode | null;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -132,7 +134,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             </OakBox>
           )}
           {props.cardGroup}
-          {!props.showTermsAgreement && (
+          {!props.showTermsAgreement && !props.showDownloadSignUpButtons && (
             <>
               <OakBox
                 $pb={"inner-padding-xl3"}
@@ -151,6 +153,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             </>
           )}
         </Flex>
+        {props.page === "download" && props.signUpButtons}
       </OakBox>
 
       <OakFlex
