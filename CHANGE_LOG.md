@@ -1,3 +1,10 @@
+## [1.683.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.4...v1.683.5) (2025-02-06)
+
+
+### Bug Fixes
+
+* remove references to old MVs ([6f77694](https://github.com/oaknational/Oak-Web-Application/commit/6f77694e6d21c4e3c2aa012a460e86a79c03b365))
+
 ## [1.683.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.3...v1.683.4) (2025-02-06)
 
 
