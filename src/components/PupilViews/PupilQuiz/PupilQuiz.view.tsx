@@ -8,6 +8,7 @@ import {
   OakQuizCounter,
   OakSpan,
   OakTooltip,
+  OakCodeRenderer,
 } from "@oaknational/oak-components";
 
 import {
@@ -140,7 +141,12 @@ const QuizInner = () => {
     <OakLessonBottomNav
       hint={
         currentQuestionData?.hint && (
-          <MathJaxWrap>{currentQuestionData.hint}</MathJaxWrap>
+          <MathJaxWrap>
+            <OakCodeRenderer
+              string={currentQuestionData.hint}
+              $font={"code-3"}
+            />
+          </MathJaxWrap>
         )
       }
       hintToggled={({ isOpen }: { isOpen: boolean }) => {
