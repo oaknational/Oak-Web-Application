@@ -3,10 +3,11 @@ import { TeachersSitemap } from "@/node-lib/curriculum-api-2023/queries/teachers
 export type URLFields = { urls: string }[];
 
 export const generateURLFields = (urls: URLFields) => {
+  const lastmod = new Date().toISOString();
   return urls.map((url) => {
     return {
       loc: url.urls,
-      lastmod: new Date().toISOString(),
+      lastmod,
     };
   });
 };

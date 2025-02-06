@@ -1,3 +1,44 @@
+## [1.683.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.1...v1.683.2) (2025-02-05)
+
+
+### Bug Fixes
+
+* use subject title instead of slug for header ([0604def](https://github.com/oaknational/Oak-Web-Application/commit/0604defa38acebdbc6fa9573a65ee56268c1455d))
+
+## [1.683.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.0...v1.683.1) (2025-02-05)
+
+
+### Bug Fixes
+
+* get all lessons for unit on downloads page so we can find next in sequence ([0abbcf5](https://github.com/oaknational/Oak-Web-Application/commit/0abbcf58ff07c412745fcb30b1134bfa01ec83c7))
+* sort lessons by order in unit so correct lessons are returned ([99a650b](https://github.com/oaknational/Oak-Web-Application/commit/99a650b3d0daf3ef7709c092133d2bd2b40e1dcd))
+* use lesson slug for canonical download page queries ([5e12d23](https://github.com/oaknational/Oak-Web-Application/commit/5e12d234ad68578d31aeba5fa4352befee59f2d5))
+
+# [1.683.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.682.1...v1.683.0) (2025-02-05)
+
+
+### Features
+
+* add actions to owa ([1f7152d](https://github.com/oaknational/Oak-Web-Application/commit/1f7152de8df779a8552d6113658f5820c2765397))
+
+## [1.682.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.682.0...v1.682.1) (2025-02-04)
+
+
+### Bug Fixes
+
+* **generateSitemapUrlFields:** generate lastmod date once to improve test reliability ([6cda217](https://github.com/oaknational/Oak-Web-Application/commit/6cda217594fc26a2d7fc22ed22b211919b376bed))
+* **PupilReview:** correct console.error spy/expect in testing error cases ([1d2635d](https://github.com/oaknational/Oak-Web-Application/commit/1d2635d430bedad9b4f55f7846c86a30e508d2f9))
+* **useSchoolPicker:** properly execute res.json() method in fetcher error handling ([0a37409](https://github.com/oaknational/Oak-Web-Application/commit/0a37409f21efb7bd37fa95f9292701ef9357a295))
+
+# [1.682.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.681.2...v1.682.0) (2025-02-04)
+
+
+### Features
+
+* lesson downloads optional sign in ([ec866a7](https://github.com/oaknational/Oak-Web-Application/commit/ec866a7d6a26731c2e6a730e22408b3c1a2b6c39))
+
+## [1.681.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.681.1...v1.681.2) (2025-02-04)
+
 ## [1.681.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.681.0...v1.681.1) (2025-02-04)
 
 
