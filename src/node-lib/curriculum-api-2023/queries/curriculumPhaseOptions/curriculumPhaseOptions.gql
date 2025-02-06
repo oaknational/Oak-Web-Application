@@ -1,5 +1,5 @@
 query curriculumPhaseOptions {
-  options: published_mv_curriculum_phase_options_0_1 {
+  options: published_mv_curriculum_phase_options_0_2 {
     title
     slug
     phases
