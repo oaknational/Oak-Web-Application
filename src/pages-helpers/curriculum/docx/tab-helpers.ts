@@ -146,7 +146,7 @@ export function createInitialYearFilterSelection(
 
     const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
     // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
-    if (!actions?.subject_category_actions) {
+    if (!actions?.subject_category_actions.all_disabled) {
       if (filters.subjectCategories.length >= 2) {
         filters.subjectCategories.unshift(allSubjectCategoryTag);
       }
