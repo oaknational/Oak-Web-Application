@@ -1,3 +1,24 @@
+## [1.683.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.4...v1.683.5) (2025-02-06)
+
+
+### Bug Fixes
+
+* remove references to old MVs ([6f77694](https://github.com/oaknational/Oak-Web-Application/commit/6f77694e6d21c4e3c2aa012a460e86a79c03b365))
+
+## [1.683.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.3...v1.683.4) (2025-02-06)
+
+
+### Bug Fixes
+
+* for threads details pages listing all units ([ec39a8f](https://github.com/oaknational/Oak-Web-Application/commit/ec39a8fc8af688d1746f927baeae230b7de37a2c))
+
+## [1.683.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.2...v1.683.3) (2025-02-06)
+
+
+### Bug Fixes
+
+* lock mux to v3.1.0 ([10e72d9](https://github.com/oaknational/Oak-Web-Application/commit/10e72d9d53770deabe3d7c72d177ff0c6f9cef5b))
+
 ## [1.683.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.1...v1.683.2) (2025-02-05)
 
 
