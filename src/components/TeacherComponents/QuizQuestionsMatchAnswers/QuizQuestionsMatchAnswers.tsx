@@ -1,5 +1,11 @@
 import { VisuallyHidden } from "react-aria";
-import { OakP, OakSpan, OakFlex, OakIcon } from "@oaknational/oak-components";
+import {
+  OakP,
+  OakSpan,
+  OakFlex,
+  OakIcon,
+  OakCodeRenderer,
+} from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -50,14 +56,20 @@ export const QuizQuestionsMatchAnswers = ({
                   $font={["body-2-bold", "body-1-bold"]}
                   aria-hidden
                 >
-                  {removeMarkdown(matchOption.text)}
+                  <OakCodeRenderer
+                    string={removeMarkdown(matchOption.text)}
+                    $font="code-3"
+                  />
                   <OakSpan>{" -"}&nbsp;</OakSpan>
                 </OakP>
                 <OakP
                   $whiteSpace={["break-spaces", "nowrap"]}
                   $font={["body-2", "body-1"]}
                 >
-                  {removeMarkdown(correctChoice.text)}
+                  <OakCodeRenderer
+                    string={removeMarkdown(correctChoice.text)}
+                    $font="code-3"
+                  />
                 </OakP>
               </Flex>
             </OakFlex>

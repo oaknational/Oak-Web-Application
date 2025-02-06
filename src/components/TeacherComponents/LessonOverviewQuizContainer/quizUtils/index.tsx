@@ -1,6 +1,7 @@
 import React from "react";
 import reactStringReplace from "react-string-replace";
 import styled from "styled-components";
+import { OakCodeRenderer } from "@oaknational/oak-components";
 
 const UnderlineSpan = styled.span`
   display: inline-block;
@@ -25,11 +26,11 @@ export const shortAnswerTitleFormatter = (
           title="An empty space to write an answer in"
           data-testid="underline"
         />{" "}
-        {match}
+        <OakCodeRenderer string={match} $font="code-3" />
       </React.Fragment>
     ));
   } else {
-    return title;
+    return <OakCodeRenderer string={title} $font="code-3" />;
   }
 };
 

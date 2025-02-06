@@ -4,6 +4,7 @@ import {
   OakFlex,
   OakIcon,
   OakBox,
+  OakCodeRenderer,
 } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
@@ -38,7 +39,11 @@ export const QuizQuestionsOrderAnswers = ({
               role="listitem"
             >
               <VisuallyHidden>
-                {item.correctOrder} - {removeMarkdown(orderAnswer.text)}
+                {item.correctOrder} -{" "}
+                <OakCodeRenderer
+                  string={removeMarkdown(orderAnswer.text)}
+                  $font="code-3"
+                />
               </VisuallyHidden>
               <OakBox $minWidth="all-spacing-7" aria-hidden>
                 <OakIcon
@@ -53,7 +58,11 @@ export const QuizQuestionsOrderAnswers = ({
               </OakTypography>
 
               <OakTypography $font={["body-2", "body-1"]} aria-hidden>
-                - {removeMarkdown(orderAnswer.text)}
+                -{" "}
+                <OakCodeRenderer
+                  string={removeMarkdown(orderAnswer.text)}
+                  $font={"code-3"}
+                />
               </OakTypography>
             </OakFlex>
           )

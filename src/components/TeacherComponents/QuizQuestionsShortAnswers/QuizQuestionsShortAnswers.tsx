@@ -4,6 +4,7 @@ import {
   OakFlex,
   OakIcon,
   OakBox,
+  OakCodeRenderer,
 } from "@oaknational/oak-components";
 
 import { removeMarkdown } from "@/components/TeacherComponents/LessonOverviewQuizContainer/quizUtils";
@@ -50,7 +51,10 @@ export const QuizQuestionsShortAnswers = ({
         </OakBox>
 
         <OakTypography $font={["body-2", "body-1"]} aria-hidden>
-          {removeMarkdown(answerString)}
+          <OakCodeRenderer
+            string={removeMarkdown(answerString)}
+            $font="code-3"
+          />
         </OakTypography>
       </OakFlex>
     </OakFlex>
