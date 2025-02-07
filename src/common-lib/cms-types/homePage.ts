@@ -44,7 +44,7 @@ export const homePageSchema = z
       })
       .nullish(),
     seo: seoSchema.nullish(),
-    testimonials: z.array(testimonialSchema),
+    testimonials: z.array(testimonialSchema).nullable(),
   })
   .merge(documentSchema);
 
