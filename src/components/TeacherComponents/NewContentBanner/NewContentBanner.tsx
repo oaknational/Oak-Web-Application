@@ -7,14 +7,8 @@ import PromoBannerWithVideo from "../PromoBannerWithVideo";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import { resolveOakHref, OakPageType } from "@/common-lib/urls";
 
-export const StyledVideoFlex = styled(OakFlex)<{ expand: boolean }>`
+export const StyledVideoFlex = styled(OakFlex)`
   transition: width 0.4s ease-in;
-
-  p {
-    @media (min-width: 768px) {
-      display: ${({ expand }) => (expand ? "none" : "block")};
-    }
-  }
 `;
 
 type NewContentBannerProps = {

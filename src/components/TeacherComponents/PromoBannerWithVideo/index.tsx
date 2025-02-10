@@ -39,14 +39,8 @@ const PromoBannerWithVideo = ({
   buttonIconName,
   textUnderVideo,
 }: PromoBannerWithVideoProps) => {
-  const [expandVideo, setExpandVideo] = useState(false);
-  const handleVideoEvent = (event: VideoEventCallbackArgs) => {
-    if (event.event === "playing") {
-      setExpandVideo(true);
-    } else {
-      setExpandVideo(false);
-    }
-  };
+  
+  
 
   return (
     <StyledOakFlex
@@ -77,9 +71,9 @@ const PromoBannerWithVideo = ({
       </OakFlex>
       <StyledVideoFlex
         $alignSelf={["flex-start", "center"]}
-        expand={expandVideo}
+        
         $flexDirection={"column"}
-        $width={expandVideo ? ["100%", "all-spacing-21"] : "all-spacing-19"}
+        
         data-testid="video-player-container"
       >
         <VideoPlayer
@@ -89,7 +83,7 @@ const PromoBannerWithVideo = ({
           location={"marketing"}
           isLegacy={false}
           thumbnailTime={30.8}
-          userEventCallback={handleVideoEvent}
+          
         />
         {textUnderVideo && <OakP $font={"body-3-bold"}>{textUnderVideo}</OakP>}
       </StyledVideoFlex>

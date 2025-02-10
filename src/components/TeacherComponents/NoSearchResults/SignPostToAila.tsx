@@ -11,7 +11,7 @@ const composeAilaLink = ({
   unitTitle?: string;
   searchExpression?: string;
 }) => {
-  const baseUrl = `http://https://labs.thenational.academy/aila`;
+  const baseUrl = `https://labs.thenational.academy/aila`;
   const keyStageParam = keyStage ? `keyStage=${keyStage}&` : "";
   const subjectParam = subject ? `subject=${subject}&` : "";
   const unitTitleParam = unitTitle ? `unitTitle=${unitTitle}&` : "";
