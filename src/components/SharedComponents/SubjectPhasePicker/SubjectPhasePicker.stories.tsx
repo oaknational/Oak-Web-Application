@@ -8,7 +8,7 @@ import {
 import Component from "./SubjectPhasePicker";
 
 import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
-import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
+import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 
 const meta: Meta<typeof Component> = {
   decorators: [AnalyticsDecorator],
@@ -24,7 +24,7 @@ export const KeyStageKeypad: Story = {
     return (
       <OakThemeProvider theme={oakDefaultTheme}>
         <OakFlex $flexDirection={"column"} $pa="inner-padding-m">
-          <Component {...subjectPhaseOptions} />
+          <Component {...curriculumPhaseOptions} />
         </OakFlex>
       </OakThemeProvider>
     );
