@@ -43,7 +43,7 @@ export const QuizQuestionsOrderAnswers = ({
                 <OakCodeRenderer
                   string={removeMarkdown(orderAnswer.text)}
                   $font="code-3"
-                  $mt={"space-between-ssx"}
+                  $mt={"space-between-none"}
                 />
               </VisuallyHidden>
               <OakBox $minWidth="all-spacing-7" aria-hidden>
@@ -63,7 +63,7 @@ export const QuizQuestionsOrderAnswers = ({
                 <OakCodeRenderer
                   string={removeMarkdown(orderAnswer.text)}
                   $font={"code-3"}
-                  $mt={"space-between-ssx"}
+                  $mt={"space-between-none"}
                 />
               </OakTypography>
             </OakFlex>
