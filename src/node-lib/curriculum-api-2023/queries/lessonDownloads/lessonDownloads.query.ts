@@ -22,11 +22,12 @@ const lessonDownloadsQuery =
     lessonSlug: string;
   }): Promise<T> => {
     const { lessonSlug, unitSlug, programmeSlug } = args;
+    const isCanonicalLesson = !unitSlug && !programmeSlug;
 
     const browseDataWhere = constructLessonBrowseQuery({
       programmeSlug,
       unitSlug,
-      lessonSlug,
+      lessonSlug: isCanonicalLesson ? lessonSlug : undefined,
     });
 
     const res = await sdk.lessonDownloads({ lessonSlug, browseDataWhere });
@@ -90,8 +91,7 @@ const lessonDownloadsQuery =
       rawSyntheticUVLessonSchema.parse(bd),
     );
 
-    const canonicalLesson = !unitSlug && !programmeSlug;
-    if (canonicalLesson) {
+    if (isCanonicalLesson) {
       const canonicalLessonDownloads = constructCanonicalLessonDownloads(
         downloads,
         lessonSlug,
