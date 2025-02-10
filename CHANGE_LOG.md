@@ -1,3 +1,48 @@
+# [1.685.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.684.0...v1.685.0) (2025-02-06)
+
+
+### Bug Fixes
+
+* correct the usage of curriculumPhaseOptions() ([1195e1b](https://github.com/oaknational/Oak-Web-Application/commit/1195e1b22ca0ad254edac1177217f925e9d3ec60))
+
+
+### Features
+
+* switch over to new MVs to exclude rshe-pshe ([1e9b1cc](https://github.com/oaknational/Oak-Web-Application/commit/1e9b1cc1ed23e135adb49011704c5251b1b1bd8a))
+
+# [1.684.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.5...v1.684.0) (2025-02-06)
+
+
+### Bug Fixes
+
+* retrigger build ([7b319c1](https://github.com/oaknational/Oak-Web-Application/commit/7b319c14e974b482051a88fd8907f457edff3bc8))
+
+
+### Features
+
+* use code renderer in hint and feedback ([04eaea5](https://github.com/oaknational/Oak-Web-Application/commit/04eaea5cd254dbb79cc1170ea044a54690f2fa37))
+
+## [1.683.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.4...v1.683.5) (2025-02-06)
+
+
+### Bug Fixes
+
+* remove references to old MVs ([6f77694](https://github.com/oaknational/Oak-Web-Application/commit/6f77694e6d21c4e3c2aa012a460e86a79c03b365))
+
+## [1.683.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.3...v1.683.4) (2025-02-06)
+
+
+### Bug Fixes
+
+* for threads details pages listing all units ([ec39a8f](https://github.com/oaknational/Oak-Web-Application/commit/ec39a8fc8af688d1746f927baeae230b7de37a2c))
+
+## [1.683.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.2...v1.683.3) (2025-02-06)
+
+
+### Bug Fixes
+
+* lock mux to v3.1.0 ([10e72d9](https://github.com/oaknational/Oak-Web-Application/commit/10e72d9d53770deabe3d7c72d177ff0c6f9cef5b))
+
 ## [1.683.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.683.1...v1.683.2) (2025-02-05)
 
 
