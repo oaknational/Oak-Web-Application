@@ -4,6 +4,7 @@ import {
   OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
+  OakHandDrawnHR,
 } from "@oaknational/oak-components";
 import { isEqual } from "lodash";
 
@@ -17,6 +18,7 @@ import {
 } from "./CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "./helpers";
 
+import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import {
   Thread,
@@ -143,6 +145,11 @@ export default function CurriculumVisualiserFiltersDesktop({
 
       {subjectCategories.length > 0 && (
         <>
+          <OakHandDrawnHR
+            hrColor={"grey40"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m2"}
+          />
           <OakHeading
             id="subject-categories-label"
             tag="h4"
@@ -163,19 +170,28 @@ export default function CurriculumVisualiserFiltersDesktop({
             $gap="space-between-ssx"
             aria-labelledby="subject-categories-label"
           >
-            {subjectCategories.map((subjectCategory) => (
-              <OakRadioAsButton
-                key={subjectCategory.id}
-                value={String(subjectCategory.id)}
-                displayValue={subjectCategory.title}
-              />
-            ))}
+            {subjectCategories.map((subjectCategory) => {
+              return (
+                <OakRadioAsButton
+                  key={subjectCategory.id}
+                  value={String(subjectCategory.id)}
+                  displayValue={subjectCategory.title}
+                  icon={getValidSubjectCategoryIconById(subjectCategory.id)}
+                />
+              );
+            })}
           </OakRadioGroup>
         </>
       )}
 
       {childSubjects.length > 0 && (
         <>
+          <OakHandDrawnHR
+            hrColor={"grey40"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m2"}
+          />
+
           <OakHeading
             id="child-subjects-label"
             tag="h4"
@@ -207,6 +223,12 @@ export default function CurriculumVisualiserFiltersDesktop({
 
       {tiers.length > 0 && (
         <>
+          <OakHandDrawnHR
+            hrColor={"grey40"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m2"}
+          />
+
           <OakHeading
             id="tiers-label"
             tag="h4"
@@ -235,6 +257,11 @@ export default function CurriculumVisualiserFiltersDesktop({
         </>
       )}
 
+      <OakHandDrawnHR
+        hrColor={"grey40"}
+        $mt={"space-between-m"}
+        $mb={"space-between-m2"}
+      />
       <Fieldset data-testid={"threads-filter-desktop"}>
         <FieldsetLegend $font={"heading-6"} $mt="space-between-m2">
           Highlight a thread
