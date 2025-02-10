@@ -334,7 +334,7 @@ const Search: FC<SearchProps> = (props) => {
                   <OakBox $mt="space-between-m">
                     <SignPostToAila
                       title="Can't find what you need?"
-                      text="Create a tailor-made lesson plan and resources on any topic with Alia, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
+                      text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
                       searchExpression={query.term}
                       keyStage={
                         query.keyStages?.length === 1 ? query.keyStages[0] : ""
