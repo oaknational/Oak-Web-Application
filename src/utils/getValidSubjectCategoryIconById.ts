@@ -17,9 +17,5 @@ const subjectCategoryIconMap: Record<number, string> = {
 export function getValidSubjectCategoryIconById(id: number): OakIconName {
   const subjectSlug = subjectCategoryIconMap[id];
 
-  if (!subjectSlug) {
-    return "books";
-  }
-
-  return getValidSubjectIconName(subjectSlug);
+  return getValidSubjectIconName(subjectSlug ?? null);
 }
