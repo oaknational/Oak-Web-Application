@@ -1,3 +1,10 @@
+## [1.685.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.685.0...v1.685.1) (2025-02-10)
+
+
+### Bug Fixes
+
+* **workflows:** move away from the deprecated sonarqube scan action, used fix version ([50ee6a7](https://github.com/oaknational/Oak-Web-Application/commit/50ee6a77499e923402d83d2acf21dece3115a0ef))
+
 # [1.685.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.684.0...v1.685.0) (2025-02-06)
 
 
