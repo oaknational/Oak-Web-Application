@@ -6,7 +6,7 @@ import lessonListing, {
   getTransformedLessons,
   getPackagedUnit,
 } from "./lessonListing.query";
-import lessonListingSchema from "./lessonListing.schema";
+import { lessonListingPageDataSchema } from "./lessonListing.schema";
 
 describe("lessonListing()", () => {
   describe("lessonListing query", () => {
@@ -35,7 +35,7 @@ describe("lessonListing()", () => {
         unitSlug: "unit-slug",
       });
 
-      expect(lessonListingSchema.parse(res)).toEqual({
+      expect(lessonListingPageDataSchema.parse(res)).toEqual({
         programmeSlug: "programme-slug",
         keyStageSlug: "ks1",
         keyStageTitle: "Key Stage 1",
@@ -43,6 +43,7 @@ describe("lessonListing()", () => {
         subjectTitle: "Maths",
         unitSlug: "unit-slug",
         unitTitle: "unit-title",
+        unitvariantId: 1,
         tierSlug: null,
         tierTitle: null,
         examBoardSlug: null,
@@ -52,6 +53,7 @@ describe("lessonListing()", () => {
         pathwaySlug: null,
         pathwayTitle: null,
         pathwayDisplayOrder: null,
+        actions: {},
         lessons: [
           {
             lessonSlug: "lesson-slug",
@@ -66,6 +68,7 @@ describe("lessonListing()", () => {
             hasCopyrightMaterial: false,
             orderInUnit: 1,
             lessonCohort: "2023-2024",
+            actions: null,
           },
         ],
       });
@@ -159,6 +162,7 @@ describe("lessonListing()", () => {
         syntheticUnitvariantLessonsByKsFixture().programme_fields,
       unitSlug: "unit-slug",
       programmeSlug: "programme-slug",
+      unitvariantId: 1,
       unitTitle:
         syntheticUnitvariantLessonsByKsFixture().programme_fields.optionality ??
         syntheticUnitvariantLessonsByKsFixture().unit_data.title,
@@ -168,7 +172,7 @@ describe("lessonListing()", () => {
     test("getTransformedUnit returns the correct data", async () => {
       const transformedLessons = getPackagedUnit(
         mockPackagedUnitData,
-        getTransformedLessons([syntheticUnitvariantLessonsByKsFixture()]),
+        getTransformedLessons([syntheticUnitvariantLessonsByKsFixture({})]),
       );
       expect(transformedLessons).toEqual({
         examBoardSlug: null,
@@ -189,6 +193,7 @@ describe("lessonListing()", () => {
             quizCount: 0,
             videoCount: 0,
             worksheetCount: 0,
+            actions: null,
           },
         ],
         programmeSlug: "programme-slug",
@@ -198,11 +203,13 @@ describe("lessonListing()", () => {
         tierTitle: null,
         unitSlug: "unit-slug",
         unitTitle: "unit-title",
+        unitvariantId: 1,
         yearTitle: "Year 1",
         yearSlug: "year-1",
         pathwaySlug: null,
         pathwayTitle: null,
         pathwayDisplayOrder: null,
+        actions: {},
       });
     });
     test("getTransformedUnit returns the correct data for optionality units", () => {
@@ -239,6 +246,7 @@ describe("lessonListing()", () => {
             quizCount: 0,
             videoCount: 0,
             worksheetCount: 0,
+            actions: null,
           },
         ],
         programmeSlug: "programme-slug",
@@ -248,11 +256,13 @@ describe("lessonListing()", () => {
         tierTitle: null,
         unitSlug: "unit-slug",
         unitTitle: "unit-title",
+        unitvariantId: 1,
         yearTitle: "Year 1",
         yearSlug: "year-1",
         pathwaySlug: null,
         pathwayTitle: null,
         pathwayDisplayOrder: null,
+        actions: {},
       });
     });
     test("getTransformedLessons returns the correct data", async () => {
@@ -273,6 +283,7 @@ describe("lessonListing()", () => {
           quizCount: 0,
           videoCount: 0,
           worksheetCount: 0,
+          actions: null,
         },
       ]);
     });

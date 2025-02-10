@@ -13,7 +13,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import curriculumUnitsTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumUnits.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
+import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import { mockPrerelease } from "@/utils/mocks";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import "@/__tests__/__helpers__/ResizeObserverMock";
@@ -545,9 +545,10 @@ const mockCurriculumDownloadsData = {
 jest.mock("next/router");
 jest.mock("@/node-lib/curriculum-api-2023", () => ({
   curriculumOverview: jest.fn(),
+  curriculumSequence: jest.fn(),
   curriculumUnits: jest.fn(),
   refreshedMVTime: jest.fn(),
-  subjectPhaseOptions: jest.fn(() => subjectPhaseOptions.subjects),
+  curriculumPhaseOptions: jest.fn(() => curriculumPhaseOptions.subjects),
 }));
 const mockedCurriculumOverview = curriculumApi.curriculumOverview as jest.Mock;
 const mockedRefreshedMVTime = curriculumApi.refreshedMVTime as jest.Mock;
@@ -568,7 +569,7 @@ jest.mock("next-sanity-image", () => ({
     height: 400,
   }),
 }));
-const mockedCurriculumUnits = curriculumApi.curriculumUnits as jest.Mock;
+const mockedCurriculumSequence = curriculumApi.curriculumSequence as jest.Mock;
 const mockedFetchSubjectPhasePickerData =
   fetchSubjectPhasePickerData as jest.Mock;
 
@@ -614,7 +615,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
-          subjectPhaseOptions={subjectPhaseOptions}
+          curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
           curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
@@ -654,7 +655,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
             mvRefreshTime={1721314874829}
             curriculumUnitsFormattedData={curriculumUnitsFormattedData}
             curriculumSelectionSlugs={slugs}
-            subjectPhaseOptions={subjectPhaseOptions}
+            curriculumPhaseOptions={curriculumPhaseOptions}
             curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
             curriculumOverviewTabData={curriculumOverviewMVFixture()}
             curriculumDownloadsTabData={{
@@ -692,7 +693,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
-          subjectPhaseOptions={subjectPhaseOptions}
+          curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
           curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
@@ -715,7 +716,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
           mvRefreshTime={1721314874829}
           curriculumUnitsFormattedData={curriculumUnitsFormattedData}
           curriculumSelectionSlugs={slugs}
-          subjectPhaseOptions={subjectPhaseOptions}
+          curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
           curriculumOverviewTabData={curriculumOverviewMVFixture()}
           curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
@@ -742,13 +743,16 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         data: [
           {
             last_refresh_finish: "2024-07-07T00:00:04.01694+00:00",
-            materializedview_name: "mv_curriculum_units_including_new_0_0_4",
+            materializedview_name: "mv_curriculum_sequence_b_13_0_4",
           },
         ],
       });
       mockedCurriculumOverview.mockResolvedValue(curriculumOverviewMVFixture());
-      mockedCurriculumUnits.mockResolvedValue(unitsTabFixture);
-      mockedFetchSubjectPhasePickerData.mockResolvedValue(subjectPhaseOptions);
+
+      mockedCurriculumSequence.mockResolvedValue(unitsTabFixture);
+      mockedFetchSubjectPhasePickerData.mockResolvedValue(
+        curriculumPhaseOptions,
+      );
 
       const slugs = parseSubjectPhaseSlug("english-secondary-aqa");
       const props = await getStaticProps({
@@ -762,7 +766,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         props: {
           mvRefreshTime: 1720310404016,
           curriculumSelectionSlugs: slugs,
-          subjectPhaseOptions: subjectPhaseOptions,
+          curriculumPhaseOptions: curriculumPhaseOptions,
           curriculumOverviewSanityData: curriculumOverviewCMSFixture(),
           curriculumOverviewTabData: curriculumOverviewMVFixture(),
           curriculumUnitsFormattedData:

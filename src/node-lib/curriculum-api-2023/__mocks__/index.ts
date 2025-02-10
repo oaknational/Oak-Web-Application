@@ -8,7 +8,7 @@ import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/pro
 import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
-import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
+import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import teachersHomePageFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersHomePage.fixture";
 import specialistUnitListingFixture from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.fixture";
@@ -23,12 +23,12 @@ import { refreshedMVTimeFixture } from "@/node-lib/curriculum-api-2023/fixtures/
 import { teachersSitemapDataFixtureCamelCase } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 import { mockedSiteMapResponse } from "@/node-lib/curriculum-api-2023/fixtures/pupilSiteMap.fixture";
 import { type LessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query";
-import lessonMediaFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 import { LessonMediaClipsQueryReturn } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.query";
+import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
 const curriculumApi: Pick<
   CurriculumApi,
-  | "subjectPhaseOptions"
+  | "curriculumPhaseOptions"
   | "curriculumOverview"
   | "subjectListingPage"
   | "lessonListing"
@@ -52,9 +52,10 @@ const curriculumApi: Pick<
   | "pupilsSitemap"
   | "teacherPreviewLesson"
   | "lessonMediaClips"
+  | "betaLessonMediaClipsQuery"
 > = {
-  subjectPhaseOptions: jest.fn(async () => {
-    return subjectPhaseOptionsFixture();
+  curriculumPhaseOptions: jest.fn(async () => {
+    return curriculumPhaseOptionsFixture();
   }),
   curriculumOverview: jest.fn(async () => {
     return curriculumOverviewMVFixture();
@@ -92,6 +93,11 @@ const curriculumApi: Pick<
       lessonId: 1,
     };
   }),
+  betaLessonMediaClipsQuery: jest.fn(async () => {
+    return {
+      ...lessonMediaClipsFixtures(),
+    };
+  }) as jest.Mocked<LessonMediaClipsQueryReturn>,
   pupilLessonListingQuery: jest.fn(async () => {
     return {
       browseData: [lessonBrowseDataFixture({})],
@@ -117,7 +123,7 @@ const curriculumApi: Pick<
     return lessonDownloadsFixtures();
   }) as jest.Mocked<LessonDownloadsQuery>,
   lessonMediaClips: jest.fn(async () => {
-    return lessonMediaFixture();
+    return lessonMediaClipsFixtures();
   }) as jest.Mocked<LessonMediaClipsQueryReturn>,
   unitListing: jest.fn(async () => {
     return unitListingFixture();

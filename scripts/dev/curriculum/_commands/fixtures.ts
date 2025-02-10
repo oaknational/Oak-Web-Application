@@ -5,7 +5,7 @@ import sdk from "@/node-lib/curriculum-api-2023/sdk";
 
 const fixtures = {
   "curriculumunits-english-secondary": async () => {
-    const output = await sdk.curriculumUnits({
+    const output = await sdk.curriculumSequence({
       where: {
         _and: [
           {
@@ -21,8 +21,25 @@ const fixtures = {
     });
     return output;
   },
+  "curriculumunits-english-primary": async () => {
+    const output = await sdk.curriculumSequence({
+      where: {
+        _and: [
+          {
+            _or: [
+              { subject_slug: { _eq: "english" } },
+              { subject_parent_slug: { _eq: "english" } },
+            ],
+          },
+          { phase_slug: { _eq: "primary" } },
+          { state: { _eq: "published" } },
+        ],
+      },
+    });
+    return output;
+  },
   "curriculumunits-science-secondary": async () => {
-    const output = await sdk.curriculumUnits({
+    const output = await sdk.curriculumSequence({
       where: {
         _and: [
           {
@@ -39,8 +56,8 @@ const fixtures = {
     });
     return output;
   },
-  subjectPhaseOptions: async () => {
-    return await sdk.subjectPhaseOptions();
+  curriculumPhaseOptions: async () => {
+    return await sdk.curriculumPhaseOptions();
   },
   "curriculumOverview-english-secondary": async () => {
     return await sdk.curriculumOverview({

@@ -113,6 +113,7 @@ export const getProps = ({
         },
         browseData,
         hasWorksheet: content.hasWorksheetAssetObject ? true : false,
+        hasAdditionalFiles: content.hasAdditionalFiles ? true : false,
         initialSection: section,
         backUrl,
         pageType: page,

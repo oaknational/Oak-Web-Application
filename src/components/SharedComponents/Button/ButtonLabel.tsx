@@ -1,10 +1,10 @@
 import styled from "styled-components";
+import { OakSpan } from "@oaknational/oak-components";
 
 import ellipsis from "@/styles/ellipsis";
 import typography from "@/styles/utils/typography";
-import { Span } from "@/components/SharedComponents/Typography";
 
-const ButtonLabel = styled(Span)`
+const ButtonLabel = styled(OakSpan)`
   display: inline-block;
   vertical-align: text-top;
   max-width: 100%;

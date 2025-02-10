@@ -6,11 +6,11 @@ import CurriculumHomePage, {
   Client,
 } from "@/pages/teachers/curriculum";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
-import subjectPhaseOptions from "@/browser-lib/fixtures/subjectPhaseOptions";
+import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { SerializedBlogPostPreview } from "@/common-lib/cms-types";
-import { SubjectPhaseOption } from "@/node-lib/curriculum-api-2023";
-import { filterValidSubjectPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023";
+import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 const render = renderWithProviders();
 
@@ -46,7 +46,7 @@ const mockPosts = [
 ] as SerializedBlogPostPreview[];
 
 const props: CurriculumHomePageProps = {
-  subjectPhaseOptions: subjectPhaseOptions,
+  curriculumPhaseOptions: curriculumPhaseOptions,
   posts: mockPosts,
 };
 
@@ -110,7 +110,7 @@ describe("pages/curriculum/index", () => {
   it("passes correct props to SubjectPhasePicker", () => {
     render(<CurriculumHomePage {...props} />);
     expect(SubjectPhasePicker).toHaveBeenCalledWith(
-      props.subjectPhaseOptions,
+      props.curriculumPhaseOptions,
       expect.anything(),
     );
   });
@@ -148,7 +148,7 @@ describe("pages/curriculum/index", () => {
     });
   });
 
-  describe("filterValidSubjectPhaseOptions", () => {
+  describe("filterValidCurriculumPhaseOptions", () => {
     it("returns the same options when no filters apply (only examboards)", () => {
       const options = [
         {
@@ -160,10 +160,9 @@ describe("pages/curriculum/index", () => {
             { title: "Edexcel", slug: "edexcel" },
           ],
           slug: "english",
-          cycle: "2",
         },
-      ] as SubjectPhaseOption[];
-      expect(filterValidSubjectPhaseOptions(options)).toBe(options);
+      ] as CurriculumPhaseOptions;
+      expect(filterValidCurriculumPhaseOptions(options)).toBe(options);
     });
 
     it("returns the same options when no filters apply (core & gcse)", () => {
@@ -177,10 +176,9 @@ describe("pages/curriculum/index", () => {
             { title: "GCSE", slug: "gcse" },
           ],
           slug: "english",
-          cycle: "2",
         },
-      ] as SubjectPhaseOption[];
-      expect(filterValidSubjectPhaseOptions(options)).toBe(options);
+      ] as CurriculumPhaseOptions;
+      expect(filterValidCurriculumPhaseOptions(options)).toBe(options);
     });
 
     it("returns no options when none are present", () => {
@@ -191,10 +189,9 @@ describe("pages/curriculum/index", () => {
           keystages: [],
           ks4_options: null,
           slug: "english",
-          cycle: "2",
         },
-      ] as SubjectPhaseOption[];
-      expect(filterValidSubjectPhaseOptions(options)).toBe(options);
+      ] as CurriculumPhaseOptions;
+      expect(filterValidCurriculumPhaseOptions(options)).toBe(options);
     });
 
     it("returns filtered options when gcse is present", () => {
@@ -210,10 +207,9 @@ describe("pages/curriculum/index", () => {
             { title: "Edexcel", slug: "edexcel" },
           ],
           slug: "english",
-          cycle: "2",
         },
-      ] as SubjectPhaseOption[];
-      expect(filterValidSubjectPhaseOptions(options)).toEqual([
+      ] as CurriculumPhaseOptions;
+      expect(filterValidCurriculumPhaseOptions(options)).toEqual([
         {
           title: "English",
           phases: [],
@@ -224,16 +220,15 @@ describe("pages/curriculum/index", () => {
             { title: "Edexcel", slug: "edexcel" },
           ],
           slug: "english",
-          cycle: "2",
         },
-      ] as SubjectPhaseOption[]);
+      ] as CurriculumPhaseOptions);
     });
   });
 
   it("should display the correct heading for blog section", () => {
     render(
       <CurriculumHomePage
-        subjectPhaseOptions={{ subjects: [] }}
+        curriculumPhaseOptions={{ subjects: [] }}
         posts={mockPosts}
       />,
     );

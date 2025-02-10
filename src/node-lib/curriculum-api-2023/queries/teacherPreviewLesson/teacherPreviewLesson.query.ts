@@ -3,13 +3,16 @@ import {
   QuizQuestion,
 } from "@oaknational/oak-curriculum-schema";
 
+import { applyGenericOverridesAndExceptions } from "../../helpers/overridesAndExceptions";
+import { TeachersPreviewLessonQuery } from "../../generated/sdk";
+
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { transformedLessonOverviewData } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.query";
-import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
 import lessonOverviewSchema, {
+  LessonBrowseDataByKs,
   LessonOverviewContent,
   LessonOverviewPageData,
 } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
@@ -23,12 +26,6 @@ const teacherPreviewLessonQuery =
       lessonSlug,
     });
 
-    const browseFixtureData = {
-      ...lessonBrowseDataFixture({
-        lessonSlug,
-      }),
-    };
-
     if (res.content.length > 1) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
@@ -41,11 +38,9 @@ const teacherPreviewLessonQuery =
     }
 
     const [content] = res.content;
-
     if (!content) {
       throw new OakError({ code: "curriculum-api/not-found" });
     }
-
     const parsedLessonContent = lessonContentSchemaFull.parse({
       ...content,
       geo_restricted: true,
@@ -61,27 +56,33 @@ const teacherPreviewLessonQuery =
       starter_quiz: content.starter_quiz
         ? content.starter_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
+      additional_files: content?.additional_files,
     });
 
+    const modifiedBrowseData = applyGenericOverridesAndExceptions<
+      TeachersPreviewLessonQuery["browseData"][number]
+    >({
+      journey: "teacher",
+      queryName: "teacherPreviewLessonQuery",
+      browseData: res?.browseData,
+    });
+
+    if (modifiedBrowseData.length === 0) {
+      throw new OakError({ code: "curriculum-api/not-found" });
+    }
+
+    const modBrowseData = keysToCamelCase(modifiedBrowseData[0]);
+
     const teacherPreviewData = transformedLessonOverviewData(
-      { ...browseFixtureData },
+      modBrowseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,
       [],
     );
-
-    let subjectSlug: string = browseFixtureData.programmeFields.subjectSlug;
-
-    if (lessonSlug === "des-auteurs-francophones-perfect-tense-with-etre") {
-      subjectSlug = "german";
-    } else if (lessonSlug === "running-as-a-team") {
-      subjectSlug = "physical-education";
-    }
 
     const parsedLessonPreviewData = lessonOverviewSchema.parse({
       ...teacherPreviewData,
       lessonTitle: lessonContentData.lessonTitle,
       hasMediaClips: true,
-      subjectSlug: subjectSlug,
     });
 
     return parsedLessonPreviewData;

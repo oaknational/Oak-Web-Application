@@ -11,15 +11,19 @@ import {
   OakLessonInfoCard,
   OakLessonLayout,
   OakLessonTopNav,
+  OakLI,
   OakP,
   OakPrimaryButton,
   OakPrimaryInvertedButton,
   OakSpan,
   OakStaticMessageCard,
+  OakUL,
 } from "@oaknational/oak-components";
 import { useEffect } from "react";
+import byteSize from "byte-size";
 
 import { useWorksheetDownload } from "./useWorksheetDownload";
+import { useAdditionalFilesDownload } from "./useAdditionalFilesDownload";
 
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
@@ -40,6 +44,8 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     isLegacy,
     lessonSlug,
     hasWorksheet,
+    hasAdditionalFiles,
+    additionalFiles,
   } = props;
   const {
     completeActivity,
@@ -51,6 +57,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     sectionResults,
     proceedToNextSection,
     lessonReviewSections,
+    updateAdditionalFilesDownloaded,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
   const { trackSectionStarted } = useTrackSectionStarted();
@@ -58,6 +65,8 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     lessonSlug,
     isLegacy ?? false,
   );
+  const { startAdditionalFilesDownload, isAdditionalFilesDownloading } =
+    useAdditionalFilesDownload(lessonSlug);
   const { track } = usePupilAnalytics();
 
   useEffect(() => {
@@ -84,6 +93,14 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         track.lessonActivityDownloadedWorksheet({});
       }
     });
+  };
+
+  const handleAdditionalFilesDownloadClicked = () => {
+    updateAdditionalFilesDownloaded({
+      filesDownloaded: true,
+      additionalFilesAvailable: true,
+    });
+    startAdditionalFilesDownload();
   };
 
   const handleBackLinkClick = () => {
@@ -199,6 +216,39 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         </OakGridArea>
         <OakGridArea $colSpan={[12, 12, 5]} $pb="inner-padding-xl">
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
+            {hasAdditionalFiles && additionalFiles?.[0]?.files[0] && (
+              <OakLessonInfoCard>
+                <OakCardHeader iconName="additional-material" tag="h1">
+                  Files you will need for this lesson
+                </OakCardHeader>
+                {additionalFiles[0].files.length === 1 ? (
+                  additionalFileSingle(additionalFiles[0].files[0])
+                ) : (
+                  <OakUL
+                    $display={"flex"}
+                    $flexDirection={"column"}
+                    $gap={"space-between-s"}
+                  >
+                    {additionalFiles[0].files.map((file, index) =>
+                      additionalFileListItem(file, index),
+                    )}
+                  </OakUL>
+                )}
+                <OakFlex $justifyContent={"flex-end"}>
+                  <OakPrimaryInvertedButton
+                    onClick={handleAdditionalFilesDownloadClicked}
+                    isLoading={isAdditionalFilesDownloading}
+                    iconName="download"
+                    isTrailingIcon
+                    $font={"heading-7"}
+                  >
+                    {additionalFiles[0].files.length === 1
+                      ? "Download file"
+                      : "Download files"}
+                  </OakPrimaryInvertedButton>
+                </OakFlex>
+              </OakLessonInfoCard>
+            )}
             {equipmentAndResources?.[0]?.equipment && (
               <OakLessonInfoCard>
                 <OakCardHeader iconName="equipment-required" tag="h1">
@@ -273,3 +323,29 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     </OakLessonLayout>
   );
 };
+
+export function additionalFileListItem(
+  file: { title: string; fileObject: { bytes: number; format: string } },
+  index: number,
+) {
+  return (
+    <OakLI key={index}>
+      <OakFlex $flexDirection={"column"}>
+        <OakSpan>{file.title}</OakSpan>
+        <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
+      </OakFlex>
+    </OakLI>
+  );
+}
+
+export function additionalFileSingle(file: {
+  title: string;
+  fileObject: { bytes: number; format: string };
+}) {
+  return (
+    <OakFlex $flexDirection={"column"}>
+      <OakSpan>{file.title}</OakSpan>
+      <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
+    </OakFlex>
+  );
+}

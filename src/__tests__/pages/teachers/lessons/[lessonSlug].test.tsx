@@ -1,4 +1,5 @@
 import { GetStaticPropsContext, PreviewData } from "next";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import LessonOverviewCanonicalPage, {
   URLParams,
@@ -10,6 +11,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import OakError from "@/errors/OakError";
 import { LessonOverviewCanonical } from "@/node-lib/curriculum-api-2023/queries/lessonOverview/lessonOverview.schema";
 import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { useTeacherNotes } from "@/pages-helpers/teacher/share-experiments/useTeacherNotes";
 
 const url = "";
 
@@ -24,10 +26,33 @@ jest.mock(
         shareUrl: "",
         browserUrl: url,
         shareActivated: false,
+        shareIdRef: { current: "" },
+        shareIdKeyRef: { current: "" },
       })),
     };
   },
 );
+
+jest.mock("@/pages-helpers/teacher/share-experiments/useTeacherNotes", () => {
+  return {
+    __esModule: true,
+    useTeacherNotes: jest.fn(() => ({
+      teacherNote: {},
+      isEditable: false,
+      saveTeacherNote: jest.fn(),
+      noteSaved: false,
+      error: undefined,
+    })),
+  };
+});
+
+jest.mock("posthog-js/react", () => {
+  return {
+    __esModule: true,
+    useFeatureFlagEnabled: jest.fn(() => false),
+    useFeatureFlagVariantKey: jest.fn(() => false),
+  };
+});
 
 const render = renderWithProviders();
 
@@ -41,6 +66,10 @@ describe("Lesson Overview Canonical Page", () => {
   });
 
   describe("LessonOverviewCanonicalPage", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
     it("Renders title from the props", async () => {
       const result = render(
         <LessonOverviewCanonicalPage
@@ -54,11 +83,10 @@ describe("Lesson Overview Canonical Page", () => {
       );
     });
 
-    it("Renders the share button if shareExperimentFlag is test", async () => {
+    it("Renders the share button", async () => {
       window.history.replaceState = jest.fn();
 
       (useShareExperiment as jest.Mock).mockReturnValueOnce({
-        shareExperimentFlag: "test",
         shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         shareActivated: () => {},
@@ -76,36 +104,15 @@ describe("Lesson Overview Canonical Page", () => {
       ).toHaveLength(2);
     });
 
-    it("doesn't render the share button if shareExperimentFlag is control", async () => {
-      window.history.replaceState = jest.fn();
-
-      (useShareExperiment as jest.Mock).mockReturnValueOnce({
-        shareExperimentFlag: "control",
-        shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-        browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-        shareActivated: false,
-      });
-
-      const result = render(
-        <LessonOverviewCanonicalPage
-          lesson={{ ...lesson, pathways: [] }}
-          isSpecialist={false}
-        />,
-      );
-
-      expect(() =>
-        result.getByText("Share resources with colleague"),
-      ).toThrow();
-    });
-
-    it("updates the url if shareExperimentFlag is test or control", async () => {
+    it("updates the url", async () => {
       const fn = jest.spyOn(window.history, "replaceState");
 
       (useShareExperiment as jest.Mock).mockReturnValueOnce({
-        shareExperimentFlag: "test",
         shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         shareActivated: false,
+        shareIdRef: { current: "" },
+        shareIdKeyRef: { current: "" },
       });
       render(
         <LessonOverviewCanonicalPage
@@ -119,6 +126,26 @@ describe("Lesson Overview Canonical Page", () => {
         "",
         "http://localhost:3000/teachers/lessons/lesson-1?test=1",
       );
+    });
+
+    it("renders the add teacher note button if teacher notes are enabled", () => {
+      (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+
+      (useTeacherNotes as jest.Mock).mockReturnValue({
+        teacherNote: {},
+        isEditable: true,
+        saveTeacherNote: jest.fn(),
+        noteSaved: false,
+        error: undefined,
+      });
+
+      const { getAllByText } = render(
+        <LessonOverviewCanonicalPage
+          lesson={{ ...lesson, pathways: [] }}
+          isSpecialist={false}
+        />,
+      );
+      expect(getAllByText("Add teacher note and share")).toHaveLength(2);
     });
   });
 

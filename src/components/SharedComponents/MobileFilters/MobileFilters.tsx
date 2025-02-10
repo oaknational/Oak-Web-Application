@@ -7,17 +7,34 @@ import {
   useCallback,
   ReactNode,
 } from "react";
+import styled from "styled-components";
+import { OakBox, OakBoxProps } from "@oaknational/oak-components";
 
-import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 import useEventListener from "@/hooks/useEventListener";
 import Cover from "@/components/SharedComponents/Cover";
-import { IconName } from "@/components/SharedComponents/Icon";
+import { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import { useMenuContext } from "@/context/Menu";
 import { PostCategoryPage } from "@/components/SharedComponents/PostCategoryList/PostCategoryList";
 import { OakColorName } from "@/styles/theme";
+
+const StyledCategoryList = styled(OakBox)<
+  OakBoxProps & { $isOpen: boolean; $categoryListHeight: number }
+>`
+  clip-path: inset(0px 0px -15px 0px);
+  height: ${(props) =>
+    props.$isOpen ? `${props.$categoryListHeight}px` : "0px"};
+  transition: all 0.5s ease;
+`;
+
+const StyledCategoryListInner = styled(OakBox)<
+  OakBoxProps & { $isOpen: boolean }
+>`
+  transform: translateY(${(props) => (props.$isOpen ? 0 : "-20%")});
+  top: 100%;
+`;
 
 export type MobileFiltersProps = {
   withBackButton?: boolean;
@@ -97,10 +114,10 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
       <Flex $alignSelf={props.$alignSelf}>
         {withBackButton &&
           (page === "blog-index" || page === "webinar-index") && (
-            <Box
-              $transition="all 0.5s ease"
+            <OakBox
+              $transition="standard-ease"
               $visibility={isOpen ? "hidden" : "visible"}
-              $opacity={isOpen ? 0 : 1}
+              $opacity={isOpen ? "transparent" : "opaque"}
               aria-hidden={isOpen ? "true" : false}
             >
               <ButtonAsLink
@@ -111,7 +128,7 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
                 label={`All ${page === "blog-index" ? "blogs" : "webinars"}`}
                 page={page}
               />
-            </Box>
+            </OakBox>
           )}
 
         <Button
@@ -128,35 +145,32 @@ const MobileFilters: FC<MobileFiltersProps> = (props) => {
           aria-controls={menuId}
         />
       </Flex>
-      <Box $width={"100%"} $position={"relative"}>
-        <Box
-          style={{
-            height: isOpen ? categoryListHeight : 0,
-            clipPath: "inset(0px 0px -15px 0px)",
-          }}
+      <OakBox $width={"100%"} $position={"relative"}>
+        <StyledCategoryList
+          $isOpen={isOpen}
+          $categoryListHeight={categoryListHeight}
           $display={["block", applyForTablet ? "block" : "none", "none"]}
           $position="absolute"
-          $transition="all 0.5s ease"
+          $transition="standard-ease"
           $width="100%"
-          $zIndex="mobileFilters"
+          $zIndex="mobile-filters"
           $background={isOpen ? "white" : "transparent"}
-          $dropShadow={"grey20"}
+          $dropShadow={"drop-shadow-standard"}
         >
-          <Box
+          <StyledCategoryListInner
             id={menuId}
             ref={categoryListRef}
-            $top="100%"
-            $transform={`translateY(${isOpen ? 0 : "-20%"})`}
-            $transition="all 0.5s ease"
+            $isOpen={isOpen}
+            $transition="standard-ease"
             $width="100%"
-            $opacity={isOpen ? 1 : 0}
+            $opacity={isOpen ? "opaque" : "transparent"}
             aria-labelledby={triggerId}
             $visibility={isOpen ? "visible" : "hidden"}
           >
             {children}
-          </Box>
-        </Box>
-      </Box>
+          </StyledCategoryListInner>
+        </StyledCategoryList>
+      </OakBox>
     </Flex>
   );
 };

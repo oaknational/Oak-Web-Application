@@ -1,11 +1,16 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import Component from ".";
 
-import AnalyticsDecorator from "@/storybook-decorators/AnalyticsDecorator";
-
 const meta: Meta<typeof Component> = {
-  decorators: [AnalyticsDecorator],
+  decorators: [
+    (Story) => (
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <Story />
+      </OakThemeProvider>
+    ),
+  ],
   component: Component,
 };
 

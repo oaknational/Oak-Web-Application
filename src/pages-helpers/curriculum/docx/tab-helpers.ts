@@ -5,7 +5,7 @@ import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import curriculumApi2023, {
   CurriculumUnitsTabData,
   CurriculumOverviewMVData,
-  SubjectPhaseOption,
+  CurriculumPhaseOptions,
 } from "@/node-lib/curriculum-api-2023";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import {
@@ -23,7 +23,6 @@ import {
   sortYears,
 } from "@/utils/curriculum/sorting";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { ENABLE_NEW_CURRIC_MV } from "@/utils/curriculum/constants";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
 export type CurriculumUnitsYearGroup = {
@@ -68,7 +67,7 @@ export type CurriculumUnitsFormattedData<T = Unit> = {
 
 export type CurriculumInfoPageProps = {
   curriculumSelectionSlugs: CurriculumSelectionSlugs;
-  subjectPhaseOptions: SubjectPhasePickerData;
+  curriculumPhaseOptions: SubjectPhasePickerData;
   curriculumOverviewTabData: CurriculumOverviewMVData;
   curriculumOverviewSanityData: CurriculumOverviewSanityData;
   curriculumUnitsFormattedData: CurriculumUnitsFormattedData;
@@ -352,63 +351,13 @@ export function createDownloadsData(
   return downloadsData;
 }
 
-export function sanatiseUnits(units: Unit[]): Unit[] {
-  return units.filter((unit, index) => {
-    // Find all units that have the same slug and year
-    const similarUnits = units.filter(
-      (u, i) =>
-        i !== index && // Exclude the current unit itself
-        u.slug === unit.slug &&
-        u.year === unit.year &&
-        u.subject_slug === unit.subject_slug &&
-        u.subject_parent_slug === unit.subject_parent_slug,
-    );
-
-    // Check if there is a more specific unit and remove if so
-    const isMoreSpecific = similarUnits.some((u) => {
-      // Define an array of the optional fields (keys) that we want to check
-      // These fields are considered "specific" if they are not null
-      const fieldsToCheck: (keyof Unit)[] = [
-        "tier_slug",
-        "examboard_slug",
-        "pathway_slug",
-      ];
-
-      return fieldsToCheck.some(
-        (field) =>
-          unit[field] === null &&
-          u[field] !== null &&
-          // We want to only consider the unit `u` more specific if all other fields are identical.
-          fieldsToCheck.every((f) => f === field || unit[f] === u[f]),
-      );
-    });
-    if (isMoreSpecific) {
-      return false;
-    }
-
-    // If this is the first occurrence of the unit in the array, keep it
-    const firstOccurrenceIndex = units.findIndex(
-      (u) =>
-        u.slug === unit.slug &&
-        u.year === unit.year &&
-        u.subject_slug === unit.subject_slug &&
-        u.subject_parent_slug === unit.subject_parent_slug &&
-        u.tier_slug === unit.tier_slug &&
-        u.examboard_slug === unit.examboard_slug &&
-        u.pathway_slug === unit.pathway_slug,
-    );
-
-    return index === firstOccurrenceIndex;
-  });
-}
-
 export function formatCurriculumUnitsData(
   data: CurriculumUnitsTabData,
 ): CurriculumUnitsFormattedData {
   const { units } = data;
   const features = getUnitFeatures(units[0]);
   // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
-  const filteredUnits = ENABLE_NEW_CURRIC_MV ? units : sanatiseUnits(units);
+  const filteredUnits = units;
   const yearData = createUnitsListingByYear(filteredUnits);
   const threadOptions = createThreadOptions(filteredUnits);
   const yearOptions = createYearOptions(filteredUnits);
@@ -425,7 +374,9 @@ export function formatCurriculumUnitsData(
   return formattedDataCurriculumUnits;
 }
 
-export function filterValidSubjectPhaseOptions(subjects: SubjectPhaseOption[]) {
+export function filterValidCurriculumPhaseOptions(
+  subjects: CurriculumPhaseOptions,
+) {
   subjects.forEach(({ ks4_options }) => {
     if (
       ks4_options &&
@@ -443,10 +394,8 @@ export function filterValidSubjectPhaseOptions(subjects: SubjectPhaseOption[]) {
 }
 
 export async function fetchSubjectPhasePickerData() {
-  const subjects = await curriculumApi2023.subjectPhaseOptions({
-    cycle: "2",
-  });
+  const subjects = await curriculumApi2023.curriculumPhaseOptions();
   return {
-    subjects: filterValidSubjectPhaseOptions(subjects),
+    subjects: filterValidCurriculumPhaseOptions(subjects),
   };
 }

@@ -1,9 +1,8 @@
 import { StoryFn, Meta } from "@storybook/react";
 import { useState } from "react";
+import { OakBox } from "@oaknational/oak-components";
 
 import Component from "./ResourcePageSchoolPicker";
-
-import Box from "@/components/SharedComponents/Box";
 
 const items = [
   {
@@ -53,7 +52,7 @@ const Template: StoryFn<typeof Component> = (args) => {
   const [schoolPickerInputValue, setSchoolPickerInputValue] = useState("");
 
   return (
-    <Box $width={400} $height={400}>
+    <OakBox $width="all-spacing-20" $height="all-spacing-20">
       <Component
         {...args}
         label={"School picker"}
@@ -66,7 +65,7 @@ const Template: StoryFn<typeof Component> = (args) => {
         }}
         withHomeschool={true}
       />
-    </Box>
+    </OakBox>
   );
 };
 

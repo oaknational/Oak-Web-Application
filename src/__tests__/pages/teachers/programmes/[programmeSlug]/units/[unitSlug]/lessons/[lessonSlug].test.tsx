@@ -67,10 +67,25 @@ jest.mock(
         shareUrl: "",
         browserUrl: "",
         shareActivated: false,
+        shareIdRef: { current: "" },
+        shareIdKeyRef: { current: "" },
       })),
     };
   },
 );
+
+jest.mock("@/pages-helpers/teacher/share-experiments/useTeacherNotes", () => {
+  return {
+    __esModule: true,
+    useTeacherNotes: jest.fn(() => ({
+      teacherNote: {},
+      isEditable: false,
+      saveTeacherNote: jest.fn(),
+      noteSaved: false,
+      error: undefined,
+    })),
+  };
+});
 
 const render = renderWithProviders();
 
@@ -190,29 +205,15 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     }
   });
 
-  it("doesn't render the share button if shareExperimentFlag is control", async () => {
-    window.history.replaceState = jest.fn();
-
-    (useShareExperiment as jest.Mock).mockReturnValueOnce({
-      shareExperimentFlag: "control",
-      shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-      browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
-      shareActivated: false,
-    });
-
-    const result = render(<LessonOverviewPage {...props} />);
-
-    expect(() => result.getByText("Share resources with colleague")).toThrow();
-  });
-
-  it("updates the url if shareExperimentFlag is test or control", async () => {
+  it("updates the url", async () => {
     const fn = jest.spyOn(window.history, "replaceState");
 
     (useShareExperiment as jest.Mock).mockReturnValueOnce({
-      shareExperimentFlag: "test",
       shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
       browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
       shareActivated: false,
+      shareIdRef: { current: "" },
+      shareIdKeyRef: { current: "" },
     });
     render(<LessonOverviewPage {...props} />);
 
@@ -239,15 +240,17 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     expect(iframeElement.length).toEqual(2);
   });
 
-  it("renders an iframe for a lesson guide google doc", () => {
+  it("renders an iframe for a lesson guide and additional material google doc", () => {
     const { getAllByTestId } = render(<LessonOverviewPage {...props} />);
-    const iframeElement = getAllByTestId("lesson-guide-iframe");
-    expect(iframeElement.length).toEqual(1);
+    const iframeElement = getAllByTestId("overview-presentation-document");
+    expect(iframeElement.length).toEqual(2);
   });
 
   describe("SEO", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(<LessonOverviewPage {...props} />);
+
+      const { lessonSlug, unitSlug, programmeSlug } = props.curriculumData;
 
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -261,7 +264,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         ogDescription:
           "View lesson content and choose resources to download or share",
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-        canonical: "NEXT_PUBLIC_SEO_APP_URL",
+        canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
         robots: "index,follow",
       });
     });
@@ -270,15 +273,17 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         <LessonOverviewPage {...propsWithTier} />,
       );
 
+      const { lessonSlug, unitSlug, programmeSlug } = props.curriculumData;
+
       expect(seo).toEqual(
         expect.objectContaining({
-          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           description:
             "View lesson content and choose resources to download or share",
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogImage:
-            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2024",
+            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2025",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
           ogTitle:
             "Lesson: Adverbial complex sentences | Higher | KS2 English | NEXT_PUBLIC_SEO_APP_NAME",
@@ -294,6 +299,9 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         <LessonOverviewPage {...propsWithExamBoard} />,
       );
 
+      const { lessonSlug, unitSlug, programmeSlug } =
+        propsWithExamBoard.curriculumData;
+
       expect(seo).toEqual(
         expect.objectContaining({
           title:
@@ -306,7 +314,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
           ogDescription:
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
-          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           robots: "index,follow",
         }),
       );
@@ -315,6 +323,9 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       const { seo } = renderWithSeo()(
         <LessonOverviewPage {...propsWithTierAndExamBoard} />,
       );
+
+      const { lessonSlug, unitSlug, programmeSlug } =
+        propsWithTierAndExamBoard.curriculumData;
 
       expect(seo).toEqual(
         expect.objectContaining({
@@ -328,9 +339,9 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
             "View lesson content and choose resources to download or share",
           ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
           ogImage:
-            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2024",
+            "NEXT_PUBLIC_SEO_APP_URL/images/sharing/default-social-sharing-2022.png?2025",
           ogSiteName: "NEXT_PUBLIC_SEO_APP_NAME",
-          canonical: "NEXT_PUBLIC_SEO_APP_URL",
+          canonical: `NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/${programmeSlug}/units/${unitSlug}/lessons/${lessonSlug}`,
           robots: "index,follow",
         }),
       );
@@ -523,6 +534,8 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
         shareUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         browserUrl: "http://localhost:3000/teachers/lessons/lesson-1?test=1",
         shareActivated: false,
+        shareIdRef: { current: "" },
+        shareIdKeyRef: { current: "" },
       });
       render(<LessonOverviewPage {...props} />);
 

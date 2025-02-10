@@ -16,7 +16,11 @@ const ButtonGroup: FC<ButtonGroupProps> = (props) => {
    */
   const { children, ...flexProps } = props;
 
-  return <Group {...flexProps}>{children}</Group>;
+  return (
+    <Group role="group" {...flexProps}>
+      {children}
+    </Group>
+  );
 };
 
 export default ButtonGroup;

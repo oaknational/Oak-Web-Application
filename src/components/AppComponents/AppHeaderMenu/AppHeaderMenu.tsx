@@ -3,19 +3,24 @@ import styled, { useTheme } from "styled-components";
 import { Transition, TransitionStatus } from "react-transition-group";
 import { useRouter } from "next/router";
 import { FocusOn } from "react-focus-on";
+import {
+  OakIcon,
+  OakBox,
+  OakBoxProps,
+  oakBoxCss,
+  OakFlex,
+  OakFlexProps,
+  oakFlexCss,
+} from "@oaknational/oak-components";
 
 import { useMenuContext } from "@/context/Menu/";
 import Logo from "@/components/AppComponents/Logo";
 import { OAK_SOCIALS } from "@/components/SharedComponents/SocialButtons/SocialButtons";
-import AppHeaderMenuSidebarSignpost from "@/components/AppComponents/AppHeaderMenuSidebarSignpost";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import { OakColorName, PixelSpacing } from "@/styles/theme/types";
 import SocialButtons from "@/components/SharedComponents/SocialButtons";
-import Svg from "@/components/SharedComponents/Svg";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
-import flex from "@/styles/utils/flex";
-import Box, { BoxProps, box } from "@/components/SharedComponents/Box";
-import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
+import Flex from "@/components/SharedComponents/Flex.deprecated";
 
 export type MenuConfig = {
   width: PixelSpacing;
@@ -59,9 +64,9 @@ type AppHeaderMenuProps = HTMLProps<HTMLButtonElement> & {
   menuButtonRef: RefObject<HTMLButtonElement> | null;
 };
 
-const NavMenuList = styled("nav")<FlexProps & BoxProps>`
-  ${box}
-  ${flex}
+const NavMenuList = styled("nav")<OakFlexProps & OakBoxProps>`
+  ${oakBoxCss}
+  ${oakFlexCss}
 `;
 
 const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
@@ -71,7 +76,6 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
   const { pathname } = useRouter();
   const ref = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const displaySignpost = pathname.startsWith("/beta");
 
   useEffect(() => {
     closeMenu();
@@ -93,7 +97,7 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
       onExited={removeFocus}
     >
       {(state) => (
-        <Box $position="absolute" ref={ref} $zIndex="modalDialog">
+        <OakBox $position="absolute" ref={ref} $zIndex="modal-dialog">
           <MenuBackdrop state={state} />
           <FocusOn
             enabled={open}
@@ -114,21 +118,31 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
               $zIndex={"neutral"}
               aria-expanded={open}
             >
-              <Svg
-                name="looping-line-1"
+              <OakIcon
+                iconName="looping-line-1"
+                $colorFilter={"pink"}
+                $zIndex={"behind"}
+                $objectFit={"fill"}
                 $display={["none", "block"]}
-                $color={"pink"}
-                $zIndex={"behind"}
-                $cover
+                $position={"absolute"}
+                $width={"100%"}
+                $height={"100%"}
               />
-              <Svg
-                name="looping-line-2"
+              <OakIcon
+                iconName="looping-line-2"
+                $colorFilter={"pink"}
+                $zIndex={"behind"}
+                $objectFit={"fill"}
                 $display={["block", "none"]}
-                $color={"pink"}
-                $zIndex={"behind"}
-                $cover
+                $position={"absolute"}
+                $width={"100%"}
+                $height={"100%"}
               />
-              <Box $position={"fixed"} $top={20} $right={16}>
+              <OakBox
+                $position={"fixed"}
+                $top={"all-spacing-5"}
+                $right={"all-spacing-4"}
+              >
                 <IconButton
                   aria-label="Close Menu"
                   icon={"cross"}
@@ -138,45 +152,42 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
                   ref={closeButtonRef}
                   aria-expanded={open}
                 />
-              </Box>
+              </OakBox>
               <NavMenuList
                 $flexDirection={"column"}
                 $overflowY={"auto"}
                 $flexGrow={1}
-                $pv={[12, 72]}
-                $ph={[16, 72]}
+                $pv={["inner-padding-s", "inner-padding-xl7"]}
+                $ph={["inner-padding-m", "inner-padding-xl7"]}
               >
                 {/* Mobile logo */}
-                {displaySignpost && (
-                  <AppHeaderMenuSidebarSignpost display={["none", "flex"]} />
-                )}
-                <Flex
+                <OakFlex
                   $justifyContent={"left"}
                   $display={["flex", "none"]}
-                  $mb={[36, 0]}
+                  $mb={["space-between-m2", "space-between-none"]}
                 >
                   <Logo variant="with text" height={48} width={104} />
-                </Flex>
-                {displaySignpost && (
-                  <AppHeaderMenuSidebarSignpost display={["flex", "none"]} />
-                )}
+                </OakFlex>
                 {children}
                 {/* Desktop logo */}
-                <Flex
+                <OakFlex
                   $mt={"auto"}
-                  $pt={48}
+                  $pt={"inner-padding-xl4"}
                   $justifyContent={"space-between"}
                   $alignItems={"flex-end"}
                 >
                   <SocialButtons for="Oak National Academy" {...OAK_SOCIALS} />
-                  <Flex $display={["none", "flex"]} $mb={6}>
+                  <OakFlex
+                    $display={["none", "flex"]}
+                    $mb={"space-between-sssx"}
+                  >
                     <Logo variant="with text" width={150} height={63} />
-                  </Flex>
-                </Flex>
+                  </OakFlex>
+                </OakFlex>
               </NavMenuList>
             </SideMenu>
           </FocusOn>
-        </Box>
+        </OakBox>
       )}
     </Transition>
   );

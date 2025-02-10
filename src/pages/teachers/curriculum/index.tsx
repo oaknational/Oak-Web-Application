@@ -5,25 +5,26 @@ import {
   OakUL,
   OakLI,
   OakP,
+  OakIcon,
+  OakHandDrawnHR,
+  OakBox,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import { Hr } from "@/components/SharedComponents/Typography";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { decorateWithIsr } from "@/node-lib/isr";
 import curriculumApi2023, {
-  SubjectPhaseOption,
+  CurriculumPhaseOptions,
 } from "@/node-lib/curriculum-api-2023";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs/Breadcrumbs";
 import Illustration from "@/components/SharedComponents/Illustration/Illustration";
 import Cover from "@/components/SharedComponents/Cover/Cover";
 import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import OwaLink from "@/components/SharedComponents/OwaLink/OwaLink";
-import Icon from "@/components/SharedComponents/Icon";
 import CMSClient from "@/node-lib/cms";
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders/BrushBorders";
 import { blogToPostListItem } from "@/components/GenericPagesViews/BlogIndex.view";
@@ -34,27 +35,28 @@ import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pag
 import HomepageCurriculumLandingHero from "@/components/GenericPagesComponents/HomepageCurriculumLandingHero";
 
 export type CurriculumHomePageProps = {
-  subjectPhaseOptions: SubjectPhasePickerData;
+  curriculumPhaseOptions: SubjectPhasePickerData;
   posts: SerializedBlogPostPreview[];
 };
 
 const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
-  const { subjectPhaseOptions, posts } = props;
+  const { curriculumPhaseOptions, posts } = props;
   const curriculumBlogs = posts.map(blogToPostListItem);
 
   return (
     <AppLayout
       seoProps={{
         ...getSeoProps({
-          title: "Curriculum resources",
+          title:
+            "Free curriculum plans aligned with National Curriculum  | Oak National Academy",
           description:
-            "Explore our interactive curriculum tool for free, adaptable sequences perfectly aligned with the National Curriculum. Start browsing now.",
+            "Discover our free curriculum plans across subjects from KS1 to KS4, all high-quality, fully-sequenced and aligned with the national curriculum.",
         }),
       }}
       $background={"grey20"}
     >
       <Flex $justifyContent={"center"} $background={"mint"}>
-        <MaxWidth $ph={16}>
+        <OakMaxWidth $ph={"inner-padding-m"}>
           <Box $mt={20}>
             <Breadcrumbs
               breadcrumbs={[
@@ -70,18 +72,22 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                 },
               ]}
             />
-            <Hr $color={"white"} $mb={0} />
+            <OakHandDrawnHR
+              hrColor={"white"}
+              $mt={"space-between-m"}
+              $height={"all-spacing-1"}
+            />
           </Box>
           <Flex $mt={[24, 80]} $mb={[80]}>
             <HomepageCurriculumLandingHero
-              subjectPhaseOptions={subjectPhaseOptions}
+              curriculumPhaseOptions={curriculumPhaseOptions}
             />
           </Flex>
-        </MaxWidth>
+        </OakMaxWidth>
       </Flex>
 
       <Flex $background={"white"} $justifyContent={"center"}>
-        <MaxWidth>
+        <OakMaxWidth>
           <Flex
             $flexDirection={["column", "row"]}
             $justifyContent={"space-between"}
@@ -111,7 +117,7 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
               </Cover>
             </Box>
 
-            <Box $height={"100%"}>
+            <OakBox $height={"100%"}>
               <OakHeading
                 tag="h2"
                 $font={["heading-5", "heading-4"]}
@@ -151,10 +157,14 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                   $alignItems={"center"}
                 >
                   Read more about our approach
-                  <Icon name={"chevron-right"} />
+                  <OakIcon
+                    iconName={"chevron-right"}
+                    $width={"all-spacing-6"}
+                    $height={"all-spacing-6"}
+                  />
                 </OwaLink>
               </OakTypography>
-            </Box>
+            </OakBox>
           </Flex>
           <Flex
             $background={"grey20"}
@@ -181,7 +191,12 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                         key={`PostList-PostListItem-${i}`}
                         data-testid="blog-list-item"
                       >
-                        {i !== 0 && <Hr thickness={4} $mv={32} />}
+                        {i !== 0 && (
+                          <OakHandDrawnHR
+                            $height={"all-spacing-1"}
+                            $mv={"space-between-m2"}
+                          />
+                        )}
                         <PostListItem
                           {...item}
                           showImageOnTablet={true}
@@ -191,19 +206,26 @@ const CurriculumHomePage: NextPage<CurriculumHomePageProps> = (props) => {
                       </OakLI>
                     ))}
                   </OakUL>
-                  {<Hr thickness={4} $mt={32} $mb={0} />}
+                  {
+                    <OakHandDrawnHR
+                      $height={"all-spacing-1"}
+                      $mt={"space-between-m2"}
+                    />
+                  }
                 </>
               ) : null}
               <BrushBorders color="grey20" hideOnMobileH />
             </Box>
           </Flex>
-        </MaxWidth>
+        </OakMaxWidth>
       </Flex>
     </AppLayout>
   );
 };
 
-const filterValidSubjectPhaseOptions = (subjects: SubjectPhaseOption[]) => {
+const filterValidCurriculumPhaseOptions = (
+  subjects: CurriculumPhaseOptions,
+) => {
   subjects.forEach(({ ks4_options }) => {
     if (
       ks4_options &&
@@ -222,11 +244,9 @@ const filterValidSubjectPhaseOptions = (subjects: SubjectPhaseOption[]) => {
 
 const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
-    const subjects = await curriculumApi2023.subjectPhaseOptions({
-      cycle: "2",
-    });
+    const subjects = await curriculumApi2023.curriculumPhaseOptions();
     return {
-      subjects: filterValidSubjectPhaseOptions(subjects),
+      subjects: filterValidCurriculumPhaseOptions(subjects),
     };
   };
 
@@ -283,7 +303,7 @@ export const getStaticProps: GetStaticProps<
 
   const results: GetStaticPropsResult<CurriculumHomePageProps> = {
     props: {
-      subjectPhaseOptions: data,
+      curriculumPhaseOptions: data,
       posts,
     },
   };

@@ -1,6 +1,6 @@
 import {
   LessonOverviewQuery,
-  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp,
 } from "../../generated/sdk";
 import { lessonOverviewQuizData, LessonPathway } from "../../shared.schema";
 import { constructPathwayLesson, toSentenceCase } from "../../helpers";
@@ -21,7 +21,7 @@ import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
-import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
+import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -128,6 +128,26 @@ const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   return pathways;
 };
 
+const bytesToMegabytes = (bytes: number): string => {
+  const bytesInOneMegabyte = 1024 * 1024;
+  const megabytes = bytes / bytesInOneMegabyte;
+  return megabytes.toFixed(1);
+};
+
+const getAdditionalFiles = (
+  content: LessonOverviewContent["additionalFiles"],
+): string[] | null => {
+  if (!content || !content[0]) {
+    return null;
+  }
+  return content[0]?.files.map((af) => {
+    const name = af.title;
+    const type = af.fileObject.format;
+    const size = af.fileObject.bytes;
+    return `${name} ${bytesToMegabytes(size)} MB (${type.toUpperCase()})`;
+  });
+};
+
 export const transformedLessonOverviewData = (
   browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
@@ -137,6 +157,10 @@ export const transformedLessonOverviewData = (
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
+  const hasAddFile = content.additionalFiles;
+  const mediaClips = browseData.lessonData.mediaClips
+    ? mediaClipsRecordCamelSchema.parse(browseData.lessonData.mediaClips)
+    : null;
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
@@ -199,8 +223,13 @@ export const transformedLessonOverviewData = (
     lessonGuideUrl: content.lessonGuideAssetObjectUrl ?? null,
     phonicsOutcome: content.phonicsOutcome,
     pathways: pathways,
-    hasMediaClips: false,
-    lessonMediaClips: lessonMediaClipsFixtures().mediaClips,
+    actions: browseData.actions,
+    hasMediaClips: Boolean(browseData.lessonData.mediaClips),
+    lessonOutline: browseData.lessonData.lessonOutline ?? null,
+    lessonMediaClips: mediaClips,
+    additionalFiles: hasAddFile
+      ? getAdditionalFiles(content.additionalFiles)
+      : null,
   };
 };
 
@@ -214,7 +243,7 @@ const lessonOverviewQuery =
   }): Promise<LessonOverviewPageData> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
-    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp> =
+    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp> =
       { lesson_slug: { _eq: lessonSlug } };
 
     const canonicalLesson = !unitSlug && !programmeSlug;
@@ -276,11 +305,7 @@ const lessonOverviewQuery =
     const pathways = canonicalLesson ? getPathways(res) : [];
 
     lessonBrowseDataByKsSchema.parse(browseDataSnake);
-    lessonContentSchema.parse({ ...contentSnake });
-
-    /**
-     * ! - We've already parsed this data with Zod so we can safely cast it to the correct type
-     *  */
+    lessonContentSchema.parse({ ...contentSnake, additional_files: null });
 
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseDataByKs;
     const content = keysToCamelCase({

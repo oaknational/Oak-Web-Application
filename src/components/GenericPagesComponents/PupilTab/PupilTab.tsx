@@ -5,27 +5,28 @@ import {
   OakTypography,
   OakHeading,
   OakFlex,
+  OakIcon,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
-import Flex from "@/components/SharedComponents/Flex.deprecated";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
-import Svg from "@/components/SharedComponents/Svg";
 
 const PupilTab: FC = () => {
   return (
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
-      <MaxWidth $ph={[16]} $pb={24}>
+      <OakMaxWidth $ph={["inner-padding-m"]} $pb={"inner-padding-xl"}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
-            <Flex
+            <OakFlex
               $flexDirection={"column"}
-              $maxWidth={[640]}
-              $pt={32}
+              $maxWidth={"all-spacing-22"}
+              $pt={"inner-padding-xl2"}
               $alignItems={"flex-start"}
-              $gap={24}
-              $flex={"0 1 auto"}
+              $gap={"space-between-m"}
+              $flexGrow={0}
+              $flexShrink={1}
+              $flexBasis={"auto"}
             >
               <OakHeading $font={"heading-7"} tag={"h1"} $color={"grey70"}>
                 Pupils
@@ -50,22 +51,25 @@ const PupilTab: FC = () => {
                 iconBackground="black"
                 $mb={24}
               />
-            </Flex>
+            </OakFlex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
             <ImageContainer imageSlug={"pupils-with-worksheet"}>
-              <Svg
+              {/* @todo check left position with marketing */}
+              <OakIcon
+                iconName="burst"
                 $position={"absolute"}
-                $top={0}
-                $left={-20}
+                $top={"all-spacing-0"}
+                $left={"all-spacing-0"}
+                $width={"100%"}
+                $height={"100%"}
                 $display={["none", "none", "block"]}
-                name="burst"
                 $transform={"scale(1.5)"}
               />
             </ImageContainer>
           </OakGridArea>
         </OakGrid>
-      </MaxWidth>
+      </OakMaxWidth>
     </OakFlex>
   );
 };

@@ -40,7 +40,7 @@ const lessonShareQuery =
       SdkLessonShareQuery["browse"][number]
     >({
       journey: "teacher",
-      queryName: "lessonOverviewQuery",
+      queryName: "lessonShareQuery",
       browseData: res.browse,
     });
 

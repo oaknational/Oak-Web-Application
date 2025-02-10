@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   NextPage,
   GetStaticProps,
@@ -10,11 +10,11 @@ import {
   OakGridArea,
   OakThemeProvider,
   oakDefaultTheme,
+  OakMaxWidth,
 } from "@oaknational/oak-components";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import MaxWidth from "@/components/SharedComponents/MaxWidth";
 import LessonList from "@/components/TeacherComponents/LessonList";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import {
@@ -23,10 +23,7 @@ import {
 } from "@/node-lib/isr";
 import { RESULTS_PER_PAGE } from "@/utils/resultsPerPage";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import {
-  LessonListingPageData,
-  lessonListingSchema,
-} from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+import { LessonListingPageData } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import HeaderListing from "@/components/TeacherComponents/HeaderListing";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
@@ -35,16 +32,14 @@ import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { NEW_COHORT } from "@/config/cohort";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
-import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/NewContentBanner";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 import { isLessonListItem } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
-import {
-  CurriculumTrackingProps,
-  useShareExperiment,
-} from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
+import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/useShareExperiment";
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
+import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
+import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -58,7 +53,7 @@ export type LessonListingPageProps = {
  * This data gets stored in the browser and is used to render the lesson list,
  * so it's important to keep it as small as possible.
  */
-function getHydratedLessonsFromUnit(unit: lessonListingSchema) {
+function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
   const { lessons, ...rest } = unit;
   return lessons.map((lesson) => ({
     ...lesson,
@@ -71,43 +66,50 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
 }) => {
   const {
     unitSlug,
+    unitvariantId,
     keyStageTitle,
     keyStageSlug,
     unitTitle,
     subjectTitle,
     programmeSlug,
     subjectSlug,
+    actions,
   } = curriculumData;
 
-  const { shareExperimentFlag, shareUrl, browserUrl, shareActivated } =
-    useShareExperiment({
-      unitSlug: unitSlug ?? undefined,
-      programmeSlug: programmeSlug ?? undefined,
-      source: "lesson-listing",
-      curriculumTrackingProps: {
-        lessonName: null,
-        unitName: unitTitle,
-        subjectSlug,
-        subjectTitle,
-        keyStageSlug,
-        keyStageTitle:
-          keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
-      },
-    });
+  const [showExpiredLessonsBanner, setShowExpiredLessonsBanner] =
+    useState<boolean>(actions?.displayExpiringBanner ?? false);
 
-  if (shareExperimentFlag && window.location.href !== browserUrl) {
-    window.history.replaceState({}, "", browserUrl);
-  }
+  const unitListingHref = `/teachers/key-stages/${keyStageSlug}/subjects/${subjectSlug}/programmes`;
+  const { shareUrl, browserUrl, shareActivated } = useShareExperiment({
+    programmeSlug: programmeSlug ?? undefined,
+    source: "lesson-listing",
+    curriculumTrackingProps: {
+      lessonName: null,
+      lessonSlug: null,
+      unitName: unitTitle,
+      unitSlug: unitSlug,
+      subjectSlug,
+      subjectTitle,
+      keyStageSlug,
+      keyStageTitle: keyStageTitle as CurriculumTrackingProps["keyStageTitle"],
+    },
+    overrideExistingShareId: true,
+  });
 
-  const teacherShareButton =
-    shareExperimentFlag == "test" ? (
-      <TeacherShareButton
-        variant="primary"
-        shareUrl={shareUrl}
-        shareActivated={shareActivated}
-        label="Share unit with colleague"
-      />
-    ) : null;
+  useEffect(() => {
+    if (window.location.href !== browserUrl) {
+      window.history.replaceState({}, "", browserUrl);
+    }
+  }, [browserUrl]);
+
+  const teacherShareButton = (
+    <TeacherShareButton
+      variant="primary"
+      shareUrl={shareUrl}
+      shareActivated={shareActivated}
+      label="Share unit with colleague"
+    />
+  );
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
   const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
@@ -215,19 +217,29 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
           {...curriculumData}
           shareButton={teacherShareButton}
+          unitDownloadFileId={
+            unitSlug.endsWith(unitvariantId.toString())
+              ? unitSlug
+              : `${unitSlug}-${unitvariantId}`
+          }
+          onUnitDownloadSuccess={() =>
+            track.unitDownloadInitiated({
+              platform: "owa",
+              product: "teacher lesson resources",
+              engagementIntent: "use",
+              componentType: "unit_download_button",
+              eventVersion: "2.0.0",
+              analyticsUseCase: "Teacher",
+              unitName: unitTitle,
+              unitSlug: unitSlug,
+              keyStageSlug: keyStageSlug,
+              keyStageTitle: keyStageTitle as KeyStageTitleValueType,
+              subjectSlug: subjectSlug,
+              subjectTitle: subjectTitle,
+            })
+          }
         />
-        <MaxWidth $ph={16}>
-          <OakGrid>
-            <OakGridArea $colSpan={[12, 9]}>
-              <NewContentBanner
-                keyStageSlug={keyStageSlug}
-                subjectSlug={subjectSlug}
-                subjectTitle={subjectTitle.toLowerCase()}
-                programmeSlug={programmeSlug}
-                isLegacy={isSlugLegacy(programmeSlug)}
-              />
-            </OakGridArea>
-          </OakGrid>
+        <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
             <OakGridArea
               $colSpan={[12, 9]}
@@ -241,10 +253,20 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                 headingTag={"h2"}
                 unitTitle={unitTitle}
                 onClick={trackLessonSelected}
+                expiringBanner={
+                  <ExpiringBanner
+                    isOpen={showExpiredLessonsBanner}
+                    isResourcesMessage={true}
+                    onwardHref={unitListingHref}
+                    onClose={() => {
+                      setShowExpiredLessonsBanner(false);
+                    }}
+                  />
+                }
               />
             </OakGridArea>
           </OakGrid>
-        </MaxWidth>
+        </OakMaxWidth>
       </OakThemeProvider>
     </AppLayout>
   );

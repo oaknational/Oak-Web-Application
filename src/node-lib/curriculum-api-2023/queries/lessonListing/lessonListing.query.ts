@@ -1,6 +1,7 @@
 import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 
-import lessonListingSchema, {
+import {
+  lessonListingPageDataSchema,
   LessonListingPageData,
   partialSyntheticUnitvariantLessonsArraySchema,
   partialSyntheticUnitvariantLessonsSchema,
@@ -8,10 +9,15 @@ import lessonListingSchema, {
 
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
-import { LessonListSchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import {
+  LessonListSchema,
+  Actions,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 import { LessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
+import { getIntersection } from "@/utils/getIntersection";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 export const getTransformedLessons = (
   lessons: LessonListingQuery["lessons"],
@@ -42,6 +48,7 @@ export const getTransformedLessons = (
         hasCopyrightMaterial,
         orderInUnit: lesson.order_in_unit,
         lessonCohort: lesson.lesson_data._cohort,
+        actions: (keysToCamelCase(lesson.actions) || null) as Actions,
       };
       return transformedLesson;
     })
@@ -51,6 +58,7 @@ export const getTransformedLessons = (
 type PackagedUnitData = {
   programmeFields: ProgrammeFields;
   unitSlug: string;
+  unitvariantId: number;
   programmeSlug: string;
   unitTitle: string;
   programmeSlugByYear: string[];
@@ -63,6 +71,7 @@ export const getPackagedUnit = (
   const {
     programmeFields,
     unitSlug,
+    unitvariantId,
     unitTitle,
     programmeSlug,
     programmeSlugByYear,
@@ -73,6 +82,10 @@ export const getPackagedUnit = (
     programmeFields,
   });
 
+  const combinedActions = getIntersection<LessonListSchema[number]["actions"]>(
+    unitLessons.map((lesson) => lesson.actions),
+  ) as Actions;
+
   return {
     programmeSlug,
     keyStageSlug: modifiedProgrammeFields.keystage_slug,
@@ -80,6 +93,7 @@ export const getPackagedUnit = (
     subjectSlug: modifiedProgrammeFields.subject_slug,
     subjectTitle: modifiedProgrammeFields.subject,
     unitSlug,
+    unitvariantId,
     unitTitle,
     tierSlug: modifiedProgrammeFields.tier_slug,
     tierTitle: modifiedProgrammeFields.tier_description,
@@ -91,6 +105,7 @@ export const getPackagedUnit = (
     pathwaySlug: modifiedProgrammeFields.pathway_slug,
     pathwayTitle: modifiedProgrammeFields.pathway,
     pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
+    actions: combinedActions,
   };
 };
 
@@ -101,8 +116,8 @@ const lessonListingQuery =
     const modifiedLessons = applyGenericOverridesAndExceptions<
       LessonListingQuery["lessons"][number]
     >({
-      journey: "pupil",
-      queryName: "pupilLessonListingQuery",
+      journey: "teacher",
+      queryName: "lessonListingQuery",
       browseData: res.lessons,
     });
 
@@ -119,14 +134,16 @@ const lessonListingQuery =
         ...acc,
         programmeFields: lesson.programme_fields,
         unitSlug: lesson.unit_slug ?? "",
+        unitvariantId: lesson.unitvariant_id ?? 0,
         programmeSlug: lesson.programme_slug ?? "",
         unitTitle:
           lesson.programme_fields.optionality ?? lesson.unit_data.title,
         programmeSlugByYear: lesson.programme_slug_by_year,
       };
     }, {} as PackagedUnitData);
-    const transformedUnit = getPackagedUnit(packagedUnitData, unitLessons);
-    return lessonListingSchema.parse(transformedUnit);
+
+    const packagedUnit = getPackagedUnit(packagedUnitData, unitLessons);
+    return lessonListingPageDataSchema.parse(packagedUnit);
   };
 
 export default lessonListingQuery;

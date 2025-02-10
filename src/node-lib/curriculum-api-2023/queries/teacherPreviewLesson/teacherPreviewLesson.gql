@@ -1,5 +1,20 @@
 query teachersPreviewLesson($lessonSlug: String!) {
-  content: published_mv_lesson_content_new_4_0_0(
+  browseData: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0(
+    where: { lesson_slug: { _eq: $lessonSlug } }
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    programme_slug_by_year
+    is_legacy
+    lesson_data
+    unit_data
+    programme_fields
+    actions
+    features
+    order_in_unit
+  }
+  content: published_mv_lesson_content_new_7_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id
@@ -46,5 +61,8 @@ query teachersPreviewLesson($lessonSlug: String!) {
     lesson_guide_asset_id
     geo_restricted
     login_required
+    media_clips
+    additional_files
+    has_additional_files
   }
 }

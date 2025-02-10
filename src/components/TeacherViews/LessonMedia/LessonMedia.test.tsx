@@ -11,9 +11,13 @@ import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/Vide
 
 const render = renderWithProviders();
 
-const lesson = lessonMediaClipsFixtures();
+const lesson = {
+  ...lessonMediaClipsFixtures(),
+  lessonOutline: [{ lessonOutline: "Sample outline" }],
+  actions: [{ action: "Sample action" }],
+};
 const mediaClips = lesson.mediaClips;
-const firstMediaClip = mediaClips["intro"];
+const firstMediaClip = mediaClips ? mediaClips["intro"] : null;
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
@@ -98,7 +102,7 @@ describe("LessonMedia view", () => {
     const mediaClipListItems = within(mediaClipList).getAllByRole("listitem");
 
     expect(mediaClipList).toBeInTheDocument();
-    expect(mediaClipListItems.length).toEqual(9);
+    expect(mediaClipListItems.length).toEqual(3);
   });
 
   it("calls window.history.replaceState with correct parameters when video is clicked", async () => {
@@ -120,7 +124,7 @@ describe("LessonMedia view", () => {
     expect(window.history.replaceState).toHaveBeenCalledWith(
       null,
       "",
-      "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=introduction-physical-exercise-video",
+      "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=191189",
     );
   });
 
@@ -143,7 +147,7 @@ describe("LessonMedia view", () => {
     expect(window.history.replaceState).toHaveBeenCalledWith(
       null,
       "",
-      "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=running",
+      "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=191189",
     );
   });
 
@@ -162,7 +166,7 @@ describe("LessonMedia view", () => {
     expect(window.history.replaceState).toHaveBeenCalledWith(
       null,
       "",
-      "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=running",
+      "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=191189",
     );
   });
 });

@@ -9,7 +9,7 @@ import getFontFamily from "@/styles/themeHelpers/getFontFamily";
 import { getBreakpoint } from "@/styles/utils/responsive";
 import { margin, MarginProps } from "@/styles/utils/spacing";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import { IconName } from "@/components/SharedComponents/Icon";
+import { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import BoxBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BoxBorders";
 import UnstyledInput, {
   UnstyledInputProps,

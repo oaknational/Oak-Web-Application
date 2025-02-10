@@ -1,7 +1,13 @@
 import React, { FC } from "react";
-import { OakHeading, OakP, OakFlex, OakBox } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  OakFlex,
+  OakBox,
+  OakGrid,
+  OakGridArea,
+} from "@oaknational/oak-components";
 
-import Box from "@/components/SharedComponents/Box";
 import SubjectPhasePicker, {
   SubjectPhasePickerData,
 } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -10,34 +16,41 @@ import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import Cover from "@/components/SharedComponents/Cover/Cover";
 
 type HomepageCurriculumLandingHeroProps = {
-  subjectPhaseOptions: SubjectPhasePickerData;
+  curriculumPhaseOptions: SubjectPhasePickerData;
 };
 
 const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
   props,
 ) => {
-  const { subjectPhaseOptions } = props;
+  const { curriculumPhaseOptions } = props;
   return (
     <OakBox $position={"relative"} $width={"100%"}>
       <OakFlex $flexDirection={"column"} $width={"100%"}>
-        <Box $maxWidth={["100%", "50%"]} $mb={[48, 80]} $position={"relative"}>
-          <OakHeading
-            tag="h1"
-            $font={["heading-4", "heading-3"]}
-            $mb={["space-between-s", "space-between-m"]}
-          >
-            Oak's curricula
-          </OakHeading>
-          <OakP $font={["body-2", "body-1"]}>
-            Oak's curricula cover all the national curriculum subjects across
-            primary and secondary. Use our fully-sequenced units of lessons as
-            high-quality models that represent great design from across the
-            sector.
-          </OakP>
-        </Box>
-        <Box $maxWidth={["100%", 960]}>
-          <SubjectPhasePicker {...subjectPhaseOptions} />
-        </Box>
+        <OakGrid>
+          <OakGridArea $colSpan={[12, 6]}>
+            <OakBox
+              $mb={["space-between-l", "space-between-xxxl"]}
+              $position={"relative"}
+            >
+              <OakHeading
+                tag="h1"
+                $font={["heading-4", "heading-3"]}
+                $mb={["space-between-s", "space-between-m"]}
+              >
+                Oak's curricula
+              </OakHeading>
+              <OakP $font={["body-2", "body-1"]}>
+                Oak's curricula cover all the national curriculum subjects
+                across primary and secondary. Use our fully-sequenced units of
+                lessons as high-quality models that represent great design from
+                across the sector.
+              </OakP>
+            </OakBox>
+          </OakGridArea>
+        </OakGrid>
+        <OakBox $maxWidth={["100%", "all-spacing-23"]}>
+          <SubjectPhasePicker {...curriculumPhaseOptions} />
+        </OakBox>
       </OakFlex>
       <Cover
         $top={[48, 48, 0]}

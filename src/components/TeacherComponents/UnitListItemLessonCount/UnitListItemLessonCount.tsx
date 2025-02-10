@@ -1,7 +1,4 @@
-import { OakSpan, OakFlex } from "@oaknational/oak-components";
-
-import Icon from "@/components/SharedComponents/Icon";
-
+import { OakSpan, OakFlex, OakIcon } from "@oaknational/oak-components";
 export interface IUnitListItemLessonCountProps {
   lessonCount: number | null;
   expiredLessonCount: number | null;
@@ -16,22 +13,25 @@ export const UnitListItemLessonCount = ({
   const textColor = expired ? "grey60" : "black";
 
   return (
-    <>
-      <OakFlex $alignItems={"end"}>
-        {lessonCount && expiredLessonCount ? (
-          <OakSpan $font={["body-3", "heading-light-7"]} $color={textColor}>
-            {`${lessonCount - expiredLessonCount}/${lessonCount} lessons`}
-          </OakSpan>
-        ) : (
-          <OakSpan $font={["body-3", "heading-light-7"]} $color={textColor}>
-            {!!lessonCount &&
-              `${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"}`}
-            {expired && `This unit is currently unavailable.`}
-          </OakSpan>
-        )}
-
-        {!expired && lessonCount && <Icon name="chevron-right" size={20} />}
-      </OakFlex>
-    </>
+    <OakFlex $alignItems={"end"}>
+      {lessonCount && expiredLessonCount ? (
+        <OakSpan $font={["body-3", "heading-light-7"]} $color={textColor}>
+          {`${lessonCount - expiredLessonCount}/${lessonCount} lessons`}
+        </OakSpan>
+      ) : (
+        <OakSpan $font={["body-3", "heading-light-7"]} $color={textColor}>
+          {!!lessonCount &&
+            `${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"}`}
+          {expired && `This unit is currently unavailable.`}
+        </OakSpan>
+      )}
+      {!expired && lessonCount && (
+        <OakIcon
+          iconName="chevron-right"
+          $width={"all-spacing-5"}
+          $height={"all-spacing-5"}
+        />
+      )}
+    </OakFlex>
   );
 };

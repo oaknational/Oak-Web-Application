@@ -1,6 +1,7 @@
 import Link, { LinkProps } from "next/link";
 import { forwardRef, ReactNode } from "react";
 import styled, { css } from "styled-components";
+import { OakSvg } from "@oaknational/oak-components";
 
 import {
   isExternalHref,
@@ -18,7 +19,6 @@ import NewFocusUnderline, {
   newFocusUnderlineStyles,
 } from "@/components/SharedComponents/NewFocusUnderline";
 import flex from "@/styles/utils/flex";
-import Svg from "@/components/SharedComponents/Svg";
 import { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 
 type FocusStyle = "underline" | "new-underline";
@@ -80,10 +80,10 @@ const StyledNextLink = styled.a<StyleProps>`
   }
 `;
 
-export const ActiveLinkUnderline = styled(Svg)`
+export const ActiveLinkUnderline = styled(OakSvg)`
   position: absolute;
   height: 8px;
-  bottom: -26px;
+  bottom: -29px;
   left: 0px;
   ${StyledNextLink}:focus & {
     display: none;

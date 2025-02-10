@@ -1,16 +1,16 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import {
   OakHeading,
   OakUL,
   OakHeadingTag,
   OakFlex,
   OakPagination,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import LessonListItem, {
   LessonListItemProps,
 } from "@/components/TeacherComponents/LessonListItem";
-import Box from "@/components/SharedComponents/Box";
 import {
   UsePaginationProps,
   PaginationProps,
@@ -29,6 +29,7 @@ export type LessonListProps = {
   headingTag: OakHeadingTag;
   unitTitle: string;
   onClick: (props: LessonListItemProps | SpecialistLessonListItemProps) => void;
+  expiringBanner?: React.ReactNode;
 };
 
 const LESSONS_PER_PAGE = 5;
@@ -47,20 +48,22 @@ const LessonList: FC<LessonListProps> = (props) => {
     currentPageItems,
     unitTitle,
     onClick,
+    expiringBanner,
   } = props;
   const { currentPage, pageSize, firstItemRef, paginationRoute } =
     paginationProps;
 
   return (
     <OakFlex $flexDirection="column">
-      <OakFlex $flexDirection={["column-reverse", "column"]}>
-        <OakHeading
-          $font={["heading-6", "heading-5"]}
-          $mb="space-between-m"
-          tag={headingTag}
-        >
+      <OakFlex
+        $flexDirection={"column"}
+        $gap={["space-between-m", "space-between-s"]}
+        $mb={["space-between-m", "space-between-s"]}
+      >
+        <OakHeading $font={["heading-6", "heading-5"]} tag={headingTag}>
           {`Lessons (${lessonCount})`}
         </OakHeading>
+        {expiringBanner}
       </OakFlex>
 
       {currentPageItems?.length ? (
@@ -81,11 +84,11 @@ const LessonList: FC<LessonListProps> = (props) => {
         </>
       ) : null}
       {lessonCount > LESSONS_PER_PAGE ? (
-        <Box
+        <OakBox
           $width="100%"
-          $mt={[0, "auto"]}
-          $pb={[30, 44]}
-          $pt={[46, 36]}
+          $mt={["space-between-none", "auto"]}
+          $pb={["inner-padding-xl2", "inner-padding-xl4"]}
+          $pt={["inner-padding-xl4", "inner-padding-xl3"]}
           data-testid="pagination-box"
         >
           <OakPagination
@@ -93,9 +96,9 @@ const LessonList: FC<LessonListProps> = (props) => {
             pageName={unitTitle}
             paginationHref={paginationRoute}
           />
-        </Box>
+        </OakBox>
       ) : (
-        <Box $pb={32} />
+        <OakBox $pb="inner-padding-xl2" />
       )}
     </OakFlex>
   );

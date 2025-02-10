@@ -1,11 +1,15 @@
 import { FC } from "react";
-import { OakLI, OakFlex, OakFlexProps } from "@oaknational/oak-components";
+import {
+  OakLI,
+  OakFlex,
+  OakFlexProps,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import useIsCurrent from "@/components/SharedComponents/useIsCurrent/useIsCurrent";
 import { HTMLAnchorProps } from "@/components/SharedComponents/Button/common";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
-import Box from "@/components/SharedComponents/Box";
 
 type LinkProps = {
   label: string;
@@ -31,7 +35,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
   return (
     <OakLI $listStyle="none">
       {/* Desktop */}
-      <Box $display={["none", "block"]} $maxWidth={["100%"]}>
+      <OakBox $display={["none", "block"]} $maxWidth={["100%"]}>
         <ButtonAsLink
           htmlAnchorProps={htmlAnchorProps}
           variant={isCurrent ? "brushNav" : "minimalNav"}
@@ -48,7 +52,7 @@ export const NavLink = ({ label, href, arrowSuffix, shallow }: LinkProps) => {
           shallow={shallow}
           scroll={!shallow}
         />
-      </Box>
+      </OakBox>
       {/* Mobile */}
       <Flex $flexDirection={"row"} $display={["flex", "none"]}>
         <ButtonAsLink

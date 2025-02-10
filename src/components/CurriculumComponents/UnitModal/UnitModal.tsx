@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from "react";
-import { OakHeading, OakFlex } from "@oaknational/oak-components";
+import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
@@ -91,8 +91,11 @@ const UnitModal: FC<UnitModalProps> = ({
           $overflowY={"scroll"}
           $mt="space-between-xxl"
         >
-          <Box $ph={[24, 72]}>
-            <Box $display={optionalityModalOpen ? "block" : "none"} $mb={16}>
+          <OakBox $ph={["inner-padding-xl", "inner-padding-xl7"]}>
+            <OakBox
+              $display={optionalityModalOpen ? "block" : "none"}
+              $mb="space-between-s"
+            >
               <Button
                 $mt={2}
                 icon="chevron-left"
@@ -108,7 +111,8 @@ const UnitModal: FC<UnitModalProps> = ({
                   setUnitVariantID(null);
                 }}
               />
-            </Box>
+            </OakBox>
+
             <OakFlex $gap="all-spacing-2" $flexWrap={"wrap"}>
               <BulletList
                 items={[subjectTitle, yearTitle]
@@ -116,13 +120,24 @@ const UnitModal: FC<UnitModalProps> = ({
                   .map((text) => ({ text }))}
               />
             </OakFlex>
+
+            {curriculumUnitDetails && (
+              <OakP
+                $mt={"space-between-ssx"}
+                $mb={"space-between-xs"}
+                data-testid="unit-optionality-title"
+              >
+                {unitData.title}
+              </OakP>
+            )}
+
             <OakHeading tag="h2" $font={"heading-5"}>
               {!curriculumUnitDetails
                 ? unitData.title
                 : curriculumUnitDetails.unitTitle}
             </OakHeading>
             {!unitOptionsAvailable && (
-              <Box $display={optionalityModalOpen ? "none" : "block"}>
+              <OakBox $display={optionalityModalOpen ? "none" : "block"}>
                 <CurriculumUnitDetails
                   threads={unitData.threads}
                   cycle={unitData.cycle}
@@ -138,7 +153,7 @@ const UnitModal: FC<UnitModalProps> = ({
                   priorUnitTitle={unitData.connection_prior_unit_title}
                   futureUnitTitle={unitData.connection_future_unit_title}
                 />
-              </Box>
+              </OakBox>
             )}
 
             {/* @todo replace with OakFlex once display is fixed in OakFlex - currently display: flex overwrites "none" */}
@@ -224,11 +239,11 @@ const UnitModal: FC<UnitModalProps> = ({
             </Flex>
 
             {curriculumUnitDetails && (
-              <Box $display={optionalityModalOpen ? "block" : "none"}>
+              <OakBox $display={optionalityModalOpen ? "block" : "none"}>
                 <CurriculumUnitDetails {...curriculumUnitDetails} />
-              </Box>
+              </OakBox>
             )}
-          </Box>
+          </OakBox>
         </OakFlex>
       )}
     </>

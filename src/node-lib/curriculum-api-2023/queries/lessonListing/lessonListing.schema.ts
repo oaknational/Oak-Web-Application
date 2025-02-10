@@ -4,11 +4,15 @@ import {
   syntheticUnitvariantLessonsSchema,
 } from "@oaknational/oak-curriculum-schema";
 
-import { lessonListSchema } from "../../shared.schema";
+import {
+  lessonListItemSchema,
+  lessonListSchema,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
-const lessonListingSchema = z.object({
+export const lessonListingPageDataSchema = z.object({
   programmeSlug: z.string(),
   unitSlug: z.string(),
+  unitvariantId: z.number(),
   unitTitle: z.string(),
   subjectSlug: programmeFieldsSchema.shape.subject_slug,
   subjectTitle: programmeFieldsSchema.shape.subject,
@@ -24,11 +28,10 @@ const lessonListingSchema = z.object({
   pathwayTitle: programmeFieldsSchema.shape.pathway,
   pathwayDisplayOrder: programmeFieldsSchema.shape.pathway_display_order,
   lessons: lessonListSchema,
+  actions: lessonListItemSchema.shape.actions.nullable(),
 });
 
-export type lessonListingSchema = z.infer<typeof lessonListingSchema>;
-
-export type LessonListingPageData = z.infer<typeof lessonListingSchema>;
+export type LessonListingPageData = z.infer<typeof lessonListingPageDataSchema>;
 
 export const partialSyntheticUnitvariantLessonsSchema = z.object({
   ...syntheticUnitvariantLessonsSchema.omit({
@@ -44,5 +47,3 @@ export const partialSyntheticUnitvariantLessonsArraySchema = z.array(
 export type PartialSyntheticUnitvariantLessons = z.infer<
   typeof partialSyntheticUnitvariantLessonsSchema
 >;
-
-export default lessonListingSchema;

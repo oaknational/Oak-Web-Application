@@ -13,6 +13,7 @@ const lessonListingFixture = (
     tierTitle: null,
     unitSlug: "adding-surds-a57d",
     unitTitle: "Adding surds",
+    unitvariantId: 1,
     yearSlug: "year-10",
     yearTitle: "Year 10",
     examBoardSlug: null,
@@ -33,6 +34,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 1,
+        actions: null,
       },
       {
         expired: false,
@@ -46,6 +48,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 2,
+        actions: null,
       },
       {
         expired: false,
@@ -59,6 +62,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 3,
+        actions: null,
       },
       {
         expired: false,
@@ -72,6 +76,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 4,
+        actions: null,
       },
       {
         expired: false,
@@ -85,6 +90,7 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 5,
+        actions: null,
       },
     ],
     ...partial,

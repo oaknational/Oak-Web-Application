@@ -10,9 +10,9 @@ import {
   OakLI,
   OakP,
   OakBox,
+  OakIcon,
 } from "@oaknational/oak-components";
 
-import Box from "@/components/SharedComponents/Box";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
@@ -21,7 +21,6 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
 import FieldError from "@/components/SharedComponents/FieldError";
-import Icon from "@/components/SharedComponents/Icon";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import useLocalStorageForDownloads from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 import createAndClickHiddenDownloadLink from "@/components/SharedComponents/helpers/downloadAndShareHelpers/createAndClickHiddenDownloadLink";
@@ -240,15 +239,15 @@ function CurriculumDownloads(
   ]);
 
   return (
-    <Box
-      $maxWidth={1280}
+    <OakBox
+      $maxWidth="all-spacing-24"
       $mh={"auto"}
       $width={"100%"}
-      $ph={28}
-      $pb={80}
-      $pt={32}
+      $ph="inner-padding-xl"
+      $pb="inner-padding-xl8"
+      $pt="inner-padding-xl2"
     >
-      <Box $width="100%">
+      <OakBox $width="100%">
         <OakFlex
           $alignItems={"flex-start"}
           $flexDirection={"column"}
@@ -331,7 +330,12 @@ function CurriculumDownloads(
                 />
                 {hasFormErrors && (
                   <OakFlex $flexDirection={"row"} $mb={"space-between-s"}>
-                    <Icon name="content-guidance" $color={"red"} />
+                    <OakIcon
+                      iconName="content-guidance"
+                      $colorFilter={"red"}
+                      $width={"all-spacing-6"}
+                      $height={"all-spacing-6"}
+                    />
                     <OakFlex $flexDirection={"column"}>
                       <OakP $ml={"space-between-sssx"} $color={"red"}>
                         To complete correct the following:
@@ -382,8 +386,8 @@ function CurriculumDownloads(
             </OakGrid>
           </form>
         </OakFlex>
-      </Box>
-    </Box>
+      </OakBox>
+    </OakBox>
   );
 }
 

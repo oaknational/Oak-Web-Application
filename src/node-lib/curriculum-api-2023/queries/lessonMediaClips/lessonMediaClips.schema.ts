@@ -1,14 +1,10 @@
-/**
- *
- * Ultimately some of these types will be used more widely at which point they could be moved to a shared location
- *
- */
-
 import { z } from "zod";
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  actionsSchema,
+  syntheticUnitvariantLessonsSchema,
+} from "@oaknational/oak-curriculum-schema";
 
-import { lessonPathwaySchema } from "../../shared.schema";
-import { baseLessonBrowseSchema } from "../lessonShare/lessonShare.schema";
+import { zodToCamelCase } from "../../helpers/zodToCamelCase";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
@@ -20,55 +16,72 @@ export type LessonBrowseData = ConvertKeysToCamelCase<
   z.infer<typeof lessonBrowseDataSchema>
 >;
 
-// TODO : Refactor so this and the video object are one
-const mediaObjectSchema = z
-  .object({
-    muxPlaybackId: z.string(),
-    playbackPolicy: z.enum(["signed", "public"]),
-    transcriptionSentences: z.array(z.string()).optional(),
-    resourceType: z.string(),
-    title: z.string(),
-    usageRestrictions: z.string().optional(),
-    attributionRequired: z.string(),
-    duration: z.number(),
-  })
-  .nullable();
-
-const videoObjectSchema = z
-  .object({
-    muxPlaybackId: z.string(),
-    playbackPolicy: z.enum(["signed", "public"]),
-    videoWithSignLanguageMuxPlaybackId: z.string().optional(),
-    transcriptionSentences: z.array(z.string()).optional(),
-    resourceType: z.string(),
-    title: z.string(),
-    usageRestrictions: z.string().optional(),
-    attributionRequired: z.string(),
-    duration: z.number(),
-  })
-  .nullable();
-
-const mediaClipsCycleSchema = z.object({
-  order: z.number().min(1),
-  learningCycleTitle: z.string(),
-  mediaId: z.number(),
-  slug: z.string(),
-  mediaClipTitle: z.string(),
-  mediaObject: mediaObjectSchema,
-  mediaType: z.enum(["audio", "video"]),
-  videoId: z.number().nullable(),
-  videoObject: videoObjectSchema,
+export const clipMediaObjectSchema = z.object({
+  id: z.string(),
+  url: z.string(),
+  type: z.string(),
+  bytes: z.number(),
+  format: z.string(),
+  duration: z.number().nullable(),
+  displayName: z.string(),
+  resourceType: z.string(),
 });
 
-export const cycleSchema = z.array(mediaClipsCycleSchema);
+export const clipVideoObjectSchema = z.object({
+  id: z.string(),
+  duration: z.number().nullable(),
+  muxAssetId: z.string(),
+  playbackIds: z.array(
+    z.object({
+      id: z.string(),
+      policy: z.string(),
+    }),
+  ),
+  muxPlaybackId: z.string(),
+});
 
-export const mediaClipsSchema = z.record(z.string(), cycleSchema);
+export const mediaClipCycleCamel = z.object({
+  // Test data had mixture of numbers and strings
+  order: z.number().or(z.string()),
+  mediaId: z.number().or(z.string()),
+  videoId: z.number().nullable(),
+  mediaType: z.string().nullish(),
+  customTitle: z.string().nullish(),
+  mediaObject: clipMediaObjectSchema,
+  videoObject: clipVideoObjectSchema,
+  transcriptSentences: z.array(z.string()).nullish(),
+});
 
+const lessonPathwaySchema = z.object({
+  programmeSlug: z.string(),
+  unitSlug: z.string(),
+  unitTitle: z.string(),
+  keyStageSlug: z.string(),
+  keyStageTitle: z.string(),
+  subjectSlug: z.string(),
+  subjectTitle: z.string(),
+  lessonCohort: z.string().nullish(),
+  examBoardSlug: z.string().nullish(),
+  examBoardTitle: z.string().nullish(),
+  tierSlug: z.string().nullish(),
+  tierTitle: z.string().nullish(),
+});
+
+export const mediaClipsRecordCamelSchema = z.record(
+  z.string(),
+  z.array(mediaClipCycleCamel),
+);
 const baseLessonMediaClipsPageSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   keyStageTitle: z.string(),
-  mediaClips: mediaClipsSchema,
+  mediaClips: mediaClipsRecordCamelSchema,
+  lessonOutline: z.array(z.object({ lessonOutline: z.string() })),
+  actions: zodToCamelCase(actionsSchema).nullish(),
+});
+
+export const lessonMediaClipsSchema = baseLessonMediaClipsPageSchema.extend({
+  ...lessonPathwaySchema.shape,
 });
 
 export const canonicalLessonMediaClipsSchema =
@@ -76,16 +89,13 @@ export const canonicalLessonMediaClipsSchema =
     pathways: z.array(lessonPathwaySchema),
   });
 
-export const lessonMediaClipsSchema = baseLessonMediaClipsPageSchema.extend({
-  ...baseLessonBrowseSchema.shape,
-});
+export type MediaClipListCamelCase = ConvertKeysToCamelCase<
+  z.infer<typeof mediaClipsRecordCamelSchema>
+>;
 
-// MUX Video / Audio object schemas
-export type MediaObject = z.infer<typeof mediaObjectSchema>;
-export type VideoObject = z.infer<typeof videoObjectSchema>;
-
-export type MediaClipsList = z.infer<typeof mediaClipsSchema>;
-export type MediaClip = z.infer<typeof mediaClipsCycleSchema>;
+export type MediaClip = ConvertKeysToCamelCase<
+  z.infer<typeof mediaClipCycleCamel>
+>;
 
 // Page Schemas
 export type LessonMediaClipsData = z.infer<typeof lessonMediaClipsSchema>;

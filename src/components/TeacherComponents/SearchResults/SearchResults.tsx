@@ -3,13 +3,13 @@ import {
   OakUL,
   OakFlex,
   OakPagination,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import SearchResultsItem, {
   SearchResultsItemProps,
 } from "@/components/TeacherComponents/SearchResultsItem";
 import usePagination from "@/components/SharedComponents/Pagination/usePagination";
-import Box from "@/components/SharedComponents/Box";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
 import { KeyStage, SearchHit } from "@/context/Search/search.types";
 
@@ -75,13 +75,18 @@ const SearchResults = (props: SearchResultsProps) => {
       ) : null}
 
       {hits.length > RESULTS_PER_PAGE && (
-        <Box $width="100%" $mt={[0, "auto"]} $pb={72} $pt={48}>
+        <OakBox
+          $width="100%"
+          $mt={["space-between-none", "auto"]}
+          $pb="inner-padding-xl7"
+          $pt="inner-padding-xl4"
+        >
           <OakPagination
             {...paginationProps}
             pageName={"Search"}
             paginationHref={paginationRoute}
           />
-        </Box>
+        </OakBox>
       )}
     </OakFlex>
   );
