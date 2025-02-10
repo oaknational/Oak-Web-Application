@@ -13,7 +13,7 @@ import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-20
 import {
   LessonMediaClipsQuery,
   InputMaybe,
-  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp,
+  Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp,
 } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
@@ -26,7 +26,7 @@ export const lessonMediaClipsQuery =
   }): Promise<T> => {
     const { lessonSlug, unitSlug, programmeSlug } = args;
 
-    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_0_0_Bool_Exp> =
+    const browseDataWhere: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Bool_Exp> =
       { lesson_slug: { _eq: lessonSlug } };
 
     if (unitSlug) {

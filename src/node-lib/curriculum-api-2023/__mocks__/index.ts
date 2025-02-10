@@ -8,7 +8,7 @@ import programmeListingFixture from "@/node-lib/curriculum-api-2023/fixtures/pro
 import lessonListingFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonListing.fixture";
 import lessonOverviewFixture from "@/node-lib/curriculum-api-2023/fixtures/lessonOverview.fixture";
 import { CurriculumApi } from "@/node-lib/curriculum-api-2023";
-import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
+import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import { curriculumOverviewMVFixture } from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import teachersHomePageFixture from "@/node-lib/curriculum-api-2023/fixtures/teachersHomePage.fixture";
 import specialistUnitListingFixture from "@/components/TeacherViews/SpecialistUnitListing/SpecialistUnitListing.fixture";
@@ -28,7 +28,7 @@ import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/le
 
 const curriculumApi: Pick<
   CurriculumApi,
-  | "subjectPhaseOptions"
+  | "curriculumPhaseOptions"
   | "curriculumOverview"
   | "subjectListingPage"
   | "lessonListing"
@@ -54,8 +54,8 @@ const curriculumApi: Pick<
   | "lessonMediaClips"
   | "betaLessonMediaClipsQuery"
 > = {
-  subjectPhaseOptions: jest.fn(async () => {
-    return subjectPhaseOptionsFixture();
+  curriculumPhaseOptions: jest.fn(async () => {
+    return curriculumPhaseOptionsFixture();
   }),
   curriculumOverview: jest.fn(async () => {
     return curriculumOverviewMVFixture();

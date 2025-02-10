@@ -1,6 +1,6 @@
-import { SubjectPhaseOption } from "..";
+import { CurriculumPhaseOptions } from "..";
 
-const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
+const curriculumPhaseOptionsFixture = (): CurriculumPhaseOptions => [
   {
     title: "English",
     slug: "english",
@@ -12,7 +12,6 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "AQA", slug: "aqa" },
       { title: "Edexcel", slug: "edexcel" },
     ],
-    cycle: "1",
     keystages: [
       { title: "KS1", slug: "ks1" },
       { title: "KS3", slug: "ks3" },
@@ -26,7 +25,6 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Secondary", slug: "secondary" },
     ],
     ks4_options: null,
-    cycle: "1",
     keystages: [
       { title: "KS1", slug: "ks1" },
       { title: "KS3", slug: "ks3" },
@@ -43,7 +41,6 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "AQA", slug: "aqa" },
       { title: "Edexcel", slug: "edexcel" },
     ],
-    cycle: "1",
     keystages: [
       { title: "KS1", slug: "ks1" },
       { title: "KS3", slug: "ks3" },
@@ -57,7 +54,6 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Secondary", slug: "secondary" },
     ],
     ks4_options: null,
-    cycle: "1",
     keystages: [
       { title: "KS1", slug: "ks1" },
       { title: "KS3", slug: "ks3" },
@@ -68,7 +64,6 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
     slug: "music",
     phases: [{ title: "Secondary", slug: "secondary" }],
     ks4_options: null,
-    cycle: "1",
     keystages: [
       { title: "KS1", slug: "ks1" },
       { title: "KS3", slug: "ks3" },
@@ -82,11 +77,10 @@ const subjectPhaseOptionsFixture = (): SubjectPhaseOption[] => [
       { title: "Secondary", slug: "secondary" },
     ],
     ks4_options: null,
-    cycle: "1",
     keystages: [
       { title: "KS1", slug: "ks1" },
       { title: "KS3", slug: "ks3" },
     ],
   },
 ];
-export default subjectPhaseOptionsFixture;
+export default curriculumPhaseOptionsFixture;
