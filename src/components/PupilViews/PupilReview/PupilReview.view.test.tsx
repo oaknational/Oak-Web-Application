@@ -254,18 +254,13 @@ describe("PupilReview", () => {
       // Assert that logAttempt has been called once
       expect(logAttemptSpy).toHaveBeenCalledTimes(1);
     });
-    it("throws error if promise returns null", () => {
+    it("throws error if promise returns null", async () => {
       //spy on the track function
       const logAttemptSpy = jest.fn(() => ({
         promise: Promise.reject(new Error("Test error")), // Simulate a rejected promise
         attemptId: "some-attempt-id",
       }));
       (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
-      // Mock console.error
-
-      const consoleErrorSpy = jest
-        .spyOn(console, "error")
-        .mockImplementation(() => {});
 
       const { getByText } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
@@ -297,16 +292,20 @@ describe("PupilReview", () => {
         </OakThemeProvider>,
       );
 
-      consoleErrorSpy.mockRestore();
-
       const button = getByText("Copy link");
 
-      userEvent.click(button).then(() => {
-        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-        expect(consoleErrorSpy).toHaveBeenCalledWith(
-          "Error sharing results: Test error",
-        );
-      });
+      // Mock the console.error function just prior to the button click
+      const consoleErrorSpy = jest
+        .spyOn(console, "error")
+        .mockImplementation(() => {});
+
+      await userEvent.click(button);
+
+      expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+      expect(consoleErrorSpy).toHaveBeenCalledWith(new Error("Test error"));
+
+      // Restore the console.error function
+      consoleErrorSpy.mockRestore();
     });
     it("copies the correct url to the clipboard when logAttempt returns a promise", () => {
       const logAttemptSpy = jest.fn(() => ({

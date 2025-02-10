@@ -3,7 +3,7 @@ import { findAllByRole } from "@testing-library/dom";
 import CurriculumHeader from "./CurriculumHeader";
 
 import curriculumHeaderFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumHeader.fixture";
-import subjectPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectPhaseOptions.fixture";
+import curriculumPhaseOptionsFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumPhaseOptions.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockPrerelease } from "@/utils/mocks";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
@@ -25,7 +25,7 @@ describe("Component - Curriculum Header", () => {
     const defaultProps = {
       curriculumSelectionSlugs: parseSubjectPhaseSlug("english-secondary-aqa")!,
       keyStages: ["ks3", "ks4"],
-      subjectPhaseOptions: { subjects: subjectPhaseOptionsFixture() },
+      curriculumPhaseOptions: { subjects: curriculumPhaseOptionsFixture() },
       pageSlug: "test-slug",
       tab: "overview",
       ...overrides,

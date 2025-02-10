@@ -1,4 +1,4 @@
-const subjectPhaseOptions = {
+const curriculumPhaseOptions = {
   subjects: [
     {
       title: "English",
@@ -15,7 +15,6 @@ const subjectPhaseOptions = {
         { title: "KS1", slug: "ks1" },
         { title: "KS3", slug: "ks3" },
       ],
-      cycle: "1",
     },
     {
       title: "Physical education",
@@ -29,7 +28,7 @@ const subjectPhaseOptions = {
         { title: "Edexcel", slug: "edexcel" },
         { title: "OCR", slug: "ocr" },
       ],
-      cycle: "2",
+
       keystages: [
         { title: "KS1", slug: "ks1" },
         { title: "KS3", slug: "ks3" },
@@ -46,7 +45,7 @@ const subjectPhaseOptions = {
         { title: "GCSE", slug: "gcse" },
         { title: "Core", slug: "core" },
       ],
-      cycle: "2",
+
       keystages: [
         { title: "KS1", slug: "ks1" },
         { title: "KS3", slug: "ks3" },
@@ -64,7 +63,7 @@ const subjectPhaseOptions = {
         { title: "Core", slug: "core" },
         { title: "OCR", slug: "ocr" },
       ],
-      cycle: "2",
+
       keystages: [
         { title: "KS1", slug: "ks1" },
         { title: "KS3", slug: "ks3" },
@@ -78,7 +77,7 @@ const subjectPhaseOptions = {
         { title: "Secondary", slug: "secondary" },
       ],
       ks4_options: null,
-      cycle: "1",
+
       keystages: [
         { title: "KS1", slug: "ks1" },
         { title: "KS3", slug: "ks3" },
@@ -95,7 +94,7 @@ const subjectPhaseOptions = {
         { title: "AQA", slug: "aqa" },
         { title: "Edexcel", slug: "edexcel" },
       ],
-      cycle: "1",
+
       keystages: [
         { title: "KS1", slug: "ks1" },
         { title: "KS3", slug: "ks3" },
@@ -109,7 +108,7 @@ const subjectPhaseOptions = {
         { title: "Secondary", slug: "secondary" },
       ],
       ks4_options: null,
-      cycle: "1",
+
       keystages: [
         { title: "KS1", slug: "ks1" },
         { title: "KS3", slug: "ks3" },
@@ -120,7 +119,7 @@ const subjectPhaseOptions = {
       slug: "music",
       phases: [{ title: "Secondary", slug: "secondary" }],
       ks4_options: null,
-      cycle: "1",
+
       keystages: [
         { title: "KS1", slug: "ks1" },
         { title: "KS3", slug: "ks3" },
@@ -134,7 +133,7 @@ const subjectPhaseOptions = {
         { title: "Secondary", slug: "secondary" },
       ],
       ks4_options: null,
-      cycle: "1",
+
       keystages: [
         { title: "KS1", slug: "ks1" },
         { title: "KS3", slug: "ks3" },
@@ -143,4 +142,4 @@ const subjectPhaseOptions = {
   ],
 };
 
-export default subjectPhaseOptions;
+export default curriculumPhaseOptions;

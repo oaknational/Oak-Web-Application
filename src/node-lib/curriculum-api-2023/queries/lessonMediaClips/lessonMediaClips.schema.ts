@@ -1,5 +1,10 @@
 import { z } from "zod";
-import { syntheticUnitvariantLessonsSchema } from "@oaknational/oak-curriculum-schema";
+import {
+  actionsSchema,
+  syntheticUnitvariantLessonsSchema,
+} from "@oaknational/oak-curriculum-schema";
+
+import { zodToCamelCase } from "../../helpers/zodToCamelCase";
 
 import { ConvertKeysToCamelCase } from "@/utils/snakeCaseConverter";
 
@@ -66,13 +71,13 @@ export const mediaClipsRecordCamelSchema = z.record(
   z.string(),
   z.array(mediaClipCycleCamel),
 );
-
 const baseLessonMediaClipsPageSchema = z.object({
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   keyStageTitle: z.string(),
   mediaClips: mediaClipsRecordCamelSchema,
   lessonOutline: z.array(z.object({ lessonOutline: z.string() })),
+  actions: zodToCamelCase(actionsSchema).nullish(),
 });
 
 export const lessonMediaClipsSchema = baseLessonMediaClipsPageSchema.extend({

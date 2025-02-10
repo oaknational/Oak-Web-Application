@@ -44,6 +44,7 @@ describe("constructMediaClips", () => {
         pathways: [pathway],
         mediaClips: null,
         lessonOutline: null,
+        actions: null,
       });
     });
   });
@@ -70,6 +71,7 @@ describe("constructMediaClips", () => {
         tierSlug: null,
         mediaClips: null,
         lessonOutline: null,
+        actions: null,
       });
     });
   });

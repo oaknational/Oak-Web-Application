@@ -49,7 +49,7 @@ import openApiRequest from "@/utils/curriculum/openapi";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
-  subjectPhaseOptions,
+  curriculumPhaseOptions,
   curriculumOverviewTabData,
   curriculumOverviewSanityData,
   curriculumUnitsFormattedData,
@@ -134,7 +134,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         $background={"white"}
       >
         <CurriculumHeader
-          subjectPhaseOptions={subjectPhaseOptions}
+          curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           keyStages={keyStages}
           color1="mint"
@@ -189,9 +189,8 @@ export const getStaticProps: GetStaticProps<
         });
       }
 
-      const validSubjectPhases = await curriculumApi2023.subjectPhaseOptions({
-        cycle: "2",
-      });
+      const validSubjectPhases =
+        await curriculumApi2023.curriculumPhaseOptions();
 
       const isValid = isValidSubjectPhaseSlug(validSubjectPhases, slugs);
       if (!isValid) {
@@ -262,12 +261,12 @@ export const getStaticProps: GetStaticProps<
         curriculumUnitsTabData.units,
       );
 
-      const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+      const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
 
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
           curriculumSelectionSlugs: slugs,
-          subjectPhaseOptions,
+          curriculumPhaseOptions,
           curriculumOverviewTabData,
           curriculumOverviewSanityData,
           curriculumUnitsFormattedData,

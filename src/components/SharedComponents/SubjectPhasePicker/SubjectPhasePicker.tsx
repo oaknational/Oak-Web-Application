@@ -29,7 +29,8 @@ import type {
   KS4Option,
   Phase,
   Subject,
-  SubjectPhaseOption,
+  CurriculumPhaseOptions,
+  CurriculumPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -62,9 +63,9 @@ const DEFAULT_KEYSTAGES = [
  */
 
 export type SubjectPhasePickerData = {
-  subjects: SubjectPhaseOption[];
+  subjects: CurriculumPhaseOptions;
   currentSelection?: {
-    subject: SubjectPhaseOption;
+    subject: CurriculumPhaseOption;
     phase: Phase;
     ks4Option: KS4Option | null;
   };
@@ -363,7 +364,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const [showSubjects, setShowSubjects] = useState(false);
   const [showPhases, setShowPhases] = useState(false);
   const [selectedSubject, setSelectedSubject] =
-    useState<SubjectPhaseOption | null>(initialSubject || null);
+    useState<CurriculumPhaseOption | null>(initialSubject || null);
   const [selectedPhase, setSelectedPhase] = useState<Phase | null>(
     initialPhase || null,
   );
@@ -443,7 +444,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
     setShowSubjects(false);
   };
 
-  const handleSelectSubject = (subject: SubjectPhaseOption): void => {
+  const handleSelectSubject = (subject: CurriculumPhaseOption): void => {
     setShowSubjectError(false);
     setSelectedKS4Option(null);
     setSelectedSubject(subject);

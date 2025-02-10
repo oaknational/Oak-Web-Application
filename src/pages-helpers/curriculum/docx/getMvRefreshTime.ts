@@ -3,7 +3,7 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
 export async function getMvRefreshTime() {
   const { data: mvRefreshTimes } = await curriculumApi2023.refreshedMVTime({
-    viewName: "mv_curriculum_units_including_new%",
+    viewName: "mv_curriculum_sequence_b%",
   });
 
   // Default result to current time in milliseconds
