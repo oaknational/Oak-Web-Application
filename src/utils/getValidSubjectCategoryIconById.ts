@@ -1,22 +1,25 @@
+import { OakIconName } from "@oaknational/oak-components";
+
+import { getValidSubjectIconName } from "./getValidSubjectIconName";
 const subjectCategoryIconMap: Record<number, string> = {
-  1: "subject-biology",
-  2: "subject-chemistry",
-  3: "subject-physics",
-  4: "subject-english-reading-writing-oracy",
-  5: "subject-english-grammar",
-  6: "subject-english-handwriting",
-  7: "subject-english-spelling",
-  8: "subject-english-vocabulary",
-  18: "subject-english-language",
-  19: "subject-english-reading-for-pleasure",
+  1: "biology",
+  2: "chemistry",
+  3: "physics",
+  4: "english-reading-writing-oracy",
+  5: "english-grammar",
+  6: "english-handwriting",
+  7: "english-spelling",
+  8: "english-vocabulary",
+  18: "english-language",
+  19: "english-reading-for-pleasure",
 };
 
-export function getValidSubjectCategoryIconById(id: number): string {
+export function getValidSubjectCategoryIconById(id: number): OakIconName {
   const subjectSlug = subjectCategoryIconMap[id];
 
   if (!subjectSlug) {
     return "books";
   }
 
-  return subjectSlug;
+  return getValidSubjectIconName(subjectSlug);
 }

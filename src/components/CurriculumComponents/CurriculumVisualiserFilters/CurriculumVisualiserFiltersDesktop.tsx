@@ -18,6 +18,7 @@ import {
 } from "./CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "./helpers";
 
+import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import {
   Thread,
@@ -175,7 +176,7 @@ export default function CurriculumVisualiserFiltersDesktop({
                   key={subjectCategory.id}
                   value={String(subjectCategory.id)}
                   displayValue={subjectCategory.title}
-                  icon={getValidSubjectIconName(subjectCategory)}
+                  icon={getValidSubjectCategoryIconById(subjectCategory.id)}
                 />
               );
             })}
