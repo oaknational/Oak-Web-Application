@@ -169,13 +169,16 @@ export default function CurriculumVisualiserFiltersDesktop({
             $gap="space-between-ssx"
             aria-labelledby="subject-categories-label"
           >
-            {subjectCategories.map((subjectCategory) => (
-              <OakRadioAsButton
-                key={subjectCategory.id}
-                value={String(subjectCategory.id)}
-                displayValue={subjectCategory.title}
-              />
-            ))}
+            {subjectCategories.map((subjectCategory) => {
+              return (
+                <OakRadioAsButton
+                  key={subjectCategory.id}
+                  value={String(subjectCategory.id)}
+                  displayValue={subjectCategory.title}
+                  icon={getValidSubjectIconName(subjectCategory)}
+                />
+              );
+            })}
           </OakRadioGroup>
         </>
       )}
