@@ -22,7 +22,6 @@ const dataManual: SchoolSelectFormProps = {
   onSubmit: submit,
 };
 const userEmail = "test@example.com";
-const userSubscribed = true;
 
 describe("setOnboardingLocalStorage", () => {
   afterEach(() => {
@@ -34,7 +33,6 @@ describe("setOnboardingLocalStorage", () => {
       localStorageForDownloads: mockLocalStorageForDownloads,
       data,
       userEmail,
-      userSubscribed,
     });
 
     expect(
@@ -50,7 +48,6 @@ describe("setOnboardingLocalStorage", () => {
       localStorageForDownloads: mockLocalStorageForDownloads,
       data: dataManual,
       userEmail,
-      userSubscribed,
     });
 
     expect(
@@ -66,7 +63,6 @@ describe("setOnboardingLocalStorage", () => {
       localStorageForDownloads: mockLocalStorageForDownloads,
       data: { ...data, manualSchoolName: "Manual Test School" },
       userEmail,
-      userSubscribed: true,
     });
 
     expect(
@@ -74,25 +70,11 @@ describe("setOnboardingLocalStorage", () => {
     ).toHaveBeenCalledWith(userEmail);
   });
 
-  it("should set email to empty string in local storage when userSubscribed is false", () => {
-    setOnboardingLocalStorage({
-      localStorageForDownloads: mockLocalStorageForDownloads,
-      data: { ...data, manualSchoolName: "Manual Test School" },
-      userEmail,
-      userSubscribed: false,
-    });
-
-    expect(
-      mockLocalStorageForDownloads.setEmailInLocalStorage,
-    ).toHaveBeenCalledWith("");
-  });
-
   it("should set terms in local storage", () => {
     setOnboardingLocalStorage({
       localStorageForDownloads: mockLocalStorageForDownloads,
       data: { ...data, manualSchoolName: "Manual Test School" },
       userEmail,
-      userSubscribed: true,
     });
     expect(
       mockLocalStorageForDownloads.setTermsInLocalStorage,

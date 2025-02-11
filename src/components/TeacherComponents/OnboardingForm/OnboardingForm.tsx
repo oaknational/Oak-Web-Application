@@ -155,6 +155,7 @@ const OnboardingForm = ({
         // No point in proceeding to hubspot sign-up if onboarding failed
         return;
       }
+
       const userSubscribed =
         userSubscribedInHubspot ||
         ("newsletterSignUp" in data && data.newsletterSignUp);
@@ -165,7 +166,6 @@ const OnboardingForm = ({
         localStorageForDownloads,
         data,
         userEmail,
-        userSubscribed,
       });
 
       await submitOnboardingHubspotData({

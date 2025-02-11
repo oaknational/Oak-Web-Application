@@ -1,3 +1,10 @@
+## [1.686.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.686.0...v1.686.1) (2025-02-11)
+
+
+### Bug Fixes
+
+* always set email in localstorage ([3d4a54d](https://github.com/oaknational/Oak-Web-Application/commit/3d4a54d2d7bfe25c2a9a3147483782bed6adddca))
+
 # [1.686.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.685.1...v1.686.0) (2025-02-10)
 
 
