@@ -1,3 +1,10 @@
+# [1.688.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.687.0...v1.688.0) (2025-02-11)
+
+
+### Features
+
+* update computer science pathway ([d2d417a](https://github.com/oaknational/Oak-Web-Application/commit/d2d417af06fea57b4d540e1f8985d901ddb2dce1))
+
 # [1.687.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.686.1...v1.687.0) (2025-02-11)
 
 
