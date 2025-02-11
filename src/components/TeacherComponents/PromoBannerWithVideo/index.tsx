@@ -6,13 +6,10 @@ import {
   OakTertiaryButton,
 } from "@oaknational/oak-components";
 import styled from "styled-components";
-import { useState } from "react";
 
 import { StyledVideoFlex } from "../NewContentBanner/NewContentBanner";
 
-import VideoPlayer, {
-  VideoEventCallbackArgs,
-} from "@/components/SharedComponents/VideoPlayer";
+import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
 
 type PromoBannerWithVideoProps = {
   title: string;
@@ -39,9 +36,6 @@ const PromoBannerWithVideo = ({
   buttonIconName,
   textUnderVideo,
 }: PromoBannerWithVideoProps) => {
-  
-  
-
   return (
     <StyledOakFlex
       $flexDirection={["column-reverse", "row"]}
@@ -71,9 +65,7 @@ const PromoBannerWithVideo = ({
       </OakFlex>
       <StyledVideoFlex
         $alignSelf={["flex-start", "center"]}
-        
         $flexDirection={"column"}
-        
         data-testid="video-player-container"
       >
         <VideoPlayer
@@ -83,7 +75,6 @@ const PromoBannerWithVideo = ({
           location={"marketing"}
           isLegacy={false}
           thumbnailTime={30.8}
-          
         />
         {textUnderVideo && <OakP $font={"body-3-bold"}>{textUnderVideo}</OakP>}
       </StyledVideoFlex>
