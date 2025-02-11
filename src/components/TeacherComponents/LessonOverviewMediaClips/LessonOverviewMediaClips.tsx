@@ -14,6 +14,7 @@ type LessonOverviewMediaClipsProps = {
   isCanonical?: boolean;
   lessonOutline: { lessonOutline: string }[] | null;
   isPELesson: boolean;
+  isMFL?: boolean;
 };
 
 const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
@@ -24,7 +25,50 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   isCanonical,
   lessonOutline,
   isPELesson,
+  isMFL = true,
 }) => {
+  const getLearningCycleVideosTitleMap = () => {
+    const learningCyclesArray = learningCycleVideos
+      ? Object.keys(learningCycleVideos)
+      : [];
+
+    const learningCyclesWithOutlinesArray = learningCyclesArray.map(
+      (learningCycle) => {
+        if (isPELesson && learningCycle) {
+          const firstVideo = learningCycleVideos?.[learningCycle]?.[0];
+          return firstVideo
+            ? {
+                learningCycle,
+                lessonOutline:
+                  firstVideo?.customTitle ??
+                  firstVideo?.mediaObject?.displayName,
+              }
+            : null;
+        } else {
+          if (learningCycle === "intro") {
+            return {
+              learningCycle,
+              learningCycleTitle: isMFL ? "Keywords" : "Intro",
+            };
+          }
+
+          const learningCycleNumber: number = Number(learningCycle.slice(-1));
+          const lessonOutlineIndex = learningCycleNumber - 1;
+
+          return {
+            learningCycle,
+            learningCycleTitle:
+              lessonOutline?.[lessonOutlineIndex]?.lessonOutline,
+          };
+        }
+      },
+    );
+
+    return learningCyclesWithOutlinesArray;
+  };
+
+  console.log(getLearningCycleVideosTitleMap());
+
   if (!learningCycleVideos) return null;
   const hasIntroCycle = Object.keys(learningCycleVideos).includes("intro");
   const introLessonOverview =
