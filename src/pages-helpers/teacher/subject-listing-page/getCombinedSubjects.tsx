@@ -105,6 +105,7 @@ export const getCombinedSubjects = (
               pathwaySlug: newSubject.pathwaySlug,
               pathwayTitle: newSubject.pathwayTitle,
               isNew: true,
+              actions: newSubject.actions,
             };
           })
           .sort(compareByPathway)
@@ -119,6 +120,7 @@ export const getCombinedSubjects = (
             pathwaySlug: legacySubject.pathwaySlug,
             pathwayTitle: legacySubject.pathwayTitle,
             isNew: false,
+            actions: legacySubject.actions,
           }))
           .sort(compareByPathway);
 
