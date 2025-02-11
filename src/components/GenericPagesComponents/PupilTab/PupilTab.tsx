@@ -15,7 +15,12 @@ import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 const PupilTab: FC = () => {
   return (
-    <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
+    <OakFlex
+      data-testid="pupil-tab"
+      $background={"mint"}
+      $pv="inner-padding-xl"
+      $overflow={"hidden"}
+    >
       <OakMaxWidth $ph={["inner-padding-m"]} $pb={"inner-padding-xl"}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
