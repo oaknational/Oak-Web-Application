@@ -19,12 +19,13 @@ describe("LessonOverviewMediaClips", () => {
         lessonSlug="lesson-slug"
         unitSlug="unit-slug"
         programmeSlug="programme-slug"
-        lessonOutline={[{ lessonOutline: "Intro Video 1" }]}
+        lessonOutline={[{ lessonOutline: "Some lesson outline" }]}
         isPELesson={false}
+        isMFL={false}
       />,
     );
 
-    expect(getByText("Intro Video 1")).toBeInTheDocument();
+    expect(getByText("Intro")).toBeInTheDocument();
   });
 
   it("calls resolveOakHref with correct arguments when programmeSlug and unitSlug are provided", () => {
@@ -36,6 +37,7 @@ describe("LessonOverviewMediaClips", () => {
         programmeSlug="programme-slug"
         lessonOutline={null}
         isPELesson={false}
+        isMFL={false}
       />,
     );
 
@@ -65,6 +67,7 @@ describe("LessonOverviewMediaClips", () => {
         programmeSlug={null}
         lessonOutline={null}
         isPELesson={false}
+        isMFL={false}
       />,
     );
 
@@ -90,6 +93,7 @@ describe("LessonOverviewMediaClips", () => {
         programmeSlug="programme-slug"
         lessonOutline={null}
         isPELesson={false}
+        isMFL={false}
       />,
     );
     expect(container.firstChild).toBeNull();

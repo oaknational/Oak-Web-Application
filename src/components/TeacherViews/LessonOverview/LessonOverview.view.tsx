@@ -398,6 +398,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         programmeSlug={programmeSlug ?? null}
                         lessonOutline={lessonOutline}
                         isPELesson={actions?.displayPETitle}
+                        isMFL={actions?.displayMFLTitle}
                       />
                     </LessonItemContainer>
                   )}

@@ -14,7 +14,7 @@ type LessonOverviewMediaClipsProps = {
   isCanonical?: boolean;
   lessonOutline: { lessonOutline: string }[] | null;
   isPELesson: boolean;
-  isMFL?: boolean;
+  isMFL: boolean;
 };
 
 const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
@@ -25,58 +25,47 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   isCanonical,
   lessonOutline,
   isPELesson,
-  isMFL = true,
+  isMFL,
 }) => {
-  const getLearningCycleVideosTitleMap = () => {
+  const createLearningCycleVideosTitleMap = () => {
     const learningCyclesArray = learningCycleVideos
       ? Object.keys(learningCycleVideos)
       : [];
 
-    const learningCyclesWithOutlinesArray = learningCyclesArray.map(
-      (learningCycle) => {
-        if (isPELesson && learningCycle) {
-          const firstVideo = learningCycleVideos?.[learningCycle]?.[0];
-          return firstVideo
-            ? {
-                learningCycle,
-                lessonOutline:
-                  firstVideo?.customTitle ??
-                  firstVideo?.mediaObject?.displayName,
-              }
-            : null;
-        } else {
-          if (learningCycle === "intro") {
-            return {
-              learningCycle,
-              learningCycleTitle: isMFL ? "Keywords" : "Intro",
-            };
-          }
+    const learningCycleVideosTitleMap: { [key: string]: string | undefined } =
+      {};
 
-          const learningCycleNumber: number = Number(learningCycle.slice(-1));
-          const lessonOutlineIndex = learningCycleNumber - 1;
+    learningCyclesArray.forEach((learningCycle) => {
+      // if it is PE lesson, then the first video of each learning cycle is the title
+      // if there is a customTitle on the video it takes priorirty
+      if (isPELesson && learningCycle) {
+        const firstVideo = learningCycleVideos?.[learningCycle]?.[0];
+        learningCycleVideosTitleMap[learningCycle] =
+          firstVideo?.customTitle ?? firstVideo?.mediaObject?.displayName;
+        // for the rest of subjects we hardcode the title for 'intro' learning cycle because there is no lesson outline for it
+        // intro is called 'Keywords' for MFL and 'Intro' for the rest of the subjects
+      } else if (learningCycle === "intro") {
+        learningCycleVideosTitleMap[learningCycle] = isMFL
+          ? "Keywords"
+          : "Intro";
+        // for the remaining learning cycles we use the lesson outline as the title
+      } else {
+        // the last letter of learning cycle is the number of the learning cycle
+        const learningCycleNumber: number = Number(learningCycle.slice(-1));
+        // lessonOutlineIndex is the learning cycle number - 1 because it is 0 indexed
+        const lessonOutlineIndex = learningCycleNumber - 1;
+        learningCycleVideosTitleMap[learningCycle] =
+          lessonOutline?.[lessonOutlineIndex]?.lessonOutline;
+      }
+    });
 
-          return {
-            learningCycle,
-            learningCycleTitle:
-              lessonOutline?.[lessonOutlineIndex]?.lessonOutline,
-          };
-        }
-      },
-    );
-
-    return learningCyclesWithOutlinesArray;
+    return learningCycleVideosTitleMap;
   };
 
-  console.log(getLearningCycleVideosTitleMap());
+  const learningCycleVideosTitleMap = createLearningCycleVideosTitleMap();
 
   if (!learningCycleVideos) return null;
-  const hasIntroCycle = Object.keys(learningCycleVideos).includes("intro");
-  const introLessonOverview =
-    hasIntroCycle && lessonOutline
-      ? [{ lessonOutline: "Intro" }, ...lessonOutline]
-      : lessonOutline;
 
-  const videosArray = Object.values(learningCycleVideos);
   return (
     <OakGrid
       $width={"100%"}
@@ -87,60 +76,58 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
       ]}
       $rg={"all-spacing-4"}
     >
-      {videosArray.map((video, index) => {
-        const firstCycleVideo = video[0];
-        if (!firstCycleVideo) return null;
-        const isAudioClip = firstCycleVideo.mediaObject?.format === "mp3";
-        const signedPlaybackId = firstCycleVideo.videoObject.playbackIds.find(
-          (playbackId) => {
-            return playbackId.policy === "signed";
-          },
-        );
+      {Object.entries(learningCycleVideos).map(
+        ([learningCycleTitle, learningCycleVideos]) => {
+          const learningCycleTitleToDisplay =
+            learningCycleVideosTitleMap[learningCycleTitle];
 
-        const PETitle = firstCycleVideo.customTitle
-          ? firstCycleVideo.customTitle
-          : firstCycleVideo.mediaObject?.displayName;
-        const lessonOutlineTitle =
-          lessonOutline && introLessonOverview && introLessonOverview[index]
-            ? introLessonOverview[index]?.lessonOutline
-            : (lessonOutline?.[index]?.lessonOutline ?? "");
+          const firstCycleVideo = learningCycleVideos[0];
+          if (!firstCycleVideo) return null;
 
-        if (!signedPlaybackId) return null;
-        return (
-          <OakGridArea
-            key={index}
-            $colSpan={[0]}
-            $maxWidth={["100%", "100%", "all-spacing-18"]}
-          >
-            <LessonOverviewClipWithThumbnail
-              title={isPELesson ? PETitle : lessonOutlineTitle}
-              playbackId={
-                isAudioClip
-                  ? firstCycleVideo.videoObject.muxAssetId
-                  : signedPlaybackId.id
-              }
-              isAudioClip={isAudioClip}
-              playbackPolicy={"signed"}
-              numberOfClips={video.length}
-              href={
-                !isCanonical && programmeSlug && unitSlug
-                  ? resolveOakHref({
-                      page: "lesson-media",
-                      lessonSlug: lessonSlug,
-                      programmeSlug,
-                      unitSlug,
-                      query: { video: String(firstCycleVideo.mediaId) },
-                    })
-                  : resolveOakHref({
-                      page: "lesson-media-canonical",
-                      lessonSlug: lessonSlug,
-                      query: { video: String(firstCycleVideo.mediaId) },
-                    })
-              }
-            />
-          </OakGridArea>
-        );
-      })}
+          const isAudioClip = firstCycleVideo.mediaObject?.format === "mp3";
+          const signedPlaybackId = firstCycleVideo.videoObject.playbackIds.find(
+            (playbackId) => {
+              return playbackId.policy === "signed";
+            },
+          );
+          if (!signedPlaybackId) return null;
+
+          return (
+            <OakGridArea
+              key={learningCycleTitle}
+              $colSpan={[0]}
+              $maxWidth={["100%", "100%", "all-spacing-18"]}
+            >
+              <LessonOverviewClipWithThumbnail
+                title={learningCycleTitleToDisplay ?? ""}
+                playbackId={
+                  isAudioClip
+                    ? firstCycleVideo.videoObject.muxAssetId
+                    : signedPlaybackId.id
+                }
+                isAudioClip={isAudioClip}
+                playbackPolicy={"signed"}
+                numberOfClips={learningCycleVideos.length}
+                href={
+                  !isCanonical && programmeSlug && unitSlug
+                    ? resolveOakHref({
+                        page: "lesson-media",
+                        lessonSlug: lessonSlug,
+                        programmeSlug,
+                        unitSlug,
+                        query: { video: String(firstCycleVideo.mediaId) },
+                      })
+                    : resolveOakHref({
+                        page: "lesson-media-canonical",
+                        lessonSlug: lessonSlug,
+                        query: { video: String(firstCycleVideo.mediaId) },
+                      })
+                }
+              />
+            </OakGridArea>
+          );
+        },
+      )}
     </OakGrid>
   );
 };

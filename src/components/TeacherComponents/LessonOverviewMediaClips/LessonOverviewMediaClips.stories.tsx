@@ -33,6 +33,7 @@ const LessonOverviewMediaClipsComponent = (
     programmeSlug: string | null;
     lessonOutline: { lessonOutline: string }[] | null;
     isPELesson: boolean;
+    isMFL: boolean;
   },
 ) => {
   return (
