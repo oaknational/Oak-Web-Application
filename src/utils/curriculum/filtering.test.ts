@@ -4,30 +4,44 @@ import {
   getDefaultSubjectCategories,
   getDefaultTiers,
 } from "./filtering";
-import { Unit } from "./types";
 
 import { CurriculumUnitsYearData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 describe("filtering", () => {
   it("getDefaultChildSubject", () => {
-    const out = getDefaultChildSubject([
-      { subject_parent: "science", subject_slug: "biology" },
-      { subject_parent: "science", subject_slug: "physics" },
-    ] as Unit[]);
+    const input = {
+      "7": {
+        childSubjects: [{ subject: "Biology", subject_slug: "biology" }],
+      } as CurriculumUnitsYearData[number],
+      "8": {
+        childSubjects: [{ subject: "Physics", subject_slug: "physics" }],
+      } as CurriculumUnitsYearData[number],
+    };
+    const out = getDefaultChildSubject(input);
     expect(out).toEqual(["biology"]);
   });
   it("getDefaultSubjectCategories", () => {
-    const out = getDefaultSubjectCategories([
-      { subjectcategories: [{ id: 1 }] },
-      { subjectcategories: [{ id: 2 }] },
-    ] as Unit[]);
+    const input = {
+      "7": {
+        subjectCategories: [{ id: 1 }],
+      } as CurriculumUnitsYearData[number],
+      "8": {
+        subjectCategories: [{ id: 2 }],
+      } as CurriculumUnitsYearData[number],
+    };
+    const out = getDefaultSubjectCategories(input);
     expect(out).toEqual(["1"]);
   });
   it("getDefaultTiers", () => {
-    const out = getDefaultTiers([
-      { tier_slug: "higher", tier: "Higher" },
-      { tier_slug: "foundation", tier: "Foundation" },
-    ] as Unit[]);
+    const input = {
+      "7": {
+        tiers: [{ tier_slug: "higher", tier: "Higher" }],
+      } as CurriculumUnitsYearData[number],
+      "8": {
+        tiers: [{ tier_slug: "foundation", tier: "Foundation" }],
+      } as CurriculumUnitsYearData[number],
+    };
+    const out = getDefaultTiers(input);
     expect(out).toEqual(["foundation"]);
   });
 
@@ -35,33 +49,25 @@ describe("filtering", () => {
     const out = getDefaultFilter({
       yearData: {
         "7": {
-          units: [
-            {
-              subject_parent: "science",
-              subject_slug: "biology",
-              subjectcategories: [{ id: 1 }],
-              tier_slug: "higher",
-              tier: "Higher",
-            },
-            {
-              subject_parent: "science",
-              subject_slug: "physics",
-              subjectcategories: [{ id: 2 }],
-              tier_slug: "foundation",
-              tier: "Foundation",
-            },
-          ],
-        },
-      } as unknown as CurriculumUnitsYearData,
+          tiers: [{ tier_slug: "foundation", tier: "Foundation" }],
+          childSubjects: [{ subject: "Physics", subject_slug: "physics" }],
+          subjectCategories: [{ id: 2 }],
+        } as CurriculumUnitsYearData[number],
+        "8": {
+          tiers: [{ tier_slug: "higher", tier: "Higher" }],
+          childSubjects: [{ subject: "Biology", subject_slug: "biology" }],
+          subjectCategories: [{ id: 1 }],
+        } as CurriculumUnitsYearData[number],
+      },
       threadOptions: [],
-      yearOptions: ["7"],
+      yearOptions: ["7", "8"],
     });
     expect(out).toEqual({
       childSubjects: ["biology"],
-      subjectCategories: ["1"],
+      subjectCategories: ["2"],
       threads: [],
       tiers: ["foundation"],
-      years: ["7"],
+      years: ["7", "8"],
     });
   });
 });
