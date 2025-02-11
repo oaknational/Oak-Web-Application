@@ -10,6 +10,7 @@ import {
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 const AiTab: FC = () => {
   return (
@@ -54,7 +55,12 @@ const AiTab: FC = () => {
             $justifyContent="center"
             $pv="inner-padding-xl"
           >
-            <ImageContainer imageSlug={"hero-aila"} />
+            <ImageContainer
+              imageSlug={"hero-aila"}
+              width={518}
+              height={313}
+              sizes={getSizes([100, 518])}
+            />
           </OakGridArea>
         </OakGrid>
       </OakMaxWidth>

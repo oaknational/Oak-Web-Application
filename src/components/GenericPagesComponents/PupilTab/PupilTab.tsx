@@ -11,6 +11,7 @@ import {
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 const PupilTab: FC = () => {
   return (
@@ -54,7 +55,12 @@ const PupilTab: FC = () => {
             </OakFlex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
-            <ImageContainer imageSlug={"pupils-with-worksheet"}>
+            <ImageContainer
+              imageSlug={"pupils-with-worksheet"}
+              width={518}
+              height={313}
+              sizes={getSizes([10, 518])}
+            >
               {/* @todo check left position with marketing */}
               <OakIcon
                 iconName="burst"
