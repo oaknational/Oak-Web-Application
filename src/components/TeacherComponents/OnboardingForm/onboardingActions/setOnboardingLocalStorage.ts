@@ -7,7 +7,6 @@ export const reportError = errorReporter("setOnboardingLocalStorage");
 
 interface OnboardingData {
   localStorageForDownloads: ReturnType<typeof useLocalStorageForDownloads>;
-  userSubscribed: boolean;
   data: OnboardingFormProps;
   userEmail?: string;
 }
@@ -16,7 +15,6 @@ export async function setOnboardingLocalStorage({
   localStorageForDownloads,
   data,
   userEmail,
-  userSubscribed,
 }: OnboardingData) {
   if ("school" in data) {
     localStorageForDownloads.setSchoolInLocalStorage({
@@ -35,7 +33,7 @@ export async function setOnboardingLocalStorage({
     });
   }
 
-  if (userEmail && userSubscribed) {
+  if (userEmail) {
     localStorageForDownloads.setEmailInLocalStorage(userEmail);
   } else {
     localStorageForDownloads.setEmailInLocalStorage(""); // on download they subscribe by adding email, so this is empty if unsubscribed
