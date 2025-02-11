@@ -1,3 +1,24 @@
+# [1.686.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.685.1...v1.686.0) (2025-02-10)
+
+
+### Bug Fixes
+
+* amend margin ([6519a62](https://github.com/oaknational/Oak-Web-Application/commit/6519a62295f61312ee5d4e7995c37eaa5fa78153))
+* fix margin on code block ([9cd103c](https://github.com/oaknational/Oak-Web-Application/commit/9cd103ccd70d319019eeb27ee1979b579e894776))
+* pr styling updates ([1873d54](https://github.com/oaknational/Oak-Web-Application/commit/1873d5450b74449020acfdb33978913735d4fbf4))
+
+
+### Features
+
+* display code in quizzes in teacher experience ([7cc8964](https://github.com/oaknational/Oak-Web-Application/commit/7cc896418245f1c440ad99fd37418e3db86f3894))
+
+## [1.685.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.685.0...v1.685.1) (2025-02-10)
+
+
+### Bug Fixes
+
+* **workflows:** move away from the deprecated sonarqube scan action, used fix version ([50ee6a7](https://github.com/oaknational/Oak-Web-Application/commit/50ee6a77499e923402d83d2acf21dece3115a0ef))
+
 # [1.685.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.684.0...v1.685.0) (2025-02-06)
 
 
