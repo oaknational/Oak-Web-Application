@@ -58,7 +58,6 @@ export default {
           title: "OCR",
         },
       ],
-      cycle: "2",
     },
     {
       title: "Maths",
@@ -92,7 +91,6 @@ export default {
         },
       ],
       ks4_options: null,
-      cycle: "2",
     },
     {
       title: "Computing",
@@ -143,7 +141,6 @@ export default {
           title: "OCR",
         },
       ],
-      cycle: "2",
     },
     {
       title: "English",
@@ -190,7 +187,6 @@ export default {
           title: "Eduqas",
         },
       ],
-      cycle: "2",
     },
     {
       title: "Geography",
@@ -212,7 +208,6 @@ export default {
         },
       ],
       ks4_options: null,
-      cycle: "1",
     },
     {
       title: "English",
@@ -259,7 +254,6 @@ export default {
           title: "Eduqas",
         },
       ],
-      cycle: "1",
     },
     {
       title: "Geography",
@@ -302,7 +296,6 @@ export default {
           title: "Edexcel B",
         },
       ],
-      cycle: "2",
     },
     {
       title: "Science",
@@ -349,7 +342,39 @@ export default {
           title: "OCR",
         },
       ],
-      cycle: "1",
+    },
+    {
+      title: "RSHE (PSHE)",
+      slug: "rshe-pshe",
+      phases: [
+        {
+          slug: "primary",
+          title: "Primary",
+        },
+        {
+          slug: "secondary",
+          title: "Secondary",
+        },
+      ],
+      keystages: [
+        {
+          slug: "ks1",
+          title: "Key Stage 1",
+        },
+        {
+          slug: "ks2",
+          title: "Key Stage 2",
+        },
+        {
+          slug: "ks3",
+          title: "Key Stage 3",
+        },
+        {
+          slug: "ks4",
+          title: "Key Stage 4",
+        },
+      ],
+      ks4_options: null,
     },
     {
       title: "Spanish",
@@ -388,7 +413,6 @@ export default {
           title: "Edexcel",
         },
       ],
-      cycle: "2",
     },
     {
       title: "Music",
@@ -423,7 +447,6 @@ export default {
           title: "OCR",
         },
       ],
-      cycle: "1",
     },
     {
       title: "Science",
@@ -470,7 +493,6 @@ export default {
           title: "OCR",
         },
       ],
-      cycle: "2",
     },
     {
       title: "German",
@@ -501,7 +523,6 @@ export default {
           title: "Edexcel",
         },
       ],
-      cycle: "2",
     },
     {
       title: "Maths",
@@ -535,7 +556,6 @@ export default {
         },
       ],
       ks4_options: null,
-      cycle: "1",
     },
     {
       title: "Citizenship",
@@ -566,7 +586,6 @@ export default {
           title: "GCSE",
         },
       ],
-      cycle: "2",
     },
     {
       title: "Cooking and nutrition",
@@ -596,7 +615,6 @@ export default {
         },
       ],
       ks4_options: null,
-      cycle: "2",
     },
     {
       title: "Music",
@@ -643,7 +661,6 @@ export default {
           title: "OCR",
         },
       ],
-      cycle: "2",
     },
     {
       title: "Art and design",
@@ -677,7 +694,6 @@ export default {
         },
       ],
       ks4_options: null,
-      cycle: "2",
     },
     {
       title: "French",
@@ -716,7 +732,6 @@ export default {
           title: "Edexcel",
         },
       ],
-      cycle: "2",
     },
     {
       title: "History",
@@ -759,7 +774,6 @@ export default {
           title: "Edexcel",
         },
       ],
-      cycle: "2",
     },
     {
       title: "History",
@@ -802,7 +816,6 @@ export default {
           title: "Edexcel",
         },
       ],
-      cycle: "1",
     },
     {
       title: "Religious education",
@@ -841,7 +854,6 @@ export default {
           title: "GCSE",
         },
       ],
-      cycle: "2",
     },
     {
       title: "Design and technology",
@@ -875,7 +887,6 @@ export default {
         },
       ],
       ks4_options: null,
-      cycle: "2",
     },
     {
       title: "RSHE (PSHE)",
