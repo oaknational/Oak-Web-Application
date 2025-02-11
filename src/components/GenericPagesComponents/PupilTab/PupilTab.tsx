@@ -59,7 +59,7 @@ const PupilTab: FC = () => {
               imageSlug={"pupils-with-worksheet"}
               width={518}
               height={313}
-              sizes={getSizes([10, 518])}
+              sizes={getSizes([100, 518])}
             >
               {/* @todo check left position with marketing */}
               <OakIcon

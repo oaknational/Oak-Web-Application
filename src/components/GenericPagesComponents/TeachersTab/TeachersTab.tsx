@@ -91,7 +91,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               imageSlug={"hero-pupils"}
               width={518}
               height={313}
-              sizes={getSizes([10, 518])}
+              sizes={getSizes([100, 518])}
             >
               <TeachersTabResourceSelectorCard
                 icon={"worksheet"}
