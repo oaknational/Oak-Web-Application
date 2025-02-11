@@ -18,6 +18,16 @@ const notificationSchema = z.discriminatedUnion("enabled", [
 
 export type HomePageNotification = z.infer<typeof notificationSchema>;
 
+export const testimonialSchema = z.object({
+  quote: z.object({
+    text: z.string(),
+    attribution: z.string(),
+    role: z.string(),
+    organisation: z.string(),
+  }),
+  image: imageSchema.nullish(),
+});
+
 export const homePageSchema = z
   .object({
     heading: z.string(),
@@ -34,6 +44,7 @@ export const homePageSchema = z
       })
       .nullish(),
     seo: seoSchema.nullish(),
+    testimonials: z.array(testimonialSchema).nullable(),
   })
   .merge(documentSchema);
 
