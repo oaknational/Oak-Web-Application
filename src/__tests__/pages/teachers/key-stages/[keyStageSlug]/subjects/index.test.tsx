@@ -57,6 +57,7 @@ describe("pages/key-stages/[keyStageSlug]/subjects", () => {
                 programmeCount: 2,
                 pathwaySlug: null,
                 pathwayTitle: null,
+                actions: {},
               },
               hasNewContent: true,
             },

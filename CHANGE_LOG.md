@@ -1,3 +1,56 @@
+## [1.688.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.2...v1.688.3) (2025-02-12)
+
+## [1.688.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.1...v1.688.2) (2025-02-12)
+
+## [1.688.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.0...v1.688.1) (2025-02-11)
+
+
+### Bug Fixes
+
+* **mux:** enable automatic mux signed video token refreshing prior to expiry ([184452d](https://github.com/oaknational/Oak-Web-Application/commit/184452dbd5994de82e03a70b591bcaeef2db1c8b))
+
+# [1.688.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.687.0...v1.688.0) (2025-02-11)
+
+
+### Features
+
+* update computer science pathway ([d2d417a](https://github.com/oaknational/Oak-Web-Application/commit/d2d417af06fea57b4d540e1f8985d901ddb2dce1))
+
+# [1.687.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.686.1...v1.687.0) (2025-02-11)
+
+
+### Bug Fixes
+
+* empty commit ([3900b6b](https://github.com/oaknational/Oak-Web-Application/commit/3900b6bd8b02a5c33391d89f866b3ad85e59ebf3))
+* make testimonials nullable ([6bd4984](https://github.com/oaknational/Oak-Web-Application/commit/6bd49844f46b44ef1a256acf29de30e23048256d))
+* type errors ([74fb3db](https://github.com/oaknational/Oak-Web-Application/commit/74fb3db2f8e6b629a896c4d6e9d1ff0f492d80c3))
+
+
+### Features
+
+* fetching testimonial data from sanity ([b23d80c](https://github.com/oaknational/Oak-Web-Application/commit/b23d80cd0bbe722729929f05e5d9991ee4ee1f03))
+
+## [1.686.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.686.0...v1.686.1) (2025-02-11)
+
+
+### Bug Fixes
+
+* always set email in localstorage ([3d4a54d](https://github.com/oaknational/Oak-Web-Application/commit/3d4a54d2d7bfe25c2a9a3147483782bed6adddca))
+
+# [1.686.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.685.1...v1.686.0) (2025-02-10)
+
+
+### Bug Fixes
+
+* amend margin ([6519a62](https://github.com/oaknational/Oak-Web-Application/commit/6519a62295f61312ee5d4e7995c37eaa5fa78153))
+* fix margin on code block ([9cd103c](https://github.com/oaknational/Oak-Web-Application/commit/9cd103ccd70d319019eeb27ee1979b579e894776))
+* pr styling updates ([1873d54](https://github.com/oaknational/Oak-Web-Application/commit/1873d5450b74449020acfdb33978913735d4fbf4))
+
+
+### Features
+
+* display code in quizzes in teacher experience ([7cc8964](https://github.com/oaknational/Oak-Web-Application/commit/7cc896418245f1c440ad99fd37418e3db86f3894))
+
 ## [1.685.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.685.0...v1.685.1) (2025-02-10)
 
 

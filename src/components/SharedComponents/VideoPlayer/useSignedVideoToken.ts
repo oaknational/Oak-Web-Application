@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useSWR from "swr";
+import useSWR, { SWRConfiguration } from "swr";
 
 import getSignedVideoToken from "./getSignedVideoToken";
 
@@ -9,9 +9,14 @@ import OakError from "@/errors/OakError";
 const reportError = errorReporter("useSignedPlaybackId");
 export const apiEndpoint = "/api/video/signed-url";
 
-export const options = {
+export const options: SWRConfiguration = {
   revalidateOnFocus: false,
-  dedupingInterval: 6 * 60 * 60 * 1000, // Don't generate a new signedUrl unless the old one has expired
+  refreshWhenHidden: true,
+  refreshInterval: () => {
+    const tokenDuration = 6 * 60 * 60 * 1000; // Signed tokens are valid for 6 hours
+    const refreshBuffer = 30 * 60 * 1000; // Refresh the token 30 minutes before it expires
+    return tokenDuration - refreshBuffer;
+  },
 };
 
 export type PlaybackPolicy = "public" | "signed";
