@@ -68,7 +68,20 @@ export const LessonOverviewMediaClips: Story = {
       ...additionalCycles,
     },
     lessonSlug: "lesson-slug",
-    lessonOutline: null,
+    lessonOutline: [
+      {
+        lessonOutline: "Lesson outline cycle 1",
+      },
+      {
+        lessonOutline: "Lesson outline cycle 2",
+      },
+      {
+        lessonOutline: "Lesson outline cycle 3",
+      },
+      {
+        lessonOutline: "Lesson outline cycle 4",
+      },
+    ],
     isPELesson: false,
   },
   render: (args) => <LessonOverviewMediaClipsComponent {...args} />,
