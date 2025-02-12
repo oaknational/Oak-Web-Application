@@ -154,256 +154,320 @@ exports[`docx createImage no options 1`] = `
     "
 `;
 
+exports[`docx insertImages test 1`] = `
+[
+  {
+    "path": [
+      "word/_rels/document.xml.rels",
+      "elements",
+      0,
+      "elements",
+      7,
+    ],
+    "type": "CREATE",
+    "value": {
+      "attributes": {
+        "Id": "rIdf1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249",
+        "Target": "media/hash_f1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249png",
+        "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
+      },
+      "name": "Relationship",
+      "type": "element",
+    },
+  },
+  {
+    "path": [
+      "word/_rels/document.xml.rels",
+      "elements",
+      0,
+      "elements",
+      8,
+    ],
+    "type": "CREATE",
+    "value": {
+      "attributes": {
+        "Id": "rIdb29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809f",
+        "Target": "media/hash_b29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809ffoo",
+        "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
+      },
+      "name": "Relationship",
+      "type": "element",
+    },
+  },
+  {
+    "path": [
+      "word/media/",
+    ],
+    "type": "CREATE",
+    "value": "",
+  },
+  {
+    "path": [
+      "word/media/hash_f1c6d68f4906606ef3ae58fac887d210ae8b33ce7275c21ee8e177090278e249png",
+    ],
+    "type": "CREATE",
+    "value": "4a5204e50a2367de974264a2056566e7af61af9d192b8699883d11491a37b599",
+  },
+  {
+    "path": [
+      "word/media/hash_b29edb1ad79e3ac505ac9e6722aed45100902e97fd45f474aacb455a7b8d809ffoo",
+    ],
+    "type": "CREATE",
+    "value": "4a5204e50a2367de974264a2056566e7af61af9d192b8699883d11491a37b599",
+  },
+]
+`;
+
 exports[`docx insertNumbering test 1`] = `
-{
-  "word/numbering.xml": {
-    "elements": [
-      [
-        "~",
-        {
-          "elements__added": [
-            {
-              "attributes": {
-                "w15:restartNumberingAfterBreak": "0",
-                "w:abstractNumId": "10002",
-              },
-              "elements": [
-                {
-                  "attributes": {
-                    "w:val": "099A081C",
-                  },
-                  "name": "w:nsid",
-                  "type": "element",
-                },
-                {
-                  "attributes": {
-                    "w:val": "hybridMultilevel",
-                  },
-                  "name": "w:multiLevelType",
-                  "type": "element",
-                },
-                {
-                  "attributes": {
-                    "w:ilvl": "0",
-                  },
-                  "elements": [
-                    {
-                      "attributes": {
-                        "w:val": "1",
-                      },
-                      "name": "w:start",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:val": "upperLetter",
-                      },
-                      "name": "w:numFmt",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:val": "%1.",
-                      },
-                      "name": "w:lvlText",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:val": "start",
-                      },
-                      "name": "w:lvlJc",
-                      "type": "element",
-                    },
-                    {
-                      "elements": [
-                        {
-                          "attributes": {
-                            "w:hanging": "360",
-                            "w:start": "360",
-                          },
-                          "name": "w:ind",
-                          "type": "element",
-                        },
-                      ],
-                      "name": "w:pPr",
-                      "type": "element",
-                    },
-                    {
-                      "elements": [
-                        {
-                          "attributes": {
-                            "w:ascii": "Arial Black",
-                            "w:hAnsi": "Arial Black",
-                          },
-                          "name": "w:rFonts",
-                          "type": "element",
-                        },
-                        {
-                          "attributes": {
-                            "w:val": "C00000",
-                          },
-                          "name": "w:color",
-                          "type": "element",
-                        },
-                        {
-                          "attributes": {
-                            "w:val": "28",
-                          },
-                          "name": "w:sz",
-                          "type": "element",
-                        },
-                      ],
-                      "name": "w:rPr",
-                      "type": "element",
-                    },
-                  ],
-                  "name": "w:lvl",
-                  "type": "element",
-                },
-              ],
-              "name": "w:abstractNum",
-              "type": "element",
-            },
-            {
-              "attributes": {
-                "w15:restartNumberingAfterBreak": "0",
-                "w:abstractNumId": "10000",
-              },
-              "elements": [
-                {
-                  "attributes": {
-                    "w:val": "099A081C",
-                  },
-                  "name": "w:nsid",
-                  "type": "element",
-                },
-                {
-                  "attributes": {
-                    "w:val": "hybridMultilevel",
-                  },
-                  "name": "w:multiLevelType",
-                  "type": "element",
-                },
-                {
-                  "attributes": {
-                    "w:ilvl": "0",
-                  },
-                  "elements": [
-                    {
-                      "attributes": {
-                        "w:val": "1",
-                      },
-                      "name": "w:start",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:val": "upperLetter",
-                      },
-                      "name": "w:numFmt",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:val": "%1.",
-                      },
-                      "name": "w:lvlText",
-                      "type": "element",
-                    },
-                    {
-                      "attributes": {
-                        "w:val": "start",
-                      },
-                      "name": "w:lvlJc",
-                      "type": "element",
-                    },
-                    {
-                      "elements": [
-                        {
-                          "attributes": {
-                            "w:hanging": "360",
-                            "w:start": "360",
-                          },
-                          "name": "w:ind",
-                          "type": "element",
-                        },
-                      ],
-                      "name": "w:pPr",
-                      "type": "element",
-                    },
-                    {
-                      "elements": [
-                        {
-                          "attributes": {
-                            "w:ascii": "Arial Black",
-                            "w:hAnsi": "Arial Black",
-                          },
-                          "name": "w:rFonts",
-                          "type": "element",
-                        },
-                        {
-                          "attributes": {
-                            "w:val": "C00000",
-                          },
-                          "name": "w:color",
-                          "type": "element",
-                        },
-                        {
-                          "attributes": {
-                            "w:val": "28",
-                          },
-                          "name": "w:sz",
-                          "type": "element",
-                        },
-                      ],
-                      "name": "w:rPr",
-                      "type": "element",
-                    },
-                  ],
-                  "name": "w:lvl",
-                  "type": "element",
-                },
-              ],
-              "name": "w:abstractNum",
-              "type": "element",
-            },
-            {
-              "attributes": {
-                "w:numId": "10001",
-              },
-              "elements": [
-                {
-                  "attributes": {
-                    "w:val": "10000",
-                  },
-                  "name": "w:abstractNumId",
-                  "type": "element",
-                },
-              ],
-              "name": "w:num",
-              "type": "element",
-            },
-            {
-              "attributes": {
-                "w:numId": "10003",
-              },
-              "elements": [
-                {
-                  "attributes": {
-                    "w:val": "10002",
-                  },
-                  "name": "w:abstractNumId",
-                  "type": "element",
-                },
-              ],
-              "name": "w:num",
-              "type": "element",
-            },
-          ],
+[
+  {
+    "path": [
+      "word/numbering.xml",
+      "elements",
+      0,
+      "elements",
+    ],
+    "type": "CREATE",
+    "value": [
+      {
+        "attributes": {
+          "w15:restartNumberingAfterBreak": "0",
+          "w:abstractNumId": "10002",
         },
-      ],
+        "elements": [
+          {
+            "attributes": {
+              "w:val": "099A081C",
+            },
+            "name": "w:nsid",
+            "type": "element",
+          },
+          {
+            "attributes": {
+              "w:val": "hybridMultilevel",
+            },
+            "name": "w:multiLevelType",
+            "type": "element",
+          },
+          {
+            "attributes": {
+              "w:ilvl": "0",
+            },
+            "elements": [
+              {
+                "attributes": {
+                  "w:val": "1",
+                },
+                "name": "w:start",
+                "type": "element",
+              },
+              {
+                "attributes": {
+                  "w:val": "upperLetter",
+                },
+                "name": "w:numFmt",
+                "type": "element",
+              },
+              {
+                "attributes": {
+                  "w:val": "%1.",
+                },
+                "name": "w:lvlText",
+                "type": "element",
+              },
+              {
+                "attributes": {
+                  "w:val": "start",
+                },
+                "name": "w:lvlJc",
+                "type": "element",
+              },
+              {
+                "elements": [
+                  {
+                    "attributes": {
+                      "w:hanging": "360",
+                      "w:start": "360",
+                    },
+                    "name": "w:ind",
+                    "type": "element",
+                  },
+                ],
+                "name": "w:pPr",
+                "type": "element",
+              },
+              {
+                "elements": [
+                  {
+                    "attributes": {
+                      "w:ascii": "Arial Black",
+                      "w:hAnsi": "Arial Black",
+                    },
+                    "name": "w:rFonts",
+                    "type": "element",
+                  },
+                  {
+                    "attributes": {
+                      "w:val": "C00000",
+                    },
+                    "name": "w:color",
+                    "type": "element",
+                  },
+                  {
+                    "attributes": {
+                      "w:val": "28",
+                    },
+                    "name": "w:sz",
+                    "type": "element",
+                  },
+                ],
+                "name": "w:rPr",
+                "type": "element",
+              },
+            ],
+            "name": "w:lvl",
+            "type": "element",
+          },
+        ],
+        "name": "w:abstractNum",
+        "type": "element",
+      },
+      {
+        "attributes": {
+          "w15:restartNumberingAfterBreak": "0",
+          "w:abstractNumId": "10000",
+        },
+        "elements": [
+          {
+            "attributes": {
+              "w:val": "099A081C",
+            },
+            "name": "w:nsid",
+            "type": "element",
+          },
+          {
+            "attributes": {
+              "w:val": "hybridMultilevel",
+            },
+            "name": "w:multiLevelType",
+            "type": "element",
+          },
+          {
+            "attributes": {
+              "w:ilvl": "0",
+            },
+            "elements": [
+              {
+                "attributes": {
+                  "w:val": "1",
+                },
+                "name": "w:start",
+                "type": "element",
+              },
+              {
+                "attributes": {
+                  "w:val": "upperLetter",
+                },
+                "name": "w:numFmt",
+                "type": "element",
+              },
+              {
+                "attributes": {
+                  "w:val": "%1.",
+                },
+                "name": "w:lvlText",
+                "type": "element",
+              },
+              {
+                "attributes": {
+                  "w:val": "start",
+                },
+                "name": "w:lvlJc",
+                "type": "element",
+              },
+              {
+                "elements": [
+                  {
+                    "attributes": {
+                      "w:hanging": "360",
+                      "w:start": "360",
+                    },
+                    "name": "w:ind",
+                    "type": "element",
+                  },
+                ],
+                "name": "w:pPr",
+                "type": "element",
+              },
+              {
+                "elements": [
+                  {
+                    "attributes": {
+                      "w:ascii": "Arial Black",
+                      "w:hAnsi": "Arial Black",
+                    },
+                    "name": "w:rFonts",
+                    "type": "element",
+                  },
+                  {
+                    "attributes": {
+                      "w:val": "C00000",
+                    },
+                    "name": "w:color",
+                    "type": "element",
+                  },
+                  {
+                    "attributes": {
+                      "w:val": "28",
+                    },
+                    "name": "w:sz",
+                    "type": "element",
+                  },
+                ],
+                "name": "w:rPr",
+                "type": "element",
+              },
+            ],
+            "name": "w:lvl",
+            "type": "element",
+          },
+        ],
+        "name": "w:abstractNum",
+        "type": "element",
+      },
+      {
+        "attributes": {
+          "w:numId": "10001",
+        },
+        "elements": [
+          {
+            "attributes": {
+              "w:val": "10000",
+            },
+            "name": "w:abstractNumId",
+            "type": "element",
+          },
+        ],
+        "name": "w:num",
+        "type": "element",
+      },
+      {
+        "attributes": {
+          "w:numId": "10003",
+        },
+        "elements": [
+          {
+            "attributes": {
+              "w:val": "10002",
+            },
+            "name": "w:abstractNumId",
+            "type": "element",
+          },
+        ],
+        "name": "w:num",
+        "type": "element",
+      },
     ],
   },
-}
+]
 `;

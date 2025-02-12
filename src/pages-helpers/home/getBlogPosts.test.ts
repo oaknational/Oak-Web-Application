@@ -18,6 +18,7 @@ const pageData: HomePage = {
   notification: { enabled: false },
   sidebarCard1: { title: "", bodyPortableText: [] },
   sidebarCard2: { title: "", bodyPortableText: [] },
+  testimonials: [],
 };
 
 const mockPost = {
