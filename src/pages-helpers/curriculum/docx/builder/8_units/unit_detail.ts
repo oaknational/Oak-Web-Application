@@ -14,7 +14,6 @@ import {
 import { createUnitsListingByYear } from "../../tab-helpers";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { getUnitFeatures } from "@/utils/curriculum/features";
 import { createProgrammeSlug } from "@/utils/curriculum/slugs";
 import { SubjectCategory } from "@/utils/curriculum/types";
 
@@ -449,7 +448,7 @@ export async function buildUnit(
   const yearData = createUnitsListingByYear([unit]);
   const yearTitle = getYearGroupTitle(
     yearData,
-    getUnitFeatures(unit)?.programmes_fields_overrides?.year ?? unit.year,
+    unit.actions?.programme_field_overrides?.Year ?? unit.year,
   );
 
   const xml = safeXml`

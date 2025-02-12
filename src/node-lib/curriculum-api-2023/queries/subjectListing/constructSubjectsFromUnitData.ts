@@ -1,4 +1,5 @@
 import {
+  Actions,
   subjects,
   subjectSlugs,
   SyntheticUnitvariantsWithLessonIdsByKs,
@@ -14,6 +15,7 @@ interface UnprocessedSubject {
     programmeSlugs: Set<string>;
     pathwaySlug: "core" | "gcse" | null;
     pathwayTitle: "Core" | "GCSE" | null;
+    actions: Actions;
   };
 }
 
@@ -33,7 +35,7 @@ export const constructSubjectsFromUnitData = (
 ): ProcessedSubject[] => {
   const subjects = units.reduce((acc, unit) => {
     let { programme_slug } = unit;
-    const { unit_data, lesson_ids } = unit;
+    const { unit_data, lesson_ids, programme_fields, actions } = unit;
 
     const {
       subject,
@@ -44,7 +46,7 @@ export const constructSubjectsFromUnitData = (
       examboard_slug,
       pathway_slug,
       pathway,
-    } = unit.programme_fields;
+    } = programme_fields;
     const { unit_id } = unit_data;
     const originalProgrammeSlug = programme_slug;
 
@@ -73,6 +75,7 @@ export const constructSubjectsFromUnitData = (
         programmeSlugs: new Set([originalProgrammeSlug]),
         pathwaySlug: pathway_slug,
         pathwayTitle: pathway,
+        actions: actions || {},
       };
     }
 
@@ -90,6 +93,7 @@ export const constructSubjectsFromUnitData = (
       programmeCount: subject.programmeSlugs.size,
       pathwaySlug: subject.pathwaySlug,
       pathwayTitle: subject.pathwayTitle,
+      actions: subject.actions,
     }),
   );
 
