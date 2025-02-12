@@ -30,7 +30,6 @@ import {
   getSuffixFromFeatures,
   getYearGroupTitle,
 } from "@/utils/curriculum/formatting";
-import { getUnitFeatures } from "@/utils/curriculum/features";
 import { sortYears } from "@/utils/curriculum/sorting";
 import { Unit } from "@/utils/curriculum/types";
 
@@ -362,8 +361,8 @@ async function buildYear(
 
   const units = removeDups(unitsInput);
 
-  const enableGroupBySubjectCategory = getUnitFeatures(units[0])
-    ?.subjectcategories?.group_by_subjectcategory;
+  const enableGroupBySubjectCategory =
+    units[0]?.actions?.subject_category_actions?.group_by_subjectcategory;
 
   const buildUnitBlock = (units: Unit[]) => {
     const rows = [];
@@ -502,10 +501,7 @@ async function buildYear(
     }
   }
 
-  const yearTitleSuffix = [
-    getSuffixFromFeatures(getUnitFeatures(firstUnit)),
-    "units",
-  ]
+  const yearTitleSuffix = [getSuffixFromFeatures(firstUnit?.actions), "units"]
     .filter(Boolean)
     .join(" ");
   const yearTitle = getYearGroupTitle(
@@ -514,7 +510,7 @@ async function buildYear(
     yearTitleSuffix,
   );
 
-  const isSwimming = formattedData.yearData[year]?.labels.includes("swimming");
+  const isSwimming = formattedData.yearData[year]?.isSwimming;
 
   const xml = safeXml`
     <XML_FRAGMENT>

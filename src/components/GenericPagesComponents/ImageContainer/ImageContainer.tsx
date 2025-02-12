@@ -30,13 +30,13 @@ const ImageContainer: FC<ImageContainerProps> = (props) => {
     >
       <Illustration
         slug={imageSlug}
+        sizes={sizes}
         noCrop
         $objectFit="contain"
         priority
         $ba={3}
         $borderStyle={"solid"}
         $borderColor={"black"}
-        sizes={sizes}
         width={width}
         height={height}
       />

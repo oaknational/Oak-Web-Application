@@ -888,5 +888,39 @@ export default {
       ],
       ks4_options: null,
     },
+    {
+      title: "RSHE (PSHE)",
+      slug: "rshe-pshe",
+      phases: [
+        {
+          slug: "primary",
+          title: "Primary",
+        },
+        {
+          slug: "secondary",
+          title: "Secondary",
+        },
+      ],
+      keystages: [
+        {
+          slug: "ks1",
+          title: "Key Stage 1",
+        },
+        {
+          slug: "ks2",
+          title: "Key Stage 2",
+        },
+        {
+          slug: "ks3",
+          title: "Key Stage 3",
+        },
+        {
+          slug: "ks4",
+          title: "Key Stage 4",
+        },
+      ],
+      ks4_options: null,
+      cycle: "2",
+    },
   ],
 };
