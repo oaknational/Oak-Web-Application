@@ -1,3 +1,22 @@
+# [1.689.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.4...v1.689.0) (2025-02-12)
+
+
+### Bug Fixes
+
+* added optional chaining for all_disabled ([58b7610](https://github.com/oaknational/Oak-Web-Application/commit/58b7610f29c9a42dac8a6b35a7f039253763b657))
+* update snapshots and subject category all filtering ([1b55a0f](https://github.com/oaknational/Oak-Web-Application/commit/1b55a0fc0e30b1fc42f53612e5e99a00e3865e34))
+* update sorting function with "All years" instead of "all-years" ([0e881a8](https://github.com/oaknational/Oak-Web-Application/commit/0e881a89af4ef713785cd987cb596a61720ac4b2))
+* update types for Actions ([df47440](https://github.com/oaknational/Oak-Web-Application/commit/df47440ad8ced3788e4dfeb1c09438c1abb03b9f))
+* updated actions keys in docx units ([d57720d](https://github.com/oaknational/Oak-Web-Application/commit/d57720d2cb9296e56dee8961b362b4057c317cf6))
+* updated curric components to have correct naming ([0202d96](https://github.com/oaknational/Oak-Web-Application/commit/0202d96eb7b3a7c18c7509365ba7b9142946e448))
+* updated docx functions ([9b2d588](https://github.com/oaknational/Oak-Web-Application/commit/9b2d588dc68709c60e6ba02c52a45cbb56c79fbf))
+* updated helpers to have correct actions keys & added isSwimming instead of labels ([e1c26ed](https://github.com/oaknational/Oak-Web-Application/commit/e1c26edc98d8b149b79284525eb6171add4c45c9))
+
+
+### Features
+
+* updated sdk to have actions in sequence ([c6d5a20](https://github.com/oaknational/Oak-Web-Application/commit/c6d5a20c30010e1e5fa1deeb1ee5e6ec1de63181))
+
 ## [1.688.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.3...v1.688.4) (2025-02-12)
 
 
