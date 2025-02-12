@@ -71,7 +71,7 @@ export const mockYearData = {
     subjectCategories: [],
     tiers: [],
     pathways: [],
-    labels: [],
+    isSwimming: false,
     groupAs: null,
   },
 };
