@@ -1,6 +1,6 @@
-import { getUnitFeatures } from "./features";
 import { YearData } from "./types";
 
+import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Phase } from "@/node-lib/curriculum-api-2023";
 
 export function getYearGroupTitle(
@@ -11,7 +11,7 @@ export function getYearGroupTitle(
   const suffixStr = suffix ? ` ${suffix}` : "";
   if (year in yearData) {
     const { groupAs } = yearData[year]!;
-    if (groupAs && year === "all-years") {
+    if (groupAs && year === "All years") {
       return `${groupAs}${suffixStr} (all years)`;
     }
   }
@@ -65,11 +65,9 @@ function buildPhaseText(
   return "";
 }
 
-export function getSuffixFromFeatures(
-  features: ReturnType<typeof getUnitFeatures>,
-) {
-  if (features?.programmes_fields_overrides?.subject) {
-    return `(${features.programmes_fields_overrides?.subject})`;
+export function getSuffixFromFeatures(features: Actions) {
+  if (features?.programme_field_overrides?.subject) {
+    return `(${features.programme_field_overrides?.subject})`;
   }
   return;
 }

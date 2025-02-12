@@ -47,7 +47,7 @@ export type YearData = {
     childSubjects: Subject[];
     tiers: Tier[];
     subjectCategories: SubjectCategory[];
-    labels: string[];
+    isSwimming: boolean;
     groupAs: string | null;
   };
 };
