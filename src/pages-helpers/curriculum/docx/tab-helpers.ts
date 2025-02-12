@@ -16,7 +16,11 @@ import {
   SubjectCategory,
 } from "@/utils/curriculum/types";
 import { getUnitFeatures } from "@/utils/curriculum/features";
-import { sortUnits, sortYears } from "@/utils/curriculum/sorting";
+import {
+  sortSubjectCategoriesOnFeatures,
+  sortUnits,
+  sortYears,
+} from "@/utils/curriculum/sorting";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
@@ -255,6 +259,19 @@ export function createUnitsListingByYear(
 
   for (const year of Object.keys(yearData)) {
     const data = yearData[year]!;
+
+    const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
+    const features = getUnitFeatures(units[0]);
+    // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
+    if (!features?.subjectcategories?.all_disabled) {
+      if (data.subjectCategories.length >= 2) {
+        data.subjectCategories.unshift(allSubjectCategoryTag);
+      }
+    }
+    data.subjectCategories = data.subjectCategories.sort(
+      sortSubjectCategoriesOnFeatures(features),
+    );
+
     if (data.units.length > 0) {
       const labels = getUnitFeatures(data.units[0]!)?.labels ?? [];
       if (
@@ -350,7 +367,6 @@ export function formatCurriculumUnitsData(
   data: CurriculumUnitsTabData,
 ): CurriculumUnitsFormattedData {
   const { units } = data;
-  // const features = getUnitFeatures(units[0]);
   // Filtering for tiers, ideally this would be fixed in the MV, but for now we need to filter out here.
   const filteredUnits = units;
   const yearData = createUnitsListingByYear(filteredUnits);

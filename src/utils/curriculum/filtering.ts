@@ -1,20 +1,20 @@
 import { sortChildSubjects, sortTiers } from "./sorting";
-import { Subject, Tier, Unit } from "./types";
+import { Subject, Tier } from "./types";
 
 import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsYearData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
-export function getDefaultChildSubject(units: Unit[]) {
+export function getDefaultChildSubject(data: CurriculumUnitsYearData) {
   const set = new Set<Subject>();
-  units.forEach((u) => {
-    if (u.subject_parent) {
+  Object.values(data).forEach((yearData) => {
+    yearData.childSubjects.forEach((childSubject) => {
       set.add({
-        subject_slug: u.subject_slug,
-        subject: u.subject,
+        subject_slug: childSubject.subject_slug,
+        subject: childSubject.subject,
       });
-    }
+    });
   });
   const childSubjects = [...set]
     .toSorted(sortChildSubjects)
@@ -24,22 +24,24 @@ export function getDefaultChildSubject(units: Unit[]) {
   }
   return [];
 }
-export function getDefaultSubjectCategories(units: Unit[]) {
+export function getDefaultSubjectCategories(data: CurriculumUnitsYearData) {
   const set = new Set<string>();
-  units.forEach((u) => {
-    u.subjectcategories?.forEach((sc) => set.add(String(sc.id)));
+  Object.values(data).forEach((yearData) => {
+    yearData.subjectCategories.forEach((subjectCategory) =>
+      set.add(String(subjectCategory.id)),
+    );
   });
   return [[...set][0]!];
 }
-export function getDefaultTiers(units: Unit[]) {
+export function getDefaultTiers(data: CurriculumUnitsYearData) {
   const set = new Set<Tier>();
-  units.forEach((u) => {
-    if (u.tier_slug && u.tier) {
+  Object.values(data).forEach((yearData) => {
+    yearData.tiers.forEach((tier) => {
       set.add({
-        tier_slug: u.tier_slug,
-        tier: u.tier,
+        tier_slug: tier.tier_slug,
+        tier: tier.tier,
       });
-    }
+    });
   });
   const tiers = [...set].toSorted(sortTiers).map((t) => t.tier_slug);
   if (tiers.length > 0) {
@@ -48,17 +50,11 @@ export function getDefaultTiers(units: Unit[]) {
   return [];
 }
 
-function unitsFrom(yearData: CurriculumUnitsYearData): Unit[] {
-  return Object.entries(yearData).flatMap(([, data]) => data.units);
-}
-
 export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
-  const units = unitsFrom(data.yearData);
-
   return {
-    childSubjects: getDefaultChildSubject(units),
-    subjectCategories: getDefaultSubjectCategories(units),
-    tiers: getDefaultTiers(units),
+    childSubjects: getDefaultChildSubject(data.yearData),
+    subjectCategories: getDefaultSubjectCategories(data.yearData),
+    tiers: getDefaultTiers(data.yearData),
     years: data.yearOptions,
     threads: [],
   };
