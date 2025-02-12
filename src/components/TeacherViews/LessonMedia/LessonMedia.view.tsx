@@ -202,7 +202,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
               clipName={title}
               timeCode={videoObject.duration ?? 0}
               learningCycle={
-                learningCycleVideosTitleMap[mediaClip.learningCycle]
+                isPELesson
+                  ? ""
+                  : learningCycleVideosTitleMap[mediaClip.learningCycle]
               }
               muxPlayingState={getPlayingState(
                 String(currentClip?.mediaId),
