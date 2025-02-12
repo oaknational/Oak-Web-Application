@@ -1,3 +1,5 @@
+## [1.689.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.689.0...v1.689.1) (2025-02-12)
+
 # [1.689.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.4...v1.689.0) (2025-02-12)
 
 
