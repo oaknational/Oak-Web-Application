@@ -60,11 +60,14 @@ const testimonials: HomePage["testimonials"] = [
 ];
 
 export const Default: Story = {
-  render: () => {
+  render: (args) => {
     return (
       <OakThemeProvider theme={oakDefaultTheme}>
-        <Testimonials testimonials={testimonials} />
+        <Testimonials {...args} />
       </OakThemeProvider>
     );
+  },
+  args: {
+    testimonials: testimonials,
   },
 };

@@ -6,7 +6,7 @@ export type TestimonialsProps = {
 };
 
 export const Testimonials = ({ testimonials }: TestimonialsProps) => {
-  if (!testimonials) return null;
+  if (!testimonials || testimonials.length === 0) return null;
 
   const items = testimonials.map((testimonial) => {
     return (
