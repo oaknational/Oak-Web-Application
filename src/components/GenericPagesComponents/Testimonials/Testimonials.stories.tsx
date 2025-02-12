@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import { Testimonials } from "./Testimonials";
 
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import { HomePage } from "@/common-lib/cms-types";
 
 const meta = {
