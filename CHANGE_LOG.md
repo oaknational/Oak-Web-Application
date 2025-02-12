@@ -1,3 +1,16 @@
+# [1.690.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.689.1...v1.690.0) (2025-02-12)
+
+
+### Bug Fixes
+
+* broken link for aila and expanding video ([8615ce8](https://github.com/oaknational/Oak-Web-Application/commit/8615ce8b2b6691876c654a6140e7d0f2f251dcda))
+
+
+### Features
+
+* add sign posting to aila and create reusable promo banner ([0e52637](https://github.com/oaknational/Oak-Web-Application/commit/0e52637a660547d479218d2966a6aea06f4946ae))
+* hide the filters when theres no search results ([d22a854](https://github.com/oaknational/Oak-Web-Application/commit/d22a85437cef8ed3368479b40b5ec771c122a13d))
+
 ## [1.689.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.689.0...v1.689.1) (2025-02-12)
 
 # [1.689.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.4...v1.689.0) (2025-02-12)
