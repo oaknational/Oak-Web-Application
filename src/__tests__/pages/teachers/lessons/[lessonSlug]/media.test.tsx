@@ -66,7 +66,7 @@ describe("LessonMediaClipsCanonicalPage", () => {
     });
   });
 
-  xit("Renders component", async () => {
+  it("Renders component", async () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <CanonicalLessonMediaClipsPage curriculumData={fixtureData} />,
