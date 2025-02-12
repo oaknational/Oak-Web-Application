@@ -5,6 +5,7 @@ import LessonOverviewClipWithThumbnail from "./LessonOverviewClipWithThumbnail";
 
 import { MediaClipListCamelCase } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { resolveOakHref } from "@/common-lib/urls";
+import { createLearningCycleVideosTitleMap } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 
 type LessonOverviewMediaClipsProps = {
   learningCycleVideos: MediaClipListCamelCase | null;
@@ -27,42 +28,12 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
   isPELesson,
   isMFL,
 }) => {
-  const createLearningCycleVideosTitleMap = () => {
-    const learningCyclesArray = learningCycleVideos
-      ? Object.keys(learningCycleVideos)
-      : [];
-
-    const learningCycleVideosTitleMap: { [key: string]: string | undefined } =
-      {};
-
-    learningCyclesArray.forEach((learningCycle) => {
-      // if it is PE lesson, then the first video of each learning cycle is the title
-      // if there is a customTitle on the video it takes priorirty
-      if (isPELesson && learningCycle) {
-        const firstVideo = learningCycleVideos?.[learningCycle]?.[0];
-        learningCycleVideosTitleMap[learningCycle] =
-          firstVideo?.customTitle ?? firstVideo?.mediaObject?.displayName;
-        // for the rest of subjects we hardcode the title for 'intro' learning cycle because there is no lesson outline for it
-        // intro is called 'Keywords' for MFL and 'Intro' for the rest of the subjects
-      } else if (learningCycle === "intro") {
-        learningCycleVideosTitleMap[learningCycle] = isMFL
-          ? "Keywords"
-          : "Intro";
-        // for the remaining learning cycles we use the lesson outline as the title
-      } else {
-        // the last letter of learning cycle is the number of the learning cycle
-        const learningCycleNumber: number = Number(learningCycle.slice(-1));
-        // lessonOutlineIndex is the learning cycle number - 1 because it is 0 indexed
-        const lessonOutlineIndex = learningCycleNumber - 1;
-        learningCycleVideosTitleMap[learningCycle] =
-          lessonOutline?.[lessonOutlineIndex]?.lessonOutline;
-      }
-    });
-
-    return learningCycleVideosTitleMap;
-  };
-
-  const learningCycleVideosTitleMap = createLearningCycleVideosTitleMap();
+  const learningCycleVideosTitleMap = createLearningCycleVideosTitleMap({
+    isMFL,
+    isPELesson,
+    learningCycleVideos,
+    lessonOutlines: lessonOutline,
+  });
 
   if (!learningCycleVideos) return null;
 

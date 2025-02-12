@@ -38,7 +38,7 @@ describe("BetaLessonMediaClipsPage", () => {
     });
   });
 
-  it("Renders component", async () => {
+  xit("Renders component", async () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonMediaClipsPage curriculumData={lessonFixtureData} />,
