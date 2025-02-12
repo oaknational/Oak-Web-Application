@@ -1,9 +1,7 @@
 import { render, screen } from "@testing-library/react";
-
-import { Testimonials } from "./Testimonials";
-
 import { OakCarousel, OakQuote } from "@oaknational/oak-components";
 
+import { Testimonials } from "./Testimonials";
 
 // Mock the oak-components to avoid actual implementation
 jest.mock("@oaknational/oak-components", () => ({
