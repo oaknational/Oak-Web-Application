@@ -1,5 +1,9 @@
-import { sortChildSubjects, sortTiers } from "./sorting";
-import { Subject, Tier } from "./types";
+import {
+  sortChildSubjects,
+  sortSubjectCategoriesOnFeatures,
+  sortTiers,
+} from "./sorting";
+import { Subject, SubjectCategory, Tier } from "./types";
 
 import {
   CurriculumUnitsFormattedData,
@@ -57,5 +61,38 @@ export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
     tiers: getDefaultTiers(data.yearData),
     years: data.yearOptions,
     threads: [],
+  };
+}
+
+export function getFilterData(
+  yearData: CurriculumUnitsYearData,
+  years: string[],
+) {
+  const childSubjects = new Map<string, Subject>();
+  const subjectCategories = new Map<number, SubjectCategory>();
+  const tiers = new Map<string, Tier>();
+  years.forEach((year) => {
+    const obj = yearData[year]!;
+    obj.childSubjects.forEach((childSubject) =>
+      childSubjects.set(childSubject.subject_slug, childSubject),
+    );
+    obj.tiers.forEach((tier) => tiers.set(tier.tier_slug, tier));
+    obj.subjectCategories.forEach((subjectCategory) =>
+      subjectCategories.set(subjectCategory.id, subjectCategory),
+    );
+  });
+
+  const childSubjectsArray = [...childSubjects.values()].toSorted(
+    sortChildSubjects,
+  );
+  const subjectCategoriesArray = [...subjectCategories.values()].toSorted(
+    sortSubjectCategoriesOnFeatures(null),
+  );
+  const tiersArray = [...tiers.values()].toSorted(sortTiers);
+
+  return {
+    childSubjects: childSubjectsArray,
+    subjectCategories: subjectCategoriesArray,
+    tiers: tiersArray,
   };
 }

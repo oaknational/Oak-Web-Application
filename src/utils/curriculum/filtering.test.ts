@@ -3,6 +3,7 @@ import {
   getDefaultFilter,
   getDefaultSubjectCategories,
   getDefaultTiers,
+  getFilterData,
 } from "./filtering";
 
 import { CurriculumUnitsYearData } from "@/pages-helpers/curriculum/docx/tab-helpers";
@@ -69,5 +70,93 @@ describe("filtering", () => {
       tiers: ["foundation"],
       years: ["7", "8"],
     });
+  });
+});
+
+test("getFilterData", () => {
+  const definition = {
+    "7": {
+      tiers: [{ tier_slug: "foundation", tier: "Foundation" }],
+      childSubjects: [{ subject: "Physics", subject_slug: "physics" }],
+      subjectCategories: [{ id: 2 }],
+    } as CurriculumUnitsYearData[number],
+    "8": {
+      tiers: [{ tier_slug: "higher", tier: "Higher" }],
+      childSubjects: [{ subject: "Biology", subject_slug: "biology" }],
+      subjectCategories: [{ id: 1 }],
+    } as CurriculumUnitsYearData[number],
+  };
+  const allYearOutput = getFilterData(definition, ["7", "8"]);
+  expect(allYearOutput).toEqual({
+    childSubjects: [
+      {
+        subject: "Biology",
+        subject_slug: "biology",
+      },
+      {
+        subject: "Physics",
+        subject_slug: "physics",
+      },
+    ],
+    subjectCategories: [
+      {
+        id: 1,
+      },
+      {
+        id: 2,
+      },
+    ],
+    tiers: [
+      {
+        tier: "Foundation",
+        tier_slug: "foundation",
+      },
+      {
+        tier: "Higher",
+        tier_slug: "higher",
+      },
+    ],
+  });
+
+  const all7Output = getFilterData(definition, ["7"]);
+  expect(all7Output).toEqual({
+    childSubjects: [
+      {
+        subject: "Physics",
+        subject_slug: "physics",
+      },
+    ],
+    subjectCategories: [
+      {
+        id: 2,
+      },
+    ],
+    tiers: [
+      {
+        tier: "Foundation",
+        tier_slug: "foundation",
+      },
+    ],
+  });
+
+  const all8Output = getFilterData(definition, ["8"]);
+  expect(all8Output).toEqual({
+    childSubjects: [
+      {
+        subject: "Biology",
+        subject_slug: "biology",
+      },
+    ],
+    subjectCategories: [
+      {
+        id: 1,
+      },
+    ],
+    tiers: [
+      {
+        tier: "Higher",
+        tier_slug: "higher",
+      },
+    ],
   });
 });
