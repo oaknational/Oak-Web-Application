@@ -14,6 +14,13 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const image = {
+  asset: {
+    _id: "test_quote_author",
+    url: `https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1698336490/test-images/test_quote_author.jpg`,
+  },
+};
+
 const testimonials: HomePage["testimonials"] = [
   {
     quote: {
@@ -22,12 +29,7 @@ const testimonials: HomePage["testimonials"] = [
       role: "Head teacher",
       organisation: "Oak National Academy",
     },
-    image: {
-      asset: {
-        _id: "test_quote_author",
-        url: `https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1698336490/test-images/test_quote_author.jpg`,
-      },
-    },
+    image,
   },
   {
     quote: {
@@ -36,12 +38,7 @@ const testimonials: HomePage["testimonials"] = [
       role: "Teacher",
       organisation: "Oak National Academy",
     },
-    image: {
-      asset: {
-        _id: "test_quote_author",
-        url: `https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1698336490/test-images/test_quote_author.jpg`,
-      },
-    },
+    image,
   },
   {
     quote: {
@@ -50,12 +47,7 @@ const testimonials: HomePage["testimonials"] = [
       role: "Assistant Teacher",
       organisation: "Oak National Academy",
     },
-    image: {
-      asset: {
-        _id: "test_quote_author",
-        url: `https://${process.env.NEXT_PUBLIC_OAK_ASSETS_HOST}/${process.env.NEXT_PUBLIC_OAK_ASSETS_PATH}/v1698336490/test-images/test_quote_author.jpg`,
-      },
-    },
+    image,
   },
 ];
 
