@@ -11,6 +11,13 @@ export type YearDataPartialYearDataArray = {
   subjectCategories: SubjectCategory[];
 };
 
+const keystageYearMappings: Record<KeyStageSlug, string[]> = {
+  ks1: ["1", "2"],
+  ks2: ["3", "4", "5", "6"],
+  ks3: ["7", "8", "9"],
+  ks4: ["10", "11"],
+};
+
 export function byKeyStageSlug(
   data: Record<string, YearDataPartialYearDataArray>,
 ) {
@@ -37,15 +44,9 @@ export function byKeyStageSlug(
     },
   };
 
-  const mappings: [string[], KeyStageSlug][] = [
-    [["1", "2"], "ks1"],
-    [["3", "4", "5", "6"], "ks2"],
-    [["7", "8", "9"], "ks3"],
-    [["10", "11"], "ks4"],
-  ];
-
   for (const [year, yearData] of Object.entries(data)) {
-    for (const [years, key] of mappings) {
+    for (const [keyStr, years] of Object.entries(keystageYearMappings)) {
+      const key = keyStr as KeyStageSlug;
       if (years.includes(year)) {
         yearData.tiers.forEach((tier) => out[key].tiers.add(tier));
         yearData.childSubjects.forEach((childSubject) =>
@@ -73,11 +74,18 @@ export function byKeyStageSlug(
 export function presentAtKeyStageSlugs(
   KeyStageSlugData: Record<KeyStageSlug, YearDataPartialYearDataArray>,
   key: keyof YearDataPartialYearDataArray,
+  availableYears?: string[],
 ) {
   const out: KeyStageSlug[] = [];
-  for (const [KeyStageSlug, data] of Object.entries(KeyStageSlugData)) {
-    if (data[key].length > 0) {
-      out.push(KeyStageSlug as KeyStageSlug);
+  for (const [keyStageSlugStr, data] of Object.entries(KeyStageSlugData)) {
+    const keyStageSlug = keyStageSlugStr as KeyStageSlug;
+    const isValid =
+      !availableYears ||
+      availableYears.find((value) =>
+        keystageYearMappings[keyStageSlug].includes(value),
+      );
+    if (isValid && data[key].length > 0) {
+      out.push(keyStageSlug as KeyStageSlug);
     }
   }
   return out;
