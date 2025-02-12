@@ -1,3 +1,10 @@
+## [1.688.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.3...v1.688.4) (2025-02-12)
+
+
+### Bug Fixes
+
+* huge image on homepage effecting page performance ([7413242](https://github.com/oaknational/Oak-Web-Application/commit/7413242300c82b82ca135f166d6b0fc074609d0e))
+
 ## [1.688.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.2...v1.688.3) (2025-02-12)
 
 ## [1.688.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.1...v1.688.2) (2025-02-12)
