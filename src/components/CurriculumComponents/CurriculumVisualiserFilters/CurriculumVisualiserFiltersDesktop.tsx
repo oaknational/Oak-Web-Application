@@ -44,11 +44,13 @@ export default function CurriculumVisualiserFiltersDesktop({
   const childSubjectsAt = presentAtKeyStageSlugs(
     keyStageSlugData,
     "childSubjects",
+    filters.years,
   );
   const subjectCategoriesAt = presentAtKeyStageSlugs(
     keyStageSlugData,
     "subjectCategories",
-  );
+    filters.years,
+  ).filter((ks) => !childSubjectsAt.includes(ks));
   const tiersAt = presentAtKeyStageSlugs(keyStageSlugData, "tiers");
 
   function isSelectedThread(thread: Thread) {
@@ -114,7 +116,7 @@ export default function CurriculumVisualiserFiltersDesktop({
         </OakRadioGroup>
       </>
 
-      {subjectCategories.length > 0 && (
+      {subjectCategoriesAt.length > 0 && (
         <>
           <OakHandDrawnHR
             hrColor={"grey40"}
