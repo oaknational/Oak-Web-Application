@@ -1,3 +1,12 @@
+## [1.688.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.1...v1.688.2) (2025-02-12)
+
+## [1.688.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.0...v1.688.1) (2025-02-11)
+
+
+### Bug Fixes
+
+* **mux:** enable automatic mux signed video token refreshing prior to expiry ([184452d](https://github.com/oaknational/Oak-Web-Application/commit/184452dbd5994de82e03a70b591bcaeef2db1c8b))
+
 # [1.688.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.687.0...v1.688.0) (2025-02-11)
 
 
