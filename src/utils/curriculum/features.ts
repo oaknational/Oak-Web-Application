@@ -1,5 +1,7 @@
 import { Unit } from "./types";
 
+import { CurriculumUnitsYearData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+
 export function getUnitFeatures(unit?: Unit | null) {
   if (!unit) {
     return;
@@ -48,3 +50,20 @@ export function getUnitFeatures(unit?: Unit | null) {
   }
 }
 export type UnitFeatures = ReturnType<typeof getUnitFeatures>;
+
+// Note: Inefficient at the moment
+export function findFirstMatchingFeatures(
+  yearData: CurriculumUnitsYearData,
+  fn: (unit: Unit) => boolean,
+) {
+  const features = Object.values(yearData)
+    .flatMap((a) => a.units)
+    .map((unit) => {
+      return {
+        ...unit,
+        features: getUnitFeatures(unit),
+      };
+    })
+    .find(fn)?.features;
+  return features;
+}
