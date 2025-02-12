@@ -139,7 +139,7 @@ describe("NewContentBanner component", () => {
   describe("StyledVideoFlex", () => {
     test("renders with correct styles when expand is true", () => {
       const { container } = render(
-        <StyledVideoFlex expand={true}>
+        <StyledVideoFlex>
           <p>Test</p>
         </StyledVideoFlex>,
       );
