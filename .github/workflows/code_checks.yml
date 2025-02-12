@@ -14,8 +14,7 @@ on:
 jobs:
   check:
     name: lint, check types
-    runs-on: 
-      group: large-runners
+    runs-on: ubuntu-latest
     steps:
       # Check out full history so Sonar can identify PR changes.
       - uses: actions/checkout@v4
