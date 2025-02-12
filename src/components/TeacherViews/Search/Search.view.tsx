@@ -28,6 +28,7 @@ import SearchForm from "@/components/SharedComponents/SearchForm";
 import SearchResults from "@/components/TeacherComponents/SearchResults";
 import NoSearchResults from "@/components/TeacherComponents/NoSearchResults";
 import { getSortedSearchFiltersSelected } from "@/context/Search/search.helpers";
+import SignPostToAila from "@/components/TeacherComponents/NoSearchResults/SignPostToAila";
 
 const CustomWidthFlex = styled(OakFlex)`
   max-width: 300px;
@@ -279,39 +280,43 @@ const Search: FC<SearchProps> = (props) => {
                 </OakFlex>
               </OakBox>
             </OakFlex>
-            <SearchActiveFilters searchFilters={searchFilters} />
+            <OakBox $pl={["inner-padding-none", "inner-padding-xl"]}>
+              <SearchActiveFilters searchFilters={searchFilters} />
+            </OakBox>
           </OakGridArea>
-          <OakGridArea $colSpan={[12, 3]} $colStart={[1, 10]} $rowStart={2}>
-            <CustomWidthFlex
-              $flexDirection="column"
-              $mb="space-between-m2"
-              $display={["none", "flex"]}
-            >
-              <OakFlex
-                $mb="space-between-s"
+          {!shouldShowNoResultsMessage && (
+            <OakGridArea $colSpan={[12, 3]} $colStart={[1, 10]} $rowStart={2}>
+              <CustomWidthFlex
                 $flexDirection="column"
-                $gap="space-between-ssx"
+                $mb="space-between-m2"
+                $display={["none", "flex"]}
               >
-                <OakHeading tag="h2" $font="heading-6">
-                  Filters
-                </OakHeading>
-                <OakSecondaryButton
-                  element="a"
-                  href="#search-results"
-                  onFocus={() => setFilterButtonFocussed(true)}
-                  onBlur={() => setFilterButtonFocussed(false)}
-                  style={
-                    filterButtonFocussed
-                      ? {}
-                      : { position: "absolute", top: "-600px" }
-                  }
+                <OakFlex
+                  $mb="space-between-s"
+                  $flexDirection="column"
+                  $gap="space-between-ssx"
                 >
-                  Skip to results
-                </OakSecondaryButton>
-              </OakFlex>
-              <SearchFilters {...searchFilters} />
-            </CustomWidthFlex>
-          </OakGridArea>
+                  <OakHeading tag="h2" $font="heading-6">
+                    Filters
+                  </OakHeading>
+                  <OakSecondaryButton
+                    element="a"
+                    href="#search-results"
+                    onFocus={() => setFilterButtonFocussed(true)}
+                    onBlur={() => setFilterButtonFocussed(false)}
+                    style={
+                      filterButtonFocussed
+                        ? {}
+                        : { position: "absolute", top: "-600px" }
+                    }
+                  >
+                    Skip to results
+                  </OakSecondaryButton>
+                </OakFlex>
+                <SearchFilters {...searchFilters} />
+              </CustomWidthFlex>
+            </OakGridArea>
+          )}
           <OakGridArea
             $colSpan={[12, 9]}
             $colStart={1}
@@ -324,7 +329,22 @@ const Search: FC<SearchProps> = (props) => {
               )}
               {shouldShowLoading && <p>Loading...</p>}
               {shouldShowNoResultsMessage && (
-                <NoSearchResults searchTerm={query.term} />
+                <OakBox id="search-results" $mb={"space-between-xxl"}>
+                  <NoSearchResults searchTerm={query.term} />
+                  <OakBox $mt="space-between-m">
+                    <SignPostToAila
+                      title="Can't find what you need?"
+                      text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
+                      searchExpression={query.term}
+                      keyStage={
+                        query.keyStages?.length === 1 ? query.keyStages[0] : ""
+                      }
+                      subject={
+                        query.subjects?.length === 1 ? query.subjects[0] : ""
+                      }
+                    />
+                  </OakBox>
+                </OakBox>
               )}
               {shouldShowResults && (
                 <OakBox $display={["none", "block"]}>
@@ -340,6 +360,7 @@ const Search: FC<SearchProps> = (props) => {
               <SearchResults
                 hits={results}
                 allKeyStages={allKeyStages}
+                query={query}
                 searchResultExpanded={(searchHit, searchRank) =>
                   searchResultExpanded({
                     searchHit,
