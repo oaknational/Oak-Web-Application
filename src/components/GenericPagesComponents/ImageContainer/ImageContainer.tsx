@@ -7,10 +7,11 @@ import { IllustrationSlug } from "@/image-data";
 type ImageContainerProps = {
   imageSlug: IllustrationSlug;
   children?: React.ReactNode;
+  sizes?: string;
 };
 
 const ImageContainer: FC<ImageContainerProps> = (props) => {
-  const { imageSlug, children } = props;
+  const { imageSlug, children, sizes } = props;
   return (
     <Flex
       $pv={64}
@@ -26,6 +27,7 @@ const ImageContainer: FC<ImageContainerProps> = (props) => {
     >
       <Illustration
         slug={imageSlug}
+        sizes={sizes}
         noCrop
         $objectFit="contain"
         priority
