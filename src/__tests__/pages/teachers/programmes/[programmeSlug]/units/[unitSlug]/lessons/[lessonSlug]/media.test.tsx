@@ -45,7 +45,7 @@ describe("LessonMediaClipsPage", () => {
         "/teachers/programmes/physical-education/-ks4/units/running-and-jumping/lessons/running-as-a-team/media",
     });
   });
-  xit("Renders component", () => {
+  it("Renders component", () => {
     const result = render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonMediaClipsPage curriculumData={lessonFixtureData} />,

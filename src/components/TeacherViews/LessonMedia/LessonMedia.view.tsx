@@ -86,8 +86,8 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   // construct list of all clips in one array
 
-  const isPELesson = actions.displayPETitle;
-  const isMFL = actions.displayVocabButton;
+  const isPELesson = actions?.displayPETitle;
+  const isMFL = actions?.displayVocabButton;
 
   const learningCycleVideosTitleMap = createLearningCycleVideosTitleMap({
     isMFL,
