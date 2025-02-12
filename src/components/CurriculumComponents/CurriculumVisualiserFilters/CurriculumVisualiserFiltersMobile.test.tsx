@@ -26,7 +26,7 @@ const emptyMockYearData = {
   subjectCategories: [],
   tiers: [],
   pathways: [],
-  labels: [],
+  isSwimming: false,
   groupAs: null,
 };
 
