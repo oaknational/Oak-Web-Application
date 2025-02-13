@@ -33,8 +33,8 @@ const nonSubjectSchema = z.object({
   units: z.array(unitSchema),
 });
 const subjectSchema = z.object({
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
+  examSubjectSlug: z.string(),
+  examSubjectTitle: z.string(),
   units: z.array(unitSchema),
 });
 const tierSchema = z.object({
@@ -214,8 +214,8 @@ export default async function openApiRequest(
               unitSlug: unitObj.unitSlug,
               unitOrder: unitObj.unitOrder,
               threads: unitObj.threads,
-              subjectSlug: subjectObj.subjectSlug,
-              subjectTitle: subjectObj.subjectTitle,
+              subjectSlug: subjectObj.examSubjectSlug,
+              subjectTitle: subjectObj.examSubjectSlug,
               subjectCategories: getSubjectCategory(unitObj),
               unitOptions: unitObj.unitOptions,
             };
