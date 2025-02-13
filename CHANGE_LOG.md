@@ -1,3 +1,61 @@
+## [1.690.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.1...v1.690.2) (2025-02-13)
+
+
+### Bug Fixes
+
+* display lesson guides for non beta lessons ([5224693](https://github.com/oaknational/Oak-Web-Application/commit/522469338c77058755f24b4935f499c508c78714))
+
+## [1.690.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.0...v1.690.1) (2025-02-13)
+
+
+### Bug Fixes
+
+* typo on image size for mobile ([275c784](https://github.com/oaknational/Oak-Web-Application/commit/275c784675dd1d871cf94ae4b2ebe250c31779fd))
+* update image sizes for hopmepage tabs and also set size so pages don't shift when loading ([6ff7327](https://github.com/oaknational/Oak-Web-Application/commit/6ff73273512025b3f3fe640759a2e686c05aac8f))
+
+# [1.690.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.689.1...v1.690.0) (2025-02-12)
+
+
+### Bug Fixes
+
+* broken link for aila and expanding video ([8615ce8](https://github.com/oaknational/Oak-Web-Application/commit/8615ce8b2b6691876c654a6140e7d0f2f251dcda))
+
+
+### Features
+
+* add sign posting to aila and create reusable promo banner ([0e52637](https://github.com/oaknational/Oak-Web-Application/commit/0e52637a660547d479218d2966a6aea06f4946ae))
+* hide the filters when theres no search results ([d22a854](https://github.com/oaknational/Oak-Web-Application/commit/d22a85437cef8ed3368479b40b5ec771c122a13d))
+
+## [1.689.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.689.0...v1.689.1) (2025-02-12)
+
+# [1.689.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.4...v1.689.0) (2025-02-12)
+
+
+### Bug Fixes
+
+* added optional chaining for all_disabled ([58b7610](https://github.com/oaknational/Oak-Web-Application/commit/58b7610f29c9a42dac8a6b35a7f039253763b657))
+* update snapshots and subject category all filtering ([1b55a0f](https://github.com/oaknational/Oak-Web-Application/commit/1b55a0fc0e30b1fc42f53612e5e99a00e3865e34))
+* update sorting function with "All years" instead of "all-years" ([0e881a8](https://github.com/oaknational/Oak-Web-Application/commit/0e881a89af4ef713785cd987cb596a61720ac4b2))
+* update types for Actions ([df47440](https://github.com/oaknational/Oak-Web-Application/commit/df47440ad8ced3788e4dfeb1c09438c1abb03b9f))
+* updated actions keys in docx units ([d57720d](https://github.com/oaknational/Oak-Web-Application/commit/d57720d2cb9296e56dee8961b362b4057c317cf6))
+* updated curric components to have correct naming ([0202d96](https://github.com/oaknational/Oak-Web-Application/commit/0202d96eb7b3a7c18c7509365ba7b9142946e448))
+* updated docx functions ([9b2d588](https://github.com/oaknational/Oak-Web-Application/commit/9b2d588dc68709c60e6ba02c52a45cbb56c79fbf))
+* updated helpers to have correct actions keys & added isSwimming instead of labels ([e1c26ed](https://github.com/oaknational/Oak-Web-Application/commit/e1c26edc98d8b149b79284525eb6171add4c45c9))
+
+
+### Features
+
+* updated sdk to have actions in sequence ([c6d5a20](https://github.com/oaknational/Oak-Web-Application/commit/c6d5a20c30010e1e5fa1deeb1ee5e6ec1de63181))
+
+## [1.688.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.3...v1.688.4) (2025-02-12)
+
+
+### Bug Fixes
+
+* huge image on homepage effecting page performance ([7413242](https://github.com/oaknational/Oak-Web-Application/commit/7413242300c82b82ca135f166d6b0fc074609d0e))
+
+## [1.688.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.2...v1.688.3) (2025-02-12)
+
 ## [1.688.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.1...v1.688.2) (2025-02-12)
 
 ## [1.688.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.0...v1.688.1) (2025-02-11)
