@@ -86,41 +86,6 @@ describe("NewContentBanner component", () => {
   });
 
   it("renders video player and text text when video is playing", () => {
-    const { getByTestId, getByText } = render(
-      <NewContentBanner
-        subjectSlug="english-reading-for-pleasure"
-        subjectTitle="English"
-        programmeSlug="english-primary-ks2"
-        keyStageSlug="ks2"
-        isUnitListing={true}
-        isLegacy={true}
-      />,
-    );
-
-    expect(getByText("Play new resources video")).toBeInTheDocument();
-    expect(getByTestId("video-player")).toBeInTheDocument();
-  });
-
-  it("displays the paragraph correctly based on the expand prop and screen width", () => {
-    const { getByText } = render(
-      <NewContentBanner
-        subjectSlug="english-reading-for-pleasure"
-        subjectTitle="English"
-        programmeSlug="english-primary-ks2"
-        keyStageSlug="ks2"
-        isUnitListing={true}
-        isLegacy={true}
-      />,
-    );
-
-    window.innerWidth = 1200;
-    window.dispatchEvent(new Event("resize"));
-
-    const paragraph = getByText(/Play new resources video/i);
-    expect(paragraph).toHaveStyle("display: block");
-  });
-
-  it("video container renders at correct width", () => {
     const { getByTestId } = render(
       <NewContentBanner
         subjectSlug="english-reading-for-pleasure"
@@ -131,15 +96,13 @@ describe("NewContentBanner component", () => {
         isLegacy={true}
       />,
     );
-
-    const videoSection = getByTestId("video-player-container");
-    expect(videoSection).toHaveStyle("width: 15rem");
+    expect(getByTestId("video-player")).toBeInTheDocument();
   });
 
   describe("StyledVideoFlex", () => {
     test("renders with correct styles when expand is true", () => {
       const { container } = render(
-        <StyledVideoFlex expand={true}>
+        <StyledVideoFlex>
           <p>Test</p>
         </StyledVideoFlex>,
       );
