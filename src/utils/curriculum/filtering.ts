@@ -1,16 +1,15 @@
-import { ReadonlyURLSearchParams , useSearchParams } from "next/navigation";
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
 import { sortChildSubjects, sortTiers } from "./sorting";
 import { CurriculumFilters, Subject, Tier, Unit } from "./types";
-import { ENABLE_SEQUENCE_ROUTING } from "./constants";
+import { ENABLE_FILTERS_IN_SEARCH_PARAMS } from "./constants";
 
 import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsYearData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-
 
 export function getDefaultChildSubject(units: Unit[]) {
   const set = new Set<Subject>();
@@ -105,14 +104,14 @@ export function useFilters(
 
   const [filters, setLocalFilters] = useState<CurriculumFilters>(() => {
     const dflt = defaultFiltersFn();
-    if (ENABLE_SEQUENCE_ROUTING) {
+    if (ENABLE_FILTERS_IN_SEARCH_PARAMS) {
       return mergeInParams(dflt, searchParams);
     } else {
       return dflt;
     }
   });
   const setFilters = (newFilters: CurriculumFilters) => {
-    if (ENABLE_SEQUENCE_ROUTING) {
+    if (ENABLE_FILTERS_IN_SEARCH_PARAMS) {
       const url =
         location.pathname +
         "?" +
