@@ -65,7 +65,7 @@ describe("filtering", () => {
     });
     expect(out).toEqual({
       childSubjects: ["biology"],
-      subjectCategories: ["2"],
+      subjectCategories: ["1"],
       threads: [],
       tiers: ["foundation"],
       years: ["7", "8"],

@@ -1,3 +1,4 @@
+import { findFirstMatchingFeatures } from "./features";
 import {
   sortChildSubjects,
   sortSubjectCategoriesOnFeatures,
@@ -29,13 +30,23 @@ export function getDefaultChildSubject(data: CurriculumUnitsYearData) {
   return [];
 }
 export function getDefaultSubjectCategories(data: CurriculumUnitsYearData) {
-  const set = new Set<string>();
+  const set = new Set<Pick<SubjectCategory, "id">>();
   Object.values(data).forEach((yearData) => {
     yearData.subjectCategories.forEach((subjectCategory) =>
-      set.add(String(subjectCategory.id)),
+      set.add({ id: subjectCategory.id }),
     );
   });
-  return [[...set][0]!];
+  const subjectCategories = [...set]
+    .toSorted(
+      sortSubjectCategoriesOnFeatures(
+        findFirstMatchingFeatures(
+          data,
+          (unit) => unit.features?.subjectcategories?.default_category_id,
+        ),
+      ),
+    )
+    .map((s) => String(s.id));
+  return [subjectCategories[0]!];
 }
 export function getDefaultTiers(data: CurriculumUnitsYearData) {
   const set = new Set<Tier>();
@@ -86,7 +97,12 @@ export function getFilterData(
     sortChildSubjects,
   );
   const subjectCategoriesArray = [...subjectCategories.values()].toSorted(
-    sortSubjectCategoriesOnFeatures(null),
+    sortSubjectCategoriesOnFeatures(
+      findFirstMatchingFeatures(
+        yearData,
+        (unit) => unit.features?.subjectcategories?.default_category_id,
+      ),
+    ),
   );
   const tiersArray = [...tiers.values()].toSorted(sortTiers);
 
