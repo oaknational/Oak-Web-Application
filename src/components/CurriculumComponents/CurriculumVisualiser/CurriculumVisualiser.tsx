@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
-import { CurriculumFilters } from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -22,7 +21,7 @@ import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import { sortYears } from "@/utils/curriculum/sorting";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
-import { Unit, YearData } from "@/utils/curriculum/types";
+import { CurriculumFilters, Unit, YearData } from "@/utils/curriculum/types";
 
 const UnitList = styled("ol")`
   margin: 0;

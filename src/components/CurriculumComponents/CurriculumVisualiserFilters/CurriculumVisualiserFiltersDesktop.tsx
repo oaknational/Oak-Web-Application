@@ -12,10 +12,7 @@ import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 import SkipLink from "../OakComponentsKitchen/SkipLink";
 
-import {
-  CurriculumFilters,
-  CurriculumVisualiserFiltersProps,
-} from "./CurriculumVisualiserFilters";
+import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "./helpers";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
@@ -25,6 +22,7 @@ import {
   Subject,
   SubjectCategory,
   Tier,
+  CurriculumFilters,
 } from "@/utils/curriculum/types";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";

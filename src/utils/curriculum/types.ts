@@ -44,3 +44,11 @@ export type YearData = {
 };
 
 export type Unit = CurriculumUnitsTabData["units"][number];
+
+export type CurriculumFilters = {
+  childSubjects: Subject["subject_slug"][];
+  subjectCategories: string[];
+  tiers: Tier["tier_slug"][];
+  years: string[];
+  threads: Thread["slug"][];
+};
