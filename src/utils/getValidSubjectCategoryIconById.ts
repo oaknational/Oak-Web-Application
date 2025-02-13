@@ -12,6 +12,10 @@ const subjectCategoryIconMap: Record<number, string> = {
   8: "english-vocabulary",
   18: "english-language",
   19: "english-reading-for-pleasure",
+  // TODO: Implement RE icons once they're added to Oak Components image map
+  // ?: "rshe-philosophy"
+  // ?: "rshe-theology"
+  // ?: "rshe-social-sciences"
 };
 
 export function getValidSubjectCategoryIconById(id: number): OakIconName {
