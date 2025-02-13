@@ -161,6 +161,7 @@ export const transformedLessonOverviewData = (
   const mediaClips = browseData.lessonData.mediaClips
     ? mediaClipsRecordCamelSchema.parse(browseData.lessonData.mediaClips)
     : null;
+
   return {
     programmeSlug: browseData.programmeSlug,
     unitSlug: browseData.unitSlug,
