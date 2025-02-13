@@ -3,10 +3,28 @@ import { z } from "zod";
 import { Unit } from "./types";
 import { CurriculumSelectionSlugs } from "./slugs";
 
-const unitSchema = z.object({
+const categorySchema = z.object({
+  categoryTitle: z.string(),
+});
+
+const threadSchema = z.object({
+  title: z.string(),
+  slug: z.string(),
+  order: z.number(),
+});
+
+const unitOptionSchema = z.object({
   unitTitle: z.string(),
   unitSlug: z.string(),
-  order: z.number(),
+});
+
+const unitSchema = z.object({
+  unitTitle: z.string(),
+  unitSlug: z.string().default("UNKNOWN"),
+  unitOrder: z.number(),
+  categories: z.array(categorySchema).default([]),
+  threads: z.array(threadSchema).default([]),
+  unitOptions: z.array(unitOptionSchema).default([]),
 });
 const nonSubjectSchema = z.object({
   year: z.number(),
@@ -21,14 +39,15 @@ const tierSchema = z.object({
   tier: z.string(),
   units: z.array(unitSchema),
 });
+
 const subjectTiersSchema = z.object({
-  subjectSlug: z.string(),
-  subjectTitle: z.string(),
+  examSubjectTitle: z.string(),
+  examSubjectSlug: z.string(),
   tiers: z.array(tierSchema),
 });
 const subjectsSchema = z.object({
   year: z.number(),
-  subjects: z.array(z.union([subjectSchema, subjectTiersSchema])),
+  examSubjects: z.array(z.union([subjectSchema, subjectTiersSchema])),
 });
 const tiersSchema = z.object({
   year: z.number(),
@@ -42,11 +61,96 @@ type ApiUnit = {
   year: string;
   unitTitle: string;
   unitSlug: string;
-  order: number;
+  unitOrder: number;
   subjectSlug?: string;
   subjectTitle?: string;
   tier?: string;
+  threads: {
+    title: string;
+    slug: string;
+    order: number;
+  }[];
+  subjectCategories: {
+    id: number;
+    title: string;
+  }[];
+  unitOptions: {
+    unitTitle: string;
+    unitSlug: string;
+  }[];
 };
+
+// TODO: We don't have a subject slug right now, so we map against the title (HACK)
+const hackSubjectCategoryMappings = [
+  {
+    subjectcategory_id: 1,
+    title: "Biology",
+  },
+  {
+    subjectcategory_id: 2,
+    title: "Chemistry",
+  },
+  {
+    subjectcategory_id: 3,
+    title: "Physics",
+  },
+  {
+    subjectcategory_id: 4,
+    title: "Reading, writing & oracy",
+  },
+  {
+    subjectcategory_id: 5,
+    title: "Grammar",
+  },
+  {
+    subjectcategory_id: 6,
+    title: "Handwriting",
+  },
+  {
+    subjectcategory_id: 7,
+    title: "Spelling",
+  },
+  {
+    subjectcategory_id: 8,
+    title: "Vocabulary",
+  },
+  {
+    subjectcategory_id: 17,
+    title: "Theology",
+  },
+  {
+    subjectcategory_id: 15,
+    title: "Philosophy",
+  },
+  {
+    subjectcategory_id: 16,
+    title: "Social science",
+  },
+  {
+    subjectcategory_id: 18,
+    title: "Language",
+  },
+  {
+    subjectcategory_id: 19,
+    title: "Literature",
+  },
+];
+
+function getSubjectCategory(unit: z.infer<typeof unitSchema>) {
+  const out: ApiUnit["subjectCategories"] = [];
+  unit.categories.forEach((unmappedCaterory) => {
+    const found = hackSubjectCategoryMappings.find(
+      (h) => h.title === unmappedCaterory.categoryTitle,
+    );
+    if (found) {
+      out.push({
+        id: found.subjectcategory_id,
+        title: found.title,
+      });
+    }
+  });
+  return out;
+}
 
 export default async function openApiRequest(
   subjectPhaseSlug: string,
@@ -73,13 +177,16 @@ export default async function openApiRequest(
             year: String(yearObj.year),
             unitTitle: unitObj.unitTitle,
             unitSlug: unitObj.unitSlug,
-            order: unitObj.order,
+            unitOrder: unitObj.unitOrder,
+            threads: unitObj.threads,
             tier: tierObj.tier,
+            subjectCategories: getSubjectCategory(unitObj),
+            unitOptions: unitObj.unitOptions,
           };
         });
       });
-    } else if ("subjects" in yearObj) {
-      return yearObj.subjects.flatMap((subjectObj) => {
+    } else if ("examSubjects" in yearObj) {
+      return yearObj.examSubjects.flatMap((subjectObj) => {
         if ("tiers" in subjectObj) {
           return subjectObj.tiers.flatMap((tierObj) => {
             return tierObj.units.map((unitObj) => {
@@ -87,10 +194,13 @@ export default async function openApiRequest(
                 year: String(yearObj.year),
                 unitTitle: unitObj.unitTitle,
                 unitSlug: unitObj.unitSlug,
-                order: unitObj.order,
-                subjectSlug: subjectObj.subjectSlug,
-                subjectTitle: subjectObj.subjectTitle,
+                unitOrder: unitObj.unitOrder,
+                threads: unitObj.threads,
+                subjectSlug: subjectObj.examSubjectSlug,
+                subjectTitle: subjectObj.examSubjectTitle,
                 tier: tierObj.tier,
+                subjectCategories: getSubjectCategory(unitObj),
+                unitOptions: unitObj.unitOptions,
               };
             });
           });
@@ -100,9 +210,12 @@ export default async function openApiRequest(
               year: String(yearObj.year),
               unitTitle: unitObj.unitTitle,
               unitSlug: unitObj.unitSlug,
-              order: unitObj.order,
+              unitOrder: unitObj.unitOrder,
+              threads: unitObj.threads,
               subjectSlug: subjectObj.subjectSlug,
               subjectTitle: subjectObj.subjectTitle,
+              subjectCategories: getSubjectCategory(unitObj),
+              unitOptions: unitObj.unitOptions,
             };
           });
         }
@@ -113,7 +226,10 @@ export default async function openApiRequest(
           year: String(yearObj.year),
           unitTitle: unitObj.unitTitle,
           unitSlug: unitObj.unitSlug,
-          order: unitObj.order,
+          unitOrder: unitObj.unitOrder,
+          threads: unitObj.threads,
+          subjectCategories: getSubjectCategory(unitObj),
+          unitOptions: unitObj.unitOptions,
         };
       });
     } else {
@@ -144,7 +260,7 @@ export default async function openApiRequest(
       phase_slug: slugs.phaseSlug,
       keystage_slug: "",
       lessons: [],
-      order: apiUnit.order,
+      order: apiUnit.unitOrder,
       slug: apiUnit.unitSlug,
       subject: subjectTitle,
       subject_slug: subjectSlug,
@@ -155,14 +271,28 @@ export default async function openApiRequest(
       pathway: null,
       pathway_slug: null,
       tags: [],
-      subjectcategories: [],
-      threads: [],
+      subjectcategories: apiUnit.subjectCategories,
+      threads: apiUnit.threads,
       title: apiUnit.unitTitle,
       description: "",
       why_this_why_now: "",
       cycle: "2",
       features: null,
-      unit_options: [],
+      unit_options: apiUnit.unitOptions.map((option) => {
+        return {
+          connection_prior_unit_description: null,
+          connection_future_unit_description: null,
+          connection_prior_unit_title: null,
+          connection_future_unit_title: null,
+          description: null,
+          why_this_why_now: null,
+          title: option.unitTitle,
+          unitvariant_id: -1,
+          slug: option.unitSlug,
+          lessons: [],
+          state: "published",
+        };
+      }),
       year: apiUnit.year,
       state: "published",
     };
