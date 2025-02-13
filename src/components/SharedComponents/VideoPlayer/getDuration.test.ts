@@ -12,9 +12,9 @@ const createRef = (duration: number | undefined) => {
 };
 
 describe("getDuration", () => {
-  test("gets duration rounded down", () => {
+  test("gets duration rounded down to to coma spaces", () => {
     const ref = createRef(54.5467948);
-    expect(getDuration(ref)).toBe(54);
+    expect(getDuration(ref)).toBe(54.55);
   });
   test("returns null if duration undefined", () => {
     const ref = createRef(undefined);
