@@ -3,6 +3,8 @@ import { z } from "zod";
 import { Unit } from "./types";
 import { CurriculumSelectionSlugs } from "./slugs";
 
+let UID = 0;
+
 const yearSchema = z.union([z.number(), z.string()]);
 
 const categorySchema = z.object({
@@ -22,7 +24,7 @@ const unitOptionSchema = z.object({
 
 const unitSchema = z.object({
   unitTitle: z.string(),
-  unitSlug: z.string().default("UNKNOWN"),
+  unitSlug: z.string().optional(),
   unitOrder: z.number(),
   categories: z.array(categorySchema).default([]),
   threads: z.array(threadSchema).default([]),
@@ -178,7 +180,7 @@ export default async function openApiRequest(
           return {
             year: String(yearObj.year),
             unitTitle: unitObj.unitTitle,
-            unitSlug: unitObj.unitSlug,
+            unitSlug: unitObj.unitSlug ?? "unknown_" + UID++,
             unitOrder: unitObj.unitOrder,
             threads: unitObj.threads,
             tier: tierObj.tier,
@@ -195,7 +197,7 @@ export default async function openApiRequest(
               return {
                 year: String(yearObj.year),
                 unitTitle: unitObj.unitTitle,
-                unitSlug: unitObj.unitSlug,
+                unitSlug: unitObj.unitSlug ?? "unknown_" + UID++,
                 unitOrder: unitObj.unitOrder,
                 threads: unitObj.threads,
                 subjectSlug: subjectObj.examSubjectSlug,
@@ -211,7 +213,7 @@ export default async function openApiRequest(
             return {
               year: String(yearObj.year),
               unitTitle: unitObj.unitTitle,
-              unitSlug: unitObj.unitSlug,
+              unitSlug: unitObj.unitSlug ?? "unknown_" + UID++,
               unitOrder: unitObj.unitOrder,
               threads: unitObj.threads,
               subjectSlug: subjectObj.examSubjectSlug,
@@ -227,7 +229,7 @@ export default async function openApiRequest(
         return {
           year: String(yearObj.year),
           unitTitle: unitObj.unitTitle,
-          unitSlug: unitObj.unitSlug,
+          unitSlug: unitObj.unitSlug ?? "unknown_" + UID++,
           unitOrder: unitObj.unitOrder,
           threads: unitObj.threads,
           subjectCategories: getSubjectCategory(unitObj),
