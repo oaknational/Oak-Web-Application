@@ -3,13 +3,15 @@ import { z } from "zod";
 import { Unit } from "./types";
 import { CurriculumSelectionSlugs } from "./slugs";
 
+const yearSchema = z.union([z.number(), z.string()]);
+
 const categorySchema = z.object({
   categoryTitle: z.string(),
 });
 
 const threadSchema = z.object({
-  title: z.string(),
-  slug: z.string(),
+  threadTitle: z.string(),
+  threadSlug: z.string(),
   order: z.number(),
 });
 
@@ -27,7 +29,7 @@ const unitSchema = z.object({
   unitOptions: z.array(unitOptionSchema).default([]),
 });
 const nonSubjectSchema = z.object({
-  year: z.number(),
+  year: yearSchema,
   units: z.array(unitSchema),
 });
 const subjectSchema = z.object({
@@ -46,11 +48,11 @@ const subjectTiersSchema = z.object({
   tiers: z.array(tierSchema),
 });
 const subjectsSchema = z.object({
-  year: z.number(),
+  year: yearSchema,
   examSubjects: z.array(z.union([subjectSchema, subjectTiersSchema])),
 });
 const tiersSchema = z.object({
-  year: z.number(),
+  year: yearSchema,
   tiers: z.array(tierSchema),
 });
 const openApiSchema = z.array(
@@ -66,8 +68,8 @@ type ApiUnit = {
   subjectTitle?: string;
   tier?: string;
   threads: {
-    title: string;
-    slug: string;
+    threadTitle: string;
+    threadSlug: string;
     order: number;
   }[];
   subjectCategories: {
@@ -272,7 +274,13 @@ export default async function openApiRequest(
       pathway_slug: null,
       tags: [],
       subjectcategories: apiUnit.subjectCategories,
-      threads: apiUnit.threads,
+      threads: apiUnit.threads.map((thread) => {
+        return {
+          slug: thread.threadSlug,
+          title: thread.threadTitle,
+          order: thread.order,
+        };
+      }),
       title: apiUnit.unitTitle,
       description: "",
       why_this_why_now: "",
