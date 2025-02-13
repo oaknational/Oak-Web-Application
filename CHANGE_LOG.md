@@ -1,3 +1,11 @@
+## [1.690.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.0...v1.690.1) (2025-02-13)
+
+
+### Bug Fixes
+
+* typo on image size for mobile ([275c784](https://github.com/oaknational/Oak-Web-Application/commit/275c784675dd1d871cf94ae4b2ebe250c31779fd))
+* update image sizes for hopmepage tabs and also set size so pages don't shift when loading ([6ff7327](https://github.com/oaknational/Oak-Web-Application/commit/6ff73273512025b3f3fe640759a2e686c05aac8f))
+
 # [1.690.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.689.1...v1.690.0) (2025-02-12)
 
 

@@ -89,7 +89,9 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
             <ImageContainer
               imageSlug={"hero-pupils"}
-              sizes={getSizes([400, 600])}
+              width={518}
+              height={313}
+              sizes={getSizes([100, 518])}
             >
               <TeachersTabResourceSelectorCard
                 icon={"worksheet"}

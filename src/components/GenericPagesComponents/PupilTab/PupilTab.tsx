@@ -11,10 +11,16 @@ import {
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 const PupilTab: FC = () => {
   return (
-    <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
+    <OakFlex
+      data-testid="pupil-tab"
+      $background={"mint"}
+      $pv="inner-padding-xl"
+      $overflow={"hidden"}
+    >
       <OakMaxWidth $ph={["inner-padding-m"]} $pb={"inner-padding-xl"}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
@@ -54,7 +60,12 @@ const PupilTab: FC = () => {
             </OakFlex>
           </OakGridArea>
           <OakGridArea $colSpan={[12, 6]} $alignItems={"flex-end"}>
-            <ImageContainer imageSlug={"pupils-with-worksheet"}>
+            <ImageContainer
+              imageSlug={"pupils-with-worksheet"}
+              width={518}
+              height={313}
+              sizes={getSizes([100, 518])}
+            >
               {/* @todo check left position with marketing */}
               <OakIcon
                 iconName="burst"
