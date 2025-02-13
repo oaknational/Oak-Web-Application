@@ -1,3 +1,12 @@
+## [1.690.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.2...v1.690.3) (2025-02-13)
+
+## [1.690.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.1...v1.690.2) (2025-02-13)
+
+
+### Bug Fixes
+
+* display lesson guides for non beta lessons ([5224693](https://github.com/oaknational/Oak-Web-Application/commit/522469338c77058755f24b4935f499c508c78714))
+
 ## [1.690.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.0...v1.690.1) (2025-02-13)
 
 
