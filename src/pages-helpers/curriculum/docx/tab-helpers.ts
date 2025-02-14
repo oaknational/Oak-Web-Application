@@ -14,7 +14,11 @@ import {
   Unit,
   SubjectCategory,
 } from "@/utils/curriculum/types";
-import { sortUnits, sortYears } from "@/utils/curriculum/sorting";
+import {
+  sortSubjectCategoriesOnFeatures,
+  sortUnits,
+  sortYears,
+} from "@/utils/curriculum/sorting";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { isExamboardSlug } from "@/pages-helpers/pupil/options-pages/options-pages-helpers";
 
@@ -253,6 +257,17 @@ export function createUnitsListingByYear(
     const data = yearData[year]!;
 
     data.isSwimming = data.units[0]?.features?.pe_swimming === true;
+    const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
+    const features = data.units[0]?.features;
+    // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
+    if (!features?.subjectcategories?.all_disabled) {
+      if (data.subjectCategories.length >= 2) {
+        data.subjectCategories.unshift(allSubjectCategoryTag);
+      }
+    }
+    data.subjectCategories = data.subjectCategories.sort(
+      sortSubjectCategoriesOnFeatures(features),
+    );
 
     if (data.units.length > 0) {
       const groupAs = data.units[0]?.actions?.group_units_as;

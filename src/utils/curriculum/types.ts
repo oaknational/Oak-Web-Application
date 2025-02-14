@@ -43,4 +43,6 @@ export type YearData = {
   };
 };
 
+export type KeyStageSlug = "ks1" | "ks2" | "ks3" | "ks4";
+
 export type Unit = CurriculumUnitsTabData["units"][number];

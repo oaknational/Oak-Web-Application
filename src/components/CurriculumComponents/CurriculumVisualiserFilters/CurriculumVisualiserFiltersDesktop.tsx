@@ -20,53 +20,13 @@ import { highlightedUnitCount } from "./helpers";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import {
-  Thread,
-  Subject,
-  SubjectCategory,
-  Tier,
-} from "@/utils/curriculum/types";
-import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { Thread } from "@/utils/curriculum/types";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { getFilterData } from "@/utils/curriculum/filtering";
 import {
-  sortChildSubjects,
-  sortSubjectCategoriesOnFeatures,
-  sortTiers,
-} from "@/utils/curriculum/sorting";
-
-function getFilterData(
-  yearData: CurriculumUnitsFormattedData["yearData"],
-  years: string[],
-) {
-  const childSubjects = new Map<string, Subject>();
-  const subjectCategories = new Map<number, SubjectCategory>();
-  const tiers = new Map<string, Tier>();
-  years.forEach((year) => {
-    const obj = yearData[year]!;
-    obj.childSubjects.forEach((childSubject) =>
-      childSubjects.set(childSubject.subject_slug, childSubject),
-    );
-    obj.tiers.forEach((tier) => tiers.set(tier.tier_slug, tier));
-    obj.subjectCategories.forEach((subjectCategory) =>
-      subjectCategories.set(subjectCategory.id, subjectCategory),
-    );
-  });
-
-  const childSubjectsArray = [...childSubjects.values()].toSorted(
-    sortChildSubjects,
-  );
-  const subjectCategoriesArray = [...subjectCategories.values()].toSorted(
-    sortSubjectCategoriesOnFeatures(null),
-  );
-  const tiersArray = [...tiers.values()].toSorted(sortTiers);
-
-  return {
-    childSubjects: childSubjectsArray.length > 1 ? childSubjectsArray : [],
-    subjectCategories:
-      childSubjectsArray.length < 1 ? subjectCategoriesArray : [],
-    tiers: tiersArray,
-  };
-}
+  byKeyStageSlug,
+  presentAtKeyStageSlugs,
+} from "@/utils/curriculum/keystage";
 
 export default function CurriculumVisualiserFiltersDesktop({
   filters,
@@ -79,6 +39,19 @@ export default function CurriculumVisualiserFiltersDesktop({
     data.yearData,
     filters.years,
   );
+
+  const keyStageSlugData = byKeyStageSlug(yearData);
+  const childSubjectsAt = presentAtKeyStageSlugs(
+    keyStageSlugData,
+    "childSubjects",
+    filters.years,
+  );
+  const subjectCategoriesAt = presentAtKeyStageSlugs(
+    keyStageSlugData,
+    "subjectCategories",
+    filters.years,
+  ).filter((ks) => !childSubjectsAt.includes(ks));
+  const tiersAt = presentAtKeyStageSlugs(keyStageSlugData, "tiers");
 
   function isSelectedThread(thread: Thread) {
     return filters.threads.includes(thread.slug);
@@ -143,7 +116,7 @@ export default function CurriculumVisualiserFiltersDesktop({
         </OakRadioGroup>
       </>
 
-      {subjectCategories.length > 0 && (
+      {subjectCategoriesAt.length > 0 && (
         <>
           <OakHandDrawnHR
             hrColor={"grey40"}
@@ -156,7 +129,10 @@ export default function CurriculumVisualiserFiltersDesktop({
             $font={"heading-6"}
             $mb="space-between-s"
           >
-            Category {childSubjects.length > 0 ? "(KS3)" : ""}
+            Category{" "}
+            {subjectCategoriesAt.length === 1
+              ? `(${subjectCategoriesAt[0]?.toUpperCase()})`
+              : ""}
           </OakHeading>
 
           <OakRadioGroup
@@ -198,7 +174,10 @@ export default function CurriculumVisualiserFiltersDesktop({
             $font={"heading-6"}
             $mb="space-between-s"
           >
-            Exam subject (KS4)
+            Exam subject{" "}
+            {childSubjectsAt.length === 1
+              ? `(${childSubjectsAt[0]?.toUpperCase()})`
+              : ""}
           </OakHeading>
           <OakRadioGroup
             name="childSubjects"
@@ -235,7 +214,8 @@ export default function CurriculumVisualiserFiltersDesktop({
             $font={"heading-6"}
             $mb="space-between-s"
           >
-            Learning tier (KS4)
+            Learning tier{" "}
+            {tiersAt.length === 1 ? `(${tiersAt[0]?.toUpperCase()})` : ""}
           </OakHeading>
           <OakRadioGroup
             name="tiers"
