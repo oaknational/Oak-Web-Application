@@ -40,7 +40,8 @@ jobs:
 
   test:
     name: test, Sonar
-    runs-on: ubuntu-latest
+    runs-on: 
+      group: large-runners
     steps:
       # Check out full history so Sonar can identify PR changes.
       - uses: actions/checkout@v4

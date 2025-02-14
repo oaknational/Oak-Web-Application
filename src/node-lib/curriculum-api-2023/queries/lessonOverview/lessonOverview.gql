@@ -55,5 +55,9 @@ query lessonOverview(
     slide_deck_asset_object_url
     worksheet_asset_object_url
     supplementary_asset_object_url
+    has_lesson_guide_google_drive_downloadable_version
+    lesson_guide_asset_object_url
+    has_lesson_guide_object
+    lesson_guide_asset_id
   }
 }

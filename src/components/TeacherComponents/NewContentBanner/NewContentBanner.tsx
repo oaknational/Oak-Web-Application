@@ -1,29 +1,14 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
-import {
-  OakFlex,
-  OakHeading,
-  OakP,
-  OakTertiaryButton,
-} from "@oaknational/oak-components";
+import { OakFlex } from "@oaknational/oak-components";
+
+import PromoBannerWithVideo from "../PromoBannerWithVideo";
 
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import { resolveOakHref, OakPageType } from "@/common-lib/urls";
-import VideoPlayer from "@/components/SharedComponents/VideoPlayer";
-import { VideoEventCallbackArgs } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 
-const StyledOakFlex = styled(OakFlex)`
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
-`;
-
-export const StyledVideoFlex = styled(OakFlex)<{ expand: boolean }>`
+export const StyledVideoFlex = styled(OakFlex)`
   transition: width 0.4s ease-in;
-
-  p {
-    @media (min-width: 768px) {
-      display: ${({ expand }) => (expand ? "none" : "block")};
-    }
-  }
 `;
 
 type NewContentBannerProps = {
@@ -63,7 +48,6 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
 }) => {
   const renderComponent =
     renderContentBannerRecord[keyStageSlug]?.includes(subjectSlug);
-  const [expandVideo, setExpandVideo] = useState(false);
 
   let navigationPage: OakPageType = "unit-index";
   let progSlug = removeLegacySlugSuffix(programmeSlug);
@@ -113,61 +97,17 @@ const NewContentBanner: FC<NewContentBannerProps> = ({
           programmeSlug: progSlug,
         });
 
-  const handleVideoEvent = (event: VideoEventCallbackArgs) => {
-    if (event.event === "playing") {
-      setExpandVideo(true);
-    } else {
-      setExpandVideo(false);
-    }
-  };
   return (
-    <StyledOakFlex
-      $flexDirection={["column-reverse", "row"]}
-      $alignItems={"center"}
-      $justifyContent={"space-between"}
-      $mv={"space-between-m"}
-      $borderColor={"grey40"}
-      $dropShadow={"drop-shadow-grey"}
-      $borderRadius={"border-radius-m2"}
-      $gap={"space-between-m2"}
-      $pa={"inner-padding-xl"}
-    >
-      <OakFlex $flexDirection={"column"} $gap={"space-between-xs"}>
-        <OakHeading tag="h2" $font={"heading-5"}>
-          Switch to our new {subjTitle} teaching resources
-        </OakHeading>
-        <OakP $font={"heading-light-7"}>
-          Slide decks, worksheets, quizzes and lesson planning guidance designed
-          for your classroom.
-        </OakP>
-        <OakTertiaryButton
-          iconName={"chevron-right"}
-          isTrailingIcon
-          element="a"
-          href={resolveHref}
-        >
-          Go to {subjTitle} resources
-        </OakTertiaryButton>
-      </OakFlex>
-      <StyledVideoFlex
-        $alignSelf={["flex-start", "center"]}
-        expand={expandVideo}
-        $flexDirection={"column"}
-        $width={expandVideo ? ["100%", "all-spacing-21"] : "all-spacing-19"}
-        data-testid="video-player-container"
-      >
-        <VideoPlayer
-          playbackId={videoPlaybackID}
-          playbackPolicy={"public"}
-          title={"Oak Promo Video"}
-          location={"marketing"}
-          isLegacy={false}
-          thumbnailTime={30.8}
-          userEventCallback={handleVideoEvent}
-        />
-        <OakP $font={"body-3-bold"}>Play new resources video</OakP>
-      </StyledVideoFlex>
-    </StyledOakFlex>
+    <PromoBannerWithVideo
+      title={`Switch to our new ${subjTitle} teaching resources`}
+      text={`Slide decks, worksheets, quizzes and lesson planning guidance designed
+          for your classroom.`}
+      buttonText={`Go to ${subjTitle} resources`}
+      buttonIconName="chevron-right"
+      href={resolveHref}
+      videoPlaybackID={videoPlaybackID}
+      textUnderVideo="Play new resources video"
+    />
   );
 };
 
