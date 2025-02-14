@@ -1,7 +1,7 @@
 import json
 
 # Path to the JSON file
-file_path = '/Users/simonkatan/code/oak/Oak-Web-Application/test_results.json'
+file_path = 'test_results.json'
 
 # Read the JSON file
 with open(file_path, 'r') as file:
