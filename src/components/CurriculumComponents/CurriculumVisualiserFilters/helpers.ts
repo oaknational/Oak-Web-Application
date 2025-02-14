@@ -1,6 +1,9 @@
-import { CurriculumFilters } from "./CurriculumVisualiserFilters";
-
-import { Unit, Thread, YearData } from "@/utils/curriculum/types";
+import {
+  Unit,
+  Thread,
+  YearData,
+  CurriculumFilters,
+} from "@/utils/curriculum/types";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 
 function isHighlightedUnit(

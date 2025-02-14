@@ -4,7 +4,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import {
   OakBox,
@@ -46,8 +46,7 @@ import {
   VALID_TABS,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import openApiRequest from "@/utils/curriculum/openapi";
-import { CurriculumFilters } from "@/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFilters";
-import { getDefaultFilter } from "@/utils/curriculum/filtering";
+import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -75,9 +74,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     ),
   );
 
-  const [filters, setFilters] = useState<CurriculumFilters>(() => {
-    return getDefaultFilter(curriculumUnitsFormattedData);
-  });
+  const [filters, setFilters] = useFilters(() =>
+    getDefaultFilter(curriculumUnitsFormattedData),
+  );
 
   let tabContent: JSX.Element;
 
