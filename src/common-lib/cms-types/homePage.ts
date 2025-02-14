@@ -23,7 +23,7 @@ export const testimonialSchema = z.object({
     text: z.string(),
     attribution: z.string(),
     role: z.string(),
-    organisation: z.string(),
+    organisation: z.string().nullable(),
   }),
   image: imageSchema.nullish(),
 });

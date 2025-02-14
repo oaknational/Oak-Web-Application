@@ -25,7 +25,9 @@ export type HomePageProps = {
 };
 
 const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
-  const { curriculumData, posts } = props;
+  const { curriculumData, posts, pageData } = props;
+
+  const { testimonials } = pageData;
 
   return (
     <AppLayout
@@ -39,7 +41,7 @@ const TeachersHomePage: NextPage<TeachersHomePageProps> = (props) => {
       <Banners />
       <HomePageTabImageNav current={"teachers"} />
       <TeachersTab keyStages={curriculumData.keyStages} aria-current="page" />
-      <HomePageLowerView posts={posts} />
+      <HomePageLowerView posts={posts} testimonials={testimonials} />
     </AppLayout>
   );
 };
