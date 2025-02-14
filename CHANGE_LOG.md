@@ -1,3 +1,18 @@
+# [1.691.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.4...v1.691.0) (2025-02-14)
+
+
+### Bug Fixes
+
+* lint error ([e265321](https://github.com/oaknational/Oak-Web-Application/commit/e2653213f3023664d44ac39b03a6cd472c1020b5))
+* rectify filepath ([93ee082](https://github.com/oaknational/Oak-Web-Application/commit/93ee082f3eae5ef11e705accd5d2ee9ab3576aea))
+* rmeove code duplication ([440fdbb](https://github.com/oaknational/Oak-Web-Application/commit/440fdbb870cb83de9c106ee53367949e5b6a4eb8))
+
+
+### Features
+
+* testimonials component ([c8b374e](https://github.com/oaknational/Oak-Web-Application/commit/c8b374e63f92f2fb400db46add0f2e36c7c8b7ca))
+* testimonials component ([d01c735](https://github.com/oaknational/Oak-Web-Application/commit/d01c7352285908d0cbf3e4b3c86b75a2a695d732))
+
 ## [1.690.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.3...v1.690.4) (2025-02-13)
 
 
