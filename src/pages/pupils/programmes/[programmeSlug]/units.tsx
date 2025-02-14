@@ -125,7 +125,7 @@ export const getStaticProps: GetStaticProps<
       );
 
       if (!selectedProgramme) {
-        if (programmeSlug.substring(-2) !== "-l") {
+        if (programmeSlug.slice(-2) !== "-l") {
           selectedProgramme = curriculumData.find(
             (unit) => unit.programmeSlug === `${programmeSlug}-l`,
           );
