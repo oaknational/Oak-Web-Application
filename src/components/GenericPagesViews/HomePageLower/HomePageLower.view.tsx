@@ -1,8 +1,11 @@
 import {
+  OakBox,
   OakFlex,
   OakGrid,
   OakGridArea,
+  OakHeading,
   OakMaxWidth,
+  OakP,
 } from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -17,6 +20,7 @@ import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIn
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Testimonials } from "@/components/GenericPagesComponents/Testimonials";
 import { HomePage } from "@/common-lib/cms-types";
+// import CMSVideo from "@/components/SharedComponents/CMSVideo";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -45,7 +49,25 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
           $pb="inner-padding-xl7"
           $ph={["inner-padding-m", "inner-padding-xl"]}
         >
-          <OakGridArea $colSpan={8}>Video component here</OakGridArea>
+          <OakGridArea $colSpan={8} $pr="inner-padding-xl7">
+            <OakBox $pb={"inner-padding-m"}>
+              <OakHeading tag="h1" $font={"heading-4"}>
+                We're here to support great teaching
+              </OakHeading>
+            </OakBox>
+            <OakP $font={"body-1"}>
+              Whether you’re creating new lessons, refreshing your approach, or
+              solving a last-minute challenge, our resources give you a strong
+              foundation that means you get there faster.
+            </OakP>
+            {/* {introVideo && (
+              <CMSVideo
+                hideCaptions={true}
+                video={introVideo}
+                location="marketing"
+              />
+            )} */}
+          </OakGridArea>
           <OakGridArea $colSpan={4}>
             <Testimonials testimonials={props.testimonials} />
           </OakGridArea>

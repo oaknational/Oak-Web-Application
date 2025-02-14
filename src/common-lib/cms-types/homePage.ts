@@ -1,7 +1,7 @@
 import * as z from "zod";
 
 import { documentSchema, imageSchema, seoSchema } from "./base";
-import { cardSchema } from "./blocks";
+import { cardSchema, textAndMediaSchema } from "./blocks";
 import { linkSchema } from "./cta";
 import { portableTextSchema } from "./portableText";
 
@@ -45,6 +45,7 @@ export const homePageSchema = z
       .nullish(),
     seo: seoSchema.nullish(),
     testimonials: z.array(testimonialSchema).nullable(),
+    intro: textAndMediaSchema.optional(),
   })
   .merge(documentSchema);
 
