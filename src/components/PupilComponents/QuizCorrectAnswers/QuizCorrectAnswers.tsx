@@ -1,4 +1,4 @@
-import { OakSpan } from "@oaknational/oak-components";
+import { OakCodeRenderer, OakSpan } from "@oaknational/oak-components";
 import { isString } from "lodash";
 
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
@@ -43,7 +43,7 @@ export const QuizCorrectAnswers = () => {
   if (feedbackText !== null) {
     return (
       <OakSpan $color={"text-primary"} $font={"body-2"}>
-        {feedbackText}
+        <OakCodeRenderer string={feedbackText} $font={"code-3"} />
       </OakSpan>
     );
   }

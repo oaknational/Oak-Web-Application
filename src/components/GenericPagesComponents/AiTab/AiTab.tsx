@@ -10,10 +10,16 @@ import {
 
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 
 const AiTab: FC = () => {
   return (
-    <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
+    <OakFlex
+      data-testid="ai-tab"
+      $background={"mint"}
+      $pv="inner-padding-xl"
+      $overflow={"hidden"}
+    >
       <OakMaxWidth $ph={["inner-padding-m"]} $pb={"inner-padding-xl"}>
         <OakGrid $cg={"all-spacing-4"}>
           <OakGridArea $colSpan={[12, 6]}>
@@ -54,7 +60,12 @@ const AiTab: FC = () => {
             $justifyContent="center"
             $pv="inner-padding-xl"
           >
-            <ImageContainer imageSlug={"hero-aila"} />
+            <ImageContainer
+              imageSlug={"hero-aila"}
+              width={518}
+              height={313}
+              sizes={getSizes([100, 518])}
+            />
           </OakGridArea>
         </OakGrid>
       </OakMaxWidth>

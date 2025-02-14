@@ -11,21 +11,19 @@ import {
   HomePageProps,
 } from "@/pages-helpers/home/getBlogPosts";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
-import { filterValidSubjectPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { filterValidCurriculumPhaseOptions } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
   async () => {
-    const subjects = await curriculumApi2023.subjectPhaseOptions({
-      cycle: "2",
-    });
+    const subjects = await curriculumApi2023.curriculumPhaseOptions();
     return {
-      subjects: filterValidSubjectPhaseOptions(subjects),
+      subjects: filterValidCurriculumPhaseOptions(subjects),
     };
   };
 
 const Curriculum: NextPage<
-  HomePageProps & { subjectPhaseOptions: SubjectPhasePickerData }
+  HomePageProps & { curriculumPhaseOptions: SubjectPhasePickerData }
 > = (props) => (
   <AppLayout
     seoProps={{
@@ -40,7 +38,7 @@ const Curriculum: NextPage<
     <HomePageTabImageNav current={"curriculum"} />
     <CurriculumTab
       aria-current="page"
-      subjectPhaseOptions={props.subjectPhaseOptions}
+      curriculumPhaseOptions={props.curriculumPhaseOptions}
     />
     <HomePageLowerView posts={props.posts} />
   </AppLayout>
@@ -49,7 +47,7 @@ const Curriculum: NextPage<
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context,
 ) => {
-  const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+  const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
   const data = await getPageProps({
     page: "curriculum-home-page::getStaticProps",
     context,
@@ -60,7 +58,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async (
     props: {
       // @ts-expect-error: 'props' exists on data, but typescript doesn't know about it.
       ...data.props,
-      subjectPhaseOptions,
+      curriculumPhaseOptions,
     },
   };
 };

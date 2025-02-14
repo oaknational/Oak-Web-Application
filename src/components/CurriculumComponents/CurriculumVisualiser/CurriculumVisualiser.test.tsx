@@ -108,7 +108,7 @@ const curriculumVisualiserFixture = {
       childSubjects: [],
       tiers: [],
       subjectCategories: [],
-      labels: [],
+      isSwimming: false,
       groupAs: null,
     },
   },

@@ -15,7 +15,7 @@ const keystage = z.object({
   title: z.string(),
 });
 
-const subjectPhaseOptionsSchema = z
+const curriculumPhaseOptionsSchema = z
   .object({
     slug: z.string(),
     title: z.string(),
@@ -23,8 +23,7 @@ const subjectPhaseOptionsSchema = z
     keystages: z.array(keystage).optional().nullable(),
     state: z.string().optional(),
     ks4_options: z.array(ks4OptionSchema).optional().nullable(),
-    cycle: z.string(),
   })
   .array();
 
-export default subjectPhaseOptionsSchema;
+export default curriculumPhaseOptionsSchema;

@@ -17,7 +17,6 @@ import {
   getSuffixFromFeatures,
   getYearGroupTitle,
 } from "@/utils/curriculum/formatting";
-import { getUnitFeatures } from "@/utils/curriculum/features";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import { sortYears } from "@/utils/curriculum/sorting";
@@ -162,8 +161,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           .filter((year) => filterIncludes("years", [year]))
           .sort(sortYears)
           .map((year, index) => {
-            const { units, labels, childSubjects, subjectCategories, tiers } =
-              yearData[year] as YearData[string];
+            const {
+              units,
+              childSubjects,
+              tiers,
+              subjectCategories,
+              isSwimming,
+            } = yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
@@ -186,11 +190,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             );
             const dedupedUnits = dedupUnits(filteredUnits);
 
-            const features = getUnitFeatures(units[0]);
+            const actions = units[0]?.actions;
+
             const yearTitle = getYearGroupTitle(
               yearData,
               year,
-              getSuffixFromFeatures(features),
+              getSuffixFromFeatures(actions),
             );
 
             return (
@@ -218,7 +223,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 >
                   {yearTitle}
                 </OakHeading>
-                {labels.includes("swimming") && (
+                {isSwimming && (
                   <Alert
                     $mb="space-between-s"
                     type="info"

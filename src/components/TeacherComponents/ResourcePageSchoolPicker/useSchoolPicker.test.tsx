@@ -87,8 +87,9 @@ describe("useSchoolPicker", () => {
     expect(result.current.schools).toEqual([]);
   });
   test("should throw an error if failed to fetch school ", async () => {
+    const mockJson = jest.fn().mockResolvedValue({ res: "this" });
     fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue({ res: "this" }),
+      json: mockJson,
       ok: false,
       status: 401,
       statusText: "Not Found",
@@ -98,6 +99,7 @@ describe("useSchoolPicker", () => {
     ).rejects.toThrowError(
       new OakError({ code: "school-picker/fetch-suggestions" }),
     );
+    expect(mockJson).toBeCalled();
     expect(reportError).toBeCalled();
   });
   test("should return and empty array with no data ", async () => {
