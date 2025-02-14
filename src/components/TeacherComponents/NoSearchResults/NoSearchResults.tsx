@@ -13,7 +13,7 @@ const NoSearchResults = (props: NoSearchResultsProps) => {
   const { searchTerm } = props;
 
   return (
-    <OakFlex $flexDirection="column" $pl="inner-padding-xl">
+    <OakFlex $flexDirection="column">
       <OakHeading
         tag={"h4"}
         $mt="space-between-m"

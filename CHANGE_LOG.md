@@ -1,3 +1,55 @@
+# [1.691.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.4...v1.691.0) (2025-02-14)
+
+
+### Bug Fixes
+
+* lint error ([e265321](https://github.com/oaknational/Oak-Web-Application/commit/e2653213f3023664d44ac39b03a6cd472c1020b5))
+* rectify filepath ([93ee082](https://github.com/oaknational/Oak-Web-Application/commit/93ee082f3eae5ef11e705accd5d2ee9ab3576aea))
+* rmeove code duplication ([440fdbb](https://github.com/oaknational/Oak-Web-Application/commit/440fdbb870cb83de9c106ee53367949e5b6a4eb8))
+
+
+### Features
+
+* testimonials component ([c8b374e](https://github.com/oaknational/Oak-Web-Application/commit/c8b374e63f92f2fb400db46add0f2e36c7c8b7ca))
+* testimonials component ([d01c735](https://github.com/oaknational/Oak-Web-Application/commit/d01c7352285908d0cbf3e4b3c86b75a2a695d732))
+
+## [1.690.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.3...v1.690.4) (2025-02-13)
+
+
+### Bug Fixes
+
+* alia -> aila ([29e2e5c](https://github.com/oaknational/Oak-Web-Application/commit/29e2e5cb2d657df0a1d2b5a662021b95347445cd))
+
+## [1.690.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.2...v1.690.3) (2025-02-13)
+
+## [1.690.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.1...v1.690.2) (2025-02-13)
+
+
+### Bug Fixes
+
+* display lesson guides for non beta lessons ([5224693](https://github.com/oaknational/Oak-Web-Application/commit/522469338c77058755f24b4935f499c508c78714))
+
+## [1.690.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.690.0...v1.690.1) (2025-02-13)
+
+
+### Bug Fixes
+
+* typo on image size for mobile ([275c784](https://github.com/oaknational/Oak-Web-Application/commit/275c784675dd1d871cf94ae4b2ebe250c31779fd))
+* update image sizes for hopmepage tabs and also set size so pages don't shift when loading ([6ff7327](https://github.com/oaknational/Oak-Web-Application/commit/6ff73273512025b3f3fe640759a2e686c05aac8f))
+
+# [1.690.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.689.1...v1.690.0) (2025-02-12)
+
+
+### Bug Fixes
+
+* broken link for aila and expanding video ([8615ce8](https://github.com/oaknational/Oak-Web-Application/commit/8615ce8b2b6691876c654a6140e7d0f2f251dcda))
+
+
+### Features
+
+* add sign posting to aila and create reusable promo banner ([0e52637](https://github.com/oaknational/Oak-Web-Application/commit/0e52637a660547d479218d2966a6aea06f4946ae))
+* hide the filters when theres no search results ([d22a854](https://github.com/oaknational/Oak-Web-Application/commit/d22a85437cef8ed3368479b40b5ec771c122a13d))
+
 ## [1.689.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.689.0...v1.689.1) (2025-02-12)
 
 # [1.689.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.688.4...v1.689.0) (2025-02-12)

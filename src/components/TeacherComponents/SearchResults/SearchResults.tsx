@@ -6,12 +6,18 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 
+import SignPostToAila from "../NoSearchResults/SignPostToAila";
+
+import usePagination from "@/components/SharedComponents/Pagination/usePagination";
+import {
+  KeyStage,
+  SearchHit,
+  SearchQuery,
+} from "@/context/Search/search.types";
 import SearchResultsItem, {
   SearchResultsItemProps,
 } from "@/components/TeacherComponents/SearchResultsItem";
-import usePagination from "@/components/SharedComponents/Pagination/usePagination";
 import { getSearchHitObject } from "@/context/Search/search.helpers";
-import { KeyStage, SearchHit } from "@/context/Search/search.types";
 
 interface SearchResultsProps {
   hits: Array<SearchHit>;
@@ -24,13 +30,19 @@ interface SearchResultsProps {
     searchHit: SearchResultsItemProps,
     searchRank: number,
   ) => void;
+  query?: SearchQuery;
 }
 
 export const RESULTS_PER_PAGE = 20;
 
 const SearchResults = (props: SearchResultsProps) => {
-  const { hits, allKeyStages, searchResultOpened, searchResultExpanded } =
-    props;
+  const {
+    query,
+    hits,
+    allKeyStages,
+    searchResultOpened,
+    searchResultExpanded,
+  } = props;
   const hitCount = hits.length;
   const paginationProps = usePagination({
     totalResults: hitCount,
@@ -40,7 +52,11 @@ const SearchResults = (props: SearchResultsProps) => {
 
   const { currentPageItems, currentPage, firstItemRef, paginationRoute } =
     paginationProps;
-
+  const currentPageItemsWithSignPost = [
+    ...currentPageItems.slice(0, 5),
+    "aila-sign-post",
+    ...currentPageItems.slice(5),
+  ];
   const searchRank = (index: number) => {
     return (currentPage - 1) * 20 + index + 1;
   };
@@ -49,26 +65,39 @@ const SearchResults = (props: SearchResultsProps) => {
     <OakFlex $background={"white"} $flexDirection="column" id="search-results">
       {hitCount ? (
         <OakUL $reset>
-          {currentPageItems.map((hit, index) => {
-            const searchHitObject = getSearchHitObject(hit, allKeyStages);
-            if (!searchHitObject) {
-              return null;
+          {currentPageItemsWithSignPost.map((hit, index) => {
+            if (typeof hit !== "string") {
+              const searchHitObject = getSearchHitObject(hit, allKeyStages);
+              if (!searchHitObject) {
+                return null;
+              }
+              return (
+                <OakLI
+                  key={`SearchList-SearchListItem-${index}${hit._source.slug}`}
+                >
+                  <SearchResultsItem
+                    {...searchHitObject}
+                    firstItemRef={index === 0 ? firstItemRef : null} // this is for pagination focus
+                    onClick={(props) => {
+                      searchResultOpened(props, searchRank(index));
+                    }}
+                    onToggleClick={(props) =>
+                      searchResultExpanded(props, searchRank(index))
+                    }
+                  />
+                </OakLI>
+              );
             }
             return (
-              <OakLI
-                key={`SearchList-SearchListItem-${index}${hit._source.slug}`}
-              >
-                <SearchResultsItem
-                  {...searchHitObject}
-                  firstItemRef={index === 0 ? firstItemRef : null} // this is for pagination focus
-                  onClick={(props) => {
-                    searchResultOpened(props, searchRank(index));
-                  }}
-                  onToggleClick={(props) =>
-                    searchResultExpanded(props, searchRank(index))
-                  }
-                />
-              </OakLI>
+              <SignPostToAila
+                title="Can't find what you need?"
+                text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
+                searchExpression={query?.term}
+                keyStage={
+                  query?.keyStages?.length === 1 ? query.keyStages[0] : ""
+                }
+                subject={query?.subjects?.length === 1 ? query.subjects[0] : ""}
+              />
             );
           })}
         </OakUL>
