@@ -258,15 +258,15 @@ export function createUnitsListingByYear(
 
     data.isSwimming = data.units[0]?.features?.pe_swimming === true;
     const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
-    const features = data.units[0]?.features;
+    const actions = data.units[0]?.actions;
     // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
-    if (!features?.subjectcategories?.all_disabled) {
+    if (!actions?.subject_category_actions?.all_disabled) {
       if (data.subjectCategories.length >= 2) {
         data.subjectCategories.unshift(allSubjectCategoryTag);
       }
     }
     data.subjectCategories = data.subjectCategories.sort(
-      sortSubjectCategoriesOnFeatures(features),
+      sortSubjectCategoriesOnFeatures(actions),
     );
 
     if (data.units.length > 0) {

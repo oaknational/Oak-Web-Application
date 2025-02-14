@@ -14,10 +14,10 @@ type sortSubjectCategoriesOnFeaturesReturn = (
   b: Pick<SubjectCategory, "id">,
 ) => number;
 export function sortSubjectCategoriesOnFeatures(
-  features: Actions | null,
+  actions: Actions | null,
 ): sortSubjectCategoriesOnFeaturesReturn {
   const default_category_id =
-    features?.subject_category_actions?.default_category_id ?? -1;
+    actions?.subject_category_actions?.default_category_id ?? -1;
   if (default_category_id > -1) {
     return (a, b) => {
       if (a.id === default_category_id) {
