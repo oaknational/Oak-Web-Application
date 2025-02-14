@@ -120,11 +120,25 @@ export const getStaticProps: GetStaticProps<
         return aUnitOrder - bUnitOrder;
       });
 
-      const selectedProgramme = curriculumData.find(
+      let selectedProgramme = curriculumData.find(
         (unit) => unit.programmeSlug === programmeSlug,
       );
+
       if (!selectedProgramme) {
-        throw new OakError({ code: "curriculum-api/not-found" });
+        if (programmeSlug.slice(-2) !== "-l") {
+          selectedProgramme = curriculumData.find(
+            (unit) => unit.programmeSlug === `${programmeSlug}-l`,
+          );
+
+          return {
+            redirect: {
+              destination: `/pupils/programmes/${programmeSlug}-l/units`,
+              permanent: false,
+            },
+          };
+        } else {
+          throw new OakError({ code: "curriculum-api/not-found" });
+        }
       }
 
       const { programmeFields, isLegacy } = selectedProgramme;
@@ -230,6 +244,7 @@ export const getStaticProps: GetStaticProps<
           programmeFields,
         },
       };
+
       return results;
     },
   });
