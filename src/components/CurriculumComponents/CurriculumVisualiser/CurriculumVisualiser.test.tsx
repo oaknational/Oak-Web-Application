@@ -35,37 +35,12 @@ const curriculumVisualiserFixture = {
   highlightedUnitCount: jest.fn(() => 1),
   trackSelectYear: jest.fn(() => {}),
   unitData: null,
-  yearSelection: {
-    "7": {
-      subject: null,
-      domain: null,
-      tier: null,
-      subjectCategory: { id: -1, title: "All" },
-    },
-    "8": {
-      subject: null,
-      domain: null,
-      tier: null,
-      subjectCategory: { id: -1, title: "All" },
-    },
-    "9": {
-      subject: null,
-      domain: null,
-      tier: null,
-      subjectCategory: { id: -1, title: "All" },
-    },
-    "10": {
-      subject: null,
-      domain: null,
-      tier: null,
-      subjectCategory: { id: -1, title: "All" },
-    },
-    "11": {
-      subject: null,
-      domain: null,
-      tier: null,
-      subjectCategory: { id: -1, title: "All" },
-    },
+  filters: {
+    years: ["7", "8", "9", "10", "11"],
+    tiers: [],
+    childSubjects: [],
+    subjectCategories: [],
+    threads: [],
   },
   selectedYear: null,
   ks4OptionSlug: "edexcel",
