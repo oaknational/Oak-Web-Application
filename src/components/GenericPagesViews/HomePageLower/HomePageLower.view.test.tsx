@@ -1,8 +1,10 @@
 import { screen, within, getByRole } from "@testing-library/react";
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { HomePageLowerView } from "@/components/GenericPagesViews/HomePageLower/HomePageLower.view";
 import { SerializedPost } from "@/pages-helpers/home/getBlogPosts";
+import { HomePage } from "@/common-lib/cms-types";
 
 jest.mock("src/node-lib/cms");
 
@@ -26,6 +28,62 @@ const mockPosts = [
 ] as SerializedPost[];
 
 const render = renderWithProviders();
+
+// mock the testimonials component
+jest.mock("@/components/GenericPagesComponents/Testimonials", () => ({
+  Testimonials: () => <div data-testid="testimonials">Testimonials</div>,
+}));
+
+// mock the useFeatureFlagEnabled hook
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(() => false),
+}));
+
+const imageFixture = {
+  asset: {
+    _id: "test",
+    url: "https://some-image-url.com",
+  },
+  altText: "Some alt text",
+};
+
+const introVideoFixture: HomePage["intro"] = {
+  mediaType: "video",
+  title: "test",
+  alignMedia: "left",
+  bodyPortableText: [
+    {
+      children: [
+        {
+          text: "test",
+        },
+      ],
+    },
+  ],
+  video: {
+    title: "test",
+    captions: null,
+    video: {
+      asset: {
+        assetId: "test",
+        playbackId: "test",
+        thumbTime: null,
+      },
+    },
+  },
+};
+
+const testimonialFixture: HomePage["testimonials"] = [
+  {
+    quote: {
+      text: "Some testimonial",
+      role: "Some role",
+      attribution: "Some name",
+      organisation: "Some organisation",
+    },
+    image: imageFixture,
+  },
+];
 
 describe("HomePageLowerView", () => {
   it("Renders the provided blog posts", async () => {
@@ -67,5 +125,33 @@ describe("HomePageLowerView", () => {
     const blogLink = screen.getByText("All blogs");
     expect(blogLink).toBeInTheDocument();
     expect(blogLink).toHaveAttribute("href", "/blog");
+  });
+
+  it("Does not render testimonials if the feature flag is disabled", () => {
+    render(
+      <HomePageLowerView
+        posts={mockPosts}
+        testimonials={null}
+        introVideo={null}
+      />,
+    );
+
+    const testimonials = screen.queryByTestId("testimonials");
+    expect(testimonials).not.toBeInTheDocument();
+  });
+
+  it("Renders testimonials if the feature flag is enabled", () => {
+    (useFeatureFlagEnabled as jest.Mock).mockReturnValue(true);
+
+    render(
+      <HomePageLowerView
+        posts={mockPosts}
+        testimonials={testimonialFixture}
+        introVideo={introVideoFixture}
+      />,
+    );
+
+    const testimonials = screen.getByTestId("testimonials");
+    expect(testimonials).toBeInTheDocument();
   });
 });

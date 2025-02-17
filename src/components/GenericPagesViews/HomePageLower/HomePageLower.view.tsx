@@ -71,7 +71,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                       </OakHeading>
                     </OakBox>
                     <OakP $font={["body-2", "body-1"]}>
-                      {introVideo?.bodyPortableText[0].children[0].text}
+                      {introVideo?.bodyPortableText?.[0]?.children[0]?.text}
                     </OakP>
                   </OakBox>
                   <CMSVideo
