@@ -96,8 +96,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         const schoolName = hubspotContact.schoolName;
 
         const school = {
-          schoolId: schoolId || "notListed",
-          schoolName: schoolName || "notListed",
+          schoolId: schoolId ? schoolId : "notListed",
+          schoolName: schoolName ? schoolName : "notListed",
         };
 
         setSchoolInLocalStorage(school);
