@@ -87,6 +87,7 @@ export default function UnitsTab({
     selectedThread,
   );
 
+  // Get number of units
   const unitCount = getNumberOfSelectedUnits(
     yearData,
     selectedYear,
