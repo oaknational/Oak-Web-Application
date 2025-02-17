@@ -24,25 +24,34 @@ const fetchSubjectPhasePickerData: () => Promise<SubjectPhasePickerData> =
 
 const Curriculum: NextPage<
   HomePageProps & { curriculumPhaseOptions: SubjectPhasePickerData }
-> = (props) => (
-  <AppLayout
-    seoProps={{
-      title:
-        "Free curriculum plans aligned with National Curriculum  | Oak National Academy",
-      description:
-        "Discover our free curriculum plans across subjects from KS1 to KS4, all high-quality, fully-sequenced and aligned with the national curriculum.",
-    }}
-    $background={"white"}
-  >
-    <Banners />
-    <HomePageTabImageNav current={"curriculum"} />
-    <CurriculumTab
-      aria-current="page"
-      curriculumPhaseOptions={props.curriculumPhaseOptions}
-    />
-    <HomePageLowerView posts={props.posts} />
-  </AppLayout>
-);
+> = (props) => {
+  const testimonials = props.pageData?.testimonials;
+  const intro = props.pageData?.intro;
+
+  return (
+    <AppLayout
+      seoProps={{
+        title:
+          "Free curriculum plans aligned with National Curriculum  | Oak National Academy",
+        description:
+          "Discover our free curriculum plans across subjects from KS1 to KS4, all high-quality, fully-sequenced and aligned with the national curriculum.",
+      }}
+      $background={"white"}
+    >
+      <Banners />
+      <HomePageTabImageNav current={"curriculum"} />
+      <CurriculumTab
+        aria-current="page"
+        curriculumPhaseOptions={props.curriculumPhaseOptions}
+      />
+      <HomePageLowerView
+        posts={props.posts}
+        testimonials={testimonials}
+        introVideo={intro}
+      />
+    </AppLayout>
+  );
+};
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context,

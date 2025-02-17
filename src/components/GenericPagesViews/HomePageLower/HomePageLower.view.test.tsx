@@ -29,7 +29,13 @@ const render = renderWithProviders();
 
 describe("HomePageLowerView", () => {
   it("Renders the provided blog posts", async () => {
-    render(<HomePageLowerView posts={mockPosts} />);
+    render(
+      <HomePageLowerView
+        posts={mockPosts}
+        testimonials={null}
+        introVideo={null}
+      />,
+    );
 
     const list = screen
       .getAllByRole("list")
@@ -50,7 +56,13 @@ describe("HomePageLowerView", () => {
   });
 
   it("Renders a link to the blog list", () => {
-    render(<HomePageLowerView posts={mockPosts} />);
+    render(
+      <HomePageLowerView
+        posts={mockPosts}
+        testimonials={null}
+        introVideo={null}
+      />,
+    );
 
     const blogLink = screen.getByText("All blogs");
     expect(blogLink).toBeInTheDocument();
