@@ -1,3 +1,10 @@
+# [1.692.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.4...v1.692.0) (2025-02-17)
+
+
+### Features
+
+* add terms and conditions href ([4c7a670](https://github.com/oaknational/Oak-Web-Application/commit/4c7a670cb117ff8aed894b758c8a28e78c12461e))
+
 ## [1.691.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.3...v1.691.4) (2025-02-17)
 
 
