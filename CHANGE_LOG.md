@@ -1,3 +1,10 @@
+## [1.691.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.1...v1.691.2) (2025-02-17)
+
+
+### Bug Fixes
+
+* dont round video duration ([181ca5a](https://github.com/oaknational/Oak-Web-Application/commit/181ca5afe7cde8fcd13b4c0f60f554f849ad8104))
+
 ## [1.691.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.0...v1.691.1) (2025-02-14)
 
 
