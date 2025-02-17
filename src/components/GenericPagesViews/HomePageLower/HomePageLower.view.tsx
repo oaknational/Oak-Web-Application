@@ -20,7 +20,7 @@ import { webinarToPostListItem } from "@/components/GenericPagesViews/WebinarsIn
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Testimonials } from "@/components/GenericPagesComponents/Testimonials";
 import { HomePage } from "@/common-lib/cms-types";
-// import CMSVideo from "@/components/SharedComponents/CMSVideo";
+import CMSVideo from "@/components/SharedComponents/CMSVideo";
 
 export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
   return post.type === "blog-post"
@@ -31,11 +31,14 @@ export const postToPostListItem = (post: SerializedPost): PostListItemProps => {
 export type HomePageLowerViewProps = {
   posts: SerializedPost[];
   testimonials: HomePage["testimonials"];
+  introVideo?: HomePage["intro"];
 };
 
 export const HomePageLowerView = (props: HomePageLowerViewProps) => {
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
+  const { introVideo } = props;
+
   const { track } = useAnalytics();
   const newsletterFormProps = useNewsletterForm({
     onSubmit: track.newsletterSignUpCompleted,
@@ -43,36 +46,40 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
 
   return (
     <>
-      <OakMaxWidth>
-        <OakGrid
-          $pt="inner-padding-xl6"
-          $pb="inner-padding-xl7"
-          $ph={["inner-padding-m", "inner-padding-xl"]}
-        >
-          <OakGridArea $colSpan={8} $pr="inner-padding-xl7">
-            <OakBox $pb={"inner-padding-m"}>
-              <OakHeading tag="h1" $font={"heading-4"}>
-                We're here to support great teaching
-              </OakHeading>
-            </OakBox>
-            <OakP $font={"body-1"}>
-              Whether you’re creating new lessons, refreshing your approach, or
-              solving a last-minute challenge, our resources give you a strong
-              foundation that means you get there faster.
-            </OakP>
-            {/* {introVideo && (
-              <CMSVideo
-                hideCaptions={true}
-                video={introVideo}
-                location="marketing"
-              />
-            )} */}
-          </OakGridArea>
-          <OakGridArea $colSpan={4}>
-            <Testimonials testimonials={props.testimonials} />
-          </OakGridArea>
-        </OakGrid>
-      </OakMaxWidth>
+      {props.testimonials &&
+        introVideo?.mediaType === "video" &&
+        introVideo.video && (
+          <OakMaxWidth>
+            <OakGrid
+              $pt="inner-padding-xl6"
+              $pb="inner-padding-xl7"
+              $ph={["inner-padding-m", "inner-padding-xl"]}
+            >
+              <OakGridArea $colSpan={8} $pr="inner-padding-xl7">
+                <OakFlex $flexDirection={"column"} $gap={"space-between-l"}>
+                  <OakBox>
+                    <OakBox $pb={"inner-padding-m"}>
+                      <OakHeading tag="h1" $font={"heading-4"}>
+                        {introVideo?.title}
+                      </OakHeading>
+                    </OakBox>
+                    <OakP $font={"body-1"}>
+                      {introVideo?.bodyPortableText[0].children[0].text}
+                    </OakP>
+                  </OakBox>
+                  <CMSVideo
+                    hideCaptions={true}
+                    video={introVideo.video}
+                    location="marketing"
+                  />
+                </OakFlex>
+              </OakGridArea>
+              <OakGridArea $colSpan={4}>
+                <Testimonials testimonials={props.testimonials} />
+              </OakGridArea>
+            </OakGrid>
+          </OakMaxWidth>
+        )}
       <OakMaxWidth>
         <BlogAndWebinarList
           blogListPosts={blogListProps}
