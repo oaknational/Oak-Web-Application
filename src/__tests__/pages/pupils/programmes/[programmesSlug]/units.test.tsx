@@ -127,7 +127,23 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
           notFound: true,
         });
       });
-      it("Should return not found if no curriculum data", async () => {
+      it("Should return not found if no curriculum data for a legacy slug", async () => {
+        (
+          curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
+        ).mockResolvedValueOnce([]);
+
+        const res = await getStaticProps({
+          params: {
+            programmeSlug: "maths-secondary-year-10-l",
+          },
+        });
+
+        expect(res).toEqual({
+          notFound: true,
+        });
+      });
+
+      it("Should return a redirect if no curriculum data for a non-legacy slug", async () => {
         (
           curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
         ).mockResolvedValueOnce([
@@ -137,7 +153,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
               title: "unit-title-2",
             },
             supplementaryData: { unitOrder: 1 },
-            programmeSlug: "maths-secondary-year-10-foundation",
+            programmeSlug: "english-secondary-year-11-l",
             unitSlug: "unit-slug-2",
           }),
         ]);
@@ -147,10 +163,15 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
         const res = await getStaticProps({
           params: { programmeSlug: "english-secondary-year-11" },
         });
+
         expect(res).toEqual({
-          notFound: true,
+          redirect: {
+            destination: "/pupils/programmes/english-secondary-year-11-l/units",
+            permanent: false,
+          },
         });
       });
+
       it("should throw error is phase is foundation", async () => {
         const programmeFieldsSnake = programmeFieldsFixture({
           overrides: {
