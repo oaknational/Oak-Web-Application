@@ -32,6 +32,7 @@ import {
   getPlayingState,
   getInitialCurrentClip,
   joinTranscript,
+  createLearningCycleVideosTitleMap,
 } from "@/components/TeacherComponents/helpers/lessonMediaHelpers/lessonMedia.helpers";
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 
@@ -84,19 +85,25 @@ export const LessonMedia = (props: LessonMediaProps) => {
   const { query } = router;
 
   // construct list of all clips in one array
-  const hasIntroCycle = Object.keys(mediaClips).includes("intro");
-  const introLessonOverview = hasIntroCycle
-    ? [{ lessonOutline: "Intro" }, ...lessonOutline]
-    : lessonOutline;
+
+  const isPELesson = actions?.displayPETitle;
+  const isMFL = actions?.displayVocabButton;
+
+  const learningCycleVideosTitleMap = createLearningCycleVideosTitleMap({
+    isMFL,
+    isPELesson,
+    learningCycleVideos: mediaClips,
+    lessonOutlines: lessonOutline,
+  });
 
   const listOfAllClips = mediaClips
     ? Object.keys(mediaClips)
-        .map((learningCycle, index) => {
+        .map((learningCycle) => {
           return (
             mediaClips[learningCycle]?.map((mediaClip: MediaClip) => {
               return {
                 ...mediaClip,
-                learningCycle: introLessonOverview[index]?.lessonOutline ?? "",
+                learningCycle,
               };
             }) || []
           );
@@ -195,7 +202,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
               clipName={title}
               timeCode={videoObject.duration ?? 0}
               learningCycle={
-                !actions?.displayPETitle ? mediaClip.learningCycle : ""
+                isPELesson
+                  ? ""
+                  : learningCycleVideosTitleMap[mediaClip.learningCycle]
               }
               muxPlayingState={getPlayingState(
                 String(currentClip?.mediaId),
@@ -217,7 +226,9 @@ export const LessonMedia = (props: LessonMediaProps) => {
             <OakMediaClip
               clipName={title}
               timeCode={videoObject.duration ?? 0}
-              learningCycle={mediaClip.learningCycle}
+              learningCycle={
+                learningCycleVideosTitleMap[mediaClip.learningCycle]
+              }
               muxPlayingState={getPlayingState(
                 String(currentClip?.mediaId),
                 String(mediaId),

@@ -1,3 +1,17 @@
+## [1.691.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.3...v1.691.4) (2025-02-17)
+
+
+### Bug Fixes
+
+* add tests ([20bf47b](https://github.com/oaknational/Oak-Web-Application/commit/20bf47bc3ec24e2d5072554d6e5ff06c8f72c20a))
+* apply same rules on media page ([b965c60](https://github.com/oaknational/Oak-Web-Application/commit/b965c60ecc9b2cce75a792e325d9f063c04ae7b3))
+* check for actions ([bf7250e](https://github.com/oaknational/Oak-Web-Application/commit/bf7250e1bdf7284c2bd6f352ab56668cc310d469))
+* dont show double titles for PE ([0743bc8](https://github.com/oaknational/Oak-Web-Application/commit/0743bc88356b299162ff2feb52a3c3dc18d7496a))
+* fix learning cycle titles order ([ab55116](https://github.com/oaknational/Oak-Web-Application/commit/ab5511625b54e3300f26e9f9c7bef7b6a1e710d6))
+* fixed test ([f37bd48](https://github.com/oaknational/Oak-Web-Application/commit/f37bd488037848b6026182277bb770c9fdbf4243))
+* refactor ([44dfc18](https://github.com/oaknational/Oak-Web-Application/commit/44dfc18a8ebcb6fe29a326f3b5f2e5dd172eea6b))
+* use correct overwrite for MFL lessons ([0b4f9d0](https://github.com/oaknational/Oak-Web-Application/commit/0b4f9d03ba2dd6db20efae6cf9cafe90c7a4ff78))
+
 ## [1.691.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.2...v1.691.3) (2025-02-17)
 
 ## [1.691.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.1...v1.691.2) (2025-02-17)
