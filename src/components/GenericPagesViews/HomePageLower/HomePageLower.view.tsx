@@ -51,19 +51,23 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
         introVideo.video && (
           <OakMaxWidth>
             <OakGrid
-              $pt="inner-padding-xl6"
-              $pb="inner-padding-xl7"
+              $pt={["inner-padding-xl5", "inner-padding-xl6"]}
+              $pb={["inner-padding-xl5", "inner-padding-xl7"]}
               $ph={["inner-padding-m", "inner-padding-xl"]}
+              $rg={["space-between-xl", null]}
             >
-              <OakGridArea $colSpan={8} $pr="inner-padding-xl7">
-                <OakFlex $flexDirection={"column"} $gap={"space-between-l"}>
+              <OakGridArea $colSpan={[12, 8]} $pr={[null, "inner-padding-xl7"]}>
+                <OakFlex
+                  $flexDirection={"column"}
+                  $gap={["space-between-m2", "space-between-l"]}
+                >
                   <OakBox>
                     <OakBox $pb={"inner-padding-m"}>
-                      <OakHeading tag="h1" $font={"heading-4"}>
+                      <OakHeading tag="h1" $font={["heading-5", "heading-4"]}>
                         {introVideo?.title}
                       </OakHeading>
                     </OakBox>
-                    <OakP $font={"body-1"}>
+                    <OakP $font={["body-2", "body-1"]}>
                       {introVideo?.bodyPortableText[0].children[0].text}
                     </OakP>
                   </OakBox>
@@ -74,7 +78,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
                   />
                 </OakFlex>
               </OakGridArea>
-              <OakGridArea $colSpan={4}>
+              <OakGridArea $colSpan={[12, 4]}>
                 <Testimonials testimonials={props.testimonials} />
               </OakGridArea>
             </OakGrid>
