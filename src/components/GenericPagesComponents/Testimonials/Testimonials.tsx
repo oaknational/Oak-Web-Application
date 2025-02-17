@@ -1,4 +1,4 @@
-import { OakCarousel, OakFlex, OakQuote } from "@oaknational/oak-components";
+import { OakCarousel, OakQuote } from "@oaknational/oak-components";
 
 import { HomePage } from "@/common-lib/cms-types";
 
