@@ -1,4 +1,4 @@
-import { FC, ChangeEvent } from "react";
+import { FC, ChangeEvent, ReactNode } from "react";
 import styled, { css } from "styled-components";
 import { RefCallBack } from "react-hook-form";
 import { OakSpan } from "@oaknational/oak-components";
@@ -26,7 +26,7 @@ export type CheckboxConfig = {
 export type CheckboxVariant = "withoutLabel" | "withLabel";
 
 export type CheckboxProps = {
-  labelText?: string;
+  labelText?: ReactNode | string;
   id: string;
   name: string;
   checked: boolean;

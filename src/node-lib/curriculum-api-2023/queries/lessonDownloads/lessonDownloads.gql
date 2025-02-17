@@ -16,6 +16,7 @@ query lessonDownloads(
     expired: deprecated_fields(path: "expired")
     geo_restricted
     login_required
+    content_guidance
   }
 
   browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(

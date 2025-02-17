@@ -102,6 +102,12 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     updatedAt,
   } = lesson;
 
+  const showRiskAssessmentCheckbox = !!lesson?.contentGuidance?.find(
+    (content) =>
+      content.contentguidance_label ===
+      "Risk assessment required - physical activity",
+  );
+
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical
       ? {
@@ -386,6 +392,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               updatedAt={updatedAt}
               withHomeschool={true}
               showTermsAgreement={showTermsAgreement}
+              showRiskAssessmentCheckbox={showRiskAssessmentCheckbox}
               isLoading={onboardingStatus === "loading"}
               cardGroup={
                 !showNoResources && (

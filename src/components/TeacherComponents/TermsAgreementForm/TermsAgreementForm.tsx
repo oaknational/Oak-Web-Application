@@ -20,6 +20,7 @@ import OakLink from "@/components/SharedComponents/OwaLink";
 import ResourcePageDetailsCompleted from "@/components/TeacherComponents/ResourcePageDetailsCompleted";
 import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePageSchoolDetails";
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
+import RiskAssessmentCheckbox from "@/components/TeacherComponents/RiskAssessmentCheckbox";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
@@ -39,6 +40,7 @@ export type TermsAgreementFormProps = {
   handleEditDetailsCompletedClick?: () => void;
   showPostAlbCopyright?: boolean;
   copyrightYear: string;
+  showRiskAssessmentCheckbox?: boolean;
 };
 
 const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
@@ -52,6 +54,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
   handleEditDetailsCompletedClick = () => {},
   showPostAlbCopyright = true,
   copyrightYear,
+  showRiskAssessmentCheckbox,
 }) => {
   return (
     <>
@@ -158,6 +161,30 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   );
                 }}
               />
+              {showRiskAssessmentCheckbox && (
+                <Controller
+                  control={form.control}
+                  name="riskAssessment"
+                  render={({ field: { value, onChange, name, onBlur } }) => {
+                    const onChangeHandler = (
+                      e: ChangeEvent<HTMLInputElement>,
+                    ) => {
+                      onChange(e.target.checked);
+                      form.trigger();
+                    };
+                    return (
+                      <RiskAssessmentCheckbox
+                        name={name}
+                        checked={value}
+                        onChange={onChangeHandler}
+                        onBlur={onBlur}
+                        id={"riskAssessment"}
+                        errorMessage={form.errors?.riskAssessment?.message}
+                      />
+                    );
+                  }}
+                />
+              )}
             </OakBox>
           )}
           <OakBox $maxWidth="all-spacing-21">

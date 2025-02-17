@@ -51,6 +51,12 @@ export const resourceFormValuesSchema = z.object({
       message: "Accept terms and conditions to continue",
     }),
   }),
+  riskAssessment: z.literal(true, {
+    errorMap: () => ({
+      message:
+        "You need to understand that a risk assessment is required to continue",
+    }),
+  }),
   resources: z
     .array(z.string(), {
       errorMap: () => ({

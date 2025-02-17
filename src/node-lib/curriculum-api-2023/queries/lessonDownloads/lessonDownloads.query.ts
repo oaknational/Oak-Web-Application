@@ -63,6 +63,7 @@ const lessonDownloadsQuery =
       expired,
       geo_restricted,
       login_required,
+      content_guidance,
     } = downloadsAssetData.parse(download_assets[0]);
 
     const downloadsData = {
@@ -114,6 +115,7 @@ const lessonDownloadsQuery =
 
       return lessonDownloadsSchema.parse({
         ...lessonDownloads,
+        contentGuidance: content_guidance,
         isLegacy: false,
         isSpecialist: false,
         geoRestricted: geo_restricted,

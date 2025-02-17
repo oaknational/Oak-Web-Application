@@ -57,6 +57,7 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     isLoading: boolean;
     showDownloadSignUpButtons?: boolean;
     signUpButtons?: React.ReactNode | null;
+    showRiskAssessmentCheckbox?: boolean;
   };
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
@@ -187,6 +188,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                 handleEditDetailsCompletedClick={props.onEditClick}
                 showPostAlbCopyright={props.showPostAlbCopyright}
                 copyrightYear={props.updatedAt}
+                showRiskAssessmentCheckbox={props.showRiskAssessmentCheckbox}
               />
             )}
             {hasFormErrors && (

@@ -26,7 +26,12 @@ export const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
       order: 1,
       message: "select at least one resource to continue",
     },
-    schoolName: { order: 5, message: "" },
+    riskAssessment: {
+      order: 5,
+      message:
+        "you need to understand that a risk assessment is required to continue",
+    },
+    schoolName: { order: 6, message: "" },
   };
 
   const sortedErrorsArray = errorsArray.sort(

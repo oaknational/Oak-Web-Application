@@ -2,6 +2,7 @@ import { z } from "zod";
 import {
   syntheticUnitvariantLessonsSchema,
   quizQuestionSchema,
+  contentGuidanceSchema,
 } from "@oaknational/oak-curriculum-schema";
 
 import {
@@ -35,6 +36,7 @@ export const downloadsAssetData = z.object({
   expired: z.boolean().nullable().optional(),
   geo_restricted: z.boolean().nullable(),
   login_required: z.boolean().nullable(),
+  content_guidance: z.array(contentGuidanceSchema).nullable().optional(),
 });
 
 export const lessonDownloadsQueryRaw = z.object({
