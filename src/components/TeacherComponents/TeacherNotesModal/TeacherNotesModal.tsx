@@ -231,6 +231,7 @@ export const TeacherNotesModal = ({
       progressSaved={noteSaved && !noteShared}
       noteShared={noteShared}
       error={Boolean(error)}
+      termsAndConditionsHref="/legal/terms-and-conditions"
     />
   );
 };
