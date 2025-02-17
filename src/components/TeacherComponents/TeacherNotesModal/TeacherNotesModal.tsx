@@ -13,6 +13,8 @@ import {
   TeacherNote,
 } from "@oaknational/oak-pupil-client";
 
+import { resolveOakHref } from "@/common-lib/urls";
+
 const StyledEditorContent = styled(EditorContent)`
   .tiptap:focus {
     outline: none;
@@ -229,7 +231,10 @@ export const TeacherNotesModal = ({
       progressSaved={noteSaved && !noteShared}
       noteShared={noteShared}
       error={Boolean(error)}
-      termsAndConditionsHref="/legal/terms-and-conditions"
+      termsAndConditionsHref={resolveOakHref({
+        page: "legal",
+        legalSlug: "terms-and-conditions",
+      })}
     />
   );
 };
