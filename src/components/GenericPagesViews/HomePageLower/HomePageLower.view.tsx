@@ -7,7 +7,6 @@ import {
   OakMaxWidth,
   OakP,
 } from "@oaknational/oak-components";
-import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
@@ -39,7 +38,6 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
   const posts = props.posts.map(postToPostListItem);
   const blogListProps = usePostList({ items: posts, withImage: true });
   const { introVideo } = props;
-  const isTestimonials = useFeatureFlagEnabled("testimonials");
 
   const { track } = useAnalytics();
   const newsletterFormProps = useNewsletterForm({
@@ -48,8 +46,7 @@ export const HomePageLowerView = (props: HomePageLowerViewProps) => {
 
   return (
     <>
-      {isTestimonials &&
-        props.testimonials &&
+      {props.testimonials &&
         introVideo?.mediaType === "video" &&
         introVideo.video && (
           <OakMaxWidth>
