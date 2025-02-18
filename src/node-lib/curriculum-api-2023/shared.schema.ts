@@ -1,8 +1,5 @@
 import { z } from "zod";
-import {
-  actionsSchema,
-  contentGuidanceSchema,
-} from "@oaknational/oak-curriculum-schema";
+import { actionsSchema } from "@oaknational/oak-curriculum-schema";
 
 import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
@@ -255,7 +252,7 @@ export const baseLessonDownloadsSchema = z.object({
   updatedAt: z.string(),
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),
-  contentGuidance: z.array(contentGuidanceSchema).nullable().optional(),
+  actions: camelActionSchema.nullable().optional(),
 });
 
 export const lessonListItemSchema = z.object({

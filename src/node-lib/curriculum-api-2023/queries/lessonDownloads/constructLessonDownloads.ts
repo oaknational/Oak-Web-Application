@@ -5,6 +5,7 @@ import {
 } from "./rawSyntheticUVLesson.schema";
 
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const constructLessonDownloads = (
   downloads: LessonDownloadsListSchema,
@@ -40,6 +41,7 @@ const constructLessonDownloads = (
     copyrightContent: lessonCopyRight,
     examBoardTitle: parsedCurrentLesson.programme_fields.examboard_description,
     tierTitle: parsedCurrentLesson.programme_fields.tier_description,
+    actions: keysToCamelCase(parsedCurrentLesson.actions),
   };
 
   const unitLessonsArray = parsedBrowseData.map((lesson) => {

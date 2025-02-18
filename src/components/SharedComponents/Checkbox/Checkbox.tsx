@@ -26,7 +26,7 @@ export type CheckboxConfig = {
 export type CheckboxVariant = "withoutLabel" | "withLabel";
 
 export type CheckboxProps = {
-  labelText?: ReactNode | string;
+  label?: ReactNode | string;
   id: string;
   name: string;
   checked: boolean;
@@ -154,7 +154,7 @@ const CheckboxLabelText = styled(OakSpan)<{ fontWeight: 400 | 600 }>`
 
 const Checkbox: FC<CheckboxProps> = (props) => {
   const {
-    labelText,
+    label,
     checked = false,
     disabled = false,
     onChange,
@@ -194,7 +194,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           onChange={onChange}
           checked={checked}
           disabled={disabled}
-          aria-label={ariaLabel ? ariaLabel : labelText}
+          aria-label={ariaLabel ? ariaLabel : ""}
           required={required}
           aria-invalid={hasError}
           aria-describedby={error ? errorId : undefined}
@@ -210,13 +210,13 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           zIndex={zIndex}
         />
         {/* card checkbox */}
-        {!labelText && variant === "withoutLabel" && children}
+        {!label && variant === "withoutLabel" && children}
         {/* basic label checkbox */}
 
-        {labelText && variant !== "withoutLabel" && (
+        {label && variant !== "withoutLabel" && (
           <>
             <CheckboxLabelText fontWeight={labelFontWeight ?? 400}>
-              {labelText}
+              {label}
             </CheckboxLabelText>{" "}
             <FocusUnderline $color={"lemon"} />
           </>

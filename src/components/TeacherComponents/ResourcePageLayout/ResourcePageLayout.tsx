@@ -129,8 +129,9 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                 id="select-all"
                 name="select-all"
                 variant="withLabel"
-                labelText="Select all"
+                label="Select all"
                 labelFontWeight={600}
+                data-testid="select-all"
               />
             </OakBox>
           )}

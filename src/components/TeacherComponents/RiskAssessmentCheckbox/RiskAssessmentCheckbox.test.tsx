@@ -11,11 +11,11 @@ describe("RiskAssessmentCheckbox", () => {
         checked={false}
         onChange={jest.fn()}
         id={"123"}
-        name={"terms"}
+        name={"riskAssessment"}
       />,
     );
 
-    const termsCheckbox = screen.getByTestId("termsCheckbox");
+    const termsCheckbox = screen.getByTestId("riskAssessmentCheckbox");
     expect(termsCheckbox).toBeInTheDocument();
   });
 
@@ -26,7 +26,7 @@ describe("RiskAssessmentCheckbox", () => {
         onChange={jest.fn()}
         errorMessage="Please select the checkbox"
         id={"123"}
-        name={"terms"}
+        name={"riskAssessment"}
       />,
     );
 

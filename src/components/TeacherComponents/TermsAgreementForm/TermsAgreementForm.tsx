@@ -175,7 +175,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     return (
                       <RiskAssessmentCheckbox
                         name={name}
-                        checked={value}
+                        checked={value || false}
                         onChange={onChangeHandler}
                         onBlur={onBlur}
                         id={"riskAssessment"}

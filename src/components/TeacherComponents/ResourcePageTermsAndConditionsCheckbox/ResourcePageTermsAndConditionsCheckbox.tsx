@@ -31,7 +31,7 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
     >
       <BrushBorders hideOnMobileH hideOnMobileV color={"grey30"} />
       <Checkbox
-        labelText={"I accept terms and conditions (required)"}
+        label={"I accept terms and conditions (required)"}
         checked={checked}
         onChange={onChange}
         $mb={0}

@@ -340,10 +340,10 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
   describe("selected resources count", () => {
     it("should select all resources if user checks 'Select all'", async () => {
-      const { getByRole } = render(<LessonDownloadsPage {...props} />);
+      const { getByLabelText } = render(<LessonDownloadsPage {...props} />);
 
-      const selectAllCheckbox = getByRole("checkbox", {
-        name: "Select all",
+      const selectAllCheckbox = getByLabelText("Select all", {
+        exact: false,
       });
       expect(selectAllCheckbox).toBeChecked();
 
@@ -359,9 +359,9 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     });
 
     it("should deselect all resources if user deselects 'Select all'", async () => {
-      const { getByRole } = render(<LessonDownloadsPage {...props} />);
+      const { getByTestId } = render(<LessonDownloadsPage {...props} />);
 
-      const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
+      const selectAllCheckbox = getByTestId("select-all");
       const user = userEvent.setup();
       await user.click(selectAllCheckbox);
 

@@ -6,7 +6,7 @@ import Component from ".";
 export default {
   component: Component,
   argTypes: {
-    labelText: {
+    label: {
       defaultValue: "Click me",
     },
     id: {

@@ -12,7 +12,7 @@ describe("Checkbox", () => {
         id="unique-123"
         name="terms"
         checked
-        labelText="Agree to terms"
+        label="Agree to terms"
         onChange={jest.fn()}
       />,
     );
@@ -31,7 +31,7 @@ describe("Checkbox", () => {
         id="unique-123"
         name="terms"
         checked
-        labelText="Agree to terms"
+        label="Agree to terms"
         onChange={jest.fn()}
       />,
     );
@@ -52,7 +52,7 @@ describe("Checkbox", () => {
       <Checkbox
         id="unique-123"
         name="terms"
-        labelText="Agree to terms"
+        label="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
       />,
@@ -71,7 +71,7 @@ describe("Checkbox", () => {
       <Checkbox
         id="unique-123"
         name="terms"
-        labelText="Agree to terms"
+        label="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
       />,
@@ -91,7 +91,7 @@ describe("Checkbox", () => {
       <Checkbox
         id="unique-123"
         name="terms"
-        labelText="Agree to terms"
+        label="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
         disabled
@@ -110,7 +110,7 @@ describe("Checkbox", () => {
       <Checkbox
         id="unique-123"
         name="terms"
-        labelText="Agree to terms"
+        label="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
         disabled
@@ -131,7 +131,7 @@ describe("Checkbox", () => {
       <Checkbox
         name="terms"
         id="unique-123"
-        labelText="Agree to terms"
+        label="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
       />,
@@ -149,7 +149,7 @@ describe("Checkbox", () => {
       <Checkbox
         name="terms"
         id="unique-123"
-        labelText="Agree to terms"
+        label="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
       />,
@@ -164,7 +164,7 @@ describe("Checkbox", () => {
         name="terms"
         id="unique-123"
         checked
-        labelText="Agree to terms"
+        label="Agree to terms"
         onChange={jest.fn()}
       />,
     );

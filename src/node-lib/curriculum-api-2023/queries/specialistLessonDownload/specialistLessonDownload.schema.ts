@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { actionsSchema } from "@oaknational/oak-curriculum-schema";
 
 import {
   copyrightContentSchema,
@@ -62,6 +63,7 @@ export const SpecialistLessonDownloadSchema = z.object({
     copyrightContent: copyrightContentSchema,
     geoRestricted: z.boolean().nullable(),
     loginRequired: z.boolean().nullable(),
+    actions: actionsSchema.nullish(),
   }),
 });
 

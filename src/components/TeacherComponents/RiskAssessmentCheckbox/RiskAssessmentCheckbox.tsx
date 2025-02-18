@@ -58,7 +58,7 @@ const RiskAssessmentCheckbox: FC<RiskAssessmentCheckboxProps> = ({
     >
       <BrushBorders hideOnMobileH hideOnMobileV color={"grey30"} />
       <Checkbox
-        labelText={<RiskAssessmentCheckboxLabel />}
+        label={<RiskAssessmentCheckboxLabel />}
         checked={checked}
         onChange={onChange}
         $mb={0}
