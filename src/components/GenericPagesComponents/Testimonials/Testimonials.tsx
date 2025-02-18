@@ -10,12 +10,15 @@ export const Testimonials = ({ testimonials }: TestimonialsProps) => {
   if (!testimonials || testimonials.length === 0) return null;
 
   const items = testimonials.map((testimonial) => {
+    const authorTitle = testimonial.quote.organisation
+      ? `${testimonial.quote.role}, ${testimonial.quote.organisation}`
+      : testimonial.quote.role;
     return (
       <OakQuote
         quote={testimonial.quote.text}
         authorImageSrc={testimonial.image?.asset?.url}
         authorName={testimonial.quote.attribution}
-        authorTitle={`${testimonial.quote.role}, ${testimonial.quote.organisation}`}
+        authorTitle={authorTitle}
         color="transparent"
       />
     );

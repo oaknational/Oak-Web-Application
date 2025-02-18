@@ -27,9 +27,25 @@ const mockPosts = [
 
 const render = renderWithProviders();
 
+// mock the testimonials component
+jest.mock("@/components/GenericPagesComponents/Testimonials", () => ({
+  Testimonials: () => <div data-testid="testimonials">Testimonials</div>,
+}));
+
+// mock the useFeatureFlagEnabled hook
+jest.mock("posthog-js/react", () => ({
+  useFeatureFlagEnabled: jest.fn(() => false),
+}));
+
 describe("HomePageLowerView", () => {
   it("Renders the provided blog posts", async () => {
-    render(<HomePageLowerView posts={mockPosts} />);
+    render(
+      <HomePageLowerView
+        posts={mockPosts}
+        testimonials={null}
+        introVideo={null}
+      />,
+    );
 
     const list = screen
       .getAllByRole("list")
@@ -50,7 +66,13 @@ describe("HomePageLowerView", () => {
   });
 
   it("Renders a link to the blog list", () => {
-    render(<HomePageLowerView posts={mockPosts} />);
+    render(
+      <HomePageLowerView
+        posts={mockPosts}
+        testimonials={null}
+        introVideo={null}
+      />,
+    );
 
     const blogLink = screen.getByText("All blogs");
     expect(blogLink).toBeInTheDocument();
