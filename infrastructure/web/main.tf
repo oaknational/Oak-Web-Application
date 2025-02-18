@@ -1,23 +1,3 @@
-terraform {
-  required_providers {
-    datadog = {
-      source  = "DataDog/datadog"
-      version = "~> 3.30.0"
-    }
-    google = {
-      source  = "hashicorp/google"
-      version = "4.50.0"
-    }
-  }
-
-  cloud {
-    organization = "oak-national-academy"
-    workspaces {
-      tags = ["repo:Oak-Web-Application", "config:web"]
-    }
-  }
-}
-
 locals {
   project_workspace_prefix = "gcp-project-superuser-"
   project_env              = "prod" // For now all OWA resources are in the same project

@@ -1,3 +1,46 @@
+## [1.693.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.0...v1.693.1) (2025-02-18)
+
+# [1.693.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.692.0...v1.693.0) (2025-02-18)
+
+
+### Bug Fixes
+
+* lint error ([5c8589f](https://github.com/oaknational/Oak-Web-Application/commit/5c8589fe61b0449a3b462782e8124f99a9acbe11))
+* linter issues ([6318ed7](https://github.com/oaknational/Oak-Web-Application/commit/6318ed79b95c0b8d210cb4c9c58b0ed83d98d2f5))
+* resolved conflicts ([ce15ed3](https://github.com/oaknational/Oak-Web-Application/commit/ce15ed38713f5a3ef6d28d0e89b99afc79610a46))
+* stack on tablet view ([45543dd](https://github.com/oaknational/Oak-Web-Application/commit/45543dd9a99e0c517b3022aef431a1b08351f26a))
+* update teacher notes props ([5caf698](https://github.com/oaknational/Oak-Web-Application/commit/5caf6980641b47ea3edef2e5923344a01b2119ee))
+
+
+### Features
+
+* add testimonials to all homepages ([16a7ef9](https://github.com/oaknational/Oak-Web-Application/commit/16a7ef9adf6eb4d857c8dcb2a1cb8198445667ba))
+* hide testimonials behind feature flag ([59ab2e9](https://github.com/oaknational/Oak-Web-Application/commit/59ab2e9968443eaaa0bcdebb48420869321f7dbc))
+* responsive layout ([8da7ad7](https://github.com/oaknational/Oak-Web-Application/commit/8da7ad77817fc10a1e17a6620943bb55aa6df8c2))
+* retrieve video from cms ([fa8fbd6](https://github.com/oaknational/Oak-Web-Application/commit/fa8fbd67ee0cb25e95dc347eb9990375244b6dee))
+* working on video ([a17f1e6](https://github.com/oaknational/Oak-Web-Application/commit/a17f1e6a8f50edc54f36751557910ca7558287cd))
+
+# [1.692.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.4...v1.692.0) (2025-02-17)
+
+
+### Features
+
+* add terms and conditions href ([4c7a670](https://github.com/oaknational/Oak-Web-Application/commit/4c7a670cb117ff8aed894b758c8a28e78c12461e))
+
+## [1.691.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.3...v1.691.4) (2025-02-17)
+
+
+### Bug Fixes
+
+* add tests ([20bf47b](https://github.com/oaknational/Oak-Web-Application/commit/20bf47bc3ec24e2d5072554d6e5ff06c8f72c20a))
+* apply same rules on media page ([b965c60](https://github.com/oaknational/Oak-Web-Application/commit/b965c60ecc9b2cce75a792e325d9f063c04ae7b3))
+* check for actions ([bf7250e](https://github.com/oaknational/Oak-Web-Application/commit/bf7250e1bdf7284c2bd6f352ab56668cc310d469))
+* dont show double titles for PE ([0743bc8](https://github.com/oaknational/Oak-Web-Application/commit/0743bc88356b299162ff2feb52a3c3dc18d7496a))
+* fix learning cycle titles order ([ab55116](https://github.com/oaknational/Oak-Web-Application/commit/ab5511625b54e3300f26e9f9c7bef7b6a1e710d6))
+* fixed test ([f37bd48](https://github.com/oaknational/Oak-Web-Application/commit/f37bd488037848b6026182277bb770c9fdbf4243))
+* refactor ([44dfc18](https://github.com/oaknational/Oak-Web-Application/commit/44dfc18a8ebcb6fe29a326f3b5f2e5dd172eea6b))
+* use correct overwrite for MFL lessons ([0b4f9d0](https://github.com/oaknational/Oak-Web-Application/commit/0b4f9d03ba2dd6db20efae6cf9cafe90c7a4ff78))
+
 ## [1.691.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.2...v1.691.3) (2025-02-17)
 
 ## [1.691.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.1...v1.691.2) (2025-02-17)

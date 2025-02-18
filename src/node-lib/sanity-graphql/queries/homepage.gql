@@ -49,5 +49,8 @@ query homepage($isDraftFilter: Sanity_DocumentFilter) {
         altText
       }
     }
+    intro {
+      ...TextAndMedia
+    }
   }
 }

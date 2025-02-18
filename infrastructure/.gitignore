@@ -5,6 +5,9 @@
 *.tfstate
 *.tfstate.*
 
+#terraform file
+backend.tf
+
 # Crash log files
 crash.log
 crash.*.log
