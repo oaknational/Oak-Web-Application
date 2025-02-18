@@ -20,6 +20,10 @@ const RiskAssessmentCheckboxLabel = () => (
         "https://www.thenational.academy/legal/physical-activity-disclaimer"
       }
       target="_blank"
+      iconName="external"
+      isTrailingIcon
+      iconWidth="all-spacing-5"
+      iconHeight="all-spacing-5"
     >
       risk assessment
     </OakLink>{" "}
@@ -73,9 +77,13 @@ const RiskAssessmentCheckbox: FC<RiskAssessmentCheckboxProps> = ({
           element={Link}
           href={"https://www.afpe.org.uk/page/Safe_Practice_in_PESSPA#"}
           target="_blank"
+          iconName="external"
+          iconWidth="all-spacing-5"
+          iconHeight="all-spacing-5"
+          isTrailingIcon
         >
           'Safe Practice: in PESSPA’
-        </OakLink>{" "}
+        </OakLink>
         .
       </OakP>
     </OakBox>
