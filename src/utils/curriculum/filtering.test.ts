@@ -1,8 +1,8 @@
 import {
-  getDefaultChildSubject,
+  getDefaultChildSubjectForYearGroup,
   getDefaultFilter,
-  getDefaultSubjectCategories,
-  getDefaultTiers,
+  getDefaultSubjectCategoriesForYearGroup,
+  getDefaultTiersForYearGroup,
   getFilterData,
 } from "./filtering";
 import { Unit } from "./types";
@@ -10,7 +10,7 @@ import { Unit } from "./types";
 import { CurriculumUnitsYearData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 describe("filtering", () => {
-  it("getDefaultChildSubject", () => {
+  it("getDefaultChildSubjectForYearGroup", () => {
     const input = {
       "7": {
         units: [] as Unit[],
@@ -21,10 +21,10 @@ describe("filtering", () => {
         childSubjects: [{ subject: "Physics", subject_slug: "physics" }],
       } as CurriculumUnitsYearData[number],
     };
-    const out = getDefaultChildSubject(input);
+    const out = getDefaultChildSubjectForYearGroup(input);
     expect(out).toEqual(["biology"]);
   });
-  it("getDefaultSubjectCategories", () => {
+  it("getDefaultSubjectCategoriesForYearGroup", () => {
     const input = {
       "7": {
         units: [] as Unit[],
@@ -35,10 +35,10 @@ describe("filtering", () => {
         subjectCategories: [{ id: 2 }],
       } as CurriculumUnitsYearData[number],
     };
-    const out = getDefaultSubjectCategories(input);
+    const out = getDefaultSubjectCategoriesForYearGroup(input);
     expect(out).toEqual(["1"]);
   });
-  it("getDefaultTiers", () => {
+  it("getDefaultTiersForYearGroup", () => {
     const input = {
       "7": {
         units: [] as Unit[],
@@ -49,7 +49,7 @@ describe("filtering", () => {
         tiers: [{ tier_slug: "foundation", tier: "Foundation" }],
       } as CurriculumUnitsYearData[number],
     };
-    const out = getDefaultTiers(input);
+    const out = getDefaultTiersForYearGroup(input);
     expect(out).toEqual(["foundation"]);
   });
 
