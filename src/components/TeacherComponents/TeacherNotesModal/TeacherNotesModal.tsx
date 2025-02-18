@@ -204,8 +204,6 @@ export const TeacherNotesModal = ({
       navigator.clipboard.writeText(sharingUrl);
     }
 
-    console.log(editor?.getText());
-
     if (shareActivated) {
       shareActivated(editor?.getText()?.length);
     }

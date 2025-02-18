@@ -11,22 +11,31 @@ import {
   HomePageProps,
 } from "@/pages-helpers/home/getBlogPosts";
 
-const Pupils: NextPage<HomePageProps> = (props) => (
-  <AppLayout
-    seoProps={{
-      title:
-        "Free online lessons, videos and quizzes for pupils | Oak National Academy",
-      description:
-        "Looking for online lessons from KS1 to KS4? Browse and find free videos, quizzes and lessons, just find your year group, subject and lesson and get started.",
-    }}
-    $background={"white"}
-  >
-    <Banners />
-    <HomePageTabImageNav current={"pupils"} />
-    <PupilTab aria-current="page" />
-    <HomePageLowerView posts={props.posts} />
-  </AppLayout>
-);
+const Pupils: NextPage<HomePageProps> = (props) => {
+  const testimonials = props.pageData?.testimonials;
+  const intro = props.pageData?.intro;
+
+  return (
+    <AppLayout
+      seoProps={{
+        title:
+          "Free online lessons, videos and quizzes for pupils | Oak National Academy",
+        description:
+          "Looking for online lessons from KS1 to KS4? Browse and find free videos, quizzes and lessons, just find your year group, subject and lesson and get started.",
+      }}
+      $background={"white"}
+    >
+      <Banners />
+      <HomePageTabImageNav current={"pupils"} />
+      <PupilTab aria-current="page" />
+      <HomePageLowerView
+        posts={props.posts}
+        testimonials={testimonials}
+        introVideo={intro}
+      />
+    </AppLayout>
+  );
+};
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async (
   context,
