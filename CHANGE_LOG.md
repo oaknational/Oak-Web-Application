@@ -1,3 +1,11 @@
+## [1.693.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.2...v1.693.3) (2025-02-19)
+
+
+### Bug Fixes
+
+* updated oak components to fix hydration issue ([7ff5229](https://github.com/oaknational/Oak-Web-Application/commit/7ff5229b54742031b0049cd6874641abf187e7fb))
+* updated snapshot ([05a6f41](https://github.com/oaknational/Oak-Web-Application/commit/05a6f418d14aff5e5a7e669f3508c4e3e93eac28))
+
 ## [1.693.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.1...v1.693.2) (2025-02-19)
 
 
