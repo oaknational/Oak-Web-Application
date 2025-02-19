@@ -67,5 +67,10 @@
     "logLessonAttemptUrl": "https://pupil-api-beta.thenational.academy/v1/log-lesson-attempt",
     "addTeacherNoteUrl": "https://pupil-api-beta.thenational.academy/v1/add-teacher-note",
     "getTeacherNoteUrl": "https://pupil-api-beta.thenational.academy/v1/get-teacher-note"
+  },
+  "sentry": {
+    "dsn": "https://sentry.io/00000000000000",
+    "organisationIdentifier": "oak-national-academy",
+    "projectIdentifier": "oak-web-application"
   }
 }
