@@ -3,14 +3,14 @@ import { getByTestId, waitFor } from "@testing-library/react";
 
 import curriculumPhaseOptions from "@/browser-lib/fixtures/curriculumPhaseOptions";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
-import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { renderWithProvidersByName } from "@/__tests__/__helpers__/renderWithProviders";
 
 jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
   default: () => false,
 }));
 
-const render = renderWithProviders();
+const render = renderWithProvidersByName(["oakTheme", "theme"]);
 
 const curriculumVisualiserAccessed = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
