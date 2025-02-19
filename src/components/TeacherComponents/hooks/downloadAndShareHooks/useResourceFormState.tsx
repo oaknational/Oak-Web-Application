@@ -104,13 +104,15 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
         const schoolId = hubspotContact.schoolId;
         const schoolName = hubspotContact.schoolName;
 
+        // @sonar-ignore
+        // current sonar rule typescript:S6606 incorrectly flags this, see open issue here https://sonarsource.atlassian.net/browse/JS-373
         const school = {
-          schoolId: schoolId ?? "notListed",
-          schoolName: schoolName ?? "notListed",
+          schoolId: schoolId || "notListed",
+          schoolName: schoolName || "notListed",
         };
+        // @sonar-end
 
         setSchoolInLocalStorage(school);
-
         setSchoolFromHubspot(school);
 
         if (schoolName) {
