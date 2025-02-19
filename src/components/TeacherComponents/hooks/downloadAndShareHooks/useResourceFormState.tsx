@@ -97,6 +97,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       setTermsInLocalStorage(true);
       setValue("terms", true);
 
+      setValue("riskAssessment", true);
+
       setEmailInLocalStorage(email);
       setValue("email", email);
 

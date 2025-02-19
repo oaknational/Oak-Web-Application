@@ -51,26 +51,6 @@ export type TermsAgreementFormProps = {
     >;
   };
 };
-// } & (
-//   {
-//     showRiskAssessmentCheckbox?: false;
-//     form: {
-//       errors: FieldErrors<ResourceFormProps>;
-//       register: UseFormRegister<ResourceFormProps>;
-//       control: Control<ResourceFormProps>;
-//       trigger: UseFormTrigger<ResourceFormProps>;
-//     }
-//   } |
-//   {
-//     showRiskAssessmentCheckbox: true;
-//     form: {
-//       errors: FieldErrors<ResourceFormWithRiskAssessmentProps>;
-//       register: UseFormRegister<ResourceFormWithRiskAssessmentProps>;
-//       control: Control<ResourceFormWithRiskAssessmentProps>;
-//       trigger: UseFormTrigger<ResourceFormWithRiskAssessmentProps>;
-//     }
-//   }
-// );
 
 const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
   form,
