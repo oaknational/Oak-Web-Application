@@ -1,3 +1,10 @@
+## [1.694.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.1...v1.694.2) (2025-02-19)
+
+
+### Bug Fixes
+
+* speed up tests by adding missing key and minimizing providers ([b5454b7](https://github.com/oaknational/Oak-Web-Application/commit/b5454b78d7ced0b1144678e05e11f1ccbb2b7626))
+
 ## [1.694.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.0...v1.694.1) (2025-02-19)
 
 # [1.694.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.3...v1.694.0) (2025-02-19)
