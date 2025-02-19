@@ -1,3 +1,10 @@
+# [1.694.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.3...v1.694.0) (2025-02-19)
+
+
+### Features
+
+* added buildPageTitle with update title rules for curric visualiser ([da103d2](https://github.com/oaknational/Oak-Web-Application/commit/da103d2145b3060dd727d4435611482a2592f5fb))
+
 ## [1.693.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.2...v1.693.3) (2025-02-19)
 
 
