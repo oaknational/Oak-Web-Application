@@ -1,3 +1,10 @@
+## [1.693.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.1...v1.693.2) (2025-02-19)
+
+
+### Bug Fixes
+
+* use logical or instead of nullish coalescing for hubspot school values ([8217e69](https://github.com/oaknational/Oak-Web-Application/commit/8217e69a7c7bc3deda6533c1ca2ed9c69ebf9cdd))
+
 ## [1.693.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.0...v1.693.1) (2025-02-18)
 
 # [1.693.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.692.0...v1.693.0) (2025-02-18)
