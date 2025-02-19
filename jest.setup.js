@@ -40,6 +40,18 @@ jest.mock("@bugsnag/js", () => ({
   },
 }));
 
+/**
+ * Mock the ErrorBoundary component globally to avoid it swallowing errors in tests.
+ * This is necessary as the ErrorBoundary wraps the entire app. If an error is thrown
+ * in a test, we want Jest to see it and fail the test.
+ */
+jest.mock("./src/components/AppComponents/ErrorBoundary/ErrorBoundary", () => {
+  return {
+    __esModule: true,
+    default: ({ children }) => children,
+  };
+});
+
 jest.mock("./src/node-lib/curriculum-api-2023", () =>
   jest.requireActual("./src/node-lib/curriculum-api-2023/__mocks__"),
 );

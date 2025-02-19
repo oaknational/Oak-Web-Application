@@ -14,6 +14,15 @@ import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentPro
 const consoleLogSpy = jest.spyOn(console, "log");
 const consoleErrorSpy = jest.spyOn(console, "error");
 
+jest.mock("@/components/AppComponents/ErrorBoundary/ErrorBoundary", () => {
+  return {
+    __esModule: true,
+    ...jest.requireActual(
+      "@/components/AppComponents/ErrorBoundary/ErrorBoundary",
+    ),
+  };
+});
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 useRouter.mockReturnValue({
