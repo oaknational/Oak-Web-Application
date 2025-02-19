@@ -263,7 +263,7 @@ describe("useResourceFormState", () => {
         expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith(true),
       );
     });
-    test('should set school as "notListed" when hubsport returns emptry string for values', async () => {
+    test('should set school as "notListed" when hubspot returns empty string for values', async () => {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const useFormSpy = jest.spyOn(require("react-hook-form"), "useForm");
       setUseUserReturn({
