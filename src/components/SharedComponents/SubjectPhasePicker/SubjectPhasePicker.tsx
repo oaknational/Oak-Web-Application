@@ -730,6 +730,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     >
                       {sortBy(subjects, "title").map((subject) => (
                         <ButtonContainer
+                          key={subject.slug}
                           className={`lot-picker subject-selection ${
                             isSelected(subject) ? "selected" : ""
                           }`}
