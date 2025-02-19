@@ -71,3 +71,34 @@ export function getSuffixFromFeatures(features: Actions) {
   }
   return;
 }
+
+export function buildPageTitle(
+  keyStages: string[],
+  subject: { title: string; slug: string },
+  phase: { title: string; slug: string },
+) {
+  let pageTitle: string = "";
+  const keyStageStrings: string[] = [];
+  if (keyStages.includes("ks1")) keyStageStrings.push("KS1");
+  if (keyStages.includes("ks2")) keyStageStrings.push("KS2");
+  if (keyStages.includes("ks3")) keyStageStrings.push("KS3");
+  if (keyStages.includes("ks4")) keyStageStrings.push("KS4");
+  const keyStageString = keyStageStrings.join(" & ");
+
+  const caseSubjectTitle = (title: string) => {
+    if (
+      ["english", "french", "spanish", "german"].includes(title.toLowerCase())
+    ) {
+      return [
+        title.slice(0, 1).toUpperCase(),
+        title.slice(1).toLowerCase(),
+      ].join("");
+    }
+    return title.toLowerCase();
+  };
+
+  if (["primary", "secondary"].includes(phase.slug)) {
+    pageTitle = `${keyStageString} ${caseSubjectTitle(subject.title)} curriculum`;
+  }
+  return pageTitle;
+}
