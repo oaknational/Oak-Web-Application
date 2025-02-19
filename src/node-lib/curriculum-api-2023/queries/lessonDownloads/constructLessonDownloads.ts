@@ -43,6 +43,10 @@ const constructLessonDownloads = (
     tierTitle: parsedCurrentLesson.programme_fields.tier_description,
     actions: keysToCamelCase(parsedCurrentLesson.actions),
   };
+  console.log(
+    "actions kamelcase",
+    keysToCamelCase(parsedCurrentLesson.actions),
+  );
 
   const unitLessonsArray = parsedBrowseData.map((lesson) => {
     return {

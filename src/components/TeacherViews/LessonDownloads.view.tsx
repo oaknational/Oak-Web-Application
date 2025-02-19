@@ -107,7 +107,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     actions,
   } = lesson;
 
-  const showRiskAssessmentCheckbox = actions?.disablePupilShare;
+  const showRiskAssessmentCheckbox = actions?.isPePractical;
 
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical
