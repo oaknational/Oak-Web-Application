@@ -73,6 +73,129 @@ function isHighlightedUnit(unit: Unit, selectedThreads: string[] | null) {
   });
 }
 
+function getSubjectCategoryMessage(
+  yearData: YearData,
+  currentYear: string,
+  subjectCategories: string[],
+): string | null {
+  if (subjectCategories.length === 0) return null;
+
+  const years = Object.keys(yearData).sort(sortYears);
+  const currentIndex = years.indexOf(currentYear);
+  if (currentIndex === -1) return null;
+
+  // Phase boundary detection
+  const phaseMap = {
+    primary: { start: 1, end: 6 },
+    secondary: { start: 7, end: 11 },
+  };
+
+  const currentYearNum = parseInt(currentYear.replace("year-", ""));
+  const currentPhase = currentYearNum <= 6 ? "primary" : "secondary";
+  const phaseEndYear = `year-${phaseMap[currentPhase].end}`;
+
+  // Get category titles and check for any units in phase
+  const categoryTitles = Array.from(
+    new Set(
+      years
+        .flatMap((year) =>
+          yearData[year]?.subjectCategories
+            .filter((sc) => subjectCategories.includes(sc.id.toString()))
+            .map((sc) => sc.title),
+        )
+        .filter(Boolean),
+    ),
+  );
+
+  if (categoryTitles.length === 0) return null;
+
+  // First check if any units exist in the entire phase
+  const hasAnyUnitsInPhase = years
+    .filter((y) => {
+      const yNum = parseInt(y.replace("year-", ""));
+      return currentPhase === "primary" ? yNum <= 6 : yNum >= 7 && yNum <= 11;
+    })
+    .some((year) =>
+      yearData[year]?.units.some((unit) =>
+        unit.subjectcategories?.some((sc) =>
+          subjectCategories.includes(sc.id.toString()),
+        ),
+      ),
+    );
+
+  if (!hasAnyUnitsInPhase) {
+    return `No ${categoryTitles.join(", ")} units in this year`;
+  }
+
+  // Then check if the current year has any units for the selected subject category
+  const hasCurrentYearUnits = yearData[currentYear]?.units.some((unit) =>
+    unit.subjectcategories?.some((sc) =>
+      subjectCategories.includes(sc.id.toString()),
+    ),
+  );
+
+  if (!hasCurrentYearUnits) {
+    // Find first subsequent year with units for subject category
+    const subsequentYears = years.slice(currentIndex + 1).filter((y) => {
+      const yNum = parseInt(y.replace("year-", ""));
+      return currentPhase === "primary" ? yNum <= 6 : yNum >= 7;
+    });
+
+    const firstSubsequentYearWithUnits = subsequentYears.find((year) =>
+      yearData[year]?.units.some((unit) =>
+        unit.subjectcategories?.some((sc) =>
+          subjectCategories.includes(sc.id.toString()),
+        ),
+      ),
+    );
+
+    if (firstSubsequentYearWithUnits) {
+      const cleanYear = firstSubsequentYearWithUnits.replace("year-", "");
+      return `'${categoryTitles.join(", ")}' units continue in Year ${cleanYear}`;
+    }
+
+    // If no subsequent units in phase, check if the year is the last year of the phase
+    if (currentYear === phaseEndYear) {
+      return `No further ${categoryTitles.join(", ")} units in this year`;
+    }
+
+    // Check if all remaining years in phase lack units
+    const allSubsequentInPhaseEmpty = subsequentYears.every(
+      (year) =>
+        !yearData[year]?.units.some((unit) =>
+          unit.subjectcategories?.some((sc) =>
+            subjectCategories.includes(sc.id.toString()),
+          ),
+        ),
+    );
+
+    if (allSubsequentInPhaseEmpty) {
+      return currentPhase === "primary"
+        ? `No further '${categoryTitles.join(", ")}' units`
+        : `No further '${categoryTitles.join(", ")}' units`;
+    }
+
+    // Fallback to previous implementation for edge cases
+    const previousYears = years.slice(0, currentIndex).reverse();
+    const firstPreviousYearWithUnits = previousYears.find((year) =>
+      yearData[year]?.units.some((unit) =>
+        unit.subjectcategories?.some((sc) =>
+          subjectCategories.includes(sc.id.toString()),
+        ),
+      ),
+    );
+
+    if (firstPreviousYearWithUnits) {
+      const cleanYear = firstPreviousYearWithUnits.replace("year-", "");
+      return `'${categoryTitles.join(", ")}' units start in Year ${cleanYear}`;
+    }
+
+    return `No ${categoryTitles.join(", ")} units in this year`;
+  }
+
+  return null;
+}
+
 // Function component
 
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
@@ -162,28 +285,16 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           .filter((year) => filterIncludes("years", [year]))
           .sort(sortYears)
           .map((year, index) => {
-            const { units, labels, childSubjects, subjectCategories, tiers } =
-              yearData[year] as YearData[string];
+            const { units, labels } = yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
             };
 
-            const yearFilters = {
-              childSubjects:
-                childSubjects.length > 1 ? filters.childSubjects : undefined,
-              subjectCategories:
-                childSubjects.length < 1 && subjectCategories.length > 1
-                  ? filters.subjectCategories
-                  : undefined,
-              tiers: tiers.length > 0 ? filters.tiers : undefined,
-              years: filters.years,
-              threads: filters.threads,
-            };
-
             const filteredUnits = units.filter((unit: Unit) =>
-              isVisibleUnit(yearFilters, year, unit),
+              isVisibleUnit(filters, year, unit),
             );
+
             const dedupedUnits = dedupUnits(filteredUnits);
 
             const features = getUnitFeatures(units[0]);
@@ -237,7 +348,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 >
                   <UnitList role="list">
                     {dedupedUnits.length < 1 && (
-                      <OakP>No units for filter in this year</OakP>
+                      <OakP>
+                        {getSubjectCategoryMessage(
+                          yearData,
+                          year,
+                          filters.subjectCategories,
+                        ) || "No units for filter in this year"}
+                      </OakP>
                     )}
                     {dedupedUnits.map((unit: Unit, index: number) => {
                       const isHighlighted = isHighlightedUnit(

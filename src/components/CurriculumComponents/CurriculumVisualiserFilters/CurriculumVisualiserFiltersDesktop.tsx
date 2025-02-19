@@ -175,6 +175,7 @@ export default function CurriculumVisualiserFiltersDesktop({
                 <OakRadioAsButton
                   key={subjectCategory.id}
                   value={String(subjectCategory.id)}
+                  data-testid={`subject-category-radio-${subjectCategory.id}`}
                   displayValue={subjectCategory.title}
                   icon={getValidSubjectCategoryIconById(subjectCategory.id)}
                 />
