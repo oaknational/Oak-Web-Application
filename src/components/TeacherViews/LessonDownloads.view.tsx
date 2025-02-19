@@ -17,6 +17,7 @@ import useResourceFormSubmit from "@/components/TeacherComponents/hooks/download
 import useOptionalDownloadSignUp from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useOptionalDownloadSignUp";
 import {
   ResourceFormProps,
+  ResourceFormWithRiskAssessmentProps,
   DownloadResourceType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import Breadcrumbs from "@/components/SharedComponents/Breadcrumbs";
@@ -107,7 +108,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     actions,
   } = lesson;
 
-  const showRiskAssessmentCheckbox = actions?.isPePractical;
+  const showRiskAssessmentCheckbox = !!actions?.isPePractical;
 
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical
@@ -177,6 +178,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     setEmailInLocalStorage,
     hubspotLoaded,
   } = useResourceFormState({
+    hasRiskAssesmentCheckbox: showRiskAssessmentCheckbox,
     downloadResources: downloadsFilteredByCopyright,
     type: "download",
   });
@@ -212,7 +214,9 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   const [isDownloadSuccessful, setIsDownloadSuccessful] =
     useState<boolean>(false);
 
-  const onFormSubmit = async (data: ResourceFormProps): Promise<void> => {
+  const onFormSubmit = async (
+    data: ResourceFormProps | ResourceFormWithRiskAssessmentProps,
+  ): Promise<void> => {
     setApiError(null);
     await onHubspotSubmit(data);
 

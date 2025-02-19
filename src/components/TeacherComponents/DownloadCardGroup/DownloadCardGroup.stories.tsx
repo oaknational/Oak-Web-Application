@@ -3,7 +3,10 @@ import { useForm } from "react-hook-form";
 
 import Component, { DownloadCardGroupProps } from "./DownloadCardGroup";
 
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import {
+  ResourceFormProps,
+  ResourceFormWithRiskAssessmentProps,
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import * as downloads from "@/node-lib/curriculum-api-2023/fixtures/downloads.fixture";
 
 const meta: Meta<typeof Component> = {
@@ -15,7 +18,9 @@ export default meta;
 type Story = StoryObj<typeof Component>;
 
 const Wrapper = (args: DownloadCardGroupProps) => {
-  const { control } = useForm<ResourceFormProps>({
+  const { control } = useForm<
+    ResourceFormProps | ResourceFormWithRiskAssessmentProps
+  >({
     mode: "onBlur",
   });
   return <Component {...args} control={control} />;

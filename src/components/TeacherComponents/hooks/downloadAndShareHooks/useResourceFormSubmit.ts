@@ -6,6 +6,7 @@ import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 import type {
   DownloadResourceType,
   ResourceFormProps,
+  ResourceFormWithRiskAssessmentProps,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 
@@ -24,7 +25,10 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
   const authFlagEnabled =
     useFeatureFlagVariantKey("teacher-download-auth") === "with-login";
 
-  const onSubmit = async (data: ResourceFormProps, slug: string) => {
+  const onSubmit = async (
+    data: ResourceFormProps | ResourceFormWithRiskAssessmentProps,
+    slug: string,
+  ) => {
     if (props.onSubmit) {
       props.onSubmit();
     }

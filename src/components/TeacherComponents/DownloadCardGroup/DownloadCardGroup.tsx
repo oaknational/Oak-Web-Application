@@ -5,6 +5,7 @@ import styled from "styled-components";
 import type {
   DownloadResourceType,
   ResourceFormProps,
+  ResourceFormWithRiskAssessmentProps,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { sortDownloadResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
@@ -14,7 +15,7 @@ import { OakGrid } from "@/styles/oakThemeApp";
 
 export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsPageData["downloads"];
-  control: Control<ResourceFormProps>;
+  control: Control<ResourceFormProps | ResourceFormWithRiskAssessmentProps>;
   hasError?: boolean;
   triggerForm: () => void;
 };

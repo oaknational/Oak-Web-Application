@@ -22,15 +22,12 @@ import ResourcePageSchoolDetails from "@/components/TeacherComponents/ResourcePa
 import ResourcePageTermsAndConditionsCheckbox from "@/components/TeacherComponents/ResourcePageTermsAndConditionsCheckbox";
 import RiskAssessmentCheckbox from "@/components/TeacherComponents/RiskAssessmentCheckbox";
 import CopyrightNotice from "@/components/TeacherComponents/CopyrightNotice";
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import {
+  ResourceFormProps,
+  ResourceFormWithRiskAssessmentProps,
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 export type TermsAgreementFormProps = {
-  form: {
-    control: Control<ResourceFormProps>;
-    register: UseFormRegister<ResourceFormProps>;
-    errors: FieldErrors<ResourceFormProps>;
-    trigger: UseFormTrigger<ResourceFormProps>;
-  };
   isLoading?: boolean;
   email?: string;
   schoolId?: string;
@@ -40,8 +37,40 @@ export type TermsAgreementFormProps = {
   handleEditDetailsCompletedClick?: () => void;
   showPostAlbCopyright?: boolean;
   copyrightYear: string;
-  showRiskAssessmentCheckbox?: boolean;
+  showRiskAssessmentCheckbox: boolean;
+  form: {
+    errors: FieldErrors<
+      ResourceFormProps | ResourceFormWithRiskAssessmentProps
+    >;
+    register: UseFormRegister<
+      ResourceFormProps | ResourceFormWithRiskAssessmentProps
+    >;
+    control: Control<ResourceFormProps | ResourceFormWithRiskAssessmentProps>;
+    trigger: UseFormTrigger<
+      ResourceFormProps | ResourceFormWithRiskAssessmentProps
+    >;
+  };
 };
+// } & (
+//   {
+//     showRiskAssessmentCheckbox?: false;
+//     form: {
+//       errors: FieldErrors<ResourceFormProps>;
+//       register: UseFormRegister<ResourceFormProps>;
+//       control: Control<ResourceFormProps>;
+//       trigger: UseFormTrigger<ResourceFormProps>;
+//     }
+//   } |
+//   {
+//     showRiskAssessmentCheckbox: true;
+//     form: {
+//       errors: FieldErrors<ResourceFormWithRiskAssessmentProps>;
+//       register: UseFormRegister<ResourceFormWithRiskAssessmentProps>;
+//       control: Control<ResourceFormWithRiskAssessmentProps>;
+//       trigger: UseFormTrigger<ResourceFormWithRiskAssessmentProps>;
+//     }
+//   }
+// );
 
 const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
   form,
@@ -77,7 +106,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
       )}
       {!isLoading && (
         <OakFlex $flexDirection="column" $gap={"space-between-m"}>
-          {showSavedDetails ? (
+          {showSavedDetails && !showRiskAssessmentCheckbox ? (
             <ResourcePageDetailsCompleted
               email={email}
               school={schoolName}
@@ -175,11 +204,11 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                     return (
                       <RiskAssessmentCheckbox
                         name={name}
-                        checked={value || false}
+                        checked={value}
                         onChange={onChangeHandler}
                         onBlur={onBlur}
                         id={"riskAssessment"}
-                        errorMessage={form.errors?.riskAssessment?.message}
+                        // errorMessage={form.errors?.riskAssessment?.message}
                       />
                     );
                   }}

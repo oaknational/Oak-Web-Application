@@ -5,6 +5,7 @@ import {
   preselectedResourceType,
   preselectedShareType,
   resourceFormValuesSchema,
+  resourceFormValuesWithRiskAssessmentSchema,
 } from "@/components/TeacherComponents/downloadAndShare.schema";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
 import {
@@ -85,3 +86,17 @@ export type ResourceFormProps = ResourceFormValues & {
 };
 
 export type ErrorKeysType = keyof Omit<ResourceFormProps, "onSubmit">;
+
+export type ResourceFormWithRiskAssessmentValues = z.infer<
+  typeof resourceFormValuesWithRiskAssessmentSchema
+>;
+export type ResourceFormWithRiskAssessmentProps =
+  ResourceFormWithRiskAssessmentValues & {
+    onSubmit: (
+      values: ResourceFormWithRiskAssessmentValues,
+    ) => Promise<string | void>;
+  };
+export type ErrorKeysWithRiskAssessmentType = keyof Omit<
+  ResourceFormWithRiskAssessmentProps,
+  "onSubmit"
+>;

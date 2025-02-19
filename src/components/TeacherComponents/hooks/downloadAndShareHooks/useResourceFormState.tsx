@@ -15,6 +15,7 @@ import {
 import {
   ResourceFormProps,
   ResourceType,
+  ResourceFormWithRiskAssessmentProps,
   isPreselectedDownloadType,
   isPreselectedShareType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
@@ -26,6 +27,7 @@ import {
   preselectedDownloadType,
   preselectedShareType,
   resourceFormValuesSchema,
+  resourceFormValuesWithRiskAssessmentSchema,
 } from "@/components/TeacherComponents/downloadAndShare.schema";
 import { CurriculumDownload } from "@/components/CurriculumComponents/CurriculumDownloads/CurriculumDownloads";
 import { LessonShareData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
@@ -35,11 +37,15 @@ export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
   | {
       downloadResources: LessonDownloadsPageData["downloads"];
+      hasRiskAssesmentCheckbox?: boolean;
       type: "download";
     }
   | { curriculumResources: CurriculumDownload[]; type: "curriculum" };
 
 export const useResourceFormState = (props: UseResourceFormStateProps) => {
+  const hasRiskAssesment =
+    props.type === "download" && !!props?.hasRiskAssesmentCheckbox;
+
   const {
     register,
     formState,
@@ -48,10 +54,13 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     trigger,
     watch,
     handleSubmit,
-  } = useForm<ResourceFormProps>({
-    resolver: zodResolver(resourceFormValuesSchema),
+  } = useForm<ResourceFormProps | ResourceFormWithRiskAssessmentProps>({
+    resolver: hasRiskAssesment
+      ? zodResolver(resourceFormValuesWithRiskAssessmentSchema)
+      : zodResolver(resourceFormValuesSchema),
     mode: "onBlur",
   });
+
   const [preselectAll, setPreselectAll] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [isLocalStorageLoading, setIsLocalStorageLoading] = useState(true);

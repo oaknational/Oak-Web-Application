@@ -1,4 +1,7 @@
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import {
+  ResourceFormProps,
+  ResourceFormWithRiskAssessmentProps,
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { getHubspotDownloadsFormPayload } from "@/browser-lib/hubspot/forms/getHubspotFormPayloads";
 import getHubspotUserToken from "@/browser-lib/hubspot/forms/getHubspotUserToken";
 import useUtmParams from "@/hooks/useUtmParams";
@@ -15,7 +18,9 @@ export const useHubspotSubmit = () => {
   const hubspotDownloadsFormId = getBrowserConfig("hubspotDownloadsFormId");
   const reportError = errorReporter("hubsportSubmitForm");
 
-  const onHubspotSubmit = async (data: ResourceFormProps) => {
+  const onHubspotSubmit = async (
+    data: ResourceFormProps | ResourceFormWithRiskAssessmentProps,
+  ) => {
     const school =
       data.school === "homeschool" || data.school === "notListed"
         ? data.school

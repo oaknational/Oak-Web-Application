@@ -1,7 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Control, useForm } from "react-hook-form";
 
-import { ResourceFormProps } from "../types/downloadAndShare.types";
+import {
+  ResourceFormProps,
+  ResourceFormWithRiskAssessmentProps,
+} from "../types/downloadAndShare.types";
 
 import Component, { LessonShareCardGroupProps } from "./LessonShareCardGroup";
 
@@ -33,7 +36,11 @@ const Wrapper = (args: LessonShareCardGroupProps) => {
   return (
     <Component
       {...args}
-      control={control as unknown as Control<ResourceFormProps>}
+      control={
+        control as unknown as Control<
+          ResourceFormProps | ResourceFormWithRiskAssessmentProps
+        >
+      }
       shareLink="https://example.com"
     />
   );

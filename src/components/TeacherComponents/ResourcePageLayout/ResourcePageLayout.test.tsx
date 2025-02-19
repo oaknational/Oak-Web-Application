@@ -6,7 +6,10 @@ import ResourcePageLayout, {
   ResourcePageLayoutProps,
 } from "./ResourcePageLayout";
 
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import {
+  ResourceFormProps,
+  ResourceFormWithRiskAssessmentProps,
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 type PropsWithoutForm = Omit<
@@ -35,7 +38,9 @@ const props: PropsWithoutForm = {
 };
 
 const ComponentWrapper = (props: PropsWithoutForm) => {
-  const { control, register, trigger } = useForm<ResourceFormProps>();
+  const { control, register, trigger } = useForm<
+    ResourceFormProps | ResourceFormWithRiskAssessmentProps
+  >();
 
   return (
     <ResourcePageLayout

@@ -1,8 +1,8 @@
 import { FieldErrors } from "react-hook-form";
 
 import type {
-  ErrorKeysType,
-  ResourceFormProps,
+  ErrorKeysWithRiskAssessmentType,
+  ResourceFormWithRiskAssessmentProps,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 
 type ErrorMessagesAndOrderType = {
@@ -10,9 +10,11 @@ type ErrorMessagesAndOrderType = {
   message: string;
 };
 
-export const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
+export const getDownloadFormErrorMessage = (
+  errorsArray: ErrorKeysWithRiskAssessmentType[],
+) => {
   const errorMessagesAndOrder: Record<
-    ErrorKeysType,
+    ErrorKeysWithRiskAssessmentType,
     ErrorMessagesAndOrderType
   > = {
     school: {
@@ -39,7 +41,7 @@ export const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
   );
 
   const errorMessagesArray = sortedErrorsArray
-    .map((errorKey: ErrorKeysType) =>
+    .map((errorKey: ErrorKeysWithRiskAssessmentType) =>
       errorMessagesAndOrder[errorKey]
         ? errorMessagesAndOrder[errorKey]?.message
         : undefined,
@@ -50,11 +52,11 @@ export const getDownloadFormErrorMessage = (errorsArray: ErrorKeysType[]) => {
 };
 
 export const getFormErrorMessages = (
-  errors: FieldErrors<ResourceFormProps>,
+  errors: FieldErrors<ResourceFormWithRiskAssessmentProps>,
 ) => {
   const errorKeyArray = Object.keys(errors);
   const errorMessage = getDownloadFormErrorMessage(
-    errorKeyArray as ErrorKeysType[],
+    errorKeyArray as ErrorKeysWithRiskAssessmentType[],
   );
   return errorMessage;
 };

@@ -16,7 +16,10 @@ import {
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { getFormErrorMessages } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getDownloadFormErrorMessage";
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import {
+  ResourceFormProps,
+  ResourceFormWithRiskAssessmentProps,
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import { useResourceFormState } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormState";
@@ -177,7 +180,9 @@ function CurriculumDownloads(
   };
 
   // Simplified onFormSubmit using helper functions
-  const onFormSubmit = async (data: ResourceFormProps) => {
+  const onFormSubmit = async (
+    data: ResourceFormProps | ResourceFormWithRiskAssessmentProps,
+  ) => {
     try {
       setApiError(null);
       await onHubspotSubmit(data);
@@ -327,6 +332,7 @@ function CurriculumDownloads(
                   handleEditDetailsCompletedClick={
                     handleEditDetailsCompletedClick
                   }
+                  showRiskAssessmentCheckbox={false}
                 />
                 {hasFormErrors && (
                   <OakFlex $flexDirection={"row"} $mb={"space-between-s"}>

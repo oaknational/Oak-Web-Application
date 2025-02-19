@@ -19,7 +19,10 @@ import styled from "styled-components";
 
 import CopyrightNotice from "../CopyrightNotice";
 
-import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
+import {
+  ResourceFormProps,
+  ResourceFormWithRiskAssessmentProps,
+} from "@/components/TeacherComponents/types/downloadAndShare.types";
 import NoResourcesToDownload from "@/components/TeacherComponents/NoResourcesToDownload";
 import { ResourcePageDetailsCompletedProps } from "@/components/TeacherComponents/ResourcePageDetailsCompleted/ResourcePageDetailsCompleted";
 import { ResourcePageSchoolDetailsProps } from "@/components/TeacherComponents/ResourcePageSchoolDetails/ResourcePageSchoolDetails";
@@ -37,20 +40,20 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     header: string;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
-    errors: FieldErrors<ResourceFormProps>;
+    // errors: FieldErrors<ResourceFormProps>;
     cardGroup: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
     hideSelectAll?: boolean;
     schoolId?: string;
-    register: UseFormRegister<ResourceFormProps>;
-    control: Control<ResourceFormProps>;
+    // register: UseFormRegister<ResourceFormProps>;
+    // control: Control<ResourceFormProps>;
     showPostAlbCopyright: boolean;
     showSavedDetails: boolean;
     cta: React.ReactNode;
     page: "share" | "download";
     resourcesHeader?: string;
-    triggerForm: UseFormTrigger<ResourceFormProps>;
+    // triggerForm: UseFormTrigger<ResourceFormProps>;
     apiError?: string | null;
     updatedAt: string;
     showTermsAgreement: boolean;
@@ -58,7 +61,33 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     showDownloadSignUpButtons?: boolean;
     signUpButtons?: React.ReactNode | null;
     showRiskAssessmentCheckbox?: boolean;
+    errors: FieldErrors<
+      ResourceFormProps | ResourceFormWithRiskAssessmentProps
+    >;
+    register: UseFormRegister<
+      ResourceFormProps | ResourceFormWithRiskAssessmentProps
+    >;
+    control: Control<ResourceFormProps | ResourceFormWithRiskAssessmentProps>;
+    triggerForm: UseFormTrigger<
+      ResourceFormProps | ResourceFormWithRiskAssessmentProps
+    >;
   };
+// } & (
+//   {
+//     showRiskAssessmentCheckbox?: false;
+//     errors: FieldErrors<ResourceFormProps>;
+//     register: UseFormRegister<ResourceFormProps>;
+//     control: Control<ResourceFormProps>;
+//     triggerForm: UseFormTrigger<ResourceFormProps>;
+//   } |
+//   {
+//     showRiskAssessmentCheckbox: true;
+//     errors: FieldErrors<ResourceFormWithRiskAssessmentProps>;
+//     register: UseFormRegister<ResourceFormWithRiskAssessmentProps>;
+//     control: Control<ResourceFormWithRiskAssessmentProps>;
+//     triggerForm: UseFormTrigger<ResourceFormWithRiskAssessmentProps>;
+//   }
+// );
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
   return (
@@ -189,7 +218,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                 handleEditDetailsCompletedClick={props.onEditClick}
                 showPostAlbCopyright={props.showPostAlbCopyright}
                 copyrightYear={props.updatedAt}
-                showRiskAssessmentCheckbox={props.showRiskAssessmentCheckbox}
+                showRiskAssessmentCheckbox={!!props.showRiskAssessmentCheckbox}
               />
             )}
             {hasFormErrors && (

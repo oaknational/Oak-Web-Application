@@ -30,8 +30,7 @@ const useLocalStorageForDownloads = () => {
 
   const hasDetailsFromLocalStorage =
     (schoolFromLocalStorage.schoolId.length || emailFromLocalStorage.length) &&
-    termsFromLocalStorage &&
-    riskAssessmentFromLocalStorage;
+    termsFromLocalStorage;
 
   return {
     schoolFromLocalStorage,

@@ -24,6 +24,7 @@ import { useResourceFormState } from "@/components/TeacherComponents/hooks/downl
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
 import {
   ResourceFormProps,
+  ResourceFormWithRiskAssessmentProps,
   ResourceType,
 } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -141,7 +142,7 @@ export function LessonShare(props: LessonShareProps) {
   const { onHubspotSubmit } = useHubspotSubmit();
 
   const onFormSubmit = async (
-    data: ResourceFormProps,
+    data: ResourceFormProps | ResourceFormWithRiskAssessmentProps,
     shareMedium: ShareMediumValueType,
   ): Promise<void> => {
     await onSubmit(data, props.lesson.lessonSlug);
