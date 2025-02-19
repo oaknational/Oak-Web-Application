@@ -3,6 +3,7 @@ import {
   getPhaseText,
   getShortPhaseText,
   getSuffixFromFeatures,
+  buildPageTitle,
 } from "./formatting";
 
 describe("getYearGroupTitle", () => {
@@ -225,4 +226,68 @@ describe("getSuffixFromFeatures", () => {
   it("undefined if override not present", () => {
     expect(getSuffixFromFeatures(undefined)).toBe(undefined);
   });
+});
+
+describe("buildPageTitle", () => {
+  const testCases = [
+    {
+      input: {
+        keyStages: ["ks1", "ks2"],
+        subject: { title: "English", slug: "english" },
+        phase: { title: "Primary", slug: "primary" },
+      },
+      expectedOutput: "KS1 & KS2 English curriculum",
+    },
+    {
+      input: {
+        keyStages: ["ks1", "ks2"],
+        subject: { title: "French", slug: "french" },
+        phase: { title: "Primary", slug: "primary" },
+      },
+      expectedOutput: "KS1 & KS2 French curriculum",
+    },
+    {
+      input: {
+        keyStages: ["ks1", "ks2"],
+        subject: { title: "Spanish", slug: "spanish" },
+        phase: { title: "Primary", slug: "primary" },
+      },
+      expectedOutput: "KS1 & KS2 Spanish curriculum",
+    },
+    {
+      input: {
+        keyStages: ["ks1", "ks2"],
+        subject: { title: "German", slug: "german" },
+        phase: { title: "Primary", slug: "primary" },
+      },
+      expectedOutput: "KS1 & KS2 German curriculum",
+    },
+    {
+      input: {
+        keyStages: ["ks1", "ks2"],
+        subject: { title: "Art and design", slug: "art-and-design" },
+        phase: { title: "Primary", slug: "primary" },
+      },
+      expectedOutput: "KS1 & KS2 art and design curriculum",
+    },
+    {
+      input: {
+        keyStages: ["ks3", "ks4"],
+        subject: { title: "Maths", slug: "maths" },
+        phase: { title: "Secondary", slug: "secondary" },
+      },
+      expectedOutput: "KS3 & KS4 maths curriculum",
+    },
+  ];
+
+  for (const { input, expectedOutput } of testCases) {
+    it(`output: ${expectedOutput}`, () => {
+      const actualOutput = buildPageTitle(
+        input.keyStages,
+        input.subject,
+        input.phase,
+      );
+      expect(expectedOutput).toEqual(actualOutput);
+    });
+  }
 });
