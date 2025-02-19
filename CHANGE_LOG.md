@@ -1,3 +1,54 @@
+# [1.694.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.3...v1.694.0) (2025-02-19)
+
+
+### Features
+
+* added buildPageTitle with update title rules for curric visualiser ([da103d2](https://github.com/oaknational/Oak-Web-Application/commit/da103d2145b3060dd727d4435611482a2592f5fb))
+
+## [1.693.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.2...v1.693.3) (2025-02-19)
+
+
+### Bug Fixes
+
+* updated oak components to fix hydration issue ([7ff5229](https://github.com/oaknational/Oak-Web-Application/commit/7ff5229b54742031b0049cd6874641abf187e7fb))
+* updated snapshot ([05a6f41](https://github.com/oaknational/Oak-Web-Application/commit/05a6f418d14aff5e5a7e669f3508c4e3e93eac28))
+
+## [1.693.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.1...v1.693.2) (2025-02-19)
+
+
+### Bug Fixes
+
+* use logical or instead of nullish coalescing for hubspot school values ([8217e69](https://github.com/oaknational/Oak-Web-Application/commit/8217e69a7c7bc3deda6533c1ca2ed9c69ebf9cdd))
+
+## [1.693.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.0...v1.693.1) (2025-02-18)
+
+# [1.693.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.692.0...v1.693.0) (2025-02-18)
+
+
+### Bug Fixes
+
+* lint error ([5c8589f](https://github.com/oaknational/Oak-Web-Application/commit/5c8589fe61b0449a3b462782e8124f99a9acbe11))
+* linter issues ([6318ed7](https://github.com/oaknational/Oak-Web-Application/commit/6318ed79b95c0b8d210cb4c9c58b0ed83d98d2f5))
+* resolved conflicts ([ce15ed3](https://github.com/oaknational/Oak-Web-Application/commit/ce15ed38713f5a3ef6d28d0e89b99afc79610a46))
+* stack on tablet view ([45543dd](https://github.com/oaknational/Oak-Web-Application/commit/45543dd9a99e0c517b3022aef431a1b08351f26a))
+* update teacher notes props ([5caf698](https://github.com/oaknational/Oak-Web-Application/commit/5caf6980641b47ea3edef2e5923344a01b2119ee))
+
+
+### Features
+
+* add testimonials to all homepages ([16a7ef9](https://github.com/oaknational/Oak-Web-Application/commit/16a7ef9adf6eb4d857c8dcb2a1cb8198445667ba))
+* hide testimonials behind feature flag ([59ab2e9](https://github.com/oaknational/Oak-Web-Application/commit/59ab2e9968443eaaa0bcdebb48420869321f7dbc))
+* responsive layout ([8da7ad7](https://github.com/oaknational/Oak-Web-Application/commit/8da7ad77817fc10a1e17a6620943bb55aa6df8c2))
+* retrieve video from cms ([fa8fbd6](https://github.com/oaknational/Oak-Web-Application/commit/fa8fbd67ee0cb25e95dc347eb9990375244b6dee))
+* working on video ([a17f1e6](https://github.com/oaknational/Oak-Web-Application/commit/a17f1e6a8f50edc54f36751557910ca7558287cd))
+
+# [1.692.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.4...v1.692.0) (2025-02-17)
+
+
+### Features
+
+* add terms and conditions href ([4c7a670](https://github.com/oaknational/Oak-Web-Application/commit/4c7a670cb117ff8aed894b758c8a28e78c12461e))
+
 ## [1.691.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.691.3...v1.691.4) (2025-02-17)
 
 
