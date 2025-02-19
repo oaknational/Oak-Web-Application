@@ -210,6 +210,15 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  clerkSigningSecret: {
+    description:
+      "Note: this value must also be set in Netlify's environment vars since it is needed in middleware",
+    value: process.env.CLERK_SIGNING_SECRET,
+    envName: "CLERK_SIGNING_SECRET",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {

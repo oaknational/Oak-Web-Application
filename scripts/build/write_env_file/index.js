@@ -253,6 +253,9 @@ async function main() {
       oakConfig.clerk.publishableKey,
     CLERK_SECRET_KEY:
       process.env.CLERK_SECRET_KEY || secretsFromNetwork.CLERK_SECRET_KEY,
+    CLERK_SIGNING_SECRET:
+      process.env.CLERK_SIGNING_SECRET ||
+      secretsFromNetwork.CLERK_SIGNING_SECRET,
 
     // Geolocation
     DEVELOPMENT_USER_REGION:
