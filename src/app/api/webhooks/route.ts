@@ -15,7 +15,7 @@ export async function POST(req: Request) {
   const wh = new Webhook(SIGNING_SECRET);
 
   // Get headers
-  const headerPayload = await headers();
+  const headerPayload = headers();
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
   const svix_signature = headerPayload.get("svix-signature");
@@ -26,8 +26,6 @@ export async function POST(req: Request) {
       status: 400,
     });
   }
-
-  console.log("diego in api call");
 
   // Get body
   const payload = await req.json();
@@ -49,12 +47,10 @@ export async function POST(req: Request) {
     });
   }
 
-  // Do something with payload
-  // For this guide, log payload to console
-  const { id } = evt.data;
-  const eventType = evt.type;
-  console.log(`Received webhook with ID ${id} and event type of ${eventType}`);
-  console.log("Webhook payload:", body);
+  if (evt.type === "user.updated") {
+    // todo: upsert user in db
+    console.log(" userId:", evt.data.id);
+  }
 
   return new Response("Webhook received", { status: 200 });
 }
