@@ -18,7 +18,7 @@ function colorByStatusText(text?: string) {
   if (text === "passed") {
     return chalk.green(text);
   }
-  return chalk.gray(text);
+  return chalk.gray(text ?? "");
 }
 
 yargs(hideBin(process.argv))
@@ -82,7 +82,7 @@ yargs(hideBin(process.argv))
       for (const result of results) {
         if (result.assertions.length > 0) {
           console.log(`${chalk.green(result.name)} (${result.duration}ms)`);
-          result.assertions.map((assertion) => {
+          result.assertions.forEach((assertion) => {
             console.log(
               `  ${chalk.blue(assertion.duration + "ms")}: ${assertion.name} (${colorByStatusText(assertion.status)})`,
             );
