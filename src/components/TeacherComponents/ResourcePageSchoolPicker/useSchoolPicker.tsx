@@ -19,7 +19,7 @@ export const fetcher = (queryUrl: string) =>
           status: res.status,
           statusText: res.statusText,
           queryUrl,
-          json: res.json,
+          json: res.json(),
         },
       });
 

@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
 
 import { fetchHubspotContactDetails } from "../../helpers/downloadAndShareHelpers/fetchHubspotContactDetails";
-import { getSubscriptionStatus } from "../../OnboardingForm/onboardingActions";
 
 import useLocalStorageForDownloads from "./useLocalStorageForDownloads";
 
@@ -86,16 +85,11 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
     const updateUserDetailsFromHubspot = async (email: string) => {
       const hubspotContact = await fetchHubspotContactDetails();
-      const subscriptionStatus = await getSubscriptionStatus();
       setTermsInLocalStorage(true);
       setValue("terms", true);
 
-      if (subscriptionStatus) {
-        setEmailInLocalStorage(email);
-        setValue("email", email);
-      } else {
-        setEmailInLocalStorage("");
-      }
+      setEmailInLocalStorage(email);
+      setValue("email", email);
 
       if (hubspotContact) {
         const schoolId = hubspotContact.schoolId;

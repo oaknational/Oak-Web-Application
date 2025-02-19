@@ -16,7 +16,9 @@ import {
   CurriculumUnitsYearData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
-export function getDefaultChildSubject(data: CurriculumUnitsYearData) {
+export function getDefaultChildSubjectForYearGroup(
+  data: CurriculumUnitsYearData,
+) {
   const set = new Set<Subject>();
   Object.values(data).forEach((yearData) => {
     yearData.childSubjects.forEach((childSubject) => {
@@ -34,7 +36,9 @@ export function getDefaultChildSubject(data: CurriculumUnitsYearData) {
   }
   return [];
 }
-export function getDefaultSubjectCategories(data: CurriculumUnitsYearData) {
+export function getDefaultSubjectCategoriesForYearGroup(
+  data: CurriculumUnitsYearData,
+) {
   const set = new Set<Pick<SubjectCategory, "id">>();
   Object.values(data).forEach((yearData) => {
     yearData.subjectCategories.forEach((subjectCategory) =>
@@ -44,16 +48,15 @@ export function getDefaultSubjectCategories(data: CurriculumUnitsYearData) {
   const subjectCategories = [...set]
     .toSorted(
       sortSubjectCategoriesOnFeatures(
-        findFirstMatchingFeatures(
-          data,
-          (unit) => unit.features?.subjectcategories?.default_category_id,
-        ),
+        findFirstMatchingFeatures(data, (unit) => {
+          return unit.features?.subjectcategories?.default_category_id;
+        }),
       ),
     )
     .map((s) => String(s.id));
   return [subjectCategories[0]!];
 }
-export function getDefaultTiers(data: CurriculumUnitsYearData) {
+export function getDefaultTiersForYearGroup(data: CurriculumUnitsYearData) {
   const set = new Set<Tier>();
   Object.values(data).forEach((yearData) => {
     yearData.tiers.forEach((tier) => {
@@ -72,9 +75,9 @@ export function getDefaultTiers(data: CurriculumUnitsYearData) {
 
 export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
   return {
-    childSubjects: getDefaultChildSubject(data.yearData),
-    subjectCategories: getDefaultSubjectCategories(data.yearData),
-    tiers: getDefaultTiers(data.yearData),
+    childSubjects: getDefaultChildSubjectForYearGroup(data.yearData),
+    subjectCategories: getDefaultSubjectCategoriesForYearGroup(data.yearData),
+    tiers: getDefaultTiersForYearGroup(data.yearData),
     years: data.yearOptions,
     threads: [],
   };

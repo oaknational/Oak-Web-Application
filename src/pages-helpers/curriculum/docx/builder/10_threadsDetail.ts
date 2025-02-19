@@ -8,7 +8,6 @@ import { groupUnitsBySubjectCategory, unitsByYear } from "./helper";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { sortYears } from "@/utils/curriculum/sorting";
 import { Unit } from "@/utils/curriculum/types";
-import { getUnitFeatures } from "@/utils/curriculum/features";
 
 function sortByOrder(units: Unit[]) {
   return [...units].sort((a, b) => a.order - b.order);
@@ -85,8 +84,7 @@ export default async function generate(
   const allThreadOptions = createThreadOptions(data.units);
 
   const enableGroupBySubjectCategory = data.units.some((unit) => {
-    const features = getUnitFeatures(unit);
-    return features?.subjectcategories?.group_by_subjectcategory;
+    return unit.actions?.subject_category_actions?.group_by_subjectcategory;
   });
 
   const elements = allThreadOptions.map((thread, threadIndex) => {
@@ -130,21 +128,32 @@ export default async function generate(
 
     let contentElements: string[];
 
+    const filterByThreads = ([year, units]: [string, Unit[]]): [
+      string,
+      Unit[],
+    ] => {
+      if (enableGroupBySubjectCategory) {
+        const filteredUnits = units.filter(
+          (u) =>
+            (u.subjectcategories ?? []).length < 1 &&
+            u.threads.findIndex((t) => t.slug === thread.slug) > -1,
+        );
+        return [year, filteredUnits];
+      } else {
+        const filteredUnits = units.filter(
+          (u) => u.threads.findIndex((t) => t.slug === thread.slug) > -1,
+        );
+        return [year, filteredUnits];
+      }
+    };
+
     // Original non-categorized format
     contentElements = Object.values(unitsByYear(data.units)).map((units) => {
       const yearGroupedUnits = unitsByYear(units);
       return Object.entries(yearGroupedUnits)
         .sort(([yearA], [yearB]) => sortYears(yearA, yearB))
         .map<[string, Unit[]]>(([year, units]) => {
-          if (enableGroupBySubjectCategory) {
-            const filteredUnits = units.filter(
-              (u) =>
-                (u.subjectcategories ?? []).length < 1 &&
-                u.threads.findIndex((t) => t.slug === thread.slug) > -1,
-            );
-            return [year, filteredUnits];
-          }
-          return [year, units];
+          return filterByThreads([year, units]);
         })
         .filter(([, units]) => units.length > 0)
         .map(([year, units]) => {
