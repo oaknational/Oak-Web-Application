@@ -270,6 +270,72 @@ export const missingUnitsForFirstYearFixture = {
   },
 };
 
+export const missingUnitsForFirstYearPrimaryFixture = {
+  "1": {
+    childSubjects: [],
+    tiers: [],
+    subjectCategories: [subjectCategoryTwo],
+    labels: [],
+    groupAs: null,
+    units: [createUnit({ year: "1", subjectcategories: [subjectCategoryTwo] })],
+  },
+  "2": {
+    childSubjects: [],
+    tiers: [],
+    subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
+    labels: [],
+    groupAs: null,
+    units: [
+      createUnit({ year: "2", subjectcategories: [subjectCategoryOne] }),
+      createUnit({ year: "2", subjectcategories: [subjectCategoryTwo] }),
+    ],
+  },
+  "3": {
+    childSubjects: [],
+    tiers: [],
+    subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
+    labels: [],
+    groupAs: null,
+    units: [
+      createUnit({ year: "3", subjectcategories: [subjectCategoryOne] }),
+      createUnit({ year: "3", subjectcategories: [subjectCategoryTwo] }),
+    ],
+  },
+  "4": {
+    childSubjects: [],
+    tiers: [],
+    subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
+    labels: [],
+    groupAs: null,
+    units: [
+      createUnit({ year: "4", subjectcategories: [subjectCategoryOne] }),
+      createUnit({ year: "4", subjectcategories: [subjectCategoryTwo] }),
+    ],
+  },
+  "5": {
+    childSubjects: [],
+    tiers: [],
+    subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
+    labels: [],
+    groupAs: null,
+    units: [
+      createUnit({ year: "5", subjectcategories: [subjectCategoryOne] }),
+      createUnit({ year: "5", subjectcategories: [subjectCategoryTwo] }),
+    ],
+  },
+  "6": {
+    childSubjects: [],
+    tiers: [],
+    subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
+    labels: [],
+    groupAs: null,
+    units: [
+      createUnit({ year: "6", subjectcategories: [subjectCategoryOne] }),
+      createUnit({ year: "6", subjectcategories: [subjectCategoryTwo] }),
+    ],
+  },
+};
+
 export const missingUnitsForSecondYearFixture = {
   "7": {
     childSubjects: [],
@@ -370,6 +436,66 @@ export const missingConsecutiveUnitsAtStartFixture = {
     units: [
       createUnit({ year: "11", subjectcategories: [subjectCategoryOne] }),
       createUnit({ year: "11", subjectcategories: [subjectCategoryTwo] }),
+    ],
+  },
+};
+
+export const missingConsecutiveUnitsAtStartPrimaryFixture = {
+  "1": {
+    childSubjects: [],
+    tiers: [],
+    labels: [],
+    groupAs: null,
+    subjectCategories: [subjectCategoryTwo],
+    units: [createUnit({ year: "1", subjectcategories: [subjectCategoryTwo] })],
+  },
+  "2": {
+    childSubjects: [],
+    tiers: [],
+    labels: [],
+    groupAs: null,
+    subjectCategories: [subjectCategoryTwo],
+    units: [createUnit({ year: "2", subjectcategories: [subjectCategoryTwo] })],
+  },
+  "3": {
+    childSubjects: [],
+    tiers: [],
+    labels: [],
+    groupAs: null,
+    subjectCategories: [subjectCategoryTwo],
+    units: [createUnit({ year: "3", subjectcategories: [subjectCategoryTwo] })],
+  },
+  "4": {
+    childSubjects: [],
+    tiers: [],
+    labels: [],
+    groupAs: null,
+    subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
+    units: [
+      createUnit({ year: "4", subjectcategories: [subjectCategoryOne] }),
+      createUnit({ year: "4", subjectcategories: [subjectCategoryTwo] }),
+    ],
+  },
+  "5": {
+    childSubjects: [],
+    tiers: [],
+    labels: [],
+    groupAs: null,
+    subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
+    units: [
+      createUnit({ year: "5", subjectcategories: [subjectCategoryOne] }),
+      createUnit({ year: "5", subjectcategories: [subjectCategoryTwo] }),
+    ],
+  },
+  "6": {
+    childSubjects: [],
+    tiers: [],
+    labels: [],
+    groupAs: null,
+    subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
+    units: [
+      createUnit({ year: "6", subjectcategories: [subjectCategoryOne] }),
+      createUnit({ year: "6", subjectcategories: [subjectCategoryTwo] }),
     ],
   },
 };

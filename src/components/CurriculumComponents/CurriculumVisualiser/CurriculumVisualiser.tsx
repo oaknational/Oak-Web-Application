@@ -84,115 +84,118 @@ function getSubjectCategoryMessage(
   const currentIndex = years.indexOf(currentYear);
   if (currentIndex === -1) return null;
 
-  // Phase boundary detection
+  // Identify the current phase from the year number
   const phaseMap = {
     primary: { start: 1, end: 6 },
     secondary: { start: 7, end: 11 },
   };
-
   const currentYearNum = parseInt(currentYear.replace("year-", ""));
   const currentPhase = currentYearNum <= 6 ? "primary" : "secondary";
-  const phaseEndYear = `year-${phaseMap[currentPhase].end}`;
 
-  // Get category titles and check for any units in phase
-  const categoryTitles = Array.from(
+  const phaseStartNum = phaseMap[currentPhase].start;
+  const phaseEndNum = phaseMap[currentPhase].end;
+
+  // Convert phases to strings for easy comparison with "year-7"/"year-11" keys
+  const phaseStartYear = `year-${phaseStartNum}`;
+  const phaseEndYear = `year-${phaseEndNum}`;
+
+  // Gather the subject category titles
+  const subjectCategoryTitles = Array.from(
     new Set(
       years
-        .flatMap((year) =>
-          yearData[year]?.subjectCategories
-            .filter((sc) => subjectCategories.includes(sc.id.toString()))
-            .map((sc) => sc.title),
+        .flatMap((yearKey) =>
+          yearData[yearKey]?.subjectCategories?.filter((sc) =>
+            subjectCategories.includes(sc.id.toString()),
+          ),
         )
-        .filter(Boolean),
+        .filter(Boolean)
+        .map((sc) => sc?.title),
     ),
   );
 
-  if (categoryTitles.length === 0) return null;
+  if (subjectCategoryTitles.length === 0) return null;
 
-  // First check if any units exist in the entire phase
+  // Check if the entire phase (not just the current year) has any units for the subject categories
   const hasAnyUnitsInPhase = years
     .filter((y) => {
       const yNum = parseInt(y.replace("year-", ""));
-      return currentPhase === "primary" ? yNum <= 6 : yNum >= 7 && yNum <= 11;
+      // Filter only those years in the same phase as currentYear
+      return currentPhase === "primary"
+        ? yNum >= 1 && yNum <= 6
+        : yNum >= 7 && yNum <= 11;
     })
-    .some((year) =>
-      yearData[year]?.units.some((unit) =>
+    .some((yearKey) =>
+      yearData[yearKey]?.units?.some((unit) =>
         unit.subjectcategories?.some((sc) =>
           subjectCategories.includes(sc.id.toString()),
         ),
       ),
     );
 
-  if (!hasAnyUnitsInPhase) {
-    return `No ${categoryTitles.join(", ")} units in this year`;
-  }
-
-  // Then check if the current year has any units for the selected subject category
-  const hasCurrentYearUnits = yearData[currentYear]?.units.some((unit) =>
+  // Check if this current year has any units in the selected subject categories
+  const hasCurrentYearUnits = yearData[currentYear]?.units?.some((unit) =>
     unit.subjectcategories?.some((sc) =>
       subjectCategories.includes(sc.id.toString()),
     ),
   );
 
   if (!hasCurrentYearUnits) {
-    // Find first subsequent year with units for subject category
-    const subsequentYears = years.slice(currentIndex + 1).filter((y) => {
+    // Find the first subsequent year (in the same phase) that does have units
+    const subsequentYearsInPhase = years.slice(currentIndex + 1).filter((y) => {
       const yNum = parseInt(y.replace("year-", ""));
-      return currentPhase === "primary" ? yNum <= 6 : yNum >= 7;
+      return currentPhase === "primary"
+        ? yNum >= 1 && yNum <= 6
+        : yNum >= 7 && yNum <= 11;
     });
 
-    const firstSubsequentYearWithUnits = subsequentYears.find((year) =>
-      yearData[year]?.units.some((unit) =>
-        unit.subjectcategories?.some((sc) =>
-          subjectCategories.includes(sc.id.toString()),
-        ),
-      ),
-    );
-
-    if (firstSubsequentYearWithUnits) {
-      const cleanYear = firstSubsequentYearWithUnits.replace("year-", "");
-      return `'${categoryTitles.join(", ")}' units continue in Year ${cleanYear}`;
-    }
-
-    // If no subsequent units in phase, check if the year is the last year of the phase
-    if (currentYear === phaseEndYear) {
-      return `No further ${categoryTitles.join(", ")} units in this year`;
-    }
-
-    // Check if all remaining years in phase lack units
-    const allSubsequentInPhaseEmpty = subsequentYears.every(
-      (year) =>
-        !yearData[year]?.units.some((unit) =>
+    const firstSubsequentYearWithUnits = subsequentYearsInPhase.find(
+      (yearKey) =>
+        yearData[yearKey]?.units?.some((unit) =>
           unit.subjectcategories?.some((sc) =>
             subjectCategories.includes(sc.id.toString()),
           ),
         ),
     );
 
-    if (allSubsequentInPhaseEmpty) {
-      return currentPhase === "primary"
-        ? `No further '${categoryTitles.join(", ")}' units`
-        : `No further '${categoryTitles.join(", ")}' units`;
+    // If there is a future year in this phase that has units:
+    if (firstSubsequentYearWithUnits) {
+      const cleanYear = firstSubsequentYearWithUnits.replace("year-", "");
+      const isFirstYearOfPhase =
+        currentYear === phaseStartYear || currentYearNum === phaseStartNum;
+      return isFirstYearOfPhase
+        ? `'${subjectCategoryTitles.join(
+            ", ",
+          )}' units start in Year ${cleanYear}`
+        : `'${subjectCategoryTitles.join(
+            ", ",
+          )}' units continue in Year ${cleanYear}`;
     }
 
-    // Fallback to previous implementation for edge cases
-    const previousYears = years.slice(0, currentIndex).reverse();
-    const firstPreviousYearWithUnits = previousYears.find((year) =>
-      yearData[year]?.units.some((unit) =>
-        unit.subjectcategories?.some((sc) =>
-          subjectCategories.includes(sc.id.toString()),
+    // No future years in the phase that have units or we are at the end of the phase
+    const allSubsequentInPhaseEmpty = subsequentYearsInPhase.every(
+      (yearKey) =>
+        !yearData[yearKey]?.units?.some((unit) =>
+          unit.subjectcategories?.some((sc) =>
+            subjectCategories.includes(sc.id.toString()),
+          ),
         ),
-      ),
     );
 
-    if (firstPreviousYearWithUnits) {
-      const cleanYear = firstPreviousYearWithUnits.replace("year-", "");
-      return `'${categoryTitles.join(", ")}' units start in Year ${cleanYear}`;
+    if (
+      currentYear === phaseEndYear ||
+      !hasAnyUnitsInPhase ||
+      allSubsequentInPhaseEmpty
+    ) {
+      return `No '${subjectCategoryTitles.join(
+        ", ",
+      )}' units in this year group`;
     }
 
-    return `No ${categoryTitles.join(", ")} units in this year`;
+    // Default fallback in case of edge conditions
+    return `No '${subjectCategoryTitles.join(", ")}' units in this year group`;
   }
 
+  // If the current year does have units do not show a message
   return null;
 }
 
