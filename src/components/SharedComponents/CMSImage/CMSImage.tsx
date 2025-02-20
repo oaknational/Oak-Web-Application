@@ -7,8 +7,7 @@ import {
   getImageDimensions,
   getSanityRefId,
   imageBuilder,
-} from "./sanityImageBuilder";
-
+} from "@/components/HooksAndUtils/sanityImageBuilder";
 import { Image } from "@/common-lib/cms-types";
 import { SizeValues } from "@/styles/utils/size";
 import OwaImage, {
