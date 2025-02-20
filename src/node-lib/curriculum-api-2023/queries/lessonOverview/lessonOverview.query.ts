@@ -31,6 +31,7 @@ export const getDownloadsArray = (content: {
   hasWorksheetAnswersAssetObject: boolean;
   hasWorksheetGoogleDriveDownloadableVersion: boolean;
   hasSupplementaryAssetObject: boolean;
+  hasLessonGuideObject: boolean;
   isLegacy: boolean;
 }): LessonOverviewPageData["downloads"] => {
   const downloads: LessonOverviewDownloads = [
@@ -79,6 +80,10 @@ export const getDownloadsArray = (content: {
     {
       exists: content.hasSupplementaryAssetObject,
       type: "supplementary-docx",
+    },
+    {
+      exists: content.hasLessonGuideObject,
+      type: "lesson-guide-pdf",
     },
   ];
 
@@ -187,6 +192,7 @@ export const transformedLessonOverviewData = (
         content.hasWorksheetGoogleDriveDownloadableVersion,
       ),
       hasSlideDeckAssetObject: Boolean(content.hasSlideDeckAssetObject),
+      hasLessonGuideObject: Boolean(content.hasLessonGuideObject),
       isLegacy: browseData.isLegacy,
     }),
     updatedAt: browseData.lessonData.updatedAt,

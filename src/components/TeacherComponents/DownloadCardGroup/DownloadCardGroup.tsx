@@ -29,7 +29,9 @@ const getGridArea = (
   presentationExists: boolean,
   worksheetsLength?: number,
 ) => {
-  if (type === "curriculum-pdf") {
+  if (type === "lesson-guide-pdf") {
+    return type;
+  } else if (type === "curriculum-pdf") {
     return "auto";
   } else if (type !== "worksheet-pdf" && type !== "worksheet-pptx") {
     return type;
@@ -63,8 +65,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
       $gridTemplateColumns={["1fr", "max-content max-content"]}
       $cg={"space-between-s"}
       $gridTemplateAreas={[
-        '"presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"',
-        '"presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx"',
+        '"lesson-guide-pdf" "presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"',
+        '"lesson-guide-pdf lesson-guide-pdf" "presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx"',
       ]}
     >
       {sortedDownloads?.map((download) => {
