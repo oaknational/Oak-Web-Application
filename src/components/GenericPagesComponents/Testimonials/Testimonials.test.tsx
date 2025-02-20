@@ -26,6 +26,14 @@ jest.mock("@oaknational/oak-components", () => ({
   )),
 }));
 
+// mock the imageBuilder function
+jest.mock("@/components/HooksAndUtils/sanityImageBuilder", () => ({
+  imageBuilder: {
+    image: jest.fn().mockReturnThis(),
+    url: jest.fn().mockReturnValue("https://example.com/image.jpg"),
+  },
+}));
+
 describe("Testimonials", () => {
   // Reset mocks before each test
   beforeEach(() => {
@@ -42,7 +50,7 @@ describe("Testimonials", () => {
       },
       image: {
         asset: {
-          _id: "test_quote_author",
+          _id: "image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg",
           url: "https://example.com/image.jpg",
         },
       },

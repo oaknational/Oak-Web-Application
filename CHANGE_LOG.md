@@ -1,3 +1,21 @@
+## [1.694.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.4...v1.694.5) (2025-02-20)
+
+## [1.694.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.3...v1.694.4) (2025-02-20)
+
+
+### Bug Fixes
+
+* added thread analytics events back in ([195de7a](https://github.com/oaknational/Oak-Web-Application/commit/195de7a89b1fb93197cb34b88ce7e27bf0391056))
+
+## [1.694.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.2...v1.694.3) (2025-02-20)
+
+
+### Bug Fixes
+
+* add mock to prevent tests breaking ([a995c90](https://github.com/oaknational/Oak-Web-Application/commit/a995c9032156965fa2624a627c7ba482adabca17))
+* broken import ([df635e4](https://github.com/oaknational/Oak-Web-Application/commit/df635e488a377f2bf6039672f4e20351e76c8f92))
+* use proxied sanity url ([95520bb](https://github.com/oaknational/Oak-Web-Application/commit/95520bb8f8b09b7a50d3b4590bc302959a499010))
+
 ## [1.694.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.1...v1.694.2) (2025-02-19)
 
 
