@@ -1,3 +1,10 @@
+## [1.694.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.3...v1.694.4) (2025-02-20)
+
+
+### Bug Fixes
+
+* added thread analytics events back in ([195de7a](https://github.com/oaknational/Oak-Web-Application/commit/195de7a89b1fb93197cb34b88ce7e27bf0391056))
+
 ## [1.694.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.2...v1.694.3) (2025-02-20)
 
 
