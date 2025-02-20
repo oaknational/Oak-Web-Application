@@ -73,7 +73,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro
             hasWorksheet={false}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -89,7 +89,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro
             hasWorksheet={false}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -107,7 +107,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro
             hasWorksheet={false}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumDataWithEquipment}
           />
         </LessonEngineContext.Provider>
@@ -126,7 +126,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro
             hasWorksheet={false}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumDataWithContentGuidance}
           />
         </LessonEngineContext.Provider>
@@ -144,7 +144,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro
             hasWorksheet={false}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumDataWithSupervision}
           />
         </LessonEngineContext.Provider>
@@ -163,7 +163,7 @@ describe("PupilIntro", () => {
               {...curriculumData}
               hasAdditionalFiles
               hasWorksheet
-              worksheetFileData={null}
+              worksheetInfo={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -209,7 +209,7 @@ describe("PupilIntro", () => {
               {...curriculumDataSingleFile}
               hasAdditionalFiles
               hasWorksheet
-              worksheetFileData={null}
+              worksheetInfo={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -234,7 +234,7 @@ describe("PupilIntro", () => {
               {...curriculumData}
               hasWorksheet={false}
               hasAdditionalFiles={false}
-              worksheetFileData={null}
+              worksheetInfo={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -257,7 +257,7 @@ describe("PupilIntro", () => {
             <PupilViewsIntro
               {...curriculumData}
               hasWorksheet
-              worksheetFileData={null}
+              worksheetInfo={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -292,7 +292,7 @@ describe("PupilIntro", () => {
             <PupilViewsIntro
               {...curriculumData}
               hasWorksheet={false}
-              worksheetFileData={null}
+              worksheetInfo={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -311,7 +311,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro
             hasWorksheet={false}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -326,7 +326,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={context}>
           <PupilViewsIntro
             hasWorksheet={false}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -343,7 +343,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={context}>
           <PupilViewsIntro
             hasWorksheet={true}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -364,7 +364,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={context}>
           <PupilViewsIntro
             hasWorksheet={true}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -389,7 +389,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={context}>
           <PupilViewsIntro
             hasWorksheet={false}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -411,7 +411,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={context}>
           <PupilViewsIntro
             hasWorksheet={false}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -440,7 +440,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={context}>
           <PupilViewsIntro
             hasWorksheet={false}
-            worksheetFileData={null}
+            worksheetInfo={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
