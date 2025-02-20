@@ -22,6 +22,9 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -33,7 +36,9 @@ export default function UnitsTab({
   formattedData,
 }: UnitsTabProps) {
   // Initialize constants
-  const { yearData, initialYearSelection } = formattedData;
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
+  const { yearData, initialYearSelection, threadOptions } = formattedData;
   const { ks4OptionSlug } = trackingData;
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
@@ -94,6 +99,29 @@ export default function UnitsTab({
     yearSelection,
   );
 
+  function trackSelectThread(thread: Thread): void {
+    if (trackingData) {
+      const { subjectTitle, subjectSlug, phaseSlug } = trackingData;
+      track.curriculumThreadHighlighted({
+        subjectTitle,
+        subjectSlug,
+        threadTitle: thread.title,
+        threadSlug: thread.slug,
+        phase: phaseSlug as PhaseValueType,
+        order: thread.order,
+        analyticsUseCase: analyticsUseCase,
+      });
+    }
+  }
+
+  function handleSelectThread(threadSlug: string): void {
+    const thread = threadOptions.find((to) => to.slug === threadSlug) ?? null;
+    if (thread) {
+      trackSelectThread(thread);
+    }
+    setSelectedThread(threadSlug);
+  }
+
   return (
     <OakBox>
       <OakBox
@@ -126,7 +154,7 @@ export default function UnitsTab({
         </OakP>
         <CurriculumVisualiserFiltersMobile
           selectedThread={selectedThread}
-          onSelectThread={setSelectedThread}
+          onSelectThread={handleSelectThread}
           selectedYear={selectedYearMobile}
           onSelectYear={setSelectedYearMobile}
           data={formattedData}
@@ -137,7 +165,7 @@ export default function UnitsTab({
           filters={
             <CurriculumVisualiserFilters
               selectedThread={selectedThread}
-              onSelectThread={setSelectedThread}
+              onSelectThread={handleSelectThread}
               selectedYear={selectedYear}
               onSelectYear={setSelectedYear}
               data={formattedData}
