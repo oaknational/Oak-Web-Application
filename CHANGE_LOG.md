@@ -1,3 +1,45 @@
+## [1.694.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.2...v1.694.3) (2025-02-20)
+
+
+### Bug Fixes
+
+* add mock to prevent tests breaking ([a995c90](https://github.com/oaknational/Oak-Web-Application/commit/a995c9032156965fa2624a627c7ba482adabca17))
+* broken import ([df635e4](https://github.com/oaknational/Oak-Web-Application/commit/df635e488a377f2bf6039672f4e20351e76c8f92))
+* use proxied sanity url ([95520bb](https://github.com/oaknational/Oak-Web-Application/commit/95520bb8f8b09b7a50d3b4590bc302959a499010))
+
+## [1.694.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.1...v1.694.2) (2025-02-19)
+
+
+### Bug Fixes
+
+* speed up tests by adding missing key and minimizing providers ([b5454b7](https://github.com/oaknational/Oak-Web-Application/commit/b5454b78d7ced0b1144678e05e11f1ccbb2b7626))
+
+## [1.694.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.0...v1.694.1) (2025-02-19)
+
+# [1.694.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.3...v1.694.0) (2025-02-19)
+
+
+### Features
+
+* added buildPageTitle with update title rules for curric visualiser ([da103d2](https://github.com/oaknational/Oak-Web-Application/commit/da103d2145b3060dd727d4435611482a2592f5fb))
+
+## [1.693.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.2...v1.693.3) (2025-02-19)
+
+
+### Bug Fixes
+
+* updated oak components to fix hydration issue ([7ff5229](https://github.com/oaknational/Oak-Web-Application/commit/7ff5229b54742031b0049cd6874641abf187e7fb))
+* updated snapshot ([05a6f41](https://github.com/oaknational/Oak-Web-Application/commit/05a6f418d14aff5e5a7e669f3508c4e3e93eac28))
+
+## [1.693.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.1...v1.693.2) (2025-02-19)
+
+
+### Bug Fixes
+
+* use logical or instead of nullish coalescing for hubspot school values ([8217e69](https://github.com/oaknational/Oak-Web-Application/commit/8217e69a7c7bc3deda6533c1ca2ed9c69ebf9cdd))
+
+## [1.693.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.0...v1.693.1) (2025-02-18)
+
 # [1.693.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.692.0...v1.693.0) (2025-02-18)
 
 

@@ -20,7 +20,7 @@ import { PlanALessonPage } from "@/common-lib/cms-types/planALessonPage";
 import { getNavItems } from "@/pages-helpers/home/plan-a-lesson/getNavItems";
 import LessonPlanningBlog from "@/components/GenericPagesComponents/LessonPlanningBlog";
 import { LandingPageSignUpForm } from "@/components/GenericPagesComponents/LandingPageSignUpForm";
-import { imageBuilder } from "@/components/SharedComponents/CMSImage/sanityImageBuilder";
+import { imageBuilder } from "@/components/HooksAndUtils/sanityImageBuilder";
 import usePostList from "@/components/SharedComponents/PostList/usePostList";
 import BlogAndWebinarList from "@/components/GenericPagesComponents/BlogAndWebinarList";
 import { getAndMergeWebinarsAndBlogs } from "@/utils/getAndMergeWebinarsAndBlogs";

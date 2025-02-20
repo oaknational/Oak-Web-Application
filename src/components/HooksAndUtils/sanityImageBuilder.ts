@@ -4,7 +4,7 @@ import {
   SanityImageSource,
 } from "@sanity/image-url/lib/types/types";
 
-import getBrowserConfig from "../../../browser-lib/getBrowserConfig";
+import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
 /**
  * Provide a "client like" object instead of using the

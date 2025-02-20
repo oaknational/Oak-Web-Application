@@ -19,7 +19,7 @@ import {
 import { BlogJsonLd } from "@/browser-lib/seo/getJsonLd";
 import BlogPortableText from "@/components/GenericPagesComponents/PostPortableText/PostPortableText";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
-import { sanityClientLike } from "@/components/SharedComponents/CMSImage";
+import { sanityClientLike } from "@/components/HooksAndUtils/sanityImageBuilder";
 import { getBlogWebinarPostBreadcrumbs } from "@/components/SharedComponents/Breadcrumbs/getBreadcrumbs";
 import PostSingleLayout from "@/components/SharedComponents/PostSingleLayout";
 import getPageProps from "@/node-lib/getPageProps";
