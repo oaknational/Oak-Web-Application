@@ -356,7 +356,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                           yearData,
                           year,
                           filters.subjectCategories,
-                        ) || "No units for filter in this year"}
+                        )}
                       </OakP>
                     )}
                     {dedupedUnits.map((unit: Unit, index: number) => {
