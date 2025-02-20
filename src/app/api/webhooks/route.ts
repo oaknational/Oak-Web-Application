@@ -2,17 +2,19 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 
-export async function POST(req: Request) {
-  const SIGNING_SECRET = process.env.SIGNING_SECRET;
+import getServerConfig from "@/node-lib/getServerConfig";
 
-  if (!SIGNING_SECRET) {
+export async function POST(req: Request) {
+  const signingSecret = getServerConfig("clerkSigningSecret");
+
+  if (!signingSecret) {
     throw new Error(
       "Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env.local",
     );
   }
 
   // Create new Svix instance with secret
-  const wh = new Webhook(SIGNING_SECRET);
+  const wh = new Webhook(signingSecret);
 
   // Get headers
   const headerPayload = headers();
@@ -48,8 +50,8 @@ export async function POST(req: Request) {
   }
 
   if (evt.type === "user.updated") {
-    // todo: upsert user in db
     console.log(" userId:", evt.data.id);
+    // todo: upsert user in db using userApi
   }
 
   return new Response("Webhook received", { status: 200 });
