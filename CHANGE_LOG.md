@@ -1,3 +1,10 @@
+## [1.694.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.5...v1.694.6) (2025-02-20)
+
+
+### Bug Fixes
+
+* catch any mediaclips parsing errors and continue to render ([9947bbc](https://github.com/oaknational/Oak-Web-Application/commit/9947bbc79744812693b3f278f1035db4441442e8))
+
 ## [1.694.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.4...v1.694.5) (2025-02-20)
 
 ## [1.694.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.3...v1.694.4) (2025-02-20)
