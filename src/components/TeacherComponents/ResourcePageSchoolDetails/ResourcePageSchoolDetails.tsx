@@ -105,6 +105,7 @@ const ResourcePageSchoolDetails: FC<ResourcePageSchoolDetailsProps> = ({
           name={"checkbox-not-listed"}
           zIndex={"neutral"}
           label={"My school isn't listed"}
+          ariaLabel={"My school isn't listed"}
           data-testid={"checkbox-download"}
           aria-invalid={errors?.school?.message ? true : false}
           aria-describedby={

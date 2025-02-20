@@ -31,7 +31,8 @@ export type CheckboxProps = {
   name: string;
   checked: boolean;
   disabled?: boolean;
-  ariaLabel?: string;
+  // this is required because label can be a ReactNode so it can't always be used as a default aria-label
+  ariaLabel: string;
   required?: boolean;
   error?: string;
   onChange: (checked: ChangeEvent<HTMLInputElement>) => void;
@@ -194,7 +195,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
           onChange={onChange}
           checked={checked}
           disabled={disabled}
-          aria-label={ariaLabel ? ariaLabel : ""}
+          aria-label={ariaLabel}
           required={required}
           aria-invalid={hasError}
           aria-describedby={error ? errorId : undefined}

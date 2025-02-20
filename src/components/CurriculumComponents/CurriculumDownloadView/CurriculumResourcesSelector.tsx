@@ -56,6 +56,7 @@ export function CurriculumResourcesSelector({
                 key={download.label}
                 name={download.label}
                 label={download.label}
+                ariaLabel={download.label}
                 subtitle={download.subTitle ?? ""}
                 resourceType="curriculum-pdf"
                 onChange={() => {}}

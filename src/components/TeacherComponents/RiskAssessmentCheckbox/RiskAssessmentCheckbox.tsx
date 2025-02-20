@@ -7,7 +7,7 @@ import Checkbox from "@/components/SharedComponents/Checkbox";
 import FieldError from "@/components/SharedComponents/FieldError";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 
-export type RiskAssessmentCheckboxProps = CheckboxProps & {
+export type RiskAssessmentCheckboxProps = Omit<CheckboxProps, "ariaLabel"> & {
   errorMessage?: string;
 };
 
@@ -59,6 +59,7 @@ const RiskAssessmentCheckbox: FC<RiskAssessmentCheckboxProps> = ({
       <BrushBorders hideOnMobileH hideOnMobileV color={"grey30"} />
       <Checkbox
         label={<RiskAssessmentCheckboxLabel />}
+        ariaLabel="I understand that a risk assessment should be carried out before undertaking this lesson (required)"
         checked={checked}
         onChange={onChange}
         $mb={0}

@@ -74,6 +74,7 @@ const LessonShareCardGroup: FC<LessonShareCardGroupProps> = (props) => {
                   id={resource.type}
                   name={name}
                   label={resource.label}
+                  ariaLabel={resource.label}
                   subtitle={
                     resource.metadata?.toLowerCase() === "pdf"
                       ? "PDF"

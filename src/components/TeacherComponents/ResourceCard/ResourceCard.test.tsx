@@ -12,6 +12,7 @@ describe("ResourceCard", () => {
         id="unique-123"
         name="downloadResources"
         label="Worksheet"
+        ariaLabel="Worksheet"
         subtitle="PDF"
         checked
         onChange={jest.fn()}
@@ -39,6 +40,7 @@ describe("ResourceCard", () => {
         checked={value}
         name="downloadResources"
         label="Worksheet"
+        ariaLabel="Worksheet"
         subtitle="PDF"
         onChange={() => toggleValue()}
         resourceType="worksheet-pdf"
@@ -59,6 +61,7 @@ describe("ResourceCard", () => {
         checked={value}
         name="downloadResources"
         label="Worksheet"
+        ariaLabel="Worksheet"
         subtitle="PDF"
         onChange={() => toggleValue()}
         resourceType="worksheet-pdf"
@@ -74,6 +77,7 @@ describe("ResourceCard", () => {
         id="unique-123"
         name="downloadResources"
         label="Worksheet"
+        ariaLabel="Worksheet"
         subtitle="PDF"
         checked
         onChange={jest.fn()}

@@ -305,6 +305,7 @@ function CurriculumDownloads(
                         id={download.url}
                         name={download.label}
                         label={download.label}
+                        ariaLabel={download.label}
                         subtitle={"PDF"}
                         resourceType="curriculum-pdf"
                         onChange={() => {}}

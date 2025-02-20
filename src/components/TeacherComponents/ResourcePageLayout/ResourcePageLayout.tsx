@@ -159,6 +159,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
                 name="select-all"
                 variant="withLabel"
                 label="Select all"
+                ariaLabel="Select all"
                 labelFontWeight={600}
                 data-testid="select-all"
               />

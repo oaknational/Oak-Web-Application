@@ -107,6 +107,7 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                       id={download.type}
                       name={name}
                       label={download.label}
+                      ariaLabel={download.label}
                       subtitle={download.ext.toUpperCase()}
                       resourceType={download.type}
                       onChange={onChangeHandler}

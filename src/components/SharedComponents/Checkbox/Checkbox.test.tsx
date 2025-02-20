@@ -13,6 +13,7 @@ describe("Checkbox", () => {
         name="terms"
         checked
         label="Agree to terms"
+        ariaLabel="Agree to terms"
         onChange={jest.fn()}
       />,
     );
@@ -32,6 +33,7 @@ describe("Checkbox", () => {
         name="terms"
         checked
         label="Agree to terms"
+        ariaLabel="Agree to terms"
         onChange={jest.fn()}
       />,
     );
@@ -53,6 +55,7 @@ describe("Checkbox", () => {
         id="unique-123"
         name="terms"
         label="Agree to terms"
+        ariaLabel="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
       />,
@@ -72,6 +75,7 @@ describe("Checkbox", () => {
         id="unique-123"
         name="terms"
         label="Agree to terms"
+        ariaLabel="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
       />,
@@ -92,6 +96,7 @@ describe("Checkbox", () => {
         id="unique-123"
         name="terms"
         label="Agree to terms"
+        ariaLabel="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
         disabled
@@ -111,6 +116,7 @@ describe("Checkbox", () => {
         id="unique-123"
         name="terms"
         label="Agree to terms"
+        ariaLabel="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
         disabled
@@ -132,6 +138,7 @@ describe("Checkbox", () => {
         name="terms"
         id="unique-123"
         label="Agree to terms"
+        ariaLabel="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
       />,
@@ -150,6 +157,7 @@ describe("Checkbox", () => {
         name="terms"
         id="unique-123"
         label="Agree to terms"
+        ariaLabel="Agree to terms"
         checked={value}
         onChange={() => toggleValue()}
       />,
@@ -165,6 +173,7 @@ describe("Checkbox", () => {
         id="unique-123"
         checked
         label="Agree to terms"
+        ariaLabel="Agree to terms"
         onChange={jest.fn()}
       />,
     );
@@ -182,6 +191,7 @@ describe("Checkbox", () => {
         checked
         onChange={jest.fn()}
         variant="withoutLabel"
+        ariaLabel="Agree to terms"
       >
         <p>Test download resource</p>
       </Checkbox>,

@@ -6,7 +6,10 @@ import Checkbox from "@/components/SharedComponents/Checkbox";
 import FieldError from "@/components/SharedComponents/FieldError";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 
-export type ResourcePageTermsAndConditionsCheckboxProps = CheckboxProps & {
+export type ResourcePageTermsAndConditionsCheckboxProps = Omit<
+  CheckboxProps,
+  "ariaLabel"
+> & {
   errorMessage?: string;
 };
 
@@ -32,6 +35,7 @@ const ResourcePageTermsAndConditionsCheckbox: FC<
       <BrushBorders hideOnMobileH hideOnMobileV color={"grey30"} />
       <Checkbox
         label={"I accept terms and conditions (required)"}
+        ariaLabel={"I accept terms and conditions (required)"}
         checked={checked}
         onChange={onChange}
         $mb={0}

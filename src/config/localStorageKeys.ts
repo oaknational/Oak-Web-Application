@@ -9,7 +9,6 @@ export const LS_KEY_PAST_WEBINARS_UNLOCKED = "oak-past-webinars-unlocked";
 export const LS_KEY_EMAIL = "oak-downloads-email";
 export const LS_KEY_SCHOOL = "oak-downloads-school";
 export const LS_KEY_TERMS = "oak-downloads-terms";
-export const LS_KEY_RISK_ASSESSMENT = "oak-downloads-risk-assessment";
 
 /**
  * Decommissioned keys
