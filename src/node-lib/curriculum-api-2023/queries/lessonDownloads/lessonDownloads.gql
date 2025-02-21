@@ -10,6 +10,7 @@ query lessonDownloads(
     has_supplementary_asset_object
     has_worksheet_answers_asset_object
     has_worksheet_google_drive_downloadable_version
+    has_lesson_guide_object
     starter_quiz
     exit_quiz
     is_legacy

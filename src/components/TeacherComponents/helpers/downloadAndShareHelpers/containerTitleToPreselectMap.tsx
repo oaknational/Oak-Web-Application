@@ -4,7 +4,7 @@ export const containerTitleToPreselectMap: Omit<
   CombinedDownloadsShareType,
   "Demonstration videos" | "Audio clips" | "Video & audio clips"
 > = {
-  "Lesson guide": { downloadType: null, shareType: null },
+  "Lesson guide": { downloadType: "lesson guide", shareType: null },
   "Slide deck": { downloadType: "slide deck", shareType: null },
   "Exit quiz": { downloadType: "exit quiz", shareType: "exit quiz" },
   "Starter quiz": { downloadType: "starter quiz", shareType: "starter quiz" },

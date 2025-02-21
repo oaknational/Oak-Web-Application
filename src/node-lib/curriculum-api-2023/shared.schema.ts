@@ -228,6 +228,7 @@ export const lessonDownloadsListSchema = z.array(
       "supplementary-pdf",
       "supplementary-docx",
       "curriculum-pdf",
+      "lesson-guide-pdf",
     ]),
     label: z.string(),
     ext: z.string(),
