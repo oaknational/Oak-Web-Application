@@ -1,3 +1,11 @@
+# [1.696.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.695.0...v1.696.0) (2025-02-21)
+
+
+### Features
+
+* fetch worksheet data statically ([cfbf80b](https://github.com/oaknational/Oak-Web-Application/commit/cfbf80bf8571e3262867c2c5ae30d270f1633e38))
+* update name in test ([f682237](https://github.com/oaknational/Oak-Web-Application/commit/f6822377c597ca7e655113b3a15f99a3ca76a221))
+
 # [1.695.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.6...v1.695.0) (2025-02-20)
 
 
