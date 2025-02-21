@@ -1,3 +1,23 @@
+# [1.695.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.6...v1.695.0) (2025-02-20)
+
+
+### Bug Fixes
+
+* add tests ([2c4f6d2](https://github.com/oaknational/Oak-Web-Application/commit/2c4f6d2ddad5c02dd654e5975b6eee44c20714f3))
+* update schema ([1e52b38](https://github.com/oaknational/Oak-Web-Application/commit/1e52b385a7df03e235cbd9b78c7e69d04ab3de36))
+
+
+### Features
+
+* make lesson guide downloadable ([f7c1b82](https://github.com/oaknational/Oak-Web-Application/commit/f7c1b826d7bbad12f90b8d43e06fd689f1f0c339))
+
+## [1.694.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.5...v1.694.6) (2025-02-20)
+
+
+### Bug Fixes
+
+* catch any mediaclips parsing errors and continue to render ([9947bbc](https://github.com/oaknational/Oak-Web-Application/commit/9947bbc79744812693b3f278f1035db4441442e8))
+
 ## [1.694.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.4...v1.694.5) (2025-02-20)
 
 ## [1.694.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.3...v1.694.4) (2025-02-20)

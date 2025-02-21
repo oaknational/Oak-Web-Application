@@ -45,6 +45,7 @@ export const lessonOverviewDownloads = z.array(
       "supplementary-pdf",
       "supplementary-docx",
       "curriculum-pdf",
+      "lesson-guide-pdf",
     ]),
   }),
 );
