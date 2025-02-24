@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, Fragment, useState } from "react";
 import {
   OakGrid,
@@ -51,6 +52,8 @@ import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import LessonOverviewMediaClips from "@/components/TeacherComponents/LessonOverviewMediaClips";
 import LessonOverviewDocPresentation from "@/components/TeacherComponents/LessonOverviewDocPresentation";
 import { TeacherNoteInline } from "@/components/TeacherComponents/TeacherNoteInline/TeacherNoteInline";
+import { useLesson } from "@/pages-helpers/teacher/useLesson/useLesson";
+import { TeacherNotesModal } from "@/components/TeacherComponents/TeacherNotesModal/TeacherNotesModal";
 
 export type LessonOverviewProps = {
   lesson: LessonOverviewAll & { downloads: LessonOverviewDownloads } & {
@@ -98,13 +101,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     updatedAt,
     isCanonical,
     lessonGuideUrl,
-    teacherShareButton,
     additionalMaterialUrl,
     actions,
     hasMediaClips,
     lessonMediaClips,
-    teacherNoteHtml,
-    teacherNoteError,
     additionalFiles,
     lessonOutline,
   } = lesson;
@@ -224,6 +224,32 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     keyStageSlug !== "early-years-foundation-stage" &&
     !actions?.disablePupilShare;
 
+  const {
+    teacherNoteHtml,
+    error,
+    teacherNotesButton,
+    teacherNote,
+    isEditable,
+    teacherNotesOpen,
+    saveTeacherNote,
+    shareActivated,
+    shareUrl,
+    setTeacherNotesOpen,
+  } = useLesson({
+    lessonSlug: lesson.lessonSlug,
+    source: "lesson-canonical",
+    curriculumTrackingProps: {
+      lessonName: lesson.lessonTitle,
+      lessonSlug: lesson.lessonSlug,
+      unitName: null,
+      unitSlug: null,
+      subjectSlug: null,
+      subjectTitle: null,
+      keyStageSlug: null,
+      keyStageTitle: null,
+    },
+  });
+
   return (
     <MathJaxLessonProvider>
       <HeaderLesson
@@ -266,8 +292,21 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
         )}
         showDownloadAll={showDownloadAll}
         showShare={showShare}
-        teacherShareButton={teacherShareButton}
+        teacherShareButton={teacherNotesButton}
       />
+      {teacherNote && isEditable && (
+        <TeacherNotesModal
+          isOpen={teacherNotesOpen}
+          onClose={() => {
+            setTeacherNotesOpen(false);
+          }}
+          teacherNote={teacherNote}
+          saveTeacherNote={saveTeacherNote}
+          sharingUrl={shareUrl}
+          error={error}
+          shareActivated={shareActivated}
+        />
+      )}
       <OakMaxWidth $ph={"inner-padding-m"} $pb={"inner-padding-xl8"}>
         {expired ? (
           <OakBox $pa={"inner-padding-m"} $mb={"space-between-xxl"}>
@@ -315,10 +354,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                   />
                 </OakBox>
 
-                <TeacherNoteInline
-                  unsafeHtml={teacherNoteHtml}
-                  error={teacherNoteError}
-                />
+                <TeacherNoteInline unsafeHtml={teacherNoteHtml} error={error} />
 
                 {pageLinks.find((p) => p.label === "Lesson guide") &&
                   lessonGuideUrl && (

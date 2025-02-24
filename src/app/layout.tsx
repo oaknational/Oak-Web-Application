@@ -2,7 +2,12 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { Lexend } from "next/font/google";
 
-import { PHProvider } from "./providers";
+import {
+  OakPupilClientProviderWithClient,
+  OverlayProviderWithClient,
+  PHProvider,
+  ToastProviderWithClient,
+} from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 
 import {
@@ -13,6 +18,11 @@ import {
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import AnalyticsProvider from "@/context/Analytics/AnalyticsProvider";
 import { MenuProvider } from "@/context/Menu";
+import { OakPupilClientProvider } from "@oaknational/oak-pupil-client";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
+import { OverlayProvider } from "react-aria";
+import { ToastProvider } from "@/context/Toast";
+import AppHooks from "@/components/AppComponents/App/AppHooks";
 
 export const metadata = {
   title: "Oak National Academy",
@@ -35,42 +45,49 @@ export default function RootLayout({
             <OakThemeProvider theme={oakDefaultTheme}>
               <CookieConsentProvider>
                 <AnalyticsProvider>
-                  <MenuProvider>
-                    <ClerkProvider
-                      localization={{
-                        signUp: {
-                          start: {
-                            subtitle: "Sign up to Oak to continue",
-                            title: "Create a free account",
-                          },
-                        },
-                      }}
-                      appearance={{
-                        variables: {
-                          colorPrimary: "#222222",
-                          fontFamily: lexend.style.fontFamily,
-                          borderRadius: "4px",
-                        },
-                        elements: {
-                          cardBox: {
-                            boxShadow: "none",
-                            overflow: "auto",
-                            borderRadius: "8px",
-                          },
-                          card: {
-                            paddingBlock: "40px",
-                            boxShadow: "none",
-                            borderRadius: "8px",
-                          },
-                          footer: {
-                            background: "#ffffff",
-                          },
-                        },
-                      }}
-                    >
-                      {children}
-                    </ClerkProvider>
-                  </MenuProvider>
+                  <OakPupilClientProviderWithClient>
+                    <OverlayProviderWithClient>
+                      <ToastProviderWithClient>
+                        <MenuProvider>
+                          <ClerkProvider
+                            localization={{
+                              signUp: {
+                                start: {
+                                  subtitle: "Sign up to Oak to continue",
+                                  title: "Create a free account",
+                                },
+                              },
+                            }}
+                            appearance={{
+                              variables: {
+                                colorPrimary: "#222222",
+                                fontFamily: lexend.style.fontFamily,
+                                borderRadius: "4px",
+                              },
+                              elements: {
+                                cardBox: {
+                                  boxShadow: "none",
+                                  overflow: "auto",
+                                  borderRadius: "8px",
+                                },
+                                card: {
+                                  paddingBlock: "40px",
+                                  boxShadow: "none",
+                                  borderRadius: "8px",
+                                },
+                                footer: {
+                                  background: "#ffffff",
+                                },
+                              },
+                            }}
+                          >
+                            <AppHooks />
+                            {children}
+                          </ClerkProvider>
+                        </MenuProvider>
+                      </ToastProviderWithClient>
+                    </OverlayProviderWithClient>
+                  </OakPupilClientProviderWithClient>
                 </AnalyticsProvider>
               </CookieConsentProvider>
             </OakThemeProvider>

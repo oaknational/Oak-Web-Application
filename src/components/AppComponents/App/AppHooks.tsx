@@ -1,5 +1,6 @@
+"use client";
 import { watchModals } from "@react-aria/aria-modal-polyfill";
-import { useRouter } from "next/router";
+import { useRouter } from "next/compat/router";
 import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import useAxe from "@/browser-lib/axe/useAxe";
@@ -35,8 +36,8 @@ const useAppHooks = () => {
   useGleap({
     enabled:
       getConsent(ServicePolicyMap.GLEAP) === "granted" &&
-      !router.pathname.startsWith("/pupils") && // Disable Gleap for pupils
-      !router.pathname.startsWith("/videos"), // Disable Gleap for standalone video pages
+      !router?.pathname.startsWith("/pupils") && // Disable Gleap for pupils
+      !router?.pathname.startsWith("/videos"), // Disable Gleap for standalone video pages
   });
   useAxe({ enabled: getBrowserConfig("axeA11yLogging") === "on" });
   useTrackRegistration();

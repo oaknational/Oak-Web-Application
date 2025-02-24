@@ -281,7 +281,7 @@ export const getButtonIconBackground = "black";
 const DEFAULT_DROP_SHADOW_COLOR = "1px 3px 10px 2px rgb(0 0 40)";
 export const getButtonDropShadowColor =
   (background: ButtonBackground) => (props: PropsWithTheme) =>
-    props.theme.buttonDropShadows[background] || DEFAULT_DROP_SHADOW_COLOR;
+    DEFAULT_DROP_SHADOW_COLOR;
 
 export const getButtonPadding = (
   size: ButtonSize,

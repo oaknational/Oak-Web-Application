@@ -146,11 +146,7 @@ const AppHeader: FC<HeaderProps> = () => {
               onClick={openMenu}
               aria-expanded={open}
             /> */}
-            <OakTertiaryButton
-              iconName="hamburger"
-              ref={menuButtonRef}
-              onClick={openMenu}
-            />
+            <OakTertiaryButton iconName="hamburger" onClick={openMenu} />
           </OakFlex>
         </OakFlex>
         <AppHeaderUnderline />

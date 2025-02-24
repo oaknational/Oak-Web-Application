@@ -57,7 +57,7 @@ const PreAlbCopyright = (
 const StyledLink = styled.a`
   display: inline;
   text-decoration: underline;
-  color: ${(props) => props.theme.colors.navy};
+  color: #000;
 `;
 
 const PostAlbCopyright = (
