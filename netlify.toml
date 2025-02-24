@@ -57,4 +57,4 @@ function = 'subdomain-redirect'
 included_files = [".env.production.local"]
 
 [context."feat/eng-1100-sentry-implementation"]
-command = "npm run build && du -sh .next/* && du -sh .next/standalone/*  && du -sh .next/standalone/node_modules/* && du -sh .next/standalone/node_modules/@swc/* && du -sh .next/standalone/node_modules/@img/*"
+command = "npm run build && du -sh .next/* && du -sh .next/standalone/*  && du -sh .next/standalone/node_modules/*"
