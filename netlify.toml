@@ -56,5 +56,5 @@ function = 'subdomain-redirect'
 [functions]
 included_files = [".env.production.local", ".next/!(cache/**)"]
 
-[context.chore/investigate-netlify-deploy-issues-sentry-additions]
+[context."chore/investigate-netlify-deploy-issues-sentry-additions"]
 command = "npm run build && du -sh .next/* && du -sh .netlify/functions/*"
