@@ -1,6 +1,6 @@
 import { createThread } from "../thread";
 
-import { createUnit } from ".";
+import { createUnit, getKeystageSlug, getPhaseSlug, getPhaseTitle } from ".";
 
 describe("createUnit", () => {
   it("basic", () => {
@@ -249,5 +249,40 @@ describe("createUnit", () => {
       state: "published",
       year: "5",
     });
+  });
+});
+
+describe("getPhaseTitle", () => {
+  it("primary", () => {
+    expect(getPhaseTitle("3")).toEqual("Primary");
+  });
+
+  it("secondary", () => {
+    expect(getPhaseTitle("10")).toEqual("Secondary");
+  });
+});
+
+describe("getPhaseSlug", () => {
+  it("primary", () => {
+    expect(getPhaseSlug("3")).toEqual("primary");
+  });
+
+  it("secondary", () => {
+    expect(getPhaseSlug("10")).toEqual("secondary");
+  });
+});
+
+describe("getKeystageSlug", () => {
+  it("ks1", () => {
+    expect(getKeystageSlug("1")).toEqual("ks1");
+  });
+  it("ks2", () => {
+    expect(getKeystageSlug("6")).toEqual("ks2");
+  });
+  it("ks3", () => {
+    expect(getKeystageSlug("7")).toEqual("ks3");
+  });
+  it("ks4", () => {
+    expect(getKeystageSlug("10")).toEqual("ks4");
   });
 });

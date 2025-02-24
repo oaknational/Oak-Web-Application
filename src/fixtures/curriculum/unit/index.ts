@@ -36,14 +36,15 @@ const BASE_UNIT: Unit = {
   year: "5",
 };
 
-function getPhaseTitle(year: string) {
+export function getPhaseTitle(year: string) {
   if (parseInt(year) < 7) {
     return "Primary";
   } else {
     return "Secondary";
   }
 }
-function getPhaseSlug(year: string) {
+
+export function getPhaseSlug(year: string) {
   if (parseInt(year) < 7) {
     return "primary";
   } else {
@@ -57,7 +58,7 @@ export function randomSlugTitle() {
   return { slug: `test-${slugTitleUuid}`, title: `Test ${slugTitleUuid}` };
 }
 
-function getKeystageSlug(year: string) {
+export function getKeystageSlug(year: string) {
   const yearNum = parseInt(year);
   if (yearNum <= 2) return "ks1";
   if (yearNum <= 6) return "ks2";
