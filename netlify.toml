@@ -54,7 +54,7 @@ function = 'subdomain-redirect'
 # Workaround for Netlify no reading .env.production.local in the new runtime yet.
 # All Netlify builds are production from the Nex† perspective.
 [functions]
-included_files = [".env.production.local", ".next/!(cache/**)"]
+included_files = [".env.production.local"]
 
 [context."chore/investigate-netlify-deploy-issues-sentry-additions"]
-command = "npm run build && du -sh .next/* && du -sh .netlify/functions/*"
+command = "npm run build && du -sh .next/*"
