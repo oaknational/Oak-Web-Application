@@ -68,4 +68,22 @@ describe("HeaderListing", () => {
     );
     expect(banner).toBeInTheDocument();
   });
+  it("renders RiskAssessmentBanner if showRiskAssessmentBanner prop is set to true", async () => {
+    renderWithTheme(
+      <HeaderListing {...props} showRiskAssessmentBanner={true} />,
+    );
+    const banner = await screen.findByText("for all practical PE lessons", {
+      exact: false,
+    });
+    expect(banner).toBeInTheDocument();
+  });
+  it("does not render RiskAssessmentBanner if showRiskAssessmentBanner prop is set to false", async () => {
+    renderWithTheme(
+      <HeaderListing {...props} showRiskAssessmentBanner={false} />,
+    );
+    const banner = await screen.queryByText("for all practical PE lessons", {
+      exact: false,
+    });
+    expect(banner).not.toBeInTheDocument();
+  });
 });
