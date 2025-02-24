@@ -57,4 +57,4 @@ function = 'subdomain-redirect'
 included_files = [".env.production.local"]
 
 [context."chore/investigate-netlify-deploy-issues-sentry-additions"]
-command = "npm run build && du -sh .next/*"
+command = "npm run build && du -sh .next/* && du -sh .netlify/functions-internal/* && ls -la .netlify/functions-internal/___netlify-server-handler/"
