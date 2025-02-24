@@ -79,7 +79,6 @@ module.exports = async (phase) => {
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
-    output: "standalone",
     webpack: (config, { dev, defaultLoaders, isServer }) => {
       /**
        * Enable inlining of SVGs as components
@@ -283,6 +282,13 @@ module.exports = async (phase) => {
     },
     // Required for the posthog reverse proxy, but interferes with static URL redirections so we don't want this applied on production
     skipTrailingSlashRedirect: releaseStage === "development",
+
+    // Remove SWC from the output
+    experimental: {
+      outputFileTracingExcludes: {
+        "*": ["node_modules/@swc/**/*"],
+      },
+    },
   };
 
   // Stick the deployment URL in an env so the site map generation can use it.
