@@ -5,8 +5,8 @@ describe("createThread", () => {
     const result1 = createThread();
     expect(result1).toEqual({
       thread_id: 1,
-      thread_title: "Foo",
-      thread_slug: "foo",
+      thread_title: "Test",
+      thread_slug: "test",
       thread_order: 1,
     });
   });
@@ -16,7 +16,7 @@ describe("createThread", () => {
     expect(result1).toEqual({
       thread_id: 1,
       thread_title: "Badger",
-      thread_slug: "foo",
+      thread_slug: "test",
       thread_order: 1,
     });
   });
