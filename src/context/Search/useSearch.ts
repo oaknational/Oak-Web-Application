@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { getFilterForQuery, isFilterItem } from "./search.helpers";
@@ -35,18 +35,17 @@ const useSearchQuery = ({
   allExamBoards?: SearchPageData["examBoards"];
   legacy?: { slug: string; title: string }[];
 }): UseSearchQueryReturnType => {
-  const {
-    query: {
-      term = "",
-      keyStages = "",
-      yearGroups = "",
-      subjects = "",
-      contentTypes = "",
-      examBoards = "",
-      curriculum = "",
-    },
-    push,
-  } = useRouter();
+  const { push } = useRouter();
+
+  const routerQuery = {
+    term: "",
+    keyStages: "",
+    yearGroups: "",
+    subjects: "",
+    contentTypes: "",
+    examBoards: "",
+    curriculum: "",
+  };
 
   const isFilterItemCallback = useCallback(isFilterItem, []);
 
@@ -54,29 +53,34 @@ const useSearchQuery = ({
     isFilterItemCallback,
   ]);
 
-  const termString = term?.toString() || "";
+  const termString = routerQuery.term?.toString() || "";
   const query = useMemo(() => {
     return {
       term: termString,
       keyStages: allKeyStages
-        ? getFilterForQueryCallback(keyStages, allKeyStages)
+        ? getFilterForQueryCallback(routerQuery.keyStages, allKeyStages)
         : [],
       yearGroups: allYearGroups
-        ? getFilterForQueryCallback(yearGroups, allYearGroups)
+        ? getFilterForQueryCallback(routerQuery.yearGroups, allYearGroups)
         : [],
       subjects: allSubjects
-        ? getFilterForQueryCallback(subjects, allSubjects)
+        ? getFilterForQueryCallback(routerQuery.subjects, allSubjects)
         : [],
       contentTypes: allContentTypes
-        ? getFilterForQueryCallback(contentTypes, allContentTypes).filter(
+        ? getFilterForQueryCallback(
+            routerQuery.contentTypes,
+            allContentTypes,
+          ).filter(
             (type): type is "lesson" | "unit" =>
               type === "lesson" || type === "unit",
           )
         : [],
       examBoards: allExamBoards
-        ? getFilterForQueryCallback(examBoards, allExamBoards)
+        ? getFilterForQueryCallback(routerQuery.examBoards, allExamBoards)
         : [],
-      curriculum: legacy ? getFilterForQueryCallback(curriculum, legacy) : [],
+      curriculum: legacy
+        ? getFilterForQueryCallback(routerQuery.curriculum, legacy)
+        : [],
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -84,16 +88,16 @@ const useSearchQuery = ({
     termString,
     allKeyStages,
     allYearGroups,
-    yearGroups,
+    routerQuery.yearGroups,
     getFilterForQueryCallback,
-    keyStages,
+    routerQuery.keyStages,
     allSubjects,
-    contentTypes,
+    routerQuery.contentTypes,
     allContentTypes,
-    examBoards,
+    routerQuery.examBoards,
     allExamBoards,
-    subjects,
-    curriculum,
+    routerQuery.subjects,
+    routerQuery.curriculum,
   ]);
 
   const setQuery: SetSearchQuery = useStableCallback((arg) => {
@@ -102,7 +106,7 @@ const useSearchQuery = ({
       page: "search",
       query: newQuery,
     });
-    push(url, undefined, { shallow: true });
+    push(url);
   });
 
   return { query, setQuery };

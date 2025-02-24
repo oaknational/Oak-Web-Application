@@ -1,3 +1,5 @@
+"use client";
+
 import HomePageBanner from "@/components/CurriculumComponents/HomePageBanner";
 
 export default function Banners() {

@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
@@ -33,29 +33,31 @@ type UseIsCurrentProps =
  */
 const useIsCurrent = (props: UseIsCurrentProps) => {
   const { href, keyStageSlug } = props;
-  const { pathname: currentPath, asPath } = useRouter();
+  const currentPath = usePathname();
   const [isCurrent, setIsCurrent] = useState(false);
   // NB. We use useEffect here to avoid a server-side render error
   useEffect(() => {
     // Add in when href and keyStage at the same time or neither of them in also
     // throw new Error("useIsCurrent is not implemented");
 
-    if (href) {
-      const hash = asPath.split("#")[1];
-      const isCurrentPath = isSubPath({
-        currentPath,
-        href,
-      });
-      setIsCurrent(isCurrentPath || hash === href.substring(1));
-      return;
-    }
-    if (keyStageSlug) {
-      const isKeyStageCurrent = asPath.includes(keyStageSlug);
+    if (currentPath) {
+      if (href) {
+        const hash = currentPath.split("#")[1];
+        const isCurrentPath = isSubPath({
+          currentPath,
+          href,
+        });
+        setIsCurrent(isCurrentPath || hash === href.substring(1));
+        return;
+      }
+      if (keyStageSlug) {
+        const isKeyStageCurrent = currentPath.includes(keyStageSlug);
 
-      setIsCurrent(isKeyStageCurrent);
-      return;
+        setIsCurrent(isKeyStageCurrent);
+        return;
+      }
     }
-  }, [currentPath, href, asPath, keyStageSlug, isCurrent]);
+  }, [currentPath, href, keyStageSlug, isCurrent]);
 
   return isCurrent;
 };

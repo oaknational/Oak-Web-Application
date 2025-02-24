@@ -1,7 +1,8 @@
 "use client";
-import Head from "next/head";
+
+// import Head from "next/head";
 import React, { FC } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import {
   OakBox,
   OakFlex,
@@ -14,7 +15,7 @@ import Seo, { SeoProps } from "@/browser-lib/seo/Seo";
 import AppHeader from "@/components/AppComponents/AppHeader";
 import LayoutSiteFooter from "@/components/AppComponents/LayoutSiteFooter";
 import { OrganizationJsonLd } from "@/browser-lib/seo/getJsonLd";
-import LayoutPreviewControls from "@/components/AppComponents/LayoutPreviewControls";
+// import LayoutPreviewControls from "@/components/AppComponents/LayoutPreviewControls";
 import LayoutClientErrorHeader from "@/components/AppComponents/LayoutClientErrorHeader";
 import LayoutClientErrorFooter from "@/components/AppComponents/LayoutClientErrorFooter";
 import LandingPagesHeader, {
@@ -75,9 +76,9 @@ const Layout: FC<LayoutProps> = (props) => {
     <>
       <OakThemeProvider theme={oakDefaultTheme}>
         <Seo {...seoProps} />
-        <Head>
+        {/* <Head>
           <link rel="icon" href="/favicon.ico" />
-        </Head>
+        </Head> */}
         <OrganizationJsonLd />
         <OakFlex
           $flexDirection="column"

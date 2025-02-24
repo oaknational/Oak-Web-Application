@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import {
   OakGrid,
@@ -10,8 +12,8 @@ import {
 } from "@oaknational/oak-components";
 
 import ImageContainer from "@/components/GenericPagesComponents/ImageContainer";
-import SearchForm from "@/components/SharedComponents/SearchForm";
-import useSearch from "@/context/Search/useSearch";
+// import SearchForm from "@/components/SharedComponents/SearchForm";
+// import useSearch from "@/context/Search/useSearch";
 import TeachersTabResourceSelectorCard from "@/components/GenericPagesComponents/TeachersTabResourceSelectorCard";
 import { KeyStageKeypadProps } from "@/components/SharedComponents/KeyStageKeypad/KeyStageKeypad";
 import KeyStageKeypad from "@/components/SharedComponents/KeyStageKeypad";
@@ -23,7 +25,7 @@ type TeacherTabProps = {
 };
 const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
   const { track } = useAnalytics();
-  const { setSearchTerm } = useSearch({});
+  // const { setSearchTerm } = useSearch({});
   return (
     <OakFlex $background={"mint"} $pv="inner-padding-xl" $overflow={"hidden"}>
       <OakMaxWidth $ph={["inner-padding-m"]}>
@@ -51,7 +53,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
               </OakTypography>
               <OakGrid $mt="space-between-s">
                 <OakGridArea $colSpan={[12, 12, 11]}>
-                  <SearchForm
+                  {/* <SearchForm
                     searchContext="homepage"
                     placeholderText="Search by keyword or topic"
                     searchTerm=""
@@ -59,7 +61,7 @@ const TeachersTab: FC<TeacherTabProps> = ({ keyStages }) => {
                       setSearchTerm(value);
                     }}
                     analyticsSearchSource={"homepage search box"}
-                  />
+                  /> */}
                 </OakGridArea>
               </OakGrid>
               <OakBox $pv="inner-padding-xl2" $width={"100%"}>
