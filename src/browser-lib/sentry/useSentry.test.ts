@@ -5,7 +5,12 @@ import useSentry, { isSentryInitialised } from "./useSentry";
 
 import { initialiseSentry } from "@/common-lib/error-reporter";
 
-jest.mock("@sentry/nextjs");
+jest.mock("@sentry/nextjs", () => ({
+  getClient: jest.fn(),
+  setUser: jest.fn(),
+  endSession: jest.fn(),
+}));
+
 jest.mock("@/common-lib/error-reporter", () => ({
   initialiseSentry: jest.fn(),
 }));

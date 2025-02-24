@@ -11,6 +11,15 @@ import theme from "@/styles/theme";
 const consoleLogSpy = jest.spyOn(console, "log");
 const consoleErrorSpy = jest.spyOn(console, "error");
 
+jest.mock("@/components/AppComponents/ErrorBoundary/ErrorBoundary", () => {
+  return {
+    __esModule: true,
+    ...jest.requireActual(
+      "@/components/AppComponents/ErrorBoundary/ErrorBoundary",
+    ),
+  };
+});
+
 const TantrumChild = () => {
   throw new Error("Where's my toys");
 };
