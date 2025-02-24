@@ -5,6 +5,7 @@ import {
   OakIcon,
   OakLink,
 } from "@oaknational/oak-components";
+import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -49,6 +50,12 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
   const displayNextLessonContainer =
     !isCanonical && unitSlug && programmeSlug && unitTitle;
   const isNextLessonsAvailable = nextLessons && nextLessons.length > 0;
+
+  const { state } = useOakConsent();
+  const cookiesNotAccepted = !!state.policyConsents.find(
+    (policy) =>
+      policy.consentState === "denied" || policy.consentState === "pending",
+  );
 
   const focusRef = useRef<HTMLAnchorElement>(null);
 
@@ -187,8 +194,10 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             >
               install the Google Fonts ‘Lexend’ and ‘Kalam’
             </OakLink>
-            . Click the question mark in the bottom-right of the page if you
-            need extra help with this.
+            .{" "}
+            {cookiesNotAccepted
+              ? ""
+              : "Click the question mark in the bottom-right of the page if you need extra help with this."}
           </OakP>
           {teacherShareButton}
         </Flex>
