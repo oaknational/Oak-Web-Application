@@ -1,6 +1,7 @@
 const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
 const path = require("path");
 
+const { withSentryConfig } = require("@sentry/nextjs");
 const StatoscopeWebpackPlugin = require("@statoscope/webpack-plugin").default;
 const CopyPlugin = require("copy-webpack-plugin");
 const {
@@ -326,3 +327,28 @@ module.exports = async (phase) => {
 
   return withBundleAnalyzer(nextConfig);
 };
+
+module.exports = withSentryConfig(module.exports, {
+  org: process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER,
+  project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER,
+
+  // Only print logs for uploading source maps in CI
+  silent: !process.env.CI,
+
+  // Upload a larger set of source maps for prettier stack traces (increases build time)
+  widenClientFileUpload: true,
+
+  // Automatically annotate React components to show their full name in breadcrumbs and session replay
+  reactComponentAnnotation: {
+    enabled: true,
+  },
+
+  // Tunnel requests to Sentry through our own server
+  tunnelRoute: "/monitoring",
+
+  // Hides source maps from generated client bundles
+  hideSourceMaps: true,
+
+  // Automatically tree-shake Sentry logger statements to reduce bundle size
+  disableLogger: true,
+});

@@ -1,4 +1,5 @@
 import React, { Component, ErrorInfo, FC, ReactNode } from "react";
+import * as Sentry from "@sentry/react";
 import Bugsnag from "@bugsnag/js";
 
 import { bugsnagInitialised } from "@/browser-lib/bugsnag/useBugsnag";
@@ -69,7 +70,9 @@ const ErrorBoundary: FC<ErrorBoundaryProps> = (props) => {
   }
 
   return (
+    <Sentry.ErrorBoundary fallback={<ClientErrorView />}>
     <BugsnagErrorBoundary FallbackComponent={FallbackComponent} {...props} />
+    </Sentry.ErrorBoundary>
   );
 };
 

@@ -1,5 +1,6 @@
 import Bugsnag, { Event } from "@bugsnag/js";
 import BugsnagPluginReact from "@bugsnag/plugin-react";
+import * as Sentry from "@sentry/nextjs";
 
 import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 import isBrowser from "../../utils/isBrowser";
@@ -258,6 +259,8 @@ const errorReporter = (
 
         event.addMetadata("Meta", metaFields);
       });
+
+      Sentry.captureException('error')
     } catch (bugsnagErr) {
       logger.log("Failed to send error to bugsnag:");
       logger.error(bugsnagErr);
