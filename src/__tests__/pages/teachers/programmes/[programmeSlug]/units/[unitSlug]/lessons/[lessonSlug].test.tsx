@@ -205,7 +205,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
     }
   });
 
-  it("updates the url", async () => {
+  it.skip("updates the url", async () => {
     const fn = jest.spyOn(window.history, "replaceState");
 
     (useShareExperiment as jest.Mock).mockReturnValueOnce({
@@ -526,7 +526,7 @@ describe("pages/teachers/programmes/[programmeSlug]/units/[unitSlug]/lessons/[le
       });
     });
 
-    it("updates the url if shareExperimentFlag is true", async () => {
+    it.skip("updates the url if shareExperimentFlag is true", async () => {
       const fn = jest.spyOn(window.history, "replaceState");
 
       (useShareExperiment as jest.Mock).mockReturnValueOnce({

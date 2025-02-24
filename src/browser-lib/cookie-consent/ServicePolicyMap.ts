@@ -7,4 +7,5 @@ export const ServicePolicyMap = {
   GLEAP: "statistics",
   BUGSNAG: "statistics",
   HUBSPOT: "statistics",
+  SENTRY: "statistics",
 } as const;
