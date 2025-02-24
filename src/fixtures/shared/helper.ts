@@ -16,3 +16,10 @@ export function getTitleFromSlug(slug?: string) {
   }
   return undefined;
 }
+
+export function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "");
+}

@@ -1,3 +1,5 @@
+import { getTitleFromSlug } from "../../shared/helper";
+
 import { Unit } from "@/utils/curriculum/types";
 
 const BASE_UNIT: Unit = {
@@ -12,13 +14,13 @@ const BASE_UNIT: Unit = {
   planned_number_of_lessons: null,
   phase: "",
   phase_slug: "",
-  keystage_slug: "ks3",
+  keystage_slug: "ks2",
   slug: "",
   title: "",
   lessons: [],
   order: 0,
-  subject: "English",
-  subject_slug: "english",
+  subject: "Transfiguration",
+  subject_slug: "transfiguration",
   subject_parent: null,
   subject_parent_slug: null,
   tier: null,
@@ -31,7 +33,7 @@ const BASE_UNIT: Unit = {
   cycle: "1",
   unit_options: [],
   state: "published",
-  year: "7",
+  year: "5",
 };
 
 function getPhaseTitle(year: string) {
@@ -50,9 +52,9 @@ function getPhaseSlug(year: string) {
 }
 
 let slugTitleUuid = 0;
-function randomSlugTitle() {
+export function randomSlugTitle() {
   slugTitleUuid++;
-  return [`test-${slugTitleUuid}`, `Test ${slugTitleUuid}`];
+  return { slug: `test-${slugTitleUuid}`, title: `Test ${slugTitleUuid}` };
 }
 
 function getKeystageSlug(year: string) {
@@ -63,31 +65,24 @@ function getKeystageSlug(year: string) {
   return "ks4";
 }
 
-function slugify(text: string) {
-  return text
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, "");
-}
-
-export function createUnit(partialProps: Partial<Unit> = {}) {
-  const phase = getPhaseTitle(partialProps.year ?? BASE_UNIT.year);
-  const phase_slug = getPhaseSlug(partialProps.year ?? BASE_UNIT.year);
-  const keystage_slug = getKeystageSlug(partialProps.year ?? BASE_UNIT.year);
-  const [slug, title] = randomSlugTitle();
-  const subject = partialProps.subject ?? BASE_UNIT.subject;
-  const subject_slug = slugify(subject);
+export function createUnit(partial: Partial<Unit> = {}) {
+  const phase = getPhaseTitle(partial.year ?? BASE_UNIT.year);
+  const phase_slug = getPhaseSlug(partial.year ?? BASE_UNIT.year);
+  const keystage_slug = getKeystageSlug(partial.year ?? BASE_UNIT.year);
+  const subject_slug = partial.subject_slug ?? BASE_UNIT.subject_slug;
+  // TODO: Change unlying MV to use foo_slug / foo_title
+  const subject = getTitleFromSlug(subject_slug);
+  const title = getTitleFromSlug(partial?.slug);
 
   return {
     ...BASE_UNIT,
-    slug,
-    title,
     phase,
     phase_slug,
     keystage_slug,
     subject,
     subject_slug,
-    year: partialProps.year ?? BASE_UNIT.year,
-    ...partialProps,
+    year: partial.year ?? BASE_UNIT.year,
+    ...(title ? { title } : {}),
+    ...partial,
   };
 }
