@@ -12,11 +12,11 @@ export type HeaderConfig = {
 };
 
 const headerConfig = (theme: OakTheme) => theme.header;
-const headerHeight = ({ theme }: PropsWithTheme) => headerConfig(theme).height;
+const headerHeight = ({ theme }: PropsWithTheme) => 96;
 
 export const baseHeaderStyles = css`
   width: 100%; /* Do we need a max width here and to center? */
-  min-height: ${headerHeight}px;
+  min-height: 96px;
 `;
 
 export const StyledHeader = styled(Flex)`

@@ -277,10 +277,7 @@ export const getButtonColor = (
       ? getColorByName("grey50")
       : "black"
     : getTextColorForBackground(background);
-export const getButtonIconBackground =
-  (background: ButtonBackground) => (props: PropsWithTheme) =>
-    props.theme.buttonIconBackgroundColors[background] ||
-    props.theme.contrastColors[background];
+export const getButtonIconBackground = "black";
 const DEFAULT_DROP_SHADOW_COLOR = "1px 3px 10px 2px rgb(0 0 40)";
 export const getButtonDropShadowColor =
   (background: ButtonBackground) => (props: PropsWithTheme) =>

@@ -97,8 +97,8 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
   } = props;
 
   const iconSize = buttonIconSizeMap[buttonSize];
-  const theme = useTheme();
-  const defaultIconBackground = getButtonIconBackground(background)({ theme });
+  //const theme = useTheme();
+  const defaultIconBackground = "black";
 
   const defactoBackground =
     ["minimal", "minimalNav", "buttonStyledAsLink"].includes(variant) &&
@@ -106,8 +106,7 @@ const ButtonInner: FC<ButtonInnerProps> = (props) => {
       ? iconBackground
       : background;
 
-  const underlineColor =
-    theme.buttonFocusUnderlineColors[defactoBackground] ?? "black";
+  const underlineColor = "black";
 
   if (isCurrent && currentStyles?.includes("arrow-icon")) {
     icon = "arrow-right";

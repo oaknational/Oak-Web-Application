@@ -1,7 +1,7 @@
 import { FC, HTMLProps, RefObject, useEffect, useRef } from "react";
 import styled, { useTheme } from "styled-components";
 import { Transition, TransitionStatus } from "react-transition-group";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import { FocusOn } from "react-focus-on";
 import {
   OakIcon,
@@ -72,8 +72,10 @@ const NavMenuList = styled("nav")<OakFlexProps & OakBoxProps>`
 const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
   const { open, closeMenu } = useMenuContext();
   const theme = useTheme();
-  const { menu: menuConfig } = theme;
-  const { pathname } = useRouter();
+  const { menu: menuConfig } = {
+    menu: { width: "100%", background: "white" },
+  };
+  const pathname = usePathname();
   const ref = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -111,9 +113,9 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
               $right={0}
               $height="100%"
               $maxWidth="100%"
-              $width={menuConfig.width}
+              //$width={menuConfig.width}
               $flexDirection={"column"}
-              $background={menuConfig.background}
+              //  $background={menuConfig.background}
               state={state}
               $zIndex={"neutral"}
               aria-expanded={open}

@@ -12,7 +12,7 @@ function getColorByName(colorName?: OakColorName) {
     return;
   }
 
-  return ({ theme }: PropsWithTheme) => theme.colors[colorName];
+  return ({ theme }: PropsWithTheme) => theme.colors?.[colorName];
 }
 
 export default getColorByName;

@@ -11,7 +11,7 @@ function getFontFamily(fontName?: OakFontName) {
   if (!fontName) {
     return "inherit";
   }
-  return ({ theme }: PropsWithTheme) => theme.fonts[fontName];
+  return ({ theme }: PropsWithTheme) => theme.fonts?.[fontName];
 }
 
 export default getFontFamily;

@@ -15,6 +15,7 @@ import Icon, {
   IconName,
   isIconVariant,
 } from "@/components/SharedComponents/Icon.deprecated";
+import { OakIcon } from "@oaknational/oak-components";
 
 export type IconButtonInnerProps = {
   variant: ButtonVariant;
@@ -36,19 +37,19 @@ const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
 
   const iconVariant = variant.replace("Nav", "");
   const theme = useTheme();
-  const underlineColor =
-    theme.buttonFocusUnderlineColors[background] || "black";
+  const underlineColor = "black";
 
   return (
     <IconButtonWrapper size={size} variant={variant} background={background}>
-      <Icon
+      {/* <Icon
         variant={isIconVariant(iconVariant) ? iconVariant : undefined}
         name={icon}
         size={getIconButtonHeight(size, variant)}
         $color={iconColorOverride}
         $background={variant === "minimal" ? "transparent" : background}
         animateTo={iconAnimateTo}
-      />
+      /> */}
+
       <IconFocusUnderline $color={underlineColor} />
     </IconButtonWrapper>
   );

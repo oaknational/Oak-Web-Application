@@ -108,19 +108,13 @@ const Icon: FC<IconProps> = (props) => {
   const outerWidth = width || size;
   const outerHeight = height || size;
 
-  const theme = useTheme();
+  //const theme = useTheme();
   /**
    * by default, the color will take the css `color` value of its closest ancester
    * (because in the SVG, the color is set to `currentColor`). Use `$color` prop to
    * override this value.
    */
-  const $foregroundColor =
-    $color ||
-    (typeof $background === "string"
-      ? theme.contrastColors[$background]
-      : Array.isArray($background)
-        ? $background.map(($) => ($ ? theme.contrastColors[$] : null))
-        : undefined);
+  const $foregroundColor = $color;
 
   const svgProps = SPECIAL_ICON_SVG_PROPS[name] ?? { name };
 

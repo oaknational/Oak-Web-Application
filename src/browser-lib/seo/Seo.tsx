@@ -1,6 +1,7 @@
+"use client";
 import React, { FC } from "react";
 import { NextSeo } from "next-seo";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 
 import { SOCIAL_SHARING_IMAGE_URL } from "../../image-data";
 import getBrowserConfig from "../getBrowserConfig";
@@ -39,10 +40,10 @@ const Seo: FC<SeoProps> = ({
   canonicalURL,
 }) => {
   const router = useRouter();
-
+  const path = usePathname();
   // Trim trailing slashes
   const formattedCanonicalURL = (
-    canonicalURL || `${getBrowserConfig("seoAppUrl")}${router.asPath}`
+    canonicalURL || `${getBrowserConfig("seoAppUrl")}${path}`
   )?.replace(/\/$/, ""); //?
 
   return (
@@ -53,7 +54,7 @@ const Seo: FC<SeoProps> = ({
       openGraph={{
         title,
         description,
-        url: `${getBrowserConfig("seoAppUrl")}${router.asPath}`,
+        url: `${getBrowserConfig("seoAppUrl")}${path}`,
         images: [
           {
             url: imageUrl,

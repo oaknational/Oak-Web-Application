@@ -14,8 +14,7 @@ function getTextColorForBackground(background?: OakColorName) {
     return;
   }
 
-  return (props: PropsWithTheme) =>
-    getColorByName(props.theme.contrastColors[background])(props);
+  return (props: PropsWithTheme) => "#000000";
 }
 
 export default getTextColorForBackground;

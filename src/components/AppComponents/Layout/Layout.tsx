@@ -1,6 +1,7 @@
+"use client";
 import Head from "next/head";
 import React, { FC } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import {
   OakBox,
   OakFlex,
@@ -67,7 +68,8 @@ const Layout: FC<LayoutProps> = (props) => {
   } = props;
   const Header = headers[headerVariant];
   const Footer = footers[footerVariant];
-  const { isPreview } = useRouter();
+  // TODO: draft mode
+  // const { isPreview } = useRouter();
 
   return (
     <>
@@ -104,7 +106,7 @@ const Layout: FC<LayoutProps> = (props) => {
             {children}
           </OakFlex>
           <Footer />
-          {isPreview && <LayoutPreviewControls />}
+          {/* {isPreview && <LayoutPreviewControls />} */}
         </OakFlex>
       </OakThemeProvider>
     </>

@@ -1,3 +1,4 @@
+"use client";
 import {
   createContext,
   FC,
@@ -8,6 +9,7 @@ import {
   useState,
 } from "react";
 import router from "next/router";
+import { usePathname } from "next/navigation";
 import { usePostHog } from "posthog-js/react";
 import { useOakConsent } from "@oaknational/oak-consent-client";
 
@@ -159,7 +161,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     {},
     getAvoBridge({ posthog }),
   );
-
+  const pathName = usePathname();
   /**
    * Page view tracking
    */
@@ -171,11 +173,14 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
 
     // We send the posthog $pageview event via Avo
     const { analyticsUseCase, pageName } = getPageViewProps(path);
-    track.pageview({
-      linkUrl: router.asPath,
-      pageName,
-      analyticsUseCase,
-    });
+
+    if (pathName) {
+      track.pageview({
+        linkUrl: pathName,
+        pageName,
+        analyticsUseCase,
+      });
+    }
   });
 
   // hacky way to ensure page-tracking is called on initial page load:

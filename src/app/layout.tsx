@@ -11,6 +11,8 @@ import {
   oakDefaultTheme,
 } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
+import AnalyticsProvider from "@/context/Analytics/AnalyticsProvider";
+import { MenuProvider } from "@/context/Menu";
 
 export const metadata = {
   title: "Oak National Academy",
@@ -32,40 +34,44 @@ export default function RootLayout({
           <PHProvider>
             <OakThemeProvider theme={oakDefaultTheme}>
               <CookieConsentProvider>
-                <ClerkProvider
-                  localization={{
-                    signUp: {
-                      start: {
-                        subtitle: "Sign up to Oak to continue",
-                        title: "Create a free account",
-                      },
-                    },
-                  }}
-                  appearance={{
-                    variables: {
-                      colorPrimary: "#222222",
-                      fontFamily: lexend.style.fontFamily,
-                      borderRadius: "4px",
-                    },
-                    elements: {
-                      cardBox: {
-                        boxShadow: "none",
-                        overflow: "auto",
-                        borderRadius: "8px",
-                      },
-                      card: {
-                        paddingBlock: "40px",
-                        boxShadow: "none",
-                        borderRadius: "8px",
-                      },
-                      footer: {
-                        background: "#ffffff",
-                      },
-                    },
-                  }}
-                >
-                  {children}
-                </ClerkProvider>
+                <AnalyticsProvider>
+                  <MenuProvider>
+                    <ClerkProvider
+                      localization={{
+                        signUp: {
+                          start: {
+                            subtitle: "Sign up to Oak to continue",
+                            title: "Create a free account",
+                          },
+                        },
+                      }}
+                      appearance={{
+                        variables: {
+                          colorPrimary: "#222222",
+                          fontFamily: lexend.style.fontFamily,
+                          borderRadius: "4px",
+                        },
+                        elements: {
+                          cardBox: {
+                            boxShadow: "none",
+                            overflow: "auto",
+                            borderRadius: "8px",
+                          },
+                          card: {
+                            paddingBlock: "40px",
+                            boxShadow: "none",
+                            borderRadius: "8px",
+                          },
+                          footer: {
+                            background: "#ffffff",
+                          },
+                        },
+                      }}
+                    >
+                      {children}
+                    </ClerkProvider>
+                  </MenuProvider>
+                </AnalyticsProvider>
               </CookieConsentProvider>
             </OakThemeProvider>
           </PHProvider>

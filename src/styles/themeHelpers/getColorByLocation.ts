@@ -21,7 +21,7 @@ const getColorByLocation =
   ({ theme }: PropsWithTheme): string => {
     const colorName = getter({ theme });
 
-    return theme.colors[colorName];
+    return theme.colors?.[colorName];
   };
 
 export default getColorByLocation;

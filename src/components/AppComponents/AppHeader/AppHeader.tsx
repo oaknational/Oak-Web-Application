@@ -1,5 +1,11 @@
+"use client";
 import { FC, useRef } from "react";
-import { OakBox, oakColorTokens, OakFlex } from "@oaknational/oak-components";
+import {
+  OakBox,
+  oakColorTokens,
+  OakFlex,
+  OakTertiaryButton,
+} from "@oaknational/oak-components";
 import { UserButton, useUser } from "@clerk/nextjs";
 
 import Logo from "@/components/AppComponents/Logo";
@@ -9,13 +15,15 @@ import { AppHeaderMenu } from "@/components/AppComponents/AppHeaderMenu";
 import { useMenuContext } from "@/context/Menu";
 import AppHeaderBurgerMenuSections from "@/components/AppComponents/AppHeaderBurgerMenuSections";
 import { ActiveLinkUnderline } from "@/components/SharedComponents/OwaLink/OwaLink";
-import IconButton from "@/components/SharedComponents/Button/IconButton";
+// import IconButton from "@/components/SharedComponents/Button/IconButton";
 import { StyledHeader } from "@/components/AppComponents/StyledHeader";
 import { AppHeaderUnderline } from "@/components/AppComponents/AppHeaderUnderline";
 import { burgerMenuSections } from "@/browser-lib/fixtures/burgerMenuSections";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import useSelectedArea from "@/hooks/useSelectedArea";
 import { getBreakpoint } from "@/styles/utils/responsive";
+import IconButton from "@/components/SharedComponents/Button/IconButton";
+import Link from "next/link";
 
 export const siteAreas = {
   teachers: "TEACHERS",
@@ -108,7 +116,7 @@ const AppHeader: FC<HeaderProps> = () => {
               )}
             </OwaLink>
             <OakFlex $alignItems="center" $gap="all-spacing-1">
-              <OwaLink
+              {/* <OwaLink
                 page="pupil-year-index"
                 $focusStyles={["underline"]}
                 htmlAnchorProps={{
@@ -116,7 +124,8 @@ const AppHeader: FC<HeaderProps> = () => {
                     track.classroomSelected({ navigatedFrom: "header" }),
                   "aria-label": "Pupils browse years",
                 }}
-              >
+              > */}
+              <Link href="/pupils-new">
                 Pupils
                 {selectedArea == siteAreas.pupils && (
                   <ActiveLinkUnderline
@@ -125,9 +134,10 @@ const AppHeader: FC<HeaderProps> = () => {
                     $height={"all-spacing-2"}
                   />
                 )}
-              </OwaLink>
+              </Link>
+              {/* </OwaLink> */}
             </OakFlex>
-            <IconButton
+            {/* <IconButton
               aria-label="Menu"
               icon={"hamburger"}
               variant={"minimal"}
@@ -135,6 +145,11 @@ const AppHeader: FC<HeaderProps> = () => {
               ref={menuButtonRef}
               onClick={openMenu}
               aria-expanded={open}
+            /> */}
+            <OakTertiaryButton
+              iconName="hamburger"
+              ref={menuButtonRef}
+              onClick={openMenu}
             />
           </OakFlex>
         </OakFlex>

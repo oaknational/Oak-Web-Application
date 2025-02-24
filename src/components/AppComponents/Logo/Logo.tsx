@@ -19,9 +19,9 @@ const Logo: FC<LogoProps> = (props) => {
   return (
     <LogoWrapper {...props}>
       <ScreenReaderOnly>Oak National Academy</ScreenReaderOnly>
-      <InlineSpriteSvg
+      {/* <InlineSpriteSvg
         name={props.variant === "with text" ? "logo-with-text" : "logo"}
-      />
+      /> */}
     </LogoWrapper>
   );
 };
