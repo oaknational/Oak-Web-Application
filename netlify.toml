@@ -55,3 +55,6 @@ function = 'subdomain-redirect'
 # All Netlify builds are production from the Nex† perspective.
 [functions]
 included_files = [".env.production.local"]
+
+[context."feat/eng-1100-sentry-implementation"]
+command = "npm run build && du -sh .next/standalone/* && du -sh .next/standalone/node_modules/@swc/*"
