@@ -1,5 +1,10 @@
 import { FC, useRef, useEffect } from "react";
-import { OakHeading, OakP, OakIcon } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  OakIcon,
+  OakLink,
+} from "@oaknational/oak-components";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -168,9 +173,22 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             Thanks for downloading
           </OakHeading>
 
-          <OakP $font={"body-1"}>
-            We hope you find the resources useful. Click the question mark in
-            the bottom-right corner to share your feedback.
+          <OakP $font={["heading-light-6", "heading-light-5"]}>
+            Our resources work best if you{" "}
+            <OakLink
+              href={
+                "https://support.thenational.academy/how-to-install-the-google-fonts-lexend-and-kalan"
+              }
+              target={"_blank"}
+              iconName={"external"}
+              isTrailingIcon={true}
+              iconHeight={"all-spacing-7"}
+              iconWidth={"all-spacing-7"}
+            >
+              install the Google Fonts ‘Lexend’ and ‘Kalam’
+            </OakLink>
+            . Click the question mark in the bottom-right of the page if you
+            need extra help with this.
           </OakP>
           {teacherShareButton}
         </Flex>
