@@ -56,6 +56,12 @@ export const downloadAssetsFixture = [
     label: "Additional material",
     ext: "docx",
   },
+  {
+    exists: true,
+    type: "lesson-guide-pdf",
+    label: "Lesson guide",
+    ext: "pdf",
+  },
 ];
 
 describe("constructDownloadsArray()", () => {
@@ -68,6 +74,7 @@ describe("constructDownloadsArray()", () => {
       hasWorksheetAnswersAssetObject: true,
       hasWorksheetGoogleDriveDownloadableVersion: true,
       hasSupplementaryAssetObject: true,
+      hasLessonGuideObject: true,
       isLegacy: true,
     });
     expect(downloads).toEqual(downloadAssetsFixture);
@@ -81,12 +88,13 @@ describe("constructDownloadsArray()", () => {
       hasWorksheetAnswersAssetObject: true,
       hasWorksheetGoogleDriveDownloadableVersion: true,
       hasSupplementaryAssetObject: false,
+      hasLessonGuideObject: true,
       isLegacy: true,
     });
     const filteredDownloads = downloads.filter(
       (download) => download.exists === true,
     );
 
-    expect(filteredDownloads.length).toEqual(5);
+    expect(filteredDownloads.length).toEqual(6);
   });
 });
