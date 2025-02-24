@@ -25,14 +25,14 @@ async function Homepage() {
   };
 
   return (
-    <AppLayout seoProps={{ title: "", description: "" }}>
+    <>
       <Banners />
       <HomePageTabImageNav current={"teachers"} />
       <TeachersTab
         keyStages={results.props.staticCurriculumData.keyStages}
         aria-current="page"
       />
-    </AppLayout>
+    </>
   );
 }
 

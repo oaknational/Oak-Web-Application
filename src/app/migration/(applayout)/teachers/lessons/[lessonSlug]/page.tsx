@@ -33,16 +33,14 @@ async function LessonPage({
   const lesson = await populateLessonWithTranscript(result);
 
   return (
-    <AppLayout seoProps={{ title: "", description: "" }}>
-      <LessonOverview
-        lesson={{
-          ...lesson,
-          isCanonical: true,
-          isSpecialist: false,
-        }}
-        isBeta={false}
-      />
-    </AppLayout>
+    <LessonOverview
+      lesson={{
+        ...lesson,
+        isCanonical: true,
+        isSpecialist: false,
+      }}
+      isBeta={false}
+    />
   );
 }
 
