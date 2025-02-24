@@ -210,4 +210,44 @@ describe("createUnit", () => {
       year: "5",
     });
   });
+
+  it("only phase_slug differs", () => {
+    const result1 = createUnit({
+      phase_slug: "secondary",
+    });
+
+    expect(result1).toEqual({
+      connection_prior_unit_description: null,
+      connection_future_unit_description: null,
+      connection_future_unit_title: null,
+      connection_prior_unit_title: null,
+      domain: null,
+      domain_id: null,
+      examboard: null,
+      examboard_slug: null,
+      planned_number_of_lessons: null,
+      phase: "Secondary",
+      phase_slug: "secondary",
+      keystage_slug: "ks2",
+      slug: "test",
+      title: "Test",
+      lessons: [],
+      order: 0,
+      subject: "Transfiguration",
+      subject_slug: "transfiguration",
+      subject_parent: null,
+      subject_parent_slug: null,
+      tier: null,
+      tier_slug: null,
+      tags: null,
+      subjectcategories: null,
+      threads: [],
+      description: null,
+      why_this_why_now: null,
+      cycle: "1",
+      unit_options: [],
+      state: "published",
+      year: "5",
+    });
+  });
 });

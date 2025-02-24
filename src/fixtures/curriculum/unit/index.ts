@@ -66,7 +66,9 @@ function getKeystageSlug(year: string) {
 }
 
 export function createUnit(partial: Partial<Unit> = {}) {
-  const phase = getPhaseTitle(partial.year ?? BASE_UNIT.year);
+  const phase = partial.phase_slug
+    ? getTitleFromSlug(partial.phase_slug)
+    : getPhaseTitle(partial.year ?? BASE_UNIT.year);
   const phase_slug = getPhaseSlug(partial.year ?? BASE_UNIT.year);
   const keystage_slug = getKeystageSlug(partial.year ?? BASE_UNIT.year);
   const subject_slug = partial.subject_slug ?? BASE_UNIT.subject_slug;
