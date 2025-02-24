@@ -23,3 +23,7 @@ export function slugify(text: string) {
     .replace(/\s+/g, "-")
     .replace(/[^\w-]+/g, "");
 }
+
+export function getLessonUidFromSlug(map: Map<string, number>, slug?: string) {
+  return `LESS-TEST-${getIdFromSlug(map, slug)}`;
+}

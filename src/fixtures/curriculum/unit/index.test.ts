@@ -5,6 +5,7 @@ import { createUnit } from ".";
 describe("createUnit", () => {
   it("basic", () => {
     const result = createUnit();
+
     expect(result).toEqual({
       connection_prior_unit_description: null,
       connection_future_unit_description: null,
@@ -45,6 +46,7 @@ describe("createUnit", () => {
       slug: "plain-transfiguration",
       title: "Plain Transfiguration",
     });
+
     expect(result).toEqual({
       connection_prior_unit_description: null,
       connection_future_unit_description: null,
@@ -84,6 +86,7 @@ describe("createUnit", () => {
     const result = createUnit({
       slug: "plain-transfiguration",
     });
+
     expect(result).toEqual({
       connection_prior_unit_description: null,
       connection_future_unit_description: null,
@@ -126,6 +129,7 @@ describe("createUnit", () => {
       keystage_slug: "ks3",
       year: "5",
     });
+
     expect(result).toEqual({
       connection_prior_unit_description: null,
       connection_future_unit_description: null,
@@ -165,6 +169,7 @@ describe("createUnit", () => {
     const result1 = createUnit({
       threads: [createThread()],
     });
+
     expect(result1).toEqual({
       connection_prior_unit_description: null,
       connection_future_unit_description: null,
