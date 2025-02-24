@@ -1,3 +1,58 @@
+## [1.696.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.696.0...v1.696.1) (2025-02-21)
+
+# [1.696.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.695.0...v1.696.0) (2025-02-21)
+
+
+### Features
+
+* fetch worksheet data statically ([cfbf80b](https://github.com/oaknational/Oak-Web-Application/commit/cfbf80bf8571e3262867c2c5ae30d270f1633e38))
+* update name in test ([f682237](https://github.com/oaknational/Oak-Web-Application/commit/f6822377c597ca7e655113b3a15f99a3ca76a221))
+
+# [1.695.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.6...v1.695.0) (2025-02-20)
+
+
+### Bug Fixes
+
+* add tests ([2c4f6d2](https://github.com/oaknational/Oak-Web-Application/commit/2c4f6d2ddad5c02dd654e5975b6eee44c20714f3))
+* update schema ([1e52b38](https://github.com/oaknational/Oak-Web-Application/commit/1e52b385a7df03e235cbd9b78c7e69d04ab3de36))
+
+
+### Features
+
+* make lesson guide downloadable ([f7c1b82](https://github.com/oaknational/Oak-Web-Application/commit/f7c1b826d7bbad12f90b8d43e06fd689f1f0c339))
+
+## [1.694.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.5...v1.694.6) (2025-02-20)
+
+
+### Bug Fixes
+
+* catch any mediaclips parsing errors and continue to render ([9947bbc](https://github.com/oaknational/Oak-Web-Application/commit/9947bbc79744812693b3f278f1035db4441442e8))
+
+## [1.694.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.4...v1.694.5) (2025-02-20)
+
+## [1.694.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.3...v1.694.4) (2025-02-20)
+
+
+### Bug Fixes
+
+* added thread analytics events back in ([195de7a](https://github.com/oaknational/Oak-Web-Application/commit/195de7a89b1fb93197cb34b88ce7e27bf0391056))
+
+## [1.694.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.2...v1.694.3) (2025-02-20)
+
+
+### Bug Fixes
+
+* add mock to prevent tests breaking ([a995c90](https://github.com/oaknational/Oak-Web-Application/commit/a995c9032156965fa2624a627c7ba482adabca17))
+* broken import ([df635e4](https://github.com/oaknational/Oak-Web-Application/commit/df635e488a377f2bf6039672f4e20351e76c8f92))
+* use proxied sanity url ([95520bb](https://github.com/oaknational/Oak-Web-Application/commit/95520bb8f8b09b7a50d3b4590bc302959a499010))
+
+## [1.694.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.1...v1.694.2) (2025-02-19)
+
+
+### Bug Fixes
+
+* speed up tests by adding missing key and minimizing providers ([b5454b7](https://github.com/oaknational/Oak-Web-Application/commit/b5454b78d7ced0b1144678e05e11f1ccbb2b7626))
+
 ## [1.694.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.694.0...v1.694.1) (2025-02-19)
 
 # [1.694.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.693.3...v1.694.0) (2025-02-19)

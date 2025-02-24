@@ -15,6 +15,8 @@ import {
   isLessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-static-paths";
+import { WorksheetInfo } from "@/components/PupilViews/PupilIntro";
+import { getWorksheetInfo } from "@/components/PupilComponents/pupilUtils/getWorksheetInfo";
 
 export { PupilExperienceView as default } from "@/components/PupilViews/PupilExperience";
 
@@ -114,6 +116,12 @@ export const getStaticProps: GetStaticProps<
         lessonContent: content,
       });
 
+      let worksheetInfo: WorksheetInfo = [];
+
+      if (content.hasWorksheetAssetObject) {
+        worksheetInfo = (await getWorksheetInfo(lessonSlug)) || [];
+      }
+
       const results: GetStaticPropsResult<PupilExperienceViewProps> = {
         props: {
           lessonContent: {
@@ -123,6 +131,7 @@ export const getStaticProps: GetStaticProps<
           browseData,
           hasWorksheet: content.hasWorksheetAssetObject ? true : false,
           hasAdditionalFiles: false,
+          worksheetInfo,
           backUrl,
           initialSection: section,
           pageType: "canonical",

@@ -4671,6 +4671,7 @@ export type Internal_Review_Lessons = {
   partner_reviews: Scalars['jsonb']['output'];
   release_uid?: Maybe<Scalars['bpchar']['output']>;
   reviewers?: Maybe<Scalars['json']['output']>;
+  status_downloadable_files: Scalars['String']['output'];
   status_lesson: Scalars['String']['output'];
   status_lesson_guide: Scalars['String']['output'];
   status_media_clips: Scalars['String']['output'];
@@ -4864,6 +4865,7 @@ export type Internal_Review_Lessons_Bool_Exp = {
   partner_reviews?: InputMaybe<Jsonb_Comparison_Exp>;
   release_uid?: InputMaybe<Bpchar_Comparison_Exp>;
   reviewers?: InputMaybe<Json_Comparison_Exp>;
+  status_downloadable_files?: InputMaybe<String_Comparison_Exp>;
   status_lesson?: InputMaybe<String_Comparison_Exp>;
   status_lesson_guide?: InputMaybe<String_Comparison_Exp>;
   status_media_clips?: InputMaybe<String_Comparison_Exp>;
@@ -4929,6 +4931,7 @@ export type Internal_Review_Lessons_Insert_Input = {
   partner_reviews?: InputMaybe<Scalars['jsonb']['input']>;
   release_uid?: InputMaybe<Scalars['bpchar']['input']>;
   reviewers?: InputMaybe<Scalars['json']['input']>;
+  status_downloadable_files?: InputMaybe<Scalars['String']['input']>;
   status_lesson?: InputMaybe<Scalars['String']['input']>;
   status_lesson_guide?: InputMaybe<Scalars['String']['input']>;
   status_media_clips?: InputMaybe<Scalars['String']['input']>;
@@ -4957,6 +4960,7 @@ export type Internal_Review_Lessons_Max_Fields = {
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
   release_uid?: Maybe<Scalars['bpchar']['output']>;
+  status_downloadable_files?: Maybe<Scalars['String']['output']>;
   status_lesson?: Maybe<Scalars['String']['output']>;
   status_lesson_guide?: Maybe<Scalars['String']['output']>;
   status_media_clips?: Maybe<Scalars['String']['output']>;
@@ -4980,6 +4984,7 @@ export type Internal_Review_Lessons_Max_Order_By = {
   lesson_id?: InputMaybe<Order_By>;
   lesson_uid?: InputMaybe<Order_By>;
   release_uid?: InputMaybe<Order_By>;
+  status_downloadable_files?: InputMaybe<Order_By>;
   status_lesson?: InputMaybe<Order_By>;
   status_lesson_guide?: InputMaybe<Order_By>;
   status_media_clips?: InputMaybe<Order_By>;
@@ -5008,6 +5013,7 @@ export type Internal_Review_Lessons_Min_Fields = {
   lesson_id?: Maybe<Scalars['Int']['output']>;
   lesson_uid?: Maybe<Scalars['bpchar']['output']>;
   release_uid?: Maybe<Scalars['bpchar']['output']>;
+  status_downloadable_files?: Maybe<Scalars['String']['output']>;
   status_lesson?: Maybe<Scalars['String']['output']>;
   status_lesson_guide?: Maybe<Scalars['String']['output']>;
   status_media_clips?: Maybe<Scalars['String']['output']>;
@@ -5031,6 +5037,7 @@ export type Internal_Review_Lessons_Min_Order_By = {
   lesson_id?: InputMaybe<Order_By>;
   lesson_uid?: InputMaybe<Order_By>;
   release_uid?: InputMaybe<Order_By>;
+  status_downloadable_files?: InputMaybe<Order_By>;
   status_lesson?: InputMaybe<Order_By>;
   status_lesson_guide?: InputMaybe<Order_By>;
   status_media_clips?: InputMaybe<Order_By>;
@@ -5088,6 +5095,7 @@ export type Internal_Review_Lessons_Order_By = {
   partner_reviews?: InputMaybe<Order_By>;
   release_uid?: InputMaybe<Order_By>;
   reviewers?: InputMaybe<Order_By>;
+  status_downloadable_files?: InputMaybe<Order_By>;
   status_lesson?: InputMaybe<Order_By>;
   status_lesson_guide?: InputMaybe<Order_By>;
   status_media_clips?: InputMaybe<Order_By>;
@@ -5146,6 +5154,8 @@ export enum Internal_Review_Lessons_Select_Column {
   /** column name */
   Reviewers = 'reviewers',
   /** column name */
+  StatusDownloadableFiles = 'status_downloadable_files',
+  /** column name */
   StatusLesson = 'status_lesson',
   /** column name */
   StatusLessonGuide = 'status_lesson_guide',
@@ -5199,6 +5209,7 @@ export type Internal_Review_Lessons_Set_Input = {
   partner_reviews?: InputMaybe<Scalars['jsonb']['input']>;
   release_uid?: InputMaybe<Scalars['bpchar']['input']>;
   reviewers?: InputMaybe<Scalars['json']['input']>;
+  status_downloadable_files?: InputMaybe<Scalars['String']['input']>;
   status_lesson?: InputMaybe<Scalars['String']['input']>;
   status_lesson_guide?: InputMaybe<Scalars['String']['input']>;
   status_media_clips?: InputMaybe<Scalars['String']['input']>;
@@ -5276,6 +5287,7 @@ export type Internal_Review_Lessons_Stream_Cursor_Value_Input = {
   partner_reviews?: InputMaybe<Scalars['jsonb']['input']>;
   release_uid?: InputMaybe<Scalars['bpchar']['input']>;
   reviewers?: InputMaybe<Scalars['json']['input']>;
+  status_downloadable_files?: InputMaybe<Scalars['String']['input']>;
   status_lesson?: InputMaybe<Scalars['String']['input']>;
   status_lesson_guide?: InputMaybe<Scalars['String']['input']>;
   status_media_clips?: InputMaybe<Scalars['String']['input']>;
@@ -5333,6 +5345,8 @@ export enum Internal_Review_Lessons_Update_Column {
   ReleaseUid = 'release_uid',
   /** column name */
   Reviewers = 'reviewers',
+  /** column name */
+  StatusDownloadableFiles = 'status_downloadable_files',
   /** column name */
   StatusLesson = 'status_lesson',
   /** column name */
@@ -44729,6 +44743,7 @@ export type Tpc_Media = {
   _deleted: Scalars['Boolean']['output'];
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state: Scalars['String']['output'];
+  asset_id?: Maybe<Scalars['Int']['output']>;
   attribution?: Maybe<Scalars['String']['output']>;
   content_name?: Maybe<Scalars['String']['output']>;
   content_type?: Maybe<Scalars['String']['output']>;
@@ -44852,6 +44867,7 @@ export type Tpc_Media_Append_Input = {
 export type Tpc_Media_Avg_Fields = {
   __typename?: 'tpc_media_avg_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  asset_id?: Maybe<Scalars['Float']['output']>;
   media_id?: Maybe<Scalars['Float']['output']>;
   video_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -44859,6 +44875,7 @@ export type Tpc_Media_Avg_Fields = {
 /** order by avg() on columns of table "tpc_media" */
 export type Tpc_Media_Avg_Order_By = {
   _release_id?: InputMaybe<Order_By>;
+  asset_id?: InputMaybe<Order_By>;
   media_id?: InputMaybe<Order_By>;
   video_id?: InputMaybe<Order_By>;
 };
@@ -44872,6 +44889,7 @@ export type Tpc_Media_Bool_Exp = {
   _or?: InputMaybe<Array<Tpc_Media_Bool_Exp>>;
   _release_id?: InputMaybe<Int_Comparison_Exp>;
   _state?: InputMaybe<String_Comparison_Exp>;
+  asset_id?: InputMaybe<Int_Comparison_Exp>;
   attribution?: InputMaybe<String_Comparison_Exp>;
   content_name?: InputMaybe<String_Comparison_Exp>;
   content_type?: InputMaybe<String_Comparison_Exp>;
@@ -44931,6 +44949,7 @@ export type Tpc_Media_Delete_Key_Input = {
 /** input type for incrementing numeric columns in table "tpc_media" */
 export type Tpc_Media_Inc_Input = {
   _release_id?: InputMaybe<Scalars['Int']['input']>;
+  asset_id?: InputMaybe<Scalars['Int']['input']>;
   media_id?: InputMaybe<Scalars['Int']['input']>;
   video_id?: InputMaybe<Scalars['Int']['input']>;
 };
@@ -44941,6 +44960,7 @@ export type Tpc_Media_Insert_Input = {
   _deleted?: InputMaybe<Scalars['Boolean']['input']>;
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
+  asset_id?: InputMaybe<Scalars['Int']['input']>;
   attribution?: InputMaybe<Scalars['String']['input']>;
   content_name?: InputMaybe<Scalars['String']['input']>;
   content_type?: InputMaybe<Scalars['String']['input']>;
@@ -44965,6 +44985,7 @@ export type Tpc_Media_Max_Fields = {
   _cohort?: Maybe<Scalars['String']['output']>;
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state?: Maybe<Scalars['String']['output']>;
+  asset_id?: Maybe<Scalars['Int']['output']>;
   attribution?: Maybe<Scalars['String']['output']>;
   content_name?: Maybe<Scalars['String']['output']>;
   content_type?: Maybe<Scalars['String']['output']>;
@@ -44984,6 +45005,7 @@ export type Tpc_Media_Max_Order_By = {
   _cohort?: InputMaybe<Order_By>;
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
+  asset_id?: InputMaybe<Order_By>;
   attribution?: InputMaybe<Order_By>;
   content_name?: InputMaybe<Order_By>;
   content_type?: InputMaybe<Order_By>;
@@ -45004,6 +45026,7 @@ export type Tpc_Media_Min_Fields = {
   _cohort?: Maybe<Scalars['String']['output']>;
   _release_id?: Maybe<Scalars['Int']['output']>;
   _state?: Maybe<Scalars['String']['output']>;
+  asset_id?: Maybe<Scalars['Int']['output']>;
   attribution?: Maybe<Scalars['String']['output']>;
   content_name?: Maybe<Scalars['String']['output']>;
   content_type?: Maybe<Scalars['String']['output']>;
@@ -45023,6 +45046,7 @@ export type Tpc_Media_Min_Order_By = {
   _cohort?: InputMaybe<Order_By>;
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
+  asset_id?: InputMaybe<Order_By>;
   attribution?: InputMaybe<Order_By>;
   content_name?: InputMaybe<Order_By>;
   content_type?: InputMaybe<Order_By>;
@@ -45066,6 +45090,7 @@ export type Tpc_Media_Order_By = {
   _deleted?: InputMaybe<Order_By>;
   _release_id?: InputMaybe<Order_By>;
   _state?: InputMaybe<Order_By>;
+  asset_id?: InputMaybe<Order_By>;
   attribution?: InputMaybe<Order_By>;
   content_name?: InputMaybe<Order_By>;
   content_type?: InputMaybe<Order_By>;
@@ -45111,6 +45136,8 @@ export enum Tpc_Media_Select_Column {
   /** column name */
   State = '_state',
   /** column name */
+  AssetId = 'asset_id',
+  /** column name */
   Attribution = 'attribution',
   /** column name */
   ContentName = 'content_name',
@@ -45150,6 +45177,7 @@ export type Tpc_Media_Set_Input = {
   _deleted?: InputMaybe<Scalars['Boolean']['input']>;
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
+  asset_id?: InputMaybe<Scalars['Int']['input']>;
   attribution?: InputMaybe<Scalars['String']['input']>;
   content_name?: InputMaybe<Scalars['String']['input']>;
   content_type?: InputMaybe<Scalars['String']['input']>;
@@ -45172,6 +45200,7 @@ export type Tpc_Media_Set_Input = {
 export type Tpc_Media_Stddev_Fields = {
   __typename?: 'tpc_media_stddev_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  asset_id?: Maybe<Scalars['Float']['output']>;
   media_id?: Maybe<Scalars['Float']['output']>;
   video_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -45179,6 +45208,7 @@ export type Tpc_Media_Stddev_Fields = {
 /** order by stddev() on columns of table "tpc_media" */
 export type Tpc_Media_Stddev_Order_By = {
   _release_id?: InputMaybe<Order_By>;
+  asset_id?: InputMaybe<Order_By>;
   media_id?: InputMaybe<Order_By>;
   video_id?: InputMaybe<Order_By>;
 };
@@ -45187,6 +45217,7 @@ export type Tpc_Media_Stddev_Order_By = {
 export type Tpc_Media_Stddev_Pop_Fields = {
   __typename?: 'tpc_media_stddev_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  asset_id?: Maybe<Scalars['Float']['output']>;
   media_id?: Maybe<Scalars['Float']['output']>;
   video_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -45194,6 +45225,7 @@ export type Tpc_Media_Stddev_Pop_Fields = {
 /** order by stddev_pop() on columns of table "tpc_media" */
 export type Tpc_Media_Stddev_Pop_Order_By = {
   _release_id?: InputMaybe<Order_By>;
+  asset_id?: InputMaybe<Order_By>;
   media_id?: InputMaybe<Order_By>;
   video_id?: InputMaybe<Order_By>;
 };
@@ -45202,6 +45234,7 @@ export type Tpc_Media_Stddev_Pop_Order_By = {
 export type Tpc_Media_Stddev_Samp_Fields = {
   __typename?: 'tpc_media_stddev_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  asset_id?: Maybe<Scalars['Float']['output']>;
   media_id?: Maybe<Scalars['Float']['output']>;
   video_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -45209,6 +45242,7 @@ export type Tpc_Media_Stddev_Samp_Fields = {
 /** order by stddev_samp() on columns of table "tpc_media" */
 export type Tpc_Media_Stddev_Samp_Order_By = {
   _release_id?: InputMaybe<Order_By>;
+  asset_id?: InputMaybe<Order_By>;
   media_id?: InputMaybe<Order_By>;
   video_id?: InputMaybe<Order_By>;
 };
@@ -45227,6 +45261,7 @@ export type Tpc_Media_Stream_Cursor_Value_Input = {
   _deleted?: InputMaybe<Scalars['Boolean']['input']>;
   _release_id?: InputMaybe<Scalars['Int']['input']>;
   _state?: InputMaybe<Scalars['String']['input']>;
+  asset_id?: InputMaybe<Scalars['Int']['input']>;
   attribution?: InputMaybe<Scalars['String']['input']>;
   content_name?: InputMaybe<Scalars['String']['input']>;
   content_type?: InputMaybe<Scalars['String']['input']>;
@@ -45249,6 +45284,7 @@ export type Tpc_Media_Stream_Cursor_Value_Input = {
 export type Tpc_Media_Sum_Fields = {
   __typename?: 'tpc_media_sum_fields';
   _release_id?: Maybe<Scalars['Int']['output']>;
+  asset_id?: Maybe<Scalars['Int']['output']>;
   media_id?: Maybe<Scalars['Int']['output']>;
   video_id?: Maybe<Scalars['Int']['output']>;
 };
@@ -45256,6 +45292,7 @@ export type Tpc_Media_Sum_Fields = {
 /** order by sum() on columns of table "tpc_media" */
 export type Tpc_Media_Sum_Order_By = {
   _release_id?: InputMaybe<Order_By>;
+  asset_id?: InputMaybe<Order_By>;
   media_id?: InputMaybe<Order_By>;
   video_id?: InputMaybe<Order_By>;
 };
@@ -45270,6 +45307,8 @@ export enum Tpc_Media_Update_Column {
   ReleaseId = '_release_id',
   /** column name */
   State = '_state',
+  /** column name */
+  AssetId = 'asset_id',
   /** column name */
   Attribution = 'attribution',
   /** column name */
@@ -45327,6 +45366,7 @@ export type Tpc_Media_Updates = {
 export type Tpc_Media_Var_Pop_Fields = {
   __typename?: 'tpc_media_var_pop_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  asset_id?: Maybe<Scalars['Float']['output']>;
   media_id?: Maybe<Scalars['Float']['output']>;
   video_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -45334,6 +45374,7 @@ export type Tpc_Media_Var_Pop_Fields = {
 /** order by var_pop() on columns of table "tpc_media" */
 export type Tpc_Media_Var_Pop_Order_By = {
   _release_id?: InputMaybe<Order_By>;
+  asset_id?: InputMaybe<Order_By>;
   media_id?: InputMaybe<Order_By>;
   video_id?: InputMaybe<Order_By>;
 };
@@ -45342,6 +45383,7 @@ export type Tpc_Media_Var_Pop_Order_By = {
 export type Tpc_Media_Var_Samp_Fields = {
   __typename?: 'tpc_media_var_samp_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  asset_id?: Maybe<Scalars['Float']['output']>;
   media_id?: Maybe<Scalars['Float']['output']>;
   video_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -45349,6 +45391,7 @@ export type Tpc_Media_Var_Samp_Fields = {
 /** order by var_samp() on columns of table "tpc_media" */
 export type Tpc_Media_Var_Samp_Order_By = {
   _release_id?: InputMaybe<Order_By>;
+  asset_id?: InputMaybe<Order_By>;
   media_id?: InputMaybe<Order_By>;
   video_id?: InputMaybe<Order_By>;
 };
@@ -45357,6 +45400,7 @@ export type Tpc_Media_Var_Samp_Order_By = {
 export type Tpc_Media_Variance_Fields = {
   __typename?: 'tpc_media_variance_fields';
   _release_id?: Maybe<Scalars['Float']['output']>;
+  asset_id?: Maybe<Scalars['Float']['output']>;
   media_id?: Maybe<Scalars['Float']['output']>;
   video_id?: Maybe<Scalars['Float']['output']>;
 };
@@ -45364,6 +45408,7 @@ export type Tpc_Media_Variance_Fields = {
 /** order by variance() on columns of table "tpc_media" */
 export type Tpc_Media_Variance_Order_By = {
   _release_id?: InputMaybe<Order_By>;
+  asset_id?: InputMaybe<Order_By>;
   media_id?: InputMaybe<Order_By>;
   video_id?: InputMaybe<Order_By>;
 };
@@ -49647,7 +49692,7 @@ export type LessonDownloadsQueryVariables = Exact<{
 }>;
 
 
-export type LessonDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_published_5_0_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: boolean | null, login_required?: boolean | null, content_guidance?: any | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
+export type LessonDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_published_5_0_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_lesson_guide_object?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: boolean | null, login_required?: boolean | null, content_guidance?: any | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
 
 export type LessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -49974,6 +50019,7 @@ export const LessonDownloadsDocument = gql`
     has_supplementary_asset_object
     has_worksheet_answers_asset_object
     has_worksheet_google_drive_downloadable_version
+    has_lesson_guide_object
     starter_quiz
     exit_quiz
     is_legacy

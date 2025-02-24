@@ -32,8 +32,16 @@ import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesso
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
 
+export type WorksheetInfo = {
+  item: string;
+  exists: boolean;
+  fileSize: string | undefined;
+  ext: string | undefined;
+}[];
+
 export type PupilViewsIntroProps = LessonContent & {
   hasWorksheet: boolean;
+  worksheetInfo: WorksheetInfo | null;
 };
 
 export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
@@ -46,6 +54,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     hasWorksheet,
     hasAdditionalFiles,
     additionalFiles,
+    worksheetInfo,
   } = props;
   const {
     completeActivity,
@@ -64,6 +73,11 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   const { startDownload, isDownloading } = useWorksheetDownload(
     lessonSlug,
     isLegacy ?? false,
+  );
+  const fileInfo = (
+    <OakSpan>
+      ({worksheetInfo?.[0]?.ext?.toUpperCase()} {worksheetInfo?.[0]?.fileSize})
+    </OakSpan>
   );
   const { startAdditionalFilesDownload, isAdditionalFilesDownloading } =
     useAdditionalFilesDownload(lessonSlug);
@@ -295,7 +309,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                     isTrailingIcon
                     $font={"heading-7"}
                   >
-                    Download worksheet
+                    Download worksheet {fileInfo}
                   </OakPrimaryInvertedButton>
                 </OakFlex>
               </OakLessonInfoCard>

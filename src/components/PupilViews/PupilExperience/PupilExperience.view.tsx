@@ -14,7 +14,10 @@ import {
   allLessonReviewSections,
   useLessonEngineContext,
 } from "@/components/PupilComponents/LessonEngineProvider";
-import { PupilViewsIntro } from "@/components/PupilViews/PupilIntro";
+import {
+  PupilViewsIntro,
+  WorksheetInfo,
+} from "@/components/PupilViews/PupilIntro";
 import { PupilViewsLessonOverview } from "@/components/PupilViews/PupilLessonOverview";
 import { PupilViewsReview } from "@/components/PupilViews/PupilReview";
 import { PupilViewsQuiz } from "@/components/PupilViews/PupilQuiz";
@@ -56,6 +59,7 @@ export type PupilExperienceViewProps = {
   initialSection: LessonSection;
   pageType: "preview" | "canonical" | "browse";
   hasAdditionalFiles: boolean;
+  worksheetInfo: WorksheetInfo | null;
 };
 
 export const PupilPageContent = ({
@@ -65,6 +69,7 @@ export const PupilPageContent = ({
   hasWorksheet,
   backUrl,
   pageType,
+  worksheetInfo,
 }: Omit<PupilExperienceViewProps, "initialSection">) => {
   const { currentSection } = useLessonEngineContext();
   const {
@@ -111,6 +116,7 @@ export const PupilPageContent = ({
           {...lessonContent}
           hasWorksheet={hasWorksheet}
           hasAdditionalFiles={hasAdditionalFiles}
+          worksheetInfo={worksheetInfo}
         />
       );
     case "starter-quiz":
@@ -175,6 +181,7 @@ const PupilExperienceLayout = ({
   backUrl,
   initialSection,
   pageType,
+  worksheetInfo,
 }: PupilExperienceViewProps) => {
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const { track } = usePupilAnalytics();
@@ -247,6 +254,7 @@ const PupilExperienceLayout = ({
                   browseData={browseData}
                   lessonContent={lessonContent}
                   hasWorksheet={hasWorksheet}
+                  worksheetInfo={worksheetInfo}
                   backUrl={backUrl}
                   pageType={pageType}
                   hasAdditionalFiles={hasAdditionalFiles}

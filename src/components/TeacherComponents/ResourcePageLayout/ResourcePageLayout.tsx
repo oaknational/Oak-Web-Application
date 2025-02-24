@@ -40,20 +40,16 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
     header: string;
     handleToggleSelectAll: () => void;
     selectAllChecked: boolean;
-    // errors: FieldErrors<ResourceFormProps>;
     cardGroup: React.ReactNode;
     showLoading: boolean;
     showNoResources: boolean;
     hideSelectAll?: boolean;
     schoolId?: string;
-    // register: UseFormRegister<ResourceFormProps>;
-    // control: Control<ResourceFormProps>;
     showPostAlbCopyright: boolean;
     showSavedDetails: boolean;
     cta: React.ReactNode;
     page: "share" | "download";
     resourcesHeader?: string;
-    // triggerForm: UseFormTrigger<ResourceFormProps>;
     apiError?: string | null;
     updatedAt: string;
     showTermsAgreement: boolean;
@@ -72,22 +68,6 @@ export type ResourcePageLayoutProps = ResourcePageDetailsCompletedProps &
       ResourceFormProps | ResourceFormWithRiskAssessmentProps
     >;
   };
-// } & (
-//   {
-//     showRiskAssessmentCheckbox?: false;
-//     errors: FieldErrors<ResourceFormProps>;
-//     register: UseFormRegister<ResourceFormProps>;
-//     control: Control<ResourceFormProps>;
-//     triggerForm: UseFormTrigger<ResourceFormProps>;
-//   } |
-//   {
-//     showRiskAssessmentCheckbox: true;
-//     errors: FieldErrors<ResourceFormWithRiskAssessmentProps>;
-//     register: UseFormRegister<ResourceFormWithRiskAssessmentProps>;
-//     control: Control<ResourceFormWithRiskAssessmentProps>;
-//     triggerForm: UseFormTrigger<ResourceFormWithRiskAssessmentProps>;
-//   }
-// );
 
 const ResourcePageLayout: FC<ResourcePageLayoutProps> = (props) => {
   return (
@@ -166,7 +146,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             </OakBox>
           )}
           {props.cardGroup}
-          {!props.showTermsAgreement && !props.showDownloadSignUpButtons && (
+          {!props.showTermsAgreement && (
             <>
               <OakBox
                 $pb={"inner-padding-xl3"}
@@ -185,7 +165,6 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
             </>
           )}
         </Flex>
-        {props.page === "download" && props.signUpButtons}
       </OakBox>
 
       <OakFlex

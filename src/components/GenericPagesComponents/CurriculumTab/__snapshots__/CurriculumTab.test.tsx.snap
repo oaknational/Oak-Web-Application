@@ -117,10 +117,10 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-9dfc1bad-0 sc-b1725761-2 jEHEPk fAkCpO pplSM"
+                            class="sc-fqkvVR sc-9dfc1bad-0 sc-bdacaec4-2 jEHEPk fAkCpO hPodqY"
                           >
                             <button
-                              class="sc-b1725761-1 cfNUDx"
+                              class="sc-bdacaec4-1 cgYPZt"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -184,10 +184,10 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-9dfc1bad-0 sc-b1725761-2 eMDDOo fAkCpO pplSM"
+                              class="sc-fqkvVR sc-9dfc1bad-0 sc-bdacaec4-2 eMDDOo fAkCpO hPodqY"
                             >
                               <button
-                                class="sc-b1725761-1 cfNUDx"
+                                class="sc-bdacaec4-1 cgYPZt"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
@@ -307,10 +307,10 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-9dfc1bad-0 sc-b1725761-2 jEHEPk fAkCpO pplSM"
+                        class="sc-fqkvVR sc-9dfc1bad-0 sc-bdacaec4-2 jEHEPk fAkCpO hPodqY"
                       >
                         <button
-                          class="sc-b1725761-1 cfNUDx"
+                          class="sc-bdacaec4-1 cgYPZt"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
@@ -374,10 +374,10 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-9dfc1bad-0 sc-b1725761-2 eMDDOo fAkCpO pplSM"
+                          class="sc-fqkvVR sc-9dfc1bad-0 sc-bdacaec4-2 eMDDOo fAkCpO hPodqY"
                         >
                           <button
-                            class="sc-b1725761-1 cfNUDx"
+                            class="sc-bdacaec4-1 cgYPZt"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >
