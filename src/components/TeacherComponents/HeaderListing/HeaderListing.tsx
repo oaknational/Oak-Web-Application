@@ -15,6 +15,7 @@ import UnitDownloadButton, {
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
+import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -47,6 +48,7 @@ export type HeaderListingProps = {
   shareButton?: React.ReactNode;
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
+  showRiskAssessmentBanner?: boolean;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -67,6 +69,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     shareButton,
     unitDownloadFileId,
     onUnitDownloadSuccess,
+    showRiskAssessmentBanner,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -153,10 +156,12 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     onDismiss={() => setShowDownloadMessage(false)}
                     type="neutral"
                     message="Downloads may take a few minutes on slower Wi-Fi connections."
+                    $mb={"space-between-s"}
                   />
                 ) : null}
               </OakBox>
             </OakFlex>
+            {showRiskAssessmentBanner && <RiskAssessmentBanner />}
           </OakFlex>
         </OakFlex>
       </OakFlex>

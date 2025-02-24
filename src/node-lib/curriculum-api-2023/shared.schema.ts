@@ -165,7 +165,7 @@ export const lessonOverviewQuizData = z
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
-const camelActionSchema = zodToCamelCase(actionsSchema);
+export const camelActionSchema = zodToCamelCase(actionsSchema);
 
 export type Actions = z.infer<typeof camelActionSchema>;
 

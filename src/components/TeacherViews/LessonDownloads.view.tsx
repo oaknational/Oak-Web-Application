@@ -105,8 +105,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     actions,
   } = lesson;
 
-  const showRiskAssessmentMessage = !!actions?.isPePractical;
-  console.log("showRiskAssessmentMessage", showRiskAssessmentMessage);
+  const showRiskAssessmentBanner = !!actions?.isPePractical;
 
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical
@@ -418,6 +417,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   }
                 />
               }
+              showRiskAssessmentBanner={showRiskAssessmentBanner}
             />
           );
         })()}
