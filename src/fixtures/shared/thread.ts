@@ -10,8 +10,8 @@ const ID_MAP = new Map();
 
 const BASE_THREAD = {
   thread_id: 1,
-  thread_title: "Foo",
-  thread_slug: "foo",
+  thread_title: "Test",
+  thread_slug: "test",
   thread_order: 1,
 };
 

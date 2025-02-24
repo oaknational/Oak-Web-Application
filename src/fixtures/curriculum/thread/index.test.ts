@@ -4,8 +4,8 @@ describe("createThread", () => {
   it("keys are correct", () => {
     const result = createThread();
     expect(result).toEqual({
-      title: "Foo",
-      slug: "foo",
+      title: "Test",
+      slug: "test",
       order: 1,
     });
   });

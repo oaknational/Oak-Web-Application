@@ -197,8 +197,8 @@ describe("createUnit", () => {
       subjectcategories: null,
       threads: [
         {
-          title: "Foo",
-          slug: "foo",
+          title: "Test",
+          slug: "test",
           order: 1,
         },
       ],
