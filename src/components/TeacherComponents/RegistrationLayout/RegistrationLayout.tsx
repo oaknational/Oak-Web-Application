@@ -4,12 +4,14 @@ import { PropsWithChildren, ReactNode } from "react";
 type RegistrationLayoutProps = PropsWithChildren<{
   asideSlot: ReactNode;
   termsSlot: ReactNode;
+  bannerSlot?: ReactNode;
 }>;
 
 export const RegistrationLayout = ({
   children,
   asideSlot,
   termsSlot,
+  bannerSlot,
 }: RegistrationLayoutProps) => {
   return (
     <OakFlex
@@ -39,6 +41,7 @@ export const RegistrationLayout = ({
             $gap="space-between-m"
             $display={["flex", "block"]}
           >
+            {bannerSlot}
             <OakBox
               $dropShadow={[null, "drop-shadow-standard"]}
               $borderRadius="border-radius-m2"
