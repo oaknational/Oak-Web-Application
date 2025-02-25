@@ -1,5 +1,11 @@
 import { FC, useRef, useEffect } from "react";
-import { OakHeading, OakP, OakIcon } from "@oaknational/oak-components";
+import {
+  OakHeading,
+  OakP,
+  OakIcon,
+  OakLink,
+} from "@oaknational/oak-components";
+import { useOakConsent } from "@oaknational/oak-consent-client";
 
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
@@ -45,10 +51,20 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
     !isCanonical && unitSlug && programmeSlug && unitTitle;
   const isNextLessonsAvailable = nextLessons && nextLessons.length > 0;
 
+  const { state } = useOakConsent();
+  const cookiesNotAccepted = !!state.policyConsents.find(
+    (policy) =>
+      policy.consentState === "denied" || policy.consentState === "pending",
+  );
+
   const focusRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     focusRef.current?.focus();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, []);
 
   if (lessonSlug === null) {
@@ -168,9 +184,27 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             Thanks for downloading
           </OakHeading>
 
-          <OakP $font={"body-1"}>
-            We hope you find the resources useful. Click the question mark in
-            the bottom-right corner to share your feedback.
+          <OakP $font={["heading-light-6", "heading-light-5"]}>
+            Our resources work best if you{" "}
+            <OakLink
+              href={
+                "https://support.thenational.academy/how-to-install-the-google-fonts-lexend-and-kalan"
+              }
+              target={"_blank"}
+              aria-label={
+                "install the Google Fonts 'Lexend' and 'Kalam' (opens in a new tab)"
+              }
+              iconName={"external"}
+              isTrailingIcon={true}
+              iconHeight={"all-spacing-6"}
+              iconWidth={"all-spacing-6"}
+            >
+              install the Google Fonts ‘Lexend’ and ‘Kalam’
+            </OakLink>
+            .{" "}
+            {cookiesNotAccepted
+              ? ""
+              : "Click the question mark in the bottom-right of the page if you need extra help with this."}
           </OakP>
           {teacherShareButton}
         </Flex>
