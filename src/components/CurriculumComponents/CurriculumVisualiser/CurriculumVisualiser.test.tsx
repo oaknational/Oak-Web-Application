@@ -4,7 +4,20 @@ import { act } from "@testing-library/react";
 
 import CurriculumVisualiser from "./CurriculumVisualiser";
 
+import {
+  noMissingUnitsFixture,
+  missingUnitsForFirstYearPrimaryFixture,
+  missingConsecutiveUnitsAtStartPrimaryFixture,
+  missingUnitsForFirstYearFixture,
+  missingUnitsForSecondYearFixture,
+  missingConsecutiveUnitsAtStartFixture,
+  missingConsecutiveUnitsAtEndFixture,
+  missingUnitsInMiddleFixture,
+  missingAlternateUnitsFixture,
+  missingUnitForLastYearFixture,
+} from "@/utils/curriculum/fixtures/curriculumFilterFixturesGenerator";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
+import { YearData } from "@/utils/curriculum/types";
 
 const render = renderWithProviders();
 const curriculumThreadHighlighted = jest.fn();
@@ -193,6 +206,303 @@ describe("visualiser", () => {
       subjectTitle: "English",
       unitHighlighted: false,
       analyticsUseCase: null,
+    });
+  });
+});
+
+describe("Curriculum visualiser filter states", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    const mockIntersectionObserver = jest.fn();
+    mockIntersectionObserver.mockReturnValue({
+      observe: () => null,
+      unobserve: () => null,
+      disconnect: () => null,
+    });
+    window.IntersectionObserver = mockIntersectionObserver;
+  });
+
+  describe("Secondary phase", () => {
+    test("Units exist for subject category in each year of phase", async () => {
+      const noMissingUnitsFixtureWithProps = {
+        ...curriculumVisualiserFixture,
+        yearData: noMissingUnitsFixture as YearData,
+      };
+
+      const filterFixture = {
+        childSubjects: [],
+        subjectCategories: ["1"],
+        tiers: [],
+        years: ["7", "8", "9", "10", "11"],
+        threads: [],
+      };
+
+      const { findAllByTestId } = render(
+        <CurriculumVisualiser
+          {...noMissingUnitsFixtureWithProps}
+          filters={filterFixture}
+        />,
+      );
+
+      const unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(5);
+    });
+
+    test("No units for subject category in first year of phase", async () => {
+      const missingUnitsForFirstYearFixtureWithProps = {
+        ...curriculumVisualiserFixture,
+        yearData: missingUnitsForFirstYearFixture as YearData,
+      };
+
+      const filterFixture = {
+        childSubjects: [],
+        subjectCategories: ["1"],
+        tiers: [],
+        years: ["7"],
+        threads: [],
+      };
+
+      const { findAllByText } = render(
+        <CurriculumVisualiser
+          {...missingUnitsForFirstYearFixtureWithProps}
+          filters={filterFixture}
+        />,
+      );
+      expect(
+        await findAllByText(/'sub-cat-1' units start in Year 8/i),
+      ).toHaveLength(1);
+    });
+
+    test("No units for subject category in second year of phase", async () => {
+      const missingUnitsForSecondYearFixtureWithProps = {
+        ...curriculumVisualiserFixture,
+        yearData: missingUnitsForSecondYearFixture as YearData,
+      };
+
+      const filterFixture = {
+        childSubjects: [],
+        subjectCategories: ["1"],
+        tiers: [],
+        years: ["8"],
+        threads: [],
+      };
+
+      const { findAllByText } = render(
+        <CurriculumVisualiser
+          {...missingUnitsForSecondYearFixtureWithProps}
+          filters={filterFixture}
+        />,
+      );
+      expect(
+        await findAllByText(/'sub-cat-1' units continue in Year 9/i),
+      ).toHaveLength(1);
+    });
+
+    test("No units for consecutive years at the start of the phase", async () => {
+      const missingConsecutiveUnitsAtStartFixtureWithProps = {
+        ...curriculumVisualiserFixture,
+        yearData: missingConsecutiveUnitsAtStartFixture as YearData,
+      };
+
+      const filterFixture = {
+        childSubjects: [],
+        subjectCategories: ["1"],
+        tiers: [],
+        years: ["7", "8", "9", "10", "11"],
+        threads: [],
+      };
+
+      const { findAllByTestId, findAllByText } = render(
+        <CurriculumVisualiser
+          {...missingConsecutiveUnitsAtStartFixtureWithProps}
+          filters={filterFixture}
+        />,
+      );
+
+      expect(
+        await findAllByText(/'sub-cat-1' units start in Year 10/i),
+      ).toHaveLength(1);
+      expect(
+        await findAllByText(/'sub-cat-1' units continue in Year 10/i),
+      ).toHaveLength(2);
+
+      const unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(2);
+    });
+
+    test("No units in the middle of the phase", async () => {
+      const missingUnitsInMiddleFixtureWithProps = {
+        ...curriculumVisualiserFixture,
+        yearData: missingUnitsInMiddleFixture as YearData,
+      };
+
+      const filterFixture = {
+        childSubjects: [],
+        subjectCategories: ["1"],
+        tiers: [],
+        years: ["7", "8", "9", "10", "11"],
+        threads: [],
+      };
+
+      const { findAllByText, findAllByTestId } = render(
+        <CurriculumVisualiser
+          {...missingUnitsInMiddleFixtureWithProps}
+          filters={filterFixture}
+        />,
+      );
+
+      expect(
+        await findAllByText(/'sub-cat-1' units continue in Year 11/i),
+      ).toHaveLength(3);
+      const unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(2);
+    });
+
+    test("No consecutive subsequent units at the end of the phase", async () => {
+      const missingConsecutiveUnitsAtEndFixtureWithProps = {
+        ...curriculumVisualiserFixture,
+        yearData: missingConsecutiveUnitsAtEndFixture as YearData,
+      };
+
+      const filterFixture = {
+        childSubjects: [],
+        subjectCategories: ["1"],
+        tiers: [],
+        years: ["7", "8", "9", "10", "11"],
+        threads: [],
+      };
+
+      const { findAllByText, findAllByTestId } = render(
+        <CurriculumVisualiser
+          {...missingConsecutiveUnitsAtEndFixtureWithProps}
+          filters={filterFixture}
+        />,
+      );
+      const unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(2);
+      const messages = await findAllByText(
+        /No 'sub-cat-1' units in this year group/i,
+      );
+      expect(messages).toHaveLength(3);
+    });
+
+    test("No alternate units in the phase", async () => {
+      const missingAlternateUnitsFixtureWithProps = {
+        ...curriculumVisualiserFixture,
+        yearData: missingAlternateUnitsFixture as YearData,
+      };
+
+      const filterFixture = {
+        childSubjects: [],
+        subjectCategories: ["1"],
+        tiers: [],
+        years: ["7", "8", "9", "10", "11"],
+        threads: [],
+      };
+
+      const { findByText, findAllByTestId } = render(
+        <CurriculumVisualiser
+          {...missingAlternateUnitsFixtureWithProps}
+          filters={filterFixture}
+        />,
+      );
+
+      const unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(2);
+      expect(
+        await findByText(/'sub-cat-1' units start in Year 8/i),
+      ).toBeInTheDocument();
+      expect(
+        await findByText(/'sub-cat-1' units continue in Year 10/i),
+      ).toBeInTheDocument();
+      expect(
+        await findByText(/No 'sub-cat-1' units in this year group/i),
+      ).toBeInTheDocument();
+    });
+
+    test("No unit at the end of the phase", async () => {
+      const missingUnitForLastYearFixtureWithProps = {
+        ...curriculumVisualiserFixture,
+        yearData: missingUnitForLastYearFixture as YearData,
+      };
+
+      const filterFixture = {
+        childSubjects: [],
+        subjectCategories: ["1"],
+        tiers: [],
+        years: ["7", "8", "9", "10", "11"],
+        threads: [],
+      };
+
+      const { findByText } = render(
+        <CurriculumVisualiser
+          {...missingUnitForLastYearFixtureWithProps}
+          filters={filterFixture}
+        />,
+      );
+      expect(
+        await findByText(/No 'sub-cat-1' units in this year group/i),
+      ).toBeInTheDocument();
+    });
+  });
+
+  describe("Primary phase", () => {
+    test("No units for subject category in first year of phase", async () => {
+      const missingUnitsForFirstYearPrimaryFixtureWithProps = {
+        ...curriculumVisualiserFixture,
+        yearData: missingUnitsForFirstYearPrimaryFixture as YearData,
+      };
+
+      const filterFixture = {
+        childSubjects: [],
+        subjectCategories: ["1"],
+        tiers: [],
+        years: ["1", "2", "3", "4", "5", "6"],
+        threads: [],
+      };
+
+      const { findAllByText, findAllByTestId } = render(
+        <CurriculumVisualiser
+          {...missingUnitsForFirstYearPrimaryFixtureWithProps}
+          filters={filterFixture}
+        />,
+      );
+      expect(
+        await findAllByText(/'sub-cat-1' units start in Year 2/i),
+      ).toHaveLength(1);
+      const unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(5);
+    });
+
+    test("No units for consecutive years at the start of the primary phase", async () => {
+      const missingConsecutiveUnitsAtStartPrimaryFixtureWithProps = {
+        ...curriculumVisualiserFixture,
+        yearData: missingConsecutiveUnitsAtStartPrimaryFixture as YearData,
+      };
+
+      const filterFixture = {
+        childSubjects: [],
+        subjectCategories: ["1"],
+        tiers: [],
+        years: ["1", "2", "3", "4", "5", "6"],
+        threads: [],
+      };
+
+      const { findAllByText, findAllByTestId } = render(
+        <CurriculumVisualiser
+          {...missingConsecutiveUnitsAtStartPrimaryFixtureWithProps}
+          filters={filterFixture}
+        />,
+      );
+
+      expect(
+        await findAllByText(/'sub-cat-1' units start in Year 4/i),
+      ).toHaveLength(1);
+      expect(
+        await findAllByText(/'sub-cat-1' units continue in Year 4/i),
+      ).toHaveLength(2);
+      const unitCards = await findAllByTestId("unit-card");
+      expect(unitCards).toHaveLength(3);
     });
   });
 });

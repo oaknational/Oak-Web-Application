@@ -71,6 +71,132 @@ function isHighlightedUnit(unit: Unit, selectedThreads: string[] | null) {
   });
 }
 
+function getSubjectCategoryMessage(
+  yearData: YearData,
+  currentYear: string,
+  subjectCategories: string[],
+): string | null {
+  if (subjectCategories.length === 0) return null;
+
+  const years = Object.keys(yearData).sort(sortYears);
+  const currentIndex = years.indexOf(currentYear);
+  if (currentIndex === -1) return null;
+
+  // Identify the current phase from the year number
+  const phaseMap = {
+    primary: { start: 1, end: 6 },
+    secondary: { start: 7, end: 11 },
+  };
+  const currentYearNum = parseInt(currentYear.replace("year-", ""));
+  const currentPhase = currentYearNum <= 6 ? "primary" : "secondary";
+
+  const phaseStartNum = phaseMap[currentPhase].start;
+  const phaseEndNum = phaseMap[currentPhase].end;
+
+  // Convert phases to strings for easy comparison with "year-7"/"year-11" keys
+  const phaseStartYear = `year-${phaseStartNum}`;
+  const phaseEndYear = `year-${phaseEndNum}`;
+
+  // Gather the subject category titles
+  const subjectCategoryTitles = Array.from(
+    new Set(
+      years
+        .flatMap((yearKey) =>
+          yearData[yearKey]?.subjectCategories?.filter((sc) =>
+            subjectCategories.includes(sc.id.toString()),
+          ),
+        )
+        .filter(Boolean)
+        .map((sc) => sc?.title),
+    ),
+  );
+
+  if (subjectCategoryTitles.length === 0) return null;
+
+  // Check if the entire phase (not just the current year) has any units for the subject categories
+  const hasAnyUnitsInPhase = years
+    .filter((y) => {
+      const yNum = parseInt(y.replace("year-", ""));
+      // Filter only those years in the same phase as currentYear
+      return currentPhase === "primary"
+        ? yNum >= 1 && yNum <= 6
+        : yNum >= 7 && yNum <= 11;
+    })
+    .some((yearKey) =>
+      yearData[yearKey]?.units?.some((unit) =>
+        unit.subjectcategories?.some((sc) =>
+          subjectCategories.includes(sc.id.toString()),
+        ),
+      ),
+    );
+
+  // Check if this current year has any units in the selected subject categories
+  const hasCurrentYearUnits = yearData[currentYear]?.units?.some((unit) =>
+    unit.subjectcategories?.some((sc) =>
+      subjectCategories.includes(sc.id.toString()),
+    ),
+  );
+
+  if (!hasCurrentYearUnits) {
+    // Find the first subsequent year (in the same phase) that does have units
+    const subsequentYearsInPhase = years.slice(currentIndex + 1).filter((y) => {
+      const yNum = parseInt(y.replace("year-", ""));
+      return currentPhase === "primary"
+        ? yNum >= 1 && yNum <= 6
+        : yNum >= 7 && yNum <= 11;
+    });
+
+    const firstSubsequentYearWithUnits = subsequentYearsInPhase.find(
+      (yearKey) =>
+        yearData[yearKey]?.units?.some((unit) =>
+          unit.subjectcategories?.some((sc) =>
+            subjectCategories.includes(sc.id.toString()),
+          ),
+        ),
+    );
+
+    // If there is a future year in this phase that has units:
+    if (firstSubsequentYearWithUnits) {
+      const cleanYear = firstSubsequentYearWithUnits.replace("year-", "");
+      const isFirstYearOfPhase =
+        currentYear === phaseStartYear || currentYearNum === phaseStartNum;
+      return isFirstYearOfPhase
+        ? `'${subjectCategoryTitles.join(
+            ", ",
+          )}' units start in Year ${cleanYear}`
+        : `'${subjectCategoryTitles.join(
+            ", ",
+          )}' units continue in Year ${cleanYear}`;
+    }
+
+    // No future years in the phase that have units or we are at the end of the phase
+    const allSubsequentInPhaseEmpty = subsequentYearsInPhase.every(
+      (yearKey) =>
+        !yearData[yearKey]?.units?.some((unit) =>
+          unit.subjectcategories?.some((sc) =>
+            subjectCategories.includes(sc.id.toString()),
+          ),
+        ),
+    );
+
+    if (
+      currentYear === phaseEndYear ||
+      !hasAnyUnitsInPhase ||
+      allSubsequentInPhaseEmpty
+    ) {
+      return `No '${subjectCategoryTitles.join(
+        ", ",
+      )}' units in this year group`;
+    }
+
+    // Default fallback in case of edge conditions
+    return `No '${subjectCategoryTitles.join(", ")}' units in this year group`;
+  }
+
+  // If the current year does have units do not show a message
+  return null;
+}
+
 // Function component
 
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
@@ -160,33 +286,16 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           .filter((year) => filterIncludes("years", [year]))
           .sort(sortYears)
           .map((year, index) => {
-            const {
-              units,
-              childSubjects,
-              tiers,
-              subjectCategories,
-              isSwimming,
-            } = yearData[year] as YearData[string];
+            const { units, labels, isSwimming } = yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
             };
 
-            const yearFilters = {
-              childSubjects:
-                childSubjects.length > 1 ? filters.childSubjects : undefined,
-              subjectCategories:
-                childSubjects.length < 1 && subjectCategories.length > 1
-                  ? filters.subjectCategories
-                  : undefined,
-              tiers: tiers.length > 0 ? filters.tiers : undefined,
-              years: filters.years,
-              threads: filters.threads,
-            };
-
             const filteredUnits = units.filter((unit: Unit) =>
-              isVisibleUnit(yearFilters, year, unit),
+              isVisibleUnit(filters, year, unit),
             );
+
             const dedupedUnits = dedupUnits(filteredUnits);
 
             const actions = units[0]?.actions;
@@ -241,7 +350,13 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 >
                   <UnitList role="list">
                     {dedupedUnits.length < 1 && (
-                      <OakP>No units for filter in this year</OakP>
+                      <OakP>
+                        {getSubjectCategoryMessage(
+                          yearData,
+                          year,
+                          filters.subjectCategories,
+                        )}
+                      </OakP>
                     )}
                     {dedupedUnits.map((unit: Unit, index: number) => {
                       const isHighlighted = isHighlightedUnit(
