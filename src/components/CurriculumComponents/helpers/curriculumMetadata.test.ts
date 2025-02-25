@@ -46,6 +46,7 @@ describe("buildCurriculumMetadata", () => {
       subjectSlug: "english",
       subjectTitle: "English",
       ks4OptionSlug: "edexcel",
+      ks4OptionTitle: "Edexcel",
     });
     expect(result).toBe("KS3-4 English Edexcel curriculum unit sequence");
   });
@@ -84,6 +85,7 @@ describe("buildCurriculumMetadata", () => {
       subjectSlug: "english",
       subjectTitle: "English",
       ks4OptionSlug: "edexcel",
+      ks4OptionTitle: "Edexcel",
     });
     expect(result).toBe("KS3-4 English Edexcel curriculum downloads");
   });
