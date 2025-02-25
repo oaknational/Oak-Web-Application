@@ -9,6 +9,7 @@ import {
   OakP,
 } from "@oaknational/oak-components";
 import { useState, useCallback, useEffect } from "react";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { formAppearanceStyles } from "../../formAppearanceStyles";
 
@@ -50,6 +51,8 @@ const TermsAndConditions = () => {
 
 function SignUpPage() {
   const [clerkRendered, setClerkRendered] = useState(false);
+  const featureFlagVariant = useFeatureFlagVariantKey("teacher-sign-up-page");
+  const newLayoutEnabled = featureFlagVariant === true; // TODO; use variant key
 
   const checkForClerkElement = useCallback(() => {
     // Clerk docs say these classnames are stable
@@ -73,7 +76,7 @@ function SignUpPage() {
   return (
     <RegistrationLayout
       termsSlot={clerkRendered ? <TermsAndConditions /> : null}
-      asideSlot={<RegistrationAside />}
+      asideSlot={<RegistrationAside useNew={newLayoutEnabled} />}
       bannerSlot={
         clerkRendered ? (
           <OakInlineBanner
