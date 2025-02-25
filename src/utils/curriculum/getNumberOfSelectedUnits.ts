@@ -13,7 +13,7 @@ export function getNumberOfSelectedUnits(
   Object.keys(yearData).forEach((year) => {
     const units = yearData[year]?.units;
 
-    if (units && (selectedYear === "" || selectedYear === year)) {
+    if (units && (selectedYear === "all" || selectedYear === year)) {
       const filteredUnits = units.filter((unit: Unit) => {
         return isVisibleUnit(filter, year, unit);
       });
