@@ -87,6 +87,7 @@ const PostAlbCopyright = (
             legalSlug: "terms-and-conditions",
           })}
           target={"_blank"}
+          aria-label="Oak's terms & conditions (opens in a new tab)"
           iconName="external"
           isTrailingIcon
           iconHeight="all-spacing-5"
@@ -101,6 +102,7 @@ const PostAlbCopyright = (
             page: "legal",
             legalSlug: "terms-and-conditions",
           })}
+          aria-label="Oak's terms & conditions"
           target={"_self"}
         >
           Oak's terms & conditions
