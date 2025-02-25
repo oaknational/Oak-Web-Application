@@ -1,3 +1,21 @@
+# [1.697.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.696.2...v1.697.0) (2025-02-25)
+
+
+### Bug Fixes
+
+* generate phase_title from phase slug ([bf29c5c](https://github.com/oaknational/Oak-Web-Application/commit/bf29c5ce98d3bc6ecd907886c412187ae5214397))
+* made unit fixture generator inline with thread fixtures and added tests ([e8e8a03](https://github.com/oaknational/Oak-Web-Application/commit/e8e8a0363c71aeda030a71a84f16e651b67bbf9f))
+* slug/title empty string to test/Test ([807b4dc](https://github.com/oaknational/Oak-Web-Application/commit/807b4dc833454017d620aa930fa61a6c3229420b))
+
+
+### Features
+
+* add subject category fixture generator ([3a055a5](https://github.com/oaknational/Oak-Web-Application/commit/3a055a5e243b0b055268bd6847ae81f7f3cc3b4d))
+* added initial fixtures examples ([2673125](https://github.com/oaknational/Oak-Web-Application/commit/2673125244931c47613719155225a6fba5a0cb9e))
+* added lesson fixture for curric ([557af3e](https://github.com/oaknational/Oak-Web-Application/commit/557af3edfe85b0d15f70d9a82dc5bb2bed2131b1))
+
+## [1.696.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.696.1...v1.696.2) (2025-02-25)
+
 ## [1.696.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.696.0...v1.696.1) (2025-02-21)
 
 # [1.696.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.695.0...v1.696.0) (2025-02-21)
