@@ -53,7 +53,7 @@ describe("getNumberOfSelectedUnits", () => {
     };
     mockIsVisibleUnit.mockReturnValue(true);
 
-    const result = getNumberOfSelectedUnits(yearData, "", yearSelection);
+    const result = getNumberOfSelectedUnits(yearData, "all", yearSelection);
     expect(result).toBe(5);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });
@@ -82,7 +82,7 @@ describe("getNumberOfSelectedUnits", () => {
       .mockReturnValueOnce(false)
       .mockReturnValueOnce(true);
 
-    const result = getNumberOfSelectedUnits(yearData, "", yearSelection);
+    const result = getNumberOfSelectedUnits(yearData, "all", yearSelection);
     expect(result).toBe(3);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });
@@ -94,7 +94,7 @@ describe("getNumberOfSelectedUnits", () => {
     };
     mockIsVisibleUnit.mockReturnValue(false);
 
-    const result = getNumberOfSelectedUnits(yearData, "", yearSelection);
+    const result = getNumberOfSelectedUnits(yearData, "all", yearSelection);
     expect(result).toBe(0);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });
