@@ -41,6 +41,7 @@ const props: TeachersHomePageProps = {
     notification: { enabled: false },
     sidebarCard1: { title: "", bodyPortableText: [] },
     sidebarCard2: { title: "", bodyPortableText: [] },
+    testimonials: [],
   },
   posts: mockPosts,
   curriculumData: {

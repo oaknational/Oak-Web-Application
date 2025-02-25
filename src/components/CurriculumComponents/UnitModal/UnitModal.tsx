@@ -1,5 +1,5 @@
 import { FC, useState, useEffect } from "react";
-import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
+import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
 
 import BulletList from "../OakComponentsKitchen/BulletList";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
@@ -11,7 +11,6 @@ import {
   CurriculumUnitDetailsProps,
   CurriculumUnitDetails,
 } from "@/components/CurriculumComponents/CurriculumUnitDetails";
-import { getUnitFeatures } from "@/utils/curriculum/features";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { notUndefined, Unit, YearData } from "@/utils/curriculum/types";
 
@@ -69,14 +68,12 @@ const UnitModal: FC<UnitModalProps> = ({
   ]);
 
   const subjectTitle =
-    getUnitFeatures(unitData)?.programmes_fields_overrides?.subject ??
-    unitData?.subject;
+    unitData?.actions?.programme_field_overrides?.subject ?? unitData?.subject;
 
   const yearTitle = unitData
     ? getYearGroupTitle(
         yearData,
-        getUnitFeatures(unitData)?.programmes_fields_overrides?.year ??
-          unitData.year,
+        unitData.actions?.programme_field_overrides?.Year ?? unitData.year,
       )
     : "";
 
@@ -112,6 +109,7 @@ const UnitModal: FC<UnitModalProps> = ({
                 }}
               />
             </OakBox>
+
             <OakFlex $gap="all-spacing-2" $flexWrap={"wrap"}>
               <BulletList
                 items={[subjectTitle, yearTitle]
@@ -119,6 +117,17 @@ const UnitModal: FC<UnitModalProps> = ({
                   .map((text) => ({ text }))}
               />
             </OakFlex>
+
+            {curriculumUnitDetails && (
+              <OakP
+                $mt={"space-between-ssx"}
+                $mb={"space-between-xs"}
+                data-testid="unit-optionality-title"
+              >
+                {unitData.title}
+              </OakP>
+            )}
+
             <OakHeading tag="h2" $font={"heading-5"}>
               {!curriculumUnitDetails
                 ? unitData.title

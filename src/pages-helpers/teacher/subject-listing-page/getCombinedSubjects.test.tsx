@@ -20,6 +20,7 @@ describe("getCombinedSubjects", () => {
         unitCount: 4,
         pathwaySlug: null,
         pathwayTitle: null,
+        actions: {},
       },
     ]);
   });
@@ -40,6 +41,7 @@ describe("getCombinedSubjects", () => {
         subjectTitle: "Music",
         pathwaySlug: null,
         pathwayTitle: null,
+        actions: {},
       },
     ]);
   });
@@ -60,6 +62,7 @@ describe("getCombinedSubjects", () => {
         unitCount: 6,
         pathwaySlug: null,
         pathwayTitle: null,
+        actions: {},
       },
     ]);
   });
@@ -81,6 +84,7 @@ describe("getCombinedSubjects", () => {
         unitCount: 4,
         pathwaySlug: "core",
         pathwayTitle: "Core",
+        actions: {},
       },
       {
         isNew: true,
@@ -92,6 +96,7 @@ describe("getCombinedSubjects", () => {
         unitCount: 8,
         pathwaySlug: "gcse",
         pathwayTitle: "GCSE",
+        actions: {},
       },
     ]);
   });

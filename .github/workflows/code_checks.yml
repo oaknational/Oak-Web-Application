@@ -12,8 +12,8 @@ on:
   merge_group:
 
 jobs:
-  lint_test_sonar:
-    name: lint, check types, test, Sonar
+  check:
+    name: lint, check types
     runs-on: ubuntu-latest
     steps:
       # Check out full history so Sonar can identify PR changes.
@@ -38,12 +38,29 @@ jobs:
       # Check types.
       - run: npm run check-types
 
+  test:
+    name: test, Sonar
+    runs-on: ubuntu-latest
+    steps:
+      # Check out full history so Sonar can identify PR changes.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: "npm"
+
+      # Install.
+      - run: npm ci
+
       # Unit tests, no integration tests.
       - run: npm run test:ci
 
       # Manually run the SonarCloud scan so we can send test coverage information.
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v4.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

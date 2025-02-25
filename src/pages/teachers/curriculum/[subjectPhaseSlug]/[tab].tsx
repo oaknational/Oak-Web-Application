@@ -4,7 +4,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import {
   OakBox,
@@ -46,12 +46,11 @@ import {
   VALID_TABS,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import openApiRequest from "@/utils/curriculum/openapi";
-import { CurriculumFilters } from "@/components/CurriculumComponents/CurriculumVisualiserFilters/CurriculumVisualiserFilters";
-import { getDefaultFilter } from "@/utils/curriculum/filtering";
+import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
-  subjectPhaseOptions,
+  curriculumPhaseOptions,
   curriculumOverviewTabData,
   curriculumOverviewSanityData,
   curriculumUnitsFormattedData,
@@ -75,9 +74,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     ),
   );
 
-  const [filters, setFilters] = useState<CurriculumFilters>(() => {
-    return getDefaultFilter(curriculumUnitsFormattedData);
-  });
+  const [filters, setFilters] = useFilters(() =>
+    getDefaultFilter(curriculumUnitsFormattedData),
+  );
 
   let tabContent: JSX.Element;
 
@@ -142,7 +141,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         $background={"white"}
       >
         <CurriculumHeader
-          subjectPhaseOptions={subjectPhaseOptions}
+          curriculumPhaseOptions={curriculumPhaseOptions}
           curriculumSelectionSlugs={curriculumSelectionSlugs}
           keyStages={keyStages}
           color1="mint"
@@ -197,9 +196,8 @@ export const getStaticProps: GetStaticProps<
         });
       }
 
-      const validSubjectPhases = await curriculumApi2023.subjectPhaseOptions({
-        cycle: "2",
-      });
+      const validSubjectPhases =
+        await curriculumApi2023.curriculumPhaseOptions();
 
       const isValid = isValidSubjectPhaseSlug(validSubjectPhases, slugs);
       if (!isValid) {
@@ -270,12 +268,12 @@ export const getStaticProps: GetStaticProps<
         curriculumUnitsTabData.units,
       );
 
-      const subjectPhaseOptions = await fetchSubjectPhasePickerData();
+      const curriculumPhaseOptions = await fetchSubjectPhasePickerData();
 
       const results: GetStaticPropsResult<CurriculumInfoPageProps> = {
         props: {
           curriculumSelectionSlugs: slugs,
-          subjectPhaseOptions,
+          curriculumPhaseOptions,
           curriculumOverviewTabData,
           curriculumOverviewSanityData,
           curriculumUnitsFormattedData,

@@ -7,7 +7,7 @@ import {
   parseSubjectPhaseSlug,
 } from "./slugs";
 
-import { SubjectPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/subjectPhaseOptions/subjectPhaseOptions.query";
+import { CurriculumPhaseOptions } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.query";
 
 describe("parseSubjectPhaseSlug", () => {
   it("should extract from a valid slug", () => {
@@ -27,7 +27,7 @@ describe("parseSubjectPhaseSlug", () => {
   });
 });
 
-const testSubjectPhaseOptions: SubjectPhaseOptions = [
+const testCurriculumPhaseOptions: CurriculumPhaseOptions = [
   {
     title: "English",
     slug: "english",
@@ -43,14 +43,13 @@ const testSubjectPhaseOptions: SubjectPhaseOptions = [
       { title: "KS1", slug: "ks1" },
       { title: "KS3", slug: "ks3" },
     ],
-    cycle: "1",
   },
 ];
 
 describe("isValidSubjectPhaseSlug", () => {
   it("valid to return true", () => {
     expect(
-      isValidSubjectPhaseSlug(testSubjectPhaseOptions, {
+      isValidSubjectPhaseSlug(testCurriculumPhaseOptions, {
         phaseSlug: "primary",
         subjectSlug: "english",
         ks4OptionSlug: null,
@@ -58,7 +57,7 @@ describe("isValidSubjectPhaseSlug", () => {
     ).toEqual(true);
 
     expect(
-      isValidSubjectPhaseSlug(testSubjectPhaseOptions, {
+      isValidSubjectPhaseSlug(testCurriculumPhaseOptions, {
         phaseSlug: "secondary",
         subjectSlug: "english",
         ks4OptionSlug: "aqa",
@@ -68,7 +67,7 @@ describe("isValidSubjectPhaseSlug", () => {
 
   it("invalid to return false", () => {
     expect(
-      isValidSubjectPhaseSlug(testSubjectPhaseOptions, {
+      isValidSubjectPhaseSlug(testCurriculumPhaseOptions, {
         phaseSlug: "foo",
         subjectSlug: "english",
         ks4OptionSlug: null,
@@ -76,7 +75,7 @@ describe("isValidSubjectPhaseSlug", () => {
     ).toEqual(false);
 
     expect(
-      isValidSubjectPhaseSlug(testSubjectPhaseOptions, {
+      isValidSubjectPhaseSlug(testCurriculumPhaseOptions, {
         phaseSlug: "secondary",
         subjectSlug: "english",
         ks4OptionSlug: null,
@@ -88,7 +87,7 @@ describe("isValidSubjectPhaseSlug", () => {
 describe("getKs4RedirectSlug", () => {
   it("return undefined if ks4OptionSlug specified", () => {
     expect(
-      getKs4RedirectSlug(testSubjectPhaseOptions, {
+      getKs4RedirectSlug(testCurriculumPhaseOptions, {
         subjectSlug: "english",
         phaseSlug: "secondary",
         ks4OptionSlug: "aqa",
@@ -98,7 +97,7 @@ describe("getKs4RedirectSlug", () => {
 
   it("return undefined if no match", () => {
     expect(
-      getKs4RedirectSlug(testSubjectPhaseOptions, {
+      getKs4RedirectSlug(testCurriculumPhaseOptions, {
         subjectSlug: "test",
         phaseSlug: "secondary",
         ks4OptionSlug: null,
@@ -108,7 +107,7 @@ describe("getKs4RedirectSlug", () => {
 
   it("return correct default when specified", () => {
     expect(
-      getKs4RedirectSlug(testSubjectPhaseOptions, {
+      getKs4RedirectSlug(testCurriculumPhaseOptions, {
         subjectSlug: "english",
         phaseSlug: "secondary",
         ks4OptionSlug: null,

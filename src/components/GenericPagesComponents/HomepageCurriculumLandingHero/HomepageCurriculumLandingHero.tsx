@@ -16,13 +16,13 @@ import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
 import Cover from "@/components/SharedComponents/Cover/Cover";
 
 type HomepageCurriculumLandingHeroProps = {
-  subjectPhaseOptions: SubjectPhasePickerData;
+  curriculumPhaseOptions: SubjectPhasePickerData;
 };
 
 const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
   props,
 ) => {
-  const { subjectPhaseOptions } = props;
+  const { curriculumPhaseOptions } = props;
   return (
     <OakBox $position={"relative"} $width={"100%"}>
       <OakFlex $flexDirection={"column"} $width={"100%"}>
@@ -49,7 +49,7 @@ const HomepageCurriculumLandingHero: FC<HomepageCurriculumLandingHeroProps> = (
           </OakGridArea>
         </OakGrid>
         <OakBox $maxWidth={["100%", "all-spacing-23"]}>
-          <SubjectPhasePicker {...subjectPhaseOptions} />
+          <SubjectPhasePicker {...curriculumPhaseOptions} />
         </OakBox>
       </OakFlex>
       <Cover

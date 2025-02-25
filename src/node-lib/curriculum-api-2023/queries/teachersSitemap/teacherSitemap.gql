@@ -2,18 +2,18 @@ query teachersSitemap {
   keyStages: published_mv_key_stages_2_0_0 {
     slug
   }
-  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  programmes: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
     distinct_on: programme_slug
   ) {
     programme_slug
   }
-  units: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  units: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
     distinct_on: [programme_slug, unit_slug]
   ) {
     unit_slug
     programme_slug
   }
-  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_10_0_0(
+  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
     distinct_on: [programme_slug, unit_slug, lesson_slug]
   ) {
     lesson_slug

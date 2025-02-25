@@ -2,7 +2,7 @@ import { act } from "@testing-library/react";
 
 import CurriculumTab from "./CurriculumTab";
 
-import { subjectPhaseOptions } from "@/utils/curriculum/fixtures";
+import { curriculumPhaseOptions } from "@/utils/curriculum/fixtures";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 window.matchMedia = () => ({ matches: true }) as unknown as MediaQueryList;
@@ -13,8 +13,8 @@ describe("CurriculumTab", () => {
   test("renders", () => {
     const { baseElement } = render(
       <CurriculumTab
-        subjectPhaseOptions={{
-          subjects: subjectPhaseOptions.options,
+        curriculumPhaseOptions={{
+          subjects: curriculumPhaseOptions.options,
         }}
       />,
     );
@@ -26,8 +26,8 @@ describe("CurriculumTab", () => {
   test("interactive", () => {
     const { getAllByTestId, getByTestId } = render(
       <CurriculumTab
-        subjectPhaseOptions={{
-          subjects: subjectPhaseOptions.options,
+        curriculumPhaseOptions={{
+          subjects: curriculumPhaseOptions.options,
         }}
       />,
     );

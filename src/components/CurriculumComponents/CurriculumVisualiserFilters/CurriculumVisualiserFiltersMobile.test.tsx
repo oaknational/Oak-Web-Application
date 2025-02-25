@@ -21,13 +21,13 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 }));
 
 // const emptyMockYearData = {
-//   units: [],
-//   childSubjects: [],
-//   subjectCategories: [],
-//   tiers: [],
-//   pathways: [],
-//   labels: [],
-//   groupAs: null,
+// units: [],
+// childSubjects: [],
+// subjectCategories: [],
+// tiers: [],
+// pathways: [],
+// isSwimming: false,
+// groupAs: null,
 // };
 
 // const CurriculumVisualiserFiltersMobileFixture: CurriculumVisualiserFiltersProps =
