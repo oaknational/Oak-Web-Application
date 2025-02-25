@@ -5,12 +5,9 @@ import { Lexend } from "next/font/google";
 import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 
-import {
-  OakGlobalStyle,
-  OakThemeProvider,
-  oakDefaultTheme,
-} from "@/styles/oakThemeApp";
+import { OakThemeProvider, oakDefaultTheme } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
+import GlobalStyle from "@/styles/GlobalStyle";
 
 export const metadata = {
   title: "Oak National Academy",
@@ -25,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={lexend.className}>
-      <OakGlobalStyle />
+    <html lang="en">
+      <GlobalStyle fontFamily={lexend.style.fontFamily} />
       <body style={{ margin: "0px" }}>
         <StyledComponentsRegistry>
           <PHProvider>
