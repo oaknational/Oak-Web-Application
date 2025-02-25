@@ -12,6 +12,7 @@ import {
   oakDefaultTheme,
   OakMaxWidth,
 } from "@oaknational/oak-components";
+import { useUser } from "@clerk/nextjs";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -154,6 +155,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   };
 
   const isNew = hasNewContent ?? false;
+  const { isSignedIn } = useUser();
+  const showRiskAssessmentBanner = !!actions?.isPePractical && isSignedIn;
 
   return (
     <AppLayout
@@ -238,6 +241,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               subjectTitle: subjectTitle,
             })
           }
+          showRiskAssessmentBanner={showRiskAssessmentBanner}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>

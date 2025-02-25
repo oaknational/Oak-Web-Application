@@ -1,3 +1,34 @@
+# [1.699.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.698.0...v1.699.0) (2025-02-25)
+
+
+### Bug Fixes
+
+* add aria-label to the link that opens in the new tab ([fa2a4c9](https://github.com/oaknational/Oak-Web-Application/commit/fa2a4c9374a1abc29ded06bac757ebd5f5b17612))
+* mobile alignment and tab order ([a1d327d](https://github.com/oaknational/Oak-Web-Application/commit/a1d327dd9b0f0f4377ea0b057679f27d473e6b26))
+
+
+### Features
+
+* add risk assessment banner ([8fbe1a7](https://github.com/oaknational/Oak-Web-Application/commit/8fbe1a79b32843a943297d66c4279443926372a3))
+* show risk assessment message ([4b87239](https://github.com/oaknational/Oak-Web-Application/commit/4b87239c83f7e8549368d8e03f8798d2463f209a))
+
+# [1.698.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.697.0...v1.698.0) (2025-02-25)
+
+
+### Bug Fixes
+
+* add aria label to all the links that opens in the new tab ([cc54be4](https://github.com/oaknational/Oak-Web-Application/commit/cc54be4c65748b7ac46421b34c9778ba31fa33c3))
+* add aria label to the link that opens in the new tab ([7ded2be](https://github.com/oaknational/Oak-Web-Application/commit/7ded2bec6341f2a9f2dc1ce3eb64fb246b6e33b7))
+* bump oak-components version ([88de2ca](https://github.com/oaknational/Oak-Web-Application/commit/88de2ca950309efff7a6dd76f61297ec1147258b))
+* display post download message based on cookies consent ([2c017b1](https://github.com/oaknational/Oak-Web-Application/commit/2c017b139e7fc48a96ef5dafa291f897683701fe))
+* scroll to top of the download confirmation page ([7e911aa](https://github.com/oaknational/Oak-Web-Application/commit/7e911aa8b192a07fac8a117fbc986a0d92b4311e))
+* update icon size ([6b6146e](https://github.com/oaknational/Oak-Web-Application/commit/6b6146e375494883e709006fab0fe7330bf3fa54))
+
+
+### Features
+
+* update post download message ([0090066](https://github.com/oaknational/Oak-Web-Application/commit/0090066207f2e7d0c5ea66ed70b7e3000cb8a358))
+
 # [1.697.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.696.2...v1.697.0) (2025-02-25)
 
 
