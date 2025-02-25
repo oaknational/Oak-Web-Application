@@ -1,3 +1,17 @@
+# [1.699.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.698.0...v1.699.0) (2025-02-25)
+
+
+### Bug Fixes
+
+* add aria-label to the link that opens in the new tab ([fa2a4c9](https://github.com/oaknational/Oak-Web-Application/commit/fa2a4c9374a1abc29ded06bac757ebd5f5b17612))
+* mobile alignment and tab order ([a1d327d](https://github.com/oaknational/Oak-Web-Application/commit/a1d327dd9b0f0f4377ea0b057679f27d473e6b26))
+
+
+### Features
+
+* add risk assessment banner ([8fbe1a7](https://github.com/oaknational/Oak-Web-Application/commit/8fbe1a79b32843a943297d66c4279443926372a3))
+* show risk assessment message ([4b87239](https://github.com/oaknational/Oak-Web-Application/commit/4b87239c83f7e8549368d8e03f8798d2463f209a))
+
 # [1.698.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.697.0...v1.698.0) (2025-02-25)
 
 
