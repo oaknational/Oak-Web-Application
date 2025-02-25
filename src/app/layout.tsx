@@ -5,7 +5,11 @@ import { Lexend } from "next/font/google";
 import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 
-import { OakThemeProvider, oakDefaultTheme } from "@/styles/oakThemeApp";
+import {
+  OakBox,
+  OakThemeProvider,
+  oakDefaultTheme,
+} from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
 import GlobalStyle from "@/styles/GlobalStyle";
 
@@ -61,7 +65,9 @@ export default function RootLayout({
                     },
                   }}
                 >
-                  {children}
+                  <OakBox $width="100vw" $height="100vh">
+                    {children}
+                  </OakBox>
                 </ClerkProvider>
               </CookieConsentProvider>
             </OakThemeProvider>

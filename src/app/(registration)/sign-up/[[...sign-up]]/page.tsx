@@ -14,7 +14,7 @@ import { useFeatureFlagVariantKey } from "posthog-js/react";
 import { formAppearanceStyles } from "../../formAppearanceStyles";
 
 import RegistrationAside from "@/components/TeacherComponents/RegistrationAside/ResgistrationAside";
-import { RegistrationLayout } from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
+import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
 import { resolveOakHref } from "@/common-lib/urls";
 
 const TermsAndConditions = () => {
@@ -52,7 +52,7 @@ const TermsAndConditions = () => {
 function SignUpPage() {
   const [clerkRendered, setClerkRendered] = useState(false);
   const featureFlagVariant = useFeatureFlagVariantKey("teacher-sign-up-page");
-  const newLayoutEnabled = featureFlagVariant === true; // TODO; use variant key
+  const newLayoutEnabled = featureFlagVariant === "new-layout";
 
   const checkForClerkElement = useCallback(() => {
     // Clerk docs say these classnames are stable
@@ -77,6 +77,7 @@ function SignUpPage() {
     <RegistrationLayout
       termsSlot={clerkRendered ? <TermsAndConditions /> : null}
       asideSlot={<RegistrationAside useNew={newLayoutEnabled} />}
+      useAlternateLayout={newLayoutEnabled}
       bannerSlot={
         clerkRendered ? (
           <OakInlineBanner

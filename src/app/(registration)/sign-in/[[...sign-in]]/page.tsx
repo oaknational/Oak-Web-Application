@@ -7,7 +7,7 @@ import { OakBox } from "@oaknational/oak-components";
 import { formAppearanceStyles } from "../../formAppearanceStyles";
 
 import CMSImage from "@/components/SharedComponents/CMSImage";
-import { RegistrationLayout } from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
+import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
 import { getIllustrationAsset } from "@/image-data";
 
 function SignInPage() {
@@ -22,6 +22,7 @@ function SignInPage() {
           />
         </OakBox>
       }
+      useAlternateLayout={false} // TODO: use variant key
     >
       <SignIn appearance={formAppearanceStyles} />
     </RegistrationLayout>

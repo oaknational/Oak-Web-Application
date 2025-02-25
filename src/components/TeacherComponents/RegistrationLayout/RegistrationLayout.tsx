@@ -1,19 +1,40 @@
-import { OakBox, OakFlex, OakMaxWidth } from "@oaknational/oak-components";
+import {
+  OakBox,
+  OakFlex,
+  OakGrid,
+  OakGridArea,
+  OakMaxWidth,
+} from "@oaknational/oak-components";
 import { PropsWithChildren, ReactNode } from "react";
 
 type RegistrationLayoutProps = PropsWithChildren<{
   asideSlot: ReactNode;
   termsSlot?: ReactNode;
   bannerSlot?: ReactNode;
+  useAlternateLayout: boolean;
 }>;
 
-export const RegistrationLayout = ({
+const RegistrationLayout = ({
   children,
   asideSlot,
   termsSlot,
   bannerSlot,
+  useAlternateLayout,
 }: RegistrationLayoutProps) => {
-  return (
+  return useAlternateLayout ? (
+    <OakGrid $width="100%" $height="100%">
+      <OakGridArea
+        $colSpan={6}
+        $pa="inner-padding-xl2"
+        $background="bg-decorative1-main"
+      >
+        <OakFlex $justifyContent="center">{asideSlot}</OakFlex>
+      </OakGridArea>
+      <OakGridArea $colSpan={6} $pa="inner-padding-xl2" $background="white">
+        <OakFlex $justifyContent="center"> {children}</OakFlex>
+      </OakGridArea>
+    </OakGrid>
+  ) : (
     <OakFlex
       $background={["white", "bg-decorative1-main"]}
       $overflow="auto"
@@ -57,3 +78,5 @@ export const RegistrationLayout = ({
     </OakFlex>
   );
 };
+
+export default RegistrationLayout;
