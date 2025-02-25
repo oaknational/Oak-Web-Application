@@ -286,7 +286,10 @@ module.exports = async (phase) => {
     // Remove SWC from the output bundle as it is bloating the bundle size and causing issues with Netlify limits
     experimental: {
       outputFileTracingExcludes: {
-        "*": ["node_modules/@swc/**/*"],
+        "*": [
+          "node_modules/@swc/core-linux-*-gnu/**/*",
+          "node_modules/@swc/core-linux-*-musl/**/*",
+        ],
       },
     },
   };
