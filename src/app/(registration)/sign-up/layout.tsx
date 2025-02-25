@@ -1,9 +1,14 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import {
+  OakFlex,
+  OakBox,
+  OakLink,
+  OakP,
+  OakInlineBanner,
+} from "@oaknational/oak-components";
+import { useState, useCallback, useEffect } from "react";
 
 import { resolveOakHref } from "@/common-lib/urls";
-import { RegistrationLayout } from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
-import { OakBox, OakLink, OakP } from "@/styles/oakThemeApp";
 
 const TermsAndConditions = () => {
   return (
@@ -37,15 +42,7 @@ const TermsAndConditions = () => {
   );
 };
 
-export function AuthLayout({
-  children,
-  asideSlot,
-  bannerSlot,
-}: {
-  children: React.ReactNode;
-  asideSlot: React.ReactNode;
-  bannerSlot?: React.ReactNode;
-}) {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const [clerkRendered, setClerkRendered] = useState(false);
 
   const checkForClerkElement = useCallback(() => {
@@ -68,12 +65,35 @@ export function AuthLayout({
   }, [checkForClerkElement]);
 
   return (
-    <RegistrationLayout
-      asideSlot={asideSlot}
-      termsSlot={clerkRendered ? <TermsAndConditions /> : null}
-      bannerSlot={clerkRendered ? bannerSlot : null}
+    <OakFlex
+      $flexDirection="column"
+      $alignItems="center"
+      $gap="space-between-m"
+      $display={["flex", "block"]}
     >
-      {children}
-    </RegistrationLayout>
+      {clerkRendered && (
+        <OakInlineBanner
+          isOpen
+          message={
+            <>
+              No <strong>pupil accounts</strong>, sorry.
+            </>
+          }
+          $mt={["space-between-m", "space-between-none"]}
+          $mb={["space-between-none", "space-between-m"]}
+        />
+      )}
+      <OakBox
+        $dropShadow={[null, "drop-shadow-standard"]}
+        $borderRadius="border-radius-m2"
+        $width={["auto", "max-content"]}
+        $mb={["space-between-none", "space-between-m"]}
+      >
+        {children}
+      </OakBox>
+      {clerkRendered && <TermsAndConditions />}
+    </OakFlex>
   );
-}
+};
+
+export default Layout;
