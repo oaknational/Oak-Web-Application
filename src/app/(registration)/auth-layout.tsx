@@ -9,7 +9,7 @@ import {
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { RegistrationLayout } from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
-import { OakBox, OakFlex, OakLink, OakP } from "@/styles/oakThemeApp";
+import { OakBox, OakLink, OakP } from "@/styles/oakThemeApp";
 
 const TermsAndConditions = () => {
   return (
@@ -46,11 +46,11 @@ const TermsAndConditions = () => {
 export function AuthLayout({
   children,
   asideSlot,
-  headerSlot,
+  bannerSlot,
 }: {
   children: React.ReactNode;
   asideSlot: React.ReactNode;
-  headerSlot?: React.ReactNode;
+  bannerSlot?: React.ReactNode;
 }) {
   const clerkRef = useRef<null | HTMLDivElement>(null);
   const [clerkRendered, setClerkRendered] = useState(false);
@@ -80,25 +80,12 @@ export function AuthLayout({
   }, [clerkRef, checkForClerkElement]);
 
   return (
-    <RegistrationLayout asideSlot={asideSlot}>
-      {headerSlot}
-      <OakFlex
-        $flexDirection="column"
-        $alignItems="center"
-        $gap="space-between-m"
-        $display={["flex", "block"]}
-      >
-        <OakBox
-          $dropShadow={[null, "drop-shadow-standard"]}
-          $borderRadius="border-radius-m2"
-          $width={["auto", "max-content"]}
-          $mb={["space-between-none", "space-between-m"]}
-          ref={clerkRef}
-        >
-          {children}
-        </OakBox>
-        {clerkRendered && <TermsAndConditions />}
-      </OakFlex>
+    <RegistrationLayout
+      asideSlot={asideSlot}
+      termsSlot={clerkRendered ? <TermsAndConditions /> : null}
+    >
+      {bannerSlot}
+      {children}
     </RegistrationLayout>
   );
 }

@@ -1,13 +1,15 @@
-import { OakFlex, OakMaxWidth } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakMaxWidth } from "@oaknational/oak-components";
 import { PropsWithChildren, ReactNode } from "react";
 
 type RegistrationLayoutProps = PropsWithChildren<{
   asideSlot: ReactNode;
+  termsSlot: ReactNode;
 }>;
 
 export const RegistrationLayout = ({
   children,
   asideSlot,
+  termsSlot,
 }: RegistrationLayoutProps) => {
   return (
     <OakFlex
@@ -31,7 +33,22 @@ export const RegistrationLayout = ({
           {asideSlot}
         </OakFlex>
         <OakFlex $display="block" $order={1} style={{ width: "400px" }}>
-          {children}
+          <OakFlex
+            $flexDirection="column"
+            $alignItems="center"
+            $gap="space-between-m"
+            $display={["flex", "block"]}
+          >
+            <OakBox
+              $dropShadow={[null, "drop-shadow-standard"]}
+              $borderRadius="border-radius-m2"
+              $width={["auto", "max-content"]}
+              $mb={["space-between-none", "space-between-m"]}
+            >
+              {children}
+            </OakBox>
+            {termsSlot}
+          </OakFlex>
         </OakFlex>
       </OakMaxWidth>
     </OakFlex>
