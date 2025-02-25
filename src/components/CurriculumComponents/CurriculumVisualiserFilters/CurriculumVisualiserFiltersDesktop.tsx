@@ -12,15 +12,12 @@ import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 import SkipLink from "../OakComponentsKitchen/SkipLink";
 
-import {
-  CurriculumFilters,
-  CurriculumVisualiserFiltersProps,
-} from "./CurriculumVisualiserFilters";
+import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "./helpers";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { Thread } from "@/utils/curriculum/types";
+import { Thread, CurriculumFilters } from "@/utils/curriculum/types";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { getFilterData } from "@/utils/curriculum/filtering";
 import {
@@ -151,6 +148,7 @@ export default function CurriculumVisualiserFiltersDesktop({
                 <OakRadioAsButton
                   key={subjectCategory.id}
                   value={String(subjectCategory.id)}
+                  data-testid={`subject-category-radio-${subjectCategory.id}`}
                   displayValue={subjectCategory.title}
                   icon={getValidSubjectCategoryIconById(subjectCategory.id)}
                 />

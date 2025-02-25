@@ -46,3 +46,11 @@ export type YearData = {
 export type KeyStageSlug = "ks1" | "ks2" | "ks3" | "ks4";
 
 export type Unit = CurriculumUnitsTabData["units"][number];
+
+export type CurriculumFilters = {
+  childSubjects: Subject["subject_slug"][];
+  subjectCategories: string[];
+  tiers: Tier["tier_slug"][];
+  years: string[];
+  threads: Thread["slug"][];
+};

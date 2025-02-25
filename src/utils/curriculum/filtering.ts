@@ -1,17 +1,24 @@
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
+import { ENABLE_FILTERS_IN_SEARCH_PARAMS } from "./constants";
 import { findFirstMatchingFeatures } from "./features";
 import {
   sortChildSubjects,
   sortSubjectCategoriesOnFeatures,
   sortTiers,
 } from "./sorting";
-import { Subject, SubjectCategory, Tier } from "./types";
+import { CurriculumFilters, Subject, SubjectCategory, Tier } from "./types";
 
 import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsYearData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
-export function getDefaultChildSubject(data: CurriculumUnitsYearData) {
+export function getDefaultChildSubjectForYearGroup(
+  data: CurriculumUnitsYearData,
+) {
   const set = new Set<Subject>();
   Object.values(data).forEach((yearData) => {
     yearData.childSubjects.forEach((childSubject) => {
@@ -29,7 +36,9 @@ export function getDefaultChildSubject(data: CurriculumUnitsYearData) {
   }
   return [];
 }
-export function getDefaultSubjectCategories(data: CurriculumUnitsYearData) {
+export function getDefaultSubjectCategoriesForYearGroup(
+  data: CurriculumUnitsYearData,
+) {
   const set = new Set<Pick<SubjectCategory, "id">>();
   Object.values(data).forEach((yearData) => {
     yearData.subjectCategories.forEach((subjectCategory) =>
@@ -47,7 +56,7 @@ export function getDefaultSubjectCategories(data: CurriculumUnitsYearData) {
     .map((s) => String(s.id));
   return [subjectCategories[0]!];
 }
-export function getDefaultTiers(data: CurriculumUnitsYearData) {
+export function getDefaultTiersForYearGroup(data: CurriculumUnitsYearData) {
   const set = new Set<Tier>();
   Object.values(data).forEach((yearData) => {
     yearData.tiers.forEach((tier) => {
@@ -66,12 +75,69 @@ export function getDefaultTiers(data: CurriculumUnitsYearData) {
 
 export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
   return {
-    childSubjects: getDefaultChildSubject(data.yearData),
-    subjectCategories: getDefaultSubjectCategories(data.yearData),
-    tiers: getDefaultTiers(data.yearData),
+    childSubjects: getDefaultChildSubjectForYearGroup(data.yearData),
+    subjectCategories: getDefaultSubjectCategoriesForYearGroup(data.yearData),
+    tiers: getDefaultTiersForYearGroup(data.yearData),
     years: data.yearOptions,
     threads: [],
   };
+}
+
+function filtersToQuery(filter: CurriculumFilters) {
+  const out: Record<string, string> = {};
+  for (const [key, value] of Object.entries(filter)) {
+    if (value.length > 0) {
+      out[key] = value.join(",");
+    }
+  }
+  return out;
+}
+
+function mergeInParams(
+  filter: CurriculumFilters,
+  params?: ReadonlyURLSearchParams | null,
+) {
+  const out = { ...filter };
+  if (params) {
+    for (const keyStr of Object.keys(filter)) {
+      const key = keyStr as keyof CurriculumFilters;
+      const paramsValue = params.get(key);
+      if (paramsValue && paramsValue !== "") {
+        out[key] = params.get(key)!.split(",");
+      }
+    }
+  }
+  return out;
+}
+
+export function useFilters(
+  defaultFiltersFn: () => CurriculumFilters,
+): [CurriculumFilters, (newFilters: CurriculumFilters) => void] {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const [filters, setLocalFilters] = useState<CurriculumFilters>(() => {
+    const dflt = defaultFiltersFn();
+    if (ENABLE_FILTERS_IN_SEARCH_PARAMS) {
+      return mergeInParams(dflt, searchParams);
+    } else {
+      return dflt;
+    }
+  });
+  const setFilters = (newFilters: CurriculumFilters) => {
+    if (ENABLE_FILTERS_IN_SEARCH_PARAMS) {
+      const url =
+        location.pathname +
+        "?" +
+        new URLSearchParams(
+          Object.entries(filtersToQuery(newFilters)),
+        ).toString();
+      router.replace(url, undefined, { shallow: true });
+    }
+    setLocalFilters(newFilters);
+  };
+
+  return [filters, setFilters];
 }
 
 export function getFilterData(

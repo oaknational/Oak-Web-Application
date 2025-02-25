@@ -4,12 +4,10 @@ import { OakHeading, OakBox, OakP } from "@oaknational/oak-components";
 import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
 import CurriculumVisualiserLayout from "../CurriculumVisualiserLayout/CurriculumVisualiserLayout";
 // import CurriculumVisualiserFiltersMobile from "../CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile";
-import CurriculumVisualiserFilters, {
-  CurriculumFilters,
-} from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
+import CurriculumVisualiserFilters from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "../CurriculumVisualiserFilters/helpers";
 
-import { Thread, Unit } from "@/utils/curriculum/types";
+import { CurriculumFilters, Thread, Unit } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import {
