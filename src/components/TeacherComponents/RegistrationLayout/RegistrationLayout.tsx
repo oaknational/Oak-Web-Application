@@ -3,7 +3,7 @@ import { PropsWithChildren, ReactNode } from "react";
 
 type RegistrationLayoutProps = PropsWithChildren<{
   asideSlot: ReactNode;
-  termsSlot: ReactNode;
+  termsSlot?: ReactNode;
   bannerSlot?: ReactNode;
 }>;
 
