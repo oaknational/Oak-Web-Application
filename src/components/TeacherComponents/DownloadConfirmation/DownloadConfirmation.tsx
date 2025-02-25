@@ -191,6 +191,9 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
                 "https://support.thenational.academy/how-to-install-the-google-fonts-lexend-and-kalan"
               }
               target={"_blank"}
+              aria-label={
+                "install the Google Fonts 'Lexend' and 'Kalam' (opens in a new tab)"
+              }
               iconName={"external"}
               isTrailingIcon={true}
               iconHeight={"all-spacing-6"}
