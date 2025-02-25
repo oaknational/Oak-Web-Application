@@ -1,10 +1,15 @@
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
+import { ENABLE_FILTERS_IN_SEARCH_PARAMS } from "./constants";
 import { findFirstMatchingFeatures } from "./features";
 import {
   sortChildSubjects,
   sortSubjectCategoriesOnFeatures,
   sortTiers,
 } from "./sorting";
-import { Subject, SubjectCategory, Tier } from "./types";
+import { CurriculumFilters, Subject, SubjectCategory, Tier } from "./types";
 
 import {
   CurriculumUnitsFormattedData,
@@ -76,6 +81,63 @@ export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
     years: data.yearOptions,
     threads: [],
   };
+}
+
+function filtersToQuery(filter: CurriculumFilters) {
+  const out: Record<string, string> = {};
+  for (const [key, value] of Object.entries(filter)) {
+    if (value.length > 0) {
+      out[key] = value.join(",");
+    }
+  }
+  return out;
+}
+
+function mergeInParams(
+  filter: CurriculumFilters,
+  params?: ReadonlyURLSearchParams | null,
+) {
+  const out = { ...filter };
+  if (params) {
+    for (const keyStr of Object.keys(filter)) {
+      const key = keyStr as keyof CurriculumFilters;
+      const paramsValue = params.get(key);
+      if (paramsValue && paramsValue !== "") {
+        out[key] = params.get(key)!.split(",");
+      }
+    }
+  }
+  return out;
+}
+
+export function useFilters(
+  defaultFiltersFn: () => CurriculumFilters,
+): [CurriculumFilters, (newFilters: CurriculumFilters) => void] {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const [filters, setLocalFilters] = useState<CurriculumFilters>(() => {
+    const dflt = defaultFiltersFn();
+    if (ENABLE_FILTERS_IN_SEARCH_PARAMS) {
+      return mergeInParams(dflt, searchParams);
+    } else {
+      return dflt;
+    }
+  });
+  const setFilters = (newFilters: CurriculumFilters) => {
+    if (ENABLE_FILTERS_IN_SEARCH_PARAMS) {
+      const url =
+        location.pathname +
+        "?" +
+        new URLSearchParams(
+          Object.entries(filtersToQuery(newFilters)),
+        ).toString();
+      router.replace(url, undefined, { shallow: true });
+    }
+    setLocalFilters(newFilters);
+  };
+
+  return [filters, setFilters];
 }
 
 export function getFilterData(
