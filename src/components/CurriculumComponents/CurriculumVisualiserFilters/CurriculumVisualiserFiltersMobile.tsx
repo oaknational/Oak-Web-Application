@@ -1,264 +1,260 @@
-// import React, { useState } from "react";
-// import { OakP, OakFlex, OakSpan, OakBox } from "@oaknational/oak-components";
-// import styled from "styled-components";
+import React, { useState } from "react";
+import { OakFlex, OakSpan, OakBox } from "@oaknational/oak-components";
+import styled from "styled-components";
 
-// import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
-// import { RadioButton, RadioGroup } from "../OakComponentsKitchen/SimpleRadio";
-// import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
+import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 
-// import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
-// import { highlightedUnitCount } from "./helpers";
+import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
+import { highlightedUnitCount } from "./helpers";
 
-// import Box from "@/components/SharedComponents/Box";
-// import Button from "@/components/SharedComponents/Button/Button";
-// import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
-// import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-// import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-// import useAnalytics from "@/context/Analytics/useAnalytics";
-// import { Thread } from "@/utils/curriculum/types";
+import Box from "@/components/SharedComponents/Box";
+import Button from "@/components/SharedComponents/Button/Button";
+import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { Thread } from "@/utils/curriculum/types";
 
-// const StyledButton = styled("button")`
-//   all: unset;
-//   color: inherit;
-//   cursor: pointer;
-//   padding: 12px;
-//   width: fit-content;
-//   display: inline-block;
-//   white-space: nowrap;
-//   border-radius: 4px;
-//   margin-right: 0;
-//   border: 1px solid ${({ theme }) => theme.colors.grey40};
+const StyledButton = styled("button")`
+  all: unset;
+  color: inherit;
+  cursor: pointer;
+  padding: 12px;
+  width: fit-content;
+  display: inline-block;
+  white-space: nowrap;
+  border-radius: 4px;
+  margin-right: 0;
+  border: 1px solid ${({ theme }) => theme.colors.grey40};
 
-//   &:hover:not([aria-pressed="true"]) {
-//     background: #f2f2f2;
-//   }
-// `;
+  &:hover:not([aria-pressed="true"]) {
+    background: #f2f2f2;
+  }
+`;
 
-// const ScrollableWrapper = styled.div`
-//   position: relative;
-//   width: 100%;
+const ScrollableWrapper = styled.div`
+  position: relative;
+  width: 100%;
 
-//   &::before {
-//     content: "";
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     height: 100%;
-//     width: 20px;
-//     background: linear-gradient(
-//       to left,
-//       rgba(255, 255, 255, 0),
-//       rgba(255, 255, 255, 1)
-//     );
-//     pointer-events: none;
-//     z-index: 1;
-//   }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 20px;
+    background: linear-gradient(
+      to left,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
 
-//   &::after {
-//     content: "";
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     height: 100%;
-//     width: 25px;
-//     background: linear-gradient(
-//       to right,
-//       rgba(255, 255, 255, 0),
-//       rgba(255, 255, 255, 1)
-//     );
-//     pointer-events: none;
-//     z-index: 1;
-//   }
-// `;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 25px;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+`;
 
-// const StyledButtonGroup = styled(ButtonGroup)`
-//   overflow-x: auto;
-//   overflow-y: hidden;
-//   position: relative;
+const StyledButtonGroup = styled(ButtonGroup)`
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
 
-//   & > *:first-child {
-//     margin-left: 16px;
-//   }
+  & > *:first-child {
+    margin-left: 16px;
+  }
 
-//   & > *:not(:last-child) {
-//     margin-right: -5px;
-//   }
-// `;
+  & > *:not(:last-child) {
+    margin-right: -5px;
+  }
+`;
 
-// function StickyBit({
-//   onOpenModal,
-//   data,
-//   trackingData,
-//   selectedThread,
-//   selectedYear,
-//   yearSelection,
-//   onSelectYear,
-// }: Pick<
-//   CurriculumVisualiserFiltersProps,
-//   | "data"
-//   | "trackingData"
-//   | "selectedThread"
-//   | "selectedYear"
-//   | "yearSelection"
-//   | "onSelectYear"
-// > & { onOpenModal: () => void }) {
-//   const { track } = useAnalytics();
-//   const { analyticsUseCase } = useAnalyticsPageProps();
+function StickyBit({
+  onOpenModal,
+  filters,
+  onChangeFilters,
+  data,
+  trackingData,
+}: CurriculumVisualiserFiltersProps & { onOpenModal: () => void }) {
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
-//   const { yearData, threadOptions, yearOptions } = data;
+  const { yearData, threadOptions, yearOptions } = data;
 
-//   const highlightedUnits = highlightedUnitCount(
-//     yearData,
-//     null,
-//     yearSelection,
-//     selectedThread,
-//   );
+  const selectedThread = filters.threads[0];
 
-//   function trackSelectYear(year: string): void {
-//     if (trackingData) {
-//       const { subjectTitle, subjectSlug } = trackingData;
-//       track.yearGroupSelected({
-//         yearGroupName: year,
-//         yearGroupSlug: year,
-//         subjectTitle,
-//         subjectSlug,
-//         analyticsUseCase: analyticsUseCase,
-//       });
-//     }
-//   }
+  const highlightedUnits = highlightedUnitCount(
+    yearData,
+    filters,
+    filters.threads,
+  );
 
-//   const threadDef = (selectedThread: Thread["slug"]) =>
-//     threadOptions.find((t) => t.slug === selectedThread);
+  const onSelectYear = (newYear: string) => {
+    onChangeFilters({
+      ...filters,
+      years: [newYear],
+    });
+  };
 
-//   function isSelectedYear(yearOption: string) {
-//     return selectedYear === yearOption;
-//   }
+  function trackSelectYear(year: string): void {
+    if (trackingData) {
+      const { subjectTitle, subjectSlug } = trackingData;
+      track.yearGroupSelected({
+        yearGroupName: year,
+        yearGroupSlug: year,
+        subjectTitle,
+        subjectSlug,
+        analyticsUseCase: analyticsUseCase,
+      });
+    }
+  }
 
-//   function scrollToYearSection(yearOption: string) {
-//     setTimeout(() => {
-//       const targetElement = document.getElementById(`year-${yearOption}`);
-//       if (targetElement) {
-//         const headerOffset = 70;
-//         const elementPosition = targetElement.getBoundingClientRect().top;
-//         const offsetPosition =
-//           elementPosition + window.pageYOffset - headerOffset;
+  const threadDef = (selectedThread: Thread["slug"]) =>
+    threadOptions.find((t) => t.slug === selectedThread);
 
-//         window.scrollTo({
-//           top: offsetPosition,
-//           behavior: "smooth",
-//         });
+  function isSelectedYear(yearOption: string) {
+    return filters.years.length === 1 && filters.years[0] === yearOption;
+  }
 
-//         // It's key that focus is set after scroll completes otherwise
-//         // scroll ends above the intended year section
-//         setTimeout(() => {
-//           const yearHeading = document.getElementById(`year-${yearOption}`);
-//           if (yearHeading instanceof HTMLElement) {
-//             yearHeading.setAttribute("tabindex", "-1");
-//             yearHeading.focus();
-//           }
-//         }, 500);
-//       }
-//     }, 0);
-//   }
+  function scrollToYearSection(yearOption: string) {
+    setTimeout(() => {
+      const targetElement = document.getElementById(`year-${yearOption}`);
+      if (targetElement) {
+        const headerOffset = 70;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
 
-//   return (
-//     <OakBox
-//       $position={["sticky", "static"]}
-//       $display={["block", "none"]}
-//       $top="all-spacing-0"
-//       $zIndex={"fixed-header"}
-//     >
-//       <OakBox
-//         $width={"100%"}
-//         $background={"white"}
-//         $mb="space-between-ssx"
-//         data-test-id="filter-mobiles"
-//       >
-//         <OakBox>
-//           <OakBox
-//             $bb={"border-solid-s"}
-//             $borderColor={"grey30"}
-//             $ph={["inner-padding-m", "inner-padding-none"]}
-//             $pb={"inner-padding-m"}
-//           >
-//             <Button
-//               label="Highlight a thread"
-//               icon="chevron-right"
-//               $iconPosition="trailing"
-//               variant="buttonStyledAsLink"
-//               $mt={16}
-//               onClick={onOpenModal}
-//               data-testid="mobile-highlight-thread"
-//             />
-//             {selectedThread && (
-//               <OakFlex>
-//                 <Box
-//                   $textOverflow={"ellipsis"}
-//                   $whiteSpace={"nowrap"}
-//                   $overflow={"hidden"}
-//                   data-testid="highlighted-threads-mobile"
-//                   $maxWidth={"50%"}
-//                 >
-//                   {threadDef(selectedThread)?.title}
-//                 </Box>
-//                 <OakBox $mh="space-between-ssx"> • </OakBox>
-//                 <OakBox data-testid="highlighted-units-box-mobile">
-//                   <OakSpan aria-live="polite" aria-atomic="true">
-//                     {highlightedUnits} units highlighted
-//                   </OakSpan>
-//                 </OakBox>
-//               </OakFlex>
-//             )}
-//           </OakBox>
-//           <OakBox
-//             $bb={"border-solid-s"}
-//             $borderColor={"grey30"}
-//             $width={"100%"}
-//             data-testid={"year-selection-mobile"}
-//           >
-//             <ScrollableWrapper>
-//               <StyledButtonGroup aria-label="Select a year group">
-//                 {yearOptions.map((yearOption) => (
-//                   <OakBox
-//                     key={yearOption}
-//                     $pt="inner-padding-xs"
-//                     $ml="space-between-sssx"
-//                   >
-//                     <FocusIndicator
-//                       data-testid="year-group-focus-indicator"
-//                       $display={"inline-block"}
-//                       $mb="space-between-ssx"
-//                       $mr="space-between-ssx"
-//                       $background={
-//                         isSelectedYear(yearOption) ? "black" : "white"
-//                       }
-//                       $color={isSelectedYear(yearOption) ? "white" : "black"}
-//                       $borderRadius={"border-radius-s"}
-//                       $font="heading-7"
-//                       disableMouseHover={isSelectedYear(yearOption)}
-//                     >
-//                       <StyledButton
-//                         data-testid="year-group-filter-button"
-//                         aria-pressed={isSelectedYear(yearOption)}
-//                         onClick={() => {
-//                           onSelectYear(yearOption);
-//                           trackSelectYear(yearOption);
-//                           scrollToYearSection(yearOption);
-//                         }}
-//                       >
-//                         {getYearGroupTitle(yearData, yearOption)}
-//                       </StyledButton>
-//                     </FocusIndicator>
-//                   </OakBox>
-//                 ))}
-//               </StyledButtonGroup>
-//             </ScrollableWrapper>
-//           </OakBox>
-//         </OakBox>
-//       </OakBox>
-//     </OakBox>
-//   );
-// }
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+
+        // It's key that focus is set after scroll completes otherwise
+        // scroll ends above the intended year section
+        setTimeout(() => {
+          const yearHeading = document.getElementById(`year-${yearOption}`);
+          if (yearHeading instanceof HTMLElement) {
+            yearHeading.setAttribute("tabindex", "-1");
+            yearHeading.focus();
+          }
+        }, 500);
+      }
+    }, 0);
+  }
+
+  return (
+    <OakBox
+      $position={["sticky", "static"]}
+      $display={["block", "none"]}
+      $top="all-spacing-0"
+      $zIndex={"fixed-header"}
+    >
+      <OakBox
+        $width={"100%"}
+        $background={"white"}
+        $mb="space-between-ssx"
+        data-test-id="filter-mobiles"
+      >
+        <OakBox>
+          <OakBox
+            $bb={"border-solid-s"}
+            $borderColor={"grey30"}
+            $ph={["inner-padding-m", "inner-padding-none"]}
+            $pb={"inner-padding-m"}
+          >
+            <Button
+              label="Highlight a thread"
+              icon="chevron-right"
+              $iconPosition="trailing"
+              variant="buttonStyledAsLink"
+              $mt={16}
+              onClick={onOpenModal}
+              data-testid="mobile-highlight-thread"
+            />
+            {selectedThread && (
+              <OakFlex>
+                <Box
+                  $textOverflow={"ellipsis"}
+                  $whiteSpace={"nowrap"}
+                  $overflow={"hidden"}
+                  data-testid="highlighted-threads-mobile"
+                  $maxWidth={"50%"}
+                >
+                  {threadDef(selectedThread)?.title}
+                </Box>
+                <OakBox $mh="space-between-ssx"> • </OakBox>
+                <OakBox data-testid="highlighted-units-box-mobile">
+                  <OakSpan aria-live="polite" aria-atomic="true">
+                    {highlightedUnits} units highlighted
+                  </OakSpan>
+                </OakBox>
+              </OakFlex>
+            )}
+          </OakBox>
+          <OakBox
+            $bb={"border-solid-s"}
+            $borderColor={"grey30"}
+            $width={"100%"}
+            data-testid={"year-selection-mobile"}
+          >
+            <ScrollableWrapper>
+              <StyledButtonGroup aria-label="Select a year group">
+                {yearOptions.map((yearOption) => (
+                  <OakBox
+                    key={yearOption}
+                    $pt="inner-padding-xs"
+                    $ml="space-between-sssx"
+                  >
+                    <FocusIndicator
+                      data-testid="year-group-focus-indicator"
+                      $display={"inline-block"}
+                      $mb="space-between-ssx"
+                      $mr="space-between-ssx"
+                      $background={
+                        isSelectedYear(yearOption) ? "black" : "white"
+                      }
+                      $color={isSelectedYear(yearOption) ? "white" : "black"}
+                      $borderRadius={"border-radius-s"}
+                      $font="heading-7"
+                      disableMouseHover={isSelectedYear(yearOption)}
+                    >
+                      <StyledButton
+                        data-testid="year-group-filter-button"
+                        aria-pressed={isSelectedYear(yearOption)}
+                        onClick={() => {
+                          onSelectYear(yearOption);
+                          trackSelectYear(yearOption);
+                          scrollToYearSection(yearOption);
+                        }}
+                      >
+                        {getYearGroupTitle(yearData, yearOption)}
+                      </StyledButton>
+                    </FocusIndicator>
+                  </OakBox>
+                ))}
+              </StyledButtonGroup>
+            </ScrollableWrapper>
+          </OakBox>
+        </OakBox>
+      </OakBox>
+    </OakBox>
+  );
+}
 
 // function Modal({
 //   data,
@@ -415,42 +411,36 @@
 //   );
 // }
 
-export default function CurriculumVisualiserFiltersMobile() {
-  // {
-  //   selectedThread,
-  //   onSelectThread,
-  //   selectedYear,
-  //   trackingData,
-  //   yearSelection,
-  //   data,
-  //   onSelectYear,
-  // }: CurriculumVisualiserFiltersProps
-  // const [mobileThreadModalOpen, setMobileThreadModalOpen] =
-  //   useState<boolean>(false);
+export default function CurriculumVisualiserFiltersMobile({
+  filters,
+  onChangeFilters,
+  data,
+  trackingData,
+}: CurriculumVisualiserFiltersProps) {
+  const [mobileThreadModalOpen, setMobileThreadModalOpen] =
+    useState<boolean>(false);
 
-  // function handleMobileThreadModal(): void {
-  //   setMobileThreadModalOpen(!mobileThreadModalOpen);
-  // }
+  function handleMobileThreadModal(): void {
+    setMobileThreadModalOpen(!mobileThreadModalOpen);
+  }
 
-  return <div />;
-  // return mobileThreadModalOpen ? (
-  //   <Modal
-  //     data={data}
-  //     selectedThread={selectedThread}
-  //     selectedYear={selectedYear}
-  //     yearSelection={yearSelection}
-  //     onOpenModal={handleMobileThreadModal}
-  //     onSelectThread={onSelectThread}
-  //   />
-  // ) : (
-  //   <StickyBit
-  //     onOpenModal={handleMobileThreadModal}
-  //     data={data}
-  //     selectedYear={selectedYear}
-  //     selectedThread={selectedThread}
-  //     trackingData={trackingData}
-  //     yearSelection={yearSelection}
-  //     onSelectYear={onSelectYear}
-  //   />
-  // );
+  return mobileThreadModalOpen ? (
+    <div />
+  ) : (
+    // <Modal
+    //   data={data}
+    //   selectedThread={selectedThread}
+    //   selectedYear={selectedYear}
+    //   yearSelection={yearSelection}
+    //   onOpenModal={handleMobileThreadModal}
+    //   onSelectThread={onSelectThread}
+    // />
+    <StickyBit
+      onOpenModal={handleMobileThreadModal}
+      filters={filters}
+      onChangeFilters={onChangeFilters}
+      data={data}
+      trackingData={trackingData}
+    />
+  );
 }
