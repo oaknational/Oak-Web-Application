@@ -9,7 +9,7 @@ import CurriculumVisualiserFilters, {
 } from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "../CurriculumVisualiserFilters/helpers";
 
-import { Unit } from "@/utils/curriculum/types";
+import { Thread, Unit } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import {
@@ -17,6 +17,9 @@ import {
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -32,7 +35,9 @@ export default function UnitsTab({
   onChangeFilters,
 }: UnitsTabProps) {
   // Initialize constants
-  const { yearData } = formattedData;
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
+  const { yearData, threadOptions } = formattedData;
   const { ks4OptionSlug } = trackingData;
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
@@ -45,6 +50,34 @@ export default function UnitsTab({
     filters,
     filters.threads,
   );
+
+  function trackSelectThread(thread: Thread): void {
+    if (trackingData) {
+      const { subjectTitle, subjectSlug, phaseSlug } = trackingData;
+      track.curriculumThreadHighlighted({
+        subjectTitle,
+        subjectSlug,
+        threadTitle: thread.title,
+        threadSlug: thread.slug,
+        phase: phaseSlug as PhaseValueType,
+        order: thread.order,
+        analyticsUseCase: analyticsUseCase,
+      });
+    }
+  }
+
+  function onChangeFiltersLocal(newFilters: CurriculumFilters): void {
+    const addedThreads = newFilters.threads.filter(
+      (t) => !filters.threads.includes(t),
+    );
+    for (const threadSlug of addedThreads) {
+      const thread = threadOptions.find((t) => t.slug === threadSlug);
+      if (thread) {
+        trackSelectThread(thread);
+      }
+    }
+    onChangeFilters(newFilters);
+  }
 
   return (
     <OakBox>
@@ -78,7 +111,7 @@ export default function UnitsTab({
         </OakP>
         {/* <CurriculumVisualiserFiltersMobile
           filters={filters}
-          onChangeFilters={onChangeFilters}
+          onChangeFilters={onChangeFiltersLocal}
           data={formattedData}
           trackingData={trackingData}
         /> */}
@@ -86,7 +119,7 @@ export default function UnitsTab({
           filters={
             <CurriculumVisualiserFilters
               filters={filters}
-              onChangeFilters={onChangeFilters}
+              onChangeFilters={onChangeFiltersLocal}
               data={formattedData}
               trackingData={trackingData}
             />

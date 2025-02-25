@@ -12,28 +12,37 @@ import {
   SerializedPost,
 } from "@/pages-helpers/home/getBlogPosts";
 
-export type PupilHomePageProps = {
+export type AiHomePageProps = {
   pageData: HomePage;
   posts: SerializedPost[];
 };
 
-const Ai: NextPage<PupilHomePageProps> = (props) => (
-  <AppLayout
-    seoProps={{
-      title: "Free, AI-powered lesson assistant | Oak National Academy",
-      description:
-        "Looking to create tailor-made lesson resources? Use our free AI-powered lesson assistant to make bespoke lesson plans, worksheets, quizzes and slides in minutes.",
-    }}
-    $background={"white"}
-  >
-    <Banners />
-    <HomePageTabImageNav current={"ai"} />
-    <AiTab aria-current="page" />
-    <HomePageLowerView posts={props.posts} />
-  </AppLayout>
-);
+const Ai: NextPage<AiHomePageProps> = (props) => {
+  const testimonials = props.pageData?.testimonials;
+  const intro = props.pageData?.intro;
 
-export const getStaticProps: GetStaticProps<PupilHomePageProps> = async (
+  return (
+    <AppLayout
+      seoProps={{
+        title: "Free, AI-powered lesson assistant | Oak National Academy",
+        description:
+          "Looking to create tailor-made lesson resources? Use our free AI-powered lesson assistant to make bespoke lesson plans, worksheets, quizzes and slides in minutes.",
+      }}
+      $background={"white"}
+    >
+      <Banners />
+      <HomePageTabImageNav current={"ai"} />
+      <AiTab aria-current="page" />
+      <HomePageLowerView
+        posts={props.posts}
+        testimonials={testimonials}
+        introVideo={intro}
+      />
+    </AppLayout>
+  );
+};
+
+export const getStaticProps: GetStaticProps<AiHomePageProps> = async (
   context,
 ) => {
   return getPageProps({

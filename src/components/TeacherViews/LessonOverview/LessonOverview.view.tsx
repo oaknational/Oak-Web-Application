@@ -326,14 +326,16 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                       isSpecialist={isSpecialist}
                       ref={lessonGuideSectionRef}
                       title={"Lesson guide"}
-                      //Defaulted to false until download ticket implementation
-                      downloadable={false}
-                      // Avo types need to be updated to include lesson guide
-                      // onDownloadButtonClick={() => {
-                      //   trackDownloadResourceButtonClicked({
-                      //     downloadResourceButtonName: "lesson guide",
-                      //   });
-                      // }}
+                      downloadable={getIsResourceDownloadable(
+                        "lesson-guide-pdf",
+                        downloads,
+                        copyrightContent,
+                      )}
+                      onDownloadButtonClick={() => {
+                        trackDownloadResourceButtonClicked({
+                          downloadResourceButtonName: "lesson guide",
+                        });
+                      }}
                       slugs={slugs}
                       anchorId="lesson-guide"
                       pageLinks={pageLinks}
@@ -398,6 +400,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                         programmeSlug={programmeSlug ?? null}
                         lessonOutline={lessonOutline}
                         isPELesson={actions?.displayPETitle}
+                        isMFL={actions?.displayVocabButton}
                       />
                     </LessonItemContainer>
                   )}

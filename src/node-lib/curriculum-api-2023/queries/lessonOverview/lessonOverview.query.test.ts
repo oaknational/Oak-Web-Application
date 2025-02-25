@@ -213,6 +213,7 @@ describe("lessonOverview()", () => {
         hasWorksheetAnswersAssetObject: true,
         hasWorksheetGoogleDriveDownloadableVersion: true,
         hasSupplementaryAssetObject: true,
+        hasLessonGuideObject: true,
         isLegacy: false,
       };
 
@@ -226,6 +227,7 @@ describe("lessonOverview()", () => {
         { exists: true, type: "worksheet-pptx" },
         { exists: true, type: "supplementary-pdf" },
         { exists: true, type: "supplementary-docx" },
+        { exists: true, type: "lesson-guide-pdf" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -241,6 +243,7 @@ describe("lessonOverview()", () => {
         hasWorksheetGoogleDriveDownloadableVersion: true,
         hasSupplementaryAssetObject: true,
         isLegacy: true,
+        hasLessonGuideObject: true,
       };
 
       const expectedDownloads = [
@@ -253,6 +256,7 @@ describe("lessonOverview()", () => {
         { exists: true, type: "worksheet-pptx" },
         { exists: true, type: "supplementary-pdf" },
         { exists: true, type: "supplementary-docx" },
+        { exists: true, type: "lesson-guide-pdf" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -268,6 +272,7 @@ describe("lessonOverview()", () => {
         hasWorksheetGoogleDriveDownloadableVersion: false,
         hasSupplementaryAssetObject: false,
         isLegacy: false,
+        hasLessonGuideObject: false,
       };
 
       const expectedDownloads = [
@@ -280,6 +285,7 @@ describe("lessonOverview()", () => {
         { exists: false, type: "worksheet-pptx" },
         { exists: false, type: "supplementary-pdf" },
         { exists: false, type: "supplementary-docx" },
+        { exists: false, type: "lesson-guide-pdf" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -294,6 +300,7 @@ describe("lessonOverview()", () => {
         hasWorksheetAnswersAssetObject: false,
         hasWorksheetGoogleDriveDownloadableVersion: true,
         hasSupplementaryAssetObject: false,
+        hasLessonGuideObject: false,
         isLegacy: true,
       };
 
@@ -307,6 +314,7 @@ describe("lessonOverview()", () => {
         { exists: true, type: "worksheet-pptx" },
         { exists: false, type: "supplementary-pdf" },
         { exists: false, type: "supplementary-docx" },
+        { exists: false, type: "lesson-guide-pdf" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
@@ -321,6 +329,7 @@ describe("lessonOverview()", () => {
         hasWorksheetAnswersAssetObject: false,
         hasWorksheetGoogleDriveDownloadableVersion: false,
         hasSupplementaryAssetObject: false,
+        hasLessonGuideObject: false,
         isLegacy: false,
       };
 
@@ -334,6 +343,7 @@ describe("lessonOverview()", () => {
         { exists: true, type: "worksheet-pptx" },
         { exists: false, type: "supplementary-pdf" },
         { exists: false, type: "supplementary-docx" },
+        { exists: false, type: "lesson-guide-pdf" },
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);

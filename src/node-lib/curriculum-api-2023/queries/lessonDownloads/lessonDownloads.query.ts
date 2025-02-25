@@ -57,6 +57,7 @@ const lessonDownloadsQuery =
       has_supplementary_asset_object,
       has_worksheet_answers_asset_object,
       has_worksheet_google_drive_downloadable_version,
+      has_lesson_guide_object,
       starter_quiz,
       exit_quiz,
       is_legacy,
@@ -74,6 +75,7 @@ const lessonDownloadsQuery =
       hasWorksheetGoogleDriveDownloadableVersion:
         has_worksheet_google_drive_downloadable_version,
       hasSupplementaryAssetObject: has_supplementary_asset_object,
+      hasLessonGuideObject: has_lesson_guide_object,
       isLegacy: is_legacy,
     };
 

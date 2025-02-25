@@ -14,7 +14,6 @@ import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
 import getFormattedDetailsForTracking from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import useLessonDownloadExistenceCheck from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useLessonDownloadExistenceCheck";
 import useResourceFormSubmit from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useResourceFormSubmit";
-import useOptionalDownloadSignUp from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useOptionalDownloadSignUp";
 import {
   ResourceFormProps,
   DownloadResourceType,
@@ -38,7 +37,6 @@ import {
 import ResourcePageLayout from "@/components/TeacherComponents/ResourcePageLayout";
 import LoadingButton from "@/components/SharedComponents/Button/LoadingButton";
 import DownloadConfirmation from "@/components/TeacherComponents/DownloadConfirmation";
-import LessonDownloadSignUpButtons from "@/components/TeacherComponents/LessonDownloadSignUpButtons/LessonDownloadSignUpButtons";
 import {
   LessonDownloadsPageData,
   NextLesson,
@@ -47,7 +45,10 @@ import { useResourceFormState } from "@/components/TeacherComponents/hooks/downl
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
-import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
+import {
+  CopyrightContent,
+  Actions,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -61,6 +62,7 @@ type BaseLessonDownload = {
   developmentStageTitle?: string | null;
   geoRestricted: boolean | null;
   loginRequired: boolean | null;
+  actions?: Actions | null;
 };
 
 type CanonicalLesson = BaseLessonDownload & {
@@ -100,7 +102,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     isSpecialist,
     copyrightContent,
     updatedAt,
+    actions,
   } = lesson;
+
+  const showRiskAssessmentBanner = !!actions?.isPePractical;
 
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical
@@ -175,17 +180,6 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   });
 
   const onboardingStatus = useOnboardingStatus();
-  const {
-    showDownloadSignUpButtons,
-    showTermsAgreement,
-    setShowTermsAgreement,
-  } = useOptionalDownloadSignUp();
-
-  const onDownloadWithoutSignUpClick = () => {
-    setShowTermsAgreement(
-      onboardingStatus === "not-onboarded" || onboardingStatus === "unknown",
-    );
-  };
 
   const noResourcesSelected =
     form.watch().resources === undefined || form.watch().resources.length === 0;
@@ -385,7 +379,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
               hideSelectAll={Boolean(expired)}
               updatedAt={updatedAt}
               withHomeschool={true}
-              showTermsAgreement={showTermsAgreement}
+              showTermsAgreement={
+                onboardingStatus === "not-onboarded" ||
+                onboardingStatus === "unknown"
+              }
               isLoading={onboardingStatus === "loading"}
               cardGroup={
                 !showNoResources && (
@@ -420,15 +417,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   }
                 />
               }
-              showDownloadSignUpButtons={showDownloadSignUpButtons}
-              signUpButtons={
-                showDownloadSignUpButtons &&
-                !showTermsAgreement && (
-                  <LessonDownloadSignUpButtons
-                    onDownloadWithoutSignUpClick={onDownloadWithoutSignUpClick}
-                  />
-                )
-              }
+              showRiskAssessmentBanner={showRiskAssessmentBanner}
             />
           );
         })()}
