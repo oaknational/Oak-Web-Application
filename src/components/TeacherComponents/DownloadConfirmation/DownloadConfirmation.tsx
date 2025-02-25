@@ -61,6 +61,10 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
 
   useEffect(() => {
     focusRef.current?.focus();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, []);
 
   if (lessonSlug === null) {
