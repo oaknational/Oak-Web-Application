@@ -71,6 +71,7 @@
   "sentry": {
     "dsn": "https://sentry.io/00000000000000",
     "organisationIdentifier": "oak-national-academy",
-    "projectIdentifier": "oak-web-application"
+    "projectIdentifier": "oak-web-application",
+    "requiredSecrets": ["SENTRY_AUTH_TOKEN"]
   }
 }

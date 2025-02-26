@@ -268,6 +268,8 @@ async function main() {
     NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER:
       process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER ||
       oakConfig.sentry.projectIdentifier,
+    SENTRY_AUTH_TOKEN:
+      process.env.SENTRY_AUTH_TOKEN || secretsFromNetwork.SENTRY_AUTH_TOKEN,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

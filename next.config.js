@@ -2,6 +2,7 @@ const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
 const path = require("path");
 
 const { withSentryConfig } = require("@sentry/nextjs");
+const { sentryWebpackPlugin } = require("@sentry/webpack-plugin");
 const StatoscopeWebpackPlugin = require("@statoscope/webpack-plugin").default;
 const CopyPlugin = require("copy-webpack-plugin");
 const {
@@ -185,6 +186,20 @@ module.exports = async (phase) => {
         config.plugins.push(
           new BugsnagSourceMapUploaderPlugin(bugsnagSourcemapInfo),
         );
+
+        // Upload production sourcemaps to Sentry
+        config.plugins.push(
+          sentryWebpackPlugin({
+            authToken: oakConfig.sentry.authToken,
+            org: oakConfig.sentry.organisationIdentifier,
+            project: oakConfig.sentry.projectIdentifier,
+            release: appVersion,
+            widenClientFileUpload: true,
+            reactComponentAnnotation: {
+              enabled: true,
+            },
+          }),
+        );
       }
 
       return config;
@@ -342,19 +357,13 @@ module.exports = withSentryConfig(module.exports, {
   org: process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER,
   project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER,
 
-  // Only print logs for uploading source maps in CI
-  silent: !process.env.CI,
-
-  // Upload a larger set of source maps for prettier stack traces (increases build time)
-  widenClientFileUpload: true,
-
-  // Automatically annotate React components to show their full name in breadcrumbs and session replay
-  reactComponentAnnotation: {
-    enabled: true,
-  },
-
   // Tunnel requests to Sentry through our own server
   tunnelRoute: "/monitoring",
+
+  // Disable sourcemaps as they're handled manually by webpack above
+  sourcemaps: {
+    enabled: false,
+  },
 
   // Hides source maps from generated client bundles
   hideSourceMaps: true,

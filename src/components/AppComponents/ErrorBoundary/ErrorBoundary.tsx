@@ -1,5 +1,5 @@
 import Bugsnag from "@bugsnag/js";
-import * as Sentry from "@sentry/react";
+import * as Sentry from "@sentry/nextjs";
 import React, { ErrorInfo, FC, PropsWithChildren } from "react";
 
 import ErrorView from "@/components/AppComponents/ErrorView";
