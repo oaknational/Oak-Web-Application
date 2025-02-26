@@ -61,7 +61,7 @@ exports[`CurriculumTab renders 1`] = `
                 class="sc-fqkvVR sc-gsFSXq bmnVAU erhMjA"
               >
                 <a
-                  class="sc-JrDLc caNvwE"
+                  class="sc-JrDLc cEyXEU"
                   href="/teachers/curriculum"
                 >
                   <span
@@ -477,7 +477,7 @@ exports[`CurriculumTab renders 1`] = `
               class="sc-fqkvVR sc-gsFSXq fOyTgd gZFQMg"
             >
               <button
-                class="sc-JrDLc caNvwE"
+                class="sc-JrDLc cEyXEU"
                 data-testid="cookie-banner-reject"
                 type="button"
               >
