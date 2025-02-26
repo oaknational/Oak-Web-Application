@@ -6,11 +6,12 @@ import { PHProvider } from "./providers";
 import StyledComponentsRegistry from "./styles-registry";
 
 import {
-  OakGlobalStyle,
+  OakBox,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@/styles/oakThemeApp";
 import CookieConsentProvider from "@/browser-lib/cookie-consent/CookieConsentProvider";
+import GlobalStyle from "@/styles/GlobalStyle";
 
 export const metadata = {
   title: "Oak National Academy",
@@ -25,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={lexend.className}>
-      <OakGlobalStyle />
+    <html lang="en">
+      <GlobalStyle fontFamily={lexend.style.fontFamily} />
       <body style={{ margin: "0px" }}>
         <StyledComponentsRegistry>
           <PHProvider>
@@ -36,8 +37,8 @@ export default function RootLayout({
                   localization={{
                     signUp: {
                       start: {
-                        subtitle: "Sign up to Oak to continue",
-                        title: "Create a free account",
+                        title: "Sign up to Oak in seconds",
+                        subtitle: "Choose a method",
                       },
                     },
                   }}
@@ -64,7 +65,9 @@ export default function RootLayout({
                     },
                   }}
                 >
-                  {children}
+                  <OakBox $width="100vw" $height="100vh">
+                    {children}
+                  </OakBox>
                 </ClerkProvider>
               </CookieConsentProvider>
             </OakThemeProvider>

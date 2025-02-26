@@ -29,7 +29,7 @@ const linkFocusStyles = {
 export const formAppearanceStyles = {
   elements: {
     card: {
-      padding: "40px 40px 40px",
+      padding: "24px 40px 40px",
     },
     logoBox: {
       height: "47px",

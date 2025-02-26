@@ -13,7 +13,6 @@ import {
   OakCheckBox,
   OakFlex,
   OakInlineBanner,
-  OakLink,
   OakP,
   OakPrimaryButton,
   OakSpan,
@@ -303,25 +302,6 @@ const OnboardingForm = ({
           )}
         </OakFlex>
       </OakFlex>
-
-      <OakBox
-        as="p"
-        $font="body-2"
-        color="text-primary"
-        $textAlign="center"
-        $pb="inner-padding-s"
-      >
-        Need help?{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "contact",
-          })}
-        >
-          {" "}
-          Contact us
-        </OakLink>
-        .
-      </OakBox>
     </OakFlex>
   );
 };
