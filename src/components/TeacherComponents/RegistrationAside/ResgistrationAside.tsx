@@ -6,6 +6,7 @@ import {
   OakHeading,
   OakIcon,
   OakLI,
+  OakSvg,
   OakUL,
 } from "@oaknational/oak-components";
 import CMSImage from "@/components/SharedComponents/CMSImage";
@@ -45,13 +46,23 @@ const RegistrationAside = ({ useNew }: { useNew: boolean }) => {
             $objectFit="contain"
           />
         </OakBox>
-        <OakFlex $flexDirection="column">
+        <OakFlex $flexDirection="column" $position="relative">
           <OakHeading tag="h1" $font="heading-4">
             Our resources will
           </OakHeading>
-          <OakHeading tag="h1" $font="heading-4">
-            always be free.
-          </OakHeading>
+          <OakBox $zIndex="in-front">
+            <OakHeading tag="h1" $font="heading-4">
+              always be free.
+            </OakHeading>
+          </OakBox>
+          <OakSvg
+            name="scribble"
+            $position="absolute"
+            $bottom="all-spacing-0"
+            $height="all-spacing-8"
+            $transform="scaleX(1.05)"
+            $left="all-spacing-1"
+          />
         </OakFlex>
         <OakFlex $flexDirection="column" $gap="space-between-s">
           <OakHeading tag="h2" $font="heading-6">
