@@ -21,5 +21,6 @@ query programmeListing(
     programme_fields
     is_legacy
     programme_slug
+    actions
   }
 }
