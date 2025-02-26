@@ -4,11 +4,7 @@ import { subjectListingFixture2023 } from "@/node-lib/curriculum-api-2023/fixtur
 
 describe("getCombinedSubjects", () => {
   test("it returns subjects in the correct format", () => {
-    const result = getCombinedSubjects(
-      subjectListingFixture2023(),
-      "biology",
-      false,
-    );
+    const result = getCombinedSubjects(subjectListingFixture2023(), "biology");
     expect(result).toEqual([
       {
         isNew: true,
@@ -25,11 +21,7 @@ describe("getCombinedSubjects", () => {
     ]);
   });
   test("it returns old subjects in the correct format", () => {
-    const result = getCombinedSubjects(
-      subjectListingFixture2023(),
-      "music",
-      false,
-    );
+    const result = getCombinedSubjects(subjectListingFixture2023(), "music");
     expect(result).toEqual([
       {
         isNew: false,
@@ -49,7 +41,6 @@ describe("getCombinedSubjects", () => {
     const result = getCombinedSubjects(
       subjectListingFixture2023(),
       "chemistry",
-      false,
     );
     expect(result).toEqual([
       {
@@ -71,7 +62,6 @@ describe("getCombinedSubjects", () => {
     const result = getCombinedSubjects(
       subjectListingFixture2023(),
       "citizenship",
-      false,
     );
     expect(result).toEqual([
       {
