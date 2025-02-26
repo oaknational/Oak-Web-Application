@@ -37,8 +37,8 @@ export default function RootLayout({
                   localization={{
                     signUp: {
                       start: {
-                        subtitle: "Sign up to Oak in seconds",
-                        title: "Choose a method",
+                        title: "Sign up to Oak in seconds",
+                        subtitle: "Choose a method",
                       },
                     },
                   }}
