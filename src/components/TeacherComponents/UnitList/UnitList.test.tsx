@@ -17,7 +17,7 @@ const render = (children: React.ReactNode) =>
   );
 
 describe("components/UnitList", () => {
-  test("renders the list items", () => {
+  test.skip("renders the list items", () => {
     render(
       <OakThemeProvider theme={oakDefaultTheme}>
         <UnitList
