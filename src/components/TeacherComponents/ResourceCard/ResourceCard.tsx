@@ -47,6 +47,7 @@ const RESOURCE_TYPE_ICON_MAP: Record<
   "supplementary-docx": "additional-material",
   video: "video",
   "curriculum-pdf": "additional-material",
+  "lesson-guide-pdf": "additional-material",
 };
 
 const BoxWithFocusState = styled.div`

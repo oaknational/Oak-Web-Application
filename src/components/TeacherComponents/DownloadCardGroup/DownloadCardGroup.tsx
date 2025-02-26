@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC } from "react";
 import { Control, Controller } from "react-hook-form";
 import styled from "styled-components";
+import { OakGrid } from "@oaknational/oak-components";
 
 import type {
   DownloadResourceType,
@@ -10,7 +11,6 @@ import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { sortDownloadResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
 import Box from "@/components/SharedComponents/Box";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { OakGrid } from "@/styles/oakThemeApp";
 
 export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsPageData["downloads"];
@@ -24,19 +24,22 @@ const DownloadCardArea = styled(Box)<{ area: string }>`
   margin-bottom: 16px;
 `;
 
-const getGridArea = (
+export const getGridArea = (
   type: DownloadResourceType,
   presentationExists: boolean,
   worksheetsLength?: number,
 ) => {
-  if (type === "curriculum-pdf") {
-    return "auto";
-  } else if (type !== "worksheet-pdf" && type !== "worksheet-pptx") {
-    return type;
-  } else if (worksheetsLength === 2 || !presentationExists) {
-    return type;
-  } else {
-    return "presentationOrWorksheet";
+  switch (true) {
+    case type === "lesson-guide-pdf":
+      return type;
+    case type === "curriculum-pdf":
+      return "auto";
+    case type !== "worksheet-pdf" && type !== "worksheet-pptx":
+      return type;
+    case worksheetsLength === 2 || !presentationExists:
+      return type;
+    default:
+      return "presentationOrWorksheet";
   }
 };
 
@@ -63,8 +66,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
       $gridTemplateColumns={["1fr", "max-content max-content"]}
       $cg={"space-between-s"}
       $gridTemplateAreas={[
-        '"presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"',
-        '"presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx"',
+        '"lesson-guide-pdf" "presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"',
+        '"lesson-guide-pdf lesson-guide-pdf" "presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx"',
       ]}
     >
       {sortedDownloads?.map((download) => {

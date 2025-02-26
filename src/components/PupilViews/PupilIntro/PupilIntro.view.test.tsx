@@ -71,7 +71,11 @@ describe("PupilIntro", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
-          <PupilViewsIntro hasWorksheet={false} {...curriculumData} />
+          <PupilViewsIntro
+            hasWorksheet={false}
+            worksheetInfo={null}
+            {...curriculumData}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -83,7 +87,11 @@ describe("PupilIntro", () => {
     const { getByText } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
-          <PupilViewsIntro hasWorksheet={false} {...curriculumData} />
+          <PupilViewsIntro
+            hasWorksheet={false}
+            worksheetInfo={null}
+            {...curriculumData}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -99,6 +107,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro
             hasWorksheet={false}
+            worksheetInfo={null}
             {...curriculumDataWithEquipment}
           />
         </LessonEngineContext.Provider>
@@ -117,6 +126,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro
             hasWorksheet={false}
+            worksheetInfo={null}
             {...curriculumDataWithContentGuidance}
           />
         </LessonEngineContext.Provider>
@@ -134,6 +144,7 @@ describe("PupilIntro", () => {
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
           <PupilViewsIntro
             hasWorksheet={false}
+            worksheetInfo={null}
             {...curriculumDataWithSupervision}
           />
         </LessonEngineContext.Provider>
@@ -152,6 +163,7 @@ describe("PupilIntro", () => {
               {...curriculumData}
               hasAdditionalFiles
               hasWorksheet
+              worksheetInfo={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -197,6 +209,7 @@ describe("PupilIntro", () => {
               {...curriculumDataSingleFile}
               hasAdditionalFiles
               hasWorksheet
+              worksheetInfo={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -221,6 +234,7 @@ describe("PupilIntro", () => {
               {...curriculumData}
               hasWorksheet={false}
               hasAdditionalFiles={false}
+              worksheetInfo={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -240,7 +254,11 @@ describe("PupilIntro", () => {
       const subject = (
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={createLessonEngineContext()}>
-            <PupilViewsIntro {...curriculumData} hasWorksheet />
+            <PupilViewsIntro
+              {...curriculumData}
+              hasWorksheet
+              worksheetInfo={null}
+            />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
       );
@@ -271,7 +289,11 @@ describe("PupilIntro", () => {
       const subject = (
         <OakThemeProvider theme={oakDefaultTheme}>
           <LessonEngineContext.Provider value={createLessonEngineContext()}>
-            <PupilViewsIntro {...curriculumData} hasWorksheet={false} />
+            <PupilViewsIntro
+              {...curriculumData}
+              hasWorksheet={false}
+              worksheetInfo={null}
+            />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
       );
@@ -287,7 +309,11 @@ describe("PupilIntro", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={createLessonEngineContext()}>
-          <PupilViewsIntro hasWorksheet={false} {...curriculumData} />
+          <PupilViewsIntro
+            hasWorksheet={false}
+            worksheetInfo={null}
+            {...curriculumData}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -298,7 +324,11 @@ describe("PupilIntro", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={context}>
-          <PupilViewsIntro hasWorksheet={false} {...curriculumData} />
+          <PupilViewsIntro
+            hasWorksheet={false}
+            worksheetInfo={null}
+            {...curriculumData}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -311,7 +341,11 @@ describe("PupilIntro", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={context}>
-          <PupilViewsIntro hasWorksheet={true} {...curriculumData} />
+          <PupilViewsIntro
+            hasWorksheet={true}
+            worksheetInfo={null}
+            {...curriculumData}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -328,7 +362,11 @@ describe("PupilIntro", () => {
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={context}>
-          <PupilViewsIntro hasWorksheet={true} {...curriculumData} />
+          <PupilViewsIntro
+            hasWorksheet={true}
+            worksheetInfo={null}
+            {...curriculumData}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -349,7 +387,11 @@ describe("PupilIntro", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={context}>
-          <PupilViewsIntro hasWorksheet={false} {...curriculumData} />
+          <PupilViewsIntro
+            hasWorksheet={false}
+            worksheetInfo={null}
+            {...curriculumData}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -367,7 +409,11 @@ describe("PupilIntro", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={context}>
-          <PupilViewsIntro hasWorksheet={false} {...curriculumData} />
+          <PupilViewsIntro
+            hasWorksheet={false}
+            worksheetInfo={null}
+            {...curriculumData}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );
@@ -392,7 +438,11 @@ describe("PupilIntro", () => {
     const { getByRole } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
         <LessonEngineContext.Provider value={context}>
-          <PupilViewsIntro hasWorksheet={false} {...curriculumData} />
+          <PupilViewsIntro
+            hasWorksheet={false}
+            worksheetInfo={null}
+            {...curriculumData}
+          />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
     );

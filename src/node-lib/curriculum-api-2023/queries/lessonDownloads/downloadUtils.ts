@@ -8,6 +8,7 @@ export const constructDownloadsArray = (content: {
   hasWorksheetAnswersAssetObject: boolean;
   hasWorksheetGoogleDriveDownloadableVersion: boolean;
   hasSupplementaryAssetObject: boolean;
+  hasLessonGuideObject: boolean;
   isLegacy: boolean;
 }): LessonDownloadsListSchema => {
   const downloads: LessonDownloadsListSchema = [
@@ -75,6 +76,12 @@ export const constructDownloadsArray = (content: {
       type: "supplementary-docx",
       label: "Additional material",
       ext: "docx",
+    },
+    {
+      exists: content.hasLessonGuideObject,
+      type: "lesson-guide-pdf",
+      label: "Lesson guide",
+      ext: "pdf",
     },
   ];
 

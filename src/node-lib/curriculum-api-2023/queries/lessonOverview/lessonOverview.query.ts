@@ -31,6 +31,7 @@ export const getDownloadsArray = (content: {
   hasWorksheetAnswersAssetObject: boolean;
   hasWorksheetGoogleDriveDownloadableVersion: boolean;
   hasSupplementaryAssetObject: boolean;
+  hasLessonGuideObject: boolean;
   isLegacy: boolean;
 }): LessonOverviewPageData["downloads"] => {
   const downloads: LessonOverviewDownloads = [
@@ -79,6 +80,10 @@ export const getDownloadsArray = (content: {
     {
       exists: content.hasSupplementaryAssetObject,
       type: "supplementary-docx",
+    },
+    {
+      exists: content.hasLessonGuideObject,
+      type: "lesson-guide-pdf",
     },
   ];
 
@@ -153,14 +158,22 @@ export const transformedLessonOverviewData = (
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
 ): LessonOverviewPageData => {
+  const reportError = errorReporter("transformedLessonOverviewData");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
   const hasAddFile = content.additionalFiles;
-  const mediaClips = browseData.lessonData.mediaClips
-    ? mediaClipsRecordCamelSchema.parse(browseData.lessonData.mediaClips)
-    : null;
+
+  let mediaClips = null;
+  try {
+    mediaClips = browseData.lessonData.mediaClips
+      ? mediaClipsRecordCamelSchema.parse(browseData.lessonData.mediaClips)
+      : null;
+  } catch (error) {
+    browseData.lessonData.mediaClips = null;
+    reportError(error);
+  }
 
   return {
     programmeSlug: browseData.programmeSlug,
@@ -187,6 +200,7 @@ export const transformedLessonOverviewData = (
         content.hasWorksheetGoogleDriveDownloadableVersion,
       ),
       hasSlideDeckAssetObject: Boolean(content.hasSlideDeckAssetObject),
+      hasLessonGuideObject: Boolean(content.hasLessonGuideObject),
       isLegacy: browseData.isLegacy,
     }),
     updatedAt: browseData.lessonData.updatedAt,

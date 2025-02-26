@@ -20,6 +20,22 @@ jest.mock(
   }),
 );
 
+jest.mock("@oaknational/oak-consent-client", () => ({
+  __esModule: true,
+  useOakConsent: jest.fn(() => ({
+    state: {
+      policyConsents: [
+        {
+          consentState: "denied",
+        },
+        {
+          consentState: "granted",
+        },
+      ],
+    },
+  })),
+}));
+
 describe("DownloadConfirmation component", () => {
   beforeEach(() => {
     jest.clearAllMocks();

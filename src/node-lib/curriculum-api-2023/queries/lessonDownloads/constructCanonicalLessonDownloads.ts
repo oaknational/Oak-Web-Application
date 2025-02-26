@@ -4,6 +4,7 @@ import { RawSyntheticUVLesson } from "./rawSyntheticUVLesson.schema";
 
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { constructPathwayLesson } from "@/node-lib/curriculum-api-2023/helpers";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 const constructCanonicalLessonDownloads = (
   downloads: LessonDownloadsListSchema,
@@ -25,6 +26,7 @@ const constructCanonicalLessonDownloads = (
     isSpecialist: false,
     updatedAt: browseData[0]?.lesson_data.updated_at,
     copyrightContent: lessonCopyRight,
+    actions: keysToCamelCase(browseData[0]?.actions),
   };
 
   return browseData.reduce(

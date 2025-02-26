@@ -4,7 +4,7 @@ import { actionsSchema } from "@oaknational/oak-curriculum-schema";
 import { zodToCamelCase } from "./helpers/zodToCamelCase";
 import { mediaClipsRecordCamelSchema } from "./queries/lessonMediaClips/lessonMediaClips.schema";
 
-export const contentGuidanceSchema = z.object({
+export const contentGuidanceSchemaCamelCase = z.object({
   contentGuidanceLabel: z.string(),
   contentGuidanceDescription: z.string(),
   contentGuidanceArea: z.string(),
@@ -165,7 +165,7 @@ export const lessonOverviewQuizData = z
 
 export type LessonOverviewQuizData = z.infer<typeof lessonOverviewQuizData>;
 
-const camelActionSchema = zodToCamelCase(actionsSchema);
+export const camelActionSchema = zodToCamelCase(actionsSchema);
 
 export type Actions = z.infer<typeof camelActionSchema>;
 
@@ -175,7 +175,10 @@ export const baseLessonOverviewSchema = z.object({
   lessonTitle: z.string(),
   tierTitle: z.string().nullable().optional(),
   tierSlug: z.string().nullable().optional(),
-  contentGuidance: z.array(contentGuidanceSchema).nullable().optional(),
+  contentGuidance: z
+    .array(contentGuidanceSchemaCamelCase)
+    .nullable()
+    .optional(),
   misconceptionsAndCommonMistakes: z
     .array(misconceptionsAndCommonMistakesSchema)
     .nullable()
@@ -228,6 +231,7 @@ export const lessonDownloadsListSchema = z.array(
       "supplementary-pdf",
       "supplementary-docx",
       "curriculum-pdf",
+      "lesson-guide-pdf",
     ]),
     label: z.string(),
     ext: z.string(),
@@ -249,6 +253,7 @@ export const baseLessonDownloadsSchema = z.object({
   updatedAt: z.string(),
   geoRestricted: z.boolean().nullable(),
   loginRequired: z.boolean().nullable(),
+  actions: camelActionSchema.nullable().optional(),
 });
 
 export const lessonListItemSchema = z.object({

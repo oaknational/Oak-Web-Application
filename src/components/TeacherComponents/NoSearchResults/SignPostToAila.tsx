@@ -1,5 +1,7 @@
 import PromoBannerWithVideo from "../PromoBannerWithVideo";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
+
 const composeAilaLink = ({
   keyStage,
   subject,
@@ -37,6 +39,7 @@ const SignPostToAila = ({
   searchExpression?: string;
 }) => {
   const videoPlaybackID = "XjKNXfXcZqEIb3sRmgqqw901S3AoN8mllBS5yUnKSvb4";
+  const { track } = useAnalytics();
   return (
     <PromoBannerWithVideo
       title={title}
@@ -45,6 +48,13 @@ const SignPostToAila = ({
       buttonIconName="external"
       href={composeAilaLink({ keyStage, subject, unitTitle, searchExpression })}
       videoPlaybackID={videoPlaybackID}
+      onClick={() => {
+        track.lessonAssistantAccessed({
+          product: "ai lesson assistant",
+          isLoggedIn: false,
+          componentType: "search_get_started_button",
+        });
+      }}
     />
   );
 };
