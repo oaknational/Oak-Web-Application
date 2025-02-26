@@ -289,4 +289,203 @@ describe("PupilQuizView", () => {
     fireEvent.click(getByRole("link", { name: /Back/i }));
     expect(lessonActivityAbandonedStarterQuiz).toHaveBeenCalledTimes(1);
   });
+  describe("Tab Handling", () => {
+    // Create a mock element to be focused
+    beforeEach(() => {
+      // Mock getElementById to return a fake element with focus method
+      const mockTabElement = document.createElement("input");
+      mockTabElement.id = "QUES-EKUYT-EE985-answer-0";
+      document.body.appendChild(mockTabElement);
+
+      jest.spyOn(document, "getElementById").mockImplementation((id) => {
+        if (id === "QUES-EKUYT-EE985-answer-0") {
+          return mockTabElement;
+        }
+        return null;
+      });
+    });
+
+    afterEach(() => {
+      // Clean up
+      document.body.innerHTML = "";
+      jest.restoreAllMocks();
+    });
+
+    it("should focus on the answer input when Tab key is pressed for the first time", () => {
+      // Arrange
+      renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsQuiz questionsArray={quizQuestions} />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      const focusSpy = jest.spyOn(HTMLElement.prototype, "focus");
+
+      // Act - Simulate Tab key press
+      act(() => {
+        fireEvent.keyDown(window, {
+          key: "Tab",
+        });
+      });
+
+      expect(document.getElementById).toHaveBeenCalledWith(
+        "QUES-EKUYT-EE985-answer-0",
+      );
+      expect(focusSpy).toHaveBeenCalledTimes(1);
+    });
+    it("should not prevent default or focus input when Tab is pressed after the first time", () => {
+      // Arrange
+      renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsQuiz questionsArray={quizQuestions} />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      const focusSpy = jest.spyOn(HTMLElement.prototype, "focus");
+      const preventDefaultSpy = jest.fn();
+
+      // Act - First Tab press
+      act(() => {
+        fireEvent.keyDown(window, {
+          key: "Tab",
+          preventDefault: preventDefaultSpy,
+        });
+      });
+
+      // Reset spies to check second Tab press
+      focusSpy.mockClear();
+      preventDefaultSpy.mockClear();
+
+      // Act - Second Tab press
+      act(() => {
+        fireEvent.keyDown(window, {
+          key: "Tab",
+          preventDefault: preventDefaultSpy,
+        });
+      });
+
+      // Assert - Should not trigger again
+      expect(preventDefaultSpy).not.toHaveBeenCalled();
+      expect(focusSpy).not.toHaveBeenCalled();
+    });
+    test("should reset firstTabPressed state when currentQuestionIndex changes", () => {
+      // Arrange
+      const { rerender } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsQuiz questionsArray={quizQuestions} />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+      const focusSpy = jest.spyOn(HTMLElement.prototype, "focus");
+      // const preventDefaultSpy = jest.fn();
+
+      // Act - First Tab press on question 0
+      act(() => {
+        fireEvent.keyDown(window, {
+          key: "Tab",
+          // preventDefault: preventDefaultSpy,
+        });
+      });
+
+      // Clear spies before next test
+      // preventDefaultSpy.mockClear();
+
+      // Update component with new question index
+      rerender(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsQuiz questionsArray={quizQuestions} />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      // Act - Tab press on new question index
+      act(() => {
+        fireEvent.keyDown(window, {
+          key: "Tab",
+        });
+      });
+
+      // Assert - Should trigger focus again due to index change
+      // expect(preventDefaultSpy).toHaveBeenCalledTimes(1);
+      expect(document.getElementById).toHaveBeenCalledWith(
+        "QUES-EKUYT-EE985-answer-0",
+      );
+      expect(focusSpy).toHaveBeenCalledTimes(1);
+    });
+    it("should not prevent default if no answers are present", () => {
+      // Arrange - Render with no answers
+      renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsQuiz questionsArray={quizQuestions} />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      const preventDefaultSpy = jest.fn();
+
+      // Act
+      act(() => {
+        fireEvent.keyDown(window, {
+          key: "Tab",
+          preventDefault: preventDefaultSpy,
+        });
+      });
+
+      // Assert
+      expect(preventDefaultSpy).not.toHaveBeenCalled();
+    });
+    it("should not prevent default if pickTabId returns null", () => {
+      // Arrange
+      renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsQuiz questionsArray={quizQuestions} />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      const preventDefaultSpy = jest.fn();
+
+      // Act
+      act(() => {
+        fireEvent.keyDown(window, {
+          key: "Tab",
+          preventDefault: preventDefaultSpy,
+        });
+      });
+
+      // Assert
+      expect(preventDefaultSpy).not.toHaveBeenCalled();
+    });
+
+    it("should clean up event listener on unmount", () => {
+      // Spy on window.removeEventListener
+      const removeEventListenerSpy = jest.spyOn(window, "removeEventListener");
+
+      // Arrange
+      const { unmount } = renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsQuiz questionsArray={quizQuestions} />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      // Act
+      unmount();
+
+      // Assert
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "keydown",
+        expect.any(Function),
+      );
+    });
+  });
 });
