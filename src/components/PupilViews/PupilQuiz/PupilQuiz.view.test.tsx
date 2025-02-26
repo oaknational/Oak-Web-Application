@@ -25,7 +25,10 @@ import {
   LessonSection,
 } from "@/components/PupilComponents/LessonEngineProvider";
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
-import { QuizQuestionAnswers } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import {
+  QuizQuestionAnswers,
+  QuizQuestion,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import "@/__tests__/__helpers__/IntersectionObserverMock";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import * as QuizEngineProvider from "@/components/PupilComponents/QuizEngineProvider";
@@ -335,6 +338,75 @@ describe("PupilQuizView", () => {
       );
       expect(focusSpy).toHaveBeenCalledTimes(1);
     });
+    it("should focus on the answer input when Tab key is pressed for the first time for order questions", () => {
+      // Arrange
+      renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsQuiz
+              questionsArray={[quizQuestions[4] as NonNullable<QuizQuestion>]}
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      // Act - Simulate Tab key press
+      act(() => {
+        fireEvent.keyDown(window, {
+          key: "Tab",
+        });
+      });
+
+      expect(document.getElementById).toHaveBeenCalledWith(
+        "oak-quiz-order-item-1",
+      );
+    });
+    it("should focus on the answer input when Tab key is pressed for the first time for match questions", () => {
+      // Arrange
+      renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsQuiz
+              questionsArray={[quizQuestions[3] as NonNullable<QuizQuestion>]}
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      // Act - Simulate Tab key press
+      act(() => {
+        fireEvent.keyDown(window, {
+          key: "Tab",
+        });
+      });
+
+      expect(document.getElementById).toHaveBeenCalledWith(
+        "oak-quiz-match-item-0",
+      );
+    });
+    it("should focus on the answer input when Tab key is pressed for the first time for short answer questions", () => {
+      // Arrange
+      renderWithTheme(
+        <OakThemeProvider theme={oakDefaultTheme}>
+          <LessonEngineContext.Provider value={createLessonEngineContext()}>
+            <PupilViewsQuiz
+              questionsArray={[quizQuestions[5] as NonNullable<QuizQuestion>]}
+            />
+          </LessonEngineContext.Provider>
+        </OakThemeProvider>,
+      );
+
+      // Act - Simulate Tab key press
+      act(() => {
+        fireEvent.keyDown(window, {
+          key: "Tab",
+        });
+      });
+
+      expect(document.getElementById).toHaveBeenCalledWith(
+        "short-answer-QUES-CKPSN-KFF20",
+      );
+    });
     it("should not prevent default or focus input when Tab is pressed after the first time", () => {
       // Arrange
       renderWithTheme(
@@ -372,7 +444,7 @@ describe("PupilQuizView", () => {
       expect(preventDefaultSpy).not.toHaveBeenCalled();
       expect(focusSpy).not.toHaveBeenCalled();
     });
-    test("should reset firstTabPressed state when currentQuestionIndex changes", () => {
+    it("should reset firstTabPressed state when currentQuestionIndex changes", () => {
       // Arrange
       const { rerender } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
