@@ -1,13 +1,16 @@
 import { Meta, StoryObj } from "@storybook/react";
-import {
-  OakBox,
-  oakDefaultTheme,
-  OakThemeProvider,
-} from "@oaknational/oak-components";
+
 
 import RegistrationAside from "../RegistrationAside/ResgistrationAside";
 
 import Component from "./RegistrationLayout";
+
+import {
+  OakBox,
+  oakDefaultTheme,
+  OakP,
+  OakThemeProvider,
+} from "@oaknational/oak-components";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -28,12 +31,13 @@ export const AlternateRegistrationLayout: Story = {
   args: {
     useAlternateLayout: true,
     asideSlot: <RegistrationAside useNew={true} />,
+    termsSlot: (
+      <OakBox>
+        <OakP>Terms and conditions</OakP>
+      </OakBox>
+    ),
     children: (
-      <OakBox
-        $width="all-spacing-18"
-        $height="all-spacing-23"
-        $ba="border-solid-m"
-      >
+      <OakBox $width="all-spacing-18" $ba="border-solid-m">
         Sign up form
       </OakBox>
     ),
@@ -51,6 +55,11 @@ export const RegistrationLayout: Story = {
   args: {
     useAlternateLayout: false,
     asideSlot: <RegistrationAside useNew={false} />,
+    termsSlot: (
+      <OakBox>
+        <OakP>Terms and conditions</OakP>
+      </OakBox>
+    ),
   },
   render: (args) => {
     return (

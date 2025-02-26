@@ -1,3 +1,5 @@
+import { PropsWithChildren } from "react";
+
 import {
   OakBox,
   OakFlex,
@@ -6,8 +8,6 @@ import {
   OakLI,
   OakUL,
 } from "@oaknational/oak-components";
-import { PropsWithChildren } from "react";
-
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import { getIllustrationAsset } from "@/image-data";
 
@@ -46,10 +46,10 @@ const RegistrationAside = ({ useNew }: { useNew: boolean }) => {
           />
         </OakBox>
         <OakFlex $flexDirection="column">
-          <OakHeading tag="h1" $font="heading-5">
+          <OakHeading tag="h1" $font="heading-4">
             Our resources will
           </OakHeading>
-          <OakHeading tag="h1" $font="heading-5">
+          <OakHeading tag="h1" $font="heading-4">
             always be free.
           </OakHeading>
         </OakFlex>
@@ -57,7 +57,7 @@ const RegistrationAside = ({ useNew }: { useNew: boolean }) => {
           <OakHeading tag="h2" $font="heading-6">
             Signing up gives you
           </OakHeading>
-          <OakUL $font="heading-light-7" $reset>
+          <OakUL $font="body-1" $reset>
             <ListItem>Full unit downloads</ListItem>
             <ListItem>Curriculum plans designed by curriculum experts</ListItem>
             <ListItem>Priority access to new products and features</ListItem>

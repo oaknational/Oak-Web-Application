@@ -2,25 +2,26 @@
 "use client";
 
 import { SignUp } from "@clerk/nextjs";
-import {
-  OakBox,
-  OakInlineBanner,
-  OakLink,
-  OakP,
-} from "@oaknational/oak-components";
 import { useState, useCallback, useEffect } from "react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { formAppearanceStyles } from "../../formAppearanceStyles";
 
+import {
+  OakBox,
+  OakFlex,
+  OakInlineBanner,
+  OakLink,
+  OakP,
+} from "@oaknational/oak-components";
 import RegistrationAside from "@/components/TeacherComponents/RegistrationAside/ResgistrationAside";
 import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
 import { resolveOakHref } from "@/common-lib/urls";
 
 const TermsAndConditions = () => {
   return (
-    <OakBox>
-      <OakP $font="body-2" color="text-primary" $textAlign="center">
+    <OakBox $ph="inner-padding-xl3">
+      <OakP $font="body-2" color="text-primary" $textAlign="left">
         By continuing you are agreeing to Oak's{" "}
         <OakLink
           href={resolveOakHref({
@@ -46,6 +47,41 @@ const TermsAndConditions = () => {
         .
       </OakP>
     </OakBox>
+  );
+};
+
+const Banner = ({ newLayoutEnabled }: { newLayoutEnabled: boolean }) => {
+  return newLayoutEnabled ? (
+    <OakInlineBanner
+      isOpen
+      $background="bg-decorative1-very-subdued"
+      $ba="border-solid-none"
+      message={
+        <OakFlex $flexDirection="column">
+          <OakP $font="body-3">
+            <OakLink
+              href={resolveOakHref({ page: "pupil-year-index" })}
+              aria-label="Pupil year index"
+            >
+              Pupils can learn
+            </OakLink>{" "}
+            without signing up.
+          </OakP>
+          <OakP $font="body-3">Signups are for teachers and educators.</OakP>
+        </OakFlex>
+      }
+    />
+  ) : (
+    <OakInlineBanner
+      isOpen
+      message={
+        <>
+          No <strong>pupil accounts</strong>, sorry.
+        </>
+      }
+      $mt={["space-between-m", "space-between-none"]}
+      $mb={["space-between-none", "space-between-m"]}
+    />
   );
 };
 
@@ -79,18 +115,7 @@ function SignUpPage() {
       asideSlot={<RegistrationAside useNew={newLayoutEnabled} />}
       useAlternateLayout={newLayoutEnabled}
       bannerSlot={
-        clerkRendered ? (
-          <OakInlineBanner
-            isOpen
-            message={
-              <>
-                No <strong>pupil accounts</strong>, sorry.
-              </>
-            }
-            $mt={["space-between-m", "space-between-none"]}
-            $mb={["space-between-none", "space-between-m"]}
-          />
-        ) : null
+        clerkRendered ? <Banner newLayoutEnabled={newLayoutEnabled} /> : null
       }
     >
       <SignUp

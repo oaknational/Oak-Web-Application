@@ -1,3 +1,5 @@
+import { PropsWithChildren, ReactNode } from "react";
+
 import {
   OakBox,
   OakFlex,
@@ -5,12 +7,12 @@ import {
   OakGridArea,
   OakMaxWidth,
 } from "@oaknational/oak-components";
-import { PropsWithChildren, ReactNode } from "react";
 
 type RegistrationLayoutProps = PropsWithChildren<{
   asideSlot: ReactNode;
   termsSlot?: ReactNode;
   bannerSlot?: ReactNode;
+  // A/B testing an alternate layout for registration pages
   useAlternateLayout: boolean;
 }>;
 
@@ -27,11 +29,33 @@ const RegistrationLayout = ({
         $colSpan={6}
         $pa="inner-padding-xl2"
         $background="bg-decorative1-main"
+        $justifyContent="center"
+        $alignItems="center"
       >
-        <OakFlex $justifyContent="center">{asideSlot}</OakFlex>
+        <OakFlex
+          $flexDirection="column"
+          $alignItems="flex-start"
+          $gap="space-between-l"
+        >
+          {asideSlot}
+          {bannerSlot}
+        </OakFlex>
       </OakGridArea>
-      <OakGridArea $colSpan={6} $pa="inner-padding-xl2" $background="white">
-        <OakFlex $justifyContent="center"> {children}</OakFlex>
+      <OakGridArea
+        $colSpan={6}
+        $pa="inner-padding-xl2"
+        $background="white"
+        $alignItems="center"
+        $justifyContent="center"
+      >
+        <OakFlex
+          style={{ width: "400px" }}
+          $flexDirection="column"
+          $gap="space-between-m"
+        >
+          {children}
+          {termsSlot}
+        </OakFlex>
       </OakGridArea>
     </OakGrid>
   ) : (
