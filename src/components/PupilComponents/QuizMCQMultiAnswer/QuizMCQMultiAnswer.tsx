@@ -31,6 +31,12 @@ export type QuizMCQMultiAnswerProps = {
   onChange: () => void;
 };
 
+export const multipleChoiceAnswerId = (
+  questionUid: string | undefined,
+  index: number,
+) => {
+  return `${questionUid}-answer-${index}`;
+};
 export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
   const quizEngineContext = useQuizEngineContext();
   const lessonEngineContext = useLessonEngineContext();
@@ -120,7 +126,7 @@ export const QuizMCQMultiAnswer = ({ onChange }: QuizMCQMultiAnswerProps) => {
             <MathJaxWrap key={`max-jax-wrap-${index}`}>
               <OakQuizCheckBox
                 key={`${questionUid}-answer-${index}`}
-                id={`${questionUid}-answer-${index}`}
+                id={multipleChoiceAnswerId(questionUid, index)}
                 displayValue={
                   answerText ? (
                     <OakCodeRenderer string={answerText.text} />
