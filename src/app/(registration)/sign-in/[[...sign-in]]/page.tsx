@@ -2,15 +2,20 @@
 "use client";
 
 import { SignIn } from "@clerk/nextjs";
-import { OakBox } from "@oaknational/oak-components";
+import { useFeatureFlagVariantKey } from "posthog-js/react";
 
 import { formAppearanceStyles } from "../../formAppearanceStyles";
 
+import { OakBox } from "@oaknational/oak-components";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
 import { getIllustrationAsset } from "@/image-data";
 
+
 function SignInPage() {
+  const featureFlagVariant = useFeatureFlagVariantKey("teacher-sign-up-page");
+  const newLayoutEnabled = featureFlagVariant === "new-layout";
+
   return (
     <RegistrationLayout
       asideSlot={
@@ -22,7 +27,7 @@ function SignInPage() {
           />
         </OakBox>
       }
-      useAlternateLayout={false} // TODO: use variant key
+      useAlternateLayout={newLayoutEnabled}
     >
       <SignIn appearance={formAppearanceStyles} />
     </RegistrationLayout>
