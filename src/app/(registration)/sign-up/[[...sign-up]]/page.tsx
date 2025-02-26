@@ -4,9 +4,6 @@
 import { SignUp } from "@clerk/nextjs";
 import { useState, useCallback, useEffect } from "react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
-
-import { formAppearanceStyles } from "../../formAppearanceStyles";
-
 import {
   OakBox,
   OakFlex,
@@ -14,14 +11,25 @@ import {
   OakLink,
   OakP,
 } from "@oaknational/oak-components";
+
+import { formAppearanceStyles } from "../../formAppearanceStyles";
+
 import RegistrationAside from "@/components/TeacherComponents/RegistrationAside/ResgistrationAside";
 import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
 import { resolveOakHref } from "@/common-lib/urls";
 
-const TermsAndConditions = () => {
+const TermsAndConditions = ({
+  newLayoutEnabled,
+}: {
+  newLayoutEnabled: boolean;
+}) => {
   return (
-    <OakBox $ph="inner-padding-xl3">
-      <OakP $font="body-2" color="text-primary" $textAlign="left">
+    <OakBox $ph={newLayoutEnabled ? "inner-padding-xl3" : "inner-padding-none"}>
+      <OakP
+        $font="body-2"
+        color="text-primary"
+        $textAlign={newLayoutEnabled ? "left" : "center"}
+      >
         By continuing you are agreeing to Oak's{" "}
         <OakLink
           href={resolveOakHref({
@@ -74,6 +82,7 @@ const Banner = ({ newLayoutEnabled }: { newLayoutEnabled: boolean }) => {
   ) : (
     <OakInlineBanner
       isOpen
+      $width="100%"
       message={
         <>
           No <strong>pupil accounts</strong>, sorry.
@@ -111,7 +120,11 @@ function SignUpPage() {
 
   return (
     <RegistrationLayout
-      termsSlot={clerkRendered ? <TermsAndConditions /> : null}
+      termsSlot={
+        clerkRendered ? (
+          <TermsAndConditions newLayoutEnabled={newLayoutEnabled} />
+        ) : null
+      }
       asideSlot={<RegistrationAside useNew={newLayoutEnabled} />}
       useAlternateLayout={newLayoutEnabled}
       bannerSlot={

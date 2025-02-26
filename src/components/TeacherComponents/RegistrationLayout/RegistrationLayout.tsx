@@ -1,5 +1,4 @@
 import { PropsWithChildren, ReactNode } from "react";
-
 import {
   OakBox,
   OakFlex,
@@ -91,15 +90,14 @@ const RegistrationLayout = ({
           <OakFlex
             $flexDirection="column"
             $alignItems="center"
-            $gap="space-between-m"
-            $display={["flex", "block"]}
+            $justifyContent="center"
           >
             {bannerSlot}
             <OakBox
               $dropShadow={[null, "drop-shadow-standard"]}
               $borderRadius="border-radius-m2"
-              $width={["auto", "max-content"]}
               $mb={["space-between-none", "space-between-m"]}
+              $width="100%"
             >
               {children}
             </OakBox>
