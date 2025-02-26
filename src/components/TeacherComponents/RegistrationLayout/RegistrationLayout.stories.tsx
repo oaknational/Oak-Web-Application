@@ -1,16 +1,14 @@
 import { Meta, StoryObj } from "@storybook/react";
-
-
-import RegistrationAside from "../RegistrationAside/ResgistrationAside";
-
-import Component from "./RegistrationLayout";
-
 import {
   OakBox,
   oakDefaultTheme,
   OakP,
   OakThemeProvider,
 } from "@oaknational/oak-components";
+
+import RegistrationAside from "../RegistrationAside/ResgistrationAside";
+
+import Component from "./RegistrationLayout";
 
 const meta: Meta<typeof Component> = {
   component: Component,
