@@ -20,6 +20,17 @@ jest.mock("@/components/AppComponents/ErrorBoundary/ErrorBoundary", () => {
   };
 });
 
+// The Sentry ErrorBoundary and Bugsnag plugin for creating one
+// are both globally mocked in our Jest setup file, so we need to
+// restore the functionality here to use the actual implementations
+jest.mock("@bugsnag/js", () => ({
+  getPlugin: jest.requireActual("@bugsnag/js").getPlugin,
+}));
+
+jest.mock("@sentry/nextjs", () => ({
+  ErrorBoundary: jest.requireActual("@sentry/nextjs").ErrorBoundary,
+}));
+
 const TantrumChild = () => {
   throw new Error("Where's my toys");
 };
