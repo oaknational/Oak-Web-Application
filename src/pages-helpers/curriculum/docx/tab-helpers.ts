@@ -54,7 +54,8 @@ export type CurriculumUnitsTrackingData = {
   subjectSlug: string;
   subjectTitle: string;
   phaseSlug: string;
-  ks4OptionSlug: string | null;
+  ks4OptionSlug: string | undefined;
+  ks4OptionTitle: string | undefined;
 };
 
 export type CurriculumUnitsFormattedData<T = Unit> = {

@@ -60,11 +60,17 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const tab = router.query.tab as CurriculumTab;
   const { tiers, child_subjects } = curriculumDownloadsTabData;
   const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
+
+  const ks4Option = curriculumPhaseOptions.subjects
+    .find((s) => s.slug === subjectSlug)
+    ?.ks4_options?.find((ks4opt) => ks4opt.slug === ks4OptionSlug);
+
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
     subjectSlug,
     phaseSlug,
     subjectTitle: curriculumOverviewTabData.subjectTitle,
-    ks4OptionSlug: ks4OptionSlug,
+    ks4OptionSlug: ks4Option?.slug,
+    ks4OptionTitle: ks4Option?.title,
   };
 
   const keyStages = uniq(
@@ -118,14 +124,18 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
             title: buildCurriculumMetadata({
               metadataType: "title",
               subjectSlug: subjectSlug,
-              ks4OptionSlug: ks4OptionSlug,
+              subjectTitle: curriculumUnitsTrackingData.subjectTitle,
+              ks4OptionSlug: curriculumUnitsTrackingData.ks4OptionSlug,
+              ks4OptionTitle: curriculumUnitsTrackingData.ks4OptionTitle,
               keyStages: keyStages,
               tab: tab,
             }),
             description: buildCurriculumMetadata({
               metadataType: "description",
               subjectSlug: subjectSlug,
-              ks4OptionSlug: ks4OptionSlug,
+              subjectTitle: curriculumUnitsTrackingData.subjectTitle,
+              ks4OptionSlug: curriculumUnitsTrackingData.ks4OptionSlug,
+              ks4OptionTitle: curriculumUnitsTrackingData.ks4OptionTitle,
               keyStages: keyStages,
               tab: tab,
             }),
