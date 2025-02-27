@@ -52,10 +52,6 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/helen-harlow/
   From: Norwich, UK
 
-  Kyle Huggins (Software Engineer)
-  LinkedIn: https://www.linkedin.com/in/kyle-huggins-892450127/
-  From: Birmingham, UK
-
   Ian Kynnersley (Head of Engineering)
   Site: https://www.iankynnersley.co.uk/
   LinkedIn: https://www.linkedin.com/in/iankynnersley/
@@ -159,6 +155,10 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Site: https://www.productrebel.co.uk
   LinkedIn: https://www.linkedin.com/in/hollydonohue/
   From: Manchester, UK
+  
+  Kyle Huggins (Software Engineer)
+  LinkedIn: https://www.linkedin.com/in/kyle-huggins-892450127/
+  From: Birmingham, UK
   
   Lee Fuller (Software Engineer)
   Site: https://lee-fuller.co.uk/
