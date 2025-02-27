@@ -1,3 +1,11 @@
+## [1.700.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.700.0...v1.700.1) (2025-02-27)
+
+
+### Bug Fixes
+
+* fix subject listing page in teacher journey ([dff6b5a](https://github.com/oaknational/Oak-Web-Application/commit/dff6b5a73c7103e8187eae4217f720430fd4cbf8))
+* get actions for programmeListing query ([99eb07c](https://github.com/oaknational/Oak-Web-Application/commit/99eb07c780ccee2f36e0c9d114c60c903294436d))
+
 # [1.700.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.699.0...v1.700.0) (2025-02-27)
 
 
