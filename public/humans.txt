@@ -45,7 +45,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   Ewan Wakeman (Senior Data Analyst)
   LinkedIn: https://www.linkedin.com/in/ewanwakeman/
-  Twitter: https://twitter.com/ewan_wakeman
+  X: https://x.com/ewan_wakeman
   From: London, UK
 
   Helen Harlow (Product Designer)
@@ -55,7 +55,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Ian Kynnersley (Head of Engineering)
   Site: https://www.iankynnersley.co.uk/
   LinkedIn: https://www.linkedin.com/in/iankynnersley/
-  Twitter: https://twitter.com/kpopper
+  X: https://x.com/kpopper
   From: London, UK
 
   Jack Skerrett (Senior Quality Assurance Analyst)
@@ -64,8 +64,8 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   James Sheasby Thomas (Quality Assurance Analyst)
   Site: https://rightsaidjames.com/
-  Twitter: https://twitter.com/rightsaidjames
   LinkedIn: https://www.linkedin.com/in/rightsaidjames/
+  X: https://x.com/rightsaidjames
   From: Vale of Glamorgan, lives in Leeds, UK
 
   Jamie Blair (Senior Software Engineer)
@@ -88,7 +88,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   John Roberts (Director of Product and Engineering)
   Site: https://johnroberts.me
   LinkedIn: https://linkedin.com/in/johnrobertsuk
-  Twitter: @johnrobeds
+  X: https://x.com/johnrobeds
   From: Manchester, UK
 
   Matt Gregory (Senior Software Engineer)
@@ -159,12 +159,12 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Lee Fuller (Software Engineer)
   Site: https://lee-fuller.co.uk/
   LinkedIn: https://www.linkedin.com/in/lee--fuller/
-  Twitter: @lee_fuller_
+  X: @lee_fuller_
   From: Standish, UK
 
   Leo Allen (Data and Analytics)
   Site: https://linkedin.com/in/leoallen
-  Twitter: @leoallen85
+  X: @leoallen85
   From: London, UK
 
   Lionel Jingles (Software Engineer)
@@ -172,7 +172,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   From: San Francisco, US
 
   Mitch Lloyd (Software Engineer)
-  Twitter: @MitchellLloyd15
+  X: @MitchellLloyd15
   Linkedin: https://linkedin.com/in/mitchell-lloyd-a2264b151
   Email: mitchelllloyd154@gmail.com
   From: Manchester, UK
@@ -188,23 +188,23 @@ Oak National Academy’s tech platform has been created by a team of humans supp
 
   Remy Sharp (Software Engineer)
   Site: https://remysharp.com
-  Twitter: @rem
+  X: @rem
   From: Brighton, UK
 
   Ross Mackay (Software Engineer)
   Site: https://rossmackay.co
-  Twitter: @r_mcky
+  X: @r_mcky
   From: London, UK
 
   Shaun Orpen (Software Engineer)
   Site: https://shaunorpen.com/
   LinkedIn: https://linkedin.com/in/shaunorpen
-  Twitter: https://twitter.com/shaunorpen
+  X: https://x.com/shaunorpen
   From: UK
 
   Stef Lewandowski (Lead Software Engineer)
   Site: https://stef.io
-  Twitter: @stef
+  X: @stef
   From: London, UK
 
   Stuart G Wilson (Product Designer)
