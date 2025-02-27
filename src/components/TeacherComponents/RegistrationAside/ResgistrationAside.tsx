@@ -47,11 +47,11 @@ const RegistrationAside = ({ useNew }: { useNew: boolean }) => {
           />
         </OakBox>
         <OakFlex $flexDirection="column" $position="relative">
-          <OakHeading tag="h1" $font="heading-4">
+          <OakHeading tag="h2" $font="heading-4">
             Our resources will
           </OakHeading>
           <OakBox $zIndex="in-front">
-            <OakHeading tag="h1" $font="heading-4">
+            <OakHeading tag="h2" $font="heading-4">
               always be free.
             </OakHeading>
           </OakBox>
@@ -65,7 +65,7 @@ const RegistrationAside = ({ useNew }: { useNew: boolean }) => {
           />
         </OakFlex>
         <OakFlex $flexDirection="column" $gap="space-between-s">
-          <OakHeading tag="h2" $font="heading-6">
+          <OakHeading tag="h3" $font="heading-6">
             Signing up gives you
           </OakHeading>
           <OakUL $font="body-1" $reset>
@@ -90,7 +90,7 @@ const RegistrationAside = ({ useNew }: { useNew: boolean }) => {
         />
       </OakFlex>
       <OakHeading
-        tag="h1"
+        tag="h2"
         $font="heading-5"
         $mb="space-between-l"
         $textAlign="center"
