@@ -33,13 +33,12 @@ export const OnboardingLayout = ({
           $pb="inner-padding-s"
           $width="max-content"
         >
-          Need help?{" "}
+          Need help?
           <OakLink
             href={resolveOakHref({
               page: "contact",
             })}
           >
-            {" "}
             Contact us
           </OakLink>
           .
