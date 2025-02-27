@@ -18,10 +18,10 @@ function SignInPage() {
   return (
     <RegistrationLayout
       asideSlot={
-        <OakBox $maxWidth="all-spacing-21">
+        <OakBox $maxHeight="all-spacing-21">
           <CMSImage
             image={getIllustrationAsset("auth-acorn")}
-            $width="100%"
+            $height="100%"
             $objectFit="contain"
           />
         </OakBox>
