@@ -91,6 +91,9 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   X: https://x.com/johnrobeds
   From: Manchester, UK
 
+  Kofoworola Ogunleye (Platform Engineer)
+  From: Northampton, UK
+
   Matt Gregory (Senior Software Engineer)
   Site: https://mantagen.org
 
