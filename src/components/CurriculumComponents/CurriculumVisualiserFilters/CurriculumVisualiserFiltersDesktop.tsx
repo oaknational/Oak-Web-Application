@@ -1,4 +1,12 @@
-import { OakBox, OakP, OakSpan } from "@oaknational/oak-components";
+import {
+  OakSpan,
+  OakBox,
+  OakHeading,
+  OakRadioGroup,
+  OakRadioAsButton,
+  OakHandDrawnHR,
+} from "@oaknational/oak-components";
+import { isEqual } from "lodash";
 
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
@@ -7,44 +15,242 @@ import SkipLink from "../OakComponentsKitchen/SkipLink";
 import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "./helpers";
 
+import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { Thread } from "@/utils/curriculum/types";
+import { Thread, CurriculumFilters } from "@/utils/curriculum/types";
+import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
+import { getFilterData } from "@/utils/curriculum/filtering";
+import {
+  byKeyStageSlug,
+  presentAtKeyStageSlugs,
+} from "@/utils/curriculum/keystage";
 
 export default function CurriculumVisualiserFiltersDesktop({
-  selectedThread,
-  onSelectThread,
-  selectedYear,
-  onSelectYear,
-  yearSelection,
+  filters,
+  onChangeFilters,
   data,
 }: CurriculumVisualiserFiltersProps) {
   const { yearData, threadOptions, yearOptions } = data;
 
+  const { childSubjects, subjectCategories, tiers } = getFilterData(
+    data.yearData,
+    filters.years,
+  );
+
+  const keyStageSlugData = byKeyStageSlug(yearData);
+  const childSubjectsAt = presentAtKeyStageSlugs(
+    keyStageSlugData,
+    "childSubjects",
+    filters.years,
+  );
+  const subjectCategoriesAt = presentAtKeyStageSlugs(
+    keyStageSlugData,
+    "subjectCategories",
+    filters.years,
+  ).filter((ks) => !childSubjectsAt.includes(ks));
+  const tiersAt = presentAtKeyStageSlugs(keyStageSlugData, "tiers");
+
   function isSelectedThread(thread: Thread) {
-    return selectedThread === thread.slug;
+    return filters.threads.includes(thread.slug);
+  }
+
+  function setSingleInFilter(key: keyof CurriculumFilters, newValue: string) {
+    onChangeFilters({ ...filters, [key]: [newValue] });
+  }
+
+  function addAllToFilter(key: keyof CurriculumFilters, target: string[]) {
+    onChangeFilters({ ...filters, [key]: target });
   }
 
   return (
-    <>
-      <Fieldset
-        $mr={16}
-        $mb={32}
-        $display={["none", "block"]}
-        data-testid="threads-filter-desktop"
-      >
-        <FieldsetLegend $font={"heading-7"} $mb="space-between-xs">
+    <OakBox $mr={"space-between-s"}>
+      <SkipLink href="#content">Skip to units</SkipLink>
+
+      <OakHeading tag="h3" $font={"heading-5"} $mb="space-between-m">
+        Filter and highlight
+      </OakHeading>
+
+      <>
+        <OakHeading
+          tag="h4"
+          id="year-group-label"
+          $font={"heading-6"}
+          $mb="space-between-s"
+        >
+          Year group
+        </OakHeading>
+
+        <OakRadioGroup
+          name="year"
+          onChange={(e) =>
+            addAllToFilter(
+              "years",
+              e.target.value === "all" ? yearOptions : [e.target.value],
+            )
+          }
+          value={
+            isEqual(filters.years, yearOptions) ? "all" : filters.years[0]!
+          }
+          $gap="space-between-ssx"
+          $flexDirection="row"
+          $flexWrap="wrap"
+          aria-labelledby="year-group-label"
+          data-testid="year-group-filter-desktop"
+        >
+          <OakRadioAsButton
+            value="all"
+            displayValue="All"
+            data-testid={"all-years-radio"}
+          />
+          {yearOptions.map((yearOption) => (
+            <OakRadioAsButton
+              key={yearOption}
+              value={yearOption}
+              displayValue={getYearGroupTitle(yearData, yearOption)}
+              data-testid={"year-radio"}
+            />
+          ))}
+        </OakRadioGroup>
+      </>
+
+      {subjectCategoriesAt.length > 0 && (
+        <>
+          <OakHandDrawnHR
+            hrColor={"grey40"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m2"}
+          />
+          <OakHeading
+            id="subject-categories-label"
+            tag="h4"
+            $font={"heading-6"}
+            $mb="space-between-s"
+          >
+            Category{" "}
+            {subjectCategoriesAt.length === 1
+              ? `(${subjectCategoriesAt[0]?.toUpperCase()})`
+              : ""}
+          </OakHeading>
+
+          <OakRadioGroup
+            name="subject-categories"
+            onChange={(e) =>
+              setSingleInFilter("subjectCategories", e.target.value)
+            }
+            value={String(filters.subjectCategories[0]!)}
+            $flexDirection="row"
+            $flexWrap="wrap"
+            $gap="space-between-ssx"
+            aria-labelledby="subject-categories-label"
+          >
+            {subjectCategories.map((subjectCategory) => {
+              return (
+                <OakRadioAsButton
+                  key={subjectCategory.id}
+                  value={String(subjectCategory.id)}
+                  data-testid={`subject-category-radio-${subjectCategory.id}`}
+                  displayValue={subjectCategory.title}
+                  icon={getValidSubjectCategoryIconById(subjectCategory.id)}
+                />
+              );
+            })}
+          </OakRadioGroup>
+        </>
+      )}
+
+      {childSubjects.length > 0 && (
+        <>
+          <OakHandDrawnHR
+            hrColor={"grey40"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m2"}
+          />
+
+          <OakHeading
+            id="child-subjects-label"
+            tag="h4"
+            $font={"heading-6"}
+            $mb="space-between-s"
+          >
+            Exam subject{" "}
+            {childSubjectsAt.length === 1
+              ? `(${childSubjectsAt[0]?.toUpperCase()})`
+              : ""}
+          </OakHeading>
+          <OakRadioGroup
+            name="childSubjects"
+            onChange={(e) => setSingleInFilter("childSubjects", e.target.value)}
+            value={String(filters.childSubjects[0]!)}
+            $flexDirection="row"
+            $flexWrap="wrap"
+            $gap="space-between-ssx"
+            aria-labelledby="child-subjects-label"
+          >
+            {childSubjects.map((childSubject) => (
+              <OakRadioAsButton
+                key={childSubject.subject_slug}
+                value={childSubject.subject_slug}
+                displayValue={childSubject.subject}
+                icon={getValidSubjectIconName(childSubject.subject_slug)}
+              />
+            ))}
+          </OakRadioGroup>
+        </>
+      )}
+
+      {tiers.length > 0 && (
+        <>
+          <OakHandDrawnHR
+            hrColor={"grey40"}
+            $mt={"space-between-m"}
+            $mb={"space-between-m2"}
+          />
+
+          <OakHeading
+            id="tiers-label"
+            tag="h4"
+            $font={"heading-6"}
+            $mb="space-between-s"
+          >
+            Learning tier{" "}
+            {tiersAt.length === 1 ? `(${tiersAt[0]?.toUpperCase()})` : ""}
+          </OakHeading>
+          <OakRadioGroup
+            name="tiers"
+            onChange={(e) => setSingleInFilter("tiers", e.target.value)}
+            value={filters.tiers[0]!}
+            $flexDirection="row"
+            $flexWrap="wrap"
+            $gap="space-between-ssx"
+            aria-labelledby="tiers-label"
+          >
+            {tiers.map((tier) => (
+              <OakRadioAsButton
+                key={tier.tier_slug}
+                value={tier.tier_slug}
+                displayValue={tier.tier}
+              />
+            ))}
+          </OakRadioGroup>
+        </>
+      )}
+
+      <OakHandDrawnHR
+        hrColor={"grey40"}
+        $mt={"space-between-m"}
+        $mb={"space-between-m2"}
+      />
+      <Fieldset data-testid={"threads-filter-desktop"}>
+        <FieldsetLegend $font={"heading-6"} $mt="space-between-m2">
           Highlight a thread
         </FieldsetLegend>
-        <OakP $mb="space-between-xs">
-          Threads are groups of units across the curriculum that build a common
-          body of knowledge
-        </OakP>
         <RadioGroup
           name="thread"
-          onChange={(e) => onSelectThread(e.target.value)}
-          value={selectedThread ?? ""}
+          onChange={(e) =>
+            onChangeFilters({ ...filters, threads: [e.target.value] })
+          }
+          value={filters.threads[0] ?? ""}
         >
-          <SkipLink href="#content">Skip to units</SkipLink>
           <OakBox
             $mv="space-between-s"
             $pl="inner-padding-s"
@@ -63,9 +269,8 @@ export default function CurriculumVisualiserFiltersDesktop({
             const isSelected = isSelectedThread(threadOption);
             const highlightedCount = highlightedUnitCount(
               yearData,
-              selectedYear,
-              yearSelection,
-              selectedThread,
+              filters,
+              filters.threads,
             );
 
             return (
@@ -90,16 +295,14 @@ export default function CurriculumVisualiserFiltersDesktop({
                 >
                   <OakSpan>
                     {threadOption.title}
-                    <OakSpan>
-                      {isSelected && (
-                        <>
-                          <br />
-                          {highlightedCount}
-                          {highlightedCount === 1 ? " unit " : " units "}
-                          highlighted
-                        </>
-                      )}
-                    </OakSpan>
+                    {isSelected && (
+                      <>
+                        <br />
+                        {highlightedCount}
+                        {highlightedCount === 1 ? " unit " : " units "}
+                        highlighted
+                      </>
+                    )}
                   </OakSpan>
                 </RadioButton>
               </OakBox>
@@ -107,42 +310,6 @@ export default function CurriculumVisualiserFiltersDesktop({
           })}
         </RadioGroup>
       </Fieldset>
-      <Fieldset
-        $mr={16}
-        $mb={32}
-        $display={["none", "block"]}
-        data-testid="year-group-filter-desktop"
-      >
-        <FieldsetLegend $font={"heading-7"} $mb="space-between-xs">
-          Year group
-        </FieldsetLegend>
-        <RadioGroup
-          name="year"
-          value={selectedYear}
-          onChange={(e) => onSelectYear(e.target.value)}
-        >
-          <OakBox $mb="space-between-s">
-            <RadioButton
-              aria-label="All year groups"
-              value={""}
-              data-testid={"all-years-radio"}
-            >
-              All
-            </RadioButton>
-          </OakBox>
-          {yearOptions.map((yearOption) => (
-            <OakBox key={yearOption} $mb="space-between-s">
-              <RadioButton
-                value={yearOption}
-                data-testid={"year-radio"}
-                aria-label={getYearGroupTitle(yearData, yearOption)}
-              >
-                {getYearGroupTitle(yearData, yearOption)}
-              </RadioButton>
-            </OakBox>
-          ))}
-        </RadioGroup>
-      </Fieldset>
-    </>
+    </OakBox>
   );
 }

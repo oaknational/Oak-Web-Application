@@ -46,6 +46,7 @@ import {
   VALID_TABS,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import openApiRequest from "@/utils/curriculum/openapi";
+import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -73,6 +74,10 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     ),
   );
 
+  const [filters, setFilters] = useFilters(() =>
+    getDefaultFilter(curriculumUnitsFormattedData),
+  );
+
   let tabContent: JSX.Element;
 
   switch (tab) {
@@ -93,6 +98,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         <UnitsTab
           formattedData={curriculumUnitsFormattedData}
           trackingData={curriculumUnitsTrackingData}
+          filters={filters}
+          onChangeFilters={setFilters}
         />
       );
       break;

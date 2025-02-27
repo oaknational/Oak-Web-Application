@@ -1,28 +1,34 @@
-import { CurriculumUnitsYearData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  Unit,
+  Thread,
+  YearData,
+  CurriculumFilters,
+} from "@/utils/curriculum/types";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
-import { Unit, Thread, YearSelection } from "@/utils/curriculum/types";
 
-function isHighlightedUnit(unit: Unit, selectedThread: Thread["slug"] | null) {
-  if (!selectedThread) {
+function isHighlightedUnit(
+  unit: Unit,
+  selectedThreads: Thread["slug"][] | null,
+) {
+  if (!selectedThreads) {
     return false;
   }
-  return unit.threads.some((t) => t.slug === selectedThread);
+  return unit.threads.some((t) => selectedThreads.includes(t.slug));
 }
 
 export function highlightedUnitCount(
-  yearData: CurriculumUnitsYearData,
-  selectedYear: string | null,
-  yearSelection: YearSelection,
-  selectedThread: Thread["slug"] | null,
+  yearData: YearData,
+  filters: CurriculumFilters,
+  selectedThreads: Thread["slug"][] | null,
 ): number {
   let count = 0;
   Object.keys(yearData).forEach((year) => {
     const units = yearData[year]?.units;
-    if (units && (!selectedYear || selectedYear === year)) {
+    if (units && filters.years.includes(year)) {
       units.forEach((unit) => {
         if (
-          isVisibleUnit(yearSelection, year, unit) &&
-          isHighlightedUnit(unit, selectedThread)
+          isVisibleUnit(filters, year, unit) &&
+          isHighlightedUnit(unit, selectedThreads)
         ) {
           count++;
         }
