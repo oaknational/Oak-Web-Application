@@ -133,10 +133,6 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   LinkedIn: https://www.linkedin.com/in/sonalisin
   From: Manchester, lives in London, UK
 
-  Thomas Birch (Senior Software Engineer)
-  Site: https://capeflair.com
-  From: Guildford, UK
-
   Will Gayne (Director of Product Strategy & Impact)
   LinkedIn: https://www.linkedin.com/in/william-gayne-a8a363134/
   From: Macclesfield, UK
@@ -159,7 +155,7 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Kyle Huggins (Software Engineer)
   LinkedIn: https://www.linkedin.com/in/kyle-huggins-892450127/
   From: Birmingham, UK
-  
+
   Lee Fuller (Software Engineer)
   Site: https://lee-fuller.co.uk/
   LinkedIn: https://www.linkedin.com/in/lee--fuller/
@@ -215,6 +211,10 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Site: qegadesign.myportfolio.com
   Linkedin: https://www.linkedin.com/in/stuartgeorgewilson/
   From: Glasgow, UK
+
+  Thomas Birch (Senior Software Engineer)
+  Site: https://capeflair.com
+  From: Guildford, UK
 
   Tom Wise (UX/UI and Design)
   Site: https://putty.studio
