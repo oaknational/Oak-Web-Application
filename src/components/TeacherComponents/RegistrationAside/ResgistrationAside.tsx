@@ -21,7 +21,12 @@ function ListItem({ children }: PropsWithChildren) {
       $gap="space-between-s"
       $mb="space-between-xs"
     >
-      <OakIcon iconName="tick" $height="all-spacing-7" $width="all-spacing-7" />
+      <OakIcon
+        iconName="tick"
+        $height="all-spacing-7"
+        $width="all-spacing-7"
+        alt=""
+      />
       {children}
     </OakLI>
   );
