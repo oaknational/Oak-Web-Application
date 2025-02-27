@@ -15,6 +15,7 @@ import UnitDownloadButton, {
 import { Breadcrumb } from "@/components/SharedComponents/Breadcrumbs";
 import { LessonHeaderWrapper } from "@/components/TeacherComponents/LessonHeaderWrapper";
 import SubjectIconBrushBorders from "@/components/TeacherComponents/SubjectIconBrushBorders";
+import RiskAssessmentBanner from "@/components/TeacherComponents/RiskAssessmentBanner";
 import HeaderListingCurriculumDownloadButton from "@/components/TeacherComponents/HeaderListingCurriculumDownloadButton";
 import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -47,6 +48,7 @@ export type HeaderListingProps = {
   shareButton?: React.ReactNode;
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
+  showRiskAssessmentBanner?: boolean;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -67,6 +69,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     shareButton,
     unitDownloadFileId,
     onUnitDownloadSuccess,
+    showRiskAssessmentBanner,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -81,13 +84,38 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     downloadInProgress,
   } = useUnitDownloadButtonState();
 
+  const bannersBlock = (
+    <>
+      <OakBox aria-live="polite">
+        {downloadError ? (
+          <OakInlineBanner
+            isOpen
+            type="error"
+            message="Sorry, download is not working. Please try again in a few minutes."
+            icon="error"
+          />
+        ) : showDownloadMessage ? (
+          <OakInlineBanner
+            isOpen={showDownloadMessage}
+            canDismiss
+            onDismiss={() => setShowDownloadMessage(false)}
+            type="neutral"
+            message="Downloads may take a few minutes on slower Wi-Fi connections."
+            $mb={"space-between-s"}
+          />
+        ) : null}
+      </OakBox>
+      {showRiskAssessmentBanner && <RiskAssessmentBanner />}
+    </>
+  );
+
   return (
     <LessonHeaderWrapper breadcrumbs={breadcrumbs} background={background}>
       <OakFlex
         $mb={["space-between-xs", "space-between-none"]}
         $flexDirection={"column"}
       >
-        <OakFlex>
+        <OakFlex $mb={["space-between-m", "space-between-none"]}>
           <OakFlex
             $mr={["space-between-s", "space-between-m2"]}
             $height={["all-spacing-13", "all-spacing-17"]}
@@ -138,27 +166,13 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                 )}
                 {shareButton}
               </OakFlex>
-              <OakBox aria-live="polite">
-                {downloadError ? (
-                  <OakInlineBanner
-                    isOpen
-                    type="error"
-                    message="Sorry, download is not working. Please try again in a few minutes."
-                    icon="error"
-                  />
-                ) : showDownloadMessage ? (
-                  <OakInlineBanner
-                    isOpen={showDownloadMessage}
-                    canDismiss
-                    onDismiss={() => setShowDownloadMessage(false)}
-                    type="neutral"
-                    message="Downloads may take a few minutes on slower Wi-Fi connections."
-                  />
-                ) : null}
+              <OakBox $display={["none", "block", "block"]}>
+                {bannersBlock}
               </OakBox>
             </OakFlex>
           </OakFlex>
         </OakFlex>
+        <OakBox $display={["block", "none", "none"]}>{bannersBlock}</OakBox>
       </OakFlex>
       <Flex $background={background} $display={["inline", "none"]}>
         {hasCurriculumDownload && isKeyStagesAvailable && (
