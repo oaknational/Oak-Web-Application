@@ -48,11 +48,6 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Twitter: https://twitter.com/ewan_wakeman
   From: London, UK
 
-  Holly Donohue (Fractional CPO)
-  Site: https://www.productrebel.co.uk
-  LinkedIn: https://www.linkedin.com/in/hollydonohue/
-  From: Manchester, UK
-  
   Helen Harlow (Product Designer)
   LinkedIn: https://www.linkedin.com/in/helen-harlow/
   From: Norwich, UK
@@ -160,6 +155,11 @@ Oak National Academy’s tech platform has been created by a team of humans supp
   Craig McCahill (Software Engineer)
   From: London, UK
 
+  Holly Donohue (Fractional CPO)
+  Site: https://www.productrebel.co.uk
+  LinkedIn: https://www.linkedin.com/in/hollydonohue/
+  From: Manchester, UK
+  
   Lee Fuller (Software Engineer)
   Site: https://lee-fuller.co.uk/
   LinkedIn: https://www.linkedin.com/in/lee--fuller/
