@@ -13,6 +13,7 @@ const originalService: AnalyticsService<unknown> = {
   track: jest.fn(),
   page: jest.fn(),
   identify: jest.fn(),
+  alias: jest.fn(),
   optOut: jest.fn(),
   optIn: jest.fn(),
 };

@@ -73,7 +73,7 @@ export type TrackFns = Omit<
 export type AnalyticsContext = {
   track: TrackFns;
   identify: IdentifyFn;
-  alias: AliasFn;
+  alias?: AliasFn;
   posthogDistinctId: PosthogDistinctId | null;
 };
 
@@ -84,7 +84,7 @@ export type AnalyticsService<ServiceConfig> = {
   track: EventFn;
   page: PageFn;
   identify: IdentifyFn;
-  alias: AliasFn;
+  alias?: AliasFn;
   optOut: () => void;
   optIn: () => void;
 };
@@ -220,7 +220,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
   );
   const alias: AliasFn = useCallback(
     (userId, aliasId) => {
-      posthog.alias(userId, aliasId);
+      posthog.alias?.(userId, aliasId);
     },
     [posthog],
   );

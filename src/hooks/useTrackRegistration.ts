@@ -67,7 +67,7 @@ export function useTrackRegistration() {
       });
     } else {
       track.userSignIn({ userId_: user.id });
-      alias(user.id, posthogDistinctId);
+      alias && alias(user.id, posthogDistinctId);
     }
 
     // Set `lastTrackedSignInAt` to `lastSignInAt` so that we
