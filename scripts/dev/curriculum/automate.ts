@@ -1,0 +1,92 @@
+#!/usr/bin/env ./node_modules/.bin/tsx
+import "dotenv/config";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
+
+import screenshot from "./_commands/screenshot";
+import compare from "./_commands/compare";
+import { buildChicken } from "./_commands/chicken";
+import { buildFixtures } from "./_commands/fixtures";
+
+yargs(hideBin(process.argv))
+  .command(
+    "fixtures",
+    "generates fixtures from graphql",
+    (yargs) => {
+      return yargs;
+    },
+    async () => {
+      await buildFixtures();
+    },
+  )
+  .command(
+    "screenshot <label>",
+    "screenshot the visualiser",
+    (yargs) => {
+      return yargs
+        .positional("label", {
+          describe: "label of the screenshots",
+          required: true,
+        })
+        .option("basepath", {
+          describe: "basepath of host site",
+          default: "http://localhost:3000",
+        })
+        .option("login-url", {
+          describe: "URL to login with",
+        })
+        .option("modals", {
+          describe: "include modals in screenshots",
+          type: "boolean",
+        })
+        .option("remove-options", {
+          describe: "remove unit options from UI",
+          type: "boolean",
+        });
+    },
+    async (argv) => {
+      let label;
+      if (argv.label) {
+        if (!argv.label.startsWith(":")) {
+          throw new Error("label must start with ':'");
+        }
+        label = argv.label.replace(/^:/, "");
+      }
+      await screenshot(argv.basepath, label, {
+        loginUrl: argv.loginUrl,
+        includeModals: argv.modals,
+        removeOptions: argv.removeOptions,
+      });
+    },
+  )
+  .command(
+    "compare <basepath> <targetpath>",
+    "compare two sets of screenshots",
+    (yargs) => {
+      return yargs
+        .positional("basepath", {
+          describe: "basepath directory",
+        })
+        .positional("targetpath", {
+          describe: "targetpath directory",
+        });
+    },
+    async (argv) => {
+      await compare(argv.basepath, argv.targetpath);
+    },
+  )
+  .command(
+    "chicken [message]",
+    false,
+    (yargs) => {
+      return yargs.positional("message", {
+        describe: "the message to say",
+        default: "Welcome\\nfriends",
+        hidden: true,
+      });
+    },
+    async (argv) => {
+      console.log(buildChicken(argv.message, argv.message));
+    },
+  )
+  .demand(1).argv;
