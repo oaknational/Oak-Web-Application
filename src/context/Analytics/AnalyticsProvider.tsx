@@ -49,6 +49,12 @@ export type IdentifyFn = (
    */
   services?: ServiceName[],
 ) => void;
+/**
+ * Alias a user id to another user id.
+ * This is useful when a user signs up and we want to associate their
+ * previously anonymous activity with their new account.
+ */
+export type AliasFn = (aliasId: UserId, userId: UserId) => void;
 
 export type TrackEventName = Extract<
   keyof typeof Avo,
@@ -67,6 +73,7 @@ export type TrackFns = Omit<
 export type AnalyticsContext = {
   track: TrackFns;
   identify: IdentifyFn;
+  alias?: AliasFn;
   posthogDistinctId: PosthogDistinctId | null;
 };
 
@@ -77,6 +84,7 @@ export type AnalyticsService<ServiceConfig> = {
   track: EventFn;
   page: PageFn;
   identify: IdentifyFn;
+  alias?: AliasFn;
   optOut: () => void;
   optIn: () => void;
 };
@@ -210,6 +218,12 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     },
     [hubspot, posthog],
   );
+  const alias: AliasFn = useCallback(
+    (aliasId, userId) => {
+      posthog.alias?.(aliasId, userId);
+    },
+    [posthog],
+  );
   /**
    * Event tracking
    * Object containing Track functions as defined in the Avo tracking plan.
@@ -229,9 +243,10 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     return {
       track,
       identify,
+      alias,
       posthogDistinctId,
     };
-  }, [track, identify, posthogDistinctId]);
+  }, [track, identify, posthogDistinctId, alias]);
 
   return (
     <analyticsContext.Provider value={analytics}>

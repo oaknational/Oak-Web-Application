@@ -19,7 +19,7 @@ export function resetUseTrackingRegistration() {
  * signing up through OWA
  */
 export function useTrackRegistration() {
-  const { track, posthogDistinctId } = useAnalytics();
+  const { track, posthogDistinctId, alias } = useAnalytics();
   const { user } = useUser();
   const lastUserRef = useRef(user);
 
@@ -63,10 +63,11 @@ export function useTrackRegistration() {
         eventVersion: "2.0.0",
         analyticsUseCase: null,
         singleSignOnService: pickSingleSignOnService(user),
-        userId_: posthogDistinctId,
+        userId_: user.id,
       });
     } else {
-      track.userSignIn({ userId_: posthogDistinctId });
+      track.userSignIn({ userId_: user.id });
+      alias && alias(posthogDistinctId, user.id);
     }
 
     // Set `lastTrackedSignInAt` to `lastSignInAt` so that we
@@ -80,7 +81,7 @@ export function useTrackRegistration() {
         },
       },
     });
-  }, [user, track, posthogDistinctId]);
+  }, [user, track, posthogDistinctId, alias]);
 
   // When the user is unset they have signed-out so we should track it
   useEffect(() => {
