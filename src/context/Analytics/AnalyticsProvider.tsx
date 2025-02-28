@@ -54,7 +54,7 @@ export type IdentifyFn = (
  * This is useful when a user signs up and we want to associate their
  * previously anonymous activity with their new account.
  */
-export type AliasFn = (userId: UserId, aliasId: UserId) => void;
+export type AliasFn = (aliasId: UserId, userId: UserId) => void;
 
 export type TrackEventName = Extract<
   keyof typeof Avo,
@@ -219,8 +219,8 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     [hubspot, posthog],
   );
   const alias: AliasFn = useCallback(
-    (userId, aliasId) => {
-      posthog.alias?.(userId, aliasId);
+    (aliasId, userId) => {
+      posthog.alias?.(aliasId, userId);
     },
     [posthog],
   );

@@ -47,7 +47,7 @@ export const posthogToAnalyticsServiceWithoutQueue = (
   identify: (userId, properties) => {
     client.identify(userId, properties);
   },
-  alias: (userId, aliasId) => {
+  alias: (aliasId, userId) => {
     client.alias(aliasId, userId);
   },
   page: () => {
