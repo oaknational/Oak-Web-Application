@@ -8,7 +8,9 @@ import {
   OakSecondaryLink,
   OakMaxWidth,
   OakBox,
+  OakIcon,
 } from "@oaknational/oak-components";
+import styled from "styled-components";
 
 import Illustration from "@/components/SharedComponents/Illustration";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
@@ -18,6 +20,44 @@ import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPha
 type CurriculumDownloadTabProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
 };
+
+const IconWrapper = styled.div`
+  position: absolute;
+  width: 72%;
+  height: 540px;
+  z-index: 90;
+  bottom: -157px;
+  right: -120px;
+
+  @media (max-width: 1493px) and (min-width: 1450px) {
+    right: calc(-120px + 1.5vw);
+  }
+
+  @media (max-width: 1450px) and (min-width: 1420px) {
+    right: calc(-120px + 3vw);
+  }
+
+  @media (max-width: 1420px) and (min-width: 1400px) {
+    right: calc(-120px + 4vw);
+  }
+
+  @media (max-width: 1413px) and (min-width: 1381px) {
+    right: calc(-120px + 5vw);
+  }
+
+  @media (max-width: 1380px) and (min-width: 1341px) {
+    right: calc(-120px + 6vw);
+  }
+
+  @media (max-width: 1340px) and (min-width: 1281px) {
+    right: calc(-120px + 7.5vw);
+  }
+
+  @media (max-width: 1280px) {
+    display: none;
+  }
+`;
+
 const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
   curriculumPhaseOptions,
 }) => {
@@ -88,7 +128,11 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
             $flexGrow={1}
             $display={["none", "flex", "flex"]}
           >
-            <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
+            <OakFlex
+              $flexDirection={"column"}
+              $gap="all-spacing-2"
+              $position={"relative"}
+            >
               <Illustration
                 $transform={["none", "none", "rotate(-2deg)"]}
                 slug={"teacher-whiteboard"}
@@ -99,7 +143,17 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
                 width={520}
                 $borderStyle={"solid"}
                 $borderColor={"black"}
+                $zIndex={"fixedHeader"}
               />
+
+              <IconWrapper>
+                <OakIcon
+                  iconName={"looping-line-5"}
+                  $colorFilter={"white"}
+                  $width={"100%"}
+                  $height={"100%"}
+                />
+              </IconWrapper>
             </OakFlex>
           </OakFlex>
         </OakFlex>

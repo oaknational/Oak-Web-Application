@@ -261,11 +261,11 @@ exports[`CurriculumTab renders 1`] = `
               class="sc-fqkvVR sc-gsFSXq ivrxlG gdRCvt"
             >
               <div
-                class="sc-fqkvVR sc-gsFSXq fgBWrW imOBLi"
+                class="sc-fqkvVR sc-gsFSXq cVTiFC imOBLi"
               >
                 <img
                   alt=""
-                  class="sc-6170517-0 geyTVX"
+                  class="sc-6170517-0 lnqwbG"
                   data-nimg="1"
                   decoding="async"
                   fetchpriority="high"
@@ -275,6 +275,23 @@ exports[`CurriculumTab renders 1`] = `
                   style="color: transparent;"
                   width="520"
                 />
+                <div
+                  class="sc-a9830b5a-0 jCuiZA"
+                >
+                  <div
+                    class="sc-fqkvVR bHatqy"
+                  >
+                    <img
+                      alt="looping-line-5"
+                      class="sc-dcJsrY bDcxkE"
+                      data-nimg="fill"
+                      decoding="async"
+                      loading="lazy"
+                      src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
+                      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
