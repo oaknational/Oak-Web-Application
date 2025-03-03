@@ -63,9 +63,27 @@ describe("HeaderListing", () => {
     );
     const unitDownloadButton = screen.getByRole("button");
     userEvent.click(unitDownloadButton);
-    const banner = await screen.findByText(
+    const banner = await screen.findAllByText(
       "Downloads may take a few minutes on slower Wi-Fi connections.",
     );
-    expect(banner).toBeInTheDocument();
+    expect(banner[0]).toBeInTheDocument();
+  });
+  it("renders RiskAssessmentBanner if showRiskAssessmentBanner prop is set to true", async () => {
+    renderWithTheme(
+      <HeaderListing {...props} showRiskAssessmentBanner={true} />,
+    );
+    const banner = await screen.findAllByText("for all practical PE lessons", {
+      exact: false,
+    });
+    expect(banner[0]).toBeInTheDocument();
+  });
+  it("does not render RiskAssessmentBanner if showRiskAssessmentBanner prop is set to false", async () => {
+    renderWithTheme(
+      <HeaderListing {...props} showRiskAssessmentBanner={false} />,
+    );
+    const banner = await screen.queryByText("for all practical PE lessons", {
+      exact: false,
+    });
+    expect(banner).not.toBeInTheDocument();
   });
 });
