@@ -263,5 +263,37 @@ describe("useResourceFormState", () => {
         expect(mockSetTermsInLocalStorageFn).toHaveBeenCalledWith(true),
       );
     });
+    test('should set school as "notListed" when hubspot returns empty string for values', async () => {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const useFormSpy = jest.spyOn(require("react-hook-form"), "useForm");
+      setUseUserReturn({
+        ...mockLoggedIn,
+        user: mockTeacherUserWithDownloadAccess,
+      });
+
+      (fetchHubspotContactDetails as jest.Mock).mockResolvedValue({
+        schoolName: "",
+        schoolId: "",
+      });
+      (onboardingActions.getSubscriptionStatus as jest.Mock).mockResolvedValue(
+        true,
+      );
+
+      useFormSpy.mockImplementation(() => {
+        const result = actualUseForm();
+        return {
+          ...result,
+          setValue: mockSetValue,
+        };
+      });
+      renderHook(() => useResourceFormState({ ...downloadProps }));
+
+      await waitFor(() =>
+        expect(mockSetSchoolInLocalStorageFn).toHaveBeenCalledWith({
+          schoolId: "notListed",
+          schoolName: "notListed",
+        }),
+      );
+    });
   });
 });

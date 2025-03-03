@@ -8,17 +8,18 @@ import * as downloadResources from "@/node-lib/curriculum-api-2023/fixtures/down
 import * as shareResources from "@/node-lib/curriculum-api-2023/fixtures/shareableResources.fixture";
 
 const sortOrderKey = {
-  presentation: 1,
-  "worksheet-pdf": 2,
-  "worksheet-pptx": 3,
-  "intro-quiz-questions": 4,
-  "intro-quiz-answers": 5,
-  "exit-quiz-questions": 6,
-  "exit-quiz-answers": 7,
-  "supplementary-pdf": 8,
-  "supplementary-docx": 9,
-  video: 10,
-  "curriculum-pdf": 11,
+  "lesson-guide-pdf": 1,
+  presentation: 2,
+  "worksheet-pdf": 3,
+  "worksheet-pptx": 4,
+  "intro-quiz-questions": 5,
+  "intro-quiz-answers": 6,
+  "exit-quiz-questions": 7,
+  "exit-quiz-answers": 8,
+  "supplementary-pdf": 9,
+  "supplementary-docx": 10,
+  video: 11,
+  "curriculum-pdf": 12,
 };
 
 describe("sortResources", () => {

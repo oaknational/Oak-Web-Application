@@ -24,6 +24,8 @@ const lessonDataSchema = z.object({
             }),
           )
           .optional(),
+        fileSize: z.string().optional(),
+        ext: z.string().optional(),
       }),
     ]),
   ),
