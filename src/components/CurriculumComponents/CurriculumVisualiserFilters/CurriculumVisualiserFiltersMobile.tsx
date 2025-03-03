@@ -86,10 +86,15 @@ const StyledButtonGroup = styled(ButtonGroup)`
 function StickyBit({
   onOpenModal,
   filters,
-  onChangeFilters,
   data,
   trackingData,
-}: CurriculumVisualiserFiltersProps & { onOpenModal: () => void }) {
+  selectedYear,
+  onSelectYear,
+}: CurriculumVisualiserFiltersProps & {
+  selectedYear: string;
+  onSelectYear: (newYear: string) => void;
+  onOpenModal: () => void;
+}) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
@@ -102,13 +107,6 @@ function StickyBit({
     filters,
     filters.threads,
   );
-
-  const onSelectYear = (newYear: string) => {
-    onChangeFilters({
-      ...filters,
-      years: [newYear],
-    });
-  };
 
   function trackSelectYear(year: string): void {
     if (trackingData) {
@@ -127,7 +125,7 @@ function StickyBit({
     threadOptions.find((t) => t.slug === selectedThread);
 
   function isSelectedYear(yearOption: string) {
-    return filters.years.length === 1 && filters.years[0] === yearOption;
+    return selectedYear === yearOption;
   }
 
   function scrollToYearSection(yearOption: string) {
@@ -416,7 +414,12 @@ export default function CurriculumVisualiserFiltersMobile({
   onChangeFilters,
   data,
   trackingData,
-}: CurriculumVisualiserFiltersProps) {
+  selectedYear,
+  onSelectYear,
+}: CurriculumVisualiserFiltersProps & {
+  selectedYear: string;
+  onSelectYear: (newYear: string) => void;
+}) {
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
 
@@ -438,6 +441,8 @@ export default function CurriculumVisualiserFiltersMobile({
     <StickyBit
       onOpenModal={handleMobileThreadModal}
       filters={filters}
+      selectedYear={selectedYear}
+      onSelectYear={onSelectYear}
       onChangeFilters={onChangeFilters}
       data={data}
       trackingData={trackingData}

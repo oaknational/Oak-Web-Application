@@ -39,6 +39,7 @@ export default function UnitsTab({
   const { ks4OptionSlug } = trackingData;
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
+  const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
   const selectedYear = filters.years.length === 1 ? filters.years[0]! : "all";
 
   const unitCount = getNumberOfSelectedUnits(yearData, selectedYear, filters);
@@ -77,6 +78,10 @@ export default function UnitsTab({
     onChangeFilters(newFilters);
   }
 
+  const setVisibleMobileYearRefID = (refId: string) => {
+    setMobileSelectedYear(refId);
+  };
+
   return (
     <OakBox>
       <OakBox
@@ -108,6 +113,8 @@ export default function UnitsTab({
           the national curriculum.
         </OakP>
         <CurriculumVisualiserFiltersMobile
+          selectedYear={mobileSelectedYear}
+          onSelectYear={setMobileSelectedYear}
           filters={filters}
           onChangeFilters={onChangeFiltersLocal}
           data={formattedData}
@@ -129,7 +136,7 @@ export default function UnitsTab({
               ks4OptionSlug={ks4OptionSlug}
               yearData={yearData}
               setUnitData={setUnitData}
-              setVisibleMobileYearRefID={() => {}}
+              setVisibleMobileYearRefID={setVisibleMobileYearRefID}
             />
           }
         />
