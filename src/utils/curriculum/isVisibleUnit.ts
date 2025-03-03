@@ -23,7 +23,7 @@ export function isVisibleUnit(
     filters.childSubjects[0] === unit.subject_slug;
 
   const filterBySubjectCategory =
-    !filters.subjectCategories ||
+    !filters.subjectCategories?.[0] ||
     (filters.subjectCategories.length > 0 &&
       filters.subjectCategories?.[0] === "-1") ||
     unit.subjectcategories?.findIndex(
