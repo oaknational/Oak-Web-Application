@@ -117,3 +117,7 @@ export function buildPageTitle(
   }
   return pageTitle;
 }
+
+export function joinWords(str: string[]) {
+  return str.filter((str) => str !== "").join(" ");
+}

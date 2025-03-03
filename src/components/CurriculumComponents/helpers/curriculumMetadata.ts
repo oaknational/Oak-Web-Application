@@ -1,5 +1,6 @@
 import {
   formatKeystagesShort,
+  joinWords,
   subjectTitleWithCase,
 } from "@/utils/curriculum/formatting";
 
@@ -29,30 +30,52 @@ export const buildCurriculumMetadata = (
   if (props.tab === "overview" && props.metadataType === "title") {
     const examboard = getExamboardFromSlug(props);
 
-    return `${keyStagesStr} ${subjectTitleWithCase(
-      props.subjectTitle,
-    )} ${examboard} curriculum explainer`;
+    return joinWords([
+      keyStagesStr,
+      subjectTitleWithCase(props.subjectTitle),
+      examboard,
+      `curriculum explainer`,
+    ]);
   } else if (props.tab === "overview" && props.metadataType === "description") {
-    return `Looking for ${keyStagesStr} ${subjectTitleWithCase(
-      props.subjectTitle,
-    )} curriculum? We have sequenced curriculum plans, select by key stage. Our free resources are easy to browse and explore.`;
+    return joinWords([
+      `Looking for`,
+      keyStagesStr,
+      subjectTitleWithCase(props.subjectTitle),
+      `curriculum? We have sequenced curriculum plans, select by key stage. Our free resources are easy to browse and explore.`,
+    ]);
   } else if (props.tab === "units" && props.metadataType === "title") {
     const examboard = getExamboardFromSlug(props);
-    return `${keyStagesStr} ${subjectTitleWithCase(
-      props.subjectTitle,
-    )} ${examboard} curriculum unit sequence`;
+    return joinWords([
+      keyStagesStr,
+      subjectTitleWithCase(props.subjectTitle),
+      examboard,
+      `curriculum unit sequence`,
+    ]);
   } else if (props.tab === "units" && props.metadataType === "description") {
-    return `Explore our free ${keyStagesStr} ${props.subjectSlug} curriculum unit sequences, easily select units and topics and view in our interactive tool now.`;
+    return joinWords([
+      `Explore our free`,
+      keyStagesStr,
+      subjectTitleWithCase(props.subjectTitle),
+      `curriculum unit sequences, easily select units and topics and view in our interactive tool now.`,
+    ]);
   } else if (
     props.tab === "downloads" &&
     props.metadataType === "description"
   ) {
-    return `Explore our free ${keyStagesStr} ${props.subjectSlug} curriculum unit downloads.`;
+    return joinWords([
+      `Explore our free`,
+      keyStagesStr,
+      subjectTitleWithCase(props.subjectTitle),
+      subjectTitleWithCase(`curriculum unit downloads.`),
+    ]);
   } else if (props.tab === "downloads" && props.metadataType === "title") {
     const examboard = getExamboardFromSlug(props);
-    return `${keyStagesStr} ${subjectTitleWithCase(
-      props.subjectTitle,
-    )} ${examboard} curriculum downloads`;
+    return joinWords([
+      keyStagesStr,
+      subjectTitleWithCase(props.subjectTitle),
+      examboard,
+      `curriculum downloads`,
+    ]);
   } else {
     throw new Error('Invalid input for "metadataType" or "tab"');
   }

@@ -5,6 +5,7 @@ import {
   getSuffixFromFeatures,
   buildPageTitle,
   formatKeystagesShort,
+  joinWords,
 } from "./formatting";
 
 describe("getYearGroupTitle", () => {
@@ -306,5 +307,15 @@ describe("formatKeystagesShort", () => {
     expect(formatKeystagesShort(["ks1", "ks2"])).toEqual("KS1-2");
     expect(formatKeystagesShort(["ks3", "ks4"])).toEqual("KS3-4");
     expect(formatKeystagesShort(["ks1", "ks3"])).toEqual("");
+  });
+});
+
+describe("joinWords", () => {
+  it("no empty words", () => {
+    expect(joinWords(["one", "two", "three"])).toEqual("one two three");
+  });
+
+  it("with empty words", () => {
+    expect(joinWords(["one", "", "two", "", "three"])).toEqual("one two three");
   });
 });

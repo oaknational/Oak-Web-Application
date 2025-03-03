@@ -56,11 +56,11 @@ describe("buildCurriculumMetadata", () => {
       metadataType: "description",
       tab: "units",
       keyStages: ["ks3", "ks4"],
-      subjectSlug: "history",
-      subjectTitle: "History",
+      subjectSlug: "physical-education",
+      subjectTitle: "Physical education",
     });
     expect(result).toBe(
-      "Explore our free KS3-4 history curriculum unit sequences, easily select units and topics and view in our interactive tool now.",
+      "Explore our free KS3-4 physical education curriculum unit sequences, easily select units and topics and view in our interactive tool now.",
     );
   });
 
@@ -69,11 +69,11 @@ describe("buildCurriculumMetadata", () => {
       metadataType: "description",
       tab: "downloads",
       keyStages: ["ks3", "ks4"],
-      subjectSlug: "history",
-      subjectTitle: "History",
+      subjectSlug: "physical-education",
+      subjectTitle: "Physical education",
     });
     expect(result).toBe(
-      "Explore our free KS3-4 history curriculum unit downloads.",
+      "Explore our free KS3-4 physical education curriculum unit downloads.",
     );
   });
 
