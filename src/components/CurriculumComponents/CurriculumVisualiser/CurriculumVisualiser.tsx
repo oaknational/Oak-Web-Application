@@ -462,6 +462,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             displayModal={displayModal}
             setUnitOptionsAvailable={setUnitOptionsAvailable}
             unitOptionsAvailable={unitOptionsAvailable}
+            selectedThread={selectedThread}
           />
         </UnitsTabSidebar>
       )}

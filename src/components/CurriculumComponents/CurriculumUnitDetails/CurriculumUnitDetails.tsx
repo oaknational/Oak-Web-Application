@@ -12,6 +12,7 @@ import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import CurriculumUnitDetailsAccordion from "@/components/CurriculumComponents/CurriculumUnitDetailsAccordion";
 import { Thread } from "@/utils/curriculum/types";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurriculumUnitDetailsProps = {
   unitTitle?: string;
@@ -24,6 +25,9 @@ export type CurriculumUnitDetailsProps = {
   whyThisWhyNow: string | null;
   description: string | null;
   cycle: string;
+  handleUnitOverviewExploredAnalytics: (
+    componentType: ComponentTypeValueType,
+  ) => void;
 };
 
 export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
@@ -36,6 +40,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   whyThisWhyNow,
   description,
   cycle,
+  handleUnitOverviewExploredAnalytics,
 }) => {
   const threadTitleSet = new Set<string>(threads.map((thread) => thread.title));
 
@@ -101,7 +106,12 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
             )}
 
             {whyThisWhyNow && (
-              <CurriculumUnitDetailsAccordion title="Why this why now">
+              <CurriculumUnitDetailsAccordion
+                title="Why this why now"
+                handleUnitOverviewExploredAnalytics={
+                  handleUnitOverviewExploredAnalytics
+                }
+              >
                 <OakP $mb="space-between-xs" $font={"body-2"}>
                   {whyThisWhyNow}
                 </OakP>
@@ -114,6 +124,9 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
           <CurriculumUnitDetailsAccordion
             title="Lessons in unit"
             lastAccordion={cycle === "2"}
+            handleUnitOverviewExploredAnalytics={
+              handleUnitOverviewExploredAnalytics
+            }
           >
             <OakOL $mt="space-between-none" data-testid="lesson-title-list">
               {lessons &&
@@ -127,7 +140,12 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
         {cycle === "1" && (
           <>
             {priorUnitDescription && (
-              <CurriculumUnitDetailsAccordion title="Previous unit description">
+              <CurriculumUnitDetailsAccordion
+                title="Previous unit description"
+                handleUnitOverviewExploredAnalytics={
+                  handleUnitOverviewExploredAnalytics
+                }
+              >
                 <OakP $mb="space-between-xs" $font={"body-2-bold"}>
                   {priorUnitTitle}
                 </OakP>
@@ -140,6 +158,9 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
             {futureUnitDescription && (
               <CurriculumUnitDetailsAccordion
                 title="Following unit description"
+                handleUnitOverviewExploredAnalytics={
+                  handleUnitOverviewExploredAnalytics
+                }
                 lastAccordion={true}
               >
                 <OakP $mb="space-between-xs" $font={"body-2-bold"}>
