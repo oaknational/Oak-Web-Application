@@ -1,3 +1,15 @@
+# [1.702.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.701.0...v1.702.0) (2025-03-03)
+
+
+### Bug Fixes
+
+* change aria-label to remove chevron-right in a11y text ([d19a435](https://github.com/oaknational/Oak-Web-Application/commit/d19a435ad4f4c66d1786f82526e56d8216f3134d))
+
+
+### Features
+
+* use OakPrimaryButton to link to lesson resources ([c67d695](https://github.com/oaknational/Oak-Web-Application/commit/c67d695a88bf725f9fb96ca477fd461f3d7eb56f))
+
 # [1.701.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.700.1...v1.701.0) (2025-03-03)
 
 
