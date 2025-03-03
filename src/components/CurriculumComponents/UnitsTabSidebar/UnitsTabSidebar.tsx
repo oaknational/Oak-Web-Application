@@ -29,6 +29,14 @@ const IconButtonFocusVisible = styled(IconButton)`
   }
 `;
 
+export const areLessonsAvailable = (lessons: Lesson[] | null): boolean => {
+  return (
+    (lessons &&
+      lessons.some((lesson: Lesson) => lesson._state === "published")) ||
+    false
+  );
+};
+
 type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;
   onClose: () => void;
@@ -52,15 +60,8 @@ const UnitsTabSidebar: FC<ModalProps> = ({
   unitData,
 }) => {
   const { track } = useAnalytics();
-  const getLessonsAvailable = (lessons: Lesson[] | null): boolean => {
-    return (
-      (lessons &&
-        lessons.some((lesson: Lesson) => lesson._state === "published")) ||
-      false
-    );
-  };
 
-  const lessonsAvailable = getLessonsAvailable(lessons);
+  const lessonsAvailable = areLessonsAvailable(lessons);
 
   let resolvedUnitSlug: string = "";
   if (unitSlug && unitData) {
