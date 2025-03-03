@@ -7,17 +7,17 @@
     "name": "Oak's Tracking Plan"
   },
   "branch": {
-    "id": "master",
-    "name": "main"
+    "id": "3epC1GU5B28NpmcznfA65",
+    "name": "aila-add-access-property"
   },
   "sources": [
     {
       "id": "OXY1Uf7nb",
       "name": "Oak Web Application",
       "path": "src/browser-lib/avo/Avo.ts",
-      "actionId": "It14PIMPygt73mK2It9C",
-      "branchId": "master",
-      "updatedAt": "2025-01-31T10:09:09.871Z"
+      "actionId": "Xbm6Imdtf0E7VyGnOS5p",
+      "branchId": "3epC1GU5B28NpmcznfA65",
+      "updatedAt": "2025-02-20T11:13:43.863Z"
     }
   ],
   "force": false
