@@ -119,6 +119,7 @@ export default function UnitsTab({
           onChangeFilters={onChangeFiltersLocal}
           data={formattedData}
           trackingData={trackingData}
+          onOpenModal={() => {}}
         />
         <CurriculumVisualiserLayout
           filters={

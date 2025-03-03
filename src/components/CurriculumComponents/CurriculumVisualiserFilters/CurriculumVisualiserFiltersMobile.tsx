@@ -15,6 +15,13 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Thread } from "@/utils/curriculum/types";
 
+export type CurriculumVisualiserFiltersMobileProps =
+  CurriculumVisualiserFiltersProps & {
+    selectedYear: string;
+    onSelectYear: (newYear: string) => void;
+    onOpenModal: () => void;
+  };
+
 const StyledButton = styled("button")`
   all: unset;
   color: inherit;
@@ -90,11 +97,7 @@ function StickyBit({
   trackingData,
   selectedYear,
   onSelectYear,
-}: CurriculumVisualiserFiltersProps & {
-  selectedYear: string;
-  onSelectYear: (newYear: string) => void;
-  onOpenModal: () => void;
-}) {
+}: CurriculumVisualiserFiltersMobileProps) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 
@@ -416,10 +419,7 @@ export default function CurriculumVisualiserFiltersMobile({
   trackingData,
   selectedYear,
   onSelectYear,
-}: CurriculumVisualiserFiltersProps & {
-  selectedYear: string;
-  onSelectYear: (newYear: string) => void;
-}) {
+}: CurriculumVisualiserFiltersMobileProps) {
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
 
