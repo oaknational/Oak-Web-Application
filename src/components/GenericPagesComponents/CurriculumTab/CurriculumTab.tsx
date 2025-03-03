@@ -149,7 +149,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
               <IconWrapper>
                 <OakIcon
                   iconName={"looping-line-5"}
-                  $colorFilter={"white"}
+                  $colorFilter={"mint30"}
                   $width={"100%"}
                   $height={"100%"}
                 />
