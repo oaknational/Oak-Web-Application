@@ -1,3 +1,11 @@
+# [1.701.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.700.1...v1.701.0) (2025-03-03)
+
+
+### Features
+
+* add sentry and integrate it with error reporting ([f7d8ae3](https://github.com/oaknational/Oak-Web-Application/commit/f7d8ae39c7c57aba012fdc89936f880db9d0f13e))
+* add sentry and supporting env var config ([a458cc5](https://github.com/oaknational/Oak-Web-Application/commit/a458cc5bbdca88b35a6e0da6b6110c69c0da5ff9))
+
 ## [1.700.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.700.0...v1.700.1) (2025-02-27)
 
 
