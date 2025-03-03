@@ -22,6 +22,7 @@ import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 import { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { buildPageTitle } from "@/utils/curriculum/formatting";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 export type CurriculumHeaderPageProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -205,7 +206,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               trackingData={{
                 subjectSlug: currentSelection.subject.slug,
                 subjectTitle: currentSelection.subject.title,
-                phaseSlug: currentSelection.phase.slug,
+                phaseSlug: currentSelection.phase.slug as PhaseValueType,
                 tab: tab,
               }}
             />
