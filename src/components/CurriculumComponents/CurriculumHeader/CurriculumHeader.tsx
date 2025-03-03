@@ -202,6 +202,12 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
               variant="flat"
               $alignItems={"center"}
               $height={[60, 64]}
+              trackingData={{
+                subjectSlug: currentSelection.subject.slug,
+                subjectTitle: currentSelection.subject.title,
+                phaseSlug: currentSelection.phase.slug,
+                tab: tab,
+              }}
             />
           </OakBox>
         </Flex>
