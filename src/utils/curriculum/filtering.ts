@@ -54,7 +54,10 @@ export function getDefaultSubjectCategoriesForYearGroup(
       ),
     )
     .map((s) => String(s.id));
-  return [subjectCategories[0]!];
+  if (subjectCategories.length > 0) {
+    return [subjectCategories[0]!];
+  }
+  return [];
 }
 export function getDefaultTiersForYearGroup(data: CurriculumUnitsYearData) {
   const set = new Set<Tier>();
