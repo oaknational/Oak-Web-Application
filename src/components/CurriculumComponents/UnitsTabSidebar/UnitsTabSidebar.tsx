@@ -150,6 +150,11 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                         isTrailingIcon={true}
                         disabled={!lessonsAvailable}
                         element={lessonsAvailable ? "a" : "button"}
+                        aria-label={
+                          !lessonsAvailable
+                            ? "Coming soon See lessons in unit"
+                            : "See lessons in unit"
+                        }
                         aria-disabled={!lessonsAvailable ? "true" : "false"}
                         {...(lessonsAvailable && { href: lessonPageHref })}
                       >
