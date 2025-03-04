@@ -8,7 +8,7 @@ import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsPro
 const reportError = errorReporter("useVideoTracking");
 
 /**
- * Sends a warning to error monitoring if props are malformed so don't call this every
+ * Sends a warning to bugsnag if props are malformed so don't call this every
  * render, instead call it when a track event is called
  * @todo use zod for this
  */
