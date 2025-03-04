@@ -2,7 +2,6 @@ const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
 const path = require("path");
 
 const { withSentryConfig } = require("@sentry/nextjs");
-const { sentryWebpackPlugin } = require("@sentry/webpack-plugin");
 const StatoscopeWebpackPlugin = require("@statoscope/webpack-plugin").default;
 const CopyPlugin = require("copy-webpack-plugin");
 const {
@@ -79,235 +78,243 @@ module.exports = async (phase) => {
   const imageDomains = ["image.mux.com", SANITY_ASSET_CDN_HOST].filter(Boolean);
 
   /** @type {import('next').NextConfig} */
-  const nextConfig = {
-    webpack: (config, { dev, defaultLoaders, isServer }) => {
-      /**
-       * Enable inlining of SVGs as components
-       * @see https://react-svgr.com/docs/next/
-       */
-      // Grab the existing rule that handles SVG imports
-      const fileLoaderRule = config.module.rules.find((rule) =>
-        rule.test?.test?.(".svg"),
-      );
-      config.module.rules.push(
-        // Reapply the existing rule, but only for svg imports ending in ?url
-        {
-          ...fileLoaderRule,
-          test: /\.svg$/i,
-          resourceQuery: /url/, // *.svg?url
-        },
-        // Convert all other *.svg imports to React components
-        {
-          test: /\.svg$/i,
-          issuer: /\.[jt]sx?$/,
-          resourceQuery: { not: /url/ }, // exclude if *.svg?url
-          use: [
-            defaultLoaders.babel,
-            {
-              loader: "@svgr/webpack",
-              options: {
-                babel: false,
-                svgoConfig: {
-                  plugins: [
-                    {
-                      name: "cleanupIds",
-                      params: {
-                        active: false,
+  const nextConfig = withSentryConfig(
+    {
+      webpack: (config, { dev, defaultLoaders, isServer }) => {
+        /**
+         * Enable inlining of SVGs as components
+         * @see https://react-svgr.com/docs/next/
+         */
+        // Grab the existing rule that handles SVG imports
+        const fileLoaderRule = config.module.rules.find((rule) =>
+          rule.test?.test?.(".svg"),
+        );
+        config.module.rules.push(
+          // Reapply the existing rule, but only for svg imports ending in ?url
+          {
+            ...fileLoaderRule,
+            test: /\.svg$/i,
+            resourceQuery: /url/, // *.svg?url
+          },
+          // Convert all other *.svg imports to React components
+          {
+            test: /\.svg$/i,
+            issuer: /\.[jt]sx?$/,
+            resourceQuery: { not: /url/ }, // exclude if *.svg?url
+            use: [
+              defaultLoaders.babel,
+              {
+                loader: "@svgr/webpack",
+                options: {
+                  babel: false,
+                  svgoConfig: {
+                    plugins: [
+                      {
+                        name: "cleanupIds",
+                        params: {
+                          active: false,
+                        },
                       },
-                    },
-                    {
-                      name: "prefixIds",
-                      params: {
-                        prefixIds: false,
+                      {
+                        name: "prefixIds",
+                        params: {
+                          prefixIds: false,
+                        },
                       },
-                    },
-                  ],
+                    ],
+                  },
                 },
               },
-            },
-          ],
-        },
-      );
-      // Modify the file loader rule to ignore *.svg, since we have it handled now.
-      fileLoaderRule.exclude = /\.svg$/i;
-
-      if (!dev && !isServer) {
-        config.plugins.push(
-          new StatoscopeWebpackPlugin({
-            saveReportTo: "./reports/report-[name]-[hash].html",
-            saveStatsTo: "./reports/stats-[name]-[hash].json",
-            open: false,
-            statsOptions: {
-              all: true,
-              source: true,
-            },
-          }),
+            ],
+          },
         );
-      }
+        // Modify the file loader rule to ignore *.svg, since we have it handled now.
+        fileLoaderRule.exclude = /\.svg$/i;
 
-      config.plugins.push(
-        new CopyPlugin({
-          patterns: [
-            {
-              from: path.join(__dirname, "node_modules/mathjax/es5"),
-              to: path.join(__dirname, "public/mathjax"),
-            },
-          ],
-        }),
-      );
+        if (!dev && !isServer) {
+          config.plugins.push(
+            new StatoscopeWebpackPlugin({
+              saveReportTo: "./reports/report-[name]-[hash].html",
+              saveStatsTo: "./reports/stats-[name]-[hash].json",
+              open: false,
+              statsOptions: {
+                all: true,
+                source: true,
+              },
+            }),
+          );
+        }
 
-      // Production and preview builds
-      if (!dev && !isTestBuild) {
-        // Add source maps.
-        config.devtool = "source-map";
-        console.log("Building source-maps");
-      }
-      // Production builds only.
-      if (!dev && isProductionBuild && isNextjsProductionBuildPhase) {
-        // Tell Bugsnag about the build.
-        const bugsnagBuildInfo = {
-          apiKey: oakConfig.bugsnag.apiKey,
-          appVersion,
-          releaseStage,
-        };
         config.plugins.push(
-          new BugsnagBuildReporterPlugin(bugsnagBuildInfo, {
-            logLevel: "error",
+          new CopyPlugin({
+            patterns: [
+              {
+                from: path.join(__dirname, "node_modules/mathjax/es5"),
+                to: path.join(__dirname, "public/mathjax"),
+              },
+            ],
           }),
         );
 
-        // Upload production sourcemaps
-        const bugsnagSourcemapInfo = {
-          apiKey: oakConfig.bugsnag.apiKey,
-          appVersion,
-          publicPath: "https://*/_next/",
-          overwrite: true,
-        };
-        config.plugins.push(
-          new BugsnagSourceMapUploaderPlugin(bugsnagSourcemapInfo),
-        );
+        // Production and preview builds
+        if (!dev && !isTestBuild) {
+          // Add source maps.
+          config.devtool = "source-map";
+          console.log("Building source-maps");
+        }
+        // Production builds only.
+        if (!dev && isProductionBuild && isNextjsProductionBuildPhase) {
+          // Tell Bugsnag about the build.
+          const bugsnagBuildInfo = {
+            apiKey: oakConfig.bugsnag.apiKey,
+            appVersion,
+            releaseStage,
+          };
+          config.plugins.push(
+            new BugsnagBuildReporterPlugin(bugsnagBuildInfo, {
+              logLevel: "error",
+            }),
+          );
 
-        // Upload production sourcemaps to Sentry
-        config.plugins.push(
-          sentryWebpackPlugin({
-            authToken: oakConfig.sentry.authToken,
-            org: oakConfig.sentry.organisationIdentifier,
-            project: oakConfig.sentry.projectIdentifier,
-            release: appVersion,
-            widenClientFileUpload: true,
-            reactComponentAnnotation: {
-              enabled: true,
-            },
-          }),
-        );
-      }
+          // Upload production sourcemaps
+          const bugsnagSourcemapInfo = {
+            apiKey: oakConfig.bugsnag.apiKey,
+            appVersion,
+            publicPath: "https://*/_next/",
+            overwrite: true,
+          };
+          config.plugins.push(
+            new BugsnagSourceMapUploaderPlugin(bugsnagSourcemapInfo),
+          );
+        }
 
-      return config;
-    },
-    poweredByHeader: false,
-    reactStrictMode: true,
-    compiler: {
-      styledComponents: true,
-    },
-    swcMinify: true,
+        return config;
+      },
+      poweredByHeader: false,
+      reactStrictMode: true,
+      compiler: {
+        styledComponents: true,
+      },
+      swcMinify: true,
 
-    // Allow static builds with deleted beta pages to build.
-    eslint: {
-      ignoreDuringBuilds: isStaticWWWBuild,
-    },
-    // Allow static builds with deleted beta pages to build.
-    typescript: {
-      ignoreBuildErrors: isStaticWWWBuild,
-    },
-    // Need this so static URLs and dynamic URLs match.
-    trailingSlash: false,
-    // Make sure production source maps exist for e.g. Bugsnag
-    productionBrowserSourceMaps: true,
-    images: {
-      remotePatterns: [
-        {
-          protocol: "https",
-          hostname: "**.googleusercontent.com",
-        },
-        {
-          protocol: "https",
-          hostname: "storage.googleapis.com",
-        },
-        {
-          protocol: "https",
-          hostname: "oaknationalacademy-res.cloudinary.com",
-          pathname: "/**",
-        },
-        {
-          protocol: "https",
-          hostname: "res.cloudinary.com",
-          pathname: "/**",
-        },
-      ],
-      // Allow static builds with the default image loader.
-      // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
-      // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
-      unoptimized: isStaticBuild,
-      domains: imageDomains,
-    },
-    async redirects() {
-      return [
-        {
-          source: "/pupils/lessons/:lessonSlug",
-          destination: "/pupils/lessons/:lessonSlug/overview",
-          permanent: true,
-        },
-        {
-          source: "/pupils/beta/previews/lessons/:lessonSlug",
-          destination: "/pupils/beta/previews/lessons/:lessonSlug/overview",
-          permanent: true,
-        },
-        {
-          source:
-            "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
-          destination:
-            "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
-          permanent: true,
-        },
-        {
-          source: "/pupils/l/:redirectFrom/lessons/:lessonSlug",
-          destination: "/pupils/l/:redirectFrom/lessons/:lessonSlug/overview",
-          permanent: true,
-        },
-      ];
-    },
-    async rewrites() {
-      // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs
-      return releaseStage === "development"
-        ? [
-            {
-              source: "/ingest/static/:path*",
-              destination: "https://eu-assets.i.posthog.com/static/:path*",
-            },
-            {
-              source: "/ingest/:path*",
-              destination: "https://eu.i.posthog.com/:path*",
-            },
-            {
-              source: "/ingest/decide",
-              destination: "https://eu.i.posthog.com/decide",
-            },
-          ]
-        : [];
-    },
-    // Required for the posthog reverse proxy, but interferes with static URL redirections so we don't want this applied on production
-    skipTrailingSlashRedirect: releaseStage === "development",
-
-    // Remove SWC from the output bundle as it is bloating the bundle size and causing issues with Netlify limits
-    experimental: {
-      outputFileTracingExcludes: {
-        "*": [
-          "node_modules/@swc/core-linux-*-gnu/**/*",
-          "node_modules/@swc/core-linux-*-musl/**/*",
+      // Allow static builds with deleted beta pages to build.
+      eslint: {
+        ignoreDuringBuilds: isStaticWWWBuild,
+      },
+      // Allow static builds with deleted beta pages to build.
+      typescript: {
+        ignoreBuildErrors: isStaticWWWBuild,
+      },
+      // Need this so static URLs and dynamic URLs match.
+      trailingSlash: false,
+      // Make sure production source maps exist for e.g. Bugsnag
+      productionBrowserSourceMaps: true,
+      images: {
+        remotePatterns: [
+          {
+            protocol: "https",
+            hostname: "**.googleusercontent.com",
+          },
+          {
+            protocol: "https",
+            hostname: "storage.googleapis.com",
+          },
+          {
+            protocol: "https",
+            hostname: "oaknationalacademy-res.cloudinary.com",
+            pathname: "/**",
+          },
+          {
+            protocol: "https",
+            hostname: "res.cloudinary.com",
+            pathname: "/**",
+          },
         ],
+        // Allow static builds with the default image loader.
+        // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
+        // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
+        unoptimized: isStaticBuild,
+        domains: imageDomains,
+      },
+      async redirects() {
+        return [
+          {
+            source: "/pupils/lessons/:lessonSlug",
+            destination: "/pupils/lessons/:lessonSlug/overview",
+            permanent: true,
+          },
+          {
+            source: "/pupils/beta/previews/lessons/:lessonSlug",
+            destination: "/pupils/beta/previews/lessons/:lessonSlug/overview",
+            permanent: true,
+          },
+          {
+            source:
+              "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug",
+            destination:
+              "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons/:lessonSlug/overview",
+            permanent: true,
+          },
+          {
+            source: "/pupils/l/:redirectFrom/lessons/:lessonSlug",
+            destination: "/pupils/l/:redirectFrom/lessons/:lessonSlug/overview",
+            permanent: true,
+          },
+        ];
+      },
+      async rewrites() {
+        // Reverse proxy posthog in development to avoid localhost CORS issues in Chrome https://posthog.com/docs/advanced/proxy/nextjs
+        return releaseStage === "development"
+          ? [
+              {
+                source: "/ingest/static/:path*",
+                destination: "https://eu-assets.i.posthog.com/static/:path*",
+              },
+              {
+                source: "/ingest/:path*",
+                destination: "https://eu.i.posthog.com/:path*",
+              },
+              {
+                source: "/ingest/decide",
+                destination: "https://eu.i.posthog.com/decide",
+              },
+            ]
+          : [];
+      },
+      // Required for the posthog reverse proxy, but interferes with static URL redirections so we don't want this applied on production
+      skipTrailingSlashRedirect: releaseStage === "development",
+
+      // Remove SWC from the output bundle as it is bloating the bundle size and causing issues with Netlify limits
+      experimental: {
+        outputFileTracingExcludes: {
+          "*": [
+            "node_modules/@swc/core-linux-*-gnu/**/*",
+            "node_modules/@swc/core-linux-*-musl/**/*",
+          ],
+        },
       },
     },
-  };
+    {
+      authToken: oakConfig.sentry.authToken,
+      org: oakConfig.sentry.organisationIdentifier,
+      project: oakConfig.sentry.projectIdentifier,
+      release: appVersion,
+
+      // Tunnel requests to Sentry through our own server
+      tunnelRoute: "/monitoring",
+
+      // Disable sourcemaps in non-production builds
+      sourcemaps: {
+        disable: !isProductionBuild && !isNextjsProductionBuildPhase,
+      },
+
+      // Include Next.js-internal code and code from dependencies when uploading source maps (better stack traces)
+      widenClientFileUpload: true,
+
+      // Automatically tree-shake Sentry logger statements to reduce bundle size
+      disableLogger: true,
+    },
+  );
 
   // Stick the deployment URL in an env so the site map generation can use it.
   // The sitemap plugin uses @next.env
@@ -352,22 +359,3 @@ module.exports = async (phase) => {
 
   return withBundleAnalyzer(nextConfig);
 };
-
-module.exports = withSentryConfig(module.exports, {
-  org: process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER,
-  project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER,
-
-  // Tunnel requests to Sentry through our own server
-  tunnelRoute: "/monitoring",
-
-  // Disable sourcemaps as they're handled manually by webpack above
-  sourcemaps: {
-    enabled: false,
-  },
-
-  // Hides source maps from generated client bundles
-  hideSourceMaps: true,
-
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
-});
