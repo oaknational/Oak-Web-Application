@@ -1,3 +1,12 @@
+## [1.703.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.703.1...v1.703.2) (2025-03-04)
+
+
+### Bug Fixes
+
+* added correct formatting to description meta tag for curric ([acd9f79](https://github.com/oaknational/Oak-Web-Application/commit/acd9f7923199bbe54f398d0ae3aa8dba5bc02ed4))
+* extracted out keystage and added in proper examboard formatting ([599f9e0](https://github.com/oaknational/Oak-Web-Application/commit/599f9e023add7a3f683636e24efb80ec8b7afadd))
+* failing test for examboards in buildCurriculumMetadata(...) ([26ef4bc](https://github.com/oaknational/Oak-Web-Application/commit/26ef4bcd96b8456e4ca77daedc3594f3e23a6667))
+
 ## [1.703.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.703.0...v1.703.1) (2025-03-04)
 
 
