@@ -55,7 +55,7 @@ type CurriculumVisualiserProps = {
   yearSelection: YearSelection;
   selectedThread: string | null;
   selectedYear: string | null;
-  ks4OptionSlug: string | null;
+  ks4OptionSlug?: string | null;
   yearData: YearData;
   handleSelectSubject: (year: string, subject: Subject) => void;
   handleSelectTier: (year: string, tier: Tier) => void;
