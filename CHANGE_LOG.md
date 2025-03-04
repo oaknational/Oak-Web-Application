@@ -1,3 +1,11 @@
+## [1.702.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.0...v1.702.1) (2025-03-04)
+
+
+### Bug Fixes
+
+* await update metadata ([04b8002](https://github.com/oaknational/Oak-Web-Application/commit/04b80023b9693525e5fdf890899e77d7ba253153))
+* update to new clerk client syntax ([23da077](https://github.com/oaknational/Oak-Web-Application/commit/23da077c5be4341cb3125ee9814b599f1e2f3e3d))
+
 # [1.702.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.701.0...v1.702.0) (2025-03-03)
 
 
