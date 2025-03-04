@@ -1,6 +1,8 @@
 import "jest-styled-components";
 
-import CurriculumVisualiserFiltersMobile, { CurriculumVisualiserFiltersMobileProps } from "./CurriculumVisualiserFiltersMobile";
+import CurriculumVisualiserFiltersMobile, {
+  CurriculumVisualiserFiltersMobileProps,
+} from "./CurriculumVisualiserFiltersMobile";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
