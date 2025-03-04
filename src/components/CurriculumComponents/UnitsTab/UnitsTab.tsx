@@ -3,7 +3,7 @@ import { OakHeading, OakBox, OakP } from "@oaknational/oak-components";
 
 import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
 import CurriculumVisualiserLayout from "../CurriculumVisualiserLayout/CurriculumVisualiserLayout";
-// import CurriculumVisualiserFiltersMobile from "../CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile";
+import CurriculumVisualiserFiltersMobile from "../CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile";
 import CurriculumVisualiserFilters from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 import { highlightedUnitCount } from "../CurriculumVisualiserFilters/helpers";
 
@@ -39,6 +39,7 @@ export default function UnitsTab({
   const { ks4OptionSlug } = trackingData;
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
+  const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
   const selectedYear = filters.years.length === 1 ? filters.years[0]! : "all";
 
   const unitCount = getNumberOfSelectedUnits(yearData, selectedYear, filters);
@@ -77,6 +78,10 @@ export default function UnitsTab({
     onChangeFilters(newFilters);
   }
 
+  const setVisibleMobileYearRefID = (refId: string) => {
+    setMobileSelectedYear(refId);
+  };
+
   return (
     <OakBox>
       <OakBox
@@ -107,12 +112,15 @@ export default function UnitsTab({
           Units that make up our curricula are fully sequenced, and aligned to
           the national curriculum.
         </OakP>
-        {/* <CurriculumVisualiserFiltersMobile
+        <CurriculumVisualiserFiltersMobile
+          selectedYear={mobileSelectedYear}
+          onSelectYear={setMobileSelectedYear}
           filters={filters}
           onChangeFilters={onChangeFiltersLocal}
           data={formattedData}
           trackingData={trackingData}
-        /> */}
+          onOpenModal={() => {}}
+        />
         <CurriculumVisualiserLayout
           filters={
             <CurriculumVisualiserFilters
@@ -129,7 +137,7 @@ export default function UnitsTab({
               ks4OptionSlug={ks4OptionSlug}
               yearData={yearData}
               setUnitData={setUnitData}
-              setVisibleMobileYearRefID={() => {}}
+              setVisibleMobileYearRefID={setVisibleMobileYearRefID}
             />
           }
         />
