@@ -1,3 +1,10 @@
+## [1.702.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.1...v1.702.2) (2025-03-04)
+
+
+### Bug Fixes
+
+* use display values for year and subject on unit listing page second section headers ([b884d98](https://github.com/oaknational/Oak-Web-Application/commit/b884d9800d71c6ae0f0f48419416ca8e78eba22c))
+
 ## [1.702.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.0...v1.702.1) (2025-03-04)
 
 
