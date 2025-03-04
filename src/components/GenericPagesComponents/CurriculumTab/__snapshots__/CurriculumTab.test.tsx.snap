@@ -67,11 +67,11 @@ exports[`CurriculumTab renders 1`] = `
                   <span
                     class="sc-kpDqfm psnGs"
                   >
-                    <div
+                    <span
                       class="sc-fqkvVR sc-eldPxv dWmZcx iGHzbF"
                     >
                       Our curriculum planning approach
-                    </div>
+                    </span>
                   </span>
                   <div
                     class="sc-fqkvVR kbnxKi sc-fXSgeo"
