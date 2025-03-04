@@ -28,7 +28,7 @@ import getBrowserConfig from "../../browser-lib/getBrowserConfig";
 
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 
-type ServiceName = "posthog" | "gleap" | "bugsnag" | "hubspot" | "sentry";
+type ServiceName = "posthog" | "gleap" | "bugsnag" | "hubspot";
 export type UserId = string;
 export type EventName = string;
 export type EventProperties = Record<string, unknown>;

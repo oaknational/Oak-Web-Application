@@ -1,8 +1,6 @@
 const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
 const path = require("path");
 
-const { withSentryConfig } = require("@sentry/nextjs");
-const { sentryWebpackPlugin } = require("@sentry/webpack-plugin");
 const StatoscopeWebpackPlugin = require("@statoscope/webpack-plugin").default;
 const CopyPlugin = require("copy-webpack-plugin");
 const {
@@ -186,20 +184,6 @@ module.exports = async (phase) => {
         config.plugins.push(
           new BugsnagSourceMapUploaderPlugin(bugsnagSourcemapInfo),
         );
-
-        // Upload production sourcemaps to Sentry
-        config.plugins.push(
-          sentryWebpackPlugin({
-            authToken: oakConfig.sentry.authToken,
-            org: oakConfig.sentry.organisationIdentifier,
-            project: oakConfig.sentry.projectIdentifier,
-            release: appVersion,
-            widenClientFileUpload: true,
-            reactComponentAnnotation: {
-              enabled: true,
-            },
-          }),
-        );
       }
 
       return config;
@@ -297,16 +281,6 @@ module.exports = async (phase) => {
     },
     // Required for the posthog reverse proxy, but interferes with static URL redirections so we don't want this applied on production
     skipTrailingSlashRedirect: releaseStage === "development",
-
-    // Remove SWC from the output bundle as it is bloating the bundle size and causing issues with Netlify limits
-    experimental: {
-      outputFileTracingExcludes: {
-        "*": [
-          "node_modules/@swc/core-linux-*-gnu/**/*",
-          "node_modules/@swc/core-linux-*-musl/**/*",
-        ],
-      },
-    },
   };
 
   // Stick the deployment URL in an env so the site map generation can use it.
@@ -352,22 +326,3 @@ module.exports = async (phase) => {
 
   return withBundleAnalyzer(nextConfig);
 };
-
-module.exports = withSentryConfig(module.exports, {
-  org: process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER,
-  project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER,
-
-  // Tunnel requests to Sentry through our own server
-  tunnelRoute: "/monitoring",
-
-  // Disable sourcemaps as they're handled manually by webpack above
-  sourcemaps: {
-    enabled: false,
-  },
-
-  // Hides source maps from generated client bundles
-  hideSourceMaps: true,
-
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
-});
