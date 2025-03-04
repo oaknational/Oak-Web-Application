@@ -2,7 +2,6 @@ import { Fragment, useEffect, useMemo, useState } from "react";
 import { isArray } from "lodash";
 import styled from "styled-components";
 
-
 import { isMatchAnswer } from "../QuizUtils/answerTypeDiscriminators";
 import { getStemTextData } from "../QuizUtils/stemUtils";
 
@@ -62,7 +61,7 @@ export const QuizMatchAnswer = () => {
         label: JSX.Element;
         announcement: string;
       }[] = [];
-      Object.entries(answers).forEach(([key], index) => {
+      Object.keys(answers).forEach((key, index) => {
         matchItems.push({
           id: index.toString(),
           label: <MathJaxWrap key={`match-${index}`}>{key}</MathJaxWrap>,
@@ -82,7 +81,7 @@ export const QuizMatchAnswer = () => {
       label: JSX.Element;
       announcement: string;
     }[] = [];
-    Object.entries(answers).forEach(([value], index) => {
+    Object.values(answers).forEach((value, index) => {
       choiceItems.push({
         id: index.toString(),
         label: <MathJaxWrap key={`choice-${index}`}>{value}</MathJaxWrap>,
@@ -91,19 +90,6 @@ export const QuizMatchAnswer = () => {
     });
     return choiceItems;
   }, [answers]);
-
-  Object.entries(answers).forEach(([key, value], index) => {
-    matchItems.push({
-      id: index.toString(),
-      label: <MathJaxWrap key={`match-${index}`}>{key}</MathJaxWrap>,
-      announcement: key,
-    });
-    choiceItems.push({
-      id: index.toString(),
-      label: <MathJaxWrap key={`choice-${index}`}>{value}</MathJaxWrap>,
-      announcement: value,
-    });
-  });
 
   useEffect(() => {
     setDocumentLoaded(true);
