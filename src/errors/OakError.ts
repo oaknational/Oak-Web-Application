@@ -41,10 +41,9 @@ type ErrorConfig = {
   message: string;
   // @todo responseStatusCode to be union type
   responseStatusCode?: number;
-  // Whether the error should be reported to error monitoring services
+  // Whether or not to notify bugsnag
   shouldNotify: boolean;
 };
-
 const errorConfigs: Record<ErrorCode, ErrorConfig> = {
   "misc/unknown": {
     message: "An unknown error has occurred",

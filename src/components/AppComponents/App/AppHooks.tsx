@@ -5,7 +5,6 @@ import { useOakConsent } from "@oaknational/oak-consent-client";
 import useAxe from "@/browser-lib/axe/useAxe";
 import useBugsnag from "@/browser-lib/bugsnag/useBugsnag";
 import useGleap from "@/browser-lib/gleap";
-import useSentry from "@/browser-lib/sentry/useSentry";
 import isBrowser from "@/utils/isBrowser";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import removeDecommissionedKeys from "@/config/removeDecommissionedKeys";
@@ -31,10 +30,6 @@ const useAppHooks = () => {
   const router = useRouter();
   useBugsnag({
     enabled: getConsent(ServicePolicyMap.BUGSNAG) === "granted",
-    userId: posthogDistinctId,
-  });
-  useSentry({
-    enabled: getConsent(ServicePolicyMap.SENTRY) === "granted",
     userId: posthogDistinctId,
   });
   useGleap({
