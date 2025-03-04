@@ -18,8 +18,10 @@ export function createHandler(hubspotClient: HubspotClient) {
       return res.status(401).send("Unauthorized");
     }
 
-    const email = (await clerkClient().users.getUser(auth.userId))
-      .primaryEmailAddress?.emailAddress;
+    const client = await clerkClient();
+
+    const email = (await client.users.getUser(auth.userId)).primaryEmailAddress
+      ?.emailAddress;
 
     if (!email) {
       return res.status(204).end();

@@ -24,8 +24,15 @@ jest.mock("@clerk/nextjs/server");
 // @ts-expect-error - region is overwritten in development
 process.env.NODE_ENV = "production";
 
+const updateUserMetadata = jest.fn();
+const getUser = jest.fn();
+
 describe("/api/auth/onboarding", () => {
-  const mockClerkClient = installMockClerkClient();
+  installMockClerkClient({
+    updateUserMetadata,
+    getUser,
+    mockUser: mockServerUser,
+  });
 
   let req: Request;
   beforeEach(() => {
@@ -38,7 +45,7 @@ describe("/api/auth/onboarding", () => {
       },
     });
 
-    jest.spyOn(mockClerkClient.users, "updateUserMetadata").mockReset();
+    // jest.spyOn(mockClerkClient.users, "updateUserMetadata").mockReset();
     setCurrentUser(mockServerUser);
   });
 
@@ -52,7 +59,7 @@ describe("/api/auth/onboarding", () => {
   it("marks the user as onboarded", async () => {
     const response = await POST(req);
 
-    expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
+    expect(updateUserMetadata).toHaveBeenCalledWith(
       "123",
       expect.objectContaining({
         publicMetadata: expect.objectContaining({
@@ -84,7 +91,7 @@ describe("/api/auth/onboarding", () => {
   it("sets the referer header as sourceApp", async () => {
     await POST(req);
 
-    expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
+    expect(updateUserMetadata).toHaveBeenCalledWith(
       expect.anything(),
       expect.objectContaining({
         publicMetadata: expect.objectContaining({
@@ -96,7 +103,7 @@ describe("/api/auth/onboarding", () => {
   it("sets the x-country header as region", async () => {
     await POST(req);
 
-    expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
+    expect(updateUserMetadata).toHaveBeenCalledWith(
       "123",
       expect.objectContaining({
         privateMetadata: expect.objectContaining({
@@ -123,7 +130,7 @@ describe("/api/auth/onboarding", () => {
       });
       await POST(req);
 
-      expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
+      expect(updateUserMetadata).toHaveBeenCalledWith(
         expect.anything(),
         expect.objectContaining({
           publicMetadata: expect.objectContaining({
@@ -138,7 +145,7 @@ describe("/api/auth/onboarding", () => {
   it("sets the x-country header as region", async () => {
     await POST(req);
 
-    expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
+    expect(updateUserMetadata).toHaveBeenCalledWith(
       "123",
       expect.objectContaining({
         privateMetadata: expect.objectContaining({
@@ -182,7 +189,7 @@ describe("/api/auth/onboarding", () => {
 
     await POST(req);
 
-    expect(mockClerkClient.users.updateUserMetadata).toHaveBeenCalledWith(
+    expect(updateUserMetadata).toHaveBeenCalledWith(
       expect.anything(),
       expect.objectContaining({
         publicMetadata: expect.objectContaining({

@@ -8,16 +8,7 @@ import {
 import { BaseSyntheticEvent, ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
-import {
-  OakBox,
-  OakCheckBox,
-  OakFlex,
-  OakInlineBanner,
-  OakLink,
-  OakP,
-  OakPrimaryButton,
-  OakSpan,
-} from "@oaknational/oak-components";
+
 
 import useLocalStorageForDownloads from "../hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 
@@ -37,6 +28,15 @@ import {
   encodeOnboardingDataQueryParam,
 } from "./onboardingDataQueryParam";
 
+import {
+  OakBox,
+  OakCheckBox,
+  OakFlex,
+  OakInlineBanner,
+  OakP,
+  OakPrimaryButton,
+  OakSpan,
+} from "@oaknational/oak-components";
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";
@@ -303,25 +303,6 @@ const OnboardingForm = ({
           )}
         </OakFlex>
       </OakFlex>
-
-      <OakBox
-        as="p"
-        $font="body-2"
-        color="text-primary"
-        $textAlign="center"
-        $pb="inner-padding-s"
-      >
-        Need help?{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "contact",
-          })}
-        >
-          {" "}
-          Contact us
-        </OakLink>
-        .
-      </OakBox>
     </OakFlex>
   );
 };

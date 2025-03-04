@@ -1,11 +1,11 @@
 import React, { FC, useState, useRef, useEffect } from "react";
-import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
 
+import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Button from "@/components/SharedComponents/Button/Button";
@@ -55,7 +55,7 @@ type CurriculumVisualiserProps = {
   yearSelection: YearSelection;
   selectedThread: string | null;
   selectedYear: string | null;
-  ks4OptionSlug: string | null;
+  ks4OptionSlug?: string | null;
   yearData: YearData;
   handleSelectSubject: (year: string, subject: Subject) => void;
   handleSelectTier: (year: string, tier: Tier) => void;

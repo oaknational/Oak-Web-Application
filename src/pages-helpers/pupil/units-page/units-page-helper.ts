@@ -7,8 +7,9 @@ interface GetSecondUnitSectionArgs {
   programmeSlug: string;
   baseSlug: string;
   tierSlug: string | null;
-  subjectSlug: string;
-  yearSlug: string;
+  tier: string | null;
+  subject: string;
+  year: string;
   phase: "primary" | "secondary";
   unitsByProgramme: Record<string, UnitListingBrowseData[number][]>;
   breadcrumbs: string[];
@@ -18,8 +19,9 @@ export function getSecondUnitSection({
   programmeSlug,
   baseSlug,
   tierSlug,
-  subjectSlug,
-  yearSlug,
+  tier,
+  subject,
+  year,
   phase,
   unitsByProgramme,
   breadcrumbs,
@@ -27,12 +29,12 @@ export function getSecondUnitSection({
   // Determine if the desired programme is a legacy programme
   const isLegacy = programmeSlug.endsWith("-l");
   const result: Partial<UnitsSectionData> = {};
-  const capitalise = (word: string) =>
-    word.charAt(0).toUpperCase() + word.slice(1);
+
   result.labels = {
-    year: capitalise(yearSlug.replace("-", " ")),
-    subject: capitalise(subjectSlug),
+    year,
+    subject,
   };
+
   if (isLegacy) {
     // Check for "new" programmes that could be displayed
     result.units = Object.values(
@@ -46,7 +48,7 @@ export function getSecondUnitSection({
   } else {
     // Check for "legacy" programmes that could be displayed
     // Match the tier slug if it exists
-    if (tierSlug) {
+    if (tierSlug && tier) {
       result.units = Object.values(
         groupBy(
           unitsByProgramme[`${baseSlug}-${tierSlug}-l`] || [],
@@ -54,7 +56,7 @@ export function getSecondUnitSection({
         ),
       );
       if (result.units.length > 0) {
-        result.labels.tier = capitalise(tierSlug);
+        result.labels.tier = tier;
       }
     }
     // If no tier slug is found, display all legacy units

@@ -65,11 +65,38 @@ function buildPhaseText(
   return "";
 }
 
+const KEYSTAGES_PRIMARY = ["ks1", "ks2"];
+const KEYSTAGES_SECONDARY = ["ks3", "ks4"];
+
+export function formatKeystagesShort(keyStages: string[]) {
+  const keyStagesItems: string[] = [];
+  const isOnlyPrimary = keyStages.every((ks) => KEYSTAGES_PRIMARY.includes(ks));
+  const isOnlySecondary = keyStages.every((ks) =>
+    KEYSTAGES_SECONDARY.includes(ks),
+  );
+  if (isOnlyPrimary && keyStages.includes("ks1")) keyStagesItems.push("1");
+  if (isOnlyPrimary && keyStages.includes("ks2")) keyStagesItems.push("2");
+  if (isOnlySecondary && keyStages.includes("ks3")) keyStagesItems.push("3");
+  if (isOnlySecondary && keyStages.includes("ks4")) keyStagesItems.push("4");
+  return keyStagesItems.length > 0 ? `KS${keyStagesItems.join("-")}` : ``;
+}
+
 export function getSuffixFromFeatures(features: Actions) {
   if (features?.programme_field_overrides?.subject) {
     return `(${features.programme_field_overrides?.subject})`;
   }
   return;
+}
+
+export function subjectTitleWithCase(title: string) {
+  if (
+    ["english", "french", "spanish", "german"].includes(title.toLowerCase())
+  ) {
+    return [title.slice(0, 1).toUpperCase(), title.slice(1).toLowerCase()].join(
+      "",
+    );
+  }
+  return title.toLowerCase();
 }
 
 export function buildPageTitle(
@@ -85,20 +112,12 @@ export function buildPageTitle(
   if (keyStages.includes("ks4")) keyStageStrings.push("KS4");
   const keyStageString = keyStageStrings.join(" & ");
 
-  const caseSubjectTitle = (title: string) => {
-    if (
-      ["english", "french", "spanish", "german"].includes(title.toLowerCase())
-    ) {
-      return [
-        title.slice(0, 1).toUpperCase(),
-        title.slice(1).toLowerCase(),
-      ].join("");
-    }
-    return title.toLowerCase();
-  };
-
   if (["primary", "secondary"].includes(phase.slug)) {
-    pageTitle = `${keyStageString} ${caseSubjectTitle(subject.title)} curriculum`;
+    pageTitle = `${keyStageString} ${subjectTitleWithCase(subject.title)} curriculum`;
   }
   return pageTitle;
+}
+
+export function joinWords(str: string[]) {
+  return str.filter((str) => str !== "").join(" ");
 }

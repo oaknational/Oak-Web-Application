@@ -1,12 +1,12 @@
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import { groupBy, uniq } from "lodash";
+
 import {
   OakIconProps,
   OakThemeProvider,
   isValidIconName,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
@@ -201,8 +201,9 @@ export const getStaticProps: GetStaticProps<
         programmeSlug,
         baseSlug,
         tierSlug,
-        subjectSlug,
-        yearSlug,
+        tier: tierDescription,
+        subject,
+        year: yearDescription,
         phase,
         unitsByProgramme,
         breadcrumbs,

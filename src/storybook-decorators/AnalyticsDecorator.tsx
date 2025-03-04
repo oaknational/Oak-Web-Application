@@ -19,6 +19,7 @@ const noopTrackingFns = Object.entries(trackingFns).reduce(
 export default function AnalyticsDecorator(Story: StoryFn) {
   const value = {
     identify: noop,
+    alias: noop,
     posthogDistinctId: testPosthogDistinctId,
     track: {
       ...noopTrackingFns,
