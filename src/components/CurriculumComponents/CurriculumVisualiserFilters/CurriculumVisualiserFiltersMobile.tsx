@@ -100,6 +100,7 @@ function StickyBit({
 }: CurriculumVisualiserFiltersMobileProps) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const [lockYear, setLockYear] = useState<string | null>(null);
 
   const { yearData, threadOptions, yearOptions } = data;
 
@@ -132,30 +133,32 @@ function StickyBit({
   }
 
   function scrollToYearSection(yearOption: string) {
-    setTimeout(() => {
-      const targetElement = document.getElementById(`year-${yearOption}`);
-      if (targetElement) {
-        const headerOffset = 70;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - headerOffset;
+    const targetElement = document.getElementById(`year-${yearOption}`);
+    if (targetElement) {
+      const headerOffset = 70;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const { pageYOffset } = window;
+      const offsetPosition = elementPosition + pageYOffset - headerOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+      setLockYear(yearOption);
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
 
-        // It's key that focus is set after scroll completes otherwise
-        // scroll ends above the intended year section
-        setTimeout(() => {
+      window.addEventListener(
+        "scrollend",
+        () => {
+          setLockYear(null);
           const yearHeading = document.getElementById(`year-${yearOption}`);
           if (yearHeading instanceof HTMLElement) {
             yearHeading.setAttribute("tabindex", "-1");
             yearHeading.focus();
           }
-        }, 500);
-      }
-    }, 0);
+        },
+        { once: true },
+      );
+    }
   }
 
   return (
@@ -215,39 +218,42 @@ function StickyBit({
           >
             <ScrollableWrapper>
               <StyledButtonGroup aria-label="Select a year group">
-                {yearOptions.map((yearOption) => (
-                  <OakBox
-                    key={yearOption}
-                    $pt="inner-padding-xs"
-                    $ml="space-between-sssx"
-                  >
-                    <FocusIndicator
-                      data-testid="year-group-focus-indicator"
-                      $display={"inline-block"}
-                      $mb="space-between-ssx"
-                      $mr="space-between-ssx"
-                      $background={
-                        isSelectedYear(yearOption) ? "black" : "white"
-                      }
-                      $color={isSelectedYear(yearOption) ? "white" : "black"}
-                      $borderRadius={"border-radius-s"}
-                      $font="heading-7"
-                      disableMouseHover={isSelectedYear(yearOption)}
+                {yearOptions.map((yearOption) => {
+                  const isYearSelected = lockYear
+                    ? lockYear === yearOption
+                    : isSelectedYear(yearOption);
+                  return (
+                    <OakBox
+                      key={yearOption}
+                      $pt="inner-padding-xs"
+                      $ml="space-between-sssx"
                     >
-                      <StyledButton
-                        data-testid="year-group-filter-button"
-                        aria-pressed={isSelectedYear(yearOption)}
-                        onClick={() => {
-                          onSelectYear(yearOption);
-                          trackSelectYear(yearOption);
-                          scrollToYearSection(yearOption);
-                        }}
+                      <FocusIndicator
+                        data-testid="year-group-focus-indicator"
+                        $display={"inline-block"}
+                        $mb="space-between-ssx"
+                        $mr="space-between-ssx"
+                        $background={isYearSelected ? "black" : "white"}
+                        $color={isYearSelected ? "white" : "black"}
+                        $borderRadius={"border-radius-s"}
+                        $font="heading-7"
+                        disableMouseHover={isSelectedYear(yearOption)}
                       >
-                        {getYearGroupTitle(yearData, yearOption)}
-                      </StyledButton>
-                    </FocusIndicator>
-                  </OakBox>
-                ))}
+                        <StyledButton
+                          data-testid="year-group-filter-button"
+                          aria-pressed={isSelectedYear(yearOption)}
+                          onClick={() => {
+                            onSelectYear(yearOption);
+                            trackSelectYear(yearOption);
+                            scrollToYearSection(yearOption);
+                          }}
+                        >
+                          {getYearGroupTitle(yearData, yearOption)}
+                        </StyledButton>
+                      </FocusIndicator>
+                    </OakBox>
+                  );
+                })}
               </StyledButtonGroup>
             </ScrollableWrapper>
           </OakBox>
