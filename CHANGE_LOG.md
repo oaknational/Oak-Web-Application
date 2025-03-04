@@ -1,3 +1,60 @@
+## [1.702.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.0...v1.702.1) (2025-03-04)
+
+
+### Bug Fixes
+
+* await update metadata ([04b8002](https://github.com/oaknational/Oak-Web-Application/commit/04b80023b9693525e5fdf890899e77d7ba253153))
+* update to new clerk client syntax ([23da077](https://github.com/oaknational/Oak-Web-Application/commit/23da077c5be4341cb3125ee9814b599f1e2f3e3d))
+
+# [1.702.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.701.0...v1.702.0) (2025-03-03)
+
+
+### Bug Fixes
+
+* change aria-label to remove chevron-right in a11y text ([d19a435](https://github.com/oaknational/Oak-Web-Application/commit/d19a435ad4f4c66d1786f82526e56d8216f3134d))
+
+
+### Features
+
+* use OakPrimaryButton to link to lesson resources ([c67d695](https://github.com/oaknational/Oak-Web-Application/commit/c67d695a88bf725f9fb96ca477fd461f3d7eb56f))
+
+# [1.701.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.700.1...v1.701.0) (2025-03-03)
+
+
+### Features
+
+* add sentry and integrate it with error reporting ([f7d8ae3](https://github.com/oaknational/Oak-Web-Application/commit/f7d8ae39c7c57aba012fdc89936f880db9d0f13e))
+* add sentry and supporting env var config ([a458cc5](https://github.com/oaknational/Oak-Web-Application/commit/a458cc5bbdca88b35a6e0da6b6110c69c0da5ff9))
+
+## [1.700.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.700.0...v1.700.1) (2025-02-27)
+
+
+### Bug Fixes
+
+* fix subject listing page in teacher journey ([dff6b5a](https://github.com/oaknational/Oak-Web-Application/commit/dff6b5a73c7103e8187eae4217f720430fd4cbf8))
+* get actions for programmeListing query ([99eb07c](https://github.com/oaknational/Oak-Web-Application/commit/99eb07c780ccee2f36e0c9d114c60c903294436d))
+
+# [1.700.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.699.0...v1.700.0) (2025-02-27)
+
+
+### Bug Fixes
+
+* actually did need one of those spaces ([25c6407](https://github.com/oaknational/Oak-Web-Application/commit/25c6407fa0793d8f5ee69e19040228ae16126eef))
+* font not loading properly ([75428cf](https://github.com/oaknational/Oak-Web-Application/commit/75428cfc3b6e64ae020c1f95c637f6366ea2e427))
+* shadow and banner loading ([1a957ff](https://github.com/oaknational/Oak-Web-Application/commit/1a957ff292b3e3bae6dcafd3401316ff15d75613))
+
+
+### Features
+
+* add alternate layout for sign up pages ([e42ca17](https://github.com/oaknational/Oak-Web-Application/commit/e42ca17d93f349301768979c75c232bcc86b2d58))
+* add svg decoration on registration aside ([537b1e6](https://github.com/oaknational/Oak-Web-Application/commit/537b1e656e1912d0d92dacb3556e63f1ce71c579))
+* create alternate registration aside component ([538aa23](https://github.com/oaknational/Oak-Web-Application/commit/538aa234b40384ae7d229b408868107e859eabff))
+* style registration page for mobile ([9d46389](https://github.com/oaknational/Oak-Web-Application/commit/9d46389a844be42a3eeec5ffda1f1dc6267d72f5))
+* style registration pages for desktop ([2647789](https://github.com/oaknational/Oak-Web-Application/commit/26477891f510864975b3956178833a8c8bc74e8a))
+* update form headings ([1848588](https://github.com/oaknational/Oak-Web-Application/commit/18485889100ef512f14d445ffcc53d2746c27ec9))
+* update onboarding components to work with new layout component ([5f927bc](https://github.com/oaknational/Oak-Web-Application/commit/5f927bc404bd9319ac83590ef05eb27425b77b86))
+* use ff on signin page ([35fde3c](https://github.com/oaknational/Oak-Web-Application/commit/35fde3c7b9f1854bffdbd16560a2a5099424a5ff))
+
 # [1.699.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.698.0...v1.699.0) (2025-02-25)
 
 

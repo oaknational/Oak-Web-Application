@@ -122,9 +122,6 @@ export const getStaticProps: GetStaticProps<
         throw new Error("No keyStageSlug");
       }
       const keyStage = context.params?.keyStageSlug;
-
-      const isEyfs = keyStage === "early-years-foundation-stage";
-
       const curriculumData = await curriculumApi2023.subjectListingPage({
         keyStageSlug: keyStage,
       });
@@ -144,7 +141,6 @@ export const getStaticProps: GetStaticProps<
           const combinedSubjectArray = getCombinedSubjects(
             curriculumData,
             subjectSlug,
-            isEyfs,
           );
 
           return combinedSubjectArray?.map((combinedSubject) => ({
