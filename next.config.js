@@ -60,6 +60,15 @@ module.exports = async (phase) => {
     console.log(`Found app version: "${appVersion}"`);
   }
 
+  console.log(`
+    Building for release stage: "${releaseStage}"
+    Production build: ${isProductionBuild}
+    Next.js production build phase: ${isNextjsProductionBuildPhase}
+    Test build: ${isTestBuild}
+    App version: ${appVersion}
+    sourcemaps.disable: ${!isProductionBuild && !isNextjsProductionBuildPhase}
+  `);
+
   // Flags to change behaviour for static builds.
   // Remove when we start using dynamic hosting for production.
   // Assumption that all static builds happen in Cloudbuild triggers (override available, see below).
