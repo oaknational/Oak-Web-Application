@@ -1,3 +1,10 @@
+## [1.702.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.2...v1.702.3) (2025-03-04)
+
+
+### Bug Fixes
+
+* added as="span" to <OakTypography/> to fix layout issue ([93ec8b4](https://github.com/oaknational/Oak-Web-Application/commit/93ec8b43edb5a6da45d624a8ff264be6dc7522c2))
+
 ## [1.702.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.1...v1.702.2) (2025-03-04)
 
 
