@@ -105,7 +105,7 @@ describe("pages/lesson-planning.tsx", () => {
       screen.getByAltText(testPlanALessonPageData.hero.image?.altText ?? ""),
     ).toBeInTheDocument();
   });
-  it.skip("Renders the header hero without author", () => {
+  it("Renders the header hero without author", () => {
     render(
       <PlanALesson
         pageData={{

@@ -43,7 +43,7 @@ const UnitListItem = styled("li")`
 
 type CurriculumVisualiserProps = {
   unitData: Unit | null;
-  ks4OptionSlug: string | null;
+  ks4OptionSlug?: string | null;
   yearData: YearData;
   filters: CurriculumFilters;
   mobileHeaderScrollOffset?: number;

@@ -210,14 +210,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
-  sentryAuthToken: {
-    description: "Sentry auth token, used for uploading sourcemaps",
-    value: process.env.SENTRY_AUTH_TOKEN,
-    envName: "SENTRY_AUTH_TOKEN",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
