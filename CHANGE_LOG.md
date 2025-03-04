@@ -1,3 +1,10 @@
+## [1.703.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.703.0...v1.703.1) (2025-03-04)
+
+
+### Reverts
+
+* Revert "Merge pull request [#3230](https://github.com/oaknational/Oak-Web-Application/issues/3230) from oaknational/feat/eng-1100-implement-sentry-for-error-reporting" ([02cb9f9](https://github.com/oaknational/Oak-Web-Application/commit/02cb9f963d2eec304eb3c2cf63b4ac5694356f90))
+
 # [1.703.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.3...v1.703.0) (2025-03-04)
 
 
