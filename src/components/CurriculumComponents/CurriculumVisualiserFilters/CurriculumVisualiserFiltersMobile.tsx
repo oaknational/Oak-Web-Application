@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { OakP, OakFlex, OakSpan, OakBox } from "@oaknational/oak-components";
+import { OakFlex, OakSpan, OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
-import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
-import { RadioButton, RadioGroup } from "../OakComponentsKitchen/SimpleRadio";
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 
 import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
@@ -16,6 +14,13 @@ import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Thread } from "@/utils/curriculum/types";
+
+export type CurriculumVisualiserFiltersMobileProps =
+  CurriculumVisualiserFiltersProps & {
+    selectedYear: string;
+    onSelectYear: (newYear: string) => void;
+    onOpenModal: () => void;
+  };
 
 const StyledButton = styled("button")`
   all: unset;
@@ -87,31 +92,24 @@ const StyledButtonGroup = styled(ButtonGroup)`
 
 function StickyBit({
   onOpenModal,
+  filters,
   data,
   trackingData,
-  selectedThread,
   selectedYear,
-  yearSelection,
   onSelectYear,
-}: Pick<
-  CurriculumVisualiserFiltersProps,
-  | "data"
-  | "trackingData"
-  | "selectedThread"
-  | "selectedYear"
-  | "yearSelection"
-  | "onSelectYear"
-> & { onOpenModal: () => void }) {
+}: CurriculumVisualiserFiltersMobileProps) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+  const [lockYear, setLockYear] = useState<string | null>(null);
 
   const { yearData, threadOptions, yearOptions } = data;
 
+  const selectedThread = filters.threads[0];
+
   const highlightedUnits = highlightedUnitCount(
     yearData,
-    null,
-    yearSelection,
-    selectedThread,
+    filters,
+    filters.threads,
   );
 
   function trackSelectYear(year: string): void {
@@ -135,30 +133,32 @@ function StickyBit({
   }
 
   function scrollToYearSection(yearOption: string) {
-    setTimeout(() => {
-      const targetElement = document.getElementById(`year-${yearOption}`);
-      if (targetElement) {
-        const headerOffset = 70;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - headerOffset;
+    const targetElement = document.getElementById(`year-${yearOption}`);
+    if (targetElement) {
+      const headerOffset = 70;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const { pageYOffset } = window;
+      const offsetPosition = elementPosition + pageYOffset - headerOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+      setLockYear(yearOption);
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
 
-        // It's key that focus is set after scroll completes otherwise
-        // scroll ends above the intended year section
-        setTimeout(() => {
+      window.addEventListener(
+        "scrollend",
+        () => {
+          setLockYear(null);
           const yearHeading = document.getElementById(`year-${yearOption}`);
           if (yearHeading instanceof HTMLElement) {
             yearHeading.setAttribute("tabindex", "-1");
             yearHeading.focus();
           }
-        }, 500);
-      }
-    }, 0);
+        },
+        { once: true },
+      );
+    }
   }
 
   return (
@@ -218,39 +218,42 @@ function StickyBit({
           >
             <ScrollableWrapper>
               <StyledButtonGroup aria-label="Select a year group">
-                {yearOptions.map((yearOption) => (
-                  <OakBox
-                    key={yearOption}
-                    $pt="inner-padding-xs"
-                    $ml="space-between-sssx"
-                  >
-                    <FocusIndicator
-                      data-testid="year-group-focus-indicator"
-                      $display={"inline-block"}
-                      $mb="space-between-ssx"
-                      $mr="space-between-ssx"
-                      $background={
-                        isSelectedYear(yearOption) ? "black" : "white"
-                      }
-                      $color={isSelectedYear(yearOption) ? "white" : "black"}
-                      $borderRadius={"border-radius-s"}
-                      $font="heading-7"
-                      disableMouseHover={isSelectedYear(yearOption)}
+                {yearOptions.map((yearOption) => {
+                  const isYearSelected = lockYear
+                    ? lockYear === yearOption
+                    : isSelectedYear(yearOption);
+                  return (
+                    <OakBox
+                      key={yearOption}
+                      $pt="inner-padding-xs"
+                      $ml="space-between-sssx"
                     >
-                      <StyledButton
-                        data-testid="year-group-filter-button"
-                        aria-pressed={isSelectedYear(yearOption)}
-                        onClick={() => {
-                          onSelectYear(yearOption);
-                          trackSelectYear(yearOption);
-                          scrollToYearSection(yearOption);
-                        }}
+                      <FocusIndicator
+                        data-testid="year-group-focus-indicator"
+                        $display={"inline-block"}
+                        $mb="space-between-ssx"
+                        $mr="space-between-ssx"
+                        $background={isYearSelected ? "black" : "white"}
+                        $color={isYearSelected ? "white" : "black"}
+                        $borderRadius={"border-radius-s"}
+                        $font="heading-7"
+                        disableMouseHover={isSelectedYear(yearOption)}
                       >
-                        {getYearGroupTitle(yearData, yearOption)}
-                      </StyledButton>
-                    </FocusIndicator>
-                  </OakBox>
-                ))}
+                        <StyledButton
+                          data-testid="year-group-filter-button"
+                          aria-pressed={isSelectedYear(yearOption)}
+                          onClick={() => {
+                            onSelectYear(yearOption);
+                            trackSelectYear(yearOption);
+                            scrollToYearSection(yearOption);
+                          }}
+                        >
+                          {getYearGroupTitle(yearData, yearOption)}
+                        </StyledButton>
+                      </FocusIndicator>
+                    </OakBox>
+                  );
+                })}
               </StyledButtonGroup>
             </ScrollableWrapper>
           </OakBox>
@@ -260,170 +263,169 @@ function StickyBit({
   );
 }
 
-function Modal({
-  data,
-  selectedThread,
-  yearSelection,
-  onSelectThread,
-  onOpenModal,
-}: Pick<
-  CurriculumVisualiserFiltersProps,
-  | "data"
-  | "selectedThread"
-  | "selectedYear"
-  | "yearSelection"
-  | "onSelectThread"
-> & { onOpenModal: () => void }) {
-  const { threadOptions, yearData } = data;
+// function Modal({
+//   data,
+//   selectedThread,
+//   yearSelection,
+//   onSelectThread,
+//   onOpenModal,
+// }: Pick<
+//   CurriculumVisualiserFiltersProps,
+//   | "data"
+//   | "selectedThread"
+//   | "selectedYear"
+//   | "yearSelection"
+//   | "onSelectThread"
+// > & { onOpenModal: () => void }) {
+//   const { threadOptions, yearData } = data;
 
-  function isSelectedThread(thread: Thread) {
-    return selectedThread === thread.slug;
-  }
+//   function isSelectedThread(thread: Thread) {
+//     return selectedThread === thread.slug;
+//   }
 
-  const highlightedUnits = highlightedUnitCount(
-    yearData,
-    null,
-    yearSelection,
-    selectedThread,
-  );
+//   const highlightedUnits = highlightedUnitCount(
+//     yearData,
+//     null,
+//     yearSelection,
+//     selectedThread,
+//   );
 
-  return (
-    <OakBox
-      $background={"white"}
-      $position="fixed"
-      $top="all-spacing-0"
-      $height={"100%"}
-      $zIndex={"modal-dialog"}
-      $display={["block", "none"]}
-    >
-      <OakBox
-        $position={"absolute"}
-        $top="all-spacing-5"
-        $right="all-spacing-4"
-        $zIndex={"in-front"}
-      >
-        <Button
-          label=""
-          aria-label="Close Menu"
-          icon={"cross"}
-          variant={"minimal"}
-          size={"large"}
-          onClick={onOpenModal}
-          aria-expanded={open}
-        />
-      </OakBox>
-      <Fieldset
-        $ml={16}
-        $mt={32}
-        $mr={16}
-        data-testid="mobile-thread-modal"
-        $height={"85%"}
-        $overflow={"scroll"}
-      >
-        <FieldsetLegend $font={"heading-7"} $mb="space-between-m">
-          Highlight a thread
-        </FieldsetLegend>
-        <OakP $mb="space-between-m">
-          Threads are groups of units across the curriculum that build a common
-          body of knowledge
-        </OakP>
-        <RadioGroup
-          name="thread"
-          value={selectedThread ?? ""}
-          onChange={(e) => onSelectThread(e.target.value)}
-        >
-          <OakBox>
-            <OakBox
-              $mv="space-between-s"
-              $pl="inner-padding-s"
-              $position={"relative"}
-              $bl="border-solid-s"
-              $borderColor="transparent"
-            >
-              <RadioButton
-                aria-label={"None highlighted"}
-                value={""}
-                data-testid={"no-threads-radio-mobile"}
-              >
-                None highlighted
-              </RadioButton>
-            </OakBox>
-            {threadOptions.map((threadOption) => {
-              const isSelectedMobile = isSelectedThread(threadOption);
-              return (
-                <Box
-                  $position={"relative"}
-                  $ba={1}
-                  $background={isSelectedMobile ? "black" : "white"}
-                  $borderColor={isSelectedMobile ? "black" : "grey40"}
-                  $borderRadius={4}
-                  $color={isSelectedMobile ? "white" : "black"}
-                  $font={isSelectedMobile ? "heading-light-7" : "body-2"}
-                  $ph={12}
-                  $pt={12}
-                  $mb={8}
-                  key={threadOption.slug}
-                >
-                  <RadioButton
-                    aria-label={threadOption.title}
-                    value={threadOption.slug}
-                    data-testid={
-                      isSelectedMobile
-                        ? "selected-thread-radio-mobile"
-                        : "thread-radio-mobile"
-                    }
-                  >
-                    <OakSpan>
-                      {threadOption.title}
-                      <OakSpan aria-live="polite" aria-atomic="true">
-                        {isSelectedMobile && (
-                          <>
-                            <br />
-                            {highlightedUnits}
-                            {highlightedUnits === 1 ? " unit " : " units "}
-                            highlighted
-                          </>
-                        )}
-                      </OakSpan>
-                    </OakSpan>
-                  </RadioButton>
-                </Box>
-              );
-            })}
-          </OakBox>
-        </RadioGroup>
-      </Fieldset>
-      <OakFlex
-        $position={"fixed"}
-        $width={"100%"}
-        $background={"white"}
-        $bottom={["all-spacing-0"]}
-        $right={["all-spacing-0"]}
-        $justifyContent={"left"}
-      >
-        <Button
-          $ma={16}
-          label="Done"
-          data-testid="mobile-done-thread-modal-button"
-          icon="arrow-right"
-          $iconPosition="trailing"
-          iconBackground="black"
-          onClick={onOpenModal}
-        />
-      </OakFlex>
-    </OakBox>
-  );
-}
+//   return (
+//     <OakBox
+//       $background={"white"}
+//       $position="fixed"
+//       $top="all-spacing-0"
+//       $height={"100%"}
+//       $zIndex={"modal-dialog"}
+//       $display={["block", "none"]}
+//     >
+//       <OakBox
+//         $position={"absolute"}
+//         $top="all-spacing-5"
+//         $right="all-spacing-4"
+//         $zIndex={"in-front"}
+//       >
+//         <Button
+//           label=""
+//           aria-label="Close Menu"
+//           icon={"cross"}
+//           variant={"minimal"}
+//           size={"large"}
+//           onClick={onOpenModal}
+//           aria-expanded={open}
+//         />
+//       </OakBox>
+//       <Fieldset
+//         $ml={16}
+//         $mt={32}
+//         $mr={16}
+//         data-testid="mobile-thread-modal"
+//         $height={"85%"}
+//         $overflow={"scroll"}
+//       >
+//         <FieldsetLegend $font={"heading-7"} $mb="space-between-m">
+//           Highlight a thread
+//         </FieldsetLegend>
+//         <OakP $mb="space-between-m">
+//           Threads are groups of units across the curriculum that build a common
+//           body of knowledge
+//         </OakP>
+//         <RadioGroup
+//           name="thread"
+//           value={selectedThread ?? ""}
+//           onChange={(e) => onSelectThread(e.target.value)}
+//         >
+//           <OakBox>
+//             <OakBox
+//               $mv="space-between-s"
+//               $pl="inner-padding-s"
+//               $position={"relative"}
+//               $bl="border-solid-s"
+//               $borderColor="transparent"
+//             >
+//               <RadioButton
+//                 aria-label={"None highlighted"}
+//                 value={""}
+//                 data-testid={"no-threads-radio-mobile"}
+//               >
+//                 None highlighted
+//               </RadioButton>
+//             </OakBox>
+//             {threadOptions.map((threadOption) => {
+//               const isSelectedMobile = isSelectedThread(threadOption);
+//               return (
+//                 <Box
+//                   $position={"relative"}
+//                   $ba={1}
+//                   $background={isSelectedMobile ? "black" : "white"}
+//                   $borderColor={isSelectedMobile ? "black" : "grey40"}
+//                   $borderRadius={4}
+//                   $color={isSelectedMobile ? "white" : "black"}
+//                   $font={isSelectedMobile ? "heading-light-7" : "body-2"}
+//                   $ph={12}
+//                   $pt={12}
+//                   $mb={8}
+//                   key={threadOption.slug}
+//                 >
+//                   <RadioButton
+//                     aria-label={threadOption.title}
+//                     value={threadOption.slug}
+//                     data-testid={
+//                       isSelectedMobile
+//                         ? "selected-thread-radio-mobile"
+//                         : "thread-radio-mobile"
+//                     }
+//                   >
+//                     <OakSpan>
+//                       {threadOption.title}
+//                       <OakSpan aria-live="polite" aria-atomic="true">
+//                         {isSelectedMobile && (
+//                           <>
+//                             <br />
+//                             {highlightedUnits}
+//                             {highlightedUnits === 1 ? " unit " : " units "}
+//                             highlighted
+//                           </>
+//                         )}
+//                       </OakSpan>
+//                     </OakSpan>
+//                   </RadioButton>
+//                 </Box>
+//               );
+//             })}
+//           </OakBox>
+//         </RadioGroup>
+//       </Fieldset>
+//       <OakFlex
+//         $position={"fixed"}
+//         $width={"100%"}
+//         $background={"white"}
+//         $bottom={["all-spacing-0"]}
+//         $right={["all-spacing-0"]}
+//         $justifyContent={"left"}
+//       >
+//         <Button
+//           $ma={16}
+//           label="Done"
+//           data-testid="mobile-done-thread-modal-button"
+//           icon="arrow-right"
+//           $iconPosition="trailing"
+//           iconBackground="black"
+//           onClick={onOpenModal}
+//         />
+//       </OakFlex>
+//     </OakBox>
+//   );
+// }
 
 export default function CurriculumVisualiserFiltersMobile({
-  selectedThread,
-  onSelectThread,
-  selectedYear,
-  trackingData,
-  yearSelection,
+  filters,
+  onChangeFilters,
   data,
+  trackingData,
+  selectedYear,
   onSelectYear,
-}: CurriculumVisualiserFiltersProps) {
+}: CurriculumVisualiserFiltersMobileProps) {
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
 
@@ -432,23 +434,24 @@ export default function CurriculumVisualiserFiltersMobile({
   }
 
   return mobileThreadModalOpen ? (
-    <Modal
-      data={data}
-      selectedThread={selectedThread}
-      selectedYear={selectedYear}
-      yearSelection={yearSelection}
-      onOpenModal={handleMobileThreadModal}
-      onSelectThread={onSelectThread}
-    />
+    <div />
   ) : (
+    // <Modal
+    //   data={data}
+    //   selectedThread={selectedThread}
+    //   selectedYear={selectedYear}
+    //   yearSelection={yearSelection}
+    //   onOpenModal={handleMobileThreadModal}
+    //   onSelectThread={onSelectThread}
+    // />
     <StickyBit
       onOpenModal={handleMobileThreadModal}
-      data={data}
+      filters={filters}
       selectedYear={selectedYear}
-      selectedThread={selectedThread}
-      trackingData={trackingData}
-      yearSelection={yearSelection}
       onSelectYear={onSelectYear}
+      onChangeFilters={onChangeFilters}
+      data={data}
+      trackingData={trackingData}
     />
   );
 }
