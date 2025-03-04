@@ -4,6 +4,7 @@ import getPageProps from "./getPageProps";
 
 jest.mock("../common-lib/error-reporter", () => ({
   initialiseBugsnag: jest.fn(),
+  initialiseSentry: jest.fn(),
 }));
 jest.mock("./isr", () => ({
   decorateWithIsr: jest.fn((results) => ({ ...results, revalidate: 1337 })),
