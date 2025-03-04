@@ -1,6 +1,11 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { isArray } from "lodash";
 import styled from "styled-components";
+
+
+import { isMatchAnswer } from "../QuizUtils/answerTypeDiscriminators";
+import { getStemTextData } from "../QuizUtils/stemUtils";
+
 import {
   OakBox,
   OakDraggableFeedback,
@@ -9,10 +14,6 @@ import {
   OakQuizMatchProps,
   OakUL,
 } from "@oaknational/oak-components";
-
-import { isMatchAnswer } from "../QuizUtils/answerTypeDiscriminators";
-import { getStemTextData } from "../QuizUtils/stemUtils";
-
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { invariant } from "@/utils/invariant";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
@@ -33,6 +34,7 @@ export const QuizMatchAnswer = () => {
   const questionUid = currentQuestionData.questionUid;
   const currentQuestionState = questionState[currentQuestionIndex];
   const feedback = currentQuestionState?.feedback;
+  const [documentLoaded, setDocumentLoaded] = useState(false);
 
   invariant(
     currentQuestionData.answers && isMatchAnswer(currentQuestionData.answers),
@@ -53,19 +55,85 @@ export const QuizMatchAnswer = () => {
     }),
   );
 
-  const matchItems: { id: string; label: JSX.Element }[] = [];
-  const choiceItems: { id: string; label: JSX.Element }[] = [];
+  const matchItems: { id: string; label: JSX.Element; announcement: string }[] =
+    useMemo(() => {
+      const matchItems: {
+        id: string;
+        label: JSX.Element;
+        announcement: string;
+      }[] = [];
+      Object.entries(answers).forEach(([key], index) => {
+        matchItems.push({
+          id: index.toString(),
+          label: <MathJaxWrap key={`match-${index}`}>{key}</MathJaxWrap>,
+          announcement: key,
+        });
+      });
+      return matchItems;
+    }, [answers]);
+
+  const choiceItems: {
+    id: string;
+    label: JSX.Element;
+    announcement: string;
+  }[] = useMemo(() => {
+    const choiceItems: {
+      id: string;
+      label: JSX.Element;
+      announcement: string;
+    }[] = [];
+    Object.entries(answers).forEach(([value], index) => {
+      choiceItems.push({
+        id: index.toString(),
+        label: <MathJaxWrap key={`choice-${index}`}>{value}</MathJaxWrap>,
+        announcement: value,
+      });
+    });
+    return choiceItems;
+  }, [answers]);
 
   Object.entries(answers).forEach(([key, value], index) => {
     matchItems.push({
       id: index.toString(),
       label: <MathJaxWrap key={`match-${index}`}>{key}</MathJaxWrap>,
+      announcement: key,
     });
     choiceItems.push({
       id: index.toString(),
       label: <MathJaxWrap key={`choice-${index}`}>{value}</MathJaxWrap>,
+      announcement: value,
     });
   });
+
+  useEffect(() => {
+    setDocumentLoaded(true);
+    if (documentLoaded) {
+      choiceItems.forEach((item) => {
+        const element = document.getElementById(
+          `oak-quiz-match-item-${item.id}`,
+        );
+        if (element) {
+          const ariaLabel =
+            element?.children?.[0]?.children[1]?.children[0]?.children[0]
+              ?.ariaLabel;
+          if (ariaLabel) {
+            item.announcement = ariaLabel;
+          }
+        }
+      });
+
+      matchItems.forEach((item) => {
+        const element = document.getElementById(`droppable-${item.id}`);
+        if (element) {
+          const ariaLabel =
+            element?.children[1]?.children[0]?.children[0]?.ariaLabel;
+          if (ariaLabel) {
+            item.announcement = ariaLabel;
+          }
+        }
+      });
+    }
+  }, [documentLoaded, matchItems, choiceItems]);
 
   const [currentMatches, setCurrentMatches] = useState<{
     [matchId: string]: string;

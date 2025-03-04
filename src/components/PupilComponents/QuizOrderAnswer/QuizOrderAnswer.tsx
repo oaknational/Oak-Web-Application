@@ -1,5 +1,8 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { isArray } from "lodash";
+
+import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
+
 import {
   OakBox,
   OakCodeRenderer,
@@ -8,9 +11,6 @@ import {
   OakQuizOrder,
   OakQuizOrderProps,
 } from "@oaknational/oak-components";
-
-import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
-
 import { invariant } from "@/utils/invariant";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 
@@ -61,6 +61,33 @@ export const QuizOrderAnswer = ({ onChange }: QuizOrderAnswerProps) => {
     return currentItems;
   }, [answers.order, questionUid]);
   const [currentOrder, setCurrentOrder] = useState(initialItems);
+  const [announcements, setAnnouncements] = useState(currentOrder);
+  const [documentLoaded, setDocumentLoaded] = useState(false);
+
+  useEffect(() => {
+    setDocumentLoaded(true);
+    if (documentLoaded) {
+      const announcementItems: {
+        id: string;
+        label: string;
+      }[] = [];
+      currentOrder.forEach((item) => {
+        const element = document.getElementById(
+          `oak-quiz-order-item-${item.id}`,
+        );
+        if (element) {
+          const ariaLabel =
+            element?.children?.[0]?.children[1]?.children[0]?.ariaLabel;
+          if (ariaLabel) {
+            announcementItems.push({ id: item.id, label: ariaLabel });
+          } else {
+            announcementItems.push({ id: item.id, label: item.label });
+          }
+        }
+      });
+      setAnnouncements(announcementItems);
+    }
+  }, [currentOrder, documentLoaded]);
 
   const handleOrderChange = (items: OakQuizOrderProps["initialItems"]) => {
     onChange();
@@ -97,6 +124,7 @@ export const QuizOrderAnswer = ({ onChange }: QuizOrderAnswerProps) => {
         initialItems={initialItems}
         onChange={handleOrderChange}
         isHighlighted={currentQuestionState?.mode === "incomplete"}
+        announcements={announcements}
       />
       {currentOrder.map((item) => {
         return (
