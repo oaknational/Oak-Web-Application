@@ -3,10 +3,10 @@
 
 import { SignIn } from "@clerk/nextjs";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
-import { OakBox } from "@oaknational/oak-components";
 
 import { formAppearanceStyles } from "../../formAppearanceStyles";
 
+import { OakBox } from "@oaknational/oak-components";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
 import { getIllustrationAsset } from "@/image-data";

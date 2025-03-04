@@ -4,6 +4,9 @@
 import { SignUp } from "@clerk/nextjs";
 import { useState, useCallback, useEffect } from "react";
 import { useFeatureFlagVariantKey } from "posthog-js/react";
+
+import { formAppearanceStyles } from "../../formAppearanceStyles";
+
 import {
   OakBox,
   OakFlex,
@@ -11,9 +14,6 @@ import {
   OakLink,
   OakP,
 } from "@oaknational/oak-components";
-
-import { formAppearanceStyles } from "../../formAppearanceStyles";
-
 import RegistrationAside from "@/components/TeacherComponents/RegistrationAside/ResgistrationAside";
 import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";
 import { resolveOakHref } from "@/common-lib/urls";

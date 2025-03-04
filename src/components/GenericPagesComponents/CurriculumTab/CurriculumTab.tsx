@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import {
   OakHeading,
   OakLI,
@@ -9,7 +10,6 @@ import {
   OakMaxWidth,
   OakBox,
 } from "@oaknational/oak-components";
-
 import Illustration from "@/components/SharedComponents/Illustration";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { resolveOakHref } from "@/common-lib/urls";

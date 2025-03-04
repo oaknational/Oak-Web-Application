@@ -1,8 +1,8 @@
-import { OakP } from "@oaknational/oak-components";
 import { screen } from "@testing-library/dom";
 
 import RegistrationLayout from "./RegistrationLayout";
 
+import { OakP } from "@oaknational/oak-components";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
 describe("RegistrationLayout", () => {

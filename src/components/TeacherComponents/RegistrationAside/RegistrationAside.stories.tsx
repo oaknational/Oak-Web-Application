@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import Component from "./ResgistrationAside";
+
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
+
 
 const meta: Meta<typeof Component> = {
   component: Component,

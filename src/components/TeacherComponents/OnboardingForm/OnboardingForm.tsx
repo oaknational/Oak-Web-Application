@@ -8,15 +8,7 @@ import {
 import { BaseSyntheticEvent, ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useUser } from "@clerk/nextjs";
-import {
-  OakBox,
-  OakCheckBox,
-  OakFlex,
-  OakInlineBanner,
-  OakP,
-  OakPrimaryButton,
-  OakSpan,
-} from "@oaknational/oak-components";
+
 
 import useLocalStorageForDownloads from "../hooks/downloadAndShareHooks/useLocalStorageForDownloads";
 
@@ -36,6 +28,15 @@ import {
   encodeOnboardingDataQueryParam,
 } from "./onboardingDataQueryParam";
 
+import {
+  OakBox,
+  OakCheckBox,
+  OakFlex,
+  OakInlineBanner,
+  OakP,
+  OakPrimaryButton,
+  OakSpan,
+} from "@oaknational/oak-components";
 import Logo from "@/components/AppComponents/Logo";
 import { resolveOakHref } from "@/common-lib/urls";
 import useAnalytics from "@/context/Analytics/useAnalytics";

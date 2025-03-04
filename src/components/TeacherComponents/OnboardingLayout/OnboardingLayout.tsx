@@ -1,11 +1,11 @@
+import { PropsWithChildren, ReactNode } from "react";
+
 import {
   OakBox,
   OakFlex,
   OakHeading,
   OakLink,
 } from "@oaknational/oak-components";
-import { PropsWithChildren, ReactNode } from "react";
-
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import { getIllustrationAsset } from "@/image-data";
 import RegistrationLayout from "@/components/TeacherComponents/RegistrationLayout/RegistrationLayout";

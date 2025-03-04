@@ -7,8 +7,9 @@ import {
   OakScaleImageButton,
 } from "@oaknational/oak-components";
 
-import { CodeRenderWrapper } from "../CodeRendererWrapper/CodeRendererWrapper";
+import { multipleChoiceAnswerId } from "../QuizMCQMultiAnswer";
 
+import { CodeRenderWrapper } from "@/components/PupilComponents//CodeRendererWrapper/CodeRendererWrapper";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import {
@@ -107,7 +108,7 @@ export const QuizMCQSingleAnswer = (props: QuizMCQSingleAnswerProps) => {
 
           return (
             <OakQuizRadioButton
-              id={`${questionUid}-answer-${i}`}
+              id={multipleChoiceAnswerId(questionUid, i)}
               key={`${questionUid}-answer-${i}`}
               value={`${questionUid}: ${i}`} // we make this unique to the question to prevent selection on later questions
               label={

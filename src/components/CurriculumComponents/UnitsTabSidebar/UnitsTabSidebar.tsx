@@ -1,14 +1,14 @@
 import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
+import styled from "styled-components";
+
 import {
   OakFlex,
   OakHandDrawnHR,
   OakBox,
   OakPrimaryButton,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
-
 import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
