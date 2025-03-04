@@ -1,3 +1,10 @@
+# [1.703.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.3...v1.703.0) (2025-03-04)
+
+
+### Features
+
+* add posthog alias call to sign in events and use clerk id for identify events ([2d0f133](https://github.com/oaknational/Oak-Web-Application/commit/2d0f13349fa40573ebdf77ffc2fdb4ec0c1ab203))
+
 ## [1.702.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.2...v1.702.3) (2025-03-04)
 
 

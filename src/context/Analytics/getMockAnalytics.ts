@@ -21,5 +21,8 @@ export function getMockAnalytics(): AnalyticsContext {
     identify: () => {
       console.log("Mock identify called");
     },
+    alias: () => {
+      console.log("Mock alias called");
+    },
   };
 }
