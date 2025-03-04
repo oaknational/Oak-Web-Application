@@ -3,7 +3,6 @@ import { waitFor } from "@testing-library/dom";
 import { act } from "@testing-library/react";
 
 import CurriculumVisualiser from "./CurriculumVisualiser";
-
 import {
   noMissingUnitsFixture,
   missingUnitsForFirstYearPrimaryFixture,
@@ -15,7 +14,8 @@ import {
   missingUnitsInMiddleFixture,
   missingAlternateUnitsFixture,
   missingUnitForLastYearFixture,
-} from "@/utils/curriculum/fixtures/curriculumFilterFixturesGenerator";
+} from "./fixtures";
+
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { YearData } from "@/utils/curriculum/types";
 
