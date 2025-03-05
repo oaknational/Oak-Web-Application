@@ -121,7 +121,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     unitSlug,
     programmeSlug,
     yearTitle,
+    examBoardSlug,
+    subjectParent,
   } = commonPathway;
+
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
   const isNew = lessonCohort === NEW_COHORT;
   const isMathJaxLesson = hasLessonMathJax(
@@ -435,6 +438,9 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     subject={subjectTitle}
                     keystage={keyStageTitle}
                     unit={unitTitle}
+                    examBoardSlug={examBoardSlug}
+                    subjectSlug={subjectSlug}
+                    subjectParent={subjectParent}
                   />
                 </LessonItemContainer>
 

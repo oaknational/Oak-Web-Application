@@ -10,6 +10,7 @@ export type LessonPathway = {
   keyStageSlug?: string;
   subjectTitle: string;
   subjectSlug: string;
+  subjectParent: string | null;
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
@@ -36,6 +37,8 @@ export type SpecialistLessonPathway = {
   keyStageSlug: null;
   keyStageTitle: null;
   yearTitle: null;
+  examBoardSlug: null;
+  subjectParent: null;
 };
 
 export const getPathway = (lesson: LessonOverviewAll) => {
@@ -70,6 +73,7 @@ export type LessonOverviewInPathway = LessonBase & {
   keyStageSlug: string;
   subjectTitle: string;
   subjectSlug: string;
+  subjectParent: string | null;
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
