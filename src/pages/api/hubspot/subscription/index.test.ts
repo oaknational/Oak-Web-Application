@@ -23,14 +23,14 @@ import {
 describe("/api/hubspot/subscription", () => {
   const hubspot = new HubspotClient();
   const handler = createHandler(hubspot);
-  const mockClerkClient = installMockClerkClient();
+  installMockClerkClient({
+    updateUserMetadata: jest.fn(),
+    getUser: jest.fn(),
+    mockUser: mockServerUser,
+  });
 
   beforeEach(() => {
     setGetAuth(mockGetAuthSignedIn);
-    jest
-      .spyOn(mockClerkClient.users, "getUser")
-      .mockReset()
-      .mockResolvedValue(mockServerUser);
   });
 
   it("should return true when subscription status is set", async () => {
@@ -101,9 +101,11 @@ describe("/api/hubspot/subscription", () => {
   });
 
   test("responds false when the user has no email addresses", async () => {
-    jest
-      .spyOn(mockClerkClient.users, "getUser")
-      .mockResolvedValue(mockServerUserWithNoEmailAddresses);
+    installMockClerkClient({
+      updateUserMetadata: jest.fn(),
+      getUser: jest.fn(),
+      mockUser: mockServerUserWithNoEmailAddresses,
+    });
     const { req, res } = createMocks<NextApiRequest, NextApiResponse>({
       method: "GET",
     });

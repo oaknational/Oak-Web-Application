@@ -80,7 +80,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
                 iconName="chevron-right"
                 isTrailingIcon
               >
-                <OakTypography $font={"body-1-bold"} $color="black">
+                <OakTypography $font={"body-1-bold"} $color="black" as="span">
                   Our curriculum planning approach
                 </OakTypography>
               </OakSecondaryLink>

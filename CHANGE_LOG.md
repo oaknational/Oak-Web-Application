@@ -1,3 +1,79 @@
+# [1.704.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.703.2...v1.704.0) (2025-03-05)
+
+
+### Features
+
+* add tests and change id ([4071b30](https://github.com/oaknational/Oak-Web-Application/commit/4071b300f675b1a6f5d8a53f15ede1d4994260c4))
+* create key listener to tab to inputs on quiz ([70836be](https://github.com/oaknational/Oak-Web-Application/commit/70836be134a6942f589475f71fe1f208be5b69d0))
+* merge main ([15372da](https://github.com/oaknational/Oak-Web-Application/commit/15372dad24a923154d845e2403f588c417507881))
+* use unique ids ([3a193a3](https://github.com/oaknational/Oak-Web-Application/commit/3a193a3c3596f2bf1ea245494dd31677b7919926))
+* use unique ids ([247a435](https://github.com/oaknational/Oak-Web-Application/commit/247a435fe1cfda132028802b457479ee25884438))
+
+## [1.703.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.703.1...v1.703.2) (2025-03-04)
+
+
+### Bug Fixes
+
+* added correct formatting to description meta tag for curric ([acd9f79](https://github.com/oaknational/Oak-Web-Application/commit/acd9f7923199bbe54f398d0ae3aa8dba5bc02ed4))
+* extracted out keystage and added in proper examboard formatting ([599f9e0](https://github.com/oaknational/Oak-Web-Application/commit/599f9e023add7a3f683636e24efb80ec8b7afadd))
+* failing test for examboards in buildCurriculumMetadata(...) ([26ef4bc](https://github.com/oaknational/Oak-Web-Application/commit/26ef4bcd96b8456e4ca77daedc3594f3e23a6667))
+
+## [1.703.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.703.0...v1.703.1) (2025-03-04)
+
+
+### Reverts
+
+* Revert "Merge pull request [#3230](https://github.com/oaknational/Oak-Web-Application/issues/3230) from oaknational/feat/eng-1100-implement-sentry-for-error-reporting" ([02cb9f9](https://github.com/oaknational/Oak-Web-Application/commit/02cb9f963d2eec304eb3c2cf63b4ac5694356f90))
+
+# [1.703.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.3...v1.703.0) (2025-03-04)
+
+
+### Features
+
+* add posthog alias call to sign in events and use clerk id for identify events ([2d0f133](https://github.com/oaknational/Oak-Web-Application/commit/2d0f13349fa40573ebdf77ffc2fdb4ec0c1ab203))
+
+## [1.702.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.2...v1.702.3) (2025-03-04)
+
+
+### Bug Fixes
+
+* added as="span" to <OakTypography/> to fix layout issue ([93ec8b4](https://github.com/oaknational/Oak-Web-Application/commit/93ec8b43edb5a6da45d624a8ff264be6dc7522c2))
+
+## [1.702.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.1...v1.702.2) (2025-03-04)
+
+
+### Bug Fixes
+
+* use display values for year and subject on unit listing page second section headers ([b884d98](https://github.com/oaknational/Oak-Web-Application/commit/b884d9800d71c6ae0f0f48419416ca8e78eba22c))
+
+## [1.702.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.702.0...v1.702.1) (2025-03-04)
+
+
+### Bug Fixes
+
+* await update metadata ([04b8002](https://github.com/oaknational/Oak-Web-Application/commit/04b80023b9693525e5fdf890899e77d7ba253153))
+* update to new clerk client syntax ([23da077](https://github.com/oaknational/Oak-Web-Application/commit/23da077c5be4341cb3125ee9814b599f1e2f3e3d))
+
+# [1.702.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.701.0...v1.702.0) (2025-03-03)
+
+
+### Bug Fixes
+
+* change aria-label to remove chevron-right in a11y text ([d19a435](https://github.com/oaknational/Oak-Web-Application/commit/d19a435ad4f4c66d1786f82526e56d8216f3134d))
+
+
+### Features
+
+* use OakPrimaryButton to link to lesson resources ([c67d695](https://github.com/oaknational/Oak-Web-Application/commit/c67d695a88bf725f9fb96ca477fd461f3d7eb56f))
+
+# [1.701.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.700.1...v1.701.0) (2025-03-03)
+
+
+### Features
+
+* add sentry and integrate it with error reporting ([f7d8ae3](https://github.com/oaknational/Oak-Web-Application/commit/f7d8ae39c7c57aba012fdc89936f880db9d0f13e))
+* add sentry and supporting env var config ([a458cc5](https://github.com/oaknational/Oak-Web-Application/commit/a458cc5bbdca88b35a6e0da6b6110c69c0da5ff9))
+
 ## [1.700.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.700.0...v1.700.1) (2025-02-27)
 
 
