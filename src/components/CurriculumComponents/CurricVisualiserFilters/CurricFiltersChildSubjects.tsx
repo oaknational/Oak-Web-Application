@@ -4,7 +4,7 @@ import {
   OakRadioAsButton,
 } from "@oaknational/oak-components";
 
-import { CurriculumFilters } from "@/utils/curriculum/types";
+import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 import { getFilterData } from "@/utils/curriculum/filtering";
 import {
@@ -16,7 +16,7 @@ import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/ta
 export type CurricFiltersChildSubjectsProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilters: CurriculumFilters) => void;
-  data: CurriculumUnitsFormattedData;
+  data: CurriculumUnitsFormattedData<Unit>;
 };
 
 export function CurricFiltersChildSubjects({

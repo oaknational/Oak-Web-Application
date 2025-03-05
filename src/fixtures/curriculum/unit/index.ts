@@ -79,11 +79,11 @@ export function createUnit(partial: Partial<Unit> = {}) {
 
   return {
     ...BASE_UNIT,
-    phase,
-    phase_slug,
+    phase: phase ?? "",
+    phase_slug: phase_slug ?? "",
     keystage_slug,
-    subject,
-    subject_slug,
+    subject: subject ?? "",
+    subject_slug: subject_slug ?? "",
     year: partial.year ?? BASE_UNIT.year,
     ...(title ? { title } : {}),
     ...partial,
