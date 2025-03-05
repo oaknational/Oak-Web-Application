@@ -9,7 +9,16 @@ import {
   sortSubjectCategoriesOnFeatures,
   sortTiers,
 } from "./sorting";
-import { CurriculumFilters, Subject, SubjectCategory, Tier } from "./types";
+import {
+  CurriculumFilters,
+  Subject,
+  SubjectCategory,
+  Thread,
+  Tier,
+  Unit,
+  YearData,
+} from "./types";
+import { isVisibleUnit } from "./isVisibleUnit";
 
 import {
   CurriculumUnitsFormattedData,
@@ -179,4 +188,36 @@ export function getFilterData(
     subjectCategories: subjectCategoriesArray,
     tiers: tiersArray,
   };
+}
+
+export function isHighlightedUnit(
+  unit: Unit,
+  selectedThreads: Thread["slug"][] | null,
+) {
+  if (!selectedThreads) {
+    return false;
+  }
+  return unit.threads.some((t) => selectedThreads.includes(t.slug));
+}
+
+export function highlightedUnitCount(
+  yearData: YearData,
+  filters: CurriculumFilters,
+  selectedThreads: Thread["slug"][] | null,
+): number {
+  let count = 0;
+  Object.keys(yearData).forEach((year) => {
+    const units = yearData[year]?.units;
+    if (units && filters.years.includes(year)) {
+      units.forEach((unit) => {
+        if (
+          isVisibleUnit(filters, year, unit) &&
+          isHighlightedUnit(unit, selectedThreads)
+        ) {
+          count++;
+        }
+      });
+    }
+  });
+  return count;
 }

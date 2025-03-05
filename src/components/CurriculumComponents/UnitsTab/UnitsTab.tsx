@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { OakHeading, OakBox, OakP } from "@oaknational/oak-components";
 
 import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
-import CurriculumVisualiserLayout from "../CurriculumVisualiserLayout/CurriculumVisualiserLayout";
-import CurriculumVisualiserFiltersMobile from "../CurriculumVisualiserFilters/CurriculumVisualiserFiltersMobile";
-import CurriculumVisualiserFilters from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
-import { highlightedUnitCount } from "../CurriculumVisualiserFilters/helpers";
+import CurriculumVisualiserLayout from "../CurricVisualiserLayout";
+import CurriculumVisualiserFiltersMobile from "../CurricVisualiserFiltersMobile";
+import CurriculumVisualiserFiltersDesktop from "../CurricVisualiserFiltersDesktop";
 
 import { CurriculumFilters, Thread, Unit } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
@@ -18,6 +17,7 @@ import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelected
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
+import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -123,7 +123,7 @@ export default function UnitsTab({
         />
         <CurriculumVisualiserLayout
           filters={
-            <CurriculumVisualiserFilters
+            <CurriculumVisualiserFiltersDesktop
               filters={filters}
               onChangeFilters={onChangeFiltersLocal}
               data={formattedData}
