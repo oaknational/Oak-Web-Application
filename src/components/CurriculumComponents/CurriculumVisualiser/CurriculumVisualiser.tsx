@@ -15,6 +15,7 @@ import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import {
   getSuffixFromFeatures,
   getYearGroupTitle,
+  getYearSubheadingText,
 } from "@/utils/curriculum/formatting";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
@@ -306,6 +307,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
               getSuffixFromFeatures(actions),
             );
 
+            const yearSubheadingText = getYearSubheadingText(
+              yearData,
+              year,
+              filters,
+            );
+
             return (
               <OakBox
                 key={year}
@@ -326,11 +333,26 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 <OakHeading
                   tag="h3"
                   $font={["heading-6", "heading-5"]}
-                  $mb="space-between-s"
+                  $mb={
+                    yearSubheadingText ? "space-between-xs" : "space-between-s"
+                  }
                   data-testid="year-heading"
                 >
                   {yearTitle}
                 </OakHeading>
+
+                {yearSubheadingText && (
+                  <OakHeading
+                    tag="h4"
+                    $font={"heading-7"}
+                    $mb="space-between-s"
+                    $color="text-primary"
+                    data-testid="year-subheading"
+                  >
+                    {yearSubheadingText}
+                  </OakHeading>
+                )}
+
                 {isSwimming && (
                   <Alert
                     $mb="space-between-s"

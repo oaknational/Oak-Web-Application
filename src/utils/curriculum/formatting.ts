@@ -121,3 +121,74 @@ export function buildPageTitle(
 export function joinWords(str: string[]) {
   return str.filter((str) => str !== "").join(" ");
 }
+
+export function getYearSubheadingText(
+  yearData: YearData,
+  year: string,
+  filters: {
+    childSubjects: string[];
+    subjectCategories: string[];
+    tiers: string[];
+  },
+): string | null {
+  if (year === "all") {
+    return null;
+  }
+
+  const parts: string[] = [];
+  const isKs4Year = year === "10" || year === "11";
+
+  if (
+    filters.subjectCategories.length > 0 &&
+    (!isKs4Year || filters.childSubjects.length === 0)
+  ) {
+    const subjectCategoryTitles =
+      (filters.subjectCategories.includes("-1")
+        ? yearData[year]?.subjectCategories
+            .filter((sc) => sc.id !== -1)
+            .sort((a, b) => a.id - b.id)
+            .map((sc) => sc.title)
+        : filters.subjectCategories
+            .map((id) => {
+              const subjectCategory = yearData[year]?.subjectCategories.find(
+                (sc) => sc.id.toString() === id,
+              );
+              return subjectCategory?.title;
+            })
+            .filter(Boolean)) ?? [];
+
+    if (subjectCategoryTitles.length > 0) {
+      parts.push(subjectCategoryTitles.join(", "));
+    }
+  }
+
+  if (filters.childSubjects.length > 0) {
+    const childSubjectTitles = filters.childSubjects
+      .map((slug) => {
+        const childSubject = yearData[year]?.childSubjects.find(
+          (cs) => cs.subject_slug === slug,
+        );
+        return childSubject?.subject;
+      })
+      .filter(Boolean);
+
+    if (childSubjectTitles.length > 0) {
+      parts.push(childSubjectTitles.join(", "));
+    }
+  }
+
+  if (filters.tiers.length > 0) {
+    const tierTitles = filters.tiers
+      .map((slug) => {
+        const tier = yearData[year]?.tiers.find((t) => t.tier_slug === slug);
+        return tier?.tier;
+      })
+      .filter(Boolean);
+
+    if (tierTitles.length > 0) {
+      parts.push(tierTitles.join(", "));
+    }
+  }
+
+  return parts.length > 0 ? parts.join(", ") : null;
+}
