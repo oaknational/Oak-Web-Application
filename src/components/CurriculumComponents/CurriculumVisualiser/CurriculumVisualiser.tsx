@@ -286,14 +286,32 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           .filter((year) => filterIncludes("years", [year]))
           .sort(sortYears)
           .map((year, index) => {
-            const { units, isSwimming } = yearData[year] as YearData[string];
+            const {
+              units,
+              isSwimming,
+              childSubjects,
+              tiers,
+              subjectCategories,
+            } = yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
             };
 
+            const yearFilters = {
+              childSubjects:
+                childSubjects.length > 0 ? filters.childSubjects : undefined,
+              subjectCategories:
+                childSubjects.length < 1 && subjectCategories.length > 0
+                  ? filters.subjectCategories
+                  : undefined,
+              tiers: tiers.length > 0 ? filters.tiers : undefined,
+              years: filters.years,
+              threads: filters.threads,
+            };
+
             const filteredUnits = units.filter((unit: Unit) =>
-              isVisibleUnit(filters, year, unit),
+              isVisibleUnit(yearFilters, year, unit),
             );
 
             const dedupedUnits = dedupUnits(filteredUnits);
