@@ -349,7 +349,7 @@ function pickTabId(
 ) {
   switch (true) {
     case isOrderAnswer(answers):
-      return OakQuizOrderitemId("0");
+      return OakQuizOrderitemId("1");
     case isMatchAnswer(answers):
       return OakQuizMatchItemId("0");
     case isShortAnswer(answers):
