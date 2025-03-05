@@ -35,6 +35,7 @@ export type SpecialistLessonPathway = {
   disable?: boolean;
   keyStageSlug: null;
   keyStageTitle: null;
+  yearTitle: null;
 };
 
 export const getPathway = (lesson: LessonOverviewAll) => {

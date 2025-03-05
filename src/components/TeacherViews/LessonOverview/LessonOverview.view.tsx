@@ -1,4 +1,7 @@
 import React, { useRef, Fragment, useState } from "react";
+
+import { hasLessonMathJax } from "./hasLessonMathJax";
+
 import {
   OakGrid,
   OakGridArea,
@@ -8,9 +11,6 @@ import {
   OakBox,
   OakMaxWidth,
 } from "@oaknational/oak-components";
-
-import { hasLessonMathJax } from "./hasLessonMathJax";
-
 import {
   getPageLinksForLesson,
   getBreadcrumbsForLessonPathway,
@@ -120,6 +120,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
     unitTitle,
     unitSlug,
     programmeSlug,
+    yearTitle,
   } = commonPathway;
   const isLegacyLicense = !lessonCohort || lessonCohort === LEGACY_COHORT;
   const isNew = lessonCohort === NEW_COHORT;
@@ -430,6 +431,10 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     displayVocab={actions?.displayVocabButton}
                     updatedAt={updatedAt}
                     additionalFiles={additionalFiles}
+                    year={yearTitle}
+                    subject={subjectTitle}
+                    keystage={keyStageTitle}
+                    unit={unitTitle}
                   />
                 </LessonItemContainer>
 
