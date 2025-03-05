@@ -45,7 +45,10 @@ import { useResourceFormState } from "@/components/TeacherComponents/hooks/downl
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import { LEGACY_COHORT } from "@/config/cohort";
 import { SpecialistLessonDownloads } from "@/node-lib/curriculum-api-2023/queries/specialistLessonDownload/specialistLessonDownload.schema";
-import { CopyrightContent } from "@/node-lib/curriculum-api-2023/shared.schema";
+import {
+  CopyrightContent,
+  Actions,
+} from "@/node-lib/curriculum-api-2023/shared.schema";
 
 type BaseLessonDownload = {
   expired: boolean | null;
@@ -59,6 +62,7 @@ type BaseLessonDownload = {
   developmentStageTitle?: string | null;
   geoRestricted: boolean | null;
   loginRequired: boolean | null;
+  actions?: Actions | null;
 };
 
 type CanonicalLesson = BaseLessonDownload & {
@@ -98,7 +102,10 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     isSpecialist,
     copyrightContent,
     updatedAt,
+    actions,
   } = lesson;
+
+  const showRiskAssessmentBanner = !!actions?.isPePractical;
 
   const commonPathway =
     lessonIsSpecialist(lesson) && !props.isCanonical
@@ -410,6 +417,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   }
                 />
               }
+              showRiskAssessmentBanner={showRiskAssessmentBanner}
             />
           );
         })()}

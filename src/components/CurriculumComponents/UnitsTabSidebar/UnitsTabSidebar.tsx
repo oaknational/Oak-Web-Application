@@ -1,17 +1,22 @@
 import React, { FC, HTMLProps } from "react";
 import { Transition } from "react-transition-group";
 import { FocusOn } from "react-focus-on";
-import { OakFlex, OakHandDrawnHR, OakBox } from "@oaknational/oak-components";
+import {
+  OakFlex,
+  OakHandDrawnHR,
+  OakBox,
+  OakPrimaryButton,
+} from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
 import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
 import { Unit } from "@/utils/curriculum/types";
+import { transformOwaLinkProps } from "@/components/SharedComponents/OwaLink";
 
 const IconButtonFocusVisible = styled(IconButton)`
   :focus ${IconFocusUnderline} {
@@ -72,6 +77,17 @@ const UnitsTabSidebar: FC<ModalProps> = ({
     }
   }
 
+  const lessonPageProps =
+    lessons && programmeSlug && resolvedUnitSlug
+      ? transformOwaLinkProps({
+          page: "lesson-index",
+          unitSlug: resolvedUnitSlug,
+          programmeSlug,
+        })
+      : null;
+
+  const lessonPageHref = lessonPageProps?.nextLinkProps?.href;
+
   return (
     <Transition in={displayModal} timeout={300} unmountOnExit>
       {(state) => (
@@ -128,35 +144,35 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                       $ph="inner-padding-m"
                       $pb="inner-padding-m"
                     >
-                      <OakFlex
-                        $flexDirection={["column", "row"]}
-                        $alignItems={"flex-start"}
-                        $gap="all-spacing-2"
+                      <OakPrimaryButton
+                        data-testid="unit-lessons-button"
+                        iconName="chevron-right"
+                        isTrailingIcon={true}
+                        disabled={!lessonsAvailable}
+                        element={lessonsAvailable ? "a" : "button"}
+                        aria-label={
+                          !lessonsAvailable
+                            ? "Coming soon See lessons in unit"
+                            : "See lessons in unit"
+                        }
+                        aria-disabled={!lessonsAvailable ? "true" : "false"}
+                        {...(lessonsAvailable && { href: lessonPageHref })}
                       >
-                        {lessonsAvailable === false && (
-                          <TagFunctional
-                            data-testid="coming-soon-flag"
-                            text={"Coming soon"}
-                            color="grey"
-                          />
-                        )}
-                        {lessons && programmeSlug && unitSlug && (
-                          <ButtonAsLink
-                            data-testid="unit-lessons-button"
-                            label="See lessons in unit"
-                            $font={"heading-7"}
-                            disabled={!lessonsAvailable}
-                            currentStyles={["color"]}
-                            icon="chevron-right"
-                            iconBackground="black"
-                            $iconPosition="trailing"
-                            variant="buttonStyledAsLink"
-                            page="lesson-index"
-                            unitSlug={resolvedUnitSlug}
-                            programmeSlug={programmeSlug}
-                          />
-                        )}
-                      </OakFlex>
+                        <OakFlex
+                          $flexDirection={"row"}
+                          $alignItems={"center"}
+                          $gap="all-spacing-2"
+                        >
+                          {lessonsAvailable === false && (
+                            <TagFunctional
+                              data-testid="coming-soon-flag"
+                              text={"Coming soon"}
+                              color="grey"
+                            />
+                          )}
+                          See lessons in unit
+                        </OakFlex>
+                      </OakPrimaryButton>
                     </OakFlex>
                   </OakFlex>
                 )}

@@ -14,6 +14,11 @@ jest.mock(
       .mockResolvedValue({ transcriptSentences: [], hasWorksheet: false }),
   }),
 );
+jest.mock("@/components/PupilComponents/pupilUtils/getWorksheetInfo", () => ({
+  getWorksheetInfo: jest
+    .fn()
+    .mockResolvedValue({ transcriptSentences: [], hasWorksheet: false }),
+}));
 
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
   describe("getStaticPaths", () => {
