@@ -25,11 +25,17 @@ import {
   presentAtKeyStageSlugs,
 } from "@/utils/curriculum/keystage";
 
+type CurriculumVisualiserFiltersDesktopProps =
+  CurriculumVisualiserFiltersProps & {
+    excludeYears?: boolean;
+  };
+
 export default function CurriculumVisualiserFiltersDesktop({
   filters,
   onChangeFilters,
   data,
-}: CurriculumVisualiserFiltersProps) {
+  excludeYears = false,
+}: CurriculumVisualiserFiltersDesktopProps) {
   const { yearData, threadOptions, yearOptions } = data;
 
   const { childSubjects, subjectCategories, tiers } = getFilterData(
@@ -70,48 +76,50 @@ export default function CurriculumVisualiserFiltersDesktop({
         Filter and highlight
       </OakHeading>
 
-      <>
-        <OakHeading
-          tag="h4"
-          id="year-group-label"
-          $font={"heading-6"}
-          $mb="space-between-s"
-        >
-          Year group
-        </OakHeading>
+      {!excludeYears && (
+        <>
+          <OakHeading
+            tag="h4"
+            id="year-group-label"
+            $font={"heading-6"}
+            $mb="space-between-s"
+          >
+            Year group
+          </OakHeading>
 
-        <OakRadioGroup
-          name="year"
-          onChange={(e) =>
-            addAllToFilter(
-              "years",
-              e.target.value === "all" ? yearOptions : [e.target.value],
-            )
-          }
-          value={
-            isEqual(filters.years, yearOptions) ? "all" : filters.years[0]!
-          }
-          $gap="space-between-ssx"
-          $flexDirection="row"
-          $flexWrap="wrap"
-          aria-labelledby="year-group-label"
-          data-testid="year-group-filter-desktop"
-        >
-          <OakRadioAsButton
-            value="all"
-            displayValue="All"
-            data-testid={"all-years-radio"}
-          />
-          {yearOptions.map((yearOption) => (
+          <OakRadioGroup
+            name="year"
+            onChange={(e) =>
+              addAllToFilter(
+                "years",
+                e.target.value === "all" ? yearOptions : [e.target.value],
+              )
+            }
+            value={
+              isEqual(filters.years, yearOptions) ? "all" : filters.years[0]!
+            }
+            $gap="space-between-ssx"
+            $flexDirection="row"
+            $flexWrap="wrap"
+            aria-labelledby="year-group-label"
+            data-testid="year-group-filter-desktop"
+          >
             <OakRadioAsButton
-              key={yearOption}
-              value={yearOption}
-              displayValue={getYearGroupTitle(yearData, yearOption)}
-              data-testid={"year-radio"}
+              value="all"
+              displayValue="All"
+              data-testid={"all-years-radio"}
             />
-          ))}
-        </OakRadioGroup>
-      </>
+            {yearOptions.map((yearOption) => (
+              <OakRadioAsButton
+                key={yearOption}
+                value={yearOption}
+                displayValue={getYearGroupTitle(yearData, yearOption)}
+                data-testid={"year-radio"}
+              />
+            ))}
+          </OakRadioGroup>
+        </>
+      )}
 
       {subjectCategoriesAt.length > 0 && (
         <>
