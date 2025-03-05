@@ -1,7 +1,8 @@
 import "jest-styled-components";
 
-import CurriculumVisualiserFiltersMobile from "./CurriculumVisualiserFiltersMobile";
-import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
+import CurriculumVisualiserFiltersMobile, {
+  CurriculumVisualiserFiltersMobileProps,
+} from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 
@@ -30,14 +31,19 @@ const emptyMockYearData = {
   groupAs: null,
 };
 
-const CurriculumVisualiserFiltersMobileFixture: CurriculumVisualiserFiltersProps =
+const CurriculumVisualiserFiltersMobileFixture: CurriculumVisualiserFiltersMobileProps =
   {
-    //   updateMobileHeaderScroll: jest.fn(() => {}),
-    onSelectThread: jest.fn(() => {}),
-    selectedThread: null,
     selectedYear: "7",
     onSelectYear: jest.fn(() => {}),
-    yearSelection: {},
+    filters: {
+      childSubjects: [],
+      subjectCategories: [],
+      tiers: [],
+      years: [],
+      threads: [],
+    },
+    onChangeFilters: () => {},
+    onOpenModal: () => {},
     data: {
       threadOptions: [
         {
@@ -80,7 +86,6 @@ const CurriculumVisualiserFiltersMobileFixture: CurriculumVisualiserFiltersProps
         "10": emptyMockYearData,
         "11": emptyMockYearData,
       },
-      initialYearSelection: {},
     },
     trackingData: {
       subjectSlug: "",
@@ -91,6 +96,7 @@ const CurriculumVisualiserFiltersMobileFixture: CurriculumVisualiserFiltersProps
   };
 
 describe("<CurriculumVisualiserFiltersMobile/>", () => {
+  it("placeholder", () => {});
   beforeEach(() => {
     jest.clearAllMocks();
 
