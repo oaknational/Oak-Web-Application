@@ -1,17 +1,9 @@
 import React, { useState } from "react";
-import {
-  OakFlex,
-  OakSpan,
-  OakBox,
-  OakPrimaryButton,
-} from "@oaknational/oak-components";
+import { OakFlex, OakSpan, OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
-
-import { CurriculumVisualiserFiltersProps } from "./CurriculumVisualiserFilters";
-import { highlightedUnitCount } from "./helpers";
-import CurriculumVisualiserFiltersDesktop from "./CurriculumVisualiserFiltersDesktop";
+import { CurriculumVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button/Button";
@@ -20,6 +12,7 @@ import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Thread } from "@/utils/curriculum/types";
+import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 
 export type CurriculumVisualiserFiltersMobileProps =
   CurriculumVisualiserFiltersProps & {
@@ -96,7 +89,7 @@ const StyledButtonGroup = styled(ButtonGroup)`
   }
 `;
 
-function StickyBit({
+export function CurriculumMobileStickyHeader({
   onOpenModal,
   filters,
   data,
@@ -188,7 +181,7 @@ function StickyBit({
             $pb={"inner-padding-m"}
           >
             <Button
-              label="Highlight a thread"
+              label="Filter and highlight"
               icon="chevron-right"
               $iconPosition="trailing"
               variant="buttonStyledAsLink"
@@ -266,99 +259,5 @@ function StickyBit({
         </OakBox>
       </OakBox>
     </OakBox>
-  );
-}
-
-function Modal({
-  data,
-  onOpenModal,
-  filters,
-  onChangeFilters,
-  trackingData,
-}: CurriculumVisualiserFiltersMobileProps) {
-  return (
-    <OakBox
-      $background={"white"}
-      $position="fixed"
-      $top="all-spacing-0"
-      $height={"100%"}
-      $zIndex={"modal-dialog"}
-      $display={["block", "none"]}
-    >
-      <OakFlex $flexDirection={"column"} $height={"100%"}>
-        <OakFlex
-          $width={"100%"}
-          $flexShrink={1}
-          $overflowY={"scroll"}
-          $position={"relative"}
-          $pa={"inner-padding-m"}
-        >
-          <CurriculumVisualiserFiltersDesktop
-            filters={filters}
-            onChangeFilters={onChangeFilters}
-            data={data}
-            trackingData={trackingData}
-            excludeYears={true}
-          />
-        </OakFlex>
-        <OakFlex
-          $width={"100%"}
-          $background={"white"}
-          $bottom={["all-spacing-0"]}
-          $right={["all-spacing-0"]}
-          $ph={"inner-padding-m"}
-          $pv={"inner-padding-s"}
-          $justifyContent={"left"}
-          $bt={"border-solid-s"}
-          $borderColor={"grey30"}
-        >
-          <OakPrimaryButton
-            data-testid="mobile-done-thread-modal-button"
-            onClick={onOpenModal}
-            width={"100%"}
-          >
-            Apply
-          </OakPrimaryButton>
-        </OakFlex>
-      </OakFlex>
-    </OakBox>
-  );
-}
-
-export default function CurriculumVisualiserFiltersMobile({
-  filters,
-  onChangeFilters,
-  data,
-  trackingData,
-  selectedYear,
-  onSelectYear,
-}: CurriculumVisualiserFiltersMobileProps) {
-  const [mobileThreadModalOpen, setMobileThreadModalOpen] =
-    useState<boolean>(false);
-
-  function handleMobileThreadModal(): void {
-    setMobileThreadModalOpen(!mobileThreadModalOpen);
-  }
-
-  return mobileThreadModalOpen ? (
-    <Modal
-      onOpenModal={handleMobileThreadModal}
-      filters={filters}
-      selectedYear={selectedYear}
-      onSelectYear={onSelectYear}
-      onChangeFilters={onChangeFilters}
-      data={data}
-      trackingData={trackingData}
-    />
-  ) : (
-    <StickyBit
-      onOpenModal={handleMobileThreadModal}
-      filters={filters}
-      selectedYear={selectedYear}
-      onSelectYear={onSelectYear}
-      onChangeFilters={onChangeFilters}
-      data={data}
-      trackingData={trackingData}
-    />
   );
 }
