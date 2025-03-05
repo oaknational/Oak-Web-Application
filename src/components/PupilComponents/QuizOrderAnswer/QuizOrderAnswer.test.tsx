@@ -75,6 +75,28 @@ describe(QuizOrderAnswer, () => {
     { label: "Elephant", id: "3" },
   ];
 
+  beforeEach(() => {
+    // Create a mock element
+    const mockElement: unknown = {
+      // Add any properties or methods you need
+      id: `oak-quiz-order-item-${1}`,
+      innerHTML: "",
+      getAttribute: jest.fn(),
+      setAttribute: jest.fn(),
+      // Add other methods as needed
+    };
+
+    // Mock document.getElementById
+    jest
+      .spyOn(document, "getElementById")
+      .mockReturnValue(mockElement as HTMLElement);
+  });
+
+  afterEach(() => {
+    // Restore the original implementation
+    jest.restoreAllMocks();
+  });
+
   it("renders a hidden input for each item", () => {
     const { getAllByTestId } = renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>

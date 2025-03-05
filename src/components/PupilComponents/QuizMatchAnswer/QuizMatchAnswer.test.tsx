@@ -95,6 +95,108 @@ describe(QuizMatchAnswer, () => {
   let onChange: oakComponents.OakQuizMatchProps["onChange"];
 
   beforeEach(() => {
+    // Mock choice items elements
+    //eslint-disable-next-line
+    const mockChoiceElements: { [key: string]: { children: any } } = {
+      "1": {
+        children: [
+          {
+            children: [
+              {
+                children: [
+                  {
+                    children: [
+                      {
+                        ariaLabel: "Choice Item 1 Label",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      "2": {
+        children: [
+          {
+            children: [
+              {
+                children: [
+                  {
+                    children: [
+                      {
+                        ariaLabel: "Choice Item 2 Label",
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    };
+
+    // Mock match items elements
+    //eslint-disable-next-line
+    const mockMatchElements: { [key: string]: { children: any } } = {
+      A: {
+        children: [
+          null,
+          {
+            children: [
+              {
+                children: [
+                  {
+                    ariaLabel: "Match Item A Label",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      B: {
+        children: [
+          null,
+          {
+            children: [
+              {
+                children: [
+                  {
+                    ariaLabel: "Match Item B Label",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    };
+
+    // Create a comprehensive mock for document.getElementById
+    jest.spyOn(document, "getElementById").mockImplementation((id) => {
+      // Handle choice items
+      if (id.startsWith("oak-quiz-match-item-")) {
+        const itemId = id.split("oak-quiz-match-item-")[1];
+        return (mockChoiceElements[itemId as string] as HTMLElement) || null;
+      }
+
+      // Handle match items
+      if (id.startsWith("droppable-")) {
+        const itemId = id.split("droppable-")[1];
+        return (mockMatchElements[itemId as string] as HTMLElement) || null;
+      }
+
+      return null;
+    });
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+  beforeEach(() => {
     jest.spyOn(oakComponents, "OakQuizMatch").mockImplementation((props) => {
       onChange = props.onChange;
       return <div />;
