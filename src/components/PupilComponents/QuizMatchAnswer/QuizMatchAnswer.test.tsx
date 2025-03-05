@@ -1,16 +1,18 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { act } from "@testing-library/react";
+import * as oakComponents from "@oaknational/oak-components";
 
 import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
 
 import { QuizMatchAnswer } from "./QuizMatchAnswer";
 
-import * as oakComponents from "@oaknational/oak-components";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+
+const OakThemeProvider = oakComponents.OakThemeProvider;
+const oakDefaultTheme = oakComponents.oakDefaultTheme;
 
 jest.mock("@oaknational/oak-components", () => {
   return {

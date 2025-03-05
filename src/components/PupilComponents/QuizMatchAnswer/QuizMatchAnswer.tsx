@@ -1,10 +1,6 @@
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { isArray } from "lodash";
 import styled from "styled-components";
-
-import { isMatchAnswer } from "../QuizUtils/answerTypeDiscriminators";
-import { getStemTextData } from "../QuizUtils/stemUtils";
-
 import {
   OakBox,
   OakDraggableFeedback,
@@ -13,6 +9,10 @@ import {
   OakQuizMatchProps,
   OakUL,
 } from "@oaknational/oak-components";
+
+import { isMatchAnswer } from "../QuizUtils/answerTypeDiscriminators";
+import { getStemTextData } from "../QuizUtils/stemUtils";
+
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import { invariant } from "@/utils/invariant";
 import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";

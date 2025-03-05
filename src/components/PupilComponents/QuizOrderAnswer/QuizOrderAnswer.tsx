@@ -1,8 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { isArray } from "lodash";
-
-import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
-
 import {
   OakBox,
   OakCodeRenderer,
@@ -11,6 +8,9 @@ import {
   OakQuizOrder,
   OakQuizOrderProps,
 } from "@oaknational/oak-components";
+
+import { isOrderAnswer } from "../QuizUtils/answerTypeDiscriminators";
+
 import { invariant } from "@/utils/invariant";
 import { useQuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 
