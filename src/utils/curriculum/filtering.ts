@@ -1,6 +1,7 @@
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { isEqual } from "lodash";
 
 import { ENABLE_FILTERS_IN_SEARCH_PARAMS } from "./constants";
 import { findFirstMatchingFeatures } from "./features";
@@ -257,4 +258,37 @@ export function shouldDisplayFilter(
   if (key === "threads") {
     return data.threadOptions.length > 0;
   }
+}
+
+export function diffFilters(
+  dfltFilter: CurriculumFilters,
+  filters: CurriculumFilters,
+) {
+  const out: CurriculumFilters = {
+    childSubjects: [],
+    subjectCategories: [],
+    tiers: [],
+    years: [],
+    threads: [],
+  };
+  for (const keyRaw of Object.keys(dfltFilter)) {
+    const key = keyRaw as keyof CurriculumFilters;
+    if (!isEqual(dfltFilter[key], filters[key])) {
+      out[key] = filters[key];
+    }
+  }
+  return out;
+}
+
+export function getNumberOfFiltersApplied(
+  dfltFilter: CurriculumFilters,
+  filters: CurriculumFilters,
+) {
+  const diff = diffFilters(dfltFilter, filters);
+  return Object.values(diff).reduce((acc, curr) => {
+    if (curr.length) {
+      return acc + 1;
+    }
+    return acc;
+  }, 0);
 }
