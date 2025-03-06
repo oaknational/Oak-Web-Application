@@ -60,7 +60,7 @@ export const lessonOverviewSchema = baseLessonOverviewSchema.extend({
   keyStageTitle: z.string(),
   subjectSlug: z.string(),
   subjectTitle: z.string(),
-  subjectParent: z.string().nullable(),
+  subjectParent: z.string().nullish(),
   yearTitle: z.string().nullable().optional(),
   examBoardTitle: z.string().nullable().optional(),
   examBoardSlug: z.string().nullish(),
