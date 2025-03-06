@@ -47,6 +47,7 @@ describe("CurricFiltersYears", () => {
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
 
+    // 10
     act(() => elements[1]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
       subjectCategories: [],
@@ -55,6 +56,8 @@ describe("CurricFiltersYears", () => {
       tiers: [],
       years: ["10"],
     });
+
+    // 11
     act(() => elements[2]!.click());
     expect(onChangeFilters).toHaveBeenCalledWith({
       subjectCategories: [],
@@ -62,6 +65,16 @@ describe("CurricFiltersYears", () => {
       threads: [],
       tiers: [],
       years: ["11"],
+    });
+
+    // All
+    act(() => elements[0]!.click());
+    expect(onChangeFilters).toHaveBeenCalledWith({
+      subjectCategories: [],
+      childSubjects: [],
+      threads: [],
+      tiers: [],
+      years: ["10", "11"],
     });
   });
 });
