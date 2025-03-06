@@ -14,6 +14,10 @@ import {
   missingUnitsInMiddleFixture,
   missingAlternateUnitsFixture,
   missingUnitForLastYearFixture,
+  primaryEnglishYearData,
+  primaryScienceYearData,
+  secondaryMathsYearData,
+  secondaryScienceYearData,
 } from "./fixtures";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -503,6 +507,385 @@ describe("Curriculum visualiser filter states", () => {
       ).toHaveLength(2);
       const unitCards = await findAllByTestId("unit-card");
       expect(unitCards).toHaveLength(3);
+    });
+  });
+});
+
+describe("Year group filter headings display correctly", () => {
+  const baseFixture = {
+    ...curriculumVisualiserFixture,
+    yearData: {},
+  };
+
+  describe("Secondary Phase", () => {
+    describe("Secondary Science", () => {
+      const secondaryScienceFixture = {
+        ...baseFixture,
+        yearData: secondaryScienceYearData as YearData,
+      };
+
+      test("displays all years - with subject categories in subheadings for year 7-9, and child subjects and foundation tier in subheading for year 10-11", async () => {
+        const filterFixture = {
+          childSubjects: ["combined-science"],
+          subjectCategories: ["-1"],
+          tiers: ["higher"],
+          years: ["7", "8", "9", "10", "11"],
+          threads: [],
+        };
+
+        const { findAllByTestId } = render(
+          <CurriculumVisualiser
+            {...secondaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeadings = await findAllByTestId("year-heading");
+        const subheadings = await findAllByTestId("year-subheading");
+
+        expect(yearHeadings[0]).toHaveTextContent("Year 7");
+        expect(yearHeadings[1]).toHaveTextContent("Year 8");
+        expect(yearHeadings[2]).toHaveTextContent("Year 9");
+        expect(yearHeadings[3]).toHaveTextContent("Year 10");
+        expect(yearHeadings[4]).toHaveTextContent("Year 11");
+
+        expect(subheadings[0]).toHaveTextContent("Biology, Chemistry, Physics");
+        expect(subheadings[1]).toHaveTextContent("Biology, Chemistry, Physics");
+        expect(subheadings[2]).toHaveTextContent("Biology, Chemistry, Physics");
+        expect(subheadings[3]).toHaveTextContent("Combined science, Higher");
+        expect(subheadings[4]).toHaveTextContent("Combined science, Higher");
+      });
+
+      test("displays 'All' subject category as 'Biology, Chemistry, Physics' in subheading", async () => {
+        const filterFixture = {
+          subjectCategories: ["-1"],
+          childSubjects: [],
+          tiers: [],
+          years: ["7"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...secondaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 7");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Biology, Chemistry, Physics");
+      });
+
+      test("displays 'Biology' subject category in subheading", async () => {
+        const filterFixture = {
+          subjectCategories: ["1"],
+          childSubjects: [],
+          tiers: [],
+          years: ["7"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...secondaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 7");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Biology");
+      });
+
+      test("displays 'Chemistry' subject category in subheading", async () => {
+        const filterFixture = {
+          subjectCategories: ["2"],
+          childSubjects: [],
+          tiers: [],
+          years: ["7"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...secondaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 7");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Chemistry");
+      });
+
+      test("displays 'Physics' subject categories in subheading for Year 7", async () => {
+        const filterFixture = {
+          subjectCategories: ["3"],
+          childSubjects: [],
+          tiers: [],
+          years: ["7"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...secondaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 7");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Physics");
+      });
+
+      test("displays child subjects and foundation tier in subheading for Year 10", async () => {
+        const filterFixture = {
+          childSubjects: ["combined-science"],
+          subjectCategories: [],
+          tiers: ["foundation"],
+          years: ["10"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...secondaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 10");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Combined science, Foundation");
+      });
+
+      test("displays child subjects and higher tier in subheading for Year 11", async () => {
+        const filterFixture = {
+          childSubjects: ["combined-science"],
+          subjectCategories: [],
+          tiers: ["higher"],
+          years: ["11"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...secondaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 11");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Combined science, Higher");
+      });
+
+      test("Setting KS3 subject category does not affect the KS4 subheading being displayed", async () => {
+        const filterFixture = {
+          subjectCategories: ["2"],
+          childSubjects: ["combined-science"],
+          tiers: ["higher"],
+          years: ["10"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...secondaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 10");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Combined science, Higher");
+      });
+    });
+
+    describe("Secondary Maths", () => {
+      const secondaryMathsFixture = {
+        ...baseFixture,
+        yearData: secondaryMathsYearData as YearData,
+      };
+
+      test("displays Higher tier in year 10 subheading when selected", async () => {
+        const filterFixture = {
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: ["higher"],
+          years: ["10"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...secondaryMathsFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading10 = await findByTestId("year-heading");
+        expect(yearHeading10).toHaveTextContent("Year 10");
+        const subheading10 = await findByTestId("year-subheading");
+        expect(subheading10).toHaveTextContent("Higher");
+      });
+
+      test("displays Foundation tier in year 11 subheading when selected", async () => {
+        const filterFixture = {
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: ["foundation"],
+          years: ["10"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...secondaryMathsFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading10 = await findByTestId("year-heading");
+        expect(yearHeading10).toHaveTextContent("Year 10");
+        const subheading10 = await findByTestId("year-subheading");
+        expect(subheading10).toHaveTextContent("Foundation");
+      });
+    });
+  });
+
+  describe("Primary Phase", () => {
+    describe("Primary English", () => {
+      const primaryEnglishFixture = {
+        ...baseFixture,
+        yearData: primaryEnglishYearData as YearData,
+      };
+
+      test("displays subject category in subheading for Year 1, Primary English", async () => {
+        const filterFixture = {
+          childSubjects: [],
+          subjectCategories: ["4"],
+          tiers: [],
+          years: ["1"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...primaryEnglishFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 1");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Reading, writing & oracy");
+      });
+    });
+
+    describe("Primary Science", () => {
+      const primaryScienceFixture = {
+        ...baseFixture,
+        yearData: primaryScienceYearData as YearData,
+      };
+
+      test("displays Biology subject category in subheading", async () => {
+        const filterFixture = {
+          childSubjects: [],
+          subjectCategories: ["1"],
+          tiers: [],
+          years: ["1"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...primaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 1");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Biology");
+      });
+
+      test("displays Chemistry subject category in subheading", async () => {
+        const filterFixture = {
+          childSubjects: [],
+          subjectCategories: ["2"],
+          tiers: [],
+          years: ["2"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...primaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 2");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Chemistry");
+      });
+
+      test("displays Physics subject category in subheading", async () => {
+        const filterFixture = {
+          childSubjects: [],
+          subjectCategories: ["3"],
+          tiers: [],
+          years: ["3"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...primaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 3");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Physics");
+      });
+
+      test("displays 'All' subject category as 'Biology, Chemistry, Physics' in subheading", async () => {
+        const filterFixture = {
+          childSubjects: [],
+          subjectCategories: ["-1"],
+          tiers: [],
+          years: ["4"],
+          threads: [],
+        };
+
+        const { findByTestId } = render(
+          <CurriculumVisualiser
+            {...primaryScienceFixture}
+            filters={filterFixture}
+          />,
+        );
+
+        const yearHeading = await findByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 4");
+        const subheading = await findByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Biology, Chemistry, Physics");
+      });
     });
   });
 });
