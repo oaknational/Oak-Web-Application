@@ -1,4 +1,4 @@
-import { OakBox, OakFlex } from "@oaknational/oak-components";
+import { OakBox, OakFlex, OakHeading } from "@oaknational/oak-components";
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
@@ -58,9 +58,12 @@ export function OakModalNew({
           $bb={"border-solid-s"}
           $borderColor={"grey30"}
         >
-          <OakBox>{title}</OakBox>
+          <OakHeading tag="h1">{title}</OakHeading>
           <OakBox $position={"absolute"} $right={"all-spacing-4"}>
-            <CurriculumModalCloseButton onClose={() => onChangeOpen(false)} />
+            <CurriculumModalCloseButton
+              ariaLabel="Close"
+              onClose={() => onChangeOpen(false)}
+            />
           </OakBox>
         </OakFlex>
         <OakFlex

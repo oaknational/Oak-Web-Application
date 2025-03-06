@@ -16,7 +16,6 @@ type Story = StoryObj<typeof Component>;
 export const CurricMobileFilterModal: Story = {
   args: {
     data: basicSetup,
-    onOpenModal: () => {},
     filters: {
       childSubjects: [],
       subjectCategories: [],

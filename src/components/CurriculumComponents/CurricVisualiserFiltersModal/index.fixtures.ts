@@ -1,4 +1,4 @@
-import { CurriculumVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
+import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createUnit } from "@/fixtures/curriculum/unit";
@@ -17,7 +17,7 @@ const subjectCat3 = createSubjectCategory({ title: "test3" });
 const tierFoundation = createTier({ tier_slug: "foundation" });
 const tierHigher = createTier({ tier_slug: "higher" });
 
-export const basicSetup: CurriculumVisualiserFiltersProps["data"] = {
+export const basicSetup: CurricVisualiserFiltersProps["data"] = {
   yearData: {
     "7": {
       childSubjects: [],
