@@ -4,81 +4,244 @@ import {
   getDefaultSubjectCategoriesForYearGroup,
   getDefaultTiersForYearGroup,
   getFilterData,
+  isHighlightedUnit,
 } from "./filtering";
 import { Unit } from "./types";
 
+import { createUnit } from "@/fixtures/curriculum/unit";
 import { CurriculumUnitsYearData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { createChildSubject } from "@/fixtures/curriculum/childSubject";
+import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
+import { createTier } from "@/fixtures/curriculum/tier";
+import { createThread } from "@/fixtures/curriculum/thread";
 
 describe("filtering", () => {
-  it("getDefaultChildSubjectForYearGroup", () => {
-    const input = {
-      "7": {
-        units: [] as Unit[],
-        childSubjects: [{ subject: "Biology", subject_slug: "biology" }],
-      } as CurriculumUnitsYearData[number],
-      "8": {
-        units: [] as Unit[],
-        childSubjects: [{ subject: "Physics", subject_slug: "physics" }],
-      } as CurriculumUnitsYearData[number],
-    };
-    const out = getDefaultChildSubjectForYearGroup(input);
-    expect(out).toEqual(["biology"]);
-  });
-  it("getDefaultSubjectCategoriesForYearGroup", () => {
-    const input = {
-      "7": {
-        units: [] as Unit[],
-        subjectCategories: [{ id: 1 }],
-      } as CurriculumUnitsYearData[number],
-      "8": {
-        units: [] as Unit[],
-        subjectCategories: [{ id: 2 }],
-      } as CurriculumUnitsYearData[number],
-    };
-    const out = getDefaultSubjectCategoriesForYearGroup(input);
-    expect(out).toEqual(["1"]);
-  });
-  it("getDefaultTiersForYearGroup", () => {
-    const input = {
-      "7": {
-        units: [] as Unit[],
-        tiers: [{ tier_slug: "higher", tier: "Higher" }],
-      } as CurriculumUnitsYearData[number],
-      "8": {
-        units: [] as Unit[],
-        tiers: [{ tier_slug: "foundation", tier: "Foundation" }],
-      } as CurriculumUnitsYearData[number],
-    };
-    const out = getDefaultTiersForYearGroup(input);
-    expect(out).toEqual(["foundation"]);
+  describe("getDefaultChildSubjectForYearGroup", () => {
+    it("with data", () => {
+      const childSubjectPhysics = createChildSubject({
+        subject_slug: "physics",
+      });
+      const childSubjectBiology = createChildSubject({
+        subject_slug: "biology",
+      });
+
+      const input = {
+        "7": {
+          units: [
+            createUnit({
+              slug: "test1",
+              subject_slug: childSubjectPhysics.subject_slug,
+            }),
+          ],
+          childSubjects: [childSubjectPhysics],
+          subjectCategories: [],
+          tiers: [],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
+        },
+        "8": {
+          units: [
+            createUnit({
+              slug: "test2",
+              subject_slug: childSubjectBiology.subject_slug,
+            }),
+          ],
+          childSubjects: [childSubjectBiology],
+          subjectCategories: [],
+          tiers: [],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
+        },
+      };
+      const out = getDefaultChildSubjectForYearGroup(input);
+      expect(out).toEqual(["biology"]);
+    });
+
+    it("without data", () => {
+      const input: CurriculumUnitsYearData = {
+        "7": {
+          units: [createUnit({ slug: "test1" })],
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
+        },
+        "8": {
+          units: [createUnit({ slug: "test2" })],
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
+        },
+      };
+      const out = getDefaultChildSubjectForYearGroup(input);
+      expect(out).toEqual([]);
+    });
   });
 
-  it("getDefaultFilter", () => {
-    const out = getDefaultFilter({
-      yearData: {
+  describe("getDefaultSubjectCategoriesForYearGroup", () => {
+    it("with data", () => {
+      const subCat1 = createSubjectCategory({ id: 1 });
+      const subCat2 = createSubjectCategory({ id: 2 });
+      const input: CurriculumUnitsYearData = {
         "7": {
-          units: [] as Unit[],
-          tiers: [{ tier_slug: "foundation", tier: "Foundation" }],
-          childSubjects: [{ subject: "Physics", subject_slug: "physics" }],
-          subjectCategories: [{ id: 2 }],
-        } as CurriculumUnitsYearData[number],
+          units: [createUnit({ slug: "test1", subjectcategories: [subCat1] })],
+          childSubjects: [],
+          subjectCategories: [subCat1],
+          tiers: [],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
+        },
         "8": {
-          units: [] as Unit[],
-          tiers: [{ tier_slug: "higher", tier: "Higher" }],
-          childSubjects: [{ subject: "Biology", subject_slug: "biology" }],
-          subjectCategories: [{ id: 1 }],
+          units: [createUnit({ slug: "test1", subjectcategories: [subCat2] })],
+          childSubjects: [],
+          subjectCategories: [subCat2],
+          tiers: [],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
+        },
+      };
+      const out = getDefaultSubjectCategoriesForYearGroup(input);
+      expect(out).toEqual(["1"]);
+    });
+
+    it("without data", () => {
+      const input: CurriculumUnitsYearData = {
+        "7": {
+          units: [createUnit({ slug: "test1", subjectcategories: [] })],
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
+        },
+        "8": {
+          units: [createUnit({ slug: "test1", subjectcategories: [] })],
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
+        },
+      };
+      const out = getDefaultSubjectCategoriesForYearGroup(input);
+      expect(out).toEqual([]);
+    });
+  });
+
+  describe("getDefaultTiersForYearGroup", () => {
+    it("with data", () => {
+      const foundationTier = createTier({ tier_slug: "foundation" });
+      const higherTier = createTier({ tier_slug: "higher" });
+      const input: CurriculumUnitsYearData = {
+        "7": {
+          units: [
+            createUnit({ slug: "test1", tier_slug: higherTier.tier_slug }),
+          ],
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [higherTier],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
+        },
+        "8": {
+          units: [
+            createUnit({ slug: "test2", tier_slug: foundationTier.tier_slug }),
+          ],
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [foundationTier],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
         } as CurriculumUnitsYearData[number],
-      },
-      threadOptions: [],
-      yearOptions: ["7", "8"],
+      };
+      const out = getDefaultTiersForYearGroup(input);
+      expect(out).toEqual(["foundation"]);
     });
-    expect(out).toEqual({
-      childSubjects: ["biology"],
-      subjectCategories: ["1"],
-      threads: [],
-      tiers: ["foundation"],
-      years: ["7", "8"],
+
+    it("without data", () => {
+      const input: CurriculumUnitsYearData = {
+        "7": {
+          units: [createUnit({ slug: "test1", tier_slug: undefined })],
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
+        },
+        "8": {
+          units: [createUnit({ slug: "test2", tier_slug: undefined })],
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          pathways: [],
+          isSwimming: false,
+          groupAs: null,
+        } as CurriculumUnitsYearData[number],
+      };
+      const out = getDefaultTiersForYearGroup(input);
+      expect(out).toEqual([]);
     });
+  });
+
+  it("isHighlightedUnit", () => {
+    const thread1 = createThread({ slug: "thread1" });
+    const thread2 = createThread({ slug: "thread2" });
+    const thread3 = createThread({ slug: "thread3" });
+    const thread4 = createThread({ slug: "thread4" });
+    const unit = createUnit({
+      slug: "test1",
+      threads: [thread1, thread2, thread3],
+    });
+    expect(isHighlightedUnit(unit, [thread1.slug])).toBeTruthy();
+    expect(isHighlightedUnit(unit, [thread4.slug])).toBeFalsy();
+    expect(isHighlightedUnit(unit, [])).toBeFalsy();
+    expect(isHighlightedUnit(unit, null)).toBeFalsy();
+  });
+
+  describe("getDefaultFilter", () => {
+    it("with data", () => {
+      const out = getDefaultFilter({
+        yearData: {
+          "7": {
+            units: [] as Unit[],
+            tiers: [{ tier_slug: "foundation", tier: "Foundation" }],
+            childSubjects: [{ subject: "Physics", subject_slug: "physics" }],
+            subjectCategories: [{ id: 2 }],
+          } as CurriculumUnitsYearData[number],
+          "8": {
+            units: [] as Unit[],
+            tiers: [{ tier_slug: "higher", tier: "Higher" }],
+            childSubjects: [{ subject: "Biology", subject_slug: "biology" }],
+            subjectCategories: [{ id: 1 }],
+          } as CurriculumUnitsYearData[number],
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      });
+      expect(out).toEqual({
+        childSubjects: ["biology"],
+        subjectCategories: ["1"],
+        threads: [],
+        tiers: ["foundation"],
+        years: ["7", "8"],
+      });
+    });
+
+    it("without data", () => {});
   });
 });
 
