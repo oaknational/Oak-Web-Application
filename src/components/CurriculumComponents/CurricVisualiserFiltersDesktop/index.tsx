@@ -21,18 +21,18 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
 
-export type CurriculumVisualiserFiltersProps = {
+export type CurricVisualiserFiltersProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilters: CurriculumFilters) => void;
   data: CurriculumUnitsFormattedData;
   trackingData: CurriculumUnitsTrackingData;
 };
 
-export default function CurriculumVisualiserFiltersDesktop({
+export function CurricVisualiserFiltersDesktop({
   filters,
   onChangeFilters,
   data,
-}: CurriculumVisualiserFiltersProps) {
+}: CurricVisualiserFiltersProps) {
   return (
     <OakBox $mr={"space-between-s"}>
       <SkipLink href="#content">Skip to units</SkipLink>

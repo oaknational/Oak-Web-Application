@@ -3,7 +3,7 @@ import { OakFlex, OakSpan, OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
-import { CurriculumVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
+import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button/Button";
@@ -15,7 +15,7 @@ import { Thread } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 
 export type CurriculumVisualiserFiltersMobileProps =
-  CurriculumVisualiserFiltersProps & {
+  CurricVisualiserFiltersProps & {
     selectedYear: string;
     onSelectYear: (newYear: string) => void;
     onOpenModal: () => void;
@@ -89,7 +89,7 @@ const StyledButtonGroup = styled(ButtonGroup)`
   }
 `;
 
-export function CurriculumMobileStickyHeader({
+export function CurricMobileStickyHeader({
   onOpenModal,
   filters,
   data,

@@ -2,6 +2,7 @@ import {
   OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
@@ -47,7 +48,7 @@ export function CurricFiltersSubjectCategories({
   return (
     <>
       {subjectCategoriesAt.length > 0 && (
-        <>
+        <OakBox>
           <OakHeading
             id="subject-categories-label"
             tag="h4"
@@ -83,7 +84,7 @@ export function CurricFiltersSubjectCategories({
               );
             })}
           </OakRadioGroup>
-        </>
+        </OakBox>
       )}
     </>
   );

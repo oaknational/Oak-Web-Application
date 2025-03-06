@@ -2,6 +2,7 @@ import {
   OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
+  OakBox,
 } from "@oaknational/oak-components";
 import { isEqual } from "lodash";
 
@@ -27,7 +28,7 @@ export function CurricFiltersYears({
   }
 
   return (
-    <>
+    <OakBox>
       <OakHeading
         tag="h4"
         id="year-group-label"
@@ -66,6 +67,6 @@ export function CurricFiltersYears({
           />
         ))}
       </OakRadioGroup>
-    </>
+    </OakBox>
   );
 }

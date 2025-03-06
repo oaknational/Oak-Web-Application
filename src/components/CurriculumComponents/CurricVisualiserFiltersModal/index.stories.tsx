@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 
 import { basicSetup } from "./index.fixtures";
 
-import { CurriculumMobileFilterModal as Component } from ".";
+import { CurricMobileFilterModal as Component } from ".";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -13,7 +13,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const CurriculumVisualiserFiltersMobile: Story = {
+export const CurricMobileFilterModal: Story = {
   args: {
     data: basicSetup,
     onOpenModal: () => {},

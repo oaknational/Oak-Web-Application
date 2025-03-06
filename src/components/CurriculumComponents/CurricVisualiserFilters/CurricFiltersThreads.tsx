@@ -25,7 +25,7 @@ export function CurricFiltersThreads({
   }
 
   return (
-    <>
+    <OakBox>
       <Fieldset data-testid={"threads-filter-desktop"}>
         <FieldsetLegend $font={"heading-6"} $mt="space-between-m2">
           Highlight a thread
@@ -96,6 +96,6 @@ export function CurricFiltersThreads({
           })}
         </RadioGroup>
       </Fieldset>
-    </>
+    </OakBox>
   );
 }

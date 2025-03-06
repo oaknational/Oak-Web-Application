@@ -1,7 +1,7 @@
 import "jest-styled-components";
 
 import CurriculumVisualiserFiltersMobile, {
-  CurriculumVisualiserFiltersMobileProps,
+  CurricVisualiserFiltersMobileProps,
 } from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
@@ -31,7 +31,7 @@ const emptyMockYearData = {
   groupAs: null,
 };
 
-const CurriculumVisualiserFiltersMobileFixture: CurriculumVisualiserFiltersMobileProps =
+const CurriculumVisualiserFiltersMobileFixture: CurricVisualiserFiltersMobileProps =
   {
     selectedYear: "7",
     onSelectYear: jest.fn(() => {}),
