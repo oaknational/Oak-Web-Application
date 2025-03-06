@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { OakHeading, OakBox, OakP } from "@oaknational/oak-components";
 
 import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
-import CurriculumVisualiserLayout from "../CurricVisualiserLayout";
-import CurriculumVisualiserFiltersMobile from "../CurricVisualiserFiltersMobile";
-import CurriculumVisualiserFiltersDesktop from "../CurricVisualiserFiltersDesktop";
+import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
+import CurricVisualiserFiltersMobile from "../CurricVisualiserFiltersMobile";
+import { CurricVisualiserFiltersDesktop } from "../CurricVisualiserFiltersDesktop";
 
 import { CurriculumFilters, Thread, Unit } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
@@ -112,7 +112,7 @@ export default function UnitsTab({
           Units that make up our curricula are fully sequenced, and aligned to
           the national curriculum.
         </OakP>
-        <CurriculumVisualiserFiltersMobile
+        <CurricVisualiserFiltersMobile
           selectedYear={mobileSelectedYear}
           onSelectYear={setMobileSelectedYear}
           filters={filters}
@@ -121,9 +121,9 @@ export default function UnitsTab({
           trackingData={trackingData}
           onOpenModal={() => {}}
         />
-        <CurriculumVisualiserLayout
+        <CurricVisualiserLayout
           filters={
-            <CurriculumVisualiserFiltersDesktop
+            <CurricVisualiserFiltersDesktop
               filters={filters}
               onChangeFilters={onChangeFiltersLocal}
               data={formattedData}

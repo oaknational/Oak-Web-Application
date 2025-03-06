@@ -2,6 +2,7 @@ import {
   OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
@@ -40,7 +41,7 @@ export function CurricFiltersChildSubjects({
   }
 
   return (
-    <>
+    <OakBox>
       {childSubjects.length > 0 && (
         <>
           <OakHeading
@@ -74,6 +75,6 @@ export function CurricFiltersChildSubjects({
           </OakRadioGroup>
         </>
       )}
-    </>
+    </OakBox>
   );
 }

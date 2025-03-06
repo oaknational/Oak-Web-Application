@@ -2,6 +2,7 @@ import {
   OakHeading,
   OakRadioGroup,
   OakRadioAsButton,
+  OakBox,
 } from "@oaknational/oak-components";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -37,7 +38,7 @@ export function CurricFiltersTiers({
   return (
     <>
       {tiers.length > 0 && (
-        <>
+        <OakBox>
           <OakHeading
             id="tiers-label"
             tag="h4"
@@ -64,7 +65,7 @@ export function CurricFiltersTiers({
               />
             ))}
           </OakRadioGroup>
-        </>
+        </OakBox>
       )}
     </>
   );

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { OakFlex, OakSpan, OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
-import { CurriculumVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
+import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 
 import Box from "@/components/SharedComponents/Box";
 import Button from "@/components/SharedComponents/Button/Button";
@@ -12,10 +12,14 @@ import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Thread } from "@/utils/curriculum/types";
-import { highlightedUnitCount } from "@/utils/curriculum/filtering";
+import {
+  getDefaultFilter,
+  getNumberOfFiltersApplied,
+  highlightedUnitCount,
+} from "@/utils/curriculum/filtering";
 
 export type CurriculumVisualiserFiltersMobileProps =
-  CurriculumVisualiserFiltersProps & {
+  CurricVisualiserFiltersProps & {
     selectedYear: string;
     onSelectYear: (newYear: string) => void;
     onOpenModal: () => void;
@@ -89,7 +93,7 @@ const StyledButtonGroup = styled(ButtonGroup)`
   }
 `;
 
-export function CurriculumMobileStickyHeader({
+export function CurricMobileStickyHeader({
   onOpenModal,
   filters,
   data,
@@ -160,6 +164,12 @@ export function CurriculumMobileStickyHeader({
     }
   }
 
+  const dfltFilters = useMemo(() => getDefaultFilter(data), [data]);
+  const numberOfFiltersApplied = getNumberOfFiltersApplied(
+    dfltFilters,
+    filters,
+  );
+
   return (
     <OakBox
       $position={["sticky", "static"]}
@@ -181,7 +191,7 @@ export function CurriculumMobileStickyHeader({
             $pb={"inner-padding-m"}
           >
             <Button
-              label="Filter and highlight"
+              label={`Filter and highlight${numberOfFiltersApplied ? ` (${numberOfFiltersApplied})` : ``}`}
               icon="chevron-right"
               $iconPosition="trailing"
               variant="buttonStyledAsLink"

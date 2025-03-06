@@ -12,7 +12,7 @@ const meta: Meta<typeof Component> = {
 export default meta;
 type Story = StoryObj<typeof Component>;
 
-export const CurriculumVisualiserFiltersMobile: Story = {
+export const CurricFiltersChildSubjects: Story = {
   args: {
     data: basicSetup,
     filters: {
