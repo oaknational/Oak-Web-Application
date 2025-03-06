@@ -10,7 +10,7 @@ export type LessonPathway = {
   keyStageSlug?: string;
   subjectTitle: string;
   subjectSlug: string;
-  subjectParent: string | null;
+  subjectParent?: string | null;
   unitTitle: string;
   unitSlug: string;
   programmeSlug: string;
