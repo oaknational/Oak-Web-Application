@@ -350,7 +350,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 
                 <OakHeading
                   tag="h3"
-                  $font={["heading-6", "heading-5"]}
+                  $font={["heading-5", "heading-4"]}
                   $mb={
                     yearSubheadingText ? "space-between-xs" : "space-between-s"
                   }
@@ -362,9 +362,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                 {yearSubheadingText && (
                   <OakHeading
                     tag="h4"
-                    $font={"heading-7"}
+                    $font={["heading-7", "heading-6"]}
                     $mb="space-between-s"
-                    $color="text-primary"
                     data-testid="year-subheading"
                   >
                     {yearSubheadingText}
