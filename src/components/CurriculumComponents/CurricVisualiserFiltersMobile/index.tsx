@@ -41,7 +41,7 @@ export default function CurricVisualiserFiltersMobile({
   }, [ref, mobileThreadModalOpen]);
 
   return (
-    <OakBox>
+    <>
       <OakModalNew
         open={mobileThreadModalOpen}
         onChangeOpen={() => setMobileThreadModalOpen(false)}
@@ -75,6 +75,6 @@ export default function CurricVisualiserFiltersMobile({
         data={data}
         trackingData={trackingData}
       />
-    </OakBox>
+    </>
   );
 }
