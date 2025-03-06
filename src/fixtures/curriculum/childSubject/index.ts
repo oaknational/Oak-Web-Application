@@ -2,8 +2,8 @@ import { getTitleFromSlug } from "@/fixtures/shared/helper";
 import { Subject } from "@/utils/curriculum/types";
 
 const BASE_CHILD_SUBJECT: Subject = {
-  subject_slug: "",
-  subject: "",
+  subject_slug: "blank",
+  subject: "Blank",
 };
 
 export function createChildSubject(partial: Partial<Subject> = {}) {
