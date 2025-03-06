@@ -1,0 +1,13 @@
+overwrite: true
+schema:
+  - "http://localhost:8190/v1/graphql":
+      headers:
+        x-hasura-admin-secret: "adminsecretstring"
+
+documents: "src/node-lib/personalisation-api/**/*.{graphql,gql}"
+generates:
+  src/node-lib/personalisation-api/generated/sdk.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-request"
