@@ -20,17 +20,17 @@ export const basicSetup = {
       subjectCategories: [],
       units: [
         createUnit({
-          year: "1",
+          year: "10",
           subjectcategories: [],
           subject_slug: childSubjectBiology.subject_slug,
         }),
         createUnit({
-          year: "1",
+          year: "10",
           subjectcategories: [],
           subject_slug: childSubjectChemistry.subject_slug,
         }),
         createUnit({
-          year: "1",
+          year: "10",
           subjectcategories: [],
           subject_slug: childSubjectPhysics.subject_slug,
         }),
