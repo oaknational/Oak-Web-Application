@@ -19,6 +19,7 @@ import {
   YearData,
 } from "./types";
 import { isVisibleUnit } from "./isVisibleUnit";
+import { byKeyStageSlug, presentAtKeyStageSlugs } from "./keystage";
 
 import {
   CurriculumUnitsFormattedData,
@@ -220,4 +221,40 @@ export function highlightedUnitCount(
     }
   });
   return count;
+}
+
+export function shouldDisplayFilter(
+  data: CurriculumUnitsFormattedData,
+  filters: CurriculumFilters,
+  key: "years" | "subjectCategories" | "childSubjects" | "tiers" | "threads",
+) {
+  const keyStageSlugData = byKeyStageSlug(data.yearData);
+  const childSubjectsAt = presentAtKeyStageSlugs(
+    keyStageSlugData,
+    "childSubjects",
+    filters.years,
+  );
+
+  const subjectCategoriesAt = presentAtKeyStageSlugs(
+    keyStageSlugData,
+    "subjectCategories",
+    filters.years,
+  ).filter((ks) => !childSubjectsAt.includes(ks));
+
+  if (key === "years") {
+    return data.yearOptions.length > 0;
+  }
+  if (key === "subjectCategories") {
+    return subjectCategoriesAt.length > 0;
+  }
+  if (key === "childSubjects") {
+    return childSubjectsAt.length > 0;
+  }
+  if (key === "tiers") {
+    const tiersAt = presentAtKeyStageSlugs(keyStageSlugData, "tiers");
+    return tiersAt.length > 0;
+  }
+  if (key === "threads") {
+    return data.threadOptions.length > 0;
+  }
 }

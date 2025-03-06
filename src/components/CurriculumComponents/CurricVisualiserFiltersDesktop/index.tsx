@@ -19,10 +19,7 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import {
-  byKeyStageSlug,
-  presentAtKeyStageSlugs,
-} from "@/utils/curriculum/keystage";
+import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
 
 export type CurriculumVisualiserFiltersProps = {
   filters: CurriculumFilters;
@@ -30,41 +27,6 @@ export type CurriculumVisualiserFiltersProps = {
   data: CurriculumUnitsFormattedData;
   trackingData: CurriculumUnitsTrackingData;
 };
-
-function shouldDisplay(
-  data: CurriculumUnitsFormattedData,
-  filters: CurriculumFilters,
-  key: "years" | "subjectCategories" | "childSubjects" | "tiers" | "threads",
-) {
-  const keyStageSlugData = byKeyStageSlug(data.yearData);
-  const childSubjectsAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "childSubjects",
-    filters.years,
-  );
-  const subjectCategoriesAt = presentAtKeyStageSlugs(
-    keyStageSlugData,
-    "subjectCategories",
-    filters.years,
-  ).filter((ks) => !childSubjectsAt.includes(ks));
-
-  if (key === "years") {
-    return data.yearOptions.length > 0;
-  }
-  if (key === "subjectCategories") {
-    return subjectCategoriesAt.length > 0;
-  }
-  if (key === "childSubjects") {
-    return childSubjectsAt.length > 0;
-  }
-  if (key === "tiers") {
-    const tiersAt = presentAtKeyStageSlugs(keyStageSlugData, "tiers");
-    return tiersAt.length > 0;
-  }
-  if (key === "threads") {
-    return data.threadOptions.length > 0;
-  }
-}
 
 export default function CurriculumVisualiserFiltersDesktop({
   filters,
@@ -79,7 +41,7 @@ export default function CurriculumVisualiserFiltersDesktop({
         Filter and highlight
       </OakHeading>
 
-      {shouldDisplay(data, filters, "years") && (
+      {shouldDisplayFilter(data, filters, "years") && (
         <>
           <CurricFiltersYears
             filters={filters}
@@ -94,7 +56,7 @@ export default function CurriculumVisualiserFiltersDesktop({
         </>
       )}
 
-      {shouldDisplay(data, filters, "subjectCategories") && (
+      {shouldDisplayFilter(data, filters, "subjectCategories") && (
         <>
           <CurricFiltersSubjectCategories
             filters={filters}
@@ -109,7 +71,7 @@ export default function CurriculumVisualiserFiltersDesktop({
         </>
       )}
 
-      {shouldDisplay(data, filters, "childSubjects") && (
+      {shouldDisplayFilter(data, filters, "childSubjects") && (
         <>
           <CurricFiltersChildSubjects
             filters={filters}
@@ -123,7 +85,7 @@ export default function CurriculumVisualiserFiltersDesktop({
           />
         </>
       )}
-      {shouldDisplay(data, filters, "tiers") && (
+      {shouldDisplayFilter(data, filters, "tiers") && (
         <>
           <CurricFiltersTiers
             filters={filters}
@@ -138,7 +100,7 @@ export default function CurriculumVisualiserFiltersDesktop({
         </>
       )}
 
-      {shouldDisplay(data, filters, "threads") && (
+      {shouldDisplayFilter(data, filters, "threads") && (
         <>
           <CurricFiltersThreads
             filters={filters}

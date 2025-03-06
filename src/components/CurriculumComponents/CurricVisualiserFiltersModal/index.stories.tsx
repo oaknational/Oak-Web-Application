@@ -1,6 +1,8 @@
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
 
+import { basicSetup } from "./index.fixtures";
+
 import { CurriculumMobileFilterModal as Component } from ".";
 
 const meta: Meta<typeof Component> = {
@@ -13,17 +15,13 @@ type Story = StoryObj<typeof Component>;
 
 export const CurriculumVisualiserFiltersMobile: Story = {
   args: {
-    data: {
-      yearData: {},
-      threadOptions: [],
-      yearOptions: [],
-    },
+    data: basicSetup,
     onOpenModal: () => {},
     filters: {
       childSubjects: [],
       subjectCategories: [],
       tiers: [],
-      years: [],
+      years: ["7", "8", "9", "10", "11"],
       threads: [],
     },
     onChangeFilters: () => {},

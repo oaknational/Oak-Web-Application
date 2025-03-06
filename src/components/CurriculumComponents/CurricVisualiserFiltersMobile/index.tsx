@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { OakBox } from "@oaknational/oak-components";
 
 import { CurriculumVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 import { CurriculumMobileStickyHeader } from "../CurricVisualiserMobileHeader";
@@ -26,15 +27,24 @@ export default function CurriculumVisualiserFiltersMobile({
   }
 
   return mobileThreadModalOpen ? (
-    <CurriculumMobileFilterModal
-      onOpenModal={handleMobileThreadModal}
-      filters={filters}
-      selectedYear={selectedYear}
-      onSelectYear={onSelectYear}
-      onChangeFilters={onChangeFilters}
-      data={data}
-      trackingData={trackingData}
-    />
+    <OakBox
+      $background={"white"}
+      $position="fixed"
+      $top="all-spacing-0"
+      $height={"100%"}
+      $zIndex={"modal-dialog"}
+      $display={["block", "none"]}
+    >
+      <CurriculumMobileFilterModal
+        onOpenModal={handleMobileThreadModal}
+        filters={filters}
+        selectedYear={selectedYear}
+        onSelectYear={onSelectYear}
+        onChangeFilters={onChangeFilters}
+        data={data}
+        trackingData={trackingData}
+      />
+    </OakBox>
   ) : (
     <CurriculumMobileStickyHeader
       onOpenModal={handleMobileThreadModal}
