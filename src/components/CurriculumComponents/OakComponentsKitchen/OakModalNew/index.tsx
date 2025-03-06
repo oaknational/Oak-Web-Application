@@ -58,7 +58,9 @@ export function OakModalNew({
           $bb={"border-solid-s"}
           $borderColor={"grey30"}
         >
-          <OakHeading tag="h1">{title}</OakHeading>
+          <OakHeading tag="h1" $font={"body-1"}>
+            {title}
+          </OakHeading>
           <OakBox $position={"absolute"} $right={"all-spacing-4"}>
             <CurriculumModalCloseButton
               ariaLabel="Close"
