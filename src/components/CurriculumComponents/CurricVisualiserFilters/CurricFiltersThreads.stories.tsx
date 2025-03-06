@@ -2,6 +2,7 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { CurricFiltersThreads as Component } from "./CurricFiltersThreads";
+import { basicSetup } from "./CurricFiltersThreads.fixtures";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -13,16 +14,12 @@ type Story = StoryObj<typeof Component>;
 
 export const CurriculumVisualiserFiltersMobile: Story = {
   args: {
-    data: {
-      yearData: {},
-      threadOptions: [],
-      yearOptions: [],
-    },
+    data: basicSetup,
     filters: {
       childSubjects: [],
       subjectCategories: [],
       tiers: [],
-      years: [],
+      years: ["10", "11"],
       threads: [],
     },
     onChangeFilters: () => {},
