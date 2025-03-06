@@ -62,9 +62,9 @@ export const LessonSeoHelper = ({
               })}
             >
               download
-            </OakLink>
-            {` all teaching resources for free and adapt to suit your
-              pupil’s needs...`}
+            </OakLink>{" "}
+            all teaching resources for free and adapt to suit your pupils'
+            needs...
           </OakP>
         </>
       }
@@ -89,7 +89,7 @@ export const LessonSeoHelper = ({
         >
           download
         </OakLink>{" "}
-        all teaching resources for free and adapt to suit your pupil’s needs.
+        all teaching resources for free and adapt to suit your pupils' needs.
       </OakP>
       <br />
       <OakP $font={["body-2", "body-1"]}>
