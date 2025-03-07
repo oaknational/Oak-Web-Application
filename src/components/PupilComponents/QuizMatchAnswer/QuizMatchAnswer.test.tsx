@@ -2,7 +2,6 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { act } from "@testing-library/react";
 import * as oakComponents from "@oaknational/oak-components";
-import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 
 import { createQuizEngineContext } from "../pupilTestHelpers/createQuizEngineContext";
 
@@ -11,6 +10,9 @@ import { QuizMatchAnswer } from "./QuizMatchAnswer";
 import { QuizEngineContext } from "@/components/PupilComponents/QuizEngineProvider";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { MatchAnswer } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+
+const OakThemeProvider = oakComponents.OakThemeProvider;
+const oakDefaultTheme = oakComponents.oakDefaultTheme;
 
 jest.mock("@oaknational/oak-components", () => {
   return {
@@ -85,13 +87,62 @@ describe(QuizMatchAnswer, () => {
     },
   });
   const completeMatches = {
-    "0": { label: "Mouse", id: "0" },
-    "1": { label: "Elephant", id: "2" },
-    "2": { label: "Cat", id: "1" },
+    "0": { label: "Mouse", id: "0", announcement: "Mouse" },
+    "1": { label: "Elephant", id: "2", announcement: "Elephant" },
+    "2": { label: "Cat", id: "1", announcement: "Cat" },
   };
 
   let onChange: oakComponents.OakQuizMatchProps["onChange"];
 
+  beforeEach(() => {
+    // Mock choice items elements
+    const mockChoiceElements: { [key: string]: object } = {
+      1: {
+        querySelector: jest.fn().mockReturnValue({
+          ariaLabel: `choice aria label 1`,
+        }),
+      },
+      2: {
+        querySelector: jest.fn().mockReturnValue({
+          ariaLabel: `choice aria label 2`,
+        }),
+      },
+      0: {
+        id: "oak-quiz-match-item-0",
+        querySelector: jest.fn().mockReturnValue({
+          ariaLabel: `choice aria label 3`,
+        }),
+      },
+    };
+
+    // Mock match items elements
+    const mockMatchElements: { [key: string]: object } = {
+      querySelector: jest.fn().mockReturnValue({
+        ariaLabel: "Choice Item A Label",
+      }),
+    };
+
+    // Create a comprehensive mock for document.getElementById
+    jest.spyOn(document, "getElementById").mockImplementation((id) => {
+      // Handle choice items
+      if (id.startsWith("oak-quiz-match-item-")) {
+        const itemId = id.split("oak-quiz-match-item-")[1];
+        return (mockChoiceElements[itemId as string] as HTMLElement) || null;
+      }
+
+      // Handle match items
+      if (id.startsWith("droppable-")) {
+        const itemId = id.split("droppable-")[1];
+        return (mockMatchElements[itemId as string] as HTMLElement) || null;
+      }
+
+      return null;
+    });
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
   beforeEach(() => {
     jest.spyOn(oakComponents, "OakQuizMatch").mockImplementation((props) => {
       onChange = props.onChange;
@@ -138,7 +189,7 @@ describe(QuizMatchAnswer, () => {
     );
 
     act(() => {
-      onChange!({ "0": { label: "Mouse", id: "0" } });
+      onChange!({ "0": { label: "Mouse", id: "0", announcement: "Mouse" } });
     });
 
     expect(contextWithUpdateSpy.updateQuestionMode).toHaveBeenLastCalledWith(

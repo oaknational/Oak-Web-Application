@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { isArray } from "lodash";
 import styled from "styled-components";
 import {
@@ -33,6 +33,7 @@ export const QuizMatchAnswer = () => {
   const questionUid = currentQuestionData.questionUid;
   const currentQuestionState = questionState[currentQuestionIndex];
   const feedback = currentQuestionState?.feedback;
+  const [documentLoaded, setDocumentLoaded] = useState(false);
 
   invariant(
     currentQuestionData.answers && isMatchAnswer(currentQuestionData.answers),
@@ -53,19 +54,69 @@ export const QuizMatchAnswer = () => {
     }),
   );
 
-  const matchItems: { id: string; label: JSX.Element }[] = [];
-  const choiceItems: { id: string; label: JSX.Element }[] = [];
+  const matchItems: { id: string; label: JSX.Element; announcement: string }[] =
+    useMemo(() => {
+      const matchItems: {
+        id: string;
+        label: JSX.Element;
+        announcement: string;
+      }[] = [];
+      Object.keys(answers).forEach((key, index) => {
+        matchItems.push({
+          id: index.toString(),
+          label: <MathJaxWrap key={`match-${index}`}>{key}</MathJaxWrap>,
+          announcement: key,
+        });
+      });
+      return matchItems;
+    }, [answers]);
 
-  Object.entries(answers).forEach(([key, value], index) => {
-    matchItems.push({
-      id: index.toString(),
-      label: <MathJaxWrap key={`match-${index}`}>{key}</MathJaxWrap>,
+  const choiceItems: {
+    id: string;
+    label: JSX.Element;
+    announcement: string;
+  }[] = useMemo(() => {
+    const choiceItems: {
+      id: string;
+      label: JSX.Element;
+      announcement: string;
+    }[] = [];
+    Object.values(answers).forEach((value, index) => {
+      choiceItems.push({
+        id: index.toString(),
+        label: <MathJaxWrap key={`choice-${index}`}>{value}</MathJaxWrap>,
+        announcement: value,
+      });
     });
-    choiceItems.push({
-      id: index.toString(),
-      label: <MathJaxWrap key={`choice-${index}`}>{value}</MathJaxWrap>,
-    });
-  });
+    return choiceItems;
+  }, [answers]);
+
+  useEffect(() => {
+    setDocumentLoaded(true);
+    if (documentLoaded) {
+      choiceItems.forEach((item) => {
+        const element = document.getElementById(
+          `oak-quiz-match-item-${item.id}`,
+        );
+        if (element) {
+          const ariaLabel = element?.querySelector("[aria-label]")?.ariaLabel;
+          if (ariaLabel) {
+            item.announcement = ariaLabel;
+          }
+        }
+      });
+
+      matchItems.forEach((item) => {
+        const element = document.getElementById(`droppable-${item.id}`);
+        if (element) {
+          const ariaLabel = element?.querySelector("[aria-label]")?.ariaLabel;
+          if (ariaLabel) {
+            item.announcement = ariaLabel;
+          }
+        }
+      });
+    }
+  }, [documentLoaded, matchItems, choiceItems]);
 
   const [currentMatches, setCurrentMatches] = useState<{
     [matchId: string]: string;
