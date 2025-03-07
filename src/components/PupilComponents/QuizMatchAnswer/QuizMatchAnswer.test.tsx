@@ -96,83 +96,30 @@ describe(QuizMatchAnswer, () => {
 
   beforeEach(() => {
     // Mock choice items elements
-    //eslint-disable-next-line
-    const mockChoiceElements: { [key: string]: { children: any } } = {
-      "1": {
-        children: [
-          {
-            children: [
-              {
-                children: [
-                  {
-                    children: [
-                      {
-                        ariaLabel: "Choice Item 1 Label",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
+    const mockChoiceElements: { [key: string]: object } = {
+      1: {
+        querySelector: jest.fn().mockReturnValue({
+          ariaLabel: `choice aria label 1`,
+        }),
       },
-      "2": {
-        children: [
-          {
-            children: [
-              {
-                children: [
-                  {
-                    children: [
-                      {
-                        ariaLabel: "Choice Item 2 Label",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
+      2: {
+        querySelector: jest.fn().mockReturnValue({
+          ariaLabel: `choice aria label 2`,
+        }),
+      },
+      0: {
+        id: "oak-quiz-match-item-0",
+        querySelector: jest.fn().mockReturnValue({
+          ariaLabel: `choice aria label 3`,
+        }),
       },
     };
 
     // Mock match items elements
-    //eslint-disable-next-line
-    const mockMatchElements: { [key: string]: { children: any } } = {
-      A: {
-        children: [
-          null,
-          {
-            children: [
-              {
-                children: [
-                  {
-                    ariaLabel: "Match Item A Label",
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      B: {
-        children: [
-          null,
-          {
-            children: [
-              {
-                children: [
-                  {
-                    ariaLabel: "Match Item B Label",
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
+    const mockMatchElements: { [key: string]: object } = {
+      querySelector: jest.fn().mockReturnValue({
+        ariaLabel: "Choice Item A Label",
+      }),
     };
 
     // Create a comprehensive mock for document.getElementById

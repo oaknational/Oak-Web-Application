@@ -76,8 +76,7 @@ export const QuizOrderAnswer = ({ onChange }: QuizOrderAnswerProps) => {
           `oak-quiz-order-item-${item.id}`,
         );
         if (element) {
-          const ariaLabel =
-            element?.children?.[0]?.children[1]?.children[0]?.ariaLabel;
+          const ariaLabel = element?.querySelector("[aria-label]")?.ariaLabel;
           if (ariaLabel) {
             announcementItems.push({ id: item.id, label: ariaLabel });
           } else {

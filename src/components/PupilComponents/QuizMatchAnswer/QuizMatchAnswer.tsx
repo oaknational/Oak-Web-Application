@@ -99,9 +99,7 @@ export const QuizMatchAnswer = () => {
           `oak-quiz-match-item-${item.id}`,
         );
         if (element) {
-          const ariaLabel =
-            element?.children?.[0]?.children[1]?.children[0]?.children[0]
-              ?.ariaLabel;
+          const ariaLabel = element?.querySelector("[aria-label]")?.ariaLabel;
           if (ariaLabel) {
             item.announcement = ariaLabel;
           }
@@ -111,8 +109,7 @@ export const QuizMatchAnswer = () => {
       matchItems.forEach((item) => {
         const element = document.getElementById(`droppable-${item.id}`);
         if (element) {
-          const ariaLabel =
-            element?.children[1]?.children[0]?.children[0]?.ariaLabel;
+          const ariaLabel = element?.querySelector("[aria-label]")?.ariaLabel;
           if (ariaLabel) {
             item.announcement = ariaLabel;
           }
