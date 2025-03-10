@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   OakCloudinaryConfigProvider,
   OakBackLink,
@@ -9,6 +10,8 @@ import {
   OakSpan,
   OakTooltip,
   OakCodeRenderer,
+  OakQuizOrderitemId,
+  OakQuizMatchItemId,
 } from "@oaknational/oak-components";
 
 import {
@@ -32,6 +35,8 @@ import { MathJaxWrap } from "@/browser-lib/mathjax/MathJaxWrap";
 import { QuizCorrectAnswers } from "@/components/PupilComponents/QuizCorrectAnswers";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { useGetQuizTrackingData } from "@/hooks/useGetQuizTrackingData";
+import { shortAnswerInputId } from "@/components/PupilComponents/QuizShortAnswer";
+import { multipleChoiceAnswerId } from "@/components/PupilComponents/QuizMCQMultiAnswer";
 
 type PupilViewsQuizProps = {
   questionsArray: QuestionsArray;
@@ -47,14 +52,6 @@ const QuizInner = () => {
   const { currentSection, updateCurrentSection, completeActivity } =
     useLessonEngineContext();
   const quizEngineContext = useQuizEngineContext();
-  const getSectionLinkProps = useGetSectionLinkProps();
-  const { track } = usePupilAnalytics();
-  const { getQuizTrackingData } = useGetQuizTrackingData();
-
-  if (!isQuizSection(currentSection)) {
-    return null;
-  }
-
   const {
     currentQuestionData,
     currentQuestionIndex,
@@ -65,6 +62,51 @@ const QuizInner = () => {
     numQuestions,
     numInteractiveQuestions,
   } = quizEngineContext;
+
+  const getSectionLinkProps = useGetSectionLinkProps();
+  const { track } = usePupilAnalytics();
+  const { getQuizTrackingData } = useGetQuizTrackingData();
+  const [firstTabPressed, setFirstTabPressed] = useState<{
+    questionIndex: number;
+    pressed: boolean;
+  }>({ questionIndex: currentQuestionIndex, pressed: false });
+
+  useEffect(() => {
+    const handleKeyDownTabToInput = (event: KeyboardEvent): void => {
+      if (event.key === "Tab") {
+        if (!firstTabPressed.pressed) {
+          setFirstTabPressed((prev) => {
+            return { questionIndex: prev.questionIndex, pressed: true };
+          });
+          const answers = currentQuestionData?.answers;
+          if (answers) {
+            const tabId = pickTabId(answers, currentQuestionData.questionUid);
+            if (tabId) {
+              event.preventDefault();
+              const tabElement = document.getElementById(tabId);
+              if (tabElement) {
+                tabElement.focus();
+              }
+            }
+          }
+        }
+      }
+    };
+    if (firstTabPressed.questionIndex !== currentQuestionIndex) {
+      setFirstTabPressed({
+        questionIndex: currentQuestionIndex,
+        pressed: false,
+      });
+    }
+    window.addEventListener("keydown", handleKeyDownTabToInput);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDownTabToInput);
+    };
+  }, [currentQuestionIndex, firstTabPressed, currentQuestionData]);
+
+  if (!isQuizSection(currentSection)) {
+    return null;
+  }
 
   const formId = "quiz-form";
   const currentQuestionState = questionState[currentQuestionIndex];
@@ -298,5 +340,23 @@ function pickTooltip(answers: QuizQuestionAnswers) {
       return "You need to select answers to move on!";
     case isSingleAnswerMCQ(answers):
       return "You need to select an answer to move on!";
+  }
+}
+
+function pickTabId(
+  answers: QuizQuestionAnswers,
+  questionUid: string | undefined,
+) {
+  switch (true) {
+    case isOrderAnswer(answers):
+      return OakQuizOrderitemId("1");
+    case isMatchAnswer(answers):
+      return OakQuizMatchItemId("0");
+    case isShortAnswer(answers):
+      return shortAnswerInputId(questionUid);
+    case isMultiAnswerMCQ(answers):
+      return multipleChoiceAnswerId(questionUid, 0);
+    case isSingleAnswerMCQ(answers):
+      return multipleChoiceAnswerId(questionUid, 0);
   }
 }

@@ -11,6 +11,10 @@ import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngin
 // for testing
 // http://localhost:3000/pupils/programmes/english-primary-ks2/units/crazy-about-cats-reading/lessons/analysing-use-of-language-in-crazy-about-cats#starter-quiz
 
+export const shortAnswerInputId = (questionUid: string | undefined) => {
+  return `short-answer-${questionUid}`;
+};
+
 export type QuizShortAnswerProps = {
   onChange: () => void;
 };
@@ -54,7 +58,7 @@ export const QuizShortAnswer = ({ onChange }: QuizShortAnswerProps) => {
         </OakFlex>
       </OakLabel>
       <OakQuizTextInput
-        id={`short-answer-${questionUid}`}
+        id={shortAnswerInputId(questionUid)}
         key={`short-answer-${questionUid}`}
         name={`short-answer-${questionUid}`}
         onChange={onChange}
