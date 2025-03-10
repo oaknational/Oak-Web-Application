@@ -1,4 +1,5 @@
-const getDeploymentTestUrls = require("./src/common-lib/urls/getDeploymentTestUrls");
+const getDeploymentTestUrls = require("./src/common-lib/urls/getDeploymentTestUrls.cjs");
+
 /**
  * Generate a list of snapshot configs for use with `percy snapshot`
  * https://docs.percy.io/docs/percy-snapshot#configuration

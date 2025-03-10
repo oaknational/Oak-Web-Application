@@ -15,9 +15,9 @@ const {
   getReleaseStage,
   RELEASE_STAGE_PRODUCTION,
   RELEASE_STAGE_TESTING,
-} = require("../build_config_helpers");
-const fetchConfig = require("../fetch_config");
-const fetchSecrets = require("../fetch_secrets");
+} = require("../build_config_helpers.cjs");
+const fetchConfig = require("../fetch_config/index.cjs");
+const fetchSecrets = require("../fetch_secrets/index.cjs");
 
 async function main() {
   console.log("Writing config and secrets to temporary env file");

@@ -1,7 +1,7 @@
 const path = require("path");
 
-const readConfigFromFile = require("./read_from_fs");
-const readConfigFromNetwork = require("./read_from_network");
+const readConfigFromFile = require("./read_from_fs.cjs");
+const readConfigFromNetwork = require("./read_from_network.cjs");
 
 /**
  * @typedef {import('./config_types').OakConfig} OakConfig

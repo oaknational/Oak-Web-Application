@@ -20,8 +20,8 @@ import {
   getReleaseStage,
   RELEASE_STAGE_PRODUCTION,
   RELEASE_STAGE_TESTING,
-} from "./scripts/build/build_config_helpers.js";
-import fetchConfig from "./scripts/build/fetch_config/index.js";
+} from "./scripts/build/build_config_helpers.cjs";
+import fetchConfig from "./scripts/build/fetch_config/index.cjs";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
@@ -79,7 +79,39 @@ export default async (phase) => {
   const SANITY_ASSET_CDN_HOST =
     process.env.SANITY_ASSET_CDN_HOST || oakConfig.sanity.assetCDNHost;
 
-  const imageDomains = ["image.mux.com", SANITY_ASSET_CDN_HOST].filter(Boolean);
+  const imageRemotePatterns = [
+    {
+      protocol: "https",
+      hostname: "**.googleusercontent.com",
+    },
+    {
+      protocol: "https",
+      hostname: "storage.googleapis.com",
+    },
+    {
+      protocol: "https",
+      hostname: "oaknationalacademy-res.cloudinary.com",
+      pathname: "/**",
+    },
+    {
+      protocol: "https",
+      hostname: "res.cloudinary.com",
+      pathname: "/**",
+    },
+    {
+      protocol: "https",
+      hostname: "image.mux.com",
+      pathname: "/**",
+    },
+  ];
+  // If the SANITY_ASSET_CDN_HOST is set, add it to the imageRemotePatterns
+  if (SANITY_ASSET_CDN_HOST) {
+    imageRemotePatterns.push({
+      protocol: "https",
+      hostname: SANITY_ASSET_CDN_HOST,
+      pathname: "/**",
+    });
+  }
 
   /** @type {import('next').NextConfig} */
   const nextConfig = {
@@ -212,31 +244,11 @@ export default async (phase) => {
     // Make sure production source maps exist for e.g. Bugsnag
     productionBrowserSourceMaps: true,
     images: {
-      remotePatterns: [
-        {
-          protocol: "https",
-          hostname: "**.googleusercontent.com",
-        },
-        {
-          protocol: "https",
-          hostname: "storage.googleapis.com",
-        },
-        {
-          protocol: "https",
-          hostname: "oaknationalacademy-res.cloudinary.com",
-          pathname: "/**",
-        },
-        {
-          protocol: "https",
-          hostname: "res.cloudinary.com",
-          pathname: "/**",
-        },
-      ],
+      remotePatterns: imageRemotePatterns,
       // Allow static builds with the default image loader.
       // TODO: REMOVE WHEN WE START USING DYNAMIC HOSTING FOR PRODUCTION
       // https://nextjs.org/docs/messages/export-image-api#possible-ways-to-fix-it
       unoptimized: isStaticBuild,
-      domains: imageDomains,
     },
     async redirects() {
       return [

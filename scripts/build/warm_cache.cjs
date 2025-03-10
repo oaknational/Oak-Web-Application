@@ -2,7 +2,7 @@
 
 const puppeteer = require("puppeteer");
 
-const getDeploymentTestUrls = require("../../src/common-lib/urls/getDeploymentTestUrls");
+const getDeploymentTestUrls = require("../../src/common-lib/urls/getDeploymentTestUrls.cjs");
 
 const baseUrl = process.env.BASE_URL;
 if (!baseUrl) {

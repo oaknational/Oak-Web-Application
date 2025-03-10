@@ -8,9 +8,9 @@ require("dotenv").config({ path: "./.env.local" });
 const {
   createBuildStartedSlackMessage,
   createBuildCompleteSlackMessage,
-} = require("./create_slack_message");
-const getSlackConfig = require("./get_slack_config");
-const sendMessage = require("./send_message");
+} = require("./create_slack_message.cjs");
+const getSlackConfig = require("./get_slack_config.cjs");
+const sendMessage = require("./send_message.cjs");
 
 const messageConfigProdStart = {
   siteName: "fake test app name",

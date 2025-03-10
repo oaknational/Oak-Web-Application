@@ -1,7 +1,7 @@
 // Import the Secret Manager client and instantiate it:
 const { SecretManagerServiceClient } = require("@google-cloud/secret-manager");
 
-const { getFullSecretName } = require("./helpers");
+const { getFullSecretName } = require("./helpers.cjs");
 
 /**
  * Verify credentials exist and return secret manager client

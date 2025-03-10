@@ -1,5 +1,6 @@
 // jest.config.js
 // See https://nextjs.org/docs/testing#setting-up-jest-with-the-rust-compiler
+// @ts-check
 const nextJest = require("next/jest");
 
 const createJestConfig = nextJest({
@@ -7,8 +8,8 @@ const createJestConfig = nextJest({
   dir: "./",
 });
 
-// Add any custom config to be passed to Jest
-const customJestConfig = require("./jest.base.config");
+/** @type {import('jest').Config} */
+const customJestConfig = require("./jest.base.config.cjs");
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
 module.exports = createJestConfig(customJestConfig);

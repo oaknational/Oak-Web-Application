@@ -1,4 +1,4 @@
-const isReleaseTag = require("./is_release_tag");
+const isReleaseTag = require("./is_release_tag.cjs");
 
 const branchRef = "refs/heads/some_branch";
 const nonReleaseTagRef = "refs/tags/some_tag";

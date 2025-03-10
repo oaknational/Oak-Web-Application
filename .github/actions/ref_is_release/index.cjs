@@ -7,7 +7,7 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 
-const getIsReleaseTag = require("./is_release_tag");
+const getIsReleaseTag = require("./is_release_tag.cjs");
 
 async function run() {
   try {

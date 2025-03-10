@@ -1,11 +1,11 @@
-const { getAppVersion, getIsPluginDisabled } = require("../lib");
+const { getAppVersion, getIsPluginDisabled } = require("../lib.cjs");
 
 const {
   createBuildStartedSlackMessage,
   createBuildCompleteSlackMessage,
-} = require("./slack/create_slack_message");
-const getSlackConfig = require("./slack/get_slack_config");
-const sendMessage = require("./slack/send_message");
+} = require("./slack/create_slack_message.cjs");
+const getSlackConfig = require("./slack/get_slack_config.cjs");
+const sendMessage = require("./slack/send_message.cjs");
 
 module.exports = function slackBuildReporterPlugin() {
   let sharedInfo = {};

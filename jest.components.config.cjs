@@ -1,6 +1,8 @@
 const nextJest = require("next/jest");
 
-const baseConfig = require("./jest.base.config");
+/** @type {import('jest').Config} */
+// @ts-check
+const baseConfig = require("./jest.base.config.cjs");
 
 const createJestConfig = nextJest({
   dir: "./",
@@ -9,14 +11,14 @@ const createJestConfig = nextJest({
 /*
  * To be run with
  *
- *    jest -c ./config/jest.pages.config.js ./src/pages
+ *    jest -c ./config/jest.components.config.js ./src/components
  *
- * Which tests only "./src/pages" with coverage reported
+ * Which tests only "./src/components" with coverage reported
  */
 module.exports = createJestConfig({
   ...baseConfig,
   collectCoverageFrom: [
-    "./src/pages/**",
+    "./src/components/**",
     "!./**/*.json",
     "!**/__snapshots__/**",
     "!**/*.config.{js,ts}",

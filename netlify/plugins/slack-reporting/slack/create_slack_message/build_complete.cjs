@@ -1,4 +1,4 @@
-const validateConfig = require("./validate_config");
+const validateConfig = require("./validate_config.cjs");
 
 /**
  * Construct a "build complete" Slack message using Block Kit format.

@@ -1,5 +1,5 @@
-const { getSecretNamesFromPublicConfig } = require("./helpers");
-const googleSecretManager = require("./google_secret_manager");
+const { getSecretNamesFromPublicConfig } = require("./helpers.cjs");
+const googleSecretManager = require("./google_secret_manager/index.cjs");
 
 /**
  * @description Takes the Oak public config and fetches secrets from the specified secret manager

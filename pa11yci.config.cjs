@@ -4,7 +4,7 @@
  * Note, this config is also used as the source of URLs to test for Lighthouse CI.
  */
 
-const getDeploymentTestUrls = require("./src/common-lib/urls/getDeploymentTestUrls");
+const getDeploymentTestUrls = require("./src/common-lib/urls/getDeploymentTestUrls.cjs");
 
 const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 const isLocalHost = new URL(baseUrl).host === "localhost:3000";
