@@ -1,7 +1,4 @@
 import React, { useRef, Fragment, useState } from "react";
-
-import { hasLessonMathJax } from "./hasLessonMathJax";
-
 import {
   OakGrid,
   OakGridArea,
@@ -11,6 +8,9 @@ import {
   OakBox,
   OakMaxWidth,
 } from "@oaknational/oak-components";
+
+import { hasLessonMathJax } from "./hasLessonMathJax";
+
 import {
   getPageLinksForLesson,
   getBreadcrumbsForLessonPathway,

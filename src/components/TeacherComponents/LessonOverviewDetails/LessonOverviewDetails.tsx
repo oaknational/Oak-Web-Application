@@ -1,13 +1,13 @@
 import React, { FC, Fragment } from "react";
-
-import { LessonSeoHelper } from "./LessonSeoHelper";
-
 import {
   OakBox,
   OakFlex,
   OakGrid,
   OakGridArea,
 } from "@oaknational/oak-components";
+
+import { LessonSeoHelper } from "./LessonSeoHelper";
+
 import LessonOverviewKeyLearningPoints, {
   LessonOverviewKeyLearningPointProps,
 } from "@/components/TeacherComponents/LessonOverviewKeyLearningPoints";
