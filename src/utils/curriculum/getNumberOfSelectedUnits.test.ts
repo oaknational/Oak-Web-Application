@@ -1,13 +1,6 @@
 import { getNumberOfSelectedUnits } from "./getNumberOfSelectedUnits";
-import { isVisibleUnit } from "./isVisibleUnit";
-import {
-  YearData,
-  YearSelection,
-  Unit,
-  Subject,
-  Tier,
-  SubjectCategory,
-} from "./types";
+import { isVisibleUnit, PartialFilters } from "./isVisibleUnit";
+import { YearData, Unit, Subject, Tier, SubjectCategory } from "./types";
 
 jest.mock("./isVisibleUnit");
 
@@ -46,21 +39,30 @@ describe("getNumberOfSelectedUnits", () => {
   });
 
   it("should return 0 when yearData is empty", () => {
-    const result = getNumberOfSelectedUnits({}, "", {});
+    const result = getNumberOfSelectedUnits({}, "", {
+      years: [],
+      threads: [],
+    });
     expect(result).toBe(0);
   });
 
   it("should count visible units for all years when selectedYear is All", () => {
-    const yearSelection: YearSelection = {};
+    const yearSelection: PartialFilters = {
+      years: [],
+      threads: [],
+    };
     mockIsVisibleUnit.mockReturnValue(true);
 
-    const result = getNumberOfSelectedUnits(yearData, "", yearSelection);
+    const result = getNumberOfSelectedUnits(yearData, "all", yearSelection);
     expect(result).toBe(5);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });
 
   it("should count visible units only for the selected year", () => {
-    const yearSelection: YearSelection = {};
+    const yearSelection: PartialFilters = {
+      years: [],
+      threads: [],
+    };
     mockIsVisibleUnit.mockReturnValue(true);
 
     const result = getNumberOfSelectedUnits(yearData, "8", yearSelection);
@@ -69,7 +71,10 @@ describe("getNumberOfSelectedUnits", () => {
   });
 
   it("should only count units that are visible according to isVisibleUnit", () => {
-    const yearSelection: YearSelection = {};
+    const yearSelection: PartialFilters = {
+      years: [],
+      threads: [],
+    };
     mockIsVisibleUnit
       .mockReturnValueOnce(true)
       .mockReturnValueOnce(false)
@@ -77,16 +82,19 @@ describe("getNumberOfSelectedUnits", () => {
       .mockReturnValueOnce(false)
       .mockReturnValueOnce(true);
 
-    const result = getNumberOfSelectedUnits(yearData, "", yearSelection);
+    const result = getNumberOfSelectedUnits(yearData, "all", yearSelection);
     expect(result).toBe(3);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });
 
   it("should return 0 when no units are visible according to isVisibleUnit", () => {
-    const yearSelection: YearSelection = {};
+    const yearSelection: PartialFilters = {
+      years: [],
+      threads: [],
+    };
     mockIsVisibleUnit.mockReturnValue(false);
 
-    const result = getNumberOfSelectedUnits(yearData, "", yearSelection);
+    const result = getNumberOfSelectedUnits(yearData, "all", yearSelection);
     expect(result).toBe(0);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });
