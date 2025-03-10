@@ -4,21 +4,28 @@
 
 The Oak National Academy Web Application code base.
 
-- [Getting started](#getting-started)
-- [Automatic Checks](#automatic-checks)
-  - [Unit tests](#unit-tests)
-  - [End-to-End Browser Tests](#end-to-end-browser-tests)
-  - [Pre-commit and Commit Message Hooks](#pre-commit-and-commit-message-hooks)
-    - [Pre-commit](#pre-commit)
-    - [Commit Message Validation](#commit-message-validation)
-- [CI/CD](#cicd)
-  - [Pull Requests and Automated Checks](#pull-requests-and-automated-checks)
-  - [Builds and Deployments](#builds-and-deployments)
-  - [Release Mechanism](#release-mechanism)
-- [External Contributions](#external-contributions)
-  - [Security and Bug Bounty](#security-and-bug-bounty)
-  - [Contributing to the Code](#contributing-to-the-code)
-- [Open Source Acknowledgements](#open-source-acknowledgements)
+- [Oak Web Application](#oak-web-application)
+  - [Getting started](#getting-started)
+  - [Automatic Checks](#automatic-checks)
+    - [Pa11y Tests](#pa11y-tests)
+    - [Unit Tests](#unit-tests)
+    - [Reporting](#reporting)
+    - [End-to-End Browser Tests](#end-to-end-browser-tests)
+    - [Pre-commit and Commit Message Hooks](#pre-commit-and-commit-message-hooks)
+      - [Pre-commit](#pre-commit)
+      - [Commit Message Validation](#commit-message-validation)
+  - [CI/CD](#cicd)
+    - [Pull Requests and Automated Checks](#pull-requests-and-automated-checks)
+      - [Required Github Secrets for Workflows](#required-github-secrets-for-workflows)
+  - [TODO](#todo)
+    - [Builds and Deployments](#builds-and-deployments)
+      - [Required Environment Variables for Builds](#required-environment-variables-for-builds)
+    - [Release Mechanism](#release-mechanism)
+  - [External Contributions](#external-contributions)
+    - [Security and Bug Bounty](#security-and-bug-bounty)
+    - [Contributing to the Code](#contributing-to-the-code)
+  - [Open Source Acknowledgements](#open-source-acknowledgements)
+  - [License](#license)
 
 Other documentation can be found in standalone README documents:
 
@@ -76,6 +83,7 @@ Unit tests live next to the code they are testing wherever possible. Next does n
 - `npm run test:ci` will run the tests once and create a coverage report.
 
 ### Reporting
+
 Once you've run a build with `npm run build` you can see a report in the `./reports/` directory.
 
 You can also run the following to open the report in your browser.

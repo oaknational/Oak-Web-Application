@@ -1,27 +1,32 @@
-const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
-const path = require("path");
+import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const StatoscopeWebpackPlugin = require("@statoscope/webpack-plugin").default;
-const CopyPlugin = require("copy-webpack-plugin");
-const {
+import StatoscopeWebpackPlugin from "@statoscope/webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
+import {
   BugsnagBuildReporterPlugin,
   BugsnagSourceMapUploaderPlugin,
-} = require("webpack-bugsnag-plugins");
-const { PHASE_TEST, PHASE_PRODUCTION_BUILD } = require("next/constants");
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
+} from "webpack-bugsnag-plugins";
+import { PHASE_TEST, PHASE_PRODUCTION_BUILD } from "next/constants.js";
+
+import buildWithBundleAnalyzer from "@next/bundle-analyzer";
+const withBundleAnalyzer = buildWithBundleAnalyzer({
   enabled: process.env.ANALYSE_BUNDLE === "on",
 });
 
-const {
+import {
   getAppVersion,
   getReleaseStage,
   RELEASE_STAGE_PRODUCTION,
   RELEASE_STAGE_TESTING,
-} = require("./scripts/build/build_config_helpers");
-const fetchConfig = require("./scripts/build/fetch_config");
+} from "./scripts/build/build_config_helpers.js";
+import fetchConfig from "./scripts/build/fetch_config/index.js";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
-module.exports = async (phase) => {
+export default async (phase) => {
   /** @type {import('./scripts/build/fetch_config/config_types').OakConfig} */
   let oakConfig;
 
@@ -147,8 +152,8 @@ module.exports = async (phase) => {
         new CopyPlugin({
           patterns: [
             {
-              from: path.join(__dirname, "node_modules/mathjax/es5"),
-              to: path.join(__dirname, "public/mathjax"),
+              from: join(__dirname, "node_modules/mathjax/es5"),
+              to: join(__dirname, "public/mathjax"),
             },
           ],
         }),
@@ -193,7 +198,6 @@ module.exports = async (phase) => {
     compiler: {
       styledComponents: true,
     },
-    swcMinify: true,
 
     // Allow static builds with deleted beta pages to build.
     eslint: {
