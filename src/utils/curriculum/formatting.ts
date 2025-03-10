@@ -121,3 +121,85 @@ export function buildPageTitle(
 export function joinWords(str: string[]) {
   return str.filter((str) => str !== "").join(" ");
 }
+
+export function getYearSubheadingText(
+  yearData: YearData,
+  year: string,
+  filters: {
+    childSubjects: string[];
+    subjectCategories: string[];
+    tiers: string[];
+  },
+): string | null {
+  // Don't show subheading for "All" years view
+  if (year === "all") {
+    return null;
+  }
+
+  const parts: string[] = [];
+  const isKs4Year = year === "10" || year === "11";
+
+  // Handle subject categories (KS1-KS3)
+  if (
+    filters.subjectCategories.length > 0 &&
+    !filters.subjectCategories.includes("-1") && // Skip if "All" is selected
+    (!isKs4Year || filters.childSubjects.length === 0)
+  ) {
+    const subjectCategoryTitles =
+      filters.subjectCategories
+        .map((id) => {
+          // Try to find subject category in current year
+          const subjectCategory = yearData[year]?.subjectCategories.find(
+            (sc) => sc.id.toString() === id,
+          ) || {
+            // Fallback: Find any year with this subject category, then get its title
+            // This ensures categories show even in years without matching units
+            // Example: If "Vocabulary" is selected for Primary English, the 'Vocabulary' subheading will still be shown
+            // even if there are no Vocabularly units in that year
+            title: Object.values(yearData)
+              .find((y) =>
+                y?.subjectCategories?.find((sc) => sc.id.toString() === id),
+              )
+              ?.subjectCategories?.find((sc) => sc.id.toString() === id)?.title,
+          };
+          return subjectCategory?.title;
+        })
+        .filter(Boolean) ?? [];
+
+    if (subjectCategoryTitles.length > 0) {
+      parts.push(subjectCategoryTitles.join(", "));
+    }
+  }
+
+  // Handle child subjects (KS4)
+  if (filters.childSubjects.length > 0) {
+    const childSubjectTitles = filters.childSubjects
+      .map((slug) => {
+        const childSubject = yearData[year]?.childSubjects.find(
+          (cs) => cs.subject_slug === slug,
+        );
+        return childSubject?.subject;
+      })
+      .filter(Boolean);
+
+    if (childSubjectTitles.length > 0) {
+      parts.push(childSubjectTitles.join(", "));
+    }
+  }
+
+  // Handle tiers (KS4)
+  if (filters.tiers.length > 0) {
+    const tierTitles = filters.tiers
+      .map((slug) => {
+        const tier = yearData[year]?.tiers.find((t) => t.tier_slug === slug);
+        return tier?.tier;
+      })
+      .filter(Boolean);
+
+    if (tierTitles.length > 0) {
+      parts.push(tierTitles.join(", "));
+    }
+  }
+
+  return parts.length > 0 ? parts.join(", ") : null;
+}
