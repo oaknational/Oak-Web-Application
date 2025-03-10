@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { OakFlex, OakSpan, OakBox } from "@oaknational/oak-components";
 import styled from "styled-components";
 
@@ -12,11 +12,7 @@ import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Thread } from "@/utils/curriculum/types";
-import {
-  getDefaultFilter,
-  getNumberOfFiltersApplied,
-  highlightedUnitCount,
-} from "@/utils/curriculum/filtering";
+import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 
 export type CurriculumVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
@@ -164,12 +160,6 @@ export function CurricMobileStickyHeader({
     }
   }
 
-  const dfltFilters = useMemo(() => getDefaultFilter(data), [data]);
-  const numberOfFiltersApplied = getNumberOfFiltersApplied(
-    dfltFilters,
-    filters,
-  );
-
   return (
     <OakBox
       $position={["sticky", "static"]}
@@ -191,7 +181,7 @@ export function CurricMobileStickyHeader({
             $pb={"inner-padding-m"}
           >
             <Button
-              label={`Filter and highlight${numberOfFiltersApplied ? ` (${numberOfFiltersApplied})` : ``}`}
+              label={`Filter and highlight`}
               icon="chevron-right"
               $iconPosition="trailing"
               variant="buttonStyledAsLink"
