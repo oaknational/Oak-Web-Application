@@ -1,29 +1,25 @@
-import { getFilename, getDirname } from "./moduleHelpers";
 import path from "path";
+import { getFilename, getDirname } from "./moduleHelpers";
 
+// In a Jest environment, these will be CommonJS-style globals already
 describe("moduleHelpers", () => {
-  test("getDirname should return the current directory", () => {
-    const dirname = getDirname(import.meta.url);
+  test("getDirname returns directory path", () => {
+    const thisFile = import.meta.url;
+    const dirname = getDirname(thisFile);
     expect(dirname).toContain("src/__tests__/utils");
   });
 
-  test("getFilename should return the current file path", () => {
-    const filename = getFilename(import.meta.url);
-    expect(filename).toContain("src/__tests__/utils");
+  test("getFilename returns file path", () => {
+    const thisFile = import.meta.url;
+    const filename = getFilename(thisFile);
+    expect(filename).toContain("src/__tests__/utils/moduleHelpers.test.ts");
   });
 
-  test("demonstration of how to use as direct replacements", () => {
-    // Instead of using __dirname directly (which doesn't exist in ES modules)
-    // Use this pattern:
-    const __dirname = getDirname(import.meta.url);
-    const __filename = getFilename(import.meta.url);
+  test("paths from getDirname can be used with path.join", () => {
+    const thisFile = import.meta.url;
+    const dirname = getDirname(thisFile);
+    const pathToFixture = path.join(dirname, "../fixtures/someFile.json");
 
-    // Now you can use __dirname and __filename as you would in CommonJS
-    const someFilePath = path.join(__dirname, "../fixtures/someFile.json");
-
-    // Just verifying the values make sense
-    expect(__dirname).toContain("src/__tests__/utils");
-    expect(__filename).toContain("src/__tests__/utils");
-    expect(someFilePath).toContain("src/__tests__/fixtures/someFile.json");
+    expect(pathToFixture).toContain("src/__tests__/fixtures/someFile.json");
   });
 });
