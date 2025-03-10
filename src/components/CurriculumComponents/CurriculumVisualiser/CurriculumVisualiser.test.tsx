@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/dom";
-import { act } from "@testing-library/react";
+import { act, within } from "@testing-library/react";
 
 import CurriculumVisualiser from "./CurriculumVisualiser";
 import {
@@ -533,24 +533,34 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findAllByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeadings = await findAllByTestId("year-heading");
-        const subheadings = await findAllByTestId("year-subheading");
+        // Check each year block individually
+        for (const year of ["7", "8", "9", "10", "11"]) {
+          const yearBlock = container.querySelector(
+            `[id="${year}"]`,
+          ) as HTMLElement;
+          expect(yearBlock).not.toBeNull();
 
-        expect(yearHeadings[0]).toHaveTextContent("Year 7");
-        expect(yearHeadings[1]).toHaveTextContent("Year 8");
-        expect(yearHeadings[2]).toHaveTextContent("Year 9");
-        expect(yearHeadings[3]).toHaveTextContent("Year 10");
-        expect(yearHeadings[4]).toHaveTextContent("Year 11");
+          const yearHeading = within(yearBlock).getByTestId("year-heading");
+          expect(yearHeading).toHaveTextContent(`Year ${year}`);
 
-        expect(subheadings[0]).toHaveTextContent("Combined science, Higher");
-        expect(subheadings[1]).toHaveTextContent("Combined science, Higher");
+          if (["7", "8", "9"].includes(year)) {
+            // Years 7-9 should not have subheadings
+            const subheading =
+              within(yearBlock).queryByTestId("year-subheading");
+            expect(subheading).toBeNull();
+          } else {
+            // Years 10-11 should have subheadings with combined science and higher tier
+            const subheading = within(yearBlock).getByTestId("year-subheading");
+            expect(subheading).toHaveTextContent("Combined science, Higher");
+          }
+        }
       });
 
       test("displays nothing for 'All' subject category in subheading", async () => {
@@ -562,18 +572,21 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 7");
-        await expect(async () => {
-          await findByTestId("year-subheading");
-        }).rejects.toThrow();
+
+        const subheading = within(yearBlock).queryByTestId("year-subheading");
+        expect(subheading).toBeNull();
       });
 
       test("displays 'Biology' subject category in subheading", async () => {
@@ -585,16 +598,20 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 7");
-        const subheading = await findByTestId("year-subheading");
+
+        const subheading = within(yearBlock).getByTestId("year-subheading");
         expect(subheading).toHaveTextContent("Biology");
       });
 
@@ -607,16 +624,20 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 7");
-        const subheading = await findByTestId("year-subheading");
+
+        const subheading = within(yearBlock).getByTestId("year-subheading");
         expect(subheading).toHaveTextContent("Chemistry");
       });
 
@@ -629,16 +650,20 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 7");
-        const subheading = await findByTestId("year-subheading");
+
+        const subheading = within(yearBlock).getByTestId("year-subheading");
         expect(subheading).toHaveTextContent("Physics");
       });
 
@@ -651,16 +676,19 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="10"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 10");
-        const subheading = await findByTestId("year-subheading");
+        const subheading = within(yearBlock).getByTestId("year-subheading");
         expect(subheading).toHaveTextContent("Combined science, Foundation");
       });
 
@@ -673,16 +701,19 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="11"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 11");
-        const subheading = await findByTestId("year-subheading");
+        const subheading = within(yearBlock).getByTestId("year-subheading");
         expect(subheading).toHaveTextContent("Combined science, Higher");
       });
 
@@ -695,16 +726,19 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...secondaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="10"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 10");
-        const subheading = await findByTestId("year-subheading");
+        const subheading = within(yearBlock).getByTestId("year-subheading");
         expect(subheading).toHaveTextContent("Combined science, Higher");
       });
     });
@@ -724,17 +758,20 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...secondaryMathsFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading10 = await findByTestId("year-heading");
-        expect(yearHeading10).toHaveTextContent("Year 10");
-        const subheading10 = await findByTestId("year-subheading");
-        expect(subheading10).toHaveTextContent("Higher");
+        const yearBlock = container.querySelector('[id="10"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
+        expect(yearHeading).toHaveTextContent("Year 10");
+        const subheading = within(yearBlock).getByTestId("year-subheading");
+        expect(subheading).toHaveTextContent("Higher");
       });
 
       test("displays Foundation tier in year 11 subheading when selected", async () => {
@@ -777,16 +814,19 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...primaryEnglishFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="1"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 1");
-        const subheading = await findByTestId("year-subheading");
+        const subheading = within(yearBlock).getByTestId("year-subheading");
         expect(subheading).toHaveTextContent("Reading, writing & oracy");
       });
     });
@@ -806,16 +846,19 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...primaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="1"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 1");
-        const subheading = await findByTestId("year-subheading");
+        const subheading = within(yearBlock).getByTestId("year-subheading");
         expect(subheading).toHaveTextContent("Biology");
       });
 
@@ -828,16 +871,19 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...primaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="2"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 2");
-        const subheading = await findByTestId("year-subheading");
+        const subheading = within(yearBlock).getByTestId("year-subheading");
         expect(subheading).toHaveTextContent("Chemistry");
       });
 
@@ -850,16 +896,19 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...primaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="3"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 3");
-        const subheading = await findByTestId("year-subheading");
+        const subheading = within(yearBlock).getByTestId("year-subheading");
         expect(subheading).toHaveTextContent("Physics");
       });
 
@@ -872,18 +921,20 @@ describe("Year group filter headings display correctly", () => {
           threads: [],
         };
 
-        const { findByTestId } = render(
+        const { container } = render(
           <CurriculumVisualiser
             {...primaryScienceFixture}
             filters={filterFixture}
           />,
         );
 
-        const yearHeading = await findByTestId("year-heading");
+        const yearBlock = container.querySelector('[id="4"]') as HTMLElement;
+        expect(yearBlock).not.toBeNull();
+
+        const yearHeading = within(yearBlock).getByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 4");
-        await expect(async () => {
-          await findByTestId("year-subheading");
-        }).rejects.toThrow();
+        const subheading = within(yearBlock).queryByTestId("year-subheading");
+        expect(subheading).toBeNull();
       });
     });
   });
