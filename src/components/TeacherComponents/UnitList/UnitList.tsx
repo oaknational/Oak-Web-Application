@@ -1,11 +1,5 @@
 import React, { FC, MouseEvent } from "react";
 import { NextRouter, useRouter } from "next/router";
-
-import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
-import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
-
-import { getPageItems, getProgrammeFactors } from "./helpers";
-
 import {
   OakFlex,
   OakUnitsContainer,
@@ -15,6 +9,12 @@ import {
   OakAnchorTarget,
   OakBox,
 } from "@oaknational/oak-components";
+
+import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
+import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
+
+import { getPageItems, getProgrammeFactors } from "./helpers";
+
 import {
   UnitListItemProps,
   SpecialistListItemProps,
@@ -28,7 +28,6 @@ import { resolveOakHref } from "@/common-lib/urls";
 import isSlugLegacy from "@/utils/slugModifiers/isSlugLegacy";
 import { PaginationProps } from "@/components/SharedComponents/Pagination/usePagination";
 import { convertSubjectToSlug } from "@/components/TeacherComponents/helpers/convertSubjectToSlug";
-
 
 export type Tier = {
   title: string;
