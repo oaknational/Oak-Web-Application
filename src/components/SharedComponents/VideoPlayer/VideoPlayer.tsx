@@ -3,6 +3,9 @@ import MuxPlayer from "@mux/mux-player-react/lazy";
 import type { Tokens } from "@mux/mux-player";
 import MuxPlayerElement from "@mux/mux-player";
 import { OakP, OakFlex, OakColorToken } from "@oaknational/oak-components";
+import dynamic from "next/dynamic";
+
+import { ComponentErrorBoundary } from "../ComponentErrorBoundary";
 
 import useVideoTracking, { VideoTrackingGetState } from "./useVideoTracking";
 import getTimeElapsed from "./getTimeElapsed";
@@ -21,6 +24,8 @@ import errorReporter from "@/common-lib/error-reporter";
 import { VideoLocationValueType } from "@/browser-lib/avo/Avo";
 import OakError from "@/errors/OakError";
 import { PupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { FAKE_MUX_ERRORS } from "@/utils/curriculum/constants";
+
 
 const INITIAL_DEBUG = false;
 const INITIAL_ENV_KEY = process.env.MUX_ENVIRONMENT_KEY;
@@ -53,6 +58,13 @@ export type VideoEventCallbackArgs = {
   duration: number | null;
   muted: boolean;
 };
+
+// TODO: Move FAKE_MUX_ERRORS into a generic constants location (rather that importing from curric)
+const TestingErrorLazy = FAKE_MUX_ERRORS
+  ? dynamic(() => import("../ComponentErrorBoundary/TestingError"), {
+      ssr: false,
+    })
+  : undefined;
 
 const VideoPlayer: FC<VideoPlayerProps> = (props) => {
   const {
@@ -256,37 +268,49 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
         boxSizing: "content-box",
       }}
     >
-      <MuxPlayer
-        key={reloadOnErrors.length}
-        preload="metadata"
-        ref={mediaElRef}
-        envKey={envKey}
-        metadata={metadata}
-        playbackId={playbackId}
-        playbackRates={[0.5, 0.7, 1, 1.2, 1.5, 1.7, 2]}
-        start-time={startTime}
-        tokens={tokens}
-        thumbnailTime={thumbTime || undefined}
-        customDomain={"video.thenational.academy"}
-        beaconCollectionDomain={"mux-litix.thenational.academy"}
-        debug={debug}
-        primaryColor={theme.colors.white}
-        secondaryColor={theme.colors.black}
-        accentColor={theme.colors.black}
-        onPlay={onPlay}
-        onPause={onPause}
-        onError={onError}
-        onTimeUpdate={onTimeUpdate}
-        onCanPlay={() => {
-          if (reloadingDueToErrors && videoIsPlaying) {
-            mediaElRef.current?.play();
-          }
-        }}
-        style={{
-          aspectRatio: "16/9",
-          overflow: "hidden",
-        }}
-      />
+      <ComponentErrorBoundary
+        fallback={
+          // TODO: Design error boundary
+          <OakFlex $pa={"inner-padding-m"}>
+            <p>An error has occured loading the video</p>
+          </OakFlex>
+        }
+      >
+        {TestingErrorLazy && (
+          <TestingErrorLazy error={new Error("test error")} />
+        )}
+        <MuxPlayer
+          key={reloadOnErrors.length}
+          preload="metadata"
+          ref={mediaElRef}
+          envKey={envKey}
+          metadata={metadata}
+          playbackId={playbackId}
+          playbackRates={[0.5, 0.7, 1, 1.2, 1.5, 1.7, 2]}
+          start-time={startTime}
+          tokens={tokens}
+          thumbnailTime={thumbTime || undefined}
+          customDomain={"video.thenational.academy"}
+          beaconCollectionDomain={"mux-litix.thenational.academy"}
+          debug={debug}
+          primaryColor={theme.colors.white}
+          secondaryColor={theme.colors.black}
+          accentColor={theme.colors.black}
+          onPlay={onPlay}
+          onPause={onPause}
+          onError={onError}
+          onTimeUpdate={onTimeUpdate}
+          onCanPlay={() => {
+            if (reloadingDueToErrors && videoIsPlaying) {
+              mediaElRef.current?.play();
+            }
+          }}
+          style={{
+            aspectRatio: "16/9",
+            overflow: "hidden",
+          }}
+        />
+      </ComponentErrorBoundary>
     </OakFlex>
   );
 };
