@@ -4,7 +4,7 @@ import {
   OakRadioAsButton,
   OakBox,
 } from "@oaknational/oak-components";
-import { useMemo } from "react";
+import { useMemo , useId } from "react";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -26,6 +26,7 @@ export function CurricFiltersSubjectCategories({
   onChangeFilters,
   data,
 }: CurricFiltersSubjectCategoriesProps) {
+  const id = useId();
   const { yearData } = data;
 
   const { subjectCategories } = getFilterData(data.yearData, filters.years);
@@ -67,7 +68,7 @@ export function CurricFiltersSubjectCategories({
           </OakHeading>
 
           <OakRadioGroup
-            name="subject-categories"
+            name={"subject-categories_" + id}
             onChange={(e) =>
               setSingleInFilter("subjectCategories", e.target.value)
             }
