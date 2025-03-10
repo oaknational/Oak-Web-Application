@@ -26,10 +26,7 @@ export const OakModalNew: Story = {
         <button onClick={() => setArgs({ open: !args.open })}>
           open modal
         </button>
-        <Component
-          {...args}
-          onChangeOpen={() => setArgs({ open: !args.open })}
-        />
+        <Component {...args} onClose={() => setArgs({ open: !args.open })} />
       </OakThemeProvider>
     );
   },

@@ -5,6 +5,7 @@ import {
   OakBox,
 } from "@oaknational/oak-components";
 import { isEqual } from "lodash";
+import { useId } from "react";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -21,6 +22,7 @@ export function CurricFiltersYears({
   onChangeFilters,
   data,
 }: CurricFiltersYearsProps) {
+  const id = useId();
   const { yearData, yearOptions } = data;
 
   function addAllToFilter(key: keyof CurriculumFilters, target: string[]) {
@@ -39,7 +41,7 @@ export function CurricFiltersYears({
       </OakHeading>
 
       <OakRadioGroup
-        name="year"
+        name={"year" + id}
         onChange={(e) =>
           addAllToFilter(
             "years",

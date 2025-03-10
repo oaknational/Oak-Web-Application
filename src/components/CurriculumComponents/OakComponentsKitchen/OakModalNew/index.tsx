@@ -24,14 +24,14 @@ type ModalProps = {
   content: React.ReactNode;
   footer: React.ReactNode;
   open: boolean;
-  onChangeOpen: (isOpen: boolean) => void;
+  onClose: () => void;
 };
 export function OakModalNew({
   title,
   content,
   footer,
   open,
-  onChangeOpen,
+  onClose,
 }: ModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
 
@@ -64,7 +64,7 @@ export function OakModalNew({
           <OakBox $position={"absolute"} $right={"all-spacing-4"}>
             <CurriculumModalCloseButton
               ariaLabel="Close"
-              onClose={() => onChangeOpen(false)}
+              onClose={() => onClose()}
             />
           </OakBox>
         </OakFlex>

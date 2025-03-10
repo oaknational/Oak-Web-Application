@@ -4,6 +4,7 @@ import {
   OakRadioAsButton,
   OakBox,
 } from "@oaknational/oak-components";
+import { useId } from "react";
 
 import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
@@ -25,6 +26,7 @@ export function CurricFiltersChildSubjects({
   onChangeFilters,
   data,
 }: CurricFiltersChildSubjectsProps) {
+  const id = useId();
   const { yearData } = data;
 
   const { childSubjects } = getFilterData(data.yearData, filters.years);
@@ -56,7 +58,7 @@ export function CurricFiltersChildSubjects({
               : ""}
           </OakHeading>
           <OakRadioGroup
-            name="childSubjects"
+            name={"childSubjects_" + id}
             onChange={(e) => setSingleInFilter("childSubjects", e.target.value)}
             value={String(filters.childSubjects[0]!)}
             $flexDirection="row"
