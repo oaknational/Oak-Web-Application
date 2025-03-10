@@ -49910,7 +49910,7 @@ export type Videos_Variance_Order_By = {
 };
 
 export type CreateUserMutationVariables = Exact<{
-  id: Scalars["String"]["input"];
+  userId: Scalars["String"]["input"];
 }>;
 
 export type CreateUserMutation = {
@@ -49941,9 +49941,9 @@ export type GetUserQuery = {
 };
 
 export const CreateUserDocument = gql`
-  mutation createUser($id: String!) {
+  mutation createUser($userId: String!) {
     insert_users(
-      objects: [{ id: $id }]
+      objects: [{ id: $userId }]
       on_conflict: { constraint: users_pkey, update_columns: [updated_at] }
     ) {
       returning {
