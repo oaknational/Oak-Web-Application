@@ -1,10 +1,14 @@
 import { join } from "path";
+import { getDirname } from "@/__tests__/utils/moduleHelpers";
 
 import { CombinedCurriculumData, Slugs } from "..";
 import { generateEmptyDocx } from "../docx";
 
 import generate from "./1_frontCover";
 import { zipToSnapshotObject } from "./helper";
+
+// For demonstrative purposes, use the ES Module compatible __dirname
+const __dirname = getDirname(import.meta.url);
 
 jest.mock("@/pages-helpers/curriculum/docx/builder/helper", () => ({
   __esModule: true,

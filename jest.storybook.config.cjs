@@ -10,7 +10,7 @@ const createJestConfig = nextJest({
 const customJestConfig = {
   collectCoverage: false,
   // Add more setup options before each test is run
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.mjs"],
   // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ["node_modules", "<rootDir>/"],
   // We were using this with the Storybook snapshot tests, leaving in for if we want to do e.g. Percy comparisons.
