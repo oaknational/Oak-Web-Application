@@ -142,36 +142,29 @@ export function getYearSubheadingText(
   // Handle subject categories (KS1-KS3)
   if (
     filters.subjectCategories.length > 0 &&
+    !filters.subjectCategories.includes("-1") && // Skip if "All" is selected
     (!isKs4Year || filters.childSubjects.length === 0)
   ) {
     const subjectCategoryTitles =
-      (filters.subjectCategories.includes("-1")
-        ? // If "All" is selected, show all subject categories except "All" itself
-          yearData[year]?.subjectCategories
-            .filter((sc) => sc.id !== -1)
-            .sort((a, b) => a.id - b.id)
-            .map((sc) => sc.title)
-        : // Otherwise, show only selected subject categories
-          filters.subjectCategories
-            .map((id) => {
-              // Try to find subject category in current year
-              const subjectCategory = yearData[year]?.subjectCategories.find(
-                (sc) => sc.id.toString() === id,
-              ) || {
-                // Fallback: Find any year with this subject category, then get its title
-                // This ensures categories show even in years without matching units
-                // Example: If "Vocabulary" is selected for Primary English, the 'Vocabulary' subheading will still be shown
-                // even if there are no Vocabularly units in that year
-                title: Object.values(yearData)
-                  .find((y) =>
-                    y?.subjectCategories?.find((sc) => sc.id.toString() === id),
-                  )
-                  ?.subjectCategories?.find((sc) => sc.id.toString() === id)
-                  ?.title,
-              };
-              return subjectCategory?.title;
-            })
-            .filter(Boolean)) ?? [];
+      filters.subjectCategories
+        .map((id) => {
+          // Try to find subject category in current year
+          const subjectCategory = yearData[year]?.subjectCategories.find(
+            (sc) => sc.id.toString() === id,
+          ) || {
+            // Fallback: Find any year with this subject category, then get its title
+            // This ensures categories show even in years without matching units
+            // Example: If "Vocabulary" is selected for Primary English, the 'Vocabulary' subheading will still be shown
+            // even if there are no Vocabularly units in that year
+            title: Object.values(yearData)
+              .find((y) =>
+                y?.subjectCategories?.find((sc) => sc.id.toString() === id),
+              )
+              ?.subjectCategories?.find((sc) => sc.id.toString() === id)?.title,
+          };
+          return subjectCategory?.title;
+        })
+        .filter(Boolean) ?? [];
 
     if (subjectCategoryTitles.length > 0) {
       parts.push(subjectCategoryTitles.join(", "));
@@ -208,6 +201,5 @@ export function getYearSubheadingText(
     }
   }
 
-  // Join all parts with commas or return null if empty
   return parts.length > 0 ? parts.join(", ") : null;
 }

@@ -524,7 +524,7 @@ describe("Year group filter headings display correctly", () => {
         yearData: secondaryScienceYearData as YearData,
       };
 
-      test("displays all years - with subject categories in subheadings for year 7-9, and child subjects and foundation tier in subheading for year 10-11", async () => {
+      test("displays all years - with no subject categories in subheadings for year 7-9, and child subjects and foundation tier in subheading for year 10-11", async () => {
         const filterFixture = {
           childSubjects: ["combined-science"],
           subjectCategories: ["-1"],
@@ -549,14 +549,11 @@ describe("Year group filter headings display correctly", () => {
         expect(yearHeadings[3]).toHaveTextContent("Year 10");
         expect(yearHeadings[4]).toHaveTextContent("Year 11");
 
-        expect(subheadings[0]).toHaveTextContent("Biology, Chemistry, Physics");
-        expect(subheadings[1]).toHaveTextContent("Biology, Chemistry, Physics");
-        expect(subheadings[2]).toHaveTextContent("Biology, Chemistry, Physics");
-        expect(subheadings[3]).toHaveTextContent("Combined science, Higher");
-        expect(subheadings[4]).toHaveTextContent("Combined science, Higher");
+        expect(subheadings[0]).toHaveTextContent("Combined science, Higher");
+        expect(subheadings[1]).toHaveTextContent("Combined science, Higher");
       });
 
-      test("displays 'All' subject category as 'Biology, Chemistry, Physics' in subheading", async () => {
+      test("displays nothing for 'All' subject category in subheading", async () => {
         const filterFixture = {
           subjectCategories: ["-1"],
           childSubjects: [],
@@ -574,8 +571,9 @@ describe("Year group filter headings display correctly", () => {
 
         const yearHeading = await findByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 7");
-        const subheading = await findByTestId("year-subheading");
-        expect(subheading).toHaveTextContent("Biology, Chemistry, Physics");
+        await expect(async () => {
+          await findByTestId("year-subheading");
+        }).rejects.toThrow();
       });
 
       test("displays 'Biology' subject category in subheading", async () => {
@@ -865,7 +863,7 @@ describe("Year group filter headings display correctly", () => {
         expect(subheading).toHaveTextContent("Physics");
       });
 
-      test("displays 'All' subject category as 'Biology, Chemistry, Physics' in subheading", async () => {
+      test("displays nothing for 'All' subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
           subjectCategories: ["-1"],
@@ -883,8 +881,9 @@ describe("Year group filter headings display correctly", () => {
 
         const yearHeading = await findByTestId("year-heading");
         expect(yearHeading).toHaveTextContent("Year 4");
-        const subheading = await findByTestId("year-subheading");
-        expect(subheading).toHaveTextContent("Biology, Chemistry, Physics");
+        await expect(async () => {
+          await findByTestId("year-subheading");
+        }).rejects.toThrow();
       });
     });
   });
