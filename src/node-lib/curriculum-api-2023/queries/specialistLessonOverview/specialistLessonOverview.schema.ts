@@ -20,6 +20,7 @@ export type SpecialistLessonOverviewData = Omit<
   | "yearTitle"
   | "examBoardTitle"
   | "lessonMediaClips"
+  | "subjectParent"
 > & {
   isCanonical: false;
   developmentStageTitle: string;

@@ -41,6 +41,7 @@ export const getCommonPathway = (
     tierSlug: null,
     tierTitle: null,
     lessonCohort: null,
+    subjectParent: null,
   };
 
   return pathways.reduce(

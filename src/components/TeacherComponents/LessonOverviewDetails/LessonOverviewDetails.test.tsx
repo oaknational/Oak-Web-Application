@@ -34,6 +34,13 @@ const lessonDetailProps = {
     unitSlug: "unit-slug",
     programmeSlug: "programme-slug",
   },
+  year: "year 7",
+  subject: "maths",
+  keystage: "ks3",
+  unit: "maths",
+  examBoardSlug: null,
+  subjectSlug: "maths",
+  subjectParent: null,
 };
 
 describe("LessonOverviewDetails component", () => {

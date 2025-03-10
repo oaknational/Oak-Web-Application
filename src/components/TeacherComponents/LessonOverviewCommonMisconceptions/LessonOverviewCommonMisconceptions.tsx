@@ -45,7 +45,9 @@ const LessonOverviewCommonMisconceptions = ({
               <OakP $mb="space-between-m" $font={"body-1-bold"}>
                 {commonMisconception.misconception}
               </OakP>
-              <OakP $font={"body-1"}>{commonMisconception.response}</OakP>
+              <OakP $font={["body-2", "body-1"]}>
+                {commonMisconception.response}
+              </OakP>
             </OakFlex>
           );
         },
