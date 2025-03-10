@@ -1,9 +1,6 @@
 /**
  * A utility module that provides __dirname and __filename functionality
- * for code that needs to work in both CommonJS and ES Module environments.
- *
- * In CommonJS (like Jest), __dirname and __filename are already available.
- * In ES Modules, they need to be derived from import.meta.url.
+ * for code that needs to work in ES Module environments.
  */
 
 let fileURLToPath: ((url: string) => string) | undefined;
