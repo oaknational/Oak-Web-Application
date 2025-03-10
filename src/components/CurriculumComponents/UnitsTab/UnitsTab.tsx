@@ -18,6 +18,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -33,6 +34,7 @@ export default function UnitsTab({
   onChangeFilters,
 }: UnitsTabProps) {
   // Initialize constants
+  const isMobile = useMediaQuery("mobile");
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const { yearData, threadOptions } = formattedData;
@@ -112,23 +114,27 @@ export default function UnitsTab({
           Units that make up our curricula are fully sequenced, and aligned to
           the national curriculum.
         </OakP>
-        <CurricVisualiserFiltersMobile
-          selectedYear={mobileSelectedYear}
-          onSelectYear={setMobileSelectedYear}
-          filters={filters}
-          onChangeFilters={onChangeFiltersLocal}
-          data={formattedData}
-          trackingData={trackingData}
-          onOpenModal={() => {}}
-        />
+        {isMobile && (
+          <CurricVisualiserFiltersMobile
+            selectedYear={mobileSelectedYear}
+            onSelectYear={setMobileSelectedYear}
+            filters={filters}
+            onChangeFilters={onChangeFiltersLocal}
+            data={formattedData}
+            trackingData={trackingData}
+            onOpenModal={() => {}}
+          />
+        )}
         <CurricVisualiserLayout
           filters={
-            <CurricVisualiserFiltersDesktop
-              filters={filters}
-              onChangeFilters={onChangeFiltersLocal}
-              data={formattedData}
-              trackingData={trackingData}
-            />
+            isMobile ? null : (
+              <CurricVisualiserFiltersDesktop
+                filters={filters}
+                onChangeFilters={onChangeFiltersLocal}
+                data={formattedData}
+                trackingData={trackingData}
+              />
+            )
           }
           units={
             <CurriculumVisualiser

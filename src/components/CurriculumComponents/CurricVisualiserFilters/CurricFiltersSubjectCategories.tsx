@@ -4,6 +4,7 @@ import {
   OakRadioAsButton,
   OakBox,
 } from "@oaknational/oak-components";
+import { useMemo } from "react";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { CurriculumFilters } from "@/utils/curriculum/types";
@@ -45,6 +46,10 @@ export function CurricFiltersSubjectCategories({
     onChangeFilters({ ...filters, [key]: [newValue] });
   }
 
+  const subjectCategoryIdAsString = useMemo(() => {
+    return String(filters.subjectCategories[0]);
+  }, [filters.subjectCategories]);
+
   return (
     <>
       {subjectCategoriesAt.length > 0 && (
@@ -66,7 +71,7 @@ export function CurricFiltersSubjectCategories({
             onChange={(e) =>
               setSingleInFilter("subjectCategories", e.target.value)
             }
-            value={String(filters.subjectCategories[0]!)}
+            value={subjectCategoryIdAsString}
             $flexDirection="row"
             $flexWrap="wrap"
             $gap="space-between-ssx"
@@ -75,7 +80,7 @@ export function CurricFiltersSubjectCategories({
             {subjectCategories.map((subjectCategory) => {
               return (
                 <OakRadioAsButton
-                  key={subjectCategory.id}
+                  key={String(subjectCategory.id)}
                   value={String(subjectCategory.id)}
                   data-testid={`subject-category-radio-${subjectCategory.id}`}
                   displayValue={subjectCategory.title}

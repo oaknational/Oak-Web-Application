@@ -21,8 +21,13 @@ export default function CurricVisualiserFiltersMobile({
   onSelectYear,
 }: CurricVisualiserFiltersMobileProps) {
   const ref = useRef<HTMLDialogElement>(null);
+
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
+
+  const [initialFilterState] = useState(() => {
+    return filters;
+  });
 
   function handleMobileThreadModal(): void {
     setMobileThreadModalOpen(!mobileThreadModalOpen);
@@ -40,11 +45,16 @@ export default function CurricVisualiserFiltersMobile({
     }
   }, [ref, mobileThreadModalOpen]);
 
+  function onClose() {
+    onChangeFilters(initialFilterState);
+    setMobileThreadModalOpen(false);
+  }
+
   return (
     <>
       <OakModalNew
         open={mobileThreadModalOpen}
-        onChangeOpen={() => setMobileThreadModalOpen(false)}
+        onClose={onClose}
         title={<OakBox $font={"body-1-bold"}>Filter and highlight</OakBox>}
         content={
           <CurricMobileFilterModal
