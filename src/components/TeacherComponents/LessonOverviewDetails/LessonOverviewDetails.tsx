@@ -53,6 +53,7 @@ type LessonOverviewDetailsProps = {
   examBoardSlug: string | null | undefined;
   subjectSlug: string | null | undefined;
   subjectParent: string | null | undefined;
+  disablePupilLink: boolean;
 };
 
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
@@ -77,6 +78,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   examBoardSlug,
   subjectParent,
   subjectSlug,
+  disablePupilLink,
 }) => {
   const { lessonSlug, unitSlug, programmeSlug } = slugs;
   const showLessonHelperAccordion =
@@ -136,6 +138,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                 examBoardSlug={examBoardSlug}
                 subjectSlug={subjectSlug}
                 parentSubject={subjectParent}
+                disablePupilLink={disablePupilLink}
               />
             )}
           </OakFlex>

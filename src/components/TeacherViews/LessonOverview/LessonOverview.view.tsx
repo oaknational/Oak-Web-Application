@@ -441,6 +441,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     examBoardSlug={examBoardSlug}
                     subjectSlug={subjectSlug}
                     subjectParent={subjectParent}
+                    disablePupilLink={actions?.disablePupilShare}
                   />
                 </LessonItemContainer>
 

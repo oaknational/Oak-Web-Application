@@ -24,6 +24,7 @@ export const LessonSeoHelper = ({
   lessonSlug,
   programmeSlug,
   unitSlug,
+  disablePupilLink,
 }: {
   year: string;
   subject: string;
@@ -35,6 +36,7 @@ export const LessonSeoHelper = ({
   lessonSlug: string;
   programmeSlug: string;
   unitSlug: string;
+  disablePupilLink: boolean;
 }) => {
   const linkSubject = parentSubject
     ? convertSubjectToSlug(parentSubject)
@@ -115,19 +117,21 @@ export const LessonSeoHelper = ({
       <OakP $font={["body-2", "body-1"]}>
         Our video is a tool for planning, showing how other teachers might teach
         the lesson, offering helpful tips, modelled explanations and inspiration
-        for your own delivery in the classroom. Plus, you can set it as homework
-        or revision for pupils and keep their learning on track by sharing an{" "}
-        <OakLink
-          href={resolveOakHref({
-            page: "pupil-lesson",
-            programmeSlug,
-            unitSlug,
-            lessonSlug,
-          })}
-        >
-          online pupil version
-        </OakLink>{" "}
-        of this lesson.
+        for your own delivery in the classroom.{" "}
+        {!disablePupilLink && (
+          <>
+            {`Plus, you can set it as homework or revision for pupils and keep their learning on track by sharing an `}
+            <OakLink
+              href={resolveOakHref({
+                page: "pupil-lesson-canonical",
+                lessonSlug,
+              })}
+            >
+              online pupil version
+            </OakLink>
+            {` of this lesson.`}
+          </>
+        )}
       </OakP>
       <br />
       <OakP $font={["body-2", "body-1"]}>
