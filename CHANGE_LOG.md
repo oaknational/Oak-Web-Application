@@ -1,3 +1,10 @@
+## [1.706.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.706.0...v1.706.1) (2025-03-11)
+
+
+### Bug Fixes
+
+* <ButtonAsLink/> to <OakSecondaryLink/> to fix wrapping issue ([f5b6125](https://github.com/oaknational/Oak-Web-Application/commit/f5b61255ed1a0bd8d4240caa9823601214e88d60))
+
 # [1.706.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.705.0...v1.706.0) (2025-03-10)
 
 
