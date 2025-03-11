@@ -1,13 +1,13 @@
 import { act } from "@testing-library/react";
 
 import { CurricFiltersChildSubjects } from "./CurricFiltersChildSubjects";
-import { basicSetup } from "./CurricFiltersChildSubjects.fixtures";
+import { ks4Setup, ks3and4Setup } from "./CurricFiltersChildSubjects.fixtures";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("CurricFiltersChildSubjects", () => {
-  it("renders correctly", () => {
-    const { getAllByRole } = renderWithTheme(
+  it("renders correctly ks4 only", () => {
+    const { getAllByRole, getByRole } = renderWithTheme(
       <CurricFiltersChildSubjects
         filters={{
           childSubjects: [],
@@ -17,12 +17,36 @@ describe("CurricFiltersChildSubjects", () => {
           threads: [],
         }}
         onChangeFilters={() => {}}
-        data={basicSetup}
+        data={ks4Setup}
       />,
     );
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
+    expect(getByRole("heading")).toHaveTextContent("Exam subject (KS4)");
+    expect(elements[0]!.value).toEqual("biology");
+    expect(elements[1]!.value).toEqual("chemistry");
+    expect(elements[2]!.value).toEqual("physics");
+  });
+
+  it("renders correctly ks3 & ks4", () => {
+    const { getAllByRole, getByRole } = renderWithTheme(
+      <CurricFiltersChildSubjects
+        filters={{
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          years: ["10", "11"],
+          threads: [],
+        }}
+        onChangeFilters={() => {}}
+        data={ks3and4Setup}
+      />,
+    );
+
+    const elements = getAllByRole("radio") as HTMLInputElement[];
+    expect(elements.length).toEqual(3);
+    expect(getByRole("heading")).toHaveTextContent("Exam subject");
     expect(elements[0]!.value).toEqual("biology");
     expect(elements[1]!.value).toEqual("chemistry");
     expect(elements[2]!.value).toEqual("physics");
@@ -40,7 +64,7 @@ describe("CurricFiltersChildSubjects", () => {
           threads: [],
         }}
         onChangeFilters={onChangeFilters}
-        data={basicSetup}
+        data={ks4Setup}
       />,
     );
 
