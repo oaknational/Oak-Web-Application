@@ -12,6 +12,7 @@ const render = renderWithProviders();
 const programmeThreadHighlighted = jest.fn();
 const yearGroupSelected = jest.fn();
 const unitInformationViewed = jest.fn();
+const unitSequenceRefined = jest.fn();
 
 const trackingDataSecondaryScience = {
   subjectTitle: "Science",
@@ -211,6 +212,7 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       programmeThreadHighlighted: (...args: unknown[]) =>
         programmeThreadHighlighted(...args),
       yearGroupSelected,
+      unitSequenceRefined: (...args: unknown[]) => unitSequenceRefined(...args),
       unitInformationViewed: (...args: unknown[]) =>
         unitInformationViewed(...args),
     },
