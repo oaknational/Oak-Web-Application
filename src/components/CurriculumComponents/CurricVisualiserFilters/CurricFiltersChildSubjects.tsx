@@ -48,9 +48,10 @@ export function CurricFiltersChildSubjects({
         <>
           <OakHeading
             id="child-subjects-label"
-            tag="h4"
-            $font={"heading-6"}
-            $mb="space-between-s"
+            tag="h3"
+            $font={"heading-7"}
+            $mt="space-between-none"
+            $mb="space-between-m"
           >
             Exam subject{" "}
             {childSubjectsAt.length === 1

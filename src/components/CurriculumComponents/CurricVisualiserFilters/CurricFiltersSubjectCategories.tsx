@@ -57,9 +57,10 @@ export function CurricFiltersSubjectCategories({
         <OakBox>
           <OakHeading
             id="subject-categories-label"
-            tag="h4"
-            $font={"heading-6"}
-            $mb="space-between-s"
+            tag="h3"
+            $font={"heading-7"}
+            $mt="space-between-none"
+            $mb="space-between-m"
           >
             Category{" "}
             {subjectCategoriesAt.length === 1
