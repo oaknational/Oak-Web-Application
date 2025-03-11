@@ -179,12 +179,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     isHighlighted: boolean,
     isOpen: boolean,
   ) => {
-    if (isOpen && unitData) {
+    if (isOpen && unit) {
       track.unitOverviewAccessed({
         unitName: unit.title, // string
         unitSlug: unit.slug, // string
-        subjectTitle: unitData?.subject || "", // string
-        subjectSlug: unitData?.subject_slug || "", // string
+        subjectTitle: unit?.subject || "", // string
+        subjectSlug: unit?.subject_slug || "", // string
         yearGroupName: `Year ${unit.year}`, // string
         yearGroupSlug: unit.year, // string
         threadTitle: selectedThread, // nullable string
@@ -341,7 +341,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 
                         return (
                           <FocusIndicator
-                            key={subject.subject_slug}
+                            key={`${subject.subject_slug}-${year}`}
                             $display={"inline-block"}
                             $mb="space-between-ssx"
                             $mr="space-between-ssx"
