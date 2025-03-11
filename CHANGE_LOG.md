@@ -1,3 +1,35 @@
+## [1.706.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.706.0...v1.706.1) (2025-03-11)
+
+
+### Bug Fixes
+
+* <ButtonAsLink/> to <OakSecondaryLink/> to fix wrapping issue ([f5b6125](https://github.com/oaknational/Oak-Web-Application/commit/f5b61255ed1a0bd8d4240caa9823601214e88d60))
+
+# [1.706.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.705.0...v1.706.0) (2025-03-10)
+
+
+### Features
+
+* added test logging report for FEC hackday ([0513cb3](https://github.com/oaknational/Oak-Web-Application/commit/0513cb39b8c3b9efea61412144abdefae2fdd858))
+
+# [1.705.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.704.0...v1.705.0) (2025-03-07)
+
+
+### Bug Fixes
+
+* lint fixes ([9c1d46b](https://github.com/oaknational/Oak-Web-Application/commit/9c1d46be0bfe77da8982ca026dd8facd6989e406))
+
+
+### Features
+
+* increase test coverage ([f01cb08](https://github.com/oaknational/Oak-Web-Application/commit/f01cb08ee61ae530dd66f9f2b19872bb4961dc1a))
+* merge main ([b2a60c5](https://github.com/oaknational/Oak-Web-Application/commit/b2a60c56e12ec1e7a51513b75a84b7d179e05586))
+* point to new oak components ([dfb8ba5](https://github.com/oaknational/Oak-Web-Application/commit/dfb8ba546cfcf2389ab7ed2a2d16aa4869612339))
+* use dom to get readable equations ([88928b1](https://github.com/oaknational/Oak-Web-Application/commit/88928b1f96a6c2f90f898a45096115005f03d790))
+* use dom to get readable equations ([920d6f0](https://github.com/oaknational/Oak-Web-Application/commit/920d6f0dc1ff7eaa07d38e11ac3fdff76342334d))
+* use dom to get readable equations ([b080fee](https://github.com/oaknational/Oak-Web-Application/commit/b080fee31c421697204c8510c7c34899b9799ecb))
+* use query selector for more safety against structure change ([cad345a](https://github.com/oaknational/Oak-Web-Application/commit/cad345a093fc580f364f68af4c6d6246d9844daa))
+
 # [1.704.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.703.2...v1.704.0) (2025-03-05)
 
 
