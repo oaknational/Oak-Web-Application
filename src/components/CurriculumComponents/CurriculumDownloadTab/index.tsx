@@ -265,7 +265,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
       engagementIntent: "refine",
       componentType: "download_tab",
       eventVersion: "2.0.0",
-      analyticsUseCase: analyticsUseCase,
+      analyticsUseCase: "Teacher",
       learningTier: capitalize(tierSelected || "") as LearningTierValueType,
       childSubjectName: convertUnitSlugToTitle(childSubjectSlug || ""),
       childSubjectSlug: childSubjectSlug || "",

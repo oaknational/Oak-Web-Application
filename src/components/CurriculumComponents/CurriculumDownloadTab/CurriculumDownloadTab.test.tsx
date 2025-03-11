@@ -1,4 +1,5 @@
-import { screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import CurriculumDownloadTab, {
   createCurriculumDownloadsQuery,
@@ -37,7 +38,18 @@ const childSubjectsMock = [
   },
 ];
 
-describe("Component - Curriculum Download Tab", () => {
+const curriculumResourcesDownloadRefined = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      curriculumResourcesDownloadRefined: (...args: unknown[]) =>
+        curriculumResourcesDownloadRefined(...args),
+    },
+  }),
+}));
+
+describe("Component Curriculum Download Tab", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -141,6 +153,48 @@ describe("Component - Curriculum Download Tab", () => {
       expect(childSubjectRadios[1]).toHaveTextContent("Biology");
       expect(childSubjectRadios[2]).toHaveTextContent("Chemistry");
       expect(childSubjectRadios[3]).toHaveTextContent("Physics");
+    });
+  });
+  describe("analytics: curriculumResourcesDownloadRefined", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("sends a tracking event when curriculum downloads are refined", async () => {
+      mockPrerelease("curriculum.downloads");
+      const { findByTestId, findByText } = renderComponent({
+        tiers: tiersMock,
+        child_subjects: childSubjectsMock,
+        slugs: parseSubjectPhaseSlug("science-secondary-aqa"),
+      });
+
+      const childSubjectSelector = await findByTestId("child-subject-selector");
+      const tierSelector = await findByTestId("tier-selector");
+
+      await act(async () => {
+        await userEvent.click(childSubjectSelector);
+        await userEvent.click(tierSelector);
+      });
+
+      const nextButton = await findByText("Next");
+      await act(async () => {
+        await userEvent.click(nextButton);
+      });
+
+      expect(curriculumResourcesDownloadRefined).toHaveBeenCalledTimes(1);
+      expect(curriculumResourcesDownloadRefined).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        childSubjectName: "Combined",
+        childSubjectSlug: "combined-science",
+        componentType: "download_tab",
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        learningTier: "Foundation",
+        platform: "owa",
+        product: "curriculum resources",
+        subjectSlug: "science",
+        subjectTitle: "English",
+      });
     });
   });
 });
