@@ -87,22 +87,24 @@ const UnitModal: FC<UnitModalProps> = ({
   const handleUnitOverviewExploredAnalytics = (
     componentType: ComponentTypeValueType,
   ) => {
-    track.unitOverviewExplored({
-      subjectTitle: unitData?.subject || "",
-      subjectSlug: unitData?.subject_slug || "",
-      threadTitle: getTitleFromSlug(selectedThread || undefined) || "", // check if this is selected thread??
-      threadSlug: selectedThread || "",
-      yearGroupName: `Year ${unitData?.year}`,
-      yearGroupSlug: `year-${unitData?.year}`,
-      unitName: unitData?.title || "",
-      unitSlug: unitData?.slug || "",
-      platform: "owa",
-      product: "curriculum visualiser",
-      engagementIntent: "explore",
-      componentType,
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
-    });
+    if (unitData) {
+      track.unitOverviewExplored({
+        subjectTitle: unitData.subject,
+        subjectSlug: unitData.subject_slug,
+        yearGroupName: `Year ${unitData.year}`,
+        yearGroupSlug: `year-${unitData.year}`,
+        unitName: unitData.title,
+        unitSlug: unitData.slug,
+        platform: "owa",
+        product: "curriculum visualiser",
+        engagementIntent: "explore",
+        componentType,
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        threadTitle: getTitleFromSlug(selectedThread || undefined) || "",
+        threadSlug: selectedThread || "",
+      });
+    }
   };
 
   return (

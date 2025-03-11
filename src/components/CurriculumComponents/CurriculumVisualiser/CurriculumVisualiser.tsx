@@ -183,8 +183,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
       track.unitOverviewAccessed({
         unitName: unit.title,
         unitSlug: unit.slug,
-        subjectTitle: unit?.subject || "",
-        subjectSlug: unit?.subject_slug || "",
+        subjectTitle: unit.subject,
+        subjectSlug: unit.subject_slug,
         yearGroupName: `Year ${unit.year}`,
         yearGroupSlug: unit.year,
         threadTitle: selectedThread,
