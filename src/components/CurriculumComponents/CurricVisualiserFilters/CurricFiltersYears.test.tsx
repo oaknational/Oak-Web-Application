@@ -30,7 +30,7 @@ describe("CurricFiltersYears", () => {
 
   it("interacts correctly", () => {
     const onChangeFilters = jest.fn();
-    const { getAllByRole } = renderWithTheme(
+    const { getAllByRole, rerender } = renderWithTheme(
       <CurricFiltersYears
         filters={{
           childSubjects: [],
@@ -66,6 +66,21 @@ describe("CurricFiltersYears", () => {
       tiers: [],
       years: ["11"],
     });
+
+    // Re-render because "all" will be selected by default
+    rerender(
+      <CurricFiltersYears
+        filters={{
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          years: ["10"],
+          threads: [],
+        }}
+        onChangeFilters={onChangeFilters}
+        data={basicSetup}
+      />,
+    );
 
     // All
     act(() => elements[0]!.click());

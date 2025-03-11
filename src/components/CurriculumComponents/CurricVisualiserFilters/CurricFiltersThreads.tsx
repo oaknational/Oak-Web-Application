@@ -1,4 +1,5 @@
 import { OakSpan, OakBox } from "@oaknational/oak-components";
+import { useId } from "react";
 
 import { Fieldset, FieldsetLegend } from "../OakComponentsKitchen/Fieldset";
 import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
@@ -18,6 +19,7 @@ export function CurricFiltersThreads({
   onChangeFilters,
   data,
 }: CurricFiltersThreadsProps) {
+  const id = useId();
   const { yearData, threadOptions } = data;
 
   function isSelectedThread(thread: Thread) {
@@ -31,7 +33,7 @@ export function CurricFiltersThreads({
           Highlight a thread
         </FieldsetLegend>
         <RadioGroup
-          name="thread"
+          name={"thread" + id}
           onChange={(e) =>
             onChangeFilters({ ...filters, threads: [e.target.value] })
           }

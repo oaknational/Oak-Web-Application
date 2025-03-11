@@ -4,6 +4,7 @@ import {
   OakRadioAsButton,
   OakBox,
 } from "@oaknational/oak-components";
+import { useId } from "react";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { getFilterData } from "@/utils/curriculum/filtering";
@@ -24,6 +25,7 @@ export function CurricFiltersTiers({
   onChangeFilters,
   data,
 }: CurricFiltersTiersProps) {
+  const id = useId();
   const { yearData } = data;
 
   const { tiers } = getFilterData(data.yearData, filters.years);
@@ -40,7 +42,7 @@ export function CurricFiltersTiers({
       {tiers.length > 0 && (
         <OakBox>
           <OakHeading
-            id="tiers-label"
+            id={"tiers-label"}
             tag="h4"
             $font={"heading-6"}
             $mb="space-between-s"
@@ -49,7 +51,7 @@ export function CurricFiltersTiers({
             {tiersAt.length === 1 ? `(${tiersAt[0]?.toUpperCase()})` : ""}
           </OakHeading>
           <OakRadioGroup
-            name="tiers"
+            name={"tiers" + id}
             onChange={(e) => setSingleInFilter("tiers", e.target.value)}
             value={filters.tiers[0]!}
             $flexDirection="row"

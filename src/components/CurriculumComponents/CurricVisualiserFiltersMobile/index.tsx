@@ -6,6 +6,14 @@ import { CurricMobileStickyHeader } from "../CurricVisualiserMobileHeader";
 import { CurricMobileFilterModal } from "../CurricVisualiserFiltersModal";
 import { OakModalNew } from "../OakComponentsKitchen/OakModalNew";
 
+export function usePrevious<T>(value: T) {
+  const ref = useRef<T>();
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
+}
+
 export type CurricVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
     selectedYear: string;
@@ -21,8 +29,21 @@ export default function CurricVisualiserFiltersMobile({
   onSelectYear,
 }: CurricVisualiserFiltersMobileProps) {
   const ref = useRef<HTMLDialogElement>(null);
+
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
+
+  const [initialFilterState, setInitialFilterState] = useState(() => {
+    return filters;
+  });
+
+  // Only change `initialFilterState` when opening the modal
+  const prevMobileThreadModalOpen = usePrevious(mobileThreadModalOpen);
+  useEffect(() => {
+    if (mobileThreadModalOpen && !prevMobileThreadModalOpen) {
+      setInitialFilterState(filters);
+    }
+  }, [filters, mobileThreadModalOpen, prevMobileThreadModalOpen]);
 
   function handleMobileThreadModal(): void {
     setMobileThreadModalOpen(!mobileThreadModalOpen);
@@ -40,11 +61,16 @@ export default function CurricVisualiserFiltersMobile({
     }
   }, [ref, mobileThreadModalOpen]);
 
+  function onClose() {
+    onChangeFilters(initialFilterState);
+    setMobileThreadModalOpen(false);
+  }
+
   return (
     <>
       <OakModalNew
         open={mobileThreadModalOpen}
-        onChangeOpen={() => setMobileThreadModalOpen(false)}
+        onClose={onClose}
         title={<OakBox $font={"body-1-bold"}>Filter and highlight</OakBox>}
         content={
           <CurricMobileFilterModal
