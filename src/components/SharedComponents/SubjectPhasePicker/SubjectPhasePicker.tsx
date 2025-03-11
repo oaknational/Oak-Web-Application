@@ -33,7 +33,6 @@ import type {
   CurriculumPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
@@ -343,7 +342,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const phaseErrorId = useId();
 
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const phases = [
     { title: "Primary", slug: "primary" },
@@ -497,7 +495,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
         engagementIntent: "use", // string ( allowed values: "explore", "refine", "use", "advocate")
         componentType: "curriculum_visualiser_button", // string ( allowed values: "hamburger_menu_button", "text_input", "regenerate_response_button", "select_oak_lesson", "type_edit", "lesson_finish_check", "continue_button", "continue_text", "go_to_share_page_button", "example_lesson_button", "homepage_primary_create_a_lesson_button", "homepage_secondary_create_a_lesson_button", "footer_menu_link", "download_button", "homepage_button", "curriculum_visualiser_button", "see_lessons_in_unit_button", "year_group_button", "learning_tier_button", "subject_category_button", "unit_info_button", "lessons_in_unit", "previous_unit_desc", "following_unit_desc", "video", "filter_link", "keystage_keypad_button", "lesson_card", "lesson_download_button", "programme_card", "search_button", "search_result_item", "share_button", "subject_card", "unit_card", "homepage_tab", "landing_page_button", "why_this_why_now", "unit_sequence_tab", "download_tab", "explainer_tab", "aims_and_purpose", "oak_curriculum_principles", "oak_subject_principles", "national_curriculum", "curriculum_delivery", "curiculum_coherence", "recommendations_from_subject_specific_reports", "subject_specific_needs", "our_curriculum_partner")
         eventVersion: "2.0.0", // string ( allowed values: "2.0.0")
-        analyticsUseCase: analyticsUseCase, // string ( allowed values: "Pupil", "Teacher")
+        analyticsUseCase: "Teacher", // string ( allowed values: "Pupil", "Teacher")
         phase: selectedPhase.slug as PhaseValueType, // string ( allowed values: "primary", "secondary")
       });
     }
@@ -736,7 +734,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     >
                       {sortBy(subjects, "title").map((subject) => (
                         <ButtonContainer
-                          key={subject.slug}
+                          key={`${subject.slug}-selection`}
                           className={`lot-picker subject-selection ${
                             isSelected(subject) ? "selected" : ""
                           }`}
@@ -812,7 +810,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           className={`lot-picker subject-selection ${
                             isSelected(subject) ? "selected" : ""
                           }`}
-                          key={subject.slug}
+                          key={`${subject.slug}-mobile-selection`}
                         >
                           <OakSecondaryButton
                             role="radio"
