@@ -1,4 +1,5 @@
-import { YearData } from "./types";
+import { CurriculumFilters, YearData } from "./types";
+import { keystageFromYear } from "./keystage";
 
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Phase } from "@/node-lib/curriculum-api-2023";
@@ -125,11 +126,10 @@ export function joinWords(str: string[]) {
 export function getYearSubheadingText(
   yearData: YearData,
   year: string,
-  filters: {
-    childSubjects: string[];
-    subjectCategories: string[];
-    tiers: string[];
-  },
+  filters: Pick<
+    CurriculumFilters,
+    "childSubjects" | "subjectCategories" | "tiers"
+  >,
 ): string | null {
   // Don't show subheading for "All" years view
   if (year === "all") {
@@ -137,7 +137,7 @@ export function getYearSubheadingText(
   }
 
   const parts: string[] = [];
-  const isKs4Year = year === "10" || year === "11";
+  const isKs4Year = keystageFromYear(year) === "ks4";
 
   // Handle subject categories (KS1-KS3)
   if (
