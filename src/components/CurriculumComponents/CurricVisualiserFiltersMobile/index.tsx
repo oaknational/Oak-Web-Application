@@ -6,13 +6,7 @@ import { CurricMobileStickyHeader } from "../CurricVisualiserMobileHeader";
 import { CurricMobileFilterModal } from "../CurricVisualiserFiltersModal";
 import { OakModalNew } from "../OakComponentsKitchen/OakModalNew";
 
-export function usePrevious<T>(value: T) {
-  const ref = useRef<T>();
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
-  return ref.current;
-}
+import { usePrevious } from "@/hooks/usePrevious";
 
 export type CurricVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
