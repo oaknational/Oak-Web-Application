@@ -1,5 +1,8 @@
+import { ReadonlyURLSearchParams } from "next/navigation";
+
 import {
   diffFilters,
+  filtersToQuery,
   getDefaultChildSubjectForYearGroup,
   getDefaultFilter,
   getDefaultSubjectCategoriesForYearGroup,
@@ -7,6 +10,7 @@ import {
   getFilterData,
   getNumberOfFiltersApplied,
   isHighlightedUnit,
+  mergeInFilterParams,
   shouldDisplayFilter,
 } from "./filtering";
 import { CurriculumFilters, Unit } from "./types";
@@ -649,5 +653,95 @@ describe("getNumberOfFiltersApplied", () => {
       threads: [thread.slug],
     };
     expect(getNumberOfFiltersApplied(dfltFilter, filter)).toEqual(3);
+  });
+});
+
+describe("filtersToQuery", () => {
+  it("with default", () => {
+    const result = filtersToQuery(createFilter());
+    expect(result).toEqual({});
+  });
+
+  it("with data", () => {
+    const childSubject1 = createChildSubject({
+      subject_slug: "child_subject_1",
+    });
+    const childSubject2 = createChildSubject({
+      subject_slug: "child_subject_2",
+    });
+    const subCat1 = createSubjectCategory({ id: 1 });
+    const subCat2 = createSubjectCategory({ id: 2 });
+    const tier1 = createTier({ tier_slug: "tier_1" });
+    const tier2 = createTier({ tier_slug: "tier_2" });
+    const thread1 = createThread({ slug: "thread_1" });
+    const thread2 = createThread({ slug: "thread_2" });
+
+    const result = filtersToQuery(
+      createFilter({
+        childSubjects: [childSubject1.subject_slug, childSubject2.subject_slug],
+        subjectCategories: [String(subCat1.id), String(subCat2.id)],
+        tiers: [tier1.tier_slug, tier2.tier_slug],
+        years: ["7", "8"],
+        threads: [thread1.slug, thread2.slug],
+      }),
+    );
+
+    expect(result).toEqual({
+      childSubjects: "child_subject_1,child_subject_2",
+      subjectCategories: "1,2",
+      threads: "thread_1,thread_2",
+      tiers: "tier_1,tier_2",
+      years: "7,8",
+    });
+  });
+});
+
+describe("mergeInFilterParams", () => {
+  it("single value", () => {
+    const filter: CurriculumFilters = {
+      childSubjects: [],
+      subjectCategories: [],
+      tiers: [],
+      years: [],
+      threads: [],
+    };
+
+    const result = mergeInFilterParams(
+      filter,
+      new ReadonlyURLSearchParams(
+        "?childSubjects=child_subject_1&subjectCategories=1&tiers=tier_1&years=1&threads=thread1",
+      ),
+    );
+    expect(result).toEqual({
+      childSubjects: ["child_subject_1"],
+      subjectCategories: ["1"],
+      tiers: ["tier_1"],
+      years: ["1"],
+      threads: ["thread1"],
+    });
+  });
+
+  it("list of values", () => {
+    const filter: CurriculumFilters = {
+      childSubjects: [],
+      subjectCategories: [],
+      tiers: [],
+      years: [],
+      threads: [],
+    };
+
+    const result = mergeInFilterParams(
+      filter,
+      new ReadonlyURLSearchParams(
+        "?childSubjects=child_subject_1,child_subject_2&subjectCategories=1,2&tiers=tier_1,tier_2&years=1,2&threads=thread1,thread2",
+      ),
+    );
+    expect(result).toEqual({
+      childSubjects: ["child_subject_1", "child_subject_2"],
+      subjectCategories: ["1", "2"],
+      tiers: ["tier_1", "tier_2"],
+      years: ["1", "2"],
+      threads: ["thread1", "thread2"],
+    });
   });
 });

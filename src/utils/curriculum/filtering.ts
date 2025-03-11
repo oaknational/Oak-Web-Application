@@ -97,7 +97,7 @@ export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
   };
 }
 
-function filtersToQuery(filter: CurriculumFilters) {
+export function filtersToQuery(filter: CurriculumFilters) {
   const out: Record<string, string> = {};
   for (const [key, value] of Object.entries(filter)) {
     if (value.length > 0) {
@@ -107,7 +107,7 @@ function filtersToQuery(filter: CurriculumFilters) {
   return out;
 }
 
-function mergeInParams(
+export function mergeInFilterParams(
   filter: CurriculumFilters,
   params?: ReadonlyURLSearchParams | null,
 ) {
@@ -133,7 +133,7 @@ export function useFilters(
   const [filters, setLocalFilters] = useState<CurriculumFilters>(() => {
     const dflt = defaultFiltersFn();
     if (ENABLE_FILTERS_IN_SEARCH_PARAMS) {
-      return mergeInParams(dflt, searchParams);
+      return mergeInFilterParams(dflt, searchParams);
     } else {
       return dflt;
     }

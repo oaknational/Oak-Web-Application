@@ -145,26 +145,25 @@ export function getYearSubheadingText(
     !filters.subjectCategories.includes("-1") && // Skip if "All" is selected
     (!isKs4Year || filters.childSubjects.length === 0)
   ) {
-    const subjectCategoryTitles =
-      filters.subjectCategories
-        .map((id) => {
-          // Try to find subject category in current year
-          const subjectCategory = yearData[year]?.subjectCategories.find(
-            (sc) => sc.id.toString() === id,
-          ) || {
-            // Fallback: Find any year with this subject category, then get its title
-            // This ensures categories show even in years without matching units
-            // Example: If "Vocabulary" is selected for Primary English, the 'Vocabulary' subheading will still be shown
-            // even if there are no Vocabularly units in that year
-            title: Object.values(yearData)
-              .find((y) =>
-                y?.subjectCategories?.find((sc) => sc.id.toString() === id),
-              )
-              ?.subjectCategories?.find((sc) => sc.id.toString() === id)?.title,
-          };
-          return subjectCategory?.title;
-        })
-        .filter(Boolean) ?? [];
+    const subjectCategoryTitles = filters.subjectCategories
+      .map((id) => {
+        // Try to find subject category in current year
+        const subjectCategory = yearData[year]?.subjectCategories.find(
+          (sc) => sc.id.toString() === id,
+        ) || {
+          // Fallback: Find any year with this subject category, then get its title
+          // This ensures categories show even in years without matching units
+          // Example: If "Vocabulary" is selected for Primary English, the 'Vocabulary' subheading will still be shown
+          // even if there are no Vocabularly units in that year
+          title: Object.values(yearData)
+            .find((y) =>
+              y?.subjectCategories?.find((sc) => sc.id.toString() === id),
+            )
+            ?.subjectCategories?.find((sc) => sc.id.toString() === id)?.title,
+        };
+        return subjectCategory?.title;
+      })
+      .filter(Boolean);
 
     if (subjectCategoryTitles.length > 0) {
       parts.push(subjectCategoryTitles.join(", "));

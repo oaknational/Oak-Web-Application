@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { OakBox, OakPrimaryButton } from "@oaknational/oak-components";
 
 import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
@@ -22,8 +22,6 @@ export default function CurricVisualiserFiltersMobile({
   selectedYear,
   onSelectYear,
 }: CurricVisualiserFiltersMobileProps) {
-  const ref = useRef<HTMLDialogElement>(null);
-
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
 
@@ -42,18 +40,6 @@ export default function CurricVisualiserFiltersMobile({
   function handleMobileThreadModal(): void {
     setMobileThreadModalOpen(!mobileThreadModalOpen);
   }
-
-  useEffect(() => {
-    if (ref.current) {
-      if (mobileThreadModalOpen) {
-        document.body.style.overflow = "hidden";
-        ref.current.showModal();
-      } else {
-        document.body.style.overflow = "";
-        ref.current.close();
-      }
-    }
-  }, [ref, mobileThreadModalOpen]);
 
   function onClose() {
     onChangeFilters(initialFilterState);

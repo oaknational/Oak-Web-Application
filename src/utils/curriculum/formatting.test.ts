@@ -8,6 +8,7 @@ import {
   joinWords,
   pluralizeUnits,
   getYearSubheadingText,
+  subjectTitleWithCase,
 } from "./formatting";
 
 import { createYearData } from "@/fixtures/curriculum/yearData";
@@ -414,5 +415,21 @@ describe("getYearSubheadingText", () => {
       }),
     );
     expect(result).toEqual("SUB_CAT_1, CHILD_SUBJECT_1, TIER_1");
+  });
+});
+
+describe("subjectTitleWithCase", () => {
+  it("language", () => {
+    expect(subjectTitleWithCase("english")).toEqual("English");
+    expect(subjectTitleWithCase("french")).toEqual("French");
+    expect(subjectTitleWithCase("spanish")).toEqual("Spanish");
+    expect(subjectTitleWithCase("german")).toEqual("German");
+  });
+
+  it("non-language", () => {
+    expect(subjectTitleWithCase("science")).toEqual("science");
+    expect(subjectTitleWithCase("physical education")).toEqual(
+      "physical education",
+    );
   });
 });
