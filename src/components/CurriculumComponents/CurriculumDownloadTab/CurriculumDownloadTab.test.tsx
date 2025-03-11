@@ -252,6 +252,8 @@ describe("trackCurriculumDownload", () => {
     expect(mockTrack.curriculumResourcesDownloaded).toHaveBeenCalledWith({
       subjectTitle: "Mathematics",
       analyticsUseCase: "Pupil",
+      keyStageSlug: null,
+      keyStageTitle: null,
       emailSupplied: true,
       schoolOption: "Selected school",
       schoolUrn: "123456",
