@@ -7,15 +7,21 @@ import {
   getFilterData,
   getNumberOfFiltersApplied,
   isHighlightedUnit,
+  shouldDisplayFilter,
 } from "./filtering";
 import { CurriculumFilters, Unit } from "./types";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
-import { CurriculumUnitsYearData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  CurriculumUnitsFormattedData,
+  CurriculumUnitsYearData,
+} from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createTier } from "@/fixtures/curriculum/tier";
 import { createThread } from "@/fixtures/curriculum/thread";
+import { createFilter } from "@/fixtures/curriculum/filters";
+import { createYearData } from "@/fixtures/curriculum/yearData";
 
 describe("filtering", () => {
   describe("getDefaultChildSubjectForYearGroup", () => {
@@ -379,6 +385,235 @@ describe("diffFilters", () => {
       tiers: [tierHigher.tier_slug],
       years: [],
       threads: [thread.slug],
+    });
+  });
+});
+
+describe("shouldDisplayFilter", () => {
+  describe("years", () => {
+    it("with data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test2" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "years",
+      );
+      expect(result).toEqual(true);
+    });
+
+    it("no data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {},
+        threadOptions: [],
+        yearOptions: [],
+      };
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: [] }),
+        "years",
+      );
+      expect(result).toEqual(false);
+    });
+  });
+
+  describe("subjectCategories", () => {
+    it("with data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+            subjectCategories: [createSubjectCategory({ id: 1 })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test2" })],
+            subjectCategories: [createSubjectCategory({ id: 1 })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "subjectCategories",
+      );
+      expect(result).toEqual(true);
+    });
+
+    it("no data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "subjectCategories",
+      );
+      expect(result).toEqual(false);
+    });
+  });
+
+  describe("childSubjects", () => {
+    it("with data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+            childSubjects: [createChildSubject({ subject_slug: "physics" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test2" })],
+            childSubjects: [createChildSubject({ subject_slug: "biology" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "childSubjects",
+      );
+      expect(result).toEqual(true);
+    });
+
+    it("no data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "childSubjects",
+      );
+      expect(result).toEqual(false);
+    });
+  });
+
+  describe("tiers", () => {
+    it("with data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+            tiers: [createTier({ tier_slug: "foundation" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test2" })],
+            tiers: [createTier({ tier_slug: "higher" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "tiers",
+      );
+      expect(result).toEqual(true);
+    });
+
+    it("no data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "tiers",
+      );
+      expect(result).toEqual(false);
+    });
+  });
+
+  describe("threads", () => {
+    it("with data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+        },
+        threadOptions: [
+          createThread({ slug: "test1" }),
+          createThread({ slug: "test2" }),
+        ],
+        yearOptions: ["7", "8"],
+      };
+
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "threads",
+      );
+      expect(result).toEqual(true);
+    });
+
+    it("no data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "threads",
+      );
+      expect(result).toEqual(false);
     });
   });
 });
