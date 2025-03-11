@@ -207,7 +207,6 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 subjectSlug: currentSelection.subject.slug,
                 subjectTitle: currentSelection.subject.title,
                 phaseSlug: currentSelection.phase.slug as PhaseValueType,
-                tab: tab,
               }}
             />
           </OakBox>
