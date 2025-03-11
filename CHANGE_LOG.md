@@ -1,3 +1,10 @@
+# [1.706.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.705.0...v1.706.0) (2025-03-10)
+
+
+### Features
+
+* added test logging report for FEC hackday ([0513cb3](https://github.com/oaknational/Oak-Web-Application/commit/0513cb39b8c3b9efea61412144abdefae2fdd858))
+
 # [1.705.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.704.0...v1.705.0) (2025-03-07)
 
 
