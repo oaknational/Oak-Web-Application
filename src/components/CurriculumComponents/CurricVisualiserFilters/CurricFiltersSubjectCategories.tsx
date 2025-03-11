@@ -4,7 +4,7 @@ import {
   OakRadioAsButton,
   OakBox,
 } from "@oaknational/oak-components";
-import { useMemo , useId } from "react";
+import { useMemo, useId } from "react";
 
 import { getValidSubjectCategoryIconById } from "@/utils/getValidSubjectCategoryIconById";
 import { CurriculumFilters } from "@/utils/curriculum/types";
