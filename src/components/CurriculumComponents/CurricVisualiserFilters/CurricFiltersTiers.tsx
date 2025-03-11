@@ -43,10 +43,10 @@ export function CurricFiltersTiers({
         <OakBox>
           <OakHeading
             id={"tiers-label"}
-            tag="h3"
-            $font={"heading-7"}
+            tag="h4"
+            $font={["heading-7", "heading-6"]}
             $mt="space-between-none"
-            $mb="space-between-m"
+            $mb={["space-between-m", "space-between-s"]}
           >
             Learning tier{" "}
             {tiersAt.length === 1 ? `(${tiersAt[0]?.toUpperCase()})` : ""}

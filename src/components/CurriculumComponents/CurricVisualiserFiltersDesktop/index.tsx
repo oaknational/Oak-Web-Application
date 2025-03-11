@@ -48,11 +48,7 @@ export function CurricVisualiserFiltersDesktop({
             onChangeFilters={onChangeFilters}
             data={data}
           />
-          <OakHandDrawnHR
-            hrColor={"grey40"}
-            $mt={"space-between-m"}
-            $mb={"space-between-m2"}
-          />
+          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
         </>
       )}
 
@@ -63,11 +59,7 @@ export function CurricVisualiserFiltersDesktop({
             onChangeFilters={onChangeFilters}
             data={data}
           />
-          <OakHandDrawnHR
-            hrColor={"grey40"}
-            $mt={"space-between-m"}
-            $mb={"space-between-m2"}
-          />
+          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
         </>
       )}
 
@@ -78,11 +70,7 @@ export function CurricVisualiserFiltersDesktop({
             onChangeFilters={onChangeFilters}
             data={data}
           />
-          <OakHandDrawnHR
-            hrColor={"grey40"}
-            $mt={"space-between-m"}
-            $mb={"space-between-m2"}
-          />
+          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
         </>
       )}
       {shouldDisplayFilter(data, filters, "tiers") && (
@@ -92,11 +80,7 @@ export function CurricVisualiserFiltersDesktop({
             onChangeFilters={onChangeFilters}
             data={data}
           />
-          <OakHandDrawnHR
-            hrColor={"grey40"}
-            $mt={"space-between-m"}
-            $mb={"space-between-m2"}
-          />
+          <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
         </>
       )}
 

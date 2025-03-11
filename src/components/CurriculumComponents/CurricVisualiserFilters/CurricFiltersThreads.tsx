@@ -30,9 +30,9 @@ export function CurricFiltersThreads({
     <OakBox>
       <Fieldset data-testid={"threads-filter-desktop"}>
         <FieldsetLegend
-          $font={"heading-7"}
+          $font={["heading-7", "heading-6"]}
           $mt="space-between-m2"
-          $mb="space-between-sssx"
+          $mb={["space-between-sssx", "space-between-none"]}
         >
           Highlight a thread
         </FieldsetLegend>
