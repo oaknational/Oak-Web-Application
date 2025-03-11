@@ -19,6 +19,7 @@ export const LessonSeoHelper = ({
   subjectSlug,
   parentSubject,
   unit,
+  lesson,
   examBoardSlug,
   keystage,
   lessonSlug,
@@ -32,6 +33,7 @@ export const LessonSeoHelper = ({
   parentSubject: string | undefined | null;
   examBoardSlug: string | undefined | null;
   unit: string;
+  lesson: string;
   keystage: string;
   lessonSlug: string;
   programmeSlug: string;
@@ -53,7 +55,7 @@ export const LessonSeoHelper = ({
         <>
           <br />
           <OakP $font={["body-2", "body-1"]} $textAlign="left">
-            {`To help you plan your ${year.toLowerCase()} ${subject.toLowerCase()} lesson on ${unit},`}{" "}
+            {`To help you plan your ${year.toLowerCase()} ${subject.toLowerCase()} lesson on: ${lesson},`}{" "}
             <OakLink
               href={resolveOakHref({
                 page: "lesson-downloads",
@@ -79,7 +81,7 @@ export const LessonSeoHelper = ({
     >
       <br />
       <OakP $font={["body-2", "body-1"]} $textAlign="left">
-        {`To help you plan your ${year.toLowerCase()} ${subject.toLowerCase()} lesson on ${unit},`}{" "}
+        {`To help you plan your ${year.toLowerCase()} ${subject.toLowerCase()} lesson on: ${lesson},`}{" "}
         <OakLink
           href={resolveOakHref({
             page: "lesson-downloads",

@@ -438,6 +438,7 @@ export function LessonOverview({ lesson }: LessonOverviewProps) {
                     subject={subjectTitle}
                     keystage={keyStageTitle}
                     unit={unitTitle}
+                    lesson={lessonTitle}
                     examBoardSlug={examBoardSlug}
                     subjectSlug={subjectSlug}
                     subjectParent={subjectParent}

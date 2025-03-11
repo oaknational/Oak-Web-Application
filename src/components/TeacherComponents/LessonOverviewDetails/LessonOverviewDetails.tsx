@@ -49,6 +49,7 @@ type LessonOverviewDetailsProps = {
   year: string | null | undefined;
   subject: string | null | undefined;
   unit: string | null | undefined;
+  lesson: string;
   keystage: string | null | undefined;
   examBoardSlug: string | null | undefined;
   subjectSlug: string | null | undefined;
@@ -73,6 +74,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   slugs,
   subject,
   unit,
+  lesson,
   year,
   keystage,
   examBoardSlug,
@@ -139,6 +141,7 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                 subjectSlug={subjectSlug}
                 parentSubject={subjectParent}
                 disablePupilLink={disablePupilLink}
+                lesson={lesson}
               />
             )}
           </OakFlex>
