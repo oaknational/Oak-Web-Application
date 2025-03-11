@@ -196,7 +196,7 @@ describe("Downloads tab: unit tests", () => {
 
 describe("trackCurriculumDownload", () => {
   const mockTrack = {
-    curriculumResourcesDownloadedCurriculumDocument: jest.fn(),
+    curriculumResourcesDownloaded: jest.fn(),
   } as unknown as TrackFns;
   const mockOnHubspotSubmit = jest.fn().mockResolvedValue("mockResponse");
 
@@ -223,27 +223,21 @@ describe("trackCurriculumDownload", () => {
       ],
       downloadType: "word" as const,
     };
-    const resourceFileType = "docx";
-    const slugs = {
-      subjectSlug: "maths",
-      phaseSlug: "ks4",
-      ks4OptionSlug: "option1",
-    };
+
     const subjectTitle = "Mathematics";
     const analyticsUseCase = "Pupil";
-    const tierSelected = "Higher";
-    const child_subjects = [{ subject: "Maths", subject_slug: "maths" }];
-
+    const slugs = {
+      phaseSlug: "primary",
+      subjectSlug: "maths",
+      ks4OptionSlug: "",
+    };
     await trackCurriculumDownload(
       data,
-      resourceFileType,
-      slugs,
       subjectTitle,
       mockOnHubspotSubmit,
       mockTrack,
       analyticsUseCase,
-      tierSelected,
-      child_subjects,
+      slugs,
     );
 
     expect(mockOnHubspotSubmit).toHaveBeenCalledWith({
@@ -255,22 +249,20 @@ describe("trackCurriculumDownload", () => {
       onSubmit: expect.any(Function),
     });
 
-    expect(
-      mockTrack.curriculumResourcesDownloadedCurriculumDocument,
-    ).toHaveBeenCalledWith({
+    expect(mockTrack.curriculumResourcesDownloaded).toHaveBeenCalledWith({
       subjectTitle: "Mathematics",
-      subjectSlug: "maths",
-      phase: "ks4",
       analyticsUseCase: "Pupil",
       emailSupplied: true,
       schoolOption: "Selected school",
       schoolUrn: "123456",
       schoolName: "Test School",
-      resourceFileType: "docx",
-      tierName: "Higher",
-      childSubjectName: "Maths",
-      childSubjectSlug: "maths",
-      examBoardSlug: "option1",
+      engagementIntent: "explore",
+      eventVersion: "2.0.0",
+      phase: "primary",
+      platform: "owa",
+      product: "curriculum resources",
+      resourceType: ["curriculum document"],
+      componentType: "download_button",
     });
   });
 });

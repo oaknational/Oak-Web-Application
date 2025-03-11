@@ -35,15 +35,15 @@ import { useFetch } from "@/hooks/useFetch";
 import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import {
   AnalyticsUseCaseValueType,
+  LearningTierValueType,
   PhaseValueType,
-  ResourceFileTypeValueType,
-  TierNameValueType,
+  ResourceTypeValueType,
 } from "@/browser-lib/avo/Avo";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
-import { unionOrNull } from "@/utils/narrowToUnion";
 import { extractUrnAndSchool } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/getFormattedDetailsForTracking";
 import { ResourceFormProps } from "@/components/TeacherComponents/types/downloadAndShare.types";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { convertUnitSlugToTitle } from "@/components/TeacherViews/Search/helpers";
 
 function ScrollIntoViewWhenVisisble({
   children,
@@ -85,14 +85,11 @@ export function createCurriculumDownloadsQuery(
 
 export const trackCurriculumDownload = async (
   data: CurriculumDownloadViewData,
-  resourceFileType: ResourceFileTypeValueType,
-  slugs: CurriculumSelectionSlugs,
   subjectTitle: string,
   onHubspotSubmit: (data: ResourceFormProps) => Promise<string | undefined>,
   track: ReturnType<typeof useAnalytics>["track"],
   analyticsUseCase: AnalyticsUseCaseValueType,
-  tierSelected: string | null,
-  child_subjects?: { subject: string; subject_slug: string }[],
+  slugs: CurriculumSelectionSlugs,
 ) => {
   const { schoolId, schoolName: dataSchoolName, email, schoolNotListed } = data;
 
@@ -111,28 +108,23 @@ export const trackCurriculumDownload = async (
     onSubmit: async () => {},
   });
 
-  track.curriculumResourcesDownloadedCurriculumDocument({
-    subjectTitle: subjectTitle,
-    subjectSlug: slugs.subjectSlug,
+  track.curriculumResourcesDownloaded({
+    platform: "owa", // string ( allowed values: "owa", "aila-beta")
+    product: "curriculum resources", // string ( allowed values: "ai lesson assistant", "curriculum visualiser", "curriculum resources", "pupil lesson activities", "teacher lesson resources")
+    engagementIntent: "explore", // string ( allowed values: "explore", "refine", "use", "advocate")
+    componentType: "download_button", // string ( allowed values: "hamburger_menu_button", "text_input", "regenerate_response_button", "select_oak_lesson", "type_edit", "lesson_finish_check", "continue_button", "continue_text", "go_to_share_page_button", "example_lesson_button", "homepage_primary_create_a_lesson_button", "homepage_secondary_create_a_lesson_button", "footer_menu_link", "download_button", "homepage_button", "curriculum_visualiser_button", "see_lessons_in_unit_button", "year_group_button", "learning_tier_button", "subject_category_button", "unit_info_button", "lessons_in_unit", "previous_unit_desc", "following_unit_desc", "video", "filter_link", "keystage_keypad_button", "lesson_card", "lesson_download_button", "programme_card", "search_button", "search_result_item", "share_button", "subject_card", "unit_card", "homepage_tab", "landing_page_button", "why_this_why_now", "unit_sequence_tab", "download_tab", "explainer_tab", "aims_and_purpose", "oak_curriculum_principles", "oak_subject_principles", "national_curriculum", "curriculum_delivery", "curiculum_coherence", "recommendations_from_subject_specific_reports", "subject_specific_needs", "our_curriculum_partner")
+    eventVersion: "2.0.0", // string ( allowed values: "2.0.0")
+    analyticsUseCase: analyticsUseCase, // string ( allowed values: "Pupil", "Teacher")
+    emailSupplied: email != null, // bool
+    resourceType: ["curriculum document"] as ResourceTypeValueType[], // list of string ( allowed values: "slide deck", "starter quiz questions", "starter quiz answers", "exit quiz questions", "exit quiz answers", "worksheet pdf", "worksheet pptx", "additional materials", "curriculum document", "curriculum plan", "previously released curriculum plan")
+    schoolOption: schoolOption, // string ( allowed values: "Homeschool", "Not listed", "Selected school")
+    schoolName: dataSchoolName || "", // string
+    subjectTitle: subjectTitle, // string
     phase: slugs.phaseSlug as PhaseValueType,
-    analyticsUseCase: analyticsUseCase,
-    emailSupplied: email != null,
-    schoolOption: schoolOption,
     schoolUrn:
       !schoolId || schoolId === "homeschool"
         ? ""
         : (extractUrnAndSchool(schoolId).urn ?? ""),
-    schoolName: dataSchoolName || "",
-    resourceFileType: resourceFileType,
-    tierName: unionOrNull<TierNameValueType>(
-      capitalize(tierSelected ?? undefined),
-      ["Foundation", "Higher"],
-    ),
-    childSubjectSlug: slugs.subjectSlug,
-    childSubjectName: child_subjects?.find(
-      (s) => s.subject_slug === slugs.subjectSlug,
-    )?.subject,
-    examBoardSlug: slugs.ks4OptionSlug,
   });
 };
 
@@ -259,6 +251,25 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     downloadBlob(blob, filename);
   };
 
+  const handleSubjectTierSelectionAnalytics = (
+    tierSelected: string | null | undefined,
+    childSubjectSlug: string | null | undefined,
+  ) => {
+    track.curriculumResourcesDownloadRefined({
+      subjectTitle: curriculumInfo.subjectTitle, // string
+      subjectSlug: slugs.subjectSlug, // string
+      platform: "owa", // string ( allowed values: "owa", "aila-beta")
+      product: "curriculum resources", // string ( allowed values: "ai lesson assistant", "curriculum visualiser", "curriculum resources", "pupil lesson activities", "teacher lesson resources")
+      engagementIntent: "refine", // string ( allowed values: "explore", "refine", "use", "advocate")
+      componentType: "download_tab", // string ( allowed values: "hamburger_menu_button", "text_input", "regenerate_response_button", "select_oak_lesson", "type_edit", "lesson_finish_check", "continue_button", "continue_text", "go_to_share_page_button", "example_lesson_button", "homepage_primary_create_a_lesson_button", "homepage_secondary_create_a_lesson_button", "footer_menu_link", "download_button", "homepage_button", "curriculum_visualiser_button", "see_lessons_in_unit_button", "year_group_button", "learning_tier_button", "subject_category_button", "unit_info_button", "lessons_in_unit", "previous_unit_desc", "following_unit_desc", "video", "filter_link", "keystage_keypad_button", "lesson_card", "lesson_download_button", "programme_card", "search_button", "search_result_item", "share_button", "subject_card", "unit_card", "homepage_tab", "landing_page_button", "why_this_why_now", "unit_sequence_tab", "download_tab", "explainer_tab", "aims_and_purpose", "oak_curriculum_principles", "oak_subject_principles", "national_curriculum", "curriculum_delivery", "curiculum_coherence", "recommendations_from_subject_specific_reports", "subject_specific_needs", "our_curriculum_partner")
+      eventVersion: "2.0.0", // string ( allowed values: "2.0.0")
+      analyticsUseCase: analyticsUseCase, // string ( allowed values: "Pupil", "Teacher")
+      learningTier: capitalize(tierSelected || "") as LearningTierValueType, // string ( allowed values: "Foundation", "Higher"),
+      childSubjectName: convertUnitSlugToTitle(childSubjectSlug || ""),
+      childSubjectSlug: childSubjectSlug || "",
+    });
+  };
+
   const handleTierSubjectSelection = (
     tierSlug: string,
     childSubjectSlug?: string | null,
@@ -270,6 +281,7 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     if (childSubjectSlug && childSubjectSlug.length > 0) {
       setChildSubjectSelected(childSubjectSlug);
     }
+    handleSubjectTierSelectionAnalytics(tierSlug, childSubjectSlug);
   };
 
   const onSubmit = async (data: CurriculumDownloadViewData) => {
@@ -300,14 +312,11 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     } finally {
       await trackCurriculumDownload(
         data,
-        "docx",
-        slugs,
         curriculumInfo.subjectTitle,
         onHubspotSubmit,
         track,
         analyticsUseCase,
-        tierSelected,
-        child_subjects,
+        slugs,
       );
       setIsSubmitting(false);
       setIsDone(true);
