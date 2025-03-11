@@ -1,4 +1,8 @@
-import { byKeyStageSlug, presentAtKeyStageSlugs } from "./keystage";
+import {
+  byKeyStageSlug,
+  keystageFromYear,
+  presentAtKeyStageSlugs,
+} from "./keystage";
 
 test("byKeyStageSlug", () => {
   const output = byKeyStageSlug({
@@ -150,4 +154,18 @@ test("presentAtKeyStageSlugs", () => {
   expect(presentAtKeyStageSlugs(definition, "subjectCategories")).toEqual([
     "ks2",
   ]);
+});
+
+it("keystageFromYear", () => {
+  expect(keystageFromYear("1")).toEqual("ks1");
+  expect(keystageFromYear("2")).toEqual("ks1");
+  expect(keystageFromYear("3")).toEqual("ks2");
+  expect(keystageFromYear("4")).toEqual("ks2");
+  expect(keystageFromYear("5")).toEqual("ks2");
+  expect(keystageFromYear("6")).toEqual("ks2");
+  expect(keystageFromYear("7")).toEqual("ks3");
+  expect(keystageFromYear("8")).toEqual("ks3");
+  expect(keystageFromYear("9")).toEqual("ks3");
+  expect(keystageFromYear("10")).toEqual("ks4");
+  expect(keystageFromYear("11")).toEqual("ks4");
 });

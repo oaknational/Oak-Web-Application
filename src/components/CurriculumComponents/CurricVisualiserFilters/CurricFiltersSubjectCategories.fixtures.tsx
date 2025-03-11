@@ -64,11 +64,7 @@ export const ks3and4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
-      subjectCategories: [
-        subjectCategoryBiology,
-        subjectCategoryChemistry,
-        subjectCategoryPhysics,
-      ],
+      subjectCategories: [subjectCategoryBiology],
       units: [
         createUnit({
           year: "7",
@@ -82,11 +78,7 @@ export const ks3and4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
-      subjectCategories: [
-        subjectCategoryBiology,
-        subjectCategoryChemistry,
-        subjectCategoryPhysics,
-      ],
+      subjectCategories: [subjectCategoryBiology],
       units: [
         createUnit({
           year: "8",
@@ -100,11 +92,7 @@ export const ks3and4Setup = {
       tiers: [],
       groupAs: null,
       isSwimming: false,
-      subjectCategories: [
-        subjectCategoryBiology,
-        subjectCategoryChemistry,
-        subjectCategoryPhysics,
-      ],
+      subjectCategories: [subjectCategoryBiology],
       units: [
         createUnit({
           year: "9",

@@ -61,9 +61,9 @@ export function CurricFiltersSubjectCategories({
             $font={"heading-6"}
             $mb="space-between-s"
           >
-            Category{" "}
+            Category
             {subjectCategoriesAt.length === 1
-              ? `(${subjectCategoriesAt[0]?.toUpperCase()})`
+              ? ` (${subjectCategoriesAt[0]?.toUpperCase()})`
               : ""}
           </OakHeading>
 

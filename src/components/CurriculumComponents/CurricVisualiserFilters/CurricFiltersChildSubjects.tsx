@@ -52,9 +52,9 @@ export function CurricFiltersChildSubjects({
             $font={"heading-6"}
             $mb="space-between-s"
           >
-            Exam subject{" "}
+            Exam subject
             {childSubjectsAt.length === 1
-              ? `(${childSubjectsAt[0]?.toUpperCase()})`
+              ? ` (${childSubjectsAt[0]?.toUpperCase()})`
               : ""}
           </OakHeading>
           <OakRadioGroup
