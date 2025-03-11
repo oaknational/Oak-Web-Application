@@ -109,17 +109,17 @@ export const trackCurriculumDownload = async (
   });
 
   track.curriculumResourcesDownloaded({
-    platform: "owa", // string ( allowed values: "owa", "aila-beta")
-    product: "curriculum resources", // string ( allowed values: "ai lesson assistant", "curriculum visualiser", "curriculum resources", "pupil lesson activities", "teacher lesson resources")
-    engagementIntent: "explore", // string ( allowed values: "explore", "refine", "use", "advocate")
-    componentType: "download_button", // string ( allowed values: "hamburger_menu_button", "text_input", "regenerate_response_button", "select_oak_lesson", "type_edit", "lesson_finish_check", "continue_button", "continue_text", "go_to_share_page_button", "example_lesson_button", "homepage_primary_create_a_lesson_button", "homepage_secondary_create_a_lesson_button", "footer_menu_link", "download_button", "homepage_button", "curriculum_visualiser_button", "see_lessons_in_unit_button", "year_group_button", "learning_tier_button", "subject_category_button", "unit_info_button", "lessons_in_unit", "previous_unit_desc", "following_unit_desc", "video", "filter_link", "keystage_keypad_button", "lesson_card", "lesson_download_button", "programme_card", "search_button", "search_result_item", "share_button", "subject_card", "unit_card", "homepage_tab", "landing_page_button", "why_this_why_now", "unit_sequence_tab", "download_tab", "explainer_tab", "aims_and_purpose", "oak_curriculum_principles", "oak_subject_principles", "national_curriculum", "curriculum_delivery", "curiculum_coherence", "recommendations_from_subject_specific_reports", "subject_specific_needs", "our_curriculum_partner")
-    eventVersion: "2.0.0", // string ( allowed values: "2.0.0")
-    analyticsUseCase: analyticsUseCase, // string ( allowed values: "Pupil", "Teacher")
-    emailSupplied: email != null, // bool
-    resourceType: ["curriculum document"] as ResourceTypeValueType[], // list of string ( allowed values: "slide deck", "starter quiz questions", "starter quiz answers", "exit quiz questions", "exit quiz answers", "worksheet pdf", "worksheet pptx", "additional materials", "curriculum document", "curriculum plan", "previously released curriculum plan")
-    schoolOption: schoolOption, // string ( allowed values: "Homeschool", "Not listed", "Selected school")
-    schoolName: dataSchoolName || "", // string
-    subjectTitle: subjectTitle, // string
+    platform: "owa",
+    product: "curriculum resources",
+    engagementIntent: "explore",
+    componentType: "download_button",
+    eventVersion: "2.0.0",
+    analyticsUseCase: analyticsUseCase,
+    emailSupplied: email != null,
+    resourceType: ["curriculum document"] as ResourceTypeValueType[],
+    schoolOption: schoolOption,
+    schoolName: dataSchoolName || "",
+    subjectTitle: subjectTitle,
     phase: slugs.phaseSlug as PhaseValueType,
     schoolUrn:
       !schoolId || schoolId === "homeschool"
@@ -256,15 +256,15 @@ const CurriculumDownloadTab: FC<CurriculumDownloadTabProps> = ({
     childSubjectSlug: string | null | undefined,
   ) => {
     track.curriculumResourcesDownloadRefined({
-      subjectTitle: curriculumInfo.subjectTitle, // string
-      subjectSlug: slugs.subjectSlug, // string
-      platform: "owa", // string ( allowed values: "owa", "aila-beta")
-      product: "curriculum resources", // string ( allowed values: "ai lesson assistant", "curriculum visualiser", "curriculum resources", "pupil lesson activities", "teacher lesson resources")
-      engagementIntent: "refine", // string ( allowed values: "explore", "refine", "use", "advocate")
-      componentType: "download_tab", // string ( allowed values: "hamburger_menu_button", "text_input", "regenerate_response_button", "select_oak_lesson", "type_edit", "lesson_finish_check", "continue_button", "continue_text", "go_to_share_page_button", "example_lesson_button", "homepage_primary_create_a_lesson_button", "homepage_secondary_create_a_lesson_button", "footer_menu_link", "download_button", "homepage_button", "curriculum_visualiser_button", "see_lessons_in_unit_button", "year_group_button", "learning_tier_button", "subject_category_button", "unit_info_button", "lessons_in_unit", "previous_unit_desc", "following_unit_desc", "video", "filter_link", "keystage_keypad_button", "lesson_card", "lesson_download_button", "programme_card", "search_button", "search_result_item", "share_button", "subject_card", "unit_card", "homepage_tab", "landing_page_button", "why_this_why_now", "unit_sequence_tab", "download_tab", "explainer_tab", "aims_and_purpose", "oak_curriculum_principles", "oak_subject_principles", "national_curriculum", "curriculum_delivery", "curiculum_coherence", "recommendations_from_subject_specific_reports", "subject_specific_needs", "our_curriculum_partner")
-      eventVersion: "2.0.0", // string ( allowed values: "2.0.0")
-      analyticsUseCase: analyticsUseCase, // string ( allowed values: "Pupil", "Teacher")
-      learningTier: capitalize(tierSelected || "") as LearningTierValueType, // string ( allowed values: "Foundation", "Higher"),
+      subjectTitle: curriculumInfo.subjectTitle,
+      subjectSlug: slugs.subjectSlug,
+      platform: "owa",
+      product: "curriculum resources",
+      engagementIntent: "refine",
+      componentType: "download_tab",
+      eventVersion: "2.0.0",
+      analyticsUseCase: analyticsUseCase,
+      learningTier: capitalize(tierSelected || "") as LearningTierValueType,
       childSubjectName: convertUnitSlugToTitle(childSubjectSlug || ""),
       childSubjectSlug: childSubjectSlug || "",
     });

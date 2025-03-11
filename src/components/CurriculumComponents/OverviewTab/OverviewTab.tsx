@@ -171,15 +171,15 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
 
   const handleAnalytics = () => {
     track.curriculumExplainerExplored({
-      subjectTitle: subjectTitle, // string
-      subjectSlug: subjectSlug, // string
-      platform: "owa", // string ( allowed values: "owa", "aila-beta")
-      product: "curriculum visualiser", // string ( allowed values: "ai lesson assistant", "curriculum visualiser", "curriculum resources", "pupil lesson activities", "teacher lesson resources")
-      engagementIntent: "explore", // string ( allowed values: "explore", "refine", "use", "advocate")
-      componentType: "explainer_tab", // string ( allowed values: "hamburger_menu_button", "text_input", "regenerate_response_button", "select_oak_lesson", "type_edit", "lesson_finish_check", "continue_button", "continue_text", "go_to_share_page_button", "example_lesson_button", "homepage_primary_create_a_lesson_button", "homepage_secondary_create_a_lesson_button", "footer_menu_link", "download_button", "homepage_button", "curriculum_visualiser_button", "see_lessons_in_unit_button", "year_group_button", "learning_tier_button", "subject_category_button", "unit_info_button", "lessons_in_unit", "previous_unit_desc", "following_unit_desc", "video", "filter_link", "keystage_keypad_button", "lesson_card", "lesson_download_button", "programme_card", "search_button", "search_result_item", "share_button", "subject_card", "unit_card", "homepage_tab", "landing_page_button", "why_this_why_now", "unit_sequence_tab", "download_tab", "explainer_tab", "aims_and_purpose", "oak_curriculum_principles", "oak_subject_principles", "national_curriculum", "curriculum_delivery", "curiculum_coherence", "recommendations_from_subject_specific_reports", "subject_specific_needs", "our_curriculum_partner")
-      eventVersion: "2.0.0", // string ( allowed values: "2.0.0")
-      analyticsUseCase: "Teacher", // string ( allowed values: "Pupil", "Teacher")
-      phase: phaseSlug as PhaseValueType, // string ( allowed values: "primary", "secondary")
+      subjectTitle: subjectTitle,
+      subjectSlug: subjectSlug,
+      platform: "owa",
+      product: "curriculum visualiser",
+      engagementIntent: "explore",
+      componentType: "explainer_tab",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      phase: phaseSlug as PhaseValueType,
     });
   };
 
