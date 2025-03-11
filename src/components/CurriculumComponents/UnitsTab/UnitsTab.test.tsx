@@ -9,7 +9,7 @@ import "@/__tests__/__helpers__/ResizeObserverMock";
 import { formatCurriculumUnitsData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 const render = renderWithProviders();
-const curriculumThreadHighlighted = jest.fn();
+const programmeThreadHighlighted = jest.fn();
 const yearGroupSelected = jest.fn();
 const unitInformationViewed = jest.fn();
 
@@ -208,7 +208,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      curriculumThreadHighlighted,
+      programmeThreadHighlighted: (...args: unknown[]) =>
+        programmeThreadHighlighted(...args),
       yearGroupSelected,
       unitInformationViewed: (...args: unknown[]) =>
         unitInformationViewed(...args),

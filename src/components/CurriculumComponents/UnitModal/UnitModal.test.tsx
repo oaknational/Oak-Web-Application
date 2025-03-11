@@ -9,6 +9,17 @@ import {
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
+const unitOverviewExplored = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      unitOverviewExplored: (...args: unknown[]) =>
+        unitOverviewExplored(...args),
+    },
+  }),
+}));
+
 describe("Unit modal", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -19,6 +30,7 @@ describe("Unit modal", () => {
     const { getByText } = renderWithTheme(
       <UnitModal
         setCurrentUnitLessons={stateFn}
+        selectedThread={null}
         displayModal={true}
         unitData={mockUnit}
         unitOptionsAvailable={false}
@@ -34,6 +46,7 @@ describe("Unit modal", () => {
     const { getAllByTestId, getByText } = renderWithTheme(
       <UnitModal
         setCurrentUnitLessons={stateFn}
+        selectedThread={null}
         displayModal={true}
         unitData={mockUnit}
         unitOptionsAvailable={false}
@@ -54,6 +67,7 @@ describe("Unit modal", () => {
     const { getByText } = renderWithTheme(
       <UnitModal
         setCurrentUnitLessons={stateFn}
+        selectedThread={null}
         displayModal={true}
         unitData={mockUnit}
         unitOptionsAvailable={false}
@@ -72,6 +86,7 @@ describe("Unit modal", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockUnit}
           unitOptionsAvailable={false}
@@ -88,6 +103,7 @@ describe("Unit modal", () => {
       const { getByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockUnit}
           unitOptionsAvailable={false}
@@ -106,6 +122,7 @@ describe("Unit modal", () => {
       const { getByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
@@ -123,6 +140,7 @@ describe("Unit modal", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
@@ -139,6 +157,7 @@ describe("Unit modal", () => {
       const { getAllByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
@@ -155,6 +174,7 @@ describe("Unit modal", () => {
       const { getByText } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
@@ -174,6 +194,7 @@ describe("Unit modal", () => {
         renderWithTheme(
           <UnitModal
             setCurrentUnitLessons={stateFn}
+            selectedThread={null}
             displayModal={true}
             unitData={mockOptionalityUnit}
             unitOptionsAvailable={true}
