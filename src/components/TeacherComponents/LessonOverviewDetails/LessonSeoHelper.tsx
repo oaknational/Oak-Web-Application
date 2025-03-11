@@ -36,7 +36,7 @@ export const LessonSeoHelper = ({
   lessonSlug: string;
   programmeSlug: string;
   unitSlug: string;
-  disablePupilLink: boolean;
+  disablePupilLink?: boolean;
 }) => {
   const linkSubject = parentSubject
     ? convertSubjectToSlug(parentSubject)
