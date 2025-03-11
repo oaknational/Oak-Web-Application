@@ -68,7 +68,7 @@ export const ks3and4Setup = {
       ],
     },
     "8": {
-      childSubjects: [childSubjectBiology],
+      childSubjects: [childSubjectPhysics],
       pathways: [],
       tiers: [],
       groupAs: null,
@@ -78,7 +78,7 @@ export const ks3and4Setup = {
         createUnit({
           year: "8",
           subjectcategories: [],
-          subject_slug: childSubjectBiology.subject_slug,
+          subject_slug: childSubjectPhysics.subject_slug,
         }),
       ],
     },

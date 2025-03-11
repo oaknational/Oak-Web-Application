@@ -6,6 +6,7 @@ import {
   buildPageTitle,
   formatKeystagesShort,
   joinWords,
+  pluralizeUnits,
 } from "./formatting";
 
 describe("getYearGroupTitle", () => {
@@ -317,5 +318,17 @@ describe("joinWords", () => {
 
   it("with empty words", () => {
     expect(joinWords(["one", "", "two", "", "three"])).toEqual("one two three");
+  });
+});
+
+describe("pluralizeUnits", () => {
+  it("one", () => {
+    expect(pluralizeUnits(1)).toEqual("unit");
+  });
+  it("many", () => {
+    expect(pluralizeUnits(0)).toEqual("units");
+  });
+  it("none", () => {
+    expect(pluralizeUnits(0)).toEqual("");
   });
 });

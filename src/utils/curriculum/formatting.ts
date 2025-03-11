@@ -203,3 +203,12 @@ export function getYearSubheadingText(
 
   return parts.length > 0 ? parts.join(", ") : null;
 }
+
+export function pluralizeUnits(count: number) {
+  if (count > 1) {
+    return "units";
+  } else if (count === 1) {
+    return "unit";
+  }
+  return "";
+}

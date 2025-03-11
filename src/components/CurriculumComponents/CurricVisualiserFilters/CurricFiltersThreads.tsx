@@ -7,6 +7,7 @@ import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 import { Thread, CurriculumFilters } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { pluralizeUnits } from "@/utils/curriculum/formatting";
 
 export type CurricFiltersThreadsProps = {
   filters: CurriculumFilters;
@@ -87,7 +88,7 @@ export function CurricFiltersThreads({
                       <>
                         <br />
                         {highlightedCount}
-                        {highlightedCount === 1 ? " unit " : " units "}
+                        {pluralizeUnits(highlightedCount)}
                         highlighted
                       </>
                     )}

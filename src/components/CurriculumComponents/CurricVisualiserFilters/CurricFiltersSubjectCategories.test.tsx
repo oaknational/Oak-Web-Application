@@ -26,7 +26,7 @@ describe("CurricFiltersSubjectCategories", () => {
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
-    expect(getByRole("heading")).toHaveTextContent("Category (KS4)");
+    expect(getByRole("heading").textContent).toEqual("Category (KS4)");
     expect(elements[0]!.value).toEqual("1");
     expect(elements[1]!.value).toEqual("2");
     expect(elements[2]!.value).toEqual("3");
@@ -39,7 +39,7 @@ describe("CurricFiltersSubjectCategories", () => {
           childSubjects: [],
           subjectCategories: [],
           tiers: [],
-          years: ["10", "11"],
+          years: ["7", "8", "9", "10", "11"],
           threads: [],
         }}
         onChangeFilters={() => {}}
@@ -49,7 +49,7 @@ describe("CurricFiltersSubjectCategories", () => {
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
-    expect(getByRole("heading")).toHaveTextContent("Category");
+    expect(getByRole("heading").textContent).toEqual("Category");
     expect(elements[0]!.value).toEqual("1");
     expect(elements[1]!.value).toEqual("2");
     expect(elements[2]!.value).toEqual("3");
