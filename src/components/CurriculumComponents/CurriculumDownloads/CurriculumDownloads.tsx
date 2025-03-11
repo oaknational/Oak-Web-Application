@@ -29,6 +29,7 @@ import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadA
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 import { KeyStageTitleValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
+import { getPhaseFromCategory } from "@/utils/curriculum/formatting";
 
 export type CurriculumDownload = {
   label: string;
@@ -162,12 +163,6 @@ function CurriculumDownloads(
       return obj[input];
     };
 
-    const getPhaseFromCategory = (input: DownloadCategory) => {
-      if (input === "KS3" || input === "KS4") {
-        return "secondary";
-      }
-      return "primary";
-    };
     track.curriculumResourcesDownloaded({
       platform: "owa",
       product: "curriculum resources",

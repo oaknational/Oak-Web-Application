@@ -225,7 +225,7 @@ describe("trackCurriculumDownload", () => {
     };
 
     const subjectTitle = "Mathematics";
-    const analyticsUseCase = "Pupil";
+    const analyticsUseCase = "Teacher";
     const slugs = {
       phaseSlug: "primary",
       subjectSlug: "maths",
@@ -251,7 +251,7 @@ describe("trackCurriculumDownload", () => {
 
     expect(mockTrack.curriculumResourcesDownloaded).toHaveBeenCalledWith({
       subjectTitle: "Mathematics",
-      analyticsUseCase: "Pupil",
+      analyticsUseCase: "Teacher",
       keyStageSlug: null,
       keyStageTitle: null,
       emailSupplied: true,

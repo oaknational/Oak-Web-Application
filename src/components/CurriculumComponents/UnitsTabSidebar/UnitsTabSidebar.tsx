@@ -161,20 +161,22 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                         aria-disabled={!lessonsAvailable ? "true" : "false"}
                         {...(lessonsAvailable && { href: lessonPageHref })}
                         onClick={() => {
-                          track.curriculumVisualiserExited({
-                            unitName: unitData?.title || "",
-                            unitSlug: resolvedUnitSlug,
-                            subjectTitle: unitData?.subject || "",
-                            subjectSlug: unitData?.subject_slug || "",
-                            platform: "owa",
-                            product: "curriculum visualiser",
-                            engagementIntent: "use",
-                            componentType: "curriculum_visualiser_button",
-                            eventVersion: "2.0.0",
-                            analyticsUseCase: "Teacher",
-                            yearGroupName: `Year ${unitData?.year}`,
-                            yearGroupSlug: unitData?.year || "",
-                          });
+                          if (unitData && lessonsAvailable) {
+                            track.curriculumVisualiserExited({
+                              unitName: unitData.title,
+                              unitSlug: resolvedUnitSlug,
+                              subjectTitle: unitData.subject,
+                              subjectSlug: unitData.subject_slug,
+                              platform: "owa",
+                              product: "curriculum visualiser",
+                              engagementIntent: "use",
+                              componentType: "curriculum_visualiser_button",
+                              eventVersion: "2.0.0",
+                              analyticsUseCase: "Teacher",
+                              yearGroupName: `Year ${unitData?.year}`,
+                              yearGroupSlug: unitData.year,
+                            });
+                          }
                         }}
                       >
                         <OakFlex
