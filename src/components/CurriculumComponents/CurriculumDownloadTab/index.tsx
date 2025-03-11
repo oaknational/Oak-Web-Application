@@ -125,6 +125,8 @@ export const trackCurriculumDownload = async (
       !schoolId || schoolId === "homeschool"
         ? ""
         : (extractUrnAndSchool(schoolId).urn ?? ""),
+    keyStageSlug: null,
+    keyStageTitle: null,
   });
 };
 
