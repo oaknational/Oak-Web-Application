@@ -38,6 +38,7 @@ const lessonDetailProps = {
   subject: "maths",
   keystage: "ks3",
   unit: "maths",
+  lesson: "Lesson title",
   examBoardSlug: null,
   subjectSlug: "maths",
   subjectParent: null,
