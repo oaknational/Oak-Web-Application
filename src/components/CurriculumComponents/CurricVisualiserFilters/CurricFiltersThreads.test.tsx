@@ -29,6 +29,30 @@ describe("CurricFiltersThreads", () => {
     expect(elements[3]!.value).toEqual("thread3");
   });
 
+  it("renders correctly with selected thread", () => {
+    const { getAllByRole } = renderWithTheme(
+      <CurricFiltersThreads
+        filters={{
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          years: ["10", "11"],
+          threads: ["thread2"],
+        }}
+        onChangeFilters={() => {}}
+        data={basicSetup}
+      />,
+    );
+
+    const elements = getAllByRole("radio") as HTMLInputElement[];
+    expect(elements.length).toEqual(4);
+    expect(elements[0]!.value).toEqual("");
+    expect(elements[1]!.value).toEqual("thread1");
+    expect(elements[2]!.value).toEqual("thread2");
+    expect(elements[2]!).toBeChecked();
+    expect(elements[3]!.value).toEqual("thread3");
+  });
+
   it("interacts correctly", () => {
     const onChangeFilters = jest.fn();
     const { getAllByRole } = renderWithTheme(
