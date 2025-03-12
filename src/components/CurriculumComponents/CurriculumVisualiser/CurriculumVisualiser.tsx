@@ -22,6 +22,7 @@ import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import { sortYears } from "@/utils/curriculum/sorting";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
 import { CurriculumFilters, Unit, YearData } from "@/utils/curriculum/types";
+import { filteringFromYears } from "@/utils/curriculum/filtering";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -287,32 +288,19 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           .filter((year) => filterIncludes("years", [year]))
           .sort(sortYears)
           .map((year, index) => {
-            const {
-              units,
-              isSwimming,
-              childSubjects,
-              tiers,
-              subjectCategories,
-            } = yearData[year] as YearData[string];
+            const { units, isSwimming } = yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
             };
 
-            const yearFilters = {
-              childSubjects:
-                childSubjects.length > 0 ? filters.childSubjects : undefined,
-              subjectCategories:
-                childSubjects.length < 1 && subjectCategories.length > 0
-                  ? filters.subjectCategories
-                  : undefined,
-              tiers: tiers.length > 0 ? filters.tiers : undefined,
-              years: filters.years,
-              threads: filters.threads,
-            };
+            const yearBasedFilters = filteringFromYears(
+              yearData[year]!,
+              filters,
+            );
 
             const filteredUnits = units.filter((unit: Unit) =>
-              isVisibleUnit(yearFilters, year, unit),
+              isVisibleUnit(yearBasedFilters, year, unit),
             );
 
             const dedupedUnits = dedupUnits(filteredUnits);
