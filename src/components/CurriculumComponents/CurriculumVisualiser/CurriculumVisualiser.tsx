@@ -11,9 +11,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Button from "@/components/SharedComponents/Button/Button";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import UnitModal, {
-  Lesson,
-} from "@/components/CurriculumComponents/UnitModal/UnitModal";
+import UnitModal from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import {
   getSuffixFromFeatures,
@@ -30,6 +28,7 @@ import {
   Unit,
   YearData,
   YearSelection,
+  Lesson,
 } from "@/utils/curriculum/types";
 import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
 
