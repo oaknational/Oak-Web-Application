@@ -45,6 +45,16 @@ const Seo: FC<SeoProps> = ({
     canonicalURL || `${getBrowserConfig("seoAppUrl")}${router.asPath}`
   )?.replace(/\/$/, ""); //?
 
+  // DEBUG
+  // console.log("title", title);
+  // console.log("description", description);
+  // console.log("formattedCanonicalURL", formattedCanonicalURL);
+  // const twitterHandle = getBrowserConfig("seoAppTwitterHandle");
+  // console.log("twitter handle", twitterHandle);
+  // if (!title || !description || !formattedCanonicalURL || !twitterHandle) {
+  //   throw new TypeError("Seo props are not set");
+  // }
+
   return (
     <NextSeo
       title={title}

@@ -9,8 +9,8 @@ After running the test suite, we observed the following categories of issues:
 1. **SEO-related failures**: Many tests expected SEO properties but received `undefined`
 2. **Snapshot failures**: Style class names changed, causing snapshot test failures
 3. **Component prop testing failures**: Several components aren't receiving expected props
-4. **ES Module vs CommonJS issues**: Conflicts between module systems
-5. **Styling test failures**: Style assertions failing due to style implementation changes
+4. **Styling test failures**: Style assertions failing due to style implementation changes
+5. **TypeScript type errors**: Numerous type errors, particularly with styled-components
 
 ## Major Upgrade Factors
 
@@ -18,6 +18,58 @@ Two major upgrades are likely contributing to these issues:
 
 1. **Next.js 14 Upgrade**: Changes in routing, metadata handling, and module structure
 2. **React 19 Upgrade**: Changes in component rendering, prop handling, and internal mechanisms
+
+## TypeScript Configuration Analysis
+
+The project uses a single main TypeScript configuration file (`tsconfig.json`) with the following key settings:
+
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "strict": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "plugins": [
+      { "name": "typescript-plugin-css-modules" },
+      { "name": "next" }
+    ],
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}
+```
+
+### Type Check Results
+
+Running `pnpm type-check` revealed 177 TypeScript errors in 73 files. These errors fall into several categories:
+
+1. **styled-components compatibility issues**: The most prevalent errors are related to styled-components and its type definitions. The migration to React 19 has caused incompatibilities with the current styled-components version.
+
+   - Missing exported types: `ThemedStyledProps`, `FlattenSimpleInterpolation`
+   - Type mismatches in prop handling for styled components
+
+2. **Storybook Story API changes**: Error in Story function parameters, likely due to changes in the Storybook API or its React 19 compatibility.
+
+3. **React Component props type mismatches**: Many components have prop type issues, suggesting that React 19's TypeScript definitions are stricter or have changed.
+
+### Key Styled-Components Issues
+
+The errors show a pattern where styled-components utility functions are failing with errors like:
+
+```
+Type 'FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>' has no properties in common with type 'BackgroundProps'.
+```
+
+This indicates that the styled-components library or its TypeScript definitions need to be updated to be compatible with React 19. The most common issues involve:
+
+1. Missing type exports from styled-components
+2. Incompatible prop types between styled components and HTML elements
+3. Issues with styled utility functions that were working in previous versions
 
 ## Detailed Analysis and Solutions
 
@@ -82,6 +134,8 @@ Two major upgrades are likely contributing to these issues:
 
 ### 4. ES Module vs CommonJS Issues
 
+**RESOLVED**
+
 **Issue**: Some tests are failing because of conflicts between ESM and CommonJS, notably in:
 
 - `src/pages-helpers/curriculum/docx/builder/1_frontCover.test.ts` (SyntaxError: Identifier '\_\_dirname' has already been declared)
@@ -94,6 +148,7 @@ Two major upgrades are likely contributing to these issues:
 1. Update the test files to consistently use the `moduleHelpers` approach we've implemented
 2. Fix duplicate declarations of `__dirname` in affected files
 3. Ensure all test files have at least one test to avoid the "must contain at least one test" error
+4. Check if React 19 and Next.js 14 require different Jest configurations for ES Modules
 
 ### 5. Styling Test Failures
 
@@ -114,6 +169,28 @@ Two major upgrades are likely contributing to these issues:
 3. Ensure styled-components is updated to a version compatible with React 19
 4. Update tests to match the current styling implementation
 
+### 6. TypeScript Type Errors
+
+**Issue**: The codebase has numerous TypeScript errors after upgrading to React 19 and Next.js 14:
+
+- Missing type exports from styled-components
+- Prop type mismatches in styled components
+- Storybook API incompatibilities
+
+**Cause**:
+
+- React 19 includes updated TypeScript definitions that may be stricter or different
+- styled-components version is likely not compatible with React 19
+- Next.js 14 may require updated type definitions
+
+**Solution**:
+
+1. Update styled-components to a version compatible with React 19
+2. Review and fix component prop types to align with React 19's type expectations
+3. Update Storybook configuration and dependencies to work with React 19
+4. Consider using `@types/styled-components` if necessary for proper type definitions
+5. Gradually fix type errors, focusing first on utility functions and shared components
+
 ## Additional React 19 Considerations
 
 React 19 introduces several changes that could affect tests:
@@ -125,11 +202,10 @@ React 19 introduces several changes that could affect tests:
 
 ## Next Steps
 
-1. **Update testing dependencies**: Ensure all testing libraries are compatible with React 19
-2. **Prioritize SEO fixes**: Since many tests are failing due to SEO issues, address this first
-3. **Update snapshots**: For purely cosmetic changes, update snapshots
-4. **Fix ES Module conflicts**: Address the module system conflicts in the test files
+1. **Update dependencies**: Ensure all dependencies, especially styled-components and testing libraries, are compatible with React 19
+2. **Fix TypeScript errors**: Address type errors, particularly in the styled-components usage
+3. **Prioritize SEO fixes**: Since many tests are failing due to SEO issues, address this next
+4. **Update snapshots**: For purely cosmetic changes, update snapshots
 5. **Update component tests**: Revise test expectations to match the new component behavior
-6. **Refresh styling tests**: Update how styles are tested to work with the current implementation
 
 By addressing these issues methodically, we can fully migrate the test suite to work with the upgraded Next.js version, React 19, and ES Module pattern.
