@@ -32,7 +32,6 @@ import { createThread } from "@/fixtures/curriculum/thread";
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { createYearData } from "@/fixtures/curriculum/yearData";
 
-
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
