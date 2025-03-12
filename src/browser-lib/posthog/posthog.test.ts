@@ -12,6 +12,7 @@ jest.mock("../analytics/getLegacyAnonymousId", () => ({
 
 const init = jest.fn((key, config) => config.loaded());
 const identify = jest.fn();
+const alias = jest.fn();
 const capture = jest.fn();
 const register = jest.fn();
 const optInCapturing = jest.fn();
@@ -24,6 +25,7 @@ jest.mock("posthog-js", () => ({
   __loaded: false,
   init: (key: unknown, config: unknown) => init(key, config),
   identify: (...args: unknown[]) => identify(...args),
+  alias: (...args: unknown[]) => alias(...args),
   capture: (...args: unknown[]) => capture(...args),
   opt_in_capturing: (...args: unknown[]) => optInCapturing(...args),
   opt_out_capturing: (...args: unknown[]) => optOutCapturing(...args),
@@ -87,6 +89,10 @@ describe("posthog.ts", () => {
   test("identify", () => {
     posthog.identify("123", { email: "abc" });
     expect(identify).toHaveBeenCalledWith("123", { email: "abc" });
+  });
+  test("alias", () => {
+    posthog.alias?.("123", "456");
+    expect(alias).toHaveBeenCalledWith("123", "456");
   });
   test("track", () => {
     posthog.track("foo", { bar: "baz" });

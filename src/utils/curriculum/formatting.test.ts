@@ -4,6 +4,8 @@ import {
   getShortPhaseText,
   getSuffixFromFeatures,
   buildPageTitle,
+  formatKeystagesShort,
+  joinWords,
 } from "./formatting";
 
 describe("getYearGroupTitle", () => {
@@ -290,4 +292,30 @@ describe("buildPageTitle", () => {
       expect(expectedOutput).toEqual(actualOutput);
     });
   }
+});
+
+describe("formatKeystagesShort", () => {
+  it("single", () => {
+    expect(formatKeystagesShort(["ks1"])).toEqual("KS1");
+    expect(formatKeystagesShort(["ks2"])).toEqual("KS2");
+    expect(formatKeystagesShort(["ks3"])).toEqual("KS3");
+    expect(formatKeystagesShort(["ks4"])).toEqual("KS4");
+    expect(formatKeystagesShort([])).toEqual("");
+  });
+
+  it("multiple", () => {
+    expect(formatKeystagesShort(["ks1", "ks2"])).toEqual("KS1-2");
+    expect(formatKeystagesShort(["ks3", "ks4"])).toEqual("KS3-4");
+    expect(formatKeystagesShort(["ks1", "ks3"])).toEqual("");
+  });
+});
+
+describe("joinWords", () => {
+  it("no empty words", () => {
+    expect(joinWords(["one", "two", "three"])).toEqual("one two three");
+  });
+
+  it("with empty words", () => {
+    expect(joinWords(["one", "", "two", "", "three"])).toEqual("one two three");
+  });
 });
