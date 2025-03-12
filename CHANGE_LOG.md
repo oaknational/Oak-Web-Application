@@ -1,3 +1,38 @@
+# [1.709.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.708.0...v1.709.0) (2025-03-12)
+
+
+### Bug Fixes
+
+* add a guard check for unit ([dc31df3](https://github.com/oaknational/Oak-Web-Application/commit/dc31df3ceab9ba0e1eaea68cb553ebb50703bace))
+* avo updates ([8b5b048](https://github.com/oaknational/Oak-Web-Application/commit/8b5b0483451af790917d5d5c7a712d7103b26984))
+* lesson download resource button name updated to correct Avo tag ([df9c34e](https://github.com/oaknational/Oak-Web-Application/commit/df9c34e8e7be28e521c458de5718c706f0e700d0))
+* lesson import ([e11a6fb](https://github.com/oaknational/Oak-Web-Application/commit/e11a6fb661f05d6e4c1117099ccfc440f23688c0))
+* merge latest avo branch ([75f1eee](https://github.com/oaknational/Oak-Web-Application/commit/75f1eeeb3b1c9999d45a65d31f04b918f18fe595))
+* update mobile years tracking data ([2d881fb](https://github.com/oaknational/Oak-Web-Application/commit/2d881fbb1843364218084a4ca7efa071ceb08b6e))
+* update tracking from overview to explainer for header nav ([68088bb](https://github.com/oaknational/Oak-Web-Application/commit/68088bbf15947373488d0cc7f826463c4857d56a))
+* updated download categories / phases ([3156013](https://github.com/oaknational/Oak-Web-Application/commit/315601379285d891d3dc13c386e1af40f8c5b58e))
+
+
+### Features
+
+* add curriculum approach navigation evt ([b916e00](https://github.com/oaknational/Oak-Web-Application/commit/b916e00b27817c8518585a1e5a795ddf6094af85))
+* add explainer explored evt ([f4c8e7c](https://github.com/oaknational/Oak-Web-Application/commit/f4c8e7c51501fffdafb90ed7247d138cd4e4cea1))
+* add homepage tab nav tracking evt ([f436e56](https://github.com/oaknational/Oak-Web-Application/commit/f436e56abac3817b4507d1925fcfe29be24cb94c))
+* add tracking evt for curric tab switching ([52b1eee](https://github.com/oaknational/Oak-Web-Application/commit/52b1eee2f8762d3063dbaf4b8add472bc4414247))
+* add tracking to downloads tab ([4cbfbf7](https://github.com/oaknational/Oak-Web-Application/commit/4cbfbf79bb29b6b4d3a0a89b0f49687603d912b7))
+* add unit info explored tracking evt ([8f8aeaf](https://github.com/oaknational/Oak-Web-Application/commit/8f8aeaf8ea26cf9a4acd767c48306a2b2d7408e1))
+* avo tracking branch updated ([7362e51](https://github.com/oaknational/Oak-Web-Application/commit/7362e517dae4f9f9d400d8f41989196e372e6bf3))
+* curric header tracking ([8307efc](https://github.com/oaknational/Oak-Web-Application/commit/8307efcc6ba74dc7e5775b447075e90a05c1dcbe))
+* curric unit details avo tracking ([6e25264](https://github.com/oaknational/Oak-Web-Application/commit/6e2526494af39a2a1fa871d62e80e590876b2b6a))
+* homepage image tab tracking ([bddd545](https://github.com/oaknational/Oak-Web-Application/commit/bddd545bdb32b6367ce2868fa18d39315fde0e45))
+* tracking on SubjectPhasePicker ([815b811](https://github.com/oaknational/Oak-Web-Application/commit/815b8118f260989edfbd1111c0c60262ce39d67a))
+* units tracking update ([7206426](https://github.com/oaknational/Oak-Web-Application/commit/7206426ffc12c25f183a979393c9fce5a5b00ba4))
+* update avo to main branch ([67c60b1](https://github.com/oaknational/Oak-Web-Application/commit/67c60b1f18bcca66ee4ea3c7f0bcb4a51a01f327))
+* update unit info open button tracking evt ([fdb0a43](https://github.com/oaknational/Oak-Web-Application/commit/fdb0a438b5b777f3514cf6a8bcdaea0f406ba5b9))
+* update visualiser exited evt ([20f4087](https://github.com/oaknational/Oak-Web-Application/commit/20f408762dabe1cb1c18a526b8c6b1f61cdf7c85))
+* updated lot picker evt tracking ([fa0cb32](https://github.com/oaknational/Oak-Web-Application/commit/fa0cb324114c70c1cc8c7935225dce19f221855a))
+* visualiser testing and avo tracking updates ([ae73c4c](https://github.com/oaknational/Oak-Web-Application/commit/ae73c4c341996b66d498f2bed76f1e7b9288d79c))
+
 # [1.708.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.707.0...v1.708.0) (2025-03-12)
 
 
