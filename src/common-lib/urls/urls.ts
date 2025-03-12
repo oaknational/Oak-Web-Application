@@ -349,6 +349,11 @@ type OnboardingUseOfOak = {
   page: "onboarding-use-of-oak";
 };
 
+type PupilLessonCanonical = {
+  page: "pupil-lesson-canonical";
+  lessonSlug: string;
+};
+
 export type OakLinkProps =
   | LabsLinkProps
   | SubjectListingLinkProps
@@ -411,7 +416,8 @@ export type OakLinkProps =
   | OnboardingLinkProps
   | OnboardingSchoolSelectionLinkProps
   | OnboardingRoleSelectionLinkProps
-  | OnboardingUseOfOak;
+  | OnboardingUseOfOak
+  | PupilLessonCanonical;
 
 const EXTERNAL_PAGE_NAMES = [
   "[external] Careers",
@@ -722,6 +728,12 @@ export const OAK_PAGES: {
     analyticsPageName: "Lesson",
     configType: "internal",
     pageType: "pupil-lesson-results-canonical-printable",
+  }),
+  "pupil-lesson-canonical": createOakPageConfig({
+    pathPattern: "/pupils/lessons/:lessonSlug",
+    analyticsPageName: "Lesson",
+    configType: "internal",
+    pageType: "pupil-lesson-canonical",
   }),
   "pupil-lesson-index": createOakPageConfig({
     pathPattern: "/pupils/programmes/:programmeSlug/units/:unitSlug/lessons",
