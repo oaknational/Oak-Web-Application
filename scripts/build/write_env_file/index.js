@@ -145,7 +145,10 @@ async function main() {
     // User data
     PERSONALISATION_API_URL:
       process.env.PERSONALISATION_API_URL ||
-      oakConfig.oak.personalisationApiUrl,
+      secretsFromNetwork.PERSONALISATION_API_URL,
+    PERSONALISATION_API_AUTH_KEY:
+      process.env.PERSONALISATION_API_AUTH_KEY ||
+      secretsFromNetwork.PERSONALISATION_API_AUTH_KEY,
     // Mux
     MUX_SIGNING_KEY:
       process.env.MUX_SIGNING_KEY || secretsFromNetwork.MUX_SIGNING_KEY,
@@ -256,6 +259,9 @@ async function main() {
       oakConfig.clerk.publishableKey,
     CLERK_SECRET_KEY:
       process.env.CLERK_SECRET_KEY || secretsFromNetwork.CLERK_SECRET_KEY,
+    CLERK_SIGNING_SECRET:
+      process.env.CLERK_SIGNING_SECRET ||
+      secretsFromNetwork.CLERK_SIGNING_SECRET,
 
     // Geolocation
     DEVELOPMENT_USER_REGION:

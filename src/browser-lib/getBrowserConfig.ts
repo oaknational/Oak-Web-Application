@@ -394,13 +394,6 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     description:
       "The region to use in authentication when running in development mode",
   },
-  personalisationApiUrl: {
-    value: process.env.PERSONALISATION_API_URL,
-    envName: "PERSONALISATION_API_URL",
-    required: true,
-    availableInBrowser: false,
-    default: null,
-  },
 });
 
 for (const [, envVarConfig] of Object.entries(envVars)) {
