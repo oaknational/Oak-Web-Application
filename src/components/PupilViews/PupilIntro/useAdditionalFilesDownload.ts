@@ -27,11 +27,11 @@ export function useAdditionalFilesDownload(
     setIsAdditionalFilesDownloading(true);
 
     try {
-      await downloadLessonResources(
+      await downloadLessonResources({
         lessonSlug,
-        ["worksheet-pdf-questions"],
-        false,
-      );
+        selectedResourceTypes: ["worksheet-pdf-questions"],
+        isLegacyDownload: false,
+      });
     } catch (error) {
       window.alert("Whoops, the download failed. You could try again.");
       reportError(error);

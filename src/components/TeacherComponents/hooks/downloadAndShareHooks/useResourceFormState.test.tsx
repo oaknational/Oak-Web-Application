@@ -18,6 +18,7 @@ import {
 
 const downloadProps: UseResourceFormStateProps = {
   downloadResources: allDownloadResources,
+  additionalFilesResources: [],
   type: "download",
 };
 

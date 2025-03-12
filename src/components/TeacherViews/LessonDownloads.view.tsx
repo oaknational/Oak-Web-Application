@@ -57,6 +57,7 @@ type BaseLessonDownload = {
   lessonSlug: string;
   lessonCohort?: string | null;
   downloads: LessonDownloadsPageData["downloads"];
+  additionalFiles: LessonDownloadsPageData["additionalFiles"];
   copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
@@ -176,6 +177,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     hubspotLoaded,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
+    additionalFilesResources: [], // @TODO update with data
     type: "download",
   });
 
@@ -269,6 +271,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   useLessonDownloadExistenceCheck({
     lessonSlug,
     resourcesToCheck: activeResources as DownloadResourceType[],
+    additionalFilesIdsToCheck: null, // replace later with data
     onComplete: setActiveResources,
     isLegacyDownload: isLegacyDownload,
   });

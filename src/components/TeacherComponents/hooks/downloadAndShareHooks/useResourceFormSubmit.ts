@@ -57,13 +57,13 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
     if (props.type === "download") {
       const accessToken = await auth.getToken();
 
-      await downloadLessonResources(
-        slug,
-        downloads as DownloadResourceType[],
-        props.isLegacyDownload,
+      await downloadLessonResources({
+        lessonSlug: slug,
+        selectedResourceTypes: downloads as DownloadResourceType[],
+        isLegacyDownload: props.isLegacyDownload,
         authFlagEnabled,
-        accessToken,
-      );
+        authToken: accessToken,
+      });
     }
   };
 

@@ -232,6 +232,7 @@ export const lessonDownloadsListSchema = z.array(
       "supplementary-docx",
       "curriculum-pdf",
       "lesson-guide-pdf",
+      "additional-files",
     ]),
     label: z.string(),
     ext: z.string(),
@@ -242,11 +243,26 @@ export const lessonDownloadsListSchema = z.array(
   }),
 );
 
+export const lessonAdditionalFilesListSchema = z.array(
+  z.object({
+    exists: z.boolean().nullable(),
+    type: z.enum(["additional-files"]),
+    label: z.string(),
+    ext: z.string(),
+    forbidden: z.union([
+      z.array(z.object({ copyright_info: z.string() })),
+      z.boolean().optional().nullish(),
+    ]),
+    assetId: z.number(),
+  }),
+);
+
 export const baseLessonDownloadsSchema = z.object({
   isLegacy: z.boolean(),
   lessonSlug: z.string(),
   lessonTitle: z.string(),
   downloads: lessonDownloadsListSchema,
+  additionalFiles: lessonAdditionalFilesListSchema,
   expired: z.boolean().nullable(),
   isSpecialist: z.literal(false),
   copyrightContent: copyrightContentSchema,

@@ -49,6 +49,7 @@ describe("useLessonDownloadExistenceCheck", () => {
       useLessonDownloadExistenceCheck({
         lessonSlug,
         resourcesToCheck,
+        additionalFilesIdsToCheck: null,
         onComplete,
 
         isLegacyDownload,
@@ -88,6 +89,7 @@ describe("useLessonDownloadExistenceCheck", () => {
       useLessonDownloadExistenceCheck({
         lessonSlug,
         resourcesToCheck,
+        additionalFilesIdsToCheck: null,
         onComplete,
         isLegacyDownload,
       }),

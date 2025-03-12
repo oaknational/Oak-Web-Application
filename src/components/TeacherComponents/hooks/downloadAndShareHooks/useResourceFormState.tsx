@@ -35,6 +35,7 @@ export type UseResourceFormStateProps =
   | { shareResources: LessonShareData["shareableResources"]; type: "share" }
   | {
       downloadResources: LessonDownloadsPageData["downloads"];
+      additionalFilesResources: LessonDownloadsPageData["additionalFiles"];
       type: "download";
     }
   | { curriculumResources: CurriculumDownload[]; type: "curriculum" };
@@ -185,6 +186,13 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     }
   })();
 
+  const additionalResources = (() => {
+    switch (props.type) {
+      case "download":
+        return props.additionalFilesResources;
+    }
+  })();
+
   const getInitialResourcesState = useCallback(() => {
     if (props.type === "share") {
       return (resources as LessonShareData["shareableResources"])
@@ -202,6 +210,17 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       throw new Error("Invalid resource type");
     }
   }, [resources, props.type]);
+
+  const getInitialAdditionalFilesState = useCallback(() => {
+    if (props.type === "download") {
+      return (additionalResources as LessonDownloadsPageData["additionalFiles"])
+        .filter(
+          (additionalResource) =>
+            additionalResource.exists && !additionalResource.forbidden,
+        )
+        .map((resource) => resource.assetId);
+    }
+  }, [additionalResources, props.type]);
 
   useEffect(() => {
     setIsLocalStorageLoading(false);
@@ -249,9 +268,17 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     getInitialResourcesState(),
   );
 
+  const [activeAdditonalFiles, setActiveAdditonalFiles] = useState<
+    number[] | undefined
+  >(getInitialAdditionalFilesState());
+
   useEffect(() => {
     setActiveResources(getInitialResourcesState());
   }, [getInitialResourcesState, resources]);
+
+  useEffect(() => {
+    setActiveAdditonalFiles(getInitialAdditionalFilesState());
+  }, [getInitialAdditionalFilesState, additionalResources]);
 
   const hasResources = getInitialResourcesState().length > 0;
 
@@ -345,6 +372,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     setEditDetailsClicked,
     activeResources,
     setActiveResources,
+    activeAdditonalFiles,
+    setActiveAdditonalFiles,
     handleToggleSelectAll,
     selectAllChecked,
     hubspotLoaded,

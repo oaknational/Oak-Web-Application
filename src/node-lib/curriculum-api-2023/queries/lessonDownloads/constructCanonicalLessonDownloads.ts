@@ -19,6 +19,7 @@ const constructCanonicalLessonDownloads = (
 ): LessonDownloadsCanonical => {
   const baseDownloads = {
     downloads: downloads,
+    additionalFiles: [],
     isLegacy: isLegacy,
     lessonSlug: lessonSlug,
     lessonTitle: browseData[0]?.lesson_data.title,

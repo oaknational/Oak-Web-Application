@@ -94,12 +94,20 @@ const getDownloadExistence = async (
   return data;
 };
 
-export const getLessonDownloadResourcesExistence = async (
-  lessonSlug: string,
-  resourceTypesString: string,
-  isLegacyDownload: boolean,
-) => {
-  const checkWhichResourcesExistEndpoint = `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
+export const getLessonDownloadResourcesExistence = async ({
+  lessonSlug,
+  resourceTypesString,
+  additionalFilesIdsString,
+  isLegacyDownload,
+}: {
+  lessonSlug: string;
+  resourceTypesString: string;
+  additionalFilesIdsString?: string;
+  isLegacyDownload: boolean;
+}) => {
+  const checkWhichResourcesExistEndpoint = additionalFilesIdsString
+    ? `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`
+    : `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}&additionalFiles=${additionalFilesIdsString}`;
 
   const meta = {
     lessonSlug,

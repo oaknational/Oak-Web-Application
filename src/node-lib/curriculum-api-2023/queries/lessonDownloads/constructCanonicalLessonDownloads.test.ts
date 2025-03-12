@@ -61,6 +61,7 @@ describe("constructCanonicalLessonDownloads", () => {
 
     const expectedResult: LessonDownloadsCanonical = {
       downloads: downloads,
+      additionalFiles: [],
       isLegacy: isLegacy,
       lessonSlug: lessonSlug,
       lessonTitle: browseData[0]?.lesson_data?.title ?? "",
@@ -177,6 +178,7 @@ describe("constructCanonicalLessonDownloads", () => {
 
     const expectedResult: LessonDownloadsCanonical = {
       downloads: downloads,
+      additionalFiles: [],
       isLegacy: isLegacy,
       lessonSlug: lessonSlug,
       lessonTitle: browseData[0]?.lesson_data?.title ?? "",

@@ -4,11 +4,11 @@ import OakError from "@/errors/OakError";
 export const getWorksheetInfo = async (lessonSlug: string) => {
   try {
     const { resources: resourceExistence } =
-      await getLessonDownloadResourcesExistence(
+      await getLessonDownloadResourcesExistence({
         lessonSlug,
-        "worksheet-pdf-questions",
-        false,
-      );
+        resourceTypesString: "worksheet-pdf-questions",
+        isLegacyDownload: false,
+      });
 
     const resourcesExistenceAsArray: {
       item: string;
