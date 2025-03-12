@@ -49917,12 +49917,7 @@ export type CreateUserMutation = {
   __typename?: "mutation_root";
   insert_users?: {
     __typename?: "users_mutation_response";
-    returning: Array<{
-      __typename?: "users";
-      id: string;
-      updated_at?: any | null;
-      created_at?: any | null;
-    }>;
+    affected_rows: number;
   } | null;
 };
 
@@ -49946,11 +49941,7 @@ export const CreateUserDocument = gql`
       objects: [{ id: $userId }]
       on_conflict: { constraint: users_pkey, update_columns: [updated_at] }
     ) {
-      returning {
-        id
-        updated_at
-        created_at
-      }
+      affected_rows
     }
   }
 `;
