@@ -53,3 +53,9 @@ export type YearData = {
 };
 
 export type Unit = CurriculumUnitsTabData["units"][number];
+
+export type Lesson = {
+  title: string;
+  slug?: string;
+  _state?: string;
+};
