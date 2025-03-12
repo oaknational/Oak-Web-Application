@@ -56,21 +56,17 @@ export async function POST(req: NextRequest) {
   // Insert or update user in db
   if (id && evt.type === "user.updated") {
     const personalisationApi = await getWebhookPersonalisationApi(id);
+    const sourceApp = evt.data.public_metadata?.sourceApp;
+
     try {
-      await personalisationApi.createUser({ userId: id });
+      await personalisationApi.createUser({ userId: id, sourceApp });
       console.log("User added to database");
     } catch (error) {
       // TODO: report error
-      console.error(
-        "Error: Could not create user in personalisation API:",
-        error,
-      );
-      return new Response(
-        "Error: Could not create user in personalisation API",
-        {
-          status: 500,
-        },
-      );
+      console.error("Error: Could not create user:", error);
+      return new Response("Error: Could not create user", {
+        status: 500,
+      });
     }
   }
 

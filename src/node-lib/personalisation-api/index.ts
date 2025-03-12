@@ -7,6 +7,9 @@ import { GetToken } from "clerk";
 
 const personalisationEndpoint = getServerConfig("personalisationApiUrl");
 const personalisationApiKey = getServerConfig("personalisationApiAuthKey");
+const personalisationApiAuthRole = getServerConfig(
+  "personalisationApiAuthRole",
+);
 
 // Api for use with authenticated Clerk user
 export const getAuthenticatedPersonalisationApi = async (
@@ -24,7 +27,7 @@ export const getWebhookPersonalisationApi = async (userId: string) => {
   const graphqlClient = new GraphQLClient(personalisationEndpoint, {
     headers: {
       "X-Hasura-Admin-Secret": personalisationApiKey,
-      "X-Hasura-Role": "webhook",
+      "X-Hasura-Role": personalisationApiAuthRole,
       "X-Hasura-User-Id": userId,
     },
   });

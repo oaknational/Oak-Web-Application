@@ -164,6 +164,13 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  personalisationApiAuthRole: {
+    value: process.env.PERSONALISATION_API_AUTH_ROLE,
+    envName: "PERSONALISATION_API_AUTH_ROLE",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   muxSigningKey: {
     value: process.env.MUX_SIGNING_KEY,
     envName: "MUX_SIGNING_KEY",

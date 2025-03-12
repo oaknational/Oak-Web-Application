@@ -48497,6 +48497,8 @@ export type Users = {
   __typename?: "users";
   created_at?: Maybe<Scalars["timestamptz"]["output"]>;
   id: Scalars["String"]["output"];
+  last_signed_in?: Maybe<Scalars["timestamptz"]["output"]>;
+  source_app?: Maybe<Scalars["String"]["output"]>;
   updated_at?: Maybe<Scalars["timestamptz"]["output"]>;
 };
 
@@ -48528,6 +48530,8 @@ export type Users_Bool_Exp = {
   _or?: InputMaybe<Array<Users_Bool_Exp>>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<String_Comparison_Exp>;
+  last_signed_in?: InputMaybe<Timestamptz_Comparison_Exp>;
+  source_app?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
 };
 
@@ -48541,6 +48545,8 @@ export enum Users_Constraint {
 export type Users_Insert_Input = {
   created_at?: InputMaybe<Scalars["timestamptz"]["input"]>;
   id?: InputMaybe<Scalars["String"]["input"]>;
+  last_signed_in?: InputMaybe<Scalars["timestamptz"]["input"]>;
+  source_app?: InputMaybe<Scalars["String"]["input"]>;
   updated_at?: InputMaybe<Scalars["timestamptz"]["input"]>;
 };
 
@@ -48549,6 +48555,8 @@ export type Users_Max_Fields = {
   __typename?: "users_max_fields";
   created_at?: Maybe<Scalars["timestamptz"]["output"]>;
   id?: Maybe<Scalars["String"]["output"]>;
+  last_signed_in?: Maybe<Scalars["timestamptz"]["output"]>;
+  source_app?: Maybe<Scalars["String"]["output"]>;
   updated_at?: Maybe<Scalars["timestamptz"]["output"]>;
 };
 
@@ -48557,6 +48565,8 @@ export type Users_Min_Fields = {
   __typename?: "users_min_fields";
   created_at?: Maybe<Scalars["timestamptz"]["output"]>;
   id?: Maybe<Scalars["String"]["output"]>;
+  last_signed_in?: Maybe<Scalars["timestamptz"]["output"]>;
+  source_app?: Maybe<Scalars["String"]["output"]>;
   updated_at?: Maybe<Scalars["timestamptz"]["output"]>;
 };
 
@@ -48580,6 +48590,8 @@ export type Users_On_Conflict = {
 export type Users_Order_By = {
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  last_signed_in?: InputMaybe<Order_By>;
+  source_app?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
 };
 
@@ -48595,6 +48607,10 @@ export enum Users_Select_Column {
   /** column name */
   Id = "id",
   /** column name */
+  LastSignedIn = "last_signed_in",
+  /** column name */
+  SourceApp = "source_app",
+  /** column name */
   UpdatedAt = "updated_at",
 }
 
@@ -48602,6 +48618,8 @@ export enum Users_Select_Column {
 export type Users_Set_Input = {
   created_at?: InputMaybe<Scalars["timestamptz"]["input"]>;
   id?: InputMaybe<Scalars["String"]["input"]>;
+  last_signed_in?: InputMaybe<Scalars["timestamptz"]["input"]>;
+  source_app?: InputMaybe<Scalars["String"]["input"]>;
   updated_at?: InputMaybe<Scalars["timestamptz"]["input"]>;
 };
 
@@ -48617,6 +48635,8 @@ export type Users_Stream_Cursor_Input = {
 export type Users_Stream_Cursor_Value_Input = {
   created_at?: InputMaybe<Scalars["timestamptz"]["input"]>;
   id?: InputMaybe<Scalars["String"]["input"]>;
+  last_signed_in?: InputMaybe<Scalars["timestamptz"]["input"]>;
+  source_app?: InputMaybe<Scalars["String"]["input"]>;
   updated_at?: InputMaybe<Scalars["timestamptz"]["input"]>;
 };
 
@@ -48626,6 +48646,10 @@ export enum Users_Update_Column {
   CreatedAt = "created_at",
   /** column name */
   Id = "id",
+  /** column name */
+  LastSignedIn = "last_signed_in",
+  /** column name */
+  SourceApp = "source_app",
   /** column name */
   UpdatedAt = "updated_at",
 }
@@ -49911,6 +49935,7 @@ export type Videos_Variance_Order_By = {
 
 export type CreateUserMutationVariables = Exact<{
   userId: Scalars["String"]["input"];
+  sourceApp?: InputMaybe<Scalars["String"]["input"]>;
 }>;
 
 export type CreateUserMutation = {
@@ -49936,10 +49961,13 @@ export type GetUserQuery = {
 };
 
 export const CreateUserDocument = gql`
-  mutation createUser($userId: String!) {
+  mutation createUser($userId: String!, $sourceApp: String) {
     insert_users(
-      objects: [{ id: $userId }]
-      on_conflict: { constraint: users_pkey, update_columns: [updated_at] }
+      objects: [{ id: $userId, source_app: $sourceApp }]
+      on_conflict: {
+        constraint: users_pkey
+        update_columns: [last_signed_in, source_app]
+      }
     ) {
       affected_rows
     }
