@@ -1,3 +1,21 @@
+# [1.708.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.707.0...v1.708.0) (2025-03-12)
+
+
+### Bug Fixes
+
+* common misconceptions body text size on mobile ([88a451b](https://github.com/oaknational/Oak-Web-Application/commit/88a451bee8f8f959e2c4b016b515edf511e4b059))
+* make prop optional ([624318b](https://github.com/oaknational/Oak-Web-Application/commit/624318bcc14bd7986fa45716e46503fc1704b9a8))
+* make subject parent optional ([164a5b8](https://github.com/oaknational/Oak-Web-Application/commit/164a5b89963a5c7aed0af9d53bd516f579787d6a))
+* more missing type changes ([34e20e1](https://github.com/oaknational/Oak-Web-Application/commit/34e20e1d75dc93899f3f17052512971189263b2f))
+* only show pupil share link on pages with pupil equivalent ([7920de1](https://github.com/oaknational/Oak-Web-Application/commit/7920de1ee296086b5b9a2cd3ee57597b09d7393f))
+* update copy to use lesson title ([3c3a394](https://github.com/oaknational/Oak-Web-Application/commit/3c3a3941968c3714fb436cbd4ad1e2c0a1600694))
+
+
+### Features
+
+* add links to pages in seo text ([aae39b0](https://github.com/oaknational/Oak-Web-Application/commit/aae39b091ce2bc765c351ddac9212f2d443abf5a))
+* add seo text to lesson overview details section ([7d703aa](https://github.com/oaknational/Oak-Web-Application/commit/7d703aafe131b3bf05795e022696677d0e2b818f))
+
 # [1.707.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.706.1...v1.707.0) (2025-03-12)
 
 
