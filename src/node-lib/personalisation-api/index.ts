@@ -3,8 +3,9 @@ import { useAuth } from "@clerk/nextjs";
 
 import { getSdk } from "@/node-lib/personalisation-api/generated/sdk";
 import { GetToken } from "clerk";
+import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
-const personalisationEndpoint = "http://localhost:8190/v1/graphql";
+const personalisationEndpoint = getBrowserConfig("personalisationApiUrl");
 
 export const createAuthenticatedSdk = async (getToken: GetToken) => {
   const token = await getToken({ template: "hasura" });
