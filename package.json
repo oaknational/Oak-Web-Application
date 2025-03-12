@@ -19,7 +19,7 @@
     "config:push:dev": "node ./scripts/build/push_config/index.cjs --environment development",
     "config:push:prod": "node ./scripts/build/push_config/index.cjs --environment production",
     "predev": "node scripts/build/write_env_file/index.cjs && NODE_ENV=development npm run image-data:all",
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "export": "next export",
     "format": "prettier '**/*.{j,t}{s,sx}' --write",
     "format:precommit": "prettier --write",

@@ -14,10 +14,6 @@ import InlineSpriteSheet from "../src/components/GenericPagesComponents/InlineSp
 
 const OriginalNextImage = NextImage.default;
 // @ts-ignore
-OriginalNextImage.propTypes = {
-  unoptimized: undefined,
-};
-// @ts-ignore
 OriginalNextImage.defaultProps = {
   unoptimized: true,
 };

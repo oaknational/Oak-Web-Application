@@ -11,6 +11,7 @@ After running the test suite, we observed the following categories of issues:
 3. **Component prop testing failures**: Several components aren't receiving expected props
 4. **Styling test failures**: Style assertions failing due to style implementation changes
 5. **TypeScript type errors**: Numerous type errors, particularly with styled-components
+6. **TurboPack issues**: We can't use Turbopack yet because it causes issues with the use of the generated SVG sprite images. We should resolve this so we can benefit from the performance gains.
 
 ## Major Upgrade Factors
 

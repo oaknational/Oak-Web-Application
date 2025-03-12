@@ -1,5 +1,5 @@
 import mockRouter from "next-router-mock";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 
 import { useRequireOnboarding } from "./useRequireOnboarding";
 

@@ -6,7 +6,7 @@ import {
 } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes/next-13";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 
 import {
   useGetSectionLinkProps,
