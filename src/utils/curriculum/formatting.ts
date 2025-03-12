@@ -1,4 +1,5 @@
-import { YearData } from "./types";
+import { CurriculumFilters, YearData } from "./types";
+import { keystageFromYear } from "./keystage";
 
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Phase } from "@/node-lib/curriculum-api-2023";
@@ -118,18 +119,17 @@ export function buildPageTitle(
   return pageTitle;
 }
 
-export function joinWords(str: string[]) {
+export function joinWords(str: (number | string)[]) {
   return str.filter((str) => str !== "").join(" ");
 }
 
 export function getYearSubheadingText(
   yearData: YearData,
   year: string,
-  filters: {
-    childSubjects: string[];
-    subjectCategories: string[];
-    tiers: string[];
-  },
+  filters: Pick<
+    CurriculumFilters,
+    "childSubjects" | "subjectCategories" | "tiers"
+  >,
 ): string | null {
   // Don't show subheading for "All" years view
   if (year === "all") {
@@ -137,7 +137,7 @@ export function getYearSubheadingText(
   }
 
   const parts: string[] = [];
-  const isKs4Year = year === "10" || year === "11";
+  const isKs4Year = keystageFromYear(year) === "ks4";
 
   // Handle subject categories (KS1-KS3)
   if (
@@ -145,26 +145,25 @@ export function getYearSubheadingText(
     !filters.subjectCategories.includes("-1") && // Skip if "All" is selected
     (!isKs4Year || filters.childSubjects.length === 0)
   ) {
-    const subjectCategoryTitles =
-      filters.subjectCategories
-        .map((id) => {
-          // Try to find subject category in current year
-          const subjectCategory = yearData[year]?.subjectCategories.find(
-            (sc) => sc.id.toString() === id,
-          ) || {
-            // Fallback: Find any year with this subject category, then get its title
-            // This ensures categories show even in years without matching units
-            // Example: If "Vocabulary" is selected for Primary English, the 'Vocabulary' subheading will still be shown
-            // even if there are no Vocabularly units in that year
-            title: Object.values(yearData)
-              .find((y) =>
-                y?.subjectCategories?.find((sc) => sc.id.toString() === id),
-              )
-              ?.subjectCategories?.find((sc) => sc.id.toString() === id)?.title,
-          };
-          return subjectCategory?.title;
-        })
-        .filter(Boolean) ?? [];
+    const subjectCategoryTitles = filters.subjectCategories
+      .map((id) => {
+        // Try to find subject category in current year
+        const subjectCategory = yearData[year]?.subjectCategories.find(
+          (sc) => sc.id.toString() === id,
+        ) || {
+          // Fallback: Find any year with this subject category, then get its title
+          // This ensures categories show even in years without matching units
+          // Example: If "Vocabulary" is selected for Primary English, the 'Vocabulary' subheading will still be shown
+          // even if there are no Vocabularly units in that year
+          title: Object.values(yearData)
+            .find((y) =>
+              y?.subjectCategories?.find((sc) => sc.id.toString() === id),
+            )
+            ?.subjectCategories?.find((sc) => sc.id.toString() === id)?.title,
+        };
+        return subjectCategory?.title;
+      })
+      .filter(Boolean);
 
     if (subjectCategoryTitles.length > 0) {
       parts.push(subjectCategoryTitles.join(", "));
@@ -202,4 +201,13 @@ export function getYearSubheadingText(
   }
 
   return parts.length > 0 ? parts.join(", ") : null;
+}
+
+export function pluralizeUnits(count: number) {
+  if (count > 1) {
+    return "units";
+  } else if (count === 1) {
+    return "unit";
+  }
+  return "";
 }

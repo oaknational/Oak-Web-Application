@@ -1,21 +1,49 @@
+import { useSearchParams } from "next/navigation";
+import { renderHook } from "@testing-library/react";
+import { useRouter } from "next/router";
+
 import {
   diffFilters,
+  filteringFromYears,
+  filtersToQuery,
   getDefaultChildSubjectForYearGroup,
   getDefaultFilter,
   getDefaultSubjectCategoriesForYearGroup,
   getDefaultTiersForYearGroup,
   getFilterData,
   getNumberOfFiltersApplied,
+  highlightedUnitCount,
   isHighlightedUnit,
+  mergeInFilterParams,
+  shouldDisplayFilter,
+  useFilters,
 } from "./filtering";
 import { CurriculumFilters, Unit } from "./types";
+import { isCurricRoutingEnabled } from "./flags";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
-import { CurriculumUnitsYearData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import {
+  CurriculumUnitsFormattedData,
+  CurriculumUnitsYearData,
+} from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createTier } from "@/fixtures/curriculum/tier";
 import { createThread } from "@/fixtures/curriculum/thread";
+import { createFilter } from "@/fixtures/curriculum/filters";
+import { createYearData } from "@/fixtures/curriculum/yearData";
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
+jest.mock("next/navigation", () => ({
+  useSearchParams: jest.fn(),
+}));
+
+jest.mock("./flags", () => ({
+  isCurricRoutingEnabled: jest.fn(() => false),
+}));
 
 describe("filtering", () => {
   describe("getDefaultChildSubjectForYearGroup", () => {
@@ -383,6 +411,235 @@ describe("diffFilters", () => {
   });
 });
 
+describe("shouldDisplayFilter", () => {
+  describe("years", () => {
+    it("with data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test2" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "years",
+      );
+      expect(result).toEqual(true);
+    });
+
+    it("no data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {},
+        threadOptions: [],
+        yearOptions: [],
+      };
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: [] }),
+        "years",
+      );
+      expect(result).toEqual(false);
+    });
+  });
+
+  describe("subjectCategories", () => {
+    it("with data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+            subjectCategories: [createSubjectCategory({ id: 1 })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test2" })],
+            subjectCategories: [createSubjectCategory({ id: 1 })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "subjectCategories",
+      );
+      expect(result).toEqual(true);
+    });
+
+    it("no data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "subjectCategories",
+      );
+      expect(result).toEqual(false);
+    });
+  });
+
+  describe("childSubjects", () => {
+    it("with data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+            childSubjects: [createChildSubject({ subject_slug: "physics" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test2" })],
+            childSubjects: [createChildSubject({ subject_slug: "biology" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "childSubjects",
+      );
+      expect(result).toEqual(true);
+    });
+
+    it("no data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "childSubjects",
+      );
+      expect(result).toEqual(false);
+    });
+  });
+
+  describe("tiers", () => {
+    it("with data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+            tiers: [createTier({ tier_slug: "foundation" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test2" })],
+            tiers: [createTier({ tier_slug: "higher" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "tiers",
+      );
+      expect(result).toEqual(true);
+    });
+
+    it("no data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "tiers",
+      );
+      expect(result).toEqual(false);
+    });
+  });
+
+  describe("threads", () => {
+    it("with data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+        },
+        threadOptions: [
+          createThread({ slug: "test1" }),
+          createThread({ slug: "test2" }),
+        ],
+        yearOptions: ["7", "8"],
+      };
+
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "threads",
+      );
+      expect(result).toEqual(true);
+    });
+
+    it("no data", () => {
+      const data: CurriculumUnitsFormattedData = {
+        yearData: {
+          "7": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+          "8": createYearData({
+            units: [createUnit({ slug: "test1" })],
+          }),
+        },
+        threadOptions: [],
+        yearOptions: ["7", "8"],
+      };
+      const result = shouldDisplayFilter(
+        data,
+        createFilter({ years: ["7", "8"] }),
+        "threads",
+      );
+      expect(result).toEqual(false);
+    });
+  });
+});
+
 describe("getNumberOfFiltersApplied", () => {
   it("no filters applied", () => {
     const dfltFilter: CurriculumFilters = {
@@ -414,5 +671,285 @@ describe("getNumberOfFiltersApplied", () => {
       threads: [thread.slug],
     };
     expect(getNumberOfFiltersApplied(dfltFilter, filter)).toEqual(3);
+  });
+});
+
+describe("filtersToQuery", () => {
+  it("with default", () => {
+    const result = filtersToQuery(createFilter());
+    expect(result).toEqual({});
+  });
+
+  it("with data", () => {
+    const childSubject1 = createChildSubject({
+      subject_slug: "child_subject_1",
+    });
+    const childSubject2 = createChildSubject({
+      subject_slug: "child_subject_2",
+    });
+    const subCat1 = createSubjectCategory({ id: 1 });
+    const subCat2 = createSubjectCategory({ id: 2 });
+    const tier1 = createTier({ tier_slug: "tier_1" });
+    const tier2 = createTier({ tier_slug: "tier_2" });
+    const thread1 = createThread({ slug: "thread_1" });
+    const thread2 = createThread({ slug: "thread_2" });
+
+    const result = filtersToQuery(
+      createFilter({
+        childSubjects: [childSubject1.subject_slug, childSubject2.subject_slug],
+        subjectCategories: [String(subCat1.id), String(subCat2.id)],
+        tiers: [tier1.tier_slug, tier2.tier_slug],
+        years: ["7", "8"],
+        threads: [thread1.slug, thread2.slug],
+      }),
+    );
+
+    expect(result).toEqual({
+      childSubjects: "child_subject_1,child_subject_2",
+      subjectCategories: "1,2",
+      threads: "thread_1,thread_2",
+      tiers: "tier_1,tier_2",
+      years: "7,8",
+    });
+  });
+});
+
+describe("mergeInFilterParams", () => {
+  it("single value", () => {
+    const filter: CurriculumFilters = {
+      childSubjects: [],
+      subjectCategories: [],
+      tiers: [],
+      years: [],
+      threads: [],
+    };
+
+    const result = mergeInFilterParams(
+      filter,
+      new URLSearchParams(
+        "?childSubjects=child_subject_1&subjectCategories=1&tiers=tier_1&years=1&threads=thread1",
+      ),
+    );
+    expect(result).toEqual({
+      childSubjects: ["child_subject_1"],
+      subjectCategories: ["1"],
+      tiers: ["tier_1"],
+      years: ["1"],
+      threads: ["thread1"],
+    });
+  });
+
+  it("list of values", () => {
+    const filter: CurriculumFilters = {
+      childSubjects: [],
+      subjectCategories: [],
+      tiers: [],
+      years: [],
+      threads: [],
+    };
+
+    const result = mergeInFilterParams(
+      filter,
+      new URLSearchParams(
+        "?childSubjects=child_subject_1,child_subject_2&subjectCategories=1,2&tiers=tier_1,tier_2&years=1,2&threads=thread1,thread2",
+      ),
+    );
+    expect(result).toEqual({
+      childSubjects: ["child_subject_1", "child_subject_2"],
+      subjectCategories: ["1", "2"],
+      tiers: ["tier_1", "tier_2"],
+      years: ["1", "2"],
+      threads: ["thread1", "thread2"],
+    });
+  });
+});
+
+describe("useFilters", () => {
+  describe("without routing", () => {
+    it("initial state", () => {
+      const defaultFilter = createFilter();
+      const { result } = renderHook(() => {
+        return useFilters(() => {
+          return defaultFilter;
+        });
+      });
+      const [filters] = result.current;
+      expect(filters).toEqual(defaultFilter);
+    });
+
+    it("updating state", () => {
+      const defaultFilter = createFilter();
+      const updateFilterValue = createFilter({});
+      const { result, rerender } = renderHook(() => {
+        return useFilters(() => {
+          return defaultFilter;
+        });
+      });
+
+      const [, setFilters] = result.current;
+      setFilters(updateFilterValue);
+      rerender();
+      const [filters] = result.current;
+      expect(filters).toEqual(updateFilterValue);
+    });
+  });
+
+  describe("with routing", () => {
+    it("initial state", () => {
+      (isCurricRoutingEnabled as jest.Mock).mockReturnValue(true);
+      (useSearchParams as jest.Mock).mockReturnValue(
+        new URLSearchParams("?tiers=foundation"),
+      );
+
+      const defaultFilter = createFilter();
+      const { result } = renderHook(() => {
+        return useFilters(() => {
+          return defaultFilter;
+        });
+      });
+      const [filters] = result.current;
+      expect(filters).toEqual({
+        ...defaultFilter,
+        tiers: ["foundation"],
+      });
+    });
+
+    it("updating state", () => {
+      (isCurricRoutingEnabled as jest.Mock).mockReturnValue(true);
+      const replaceMock = jest.fn();
+      (useRouter as jest.Mock).mockReturnValue({ replace: replaceMock });
+
+      const defaultFilter = createFilter();
+      const updateFilterValue = createFilter({
+        tiers: ["foundation"],
+      });
+      const { result, rerender } = renderHook(() => {
+        return useFilters(() => {
+          return defaultFilter;
+        });
+      });
+
+      const [, setFilters] = result.current;
+      setFilters(updateFilterValue);
+
+      expect(replaceMock).toHaveBeenCalledWith(
+        "/?tiers=foundation",
+        undefined,
+        { shallow: true },
+      );
+
+      rerender();
+      const [filters] = result.current;
+      expect(filters).toEqual(updateFilterValue);
+    });
+  });
+});
+
+describe("highlightedUnitCount", () => {
+  const thread1 = createThread({ slug: "thread1" });
+  const thread2 = createThread({ slug: "thread2" });
+  const thread3 = createThread({ slug: "thread3" });
+  const thread4 = createThread({ slug: "thread4" });
+  const filters = createFilter({
+    years: ["7"],
+  });
+  const yearData = {
+    "7": createYearData({
+      units: [
+        createUnit({ threads: [thread1] }),
+        createUnit({ threads: [thread2] }),
+        createUnit({ threads: [thread3] }),
+      ],
+    }),
+  };
+
+  it("no units highlighted", () => {
+    const result = highlightedUnitCount(yearData, filters, [thread4.slug]);
+    expect(result).toEqual(0);
+  });
+
+  it("many units highlighted", () => {
+    const result = highlightedUnitCount(yearData, filters, [
+      thread1.slug,
+      thread3.slug,
+    ]);
+    expect(result).toEqual(2);
+  });
+});
+
+describe("filteringFromYears", () => {
+  const tierHigher = createTier({ tier_slug: "higher" });
+  const subCat1 = createSubjectCategory({ id: 1 });
+  const childSubject = createChildSubject({ subject_slug: "biology" });
+
+  it("no filters", () => {
+    const result = filteringFromYears(
+      createYearData({
+        tiers: [tierHigher],
+        subjectCategories: [subCat1],
+      }),
+      createFilter(),
+    );
+    expect(result).toEqual({
+      childSubjects: undefined,
+      subjectCategories: [],
+      threads: [],
+      tiers: [],
+      years: [],
+    });
+  });
+
+  it("without tiers", () => {
+    const filter = createFilter({
+      tiers: [tierHigher.tier_slug],
+      childSubjects: [childSubject.subject_slug],
+    });
+    const result = filteringFromYears(
+      createYearData({
+        childSubjects: [childSubject],
+      }),
+      filter,
+    );
+    expect(result).toEqual({
+      ...filter,
+      tiers: undefined,
+      subjectCategories: undefined,
+    });
+  });
+
+  it("without child subjects", () => {
+    const filter = createFilter({
+      tiers: [tierHigher.tier_slug],
+      childSubjects: [childSubject.subject_slug],
+    });
+    const result = filteringFromYears(
+      createYearData({
+        tiers: [tierHigher],
+      }),
+      filter,
+    );
+    expect(result).toEqual({
+      ...filter,
+      childSubjects: undefined,
+      subjectCategories: undefined,
+    });
+  });
+
+  it("without subject categories", () => {
+    const filter = createFilter({
+      tiers: [tierHigher.tier_slug],
+      subjectCategories: [String(subCat1.id)],
+    });
+    const result = filteringFromYears(
+      createYearData({
+        tiers: [tierHigher],
+      }),
+      filter,
+    );
+    expect(result).toEqual({
+      ...filter,
+      childSubjects: undefined,
+      subjectCategories: undefined,
+    });
   });
 });

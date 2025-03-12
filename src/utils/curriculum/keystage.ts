@@ -71,6 +71,14 @@ export function byKeyStageSlug(
   return output;
 }
 
+export function keystageFromYear(year: string) {
+  for (const [keystage, years] of Object.entries(keystageYearMappings)) {
+    if (years.includes(year)) {
+      return keystage;
+    }
+  }
+}
+
 export function presentAtKeyStageSlugs(
   KeyStageSlugData: Record<KeyStageSlug, YearDataPartialYearDataArray>,
   key: keyof YearDataPartialYearDataArray,

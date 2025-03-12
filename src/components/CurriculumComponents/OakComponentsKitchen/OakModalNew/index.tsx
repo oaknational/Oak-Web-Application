@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import { CurriculumModalCloseButton } from "../../CurriculumModalCloseButton";
 
+import { usePrevious } from "@/hooks/usePrevious";
+
 const Dialog = styled("dialog")`
   border: none;
   margin: 0;
@@ -34,21 +36,22 @@ export function OakModalNew({
   onClose,
 }: ModalProps) {
   const ref = useRef<HTMLDialogElement>(null);
+  const prevOpen = usePrevious(open);
 
   useEffect(() => {
     if (ref.current) {
       if (open) {
         document.body.style.overflow = "hidden";
-        ref.current.showModal();
+        if (!prevOpen) ref.current.showModal();
       } else {
         document.body.style.overflow = "";
-        ref.current.close();
+        if (prevOpen) ref.current.close();
       }
     }
-  }, [ref, open]);
+  }, [ref, open, prevOpen]);
 
   return (
-    <Dialog ref={ref}>
+    <Dialog ref={ref} data-testid="modal">
       <OakFlex $flexDirection={"column"} $background={"white"} $height={"100%"}>
         <OakFlex
           $pa={"inner-padding-m"}
@@ -68,6 +71,7 @@ export function OakModalNew({
           </OakBox>
         </OakFlex>
         <OakFlex
+          data-testid="modal-content"
           $flexShrink={1}
           $overflowY={"auto"}
           $flexGrow={1}
@@ -76,6 +80,7 @@ export function OakModalNew({
           {content}
         </OakFlex>
         <OakFlex
+          data-testid="modal-footer"
           $width={"100%"}
           $background={"white"}
           $ph={"inner-padding-m"}

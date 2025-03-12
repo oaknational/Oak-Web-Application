@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OakModalNew should match snapshot 1`] = `
+<div>
+  <dialog
+    class="sc-7c25aa5d-0 easTDE"
+    data-testid="modal"
+  >
+    <div
+      class="sc-fqkvVR sc-gsFSXq bXpmro bOTBNE"
+    >
+      <div
+        class="sc-fqkvVR sc-gsFSXq eLuStd dNHjLk"
+      >
+        <h1
+          class="sc-dhKdcB bnPSzI"
+          data-testid="modal-title"
+        >
+          test_title
+        </h1>
+        <div
+          class="sc-fqkvVR RMQib"
+        >
+          <div
+            class="sc-ad0ad6f5-0 sc-952e1041-0 bZaRlP hlZDaV"
+          >
+            <button
+              aria-label="Close"
+              class="sc-ce4d7bd4-0 sc-4362740-0 kYyTPx kgfbIy"
+              data-testid="close-modal-button"
+              title="Close"
+            >
+              <div
+                class="sc-b071a727-0 eQqUiM"
+              >
+                <span
+                  aria-hidden="true"
+                  class="sc-cba1a45e-0 bgbQLJ"
+                >
+                  <span
+                    class="sc-cba1a45e-1 idsnjc"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="sc-86d1d46f-0 eJtvEZ"
+                      height="100%"
+                      name="cross"
+                      width="100%"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <use
+                        xlink:href="/images/sprite/sprite.svg#cross"
+                      />
+                    </svg>
+                  </span>
+                </span>
+                <svg
+                  aria-hidden="true"
+                  class="sc-86d1d46f-0 jOBmUC sc-62671a58-0 duckYG"
+                  height="100%"
+                  name="underline-1"
+                  width="100%"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <use
+                    xlink:href="/images/sprite/sprite.svg#underline-1"
+                  />
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-fqkvVR sc-gsFSXq cqwgvE JfWBw"
+        data-testid="modal-content"
+      >
+        test_content
+      </div>
+      <div
+        class="sc-fqkvVR sc-gsFSXq eGXHla XmDSc"
+        data-testid="modal-footer"
+      >
+        test_footer
+      </div>
+    </div>
+  </dialog>
+</div>
+`;

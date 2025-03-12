@@ -2,7 +2,7 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import { Meta, StoryObj } from "@storybook/react";
 
 import { CurricFiltersTiers as Component } from "./CurricFiltersTiers";
-import { basicSetup } from "./CurricFiltersTiers.fixtures";
+import { ks4Setup } from "./CurricFiltersTiers.fixtures";
 
 const meta: Meta<typeof Component> = {
   component: Component,
@@ -14,7 +14,7 @@ type Story = StoryObj<typeof Component>;
 
 export const CurricFiltersTiers: Story = {
   args: {
-    data: basicSetup,
+    data: ks4Setup,
     filters: {
       childSubjects: [],
       subjectCategories: [],

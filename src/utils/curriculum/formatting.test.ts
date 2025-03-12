@@ -6,7 +6,16 @@ import {
   buildPageTitle,
   formatKeystagesShort,
   joinWords,
+  pluralizeUnits,
+  getYearSubheadingText,
+  subjectTitleWithCase,
 } from "./formatting";
+
+import { createYearData } from "@/fixtures/curriculum/yearData";
+import { createFilter } from "@/fixtures/curriculum/filters";
+import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
+import { createChildSubject } from "@/fixtures/curriculum/childSubject";
+import { createTier } from "@/fixtures/curriculum/tier";
 
 describe("getYearGroupTitle", () => {
   describe("no suffix", () => {
@@ -317,5 +326,110 @@ describe("joinWords", () => {
 
   it("with empty words", () => {
     expect(joinWords(["one", "", "two", "", "three"])).toEqual("one two three");
+  });
+});
+
+describe("pluralizeUnits", () => {
+  it("one", () => {
+    expect(pluralizeUnits(1)).toEqual("unit");
+  });
+  it("many", () => {
+    expect(pluralizeUnits(2)).toEqual("units");
+  });
+  it("none", () => {
+    expect(pluralizeUnits(0)).toEqual("");
+  });
+});
+
+describe("getYearSubheadingText", () => {
+  const subCat1 = createSubjectCategory({ id: 1, title: "SUB_CAT_1" });
+  const childSubject1 = createChildSubject({ subject_slug: "CHILD_SUBJECT_1" });
+  const tier1 = createTier({ tier_slug: "TIER_1" });
+  const data = {
+    "7": createYearData({
+      childSubjects: [childSubject1],
+      subjectCategories: [subCat1],
+      tiers: [tier1],
+    }),
+  };
+
+  it("all year", () => {
+    const result = getYearSubheadingText(
+      data,
+      "all",
+      createFilter({
+        years: ["7"],
+        subjectCategories: [String(subCat1.id)],
+        childSubjects: [childSubject1.subject_slug],
+        tiers: [tier1.tier_slug],
+      }),
+    );
+    expect(result).toEqual(null);
+  });
+
+  it("subjectCategories", () => {
+    const result = getYearSubheadingText(
+      data,
+      "7",
+      createFilter({
+        years: ["7"],
+        subjectCategories: [String(subCat1.id)],
+      }),
+    );
+    expect(result).toEqual("SUB_CAT_1");
+  });
+
+  it("sortChildSubjects", () => {
+    const result = getYearSubheadingText(
+      data,
+      "7",
+      createFilter({
+        years: ["7"],
+        childSubjects: [childSubject1.subject_slug],
+      }),
+    );
+    expect(result).toEqual("CHILD_SUBJECT_1");
+  });
+
+  it("tiers", () => {
+    const result = getYearSubheadingText(
+      data,
+      "7",
+      createFilter({
+        years: ["7"],
+        tiers: [tier1.tier_slug],
+      }),
+    );
+    expect(result).toEqual("TIER_1");
+  });
+
+  it("all", () => {
+    const result = getYearSubheadingText(
+      data,
+      "7",
+      createFilter({
+        years: ["7"],
+        subjectCategories: [String(subCat1.id)],
+        childSubjects: [childSubject1.subject_slug],
+        tiers: [tier1.tier_slug],
+      }),
+    );
+    expect(result).toEqual("SUB_CAT_1, CHILD_SUBJECT_1, TIER_1");
+  });
+});
+
+describe("subjectTitleWithCase", () => {
+  it("language", () => {
+    expect(subjectTitleWithCase("english")).toEqual("English");
+    expect(subjectTitleWithCase("french")).toEqual("French");
+    expect(subjectTitleWithCase("spanish")).toEqual("Spanish");
+    expect(subjectTitleWithCase("german")).toEqual("German");
+  });
+
+  it("non-language", () => {
+    expect(subjectTitleWithCase("science")).toEqual("science");
+    expect(subjectTitleWithCase("physical education")).toEqual(
+      "physical education",
+    );
   });
 });

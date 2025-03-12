@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { isEqual } from "lodash";
 
-import { ENABLE_FILTERS_IN_SEARCH_PARAMS } from "./constants";
 import { findFirstMatchingFeatures } from "./features";
 import {
   sortChildSubjects,
@@ -21,6 +20,7 @@ import {
 } from "./types";
 import { isVisibleUnit } from "./isVisibleUnit";
 import { byKeyStageSlug, presentAtKeyStageSlugs } from "./keystage";
+import { isCurricRoutingEnabled } from "./flags";
 
 import {
   CurriculumUnitsFormattedData,
@@ -97,7 +97,7 @@ export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
   };
 }
 
-function filtersToQuery(filter: CurriculumFilters) {
+export function filtersToQuery(filter: CurriculumFilters) {
   const out: Record<string, string> = {};
   for (const [key, value] of Object.entries(filter)) {
     if (value.length > 0) {
@@ -107,9 +107,9 @@ function filtersToQuery(filter: CurriculumFilters) {
   return out;
 }
 
-function mergeInParams(
+export function mergeInFilterParams(
   filter: CurriculumFilters,
-  params?: ReadonlyURLSearchParams | null,
+  params?: ReadonlyURLSearchParams | URLSearchParams | null,
 ) {
   const out = { ...filter };
   if (params) {
@@ -132,14 +132,14 @@ export function useFilters(
 
   const [filters, setLocalFilters] = useState<CurriculumFilters>(() => {
     const dflt = defaultFiltersFn();
-    if (ENABLE_FILTERS_IN_SEARCH_PARAMS) {
-      return mergeInParams(dflt, searchParams);
+    if (isCurricRoutingEnabled()) {
+      return mergeInFilterParams(dflt, searchParams);
     } else {
       return dflt;
     }
   });
   const setFilters = (newFilters: CurriculumFilters) => {
-    if (ENABLE_FILTERS_IN_SEARCH_PARAMS) {
+    if (isCurricRoutingEnabled()) {
       const url =
         location.pathname +
         "?" +
@@ -202,18 +202,38 @@ export function isHighlightedUnit(
   return unit.threads.some((t) => selectedThreads.includes(t.slug));
 }
 
+export function filteringFromYears(
+  yearData: YearData[number],
+  filters: CurriculumFilters,
+) {
+  const { childSubjects, subjectCategories, tiers } = yearData!;
+  const output = {
+    childSubjects: childSubjects.length > 0 ? filters.childSubjects : undefined,
+    subjectCategories:
+      childSubjects.length < 1 && subjectCategories.length > 0
+        ? filters.subjectCategories
+        : undefined,
+    tiers: tiers.length > 0 ? filters.tiers : undefined,
+    years: filters.years,
+    threads: filters.threads,
+  };
+  return output;
+}
+
 export function highlightedUnitCount(
   yearData: YearData,
   filters: CurriculumFilters,
   selectedThreads: Thread["slug"][] | null,
 ): number {
   let count = 0;
-  Object.keys(yearData).forEach((year) => {
-    const units = yearData[year]?.units;
+  Object.entries(yearData).forEach(([year, yearDataItem]) => {
+    const units = yearDataItem.units;
     if (units && filters.years.includes(year)) {
       units.forEach((unit) => {
+        const yearBasedFilters = filteringFromYears(yearDataItem, filters);
+
         if (
-          isVisibleUnit(filters, year, unit) &&
+          isVisibleUnit(yearBasedFilters, year, unit) &&
           isHighlightedUnit(unit, selectedThreads)
         ) {
           count++;

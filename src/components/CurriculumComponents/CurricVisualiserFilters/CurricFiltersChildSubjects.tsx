@@ -53,9 +53,9 @@ export function CurricFiltersChildSubjects({
             $mt="space-between-none"
             $mb={["space-between-m", "space-between-s"]}
           >
-            Exam subject{" "}
+            Exam subject
             {childSubjectsAt.length === 1
-              ? `(${childSubjectsAt[0]?.toUpperCase()})`
+              ? ` (${childSubjectsAt[0]?.toUpperCase()})`
               : ""}
           </OakHeading>
           <OakRadioGroup

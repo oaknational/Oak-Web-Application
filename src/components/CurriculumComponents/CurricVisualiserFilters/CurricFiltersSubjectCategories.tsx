@@ -62,9 +62,9 @@ export function CurricFiltersSubjectCategories({
             $mt="space-between-none"
             $mb={["space-between-m", "space-between-s"]}
           >
-            Category{" "}
+            Category
             {subjectCategoriesAt.length === 1
-              ? `(${subjectCategoriesAt[0]?.toUpperCase()})`
+              ? ` (${subjectCategoriesAt[0]?.toUpperCase()})`
               : ""}
           </OakHeading>
 
