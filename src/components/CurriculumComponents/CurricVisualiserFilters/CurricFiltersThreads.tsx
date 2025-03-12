@@ -7,7 +7,7 @@ import { RadioGroup, RadioButton } from "../OakComponentsKitchen/SimpleRadio";
 import { Thread, CurriculumFilters } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { pluralizeUnits } from "@/utils/curriculum/formatting";
+import { joinWords, pluralizeUnits } from "@/utils/curriculum/formatting";
 
 export type CurricFiltersThreadsProps = {
   filters: CurriculumFilters;
@@ -56,11 +56,9 @@ export function CurricFiltersThreads({
           </OakBox>
           {threadOptions.map((threadOption) => {
             const isSelected = isSelectedThread(threadOption);
-            const highlightedCount = highlightedUnitCount(
-              yearData,
-              filters,
-              filters.threads,
-            );
+            const highlightedCount = !isSelected
+              ? 0
+              : highlightedUnitCount(yearData, filters, filters.threads);
 
             return (
               <OakBox
@@ -87,9 +85,11 @@ export function CurricFiltersThreads({
                     {isSelected && (
                       <>
                         <br />
-                        {highlightedCount}
-                        {pluralizeUnits(highlightedCount)}
-                        highlighted
+                        {joinWords([
+                          highlightedCount,
+                          pluralizeUnits(highlightedCount),
+                          "highlighted",
+                        ])}
                       </>
                     )}
                   </OakSpan>

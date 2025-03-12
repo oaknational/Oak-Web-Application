@@ -139,9 +139,7 @@ export function useFilters(
     }
   });
   const setFilters = (newFilters: CurriculumFilters) => {
-    console.log("isCurricRoutingEnabled()", isCurricRoutingEnabled());
     if (isCurricRoutingEnabled()) {
-      console.log(">>> HERE");
       const url =
         location.pathname +
         "?" +
@@ -204,18 +202,38 @@ export function isHighlightedUnit(
   return unit.threads.some((t) => selectedThreads.includes(t.slug));
 }
 
+export function filteringFromYears(
+  yearData: YearData[number],
+  filters: CurriculumFilters,
+) {
+  const { childSubjects, subjectCategories, tiers } = yearData!;
+  const output = {
+    childSubjects: childSubjects.length > 0 ? filters.childSubjects : undefined,
+    subjectCategories:
+      childSubjects.length < 1 && subjectCategories.length > 0
+        ? filters.subjectCategories
+        : undefined,
+    tiers: tiers.length > 0 ? filters.tiers : undefined,
+    years: filters.years,
+    threads: filters.threads,
+  };
+  return output;
+}
+
 export function highlightedUnitCount(
   yearData: YearData,
   filters: CurriculumFilters,
   selectedThreads: Thread["slug"][] | null,
 ): number {
   let count = 0;
-  Object.keys(yearData).forEach((year) => {
-    const units = yearData[year]?.units;
+  Object.entries(yearData).forEach(([year, yearDataItem]) => {
+    const units = yearDataItem.units;
     if (units && filters.years.includes(year)) {
       units.forEach((unit) => {
+        const yearBasedFilters = filteringFromYears(yearDataItem, filters);
+
         if (
-          isVisibleUnit(filters, year, unit) &&
+          isVisibleUnit(yearBasedFilters, year, unit) &&
           isHighlightedUnit(unit, selectedThreads)
         ) {
           count++;

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import {
   diffFilters,
+  filteringFromYears,
   filtersToQuery,
   getDefaultChildSubjectForYearGroup,
   getDefaultFilter,
@@ -873,5 +874,82 @@ describe("highlightedUnitCount", () => {
       thread3.slug,
     ]);
     expect(result).toEqual(2);
+  });
+});
+
+describe("filteringFromYears", () => {
+  const tierHigher = createTier({ tier_slug: "higher" });
+  const subCat1 = createSubjectCategory({ id: 1 });
+  const childSubject = createChildSubject({ subject_slug: "biology" });
+
+  it("no filters", () => {
+    const result = filteringFromYears(
+      createYearData({
+        tiers: [tierHigher],
+        subjectCategories: [subCat1],
+      }),
+      createFilter(),
+    );
+    expect(result).toEqual({
+      childSubjects: undefined,
+      subjectCategories: [],
+      threads: [],
+      tiers: [],
+      years: [],
+    });
+  });
+
+  it("without tiers", () => {
+    const filter = createFilter({
+      tiers: [tierHigher.tier_slug],
+      childSubjects: [childSubject.subject_slug],
+    });
+    const result = filteringFromYears(
+      createYearData({
+        childSubjects: [childSubject],
+      }),
+      filter,
+    );
+    expect(result).toEqual({
+      ...filter,
+      tiers: undefined,
+      subjectCategories: undefined,
+    });
+  });
+
+  it("without child subjects", () => {
+    const filter = createFilter({
+      tiers: [tierHigher.tier_slug],
+      childSubjects: [childSubject.subject_slug],
+    });
+    const result = filteringFromYears(
+      createYearData({
+        tiers: [tierHigher],
+      }),
+      filter,
+    );
+    expect(result).toEqual({
+      ...filter,
+      childSubjects: undefined,
+      subjectCategories: undefined,
+    });
+  });
+
+  it("without subject categories", () => {
+    const filter = createFilter({
+      tiers: [tierHigher.tier_slug],
+      subjectCategories: [String(subCat1.id)],
+    });
+    const result = filteringFromYears(
+      createYearData({
+        tiers: [tierHigher],
+      }),
+      filter,
+    );
+    expect(result).toEqual({
+      ...filter,
+      childSubjects: undefined,
+      subjectCategories: undefined,
+    });
   });
 });
