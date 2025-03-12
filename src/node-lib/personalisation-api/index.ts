@@ -1,13 +1,17 @@
 import { GraphQLClient } from "graphql-request";
-import { useAuth } from "@clerk/nextjs";
+
+import getServerConfig from "../getServerConfig";
 
 import { getSdk } from "@/node-lib/personalisation-api/generated/sdk";
 import { GetToken } from "clerk";
-import getBrowserConfig from "@/browser-lib/getBrowserConfig";
 
-const personalisationEndpoint = getBrowserConfig("personalisationApiUrl");
+const personalisationEndpoint = getServerConfig("personalisationApiUrl");
+const personalisationApiKey = getServerConfig("personalisationApiAuthKey");
 
-export const createAuthenticatedSdk = async (getToken: GetToken) => {
+// Api for use with authenticated Clerk user
+export const getAuthenticatedPersonalisationApi = async (
+  getToken: GetToken,
+) => {
   const token = await getToken({ template: "hasura" });
   const graphqlClient = new GraphQLClient(personalisationEndpoint, {
     headers: { authorization: `Bearer ${token}` },
@@ -15,17 +19,14 @@ export const createAuthenticatedSdk = async (getToken: GetToken) => {
   return getSdk(graphqlClient);
 };
 
-export const usePersonalisationApi = () => {
-  const { getToken, userId } = useAuth();
-  if (!userId) {
-    return null;
-  }
-  return {
-    createUser: async () =>
-      createAuthenticatedSdk(getToken).then((sdk) =>
-        sdk.createUser({ userId }),
-      ),
-    getUser: async () =>
-      createAuthenticatedSdk(getToken).then((sdk) => sdk.getUser({ userId })),
-  };
+// Api for use in authenticated Clerk webhook endpoint
+export const getWebhookPersonalisationApi = async (userId: string) => {
+  const graphqlClient = new GraphQLClient(personalisationEndpoint, {
+    headers: {
+      "X-Hasura-Admin-Secret": personalisationApiKey,
+      "X-Hasura-Role": "webhook",
+      "X-Hasura-User-Id": userId,
+    },
+  });
+  return getSdk(graphqlClient);
 };
