@@ -1,3 +1,10 @@
+# [1.707.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.706.1...v1.707.0) (2025-03-12)
+
+
+### Features
+
+* add no index to download and share pages ([823740d](https://github.com/oaknational/Oak-Web-Application/commit/823740d7eda39a041fe34b9ccbb71fe5e5e36235))
+
 ## [1.706.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.706.0...v1.706.1) (2025-03-11)
 
 
