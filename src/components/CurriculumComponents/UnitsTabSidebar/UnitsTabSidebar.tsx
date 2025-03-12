@@ -13,11 +13,11 @@ import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
-import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
-import { Unit } from "@/utils/curriculum/types";
+import { Unit, Lesson } from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { transformOwaLinkProps } from "@/components/SharedComponents/OwaLink";
+import { areLessonsAvailable } from "@/utils/curriculum/lessons";
 
 const IconButtonFocusVisible = styled(IconButton)`
   :focus ${IconFocusUnderline} {
@@ -33,14 +33,6 @@ const IconButtonFocusVisible = styled(IconButton)`
     filter: drop-shadow(1px 2px 0 rgb(0 0 0));
   }
 `;
-
-export const areLessonsAvailable = (lessons: Lesson[] | null): boolean => {
-  return (
-    (lessons &&
-      lessons.some((lesson: Lesson) => lesson._state === "published")) ||
-    false
-  );
-};
 
 type ModalProps = HTMLProps<HTMLButtonElement> & {
   displayModal: boolean;
