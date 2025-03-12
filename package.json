@@ -14,6 +14,7 @@
     "cc": "commit",
     "cca": "git add . && commit",
     "check-types": "tsc --noEmit",
+    "type-check": "tsc --noEmit",
     "config:pull": "node ./scripts/build/pull_config/index.cjs",
     "config:push:dev": "node ./scripts/build/push_config/index.cjs --environment development",
     "config:push:prod": "node ./scripts/build/push_config/index.cjs --environment production",
