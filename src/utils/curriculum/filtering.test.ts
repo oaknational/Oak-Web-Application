@@ -1,4 +1,6 @@
-import { ReadonlyURLSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { renderHook } from "@testing-library/react";
+import { useRouter } from "next/router";
 
 import {
   diffFilters,
@@ -9,11 +11,14 @@ import {
   getDefaultTiersForYearGroup,
   getFilterData,
   getNumberOfFiltersApplied,
+  highlightedUnitCount,
   isHighlightedUnit,
   mergeInFilterParams,
   shouldDisplayFilter,
+  useFilters,
 } from "./filtering";
 import { CurriculumFilters, Unit } from "./types";
+import { isCurricRoutingEnabled } from "./flags";
 
 import { createUnit } from "@/fixtures/curriculum/unit";
 import {
@@ -26,6 +31,18 @@ import { createTier } from "@/fixtures/curriculum/tier";
 import { createThread } from "@/fixtures/curriculum/thread";
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { createYearData } from "@/fixtures/curriculum/yearData";
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
+jest.mock("next/navigation", () => ({
+  useSearchParams: jest.fn(),
+}));
+
+jest.mock("./flags", () => ({
+  isCurricRoutingEnabled: jest.fn(() => false),
+}));
 
 describe("filtering", () => {
   describe("getDefaultChildSubjectForYearGroup", () => {
@@ -708,7 +725,7 @@ describe("mergeInFilterParams", () => {
 
     const result = mergeInFilterParams(
       filter,
-      new ReadonlyURLSearchParams(
+      new URLSearchParams(
         "?childSubjects=child_subject_1&subjectCategories=1&tiers=tier_1&years=1&threads=thread1",
       ),
     );
@@ -732,7 +749,7 @@ describe("mergeInFilterParams", () => {
 
     const result = mergeInFilterParams(
       filter,
-      new ReadonlyURLSearchParams(
+      new URLSearchParams(
         "?childSubjects=child_subject_1,child_subject_2&subjectCategories=1,2&tiers=tier_1,tier_2&years=1,2&threads=thread1,thread2",
       ),
     );
@@ -743,5 +760,118 @@ describe("mergeInFilterParams", () => {
       years: ["1", "2"],
       threads: ["thread1", "thread2"],
     });
+  });
+});
+
+describe("useFilters", () => {
+  describe("without routing", () => {
+    it("initial state", () => {
+      const defaultFilter = createFilter();
+      const { result } = renderHook(() => {
+        return useFilters(() => {
+          return defaultFilter;
+        });
+      });
+      const [filters] = result.current;
+      expect(filters).toEqual(defaultFilter);
+    });
+
+    it("updating state", () => {
+      const defaultFilter = createFilter();
+      const updateFilterValue = createFilter({});
+      const { result, rerender } = renderHook(() => {
+        return useFilters(() => {
+          return defaultFilter;
+        });
+      });
+
+      const [, setFilters] = result.current;
+      setFilters(updateFilterValue);
+      rerender();
+      const [filters] = result.current;
+      expect(filters).toEqual(updateFilterValue);
+    });
+  });
+
+  describe("with routing", () => {
+    it("initial state", () => {
+      (isCurricRoutingEnabled as jest.Mock).mockReturnValue(true);
+      (useSearchParams as jest.Mock).mockReturnValue(
+        new URLSearchParams("?tiers=foundation"),
+      );
+
+      const defaultFilter = createFilter();
+      const { result } = renderHook(() => {
+        return useFilters(() => {
+          return defaultFilter;
+        });
+      });
+      const [filters] = result.current;
+      expect(filters).toEqual({
+        ...defaultFilter,
+        tiers: ["foundation"],
+      });
+    });
+
+    it("updating state", () => {
+      (isCurricRoutingEnabled as jest.Mock).mockReturnValue(true);
+      const replaceMock = jest.fn();
+      (useRouter as jest.Mock).mockReturnValue({ replace: replaceMock });
+
+      const defaultFilter = createFilter();
+      const updateFilterValue = createFilter({
+        tiers: ["foundation"],
+      });
+      const { result, rerender } = renderHook(() => {
+        return useFilters(() => {
+          return defaultFilter;
+        });
+      });
+
+      const [, setFilters] = result.current;
+      setFilters(updateFilterValue);
+
+      expect(replaceMock).toHaveBeenCalledWith(
+        "/?tiers=foundation",
+        undefined,
+        { shallow: true },
+      );
+
+      rerender();
+      const [filters] = result.current;
+      expect(filters).toEqual(updateFilterValue);
+    });
+  });
+});
+
+describe("highlightedUnitCount", () => {
+  const thread1 = createThread({ slug: "thread1" });
+  const thread2 = createThread({ slug: "thread2" });
+  const thread3 = createThread({ slug: "thread3" });
+  const thread4 = createThread({ slug: "thread4" });
+  const filters = createFilter({
+    years: ["7"],
+  });
+  const yearData = {
+    "7": createYearData({
+      units: [
+        createUnit({ threads: [thread1] }),
+        createUnit({ threads: [thread2] }),
+        createUnit({ threads: [thread3] }),
+      ],
+    }),
+  };
+
+  it("no units highlighted", () => {
+    const result = highlightedUnitCount(yearData, filters, [thread4.slug]);
+    expect(result).toEqual(0);
+  });
+
+  it("many units highlighted", () => {
+    const result = highlightedUnitCount(yearData, filters, [
+      thread1.slug,
+      thread3.slug,
+    ]);
+    expect(result).toEqual(2);
   });
 });

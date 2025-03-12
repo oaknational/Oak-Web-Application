@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { isEqual } from "lodash";
 
-import { ENABLE_FILTERS_IN_SEARCH_PARAMS } from "./constants";
 import { findFirstMatchingFeatures } from "./features";
 import {
   sortChildSubjects,
@@ -21,6 +20,7 @@ import {
 } from "./types";
 import { isVisibleUnit } from "./isVisibleUnit";
 import { byKeyStageSlug, presentAtKeyStageSlugs } from "./keystage";
+import { isCurricRoutingEnabled } from "./flags";
 
 import {
   CurriculumUnitsFormattedData,
@@ -109,7 +109,7 @@ export function filtersToQuery(filter: CurriculumFilters) {
 
 export function mergeInFilterParams(
   filter: CurriculumFilters,
-  params?: ReadonlyURLSearchParams | null,
+  params?: ReadonlyURLSearchParams | URLSearchParams | null,
 ) {
   const out = { ...filter };
   if (params) {
@@ -132,14 +132,16 @@ export function useFilters(
 
   const [filters, setLocalFilters] = useState<CurriculumFilters>(() => {
     const dflt = defaultFiltersFn();
-    if (ENABLE_FILTERS_IN_SEARCH_PARAMS) {
+    if (isCurricRoutingEnabled()) {
       return mergeInFilterParams(dflt, searchParams);
     } else {
       return dflt;
     }
   });
   const setFilters = (newFilters: CurriculumFilters) => {
-    if (ENABLE_FILTERS_IN_SEARCH_PARAMS) {
+    console.log("isCurricRoutingEnabled()", isCurricRoutingEnabled());
+    if (isCurricRoutingEnabled()) {
+      console.log(">>> HERE");
       const url =
         location.pathname +
         "?" +
