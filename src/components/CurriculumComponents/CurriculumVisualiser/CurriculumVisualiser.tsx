@@ -5,8 +5,8 @@ import styled from "styled-components";
 import Alert from "../OakComponentsKitchen/Alert";
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
-import { areLessonsAvailable } from "../UnitsTabSidebar/UnitsTabSidebar";
 
+import { areLessonsAvailable } from "@/utils/curriculum/lessons";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Button from "@/components/SharedComponents/Button/Button";

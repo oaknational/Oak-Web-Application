@@ -12,7 +12,7 @@ import {
   CurriculumUnitDetails,
 } from "@/components/CurriculumComponents/CurriculumUnitDetails";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { notUndefined, Unit, YearData } from "@/utils/curriculum/types";
+import { notUndefined, Unit, YearData, Lesson } from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { getTitleFromSlug } from "@/fixtures/shared/helper";
@@ -26,12 +26,6 @@ type UnitModalProps = {
   setUnitVariantID: (x: number | null) => void;
   unitOptionsAvailable: boolean;
   selectedThread: string | null;
-};
-
-export type Lesson = {
-  title: string;
-  slug?: string;
-  _state?: string;
 };
 
 const UnitModal: FC<UnitModalProps> = ({

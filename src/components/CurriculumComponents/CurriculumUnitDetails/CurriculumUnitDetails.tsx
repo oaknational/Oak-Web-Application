@@ -9,9 +9,8 @@ import {
 } from "@oaknational/oak-components";
 
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
-import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import CurriculumUnitDetailsAccordion from "@/components/CurriculumComponents/CurriculumUnitDetailsAccordion";
-import { Thread } from "@/utils/curriculum/types";
+import { Thread, Lesson } from "@/utils/curriculum/types";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 
 export type CurriculumUnitDetailsProps = {
