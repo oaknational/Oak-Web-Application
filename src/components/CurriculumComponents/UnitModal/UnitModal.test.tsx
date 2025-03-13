@@ -1,4 +1,5 @@
 import userEvent from "@testing-library/user-event";
+import { act } from "@testing-library/react";
 
 import UnitModal from "./UnitModal";
 import {
@@ -8,6 +9,17 @@ import {
 } from "./UnitModal.fixture";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
+
+const unitOverviewExplored = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      unitOverviewExplored: (...args: unknown[]) =>
+        unitOverviewExplored(...args),
+    },
+  }),
+}));
 
 describe("Unit modal", () => {
   beforeEach(() => {
@@ -19,6 +31,7 @@ describe("Unit modal", () => {
     const { getByText } = renderWithTheme(
       <UnitModal
         setCurrentUnitLessons={stateFn}
+        selectedThread={null}
         displayModal={true}
         unitData={mockUnit}
         unitOptionsAvailable={false}
@@ -34,6 +47,7 @@ describe("Unit modal", () => {
     const { getAllByTestId, getByText } = renderWithTheme(
       <UnitModal
         setCurrentUnitLessons={stateFn}
+        selectedThread={null}
         displayModal={true}
         unitData={mockUnit}
         unitOptionsAvailable={false}
@@ -54,6 +68,7 @@ describe("Unit modal", () => {
     const { getByText } = renderWithTheme(
       <UnitModal
         setCurrentUnitLessons={stateFn}
+        selectedThread={null}
         displayModal={true}
         unitData={mockUnit}
         unitOptionsAvailable={false}
@@ -72,6 +87,7 @@ describe("Unit modal", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockUnit}
           unitOptionsAvailable={false}
@@ -88,6 +104,7 @@ describe("Unit modal", () => {
       const { getByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockUnit}
           unitOptionsAvailable={false}
@@ -106,6 +123,7 @@ describe("Unit modal", () => {
       const { getByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
@@ -123,6 +141,7 @@ describe("Unit modal", () => {
       const { queryByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
@@ -139,6 +158,7 @@ describe("Unit modal", () => {
       const { getAllByTestId } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
@@ -155,6 +175,7 @@ describe("Unit modal", () => {
       const { getByText } = renderWithTheme(
         <UnitModal
           setCurrentUnitLessons={stateFn}
+          selectedThread={null}
           displayModal={true}
           unitData={mockOptionalityUnit}
           unitOptionsAvailable={true}
@@ -174,6 +195,7 @@ describe("Unit modal", () => {
         renderWithTheme(
           <UnitModal
             setCurrentUnitLessons={stateFn}
+            selectedThread={null}
             displayModal={true}
             unitData={mockOptionalityUnit}
             unitOptionsAvailable={true}
@@ -198,6 +220,63 @@ describe("Unit modal", () => {
         expect(getByText("Threads")).toBeInTheDocument();
       } else {
         throw new Error("Optionality button not found");
+      }
+    });
+  });
+
+  describe("analytics: unitOverviewExplored", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("sends a tracking event when unit modal accordian is clicked", async () => {
+      const mockLessons = [
+        { title: "Test lesson" },
+        { title: "Test lesson 2" },
+      ];
+
+      const { getAllByTestId } = renderWithTheme(
+        <UnitModal
+          setCurrentUnitLessons={stateFn}
+          selectedThread={null}
+          displayModal={true}
+          unitData={{ ...mockUnit, lessons: mockLessons }}
+          unitOptionsAvailable={false}
+          setUnitOptionsAvailable={stateFn}
+          setUnitVariantID={stateFn}
+          yearData={mockYearData}
+        />,
+      );
+      const unitAccordion = getAllByTestId("expand-accordian-button");
+
+      expect(unitAccordion).toHaveLength(3);
+
+      const lessonsInUnit = unitAccordion[0];
+
+      expect(lessonsInUnit).toHaveTextContent("Lessons in unit");
+
+      if (lessonsInUnit) {
+        await act(async () => {
+          await userEvent.click(lessonsInUnit);
+        });
+
+        expect(unitOverviewExplored).toHaveBeenCalledTimes(1);
+        expect(unitOverviewExplored).toHaveBeenCalledWith({
+          platform: "owa",
+          analyticsUseCase: "Teacher",
+          engagementIntent: "explore",
+          eventVersion: "2.0.0",
+          product: "curriculum visualiser",
+          componentType: "lessons_in_unit",
+          subjectSlug: "maths",
+          subjectTitle: "Maths",
+          threadSlug: "",
+          threadTitle: "",
+          unitName: "Composition of numbers 6 to 10",
+          unitSlug: "composition-of-numbers-6-to-10",
+          yearGroupName: "Year 1",
+          yearGroupSlug: "year-1",
+        });
       }
     });
   });
