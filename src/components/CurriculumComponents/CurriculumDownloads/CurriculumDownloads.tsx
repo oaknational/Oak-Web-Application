@@ -28,7 +28,8 @@ import RadioGroup from "@/components/SharedComponents/RadioButtons/RadioGroup";
 import { useHubspotSubmit } from "@/components/TeacherComponents/hooks/downloadAndShareHooks/useHubspotSubmit";
 import TermsAgreementForm from "@/components/TeacherComponents/TermsAgreementForm";
 import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
-import { KeyStageTitleValueType } from "@/browser-lib/avo/Avo";
+import { KeyStageTitleValueType, PhaseValueType } from "@/browser-lib/avo/Avo";
+import { getPhaseFromCategory } from "@/utils/curriculum/formatting";
 
 export type CurriculumDownload = {
   label: string;
@@ -163,16 +164,23 @@ function CurriculumDownloads(
     };
 
     track.curriculumResourcesDownloaded({
-      keyStageTitle: downloadCategoryAsKeyStageTitle(category),
+      platform: "owa",
+      product: "curriculum resources",
+      engagementIntent: "explore",
+      componentType: "download_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: analyticsUseCase,
+      emailSupplied: email != null,
+      resourceType: selectedResourcesForTracking,
+      schoolOption: schoolOption,
+      schoolName: schoolName,
       subjectTitle: selectedDownload
         ? selectedDownload.label
         : "None Specified",
-      resourceType: selectedResourcesForTracking,
-      analyticsUseCase,
+      phase: getPhaseFromCategory(category) as PhaseValueType,
       schoolUrn,
-      schoolName,
-      schoolOption,
-      emailSupplied: !!email,
+      keyStageSlug: category,
+      keyStageTitle: downloadCategoryAsKeyStageTitle(category),
     });
   };
 

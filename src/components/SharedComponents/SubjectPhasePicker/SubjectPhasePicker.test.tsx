@@ -202,8 +202,13 @@ describe("Component - subject phase picker", () => {
     expect(curriculumVisualiserAccessed).toHaveBeenCalledWith({
       subjectTitle: "English",
       subjectSlug: "english",
+      platform: "owa",
+      product: "curriculum visualiser",
+      engagementIntent: "use",
+      componentType: "curriculum_visualiser_button",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
       phase: "primary",
-      analyticsUseCase: null,
     });
   });
 

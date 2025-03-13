@@ -2,6 +2,7 @@ import { YearData } from "./types";
 
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Phase } from "@/node-lib/curriculum-api-2023";
+import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 
 export function getYearGroupTitle(
   yearData: YearData,
@@ -120,4 +121,11 @@ export function buildPageTitle(
 
 export function joinWords(str: string[]) {
   return str.filter((str) => str !== "").join(" ");
+}
+
+export function getPhaseFromCategory(input: DownloadCategory) {
+  if (input === "KS3" || input === "KS4") {
+    return "secondary";
+  }
+  return "primary";
 }

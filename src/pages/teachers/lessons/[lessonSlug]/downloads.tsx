@@ -41,6 +41,7 @@ const LessonDownloadsCanonicalPage = (
           title: seoTitle,
           description: "Lesson downloads",
         }),
+        noIndex: true,
       }}
     >
       <LessonDownloads isCanonical lesson={curriculumData} />
