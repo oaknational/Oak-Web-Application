@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { OakSpan, OakBox } from "@oaknational/oak-components";
+import { OakSpan, OakBox, OakSecondaryLink } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 
-import Button from "@/components/SharedComponents/Button/Button";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -175,18 +174,21 @@ export function CurricMobileStickyHeader({
           <OakBox
             $bb={"border-solid-s"}
             $borderColor={"grey30"}
-            $ph={["inner-padding-m", "inner-padding-none"]}
-            $pb={"inner-padding-m"}
+            $ph={"inner-padding-m"}
+            $pv={"inner-padding-m"}
+            $mv="space-between-s"
           >
-            <Button
-              label={`Filter and highlight`}
-              icon="chevron-right"
-              $iconPosition="trailing"
-              variant="buttonStyledAsLink"
-              $mt={16}
-              onClick={onOpenModal}
-              data-testid="mobile-highlight-thread"
-            />
+            <OakSpan $font={"body-1-bold"}>
+              <OakSecondaryLink
+                element="button"
+                iconName="chevron-right"
+                isTrailingIcon
+                onClick={onOpenModal}
+                data-testid="mobile-highlight-thread"
+              >
+                Filter and highlight
+              </OakSecondaryLink>
+            </OakSpan>
             {textItemsDescribingFilter.length > 0 && (
               <OakBox
                 $textOverflow={"ellipsis"}
@@ -198,12 +200,7 @@ export function CurricMobileStickyHeader({
                   (textItemDescribingFilter, index) => {
                     return (
                       <>
-                        {index > 0 && (
-                          <OakBox $display={"inline"} $mh="space-between-ssx">
-                            {" "}
-                            •{" "}
-                          </OakBox>
-                        )}
+                        {index > 0 && <OakBox $display={"inline"}> • </OakBox>}
                         <OakBox
                           key={index}
                           $display={"inline"}
