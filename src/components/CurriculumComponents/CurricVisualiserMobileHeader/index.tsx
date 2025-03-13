@@ -172,8 +172,6 @@ export function CurricMobileStickyHeader({
       >
         <OakBox>
           <OakBox
-            $bb={"border-solid-s"}
-            $borderColor={"grey30"}
             $ph={"inner-padding-m"}
             $pv={"inner-padding-m"}
             $mv="space-between-s"
@@ -226,6 +224,7 @@ export function CurricMobileStickyHeader({
             )}
           </OakBox>
           <OakBox
+            $bt={"border-solid-s"}
             $bb={"border-solid-s"}
             $borderColor={"grey30"}
             $width={"100%"}
