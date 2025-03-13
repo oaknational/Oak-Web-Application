@@ -1,3 +1,10 @@
+# [1.710.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.709.0...v1.710.0) (2025-03-13)
+
+
+### Features
+
+* the SubjectListingCard can have it’s background overridden ([792c223](https://github.com/oaknational/Oak-Web-Application/commit/792c22337c82b6f77678cfbb4c38696b055318c3))
+
 # [1.709.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.708.0...v1.709.0) (2025-03-12)
 
 
