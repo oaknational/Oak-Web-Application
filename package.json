@@ -113,7 +113,7 @@
     "path-browserify": "^1.0.1",
     "path-to-regexp": "^6.2.1n",
     "posthog-js": "^1.181.0",
-    "posthog-node": "^4.2.1",
+    "posthog-node": "^4.10.1",
     "querystring-es3": "^0.2.1",
     "react": "^18.3.1",
     "react-aria": "^3.35.1",
