@@ -1,5 +1,6 @@
-import { isVisibleUnit, PartialFilters } from "./isVisibleUnit";
+import { isVisibleUnit } from "./isVisibleUnit";
 
+import { createFilter } from "@/fixtures/curriculum/filters";
 import { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
 
 const baseUnit = {
@@ -26,10 +27,10 @@ describe("isVisibleUnit", () => {
   it("empty", () => {
     expect(
       isVisibleUnit(
-        {
+        createFilter({
           years: ["10"],
           threads: [],
-        },
+        }),
         "7",
         baseUnit,
       ),
@@ -44,13 +45,11 @@ describe("isVisibleUnit", () => {
       tier_slug: null,
     } as CombinedCurriculumData["units"][number];
 
-    const filters: PartialFilters = {
-      subjectCategories: [],
+    const filters = createFilter({
       childSubjects: ["biology"],
       tiers: ["foundation"],
       years: ["10"],
-      threads: [],
-    };
+    });
     expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
   });
 
@@ -65,13 +64,10 @@ describe("isVisibleUnit", () => {
       ],
     };
 
-    const filters: PartialFilters = {
+    const filters = createFilter({
       subjectCategories: ["1"],
-      childSubjects: [],
-      tiers: [],
       years: ["10"],
-      threads: [],
-    };
+    });
     expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
   });
 
@@ -88,13 +84,12 @@ describe("isVisibleUnit", () => {
       tier_slug: "foundation",
     };
 
-    const filters: PartialFilters = {
+    const filters = createFilter({
       subjectCategories: ["1"],
-      childSubjects: [],
       tiers: ["foundation"],
       years: ["10"],
       threads: [],
-    };
+    });
     expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
   });
 });
