@@ -35,6 +35,8 @@ const downloadLessonResources = async ({
     authToken,
   });
 
+  console.log("downloadResourcesLink", downloadResourcesLink);
+
   if (downloadResourcesLink) {
     createAndClickHiddenDownloadLink(downloadResourcesLink);
   }

@@ -240,6 +240,7 @@ export const lessonDownloadsListSchema = z.array(
       z.array(z.object({ copyright_info: z.string() })),
       z.boolean().optional().nullish(),
     ]),
+    assetId: z.number().optional(),
   }),
 );
 

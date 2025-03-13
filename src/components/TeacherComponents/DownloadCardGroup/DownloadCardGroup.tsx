@@ -14,13 +14,14 @@ import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/
 
 export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsPageData["downloads"];
+  additionalFiles?: LessonDownloadsPageData["additionalFiles"];
   control: Control<ResourceFormProps>;
   hasError?: boolean;
   triggerForm: () => void;
 };
 
 const DownloadCardArea = styled(Box)<{ area: string }>`
-  grid-area: ${(props) => props.area};
+  // grid-area: ${(props) => props.area};
   margin-bottom: 16px;
 `;
 
@@ -45,6 +46,7 @@ export const getGridArea = (
 
 const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
   downloads,
+  additionalFiles,
   control,
   hasError = false,
   triggerForm,
@@ -59,6 +61,10 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
     ? sortDownloadResources(downloads)
     : undefined;
 
+  const combinedDownloads = additionalFiles
+    ? sortedDownloads?.concat(additionalFiles)
+    : sortedDownloads;
+
   return (
     <OakGrid
       $position="relative"
@@ -66,12 +72,17 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
       $gridTemplateColumns={["1fr", "max-content max-content"]}
       $cg={"space-between-s"}
       $gridTemplateAreas={[
-        '"lesson-guide-pdf" "presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx"',
-        '"lesson-guide-pdf lesson-guide-pdf" "presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx"',
+        '"lesson-guide-pdf" "presentation" "presentationOrWorksheet" "worksheet-pdf" "worksheet-pptx" "intro-quiz-questions" "intro-quiz-answers" "exit-quiz-questions" "exit-quiz-answers" "supplementary-pdf" "supplementary-docx" "additional-files" "additional-files"',
+        '"lesson-guide-pdf lesson-guide-pdf" "presentation presentationOrWorksheet" "worksheet-pdf worksheet-pptx" "intro-quiz-questions intro-quiz-answers" "exit-quiz-questions exit-quiz-answers" "supplementary-pdf supplementary-docx" "additional-files additional-files"',
       ]}
     >
-      {sortedDownloads?.map((download) => {
+      {combinedDownloads?.map((download) => {
         if (download.exists && !download.forbidden) {
+          const downloadType =
+            download.type === "additional-files"
+              ? `${download.type}-${download.assetId}`
+              : download.type;
+
           return (
             <DownloadCardArea
               area={getGridArea(
@@ -79,7 +90,11 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                 presentationExists,
                 worksheetsLength,
               )}
-              key={download.type}
+              key={
+                download.type === "additional-files"
+                  ? `${download.type}-${download.assetId}`
+                  : download.type
+              }
             >
               <Controller
                 control={control}
@@ -92,30 +107,31 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                     e: ChangeEvent<HTMLInputElement>,
                   ) => {
                     if (e.target.checked) {
-                      onChange([...fieldValue, download.type]);
+                      onChange([...fieldValue, downloadType]);
                     } else {
                       onChange(
                         fieldValue.filter(
                           (val: DownloadResourceType | string) =>
-                            val !== download.type,
+                            val !== downloadType,
                         ),
                       );
                     }
                     // Trigger the form to reevaluate errors
                     triggerForm();
                   };
+
                   return (
                     <ResourceCard
-                      id={download.type}
+                      id={downloadType}
                       name={name}
                       label={download.label}
                       subtitle={download.ext.toUpperCase()}
                       resourceType={download.type}
                       onChange={onChangeHandler}
-                      checked={fieldValue.includes(download.type)}
+                      checked={fieldValue.includes(downloadType)}
                       onBlur={onBlur}
                       hasError={hasError}
-                      data-testid={`download-card-${download.type}`}
+                      data-testid={`download-card-${downloadType}`}
                     />
                   );
                 }}

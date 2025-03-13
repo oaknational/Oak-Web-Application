@@ -218,7 +218,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
           (additionalResource) =>
             additionalResource.exists && !additionalResource.forbidden,
         )
-        .map((resource) => resource.assetId);
+        .map((resource) => `${resource.type}-${resource.assetId.toString()}`);
     }
   }, [additionalResources, props.type]);
 
@@ -269,7 +269,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
   );
 
   const [activeAdditonalFiles, setActiveAdditonalFiles] = useState<
-    number[] | undefined
+    string[] | undefined
   >(getInitialAdditionalFilesState());
 
   useEffect(() => {
@@ -282,7 +282,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
 
   const hasResources = getInitialResourcesState().length > 0;
 
-  const onSelectAllClick = () => setValue("resources", activeResources);
+  const onSelectAllClick = () =>
+    setValue("resources", activeResources.concat(activeAdditonalFiles || []));
   const onDeselectAllClick = () => setValue("resources", []);
 
   const handleEditDetailsCompletedClick = () => {
@@ -310,6 +311,9 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     };
     const queryResults = preselectedQuery();
     let preselected: "all" | ResourceType[] | undefined;
+    const allAvailableResources = getInitialResourcesState().concat(
+      getInitialAdditionalFilesState() || [],
+    );
 
     if (isPreselectedShareType(queryResults)) {
       preselected = getPreselectedShareResourceTypes(queryResults);
@@ -323,11 +327,12 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     if (preselected && props.type !== "curriculum") {
       setPreselectAll(preselected === "all");
       preselected === "all"
-        ? setValue("resources", getInitialResourcesState())
+        ? setValue("resources", allAvailableResources)
         : setValue("resources", preselected);
     }
   }, [
     getInitialResourcesState,
+    getInitialAdditionalFilesState,
     props.type,
     router.query.preselected,
     resources,
