@@ -344,7 +344,6 @@ export function tierForFilter(
   filter: CurriculumFilters,
 ) {
   const slug = filter.tiers[0];
-  console.log({ slug });
   if (!slug) return;
   return Object.entries(data.yearData)
     .flatMap(([, yearDataItem]) => {
