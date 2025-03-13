@@ -9,7 +9,7 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 const render = renderWithProviders();
 const curriculumThreadHighlighted = jest.fn();
 const yearGroupSelected = jest.fn();
-const unitInformationViewed = jest.fn();
+const unitOverviewAccessed = jest.fn();
 
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
@@ -18,8 +18,8 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
       curriculumThreadHighlighted: (...args: unknown[]) =>
         curriculumThreadHighlighted(...args),
       yearGroupSelected: (...args: unknown[]) => yearGroupSelected(...args),
-      unitInformationViewed: (...args: unknown[]) =>
-        unitInformationViewed(...args),
+      unitOverviewAccessed: (...args: unknown[]) =>
+        unitOverviewAccessed(...args),
     },
   }),
 }));
@@ -208,16 +208,24 @@ describe("visualiser", () => {
       expect(sidebar).toBeInTheDocument();
     });
 
-    expect(unitInformationViewed).toHaveBeenCalledTimes(1);
-    expect(unitInformationViewed).toHaveBeenCalledWith({
+    expect(unitOverviewAccessed).toHaveBeenCalledTimes(1);
+    expect(unitOverviewAccessed).toHaveBeenCalledWith({
       unitName: "Step into the unknown: fiction reading and creative writing",
       unitSlug: "step-into-the-unknown-fiction-reading-and-creative-writing",
-      yearGroupName: "7",
+      yearGroupName: "Year 7",
       yearGroupSlug: "7",
       subjectSlug: "english",
       subjectTitle: "English",
       unitHighlighted: false,
       analyticsUseCase: null,
+      componentType: "unit_info_button",
+      engagementIntent: "use",
+      eventVersion: "2.0.0",
+      isUnitPublished: false,
+      platform: "owa",
+      product: "curriculum visualiser",
+      threadSlug: null,
+      threadTitle: null,
     });
   });
 });

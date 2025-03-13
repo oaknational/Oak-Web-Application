@@ -185,8 +185,10 @@ export const transformedLessonOverviewData = (
     ),
     subjectSlug: browseData.programmeFields.subjectSlug,
     subjectTitle: browseData.programmeFields.subject,
+    subjectParent: browseData.programmeFields.subjectParent || null,
     yearTitle: browseData.programmeFields.yearDescription,
     examBoardTitle: browseData.programmeFields.examboard,
+    examBoardSlug: browseData.programmeFields.examboardSlug,
     downloads: getDownloadsArray({
       hasExitQuiz: content.exitQuiz && Boolean(content.exitQuiz.length > 1),
       hasStarterQuiz:

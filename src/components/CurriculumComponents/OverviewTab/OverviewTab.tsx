@@ -7,6 +7,7 @@ import {
   OakFlex,
   OakBox,
   OakTertiaryOLNav,
+  OakSecondaryLink,
 } from "@oaknational/oak-components";
 import {
   PortableText,
@@ -17,6 +18,7 @@ import styled from "styled-components";
 import slugify from "slugify";
 import { useRouter } from "next/router";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -24,10 +26,11 @@ import { CurriculumOverviewMVData } from "@/node-lib/curriculum-api-2023";
 import { CurriculumOverviewSanityData } from "@/common-lib/cms-types";
 import CMSImage from "@/components/SharedComponents/CMSImage";
 import CMSVideo from "@/components/SharedComponents/CMSVideo";
-import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
 import { findContainingAnchor } from "@/utils/curriculum/dom";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type OverviewTabProps = {
   data: {
@@ -117,7 +120,12 @@ const blockHeadingComponents: PortableTextComponents["block"] = {
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const router = useRouter();
-  const { curriculumCMSInfo } = props.data;
+  const { track } = useAnalytics();
+
+  const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
+    props.data;
+  const { subjectTitle } = curriculumInfo;
+  const { subjectSlug, phaseSlug } = curriculumSelectionSlugs;
   const {
     curriculumExplainer,
     curriculumPartnerOverviews,
@@ -161,12 +169,27 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     title: partnerTitle,
   });
 
+  const handleAnalytics = () => {
+    track.curriculumExplainerExplored({
+      subjectTitle: subjectTitle,
+      subjectSlug: subjectSlug,
+      platform: "owa",
+      product: "curriculum visualiser",
+      engagementIntent: "explore",
+      componentType: "explainer_tab",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      phase: phaseSlug as PhaseValueType,
+    });
+  };
+
   const onClickNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (e.target instanceof HTMLElement) {
       const anchor = findContainingAnchor(e.target);
       if (anchor) {
         const url = new URL(anchor.href);
+        handleAnalytics();
         router.replace(url.hash);
         goToAnchor(url.hash);
       }
@@ -297,17 +320,19 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 Video guide
               </OakHeading>
               <OakP $font={"body-1"}>{videoExplainer}</OakP>
-              <ButtonAsLink
-                variant="buttonStyledAsLink"
-                label="Read more about our new curriculum"
-                page={"blog-single"}
-                blogSlug="our-approach-to-curriculum"
-                icon="chevron-right"
-                background={"white"}
-                $iconPosition="trailing"
-                iconBackground="white"
-                $textAlign={"start"}
-              />
+              <OakP $font={"body-2-bold"} $color="black">
+                <OakSecondaryLink
+                  href={resolveOakHref({
+                    page: "blog-single",
+                    blogSlug: "our-approach-to-curriculum",
+                  })}
+                  iconName="chevron-right"
+                  isTrailingIcon={true}
+                  color="black"
+                >
+                  Read more about our new curriculum
+                </OakSecondaryLink>
+              </OakP>
             </Flex>
           </OakFlex>
         )}
