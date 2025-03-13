@@ -211,14 +211,17 @@ export function CurricMobileStickyHeader({
                   },
                 )}
                 {filters.threads.length > 0 && (
-                  <OakBox
-                    $display={"inline"}
-                    data-testid="highlighted-units-box-mobile"
-                  >
-                    <OakSpan aria-live="polite" aria-atomic="true">
-                      {highlightedUnits} units highlighted
-                    </OakSpan>
-                  </OakBox>
+                  <>
+                    <OakBox $display={"inline"}> • </OakBox>
+                    <OakBox
+                      $display={"inline"}
+                      data-testid="highlighted-units-box-mobile"
+                    >
+                      <OakSpan aria-live="polite" aria-atomic="true">
+                        {highlightedUnits} units highlighted
+                      </OakSpan>
+                    </OakBox>
+                  </>
                 )}
               </OakBox>
             )}
