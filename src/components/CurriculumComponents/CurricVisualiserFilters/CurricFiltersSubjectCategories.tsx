@@ -58,8 +58,9 @@ export function CurricFiltersSubjectCategories({
           <OakHeading
             id="subject-categories-label"
             tag="h4"
-            $font={"heading-6"}
-            $mb="space-between-s"
+            $font={["heading-7", "heading-6"]}
+            $mt="space-between-none"
+            $mb={["space-between-m", "space-between-s"]}
           >
             Category
             {subjectCategoriesAt.length === 1
