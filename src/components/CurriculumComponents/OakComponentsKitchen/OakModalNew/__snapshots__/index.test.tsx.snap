@@ -3,21 +3,21 @@
 exports[`OakModalNew should match snapshot 1`] = `
 <div>
   <dialog
-    class="sc-7c25aa5d-0 easTDE"
+    class="sc-93859e58-0 dHlumw"
     data-testid="modal"
   >
     <div
       class="sc-fqkvVR sc-gsFSXq bXpmro bOTBNE"
     >
       <div
-        class="sc-fqkvVR sc-gsFSXq eLuStd dNHjLk"
+        class="sc-fqkvVR sc-gsFSXq kUmAOC dNHjLk"
       >
-        <h1
-          class="sc-dhKdcB bnPSzI"
+        <h3
+          class="sc-dhKdcB kxDsEU"
           data-testid="modal-title"
         >
           test_title
-        </h1>
+        </h3>
         <div
           class="sc-fqkvVR RMQib"
         >

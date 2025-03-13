@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { OakHeading, OakBox, OakP } from "@oaknational/oak-components";
+import { OakHeading, OakBox } from "@oaknational/oak-components";
 
 import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
 import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
@@ -111,14 +111,6 @@ export default function UnitsTab({
             Unit sequence
           </OakHeading>
         </ScreenReaderOnly>
-        <OakP
-          $mh={["space-between-s", "space-between-none"]}
-          $mb={"space-between-xl"}
-          data-testid="units-heading"
-        >
-          Units that make up our curricula are fully sequenced, and aligned to
-          the national curriculum.
-        </OakP>
         {isMobile && (
           <CurricVisualiserFiltersMobile
             selectedYear={mobileSelectedYear}

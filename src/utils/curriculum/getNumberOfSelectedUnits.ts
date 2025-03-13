@@ -1,21 +1,23 @@
-import { isVisibleUnit, PartialFilters } from "./isVisibleUnit";
-import { Unit, YearData } from "./types";
+import { filteringFromYears } from "./filtering";
+import { isVisibleUnit } from "./isVisibleUnit";
+import { CurriculumFilters, Unit, YearData } from "./types";
 
 import { dedupUnits } from "@/components/CurriculumComponents/CurriculumVisualiser";
 
 export function getNumberOfSelectedUnits(
   yearData: YearData,
   selectedYear: string | null,
-  filter: PartialFilters,
+  filters: CurriculumFilters,
 ): number {
   let count = 0;
 
-  Object.keys(yearData).forEach((year) => {
-    const units = yearData[year]?.units;
+  Object.entries(yearData).forEach(([year, yearDataItem]) => {
+    const units = yearDataItem.units;
+    const yearBasedFilters = filteringFromYears(yearDataItem!, filters);
 
     if (units && (selectedYear === "all" || selectedYear === year)) {
       const filteredUnits = units.filter((unit: Unit) => {
-        return isVisibleUnit(filter, year, unit);
+        return isVisibleUnit(yearBasedFilters, year, unit);
       });
 
       const dedupedUnits = dedupUnits(filteredUnits);
