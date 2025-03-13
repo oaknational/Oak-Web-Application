@@ -319,6 +319,7 @@ export function subjectCategoryForFilter(
 ) {
   const id = filter.subjectCategories[0];
   if (!id) return;
+
   return Object.entries(data.yearData)
     .flatMap(([, yearDataItem]) => {
       return yearDataItem.subjectCategories;
@@ -366,7 +367,9 @@ export function buildTextDescribingFilter(
   filters: CurriculumFilters,
 ) {
   const fields = [
-    subjectCategoryForFilter(data, filters)?.title,
+    filters.subjectCategories[0] === "-1"
+      ? "All categories"
+      : subjectCategoryForFilter(data, filters)?.title,
     childSubjectForFilter(data, filters)?.subject,
     tierForFilter(data, filters)?.tier,
     threadForFilter(data, filters)?.title,
