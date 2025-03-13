@@ -142,7 +142,7 @@ async function main() {
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
     NEXT_PUBLIC_DOWNLOAD_API_URL:
       process.env.NEXT_PUBLIC_DOWNLOAD_API_URL || oakConfig.oak.downloadApiUrl,
-    // User data
+    // Personalisation data
     PERSONALISATION_API_URL:
       process.env.PERSONALISATION_API_URL ||
       oakConfig.oak.personalisationApiUrl,
