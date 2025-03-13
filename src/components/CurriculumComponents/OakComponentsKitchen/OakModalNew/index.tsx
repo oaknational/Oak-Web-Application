@@ -58,10 +58,9 @@ export function OakModalNew({
           $position={"relative"}
           $justifyContent={"center"}
           $alignItems={"center"}
-          $bb={"border-solid-s"}
           $borderColor={"grey30"}
         >
-          <OakHeading tag="h1" $font={"body-1"} data-testid="modal-title">
+          <OakHeading tag="h3" $font={"heading-1"} data-testid="modal-title">
             {title}
           </OakHeading>
           <OakBox $position={"absolute"} $right={"all-spacing-4"}>

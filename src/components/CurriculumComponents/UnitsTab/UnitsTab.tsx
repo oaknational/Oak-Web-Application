@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { OakHeading, OakBox, OakP } from "@oaknational/oak-components";
+import { OakHeading, OakBox } from "@oaknational/oak-components";
 
 import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
 import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
@@ -55,14 +55,19 @@ export default function UnitsTab({
   function trackSelectThread(thread: Thread): void {
     if (trackingData) {
       const { subjectTitle, subjectSlug, phaseSlug } = trackingData;
-      track.curriculumThreadHighlighted({
-        subjectTitle,
-        subjectSlug,
+      track.programmeThreadHighlighted({
+        subjectTitle: subjectTitle,
+        subjectSlug: subjectSlug,
         threadTitle: thread.title,
         threadSlug: thread.slug,
-        phase: phaseSlug as PhaseValueType,
-        order: thread.order,
+        platform: "owa",
+        product: "curriculum visualiser",
+        componentType: "unit_sequence_tab",
+        eventVersion: "2.0.0",
+        engagementIntent: "refine",
         analyticsUseCase: analyticsUseCase,
+        phase: phaseSlug as PhaseValueType,
+        order: thread.order, // int (min 0)
       });
     }
   }
@@ -106,14 +111,6 @@ export default function UnitsTab({
             Unit sequence
           </OakHeading>
         </ScreenReaderOnly>
-        <OakP
-          $mh={["space-between-s", "space-between-none"]}
-          $mb={"space-between-xl"}
-          data-testid="units-heading"
-        >
-          Units that make up our curricula are fully sequenced, and aligned to
-          the national curriculum.
-        </OakP>
         {isMobile && (
           <CurricVisualiserFiltersMobile
             selectedYear={mobileSelectedYear}
@@ -144,6 +141,7 @@ export default function UnitsTab({
               yearData={yearData}
               setUnitData={setUnitData}
               setVisibleMobileYearRefID={setVisibleMobileYearRefID}
+              threadOptions={threadOptions}
             />
           }
         />
