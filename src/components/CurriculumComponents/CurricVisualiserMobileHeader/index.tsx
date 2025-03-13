@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { OakFlex, OakSpan, OakBox } from "@oaknational/oak-components";
+import { OakSpan, OakBox, OakSecondaryLink } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import { CurricVisualiserFiltersProps } from "../CurricVisualiserFiltersDesktop";
 
-import Box from "@/components/SharedComponents/Box";
-import Button from "@/components/SharedComponents/Button/Button";
 import ButtonGroup from "@/components/SharedComponents/ButtonGroup";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { Thread } from "@/utils/curriculum/types";
-import { highlightedUnitCount } from "@/utils/curriculum/filtering";
+import {
+  buildTextDescribingFilter,
+  highlightedUnitCount,
+} from "@/utils/curriculum/filtering";
 import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 export type CurriculumVisualiserFiltersMobileProps =
@@ -102,9 +102,7 @@ export function CurricMobileStickyHeader({
   const { analyticsUseCase } = useAnalyticsPageProps();
   const [lockYear, setLockYear] = useState<string | null>(null);
 
-  const { yearData, threadOptions, yearOptions } = data;
-
-  const selectedThread = filters.threads[0];
+  const { yearData, yearOptions } = data;
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
@@ -120,8 +118,8 @@ export function CurricMobileStickyHeader({
         yearGroupSlug: year,
         subjectTitle: subjectTitle,
         subjectSlug: subjectSlug,
-        threadTitle: selectedThread,
-        threadSlug: selectedThread,
+        threadTitle: filters.threads[0],
+        threadSlug: filters.threads[0],
         platform: "owa",
         product: "curriculum visualiser",
         engagementIntent: "refine",
@@ -134,9 +132,6 @@ export function CurricMobileStickyHeader({
       });
     }
   }
-
-  const threadDef = (selectedThread: Thread["slug"]) =>
-    threadOptions.find((t) => t.slug === selectedThread);
 
   function isSelectedYear(yearOption: string) {
     return selectedYear === yearOption;
@@ -171,6 +166,8 @@ export function CurricMobileStickyHeader({
     }
   }
 
+  const textItemsDescribingFilter = buildTextDescribingFilter(data, filters);
+
   return (
     <OakBox
       $position={["sticky", "static"]}
@@ -186,41 +183,62 @@ export function CurricMobileStickyHeader({
       >
         <OakBox>
           <OakBox
-            $bb={"border-solid-s"}
-            $borderColor={"grey30"}
-            $ph={["inner-padding-m", "inner-padding-none"]}
-            $pb={"inner-padding-m"}
+            $ph={"inner-padding-m"}
+            $pv={"inner-padding-m"}
+            $mv="space-between-s"
           >
-            <Button
-              label={`Filter and highlight`}
-              icon="chevron-right"
-              $iconPosition="trailing"
-              variant="buttonStyledAsLink"
-              $mt={16}
-              onClick={onOpenModal}
-              data-testid="mobile-highlight-thread"
-            />
-            {selectedThread && (
-              <OakFlex>
-                <Box
-                  $textOverflow={"ellipsis"}
-                  $whiteSpace={"nowrap"}
-                  $overflow={"hidden"}
-                  data-testid="highlighted-threads-mobile"
-                  $maxWidth={"50%"}
-                >
-                  {threadDef(selectedThread)?.title}
-                </Box>
-                <OakBox $mh="space-between-ssx"> • </OakBox>
-                <OakBox data-testid="highlighted-units-box-mobile">
-                  <OakSpan aria-live="polite" aria-atomic="true">
-                    {highlightedUnits} units highlighted
-                  </OakSpan>
-                </OakBox>
-              </OakFlex>
+            <OakSpan $font={"body-1-bold"}>
+              <OakSecondaryLink
+                element="button"
+                iconName="chevron-right"
+                isTrailingIcon
+                onClick={onOpenModal}
+                data-testid="mobile-highlight-thread"
+              >
+                Filter and highlight
+              </OakSecondaryLink>
+            </OakSpan>
+            {textItemsDescribingFilter.length > 0 && (
+              <OakBox
+                $textOverflow={"ellipsis"}
+                $whiteSpace={"nowrap"}
+                $maxWidth={"100%"}
+                $overflow={"hidden"}
+              >
+                {textItemsDescribingFilter.map(
+                  (textItemDescribingFilter, index) => {
+                    return (
+                      <>
+                        {index > 0 && <OakBox $display={"inline"}> • </OakBox>}
+                        <OakBox
+                          key={index}
+                          $display={"inline"}
+                          data-testid="highlighted-threads-mobile"
+                        >
+                          {textItemDescribingFilter}
+                        </OakBox>
+                      </>
+                    );
+                  },
+                )}
+                {filters.threads.length > 0 && (
+                  <>
+                    <OakBox $display={"inline"}> • </OakBox>
+                    <OakBox
+                      $display={"inline"}
+                      data-testid="highlighted-units-box-mobile"
+                    >
+                      <OakSpan aria-live="polite" aria-atomic="true">
+                        {highlightedUnits} units highlighted
+                      </OakSpan>
+                    </OakBox>
+                  </>
+                )}
+              </OakBox>
             )}
           </OakBox>
           <OakBox
+            $bt={"border-solid-s"}
             $bb={"border-solid-s"}
             $borderColor={"grey30"}
             $width={"100%"}

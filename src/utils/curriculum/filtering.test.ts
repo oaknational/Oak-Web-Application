@@ -3,6 +3,8 @@ import { renderHook } from "@testing-library/react";
 import { useRouter } from "next/router";
 
 import {
+  buildTextDescribingFilter,
+  childSubjectForFilter,
   diffFilters,
   filteringFromYears,
   filtersToQuery,
@@ -16,6 +18,9 @@ import {
   isHighlightedUnit,
   mergeInFilterParams,
   shouldDisplayFilter,
+  subjectCategoryForFilter,
+  threadForFilter,
+  tierForFilter,
   useFilters,
 } from "./filtering";
 import { CurriculumFilters, Unit } from "./types";
@@ -951,5 +956,143 @@ describe("filteringFromYears", () => {
       childSubjects: undefined,
       subjectCategories: undefined,
     });
+  });
+});
+
+describe("subjectCategoryFor*", () => {
+  const subCat1 = createSubjectCategory({ id: 1 });
+  const subCat2 = createSubjectCategory({ id: 2 });
+  const subCat3 = createSubjectCategory({ id: 3 });
+  const childSubject1 = createChildSubject({ subject_slug: "cs1" });
+  const childSubject2 = createChildSubject({ subject_slug: "cs2" });
+  const childSubject3 = createChildSubject({ subject_slug: "cs3" });
+  const tier1 = createTier({ tier_slug: "tier1" });
+  const tier2 = createTier({ tier_slug: "tier2" });
+  const tier3 = createTier({ tier_slug: "tier3" });
+  const thread1 = createThread({ slug: "thread1" });
+  const thread2 = createThread({ slug: "thread2" });
+  const thread3 = createThread({ slug: "thread3" });
+  const data: CurriculumUnitsFormattedData = {
+    yearData: {
+      "7": {
+        units: [],
+        childSubjects: [childSubject1, childSubject2, childSubject3],
+        subjectCategories: [subCat1, subCat2, subCat3],
+        tiers: [tier1, tier2, tier3],
+        pathways: [],
+        isSwimming: false,
+        groupAs: null,
+      },
+    },
+    yearOptions: ["7"],
+    threadOptions: [thread1, thread2, thread3],
+  };
+  it("subjectCategoryForFilter", () => {
+    const result = subjectCategoryForFilter(
+      data,
+      createFilter({
+        subjectCategories: [String(subCat2.id)],
+      }),
+    );
+    expect(result).toEqual(subCat2);
+  });
+  it("childSubjectForFilter", () => {
+    const result = childSubjectForFilter(
+      data,
+      createFilter({
+        childSubjects: [childSubject2.subject_slug],
+      }),
+    );
+    expect(result).toEqual(childSubject2);
+  });
+  it("tierForFilter", () => {
+    const result = tierForFilter(
+      data,
+      createFilter({
+        tiers: [tier2.tier_slug],
+      }),
+    );
+    expect(result).toEqual(tier2);
+  });
+  it("threadForFilter", () => {
+    const result = threadForFilter(
+      data,
+      createFilter({
+        threads: [thread2.slug],
+      }),
+    );
+    expect(result).toEqual(thread2);
+  });
+});
+
+describe("buildTextDescribingFilter", () => {
+  const subCat1 = createSubjectCategory({ id: 1, title: "SubjectCategory1" });
+  const childSubject1 = createChildSubject({ subject_slug: "ChildSubject1" });
+  const tier1 = createTier({ tier_slug: "tier1" });
+  const thread1 = createThread({ slug: "thread1" });
+  const data: CurriculumUnitsFormattedData = {
+    yearData: {
+      "7": {
+        units: [],
+        childSubjects: [childSubject1],
+        subjectCategories: [subCat1],
+        tiers: [tier1],
+        pathways: [],
+        isSwimming: false,
+        groupAs: null,
+      },
+    },
+    yearOptions: ["7"],
+    threadOptions: [thread1],
+  };
+
+  it("subjectCategory", () => {
+    const result = buildTextDescribingFilter(
+      data,
+      createFilter({ subjectCategories: [String(subCat1.id)] }),
+    );
+    expect(result).toEqual(["SubjectCategory1"]);
+  });
+
+  it("childSubject", () => {
+    const result = buildTextDescribingFilter(
+      data,
+      createFilter({ childSubjects: [childSubject1.subject_slug] }),
+    );
+    expect(result).toEqual(["ChildSubject1"]);
+  });
+
+  it("tier", () => {
+    const result = buildTextDescribingFilter(
+      data,
+      createFilter({ tiers: [tier1.tier_slug] }),
+    );
+    expect(result).toEqual(["Tier1"]);
+  });
+
+  it("thread", () => {
+    const result = buildTextDescribingFilter(
+      data,
+      createFilter({ threads: [thread1.slug] }),
+    );
+    expect(result).toEqual(["Thread1"]);
+  });
+
+  it("all", () => {
+    const result = buildTextDescribingFilter(
+      data,
+      createFilter({
+        subjectCategories: [String(subCat1.id)],
+        childSubjects: [childSubject1.subject_slug],
+        tiers: [tier1.tier_slug],
+        threads: [thread1.slug],
+      }),
+    );
+    expect(result).toEqual([
+      "SubjectCategory1",
+      "ChildSubject1",
+      "Tier1",
+      "Thread1",
+    ]);
   });
 });
