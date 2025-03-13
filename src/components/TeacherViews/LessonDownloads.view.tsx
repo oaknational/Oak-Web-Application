@@ -99,6 +99,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonTitle,
     lessonSlug,
     downloads,
+    additionalFiles,
     expired,
     isSpecialist,
     copyrightContent,
@@ -177,7 +178,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     hubspotLoaded,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
-    additionalFilesResources: [], // @TODO update with data
+    additionalFilesResources: additionalFiles,
     type: "download",
   });
 

@@ -94,25 +94,30 @@ const lessonDownloadsQuery =
     );
 
     if (isCanonicalLesson) {
-      const canonicalLessonDownloads = constructCanonicalLessonDownloads(
+      const canonicalLessonDownloads = constructCanonicalLessonDownloads({
         downloads,
+        additionalFiles: [],
         lessonSlug,
-        parsedBrowseData,
-        is_legacy,
-        copyright,
-        { geoRestricted: geo_restricted, loginRequired: login_required },
-      );
+        browseData: parsedBrowseData,
+        isLegacy: is_legacy,
+        lessonCopyRight: copyright,
+        restrictions: {
+          geoRestricted: geo_restricted,
+          loginRequired: login_required,
+        },
+      });
       return lessonDownloadsCanonicalSchema.parse(
         canonicalLessonDownloads,
       ) as T;
     } else {
-      const lessonDownloads = constructLessonDownloads(
+      const lessonDownloads = constructLessonDownloads({
         downloads,
+        additionalFiles: [],
         lessonSlug,
         parsedBrowseData,
-        copyright,
+        lessonCopyRight: copyright,
         expired,
-      );
+      });
 
       return lessonDownloadsSchema.parse({
         ...lessonDownloads,

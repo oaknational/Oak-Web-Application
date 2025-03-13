@@ -1,25 +1,37 @@
 import { LessonDownloadsCanonical } from "./lessonDownloadsCanonical.schema";
-import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
+import {
+  LessonDownloadsListSchema,
+  LessonAdditionalFilesListSchema,
+} from "./lessonDownloads.schema";
 import { RawSyntheticUVLesson } from "./rawSyntheticUVLesson.schema";
 
 import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { constructPathwayLesson } from "@/node-lib/curriculum-api-2023/helpers";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
-const constructCanonicalLessonDownloads = (
-  downloads: LessonDownloadsListSchema,
-  lessonSlug: string,
-  browseData: RawSyntheticUVLesson[],
-  isLegacy: boolean,
-  lessonCopyRight: { copyrightInfo: string }[] | null,
+const constructCanonicalLessonDownloads = ({
+  downloads,
+  additionalFiles,
+  lessonSlug,
+  browseData,
+  isLegacy,
+  lessonCopyRight,
+  restrictions,
+}: {
+  downloads: LessonDownloadsListSchema;
+  additionalFiles?: LessonAdditionalFilesListSchema;
+  lessonSlug: string;
+  browseData: RawSyntheticUVLesson[];
+  isLegacy: boolean;
+  lessonCopyRight?: { copyrightInfo: string }[] | null;
   restrictions: {
     geoRestricted: boolean | null;
     loginRequired: boolean | null;
-  },
-): LessonDownloadsCanonical => {
+  };
+}): LessonDownloadsCanonical => {
   const baseDownloads = {
     downloads: downloads,
-    additionalFiles: [],
+    additionalFiles: additionalFiles,
     isLegacy: isLegacy,
     lessonSlug: lessonSlug,
     lessonTitle: browseData[0]?.lesson_data.title,

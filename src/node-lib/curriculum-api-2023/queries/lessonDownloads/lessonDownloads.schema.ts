@@ -6,6 +6,7 @@ import {
 
 import {
   baseLessonDownloadsSchema,
+  lessonAdditionalFilesListSchema,
   lessonDownloadsListSchema,
   lessonListSchema,
   lessonPathwaySchema,
@@ -45,6 +46,9 @@ export const lessonDownloadsQueryRaw = z.object({
 
 export type LessonDownloadsListSchema = z.infer<
   typeof lessonDownloadsListSchema
+>;
+export type LessonAdditionalFilesListSchema = z.infer<
+  typeof lessonAdditionalFilesListSchema
 >;
 export type LessonDownloadsPageData = z.infer<typeof lessonDownloadsSchema>;
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
