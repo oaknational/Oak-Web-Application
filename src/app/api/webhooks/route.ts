@@ -5,9 +5,11 @@ import { NextRequest } from "next/server";
 
 import getServerConfig from "@/node-lib/getServerConfig";
 import { getWebhookPersonalisationApi } from "@/node-lib/personalisation-api";
+import errorReporter from "@/common-lib/error-reporter";
 
 export async function POST(req: NextRequest) {
   const signingSecret = getServerConfig("clerkSigningSecret");
+  const reportError = errorReporter("webhooks");
 
   if (!signingSecret) {
     throw new Error(
@@ -26,6 +28,7 @@ export async function POST(req: NextRequest) {
 
   // If there are no headers, error out
   if (!svix_id || !svix_timestamp || !svix_signature) {
+    reportError(new Error("Missing Svix headers"));
     return new Response("Error: Missing Svix headers", {
       status: 400,
     });
@@ -44,8 +47,9 @@ export async function POST(req: NextRequest) {
       "svix-signature": svix_signature,
     }) as WebhookEvent;
   } catch (err) {
-    // TODO: report error
-    console.error("Error: Could not verify webhook:", err);
+    reportError(err, {
+      message: "Could not verify request headers",
+    });
     return new Response("Error: Verification error", {
       status: 400,
     });
@@ -60,10 +64,10 @@ export async function POST(req: NextRequest) {
 
     try {
       await personalisationApi.createUser({ userId: id, sourceApp });
-      console.log("User added to database");
     } catch (error) {
-      // TODO: report error
-      console.error("Error: Could not create user:", error);
+      reportError(error, {
+        message: "Failed to create user in database",
+      });
       return new Response("Error: Could not create user", {
         status: 500,
       });
