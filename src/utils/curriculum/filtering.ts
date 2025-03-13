@@ -315,8 +315,9 @@ export function getNumberOfFiltersApplied(
 
 export function subjectCategoryForFilter(
   data: CurriculumUnitsFormattedData,
-  id?: string,
+  filter: CurriculumFilters,
 ) {
+  const id = filter.subjectCategories[0];
   if (!id) return;
   return Object.entries(data.yearData)
     .flatMap(([, yearDataItem]) => {
@@ -327,8 +328,9 @@ export function subjectCategoryForFilter(
 
 export function childSubjectForFilter(
   data: CurriculumUnitsFormattedData,
-  slug?: string,
+  filter: CurriculumFilters,
 ) {
+  const slug = filter.childSubjects[0];
   if (!slug) return;
   return Object.entries(data.yearData)
     .flatMap(([, yearDataItem]) => {
@@ -339,8 +341,10 @@ export function childSubjectForFilter(
 
 export function tierForFilter(
   data: CurriculumUnitsFormattedData,
-  slug?: string,
+  filter: CurriculumFilters,
 ) {
+  const slug = filter.tiers[0];
+  console.log({ slug });
   if (!slug) return;
   return Object.entries(data.yearData)
     .flatMap(([, yearDataItem]) => {
@@ -351,8 +355,9 @@ export function tierForFilter(
 
 export function threadForFilter(
   data: CurriculumUnitsFormattedData,
-  slug?: string,
+  filter: CurriculumFilters,
 ) {
+  const slug = filter.threads[0];
   if (!slug) return;
   return data.threadOptions.find((thread) => thread.slug === slug);
 }
@@ -362,10 +367,10 @@ export function buildTextDescribingFilter(
   filters: CurriculumFilters,
 ) {
   const fields = [
-    subjectCategoryForFilter(data, filters.subjectCategories[0])?.title,
-    childSubjectForFilter(data, filters.childSubjects[0])?.subject,
-    tierForFilter(data, filters.tiers[0])?.tier,
-    threadForFilter(data, filters.threads[0])?.title,
+    subjectCategoryForFilter(data, filters)?.title,
+    childSubjectForFilter(data, filters)?.subject,
+    tierForFilter(data, filters)?.tier,
+    threadForFilter(data, filters)?.title,
   ].filter(Boolean);
 
   return fields;
