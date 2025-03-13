@@ -1,16 +1,15 @@
-import React, { FC, useState, useRef, useEffect } from "react";
+import React, { FC, useState, useRef, useEffect, useMemo } from "react";
 import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
 
+import { areLessonsAvailable } from "@/utils/curriculum/lessons";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import UnitModal, {
-  Lesson,
-} from "@/components/CurriculumComponents/UnitModal/UnitModal";
+import UnitModal from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import {
   getSuffixFromFeatures,
@@ -21,8 +20,15 @@ import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
 import { sortYears } from "@/utils/curriculum/sorting";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
-import { CurriculumFilters, Unit, YearData } from "@/utils/curriculum/types";
 import { filteringFromYears } from "@/utils/curriculum/filtering";
+import {
+  CurriculumFilters,
+  Unit,
+  YearData,
+  Lesson,
+  Thread,
+} from "@/utils/curriculum/types";
+import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -51,6 +57,7 @@ type CurriculumVisualiserProps = {
   mobileHeaderScrollOffset?: number;
   setUnitData: (unit: Unit) => void;
   setVisibleMobileYearRefID: (refID: string) => void;
+  threadOptions: Thread[];
 };
 
 export function dedupUnits(units: Unit[]) {
@@ -209,6 +216,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   setUnitData,
   filters,
   setVisibleMobileYearRefID,
+  threadOptions,
 }) => {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -219,6 +227,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
       return filterValues.includes(id);
     });
   }
+
+  const selectedThread = useMemo(() => {
+    return threadOptions.find((thread) => thread.slug === filters.threads[0]);
+  }, [threadOptions, filters]);
 
   // Selection state helpers
   const [displayModal, setDisplayModal] = useState(false);
@@ -252,25 +264,41 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     }
   }, [setVisibleMobileYearRefID, yearData]);
 
-  const trackModalOpenEvent = (isOpen: boolean, unitData: Unit) => {
-    if (isOpen && unitData) {
-      track.unitInformationViewed({
-        unitName: unitData.title,
-        unitSlug: unitData.slug,
-        subjectTitle: unitData.subject,
-        subjectSlug: unitData.subject_slug,
-        yearGroupName: unitData.year,
-        yearGroupSlug: unitData.year,
-        unitHighlighted: isHighlightedUnit(unitData, filters.threads),
-        analyticsUseCase: analyticsUseCase,
+  const trackModalOpenEvent = (
+    unit: CurriculumUnit,
+    isHighlighted: boolean,
+    isOpen: boolean,
+  ) => {
+    if (isOpen && unit) {
+      track.unitOverviewAccessed({
+        unitName: unit.title,
+        unitSlug: unit.slug,
+        subjectTitle: unit.subject,
+        subjectSlug: unit.subject_slug,
+        yearGroupName: `Year ${unit.year}`,
+        yearGroupSlug: unit.year,
+        threadTitle: selectedThread?.title ?? null,
+        threadSlug: selectedThread?.slug ?? null,
+        platform: "owa",
+        product: "curriculum visualiser",
+        engagementIntent: "use",
+        componentType: "unit_info_button",
+        eventVersion: "2.0.0",
+        analyticsUseCase,
+        unitHighlighted: isHighlighted, // bool
+        isUnitPublished: areLessonsAvailable(unit.lessons), // bool
       });
     }
   };
 
-  const handleOpenModal = (unitOptions: boolean, unit: Unit) => {
+  const handleOpenModal = (
+    unitOptions: boolean,
+    unit: Unit,
+    isHighlighted: boolean,
+  ) => {
     const newDisplayModal = !displayModal;
     setDisplayModal(newDisplayModal);
-    trackModalOpenEvent(newDisplayModal, unit);
+    trackModalOpenEvent(unit, isHighlighted, newDisplayModal);
     setUnitOptionsAvailable(unitOptions);
     setUnitData({ ...unit });
     setCurrentUnitLessons(unit.lessons ?? []);
@@ -400,7 +428,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                             index={index}
                             isHighlighted={isHighlighted}
                             onClick={() => {
-                              handleOpenModal(unitOptions, unit);
+                              handleOpenModal(unitOptions, unit, isHighlighted);
                             }}
                           />
                         </UnitListItem>
@@ -447,6 +475,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             displayModal={displayModal}
             setUnitOptionsAvailable={setUnitOptionsAvailable}
             unitOptionsAvailable={unitOptionsAvailable}
+            selectedThread={selectedThread?.slug ?? null}
           />
         </UnitsTabSidebar>
       )}

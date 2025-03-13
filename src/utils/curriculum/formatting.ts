@@ -3,6 +3,7 @@ import { keystageFromYear } from "./keystage";
 
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Phase } from "@/node-lib/curriculum-api-2023";
+import { DownloadCategory } from "@/node-lib/curriculum-api-2023/fixtures/curriculumPreviousDownloads.fixture";
 
 export function getYearGroupTitle(
   yearData: YearData,
@@ -210,4 +211,11 @@ export function pluralizeUnits(count: number) {
     return "unit";
   }
   return "";
+}
+
+export function getPhaseFromCategory(input: DownloadCategory) {
+  if (input === "KS3" || input === "KS4") {
+    return "secondary";
+  }
+  return "primary";
 }

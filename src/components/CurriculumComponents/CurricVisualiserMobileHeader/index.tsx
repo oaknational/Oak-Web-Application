@@ -13,6 +13,7 @@ import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { Thread } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 export type CurriculumVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
@@ -114,12 +115,22 @@ export function CurricMobileStickyHeader({
   function trackSelectYear(year: string): void {
     if (trackingData) {
       const { subjectTitle, subjectSlug } = trackingData;
-      track.yearGroupSelected({
-        yearGroupName: year,
+      track.unitSequenceRefined({
+        yearGroupName: `Year ${year}`,
         yearGroupSlug: year,
-        subjectTitle,
-        subjectSlug,
+        subjectTitle: subjectTitle,
+        subjectSlug: subjectSlug,
+        threadTitle: selectedThread,
+        threadSlug: selectedThread,
+        platform: "owa",
+        product: "curriculum visualiser",
+        engagementIntent: "refine",
+        componentType: "curriculum_visualiser_button",
+        eventVersion: "2.0.0",
         analyticsUseCase: analyticsUseCase,
+        phase: data.yearData[0]?.units[0]?.phase_slug as PhaseValueType,
+        learningTier: null,
+        subjectCategory: data.yearData[0]?.subjectCategories.toString(),
       });
     }
   }

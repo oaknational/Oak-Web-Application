@@ -55,14 +55,19 @@ export default function UnitsTab({
   function trackSelectThread(thread: Thread): void {
     if (trackingData) {
       const { subjectTitle, subjectSlug, phaseSlug } = trackingData;
-      track.curriculumThreadHighlighted({
-        subjectTitle,
-        subjectSlug,
+      track.programmeThreadHighlighted({
+        subjectTitle: subjectTitle,
+        subjectSlug: subjectSlug,
         threadTitle: thread.title,
         threadSlug: thread.slug,
-        phase: phaseSlug as PhaseValueType,
-        order: thread.order,
+        platform: "owa",
+        product: "curriculum visualiser",
+        componentType: "unit_sequence_tab",
+        eventVersion: "2.0.0",
+        engagementIntent: "refine",
         analyticsUseCase: analyticsUseCase,
+        phase: phaseSlug as PhaseValueType,
+        order: thread.order, // int (min 0)
       });
     }
   }
@@ -144,6 +149,7 @@ export default function UnitsTab({
               yearData={yearData}
               setUnitData={setUnitData}
               setVisibleMobileYearRefID={setVisibleMobileYearRefID}
+              threadOptions={threadOptions}
             />
           }
         />
