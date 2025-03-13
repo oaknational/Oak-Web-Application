@@ -10,7 +10,7 @@ import "@/__tests__/__helpers__/ResizeObserverMock";
 // import { CurriculumFilters } from "../CurriculumVisualiserFilters/CurriculumVisualiserFilters";
 
 // const render = renderWithProviders();
-const curriculumThreadHighlighted = jest.fn();
+
 const yearGroupSelected = jest.fn();
 const unitInformationViewed = jest.fn();
 
@@ -211,7 +211,6 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
-      curriculumThreadHighlighted,
       yearGroupSelected,
       unitInformationViewed: (...args: unknown[]) =>
         unitInformationViewed(...args),

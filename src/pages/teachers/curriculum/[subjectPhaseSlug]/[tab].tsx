@@ -13,6 +13,7 @@ import {
 } from "@oaknational/oak-components";
 import { uniq } from "lodash";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import CMSClient from "@/node-lib/cms";
 import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader";
 import OverviewTab from "@/components/CurriculumComponents/OverviewTab";
@@ -47,6 +48,17 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import openApiRequest from "@/utils/curriculum/openapi";
 import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
+import { CurriculumFilters } from "@/utils/curriculum/types";
+import {
+  Platform,
+  Product,
+  EngagementIntent,
+  ComponentType,
+  EventVersion,
+  AnalyticsUseCase,
+  Phase,
+  LearningTier,
+} from "@/browser-lib/avo/Avo";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -84,6 +96,48 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     getDefaultFilter(curriculumUnitsFormattedData),
   );
 
+  const { track } = useAnalytics();
+
+  const onChangeFilters = (newFilters: CurriculumFilters) => {
+    setFilters(newFilters);
+
+    track.unitSequenceRefined({
+      yearGroupName: newFilters.years.length > 0 ? newFilters.years[0] : null,
+      yearGroupSlug: newFilters.years.length > 0 ? newFilters.years[0] : null,
+      subjectTitle: curriculumUnitsTrackingData.subjectTitle,
+      subjectSlug: curriculumUnitsTrackingData.subjectSlug,
+      threadTitle: newFilters.threads.length > 0 ? newFilters.threads[0] : null,
+      threadSlug: newFilters.threads.length > 0 ? newFilters.threads[0] : null,
+      platform: Platform.OWA,
+      product: Product.CURRICULUM_VISUALISER,
+      engagementIntent: EngagementIntent.REFINE,
+      componentType: ComponentType.FILTER_LINK,
+      eventVersion: EventVersion["2_0_0"],
+      analyticsUseCase: AnalyticsUseCase.TEACHER,
+      childSubjectSlug:
+        newFilters.childSubjects.length > 0
+          ? newFilters.childSubjects[0]
+          : null,
+      childSubjectName:
+        newFilters.childSubjects.length > 0
+          ? newFilters.childSubjects[0]
+          : null,
+      phase: phaseSlug === "primary" ? Phase.PRIMARY : Phase.SECONDARY,
+      learningTier:
+        newFilters.tiers.length > 0 && newFilters.tiers[0]
+          ? newFilters.tiers[0].toLowerCase() === "foundation"
+            ? LearningTier.FOUNDATION
+            : newFilters.tiers[0].toLowerCase() === "higher"
+              ? LearningTier.HIGHER
+              : null
+          : null,
+      subjectCategory:
+        newFilters.subjectCategories.length > 0
+          ? newFilters.subjectCategories[0]
+          : null,
+    });
+  };
+
   let tabContent: JSX.Element;
 
   switch (tab) {
@@ -105,7 +159,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           formattedData={curriculumUnitsFormattedData}
           trackingData={curriculumUnitsTrackingData}
           filters={filters}
-          onChangeFilters={setFilters}
+          onChangeFilters={onChangeFilters}
         />
       );
       break;

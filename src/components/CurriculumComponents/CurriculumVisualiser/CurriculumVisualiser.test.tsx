@@ -24,22 +24,8 @@ import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { YearData } from "@/utils/curriculum/types";
 
 const render = renderWithProviders();
-const curriculumThreadHighlighted = jest.fn();
-const yearGroupSelected = jest.fn();
-const unitInformationViewed = jest.fn();
 
-jest.mock("@/context/Analytics/useAnalytics", () => ({
-  __esModule: true,
-  default: () => ({
-    track: {
-      curriculumThreadHighlighted: (...args: unknown[]) =>
-        curriculumThreadHighlighted(...args),
-      yearGroupSelected: (...args: unknown[]) => yearGroupSelected(...args),
-      unitInformationViewed: (...args: unknown[]) =>
-        unitInformationViewed(...args),
-    },
-  }),
-}));
+const unitInformationViewed = jest.fn();
 
 const curriculumVisualiserFixture = {
   updateMobileHeaderScroll: jest.fn(() => {}),

@@ -7,17 +7,17 @@
     "name": "Oak's Tracking Plan"
   },
   "branch": {
-    "id": "3epC1GU5B28NpmcznfA65",
-    "name": "aila-add-access-property"
+    "id": "I65aGa9fncjdyVN_hqKbN",
+    "name": "curriculum-filter-events"
   },
   "sources": [
     {
       "id": "OXY1Uf7nb",
       "name": "Oak Web Application",
       "path": "src/browser-lib/avo/Avo.ts",
-      "actionId": "Xbm6Imdtf0E7VyGnOS5p",
-      "branchId": "3epC1GU5B28NpmcznfA65",
-      "updatedAt": "2025-02-20T11:13:43.863Z"
+      "actionId": "nSSUJYhmjoq4fRTGaIny",
+      "branchId": "I65aGa9fncjdyVN_hqKbN",
+      "updatedAt": "2025-03-13T12:58:12.574Z"
     }
   ],
   "force": false
