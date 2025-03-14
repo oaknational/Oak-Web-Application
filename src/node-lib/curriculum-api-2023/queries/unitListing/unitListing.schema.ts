@@ -109,6 +109,7 @@ const unitListingData = z.object({
   yearGroups: yearGroupsSchema,
   subjectCategories: z.array(subjectCategorySchema),
   pathwayTitle: pathways.nullable(),
+  relatedSubjects: z.array(subjectSlugs).optional(),
 });
 
 export type UnitListingData = z.infer<typeof unitListingData>;
