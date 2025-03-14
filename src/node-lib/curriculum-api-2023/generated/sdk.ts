@@ -13207,6 +13207,7 @@ export type Pf_Subjects = {
   deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
   display_order?: Maybe<Scalars['Int']['output']>;
+  features?: Maybe<Scalars['jsonb']['output']>;
   /** A computed field, executes function "function__pf_subjects__programmes" */
   programmes?: Maybe<Array<Programmes>>;
   /** A computed field, executes function "function__pf_subjects__programmes__count" */
@@ -13221,6 +13222,12 @@ export type Pf_Subjects = {
 
 /** columns and relationships of "pf_subjects" */
 export type Pf_SubjectsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "pf_subjects" */
+export type Pf_SubjectsFeaturesArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -13267,6 +13274,7 @@ export type Pf_Subjects_Aggregate_FieldsCountArgs = {
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Pf_Subjects_Append_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  features?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** aggregate avg on columns */
@@ -13293,6 +13301,7 @@ export type Pf_Subjects_Bool_Exp = {
   deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   display_order?: InputMaybe<Int_Comparison_Exp>;
+  features?: InputMaybe<Jsonb_Comparison_Exp>;
   programmes?: InputMaybe<Programmes_Bool_Exp>;
   programmes_count?: InputMaybe<Int_Comparison_Exp>;
   slug?: InputMaybe<String_Comparison_Exp>;
@@ -13313,16 +13322,19 @@ export enum Pf_Subjects_Constraint {
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Pf_Subjects_Delete_At_Path_Input = {
   deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+  features?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Pf_Subjects_Delete_Elem_Input = {
   deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+  features?: InputMaybe<Scalars['Int']['input']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Pf_Subjects_Delete_Key_Input = {
   deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+  features?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** input type for incrementing numeric columns in table "pf_subjects" */
@@ -13343,6 +13355,7 @@ export type Pf_Subjects_Insert_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
+  features?: InputMaybe<Scalars['jsonb']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   subject?: InputMaybe<Scalars['String']['input']>;
   subject_id?: InputMaybe<Scalars['Int']['input']>;
@@ -13419,6 +13432,7 @@ export type Pf_Subjects_Order_By = {
   deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   display_order?: InputMaybe<Order_By>;
+  features?: InputMaybe<Order_By>;
   programmes_aggregate?: InputMaybe<Programmes_Aggregate_Order_By>;
   programmes_count?: InputMaybe<Order_By>;
   slug?: InputMaybe<Order_By>;
@@ -13437,6 +13451,7 @@ export type Pf_Subjects_Pk_Columns_Input = {
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Pf_Subjects_Prepend_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  features?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
 /** select columns of table "pf_subjects" */
@@ -13457,6 +13472,8 @@ export enum Pf_Subjects_Select_Column {
   Description = 'description',
   /** column name */
   DisplayOrder = 'display_order',
+  /** column name */
+  Features = 'features',
   /** column name */
   Slug = 'slug',
   /** column name */
@@ -13479,6 +13496,7 @@ export type Pf_Subjects_Set_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
+  features?: InputMaybe<Scalars['jsonb']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   subject?: InputMaybe<Scalars['String']['input']>;
   subject_id?: InputMaybe<Scalars['Int']['input']>;
@@ -13537,6 +13555,7 @@ export type Pf_Subjects_Stream_Cursor_Value_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   display_order?: InputMaybe<Scalars['Int']['input']>;
+  features?: InputMaybe<Scalars['jsonb']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   subject?: InputMaybe<Scalars['String']['input']>;
   subject_id?: InputMaybe<Scalars['Int']['input']>;
@@ -13573,6 +13592,8 @@ export enum Pf_Subjects_Update_Column {
   Description = 'description',
   /** column name */
   DisplayOrder = 'display_order',
+  /** column name */
+  Features = 'features',
   /** column name */
   Slug = 'slug',
   /** column name */
@@ -49898,7 +49919,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', subjectUnits: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_1', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant_id?: number | null, unit_data?: any | null, unit_slug?: string | null, programme_slug?: string | null, supplementary_data?: any | null, lesson_count?: number | null, lesson_sensitive_count?: number | null, lesson_expired_count?: number | null, lesson_ids?: any | null, expired?: boolean | null, actions?: any | null, features?: any | null, threads?: any | null, base_slug?: string | null, programme_slug_by_year?: string | null }>, key_stages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null, display_order?: number | null, keystage?: string | null, description?: string | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', subjectUnits: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_1', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant_id?: number | null, unit_data?: any | null, unit_slug?: string | null, programme_slug?: string | null, supplementary_data?: any | null, lesson_count?: number | null, lesson_sensitive_count?: number | null, lesson_expired_count?: number | null, lesson_ids?: any | null, expired?: boolean | null, actions?: any | null, features?: any | null, threads?: any | null, base_slug?: string | null, programme_slug_by_year?: string | null }>, key_stages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null, display_order?: number | null, keystage?: string | null, description?: string | null }>, subjectFeatures: Array<{ __typename?: 'pf_subjects', slug?: string | null, features?: any | null }> };
 
 export type TeachersPreviewLessonQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -50682,6 +50703,10 @@ export const SubjectListingDocument = gql`
     slug
     description: title
     display_order
+  }
+  subjectFeatures: pf_subjects(where: {features: {_neq: {}}}) {
+    slug
+    features
   }
 }
     `;

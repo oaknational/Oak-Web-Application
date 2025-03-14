@@ -30,4 +30,8 @@ query subjectListing($keyStageSlug: String, $isLegacy: Boolean) {
     description: title
     display_order
   }
+  subjectFeatures: pf_subjects(where: { features: { _neq: {} } }) {
+    slug
+    features
+  }
 }
