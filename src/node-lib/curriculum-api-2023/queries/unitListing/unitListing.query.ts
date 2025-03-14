@@ -1,5 +1,3 @@
-import { subjectSlugs } from "@oaknational/oak-curriculum-schema";
-
 import { SubjectSlugs } from "../pupilSubjectListing/pupilSubjectListing.schema";
 
 import { reshapeUnitData } from "./helpers/reshapeUnitData";
@@ -94,9 +92,7 @@ const unitListingQuery =
     parsedUnits.forEach((unit) => {
       if (unit.actions && unit.actions.related_subject_slugs) {
         unit.actions.related_subject_slugs.forEach((subject) => {
-          if (subjectSlugs.safeParse(subject).success) {
-            relatedSubjectsSet.add(subject);
-          }
+          relatedSubjectsSet.add(subject);
         });
       }
     });
