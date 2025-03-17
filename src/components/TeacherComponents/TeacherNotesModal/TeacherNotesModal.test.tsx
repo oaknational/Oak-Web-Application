@@ -201,7 +201,7 @@ describe("TeacherNotesModal", () => {
     expect(saveTeacherNote).toHaveBeenCalled();
   });
 
-  it("should save the teacher note when the character count has changed by more than 50 chars", () => {
+  it("should save the teacher note when the character count has changed by more than 50 chars", async () => {
     const saveTeacherNote = jest.fn(() =>
       Promise.resolve(mockTeacherNoteSnake),
     );
@@ -231,7 +231,9 @@ describe("TeacherNotesModal", () => {
       51,
     );
 
-    mockEditorArgs?.[0]?.onUpdate({ editor: mockEditorInstance });
+    await act(async () => {
+      mockEditorArgs?.[0]?.onUpdate({ editor: mockEditorInstance });
+    });
     expect(saveTeacherNote).toHaveBeenCalled();
   });
 
@@ -479,7 +481,9 @@ describe("TeacherNotesModal", () => {
     );
     mockEditorInstance.getText.mockReturnValue("this content has changed");
 
-    modalProps.onShareClicked();
+    await act(async () => {
+      modalProps.onShareClicked();
+    });
 
     await waitFor(() => {
       expect(mockShareActivated).toHaveBeenCalledWith(24);
@@ -510,9 +514,9 @@ describe("TeacherNotesModal", () => {
     if (!modalProps) {
       throw new Error("No modal props found");
     }
-
-    modalProps.onShareClicked();
-
+    await act(async () => {
+      modalProps.onShareClicked();
+    });
     await waitFor(() => {
       expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
         "https://example.com",
