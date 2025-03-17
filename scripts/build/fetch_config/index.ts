@@ -11,7 +11,7 @@ import readConfigFromNetwork from "./read_from_network.js";
  *
  * @todo validate the config after fetching.
  */
-const fetchConfig = async (location: string | null): Promise<OakConfig> => {
+const fetchConfig = async (location: string): Promise<OakConfig> => {
   if (location && typeof location !== "string") {
     throw new TypeError("`location` must be supplied as a string.");
   }

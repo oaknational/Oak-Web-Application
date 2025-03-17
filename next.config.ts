@@ -20,7 +20,12 @@ import {
 } from "./scripts/build/build_config_helpers";
 import type { OakConfig } from "./scripts/build/fetch_config/config_types";
 import fetchConfig from "./scripts/build/fetch_config/index.js";
-
+import type { WebpackConfigContext } from "next/dist/server/config-shared";
+import type {
+  RuleSetRule,
+  Configuration as WebpackConfig,
+  WebpackPluginInstance,
+} from "webpack";
 const withBundleAnalyzer = buildWithBundleAnalyzer({
   enabled: process.env.ANALYSE_BUNDLE === "on",
 });
@@ -46,6 +51,9 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     appVersion = RELEASE_STAGE_TESTING;
   } else {
     const configLocation = process.env.OAK_CONFIG_LOCATION;
+    if (!configLocation) {
+      throw new TypeError("OAK_CONFIG_LOCATION is not set");
+    }
     oakConfig = await fetchConfig(configLocation);
 
     // Figure out the release stage and app version.
@@ -82,25 +90,25 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
 
   const imageRemotePatterns = [
     {
-      protocol: "https",
+      protocol: "https" as const,
       hostname: "**.googleusercontent.com",
     },
     {
-      protocol: "https",
+      protocol: "https" as const,
       hostname: "storage.googleapis.com",
     },
     {
-      protocol: "https",
+      protocol: "https" as const,
       hostname: "oaknationalacademy-res.cloudinary.com",
       pathname: "/**",
     },
     {
-      protocol: "https",
+      protocol: "https" as const,
       hostname: "res.cloudinary.com",
       pathname: "/**",
     },
     {
-      protocol: "https",
+      protocol: "https" as const,
       hostname: "image.mux.com",
       pathname: "/**",
     },
@@ -108,27 +116,39 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
   // If the SANITY_ASSET_CDN_HOST is set, add it to the imageRemotePatterns
   if (SANITY_ASSET_CDN_HOST) {
     imageRemotePatterns.push({
-      protocol: "https",
+      protocol: "https" as const,
       hostname: SANITY_ASSET_CDN_HOST,
       pathname: "/**",
     });
   }
 
-  /** @type {import('next').NextConfig} */
-  const nextConfig: import("next").NextConfig = {
-    webpack: (config, { dev, defaultLoaders, isServer }) => {
+  const nextConfig: NextConfig = {
+    webpack: function getWebpackConfig(
+      config: WebpackConfig,
+      { dev, defaultLoaders, isServer }: WebpackConfigContext,
+    ) {
       /**
        * Enable inlining of SVGs as components
        * @see https://react-svgr.com/docs/next/
        */
       // Grab the existing rule that handles SVG imports
-      const fileLoaderRule = config.module.rules.find((rule) =>
-        rule.test?.test?.(".svg"),
-      );
-      config.module.rules.push(
+      const fileLoaderRule = config.module?.rules?.find((rule) => {
+        if (!rule) {
+          return false;
+        }
+        const test = (rule as RuleSetRule)?.test;
+        if (typeof test === "function") {
+          return test(".svg");
+        }
+        return false;
+      });
+      if (!fileLoaderRule) {
+        throw new Error("Could not find file loader rule");
+      }
+      config.module?.rules?.push(
         // Reapply the existing rule, but only for svg imports ending in ?url
         {
-          ...fileLoaderRule,
+          ...(fileLoaderRule as RuleSetRule),
           test: /\.svg$/i,
           resourceQuery: /url/, // *.svg?url
         },
@@ -165,10 +185,10 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         },
       );
       // Modify the file loader rule to ignore *.svg, since we have it handled now.
-      fileLoaderRule.exclude = /\.svg$/i;
+      (fileLoaderRule as RuleSetRule).exclude = /\.svg$/i;
 
       if (!dev && !isServer) {
-        config.plugins.push(
+        config.plugins?.push(
           new StatoscopeWebpackPlugin({
             saveReportTo: "./reports/report-[name]-[hash].html",
             saveStatsTo: "./reports/stats-[name]-[hash].json",
@@ -181,7 +201,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
         );
       }
 
-      config.plugins.push(
+      config.plugins?.push(
         new CopyPlugin({
           patterns: [
             {
@@ -206,11 +226,14 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           appVersion,
           releaseStage,
         };
-        config.plugins.push(
-          new BugsnagBuildReporterPlugin(bugsnagBuildInfo, {
+        const bugsnagBuildReporterPlugin = new BugsnagBuildReporterPlugin(
+          bugsnagBuildInfo,
+          {
             logLevel: "error",
-          }),
-        );
+          },
+          // Blarg, Bugsnag.
+        ) as unknown as WebpackPluginInstance;
+        config.plugins?.push(bugsnagBuildReporterPlugin);
 
         // Upload production sourcemaps
         const bugsnagSourcemapInfo = {
@@ -219,9 +242,11 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           publicPath: "https://*/_next/",
           overwrite: true,
         };
-        config.plugins.push(
-          new BugsnagSourceMapUploaderPlugin(bugsnagSourcemapInfo),
-        );
+        const bugsnagSourcemapUploaderPlugin =
+          new BugsnagSourceMapUploaderPlugin(
+            bugsnagSourcemapInfo,
+          ) as unknown as WebpackPluginInstance;
+        config.plugins?.push(bugsnagSourcemapUploaderPlugin);
       }
 
       return config;

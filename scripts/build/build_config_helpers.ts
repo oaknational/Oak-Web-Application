@@ -6,7 +6,7 @@ import { existsSync, readFileSync } from "fs";
  *
  * @returns {(string|null)} The SHA if found, or "no_git_state" if mid-merge, or `null` if it cannot be determined.
  */
-function getLocalGitRef(): string | null {
+export function getLocalGitRef(): string | null {
   if (existsSync(".git")) {
     const rev = readFileSync(".git/HEAD")
       .toString()
@@ -36,7 +36,7 @@ function getLocalGitRef(): string | null {
  *
  * @returns {(string|null)} A git ref, usually a commit SHA, potentially a tag name.
  */
-function getGitRef(): string | null {
+export function getGitRef(): string | null {
   const gitRef =
     // Vercel
     process.env.VERCEL_GIT_COMMIT_SHA ||
@@ -66,7 +66,7 @@ function getGitRef(): string | null {
  * @returns  An app version identifier.
  * @throws  Throws if a Git ref cannot be determined for a non-production build.
  */
-function getAppVersion(isProductionBuild: boolean): string {
+export function getAppVersion(isProductionBuild: boolean): string {
   if (isProductionBuild) {
     const appVersionOverride = process.env.OVERRIDE_APP_VERSION;
     if (appVersionOverride) {
@@ -135,14 +135,15 @@ function getAppVersion(isProductionBuild: boolean): string {
   }
 }
 
-const RELEASE_STAGE_TESTING = "test";
-const RELEASE_STAGE_DEVELOPMENT = "development";
-const RELEASE_STAGE_DEVELOPMENT_NETLIFY = "dev";
-const RELEASE_STAGE_BRANCH_DEPLOY_NETLIFY = "branch-deploy";
-const RELEASE_STAGE_PREVIEW = "preview";
-const RELEASE_STAGE_PREVIEW_NETLIFY = "deploy-preview";
-const RELEASE_STAGE_PRODUCTION = "production";
-const RELEASE_STAGE_NOT_DEFINED = "NOT_DEFINED";
+export const RELEASE_STAGE_TESTING = "test";
+export const RELEASE_STAGE_DEVELOPMENT = "development";
+export const RELEASE_STAGE_DEVELOPMENT_NETLIFY = "dev";
+export const RELEASE_STAGE_BRANCH_DEPLOY_NETLIFY = "branch-deploy";
+export const RELEASE_STAGE_PREVIEW = "preview";
+export const RELEASE_STAGE_PREVIEW_NETLIFY = "deploy-preview";
+export const RELEASE_STAGE_PRODUCTION = "production";
+export const RELEASE_STAGE_NOT_DEFINED = "NOT_DEFINED";
+
 /**
  * Given a proposed release stage name, return one of the standard release stage names.
  *
@@ -152,7 +153,7 @@ const RELEASE_STAGE_NOT_DEFINED = "NOT_DEFINED";
  * @param {string} candidateReleaseStage the proposed release stage name.
  * @returns {string} The canonical release stage name.
  */
-function getReleaseStage(
+export function getReleaseStage(
   candidateReleaseStage: string = RELEASE_STAGE_NOT_DEFINED,
 ): string {
   switch (candidateReleaseStage) {
@@ -175,12 +176,3 @@ function getReleaseStage(
       `);
   }
 }
-
-module.exports = {
-  getAppVersion,
-  getReleaseStage,
-  RELEASE_STAGE_TESTING,
-  RELEASE_STAGE_DEVELOPMENT,
-  RELEASE_STAGE_PREVIEW,
-  RELEASE_STAGE_PRODUCTION,
-};
