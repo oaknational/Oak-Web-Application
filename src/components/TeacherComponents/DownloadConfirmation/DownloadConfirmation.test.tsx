@@ -36,10 +36,20 @@ jest.mock("@oaknational/oak-consent-client", () => ({
   })),
 }));
 
+window.scrollTo = jest.fn();
+
 describe("DownloadConfirmation component", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+
+  const expectScrollTopOnRender = () => {
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo).toHaveBeenCalledWith({
+      behavior: "smooth",
+      top: 0,
+    });
+  };
 
   const curriculumTrackingProps: CurriculumTrackingProps = {
     lessonName: "Test lesson",
@@ -64,6 +74,7 @@ describe("DownloadConfirmation component", () => {
       />,
     );
 
+    expectScrollTopOnRender();
     expect(getByText("Thanks for downloading")).toBeInTheDocument();
   });
 
@@ -79,6 +90,7 @@ describe("DownloadConfirmation component", () => {
       />,
     );
 
+    expectScrollTopOnRender();
     const link = getByTestId("back-to-lesson-link");
 
     expect(link).toHaveAttribute(
@@ -99,6 +111,7 @@ describe("DownloadConfirmation component", () => {
       />,
     );
 
+    expectScrollTopOnRender();
     const link = getByTestId("back-to-lesson-link");
 
     expect(link).toHaveAttribute(
@@ -118,6 +131,7 @@ describe("DownloadConfirmation component", () => {
       />,
     );
 
+    expectScrollTopOnRender();
     const link = getByTestId("back-to-lesson-link");
 
     expect(link).toHaveAttribute("href", "/teachers/lessons/test-lesson");
@@ -136,6 +150,7 @@ describe("DownloadConfirmation component", () => {
       />,
     );
 
+    expectScrollTopOnRender();
     const lessonLink = getByRole("link", { name: "Back to lesson" });
 
     await user.click(lessonLink);
@@ -162,6 +177,7 @@ describe("DownloadConfirmation component", () => {
       />,
     );
 
+    expectScrollTopOnRender();
     const lessonLink = getByRole("link", { name: "Back to lesson" });
 
     await user.click(lessonLink);
