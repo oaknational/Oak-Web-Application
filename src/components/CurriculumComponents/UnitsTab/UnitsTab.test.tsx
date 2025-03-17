@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 
 import UnitsTab from "./UnitsTab";
 
@@ -628,9 +628,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       />,
     );
 
-    const yearOptions = (await queryAllByTestId(
-      "year-radio",
-    )) as HTMLInputElement[];
+    const yearOptions = queryAllByTestId("year-radio") as HTMLInputElement[];
 
     const year7Option = yearOptions.find((option) => option.value === "7");
     if (!year7Option) {
@@ -638,7 +636,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     }
 
     // Check we only have 14 units for year 7 to start with (combined science).
-    await userEvent.click(year7Option);
+    await act(() => userEvent.click(year7Option));
     let unitCards;
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
