@@ -1,5 +1,5 @@
 import { useEditor } from "@tiptap/react";
-import { waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 import {
   TeacherNote,
   TeacherNoteCamelCase,
@@ -58,9 +58,8 @@ Object.assign(navigator, {
     writeText: jest.fn(),
   },
 });
-
+const useEditorMock = useEditor as jest.Mock;
 describe("TeacherNotesModal", () => {
-  const useEditorMock = useEditor as jest.Mock;
   const mockTeacherNote: TeacherNoteCamelCase = {
     noteHtml: "<p>test</p>",
     sidKey: "sid-ARHMdf",
@@ -195,7 +194,10 @@ describe("TeacherNotesModal", () => {
     );
     mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
 
-    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    await act(async () => {
+      mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    });
+
     expect(saveTeacherNote).toHaveBeenCalled();
   });
 
