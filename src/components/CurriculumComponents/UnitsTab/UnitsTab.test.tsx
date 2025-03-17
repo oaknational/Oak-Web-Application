@@ -938,7 +938,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("mobile: anchor links for year group filters match", async () => {
-    window.HTMLElement.prototype.scrollIntoView = function () {};
+    window.scrollTo = jest.fn();
     resizeWindow(390, 844);
 
     const { findAllByTestId } = render(
@@ -953,6 +953,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     const year2Button = yearFilterButtons[1];
     if (year2Button) {
       await userEvent.click(year2Button);
+
+      expect(window.scrollTo).toHaveBeenCalledTimes(1);
+
       // Selected button background colour should change
       waitFor(() => {
         expect(year2Button).toHaveStyle("background-color: rgb(34, 34, 34);");
