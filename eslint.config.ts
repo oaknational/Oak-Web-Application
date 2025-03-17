@@ -1,19 +1,18 @@
+// Library for dealing with legacy eslint config
+import { FlatCompat } from "@eslint/eslintrc";
+
 import globals from "globals";
-import pluginJs from "@eslint/js";
-import * as tseslint from "typescript-eslint";
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import type { Config } from "typescript-eslint";
+
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import importPlugin from "eslint-plugin-import-x";
-import prettierConfig from "eslint-config-prettier";
-import { FlatCompat } from "@eslint/eslintrc";
-import { fileURLToPath } from "url";
-
-// Get current directory
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 // Create a compatibility instance - ONLY for Next.js plugin
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  baseDirectory: import.meta.url,
 });
 
 // Import rules configuration - enhanced for eslint-plugin-import-x
@@ -50,10 +49,16 @@ const importRules = {
   "import/no-duplicates": "error", // Report repeated import of the same module in multiple places
 };
 
-// TypeScript rules
+// TypeScript rules - Enhanced for better type safety
 const tsRules = {
   "@typescript-eslint/no-unused-vars": ["error", { ignoreRestSiblings: true }],
   "@typescript-eslint/no-explicit-any": "error",
+  // Add rules that are actually available in the current version
+  "@typescript-eslint/consistent-type-definitions": ["error", "interface"], // Enforce consistent type definition style
+  "@typescript-eslint/naming-convention": [
+    "warn",
+    { selector: "typeProperty", format: ["camelCase"] },
+  ],
 };
 
 // React rules
@@ -63,8 +68,7 @@ const reactRules = {
   "react-hooks/exhaustive-deps": "error",
 };
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
+const eslintConfig: Config = [
   // Ignore patterns (migrated from .eslintignore)
   {
     ignores: [
@@ -94,7 +98,7 @@ export default [
       // These settings help eslint-plugin-import-x resolve modules
       "import/resolver": {
         node: {
-          extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
+          extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".d.ts"], // Added .d.ts
         },
       },
       "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
@@ -103,7 +107,7 @@ export default [
   },
 
   // Basic ESLint recommended configuration
-  pluginJs.configs.recommended,
+  eslint.configs.recommended,
 
   // JavaScript files configuration
   {
@@ -119,7 +123,7 @@ export default [
     },
   },
 
-  // TypeScript specific configuration
+  // TypeScript specific configuration - Enhanced for better typed-components support
   {
     files: ["**/*.{ts,tsx}"],
     plugins: {
@@ -136,11 +140,12 @@ export default [
     },
     settings: {
       "import/parsers": {
-        "@typescript-eslint/parser": [".ts", ".tsx"],
+        "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"], // Added .d.ts
       },
       "import/resolver": {
         typescript: {
           alwaysTryTypes: true,
+          project: "./tsconfig.json",
         },
       },
     },
@@ -154,6 +159,16 @@ export default [
   // TypeScript ESLint recommended configuration
   ...tseslint.configs.recommended,
 
+  // Special configuration for styled-components tests
+  {
+    files: ["**/styles/**/*.test.{ts,tsx}", "**/styles/utils/**/*.{ts,tsx}"],
+    rules: {
+      // We can't use ban-type-literals as it doesn't exist - removed
+      // Instead, disable rules that might be too strict for styled-components tests
+      "@typescript-eslint/no-explicit-any": "off", // Allow any in tests
+    },
+  },
+
   // Test files configuration
   {
     files: ["**/*.test.{js,ts,tsx}"],
@@ -164,22 +179,12 @@ export default [
     },
   },
 
-  // Build scripts configuration
-  {
-    files: ["scripts/build/**/*.{js,ts,tsx}"],
-    languageOptions: {
-      ecmaVersion: 2020,
-    },
-  },
-
   // .github directory files - include these (from the .eslintignore !.github line)
   {
     files: [".github/**/*.{js,mjs,cjs,jsx,ts,tsx}"],
   },
 
-  // Next.js configuration - using FlatCompat
-  ...compat.extends("plugin:@next/next/core-web-vitals"),
-
-  // Prettier (should be last to override other formatting rules)
-  prettierConfig,
+  ...compat.config({
+    extends: ["next", "next/core-web-vitals", "next/typescript", "prettier"],
+  }),
 ];

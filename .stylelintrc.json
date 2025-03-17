@@ -7,9 +7,6 @@
       { "ignoreTypes": ["/-styled-mixin/", "/^\\$\\w+/"] }
     ],
     "value-keyword-case": ["lower", { "ignoreKeywords": ["dummyValue"] }],
-    "selector-max-empty-lines": null,
-    "keyframes-name-pattern": null,
-    "declaration-colon-newline-after": null,
-    "selector-descendant-combinator-no-non-space": null
+    "keyframes-name-pattern": null
   }
 }

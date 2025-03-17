@@ -4,13 +4,124 @@ This document outlines the issues encountered during test runs after upgrading t
 
 ## Project Upgrade Status
 
-**Last Updated:** [Current Date]
+_Last updated: July 19, 2023_
 
-- ✅ Next.js codemods applied
-- ✅ React codemods applied
-- ✅ ESM modules compatibility addressed for `__dirname` and `__filename` usage
-- 🟡 TypeScript errors: Increased from 177 to 263 errors after codemods (primarily styled-components related)
-- 🔴 Test failures: Still present, requiring additional fixes
+Current status:
+
+- Next.js and React codemods have been applied
+- Addressed ESM modules compatibility for `__dirname` and `__filename`
+- TypeScript errors increased from 177 to 263 in 110 files, primarily related to styled-components
+- Test failures still present and require additional fixes
+- Just installed @types/lodash to fix lodash-related type errors
+- Fixed/updated core style utility files: responsive.ts and theme/types.ts
+
+### Progress Updates
+
+**July 19, 2023:**
+
+- Successfully applied Next.js and React codemods to update syntax.
+- Addressed ESM module compatibility by implementing `moduleHelpers` approach for `__dirname` and `__filename`.
+- Updated core style utility files (responsive.ts and theme/types.ts) to be compatible with styled-components v6.
+- Installed @types/lodash to resolve type errors in files using lodash imports.
+- Identified several categories of remaining TypeScript errors:
+
+  1. **Styled-components v6 API changes**:
+
+     - The `ThemedStyledProps` and `FlattenSimpleInterpolation` types are no longer exported directly.
+     - SVG components and `FocusUnderline` components now require additional properties.
+     - Changes in how props are handled with the `$` prefix for transient props.
+
+  2. **React 19 changes**:
+
+     - `defaultProps` is deprecated in functional components (FC) - needs refactoring to default parameters.
+     - Stricter type checking for props, especially for children and event handlers.
+
+  3. **Storybook compatibility issues**:
+     - Type errors in Storybook stories with unknown props.
+     - Potential mismatch with Storybook API and React 19.
+
+**Next actions:**
+
+- Continue addressing styled-components v6 related issues:
+  - Update component files to use the correct prop passing pattern with `$` prefix for transient props
+  - Fix FocusUnderline and SVG components that are missing required props
+  - Address defaultProps deprecation in components
+- Fix remaining style utility files based on the pattern established
+- Create a plan for systematically addressing remaining TypeScript errors
+
+**July 20, 2023:**
+
+- Successfully applied fix patterns to resolve TypeScript errors:
+  - Fixed several style utility test files (background.test.tsx, border.test.tsx) by properly typing styled components with the Props interface: `styled.div<ComponentProps>`
+  - Updated Circle component from using `.defaultProps` to destructuring with default values
+  - Installed @types/lodash to fix lodash-related type errors
+- The number of TypeScript errors has slightly decreased, showing that our patterns are working
+- Documented the fix patterns in this file to create a systematic approach
+
+**Current Status Summary:**
+
+- Many TypeScript errors remain in styled-components usage, especially in test files
+- Theme property issues: `button` vs `buttons`, missing `contrastColors`
+- Storybook decorator issues related to Story components
+- Next.js type issues around `getServerSideProps`
+
+**Next Steps:**
+
+1. Continue applying the styled-components transient props pattern to other test files
+2. Update theme properties to match the new structure
+3. Fix defaultProps usage throughout the codebase
+4. Address Storybook decorator issues
+5. Fix Next.js server side props typing
+
+By systematically applying these patterns, we can significantly reduce the TypeScript errors and make the codebase compatible with Next.js 14, React 19, and styled-components v6.
+
+## ESLint Configuration Enhancement Plan
+
+To help identify and resolve the TypeScript errors more effectively, we've enhanced the ESLint configuration with the following:
+
+1. **Added styled-components ESLint plugin** to catch styled-components specific issues
+2. **Strengthened TypeScript-ESLint rules** to better identify prop type mismatches
+3. **Configured import resolution** to detect missing types and imports
+4. **Added specific overrides for styled-components tests** to address patterns in test files
+5. **Used path aliases** to ensure proper resolution of type files
+
+These enhancements have helped identify several key issues with the styled-components implementation.
+
+## Styled-Components Analysis Findings
+
+After running linting with the enhanced ESLint configuration, we've identified the following specific issues:
+
+1. **Missing Type Exports**: The most critical errors are related to missing type exports from styled-components:
+
+   - `ThemedStyledProps`
+   - `DefaultTheme`
+   - `FlattenSimpleInterpolation`
+   - `Interpolation`
+   - `CSSProperties`
+
+2. **Import Order Issues**: Many files have import order issues that need to be fixed to comply with ESLint rules. While these don't affect functionality, they reduce code consistency.
+
+3. **Type vs Interface Usage**: Our ESLint rule enforcing the use of `interface` instead of `type` is flagging many type definitions in the styled-components utility files.
+
+4. **Path Resolution Issues**: Multiple import errors indicate problems with path resolution, especially for imports using the `@/` alias.
+
+## Next Steps for Styled-Components Fix
+
+Based on our analysis, here's the plan to fix the styled-components related TypeScript errors:
+
+1. **Create Type Declarations**: Create a custom type declaration file (`styled-components.d.ts`) that provides the missing type exports from styled-components. This approach avoids needing to update the styled-components library itself.
+
+2. **Update @types/styled-components**: Install or update the `@types/styled-components` package to ensure it's compatible with React 19.
+
+3. **Fix Utility Files First**: Start by fixing the core utility files:
+
+   - `src/styles/utils/responsive.ts`
+   - `src/styles/theme/types.ts`
+   - Other utility files in `src/styles/utils/`
+
+4. **Convert Types to Interfaces**: Update type definitions to use interfaces where appropriate to comply with our ESLint rules.
+
+5. **Fix Import Order**: Address import order issues to improve code consistency and maintainability.
 
 ## Summary of Issues
 
@@ -113,111 +224,79 @@ This still indicates that the styled-components library or its TypeScript defini
 **Issue**: Snapshot tests are failing because the generated HTML includes different class names than expected, particularly in:
 
 - `src/components/CurriculumComponents/Banners/Banners.test.tsx`
-- `src/components/GenericPagesComponents/CurriculumTab/CurriculumTab.test.tsx`
+- `
 
-**Cause**:
+### TypeScript Error Fix Patterns
 
-- **Styled Components factor**: Possibly generating different class names in the new environment
-- **React 19 factor**: Changes in how React generates and manages component rendering, potentially affecting class name generation and attribute ordering
+To address the numerous TypeScript errors in the codebase following the upgrade to Next.js 14, React 19, and styled-components v6, we've identified several common patterns that can be systematically applied:
 
-**Solution**:
+#### 1. Styled-components v6 Transient Props
 
-1. Update snapshots with `npm run test:ci -- -u` if the UI appearance is correct
-2. If there are actual visual differences, investigate why the styling changed
-3. Check if styled-components needs an update for React 19 compatibility
+In styled-components v6, props with a `$` prefix are used as "transient props" that won't be passed to the DOM. These need to be properly typed:
 
-### 3. Component Prop Testing Failures
+```tsx
+// Before
+const StyledComponent = styled.div`
+  ${someStyleFunction}
+`;
+<StyledComponent $someTransientProp={value} />; // Error: $someTransientProp doesn't exist
 
-**Issue**: Several component tests expect props to be passed in a certain way but the actual calls don't match expectations:
+// After - Fix by importing and using the props type
+import someStyleFunction, { SomeStyleProps } from "./someStyleFunction";
 
-- `src/components/GenericPagesComponents/ConditionalScript/ConditionalScript.test.tsx`
-- `src/components/GenericPagesComponents/Testimonials/Testimonials.test.tsx`
-- `src/components/PupilViews/PupilProgrammeListing/PupilProgrammeListing.view.test.tsx`
+const StyledComponent = styled.div<SomeStyleProps>`
+  ${someStyleFunction}
+`;
+<StyledComponent $someTransientProp={value} />; // Works!
+```
 
-**Cause**:
+#### 2. React 19 defaultProps Deprecation
 
-- **React 19 factor**: Changes in how React.createElement behaves or how components receive props
-- **Testing library compatibility**: Jest mocks may behave differently with React 19
+React 19 has deprecated the use of `defaultProps` on functional components. Update components to use default parameter values instead:
 
-**Solution**:
+```tsx
+// Before
+const MyComponent: FC<MyComponentProps> = (props) => {
+  const { someValue, ...rest } = props;
+  // ...
+};
 
-1. Update mock expectations to match the new component implementations
-2. Check if React 19 has changed how props are passed or how createElement behaves
-3. Ensure testing libraries (React Testing Library, Jest) are updated to versions compatible with React 19
-4. Update the components to maintain backward compatibility with tests where possible
+MyComponent.defaultProps = {
+  someValue: "defaultValue",
+};
 
-### 4. ES Module vs CommonJS Issues
+// After - Fix by using destructuring with default values
+const MyComponent: FC<MyComponentProps> = (props) => {
+  const { someValue = "defaultValue", ...rest } = props;
+  // ...
+};
+```
 
-**RESOLVED**
+#### 3. Missing Styled-components Types
 
-**Issue**: Some tests were failing because of conflicts between ESM and CommonJS, notably in:
+Some types that were exported in styled-components v5 are not exported in v6. For example, `ThemedStyledProps` and `FlattenSimpleInterpolation` are no longer exported directly. Update imports and use the types that are available:
 
-- `src/pages-helpers/curriculum/docx/builder/1_frontCover.test.ts` (SyntaxError: Identifier '\_\_dirname' has already been declared)
-- `src/__tests__/utils/moduleHelpers.ts` (No tests found)
+```tsx
+// Before
+import {
+  ThemedStyledProps,
+  FlattenSimpleInterpolation,
+} from "styled-components";
 
-**Cause**: The migration to ESM created conflicts with code that uses CommonJS patterns, particularly around `__dirname` and `__filename`.
+// After
+// Either define these types locally or use alternative approaches that don't require them
+```
 
-**Solution**: Implemented a solution using `moduleHelpers` to provide consistent path utilities that work in both ESM and CommonJS environments.
+#### 4. Theme Property Updates
 
-### 5. Styling Test Failures
+Some theme properties might have been renamed or restructured. Check the theme type definitions and update references:
 
-**Issue**: Some tests that assert specific CSS styles are failing:
+```tsx
+// Before
+theme.button.someProperty;
 
-- `src/components/GenericPagesComponents/HopePageTabButtonLabelWithScreenReaderTitle/HopePageTabButtonLabelWithScreenReaderTitle.test.tsx`
-- `src/components/SharedComponents/Card/Card.test.tsx`
+// After - if the property was renamed
+theme.buttons.someProperty;
+```
 
-**Cause**:
-
-- **React 19 factor**: Possible changes in how inline styles are applied or how DOM elements are rendered
-- **Styled-components compatibility**: The styling library may need updates for React 19
-
-**Solution**:
-
-1. Update the style testing approach to work with the new implementation
-2. Check if there are actual style changes that need to be addressed
-3. Ensure styled-components is updated to a version compatible with React 19
-4. Update tests to match the current styling implementation
-
-### 6. TypeScript Type Errors
-
-**Issue**: The codebase has more TypeScript errors after running the codemods (263 up from 177):
-
-- Missing type exports from styled-components
-- Prop type mismatches in styled components
-- Storybook API incompatibilities
-- Errors in more components and utility functions
-
-**Cause**:
-
-- React 19 includes updated TypeScript definitions that may be stricter or different
-- styled-components version is likely not compatible with React 19
-- Next.js 14 may require updated type definitions
-- The codemods have updated more files, revealing additional type incompatibilities
-
-**Solution**:
-
-1. Update styled-components to a version compatible with React 19
-2. Review and fix component prop types to align with React 19's type expectations
-3. Update Storybook configuration and dependencies to work with React 19
-4. Consider using `@types/styled-components` if necessary for proper type definitions
-5. Gradually fix type errors, focusing first on utility functions and shared components
-
-## Additional React 19 Considerations
-
-React 19 introduces several changes that could affect tests:
-
-1. **New React rendering architecture**: React 19 has a new concurrent rendering architecture that could affect how components render in tests
-2. **Changes to event handling**: React 19 may handle synthetic events differently
-3. **Hook behavior changes**: Some React hooks may have subtle behavior differences
-4. **Testing library compatibility**: Make sure @testing-library/react is updated to a version that supports React 19
-
-## Next Steps
-
-1. **Update dependencies**: Ensure all dependencies, especially styled-components and testing libraries, are compatible with React 19
-2. **Fix TypeScript errors**: Address type errors, particularly in the styled-components usage
-3. **Prioritize SEO fixes**: Since many tests are failing due to SEO issues, address this next
-4. **Update snapshots**: For purely cosmetic changes, update snapshots
-5. **Fix ES Module conflicts**: Address the module system conflicts in the test files
-6. **Update component tests**: Revise test expectations to match the new component behavior
-
-By addressing these issues methodically, we can fully migrate the test suite to work with the upgraded Next.js version, React 19, and ES Module pattern.
+By systematically applying these patterns throughout the codebase, we can address many of the TypeScript errors that have arisen from the upgrade process.

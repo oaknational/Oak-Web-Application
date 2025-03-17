@@ -2,33 +2,34 @@ import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import buildWithBundleAnalyzer from "@next/bundle-analyzer";
 import StatoscopeWebpackPlugin from "@statoscope/webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
+import type { NextConfig } from "next";
+import { PHASE_TEST, PHASE_PRODUCTION_BUILD } from "next/constants.js";
 import {
   BugsnagBuildReporterPlugin,
   BugsnagSourceMapUploaderPlugin,
 } from "webpack-bugsnag-plugins";
-import { PHASE_TEST, PHASE_PRODUCTION_BUILD } from "next/constants.js";
-
-import buildWithBundleAnalyzer from "@next/bundle-analyzer";
-const withBundleAnalyzer = buildWithBundleAnalyzer({
-  enabled: process.env.ANALYSE_BUNDLE === "on",
-});
 
 import {
   getAppVersion,
   getReleaseStage,
   RELEASE_STAGE_PRODUCTION,
   RELEASE_STAGE_TESTING,
-} from "./scripts/build/build_config_helpers.cjs";
-import fetchConfig from "./scripts/build/fetch_config/index.cjs";
+} from "./scripts/build/build_config_helpers";
+import type { OakConfig } from "./scripts/build/fetch_config/config_types";
+import fetchConfig from "./scripts/build/fetch_config/index.js";
+
+const withBundleAnalyzer = buildWithBundleAnalyzer({
+  enabled: process.env.ANALYSE_BUNDLE === "on",
+});
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
-export default async (phase) => {
-  /** @type {import('./scripts/build/fetch_config/config_types').OakConfig} */
-  let oakConfig;
+export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
+  let oakConfig: OakConfig;
 
   let releaseStage;
   let appVersion;
@@ -114,7 +115,7 @@ export default async (phase) => {
   }
 
   /** @type {import('next').NextConfig} */
-  const nextConfig = {
+  const nextConfig: import("next").NextConfig = {
     webpack: (config, { dev, defaultLoaders, isServer }) => {
       /**
        * Enable inlining of SVGs as components

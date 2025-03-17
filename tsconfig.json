@@ -1,19 +1,15 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "nodenext",
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
@@ -31,9 +27,7 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     }
   },
   "include": [
@@ -45,9 +39,5 @@
     "src/components/GenericPagesComponents/HopePageTabButtonLabelWithScreenReaderTitle",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "netlify/edge-functions",
-    "e2e_tests"
-  ]
+  "exclude": ["node_modules", "netlify/edge-functions", "e2e_tests"]
 }

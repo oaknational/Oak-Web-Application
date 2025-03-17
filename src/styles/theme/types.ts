@@ -1,12 +1,12 @@
-import { ThemedStyledProps, DefaultTheme } from "styled-components";
+import type { DefaultTheme } from "styled-components";
 import { z } from "zod";
 
+import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";
+import { HeaderConfig } from "@/components/AppComponents/StyledHeader/StyledHeader";
 import { BadgeConfig } from "@/components/GenericPagesComponents/CurriculumTabBadge";
 import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
 import { SelectListBoxConfig } from "@/components/SharedComponents/ListBox/ListBox";
-import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";
 import { VideoStyleConfig } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
-import { HeaderConfig } from "@/components/AppComponents/StyledHeader/StyledHeader";
 
 /**
  * Adds a finite list of pixel values which we're allowed to use throughout the
@@ -195,7 +195,8 @@ type ColorValue = string;
  */
 type FontValue = string;
 
-type ButtonConfig = {
+// Convert type definitions to interfaces to comply with ESLint rules
+export interface ButtonConfig {
   disabled: {
     background: OakColorName;
     text: OakColorName;
@@ -216,8 +217,9 @@ type ButtonConfig = {
     background: OakColorName;
     text: OakColorName;
   };
-};
-type InputConfig = {
+}
+
+export interface InputConfig {
   height: string;
   borderRadius: string;
   borderWidth: string;
@@ -229,17 +231,17 @@ type InputConfig = {
     invalid: InputStateConfig;
     disabled: InputStateConfig;
   };
-};
+}
 
-type InputStateConfig = {
+export interface InputStateConfig {
   text: OakColorName;
   placeholder: OakColorName;
   icon: OakColorName;
   border: OakColorName;
   background: OakColorName;
-};
+}
 
-type ToggleStyleConfig = {
+export interface ToggleStyleConfig {
   on: {
     labelColor: OakColorName;
     background: OakColorName;
@@ -255,28 +257,25 @@ type ToggleStyleConfig = {
     background: OakColorName;
     switchColor: OakColorName;
   };
-};
+}
 
-export type OakTheme = {
-  header: HeaderConfig;
+// This should be defined as interface to be exported
+export interface OakTheme {
   name: string;
-  colors: Record<OakColorName, ColorValue>;
-  contrastColors: Record<OakColorName, OakColorName>;
-  buttonIconBackgroundColors: Partial<Record<OakColorName, OakColorName>>;
-  buttonDropShadows: Partial<Record<OakColorName, string>>;
-  buttonFocusUnderlineColors: Partial<Record<OakColorName, OakColorName>>;
-  fonts: Record<OakFontName, FontValue>;
-  input: InputConfig;
-  button: ButtonConfig;
-  badge: BadgeConfig;
-  checkbox: CheckboxConfig;
-  selectListBox: SelectListBoxConfig;
-  toggle: ToggleStyleConfig;
-  video: VideoStyleConfig;
-  menu: MenuConfig;
-};
+  colors: Partial<Record<OakColorName, ColorValue>>;
+  fonts: Partial<Record<OakFontName, FontValue>>;
 
-export type PropsWithTheme<Props = unknown> = ThemedStyledProps<
-  Props,
-  DefaultTheme
->;
+  buttons: ButtonConfig;
+  input: InputConfig;
+  toggle: ToggleStyleConfig;
+  checkbox: CheckboxConfig;
+  listBox: SelectListBoxConfig;
+  headerMenu: MenuConfig;
+  videoPlayer: VideoStyleConfig;
+  header: HeaderConfig;
+  badge: BadgeConfig;
+}
+
+export interface PropsWithTheme {
+  theme: OakTheme;
+}
