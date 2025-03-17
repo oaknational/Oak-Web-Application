@@ -12,6 +12,7 @@ import {
   OakP,
   OakBox,
   OakLink,
+  OakSpan,
 } from "@oaknational/oak-components";
 
 import FieldError from "@/components/SharedComponents/FieldError";
@@ -105,7 +106,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 error={form.errors?.email?.message}
                 $mb={12}
               />
-              <OakP
+              <OakSpan
                 $font="body-3"
                 $mb={"space-between-l"}
                 data-testid="newsletter-policy"
@@ -127,7 +128,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   privacy policy
                 </OakLink>
                 .
-              </OakP>
+              </OakSpan>
               <Controller
                 control={form.control}
                 name="terms"
