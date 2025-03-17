@@ -6,7 +6,7 @@
   "type": "module",
   "module": "ESNext",
   "scripts": {
-    "generate-sprites": "NODE_ENV=production node scripts/build/write_env_file/index.cjs && NODE_ENV=production npm run image-data:all",
+    "generate-sprites": "NODE_ENV=production tsx scripts/build/write_env_file/index.ts && NODE_ENV=production npm run image-data:all",
     "prebuild": "npm run generate-sprites",
     "build": "npm run build:prep && next build",
     "build:prep": "rimraf ./reports/*",
@@ -19,7 +19,7 @@
     "config:pull": "node ./scripts/build/pull_config/index.cjs",
     "config:push:dev": "node ./scripts/build/push_config/index.cjs --environment development",
     "config:push:prod": "node ./scripts/build/push_config/index.cjs --environment production",
-    "predev": "node scripts/build/write_env_file/index.cjs && NODE_ENV=development npm run image-data:all",
+    "predev": "tsx scripts/build/write_env_file/index.ts && NODE_ENV=development npm run image-data:all",
     "dev": "next dev",
     "export": "next export",
     "format": "prettier '**/*.{j,t}{s,sx}' --write",
