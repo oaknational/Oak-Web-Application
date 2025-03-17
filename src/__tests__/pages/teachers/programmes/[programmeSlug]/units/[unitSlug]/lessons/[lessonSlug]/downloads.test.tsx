@@ -155,6 +155,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     expect(screen.queryByText("Exit quiz questions")).not.toBeInTheDocument();
   });
   it("tracks download event with correct args", async () => {
+    window.scrollTo = jest.fn();
     const { result } = renderHook(() => useLocalStorageForDownloads());
     act(() => {
       result.current.setEmailInLocalStorage("test@test.com");
@@ -170,6 +171,11 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       name: "Download .zip",
     });
     await userEvent.click(downloadButton);
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo).toHaveBeenCalledWith({
+      behavior: "smooth",
+      top: 0,
+    });
     expect(lessonDownloaded).toHaveBeenCalledWith({
       analyticsUseCase: "Teacher",
       componentType: "lesson_download_button",
@@ -200,6 +206,7 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     });
   });
   it("tracks download event with correct args for lessons without pfs", async () => {
+    window.scrollTo = jest.fn();
     const { result } = renderHook(() => useLocalStorageForDownloads());
 
     act(() => {
@@ -223,6 +230,11 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       name: "Download .zip",
     });
     await userEvent.click(downloadButton);
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo).toHaveBeenCalledWith({
+      behavior: "smooth",
+      top: 0,
+    });
     expect(lessonDownloaded).toHaveBeenCalledWith({
       analyticsUseCase: "Teacher",
       componentType: "lesson_download_button",
