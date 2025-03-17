@@ -8,6 +8,7 @@ import {
   OakBox,
   OakTertiaryOLNav,
   OakSecondaryLink,
+  OakSpan,
 } from "@oaknational/oak-components";
 import {
   PortableText,
@@ -320,7 +321,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 Video guide
               </OakHeading>
               <OakP $font={"body-1"}>{videoExplainer}</OakP>
-              <OakP $font={"body-2-bold"} $color="black">
+              <OakSpan $font={"body-2-bold"} $color="black">
                 <OakSecondaryLink
                   href={resolveOakHref({
                     page: "blog-single",
@@ -332,7 +333,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 >
                   Read more about our new curriculum
                 </OakSecondaryLink>
-              </OakP>
+              </OakSpan>
             </Flex>
           </OakFlex>
         )}
