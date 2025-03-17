@@ -388,11 +388,11 @@ describe(PupilViewsVideo, () => {
 
         await userEvent.click(getByText("Download files"));
 
-        expect(downloadLessonResources.default).toHaveBeenCalledWith(
-          MockBrowseData.lessonSlug,
-          ["worksheet-pdf-questions"],
-          false,
-        );
+        expect(downloadLessonResources.default).toHaveBeenCalledWith({
+          lessonSlug: MockBrowseData.lessonSlug,
+          selectedResourceTypes: ["worksheet-pdf-questions"],
+          isLegacyDownload: false,
+        });
       });
     });
 

@@ -93,32 +93,32 @@ type LessonDownloadsProps =
       lesson: SpecialistLesson;
     };
 
-const additionalFiles = [
-  {
-    exists: true,
-    type: "additional-files",
-    label: "python file 1",
-    ext: "PY",
-    forbidden: false,
-    assetId: 1234,
-  },
-  {
-    exists: true,
-    type: "additional-files",
-    label: "mp3 file 1",
-    ext: "mp3",
-    forbidden: false,
-    assetId: 345,
-  },
-  {
-    exists: true,
-    type: "additional-files",
-    label: "doc file 3",
-    ext: "doc",
-    forbidden: false,
-    assetId: 684,
-  },
-] as LessonDownloadsPageData["additionalFiles"];
+// const additionalFiles = [
+//   {
+//     exists: true,
+//     type: "additional-files",
+//     label: "python file 1",
+//     ext: "PY",
+//     forbidden: false,
+//     assetId: 1234,
+//   },
+//   {
+//     exists: true,
+//     type: "additional-files",
+//     label: "mp3 file 1",
+//     ext: "mp3",
+//     forbidden: false,
+//     assetId: 345,
+//   },
+//   {
+//     exists: true,
+//     type: "additional-files",
+//     label: "doc file 3",
+//     ext: "doc",
+//     forbidden: false,
+//     assetId: 684,
+//   },
+// ] as LessonDownloadsPageData["additionalFiles"];
 
 export function LessonDownloads(props: LessonDownloadsProps) {
   const { isCanonical, lesson } = props;
@@ -126,7 +126,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonTitle,
     lessonSlug,
     downloads,
-    // additionalFiles,
+    additionalFiles,
     expired,
     isSpecialist,
     copyrightContent,

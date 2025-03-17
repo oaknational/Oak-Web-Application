@@ -124,13 +124,14 @@ describe("useResourceFormSubmit", () => {
     result.current.onSubmit(data, "lesson");
 
     await waitFor(() => {
-      expect(downloadLessonResources).toHaveBeenCalledWith(
-        "lesson",
-        ["intro-quiz-questions"],
-        true,
-        false,
-        null,
-      );
+      expect(downloadLessonResources).toHaveBeenCalledWith({
+        lessonSlug: "lesson",
+        selectedResourceTypes: ["intro-quiz-questions"],
+        isLegacyDownload: true,
+        authFlagEnabled: false,
+        authToken: null,
+        selectedAdditionalFilesIds: [],
+      });
     });
   });
 });

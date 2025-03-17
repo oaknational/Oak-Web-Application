@@ -106,8 +106,8 @@ export const getLessonDownloadResourcesExistence = async ({
   isLegacyDownload: boolean;
 }) => {
   const checkWhichResourcesExistEndpoint = additionalFilesIdsString
-    ? `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`
-    : `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}&additionalFiles=${additionalFilesIdsString}`;
+    ? `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}&additionalFiles=${additionalFilesIdsString}`
+    : `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/check-files?selection=${resourceTypesString}`;
 
   const meta = {
     lessonSlug,

@@ -43,7 +43,7 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
         </OakBox>
         <OakP>
           {`Download ${isPlural ? "these files" : "this file"} to use in the
-          lesson`}
+          lesson.`}
         </OakP>
         <OakTertiaryButton
           element="a"
@@ -55,11 +55,17 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
                   programmeSlug: programmeSlug,
                   unitSlug: unitSlug,
                   downloads: "downloads",
+                  query: {
+                    preselected: "additional files",
+                  },
                 })
               : resolveOakHref({
                   page: "lesson-downloads-canonical",
                   lessonSlug: lessonSlug,
                   downloads: "downloads",
+                  query: {
+                    preselected: "additional files",
+                  },
                 })
           }
           isTrailingIcon

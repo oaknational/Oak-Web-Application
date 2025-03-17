@@ -220,20 +220,21 @@ export type LessonBase = z.infer<typeof baseLessonOverviewSchema>;
 export const lessonDownloadsListSchema = z.array(
   z.object({
     exists: z.boolean().nullable(),
-    type: z.enum([
-      "presentation",
-      "intro-quiz-questions",
-      "intro-quiz-answers",
-      "exit-quiz-questions",
-      "exit-quiz-answers",
-      "worksheet-pdf",
-      "worksheet-pptx",
-      "supplementary-pdf",
-      "supplementary-docx",
-      "curriculum-pdf",
-      "lesson-guide-pdf",
-      "additional-files",
-    ]),
+    type:
+      z.enum([
+        "presentation",
+        "intro-quiz-questions",
+        "intro-quiz-answers",
+        "exit-quiz-questions",
+        "exit-quiz-answers",
+        "worksheet-pdf",
+        "worksheet-pptx",
+        "supplementary-pdf",
+        "supplementary-docx",
+        "curriculum-pdf",
+        "lesson-guide-pdf",
+        "additional-files",
+      ]) || z.string().regex(/^additional-file-\d+$/),
     label: z.string(),
     ext: z.string(),
     forbidden: z.union([

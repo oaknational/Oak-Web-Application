@@ -185,11 +185,11 @@ describe("PupilIntro", () => {
 
         await userEvent.click(getByText("Download files"));
 
-        expect(downloadLessonResources.default).toHaveBeenCalledWith(
-          curriculumData.lessonSlug,
-          ["worksheet-pdf-questions"],
-          curriculumData.isLegacy,
-        );
+        expect(downloadLessonResources.default).toHaveBeenCalledWith({
+          lessonSlug: curriculumData.lessonSlug,
+          selectedResourceTypes: ["worksheet-pdf-questions"],
+          isLegacyDownload: curriculumData.isLegacy,
+        });
       });
     });
     describe("when there is a single additional file", () => {
@@ -277,11 +277,11 @@ describe("PupilIntro", () => {
 
         await userEvent.click(getByText("Download worksheet"));
 
-        expect(downloadLessonResources.default).toHaveBeenCalledWith(
-          curriculumData.lessonSlug,
-          ["worksheet-pdf-questions"],
-          curriculumData.isLegacy,
-        );
+        expect(downloadLessonResources.default).toHaveBeenCalledWith({
+          lessonSlug: curriculumData.lessonSlug,
+          selectedResourceTypes: ["worksheet-pdf-questions"],
+          isLegacyDownload: curriculumData.isLegacy,
+        });
       });
     });
 

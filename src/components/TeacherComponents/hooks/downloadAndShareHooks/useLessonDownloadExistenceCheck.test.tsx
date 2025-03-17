@@ -58,11 +58,12 @@ describe("useLessonDownloadExistenceCheck", () => {
 
     await waitFor(() => {
       expect(getDownloadResourcesExistenceMock).toBeCalledTimes(1);
-      expect(getDownloadResourcesExistenceMock).toBeCalledWith(
+      expect(getDownloadResourcesExistenceMock).toBeCalledWith({
         lessonSlug,
-        "exit-quiz-answers,worksheet-pdf",
-        true,
-      );
+        resourceTypesString: "exit-quiz-answers,worksheet-pdf",
+        isLegacyDownload: true,
+        additionalFilesIdsString: undefined,
+      });
     });
 
     expect(onComplete).toBeCalledTimes(1);

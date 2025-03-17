@@ -319,16 +319,38 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
       preselected = getPreselectedShareResourceTypes(queryResults);
     }
     if (isPreselectedDownloadType(queryResults)) {
+      const preselectedResources = additionalResources
+        ? resources.concat(additionalResources)
+        : resources;
       preselected = getPreselectedDownloadResourceTypes(
         queryResults,
-        resources as LessonDownloadsPageData["downloads"],
+        preselectedResources as LessonDownloadsPageData["downloads"],
       );
     }
+
     if (preselected && props.type !== "curriculum") {
       setPreselectAll(preselected === "all");
-      preselected === "all"
-        ? setValue("resources", allAvailableResources)
-        : setValue("resources", preselected);
+
+      switch (true) {
+        case preselected === "all":
+          setValue("resources", allAvailableResources);
+          break;
+        case preselected.includes("additional-files"):
+          if (additionalResources) {
+            const preselectedAdditionalResourcesList = additionalResources.map(
+              (resource) =>
+                `additional-files-${resource.assetId}` as ResourceType,
+            );
+            const precelectedResourcesList = preselected
+              .concat(preselectedAdditionalResourcesList)
+              .filter((p) => p !== "additional-files");
+            setValue("resources", precelectedResourcesList);
+          }
+          break;
+        default:
+          setValue("resources", preselected);
+          break;
+      }
     }
   }, [
     getInitialResourcesState,
@@ -336,6 +358,7 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     props.type,
     router.query.preselected,
     resources,
+    additionalResources,
     setValue,
   ]);
 
