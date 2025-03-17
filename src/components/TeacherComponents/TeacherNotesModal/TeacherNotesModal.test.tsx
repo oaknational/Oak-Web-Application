@@ -77,7 +77,12 @@ describe("TeacherNotesModal", () => {
   };
 
   beforeEach(() => {
+    jest.useFakeTimers();
     jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
   });
 
   describe("isAllowedUri", () => {
