@@ -682,20 +682,22 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     >
                       Subject
                     </OakSpan>
+                    {showSubjectError && (
+                      <OakFlex>
+                        <OakIcon
+                          iconName="content-guidance"
+                          $colorFilter={"red"}
+                          $height={"all-spacing-6"}
+                        />
+                        <OakSpan $color={!showSubjectError ? "black" : "red"}>
+                          Select a subject
+                        </OakSpan>
+                      </OakFlex>
+                    )}
                     <OakP
                       $font={"body-2"}
                       $color={!showSubjectError ? "black" : "red"}
                     >
-                      {showSubjectError && (
-                        <OakFlex>
-                          <OakIcon
-                            iconName="content-guidance"
-                            $colorFilter={"red"}
-                            $height={"all-spacing-6"}
-                          />
-                          <OakSpan>Select a subject</OakSpan>
-                        </OakFlex>
-                      )}
                       {selectedSubject && selectedSubject.title}
                       {!showSubjectError && !selectedSubject && "Select"}
                     </OakP>
