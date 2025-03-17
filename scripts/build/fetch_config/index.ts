@@ -1,8 +1,8 @@
 import path from "node:path";
 
-import type { OakConfig } from "./config_types.js";
-import readConfigFromFile from "./read_from_fs.js";
-import readConfigFromNetwork from "./read_from_network.js";
+import type { OakConfig } from "./config_types";
+import readConfigFromFile from "./read_from_fs";
+import readConfigFromNetwork from "./read_from_network";
 
 /**
  * Given a file or network location of a JSON config file, read and return a promise for it.

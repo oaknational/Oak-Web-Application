@@ -19,7 +19,7 @@ import {
   RELEASE_STAGE_TESTING,
 } from "./scripts/build/build_config_helpers";
 import type { OakConfig } from "./scripts/build/fetch_config/config_types";
-import fetchConfig from "./scripts/build/fetch_config/index.js";
+import fetchConfig from "./scripts/build/fetch_config";
 import type { WebpackConfigContext } from "next/dist/server/config-shared";
 import type {
   RuleSetRule,
@@ -137,12 +137,13 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
           return false;
         }
         const test = (rule as RuleSetRule)?.test;
-        if (typeof test === "function") {
-          return test(".svg");
+        if (test instanceof RegExp) {
+          return test.test(".svg");
         }
         return false;
       });
       if (!fileLoaderRule) {
+        console.error("rules", config.module?.rules);
         throw new Error("Could not find file loader rule");
       }
       config.module?.rules?.push(
