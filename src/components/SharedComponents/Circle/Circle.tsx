@@ -17,7 +17,12 @@ export type CircleProps = FlexProps & {
  * Use it where you need a container which is a circle.
  */
 const Circle: FC<CircleProps> = (props) => {
-  const { size, ...flexProps } = props;
+  const { size, ...flexProps } = {
+    $alignItems: "center",
+    $justifyContent: "center",
+    $borderRadius: "50%",
+    ...props,
+  };
 
   return (
     <Flex
@@ -28,12 +33,6 @@ const Circle: FC<CircleProps> = (props) => {
       $minHeight={size}
     />
   );
-};
-
-Circle.defaultProps = {
-  $alignItems: "center",
-  $justifyContent: "center",
-  $borderRadius: "50%",
 };
 
 export default Circle;
