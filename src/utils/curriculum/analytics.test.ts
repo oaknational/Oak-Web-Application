@@ -1,6 +1,5 @@
 import { buildUnitSequenceRefinedAnalytics } from "./analytics";
 import { CurriculumFilters } from "./types";
-import { CurriculumSelectionSlugs } from "./slugs";
 
 import {
   Platform,
@@ -15,12 +14,6 @@ import {
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 describe("buildUnitSequenceRefinedAnalytics", () => {
-  const mockCurriculumSelectionSlugs: CurriculumSelectionSlugs = {
-    subjectSlug: "science",
-    phaseSlug: "secondary",
-    ks4OptionSlug: null,
-  };
-
   const mockTrackingData: CurriculumUnitsTrackingData = {
     subjectSlug: "science",
     phaseSlug: "secondary",
@@ -39,7 +32,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
 
   it("should build analytics with default values when no filters are applied", () => {
     const result = buildUnitSequenceRefinedAnalytics(
-      mockCurriculumSelectionSlugs,
+      AnalyticsUseCase.TEACHER,
       mockTrackingData,
       baseFilters,
     );
@@ -72,7 +65,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
     };
 
     const result = buildUnitSequenceRefinedAnalytics(
-      mockCurriculumSelectionSlugs,
+      AnalyticsUseCase.TEACHER,
       mockTrackingData,
       filtersWithYear,
     );
@@ -89,7 +82,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
     };
 
     const result = buildUnitSequenceRefinedAnalytics(
-      mockCurriculumSelectionSlugs,
+      AnalyticsUseCase.TEACHER,
       mockTrackingData,
       filtersWithThread,
     );
@@ -105,7 +98,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
     };
 
     const result = buildUnitSequenceRefinedAnalytics(
-      mockCurriculumSelectionSlugs,
+      AnalyticsUseCase.TEACHER,
       mockTrackingData,
       filtersWithChildSubject,
     );
@@ -120,7 +113,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
     };
 
     const result = buildUnitSequenceRefinedAnalytics(
-      mockCurriculumSelectionSlugs,
+      AnalyticsUseCase.TEACHER,
       mockTrackingData,
       filtersWithSubjectCategory,
     );
@@ -129,13 +122,8 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
   });
 
   it("should set phase to Secondary when phaseSlug is secondary", () => {
-    const secondarySelectionSlugs: CurriculumSelectionSlugs = {
-      ...mockCurriculumSelectionSlugs,
-      phaseSlug: "secondary",
-    };
-
     const result = buildUnitSequenceRefinedAnalytics(
-      secondarySelectionSlugs,
+      AnalyticsUseCase.TEACHER,
       mockTrackingData,
       baseFilters,
     );
@@ -150,7 +138,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
     };
 
     const result = buildUnitSequenceRefinedAnalytics(
-      mockCurriculumSelectionSlugs,
+      AnalyticsUseCase.TEACHER,
       mockTrackingData,
       filtersWithFoundationTier,
     );
@@ -165,7 +153,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
     };
 
     const result = buildUnitSequenceRefinedAnalytics(
-      mockCurriculumSelectionSlugs,
+      AnalyticsUseCase.TEACHER,
       mockTrackingData,
       filtersWithHigherTier,
     );

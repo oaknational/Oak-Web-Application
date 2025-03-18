@@ -1,5 +1,4 @@
 import { CurriculumFilters } from "./types";
-import { CurriculumSelectionSlugs } from "./slugs";
 
 import {
   Platform,
@@ -7,10 +6,10 @@ import {
   EngagementIntent,
   ComponentType,
   EventVersion,
-  AnalyticsUseCase,
   Phase,
   LearningTier,
   UnitSequenceRefinedProperties,
+  AnalyticsUseCaseValueType,
 } from "@/browser-lib/avo/Avo";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
@@ -23,11 +22,11 @@ import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab
  * @returns The properties for the unitSequenceRefined event
  */
 export function buildUnitSequenceRefinedAnalytics(
-  curriculumSelectionSlugs: CurriculumSelectionSlugs,
+  analyticsUseCase: AnalyticsUseCaseValueType,
   curriculumUnitsTrackingData: CurriculumUnitsTrackingData,
   filters: CurriculumFilters,
 ): UnitSequenceRefinedProperties {
-  const { phaseSlug } = curriculumSelectionSlugs;
+  const { phaseSlug } = curriculumUnitsTrackingData;
 
   return {
     yearGroupName: filters.years.length > 0 ? filters.years[0] : null,
@@ -41,7 +40,7 @@ export function buildUnitSequenceRefinedAnalytics(
     engagementIntent: EngagementIntent.REFINE,
     componentType: ComponentType.FILTER_LINK,
     eventVersion: EventVersion["2_0_0"],
-    analyticsUseCase: AnalyticsUseCase.TEACHER,
+    analyticsUseCase: analyticsUseCase,
     childSubjectSlug:
       filters.childSubjects.length > 0 ? filters.childSubjects[0] : null,
     childSubjectName:

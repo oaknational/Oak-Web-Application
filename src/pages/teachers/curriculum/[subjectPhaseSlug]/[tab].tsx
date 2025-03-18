@@ -50,6 +50,7 @@ import openApiRequest from "@/utils/curriculum/openapi";
 import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -88,12 +89,13 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   );
 
   const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const onChangeFilters = (newFilters: CurriculumFilters) => {
     setFilters(newFilters);
 
     const analyticsData = buildUnitSequenceRefinedAnalytics(
-      curriculumSelectionSlugs,
+      analyticsUseCase,
       curriculumUnitsTrackingData,
       newFilters,
     );
