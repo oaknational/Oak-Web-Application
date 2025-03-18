@@ -4,15 +4,18 @@
     "arrowdown",
     "booleancheckbox",
     "chromedriver",
+    "cloudbuild",
     "codegen",
     "excalidraw",
     "gcloud",
     "gleap",
+    "googleusercontent",
     "hookform",
     "Hubspot",
     "mathjax",
     "Nextjs",
     "oaknational",
+    "oaknationalacademy",
     "pageobjects",
     "phonenumber",
     "portabletext",
@@ -28,5 +31,6 @@
   "deno.enable": true,
   "deno.enablePaths": ["netlify/edge-functions"],
   "deno.unstable": true,
-  "deno.importMap": ".netlify/edge-functions-import-map.json"
+  "deno.importMap": ".netlify/edge-functions-import-map.json",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

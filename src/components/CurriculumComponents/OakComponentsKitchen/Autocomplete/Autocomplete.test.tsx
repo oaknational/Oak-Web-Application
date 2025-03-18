@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, act } from "react";
 import { fireEvent } from "@testing-library/dom";
-import { act } from "react-dom/test-utils";
 
 import { STATES } from "./seeds";
 

@@ -1,9 +1,4 @@
-import {
-  css,
-  DefaultTheme,
-  Interpolation,
-  ThemedStyledProps,
-} from "styled-components";
+import { css } from "styled-components";
 
 import truthy from "../../utils/truthy";
 import { PropsWithTheme } from "../theme";
@@ -15,7 +10,9 @@ const breakpointsByName = {
 export const breakpoints = Object.values(breakpointsByName).sort((a, b) =>
   a > b ? 1 : -1,
 );
-export type BreakpointName = keyof typeof breakpointsByName;
+export interface BreakpointName {
+  [key: string]: string | number;
+}
 export const getBreakpoint = (
   breakpointName: keyof typeof breakpointsByName,
 ) => {
@@ -34,8 +31,12 @@ export const getMediaQuery = (device: Device) => {
 };
 export type ResponsiveValues<Value> = (Value | null) | (Value | null)[];
 
+/**
+ * A utility function that creates responsive CSS rules.
+ * Updated to work with styled-components v6.
+ */
 const responsive =
-  <Props, T extends string | number | undefined | null>(
+  <Props extends object, T extends string | number | undefined | null>(
     attr: string,
     getValues: (props: Props) => ResponsiveValues<T | undefined | null>,
     parse:
@@ -46,7 +47,7 @@ const responsive =
       x,
     ) => x,
   ) =>
-  (props: Props): Interpolation<ThemedStyledProps<Props, DefaultTheme>> => {
+  (props: Props): any => {
     const attrCss = (value: T | undefined | null) =>
       typeof value === "undefined"
         ? undefined
