@@ -97,11 +97,25 @@ export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
   };
 }
 
-export function filtersToQuery(filter: CurriculumFilters) {
+const FILTER_TO_QS: Record<keyof CurriculumFilters, string> = {
+  childSubjects: "child_subjects",
+  subjectCategories: "subject_categories",
+  tiers: "tiers",
+  years: "years",
+  threads: "threads",
+};
+
+export function filtersToQuery(
+  filter: CurriculumFilters,
+  dflt: CurriculumFilters,
+) {
   const out: Record<string, string> = {};
-  for (const [key, value] of Object.entries(filter)) {
+  for (const [keyUntyped, value] of Object.entries(filter)) {
+    const key = keyUntyped as keyof CurriculumFilters;
     if (value.length > 0) {
-      out[key] = value.join(",");
+      if (!isEqual(dflt[key], value)) {
+        out[FILTER_TO_QS[key]] = value.join(",");
+      }
     }
   }
   return out;
@@ -115,9 +129,9 @@ export function mergeInFilterParams(
   if (params) {
     for (const keyStr of Object.keys(filter)) {
       const key = keyStr as keyof CurriculumFilters;
-      const paramsValue = params.get(key);
+      const paramsValue = params.get(FILTER_TO_QS[key]);
       if (paramsValue && paramsValue !== "") {
-        out[key] = params.get(key)!.split(",");
+        out[key] = params.get(FILTER_TO_QS[key])!.split(",");
       }
     }
   }
@@ -139,12 +153,13 @@ export function useFilters(
     }
   });
   const setFilters = (newFilters: CurriculumFilters) => {
+    const dflt = defaultFiltersFn();
     if (isCurricRoutingEnabled()) {
       const url =
         location.pathname +
         "?" +
         new URLSearchParams(
-          Object.entries(filtersToQuery(newFilters)),
+          Object.entries(filtersToQuery(newFilters, dflt)),
         ).toString();
       router.replace(url, undefined, { shallow: true });
     }
