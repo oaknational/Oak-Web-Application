@@ -48,7 +48,7 @@ const QuizSectionRender = (props: QuizResultsProps) => {
     <OakFlex
       $position={"relative"}
       $flexDirection={"column"}
-      key={index}
+      key={`section-${index}`}
       $gap={"all-spacing-5"}
     >
       <OakFlex $pb={["inner-padding-xl", "inner-padding-none"]}>
@@ -147,7 +147,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
 
                 return (
                   <QuizSectionRender
-                    key={index}
+                    key={`section-render'${index}`}
                     index={index}
                     displayIndex={displayIndex}
                     questionResult={questionResult}
@@ -175,7 +175,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
 
                 return (
                   <QuizSectionRender
-                    key={index}
+                    key={`section-${index}`}
                     index={index}
                     displayIndex={displayIndex}
                     questionResult={questionResult}

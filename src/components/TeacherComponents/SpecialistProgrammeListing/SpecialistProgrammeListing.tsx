@@ -31,7 +31,7 @@ const SpecialistProgrammeListing: FC<{
         {programmes.map((programme, index) => {
           return (
             <SpecialistProgrammeListItem
-              key={index}
+              key={`specialist-programme-${index}`}
               programme={programme}
               onClick={onClick}
             />
