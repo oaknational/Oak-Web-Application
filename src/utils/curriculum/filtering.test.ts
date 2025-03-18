@@ -681,7 +681,13 @@ describe("getNumberOfFiltersApplied", () => {
 
 describe("filtersToQuery", () => {
   it("with default", () => {
-    const result = filtersToQuery(createFilter());
+    const result = filtersToQuery(createFilter(), {
+      childSubjects: [],
+      subjectCategories: [],
+      tiers: [],
+      years: [],
+      threads: [],
+    });
     expect(result).toEqual({});
   });
 
@@ -707,11 +713,18 @@ describe("filtersToQuery", () => {
         years: ["7", "8"],
         threads: [thread1.slug, thread2.slug],
       }),
+      {
+        childSubjects: [],
+        subjectCategories: [],
+        tiers: [],
+        years: [],
+        threads: [],
+      },
     );
 
     expect(result).toEqual({
-      childSubjects: "child_subject_1,child_subject_2",
-      subjectCategories: "1,2",
+      child_subjects: "child_subject_1,child_subject_2",
+      subject_categories: "1,2",
       threads: "thread_1,thread_2",
       tiers: "tier_1,tier_2",
       years: "7,8",
@@ -732,7 +745,7 @@ describe("mergeInFilterParams", () => {
     const result = mergeInFilterParams(
       filter,
       new URLSearchParams(
-        "?childSubjects=child_subject_1&subjectCategories=1&tiers=tier_1&years=1&threads=thread1",
+        "?child_subjects=child_subject_1&subject_categories=1&tiers=tier_1&years=1&threads=thread1",
       ),
     );
     expect(result).toEqual({
@@ -756,7 +769,7 @@ describe("mergeInFilterParams", () => {
     const result = mergeInFilterParams(
       filter,
       new URLSearchParams(
-        "?childSubjects=child_subject_1,child_subject_2&subjectCategories=1,2&tiers=tier_1,tier_2&years=1,2&threads=thread1,thread2",
+        "?child_subjects=child_subject_1,child_subject_2&subject_categories=1,2&tiers=tier_1,tier_2&years=1,2&threads=thread1,thread2",
       ),
     );
     expect(result).toEqual({
