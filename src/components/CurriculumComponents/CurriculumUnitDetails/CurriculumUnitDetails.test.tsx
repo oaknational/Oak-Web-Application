@@ -17,6 +17,7 @@ const testCurriculumUnitDetails = {
   cycle: "1",
   whyThisWhyNow: "test why this why now",
   description: "test description",
+  handleUnitOverviewExploredAnalytics: () => jest.fn(),
 };
 
 describe("CurriculumUnitDetails component", () => {
