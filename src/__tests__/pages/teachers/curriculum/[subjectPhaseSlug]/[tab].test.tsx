@@ -636,7 +636,7 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
         window.IntersectionObserver = mockIntersectionObserver;
       });
 
-      test.only("user can see the tier selector for secondary maths", async () => {
+      test("user can see the tier selector for secondary maths", async () => {
         // Mock for prerelease behavior
         mockPrerelease("curriculum.downloads");
 
