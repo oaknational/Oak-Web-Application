@@ -312,3 +312,68 @@ export function getNumberOfFiltersApplied(
     return acc;
   }, 0);
 }
+
+export function subjectCategoryForFilter(
+  data: CurriculumUnitsFormattedData,
+  filter: CurriculumFilters,
+) {
+  const id = filter.subjectCategories[0];
+  if (!id) return;
+
+  return Object.entries(data.yearData)
+    .flatMap(([, yearDataItem]) => {
+      return yearDataItem.subjectCategories;
+    })
+    .find((subjectCategory) => String(subjectCategory.id) === id);
+}
+
+export function childSubjectForFilter(
+  data: CurriculumUnitsFormattedData,
+  filter: CurriculumFilters,
+) {
+  const slug = filter.childSubjects[0];
+  if (!slug) return;
+  return Object.entries(data.yearData)
+    .flatMap(([, yearDataItem]) => {
+      return yearDataItem.childSubjects;
+    })
+    .find((childSubject) => childSubject.subject_slug === slug);
+}
+
+export function tierForFilter(
+  data: CurriculumUnitsFormattedData,
+  filter: CurriculumFilters,
+) {
+  const slug = filter.tiers[0];
+  if (!slug) return;
+  return Object.entries(data.yearData)
+    .flatMap(([, yearDataItem]) => {
+      return yearDataItem.tiers;
+    })
+    .find((tier) => tier.tier_slug === slug);
+}
+
+export function threadForFilter(
+  data: CurriculumUnitsFormattedData,
+  filter: CurriculumFilters,
+) {
+  const slug = filter.threads[0];
+  if (!slug) return;
+  return data.threadOptions.find((thread) => thread.slug === slug);
+}
+
+export function buildTextDescribingFilter(
+  data: CurriculumUnitsFormattedData,
+  filters: CurriculumFilters,
+) {
+  const fields = [
+    filters.subjectCategories[0] === "-1"
+      ? "All categories"
+      : subjectCategoryForFilter(data, filters)?.title,
+    childSubjectForFilter(data, filters)?.subject,
+    tierForFilter(data, filters)?.tier,
+    threadForFilter(data, filters)?.title,
+  ].filter(Boolean);
+
+  return fields;
+}

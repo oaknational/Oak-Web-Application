@@ -23,13 +23,16 @@ export function CurricMobileFilterModal({
   return (
     <OakFlex $flexDirection={"column"} $height={"100%"}>
       <OakFlex
-        $width={"100%"}
         $flexShrink={1}
         $overflowY={"auto"}
         $position={"relative"}
-        $pa={"inner-padding-m"}
+        $pa={"inner-padding-l"}
       >
-        <OakFlex $flexDirection={"column"} $gap={"space-between-m2"}>
+        <OakFlex
+          $flexDirection={"column"}
+          $gap={"space-between-m2"}
+          $width={"100vw"}
+        >
           {shouldDisplayFilter(data, filters, "subjectCategories") && (
             <CurricFiltersSubjectCategories
               filters={filters}

@@ -14,6 +14,7 @@ import Illustration from "@/components/SharedComponents/Illustration";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
 import { resolveOakHref } from "@/common-lib/urls";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 
 type CurriculumDownloadTabProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
@@ -21,6 +22,7 @@ type CurriculumDownloadTabProps = {
 const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
   curriculumPhaseOptions,
 }) => {
+  const { track } = useAnalytics();
   return (
     <OakBox $background={"mint"} $pv="inner-padding-xl" $ph={"inner-padding-m"}>
       <OakMaxWidth $pv={"inner-padding-xl"}>
@@ -65,6 +67,16 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
             >
               <OakSecondaryLink
                 href={resolveOakHref({ page: "curriculum-landing-page" })}
+                onClick={() => {
+                  track.curriculumLandingPageAccessed({
+                    platform: "owa",
+                    product: "curriculum resources",
+                    engagementIntent: "explore",
+                    componentType: "oak_curriculum_principles",
+                    eventVersion: "2.0.0",
+                    analyticsUseCase: "Teacher",
+                  });
+                }}
                 iconName="chevron-right"
                 isTrailingIcon
               >

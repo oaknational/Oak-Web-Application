@@ -54,3 +54,9 @@ export type CurriculumFilters = {
   years: string[];
   threads: Thread["slug"][];
 };
+
+export type Lesson = {
+  title: string;
+  slug?: string;
+  _state?: string;
+};

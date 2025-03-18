@@ -51,7 +51,7 @@ export default function CurricVisualiserFiltersMobile({
       <OakModalNew
         open={mobileThreadModalOpen}
         onClose={onClose}
-        title={<OakBox $font={"body-1-bold"}>Filter and highlight</OakBox>}
+        title={<OakBox $font={"heading-6"}>Filter and highlight</OakBox>}
         content={
           <CurricMobileFilterModal
             filters={filters}

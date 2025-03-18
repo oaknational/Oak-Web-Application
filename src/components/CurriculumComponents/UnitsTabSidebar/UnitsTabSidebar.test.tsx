@@ -1,7 +1,5 @@
 import userEvent from "@testing-library/user-event";
 
-import { Lesson } from "../UnitModal/UnitModal";
-
 import UnitsTabSidebar from "./UnitsTabSidebar";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
@@ -9,7 +7,7 @@ import {
   mockOptionalityUnit,
   mockUnitKS4,
 } from "@/components/CurriculumComponents/UnitModal/UnitModal.fixture";
-import { Unit } from "@/utils/curriculum/types";
+import { Unit, Lesson } from "@/utils/curriculum/types";
 
 const lessonsPublished: Lesson[] = [
   {

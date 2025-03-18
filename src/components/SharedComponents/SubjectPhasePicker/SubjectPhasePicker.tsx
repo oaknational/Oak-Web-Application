@@ -33,7 +33,6 @@ import type {
   CurriculumPhaseOption,
 } from "@/node-lib/curriculum-api-2023";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import FocusIndicator from "@/components/CurriculumComponents/OakComponentsKitchen/FocusIndicator";
 import { getPhaseText } from "@/utils/curriculum/formatting";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
@@ -42,6 +41,7 @@ import Button from "@/components/SharedComponents/Button";
 import { CurriculumModalCloseButton } from "@/components/CurriculumComponents/CurriculumModalCloseButton/CurriculumModalCloseButton";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import type { CurriculumTab } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
 
 // FIXME: This is from <@/pages-helpers/pupil/options-pages/options-pages-helpers> being duplicated here to fix bundle issues.
 const isExamboardSlug = (
@@ -342,7 +342,6 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
   const phaseErrorId = useId();
 
   const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
 
   const phases = [
     { title: "Primary", slug: "primary" },
@@ -491,8 +490,13 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
       track.curriculumVisualiserAccessed({
         subjectTitle: selectedSubject.title,
         subjectSlug: selectedSubject.slug,
-        phase: selectedPhase.slug === "primary" ? "primary" : "secondary",
-        analyticsUseCase: analyticsUseCase,
+        platform: "owa",
+        product: "curriculum visualiser",
+        engagementIntent: "use",
+        componentType: "curriculum_visualiser_button",
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        phase: selectedPhase.slug as PhaseValueType,
       });
     }
   };
@@ -730,7 +734,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     >
                       {sortBy(subjects, "title").map((subject) => (
                         <ButtonContainer
-                          key={subject.slug}
+                          key={`${subject.slug}-selection`}
                           className={`lot-picker subject-selection ${
                             isSelected(subject) ? "selected" : ""
                           }`}
@@ -806,7 +810,7 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                           className={`lot-picker subject-selection ${
                             isSelected(subject) ? "selected" : ""
                           }`}
-                          key={subject.slug}
+                          key={`${subject.slug}-mobile-selection`}
                         >
                           <OakSecondaryButton
                             role="radio"
