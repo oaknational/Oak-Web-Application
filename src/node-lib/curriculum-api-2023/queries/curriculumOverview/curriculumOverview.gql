@@ -11,6 +11,5 @@ query curriculumOverview($phaseSlug: String, $subjectSlug: String) {
     subjectTitle: subject
     phaseTitle: phase
     examboardTitle: examboard
-    non_curriculum
   }
 }

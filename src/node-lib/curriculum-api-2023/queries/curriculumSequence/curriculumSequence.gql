@@ -37,6 +37,5 @@ query curriculumSequence(
     pathway
     pathway_slug
     state
-    non_curriculum
   }
 }

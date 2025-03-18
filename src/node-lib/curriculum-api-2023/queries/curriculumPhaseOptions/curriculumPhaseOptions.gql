@@ -5,6 +5,5 @@ query curriculumPhaseOptions {
     phases
     keystages
     ks4_options
-    non_curriculum
   }
 }
