@@ -77,4 +77,4 @@ function getDeploymentTestUrls() {
   ];
 }
 
-module.exports = getDeploymentTestUrls;
+export default getDeploymentTestUrls;

@@ -71,7 +71,7 @@ const reactRules: Partial<ESLintRulesRecord> = {
   "react-hooks/exhaustive-deps": ["error"],
 };
 
-const eslintConfig: TSConfig = [
+export default tseslint.config(
   // Ignore patterns (migrated from .eslintignore)
   {
     ignores: [
@@ -109,16 +109,13 @@ const eslintConfig: TSConfig = [
     },
   },
 
-  // Basic ESLint recommended configuration
-  eslint.configs.recommended,
-
   // JavaScript files configuration
   {
     files: ["**/*.{js,mjs,cjs,jsx}"],
     plugins: {
-      import: importPlugin,
-      react: reactPlugin,
-      "react-hooks": reactHooksPlugin,
+      importPlugin,
+      reactPlugin,
+      reactHooksPlugin,
     },
     rules: {
       ...importRules,
@@ -131,9 +128,9 @@ const eslintConfig: TSConfig = [
     files: ["**/*.{ts,tsx}"],
     plugins: {
       "@typescript-eslint": tseslint.plugin,
-      import: importPlugin,
-      react: reactPlugin,
-      "react-hooks": reactHooksPlugin,
+      importPlugin,
+      reactPlugin,
+      reactHooksPlugin,
     },
     languageOptions: {
       parser: tseslint.parser,
@@ -158,9 +155,6 @@ const eslintConfig: TSConfig = [
       ...reactRules,
     },
   },
-
-  // TypeScript ESLint recommended configuration
-  ...tseslint.configs.recommended,
 
   // Special configuration for styled-components tests
   {
@@ -187,7 +181,26 @@ const eslintConfig: TSConfig = [
     files: [".github/**/*.{js,mjs,cjs,jsx,ts,tsx}"],
   },
 
-  ...compat.config({
+  // The main config.
+  eslint.configs.recommended,
+  {
+    plugins: {
+      "@typescript-eslint": tseslint.plugin,
+    },
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+    rules: {
+      "@typescript-eslint/no-floating-promises": "error",
+      // ...
+    },
+  },
+  tseslint.configs.recommended,
+  compat.config({
     extends: ["next", "next/core-web-vitals", "next/typescript", "prettier"],
   }),
-];
+);
