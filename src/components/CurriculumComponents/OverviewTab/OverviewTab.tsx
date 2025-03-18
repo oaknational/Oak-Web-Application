@@ -366,6 +366,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 ({ curriculumPartner, partnerBio }, curriculumPartnerIndex) => {
                   return (
                     <OakFlex
+                      key={`curriculum-partner-${curriculumPartnerIndex}`}
                       data-testid="curriculum-partner"
                       $justifyContent={"center"}
                       $alignContent={"start"}
