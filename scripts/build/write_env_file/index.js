@@ -258,6 +258,18 @@ async function main() {
     DEVELOPMENT_USER_REGION:
       process.env.DEVELOPMENT_USER_REGION ||
       oakConfig.clerk.developmentUserRegion,
+
+    // Sentry
+    NEXT_PUBLIC_SENTRY_DSN:
+      process.env.NEXT_PUBLIC_SENTRY_DSN || oakConfig.sentry.dsn,
+    NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER:
+      process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER ||
+      oakConfig.sentry.organisationIdentifier,
+    NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER:
+      process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER ||
+      oakConfig.sentry.projectIdentifier,
+    SENTRY_AUTH_TOKEN:
+      process.env.SENTRY_AUTH_TOKEN || secretsFromNetwork.SENTRY_AUTH_TOKEN,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {
