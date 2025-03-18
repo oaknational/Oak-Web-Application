@@ -88,7 +88,7 @@ const curriculumSequenceSchema = z.object({
       ),
       year: z.string(),
       state: z.string(),
-      subject_feature: z.any(),
+      non_curriculum: z.boolean(),
     })
     .strict()
     .array(),

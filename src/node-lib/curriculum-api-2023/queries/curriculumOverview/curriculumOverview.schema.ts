@@ -5,6 +5,7 @@ const curriculumOverviewSchema = z.object({
   subjectTitle: z.string(),
   phaseTitle: z.string(),
   examboardTitle: z.string().nullable().optional(),
+  non_curriculum: z.boolean(),
 });
 
 export default curriculumOverviewSchema;
