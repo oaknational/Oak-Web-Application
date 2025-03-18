@@ -147,6 +147,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
 
                 return (
                   <QuizSectionRender
+                    key={index}
                     index={index}
                     displayIndex={displayIndex}
                     questionResult={questionResult}
@@ -174,6 +175,7 @@ export const PupilViewsResults = (props: PupilViewsResultsProps) => {
 
                 return (
                   <QuizSectionRender
+                    key={index}
                     index={index}
                     displayIndex={displayIndex}
                     questionResult={questionResult}

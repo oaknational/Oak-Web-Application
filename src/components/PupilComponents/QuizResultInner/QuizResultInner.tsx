@@ -45,7 +45,7 @@ const CorrectAnswerSection = (props: CorectAnswerSectionProps) => {
               : undefined;
 
             return (
-              <MathJaxWrap>
+              <MathJaxWrap key={index}>
                 <OakQuizResultItem
                   key={index}
                   standardText={correctAnswerText}
