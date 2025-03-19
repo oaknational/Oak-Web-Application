@@ -1,13 +1,17 @@
 import {
   syntheticUnitvariantLessonsFixture,
   lessonDataFixture,
+  // additionalFilesFixture,
 } from "@oaknational/oak-curriculum-schema";
 import { ZodError } from "zod";
 
 import sdk from "../../sdk";
 
 import lessonDownloads from "./lessonDownloads.query";
-import { LessonDownloadsPageData } from "./lessonDownloads.schema";
+import {
+  LessonDownloadsPageData,
+  AdditionalFilesAssetData,
+} from "./lessonDownloads.schema";
 
 const downloadAssets = {
   has_slide_deck_asset_object: true,
@@ -24,9 +28,33 @@ const downloadAssets = {
   login_required: false,
 };
 
-const additionalFiles = {
+const additionalFilesEmptyFixture: AdditionalFilesAssetData = {
   tpc_downloadablefiles_list: null,
   tpc_downloadablefiles: [],
+};
+
+const additionalFilesFixture: AdditionalFilesAssetData = {
+  tpc_downloadablefiles_list: [1, 2],
+  tpc_downloadablefiles: [
+    {
+      asset_id: 1,
+      media_id: 1,
+      media_object: {
+        url: "https://example.com/file1.pdf",
+        bytes: 1000,
+        display_name: "File 1",
+      },
+    },
+    {
+      asset_id: 2,
+      media_id: 2,
+      media_object: {
+        url: "https://example.com/file2.pdf",
+        bytes: 2000,
+        display_name: "File 2",
+      },
+    },
+  ],
 };
 
 describe("lessonDownloads()", () => {
@@ -72,7 +100,7 @@ describe("lessonDownloads()", () => {
       lessonDownloads: jest.fn(() =>
         Promise.resolve({
           download_assets: [downloadAssets],
-          additional_files: [additionalFiles],
+          additional_files: [additionalFilesFixture],
           browse_data: [syntheticUnitvariantLessonsFixture()],
         }),
       ),
@@ -83,6 +111,61 @@ describe("lessonDownloads()", () => {
     })) as LessonDownloadsPageData;
 
     expect(unit.programmeSlug).toEqual("programme-slug");
+  });
+  test("returns additional files if present in the response", async () => {
+    const unit = (await lessonDownloads({
+      ...sdk,
+      lessonDownloads: jest.fn(() =>
+        Promise.resolve({
+          download_assets: [downloadAssets],
+          additional_files: [additionalFilesFixture],
+          browse_data: [syntheticUnitvariantLessonsFixture()],
+        }),
+      ),
+    })({
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+      lessonSlug: "lesson-slug",
+    })) as LessonDownloadsPageData;
+
+    expect(unit.additionalFiles).toEqual([
+      {
+        exists: true,
+        type: "additional-files",
+        label: "File 1",
+        ext: "pdf",
+        size: 1000,
+        forbidden: false,
+        assetId: 1,
+      },
+      {
+        exists: true,
+        type: "additional-files",
+        label: "File 2",
+        ext: "pdf",
+        size: 2000,
+        forbidden: false,
+        assetId: 2,
+      },
+    ]);
+  });
+  test("returns additional files as empty string if not present in the response", async () => {
+    const unit = (await lessonDownloads({
+      ...sdk,
+      lessonDownloads: jest.fn(() =>
+        Promise.resolve({
+          download_assets: [downloadAssets],
+          additional_files: [additionalFilesEmptyFixture],
+          browse_data: [syntheticUnitvariantLessonsFixture()],
+        }),
+      ),
+    })({
+      programmeSlug: "programme-slug",
+      unitSlug: "unit-slug",
+      lessonSlug: "lesson-slug",
+    })) as LessonDownloadsPageData;
+
+    expect(unit.additionalFiles).toEqual([]);
   });
   test("throws a Zod error if the response is invalid", async () => {
     try {
@@ -107,7 +190,7 @@ describe("lessonDownloads()", () => {
                 login_required: false,
               },
             ],
-            additional_files: [additionalFiles],
+            additional_files: [additionalFilesFixture],
             browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
@@ -151,7 +234,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [],
-            additional_files: [additionalFiles],
+            additional_files: [additionalFilesFixture],
             browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
@@ -167,7 +250,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssetsFixture],
-            additional_files: [additionalFiles],
+            additional_files: [additionalFilesFixture],
             browse_data: [],
           }),
         ),
@@ -199,7 +282,7 @@ describe("lessonDownloadsCanonical()", () => {
                 login_required: false,
               },
             ],
-            additional_files: [additionalFiles],
+            additional_files: [additionalFilesFixture],
             browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
@@ -220,8 +303,6 @@ describe("lessonDownloadsCanonical()", () => {
     }
   });
 
-  // Additional tests for lessonDownloads.query.ts
-
   describe("lessonDownloads() - Copyright Content", () => {
     test("returns copyright content if present in the response", async () => {
       const mockCopyrightContent = [
@@ -235,7 +316,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssets],
-            additional_files: [additionalFiles],
+            additional_files: [additionalFilesFixture],
             browse_data: [
               syntheticUnitvariantLessonsFixture({
                 overrides: {
@@ -264,7 +345,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssets],
-            additional_files: [additionalFiles],
+            additional_files: [additionalFilesFixture],
             browse_data: [
               syntheticUnitvariantLessonsFixture({
                 overrides: {

@@ -23,6 +23,7 @@ import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import { AdditionalFilesAssetData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -134,17 +135,11 @@ const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   return pathways;
 };
 
-const bytesToMegabytes = (bytes: number): string => {
-  const bytesInOneMegabyte = 1024 * 1024;
-  const megabytes = bytes / bytesInOneMegabyte;
-  return megabytes.toFixed(1);
-};
-
-const getAdditionalFiles = (
+export const getAdditionalFiles = (
   additionalFiles: AdditionalFilesAssetData["tpc_downloadablefiles"],
 ): string[] | null => {
   if (!additionalFiles) {
-    return null;
+    return [];
   }
 
   return additionalFiles.map((af) => {
@@ -152,7 +147,7 @@ const getAdditionalFiles = (
     const type = af.media_object.url.split(".").pop() ?? "";
     const size = af.media_object.bytes;
     const sizeString =
-      size > 1000 ? `${bytesToMegabytes(size)} MB` : `${size} B`;
+      size > 1000 ? `${convertBytesToMegabytes(size)} MB` : `${size} B`;
     return `${name} ${sizeString} (${type.toUpperCase()})`;
   });
 };
@@ -334,8 +329,8 @@ const lessonOverviewQuery =
       ...contentSnake,
     }) as LessonOverviewContent;
 
-    const additionalFiles =
-      res.additionalFiles[0]?.tpc_downloadablefiles ?? null;
+    const [additionalFilesRes] = res.additionalFiles;
+    const additionalFiles = additionalFilesRes?.tpc_downloadablefiles ?? null;
     const filteredAdditionalFiles: AdditionalFilesAssetData["tpc_downloadablefiles"] =
       additionalFiles
         ? additionalFiles.filter(

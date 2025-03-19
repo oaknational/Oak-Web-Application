@@ -5,6 +5,7 @@ import {
   groupLessonPathways,
   getLessonMediaBreadCrumb,
   getMediaClipLabel,
+  convertBytesToMegabytes,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   quizQuestions,
@@ -728,5 +729,12 @@ describe("getMediaClipLabel", () => {
   it("returns 'Video & audio clips' for any other subject", () => {
     const result = getMediaClipLabel("math");
     expect(result).toBe("Video & audio clips");
+  });
+});
+
+describe("convertBytesToMegabytes", () => {
+  it("converts bytes to megabytes and returns string fixed to one coma space", () => {
+    const result = convertBytesToMegabytes(13456325);
+    expect(result).toBe("12.8");
   });
 });

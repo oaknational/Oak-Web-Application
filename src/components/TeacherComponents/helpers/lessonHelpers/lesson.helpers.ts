@@ -616,3 +616,9 @@ export const getMediaClipLabel = (subjectSlug: string): LessonItemTitle => {
       return "Video & audio clips";
   }
 };
+
+export const convertBytesToMegabytes = (bytes: number): string => {
+  const bytesInOneMegabyte = 1024 * 1024;
+  const megabytes = bytes / bytesInOneMegabyte;
+  return megabytes.toFixed(1);
+};

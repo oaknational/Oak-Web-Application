@@ -242,6 +242,7 @@ export const lessonDownloadsListSchema = z.array(
       z.boolean().optional().nullish(),
     ]),
     assetId: z.number().optional(),
+    size: z.number().optional(),
   }),
 );
 

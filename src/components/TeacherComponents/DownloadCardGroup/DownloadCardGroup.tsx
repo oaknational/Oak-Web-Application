@@ -11,6 +11,7 @@ import ResourceCard from "@/components/TeacherComponents/ResourceCard";
 import { sortDownloadResources } from "@/components/TeacherComponents/helpers/downloadAndShareHelpers/sortResources";
 import Box from "@/components/SharedComponents/Box";
 import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 
 export type DownloadCardGroupProps = {
   downloads?: LessonDownloadsPageData["downloads"];
@@ -21,6 +22,7 @@ export type DownloadCardGroupProps = {
 };
 
 const DownloadCardArea = styled(Box)<{ area: string }>`
+  // @todo fix grid with additional files
   // grid-area: ${(props) => props.area};
   margin-bottom: 16px;
 `;
@@ -120,12 +122,24 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                     triggerForm();
                   };
 
+                  const getFormattedSizeString = (size: number): string => {
+                    const formattedSize =
+                      size > 1000
+                        ? `${convertBytesToMegabytes(size)} MB `
+                        : `${size} B `;
+                    return formattedSize;
+                  };
+                  const formattedSize = download.size
+                    ? getFormattedSizeString(download.size)
+                    : "";
+                  const subtitle = `${formattedSize}(${download.ext.toUpperCase()})`;
+
                   return (
                     <ResourceCard
                       id={downloadType}
                       name={name}
                       label={download.label}
-                      subtitle={download.ext.toUpperCase()}
+                      subtitle={subtitle}
                       resourceType={download.type}
                       onChange={onChangeHandler}
                       checked={fieldValue.includes(downloadType)}

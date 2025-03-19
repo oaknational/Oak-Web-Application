@@ -10,7 +10,34 @@ import lessonOverview, {
   getContentGuidance,
   getCopyrightContent,
   getDownloadsArray,
+  getAdditionalFiles,
 } from "./lessonOverview.query";
+
+import { AdditionalFilesAssetData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+
+const _additionalFilesFixture: AdditionalFilesAssetData = {
+  tpc_downloadablefiles_list: [1, 2],
+  tpc_downloadablefiles: [
+    {
+      asset_id: 1,
+      media_id: 1,
+      media_object: {
+        url: "https://example.com/file1.pdf",
+        bytes: 1000,
+        display_name: "File 1",
+      },
+    },
+    {
+      asset_id: 2,
+      media_id: 2,
+      media_object: {
+        url: "https://example.com/file2.pdf",
+        bytes: 2000,
+        display_name: "File 2",
+      },
+    },
+  ],
+};
 
 describe("lessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
@@ -53,7 +80,7 @@ describe("lessonOverview()", () => {
         Promise.resolve({
           browseData: [_syntheticUnitvariantLessonsByKsFixture],
           content: [_lessonContentFixture],
-          additionalFiles: [],
+          additionalFiles: [_additionalFilesFixture],
         }),
       ),
     })({
@@ -172,6 +199,16 @@ describe("lessonOverview()", () => {
       const content = [{ copyrightInfo: "" }];
       expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
     });
+
+    it("should default to empty string in copyrightInfo fields are undefined", () => {
+      const content = [{ copyrightInfo: undefined }];
+      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
+    });
+
+    it("should default to empty string if item doesnt have copyrightInfo", () => {
+      const content = [{ somethingElse: "" }];
+      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
+    });
   });
   describe("getContentGuidance", () => {
     it("should return null if content.contentGuidance is null", () => {
@@ -202,6 +239,34 @@ describe("lessonOverview()", () => {
           contentGuidanceLabel: "Label 2",
           contentGuidanceDescription: "Description 2",
           contentGuidanceArea: "Area 2",
+        },
+      ]);
+    });
+
+    it("should return an array with content guidance details defaulted to empty strings in not provided", () => {
+      expect(
+        getContentGuidance([
+          {
+            contentguidanceLabel: null,
+            contentguidanceDescription: null,
+            contentguidanceArea: null,
+          },
+          {
+            contentguidanceLabel: "Label 2",
+            contentguidanceDescription: "Description 2",
+            contentguidanceArea: null,
+          },
+        ]),
+      ).toEqual([
+        {
+          contentGuidanceLabel: "",
+          contentGuidanceDescription: "",
+          contentGuidanceArea: "",
+        },
+        {
+          contentGuidanceLabel: "Label 2",
+          contentGuidanceDescription: "Description 2",
+          contentGuidanceArea: "",
         },
       ]);
     });
@@ -350,6 +415,22 @@ describe("lessonOverview()", () => {
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
+    });
+  });
+
+  describe("getAdditionalFiles", () => {
+    it("should return an empty array if additionalFiles is null", () => {
+      expect(getAdditionalFiles(null)).toEqual([]);
+    });
+
+    it("should return an array of additional files if provided", () => {
+      const additionalFiles: AdditionalFilesAssetData["tpc_downloadablefiles"] =
+        _additionalFilesFixture.tpc_downloadablefiles;
+
+      expect(getAdditionalFiles(additionalFiles)).toEqual([
+        "File 1 1000 B (PDF)",
+        "File 2 0.0 MB (PDF)",
+      ]);
     });
   });
 });
