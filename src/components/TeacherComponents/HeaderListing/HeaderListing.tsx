@@ -21,6 +21,8 @@ import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { OakColorName } from "@/styles/theme";
+import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSubjectDescription/TeacherSubjectDescription";
 
 /**
  * This is a header for the listing pages (lesson, unit and programme).
@@ -49,6 +51,7 @@ export type HeaderListingProps = {
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   showRiskAssessmentBanner?: boolean;
+  subjectDescriptionUnitListingData?: UnitListingData;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -70,6 +73,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     unitDownloadFileId,
     onUnitDownloadSuccess,
     showRiskAssessmentBanner,
+    subjectDescriptionUnitListingData,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -149,6 +153,11 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
+            {subjectDescriptionUnitListingData && (
+              <TeacherSubjectDescription
+                unitListingData={subjectDescriptionUnitListingData}
+              />
+            )}
             <OakFlex $flexDirection="column" $gap="space-between-s">
               <OakFlex
                 $gap="space-between-s"
