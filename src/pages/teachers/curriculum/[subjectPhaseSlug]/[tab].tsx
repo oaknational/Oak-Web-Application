@@ -13,6 +13,7 @@ import {
 } from "@oaknational/oak-components";
 import { uniq } from "lodash";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import CMSClient from "@/node-lib/cms";
 import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader";
 import OverviewTab from "@/components/CurriculumComponents/OverviewTab";
@@ -47,6 +48,9 @@ import {
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import openApiRequest from "@/utils/curriculum/openapi";
 import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
+import { CurriculumFilters } from "@/utils/curriculum/types";
+import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -84,6 +88,21 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     getDefaultFilter(curriculumUnitsFormattedData),
   );
 
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
+
+  const onChangeFilters = (newFilters: CurriculumFilters) => {
+    setFilters(newFilters);
+
+    const analyticsData = buildUnitSequenceRefinedAnalytics(
+      analyticsUseCase,
+      curriculumUnitsTrackingData,
+      newFilters,
+    );
+
+    track.unitSequenceRefined(analyticsData);
+  };
+
   let tabContent: JSX.Element;
 
   switch (tab) {
@@ -105,7 +124,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           formattedData={curriculumUnitsFormattedData}
           trackingData={curriculumUnitsTrackingData}
           filters={filters}
-          onChangeFilters={setFilters}
+          onChangeFilters={onChangeFilters}
         />
       );
       break;
