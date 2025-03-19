@@ -1,12 +1,14 @@
-import { GraphQLClientRequestHeaders } from "graphql-request/build/cjs/types";
+import { RequestOptions } from "graphql-request";
 
 import removeLegacySlugSuffix from "./removeLegacySlugSuffix";
 
-export type VariablesType = {
+type GraphQLClientRequestHeaders = RequestOptions["requestHeaders"];
+
+export interface VariablesType {
   programmeSlug?: string;
   subjectSlug?: string;
   [key: string]: string | undefined;
-};
+}
 
 export type RequestHeadersType = GraphQLClientRequestHeaders | undefined;
 

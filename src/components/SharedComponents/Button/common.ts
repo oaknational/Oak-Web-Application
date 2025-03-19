@@ -46,12 +46,12 @@ export const buttonFlexDirectionMap: Record<
 export const getButtonFlexDirection = ($iconPosition: IconPosition) =>
   buttonFlexDirectionMap[$iconPosition];
 
-type ButtonConfig = {
+interface ButtonConfig {
   height: PixelSpacing;
   iconOuterHeight: PixelSpacing;
   iconInnerHeight: PixelSpacing;
   paddingH: PixelSpacing;
-};
+}
 const DEFAULT_BUTTON_CONFIG: ButtonConfig = {
   height: 0,
   iconOuterHeight: 0,
@@ -333,6 +333,7 @@ export type CommonButtonProps = { children?: React.ReactNode } & OpacityProps &
     iconBackground?: OakColorName;
     size?: ButtonSize;
     $font?: ResponsiveValues<FontVariant>;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     "aria-label"?: string;
     $fullWidth?: boolean;
     $focusStyles?: [];
@@ -360,6 +361,7 @@ export type CommonIconButtonProps = Omit<
   "label" | "$iconPosition"
 > & {
   icon: IconName;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   "aria-label": string;
   iconColorOverride?: OakColorName;
   iconAnimateTo?: IconName;

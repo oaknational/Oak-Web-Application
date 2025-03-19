@@ -1,13 +1,13 @@
 import { render } from "@testing-library/react";
 
+import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
+import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
+import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
+import { lessonBrowseDataByKsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseDataByKs.fixture";
+import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 import PupilLessonListingPage, {
   getStaticProps,
 } from "@/pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons";
-import * as curriculumApi2023 from "@/node-lib/curriculum-api-2023/__mocks__/index";
-import { lessonBrowseDataByKsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseDataByKs.fixture";
-import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
-import { PupilViewsLessonListing } from "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view";
-import { LessonListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilLessonListing/pupilLessonListing.schema";
 
 interface MockLocation {
   href: string;
@@ -20,15 +20,19 @@ interface MockLocation {
 jest.mock(
   "@/components/PupilViews/PupilLessonListing/PupilLessonListing.view",
   () => ({
-    PupilViewsLessonListing: jest.fn((props) => (
-      <div>
-        {props.orderedCurriculumData.map(
-          (data: LessonListingBrowseData[number]) => {
-            return <div>{data.lessonData.title}</div>;
-          },
-        )}
-      </div>
-    )),
+    PupilViewsLessonListing: jest.fn((props) => {
+      const { orderedCurriculumData } = props;
+      return (
+        <div>
+          {orderedCurriculumData.map(
+            (data: LessonListingBrowseData[number]) => {
+              const title = data.lessonData.title;
+              return <div key={title}>{title}</div>;
+            },
+          )}
+        </div>
+      );
+    }),
   }),
 );
 
@@ -65,7 +69,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       configurable: true,
     });
     // Restore the original window.location object after each test
-    window.location = originalLocation;
+    window.location.assign(originalLocation.href);
 
     jest.clearAllMocks();
   });

@@ -13,16 +13,18 @@ import {
 
 import ButtonLabel from "@/components/SharedComponents/Button/ButtonLabel";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
+import type { IconFocusUnderlineProps } from "@/components/SharedComponents/Button/IconFocusUnderline";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
 import ButtonBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/ButtonBorders";
 import Svg from "@/components/SharedComponents/Svg";
+import type { SvgName } from "@/components/SharedComponents/SpriteSheet/getSvgId";
 import SubjectIcon from "@/components/SharedComponents/SubjectIcon";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
-import { OakColorName } from "@/styles/theme";
-import { FontVariant } from "@/styles/utils/typography";
-import { ResponsiveValues } from "@/styles/utils/responsive";
+import type { OakColorName } from "@/styles/theme";
+import type { FontVariant } from "@/styles/utils/typography";
+import type { ResponsiveValues } from "@/styles/utils/responsive";
 
 export const ButtonFocusUnderline = styled(Svg)<{
   $color: OakColorName;

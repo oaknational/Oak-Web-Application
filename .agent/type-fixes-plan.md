@@ -4,10 +4,29 @@ This document outlines a structured approach to resolving TypeScript type issues
 
 after each change, and before making any further code changes, you **must**
 
-- Run the type checking script `npm run type-check`
-- **Review the @type-fixes-plan.md to make sure we are on track**
-- If necessary, update the @type-fixes-plan.md
-- Resolve any linting errors in edited files
+- Run the type checking script `npm run type-check` to ensure we are on track.
+- Run any appropriate tests, e.g. `npm run test:ci -- --collectCoverage=false src/components/SharedComponents/Button/Button.test.tsx` if the button component is being changed.
+- **Review the @type-fixes-plan.md to make sure we are on track**.
+- If necessary, update the @type-fixes-plan.md file to reflect the changes we've made.
+- Resolve any linting errors in edited files, you can check the whole project with `npm run lint`. This includes issues with the order of imports.
+
+## Progress Summary
+
+### Completed
+
+- ✅ Phase 2: Next-Sitemap API Fixes - Migrated all sitemap files to use `getServerSideSitemapLegacy`
+- ✅ Updated OakTheme type to include strongly-typed `ShadowValue` instead of generic string
+- ✅ Fixed theme structure for button properties (using `buttons` instead of `button`)
+- ✅ Added missing required properties to theme configuration
+
+### In Progress
+
+- 🔄 Phase 1: Styled Components v6 Migration - Working on utility functions and component props
+
+### Pending
+
+- Phase 3: Component-specific Fixes
+- Phase 4: Theme and Utility Fixes (partially implemented)
 
 ## Issue Analysis Summary
 
@@ -22,9 +41,9 @@ Based on the `npm run type-check` output, we've identified several categories of
 
 2. **Next-Sitemap API Issues**:
 
-   - Incorrect return types in `getServerSideProps`
-   - Type mismatches in `getServerSideSitemap` parameters
-   - Issues across multiple sitemap files
+   - ✅ Incorrect return types in `getServerSideProps`
+   - ✅ Type mismatches in `getServerSideSitemap` parameters
+   - ✅ Issues across multiple sitemap files
 
 3. **Component-specific Issues**:
 
@@ -34,7 +53,8 @@ Based on the `npm run type-check` output, we've identified several categories of
    - Button and Card component type issues
 
 4. **Theme and Utility Issues**:
-   - Missing `buttonIconBackgroundColors` in theme type
+   - ✅ Missing `buttonIconBackgroundColors` in theme type
+   - ✅ Fixed `buttonDropShadows` to use proper `ShadowValue` type
    - Utility function type mismatches in style helpers
    - Test file issues with style utilities
 
@@ -66,18 +86,13 @@ Based on the `npm run type-check` output, we've identified several categories of
    - Fix prop type definitions in components
    - Update test files to use correct prop types
 
-### Phase 2: Next-Sitemap API Fixes
+### Phase 2: Next-Sitemap API Fixes (✅ COMPLETED)
 
 1. **GetServerSideProps Return Types**:
 
-   - Update return types to match Next.js requirements
-   - Fix parameter types in `getServerSideSitemap` calls
-   - Apply fixes across all sitemap files
-
-2. **Type Definitions**:
-   - Add proper type imports from next-sitemap
-   - Update type definitions for sitemap fields
-   - Ensure consistent type usage across files
+   - ✅ Update return types to match Next.js requirements
+   - ✅ Fix parameter types in `getServerSideSitemap` calls
+   - ✅ Apply fixes across all sitemap files
 
 ### Phase 3: Component-specific Fixes
 

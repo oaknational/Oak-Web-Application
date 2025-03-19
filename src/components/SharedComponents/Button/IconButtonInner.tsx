@@ -1,52 +1,64 @@
 import { FC } from "react";
-import { useTheme } from "styled-components";
+import { useTheme, styled } from "styled-components";
+
+import Icon, { IconName } from "@/components/SharedComponents/Icon.deprecated";
+import { OakColorName } from "@/styles/theme";
 
 import {
-  ButtonBackground,
-  ButtonSize,
   ButtonVariant,
+  ButtonSize,
+  getButtonIconBackground,
+  ButtonBackground,
   getIconButtonHeight,
 } from "./common";
-import IconButtonWrapper from "./IconButtonWrapper";
 import { IconFocusUnderline } from "./IconFocusUnderline";
 
-import { OakColorName } from "@/styles/theme";
-import Icon, {
-  IconName,
-  isIconVariant,
-} from "@/components/SharedComponents/Icon.deprecated";
-
-export type IconButtonInnerProps = {
+// Create a wrapper component for the icon button
+const IconButtonWrapper = styled.span<{
+  size: ButtonSize;
   variant: ButtonVariant;
   background: ButtonBackground;
-  icon: IconName;
+}>`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export interface IconButtonInnerProps {
+  variant: ButtonVariant;
   size: ButtonSize;
+  background: ButtonBackground;
+  icon: IconName;
   iconColorOverride?: OakColorName;
   iconAnimateTo?: IconName;
-};
+}
 /**
- * ## Usage
- * This is not a general purpose component, it should only be used inside the
- * IconButton and IconButtonAsLink components.
- * If you just want an icon, use the Icon component.
+ * IconButtonInner is used by IconButton and IconLink
+ * A minimal icon button, usually used in a nav, or form
  */
 const IconButtonInner: FC<IconButtonInnerProps> = (props) => {
   const { variant, size, background, icon, iconColorOverride, iconAnimateTo } =
     props;
 
-  const iconVariant = variant.replace("Nav", "");
   const theme = useTheme();
+
+  const iconVariant = variant === "minimal" ? "minimal" : "brush";
+  const defaultIconBackground = getButtonIconBackground(background)({ theme });
+
   const underlineColor =
-    theme.buttonFocusUnderlineColors[background] || "black";
+    theme.buttonFocusUnderlineColors[background] ?? "black";
 
   return (
     <IconButtonWrapper size={size} variant={variant} background={background}>
       <Icon
-        variant={isIconVariant(iconVariant) ? iconVariant : undefined}
+        variant={iconVariant}
         name={icon}
         size={getIconButtonHeight(size, variant)}
         $color={iconColorOverride}
-        $background={variant === "minimal" ? "transparent" : background}
+        $background={
+          variant === "minimal" ? "transparent" : defaultIconBackground
+        }
         animateTo={iconAnimateTo}
       />
       <IconFocusUnderline $color={underlineColor} />

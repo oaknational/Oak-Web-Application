@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`responsive should return css for a single value 1`] = `
+<div>
+  <div
+    class="sc-7b9f1971-0 eWCMdJ"
+    data-testid="test"
+  />
+</div>
+`;
