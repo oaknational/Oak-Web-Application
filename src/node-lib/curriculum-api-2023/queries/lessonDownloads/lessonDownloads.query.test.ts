@@ -1,4 +1,7 @@
-import { syntheticUnitvariantLessonsFixture } from "@oaknational/oak-curriculum-schema";
+import {
+  syntheticUnitvariantLessonsFixture,
+  lessonDataFixture,
+} from "@oaknational/oak-curriculum-schema";
 import { ZodError } from "zod";
 
 import sdk from "../../sdk";
@@ -21,6 +24,11 @@ const downloadAssets = {
   login_required: false,
 };
 
+const additionalFiles = {
+  tpc_downloadablefiles_list: null,
+  tpc_downloadablefiles: [],
+};
+
 describe("lessonDownloads()", () => {
   test("throws a not found error if no download_assets is found", async () => {
     await expect(async () => {
@@ -29,6 +37,7 @@ describe("lessonDownloads()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [],
+            additional_files: [],
             browse_data: [],
           }),
         ),
@@ -46,6 +55,7 @@ describe("lessonDownloads()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssets],
+            additional_files: [],
             browse_data: [],
           }),
         ),
@@ -62,6 +72,7 @@ describe("lessonDownloads()", () => {
       lessonDownloads: jest.fn(() =>
         Promise.resolve({
           download_assets: [downloadAssets],
+          additional_files: [additionalFiles],
           browse_data: [syntheticUnitvariantLessonsFixture()],
         }),
       ),
@@ -96,6 +107,7 @@ describe("lessonDownloads()", () => {
                 login_required: false,
               },
             ],
+            additional_files: [additionalFiles],
             browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
@@ -139,6 +151,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [],
+            additional_files: [additionalFiles],
             browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
@@ -154,6 +167,7 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssetsFixture],
+            additional_files: [additionalFiles],
             browse_data: [],
           }),
         ),
@@ -185,6 +199,7 @@ describe("lessonDownloadsCanonical()", () => {
                 login_required: false,
               },
             ],
+            additional_files: [additionalFiles],
             browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
@@ -203,5 +218,73 @@ describe("lessonDownloadsCanonical()", () => {
         },
       ]);
     }
+  });
+
+  // Additional tests for lessonDownloads.query.ts
+
+  describe("lessonDownloads() - Copyright Content", () => {
+    test("returns copyright content if present in the response", async () => {
+      const mockCopyrightContent = [
+        {
+          copyrightInfo: "info about copyright",
+        },
+      ];
+
+      const unit = (await lessonDownloads({
+        ...sdk,
+        lessonDownloads: jest.fn(() =>
+          Promise.resolve({
+            download_assets: [downloadAssets],
+            additional_files: [additionalFiles],
+            browse_data: [
+              syntheticUnitvariantLessonsFixture({
+                overrides: {
+                  lesson_data: lessonDataFixture({
+                    overrides: {
+                      copyright_content: mockCopyrightContent,
+                    },
+                  }),
+                },
+              }),
+            ],
+          }),
+        ),
+      })({
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+        lessonSlug: "lesson-slug",
+      })) as LessonDownloadsPageData;
+
+      expect(unit.copyrightContent).toEqual(mockCopyrightContent);
+    });
+
+    test("returns null for copyright content if not present in the response", async () => {
+      const unit = (await lessonDownloads({
+        ...sdk,
+        lessonDownloads: jest.fn(() =>
+          Promise.resolve({
+            download_assets: [downloadAssets],
+            additional_files: [additionalFiles],
+            browse_data: [
+              syntheticUnitvariantLessonsFixture({
+                overrides: {
+                  lesson_data: lessonDataFixture({
+                    overrides: {
+                      copyright_content: null,
+                    },
+                  }),
+                },
+              }),
+            ],
+          }),
+        ),
+      })({
+        programmeSlug: "programme-slug",
+        unitSlug: "unit-slug",
+        lessonSlug: "lesson-slug",
+      })) as LessonDownloadsPageData;
+
+      expect(unit.copyrightContent).toBeNull();
+    });
   });
 });

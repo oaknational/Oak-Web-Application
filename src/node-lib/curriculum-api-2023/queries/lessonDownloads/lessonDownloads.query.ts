@@ -1,5 +1,7 @@
 import lessonDownloadsSchema, {
   downloadsAssetData,
+  additionalFilesAssetData,
+  LessonAdditionalFilesListSchema,
 } from "./lessonDownloads.schema";
 import { constructDownloadsArray } from "./downloadUtils";
 import constructCanonicalLessonDownloads from "./constructCanonicalLessonDownloads";
@@ -49,7 +51,25 @@ const lessonDownloadsQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const { download_assets } = res;
+    const { download_assets, additional_files } = res;
+
+    const additionalFilesData = additionalFilesAssetData.parse(
+      additional_files[0],
+    );
+    const additionalFiles: LessonAdditionalFilesListSchema =
+      additionalFilesData?.tpc_downloadablefiles
+        ? additionalFilesData.tpc_downloadablefiles.map((file) => {
+            return {
+              exists: !!file.asset_id,
+              type: "additional-files",
+              label: file.media_object.display_name,
+              ext: file.media_object.url.split(".").pop() ?? "",
+              size: file.media_object.bytes,
+              forbidden: false,
+              assetId: file.asset_id,
+            };
+          })
+        : [];
 
     const {
       has_slide_deck_asset_object,
@@ -96,7 +116,7 @@ const lessonDownloadsQuery =
     if (isCanonicalLesson) {
       const canonicalLessonDownloads = constructCanonicalLessonDownloads({
         downloads,
-        additionalFiles: [],
+        additionalFiles,
         lessonSlug,
         browseData: parsedBrowseData,
         isLegacy: is_legacy,
@@ -112,7 +132,7 @@ const lessonDownloadsQuery =
     } else {
       const lessonDownloads = constructLessonDownloads({
         downloads,
-        additionalFiles: [],
+        additionalFiles,
         lessonSlug,
         parsedBrowseData,
         lessonCopyRight: copyright,

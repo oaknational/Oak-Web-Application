@@ -18,7 +18,7 @@ describe("lessonOverview()", () => {
       await lessonOverview({
         ...sdk,
         lessonOverview: jest.fn(() =>
-          Promise.resolve({ content: [], browseData: [] }),
+          Promise.resolve({ content: [], browseData: [], additionalFiles: [] }),
         ),
       })({
         lessonSlug: "lesson-slug",
@@ -53,6 +53,7 @@ describe("lessonOverview()", () => {
         Promise.resolve({
           browseData: [_syntheticUnitvariantLessonsByKsFixture],
           content: [_lessonContentFixture],
+          additionalFiles: [],
         }),
       ),
     })({
@@ -115,6 +116,7 @@ describe("lessonOverview()", () => {
             _syntheticUnitvariantLessonsByKsFixture3,
           ],
           content: [_lessonContentFixture],
+          additionalFiles: [],
         }),
       ),
     })({
@@ -139,6 +141,7 @@ describe("lessonOverview()", () => {
           Promise.resolve({
             browseData: [],
             content: [],
+            additionalFiles: [],
           }),
         ),
       })({

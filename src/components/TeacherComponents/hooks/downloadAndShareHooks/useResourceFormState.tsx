@@ -186,12 +186,8 @@ export const useResourceFormState = (props: UseResourceFormStateProps) => {
     }
   })();
 
-  const additionalResources = (() => {
-    switch (props.type) {
-      case "download":
-        return props.additionalFilesResources;
-    }
-  })();
+  const additionalResources =
+    props.type === "download" && props.additionalFilesResources;
 
   const getInitialResourcesState = useCallback(() => {
     if (props.type === "share") {

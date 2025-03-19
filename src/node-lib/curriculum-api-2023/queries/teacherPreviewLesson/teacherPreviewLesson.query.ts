@@ -77,6 +77,7 @@ const teacherPreviewLessonQuery =
       modBrowseData as LessonBrowseDataByKs,
       lessonContentData as LessonOverviewContent,
       [],
+      null,
     );
 
     const parsedLessonPreviewData = lessonOverviewSchema.parse({

@@ -296,5 +296,16 @@ describe("useResourceFormState", () => {
         }),
       );
     });
+    test("should throw an error for invalid resource type", () => {
+      const invalidProps = {
+        type: "invalid" as UseResourceFormStateProps["type"],
+      };
+
+      expect(() =>
+        renderHook(() =>
+          useResourceFormState(invalidProps as UseResourceFormStateProps),
+        ),
+      ).toThrow("Invalid resource type");
+    });
   });
 });

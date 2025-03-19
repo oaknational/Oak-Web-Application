@@ -256,6 +256,7 @@ export const lessonAdditionalFilesListSchema = z.array(
       z.boolean().optional().nullish(),
     ]),
     assetId: z.number(),
+    size: z.number(),
   }),
 );
 

@@ -22,6 +22,7 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { AdditionalFilesAssetData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -140,16 +141,19 @@ const bytesToMegabytes = (bytes: number): string => {
 };
 
 const getAdditionalFiles = (
-  content: LessonOverviewContent["additionalFiles"],
+  additionalFiles: AdditionalFilesAssetData["tpc_downloadablefiles"],
 ): string[] | null => {
-  if (!content || !content[0]) {
+  if (!additionalFiles) {
     return null;
   }
-  return content[0]?.files.map((af) => {
-    const name = af.title;
-    const type = af.fileObject.format;
-    const size = af.fileObject.bytes;
-    return `${name} ${bytesToMegabytes(size)} MB (${type.toUpperCase()})`;
+
+  return additionalFiles.map((af) => {
+    const name = af.media_object.display_name;
+    const type = af.media_object.url.split(".").pop() ?? "";
+    const size = af.media_object.bytes;
+    const sizeString =
+      size > 1000 ? `${bytesToMegabytes(size)} MB` : `${size} B`;
+    return `${name} ${sizeString} (${type.toUpperCase()})`;
   });
 };
 
@@ -157,13 +161,15 @@ export const transformedLessonOverviewData = (
   browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
+  additionalFiles: AdditionalFilesAssetData["tpc_downloadablefiles"] | null,
 ): LessonOverviewPageData => {
   const reportError = errorReporter("transformedLessonOverviewData");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
-  const hasAddFile = content.additionalFiles;
+
+  const hasAddFile = additionalFiles ? additionalFiles.length > 0 : false;
 
   let mediaClips = null;
   try {
@@ -242,9 +248,10 @@ export const transformedLessonOverviewData = (
     hasMediaClips: Boolean(browseData.lessonData.mediaClips),
     lessonOutline: browseData.lessonData.lessonOutline ?? null,
     lessonMediaClips: mediaClips,
-    additionalFiles: hasAddFile
-      ? getAdditionalFiles(content.additionalFiles)
-      : null,
+    additionalFiles:
+      hasAddFile && additionalFiles
+        ? getAdditionalFiles(additionalFiles)
+        : null,
   };
 };
 
@@ -326,8 +333,33 @@ const lessonOverviewQuery =
     const content = keysToCamelCase({
       ...contentSnake,
     }) as LessonOverviewContent;
+
+    const additionalFiles =
+      res.additionalFiles[0]?.tpc_downloadablefiles ?? null;
+    const filteredAdditionalFiles: AdditionalFilesAssetData["tpc_downloadablefiles"] =
+      additionalFiles
+        ? additionalFiles.filter(
+            (
+              af,
+            ): af is {
+              asset_id: number;
+              media_id: number;
+              media_object: {
+                url: string;
+                bytes: number;
+                display_name: string;
+              };
+            } => af?.asset_id !== null && af?.asset_id !== undefined,
+          )
+        : null;
+
     return lessonOverviewSchema.parse(
-      transformedLessonOverviewData(browseData, content, pathways),
+      transformedLessonOverviewData(
+        browseData,
+        content,
+        pathways,
+        filteredAdditionalFiles,
+      ),
     );
   };
 
