@@ -295,6 +295,63 @@ describe("pages/pupils/programmes/[programmeSlug]/units", () => {
           throw new Error("getStaticProps did not return props.");
         }
       });
+
+      it("Should correctly add valid related subject slugs to relatedSubjectsSet", async () => {
+        const programmeFieldsSnake = programmeFieldsFixture({
+          overrides: {
+            subject: "Science",
+          },
+        });
+        const programmeFields = keysToCamelCase(programmeFieldsSnake);
+
+        (
+          curriculumApi2023.default.pupilUnitListingQuery as jest.Mock
+        ).mockResolvedValueOnce([
+          unitBrowseDataFixture({
+            unitData: {
+              ...unitBrowseDataFixture({}).unitData,
+              title: "unit-title-1",
+            },
+            supplementaryData: { unitOrder: 1 },
+            programmeSlug: "science-secondary-year-10-foundation",
+            unitSlug: "unit-slug-1",
+            programmeFields,
+            actions: {
+              relatedSubjectSlugs: ["biology", "chemistry"],
+            },
+          }),
+          unitBrowseDataFixture({
+            unitData: {
+              ...unitBrowseDataFixture({}).unitData,
+              title: "unit-title-2",
+            },
+            supplementaryData: { unitOrder: 2 },
+            programmeSlug: "science-secondary-year-10-foundation",
+            unitSlug: "unit-slug-2",
+            programmeFields,
+            actions: {
+              // @ts-expect-error - invalid subject slug
+              relatedSubjectSlugs: ["physics", "invalid-subject"],
+            },
+          }),
+        ]);
+
+        const result = await getStaticProps({
+          params: {
+            programmeSlug: "science-secondary-year-10-foundation",
+          },
+        });
+
+        expect.assertions(4);
+        if ("props" in result) {
+          expect(result.props.relatedSubjects).toContain("biology");
+          expect(result.props.relatedSubjects).toContain("chemistry");
+          expect(result.props.relatedSubjects).toContain("physics");
+          expect(result.props.relatedSubjects).not.toContain("invalid-subject");
+        } else {
+          throw new Error("getStaticProps did not return props.");
+        }
+      });
     });
   });
 });
