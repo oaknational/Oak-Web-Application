@@ -1,3 +1,11 @@
+# [1.711.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.710.0...v1.711.0) (2025-03-19)
+
+
+### Features
+
+* adds the pf_subject features data to the FE ([9e74951](https://github.com/oaknational/Oak-Web-Application/commit/9e749514b82fab26e056f1ae7d563cf1370a971f))
+* filter subject features to include only published states ([58138bc](https://github.com/oaknational/Oak-Web-Application/commit/58138bc5a2a0462b4a4391d8cc5f9077d4da4eed))
+
 # [1.710.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.709.0...v1.710.0) (2025-03-13)
 
 
