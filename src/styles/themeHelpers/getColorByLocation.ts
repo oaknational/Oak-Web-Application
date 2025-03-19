@@ -20,8 +20,14 @@ const getColorByLocation =
   (getter: (props: PropsWithTheme) => OakColorName) =>
   ({ theme }: PropsWithTheme): string => {
     const colorName = getter({ theme });
+    const color = theme.colors[colorName];
 
-    return theme.colors[colorName];
+    if (!color) {
+      console.warn(`Color ${colorName} not found in theme`);
+      return "inherit";
+    }
+
+    return color;
   };
 
 export default getColorByLocation;

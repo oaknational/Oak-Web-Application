@@ -2,160 +2,121 @@
 
 This document outlines a structured approach to resolving TypeScript type issues in the Oak Web Application codebase. The plan is organized by issue category and focuses on incremental fixes that can be applied and tested independently.
 
+after each change, and before making any further code changes, you **must**
+
+- Run the type checking script `npm run type-check`
+- **Review the @type-fixes-plan.md to make sure we are on track**
+- If necessary, update the @type-fixes-plan.md
+- Resolve any linting errors in edited files
+
 ## Issue Analysis Summary
 
 Based on the `npm run type-check` output, we've identified several categories of TypeScript errors:
 
-1. **Styled Components Type Issues**: Problems with CSS template usage in styled components
-2. **Custom Props with `$` Prefix**: Inconsistencies between prop definitions and usage
-3. **Next-Sitemap Type Issues**: Incorrect return types in sitemap generation
-4. **Missing Type Annotations**: Parameters without explicit types
+1. **Styled Components v6 Migration Issues**:
+
+   - CSS template composition problems in styled components
+   - Prop type issues with `$` prefixed props
+   - Style function type mismatches in utility functions
+   - Test file issues with styled-components props
+
+2. **Next-Sitemap API Issues**:
+
+   - Incorrect return types in `getServerSideProps`
+   - Type mismatches in `getServerSideSitemap` parameters
+   - Issues across multiple sitemap files
+
+3. **Component-specific Issues**:
+
+   - Image component prop type mismatches (`$objectFit`, `$objectPosition`)
+   - Form event handling type issues
+   - ResourceCard styling issues
+   - Button and Card component type issues
+
+4. **Theme and Utility Issues**:
+   - Missing `buttonIconBackgroundColors` in theme type
+   - Utility function type mismatches in style helpers
+   - Test file issues with style utilities
 
 ## Environment Context
 
 - **styled-components**: Version 6.1.15 (major version upgrade from v5 to v6)
 - **next-sitemap**: Version 4.2.3
-- **Next.js**: Version 15.2.3 (upgraded from v13)
-- **@oaknational/oak-components**: Version 1.93.0
-
-## 1. Styled Components Issues
-
-### Background
-
-Styled Components v6 was released with significant changes to its TypeScript support. The primary issues in our codebase are:
-
-- Type inference in CSS template literals
-- Generic type parameters in `css` functions not being properly propagated
-- Required props being passed to templates but not to styled components
-
-### Fix Plan
-
-1. **BrushBorders and ButtonBorders Components**:
-
-   - Update `css` usage to pass required props like `color` and `background`
-   - Ensure proper type propagation when composing templates
-   - Add explicit prop types to styled components
-
-   ```typescript
-   // Incorrect usage:
-   ${brushBorder}  // Missing required color prop
-
-   // Correct usage:
-   ${(props) => brushBorder({ ...props, color: props.color })}
-   ```
-
-2. **CSS Composition Pattern Updates**:
-   - Review pattern for composing styled components CSS
-   - Implement consistent approach for prop type propagation
-
-## 2. Custom `$` Prefix Props
-
-### Background
-
-The Oak Component library uses `$` prefix for styling props (following styled-system conventions). The main issues are:
-
-- Some components using `$objectFit` and `$objectPosition` when the API expects `objectFit` and `objectPosition`
-- Missing required props on components from `@oaknational/oak-components`
-- Type mismatches in prop naming conventions
-
-### Fix Plan
-
-1. **OwaImage Component Issues**:
-
-   - Review `OwaImage` component implementation
-   - Fix inconsistencies between in-house naming (`$objectFit`) and oak-components API
-   - Replace `$objectPosition` with `objectPosition` in `QuizOakImage` and `PostListItemImage`
-
-2. **NewFocusUnderline Prop Requirements**:
-
-   - Add required `name` prop to `NewFocusUnderline` component usage
-   - Check for other required props in Oak Components
-
-3. **RadioContainer `$zIndex` Issue**:
-   - Fix inconsistency between custom `$zIndex` prop and expected props
-
-## 3. Next-Sitemap API Issues
-
-### Background
-
-After upgrading to Next.js 15 and next-sitemap 4.x, the sitemap generation API has changed. The current implementation is using incompatible types.
-
-### Fix Plan
-
-1. **GetServerSideProps Return Type**:
-
-   - Update sitemap API usage to match new requirements
-   - Fix `getServerSideProps` return types to use `GetServerSidePropsResult`
-   - Implement correct parameters for `getServerSideSitemap`
-
-   ```typescript
-   // Current incorrect pattern:
-   export const getServerSideProps: GetServerSideProps = async (context) => {
-     // ...
-     return getServerSideSitemap(context, fields);
-   };
-
-   // Corrected pattern (based on next-sitemap docs):
-   export const getServerSideProps: GetServerSideProps = async (context) => {
-     // ...
-     return {
-       props: {},
-     };
-   };
-   ```
-
-2. **ISitemapField Type Usage**:
-   - Fix mismatched argument types between `GetServerSidePropsContext` and `ISitemapField[]`
-
-## 4. Missing Type Annotations
-
-### Fix Plan
-
-1. **OnboardingForm Event Handler**:
-
-   - Add explicit type annotation to the `event` parameter
-   - Replace `any` with a specific React event type:
-
-   ```typescript
-   // From:
-   (event) => { ... }
-
-   // To:
-   (event: React.FormEvent<HTMLFormElement>) => { ... }
-   ```
+- **Next.js**: Version 15.2.3 (upgraded from v14)
+- **@oaknational/oak-components**: Version 1.96.0
 
 ## Implementation Strategy
 
-### Phase 1: Styled Components Fixes
+### Phase 1: Styled Components v6 Migration
 
-1. Create a consistent pattern for CSS composition in styled components
-2. Update BrushBorders.tsx and ButtonBorders.tsx components
-3. Test changes by running `npm run type-check` for these specific files
+1. **CSS Template Composition**:
 
-### Phase 2: Oak Components Prop Alignment
+   - Update `css` helper usage in styled components
+   - Fix prop type propagation in style functions
+   - Update test files to use correct prop types
 
-1. Fix OwaLink component to add required `name` prop to NewFocusUnderline
-2. Update OwaImage usages in QuizOakImage and PostListItemImage
-3. Fix RadioContainer props in ResourceCard component
-4. Verify changes with targeted type checks
+2. **Style Utility Functions**:
 
-### Phase 3: Next-Sitemap API Fixes
+   - Fix type definitions in style utility functions
+   - Update test files to match new type requirements
+   - Ensure proper type propagation in style composition
 
-1. Update sitemap generation API usage in all affected files
-2. Test sitemap generation functionality
-3. Verify fixed return types
+3. **Component Props**:
+   - Update `$` prefixed props to match styled-components v6 requirements
+   - Fix prop type definitions in components
+   - Update test files to use correct prop types
 
-### Phase 4: Type Annotation Cleanup
+### Phase 2: Next-Sitemap API Fixes
 
-1. Add missing type annotations to event handlers
-2. Run comprehensive type check to ensure no new issues
+1. **GetServerSideProps Return Types**:
+
+   - Update return types to match Next.js requirements
+   - Fix parameter types in `getServerSideSitemap` calls
+   - Apply fixes across all sitemap files
+
+2. **Type Definitions**:
+   - Add proper type imports from next-sitemap
+   - Update type definitions for sitemap fields
+   - Ensure consistent type usage across files
+
+### Phase 3: Component-specific Fixes
+
+1. **Image Components**:
+
+   - Update prop types for `$objectFit` and `$objectPosition`
+   - Fix type definitions in QuizOakImage and PostListItemImage
+   - Update related test files
+
+2. **Form Components**:
+
+   - Add proper type annotations to event handlers
+   - Fix type issues in OnboardingForm
+   - Update related test files
+
+3. **ResourceCard and Button Components**:
+   - Fix styling prop type issues
+   - Update component interfaces
+   - Fix test file type issues
+
+### Phase 4: Theme and Utility Fixes
+
+1. **Theme Types**:
+
+   - Add missing theme properties
+   - Update theme type definitions
+   - Fix theme-related type issues
+
+2. **Style Utilities**:
+   - Fix type definitions in style utility functions
+   - Update test files to match new type requirements
+   - Ensure proper type propagation
 
 ## Questions for Clarification
 
-1. Is there a custom implementation of OwaImage that wraps oak-components? This would explain the prop naming discrepancy.
-2. Has the team adopted any specific patterns for handling styled-components v6 composition that should be followed?
-3. Are there any automated tests for the sitemap generation that should be updated alongside the type fixes?
-4. Should we consider upgrading TypeScript itself as part of this process, as some errors might be related to stricter type checking in newer versions?
+1. Is there a custom implementation of OwaImage that wraps oak-components?
+2. Has the team adopted any specific patterns for handling styled-components v6 composition?
+3. Are there any automated tests for the sitemap generation that should be updated?
+4. What is the preferred approach for handling `$` prefixed props in styled-components v6?
 
 ## Additional Resources
 

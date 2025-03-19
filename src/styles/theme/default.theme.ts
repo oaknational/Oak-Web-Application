@@ -160,7 +160,7 @@ const theme: OakTheme = {
       },
     },
   },
-  button: {
+  buttons: {
     disabled: {
       background: "grey50",
       text: "white",
@@ -206,6 +206,36 @@ const theme: OakTheme = {
     },
     disabled: {
       color: "grey40",
+    },
+  },
+  listBox: {
+    states: {
+      default: {
+        background: "white",
+        color: "grey60",
+      },
+      isFocused: {
+        background: "white",
+        color: "grey70",
+        weight: 700,
+      },
+      isFocusedSelected: {
+        color: "grey70",
+      },
+      isFocusedNotSelected: {
+        color: "grey50",
+      },
+    },
+  },
+  headerMenu: {
+    background: "pink50",
+    width: 720,
+  },
+  videoPlayer: {
+    controls: {
+      primary: "blue",
+      secondary: "oakGreen",
+      tertiary: "white",
     },
   },
   selectListBox: {

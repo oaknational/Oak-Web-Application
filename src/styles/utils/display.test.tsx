@@ -1,11 +1,11 @@
-import styled from "styled-components";
 import { render } from "@testing-library/react";
+import styled from "styled-components";
 
-import display from "./display";
+import display, { DisplayProps } from "./display";
 
 describe("display", () => {
   test("should correctly handle prop 'display' as string", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<DisplayProps>`
       ${display}
     `;
     const { getByTestId } = render(
@@ -15,12 +15,10 @@ describe("display", () => {
     expect(getByTestId("test")).toHaveStyle("display: block");
   });
   test("should correctly handle prop 'display' as array", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<DisplayProps>`
       ${display}
     `;
     const { getByTestId } = render(
-      // eslint-disable-next-line
-      // @ts-ignore
       <StyledComponent data-testid="test" $display={["inline", "block"]} />,
     );
 

@@ -4,9 +4,8 @@ const oakBrandTheme: OakTheme = {
   // Extends default theme
   ...defaultTheme,
   name: "Oak Brand",
-  button: {
-    ...defaultTheme.button,
-    // Simply altering primary button config as an example
+  buttons: {
+    ...defaultTheme.buttons,
     primary: {
       background: "oakGreen",
       text: "white",

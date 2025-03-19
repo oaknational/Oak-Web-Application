@@ -1,4 +1,4 @@
-import type { DefaultTheme } from "styled-components";
+import { NextFont } from "next/dist/compiled/@next/font/dist/types";
 import { z } from "zod";
 
 import { MenuConfig } from "@/components/AppComponents/AppHeaderMenu";
@@ -140,7 +140,7 @@ export type Unset = "unset";
 /**
  * @todo parse theme with zod
  */
-const OakColorNameZod = z.union([
+export const OakColorNameZod = z.union([
   z.literal("white"),
   z.literal("black"),
   z.literal("transparent"),
@@ -189,11 +189,18 @@ export type OakFontName = "body" | "ui" | "heading" | "headingLight";
 /**
  * ColorValue could be hex, rgb, rgba, hsla, e.g. "#414243"
  */
-type ColorValue = string;
+export type ColorValue = string;
 /**
  * FontValue should be a font name with fallback(s), e.g. "Lexend, sans-serif"
  */
-type FontValue = string;
+export type FontValue = NextFont | string;
+
+/**
+ * ShadowValue represents a CSS box-shadow value, e.g. "5px 3px 16px 0px #2332a3"
+ */
+export type ShadowValue =
+  | `${number}px ${number}px ${number}px ${number}px ${string}`
+  | `${number}px ${number}px ${number}px ${string}`;
 
 // Convert type definitions to interfaces to comply with ESLint rules
 export interface ButtonConfig {
@@ -262,8 +269,19 @@ export interface ToggleStyleConfig {
 // This should be defined as interface to be exported
 export interface OakTheme {
   name: string;
-  colors: Partial<Record<OakColorName, ColorValue>>;
-  fonts: Partial<Record<OakFontName, FontValue>>;
+  colors: Record<OakColorName, ColorValue>;
+  contrastColors: Partial<Record<OakColorName, OakColorName>>;
+  buttonIconBackgroundColors: Partial<Record<OakColorName, OakColorName>>;
+  buttonDropShadows: Partial<Record<OakColorName, OakColorName | ShadowValue>>;
+  buttonFocusUnderlineColors: Partial<Record<OakColorName, OakColorName>>;
+  fonts: {
+    body: FontValue;
+    ui: FontValue;
+    heading: FontValue;
+    headingLight: FontValue;
+    bold?: string;
+    headingBold?: string;
+  };
 
   buttons: ButtonConfig;
   input: InputConfig;
@@ -274,6 +292,36 @@ export interface OakTheme {
   videoPlayer: VideoStyleConfig;
   header: HeaderConfig;
   badge: BadgeConfig;
+  menu?: {
+    background: OakColorName;
+    width: number;
+  };
+  selectListBox?: {
+    states: {
+      default: {
+        background: OakColorName;
+        color: OakColorName;
+      };
+      isFocused: {
+        background: OakColorName;
+        color: OakColorName;
+        weight?: number;
+      };
+      isFocusedSelected: {
+        color: OakColorName;
+      };
+      isFocusedNotSelected: {
+        color: OakColorName;
+      };
+    };
+  };
+  video?: {
+    controls: {
+      primary: OakColorName;
+      secondary: OakColorName;
+      tertiary: OakColorName;
+    };
+  };
 }
 
 export interface PropsWithTheme {

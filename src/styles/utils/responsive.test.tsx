@@ -1,46 +1,39 @@
-import styled, {
-  css,
-  DefaultTheme,
-  FlattenSimpleInterpolation,
-  Interpolation,
-  ThemedStyledProps,
-} from "styled-components";
 import { render } from "@testing-library/react";
+import styled, { css } from "styled-components";
+import type { DefaultTheme } from "styled-components";
 
-import { OakColorName } from "../theme";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-
+import theme from "../theme";
 import responsive from "./responsive";
 
-type TestProps = {
-  [k: string]: OakColorName | string | string[] | number | number[];
-};
-/**
- *
- * @description outputs from styled-components css function can vary in value
- * whilst still representing the same css.
- * For this reason we need to "stringify" (and minify) the css that we get from responsive
- * in order to compare it with the expected css values.
- */
-const stringify = (
-  cssArray:
-    | FlattenSimpleInterpolation
-    | Interpolation<ThemedStyledProps<TestProps, DefaultTheme>>,
-) =>
-  (Array.isArray(cssArray) ? cssArray : [cssArray])
-    ?.flatMap((str: unknown) => (typeof str === "string" ? str.trim() : str))
-    .flat()
-    .join("")
-    .replace(/([^0-9a-zA-Z.#])\s+/g, "$1")
-    .replace(/\s([^0-9a-zA-Z.#]+)/g, "$1")
-    .replace(/;}/g, "}")
-    .replace(/\/\*.*?\*\//g, "")
-    .trim();
+import type { StyledProps } from "styled-components";
+import { Interpolation } from "styled-components";
+import { OakColorName } from "../theme";
+
+interface TestProps {
+  $pl?: number;
+  pl?: number;
+}
+
+const StyledComponent = styled.div<TestProps>`
+  ${({ $pl }) => css`
+    padding-left: ${$pl}px;
+  `}
+`;
+
+const stringify = (cssArray: ReturnType<typeof css>) =>
+  cssArray.toString().replace(/\s+/g, " ").trim();
 
 const pxOrUndefined = (value: number | unknown) =>
   typeof value === "number" ? `${value}px` : undefined;
 
 describe("responsive", () => {
+  it("should return css for a single value", () => {
+    const { container } = render(
+      <StyledComponent data-testid="test" $pl={12} />,
+    );
+    expect(container).toMatchSnapshot();
+  });
   it("should correctly handle a single value", async () => {
     const props = {
       pl: 12,

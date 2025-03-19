@@ -153,7 +153,7 @@ const buttonStyles = css<ButtonStylesProps>`
 
       :disabled {
         background-color: ${getColorByLocation(
-          ({ theme }) => theme.button.disabled.background,
+          ({ theme }) => theme.buttons.disabled.background,
         )};
         cursor: not-allowed;
       }

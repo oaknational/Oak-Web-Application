@@ -1,27 +1,31 @@
+import { OakSvg } from "@oaknational/oak-components";
 import { FC } from "react";
 import styled, { css } from "styled-components";
-import { OakSvg } from "@oaknational/oak-components";
 
-import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { ButtonBackground } from "@/components/SharedComponents/Button/common";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { HOVER_SHADOW_TRANSITION } from "@/styles/transitions";
 
-const buttonBorder = css<{ background: ButtonBackground }>`
+interface ButtonBorderProps {
+  background: ButtonBackground;
+}
+
+const getButtonBorderStyles = (props: ButtonBorderProps) => css`
   position: absolute;
-  color: ${(props) => getColorByName(props.background)};
+  color: ${getColorByName(props.background)};
   mask-position: center;
 `;
 
-const buttonBorderTop = css`
-  ${buttonBorder}
+const ButtonBorderTop = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
   height: 4px;
   left: 0;
   bottom: calc(100% - 1px);
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const buttonBorderRight = css`
-  ${buttonBorder}
+const ButtonBorderRight = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
   width: 7px;
   top: -2px;
   left: calc(100% - 1px);
@@ -29,16 +33,16 @@ const buttonBorderRight = css`
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const buttonBorderBottom = css`
-  ${buttonBorder}
+const ButtonBorderBottom = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
   height: 6px;
   top: calc(100% - 1px);
   left: 0;
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const buttonBorderLeft = css`
-  ${buttonBorder}
+const ButtonBorderLeft = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
   width: 7px;
   top: -1px;
   right: calc(100% - 1px);
@@ -46,22 +50,7 @@ const buttonBorderLeft = css`
   transition: ${HOVER_SHADOW_TRANSITION};
 `;
 
-const ButtonBorderTop = styled(OakSvg)`
-  ${buttonBorderTop}
-`;
-const ButtonBorderRight = styled(OakSvg)`
-  ${buttonBorderRight}
-`;
-const ButtonBorderBottom = styled(OakSvg)`
-  ${buttonBorderBottom}
-`;
-const ButtonBorderLeft = styled(OakSvg)`
-  ${buttonBorderLeft}
-`;
-
-type ButtonBordersProps = {
-  background: ButtonBackground;
-};
+type ButtonBordersProps = ButtonBorderProps;
 /**
  * Presentational component just for the borders for the brush button variant.
  * This is a single component which renders four spans, one for each side of
