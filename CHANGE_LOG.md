@@ -1,3 +1,10 @@
+# [1.712.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.711.0...v1.712.0) (2025-03-19)
+
+
+### Features
+
+* adds the related subjects data to the FE from the overrides table ([989b2ef](https://github.com/oaknational/Oak-Web-Application/commit/989b2efe03d3e681104119439a988f0403f33738))
+
 # [1.711.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.710.0...v1.711.0) (2025-03-19)
 
 
