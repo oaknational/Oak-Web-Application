@@ -71,8 +71,12 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           $mb={"space-between-xl"}
           data-testid="curriculum-partners-list"
         >
-          {pageData.curriculumPartners.map((partner) => (
-            <OakGridArea $colSpan={[4, 3, 2]} $mb={"space-between-m2"}>
+          {pageData.curriculumPartners.map((partner, index) => (
+            <OakGridArea
+              key={`${partner.name}-${index}`}
+              $colSpan={[4, 3, 2]}
+              $mb={"space-between-m2"}
+            >
               <ImageContainer
                 $pa={[16, 24, 16]}
                 name={partner.name}
@@ -90,8 +94,12 @@ const AboutUsPartners: NextPage<AboutPageProps> = ({ pageData }) => {
           Tech partners
         </OakHeading>
         <OakGrid $mb={"space-between-xl"} data-testid="tech-partners-list">
-          {pageData.techPartners.map((partner) => (
-            <OakGridArea $colSpan={[3, 2, 2]} $mb={"space-between-m2"}>
+          {pageData.techPartners.map((partner, index) => (
+            <OakGridArea
+              key={`${partner.name}-${index}`}
+              $colSpan={[3, 2, 2]}
+              $mb={"space-between-m2"}
+            >
               <ImageContainer
                 $pa={[16, 24, 32]}
                 name={partner.name}

@@ -1,5 +1,5 @@
-import { act } from "react-dom/test-utils";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
+import { act } from "@testing-library/react";
 
 import SkipLink from ".";
 

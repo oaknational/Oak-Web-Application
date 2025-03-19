@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { OakP, OakLink, OakBox } from "@oaknational/oak-components";
+import { OakLink, OakBox, OakSpan } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
 import { FontProps } from "@/styles/utils/typography";
@@ -14,7 +14,7 @@ type CopyrightNoticeProps = FontProps & {
 const PreAlbCopyright = (
   props: FontProps & { openLinksExternally: boolean },
 ) => (
-  <OakP $font="body-3" {...props}>
+  <OakSpan $font="body-3" {...props}>
     This content is made available by Oak National Academy Limited and its
     partners and licensed under Oak’s{" "}
     {props.openLinksExternally ? (
@@ -46,7 +46,7 @@ const PreAlbCopyright = (
       </OakLink>
     )}{" "}
     (Collection 1), except where otherwise stated.
-  </OakP>
+  </OakSpan>
 );
 
 const PostAlbCopyright = (

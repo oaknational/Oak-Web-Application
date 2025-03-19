@@ -17,6 +17,34 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   }),
 }));
 
+jest.mock("@oaknational/oak-components", () => {
+  const oakComponents = jest.requireActual("@oaknational/oak-components");
+  return {
+    ...oakComponents,
+    OakHomepageTabButton: ({
+      title,
+      href,
+      onClick,
+    }: {
+      title: string;
+      href: string;
+      onClick: () => void;
+    }) => {
+      return (
+        <a
+          href={href}
+          onClick={(e) => {
+            onClick();
+            e.preventDefault();
+          }}
+        >
+          {title}
+        </a>
+      );
+    },
+  };
+});
+
 describe("HomePageTabImageNav Component", () => {
   it("renders without errors", () => {
     const { container } = renderWithTheme(
@@ -34,14 +62,6 @@ describe("HomePageTabImageNav Component", () => {
   ])(
     "navigates to the correct tab when the button is clicked",
     (name, path) => {
-      //mock window.location
-      Object.defineProperty(window, "location", {
-        value: {
-          href: "/",
-        },
-        writable: true,
-      });
-
       const { getByRole } = renderWithTheme(
         <OakThemeProvider theme={oakDefaultTheme}>
           <HomePageTabImageNav current="teachers" />
@@ -53,7 +73,6 @@ describe("HomePageTabImageNav Component", () => {
       expect(curriculumButton).toHaveAttribute("href", path);
     },
   );
-
   describe("productHomepageAccessed", () => {
     beforeEach(() => {
       jest.clearAllMocks();

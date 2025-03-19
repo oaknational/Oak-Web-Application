@@ -71,6 +71,7 @@ const LessonList: FC<LessonListProps> = (props) => {
           <OakUL aria-label="A list of lessons" $reset>
             {currentPageItems.map((item, index) => (
               <LessonListItem
+                key={`${item.lessonSlug}-${index}`}
                 {...props}
                 {...item}
                 unitTitle={unitTitle}

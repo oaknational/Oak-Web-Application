@@ -37,8 +37,8 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           </OakP>
         </OakFlex>
         <OakBox>
-          {additionalFiles.map((file) => {
-            return <OakP>{file}</OakP>;
+          {additionalFiles.map((file, index) => {
+            return <OakP key={`${file}-${index}`}>{file}</OakP>;
           })}
         </OakBox>
         <OakP>

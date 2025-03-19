@@ -18,6 +18,7 @@ describe("PupilUnitsSection", () => {
   const subjectCategories = ["Biology", "Chemistry", "Physics"];
   const units = subjectCategories.map((category, i) => [
     unitBrowseDataFixture({
+      unitSlug: "unit-slug" + i,
       unitData: {
         ...unitBrowseDataFixture({}).unitData,
         title: "Unit-" + i,
@@ -138,6 +139,7 @@ describe("PupilUnitsSection", () => {
           ...unitBrowseDataFixture({}).programmeFields,
           optionality: "Optional 1",
         },
+        unitSlug: "unit-slug-5",
         unitData: {
           ...unitBrowseDataFixture({}).unitData,
           title: "Unit-" + 3,
@@ -158,8 +160,6 @@ describe("PupilUnitsSection", () => {
         supplementaryData: { unitOrder: 3 },
       }),
     ]);
-
-    console.log(units);
     const { getByText } = render(
       <PupilUnitsSection
         units={units}

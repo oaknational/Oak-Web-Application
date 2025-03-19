@@ -28,9 +28,10 @@ const SpecialistProgrammeListing: FC<{
         $flexDirection={["column", "row", "row"]}
         $gap={"all-spacing-3"}
       >
-        {programmes.map((programme) => {
+        {programmes.map((programme, index) => {
           return (
             <SpecialistProgrammeListItem
+              key={`specialist-programme-${index}`}
               programme={programme}
               onClick={onClick}
             />

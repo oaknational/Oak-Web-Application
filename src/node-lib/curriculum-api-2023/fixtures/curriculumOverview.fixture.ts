@@ -65,7 +65,7 @@ export const curriculumOverviewCMSFixture = (
           ],
           _type: "block",
           style: "heading2",
-          _key: "82cf6558d6f2",
+          _key: "82cf6558d6f",
           markDefs: [],
         },
         {
@@ -79,7 +79,7 @@ export const curriculumOverviewCMSFixture = (
           ],
           _type: "block",
           style: "heading3",
-          _key: "82cf6558d6f3",
+          _key: "82cf6558d6f4",
           markDefs: [],
         },
       ],

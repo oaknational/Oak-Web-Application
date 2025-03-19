@@ -29,8 +29,32 @@ describe("useToastContext", () => {
   });
 
   test("it should throw an error if called outside of toast provider", () => {
+    console.error = jest.fn();
     expect(() => {
       renderHook(() => useToastContext());
     }).toThrow(Error("useToastContext called outside of toast provider"));
+    expect(console.error).toHaveBeenCalledTimes(3);
+    expect(console.error).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({
+        message: expect.stringContaining(
+          "useToastContext called outside of toast provider",
+        ),
+      }),
+    );
+    expect(console.error).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({
+        message: expect.stringContaining(
+          "useToastContext called outside of toast provider",
+        ),
+      }),
+    );
+    expect(console.error).toHaveBeenNthCalledWith(
+      3,
+      expect.stringContaining(
+        "The above error occurred in the <TestComponent> component",
+      ),
+    );
   });
 });

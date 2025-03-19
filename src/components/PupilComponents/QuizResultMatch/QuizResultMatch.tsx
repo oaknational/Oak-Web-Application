@@ -37,7 +37,7 @@ export const QuizResultMatch = ({
     const standardText = answers[pupilAnswer]?.correctChoice?.[0]?.text;
 
     return (
-      <MathJaxWrap>
+      <MathJaxWrap key={`${standardText?.trim()}-${index}`}>
         <OakQuizResultItem
           key={standardText?.trim()}
           standardText={standardText}

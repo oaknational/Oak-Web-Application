@@ -163,8 +163,12 @@ describe("getCaptionFromFile", () => {
     ]);
   });
   it("getCaptionsFromFile returns undefined if there is an error", async () => {
+    console.error = jest.fn();
     const result = await getCaptionsFromFile("test.vtt");
 
+    expect(console.error).toHaveBeenCalledWith(
+      'Error parsing captions file: test.vtt, errors: ["this is the error message"]',
+    );
     expect(result).toBeUndefined();
   });
 });

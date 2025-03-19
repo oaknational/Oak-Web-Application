@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { OakLink, OakP } from "@oaknational/oak-components";
+import { OakLink, OakSpan } from "@oaknational/oak-components";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
@@ -14,7 +14,7 @@ type CopyrightNoticeProps = {
 export const CopyrightNotice = ({ isLegacyLicense }: CopyrightNoticeProps) => {
   if (isLegacyLicense) {
     return (
-      <OakP $font="body-4" $color="text-subdued">
+      <OakSpan $font="body-4" $color="text-subdued">
         This content is made available by Oak National Academy Limited and its
         partners and licensed under{" "}
         <OakLink
@@ -27,12 +27,12 @@ export const CopyrightNotice = ({ isLegacyLicense }: CopyrightNoticeProps) => {
           Oak's terms & conditions
         </OakLink>{" "}
         (Collection 1), except where otherwise stated.
-      </OakP>
+      </OakSpan>
     );
   }
 
   return (
-    <OakP $font="body-4" $color="text-subdued">
+    <OakSpan $font="body-4" $color="text-subdued">
       This content is © Oak National Academy Limited (2023), licensed on{" "}
       <OakLink
         href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
@@ -51,6 +51,6 @@ export const CopyrightNotice = ({ isLegacyLicense }: CopyrightNoticeProps) => {
         Oak's terms & conditions
       </OakLink>{" "}
       (Collection 2).
-    </OakP>
+    </OakSpan>
   );
 };

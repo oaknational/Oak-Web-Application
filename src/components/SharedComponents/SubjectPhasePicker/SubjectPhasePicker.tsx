@@ -682,20 +682,22 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                     >
                       Subject
                     </OakSpan>
+                    {showSubjectError && (
+                      <OakFlex>
+                        <OakIcon
+                          iconName="content-guidance"
+                          $colorFilter={"red"}
+                          $height={"all-spacing-6"}
+                        />
+                        <OakSpan $color={!showSubjectError ? "black" : "red"}>
+                          Select a subject
+                        </OakSpan>
+                      </OakFlex>
+                    )}
                     <OakP
                       $font={"body-2"}
                       $color={!showSubjectError ? "black" : "red"}
                     >
-                      {showSubjectError && (
-                        <OakFlex>
-                          <OakIcon
-                            iconName="content-guidance"
-                            $colorFilter={"red"}
-                            $height={"all-spacing-6"}
-                          />
-                          <OakSpan>Select a subject</OakSpan>
-                        </OakFlex>
-                      )}
                       {selectedSubject && selectedSubject.title}
                       {!showSubjectError && !selectedSubject && "Select"}
                     </OakP>
@@ -732,9 +734,9 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       showSubjectError={showSubjectError}
                       onClick={() => setShowSubjects(false)}
                     >
-                      {sortBy(subjects, "title").map((subject) => (
+                      {sortBy(subjects, "title").map((subject, index) => (
                         <ButtonContainer
-                          key={`${subject.slug}-selection`}
+                          key={`${subject.slug}-selection-${index}`}
                           className={`lot-picker subject-selection ${
                             isSelected(subject) ? "selected" : ""
                           }`}
@@ -805,12 +807,12 @@ const SubjectPhasePicker: FC<SubjectPhasePickerData> = ({
                       showSubjectError={showSubjectError}
                       onClick={handleMobileLotPickerModal}
                     >
-                      {sortBy(subjects, "title").map((subject) => (
+                      {sortBy(subjects, "title").map((subject, index) => (
                         <ButtonContainer
                           className={`lot-picker subject-selection ${
                             isSelected(subject) ? "selected" : ""
                           }`}
-                          key={`${subject.slug}-mobile-selection`}
+                          key={`${subject.slug}-mobile-selection-${index}`}
                         >
                           <OakSecondaryButton
                             role="radio"

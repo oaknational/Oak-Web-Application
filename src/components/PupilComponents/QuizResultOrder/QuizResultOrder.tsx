@@ -40,7 +40,7 @@ export const QuizResultOrder = ({
     }
 
     return (
-      <MathJaxWrap>
+      <MathJaxWrap key={`${standardText?.trim()}-${index}`}>
         <OakQuizResultItem
           key={standardText?.trim()}
           boldPrefixText={`${pupilAnswer}`}

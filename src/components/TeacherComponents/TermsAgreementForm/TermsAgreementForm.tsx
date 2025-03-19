@@ -105,7 +105,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                 error={form.errors?.email?.message}
                 $mb={12}
               />
-              <OakP
+              <OakBox
                 $font="body-3"
                 $mb={"space-between-l"}
                 data-testid="newsletter-policy"
@@ -127,7 +127,7 @@ const TermsAgreementForm: FC<TermsAgreementFormProps> = ({
                   privacy policy
                 </OakLink>
                 .
-              </OakP>
+              </OakBox>
               <Controller
                 control={form.control}
                 name="terms"

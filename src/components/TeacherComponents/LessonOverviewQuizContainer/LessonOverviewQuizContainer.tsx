@@ -25,10 +25,10 @@ const LessonOverviewQuizContainer: FC<QuizProps> = (props) => {
       {props.imageAttribution.length > 0 && (
         <OakBox $mt="space-between-m">
           {props.imageAttribution.map(({ attribution, questionNumber }) => (
-            <>
+            <OakSpan key={`image-attr-${attribution}-${questionNumber}`}>
               <OakSpan $font={"body-3-bold"}>{`${questionNumber} `}</OakSpan>
               <OakSpan $font={"body-3"}>{`${attribution} `}</OakSpan>
-            </>
+            </OakSpan>
           ))}
         </OakBox>
       )}

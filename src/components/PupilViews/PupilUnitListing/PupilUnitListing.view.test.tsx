@@ -36,6 +36,7 @@ const unitSections: UnitsSectionData[] = [
     units: [
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-1",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 1",
@@ -45,6 +46,7 @@ const unitSections: UnitsSectionData[] = [
       ],
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-2",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 2",
@@ -71,6 +73,7 @@ const unitsWithOptionality: UnitsSectionData[] = [
     units: [
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-1",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 1",
@@ -80,6 +83,7 @@ const unitsWithOptionality: UnitsSectionData[] = [
       ],
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-2",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 2",
@@ -89,6 +93,7 @@ const unitsWithOptionality: UnitsSectionData[] = [
           },
         }),
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-3",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 2",

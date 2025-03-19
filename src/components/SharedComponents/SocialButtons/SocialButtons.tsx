@@ -71,6 +71,11 @@ type SocialButtonsProps = FlexProps &
     spaceBetween?: ResponsiveValues<PixelSpacing>;
   };
 const SocialButtons: FC<SocialButtonsProps> = (props) => {
+  props = {
+    size: "large",
+    spaceBetween: 16,
+    ...props,
+  };
   const { size, spaceBetween, for: accountHolder, ...flexProps } = props;
   const id = useId();
   const socialsToShow = SOCIAL_NETWORKS.filter((network) => props[network]);
@@ -106,11 +111,6 @@ const SocialButtons: FC<SocialButtonsProps> = (props) => {
       })}
     </Flex>
   );
-};
-
-SocialButtons.defaultProps = {
-  size: "large",
-  spaceBetween: 16,
 };
 
 export default SocialButtons;

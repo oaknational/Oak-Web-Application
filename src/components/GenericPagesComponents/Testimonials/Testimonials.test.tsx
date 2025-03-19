@@ -7,7 +7,9 @@ import { Testimonials } from "./Testimonials";
 jest.mock("@oaknational/oak-components", () => ({
   OakCarousel: jest.fn(({ content, backLabel, fwdLabel, containerLabel }) => (
     <div role="region" aria-label={containerLabel}>
-      {content}
+      {content.map((item: string, index: number) => (
+        <div key={index}>{item}</div>
+      ))}
       <button aria-label={backLabel}>Previous</button>
       <button aria-label={fwdLabel}>Next</button>
     </div>
