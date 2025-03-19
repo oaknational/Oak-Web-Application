@@ -19,6 +19,17 @@ query lessonDownloads(
     login_required
   }
 
+  additional_files: lessons(
+    where: { slug: { _eq: $lessonSlug} }
+  ) {
+    tpc_downloadablefiles_list
+    tpc_downloadablefiles(where: { asset_id: { _is_null: false } } ) {
+      asset_id
+      media_id
+      media_object
+    }
+  }
+
   browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
     where: $browseDataWhere
   ) {

@@ -4,6 +4,7 @@ import { actionsSchema } from "@oaknational/oak-curriculum-schema";
 import {
   copyrightContentSchema,
   legacyAssetObjectSchema,
+  lessonAdditionalFilesListSchema,
   lessonDownloadsListSchema,
 } from "../../shared.schema";
 
@@ -53,6 +54,7 @@ export const SpecialistLessonDownloadSchema = z.object({
     lessonTitle: z.string(),
     lessonSlug: z.string(),
     downloads: lessonDownloadsListSchema,
+    additionalFiles: lessonAdditionalFilesListSchema,
     nextLessons: z.array(
       z.object({
         lessonSlug: z.string(),

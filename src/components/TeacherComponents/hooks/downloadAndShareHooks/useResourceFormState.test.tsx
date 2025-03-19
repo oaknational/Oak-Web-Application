@@ -18,6 +18,30 @@ import {
 
 const downloadProps: UseResourceFormStateProps = {
   downloadResources: allDownloadResources,
+  additionalFilesResources: [],
+  type: "download",
+};
+
+const downloadPropsWithAdditionalResources: UseResourceFormStateProps = {
+  downloadResources: allDownloadResources,
+  additionalFilesResources: [
+    {
+      type: "additional-files",
+      exists: true,
+      label: "some file",
+      ext: "PY",
+      assetId: 123,
+      size: 135657,
+    },
+    {
+      type: "additional-files",
+      exists: true,
+      label: "some other file",
+      ext: "PNG",
+      assetId: 456,
+      size: 46765645,
+    },
+  ],
   type: "download",
 };
 
@@ -78,6 +102,29 @@ describe("useResourceFormState", () => {
       ]);
     });
 
+    test("useResourceFormState should return all downloads selected array including additional files if router.preselected is undefined ", async () => {
+      useRouter.mockReturnValue({
+        pathname: "/",
+        query: { preselected: [] },
+      });
+
+      const result = renderHook(() =>
+        useResourceFormState(downloadPropsWithAdditionalResources),
+      );
+
+      expect(result.result.current.selectedResources).toEqual([
+        "presentation",
+        "intro-quiz-questions",
+        "intro-quiz-answers",
+        "exit-quiz-questions",
+        "exit-quiz-answers",
+        "worksheet-pdf",
+        "worksheet-pptx",
+        "additional-files-123",
+        "additional-files-456",
+      ]);
+    });
+
     test("useResourceFormState should return presentation selected router.preselected 'slide deck", () => {
       useRouter.mockReturnValue({
         pathname: "/",
@@ -128,6 +175,19 @@ describe("useResourceFormState", () => {
       expect(result.current.selectedResources).toEqual([
         "exit-quiz-questions",
         "exit-quiz-answers",
+      ]);
+    });
+    test("useResourceFormState should return all additional files array selected router.preselected 'additional-files", () => {
+      useRouter.mockReturnValue({
+        pathname: "/",
+        query: { preselected: "additional files" },
+      });
+      const { result } = renderHook(() =>
+        useResourceFormState(downloadPropsWithAdditionalResources),
+      );
+      expect(result.current.selectedResources).toEqual([
+        "additional-files-123",
+        "additional-files-456",
       ]);
     });
     describe("share", () => {
@@ -294,6 +354,17 @@ describe("useResourceFormState", () => {
           schoolName: "notListed",
         }),
       );
+    });
+    test("should throw an error for invalid resource type", () => {
+      const invalidProps = {
+        type: "invalid" as UseResourceFormStateProps["type"],
+      };
+
+      expect(() =>
+        renderHook(() =>
+          useResourceFormState(invalidProps as UseResourceFormStateProps),
+        ),
+      ).toThrow("Invalid resource type");
     });
   });
 });

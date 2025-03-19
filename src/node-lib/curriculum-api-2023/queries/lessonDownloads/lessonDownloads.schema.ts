@@ -6,6 +6,7 @@ import {
 
 import {
   baseLessonDownloadsSchema,
+  lessonAdditionalFilesListSchema,
   lessonDownloadsListSchema,
   lessonListSchema,
   lessonPathwaySchema,
@@ -38,6 +39,23 @@ export const downloadsAssetData = z.object({
   login_required: z.boolean().nullable(),
 });
 
+export const additionalFilesAssetData = z.object({
+  tpc_downloadablefiles_list: z.array(z.number()).nullable(),
+  tpc_downloadablefiles: z
+    .array(
+      z.object({
+        asset_id: z.number(),
+        media_id: z.number(),
+        media_object: z.object({
+          url: z.string(),
+          bytes: z.number(),
+          display_name: z.string(),
+        }),
+      }),
+    )
+    .nullable(),
+});
+
 export const lessonDownloadsQueryRaw = z.object({
   download_assets: z.array(downloadsAssetData),
   unit_lessons: z.array(syntheticUnitvariantLessonsSchema),
@@ -46,7 +64,11 @@ export const lessonDownloadsQueryRaw = z.object({
 export type LessonDownloadsListSchema = z.infer<
   typeof lessonDownloadsListSchema
 >;
+export type LessonAdditionalFilesListSchema = z.infer<
+  typeof lessonAdditionalFilesListSchema
+>;
 export type LessonDownloadsPageData = z.infer<typeof lessonDownloadsSchema>;
+export type AdditionalFilesAssetData = z.infer<typeof additionalFilesAssetData>;
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
 export type NextLessonSchema = z.infer<typeof nextLessonSchema>;
 export type NextLesson = {

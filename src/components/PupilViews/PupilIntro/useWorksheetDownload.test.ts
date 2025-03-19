@@ -32,11 +32,11 @@ describe(useWorksheetDownload, () => {
       await result.current.startDownload();
     });
 
-    expect(downloadSpy).toHaveBeenCalledWith(
-      "lesson-slug",
-      ["worksheet-pdf-questions"],
-      false,
-    );
+    expect(downloadSpy).toHaveBeenCalledWith({
+      lessonSlug: "lesson-slug",
+      selectedResourceTypes: ["worksheet-pdf-questions"],
+      isLegacyDownload: false,
+    });
   });
 
   it("reports on the loading state of the download", async () => {

@@ -57,13 +57,30 @@ const useResourceFormSubmit = (props: UseResourceFormProps) => {
     if (props.type === "download") {
       const accessToken = await auth.getToken();
 
-      await downloadLessonResources(
-        slug,
-        downloads as DownloadResourceType[],
-        props.isLegacyDownload,
-        authFlagEnabled,
-        accessToken,
+      const additionalFilesRegex = /additional-files-*/;
+      const hasAdditionalFiles = downloads.some((d) =>
+        additionalFilesRegex.test(d),
       );
+
+      const selectedResourceTypes = hasAdditionalFiles
+        ? downloads
+            .filter((d) => !additionalFilesRegex.test(d))
+            .concat(["additional-files"])
+        : downloads;
+      const selectedAdditionalFilesIds = hasAdditionalFiles
+        ? downloads
+            .filter((d) => additionalFilesRegex.test(d))
+            .map((d) => parseInt(d.split("additional-files-")?.[1] ?? ""))
+        : [];
+
+      await downloadLessonResources({
+        lessonSlug: slug,
+        selectedResourceTypes: selectedResourceTypes as DownloadResourceType[],
+        selectedAdditionalFilesIds,
+        isLegacyDownload: props.isLegacyDownload,
+        authFlagEnabled,
+        authToken: accessToken,
+      });
     }
   };
 

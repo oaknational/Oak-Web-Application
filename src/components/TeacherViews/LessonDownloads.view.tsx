@@ -57,6 +57,7 @@ type BaseLessonDownload = {
   lessonSlug: string;
   lessonCohort?: string | null;
   downloads: LessonDownloadsPageData["downloads"];
+  additionalFiles: LessonDownloadsPageData["additionalFiles"];
   copyrightContent?: CopyrightContent;
   isSpecialist: false;
   developmentStageTitle?: string | null;
@@ -98,6 +99,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     lessonTitle,
     lessonSlug,
     downloads,
+    additionalFiles,
     expired,
     isSpecialist,
     copyrightContent,
@@ -176,6 +178,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
     hubspotLoaded,
   } = useResourceFormState({
     downloadResources: downloadsFilteredByCopyright,
+    additionalFilesResources: additionalFiles,
     type: "download",
   });
 
@@ -269,6 +272,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
   useLessonDownloadExistenceCheck({
     lessonSlug,
     resourcesToCheck: activeResources as DownloadResourceType[],
+    additionalFilesIdsToCheck: null, // replace later with data
     onComplete: setActiveResources,
     isLegacyDownload: isLegacyDownload,
   });
@@ -389,6 +393,7 @@ export function LessonDownloads(props: LessonDownloadsProps) {
                   <DownloadCardGroup
                     control={form.control}
                     downloads={downloadsFilteredByCopyright}
+                    additionalFiles={additionalFiles}
                     hasError={form.errors?.resources ? true : false}
                     triggerForm={form.trigger}
                   />

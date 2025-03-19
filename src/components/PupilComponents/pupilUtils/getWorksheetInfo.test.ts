@@ -38,11 +38,11 @@ describe("getWorksheetInfo", () => {
     const result = await getWorksheetInfo("test-lesson");
 
     // Verify the function was called with correct parameters
-    expect(getLessonDownloadResourcesExistence).toHaveBeenCalledWith(
-      "test-lesson",
-      "worksheet-pdf-questions",
-      false,
-    );
+    expect(getLessonDownloadResourcesExistence).toHaveBeenCalledWith({
+      lessonSlug: "test-lesson",
+      resourceTypesString: "worksheet-pdf-questions",
+      isLegacyDownload: false,
+    });
 
     // Check the result contains only existing resources
     expect(result).toEqual([

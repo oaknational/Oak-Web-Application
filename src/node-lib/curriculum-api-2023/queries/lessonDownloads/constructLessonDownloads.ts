@@ -1,4 +1,7 @@
-import { LessonDownloadsListSchema } from "./lessonDownloads.schema";
+import {
+  LessonDownloadsListSchema,
+  LessonAdditionalFilesListSchema,
+} from "./lessonDownloads.schema";
 import {
   RawSyntheticUVLesson,
   rawSyntheticUVLessonSchema,
@@ -7,13 +10,21 @@ import {
 import { toSentenceCase } from "@/node-lib/curriculum-api-2023/helpers";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 
-const constructLessonDownloads = (
-  downloads: LessonDownloadsListSchema,
-  lessonSlug: string,
-  parsedBrowseData: RawSyntheticUVLesson[],
-  lessonCopyRight: { copyrightInfo: string }[] | null,
-  expired?: boolean | null,
-) => {
+const constructLessonDownloads = ({
+  downloads,
+  additionalFiles,
+  lessonSlug,
+  parsedBrowseData,
+  lessonCopyRight,
+  expired,
+}: {
+  downloads: LessonDownloadsListSchema;
+  additionalFiles?: LessonAdditionalFilesListSchema;
+  lessonSlug: string;
+  parsedBrowseData: RawSyntheticUVLesson[];
+  lessonCopyRight: { copyrightInfo: string }[] | null;
+  expired?: boolean | null;
+}) => {
   const currentLesson = parsedBrowseData.find(
     (lesson) => lesson.lesson_slug === lessonSlug,
   );
@@ -24,6 +35,7 @@ const constructLessonDownloads = (
     parsedCurrentLesson.unit_data.title;
   const downloadsPageData = {
     downloads,
+    additionalFiles,
     programmeSlug: parsedCurrentLesson.programme_slug,
     keyStageSlug: parsedCurrentLesson.programme_fields.keystage_slug,
     keyStageTitle: toSentenceCase(

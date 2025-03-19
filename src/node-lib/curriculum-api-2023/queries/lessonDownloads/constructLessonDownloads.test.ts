@@ -29,13 +29,13 @@ describe("constructLessonDownloads", () => {
     ];
     const expired = false;
 
-    const result = constructLessonDownloads(
+    const result = constructLessonDownloads({
       downloads,
       lessonSlug,
-      browse_data,
-      null,
+      parsedBrowseData: browse_data,
+      lessonCopyRight: null,
       expired,
-    );
+    });
 
     const expectedResult = {
       downloads,
@@ -70,13 +70,13 @@ describe("constructLessonDownloads", () => {
     ];
     const expired = false;
 
-    const result = constructLessonDownloads(
+    const result = constructLessonDownloads({
       downloads,
       lessonSlug,
-      browse_data,
-      null,
+      parsedBrowseData: browse_data,
+      lessonCopyRight: null,
       expired,
-    );
+    });
 
     expect(result.nextLessons).toEqual([
       { lessonSlug: "lesson-2", lessonTitle: "lesson-title" },
@@ -94,13 +94,13 @@ describe("constructLessonDownloads", () => {
       getLessonWithOrder(5),
     ];
 
-    const result = constructLessonDownloads(
+    const result = constructLessonDownloads({
       downloads,
       lessonSlug,
-      browse_data,
-      null,
-      false,
-    );
+      parsedBrowseData: browse_data,
+      lessonCopyRight: null,
+      expired: false,
+    });
 
     expect(result.nextLessons).toEqual([
       { lessonSlug: "lesson-4", lessonTitle: "lesson-title" },
@@ -115,13 +115,13 @@ describe("constructLessonDownloads", () => {
       getLessonWithOrder(4),
       getLessonWithOrder(9),
     ];
-    const result = constructLessonDownloads(
+    const result = constructLessonDownloads({
       downloads,
       lessonSlug,
-      browse_data,
-      null,
-      false,
-    );
+      parsedBrowseData: browse_data,
+      lessonCopyRight: null,
+      expired: false,
+    });
 
     expect(result.nextLessons).toEqual([
       { lessonSlug: "lesson-4", lessonTitle: "lesson-title" },
