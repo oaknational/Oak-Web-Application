@@ -22,7 +22,7 @@ describe("PupilSubjectDescription", () => {
 
   it("renders nothing when subjectSlug does not match", () => {
     const programmeFields = unitBrowseDataFixture({}).programmeFields;
-    programmeFields.subjectSlug = "computing";
+    programmeFields.subjectSlug = "testing-not-for-publication";
 
     const { container } = render(
       <PupilSubjectDescription programmeFields={programmeFields} />,
