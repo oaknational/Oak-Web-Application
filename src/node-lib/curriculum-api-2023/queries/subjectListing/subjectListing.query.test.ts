@@ -11,6 +11,7 @@ describe("subjectListing()", () => {
           Promise.resolve({
             subjectUnits: [],
             key_stages: [],
+            subjectFeatures: [],
           }),
         ),
       })({

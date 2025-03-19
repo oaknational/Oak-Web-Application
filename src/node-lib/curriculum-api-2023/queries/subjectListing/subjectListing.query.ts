@@ -13,7 +13,8 @@ const subjectListingQuery =
   (sdk: Sdk) => async (args: { keyStageSlug: string }) => {
     const res = await sdk.subjectListing(args);
 
-    const { subjectUnits, key_stages } = subjectLisitingRawSchema.parse(res);
+    const { subjectUnits, key_stages, subjectFeatures } =
+      subjectLisitingRawSchema.parse(res);
 
     const modifiedSubjectUnits = applyGenericOverridesAndExceptions<
       SubjectListingQuery["subjectUnits"][number]
@@ -30,10 +31,12 @@ const subjectListingQuery =
     const parsedModified = subjectLisitingRawSchema.parse({
       subjectUnits: modifiedSubjectUnits,
       key_stages,
+      subjectFeatures,
     });
 
     const processedUnits = constructSubjectsFromUnitData(
       parsedModified.subjectUnits,
+      subjectFeatures,
     );
 
     const keyStages = parsedModified.key_stages.map((keyStage) => {
