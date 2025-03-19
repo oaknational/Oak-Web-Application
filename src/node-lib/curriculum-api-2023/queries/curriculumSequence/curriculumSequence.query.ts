@@ -67,6 +67,7 @@ const curriculumSequenceQuery =
       _and: [
         ...baseWhere._and,
         isExamboard ? examboardCondition : pathwayCondition,
+        { non_curriculum: { _eq: false } },
       ],
     };
 
