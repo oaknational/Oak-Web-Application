@@ -29,12 +29,11 @@ const downloadAssets = {
 };
 
 const additionalFilesEmptyFixture: AdditionalFilesAssetData = {
-  tpc_downloadablefiles_list: null,
   tpc_downloadablefiles: [],
 };
 
-const additionalFilesFixture: AdditionalFilesAssetData = {
-  tpc_downloadablefiles_list: [1, 2],
+// @todo update to fixture from oak-curriculum-schema once it is updated there
+export const additionalFilesFixture: AdditionalFilesAssetData = {
   tpc_downloadablefiles: [
     {
       asset_id: 1,

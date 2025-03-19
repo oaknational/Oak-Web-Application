@@ -22,7 +22,6 @@ query lessonDownloads(
   additional_files: lessons(
     where: { slug: { _eq: $lessonSlug} }
   ) {
-    tpc_downloadablefiles_list
     tpc_downloadablefiles(where: { asset_id: { _is_null: false } } ) {
       asset_id
       media_id

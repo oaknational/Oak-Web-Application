@@ -8,7 +8,10 @@ import {
   useResourceFormState,
 } from "./useResourceFormState";
 
-import { allResources as allDownloadResources } from "@/node-lib/curriculum-api-2023/fixtures/downloads.fixture";
+import {
+  allResources as allDownloadResources,
+  additionalFilesResources,
+} from "@/node-lib/curriculum-api-2023/fixtures/downloads.fixture";
 import { allResources as allShareResources } from "@/node-lib/curriculum-api-2023/fixtures/shareableResources.fixture";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import {
@@ -24,24 +27,7 @@ const downloadProps: UseResourceFormStateProps = {
 
 const downloadPropsWithAdditionalResources: UseResourceFormStateProps = {
   downloadResources: allDownloadResources,
-  additionalFilesResources: [
-    {
-      type: "additional-files",
-      exists: true,
-      label: "some file",
-      ext: "PY",
-      assetId: 123,
-      size: 135657,
-    },
-    {
-      type: "additional-files",
-      exists: true,
-      label: "some other file",
-      ext: "PNG",
-      assetId: 456,
-      size: 46765645,
-    },
-  ],
+  additionalFilesResources,
   type: "download",
 };
 

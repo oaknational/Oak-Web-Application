@@ -117,6 +117,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
           $justifyContent="center"
           $ph={16}
           $pv={16}
+          $pr={48}
           $width="100%"
         >
           <OakP

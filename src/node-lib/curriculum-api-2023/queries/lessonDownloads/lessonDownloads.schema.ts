@@ -40,7 +40,6 @@ export const downloadsAssetData = z.object({
 });
 
 export const additionalFilesAssetData = z.object({
-  tpc_downloadablefiles_list: z.array(z.number()).nullable(),
   tpc_downloadablefiles: z
     .array(
       z.object({

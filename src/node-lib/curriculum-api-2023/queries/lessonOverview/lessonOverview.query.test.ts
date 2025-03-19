@@ -1,6 +1,7 @@
 import {
   lessonContentFixture,
   syntheticUnitvariantLessonsByKsFixture,
+  // additionalFilesFixture
 } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
@@ -14,29 +15,11 @@ import lessonOverview, {
 } from "./lessonOverview.query";
 
 import { AdditionalFilesAssetData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { additionalFilesFixture } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query.test";
 
+// @todo update to fixture from oak-curriculum-schema once it is updated there
 const _additionalFilesFixture: AdditionalFilesAssetData = {
-  tpc_downloadablefiles_list: [1, 2],
-  tpc_downloadablefiles: [
-    {
-      asset_id: 1,
-      media_id: 1,
-      media_object: {
-        url: "https://example.com/file1.pdf",
-        bytes: 1000,
-        display_name: "File 1",
-      },
-    },
-    {
-      asset_id: 2,
-      media_id: 2,
-      media_object: {
-        url: "https://example.com/file2.pdf",
-        bytes: 2000,
-        display_name: "File 2",
-      },
-    },
-  ],
+  ...additionalFilesFixture,
 };
 
 describe("lessonOverview()", () => {
