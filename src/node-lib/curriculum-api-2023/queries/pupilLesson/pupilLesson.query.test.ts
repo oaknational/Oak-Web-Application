@@ -1,6 +1,7 @@
 import {
   syntheticUnitvariantLessonsFixture,
   lessonContentFixture,
+  additionalFilesFixture,
 } from "@oaknational/oak-curriculum-schema";
 
 import { pupilLessonQuery } from "./pupilLesson.query";
@@ -13,7 +14,11 @@ describe("pupilLesson()", () => {
       await pupilLessonQuery({
         ...sdk,
         pupilLesson: jest.fn(() =>
-          Promise.resolve({ browseData: [], content: [] }),
+          Promise.resolve({
+            browseData: [],
+            content: [],
+            additional_files: [],
+          }),
         ),
       })({
         lessonSlug: "lesson-slug",
@@ -43,6 +48,7 @@ describe("pupilLesson()", () => {
         Promise.resolve({
           browseData: [_syntheticUnitvariantLessonsFixture],
           content: [_lessonContentFixture],
+          additional_files: [additionalFilesFixture()],
         }),
       ),
     })({
@@ -95,6 +101,7 @@ describe("pupilLesson()", () => {
         Promise.resolve({
           browseData: fixtures,
           content: [_lessonContentFixture],
+          additional_files: [additionalFilesFixture()],
         }),
       ),
     })({

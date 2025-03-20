@@ -3,8 +3,10 @@ import {
   OakBox,
   OakFlex,
   OakIcon,
+  OakLI,
   OakP,
   OakTertiaryButton,
+  OakUL,
 } from "@oaknational/oak-components";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
@@ -37,9 +39,16 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           </OakP>
         </OakFlex>
         <OakBox>
-          {additionalFiles.map((file) => {
-            return <OakP>{file}</OakP>;
-          })}
+          <OakUL
+            $display={"flex"}
+            $flexDirection={"column"}
+            $gap={"all-spacing-1"}
+            $reset
+          >
+            {additionalFiles.map((file, i) => {
+              return <OakLI key={i}>{file}</OakLI>;
+            })}
+          </OakUL>
         </OakBox>
         <OakP>
           {`Download ${isPlural ? "these files" : "this file"} to use in the

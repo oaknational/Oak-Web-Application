@@ -2,6 +2,7 @@ import {
   LessonContent,
   LessonBrowseData,
   lessonContentSchema,
+  AdditionalFiles,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
@@ -16,7 +17,11 @@ export const pupilPreviewLessonQuery =
     unitSlug?: string;
     programmeSlug?: string;
     isLegacy?: boolean;
-  }): Promise<{ content: LessonContent; browseData: LessonBrowseData }> => {
+  }): Promise<{
+    content: LessonContent;
+    browseData: LessonBrowseData;
+    additionalFiles: AdditionalFiles["tpcDownloadablefiles"];
+  }> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
     const overrides: Partial<LessonBrowseData> = { lessonSlug };
@@ -61,5 +66,6 @@ export const pupilPreviewLessonQuery =
     return {
       browseData,
       content,
+      additionalFiles: null,
     };
   };

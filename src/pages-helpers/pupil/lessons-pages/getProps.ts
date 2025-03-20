@@ -76,7 +76,7 @@ export const getProps = ({
       };
     }
 
-    const { browseData, content } = res;
+    const { browseData, content, additionalFiles } = res;
 
     let worksheetInfo: WorksheetInfo | null = null;
 
@@ -120,9 +120,10 @@ export const getProps = ({
           transcriptSentences: transcriptSentences ?? [],
         },
         browseData,
-        hasWorksheet: content.hasWorksheetAssetObject ? true : false,
+        hasWorksheet: !!content.hasWorksheetAssetObject,
         worksheetInfo,
-        hasAdditionalFiles: content.hasAdditionalFiles ? true : false,
+        hasAdditionalFiles: !!additionalFiles?.length,
+        additionalFiles: additionalFiles || null,
         initialSection: section,
         backUrl,
         pageType: page,

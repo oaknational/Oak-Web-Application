@@ -97,7 +97,7 @@ export const getStaticProps: GetStaticProps<
         };
       }
 
-      const { browseData, content } = res;
+      const { browseData, content, additionalFiles } = res;
       // 404 if the lesson does not contain the given section
       if (
         isLessonReviewSection(section) &&
@@ -130,7 +130,8 @@ export const getStaticProps: GetStaticProps<
           },
           browseData,
           hasWorksheet: content.hasWorksheetAssetObject ? true : false,
-          hasAdditionalFiles: false,
+          hasAdditionalFiles: !!additionalFiles?.length,
+          additionalFiles: additionalFiles || null,
           worksheetInfo,
           backUrl,
           initialSection: section,

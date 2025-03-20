@@ -146,8 +146,7 @@ export const getAdditionalFiles = (
     const name = af.media_object.display_name;
     const type = af.media_object.url.split(".").pop() ?? "";
     const size = af.media_object.bytes;
-    const sizeString =
-      size > 1000 ? `${convertBytesToMegabytes(size)} MB` : `${size} B`;
+    const sizeString = convertBytesToMegabytes(size);
     return `${name} ${sizeString} (${type.toUpperCase()})`;
   });
 };
@@ -331,22 +330,11 @@ const lessonOverviewQuery =
 
     const [additionalFilesRes] = res.additionalFiles;
     const additionalFiles = additionalFilesRes?.tpc_downloadablefiles ?? null;
-    const filteredAdditionalFiles: AdditionalFilesAssetData["tpc_downloadablefiles"] =
-      additionalFiles
-        ? additionalFiles.filter(
-            (
-              af,
-            ): af is {
-              asset_id: number;
-              media_id: number;
-              media_object: {
-                url: string;
-                bytes: number;
-                display_name: string;
-              };
-            } => af?.asset_id !== null && af?.asset_id !== undefined,
-          )
-        : null;
+    const filteredAdditionalFiles = additionalFiles
+      ? (additionalFiles.filter(
+          (file) => !!file.asset_id,
+        ) as AdditionalFilesAssetData["tpc_downloadablefiles"])
+      : null;
 
     return lessonOverviewSchema.parse(
       transformedLessonOverviewData(

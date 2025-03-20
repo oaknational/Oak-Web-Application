@@ -76,12 +76,14 @@ const curriculumApi: Pick<
     return {
       browseData: lessonBrowseDataFixture({}),
       content: lessonContentFixture({}),
+      additionalFiles: null,
     };
   }),
   pupilPreviewLessonQuery: jest.fn(async () => {
     return {
       browseData: lessonBrowseDataFixture({}),
       content: lessonContentFixture({}),
+      additionalFiles: null,
     };
   }),
   teacherPreviewLesson: jest.fn(async () => {

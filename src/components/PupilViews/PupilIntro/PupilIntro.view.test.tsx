@@ -3,7 +3,6 @@ import "@testing-library/jest-dom";
 import { fireEvent } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
-import { additionalFilesFixture } from "@oaknational/oak-curriculum-schema";
 
 import { PupilViewsIntro } from "./PupilIntro.view";
 
@@ -12,9 +11,12 @@ import { LessonEngineContext } from "@/components/PupilComponents/LessonEnginePr
 import { createLessonEngineContext } from "@/components/PupilComponents/pupilTestHelpers/createLessonEngineContext";
 import * as downloadLessonResources from "@/components/SharedComponents/helpers/downloadAndShareHelpers/downloadLessonResources";
 import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
-import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import {
+  LessonContent,
+  AdditionalFiles,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
-import keysToCamelCase from "@/utils/snakeCaseConverter";
+import { lessonAdditionalFilesFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonAdditionalFiles.fixture";
 
 const usePupilAnalyticsMock = {
   track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
@@ -74,6 +76,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={false}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -90,6 +94,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={false}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -108,6 +114,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={false}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumDataWithEquipment}
           />
         </LessonEngineContext.Provider>
@@ -127,6 +135,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={false}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumDataWithContentGuidance}
           />
         </LessonEngineContext.Provider>
@@ -145,6 +155,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={false}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumDataWithSupervision}
           />
         </LessonEngineContext.Provider>
@@ -164,6 +176,9 @@ describe("PupilIntro", () => {
               hasAdditionalFiles
               hasWorksheet
               worksheetInfo={null}
+              additionalFiles={
+                lessonAdditionalFilesFixture({})["tpcDownloadablefiles"]
+              }
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -187,20 +202,17 @@ describe("PupilIntro", () => {
 
         expect(downloadLessonResources.default).toHaveBeenCalledWith({
           lessonSlug: curriculumData.lessonSlug,
-          selectedResourceTypes: ["worksheet-pdf-questions"],
+          selectedResourceTypes: ["additional-files"],
+          selectedAdditionalFilesIds: [123, 456],
           isLegacyDownload: curriculumData.isLegacy,
         });
       });
     });
     describe("when there is a single additional file", () => {
-      const snake = additionalFilesFixture({}).files[0];
-      const camel = keysToCamelCase(snake);
-      const curriculumDataSingleFile =
-        camel !== undefined
-          ? lessonContentFixture({
-              additionalFiles: [{ files: [camel] }],
-            })
-          : lessonContentFixture({});
+      const curriculumDataSingleFile = lessonContentFixture({});
+      const additionalFile = [
+        lessonAdditionalFilesFixture({})["tpcDownloadablefiles"]?.[0],
+      ];
 
       const subject = (
         <OakThemeProvider theme={oakDefaultTheme}>
@@ -208,6 +220,9 @@ describe("PupilIntro", () => {
             <PupilViewsIntro
               {...curriculumDataSingleFile}
               hasAdditionalFiles
+              additionalFiles={
+                additionalFile as AdditionalFiles["tpcDownloadablefiles"]
+              }
               hasWorksheet
               worksheetInfo={null}
             />
@@ -219,7 +234,7 @@ describe("PupilIntro", () => {
         const { queryByText, queryByRole } = renderWithTheme(subject);
 
         expect(
-          queryByText("Files you will need for this lesson"),
+          queryByText("File you will need for this lesson"),
         ).toBeInTheDocument();
         expect(
           queryByRole("button", { name: /Download file/i }),
@@ -233,8 +248,9 @@ describe("PupilIntro", () => {
             <PupilViewsIntro
               {...curriculumData}
               hasWorksheet={false}
-              hasAdditionalFiles={false}
               worksheetInfo={null}
+              hasAdditionalFiles={false}
+              additionalFiles={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -258,6 +274,8 @@ describe("PupilIntro", () => {
               {...curriculumData}
               hasWorksheet
               worksheetInfo={null}
+              hasAdditionalFiles={false}
+              additionalFiles={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -293,6 +311,8 @@ describe("PupilIntro", () => {
               {...curriculumData}
               hasWorksheet={false}
               worksheetInfo={null}
+              hasAdditionalFiles={false}
+              additionalFiles={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -312,6 +332,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={false}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -327,6 +349,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={false}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -344,6 +368,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={true}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -365,6 +391,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={true}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -390,6 +418,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={false}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -412,6 +442,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={false}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>
@@ -441,6 +473,8 @@ describe("PupilIntro", () => {
           <PupilViewsIntro
             hasWorksheet={false}
             worksheetInfo={null}
+            hasAdditionalFiles={false}
+            additionalFiles={null}
             {...curriculumData}
           />
         </LessonEngineContext.Provider>

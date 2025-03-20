@@ -51628,7 +51628,7 @@ export type PupilLessonQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_12_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, actions?: any | null, features?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_5_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_asset_object?: boolean | null }> };
+export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_12_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, actions?: any | null, features?: any | null }>, additional_files: Array<{ __typename?: 'lessons', tpc_downloadablefiles?: Array<{ __typename?: 'tpc_media', asset_id?: number | null, media_id: number, media_object: any }> | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_5_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_asset_object?: boolean | null }> };
 
 export type PupilLessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -52109,6 +52109,13 @@ export const PupilLessonDocument = gql`
     supplementary_data
     actions
     features
+  }
+  additional_files: lessons(where: {slug: {_eq: $lessonSlug}}) {
+    tpc_downloadablefiles(where: {asset_id: {_is_null: false}}) {
+      asset_id
+      media_id
+      media_object
+    }
   }
   content: published_mv_lesson_content_published_5_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}

@@ -25,7 +25,7 @@ describe(useAdditionalFilesDownload, () => {
 
   it("downloads when startAdditionalFilesDownload is called", async () => {
     const { result } = renderHook(() =>
-      useAdditionalFilesDownload("lesson-slug"),
+      useAdditionalFilesDownload("lesson-slug", [123, 345]),
     );
 
     await act(async () => {
@@ -34,14 +34,15 @@ describe(useAdditionalFilesDownload, () => {
 
     expect(downloadSpy).toHaveBeenCalledWith({
       lessonSlug: "lesson-slug",
-      selectedResourceTypes: ["worksheet-pdf-questions"],
+      selectedResourceTypes: ["additional-files"],
+      selectedAdditionalFilesIds: [123, 345],
       isLegacyDownload: false,
     });
   });
 
   it("reports on the loading state of the download", async () => {
     const { result } = renderHook(() =>
-      useAdditionalFilesDownload("lesson-slug"),
+      useAdditionalFilesDownload("lesson-slug", [123, 345]),
     );
 
     expect(result.current.isAdditionalFilesDownloading).toBe(false);
@@ -59,7 +60,7 @@ describe(useAdditionalFilesDownload, () => {
 
   it("does not allow another download to start while one is in progress", async () => {
     const { result } = renderHook(() =>
-      useAdditionalFilesDownload("lesson-slug"),
+      useAdditionalFilesDownload("lesson-slug", [123, 345]),
     );
 
     act(() => {
@@ -80,7 +81,7 @@ describe(useAdditionalFilesDownload, () => {
     downloadSpy.mockRejectedValue(new Error("whoops"));
     const alertSpy = jest.spyOn(window, "alert");
     const { result } = renderHook(() =>
-      useAdditionalFilesDownload("lesson-slug"),
+      useAdditionalFilesDownload("lesson-slug", [123, 345]),
     );
 
     act(() => {

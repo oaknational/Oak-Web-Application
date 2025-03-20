@@ -122,15 +122,8 @@ const DownloadCardGroup: FC<DownloadCardGroupProps> = ({
                     triggerForm();
                   };
 
-                  const getFormattedSizeString = (size: number): string => {
-                    const formattedSize =
-                      size > 1000
-                        ? `${convertBytesToMegabytes(size)} MB `
-                        : `${size} B `;
-                    return formattedSize;
-                  };
                   const formattedSize = download.size
-                    ? getFormattedSizeString(download.size)
+                    ? `${convertBytesToMegabytes(download.size)} `
                     : "";
                   const subtitle = `${formattedSize}(${download.ext.toUpperCase()})`;
 

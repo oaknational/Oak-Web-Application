@@ -412,7 +412,7 @@ describe("lessonOverview()", () => {
 
       expect(getAdditionalFiles(additionalFiles)).toEqual([
         "File 1 1000 B (PDF)",
-        "File 2 0.0 MB (PDF)",
+        "File 2 1.95 KB (PDF)",
       ]);
     });
   });

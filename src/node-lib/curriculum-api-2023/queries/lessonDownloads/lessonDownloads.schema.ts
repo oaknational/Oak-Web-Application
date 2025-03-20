@@ -39,20 +39,18 @@ export const downloadsAssetData = z.object({
   login_required: z.boolean().nullable(),
 });
 
+export const additionalFile = z.object({
+  asset_id: z.number(),
+  media_id: z.number(),
+  media_object: z.object({
+    url: z.string(),
+    bytes: z.number(),
+    display_name: z.string(),
+  }),
+});
+
 export const additionalFilesAssetData = z.object({
-  tpc_downloadablefiles: z
-    .array(
-      z.object({
-        asset_id: z.number(),
-        media_id: z.number(),
-        media_object: z.object({
-          url: z.string(),
-          bytes: z.number(),
-          display_name: z.string(),
-        }),
-      }),
-    )
-    .nullable(),
+  tpc_downloadablefiles: z.array(additionalFile).nullish(),
 });
 
 export const lessonDownloadsQueryRaw = z.object({
@@ -68,6 +66,7 @@ export type LessonAdditionalFilesListSchema = z.infer<
 >;
 export type LessonDownloadsPageData = z.infer<typeof lessonDownloadsSchema>;
 export type AdditionalFilesAssetData = z.infer<typeof additionalFilesAssetData>;
+export type AdditionalFile = z.infer<typeof additionalFile>;
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
 export type NextLessonSchema = z.infer<typeof nextLessonSchema>;
 export type NextLesson = {
