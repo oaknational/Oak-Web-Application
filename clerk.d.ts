@@ -56,3 +56,11 @@ declare global {
 }
 
 export type UserResource = NonNullable<ReturnType<typeof useUser>["user"]>;
+
+type GetTokenOptions = {
+  template?: string;
+  organizationId?: string;
+  leewayInSeconds?: number;
+  skipCache?: boolean;
+};
+export type GetToken = (options?: GetTokenOptions) => Promise<string | null>;
