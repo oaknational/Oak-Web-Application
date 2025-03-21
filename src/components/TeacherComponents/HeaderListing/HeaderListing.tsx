@@ -154,9 +154,11 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
               {title}
             </OakHeading>
             {subjectDescriptionUnitListingData && (
-              <TeacherSubjectDescription
-                unitListingData={subjectDescriptionUnitListingData}
-              />
+              <OakBox $display={["none", "inline"]}>
+                <TeacherSubjectDescription
+                  unitListingData={subjectDescriptionUnitListingData}
+                />
+              </OakBox>
             )}
             <OakFlex $flexDirection="column" $gap="space-between-s">
               <OakFlex
@@ -181,6 +183,13 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             </OakFlex>
           </OakFlex>
         </OakFlex>
+        {subjectDescriptionUnitListingData && (
+          <OakBox $display={["inline", "none"]}>
+            <TeacherSubjectDescription
+              unitListingData={subjectDescriptionUnitListingData}
+            />
+          </OakBox>
+        )}
         <OakBox $display={["block", "none", "none"]}>{bannersBlock}</OakBox>
       </OakFlex>
       <Flex $background={background} $display={["inline", "none"]}>
