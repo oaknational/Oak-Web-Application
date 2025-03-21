@@ -221,6 +221,20 @@ export const subjectListingFixture2023 = (
         pathwayTitle: "GCSE",
         actions: {},
       },
+      {
+        subjectSlug: "financial-education",
+        subjectTitle: "Financial Education",
+        programmeSlug: "financial-education-secondary-ks4",
+        lessonCount: 6,
+        unitCount: 4,
+        programmeCount: 1,
+        pathwaySlug: "gcse",
+        pathwayTitle: "GCSE",
+        actions: {},
+        features: {
+          non_curriculum: true,
+        },
+      },
     ],
     ...partial,
   };

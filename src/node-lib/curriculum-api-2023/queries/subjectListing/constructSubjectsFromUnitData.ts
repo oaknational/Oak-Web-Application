@@ -101,9 +101,9 @@ export const constructSubjectsFromUnitData = (
       pathwaySlug: subject.pathwaySlug,
       pathwayTitle: subject.pathwayTitle,
       actions: subject.actions,
-      features: subjectFeatures.find(
-        (feature) => feature.slug === subject.subjectSlug,
-      )?.features,
+      features:
+        subjectFeatures.find((feature) => feature.slug === subject.subjectSlug)
+          ?.features || {},
     }),
   );
 
