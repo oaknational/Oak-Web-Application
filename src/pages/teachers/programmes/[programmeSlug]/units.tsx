@@ -247,6 +247,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           programmeFactor={toSentenceCase(keyStageTitle)}
           isNew={hasNewContent ?? false}
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
+          subjectDescriptionUnitListingData={curriculumData}
           {...curriculumData}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>

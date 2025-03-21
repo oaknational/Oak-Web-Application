@@ -17,6 +17,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { generateKeyStageTitle } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
+import PupilSubjectDescription from "@/components/PupilComponents/PupilSubjectDescription/PupilSubjectDescription";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
@@ -123,7 +124,12 @@ export const PupilViewsUnitListing = ({
               counterLength={unitSection.counterLength}
               labels={labelsArray.length ? labelsArray : undefined}
               showTooltip={i === 0}
-              expiredSlot={expiringBanner[i]}
+              additionalInfoSlot={
+                <>
+                  <PupilSubjectDescription programmeFields={programmeFields} />
+                  {expiringBanner[i]}
+                </>
+              }
               id={`section-${i}`}
               onUnitSelected={(unit) => {
                 track.unitAccessed({

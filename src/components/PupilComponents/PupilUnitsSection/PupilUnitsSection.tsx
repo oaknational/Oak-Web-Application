@@ -54,7 +54,7 @@ export type PupilUnitsSectionProps = {
   counterText: string | null;
   counterLength: number | null;
   titleSlot: JSX.Element | null;
-  expiredSlot?: React.ReactNode | null;
+  additionalInfoSlot?: React.ReactNode | null;
   subjectCategories: string[];
   labels?: string[] | undefined;
   filterItems: string[];
@@ -74,7 +74,7 @@ export const PupilUnitsSection = ({
   filterItems,
   applyFilter,
   showTooltip = true,
-  expiredSlot,
+  additionalInfoSlot,
   id = "0",
   onUnitSelected,
 }: PupilUnitsSectionProps) => {
@@ -163,7 +163,7 @@ export const PupilUnitsSection = ({
               )}
             </OakFlex>
           </OakFlex>
-          {expiredSlot}
+          {additionalInfoSlot}
         </OakFlex>
       }
     >

@@ -184,4 +184,20 @@ describe("PupilUnitsSection", () => {
     });
     expect(onClickCallback).toHaveBeenCalled();
   });
+  it("renders items in the aditional info slot", () => {
+    const { getByTestId } = render(
+      <PupilUnitsSection
+        units={units}
+        phase="primary"
+        counterLength={null}
+        counterText={null}
+        titleSlot={<>Title</>}
+        additionalInfoSlot={<div data-testid="additional">Additional Info</div>}
+        filterItems={["All"]}
+        applyFilter={() => {}}
+        subjectCategories={subjectCategories}
+      />,
+    );
+    expect(getByTestId("additional")).toBeInTheDocument();
+  });
 });

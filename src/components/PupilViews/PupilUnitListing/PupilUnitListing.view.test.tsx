@@ -221,4 +221,43 @@ describe("PupilViewsUnitListing", () => {
     expect(getByText("Optionality Title 1")).toBeInTheDocument();
     expect(getByText("Optionality Title 2")).toBeInTheDocument();
   });
+
+  it("does render subject description for financial education", async () => {
+    const { queryByTestId } = await renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          unitSections={unitsWithOptionality}
+          phase="secondary"
+          backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
+          programmeFields={{
+            ...programmeFields,
+            subjectSlug: "financial-education",
+          }}
+        />
+      </OakThemeProvider>,
+    );
+    const financeSubjectDescription = await queryByTestId(
+      "pupil-financial-education-description",
+    );
+    expect(financeSubjectDescription).toBeInTheDocument();
+  });
+
+  it("doesn't render subject description for computing", async () => {
+    const { queryByTestId } = await renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          unitSections={unitsWithOptionality}
+          phase="secondary"
+          backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
+          programmeFields={programmeFields}
+        />
+      </OakThemeProvider>,
+    );
+    const financeSubjectDescription = await queryByTestId(
+      "pupil-financial-education-description",
+    );
+    expect(financeSubjectDescription).not.toBeInTheDocument();
+  });
 });
