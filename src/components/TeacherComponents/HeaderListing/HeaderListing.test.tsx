@@ -98,10 +98,10 @@ describe("HeaderListing", () => {
         })}
       />,
     );
-    const financeSubjectDescription = await screen.queryByTestId(
+    const financeSubjectDescription = await screen.getAllByTestId(
       "teacher-financial-education-description",
     );
-    expect(financeSubjectDescription).toBeInTheDocument();
+    expect(financeSubjectDescription.length).toBeGreaterThanOrEqual(1);
   });
   it("doesn't render subject description when there is no component for the subjectSlug (testing-not-for-publication)", async () => {
     renderWithTheme(
