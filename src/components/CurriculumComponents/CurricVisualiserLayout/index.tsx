@@ -10,7 +10,7 @@ type CurriculumVisualiserLayoutProps = {
   filters: React.ReactNode;
   units: React.ReactNode;
 };
-export default function CurriculumVisualiserLayout({
+export function CurricVisualiserLayout({
   filters,
   units,
 }: CurriculumVisualiserLayoutProps) {
