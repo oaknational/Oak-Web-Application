@@ -110,7 +110,11 @@ export const PupilViewsSubjectListing = ({
               isValidIconName(iconSlug) ? iconSlug : "question-mark"
             }
             href={resolveOakHref(urlOptions as ResolveOakHrefProps)}
-            phase={subject.programmeFields.phaseSlug as "primary" | "secondary"}
+            phase={
+              showNonCurriculum
+                ? "non-curriculum"
+                : (subject.programmeFields.phaseSlug as "primary" | "secondary")
+            }
             onClick={() => {
               track.browseRefined({
                 platform: "owa",
