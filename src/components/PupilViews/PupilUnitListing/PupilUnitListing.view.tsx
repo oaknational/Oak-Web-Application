@@ -1,4 +1,7 @@
 import { useState } from "react";
+
+import { UseBackHrefProps, useBackHref } from "./useBackHref";
+
 import {
   OakPupilJourneyLayout,
   OakTertiaryButton,
@@ -7,9 +10,6 @@ import {
   OakInlineBanner,
   OakSecondaryLink,
 } from "@oaknational/oak-components";
-
-import { UseBackHrefProps, useBackHref } from "./useBackHref";
-
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
 import { PupilUnitsSection } from "@/components/PupilComponents/PupilUnitsSection";
@@ -17,6 +17,7 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { generateKeyStageTitle } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
+import RelatedSubjectsBanner from "@/components/PupilComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
@@ -33,6 +34,7 @@ export const PupilViewsUnitListing = ({
   backHrefSlugs,
   subjectCategories,
   programmeFields,
+  relatedSubjects = [],
 }: PupilViewsUnitListingProps) => {
   const { track } = useAnalytics();
   const [backHref, backLabel] = useBackHref(backHrefSlugs);
@@ -150,6 +152,13 @@ export const PupilViewsUnitListing = ({
             />
           );
         })}
+        {relatedSubjects.map((subjectSlug) => (
+          <RelatedSubjectsBanner
+            key={subjectSlug}
+            subjectSlug={subjectSlug}
+            programmeFields={programmeFields}
+          />
+        ))}
         <OakBox $mt={"space-between-m2"}>
           <SignpostTeachersInlineBanner />
         </OakBox>

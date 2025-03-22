@@ -1,12 +1,12 @@
 import "@testing-library/jest-dom";
+
+import { PupilViewsUnitListing } from "./PupilUnitListing.view";
+
 import {
   OakInfoProps,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
-
-import { PupilViewsUnitListing } from "./PupilUnitListing.view";
-
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { unitBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/unitBrowseData.fixture";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
@@ -220,5 +220,43 @@ describe("PupilViewsUnitListing", () => {
     expect(getByText("Unit title 2")).toBeInTheDocument();
     expect(getByText("Optionality Title 1")).toBeInTheDocument();
     expect(getByText("Optionality Title 2")).toBeInTheDocument();
+  });
+
+  it("renders a related subject banner if present", async () => {
+    const { queryByTestId } = await renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          unitSections={unitsWithOptionality}
+          phase="secondary"
+          backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
+          programmeFields={programmeFields}
+          relatedSubjects={["financial-education"]}
+        />
+      </OakThemeProvider>,
+    );
+    const financeSubjectDescription = await queryByTestId(
+      "financial-education-banner",
+    );
+    expect(financeSubjectDescription).toBeInTheDocument();
+  });
+
+  it("renders no related subject banners if no related subjects", async () => {
+    const { queryByTestId } = await renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          unitSections={unitsWithOptionality}
+          phase="secondary"
+          backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
+          programmeFields={programmeFields}
+          relatedSubjects={[]}
+        />
+      </OakThemeProvider>,
+    );
+    const financeSubjectDescription = await queryByTestId(
+      "financial-education-banner",
+    );
+    expect(financeSubjectDescription).not.toBeInTheDocument();
   });
 });
