@@ -8,4 +8,10 @@ query pupilSubjectListing($yearSlug: String!) {
     programme_fields
     is_legacy
   }
+  subjectFeatures: pf_subjects(
+    where: { features: { _neq: {} }, _state: { _eq: "published" } }
+  ) {
+    slug
+    features
+  }
 }

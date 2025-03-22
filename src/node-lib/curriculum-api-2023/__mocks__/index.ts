@@ -108,7 +108,10 @@ const curriculumApi: Pick<
     return [unitBrowseDataFixture({})];
   }),
   pupilSubjectListingQuery: jest.fn(async () => {
-    return [subjectBrowseDataFixture({})];
+    return {
+      curriculumData: [subjectBrowseDataFixture({})],
+      subjectFeatures: [],
+    };
   }),
   pupilProgrammeListingQuery: jest.fn(async () => {
     return pupilProgrammeListingFixtureEBs();
