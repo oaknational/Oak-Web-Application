@@ -11,8 +11,8 @@ import {
   OakDownloadsJourneyChildSubjectTierSelector,
   OakThemeProvider,
   oakDefaultTheme,
-  Tier,
-  Subject,
+  type Tier,
+  type Subject,
 } from "@oaknational/oak-components";
 import { mapKeys, camelCase, capitalize } from "lodash";
 
@@ -74,10 +74,9 @@ export function createCurriculumDownloadsQuery(
     phaseSlug: phaseSlug,
     state: state,
   });
-  ks4OptionSlug && query.set("ks4OptionSlug", ks4OptionSlug);
-  tierSlug && tierSlug !== null && query.set("tierSlug", tierSlug);
-  childSubjectSlug &&
-    childSubjectSlug !== null &&
+  if (ks4OptionSlug) query.set("ks4OptionSlug", ks4OptionSlug);
+  if (tierSlug && tierSlug !== null) query.set("tierSlug", tierSlug);
+  if (childSubjectSlug && childSubjectSlug !== null)
     query.set("childSubjectSlug", childSubjectSlug);
 
   return query;
