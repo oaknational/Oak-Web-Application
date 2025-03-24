@@ -16,16 +16,7 @@ query pupilLesson(
     actions
     features
   }
-  additional_files: lessons(
-    where: { slug: { _eq: $lessonSlug} }
-  ) {
-    tpc_downloadablefiles(where: { asset_id: { _is_null: false } } ) {
-      asset_id
-      media_id
-      media_object
-    }
-  }
-  content: published_mv_lesson_content_published_5_0_0(
+  content: published_mv_lesson_content_published_8_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id
@@ -52,5 +43,6 @@ query pupilLesson(
     supervision_level
     video_title
     has_worksheet_asset_object
+    downloadable_files
   }
 }

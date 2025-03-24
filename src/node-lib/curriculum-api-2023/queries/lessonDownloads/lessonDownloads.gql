@@ -2,7 +2,7 @@ query lessonDownloads(
   $lessonSlug: String!
   $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0_bool_exp
 ) {
-  download_assets: published_mv_lesson_content_published_5_0_0(
+  download_assets: published_mv_lesson_content_published_8_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     has_slide_deck_asset_object
@@ -17,18 +17,8 @@ query lessonDownloads(
     expired: deprecated_fields(path: "expired")
     geo_restricted
     login_required
+    downloadable_files
   }
-
-  additional_files: lessons(
-    where: { slug: { _eq: $lessonSlug} }
-  ) {
-    tpc_downloadablefiles(where: { asset_id: { _is_null: false } } ) {
-      asset_id
-      media_id
-      media_object
-    }
-  }
-
   browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
     where: $browseDataWhere
   ) {

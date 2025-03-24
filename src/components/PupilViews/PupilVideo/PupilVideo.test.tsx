@@ -376,7 +376,7 @@ describe(PupilViewsVideo, () => {
               isLegacy={false}
               browseData={MockBrowseData}
               hasAdditionalFiles={true}
-              additionalFiles={MockAdditionalFiles["tpcDownloadablefiles"]}
+              additionalFiles={MockAdditionalFiles["downloadableFiles"]}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -401,7 +401,7 @@ describe(PupilViewsVideo, () => {
         expect(downloadLessonResources.default).toHaveBeenCalledWith({
           lessonSlug: MockBrowseData.lessonSlug,
           selectedResourceTypes: ["additional-files"],
-          selectedAdditionalFilesIds: [123, 456],
+          selectedAdditionalFilesIds: [456, 932],
           isLegacyDownload: false,
         });
       });

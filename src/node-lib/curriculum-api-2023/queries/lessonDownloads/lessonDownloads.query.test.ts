@@ -1,17 +1,14 @@
 import {
   syntheticUnitvariantLessonsFixture,
   lessonDataFixture,
-  // additionalFilesFixture,
+  additionalFilesFixture,
 } from "@oaknational/oak-curriculum-schema";
 import { ZodError } from "zod";
 
 import sdk from "../../sdk";
 
 import lessonDownloads from "./lessonDownloads.query";
-import {
-  LessonDownloadsPageData,
-  AdditionalFilesAssetData,
-} from "./lessonDownloads.schema";
+import { LessonDownloadsPageData } from "./lessonDownloads.schema";
 
 const downloadAssets = {
   has_slide_deck_asset_object: true,
@@ -26,34 +23,12 @@ const downloadAssets = {
   expired: true,
   geo_restricted: false,
   login_required: false,
+  downloadable_files: additionalFilesFixture({}).downloadable_files,
 };
 
-const additionalFilesEmptyFixture: AdditionalFilesAssetData = {
-  tpc_downloadablefiles: [],
-};
-
-// @todo update to fixture from oak-curriculum-schema once it is updated there
-export const additionalFilesFixture: AdditionalFilesAssetData = {
-  tpc_downloadablefiles: [
-    {
-      asset_id: 1,
-      media_id: 1,
-      media_object: {
-        url: "https://example.com/file1.pdf",
-        bytes: 1000,
-        display_name: "File 1",
-      },
-    },
-    {
-      asset_id: 2,
-      media_id: 2,
-      media_object: {
-        url: "https://example.com/file2.pdf",
-        bytes: 2000,
-        display_name: "File 2",
-      },
-    },
-  ],
+const downloadAssetsWithEmptyAdditionalFiles = {
+  ...downloadAssets,
+  downloadable_files: [],
 };
 
 describe("lessonDownloads()", () => {
@@ -99,7 +74,6 @@ describe("lessonDownloads()", () => {
       lessonDownloads: jest.fn(() =>
         Promise.resolve({
           download_assets: [downloadAssets],
-          additional_files: [additionalFilesFixture],
           browse_data: [syntheticUnitvariantLessonsFixture()],
         }),
       ),
@@ -117,7 +91,6 @@ describe("lessonDownloads()", () => {
       lessonDownloads: jest.fn(() =>
         Promise.resolve({
           download_assets: [downloadAssets],
-          additional_files: [additionalFilesFixture],
           browse_data: [syntheticUnitvariantLessonsFixture()],
         }),
       ),
@@ -135,7 +108,7 @@ describe("lessonDownloads()", () => {
         ext: "pdf",
         size: 1000,
         forbidden: false,
-        assetId: 1,
+        assetId: 456,
       },
       {
         exists: true,
@@ -144,7 +117,7 @@ describe("lessonDownloads()", () => {
         ext: "pdf",
         size: 2000,
         forbidden: false,
-        assetId: 2,
+        assetId: 932,
       },
     ]);
   });
@@ -153,8 +126,7 @@ describe("lessonDownloads()", () => {
       ...sdk,
       lessonDownloads: jest.fn(() =>
         Promise.resolve({
-          download_assets: [downloadAssets],
-          additional_files: [additionalFilesEmptyFixture],
+          download_assets: [downloadAssetsWithEmptyAdditionalFiles],
           browse_data: [syntheticUnitvariantLessonsFixture()],
         }),
       ),
@@ -189,7 +161,6 @@ describe("lessonDownloads()", () => {
                 login_required: false,
               },
             ],
-            additional_files: [additionalFilesFixture],
             browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
@@ -233,7 +204,6 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [],
-            additional_files: [additionalFilesFixture],
             browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
@@ -249,7 +219,6 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssetsFixture],
-            additional_files: [additionalFilesFixture],
             browse_data: [],
           }),
         ),
@@ -281,7 +250,6 @@ describe("lessonDownloadsCanonical()", () => {
                 login_required: false,
               },
             ],
-            additional_files: [additionalFilesFixture],
             browse_data: [syntheticUnitvariantLessonsFixture()],
           }),
         ),
@@ -315,7 +283,6 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssets],
-            additional_files: [additionalFilesFixture],
             browse_data: [
               syntheticUnitvariantLessonsFixture({
                 overrides: {
@@ -344,7 +311,6 @@ describe("lessonDownloadsCanonical()", () => {
         lessonDownloads: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssets],
-            additional_files: [additionalFilesFixture],
             browse_data: [
               syntheticUnitvariantLessonsFixture({
                 overrides: {

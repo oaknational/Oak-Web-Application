@@ -76,7 +76,7 @@ export const getProps = ({
       };
     }
 
-    const { browseData, content, additionalFiles } = res;
+    const { browseData, content } = res;
 
     let worksheetInfo: WorksheetInfo | null = null;
 
@@ -122,8 +122,8 @@ export const getProps = ({
         browseData,
         hasWorksheet: !!content.hasWorksheetAssetObject,
         worksheetInfo,
-        hasAdditionalFiles: !!additionalFiles?.length,
-        additionalFiles: additionalFiles || null,
+        hasAdditionalFiles: !!content.downloadableFiles?.length,
+        additionalFiles: content.downloadableFiles || null,
         initialSection: section,
         backUrl,
         pageType: page,

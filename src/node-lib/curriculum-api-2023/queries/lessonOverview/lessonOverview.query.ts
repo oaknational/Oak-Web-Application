@@ -22,7 +22,6 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
-import { AdditionalFilesAssetData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 
 export const getDownloadsArray = (content: {
@@ -136,16 +135,16 @@ const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
 };
 
 export const getAdditionalFiles = (
-  additionalFiles: AdditionalFilesAssetData["tpc_downloadablefiles"],
+  additionalFiles: LessonOverviewContent["downloadableFiles"],
 ): string[] | null => {
   if (!additionalFiles) {
     return [];
   }
 
   return additionalFiles.map((af) => {
-    const name = af.media_object.display_name;
-    const type = af.media_object.url.split(".").pop() ?? "";
-    const size = af.media_object.bytes;
+    const name = af.mediaObject.displayName;
+    const type = af.mediaObject.url.split(".").pop() ?? "";
+    const size = af.mediaObject.bytes;
     const sizeString = convertBytesToMegabytes(size);
     return `${name} ${sizeString} (${type.toUpperCase()})`;
   });
@@ -155,7 +154,6 @@ export const transformedLessonOverviewData = (
   browseData: LessonBrowseDataByKs,
   content: LessonOverviewContent,
   pathways: LessonPathway[] | [],
-  additionalFiles: AdditionalFilesAssetData["tpc_downloadablefiles"] | null,
 ): LessonOverviewPageData => {
   const reportError = errorReporter("transformedLessonOverviewData");
   const starterQuiz = lessonOverviewQuizData.parse(content.starterQuiz);
@@ -163,6 +161,7 @@ export const transformedLessonOverviewData = (
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
 
+  const additionalFiles = content?.downloadableFiles;
   const hasAddFile = additionalFiles ? additionalFiles.length > 0 : false;
 
   let mediaClips = null;
@@ -330,21 +329,8 @@ const lessonOverviewQuery =
       ...contentSnake,
     }) as LessonOverviewContent;
 
-    const [additionalFilesRes] = res.additionalFiles;
-    const additionalFiles = additionalFilesRes?.tpc_downloadablefiles ?? null;
-    const filteredAdditionalFiles = additionalFiles
-      ? (additionalFiles.filter(
-          (file) => !!file.asset_id,
-        ) as AdditionalFilesAssetData["tpc_downloadablefiles"])
-      : null;
-
     return lessonOverviewSchema.parse(
-      transformedLessonOverviewData(
-        browseData,
-        content,
-        pathways,
-        filteredAdditionalFiles,
-      ),
+      transformedLessonOverviewData(browseData, content, pathways),
     );
   };
 

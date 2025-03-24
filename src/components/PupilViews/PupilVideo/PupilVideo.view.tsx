@@ -47,7 +47,7 @@ type PupilViewsVideoProps = {
   isLegacy: boolean;
   browseData: LessonBrowseData;
   hasAdditionalFiles: boolean;
-  additionalFiles: AdditionalFiles["tpcDownloadablefiles"];
+  additionalFiles: AdditionalFiles["downloadableFiles"];
 };
 
 export const PupilViewsVideo = ({

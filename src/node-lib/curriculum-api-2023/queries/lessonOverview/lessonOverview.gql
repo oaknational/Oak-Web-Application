@@ -17,16 +17,7 @@ query lessonOverview(
     features
     order_in_unit
   }
-  additionalFiles: lessons(
-    where: { slug: { _eq: $lessonSlug} }
-  ) {    
-    tpc_downloadablefiles(where: { asset_id: { _is_null: false } } ) {
-      asset_id
-      media_id
-      media_object
-    }
-  }
-  content: published_mv_lesson_content_published_5_0_0(
+  content: published_mv_lesson_content_published_8_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id
@@ -68,5 +59,6 @@ query lessonOverview(
     lesson_guide_asset_object_url
     has_lesson_guide_object
     lesson_guide_asset_id
+    downloadable_files
   }
 }

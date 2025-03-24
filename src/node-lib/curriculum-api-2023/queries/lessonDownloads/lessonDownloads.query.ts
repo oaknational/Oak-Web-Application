@@ -1,6 +1,5 @@
 import lessonDownloadsSchema, {
   downloadsAssetData,
-  additionalFilesAssetData,
   LessonAdditionalFilesListSchema,
 } from "./lessonDownloads.schema";
 import { constructDownloadsArray } from "./downloadUtils";
@@ -51,25 +50,7 @@ const lessonDownloadsQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const { download_assets, additional_files } = res;
-
-    const additionalFilesData = additionalFilesAssetData.parse(
-      additional_files[0],
-    );
-    const additionalFiles: LessonAdditionalFilesListSchema =
-      additionalFilesData?.tpc_downloadablefiles
-        ? additionalFilesData.tpc_downloadablefiles.map((file) => {
-            return {
-              exists: !!file.asset_id,
-              type: "additional-files",
-              label: file.media_object.display_name,
-              ext: file.media_object.url.split(".").pop() ?? "",
-              size: file.media_object.bytes,
-              forbidden: false,
-              assetId: file.asset_id,
-            };
-          })
-        : [];
+    const { download_assets } = res;
 
     const {
       has_slide_deck_asset_object,
@@ -84,7 +65,22 @@ const lessonDownloadsQuery =
       expired,
       geo_restricted,
       login_required,
+      downloadable_files,
     } = downloadsAssetData.parse(download_assets[0]);
+
+    const additionalFiles: LessonAdditionalFilesListSchema = downloadable_files
+      ? downloadable_files.map((file) => {
+          return {
+            exists: !!file.asset_id,
+            type: "additional-files",
+            label: file.media_object.display_name,
+            ext: file.media_object.url.split(".").pop() ?? "",
+            size: file.media_object.bytes,
+            forbidden: false,
+            assetId: file.asset_id,
+          };
+        })
+      : [];
 
     const downloadsData = {
       hasSlideDeckAssetObject: has_slide_deck_asset_object,

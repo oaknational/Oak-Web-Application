@@ -14,13 +14,27 @@ import lessonOverview, {
   getAdditionalFiles,
 } from "./lessonOverview.query";
 
-import { AdditionalFilesAssetData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
-import { additionalFilesFixture } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query.test";
-
 // @todo update to fixture from oak-curriculum-schema once it is updated there
-const _additionalFilesFixture: AdditionalFilesAssetData = {
-  ...additionalFilesFixture,
-};
+export const _additionalFilesFixture = [
+  {
+    assetId: 1,
+    mediaId: 1,
+    mediaObject: {
+      url: "https://example.com/file1.pdf",
+      bytes: 1000,
+      displayName: "File 1",
+    },
+  },
+  {
+    assetId: 2,
+    mediaId: 2,
+    mediaObject: {
+      url: "https://example.com/file2.pdf",
+      bytes: 2000,
+      displayName: "File 2",
+    },
+  },
+];
 
 describe("lessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
@@ -407,10 +421,7 @@ describe("lessonOverview()", () => {
     });
 
     it("should return an array of additional files if provided", () => {
-      const additionalFiles: AdditionalFilesAssetData["tpc_downloadablefiles"] =
-        _additionalFilesFixture.tpc_downloadablefiles;
-
-      expect(getAdditionalFiles(additionalFiles)).toEqual([
+      expect(getAdditionalFiles(_additionalFilesFixture)).toEqual([
         "File 1 1000 B (PDF)",
         "File 2 1.95 KB (PDF)",
       ]);

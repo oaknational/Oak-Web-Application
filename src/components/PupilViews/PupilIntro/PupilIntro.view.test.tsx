@@ -177,7 +177,7 @@ describe("PupilIntro", () => {
               hasWorksheet
               worksheetInfo={null}
               additionalFiles={
-                lessonAdditionalFilesFixture({})["tpcDownloadablefiles"]
+                lessonAdditionalFilesFixture({})["downloadableFiles"]
               }
             />
           </LessonEngineContext.Provider>
@@ -203,7 +203,7 @@ describe("PupilIntro", () => {
         expect(downloadLessonResources.default).toHaveBeenCalledWith({
           lessonSlug: curriculumData.lessonSlug,
           selectedResourceTypes: ["additional-files"],
-          selectedAdditionalFilesIds: [123, 456],
+          selectedAdditionalFilesIds: [456, 932],
           isLegacyDownload: curriculumData.isLegacy,
         });
       });
@@ -211,7 +211,7 @@ describe("PupilIntro", () => {
     describe("when there is a single additional file", () => {
       const curriculumDataSingleFile = lessonContentFixture({});
       const additionalFile = [
-        lessonAdditionalFilesFixture({})["tpcDownloadablefiles"]?.[0],
+        lessonAdditionalFilesFixture({})["downloadableFiles"]?.[0],
       ];
 
       const subject = (
@@ -221,7 +221,7 @@ describe("PupilIntro", () => {
               {...curriculumDataSingleFile}
               hasAdditionalFiles
               additionalFiles={
-                additionalFile as AdditionalFiles["tpcDownloadablefiles"]
+                additionalFile as AdditionalFiles["downloadableFiles"]
               }
               hasWorksheet
               worksheetInfo={null}

@@ -47,7 +47,7 @@ export type PupilViewsIntroProps = LessonContent & {
   hasWorksheet: boolean;
   worksheetInfo: WorksheetInfo | null;
   hasAdditionalFiles: boolean;
-  additionalFiles: AdditionalFiles["tpcDownloadablefiles"] | null;
+  additionalFiles: AdditionalFiles["downloadableFiles"] | null;
 };
 
 export const PupilViewsIntro = (props: PupilViewsIntroProps) => {

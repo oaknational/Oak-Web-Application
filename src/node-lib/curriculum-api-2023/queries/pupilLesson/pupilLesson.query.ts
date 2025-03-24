@@ -3,7 +3,6 @@ import {
   LessonBrowseData,
   lessonContentSchema,
   lessonBrowseDataSchema,
-  AdditionalFiles,
 } from "./pupilLesson.schema";
 
 import errorReporter from "@/common-lib/error-reporter";
@@ -31,7 +30,6 @@ export const pupilLessonQuery =
   }): Promise<{
     content: LessonContent;
     browseData: LessonBrowseData;
-    additionalFiles: AdditionalFiles["tpcDownloadablefiles"];
   }> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
@@ -67,17 +65,6 @@ export const pupilLessonQuery =
     }
 
     if (res.content.length > 1) {
-      const error = new OakError({
-        code: "curriculum-api/uniqueness-assumption-violated",
-      });
-      errorReporter("curriculum-api-2023::pupilLesson")(error, {
-        severity: "warning",
-        ...args,
-        res,
-      });
-    }
-
-    if (res.additional_files.length > 1) {
       const error = new OakError({
         code: "curriculum-api/uniqueness-assumption-violated",
       });
@@ -132,28 +119,17 @@ export const pupilLessonQuery =
       throw new OakError({ code: "curriculum-api/not-found" });
     }
 
-    const [additionalFilesSnake] = res.additional_files;
-
-    if (!additionalFilesSnake) {
-      throw new OakError({ code: "curriculum-api/not-found" });
-    }
-
     lessonBrowseDataSchema.parse(browseDataSnake);
     lessonContentSchema.parse({
       ...contentSnake,
-      additionalFiles: additionalFilesSnake,
     });
 
     // We've already parsed this data with Zod so we can safely cast it to the correct type
     const browseData = keysToCamelCase(browseDataSnake) as LessonBrowseData;
     const content = keysToCamelCase(contentSnake) as LessonContent;
-    const additionalFiles = keysToCamelCase(
-      additionalFilesSnake.tpc_downloadablefiles,
-    ) as AdditionalFiles["tpcDownloadablefiles"];
 
     return {
       browseData,
       content,
-      additionalFiles,
     };
   };

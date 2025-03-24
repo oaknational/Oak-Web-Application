@@ -1,7 +1,6 @@
 import {
   syntheticUnitvariantLessonsFixture,
   lessonContentFixture,
-  additionalFilesFixture,
 } from "@oaknational/oak-curriculum-schema";
 
 import { pupilLessonQuery } from "./pupilLesson.query";
@@ -17,7 +16,6 @@ describe("pupilLesson()", () => {
           Promise.resolve({
             browseData: [],
             content: [],
-            additional_files: [],
           }),
         ),
       })({
@@ -48,7 +46,6 @@ describe("pupilLesson()", () => {
         Promise.resolve({
           browseData: [_syntheticUnitvariantLessonsFixture],
           content: [_lessonContentFixture],
-          additional_files: [additionalFilesFixture()],
         }),
       ),
     })({
@@ -101,7 +98,6 @@ describe("pupilLesson()", () => {
         Promise.resolve({
           browseData: fixtures,
           content: [_lessonContentFixture],
-          additional_files: [additionalFilesFixture()],
         }),
       ),
     })({
