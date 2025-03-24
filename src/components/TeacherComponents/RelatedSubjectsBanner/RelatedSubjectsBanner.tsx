@@ -11,8 +11,8 @@ type OptionalSubjectDescriptionsType = {
 };
 
 export interface BannerProps {
-  keyStageSlug: KeyStageSlug;
-  isDesktop: boolean;
+  readonly keyStageSlug: KeyStageSlug;
+  readonly isDesktop: boolean;
 }
 
 const OptionalSubjectDescriptions: OptionalSubjectDescriptionsType = {

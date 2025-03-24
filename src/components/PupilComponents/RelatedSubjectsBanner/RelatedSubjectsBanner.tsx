@@ -10,7 +10,7 @@ type OptionalSubjectDescriptionsType = {
 };
 
 export interface BannerProps {
-  programmeFields: ProgrammeFields;
+  readonly programmeFields: ProgrammeFields;
 }
 
 const OptionalSubjectDescriptions: OptionalSubjectDescriptionsType = {
