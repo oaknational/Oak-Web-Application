@@ -204,16 +204,20 @@ const UnitModal: FC<UnitModalProps> = ({
                     Unit options
                   </OakHeading>
                   <OakFlex
+                    key={`unit-options-${unitData.slug}-list`}
                     $flexDirection={["row"]}
                     $gap="all-spacing-6"
                     $flexWrap={"wrap"}
+                    role="list"
                   >
                     {unitData.unit_options.map((optionalUnit, index) => {
                       return (
                         <OakFlex
+                          key={`unit-option-${optionalUnit.unitvariant_id}-${index}`}
                           $width={"all-spacing-19"}
                           $flexGrow={1}
                           $position={"relative"}
+                          role="listitem"
                         >
                           <CurriculumUnitCard
                             unit={optionalUnit}
@@ -250,9 +254,10 @@ const UnitModal: FC<UnitModalProps> = ({
                     {/* Empty tiles for correct flex wrapping */}
                     {Array(2)
                       .fill(true)
-                      .map(() => {
+                      .map((item, index) => {
                         return (
                           <OakFlex
+                            key={`unit-options-${index}-${item}-item`}
                             $width={"all-spacing-19"}
                             $flexGrow={1}
                             $position={"relative"}

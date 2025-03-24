@@ -1,3 +1,72 @@
+# [1.714.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.713.0...v1.714.0) (2025-03-24)
+
+
+### Bug Fixes
+
+* defaultProps migration error ([8d38e3a](https://github.com/oaknational/Oak-Web-Application/commit/8d38e3aa3e2caf242f961cc26708a4007dd8e115))
+* dom descendant copyright notice ([2933da9](https://github.com/oaknational/Oak-Web-Application/commit/2933da9957b3460cdbc86e47ddbfe40c831bf3e7))
+* dom descendant copyright notice (teachers) ([b01d11f](https://github.com/oaknational/Oak-Web-Application/commit/b01d11f67e1d794d6df12710cd8d6245bee39966))
+* dom descendant download confirmation ([ceceff7](https://github.com/oaknational/Oak-Web-Application/commit/ceceff7c5ed90036a65c419c3590e1406f550dd7))
+* dom descendant overview tab ([5014658](https://github.com/oaknational/Oak-Web-Application/commit/50146589d4e5507d835b3b2cc1616db6d3830df4))
+* dom descendant terms agreement form ([3761677](https://github.com/oaknational/Oak-Web-Application/commit/37616775b1786bf573003b087d864476c8a46b73))
+* extract out styled component from inside another component ([858797b](https://github.com/oaknational/Oak-Web-Application/commit/858797b6773119c6bfb69b5f14160edce124f30c))
+* jest.useFakeTimers see <https://jestjs.io/docs/timer-mocks> ([201fccb](https://github.com/oaknational/Oak-Web-Application/commit/201fccb1981c79b5b88cf2d5f73c2e9cd6bf5875))
+* mock button as a tag to prevent navigation attempts ([ce1ae5c](https://github.com/oaknational/Oak-Web-Application/commit/ce1ae5ca0140ab3587d3ed34d1b435f8473e8fed))
+* only log in storybook not in main CI ([3be5363](https://github.com/oaknational/Oak-Web-Application/commit/3be536350f099564750066196e2c0220d187ffcd))
+* react act - remove not needed ([717c186](https://github.com/oaknational/Oak-Web-Application/commit/717c18617b90e7631c768b97ef698b29d123cdd1))
+* react act - use act ([34f4cf4](https://github.com/oaknational/Oak-Web-Application/commit/34f4cf4d55bc49cf3817aec2a0949ecdd2b36872))
+* react act - use correct import ([d1ba64c](https://github.com/oaknational/Oak-Web-Application/commit/d1ba64cd10a7d87d59412791e90fde957f176d0a))
+* react act - use userEvent for button clicks ([1e4b231](https://github.com/oaknational/Oak-Web-Application/commit/1e4b2311d684d4a18ece5f0b62951a6fd99c0194))
+* react act - wrap checkbox selection in act ([e6fefc6](https://github.com/oaknational/Oak-Web-Application/commit/e6fefc6f48e54d01f3c1b7e28617ace8c8d12f97))
+* react act - wrap hook in act ([cdd5a30](https://github.com/oaknational/Oak-Web-Application/commit/cdd5a30f6415d5535aec6fb816223d311bc50a5b))
+* react act - wrap in act ([a35ad23](https://github.com/oaknational/Oak-Web-Application/commit/a35ad230fddff7f5ae80ca69edae2542ce8067f5))
+* react act - wrap in act ([378081e](https://github.com/oaknational/Oak-Web-Application/commit/378081e5b8e82d3c4d1018a4ebd35ed35dbf9dc4))
+* react act - wrap react form updates in act ([7413561](https://github.com/oaknational/Oak-Web-Application/commit/74135615d9c29584fbe655008ff7c2e053f12a12))
+* react act imports ([0c344ce](https://github.com/oaknational/Oak-Web-Application/commit/0c344ce373d118bf95207293270db37e7c95d369))
+* subjectPhasePicker dom descendant ([50de98f](https://github.com/oaknational/Oak-Web-Application/commit/50de98ff9e140e53582359fa8d4c2aeaf244ccc5))
+* typo in test when calling .completeActivity(...) ([cf418f5](https://github.com/oaknational/Oak-Web-Application/commit/cf418f5abd46b1713ce1b1cf2e0ded6f97839373))
+* use box instead of span to preserve margin spacing ([573e8df](https://github.com/oaknational/Oak-Web-Application/commit/573e8df3054f7ab386ab28ea888983c1782b4ddb))
+
+
+### Features
+
+* make all keys unique ([904aa9b](https://github.com/oaknational/Oak-Web-Application/commit/904aa9bb9f517693c6517406ea255a196e1ccb36))
+* remove only test ([22d06a3](https://github.com/oaknational/Oak-Web-Application/commit/22d06a382982bf07f8b2e68f356faeca43f388a1))
+* remove reliability risks ([0ee8f59](https://github.com/oaknational/Oak-Web-Application/commit/0ee8f59fa6952d6e12b8d264e7201f88920a1e57))
+
+# [1.713.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.712.0...v1.713.0) (2025-03-24)
+
+
+### Bug Fixes
+
+* use env vars for codegen yaml ([33ce5cc](https://github.com/oaknational/Oak-Web-Application/commit/33ce5cc77314cabef3599f5debcb2b017d570b73))
+
+
+### Features
+
+* add initial api codegen and queries ([b2fbe4e](https://github.com/oaknational/Oak-Web-Application/commit/b2fbe4e36628cd1b3f7d0fed74f0cc5e00a0e5c3))
+* add personalisation api method ([7bec372](https://github.com/oaknational/Oak-Web-Application/commit/7bec3723223eab0d6065e4a0d5c40b6b1616af42))
+* add required env var to config ([d6ab46f](https://github.com/oaknational/Oak-Web-Application/commit/d6ab46f9222d6d55a4780675cf26eeb096654888))
+* add secrets ([7baa15e](https://github.com/oaknational/Oak-Web-Application/commit/7baa15e4f76046c26d479d85a2ad9e73eb9dd640))
+* add source app to data captured on sign up ([b59c070](https://github.com/oaknational/Oak-Web-Application/commit/b59c070b8773d9e7adb5986fa827e4feaa7b117e))
+* add webhook endpoint to insert user into db ([81f7afb](https://github.com/oaknational/Oak-Web-Application/commit/81f7afb3e0bda87b3a4da9b8df9c0da056bf6eed))
+* report errors in webhook route ([3402692](https://github.com/oaknational/Oak-Web-Application/commit/3402692bc5961151fbb785d01a7322760e38bfd6))
+
+# [1.712.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.711.0...v1.712.0) (2025-03-19)
+
+
+### Features
+
+* adds the related subjects data to the FE from the overrides table ([989b2ef](https://github.com/oaknational/Oak-Web-Application/commit/989b2efe03d3e681104119439a988f0403f33738))
+
+# [1.711.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.710.0...v1.711.0) (2025-03-19)
+
+
+### Features
+
+* adds the pf_subject features data to the FE ([9e74951](https://github.com/oaknational/Oak-Web-Application/commit/9e749514b82fab26e056f1ae7d563cf1370a971f))
+* filter subject features to include only published states ([58138bc](https://github.com/oaknational/Oak-Web-Application/commit/58138bc5a2a0462b4a4391d8cc5f9077d4da4eed))
+
 # [1.710.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.709.0...v1.710.0) (2025-03-13)
 
 

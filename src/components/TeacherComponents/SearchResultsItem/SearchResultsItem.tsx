@@ -52,6 +52,16 @@ export type SearchResultsItemProps = {
     }
 );
 
+// TODO: extract to components lib
+const StyledFlexWithFocusState = styled(OakFlex)`
+  &:focus-visible {
+    outline: none;
+    border: solid 4px #ffe555;
+    box-shadow: 0px 0px 0px 5px #575757;
+    border-radius: 4px;
+  }
+`;
+
 /**
  * Search result hit item on the search page
  */
@@ -84,16 +94,6 @@ const SearchResultsItem: FC<SearchResultsItemProps> = (props) => {
 
   const backgroundColour: OakColorToken =
     type === "unit" ? "lavender30" : "pink30";
-
-  // TODO: extract to components lib
-  const StyledFlexWithFocusState = styled(OakFlex)`
-    &:focus-visible {
-      outline: none;
-      border: solid 4px #ffe555;
-      box-shadow: 0px 0px 0px 5px #575757;
-      border-radius: 4px;
-    }
-  `;
 
   type ButtonProps = {
     as: "button";
