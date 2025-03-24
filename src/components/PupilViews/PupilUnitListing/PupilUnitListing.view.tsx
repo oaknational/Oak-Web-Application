@@ -16,6 +16,7 @@ import { PupilUnitsSection } from "@/components/PupilComponents/PupilUnitsSectio
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { generateKeyStageTitle } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
@@ -23,6 +24,7 @@ export type PupilViewsUnitListingProps = {
   backHrefSlugs: UseBackHrefProps;
   subjectCategories: string[];
   programmeFields: UnitListingBrowseData[number]["programmeFields"];
+  relatedSubjects?: SubjectSlugs[];
 };
 
 export const PupilViewsUnitListing = ({
