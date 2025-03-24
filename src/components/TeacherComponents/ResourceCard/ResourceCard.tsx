@@ -56,6 +56,7 @@ const BoxWithFocusState = styled.div`
   display: flex;
   flex-direction: "row";
   width: 100%;
+  height: 100%;
 `;
 
 const RadioContainer = styled.div`
@@ -152,7 +153,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
 
   return (
     <Flex
-      $maxHeight={72}
+      $height={96}
       $width={320}
       $position={"relative"}
       {...hoverProps}
@@ -177,6 +178,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
           }`}
           onBlur={onBlur}
           hasError={hasError}
+          $mb={0}
         >
           <ResourceCardLabel isHovered={isHovered} {...props} />
         </Checkbox>
