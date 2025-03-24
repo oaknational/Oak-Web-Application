@@ -45,8 +45,8 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
             $gap={"all-spacing-1"}
             $reset
           >
-            {additionalFiles.map((file, i) => {
-              return <OakLI key={i}>{file}</OakLI>;
+            {additionalFiles.map((file, index) => {
+              return <OakLI key={`${file}-${index}`}>{file}</OakLI>;
             })}
           </OakUL>
         </OakBox>

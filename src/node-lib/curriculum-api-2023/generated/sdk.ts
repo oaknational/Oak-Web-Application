@@ -51786,7 +51786,7 @@ export type SubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type SubjectListingQuery = { __typename?: 'query_root', subjectUnits: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_1', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant_id?: number | null, unit_data?: any | null, unit_slug?: string | null, programme_slug?: string | null, supplementary_data?: any | null, lesson_count?: number | null, lesson_sensitive_count?: number | null, lesson_expired_count?: number | null, lesson_ids?: any | null, expired?: boolean | null, actions?: any | null, features?: any | null, threads?: any | null, base_slug?: string | null, programme_slug_by_year?: string | null }>, key_stages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null, display_order?: number | null, keystage?: string | null, description?: string | null }> };
+export type SubjectListingQuery = { __typename?: 'query_root', subjectUnits: Array<{ __typename?: 'published_mv_synthetic_unitvariants_with_lesson_ids_by_keystage_14_0_1', programme_fields?: any | null, is_legacy?: boolean | null, null_unitvariant_id?: number | null, unit_data?: any | null, unit_slug?: string | null, programme_slug?: string | null, supplementary_data?: any | null, lesson_count?: number | null, lesson_sensitive_count?: number | null, lesson_expired_count?: number | null, lesson_ids?: any | null, expired?: boolean | null, actions?: any | null, features?: any | null, threads?: any | null, base_slug?: string | null, programme_slug_by_year?: string | null }>, key_stages: Array<{ __typename?: 'published_mv_key_stages_2_0_0', slug?: string | null, display_order?: number | null, keystage?: string | null, description?: string | null }>, subjectFeatures: Array<{ __typename?: 'pf_subjects', slug?: string | null, features?: any | null }> };
 
 export type TeachersPreviewLessonQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -52591,6 +52591,10 @@ export const SubjectListingDocument = gql`
     slug
     description: title
     display_order
+  }
+  subjectFeatures: pf_subjects(where: {features: {_neq: {}}}) {
+    slug
+    features
   }
 }
     `;

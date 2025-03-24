@@ -6,6 +6,7 @@ import {
   buildPageTitle,
   formatKeystagesShort,
   joinWords,
+  getPhaseFromCategory,
 } from "./formatting";
 
 describe("getYearGroupTitle", () => {
@@ -317,5 +318,22 @@ describe("joinWords", () => {
 
   it("with empty words", () => {
     expect(joinWords(["one", "", "two", "", "three"])).toEqual("one two three");
+  });
+});
+
+describe("getPhaseFromCategory", () => {
+  it("handles secondary", () => {
+    expect(getPhaseFromCategory("KS3")).toBe("secondary");
+    expect(getPhaseFromCategory("KS4")).toBe("secondary");
+  });
+
+  it("handles primary", () => {
+    expect(getPhaseFromCategory("KS1")).toBe("primary");
+    expect(getPhaseFromCategory("KS2")).toBe("primary");
+  });
+
+  it("handles default as primary ", () => {
+    expect(getPhaseFromCategory("EYFS")).toBe("primary");
+    expect(getPhaseFromCategory("Therapies")).toBe("primary");
   });
 });

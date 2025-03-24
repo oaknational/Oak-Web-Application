@@ -8,6 +8,7 @@ import {
   OakBox,
   OakTertiaryOLNav,
   OakSecondaryLink,
+  OakSpan,
 } from "@oaknational/oak-components";
 import {
   PortableText,
@@ -18,6 +19,7 @@ import styled from "styled-components";
 import slugify from "slugify";
 import { useRouter } from "next/router";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import Box from "@/components/SharedComponents/Box";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
@@ -28,6 +30,7 @@ import CMSVideo from "@/components/SharedComponents/CMSVideo";
 import { basePortableTextComponents } from "@/components/SharedComponents/PortableText";
 import { findContainingAnchor } from "@/utils/curriculum/dom";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { resolveOakHref } from "@/common-lib/urls";
 
 export type OverviewTabProps = {
@@ -118,7 +121,12 @@ const blockHeadingComponents: PortableTextComponents["block"] = {
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const router = useRouter();
-  const { curriculumCMSInfo } = props.data;
+  const { track } = useAnalytics();
+
+  const { curriculumCMSInfo, curriculumInfo, curriculumSelectionSlugs } =
+    props.data;
+  const { subjectTitle } = curriculumInfo;
+  const { subjectSlug, phaseSlug } = curriculumSelectionSlugs;
   const {
     curriculumExplainer,
     curriculumPartnerOverviews,
@@ -162,12 +170,27 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     title: partnerTitle,
   });
 
+  const handleAnalytics = () => {
+    track.curriculumExplainerExplored({
+      subjectTitle: subjectTitle,
+      subjectSlug: subjectSlug,
+      platform: "owa",
+      product: "curriculum visualiser",
+      engagementIntent: "explore",
+      componentType: "explainer_tab",
+      eventVersion: "2.0.0",
+      analyticsUseCase: "Teacher",
+      phase: phaseSlug as PhaseValueType,
+    });
+  };
+
   const onClickNavItem = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     if (e.target instanceof HTMLElement) {
       const anchor = findContainingAnchor(e.target);
       if (anchor) {
         const url = new URL(anchor.href);
+        handleAnalytics();
         router.replace(url.hash);
         goToAnchor(url.hash);
       }
@@ -298,7 +321,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 Video guide
               </OakHeading>
               <OakP $font={"body-1"}>{videoExplainer}</OakP>
-              <OakP $font={"body-2-bold"} $color="black">
+              <OakSpan $font={"body-2-bold"} $color="black">
                 <OakSecondaryLink
                   href={resolveOakHref({
                     page: "blog-single",
@@ -310,7 +333,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 >
                   Read more about our new curriculum
                 </OakSecondaryLink>
-              </OakP>
+              </OakSpan>
             </Flex>
           </OakFlex>
         )}
@@ -343,6 +366,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 ({ curriculumPartner, partnerBio }, curriculumPartnerIndex) => {
                   return (
                     <OakFlex
+                      key={`curriculum-partner-${curriculumPartnerIndex}`}
                       data-testid="curriculum-partner"
                       $justifyContent={"center"}
                       $alignContent={"start"}

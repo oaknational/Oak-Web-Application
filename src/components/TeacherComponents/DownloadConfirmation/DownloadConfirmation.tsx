@@ -1,7 +1,8 @@
 import { FC, useRef, useEffect } from "react";
 import {
   OakHeading,
-  OakP,
+  OakSpan,
+  OakBox,
   OakIcon,
   OakLink,
 } from "@oaknational/oak-components";
@@ -184,8 +185,8 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             Thanks for downloading
           </OakHeading>
 
-          <OakP $font={["heading-light-6", "heading-light-5"]}>
-            Our resources work best if you{" "}
+          <OakBox $font={["heading-light-6", "heading-light-5"]}>
+            <OakSpan>Our resources work best if you </OakSpan>
             <OakLink
               href={
                 "https://support.thenational.academy/how-to-install-the-google-fonts-lexend-and-kalan"
@@ -201,11 +202,13 @@ const DownloadConfirmation: FC<DownloadConfirmationProps> = ({
             >
               install the Google Fonts ‘Lexend’ and ‘Kalam’
             </OakLink>
-            .{" "}
-            {cookiesNotAccepted
-              ? ""
-              : "Click the question mark in the bottom-right of the page if you need extra help with this."}
-          </OakP>
+            <OakSpan>
+              .{" "}
+              {cookiesNotAccepted
+                ? ""
+                : "Click the question mark in the bottom-right of the page if you need extra help with this."}
+            </OakSpan>
+          </OakBox>
           {teacherShareButton}
         </Flex>
       </Flex>

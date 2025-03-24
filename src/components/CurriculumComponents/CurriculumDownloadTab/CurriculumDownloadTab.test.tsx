@@ -1,4 +1,5 @@
-import { screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import CurriculumDownloadTab, {
   createCurriculumDownloadsQuery,
@@ -37,7 +38,18 @@ const childSubjectsMock = [
   },
 ];
 
-describe("Component - Curriculum Download Tab", () => {
+const curriculumResourcesDownloadRefined = jest.fn();
+jest.mock("@/context/Analytics/useAnalytics", () => ({
+  __esModule: true,
+  default: () => ({
+    track: {
+      curriculumResourcesDownloadRefined: (...args: unknown[]) =>
+        curriculumResourcesDownloadRefined(...args),
+    },
+  }),
+}));
+
+describe("Component Curriculum Download Tab", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -143,6 +155,48 @@ describe("Component - Curriculum Download Tab", () => {
       expect(childSubjectRadios[3]).toHaveTextContent("Physics");
     });
   });
+  describe("analytics: curriculumResourcesDownloadRefined", () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it("sends a tracking event when curriculum downloads are refined", async () => {
+      mockPrerelease("curriculum.downloads");
+      const { findByTestId, findByText } = renderComponent({
+        tiers: tiersMock,
+        child_subjects: childSubjectsMock,
+        slugs: parseSubjectPhaseSlug("science-secondary-aqa"),
+      });
+
+      const childSubjectSelector = await findByTestId("child-subject-selector");
+      const tierSelector = await findByTestId("tier-selector");
+
+      await act(async () => {
+        await userEvent.click(childSubjectSelector);
+        await userEvent.click(tierSelector);
+      });
+
+      const nextButton = await findByText("Next");
+      await act(async () => {
+        await userEvent.click(nextButton);
+      });
+
+      expect(curriculumResourcesDownloadRefined).toHaveBeenCalledTimes(1);
+      expect(curriculumResourcesDownloadRefined).toHaveBeenCalledWith({
+        analyticsUseCase: "Teacher",
+        childSubjectName: "Combined",
+        childSubjectSlug: "combined-science",
+        componentType: "download_tab",
+        engagementIntent: "refine",
+        eventVersion: "2.0.0",
+        learningTier: "Foundation",
+        platform: "owa",
+        product: "curriculum resources",
+        subjectSlug: "science",
+        subjectTitle: "English",
+      });
+    });
+  });
 });
 
 describe("Downloads tab: unit tests", () => {
@@ -196,7 +250,7 @@ describe("Downloads tab: unit tests", () => {
 
 describe("trackCurriculumDownload", () => {
   const mockTrack = {
-    curriculumResourcesDownloadedCurriculumDocument: jest.fn(),
+    curriculumResourcesDownloaded: jest.fn(),
   } as unknown as TrackFns;
   const mockOnHubspotSubmit = jest.fn().mockResolvedValue("mockResponse");
 
@@ -223,27 +277,21 @@ describe("trackCurriculumDownload", () => {
       ],
       downloadType: "word" as const,
     };
-    const resourceFileType = "docx";
-    const slugs = {
-      subjectSlug: "maths",
-      phaseSlug: "ks4",
-      ks4OptionSlug: "option1",
-    };
-    const subjectTitle = "Mathematics";
-    const analyticsUseCase = "Pupil";
-    const tierSelected = "Higher";
-    const child_subjects = [{ subject: "Maths", subject_slug: "maths" }];
 
+    const subjectTitle = "Mathematics";
+    const analyticsUseCase = "Teacher";
+    const slugs = {
+      phaseSlug: "primary",
+      subjectSlug: "maths",
+      ks4OptionSlug: "",
+    };
     await trackCurriculumDownload(
       data,
-      resourceFileType,
-      slugs,
       subjectTitle,
       mockOnHubspotSubmit,
       mockTrack,
       analyticsUseCase,
-      tierSelected,
-      child_subjects,
+      slugs,
     );
 
     expect(mockOnHubspotSubmit).toHaveBeenCalledWith({
@@ -255,22 +303,22 @@ describe("trackCurriculumDownload", () => {
       onSubmit: expect.any(Function),
     });
 
-    expect(
-      mockTrack.curriculumResourcesDownloadedCurriculumDocument,
-    ).toHaveBeenCalledWith({
+    expect(mockTrack.curriculumResourcesDownloaded).toHaveBeenCalledWith({
       subjectTitle: "Mathematics",
-      subjectSlug: "maths",
-      phase: "ks4",
-      analyticsUseCase: "Pupil",
+      analyticsUseCase: "Teacher",
+      keyStageSlug: null,
+      keyStageTitle: null,
       emailSupplied: true,
       schoolOption: "Selected school",
       schoolUrn: "123456",
       schoolName: "Test School",
-      resourceFileType: "docx",
-      tierName: "Higher",
-      childSubjectName: "Maths",
-      childSubjectSlug: "maths",
-      examBoardSlug: "option1",
+      engagementIntent: "explore",
+      eventVersion: "2.0.0",
+      phase: "primary",
+      platform: "owa",
+      product: "curriculum resources",
+      resourceType: ["curriculum document"],
+      componentType: "download_button",
     });
   });
 });

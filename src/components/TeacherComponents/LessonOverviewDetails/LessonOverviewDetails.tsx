@@ -6,6 +6,8 @@ import {
   OakGridArea,
 } from "@oaknational/oak-components";
 
+import { LessonSeoHelper } from "./LessonSeoHelper";
+
 import LessonOverviewKeyLearningPoints, {
   LessonOverviewKeyLearningPointProps,
 } from "@/components/TeacherComponents/LessonOverviewKeyLearningPoints";
@@ -44,6 +46,15 @@ type LessonOverviewDetailsProps = {
   updatedAt: string;
   additionalFiles: string[] | null | undefined;
   slugs: Slugs;
+  year: string | null | undefined;
+  subject: string | null | undefined;
+  unit: string | null | undefined;
+  lesson: string;
+  keystage: string | null | undefined;
+  examBoardSlug: string | null | undefined;
+  subjectSlug: string | null | undefined;
+  subjectParent: string | null | undefined;
+  disablePupilLink?: boolean;
 };
 
 const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
@@ -61,7 +72,26 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
   displayVocab,
   additionalFiles,
   slugs,
+  subject,
+  unit,
+  lesson,
+  year,
+  keystage,
+  examBoardSlug,
+  subjectParent,
+  subjectSlug,
+  disablePupilLink,
 }) => {
+  const { lessonSlug, unitSlug, programmeSlug } = slugs;
+  const showLessonHelperAccordion =
+    !isLegacyLicense &&
+    subject &&
+    unit &&
+    year &&
+    keystage &&
+    unitSlug &&
+    programmeSlug &&
+    subjectSlug;
   const MathJaxWrapper = isMathJaxLesson ? MathJaxWrap : Fragment;
   return (
     <MathJaxWrapper>
@@ -97,6 +127,22 @@ const LessonOverviewDetails: FC<LessonOverviewDetailsProps> = ({
                   commonMisconceptions={commonMisconceptions}
                 />
               </OakBox>
+            )}
+            {showLessonHelperAccordion && (
+              <LessonSeoHelper
+                lessonSlug={lessonSlug}
+                year={year}
+                programmeSlug={programmeSlug}
+                unitSlug={unitSlug}
+                subject={subject}
+                unit={unit}
+                keystage={keystage}
+                examBoardSlug={examBoardSlug}
+                subjectSlug={subjectSlug}
+                parentSubject={subjectParent}
+                disablePupilLink={disablePupilLink}
+                lesson={lesson}
+              />
             )}
           </OakFlex>
         </OakGridArea>

@@ -1,3 +1,139 @@
+# [1.714.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.713.0...v1.714.0) (2025-03-24)
+
+
+### Bug Fixes
+
+* defaultProps migration error ([8d38e3a](https://github.com/oaknational/Oak-Web-Application/commit/8d38e3aa3e2caf242f961cc26708a4007dd8e115))
+* dom descendant copyright notice ([2933da9](https://github.com/oaknational/Oak-Web-Application/commit/2933da9957b3460cdbc86e47ddbfe40c831bf3e7))
+* dom descendant copyright notice (teachers) ([b01d11f](https://github.com/oaknational/Oak-Web-Application/commit/b01d11f67e1d794d6df12710cd8d6245bee39966))
+* dom descendant download confirmation ([ceceff7](https://github.com/oaknational/Oak-Web-Application/commit/ceceff7c5ed90036a65c419c3590e1406f550dd7))
+* dom descendant overview tab ([5014658](https://github.com/oaknational/Oak-Web-Application/commit/50146589d4e5507d835b3b2cc1616db6d3830df4))
+* dom descendant terms agreement form ([3761677](https://github.com/oaknational/Oak-Web-Application/commit/37616775b1786bf573003b087d864476c8a46b73))
+* extract out styled component from inside another component ([858797b](https://github.com/oaknational/Oak-Web-Application/commit/858797b6773119c6bfb69b5f14160edce124f30c))
+* jest.useFakeTimers see <https://jestjs.io/docs/timer-mocks> ([201fccb](https://github.com/oaknational/Oak-Web-Application/commit/201fccb1981c79b5b88cf2d5f73c2e9cd6bf5875))
+* mock button as a tag to prevent navigation attempts ([ce1ae5c](https://github.com/oaknational/Oak-Web-Application/commit/ce1ae5ca0140ab3587d3ed34d1b435f8473e8fed))
+* only log in storybook not in main CI ([3be5363](https://github.com/oaknational/Oak-Web-Application/commit/3be536350f099564750066196e2c0220d187ffcd))
+* react act - remove not needed ([717c186](https://github.com/oaknational/Oak-Web-Application/commit/717c18617b90e7631c768b97ef698b29d123cdd1))
+* react act - use act ([34f4cf4](https://github.com/oaknational/Oak-Web-Application/commit/34f4cf4d55bc49cf3817aec2a0949ecdd2b36872))
+* react act - use correct import ([d1ba64c](https://github.com/oaknational/Oak-Web-Application/commit/d1ba64cd10a7d87d59412791e90fde957f176d0a))
+* react act - use userEvent for button clicks ([1e4b231](https://github.com/oaknational/Oak-Web-Application/commit/1e4b2311d684d4a18ece5f0b62951a6fd99c0194))
+* react act - wrap checkbox selection in act ([e6fefc6](https://github.com/oaknational/Oak-Web-Application/commit/e6fefc6f48e54d01f3c1b7e28617ace8c8d12f97))
+* react act - wrap hook in act ([cdd5a30](https://github.com/oaknational/Oak-Web-Application/commit/cdd5a30f6415d5535aec6fb816223d311bc50a5b))
+* react act - wrap in act ([a35ad23](https://github.com/oaknational/Oak-Web-Application/commit/a35ad230fddff7f5ae80ca69edae2542ce8067f5))
+* react act - wrap in act ([378081e](https://github.com/oaknational/Oak-Web-Application/commit/378081e5b8e82d3c4d1018a4ebd35ed35dbf9dc4))
+* react act - wrap react form updates in act ([7413561](https://github.com/oaknational/Oak-Web-Application/commit/74135615d9c29584fbe655008ff7c2e053f12a12))
+* react act imports ([0c344ce](https://github.com/oaknational/Oak-Web-Application/commit/0c344ce373d118bf95207293270db37e7c95d369))
+* subjectPhasePicker dom descendant ([50de98f](https://github.com/oaknational/Oak-Web-Application/commit/50de98ff9e140e53582359fa8d4c2aeaf244ccc5))
+* typo in test when calling .completeActivity(...) ([cf418f5](https://github.com/oaknational/Oak-Web-Application/commit/cf418f5abd46b1713ce1b1cf2e0ded6f97839373))
+* use box instead of span to preserve margin spacing ([573e8df](https://github.com/oaknational/Oak-Web-Application/commit/573e8df3054f7ab386ab28ea888983c1782b4ddb))
+
+
+### Features
+
+* make all keys unique ([904aa9b](https://github.com/oaknational/Oak-Web-Application/commit/904aa9bb9f517693c6517406ea255a196e1ccb36))
+* remove only test ([22d06a3](https://github.com/oaknational/Oak-Web-Application/commit/22d06a382982bf07f8b2e68f356faeca43f388a1))
+* remove reliability risks ([0ee8f59](https://github.com/oaknational/Oak-Web-Application/commit/0ee8f59fa6952d6e12b8d264e7201f88920a1e57))
+
+# [1.713.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.712.0...v1.713.0) (2025-03-24)
+
+
+### Bug Fixes
+
+* use env vars for codegen yaml ([33ce5cc](https://github.com/oaknational/Oak-Web-Application/commit/33ce5cc77314cabef3599f5debcb2b017d570b73))
+
+
+### Features
+
+* add initial api codegen and queries ([b2fbe4e](https://github.com/oaknational/Oak-Web-Application/commit/b2fbe4e36628cd1b3f7d0fed74f0cc5e00a0e5c3))
+* add personalisation api method ([7bec372](https://github.com/oaknational/Oak-Web-Application/commit/7bec3723223eab0d6065e4a0d5c40b6b1616af42))
+* add required env var to config ([d6ab46f](https://github.com/oaknational/Oak-Web-Application/commit/d6ab46f9222d6d55a4780675cf26eeb096654888))
+* add secrets ([7baa15e](https://github.com/oaknational/Oak-Web-Application/commit/7baa15e4f76046c26d479d85a2ad9e73eb9dd640))
+* add source app to data captured on sign up ([b59c070](https://github.com/oaknational/Oak-Web-Application/commit/b59c070b8773d9e7adb5986fa827e4feaa7b117e))
+* add webhook endpoint to insert user into db ([81f7afb](https://github.com/oaknational/Oak-Web-Application/commit/81f7afb3e0bda87b3a4da9b8df9c0da056bf6eed))
+* report errors in webhook route ([3402692](https://github.com/oaknational/Oak-Web-Application/commit/3402692bc5961151fbb785d01a7322760e38bfd6))
+
+# [1.712.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.711.0...v1.712.0) (2025-03-19)
+
+
+### Features
+
+* adds the related subjects data to the FE from the overrides table ([989b2ef](https://github.com/oaknational/Oak-Web-Application/commit/989b2efe03d3e681104119439a988f0403f33738))
+
+# [1.711.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.710.0...v1.711.0) (2025-03-19)
+
+
+### Features
+
+* adds the pf_subject features data to the FE ([9e74951](https://github.com/oaknational/Oak-Web-Application/commit/9e749514b82fab26e056f1ae7d563cf1370a971f))
+* filter subject features to include only published states ([58138bc](https://github.com/oaknational/Oak-Web-Application/commit/58138bc5a2a0462b4a4391d8cc5f9077d4da4eed))
+
+# [1.710.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.709.0...v1.710.0) (2025-03-13)
+
+
+### Features
+
+* the SubjectListingCard can have it’s background overridden ([792c223](https://github.com/oaknational/Oak-Web-Application/commit/792c22337c82b6f77678cfbb4c38696b055318c3))
+
+# [1.709.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.708.0...v1.709.0) (2025-03-12)
+
+
+### Bug Fixes
+
+* add a guard check for unit ([dc31df3](https://github.com/oaknational/Oak-Web-Application/commit/dc31df3ceab9ba0e1eaea68cb553ebb50703bace))
+* avo updates ([8b5b048](https://github.com/oaknational/Oak-Web-Application/commit/8b5b0483451af790917d5d5c7a712d7103b26984))
+* lesson download resource button name updated to correct Avo tag ([df9c34e](https://github.com/oaknational/Oak-Web-Application/commit/df9c34e8e7be28e521c458de5718c706f0e700d0))
+* lesson import ([e11a6fb](https://github.com/oaknational/Oak-Web-Application/commit/e11a6fb661f05d6e4c1117099ccfc440f23688c0))
+* merge latest avo branch ([75f1eee](https://github.com/oaknational/Oak-Web-Application/commit/75f1eeeb3b1c9999d45a65d31f04b918f18fe595))
+* update mobile years tracking data ([2d881fb](https://github.com/oaknational/Oak-Web-Application/commit/2d881fbb1843364218084a4ca7efa071ceb08b6e))
+* update tracking from overview to explainer for header nav ([68088bb](https://github.com/oaknational/Oak-Web-Application/commit/68088bbf15947373488d0cc7f826463c4857d56a))
+* updated download categories / phases ([3156013](https://github.com/oaknational/Oak-Web-Application/commit/315601379285d891d3dc13c386e1af40f8c5b58e))
+
+
+### Features
+
+* add curriculum approach navigation evt ([b916e00](https://github.com/oaknational/Oak-Web-Application/commit/b916e00b27817c8518585a1e5a795ddf6094af85))
+* add explainer explored evt ([f4c8e7c](https://github.com/oaknational/Oak-Web-Application/commit/f4c8e7c51501fffdafb90ed7247d138cd4e4cea1))
+* add homepage tab nav tracking evt ([f436e56](https://github.com/oaknational/Oak-Web-Application/commit/f436e56abac3817b4507d1925fcfe29be24cb94c))
+* add tracking evt for curric tab switching ([52b1eee](https://github.com/oaknational/Oak-Web-Application/commit/52b1eee2f8762d3063dbaf4b8add472bc4414247))
+* add tracking to downloads tab ([4cbfbf7](https://github.com/oaknational/Oak-Web-Application/commit/4cbfbf79bb29b6b4d3a0a89b0f49687603d912b7))
+* add unit info explored tracking evt ([8f8aeaf](https://github.com/oaknational/Oak-Web-Application/commit/8f8aeaf8ea26cf9a4acd767c48306a2b2d7408e1))
+* avo tracking branch updated ([7362e51](https://github.com/oaknational/Oak-Web-Application/commit/7362e517dae4f9f9d400d8f41989196e372e6bf3))
+* curric header tracking ([8307efc](https://github.com/oaknational/Oak-Web-Application/commit/8307efcc6ba74dc7e5775b447075e90a05c1dcbe))
+* curric unit details avo tracking ([6e25264](https://github.com/oaknational/Oak-Web-Application/commit/6e2526494af39a2a1fa871d62e80e590876b2b6a))
+* homepage image tab tracking ([bddd545](https://github.com/oaknational/Oak-Web-Application/commit/bddd545bdb32b6367ce2868fa18d39315fde0e45))
+* tracking on SubjectPhasePicker ([815b811](https://github.com/oaknational/Oak-Web-Application/commit/815b8118f260989edfbd1111c0c60262ce39d67a))
+* units tracking update ([7206426](https://github.com/oaknational/Oak-Web-Application/commit/7206426ffc12c25f183a979393c9fce5a5b00ba4))
+* update avo to main branch ([67c60b1](https://github.com/oaknational/Oak-Web-Application/commit/67c60b1f18bcca66ee4ea3c7f0bcb4a51a01f327))
+* update unit info open button tracking evt ([fdb0a43](https://github.com/oaknational/Oak-Web-Application/commit/fdb0a438b5b777f3514cf6a8bcdaea0f406ba5b9))
+* update visualiser exited evt ([20f4087](https://github.com/oaknational/Oak-Web-Application/commit/20f408762dabe1cb1c18a526b8c6b1f61cdf7c85))
+* updated lot picker evt tracking ([fa0cb32](https://github.com/oaknational/Oak-Web-Application/commit/fa0cb324114c70c1cc8c7935225dce19f221855a))
+* visualiser testing and avo tracking updates ([ae73c4c](https://github.com/oaknational/Oak-Web-Application/commit/ae73c4c341996b66d498f2bed76f1e7b9288d79c))
+
+# [1.708.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.707.0...v1.708.0) (2025-03-12)
+
+
+### Bug Fixes
+
+* common misconceptions body text size on mobile ([88a451b](https://github.com/oaknational/Oak-Web-Application/commit/88a451bee8f8f959e2c4b016b515edf511e4b059))
+* make prop optional ([624318b](https://github.com/oaknational/Oak-Web-Application/commit/624318bcc14bd7986fa45716e46503fc1704b9a8))
+* make subject parent optional ([164a5b8](https://github.com/oaknational/Oak-Web-Application/commit/164a5b89963a5c7aed0af9d53bd516f579787d6a))
+* more missing type changes ([34e20e1](https://github.com/oaknational/Oak-Web-Application/commit/34e20e1d75dc93899f3f17052512971189263b2f))
+* only show pupil share link on pages with pupil equivalent ([7920de1](https://github.com/oaknational/Oak-Web-Application/commit/7920de1ee296086b5b9a2cd3ee57597b09d7393f))
+* update copy to use lesson title ([3c3a394](https://github.com/oaknational/Oak-Web-Application/commit/3c3a3941968c3714fb436cbd4ad1e2c0a1600694))
+
+
+### Features
+
+* add links to pages in seo text ([aae39b0](https://github.com/oaknational/Oak-Web-Application/commit/aae39b091ce2bc765c351ddac9212f2d443abf5a))
+* add seo text to lesson overview details section ([7d703aa](https://github.com/oaknational/Oak-Web-Application/commit/7d703aafe131b3bf05795e022696677d0e2b818f))
+
+# [1.707.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.706.1...v1.707.0) (2025-03-12)
+
+
+### Features
+
+* add no index to download and share pages ([823740d](https://github.com/oaknational/Oak-Web-Application/commit/823740d7eda39a041fe34b9ccbb71fe5e5e36235))
+
 ## [1.706.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.706.0...v1.706.1) (2025-03-11)
 
 

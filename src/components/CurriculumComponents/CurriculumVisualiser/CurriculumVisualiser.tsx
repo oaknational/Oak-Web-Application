@@ -6,13 +6,12 @@ import Alert from "../OakComponentsKitchen/Alert";
 import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
 
+import { areLessonsAvailable } from "@/utils/curriculum/lessons";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import Button from "@/components/SharedComponents/Button/Button";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
-import UnitModal, {
-  Lesson,
-} from "@/components/CurriculumComponents/UnitModal/UnitModal";
+import UnitModal from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import {
   getSuffixFromFeatures,
@@ -29,7 +28,9 @@ import {
   Unit,
   YearData,
   YearSelection,
+  Lesson,
 } from "@/utils/curriculum/types";
+import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
 
 const UnitList = styled("ol")`
   margin: 0;
@@ -172,25 +173,41 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     }
   }, [setVisibleMobileYearRefID, yearData]);
 
-  const trackModalOpenEvent = (isOpen: boolean, unitData: Unit) => {
-    if (isOpen && unitData) {
-      track.unitInformationViewed({
-        unitName: unitData.title,
-        unitSlug: unitData.slug,
-        subjectTitle: unitData.subject,
-        subjectSlug: unitData.subject_slug,
-        yearGroupName: unitData.year,
-        yearGroupSlug: unitData.year,
-        unitHighlighted: isHighlightedUnit(unitData, selectedThread),
-        analyticsUseCase: analyticsUseCase,
+  const trackModalOpenEvent = (
+    unit: CurriculumUnit,
+    isHighlighted: boolean,
+    isOpen: boolean,
+  ) => {
+    if (isOpen && unit) {
+      track.unitOverviewAccessed({
+        unitName: unit.title,
+        unitSlug: unit.slug,
+        subjectTitle: unit.subject,
+        subjectSlug: unit.subject_slug,
+        yearGroupName: `Year ${unit.year}`,
+        yearGroupSlug: unit.year,
+        threadTitle: selectedThread,
+        threadSlug: selectedThread,
+        platform: "owa",
+        product: "curriculum visualiser",
+        engagementIntent: "use",
+        componentType: "unit_info_button",
+        eventVersion: "2.0.0",
+        analyticsUseCase,
+        unitHighlighted: isHighlighted, // bool
+        isUnitPublished: areLessonsAvailable(unit.lessons), // bool
       });
     }
   };
 
-  const handleOpenModal = (unitOptions: boolean, unit: Unit) => {
+  const handleOpenModal = (
+    unitOptions: boolean,
+    unit: Unit,
+    isHighlighted: boolean,
+  ) => {
     const newDisplayModal = !displayModal;
     setDisplayModal(newDisplayModal);
-    trackModalOpenEvent(newDisplayModal, unit);
+    trackModalOpenEvent(unit, isHighlighted, newDisplayModal);
     setUnitOptionsAvailable(unitOptions);
     setUnitData({ ...unit });
     setCurrentUnitLessons(unit.lessons ?? []);
@@ -323,7 +340,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 
                         return (
                           <FocusIndicator
-                            key={subject.subject_slug}
+                            key={`${subject.subject_slug}-${year}`}
                             $display={"inline-block"}
                             $mb="space-between-ssx"
                             $mr="space-between-ssx"
@@ -390,14 +407,14 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                       const unitOptions = unit.unit_options.length >= 1;
 
                       return (
-                        <UnitListItem>
+                        <UnitListItem key={`${unit.slug}-${index}`}>
                           <CurriculumUnitCard
                             unit={unit}
                             key={unit.slug + index}
                             index={index}
                             isHighlighted={isHighlighted}
                             onClick={() => {
-                              handleOpenModal(unitOptions, unit);
+                              handleOpenModal(unitOptions, unit, isHighlighted);
                             }}
                           />
                         </UnitListItem>
@@ -406,9 +423,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                     {/* Empty tiles for correct flex wrapping */}
                     {Array(3)
                       .fill(true)
-                      .map(() => {
+                      .map((item, index) => {
                         return (
                           <OakFlex
+                            key={`unit-list-item-${item}-${index}`}
                             $width={"all-spacing-19"}
                             $flexGrow={1}
                             $position={"relative"}
@@ -444,6 +462,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             displayModal={displayModal}
             setUnitOptionsAvailable={setUnitOptionsAvailable}
             unitOptionsAvailable={unitOptionsAvailable}
+            selectedThread={selectedThread}
           />
         </UnitsTabSidebar>
       )}

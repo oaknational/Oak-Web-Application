@@ -12,7 +12,10 @@ import {
   CurriculumUnitDetails,
 } from "@/components/CurriculumComponents/CurriculumUnitDetails";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
-import { notUndefined, Unit, YearData } from "@/utils/curriculum/types";
+import { notUndefined, Unit, YearData, Lesson } from "@/utils/curriculum/types";
+import useAnalytics from "@/context/Analytics/useAnalytics";
+import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
+import { getTitleFromSlug } from "@/fixtures/shared/helper";
 
 type UnitModalProps = {
   unitData: Unit | null;
@@ -22,12 +25,7 @@ type UnitModalProps = {
   setCurrentUnitLessons: (x: Lesson[]) => void;
   setUnitVariantID: (x: number | null) => void;
   unitOptionsAvailable: boolean;
-};
-
-export type Lesson = {
-  title: string;
-  slug?: string;
-  _state?: string;
+  selectedThread: string | null;
 };
 
 const UnitModal: FC<UnitModalProps> = ({
@@ -38,7 +36,10 @@ const UnitModal: FC<UnitModalProps> = ({
   setCurrentUnitLessons,
   setUnitVariantID,
   unitOptionsAvailable,
+  selectedThread,
 }) => {
+  const { track } = useAnalytics();
+
   const [optionalityModalOpen, setOptionalityModalOpen] =
     useState<boolean>(false);
 
@@ -76,6 +77,29 @@ const UnitModal: FC<UnitModalProps> = ({
         unitData.actions?.programme_field_overrides?.Year ?? unitData.year,
       )
     : "";
+
+  const handleUnitOverviewExploredAnalytics = (
+    componentType: ComponentTypeValueType,
+  ) => {
+    if (unitData) {
+      track.unitOverviewExplored({
+        subjectTitle: unitData.subject,
+        subjectSlug: unitData.subject_slug,
+        yearGroupName: `Year ${unitData.year}`,
+        yearGroupSlug: `year-${unitData.year}`,
+        unitName: unitData.title,
+        unitSlug: unitData.slug,
+        platform: "owa",
+        product: "curriculum visualiser",
+        engagementIntent: "explore",
+        componentType,
+        eventVersion: "2.0.0",
+        analyticsUseCase: "Teacher",
+        threadTitle: getTitleFromSlug(selectedThread || undefined) || "",
+        threadSlug: selectedThread || "",
+      });
+    }
+  };
 
   return (
     <>
@@ -136,6 +160,9 @@ const UnitModal: FC<UnitModalProps> = ({
             {!unitOptionsAvailable && (
               <OakBox $display={optionalityModalOpen ? "none" : "block"}>
                 <CurriculumUnitDetails
+                  handleUnitOverviewExploredAnalytics={
+                    handleUnitOverviewExploredAnalytics
+                  }
                   threads={unitData.threads}
                   cycle={unitData.cycle}
                   whyThisWhyNow={unitData.why_this_why_now}
@@ -177,16 +204,20 @@ const UnitModal: FC<UnitModalProps> = ({
                     Unit options
                   </OakHeading>
                   <OakFlex
+                    key={`unit-options-${unitData.slug}-list`}
                     $flexDirection={["row"]}
                     $gap="all-spacing-6"
                     $flexWrap={"wrap"}
+                    role="list"
                   >
                     {unitData.unit_options.map((optionalUnit, index) => {
                       return (
                         <OakFlex
+                          key={`unit-option-${optionalUnit.unitvariant_id}-${index}`}
                           $width={"all-spacing-19"}
                           $flexGrow={1}
                           $position={"relative"}
+                          role="listitem"
                         >
                           <CurriculumUnitCard
                             unit={optionalUnit}
@@ -212,6 +243,8 @@ const UnitModal: FC<UnitModalProps> = ({
                                 description: optionalUnit.description,
                                 whyThisWhyNow: optionalUnit.why_this_why_now,
                                 cycle: unitData.cycle,
+                                handleUnitOverviewExploredAnalytics:
+                                  handleUnitOverviewExploredAnalytics,
                               });
                             }}
                           />
@@ -221,9 +254,10 @@ const UnitModal: FC<UnitModalProps> = ({
                     {/* Empty tiles for correct flex wrapping */}
                     {Array(2)
                       .fill(true)
-                      .map(() => {
+                      .map((item, index) => {
                         return (
                           <OakFlex
+                            key={`unit-options-${index}-${item}-item`}
                             $width={"all-spacing-19"}
                             $flexGrow={1}
                             $position={"relative"}
