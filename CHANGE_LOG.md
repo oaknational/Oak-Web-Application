@@ -1,3 +1,36 @@
+# [1.713.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.712.0...v1.713.0) (2025-03-24)
+
+
+### Bug Fixes
+
+* use env vars for codegen yaml ([33ce5cc](https://github.com/oaknational/Oak-Web-Application/commit/33ce5cc77314cabef3599f5debcb2b017d570b73))
+
+
+### Features
+
+* add initial api codegen and queries ([b2fbe4e](https://github.com/oaknational/Oak-Web-Application/commit/b2fbe4e36628cd1b3f7d0fed74f0cc5e00a0e5c3))
+* add personalisation api method ([7bec372](https://github.com/oaknational/Oak-Web-Application/commit/7bec3723223eab0d6065e4a0d5c40b6b1616af42))
+* add required env var to config ([d6ab46f](https://github.com/oaknational/Oak-Web-Application/commit/d6ab46f9222d6d55a4780675cf26eeb096654888))
+* add secrets ([7baa15e](https://github.com/oaknational/Oak-Web-Application/commit/7baa15e4f76046c26d479d85a2ad9e73eb9dd640))
+* add source app to data captured on sign up ([b59c070](https://github.com/oaknational/Oak-Web-Application/commit/b59c070b8773d9e7adb5986fa827e4feaa7b117e))
+* add webhook endpoint to insert user into db ([81f7afb](https://github.com/oaknational/Oak-Web-Application/commit/81f7afb3e0bda87b3a4da9b8df9c0da056bf6eed))
+* report errors in webhook route ([3402692](https://github.com/oaknational/Oak-Web-Application/commit/3402692bc5961151fbb785d01a7322760e38bfd6))
+
+# [1.712.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.711.0...v1.712.0) (2025-03-19)
+
+
+### Features
+
+* adds the related subjects data to the FE from the overrides table ([989b2ef](https://github.com/oaknational/Oak-Web-Application/commit/989b2efe03d3e681104119439a988f0403f33738))
+
+# [1.711.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.710.0...v1.711.0) (2025-03-19)
+
+
+### Features
+
+* adds the pf_subject features data to the FE ([9e74951](https://github.com/oaknational/Oak-Web-Application/commit/9e749514b82fab26e056f1ae7d563cf1370a971f))
+* filter subject features to include only published states ([58138bc](https://github.com/oaknational/Oak-Web-Application/commit/58138bc5a2a0462b4a4391d8cc5f9077d4da4eed))
+
 # [1.710.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.709.0...v1.710.0) (2025-03-13)
 
 
