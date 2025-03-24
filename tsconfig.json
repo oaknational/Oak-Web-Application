@@ -37,7 +37,9 @@
     "e2e_tests/browser/fixtures.ts",
     "src/__tests__/__helpers__/reporters/slowTestReporter.js",
     "src/components/GenericPagesComponents/HopePageTabButtonLabelWithScreenReaderTitle",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".agent/scripts/import-reordering/**/*.ts",
+    ".agent/scripts/import-reordering/**/*.tsx"
   ],
   "exclude": ["node_modules", "netlify/edge-functions", "e2e_tests"]
 }

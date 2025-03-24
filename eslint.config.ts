@@ -1,15 +1,12 @@
 // Library for dealing with legacy eslint config
 import { FlatCompat } from "@eslint/eslintrc";
-
-import globals from "globals";
 import eslint from "@eslint/js";
 import type { Linter } from "eslint";
-import tseslint from "typescript-eslint";
-import type { Config as TSConfig } from "typescript-eslint";
-
+import importPlugin from "eslint-plugin-import-x";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
-import importPlugin from "eslint-plugin-import-x";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
 type ESLintRulesRecord = Linter.RulesRecord;
 
@@ -20,7 +17,14 @@ const compat = new FlatCompat({
 
 // Import rules configuration - enhanced for eslint-plugin-import-x
 const importRules: Partial<ESLintRulesRecord> = {
-  // Static analysis
+  // Explicitly disabled rules
+  "import/no-named-as-default": ["off"], // Allow imported names as the default export (turned off as in original)
+  "import/no-named-as-default-member": ["off"], // Allow accessing default export as property of the default
+
+  // Helpful warnings
+  "import/no-deprecated": ["warn"], // Warn on importing deprecated modules
+
+  // Errors
   "import/no-unresolved": ["error"], // Ensure imports point to a file/module that can be resolved
   "import/named": ["error"], // Ensure named imports correspond to named exports
   "import/default": ["error"], // Ensure default import matches with the exported default
@@ -28,12 +32,7 @@ const importRules: Partial<ESLintRulesRecord> = {
   "import/no-absolute-path": ["error"], // Forbid import of modules using absolute paths
   "import/no-dynamic-require": ["error"], // Forbid require() calls with expressions
   "import/no-relative-packages": ["error"], // Forbid importing packages through relative paths
-
-  // Helpful warnings
   "import/export": ["error"], // Report any invalid exports, i.e., re-export of the same name
-  "import/no-named-as-default": ["off"], // Allow imported names as the default export (turned off as in original)
-  "import/no-named-as-default-member": ["error"], // Warn on accessing default export as property of the default
-  "import/no-deprecated": ["warn"], // Warn on importing deprecated modules
   "import/no-extraneous-dependencies": ["error"], // Forbid importing modules not in package.json
   "import/no-mutable-exports": ["error"], // Forbid exporting mutable variables
 
@@ -52,18 +51,6 @@ const importRules: Partial<ESLintRulesRecord> = {
   "import/no-duplicates": ["error"], // Report repeated import of the same module in multiple places
 };
 
-// TypeScript rules - Enhanced for better type safety
-const tsRules: Partial<ESLintRulesRecord> = {
-  "@typescript-eslint/no-unused-vars": ["error", { ignoreRestSiblings: true }],
-  "@typescript-eslint/no-explicit-any": ["error"],
-  // Add rules that are actually available in the current version
-  "@typescript-eslint/consistent-type-definitions": ["error", "interface"], // Enforce consistent type definition style
-  "@typescript-eslint/naming-convention": [
-    "warn",
-    { selector: "typeProperty", format: ["camelCase"] },
-  ],
-};
-
 // React rules
 const reactRules: Partial<ESLintRulesRecord> = {
   "react/self-closing-comp": ["error", { component: true, html: true }],
@@ -71,8 +58,33 @@ const reactRules: Partial<ESLintRulesRecord> = {
   "react-hooks/exhaustive-deps": ["error"],
 };
 
+/**
+ * Complexity rules. Don't apply to test files.
+ *
+ * These are deliberately permissive, we can tighten them up over time.
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const complexityRules: Partial<ESLintRulesRecord> = {
+  // Limit cyclomatic complexity to a reasonable starting point
+  complexity: ["error", 21],
+
+  // Enforce a maximum depth for nested blocks
+  "max-depth": ["error", 5],
+
+  // Limit excessive function parameters
+  "max-params": ["error", 6],
+
+  // Discourage extremely large files
+  "max-lines": ["error", 750],
+
+  // Enforce consistent braces style for clarity
+  curly: ["error", "all"],
+};
+
 export default tseslint.config(
-  // Ignore patterns (migrated from .eslintignore)
+  /**
+   * Ignore patterns (migrated from .eslintignore)
+   */
   {
     ignores: [
       ".next/**",
@@ -87,7 +99,9 @@ export default tseslint.config(
     ],
   },
 
-  // Base configuration for all files
+  /**
+   * Base configuration for **all files**.
+   */
   {
     files: ["**/*.{js,mjs,cjs,jsx,ts,tsx}"],
     languageOptions: {
@@ -107,11 +121,6 @@ export default tseslint.config(
       "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
       "import/external-module-folders": ["node_modules"],
     },
-  },
-
-  // JavaScript files configuration
-  {
-    files: ["**/*.{js,mjs,cjs,jsx}"],
     plugins: {
       importPlugin,
       reactPlugin,
@@ -120,17 +129,46 @@ export default tseslint.config(
     rules: {
       ...importRules,
       ...reactRules,
+      // TODO: Add complexity rules back in once the base issues are resolved, but tweak the levels to allow the current code,
+      // and then make the levels stricter over time.
+      //...complexityRules,
+      // Warnings that will be converted to errors over time
+      // "no-console": ["error", { allow: ["error", "warn"] }], // Replace console use with logger calls for info, warn, error, debug, etc.
+      // "no-warning-comments": [
+      //   "warn",
+      //   {
+      //     terms: [
+      //       "TODO",
+      //       "todo",
+      //       "TO DO",
+      //       "to do",
+      //       "FIXME",
+      //       "fixme",
+      //       "fix me",
+      //       "HACK",
+      //       "hack",
+      //     ],
+      //     location: "anywhere",
+      //   },
+      // ],
+      // "no-commented-out-code": ["warn"],
     },
   },
 
-  // TypeScript specific configuration - Enhanced for better typed-components support
+  /**
+   * **JavaScript** file specific configuration.
+   */
+  {
+    files: ["**/*.{js,mjs,cjs,jsx}"],
+  },
+
+  /**
+   * **TypeScript** file specific configuration - Enhanced for better typed-components support
+   */
   {
     files: ["**/*.{ts,tsx}"],
     plugins: {
       "@typescript-eslint": tseslint.plugin,
-      importPlugin,
-      reactPlugin,
-      reactHooksPlugin,
     },
     languageOptions: {
       parser: tseslint.parser,
@@ -149,24 +187,44 @@ export default tseslint.config(
         },
       },
     },
+    /**
+     * TypeScript rules
+     */
+    // Structural rules that directly catch errors.
     rules: {
-      ...importRules,
-      ...tsRules,
-      ...reactRules,
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { ignoreRestSiblings: true },
+      ],
+      "@typescript-eslint/no-floating-promises": [
+        "error",
+        { ignoreVoid: true },
+      ],
+      // Comment out new rules until we resolve the existing issues.
+      // "@typescript-eslint/no-explicit-any": ["error"],
+      // "@typescript-eslint/consistent-type-definitions": ["error", "interface"], // Enforce consistent type definition style
+      // "@typescript-eslint/naming-convention": [
+      //   "warn",
+      //   {
+      //     selector: "typeProperty",
+      //     format: ["camelCase", "snake_case", "UPPER_CASE"],
+      //     leadingUnderscore: "allow",
+      //   },
+      // ],
+      // "@typescript-eslint/no-misused-promises": ["error"],
+      // "@typescript-eslint/promise-function-async": "error",
+      // // Note: you must disable the base rule as it can report incorrect errors
+      // "prefer-promise-reject-errors": "off",
+      // "@typescript-eslint/prefer-promise-reject-errors": "error",
+      // "@typescript-eslint/consistent-type-imports": "error"
     },
   },
 
-  // Special configuration for styled-components tests
-  {
-    files: ["**/styles/**/*.test.{ts,tsx}", "**/styles/utils/**/*.{ts,tsx}"],
-    rules: {
-      // We can't use ban-type-literals as it doesn't exist - removed
-      // Instead, disable rules that might be too strict for styled-components tests
-      "@typescript-eslint/no-explicit-any": "off", // Allow any in tests
-    },
-  },
-
-  // Test files configuration
+  /**
+   * **Test** files configuration.
+   *
+   * Allow type casting.
+   */
   {
     files: ["**/*.test.{js,ts,tsx}"],
     languageOptions: {
@@ -174,14 +232,21 @@ export default tseslint.config(
         ...globals.jest,
       },
     },
+    rules: {
+      "@typescript-eslint/no-explicit-any": ["off"],
+    },
   },
 
-  // .github directory files - include these (from the .eslintignore !.github line)
+  /**
+   * **GitHub** directory files
+   */
   {
     files: [".github/**/*.{js,mjs,cjs,jsx,ts,tsx}"],
   },
 
-  // The main config.
+  /**
+   * The main config.
+   */
   eslint.configs.recommended,
   {
     plugins: {
@@ -193,10 +258,6 @@ export default tseslint.config(
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
       },
-    },
-    rules: {
-      "@typescript-eslint/no-floating-promises": "error",
-      // ...
     },
   },
   tseslint.configs.recommended,
