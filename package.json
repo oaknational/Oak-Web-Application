@@ -114,7 +114,7 @@
     "path-browserify": "^1.0.1",
     "path-to-regexp": "^6.2.1n",
     "posthog-js": "^1.181.0",
-    "posthog-node": "^4.2.1",
+    "posthog-node": "^4.10.1",
     "querystring-es3": "^0.2.1",
     "react": "^18.3.1",
     "react-aria": "^3.35.1",
@@ -134,10 +134,10 @@
     "tiny-hashes": "^1.0.1",
     "url": "^0.11.2",
     "util": "^0.12.5",
-    "uuid": "^11.0.2",
+    "uuid": "^11.1.0",
     "webvtt-parser": "^2.2.0",
     "xml-js": "^1.6.11",
-    "zod": "^3.24.1"
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",
@@ -234,7 +234,7 @@
     "open": "^10.1.0",
     "open-cli": "^8.0.0",
     "pa11y-ci": "^3.1.0",
-    "postcss": "^8.4.47",
+    "postcss": "^8.5.3",
     "postcss-scss": "^4.0.9",
     "prettier": "3.3.3",
     "prettier-plugin-embed": "^0.4.15",
@@ -254,8 +254,8 @@
     "tsx": "^4.19.2",
     "typescript": "^5.6.2",
     "typescript-plugin-css-modules": "^5.0.2",
-    "webpack": "^5.97.1",
-    "webpack-bugsnag-plugins": "^1.8.0",
+    "webpack": "^5.98.0",
+    "webpack-bugsnag-plugins": "^1.9.0",
     "whatwg-fetch": "^3.6.20",
     "yargs": "^17.7.2"
   },
