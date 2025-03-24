@@ -1,8 +1,8 @@
 import { screen } from "@testing-library/react";
+import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 
 import FinancialEducationBanner from "./FinancialEducationBanner";
 
-import { oakDefaultTheme, OakThemeProvider } from "@oaknational/oak-components";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 // Mock resolveOakHref to generate a predictable URL

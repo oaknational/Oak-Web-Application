@@ -1,5 +1,3 @@
-import { BannerProps } from "../RelatedSubjectsBanner";
-
 import {
   OakFlex,
   OakHeading,
@@ -7,6 +5,9 @@ import {
   OakP,
   OakTertiaryButton,
 } from "@oaknational/oak-components";
+
+import { BannerProps } from "../RelatedSubjectsBanner";
+
 import { resolveOakHref } from "@/common-lib/urls";
 
 function FinancialEducationBanner({ keyStageSlug, isDesktop }: BannerProps) {

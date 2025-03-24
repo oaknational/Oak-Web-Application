@@ -1,7 +1,4 @@
 import { useState } from "react";
-
-import { UseBackHrefProps, useBackHref } from "./useBackHref";
-
 import {
   OakPupilJourneyLayout,
   OakTertiaryButton,
@@ -10,6 +7,9 @@ import {
   OakInlineBanner,
   OakSecondaryLink,
 } from "@oaknational/oak-components";
+
+import { UseBackHrefProps, useBackHref } from "./useBackHref";
+
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
 import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
 import { PupilUnitsSection } from "@/components/PupilComponents/PupilUnitsSection";
