@@ -163,7 +163,12 @@ export const PupilViewsSubjectListing = ({
           $flexDirection={"column"}
           $alignItems={"center"}
         >
-          <OakHeading $font={["heading-6", "heading-5"]} tag="h1">
+          <OakHeading
+            $font={["heading-6", "heading-5"]}
+            tag="h1"
+            $textAlign={"left"}
+            $mr={"auto"}
+          >
             Now choose a subject
           </OakHeading>
           <OakGrid
@@ -184,7 +189,11 @@ export const PupilViewsSubjectListing = ({
           </OakGrid>
           {nonCurriculum.length > 0 && (
             <>
-              <OakHeading $font={["heading-6", "heading-5"]} tag="h2">
+              <OakHeading
+                $font={["heading-6", "heading-5"]}
+                tag="h2"
+                $mr={"auto"}
+              >
                 Further lessons
               </OakHeading>
               <OakGrid
