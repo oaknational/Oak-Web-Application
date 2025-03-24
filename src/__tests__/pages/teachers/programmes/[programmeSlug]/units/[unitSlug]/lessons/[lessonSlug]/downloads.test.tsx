@@ -153,19 +153,27 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     expect(screen.queryByText("Exit quiz questions")).not.toBeInTheDocument();
   });
   it("tracks download event with correct args", async () => {
+    window.scrollTo = jest.fn();
     const { result } = renderHook(() => useLocalStorageForDownloads());
-
-    result.current.setEmailInLocalStorage("test@test.com");
-    result.current.setTermsInLocalStorage(true);
-    result.current.setSchoolInLocalStorage({
-      schoolId: "123456-Secondary school",
-      schoolName: "Secondary school",
+    act(() => {
+      result.current.setEmailInLocalStorage("test@test.com");
+      result.current.setTermsInLocalStorage(true);
+      result.current.setSchoolInLocalStorage({
+        schoolId: "123456-Secondary school",
+        schoolName: "Secondary school",
+      });
     });
+
     render(<LessonDownloadsPage {...props} />);
     const downloadButton = screen.getByRole("button", {
       name: "Download .zip",
     });
     await userEvent.click(downloadButton);
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo).toHaveBeenCalledWith({
+      behavior: "smooth",
+      top: 0,
+    });
     expect(lessonDownloaded).toHaveBeenCalledWith({
       analyticsUseCase: "Teacher",
       componentType: "lesson_download_button",
@@ -196,14 +204,18 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     });
   });
   it("tracks download event with correct args for lessons without pfs", async () => {
+    window.scrollTo = jest.fn();
     const { result } = renderHook(() => useLocalStorageForDownloads());
 
-    result.current.setEmailInLocalStorage("test@test.com");
-    result.current.setTermsInLocalStorage(true);
-    result.current.setSchoolInLocalStorage({
-      schoolId: "123456-Secondary school",
-      schoolName: "123-name",
+    act(() => {
+      result.current.setEmailInLocalStorage("test@test.com");
+      result.current.setTermsInLocalStorage(true);
+      result.current.setSchoolInLocalStorage({
+        schoolId: "123456-Secondary school",
+        schoolName: "123-name",
+      });
     });
+
     render(
       <LessonDownloadsPage
         curriculumData={lessonDownloadsFixtures({
@@ -216,6 +228,11 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       name: "Download .zip",
     });
     await userEvent.click(downloadButton);
+    expect(window.scrollTo).toHaveBeenCalledTimes(1);
+    expect(window.scrollTo).toHaveBeenCalledWith({
+      behavior: "smooth",
+      top: 0,
+    });
     expect(lessonDownloaded).toHaveBeenCalledWith({
       analyticsUseCase: "Teacher",
       componentType: "lesson_download_button",
@@ -338,6 +355,11 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
 
   describe("selected resources count", () => {
     it("should select all resources if user checks 'Select all'", async () => {
+      const { result } = renderHook(() => useLocalStorageForDownloads());
+      act(() => {
+        result.current.setEmailInLocalStorage("test@test.com");
+        result.current.setTermsInLocalStorage(true);
+      });
       const { getByRole } = render(<LessonDownloadsPage {...props} />);
 
       const selectAllCheckbox = getByRole("checkbox", {
@@ -357,11 +379,15 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
     });
 
     it("should deselect all resources if user deselects 'Select all'", async () => {
-      const { getByRole } = render(<LessonDownloadsPage {...props} />);
+      const { result } = renderHook(() => useLocalStorageForDownloads());
+      act(() => {
+        result.current.setEmailInLocalStorage("test@test.com");
+        result.current.setTermsInLocalStorage(true);
+      });
 
+      const { getByRole } = render(<LessonDownloadsPage {...props} />);
       const selectAllCheckbox = getByRole("checkbox", { name: "Select all" });
-      const user = userEvent.setup();
-      await user.click(selectAllCheckbox);
+      await userEvent.click(selectAllCheckbox);
 
       const exitQuizQuestions = screen.getByLabelText("Exit quiz questions", {
         exact: false,

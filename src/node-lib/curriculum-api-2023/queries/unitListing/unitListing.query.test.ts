@@ -52,6 +52,9 @@ jest.mock("../../sdk", () => {
               }),
               unit_slug: "unit-slug-1",
               supplementary_data: { unit_order: 1 },
+              actions: {
+                related_subject_slugs: ["physics"],
+              },
             },
           }),
           rawFixture({
@@ -162,6 +165,9 @@ describe("unitListing()", () => {
             cohort: "2023-2024",
             subjectCategories: null,
             learningThemes: null,
+            actions: {
+              relatedSubjectSlugs: ["physics"],
+            },
           },
         ],
         [

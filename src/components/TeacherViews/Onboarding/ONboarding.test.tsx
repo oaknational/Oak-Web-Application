@@ -1,6 +1,5 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { act } from "@testing-library/react";
 
 import OnboardingView from "./Onboarding.view";
 
@@ -42,10 +41,8 @@ describe("Onboarding view", () => {
   it("shows no error message if button is clicked with a radio selected", async () => {
     renderWithProviders()(<OnboardingView />);
 
-    await act(async () => {
-      await userEvent.click(screen.getByRole("radio", { name: "Yes" }));
-      await userEvent.click(screen.getByText("Continue"));
-    });
+    await userEvent.click(screen.getByRole("radio", { name: "Yes" }));
+    await userEvent.click(screen.getByText("Continue"));
 
     const error = screen.queryByText(/Please select if you work in a school/i);
 
@@ -54,9 +51,7 @@ describe("Onboarding view", () => {
   it("shows error message if button is clicked with no radio selected", async () => {
     renderWithProviders()(<OnboardingView />);
 
-    await act(async () => {
-      await userEvent.click(screen.getByText("Continue"));
-    });
+    await userEvent.click(screen.getByText("Continue"));
 
     const error = screen.queryByText(/Please select if you work in a school/i);
 

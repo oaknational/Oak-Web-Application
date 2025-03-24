@@ -1,5 +1,4 @@
 import mockRouter from "next-router-mock";
-import { act } from "react";
 
 import { useRequireOnboarding } from "./useRequireOnboarding";
 
@@ -25,9 +24,7 @@ describe(useRequireOnboarding, () => {
     });
 
     it("does nothing", async () => {
-      await act(async () => {
-        await renderHook(useRequireOnboarding);
-      });
+      renderHook(useRequireOnboarding);
 
       expect(mockRouter.pathname).toEqual("/original");
     });
