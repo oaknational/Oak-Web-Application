@@ -38,7 +38,7 @@ const SummaryCard: FC<SummaryCardProps> = ({
   heading,
   summaryPortableText,
   summaryCardImage,
-  background,
+  background = "lemon50",
   imageContainerProps,
   children,
 }) => {
@@ -114,10 +114,6 @@ const SummaryCard: FC<SummaryCardProps> = ({
       <BrushBorders hideOnMobileH color={background || "inherit"} />
     </Card>
   );
-};
-
-SummaryCard.defaultProps = {
-  background: "lemon50",
 };
 
 export default SummaryCard;
