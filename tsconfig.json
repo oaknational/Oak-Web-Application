@@ -39,7 +39,9 @@
     "src/components/GenericPagesComponents/HopePageTabButtonLabelWithScreenReaderTitle",
     ".next/types/**/*.ts",
     ".agent/scripts/import-reordering/**/*.ts",
-    ".agent/scripts/import-reordering/**/*.tsx"
+    ".agent/scripts/import-reordering/**/*.tsx",
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx"
   ],
   "exclude": ["node_modules", "netlify/edge-functions", "e2e_tests"]
 }

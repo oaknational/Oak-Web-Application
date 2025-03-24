@@ -1,5 +1,7 @@
-export default {
-  env: (config) => ({
+import type { StorybookConfig } from "@storybook/nextjs";
+
+const storybookConfig: StorybookConfig = {
+  env: (config = {}) => ({
     ...config,
     NEXT_PUBLIC_CLIENT_APP_BASE_URL: "http://localhost:3000",
     NEXT_PUBLIC_APP_VERSION: "123",
@@ -15,15 +17,21 @@ export default {
     NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN: "NEXT_PUBLIC_HUBSPOT_SCRIPT_DOMAIN",
     NEXT_PUBLIC_POSTHOG_API_HOST: "NEXT_PUBLIC_POSTHOG_API_HOST",
     NEXT_PUBLIC_POSTHOG_API_KEY: "NEXT_PUBLIC_POSTHOG_API_KEY",
-    NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    NEXT_PUBLIC_SANITY_PROJECT_ID:
+      process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ||
+      "NEXT_PUBLIC_SANITY_PROJECT_ID",
+    NEXT_PUBLIC_SANITY_DATASET:
+      process.env.NEXT_PUBLIC_SANITY_DATASET || "NEXT_PUBLIC_SANITY_DATASET",
     NEXT_PUBLIC_SANITY_ASSET_CDN_HOST:
-      process.env.NEXT_PUBLIC_SANITY_ASSET_CDN_HOST,
+      process.env.NEXT_PUBLIC_SANITY_ASSET_CDN_HOST ||
+      "NEXT_PUBLIC_SANITY_ASSET_CDN_HOST",
     NEXT_PUBLIC_GLEAP_API_KEY: "NEXT_PUBLIC_GLEAP_API_KEY",
     NEXT_PUBLIC_GLEAP_API_URL: "NEXT_PUBLIC_GLEAP_API_URL",
     NEXT_PUBLIC_GLEAP_FRAME_URL: "NEXT_PUBLIC_GLEAP_FRAME_URL",
-    NEXT_PUBLIC_OAK_ASSETS_HOST: process.env.NEXT_PUBLIC_OAK_ASSETS_HOST,
-    NEXT_PUBLIC_OAK_ASSETS_PATH: process.env.NEXT_PUBLIC_OAK_ASSETS_PATH,
+    NEXT_PUBLIC_OAK_ASSETS_HOST:
+      process.env.NEXT_PUBLIC_OAK_ASSETS_HOST || "NEXT_PUBLIC_OAK_ASSETS_HOST",
+    NEXT_PUBLIC_OAK_ASSETS_PATH:
+      process.env.NEXT_PUBLIC_OAK_ASSETS_PATH || "NEXT_PUBLIC_OAK_ASSETS_PATH",
   }),
 
   stories: [
@@ -57,9 +65,19 @@ export default {
   staticDirs: ["../public"],
 
   webpackFinal: async (config) => {
+    if (!config.module) {
+      config.module = {};
+    }
+    if (!config.module.rules) {
+      config.module.rules = [];
+    }
+
     config.module.rules = [
       ...config.module.rules.map((rule) => {
-        if (rule.test instanceof RegExp) {
+        if (!rule || rule === "...") {
+          return rule;
+        }
+        if (rule.test && rule.test instanceof RegExp) {
           if (/svg/.test(rule.test.source)) {
             // Silence the Storybook loaders for SVG files
             return { ...rule, exclude: /\.svg$/i };
@@ -91,3 +109,5 @@ export default {
     reactDocgen: "react-docgen-typescript",
   },
 };
+
+export default storybookConfig;
