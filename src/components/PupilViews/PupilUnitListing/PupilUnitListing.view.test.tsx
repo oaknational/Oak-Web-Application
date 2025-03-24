@@ -1,12 +1,12 @@
 import "@testing-library/jest-dom";
-
-import { PupilViewsUnitListing } from "./PupilUnitListing.view";
-
 import {
   OakInfoProps,
   OakThemeProvider,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+
+import { PupilViewsUnitListing } from "./PupilUnitListing.view";
+
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { unitBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/unitBrowseData.fixture";
 import { UnitsSectionData } from "@/pages/pupils/programmes/[programmeSlug]/units";
@@ -36,6 +36,7 @@ const unitSections: UnitsSectionData[] = [
     units: [
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-1",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 1",
@@ -45,6 +46,7 @@ const unitSections: UnitsSectionData[] = [
       ],
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-2",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 2",
@@ -71,6 +73,7 @@ const unitsWithOptionality: UnitsSectionData[] = [
     units: [
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-1",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 1",
@@ -80,6 +83,7 @@ const unitsWithOptionality: UnitsSectionData[] = [
       ],
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-2",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 2",
@@ -89,6 +93,7 @@ const unitsWithOptionality: UnitsSectionData[] = [
           },
         }),
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-3",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 2",
