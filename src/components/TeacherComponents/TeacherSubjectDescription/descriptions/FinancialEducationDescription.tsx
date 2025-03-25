@@ -68,9 +68,9 @@ const linkData: Partial<Record<KeyStageSlug, KeyStageLinks>> = {
 
 export default function FinancialEducationDescription({
   unitListingData,
-}: {
+}: Readonly<{
   unitListingData: UnitListingData;
-}) {
+}>) {
   // Extract the links for the current key stage, explicitly typed as KeyStageLinks.
   const keyStageLinks = linkData[unitListingData.keyStageSlug];
 
