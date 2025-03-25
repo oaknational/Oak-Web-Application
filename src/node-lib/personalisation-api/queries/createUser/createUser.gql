@@ -1,0 +1,11 @@
+mutation createUser($userId: String!, $sourceApp: String) {
+  insert_users(
+    objects: [{ id: $userId, source_app: $sourceApp }]
+    on_conflict: {
+      constraint: users_pkey
+      update_columns: [last_signed_in, source_app]
+    }
+  ) {
+    affected_rows
+  }
+}

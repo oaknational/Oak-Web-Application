@@ -38,6 +38,10 @@ export type ButtonAsLinkProps = CommonButtonProps &
   };
 
 const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
+  props = {
+    ...defaultButtonProps,
+    ...props,
+  };
   const { nextLinkProps, ...transformedProps } = transformOwaLinkProps(props);
   const {
     label,
@@ -110,7 +114,5 @@ const ButtonAsLink: FC<ButtonAsLinkProps> = (props) => {
     </Link>
   );
 };
-
-ButtonAsLink.defaultProps = defaultButtonProps;
 
 export default ButtonAsLink;
