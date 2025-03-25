@@ -67,11 +67,11 @@ exports[`CurriculumTab renders 1`] = `
                   <span
                     class="sc-kpDqfm psnGs"
                   >
-                    <div
+                    <span
                       class="sc-fqkvVR sc-eldPxv dWmZcx iGHzbF"
                     >
                       Our curriculum planning approach
-                    </div>
+                    </span>
                   </span>
                   <div
                     class="sc-fqkvVR kbnxKi sc-fXSgeo"
@@ -117,10 +117,10 @@ exports[`CurriculumTab renders 1`] = `
                           style="width: 50%;"
                         >
                           <div
-                            class="sc-fqkvVR sc-9dfc1bad-0 sc-bdacaec4-2 jEHEPk fAkCpO hPodqY"
+                            class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 jEHEPk fAkCpO evzFxe"
                           >
                             <button
-                              class="sc-bdacaec4-1 cgYPZt"
+                              class="sc-47b15246-1 fDOTWT"
                               data-testid="subject-picker-button"
                               title="Subject"
                             >
@@ -184,10 +184,10 @@ exports[`CurriculumTab renders 1`] = `
                             class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                           >
                             <div
-                              class="sc-fqkvVR sc-9dfc1bad-0 sc-bdacaec4-2 eMDDOo fAkCpO hPodqY"
+                              class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 eMDDOo fAkCpO evzFxe"
                             >
                               <button
-                                class="sc-bdacaec4-1 cgYPZt"
+                                class="sc-47b15246-1 fDOTWT"
                                 data-testid="phase-picker-button"
                                 title="Phase"
                               >
@@ -307,10 +307,10 @@ exports[`CurriculumTab renders 1`] = `
                       style="width: 50%;"
                     >
                       <div
-                        class="sc-fqkvVR sc-9dfc1bad-0 sc-bdacaec4-2 jEHEPk fAkCpO hPodqY"
+                        class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 jEHEPk fAkCpO evzFxe"
                       >
                         <button
-                          class="sc-bdacaec4-1 cgYPZt"
+                          class="sc-47b15246-1 fDOTWT"
                           data-testid="subject-picker-button"
                           title="Subject"
                         >
@@ -374,10 +374,10 @@ exports[`CurriculumTab renders 1`] = `
                         class="sc-fqkvVR sc-gsFSXq fxkSvJ ehZBcc"
                       >
                         <div
-                          class="sc-fqkvVR sc-9dfc1bad-0 sc-bdacaec4-2 eMDDOo fAkCpO hPodqY"
+                          class="sc-fqkvVR sc-9dfc1bad-0 sc-47b15246-2 eMDDOo fAkCpO evzFxe"
                         >
                           <button
-                            class="sc-bdacaec4-1 cgYPZt"
+                            class="sc-47b15246-1 fDOTWT"
                             data-testid="phase-picker-button"
                             title="Phase"
                           >

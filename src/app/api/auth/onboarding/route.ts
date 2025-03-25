@@ -35,8 +35,8 @@ export async function POST(req: Request) {
         isOnboarded: true,
       },
     };
-
-    await clerkClient().users.updateUserMetadata(user.id, {
+    const client = await clerkClient();
+    await client.users.updateUserMetadata(user.id, {
       publicMetadata,
       privateMetadata: {
         region,

@@ -1,0 +1,7 @@
+query getUser($userId: String) {
+  user: users(where: { id: { _eq: $userId } }) {
+    id
+    created_at
+    updated_at
+  }
+}

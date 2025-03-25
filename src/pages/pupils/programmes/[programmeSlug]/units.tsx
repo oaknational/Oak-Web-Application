@@ -6,6 +6,7 @@ import {
   isValidIconName,
   oakDefaultTheme,
 } from "@oaknational/oak-components";
+import { subjectSlugs } from "@oaknational/oak-curriculum-schema";
 
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import getPageProps from "@/node-lib/getPageProps";
@@ -18,6 +19,7 @@ import { extractBaseSlug } from "@/pages-helpers/pupil";
 import { UseBackHrefProps } from "@/components/PupilViews/PupilUnitListing/useBackHref";
 import { getSecondUnitSection } from "@/pages-helpers/pupil/units-page/units-page-helper";
 import OakError from "@/errors/OakError";
+import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 
 export type UnitsSectionData = {
   title: string | null;
@@ -38,6 +40,7 @@ export type UnitListingPageProps = {
   unitSections: UnitsSectionData[];
   subjectCategories: string[];
   programmeFields: UnitListingBrowseData[number]["programmeFields"];
+  relatedSubjects: SubjectSlugs[];
 };
 
 type PupilUnitListingPageURLParams = {
@@ -52,6 +55,7 @@ const PupilUnitListingPage = ({
   unitSections,
   subjectCategories,
   programmeFields,
+  relatedSubjects,
 }: UnitListingPageProps) => {
   return (
     <OakThemeProvider theme={oakDefaultTheme}>
@@ -69,6 +73,7 @@ const PupilUnitListingPage = ({
           backHrefSlugs={backHrefSlugs}
           subjectCategories={subjectCategories}
           programmeFields={programmeFields}
+          relatedSubjects={relatedSubjects}
         />
       </AppLayout>
     </OakThemeProvider>
@@ -201,8 +206,9 @@ export const getStaticProps: GetStaticProps<
         programmeSlug,
         baseSlug,
         tierSlug,
-        subjectSlug,
-        yearSlug,
+        tier: tierDescription,
+        subject,
+        year: yearDescription,
         phase,
         unitsByProgramme,
         breadcrumbs,
@@ -233,6 +239,18 @@ export const getStaticProps: GetStaticProps<
         examboardSlug,
       };
 
+      const relatedSubjectsSet = new Set<SubjectSlugs>();
+
+      curriculumData.forEach((unit) => {
+        if (unit.actions && unit.actions.relatedSubjectSlugs) {
+          unit.actions.relatedSubjectSlugs.forEach((subject) => {
+            if (subjectSlugs.safeParse(subject).success) {
+              relatedSubjectsSet.add(subject);
+            }
+          });
+        }
+      });
+
       const results: GetStaticPropsResult<UnitListingPageProps> = {
         props: {
           subject,
@@ -242,6 +260,7 @@ export const getStaticProps: GetStaticProps<
           subjectCategories,
           unitSections: [firstUnitSection, secondUnitSection],
           programmeFields,
+          relatedSubjects: Array.from(relatedSubjectsSet),
         },
       };
 

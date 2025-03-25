@@ -79,11 +79,13 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
   it("tracks lesson share clicks", async () => {
     const { result } = renderHook(() => useLocalStorageForDownloads());
 
-    result.current.setEmailInLocalStorage("test@test.com");
-    result.current.setTermsInLocalStorage(true);
-    result.current.setSchoolInLocalStorage({
-      schoolId: "123456-Secondary school",
-      schoolName: "Secondary school",
+    act(() => {
+      result.current.setEmailInLocalStorage("test@test.com");
+      result.current.setTermsInLocalStorage(true);
+      result.current.setSchoolInLocalStorage({
+        schoolId: "123456-Secondary school",
+        schoolName: "Secondary school",
+      });
     });
 
     render(<LessonSharePage {...props} />);
@@ -392,7 +394,7 @@ describe("pages/teachers/lessons/[lessonSlug]/share", () => {
         ogUrl: "NEXT_PUBLIC_SEO_APP_URL/",
         canonical:
           "NEXT_PUBLIC_SEO_APP_URL/teachers/programmes/maths-higher-ks4-l/units/geometry/lessons/macbeth-lesson-1",
-        robots: "index,follow",
+        robots: "noindex,follow",
       });
     });
   });
