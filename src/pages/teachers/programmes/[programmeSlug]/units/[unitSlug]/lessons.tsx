@@ -166,6 +166,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const { isSignedIn } = useUser();
   const showRiskAssessmentBanner = !!actions?.isPePractical && isSignedIn;
 
+  const unpublishedLessonCount = lessons.filter(
+    (lesson) => lesson.isUnpublished,
+  ).length;
+
+  const lessonCountHeader = unpublishedLessonCount
+    ? `${lessons.length - unpublishedLessonCount}/${lessons.length} lessons available`
+    : `Lessons (${lessons.length})`;
+
   return (
     <AppLayout
       seoProps={{
@@ -260,6 +268,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               <LessonList
                 {...curriculumData}
                 lessonCount={lessons.length}
+                lessonCountHeader={lessonCountHeader}
                 currentPageItems={currentPageItems}
                 paginationProps={paginationProps}
                 headingTag={"h2"}

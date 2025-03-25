@@ -21,6 +21,7 @@ import { UnpublishedLessonListItem } from "@/node-lib/curriculum-api-2023/shared
 
 export type LessonListProps = {
   lessonCount: number;
+  lessonCountHeader: string;
   currentPageItems:
     | Array<
         | Omit<LessonListItemProps, "unitTitle" | "index" | "onClick">
@@ -47,6 +48,7 @@ const LESSONS_PER_PAGE = 5;
 const LessonList: FC<LessonListProps> = (props) => {
   const {
     lessonCount,
+    lessonCountHeader,
     paginationProps,
     headingTag,
     currentPageItems,
@@ -65,7 +67,7 @@ const LessonList: FC<LessonListProps> = (props) => {
         $mb={["space-between-m", "space-between-s"]}
       >
         <OakHeading $font={["heading-6", "heading-5"]} tag={headingTag}>
-          {`Lessons (${lessonCount})`}
+          {lessonCountHeader}
         </OakHeading>
         {expiringBanner}
       </OakFlex>
