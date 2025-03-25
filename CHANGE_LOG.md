@@ -1,3 +1,10 @@
+# [1.718.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.717.0...v1.718.0) (2025-03-25)
+
+
+### Features
+
+* add support for further lessons on teacher subject listing page ([7f8ab4f](https://github.com/oaknational/Oak-Web-Application/commit/7f8ab4fedf952a2bb24b58cff2eb2c0a106d16ef))
+
 # [1.717.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.716.1...v1.717.0) (2025-03-25)
 
 
