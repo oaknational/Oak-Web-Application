@@ -162,7 +162,9 @@ export const transformedLessonOverviewData = (
     browseData.programmeFields.optionality ?? browseData.unitData.title;
 
   const additionalFiles = content?.downloadableFiles;
-  const hasAddFile = additionalFiles ? additionalFiles.length > 0 : false;
+  const hasAdditionalFiles = additionalFiles
+    ? additionalFiles.length > 0
+    : false;
 
   let mediaClips = null;
   try {
@@ -244,7 +246,7 @@ export const transformedLessonOverviewData = (
     lessonOutline: browseData.lessonData.lessonOutline ?? null,
     lessonMediaClips: mediaClips,
     additionalFiles:
-      hasAddFile && additionalFiles
+      hasAdditionalFiles && additionalFiles
         ? getAdditionalFiles(additionalFiles)
         : null,
   };
