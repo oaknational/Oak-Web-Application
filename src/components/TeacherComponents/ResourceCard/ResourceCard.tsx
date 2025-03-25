@@ -126,7 +126,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
             $mb="space-between-sssx"
             $textDecoration={isHovered ? "underline" : "none"}
           >
-            {label}
+            {label.length > 42 ? label.slice(0, 42) + "\u2026" : label}
           </OakP>
           <OakP $color="grey60">{subtitle}</OakP>
         </Flex>
