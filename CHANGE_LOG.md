@@ -1,3 +1,16 @@
+# [1.716.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.715.0...v1.716.0) (2025-03-25)
+
+
+### Bug Fixes
+
+* only use non_curriculum for querying ([f626f7a](https://github.com/oaknational/Oak-Web-Application/commit/f626f7af0eebf14c46b1addae2236b1932046021))
+
+
+### Features
+
+* added "non_curriculum" checks to subject phase picker ([c9c91cc](https://github.com/oaknational/Oak-Web-Application/commit/c9c91cc0dd897a6daa7a7c9ec0612b3a20b1affb))
+* added `non_curriculum` into schemas ([06f4e0a](https://github.com/oaknational/Oak-Web-Application/commit/06f4e0a03d989bd9e6c7ae1b2eeeeab510f3e6d4))
+
 # [1.715.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.714.1...v1.715.0) (2025-03-25)
 
 
