@@ -17,6 +17,7 @@ type KeyStageLinks = {
   maths: LinkConfig;
   citizenship?: LinkConfig;
   rshe: LinkConfig;
+  keyStageYears: string;
 };
 
 const generateUnitIndexLink = (programmeSlug: string, title: string) => (
@@ -39,6 +40,7 @@ const linkData: Partial<Record<KeyStageSlug, KeyStageLinks>> = {
       display: true,
     },
     rshe: { title: "RSHE (PSHE)", programmeSlug: "rshe-pshe-secondary-ks4" },
+    keyStageYears: "years 10 and 11",
   },
   ks3: {
     maths: { title: "KS3 maths", programmeSlug: "maths-secondary-ks3" },
@@ -48,11 +50,19 @@ const linkData: Partial<Record<KeyStageSlug, KeyStageLinks>> = {
       display: true,
     },
     rshe: { title: "RSHE (PSHE)", programmeSlug: "rshe-pshe-secondary-ks3" },
+    keyStageYears: "years 7, 8 and 9",
   },
   ks2: {
     maths: { title: "KS2 maths", programmeSlug: "maths-primary-ks2" },
     citizenship: { display: false },
     rshe: { title: "RSHE (PSHE)", programmeSlug: "rshe-pshe-primary-ks2" },
+    keyStageYears: "years 3, 4, 5 and 6",
+  },
+  ks1: {
+    maths: { title: "KS1 maths", programmeSlug: "maths-primary-ks1" },
+    citizenship: { display: false },
+    rshe: { title: "RSHE (PSHE)", programmeSlug: "rshe-pshe-primary-ks1" },
+    keyStageYears: "year 1 and 2",
   },
 };
 
@@ -75,9 +85,9 @@ export default function FinancialEducationDescription({
       >
         {unitListingData.keyStageTitle.toLowerCase()}
       </OakLink>{" "}
-      financial education lessons, covering years 10 and 11. Find teaching
-      resources: a slide deck, worksheet, quizzes and lesson overview which you
-      can download for free. These resources can be used to plan{" "}
+      financial education lessons, covering {keyStageLinks.keyStageYears}. Find
+      teaching resources: a slide deck, worksheet, quizzes and lesson overview
+      which you can download for free. These resources can be used to plan{" "}
       {generateUnitIndexLink(
         keyStageLinks.maths.programmeSlug!,
         keyStageLinks.maths.title!,
