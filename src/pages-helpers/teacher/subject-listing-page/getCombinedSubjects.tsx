@@ -73,6 +73,7 @@ export const getCombinedSubjects = (
               pathwayTitle: newSubjectPathway.pathwayTitle,
               isNew: true,
               actions: newSubjectPathway.actions,
+              features: newSubjectPathway.features,
             });
           } else if (legacySubjectHasPathway) {
             combinedSubjectArray.push({
@@ -86,6 +87,7 @@ export const getCombinedSubjects = (
               pathwayTitle: legacySubjectPathway.pathwayTitle,
               isNew: false,
               actions: legacySubjectPathway.actions,
+              features: legacySubjectPathway.features,
             });
           }
         });
@@ -120,6 +122,7 @@ export const getCombinedSubjects = (
               pathwayTitle: newSubjectArray[0].pathwayTitle,
               isNew: true,
               actions: newSubjectArray[0].actions,
+              features: newSubjectArray[0].features,
             });
         }
         break;
@@ -136,6 +139,7 @@ export const getCombinedSubjects = (
             pathwayTitle: legacySubjectArray[0].pathwayTitle,
             isNew: false,
             actions: legacySubjectArray[0].actions,
+            features: legacySubjectArray[0].features,
           });
     }
 
