@@ -8,11 +8,15 @@ import { getStaticPaths as getStaticPathsTemplate } from "@/pages-helpers/get-st
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { PupilViewsSubjectListing } from "@/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view";
+import { PupilSubjectListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 
-type SubjectListingPageProps = { curriculumData: PupilSubjectListingData[] };
+type SubjectListingPageProps = {
+  curriculumData: PupilSubjectListingData[];
+  subjectFeatures?: PupilSubjectListingQuery["subjectFeatures"];
+};
 
 const PupilSubjectListing = (props: SubjectListingPageProps) => {
-  const { curriculumData } = props;
+  const { curriculumData, subjectFeatures = [] } = props;
 
   if (!curriculumData[0]) {
     throw new Error("No curriculum data");
@@ -30,7 +34,10 @@ const PupilSubjectListing = (props: SubjectListingPageProps) => {
           }),
         }}
       >
-        <PupilViewsSubjectListing subjects={curriculumData} />
+        <PupilViewsSubjectListing
+          subjects={curriculumData}
+          subjectFeatures={subjectFeatures}
+        />
       </AppLayout>
     </OakThemeProvider>
   );
@@ -55,9 +62,10 @@ export const getStaticProps: GetStaticProps<
       }
       const year = context.params?.yearSlug;
 
-      const curriculumData = await curriculumApi2023.pupilSubjectListingQuery({
-        yearSlug: year,
-      });
+      const { curriculumData, subjectFeatures } =
+        await curriculumApi2023.pupilSubjectListingQuery({
+          yearSlug: year,
+        });
 
       if (!curriculumData) {
         return {
@@ -68,6 +76,7 @@ export const getStaticProps: GetStaticProps<
       const results = {
         props: {
           curriculumData,
+          subjectFeatures,
         },
       };
 

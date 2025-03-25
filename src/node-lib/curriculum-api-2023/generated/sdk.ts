@@ -51658,7 +51658,7 @@ export type PupilSubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type PupilSubjectListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_11_1_0', programme_slug?: string | null, base_slug?: string | null, year_slug?: string | null, programme_fields?: any | null, is_legacy?: boolean | null }> };
+export type PupilSubjectListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_11_1_0', programme_slug?: string | null, base_slug?: string | null, year_slug?: string | null, programme_fields?: any | null, is_legacy?: boolean | null }>, subjectFeatures: Array<{ __typename?: 'pf_subjects', slug?: string | null, features?: any | null }> };
 
 export type PupilUnitListingQueryVariables = Exact<{
   baseSlug: Scalars['String']['input'];
@@ -52210,6 +52210,12 @@ export const PupilSubjectListingDocument = gql`
     programme_fields
     is_legacy
   }
+  subjectFeatures: pf_subjects(
+    where: {features: {_neq: {}}, _state: {_eq: "published"}}
+  ) {
+    slug
+    features
+  }
 }
     `;
 export const PupilUnitListingDocument = gql`
@@ -52573,7 +52579,9 @@ export const SubjectListingDocument = gql`
     description: title
     display_order
   }
-  subjectFeatures: pf_subjects(where: {features: {_neq: {}}}) {
+  subjectFeatures: pf_subjects(
+    where: {features: {_neq: {}}, _state: {_eq: "published"}}
+  ) {
     slug
     features
   }
