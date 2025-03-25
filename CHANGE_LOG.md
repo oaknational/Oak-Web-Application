@@ -1,3 +1,15 @@
+# [1.715.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.714.1...v1.715.0) (2025-03-25)
+
+
+### Bug Fixes
+
+* stop ignoring 403 network errors, enabling video refresh for expired tokens ([698bd9d](https://github.com/oaknational/Oak-Web-Application/commit/698bd9d59679ce9c274389b91159e2070f4b86b0))
+
+
+### Features
+
+* improve signed video token refreshing through use of event listeners ([734d1b2](https://github.com/oaknational/Oak-Web-Application/commit/734d1b2bffe65e4a8e85124f4ca2d1d1f56d7c56))
+
 ## [1.714.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.714.0...v1.714.1) (2025-03-24)
 
 # [1.714.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.713.0...v1.714.0) (2025-03-24)
