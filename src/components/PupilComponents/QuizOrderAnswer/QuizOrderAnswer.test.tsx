@@ -145,8 +145,8 @@ describe(QuizOrderAnswer, () => {
         return (
           <div>
             {props.announcements &&
-              props.announcements.map((item) => {
-                return <div>{item.label}</div>;
+              props.announcements.map((item, index) => {
+                return <div key={index}>{item.label}</div>;
               })}
           </div>
         );
