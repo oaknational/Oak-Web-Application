@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 
 import UnitsTab from "./UnitsTab";
 
@@ -628,9 +628,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
       />,
     );
 
-    const yearOptions = (await queryAllByTestId(
-      "year-radio",
-    )) as HTMLInputElement[];
+    const yearOptions = queryAllByTestId("year-radio") as HTMLInputElement[];
 
     const year7Option = yearOptions.find((option) => option.value === "7");
     if (!year7Option) {
@@ -638,7 +636,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     }
 
     // Check we only have 14 units for year 7 to start with (combined science).
-    await userEvent.click(year7Option);
+    await act(() => userEvent.click(year7Option));
     let unitCards;
     await waitFor(async () => {
       unitCards = await findAllByTestId("unit-card");
@@ -940,7 +938,7 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
   });
 
   test("mobile: anchor links for year group filters match", async () => {
-    window.HTMLElement.prototype.scrollIntoView = function () {};
+    window.scrollTo = jest.fn();
     resizeWindow(390, 844);
 
     const { findAllByTestId } = render(
@@ -955,6 +953,9 @@ describe("components/pages/CurriculumInfo/tabs/UnitsTab", () => {
     const year2Button = yearFilterButtons[1];
     if (year2Button) {
       await userEvent.click(year2Button);
+
+      expect(window.scrollTo).toHaveBeenCalledTimes(1);
+
       // Selected button background colour should change
       waitFor(() => {
         expect(year2Button).toHaveStyle("background-color: rgb(34, 34, 34);");

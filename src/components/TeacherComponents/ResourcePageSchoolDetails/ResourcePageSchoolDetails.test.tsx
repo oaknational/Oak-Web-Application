@@ -29,7 +29,11 @@ describe("ResourcePageSchoolDetails", () => {
   it("Renders a checkbox", async () => {
     render(<ResourcePageSchoolDetails {...props} />);
 
-    expect(screen.getAllByRole("checkbox")).toHaveLength(1);
+    await act(async () => {
+      const checkbox = screen.getAllByRole("checkbox");
+
+      expect(checkbox).toHaveLength(1);
+    });
   });
 
   it("clears school picker inputValue if checkbox is clicked", async () => {
@@ -57,29 +61,27 @@ describe("ResourcePageSchoolDetails", () => {
       <ResourcePageSchoolDetails {...props} />,
     );
 
-    const useSchoolPickerHook = renderHook(() =>
+    const { result } = renderHook(() =>
       useSchoolPicker({ withHomeschool: true }),
     );
 
-    const checkbox = getByRole("checkbox");
-    const user = userEvent.setup();
-    await user.click(checkbox);
-    await user.tab();
-
-    expect(checkbox).toBeChecked();
+    await act(async () => {
+      const checkbox = getByRole("checkbox");
+      checkbox.click();
+      expect(checkbox).toBeChecked();
+    });
 
     const input: HTMLInputElement = screen.getByTestId("search-combobox-input");
     await userEvent.type(input, "Dorothy Bricks");
 
     expect(input).toHaveValue("Dorothy Bricks");
 
-    const { setSelectedSchool } = useSchoolPickerHook.result.current;
     act(() => {
-      setSelectedSchool("anything");
+      result.current.setSelectedSchool("anything");
     });
 
     rerender(<ResourcePageSchoolDetails {...props} />);
-
+    const checkbox = getByRole("checkbox");
     expect(checkbox).not.toBeChecked();
   });
 

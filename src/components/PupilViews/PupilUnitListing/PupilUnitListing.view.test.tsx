@@ -36,6 +36,7 @@ const unitSections: UnitsSectionData[] = [
     units: [
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-1",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 1",
@@ -45,6 +46,7 @@ const unitSections: UnitsSectionData[] = [
       ],
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-2",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 2",
@@ -71,6 +73,7 @@ const unitsWithOptionality: UnitsSectionData[] = [
     units: [
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-1",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 1",
@@ -80,6 +83,7 @@ const unitsWithOptionality: UnitsSectionData[] = [
       ],
       [
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-2",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 2",
@@ -89,6 +93,7 @@ const unitsWithOptionality: UnitsSectionData[] = [
           },
         }),
         unitBrowseDataFixture({
+          unitSlug: "unit-slug-3",
           unitData: {
             ...unitBrowseDataFixture({}).unitData,
             title: "Unit title 2",
@@ -220,5 +225,44 @@ describe("PupilViewsUnitListing", () => {
     expect(getByText("Unit title 2")).toBeInTheDocument();
     expect(getByText("Optionality Title 1")).toBeInTheDocument();
     expect(getByText("Optionality Title 2")).toBeInTheDocument();
+  });
+
+  it("does render subject description for financial education", async () => {
+    const { queryByTestId } = await renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          unitSections={unitsWithOptionality}
+          phase="secondary"
+          backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
+          programmeFields={{
+            ...programmeFields,
+            subjectSlug: "financial-education",
+          }}
+        />
+      </OakThemeProvider>,
+    );
+    const financeSubjectDescription = await queryByTestId(
+      "pupil-financial-education-description",
+    );
+    expect(financeSubjectDescription).toBeInTheDocument();
+  });
+
+  it("doesn't render subject description for computing", async () => {
+    const { queryByTestId } = await renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          unitSections={unitsWithOptionality}
+          phase="secondary"
+          backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
+          programmeFields={programmeFields}
+        />
+      </OakThemeProvider>,
+    );
+    const financeSubjectDescription = await queryByTestId(
+      "pupil-financial-education-description",
+    );
+    expect(financeSubjectDescription).not.toBeInTheDocument();
   });
 });
