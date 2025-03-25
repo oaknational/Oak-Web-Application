@@ -258,6 +258,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             })
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
+          isIncompleteUnit={unpublishedLessonCount > 0}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>

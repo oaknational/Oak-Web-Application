@@ -6,6 +6,7 @@ import {
   OakColorFilterToken,
   OakBox,
   OakInlineBanner,
+  OakP,
 } from "@oaknational/oak-components";
 
 import UnitDownloadButton, {
@@ -49,6 +50,7 @@ export type HeaderListingProps = {
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   showRiskAssessmentBanner?: boolean;
+  isIncompleteUnit?: boolean;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -70,6 +72,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     unitDownloadFileId,
     onUnitDownloadSuccess,
     showRiskAssessmentBanner,
+    isIncompleteUnit,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -100,8 +103,16 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             canDismiss
             onDismiss={() => setShowDownloadMessage(false)}
             type="neutral"
-            message="Downloads may take a few minutes on slower Wi-Fi connections."
+            message={
+              <OakFlex $flexDirection="column">
+                <OakP>
+                  Downloads may take a few minutes on slower Wi-Fi connections.
+                </OakP>
+                {isIncompleteUnit ? <OakP>This unit is incomplete</OakP> : null}
+              </OakFlex>
+            }
             $mb={"space-between-s"}
+            $width="max-content"
           />
         ) : null}
       </OakBox>
