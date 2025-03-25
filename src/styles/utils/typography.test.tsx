@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import typography, { FontVariant, FONT_VARIANTS } from "./typography";
+import type { FontVariant, TypographyProps } from "./typography";
+import typography, { FONT_VARIANTS } from "./typography";
 import { REM_DP } from "./getRemUnits";
 
-const StyledComponent = styled.div`
+const StyledComponent = styled.div<TypographyProps>`
   ${typography}
 `;
 

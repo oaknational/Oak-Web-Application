@@ -1,18 +1,24 @@
 import { render } from "@testing-library/react";
 import styled, { css } from "styled-components";
-import type { DefaultTheme } from "styled-components";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
-import theme from "../theme";
+
 import responsive from "./responsive";
 
-import type { StyledProps } from "styled-components";
-import { Interpolation } from "styled-components";
 import { OakColorName } from "../theme";
 
+// Simplified version of SizeValue from ../theme/types
+type TestSizeValue = number | number[] | string | null;
 interface TestProps {
-  $pl?: number;
-  pl?: number;
+  $pl?: TestSizeValue;
+  pl?: TestSizeValue;
+  pr?: TestSizeValue;
+  pt?: TestSizeValue;
+  pb?: TestSizeValue;
+  ml?: TestSizeValue;
+  mr?: TestSizeValue;
+  mt?: TestSizeValue;
+  mb?: TestSizeValue;
 }
 
 const StyledComponent = styled.div<TestProps>`
@@ -43,7 +49,7 @@ describe("responsive", () => {
       (props: TestProps) => props.pl,
       pxOrUndefined,
     )(props);
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<TestProps>`
       ${styles}
     `;
     const { getByTestId } = render(
@@ -134,11 +140,14 @@ describe("responsive", () => {
     ["mb", "margin-bottom", "1em", "margin-bottom: 1em;"],
   ])("should correctly handle prop %s", (prop, attr, value, expected) => {
     const props = {
-      [prop]: value,
+      [prop as keyof TestProps]: value,
     };
 
-    const actual = responsive(attr, (props: TestProps) => props[prop])(props);
+    const actual = responsive(
+      attr,
+      (props: TestProps) => props[prop as keyof TestProps],
+    )(props);
 
-    expect(stringify(actual)).toEqual(stringify(expected));
+    expect(stringify(actual)).toEqual(stringify(expected as any));
   });
 });
