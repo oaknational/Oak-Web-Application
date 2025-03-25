@@ -23,6 +23,7 @@ describe("constructSubjectsFromUnitData", () => {
         pathwaySlug: null,
         pathwayTitle: null,
         actions: {},
+        features: {},
       },
     ]);
   });
