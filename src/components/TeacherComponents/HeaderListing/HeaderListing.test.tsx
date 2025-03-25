@@ -7,6 +7,7 @@ import { headerListingProps } from "./HeaderListing.stories";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import { setUseUserReturn } from "@/__tests__/__helpers__/mockClerk";
 import { mockLoggedIn } from "@/__tests__/__helpers__/mockUser";
+import unitListingFixture from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 
 const props = headerListingProps as unknown as HeaderListingProps;
 
@@ -85,5 +86,35 @@ describe("HeaderListing", () => {
       exact: false,
     });
     expect(banner).not.toBeInTheDocument();
+  });
+  it("renders subject description for financial education", async () => {
+    renderWithTheme(
+      <HeaderListing
+        {...props}
+        subjectDescriptionUnitListingData={unitListingFixture({
+          subjectSlug: "financial-education",
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key Stage 4",
+        })}
+      />,
+    );
+    const financeSubjectDescription = await screen.getAllByTestId(
+      "teacher-financial-education-description",
+    );
+    expect(financeSubjectDescription.length).toBeGreaterThanOrEqual(1);
+  });
+  it("doesn't render subject description when there is no component for the subjectSlug (testing-not-for-publication)", async () => {
+    renderWithTheme(
+      <HeaderListing
+        {...props}
+        subjectDescriptionUnitListingData={unitListingFixture({
+          subjectSlug: "testing-not-for-publication",
+        })}
+      />,
+    );
+    const financeSubjectDescription = await screen.queryByTestId(
+      "teacher-financial-education-description",
+    );
+    expect(financeSubjectDescription).not.toBeInTheDocument();
   });
 });
