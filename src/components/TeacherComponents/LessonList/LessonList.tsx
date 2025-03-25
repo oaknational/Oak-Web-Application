@@ -17,11 +17,15 @@ import {
 } from "@/components/SharedComponents/Pagination/usePagination";
 import { SpecialistLessonListItemProps } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
+import { UnpublishedLessonListItem } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type LessonListProps = {
   lessonCount: number;
   currentPageItems:
-    | Omit<LessonListItemProps, "unitTitle" | "index" | "onClick">[]
+    | Array<
+        | Omit<LessonListItemProps, "unitTitle" | "index" | "onClick">
+        | UnpublishedLessonListItem
+      >
     | SpecialistLesson[];
   keyStageSlug?: string;
   subjectSlug: string;

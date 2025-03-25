@@ -56,10 +56,16 @@ export type LessonListingPageProps = {
  */
 function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
   const { lessons, ...rest } = unit;
-  return lessons.map((lesson) => ({
-    ...lesson,
-    ...rest,
-  }));
+  return lessons.map((lesson) => {
+    if (lesson.isUnpublished) {
+      return lesson;
+    } else {
+      return {
+        ...lesson,
+        ...rest,
+      };
+    }
+  });
 }
 
 const LessonListPage: NextPage<LessonListingPageProps> = ({
@@ -113,7 +119,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   );
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
-  const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
+  const hasNewContent = lessons.some(
+    (lesson) => !lesson.isUnpublished && lesson.lessonCohort === NEW_COHORT,
+  );
   const paginationProps = usePagination({
     totalResults: lessons.length,
     pageSize: RESULTS_PER_PAGE,

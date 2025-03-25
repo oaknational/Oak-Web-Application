@@ -270,9 +270,24 @@ export const lessonListItemSchema = z.object({
   orderInUnit: z.number().nullish(),
   lessonCohort: z.string().nullish(),
   actions: camelActionSchema.nullish(),
+  isUnpublished: z.literal(false),
 });
 
-export const lessonListSchema = z.array(lessonListItemSchema);
+export type LessonListItem = z.infer<typeof lessonListItemSchema>;
+
+export const unpublishedLessonListItemSchema = z.object({
+  lessonSlug: z.string(),
+  lessonTitle: z.string(),
+  orderInUnit: z.number().nullish(),
+  isUnpublished: z.literal(true),
+});
+
+export type UnpublishedLessonListItem = z.infer<
+  typeof unpublishedLessonListItemSchema
+>;
+export const lessonListSchema = z.array(
+  z.union([lessonListItemSchema, unpublishedLessonListItemSchema]),
+);
 
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
 
