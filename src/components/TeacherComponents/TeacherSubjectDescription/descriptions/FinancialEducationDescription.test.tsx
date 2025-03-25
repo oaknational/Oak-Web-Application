@@ -108,41 +108,15 @@ describe("FinancialEducationDescription", () => {
     );
   });
 
-  it("falls back to ks4 links when an unknown keyStageSlug is provided", () => {
+  it("falls back to nothing when an unknown keyStageSlug is provided", () => {
     const unitListingData = unitListingFixture({
-      keyStageSlug: "ks1", // not defined in linkData; should fall back to ks4
-      keyStageTitle: "Key Stage 1",
+      keyStageSlug: "early-years-foundation-stage", // not defined in linkData;
+      keyStageTitle: "Early Years Foundation Stage",
     });
 
     renderComponent(unitListingData);
 
-    // The subject-index link uses the provided keyStageSlug (ks1)
-    const subjectIndexLink = screen.getByRole("link", { name: /Key Stage 1/i });
-    expect(subjectIndexLink).toBeInTheDocument();
-    expect(subjectIndexLink).toHaveAttribute("href", "/subject-index/ks1");
-
-    // The unit index links fall back to the ks4 configuration:
-    const mathsLink = screen.getByRole("link", { name: /KS4 maths/i });
-    expect(mathsLink).toBeInTheDocument();
-    expect(mathsLink).toHaveAttribute(
-      "href",
-      "/unit-index/maths-secondary-ks4-higher",
-    );
-
-    const citizenshipLink = screen.getByRole("link", {
-      name: /^citizenship$/i,
-    });
-    expect(citizenshipLink).toBeInTheDocument();
-    expect(citizenshipLink).toHaveAttribute(
-      "href",
-      "/unit-index/citizenship-secondary-ks4-core",
-    );
-
-    const rsheLink = screen.getByRole("link", { name: /RSHE \(PSHE\)/i });
-    expect(rsheLink).toBeInTheDocument();
-    expect(rsheLink).toHaveAttribute(
-      "href",
-      "/unit-index/rshe-pshe-secondary-ks4",
-    );
+    const subjectIndexLink = screen.queryAllByRole("link");
+    expect(subjectIndexLink.length).toBe(0);
   });
 });

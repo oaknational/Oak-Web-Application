@@ -72,7 +72,11 @@ export default function FinancialEducationDescription({
   unitListingData: UnitListingData;
 }) {
   // Extract the links for the current key stage, explicitly typed as KeyStageLinks.
-  const keyStageLinks = linkData[unitListingData.keyStageSlug] || linkData.ks4!;
+  const keyStageLinks = linkData[unitListingData.keyStageSlug];
+
+  if (!keyStageLinks) {
+    return null;
+  }
 
   return (
     <OakP data-testid="teacher-financial-education-description">
