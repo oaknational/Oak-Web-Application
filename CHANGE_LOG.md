@@ -1,3 +1,20 @@
+# [1.717.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.716.1...v1.717.0) (2025-03-25)
+
+
+### Bug Fixes
+
+* allow icon property to be null in UnitsSectionData type ([4c7e351](https://github.com/oaknational/Oak-Web-Application/commit/4c7e351d0ec8304681f45003a7244aafc5215e1e))
+* update FinancialEducationDescription to handle unknown keyStageSlug gracefully ([58daffc](https://github.com/oaknational/Oak-Web-Application/commit/58daffc15e0938cfa3baceb504d33ed1a8c03f97))
+* update visibility condition for curriculum download on financial education ([8e4b548](https://github.com/oaknational/Oak-Web-Application/commit/8e4b54804c10182bf2490e97e668d20abbed0c48))
+
+
+### Features
+
+* add financial education subject descriptions for pupils ([b69f7bf](https://github.com/oaknational/Oak-Web-Application/commit/b69f7bf3cf791b1ef4fbcdeca2cbc07da3618b09))
+* add financial education subject descriptions for pupils and teachers ([9e6cdc1](https://github.com/oaknational/Oak-Web-Application/commit/9e6cdc1a07afe837f08495dd1b16f358f118ab12))
+* add key stage years to Financial Education description ([828d358](https://github.com/oaknational/Oak-Web-Application/commit/828d358fd3bc1d3a9c569ee75e155c0520665f26))
+* wrap TeacherSubjectDescription in OakBox for responsive display ([f8e0e52](https://github.com/oaknational/Oak-Web-Application/commit/f8e0e525a4256a663d52869ce3f667609e2ddbb5))
+
 ## [1.716.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.716.0...v1.716.1) (2025-03-25)
 
 
