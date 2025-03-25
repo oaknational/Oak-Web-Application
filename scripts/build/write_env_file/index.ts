@@ -8,10 +8,6 @@
  */
 
 import dotenv from "dotenv";
-
-// Does this need a custom path providing?
-dotenv.config();
-
 import { writeFileSync } from "node:fs";
 
 import {
@@ -24,6 +20,9 @@ import fetchConfig from "../fetch_config/index.js";
 import fetchSecrets from "../fetch_secrets/index.js";
 import { OakConfig } from "../fetch_config/config_types.js";
 
+dotenv.config();
+
+// eslint-disable-next-line complexity
 async function main() {
   console.log("Writing config and secrets to temporary env file");
 
@@ -152,7 +151,7 @@ async function main() {
     // Personalisation data
     PERSONALISATION_API_URL:
       process.env.PERSONALISATION_API_URL ||
-      oakConfig.oak.personalisationApiUrl,
+      oakConfig.oak.personalisationApiAuthUrl,
     PERSONALISATION_API_AUTH_KEY:
       process.env.PERSONALISATION_API_AUTH_KEY ||
       secretsFromNetwork.PERSONALISATION_API_AUTH_KEY,

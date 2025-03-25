@@ -60,7 +60,9 @@
     "build-storybook": "storybook build"
   },
   "overrides": {
-    "@testing-library/dom": "$@testing-library/dom",
+    "@testing-library/dom": {
+      "dom-accessibility-api": "^0.6.0"
+    },
     "puppeteer": "$puppeteer",
     "storybook-addon-next-router": {
       "next": "$next"
@@ -210,6 +212,7 @@
     "chalk": "^5.4.1",
     "chromedriver": "^130.0.1",
     "copy-webpack-plugin": "^13.0.0",
+    "dom-accessibility-api": "^0.6.0",
     "dotenv": "^16.3.1",
     "esbuild": "^0.19.2",
     "escape-html": "^1.0.3",
