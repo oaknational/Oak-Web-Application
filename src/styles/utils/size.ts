@@ -1,7 +1,6 @@
 import { css } from "styled-components";
 
 import type { SizeValue, SizeValues } from "../theme/types";
-import { isSizeValue } from "../theme/types";
 
 import responsive from "./responsive";
 import { getRemUnits } from "./getRemUnits";
