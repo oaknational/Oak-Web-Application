@@ -5,15 +5,16 @@ import {
   GetStaticPropsResult,
   GetStaticPathsResult,
 } from "next";
+import { useUser } from "@clerk/nextjs";
+
 import {
   OakGrid,
   OakGridArea,
   OakThemeProvider,
   oakDefaultTheme,
   OakMaxWidth,
+  OakIncompleteUnitsBanner,
 } from "@oaknational/oak-components";
-import { useUser } from "@clerk/nextjs";
-
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import LessonList from "@/components/TeacherComponents/LessonList";
@@ -266,6 +267,12 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               $colSpan={[12, 9]}
               $mt={["space-between-s", "space-between-m2"]}
             >
+              {unpublishedLessonCount > 0 && (
+                <OakIncompleteUnitsBanner
+                  onClick={(email) => console.log("diego email", email)}
+                  formError={false}
+                />
+              )}
               <LessonList
                 {...curriculumData}
                 lessonCount={lessons.length}
