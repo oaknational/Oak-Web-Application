@@ -7,6 +7,25 @@ import { BadgeConfig } from "@/components/GenericPagesComponents/CurriculumTabBa
 import { CheckboxConfig } from "@/components/SharedComponents/Checkbox";
 import { SelectListBoxConfig } from "@/components/SharedComponents/ListBox/ListBox";
 import { VideoStyleConfig } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
+import { ResponsiveValues } from "../utils/responsive";
+
+const sizePropertyStringValues = [
+  "auto",
+  "none",
+  "max-content",
+  "min-content",
+  "fit-content",
+] as const;
+export type SizePropertyString = (typeof sizePropertyStringValues)[number];
+export function isSizePropertyString(
+  value: unknown,
+): value is SizePropertyString {
+  if (typeof value === "string") {
+    const allowedValues: readonly string[] = sizePropertyStringValues;
+    return allowedValues.includes(value);
+  }
+  return false;
+}
 
 /**
  * Adds a finite list of pixel values which we're allowed to use throughout the
@@ -18,123 +37,129 @@ import { VideoStyleConfig } from "@/components/SharedComponents/VideoPlayer/Vide
  * @todo use negative number type
  * @see https://stackoverflow.com/questions/21224922/is-there-a-way-to-represent-a-non-negative-integer-in-typescript-so-that-the-com
  */
-export type PixelSpacing =
-  | 0
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 12
-  | 14
-  | 16
-  | 18
-  | 20
-  | 22
-  | 24
-  | 26
-  | 28
-  | 30
-  | 32
-  | 34
-  | 36
-  | 40
-  | 44
-  | 46
-  | 48
-  | 50
-  | 52
-  | 56
-  | 58
-  | 60
-  | 64
-  | 66
-  | 72
-  | 80
-  | 92
-  | 96
-  | 110
-  | 120
-  | 130
-  | 140
-  | 150
-  | 160
-  | 166
-  | 172
-  | 180
-  | 195
-  | 200
-  | 220
-  | 240
-  | 270
-  | 300
-  | 320
-  | 340
-  | 350
-  | 360
-  | 380
-  | 400
-  | 420
-  | 450
-  | 480
-  | 510
-  | 524
-  | 580
-  | 600
-  | 640
-  | 720
-  | 734
-  | 740
-  | 812
-  | 840
-  | 870
-  | 900
-  | 960
-  | 1280
-  | 1600
-  | 3200
-  | 9600;
-export type NullablePixelSpacing = PixelSpacing | null;
-export type NegativePixelSpacing =
-  | -72
-  | -54
-  | -36
-  | -32
-  | -28
-  | -24
-  | -20
-  | -16
-  | -12
-  | -8
-  | -4
-  | -2;
-export type PercentSpacing =
-  | "100%"
-  | "99%"
-  | "95%"
-  | "90%"
-  | "85%"
-  | "80%"
-  | "70%"
-  | "65%"
-  | "60%"
-  | "55%"
-  | "50%"
-  | "40%"
-  | "30%"
-  | "33%"
-  | "25%"
-  | "20%"
-  | "15%"
-  | "10%"
-  | "5%"
+const pixelSpacingValues = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32,
+  34, 36, 40, 44, 46, 48, 50, 52, 56, 58, 60, 64, 66, 72, 80, 92, 96, 110, 120,
+  130, 140, 150, 160, 166, 172, 180, 195, 200, 220, 240, 270, 300, 320, 340,
+  350, 360, 380, 400, 420, 450, 480, 510, 524, 580, 600, 640, 720, 734, 740,
+  812, 840, 870, 900, 960, 1280, 1600, 3200, 9600,
+] as const;
+export type PixelSpacing = (typeof pixelSpacingValues)[number];
+export function isPixelSpacing(value: unknown): value is PixelSpacing {
+  if (typeof value === "number") {
+    const allowedValues: readonly number[] = pixelSpacingValues;
+    return allowedValues.includes(value);
+  }
+  return false;
+}
+
+const nullablePixelSpacingValues = [...pixelSpacingValues, null] as const;
+export type NullablePixelSpacing = (typeof nullablePixelSpacingValues)[number];
+export function isNullablePixelSpacing(
+  value: unknown,
+): value is NullablePixelSpacing {
+  if (value === null) {
+    return true;
+  }
+  if (typeof value === "number") {
+    const allowedValues: readonly number[] = pixelSpacingValues;
+    return isPixelSpacing(value);
+  }
+  return false;
+}
+
+const negativePixelSpacingValues = [
+  -72, -54, -36, -32, -28, -24, -20, -16, -12, -8, -4, -2,
+] as const;
+export type NegativePixelSpacing = (typeof negativePixelSpacingValues)[number];
+export function isNegativePixelSpacing(
+  value: unknown,
+): value is NegativePixelSpacing {
+  if (typeof value === "number") {
+    const allowedValues: readonly number[] = negativePixelSpacingValues;
+    return allowedValues.includes(value);
+  }
+  return false;
+}
+
+const percentSpacingValues = [
+  "100%",
+  "99%",
+  "95%",
+  "90%",
+  "85%",
+  "80%",
+  "70%",
+  "65%",
+  "60%",
+  "55%",
+  "50%",
+  "40%",
+  "30%",
+  "33%",
+  "25%",
+  "20%",
+  "15%",
+  "10%",
+  "5%",
   // vw units sometimes needed to fix edge cases
-  | "28vw";
+  "28vw",
+] as const;
+export type PercentSpacing = (typeof percentSpacingValues)[number];
+export function isPercentSpacing(value: unknown): value is PercentSpacing {
+  if (typeof value === "string") {
+    const allowedValues: readonly string[] = percentSpacingValues;
+    return allowedValues.includes(value);
+  }
+  return false;
+}
+
+const calcValues = percentSpacingValues.flatMap((percentSpacing) => {
+  return nullablePixelSpacingValues.map((nullablePixelSpacing) => {
+    return `calc(${percentSpacing} - ${nullablePixelSpacing}px)` as const;
+  });
+});
+export type CalcValues = (typeof calcValues)[number];
+export function isCalcValues(value: unknown): value is CalcValues {
+  if (typeof value === "string") {
+    const allowedValues: readonly string[] = calcValues;
+    return allowedValues.includes(value);
+  }
+  return false;
+}
+
+export type SizeValue =
+  | SizePropertyString
+  | PercentSpacing
+  | NullablePixelSpacing
+  | CalcValues;
+export function isSizeValue(value: unknown): value is SizeValue {
+  if (isSizePropertyString(value)) {
+    return true;
+  }
+  if (isPercentSpacing(value)) {
+    return true;
+  }
+  if (isNullablePixelSpacing(value)) {
+    return true;
+  }
+  if (isCalcValues(value)) {
+    return true;
+  }
+  console.warn(`Invalid size value: ${value}`);
+  return false;
+}
+export type SizeValues = ResponsiveValues<SizeValue>;
+export function isSizeValues(value: unknown): value is SizeValues {
+  if (isSizeValue(value)) {
+    return true;
+  }
+  if (Array.isArray(value)) {
+    return value.every(isSizeValue);
+  }
+  return false;
+}
+
 export type Unset = "unset";
 
 /**
@@ -294,7 +319,7 @@ export interface OakTheme {
   badge: BadgeConfig;
   menu?: {
     background: OakColorName;
-    width: number;
+    width: SizeValue;
   };
   selectListBox?: {
     states: {

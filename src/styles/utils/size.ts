@@ -1,23 +1,10 @@
 import { css } from "styled-components";
 
-import { NullablePixelSpacing, PercentSpacing } from "../theme/types";
+import type { SizeValue, SizeValues } from "../theme/types";
+import { isSizeValue } from "../theme/types";
 
-import responsive, { ResponsiveValues } from "./responsive";
+import responsive from "./responsive";
 import { getRemUnits } from "./getRemUnits";
-
-type CalcValues = `calc(${PercentSpacing} - ${NullablePixelSpacing}px)`;
-
-type SizeValue =
-  | PercentSpacing
-  | "auto"
-  | "none"
-  | NullablePixelSpacing
-  | "max-content"
-  | CalcValues
-  | "min-content"
-  | "fit-content";
-
-export type SizeValues = ResponsiveValues<SizeValue>;
 
 const parse = (value?: SizeValue) => {
   return getRemUnits(value);
