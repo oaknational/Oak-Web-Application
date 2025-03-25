@@ -6,7 +6,7 @@ import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
 import CurricVisualiserFiltersMobile from "../CurricVisualiserFiltersMobile";
 import { CurricVisualiserFiltersDesktop } from "../CurricVisualiserFiltersDesktop";
 
-import { CurriculumFilters, Thread, Unit } from "@/utils/curriculum/types";
+import { CurriculumFilters, Unit } from "@/utils/curriculum/types";
 import ScreenReaderOnly from "@/components/SharedComponents/ScreenReaderOnly";
 import UnitTabBanner from "@/components/CurriculumComponents/UnitTabBanner";
 import {
@@ -14,9 +14,6 @@ import {
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
-import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
-import useAnalytics from "@/context/Analytics/useAnalytics";
-import { PhaseValueType } from "@/browser-lib/avo/Avo";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
@@ -35,8 +32,6 @@ export default function UnitsTab({
 }: UnitsTabProps) {
   // Initialize constants
   const isMobile = useMediaQuery("mobile");
-  const { track } = useAnalytics();
-  const { analyticsUseCase } = useAnalyticsPageProps();
   const { yearData, threadOptions } = formattedData;
   const { ks4OptionSlug } = trackingData;
   const [unitData, setUnitData] = useState<Unit | null>(null);
@@ -51,39 +46,6 @@ export default function UnitsTab({
     filters,
     filters.threads,
   );
-
-  function trackSelectThread(thread: Thread): void {
-    if (trackingData) {
-      const { subjectTitle, subjectSlug, phaseSlug } = trackingData;
-      track.programmeThreadHighlighted({
-        subjectTitle: subjectTitle,
-        subjectSlug: subjectSlug,
-        threadTitle: thread.title,
-        threadSlug: thread.slug,
-        platform: "owa",
-        product: "curriculum visualiser",
-        componentType: "unit_sequence_tab",
-        eventVersion: "2.0.0",
-        engagementIntent: "refine",
-        analyticsUseCase: analyticsUseCase,
-        phase: phaseSlug as PhaseValueType,
-        order: thread.order, // int (min 0)
-      });
-    }
-  }
-
-  function onChangeFiltersLocal(newFilters: CurriculumFilters): void {
-    const addedThreads = newFilters.threads.filter(
-      (t) => !filters.threads.includes(t),
-    );
-    for (const threadSlug of addedThreads) {
-      const thread = threadOptions.find((t) => t.slug === threadSlug);
-      if (thread) {
-        trackSelectThread(thread);
-      }
-    }
-    onChangeFilters(newFilters);
-  }
 
   const setVisibleMobileYearRefID = (refId: string) => {
     setMobileSelectedYear(refId);
@@ -116,7 +78,7 @@ export default function UnitsTab({
             selectedYear={mobileSelectedYear}
             onSelectYear={setMobileSelectedYear}
             filters={filters}
-            onChangeFilters={onChangeFiltersLocal}
+            onChangeFilters={onChangeFilters}
             data={formattedData}
             trackingData={trackingData}
             onOpenModal={() => {}}
@@ -127,7 +89,7 @@ export default function UnitsTab({
             isMobile ? null : (
               <CurricVisualiserFiltersDesktop
                 filters={filters}
-                onChangeFilters={onChangeFiltersLocal}
+                onChangeFilters={onChangeFilters}
                 data={formattedData}
                 trackingData={trackingData}
               />
