@@ -11,9 +11,14 @@ jest.mock("@/errors/OakError", () => {
   return jest.fn();
 });
 
-// Mock the reportError function if it's imported
 const mockReportError = jest.fn();
-global.reportError = mockReportError;
+jest.mock("@/common-lib/error-reporter", () => ({
+  __esModule: true,
+  default:
+    () =>
+    (...args: []) =>
+      mockReportError(...args),
+}));
 
 describe("getWorksheetInfo", () => {
   beforeEach(() => {
