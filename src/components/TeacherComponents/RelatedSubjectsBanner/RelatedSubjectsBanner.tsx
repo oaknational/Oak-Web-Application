@@ -16,7 +16,10 @@ export interface BannerProps {
 }
 
 const OptionalSubjectDescriptions: OptionalSubjectDescriptionsType = {
-  "financial-education": ({ keyStageSlug, isDesktop }: BannerProps) => (
+  "financial-education": ({
+    keyStageSlug,
+    isDesktop,
+  }: Readonly<BannerProps>) => (
     <FinancialEducationBanner
       keyStageSlug={keyStageSlug}
       isDesktop={isDesktop}

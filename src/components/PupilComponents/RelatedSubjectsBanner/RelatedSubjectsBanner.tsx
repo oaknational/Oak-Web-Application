@@ -6,7 +6,7 @@ import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjec
 type ProgrammeFields = UnitListingBrowseData[number]["programmeFields"];
 
 type OptionalSubjectDescriptionsType = {
-  [key in SubjectSlugs]?: (args: BannerProps) => JSX.Element;
+  [key in SubjectSlugs]?: (args: Readonly<BannerProps>) => JSX.Element;
 };
 
 export interface BannerProps {

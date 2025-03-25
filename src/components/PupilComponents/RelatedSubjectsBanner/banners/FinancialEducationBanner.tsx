@@ -10,7 +10,7 @@ import { BannerProps } from "../RelatedSubjectsBanner";
 
 import { resolveOakHref } from "@/common-lib/urls";
 
-function FinancialEducationBanner({ programmeFields }: BannerProps) {
+function FinancialEducationBanner({ programmeFields }: Readonly<BannerProps>) {
   const programmeSlug = `financial-education-secondary-${programmeFields.yearSlug}`;
 
   const href = resolveOakHref({
