@@ -183,8 +183,8 @@ function buildOptions({
               <w:rtl w:val="0" />
             </w:rPr>
             <w:t xml:space="preserve">${cdata(
-                unitOptions.length,
-              )} unit option${cdata(unitOptions.length > 1 ? "s" : "")}</w:t>
+              unitOptions.length,
+            )} unit option${cdata(unitOptions.length > 1 ? "s" : "")}</w:t>
           </w:r>
         </w:p>
       </XML_FRAGMENT>
@@ -200,13 +200,17 @@ function buildEmpty(columnIndex: number) {
         <w:tcW w:type="pct" w:w="33.333333333333336%" />
         <w:tcBorders>
           <w:top w:val="single" w:color="FFFFFF" w:sz="48" />
-          ${columnIndex > 0
-            ? `<w:left w:val="single" w:color="FFFFFF" w:sz="48"/>`
-            : ""}
+          ${
+            columnIndex > 0
+              ? `<w:left w:val="single" w:color="FFFFFF" w:sz="48"/>`
+              : ""
+          }
           <w:bottom w:val="single" w:color="FFFFFF" w:sz="48" />
-          ${columnIndex < 2
-            ? `<w:right w:val="single" w:color="FFFFFF" w:sz="48"/>`
-            : ""}
+          ${
+            columnIndex < 2
+              ? `<w:right w:val="single" w:color="FFFFFF" w:sz="48"/>`
+              : ""
+          }
         </w:tcBorders>
         <w:shd w:val="solid" w:color="FFFFFF" w:fill="FFFFFF" />
         <w:tcMar>
@@ -238,13 +242,17 @@ function buildYearColumn({
         <w:tcW w:type="pct" w:w="33.333333333333336%" />
         <w:tcBorders>
           <w:top w:val="single" w:color="FFFFFF" w:sz="48" />
-          ${columnIndex > 0
-            ? `<w:left w:val="single" w:color="FFFFFF" w:sz="48"/>`
-            : ""}
+          ${
+            columnIndex > 0
+              ? `<w:left w:val="single" w:color="FFFFFF" w:sz="48"/>`
+              : ""
+          }
           <w:bottom w:val="single" w:color="FFFFFF" w:sz="48" />
-          ${columnIndex < 2
-            ? `<w:right w:val="single" w:color="FFFFFF" w:sz="48"/>`
-            : ""}
+          ${
+            columnIndex < 2
+              ? `<w:right w:val="single" w:color="FFFFFF" w:sz="48"/>`
+              : ""
+          }
         </w:tcBorders>
         <w:shd w:val="solid" w:color="E4F8E0" w:fill="E4F8E0" />
         <w:tcMar>
@@ -514,9 +522,10 @@ async function buildYear(
 
   const xml = safeXml`
     <XML_FRAGMENT>
-      ${!subjectTierPathwayTitle
-        ? ""
-        : safeXml`
+      ${
+        !subjectTierPathwayTitle
+          ? ""
+          : safeXml`
             <w:p>
               <w:r>
                 <w:rPr>
@@ -531,11 +540,12 @@ async function buildYear(
                   <w:szCs w:val="28" />
                 </w:rPr>
                 <w:t xml:space="preserve">${cdata(
-                    subjectTierPathwayTitle,
-                  )}</w:t>
+                  subjectTierPathwayTitle,
+                )}</w:t>
               </w:r>
             </w:p>
-          `}
+          `
+      }
       <w:p>
         <w:pPr>
           <w:pStyle w:val="Heading2" />
@@ -555,9 +565,10 @@ async function buildYear(
           `,
         )}
       </w:p>
-      ${!isSwimming
-        ? ""
-        : safeXml`
+      ${
+        !isSwimming
+          ? ""
+          : safeXml`
             <XML_FRAGMENT>
               <w:p>
                 <w:r>
@@ -575,7 +586,8 @@ async function buildYear(
               </w:p>
               <w:p />
             </XML_FRAGMENT>
-          `}
+          `
+      }
       <w:p>
         ${wrapInLinkTo(
           links.interactiveSequence!,

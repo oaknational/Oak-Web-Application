@@ -166,7 +166,7 @@ npm run test:ci
 
 - [ ] All 567 test suites pass
 - [ ] All 3177 tests pass
-- [ ] All 35 snapshots pass
+- [x] All 35 snapshots pass
 - [ ] No regression in test coverage (if measured)
 - [ ] Test run completes in a reasonable time (similar to or better than 103s seen in original run)
 
