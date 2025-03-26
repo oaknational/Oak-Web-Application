@@ -68,6 +68,8 @@ const lessonDownloadsQuery =
       downloadable_files,
     } = downloadsAssetData.parse(download_assets[0]);
 
+    // OWA referes to downloadable_files field in db as additional_files
+    // these are additional files that can be downloads for some lessons
     const additionalFiles: LessonAdditionalFilesListSchema = downloadable_files
       ? downloadable_files.map((file) => {
           return {

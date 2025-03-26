@@ -161,6 +161,8 @@ export const transformedLessonOverviewData = (
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
 
+  // OWA referes to downloadable_files field in db as additional_files
+  // these are additional files that can be downloads for some lessons
   const additionalFiles = content?.downloadableFiles;
   const hasAdditionalFiles = additionalFiles
     ? additionalFiles.length > 0

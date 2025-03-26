@@ -87,7 +87,6 @@ export const getStaticProps: GetStaticProps<
           },
         );
 
-      console.log(curriculumData);
       if (!curriculumData) {
         return {
           notFound: true,

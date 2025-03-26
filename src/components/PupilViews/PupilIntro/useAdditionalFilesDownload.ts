@@ -27,7 +27,6 @@ export function useAdditionalFilesDownload(
     }
     setIsAdditionalFilesDownloading(true);
 
-    console.log("additionalFilesAssetIds", additionalFilesAssetIds);
     try {
       await downloadLessonResources({
         lessonSlug,
