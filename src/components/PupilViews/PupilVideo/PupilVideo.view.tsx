@@ -20,7 +20,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { useAdditionalFilesDownload } from "../PupilIntro/useAdditionalFilesDownload";
-import { additionalFileListItem, additionalFileSingle } from "../PupilIntro";
+import { additionalFileListItem } from "../PupilIntro";
 
 import {
   VideoResult,
@@ -36,7 +36,7 @@ import { useGetVideoTrackingData } from "@/hooks/useGetVideoTrackingData";
 import { getPupilPathwayData } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import {
   LessonBrowseData,
-  LessonContent,
+  AdditionalFiles,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 type PupilViewsVideoProps = {
@@ -47,7 +47,8 @@ type PupilViewsVideoProps = {
   isLegacy: boolean;
   browseData: LessonBrowseData;
   hasAdditionalFiles: boolean;
-} & Pick<LessonContent, "additionalFiles">;
+  additionalFiles: AdditionalFiles["downloadableFiles"];
+};
 
 export const PupilViewsVideo = ({
   lessonTitle,
@@ -69,8 +70,11 @@ export const PupilViewsVideo = ({
     updateAdditionalFilesDownloaded,
   } = useLessonEngineContext();
   const getSectionLinkProps = useGetSectionLinkProps();
+  const additionalFilesAssetIds = additionalFiles
+    ? additionalFiles.map((file) => file.assetId)
+    : [];
   const { startAdditionalFilesDownload, isAdditionalFilesDownloading } =
-    useAdditionalFilesDownload(browseData.lessonSlug);
+    useAdditionalFilesDownload(browseData.lessonSlug, additionalFilesAssetIds);
   const { track } = usePupilAnalytics();
   const { getVideoTrackingData } = useGetVideoTrackingData();
   const { trackSectionStarted } = useTrackSectionStarted();
@@ -236,41 +240,30 @@ export const PupilViewsVideo = ({
             $width={"100%"}
           />
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-            {hasAdditionalFiles && additionalFiles?.[0]?.files[0] && (
+            {hasAdditionalFiles && additionalFiles && (
               <OakLessonInfoCard>
                 <OakFlex $gap={"space-between-s"}>
                   <OakCardHeader iconName="additional-material" tag="h1">
-                    Files you will need for this lesson
+                    {`File${additionalFiles.length > 1 ? "s" : ""} you will need for this lesson`}
                   </OakCardHeader>
                   <OakInfo
                     hint={"Download these files to use in the lesson."}
-                    id={"quiz-video-aditional-files"}
+                    id={"quiz-video-additional-files"}
                     tooltipPosition={"top-right"}
                   />
                 </OakFlex>
 
-                {additionalFiles[0].files.length === 1 ? (
-                  additionalFileSingle(additionalFiles[0].files[0])
-                ) : (
-                  <OakUL
-                    $display={"flex"}
-                    $flexDirection={"row"}
-                    $gap={"space-between-l"}
-                    $flexWrap={"wrap"}
-                  >
-                    {additionalFiles[0].files.map(
-                      (
-                        file: {
-                          title: string;
-                          fileObject: { bytes: number; format: string };
-                        },
-                        index: number,
-                      ) => {
-                        return additionalFileListItem(file, index);
-                      },
-                    )}
-                  </OakUL>
-                )}
+                <OakUL
+                  $display={"flex"}
+                  $flexDirection={"column"}
+                  $gap={"space-between-s"}
+                  $reset
+                >
+                  {additionalFiles.map((file, index) =>
+                    additionalFileListItem(file, index),
+                  )}
+                </OakUL>
+
                 <OakPrimaryInvertedButton
                   onClick={handleAdditionalFilesDownloadClicked}
                   isLoading={isAdditionalFilesDownloading}
@@ -280,7 +273,7 @@ export const PupilViewsVideo = ({
                   $pl={"inner-padding-none"}
                   $pr={"inner-padding-none"}
                 >
-                  {additionalFiles[0].files.length === 1
+                  {additionalFiles.length === 1
                     ? "Download file"
                     : "Download files"}
                 </OakPrimaryInvertedButton>

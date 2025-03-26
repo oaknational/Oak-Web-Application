@@ -58,6 +58,26 @@ export const allResources: LessonDownloadsPageData["downloads"] = [
   },
 ];
 
+export const additionalFilesResources: LessonDownloadsPageData["additionalFiles"] =
+  [
+    {
+      type: "additional-files",
+      exists: true,
+      label: "some file",
+      ext: "PY",
+      assetId: 123,
+      size: 135657,
+    },
+    {
+      type: "additional-files",
+      exists: true,
+      label: "some other file",
+      ext: "PNG",
+      assetId: 456,
+      size: 46765645,
+    },
+  ];
+
 export const noSlideDeck: LessonDownloadsPageData["downloads"] = [
   {
     exists: true,

@@ -22,6 +22,7 @@ import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { InputMaybe } from "@/node-lib/sanity-graphql/generated/sdk";
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { mediaClipsRecordCamelSchema } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
+import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 
 export const getDownloadsArray = (content: {
   hasSlideDeckAssetObject: boolean;
@@ -133,32 +134,20 @@ const getPathways = (res: LessonOverviewQuery): LessonPathway[] => {
   return pathways;
 };
 
-const bytesToMegabytes = (bytes: number): string => {
-  const bytesInOneMegabyte = 1024 * 1024;
-  const megabytes = bytes / bytesInOneMegabyte;
-  return megabytes.toFixed(1);
-};
-
-const getAdditionalFiles = (
-  content: LessonOverviewContent["additionalFiles"],
+export const getAdditionalFiles = (
+  additionalFiles: LessonOverviewContent["downloadableFiles"],
 ): string[] | null => {
-  if (!content || !content[0]) {
-    return null;
+  if (!additionalFiles) {
+    return [];
   }
-  return content[0]?.files.map(
-    (af: {
-      title: string;
-      fileObject: {
-        format: string;
-        bytes: number;
-      };
-    }) => {
-      const name = af.title;
-      const type = af.fileObject.format;
-      const size = af.fileObject.bytes;
-      return `${name} ${bytesToMegabytes(size)} MB (${type.toUpperCase()})`;
-    },
-  );
+
+  return additionalFiles.map((af) => {
+    const name = af.mediaObject.displayName;
+    const type = af.mediaObject.url.split(".").pop() ?? "";
+    const size = af.mediaObject.bytes;
+    const sizeString = convertBytesToMegabytes(size);
+    return `${name} ${sizeString} (${type.toUpperCase()})`;
+  });
 };
 
 export const transformedLessonOverviewData = (
@@ -171,7 +160,13 @@ export const transformedLessonOverviewData = (
   const exitQuiz = lessonOverviewQuizData.parse(content.exitQuiz);
   const unitTitle =
     browseData.programmeFields.optionality ?? browseData.unitData.title;
-  const hasAddFile = content.additionalFiles;
+
+  // OWA referes to downloadable_files field in db as additional_files
+  // these are additional files that can be downloads for some lessons
+  const additionalFiles = content?.downloadableFiles;
+  const hasAdditionalFiles = additionalFiles
+    ? additionalFiles.length > 0
+    : false;
 
   let mediaClips = null;
   try {
@@ -252,9 +247,10 @@ export const transformedLessonOverviewData = (
     hasMediaClips: Boolean(browseData.lessonData.mediaClips),
     lessonOutline: browseData.lessonData.lessonOutline ?? null,
     lessonMediaClips: mediaClips,
-    additionalFiles: hasAddFile
-      ? getAdditionalFiles(content.additionalFiles)
-      : null,
+    additionalFiles:
+      hasAdditionalFiles && additionalFiles
+        ? getAdditionalFiles(additionalFiles)
+        : null,
   };
 };
 
@@ -336,6 +332,7 @@ const lessonOverviewQuery =
     const content = keysToCamelCase({
       ...contentSnake,
     }) as LessonOverviewContent;
+
     return lessonOverviewSchema.parse(
       transformedLessonOverviewData(browseData, content, pathways),
     );

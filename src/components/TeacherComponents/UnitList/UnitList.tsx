@@ -248,7 +248,8 @@ const UnitList: FC<UnitListProps> = (props) => {
   };
 
   //TODO: Temporary measure until curriculum downloads are ready for RSHE
-  const hideNewCurriculumDownloadButton = subjectSlug === "rshe-pshe";
+  const hideNewCurriculumDownloadButton =
+    subjectSlug === "rshe-pshe" || subjectSlug === "financial-education";
 
   const NewUnits = ({ category }: { category?: string }) =>
     newPageItems.length && phaseSlug ? (

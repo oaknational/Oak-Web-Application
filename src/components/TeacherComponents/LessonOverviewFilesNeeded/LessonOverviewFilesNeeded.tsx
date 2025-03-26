@@ -3,8 +3,10 @@ import {
   OakBox,
   OakFlex,
   OakIcon,
+  OakLI,
   OakP,
   OakTertiaryButton,
+  OakUL,
 } from "@oaknational/oak-components";
 
 import BrushBorders from "@/components/SharedComponents/SpriteSheet/BrushSvgs/BrushBorders";
@@ -37,13 +39,20 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
           </OakP>
         </OakFlex>
         <OakBox>
-          {additionalFiles.map((file, index) => {
-            return <OakP key={`${file}-${index}`}>{file}</OakP>;
-          })}
+          <OakUL
+            $display={"flex"}
+            $flexDirection={"column"}
+            $gap={"all-spacing-1"}
+            $reset
+          >
+            {additionalFiles.map((file, index) => {
+              return <OakLI key={`${file}-${index}`}>{file}</OakLI>;
+            })}
+          </OakUL>
         </OakBox>
         <OakP>
           {`Download ${isPlural ? "these files" : "this file"} to use in the
-          lesson`}
+          lesson.`}
         </OakP>
         <OakTertiaryButton
           element="a"
@@ -55,11 +64,17 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
                   programmeSlug: programmeSlug,
                   unitSlug: unitSlug,
                   downloads: "downloads",
+                  query: {
+                    preselected: "additional files",
+                  },
                 })
               : resolveOakHref({
                   page: "lesson-downloads-canonical",
                   lessonSlug: lessonSlug,
                   downloads: "downloads",
+                  query: {
+                    preselected: "additional files",
+                  },
                 })
           }
           isTrailingIcon

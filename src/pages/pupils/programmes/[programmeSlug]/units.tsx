@@ -24,7 +24,7 @@ import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjec
 export type UnitsSectionData = {
   title: string | null;
   phase: "primary" | "secondary";
-  icon?: OakIconProps["iconName"];
+  icon?: OakIconProps["iconName"] | null;
   units: UnitListingBrowseData[number][][];
   breadcrumbs: string[];
   labels?: { year: string; subject: string; tier?: string };
@@ -221,7 +221,7 @@ export const getStaticProps: GetStaticProps<
       const firstUnitSection: UnitsSectionData = {
         units: optionalityUnits,
         phase,
-        icon: isValidIconName(iconSlug) ? iconSlug : undefined,
+        icon: isValidIconName(iconSlug) ? iconSlug : null,
         breadcrumbs,
         counterText:
           secondSectionLength > 0 && isLegacy
