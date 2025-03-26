@@ -258,8 +258,16 @@ export const PupilViewsVideo = ({
                     $gap={"space-between-l"}
                     $flexWrap={"wrap"}
                   >
-                    {additionalFiles[0].files.map((file, index) =>
-                      additionalFileListItem(file, index),
+                    {additionalFiles[0].files.map(
+                      (
+                        file: {
+                          title: string;
+                          fileObject: { bytes: number; format: string };
+                        },
+                        index: number,
+                      ) => {
+                        return additionalFileListItem(file, index);
+                      },
                     )}
                   </OakUL>
                 )}

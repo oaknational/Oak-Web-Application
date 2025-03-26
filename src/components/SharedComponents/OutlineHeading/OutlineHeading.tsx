@@ -45,10 +45,4 @@ const OutlineHeading = styled(HeadingTagComponent)<
   ${color}
 `;
 
-// Apply the pa11y-ignore class when rendering
-export default (
-  props: OutlineHeadingProps & {
-    $fontSize: OutlineSizeResponsive;
-    $lightShadow?: boolean | null;
-  },
-) => <OutlineHeading className="pa11y-ignore" {...props} />;
+export default OutlineHeading;

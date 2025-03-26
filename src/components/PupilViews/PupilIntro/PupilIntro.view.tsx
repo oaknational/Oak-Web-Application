@@ -44,6 +44,20 @@ export type PupilViewsIntroProps = LessonContent & {
   worksheetInfo: WorksheetInfo | null;
 };
 
+// Types for additional files that are not part of official API but needed
+// for this component. These will be properly added to the API in a separate task.
+export interface AdditionalFile {
+  title: string;
+  fileObject: {
+    bytes: number;
+    format: string;
+  };
+}
+
+export interface AdditionalFilesCollection {
+  files: AdditionalFile[];
+}
+
 export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   const {
     contentGuidance,

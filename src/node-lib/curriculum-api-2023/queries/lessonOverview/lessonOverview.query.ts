@@ -145,12 +145,20 @@ const getAdditionalFiles = (
   if (!content || !content[0]) {
     return null;
   }
-  return content[0]?.files.map((af) => {
-    const name = af.title;
-    const type = af.fileObject.format;
-    const size = af.fileObject.bytes;
-    return `${name} ${bytesToMegabytes(size)} MB (${type.toUpperCase()})`;
-  });
+  return content[0]?.files.map(
+    (af: {
+      title: string;
+      fileObject: {
+        format: string;
+        bytes: number;
+      };
+    }) => {
+      const name = af.title;
+      const type = af.fileObject.format;
+      const size = af.fileObject.bytes;
+      return `${name} ${bytesToMegabytes(size)} MB (${type.toUpperCase()})`;
+    },
+  );
 };
 
 export const transformedLessonOverviewData = (
