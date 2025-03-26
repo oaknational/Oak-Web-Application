@@ -3,7 +3,7 @@
 exports[`responsive should return css for a single value 1`] = `
 <div>
   <div
-    class="sc-7b9f1971-0 eWCMdJ"
+    class="sc-5b011633-0 bQiSqk"
     data-testid="test"
   />
 </div>
