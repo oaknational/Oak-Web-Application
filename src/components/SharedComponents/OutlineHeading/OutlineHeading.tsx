@@ -30,9 +30,7 @@ const fontSize = css<{ $fontSize?: OutlineSizeResponsive }>`
 
 // Pa11y complains about the "color" being white on white
 // Todo: use the theme to ensure the shadow color is the contrast color
-const OutlineHeading = styled(HeadingTagComponent).attrs({
-  className: "pa11y-ignore",
-})<
+const OutlineHeading = styled(HeadingTagComponent)<
   OutlineHeadingProps & {
     $fontSize: OutlineSizeResponsive;
     $lightShadow?: boolean | null;
@@ -47,4 +45,10 @@ const OutlineHeading = styled(HeadingTagComponent).attrs({
   ${color}
 `;
 
-export default OutlineHeading;
+// Apply the pa11y-ignore class when rendering
+export default (
+  props: OutlineHeadingProps & {
+    $fontSize: OutlineSizeResponsive;
+    $lightShadow?: boolean | null;
+  },
+) => <OutlineHeading className="pa11y-ignore" {...props} />;

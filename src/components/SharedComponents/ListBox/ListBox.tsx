@@ -142,7 +142,10 @@ function Option({ item, state }: OptionProps) {
 export function Label({ children }: { children: React.ReactNode }) {
   const { labelProps } = useContext(OptionContext);
   return (
-    <OakSpan $color={theme.selectListBox.states.default.color} {...labelProps}>
+    <OakSpan
+      $color={theme.selectListBox?.states?.default?.color || "black"}
+      {...labelProps}
+    >
       {children}
     </OakSpan>
   );

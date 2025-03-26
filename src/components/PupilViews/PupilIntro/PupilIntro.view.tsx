@@ -243,8 +243,14 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                     $flexDirection={"column"}
                     $gap={"space-between-s"}
                   >
-                    {additionalFiles[0].files.map((file, index) =>
-                      additionalFileListItem(file, index),
+                    {additionalFiles[0].files.map(
+                      (
+                        file: {
+                          title: string;
+                          fileObject: { bytes: number; format: string };
+                        },
+                        index: number,
+                      ) => additionalFileListItem(file, index),
                     )}
                   </OakUL>
                 )}

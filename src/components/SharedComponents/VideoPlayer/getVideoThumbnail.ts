@@ -1,4 +1,4 @@
-import { SizeValues } from "@/styles/utils/size";
+import type { SizeValues } from "@/styles/theme/types";
 
 type GetVideoThumbnailProps = {
   video: { playbackId: string; thumbTime: number | null };
