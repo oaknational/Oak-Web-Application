@@ -23,6 +23,7 @@ import { refreshedMVTimeFixture } from "@/node-lib/curriculum-api-2023/fixtures/
 import { teachersSitemapDataFixtureCamelCase } from "@/node-lib/curriculum-api-2023/fixtures/teachersSiteMap.fixture";
 import { mockedSiteMapResponse } from "@/node-lib/curriculum-api-2023/fixtures/pupilSiteMap.fixture";
 import { type LessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.query";
+import { type TeacherPreviewLessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/queries/teacherPreviewLessonDownload/teacherPreviewLessonDownload.query";
 import { LessonMediaClipsQueryReturn } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.query";
 import lessonMediaClipsFixtures from "@/node-lib/curriculum-api-2023/fixtures/lessonMediaClips.fixture";
 
@@ -53,6 +54,7 @@ const curriculumApi: Pick<
   | "teacherPreviewLesson"
   | "lessonMediaClips"
   | "betaLessonMediaClipsQuery"
+  | "teachersPreviewLessonDownload"
 > = {
   curriculumPhaseOptions: jest.fn(async () => {
     return curriculumPhaseOptionsFixture();
@@ -95,6 +97,9 @@ const curriculumApi: Pick<
       lessonId: 1,
     };
   }),
+  teachersPreviewLessonDownload: jest.fn(async () => {
+    return lessonDownloadsFixtures();
+  }) as jest.Mocked<TeacherPreviewLessonDownloadsQuery>,
   betaLessonMediaClipsQuery: jest.fn(async () => {
     return {
       ...lessonMediaClipsFixtures(),
