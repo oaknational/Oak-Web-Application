@@ -3,8 +3,8 @@
  * for code that needs to work in ES Module environments.
  */
 
-let fileURLToPath: ((url: string) => string) | undefined;
-let pathDirname: ((path: string) => string) | undefined;
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 
 /**
  * Get the equivalent of __filename
@@ -16,10 +16,7 @@ export function getFilename(importMetaUrl?: string): string {
     throw new Error("import.meta.url must be provided in ES Module context");
   }
 
-  // Use require in non-CommonJS environments
-  // @ts-ignore
-  const url = require("url");
-  return url.fileURLToPath(importMetaUrl);
+  return fileURLToPath(importMetaUrl);
 }
 
 /**
@@ -32,11 +29,5 @@ export function getDirname(importMetaUrl?: string): string {
     throw new Error("import.meta.url must be provided in ES Module context");
   }
 
-  // Use require in non-CommonJS environments
-  // @ts-ignore
-  const url = require("url");
-  // @ts-ignore
-  const path = require("path");
-
-  return path.dirname(url.fileURLToPath(importMetaUrl));
+  return dirname(fileURLToPath(importMetaUrl));
 }
