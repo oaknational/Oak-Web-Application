@@ -14,7 +14,7 @@ import Flex from "@/components/SharedComponents/Flex.deprecated";
 import Checkbox from "@/components/SharedComponents/Checkbox";
 import { CheckboxProps } from "@/components/SharedComponents/Checkbox/Checkbox";
 import Radio from "@/components/SharedComponents/RadioButtons/Radio";
-import zIndex from "@/styles/utils/zIndex";
+import zIndex, { type ZIndexProps } from "@/styles/utils/zIndex";
 import { LessonShareResourceData } from "@/node-lib/curriculum-api-2023/queries/lessonShare/lessonShare.schema";
 import { getValidSubjectIconName } from "@/utils/getValidSubjectIconName";
 
@@ -57,7 +57,7 @@ const BoxWithFocusState = styled.div`
   width: 100%;
 `;
 
-const RadioContainer = styled.div`
+const RadioContainer = styled.div<ZIndexProps>`
   z-index: 1;
   width: 100%;
   label > div {

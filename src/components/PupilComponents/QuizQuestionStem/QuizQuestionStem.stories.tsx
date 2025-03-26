@@ -5,7 +5,7 @@ import { QuizQuestionStem } from "./QuizQuestionStem";
 
 import { quizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 
-const meta: Meta<typeof QuizQuestionStem> = {
+const meta = {
   component: QuizQuestionStem,
   decorators: [
     (Story) => (
@@ -16,7 +16,7 @@ const meta: Meta<typeof QuizQuestionStem> = {
   ],
 
   argTypes: {},
-} as Meta;
+} satisfies Meta<typeof QuizQuestionStem>;
 
 export default meta;
 
