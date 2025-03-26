@@ -6463,6 +6463,7 @@ export type Lessons = {
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+  downloadable_files?: Maybe<Scalars['jsonb']['output']>;
   equipment_and_resources?: Maybe<Scalars['json']['output']>;
   expiration_date?: Maybe<Scalars['date']['output']>;
   features?: Maybe<Scalars['jsonb']['output']>;
@@ -6684,6 +6685,12 @@ export type LessonsCopyright_ContentArgs = {
 
 /** columns and relationships of "lessons" */
 export type LessonsDeprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "lessons" */
+export type LessonsDownloadable_FilesArgs = {
   path?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -7095,6 +7102,7 @@ export type Lessons_Aggregate_Order_By = {
 export type Lessons_Append_Input = {
   additional_files?: InputMaybe<Scalars['jsonb']['input']>;
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  downloadable_files?: InputMaybe<Scalars['jsonb']['input']>;
   features?: InputMaybe<Scalars['jsonb']['input']>;
   media_clips?: InputMaybe<Scalars['jsonb']['input']>;
   new_vocabulary_list?: InputMaybe<Scalars['jsonb']['input']>;
@@ -7183,6 +7191,7 @@ export type Lessons_Bool_Exp = {
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
+  downloadable_files?: InputMaybe<Jsonb_Comparison_Exp>;
   equipment_and_resources?: InputMaybe<Json_Comparison_Exp>;
   expiration_date?: InputMaybe<Date_Comparison_Exp>;
   features?: InputMaybe<Jsonb_Comparison_Exp>;
@@ -7253,6 +7262,7 @@ export enum Lessons_Constraint {
 export type Lessons_Delete_At_Path_Input = {
   additional_files?: InputMaybe<Array<Scalars['String']['input']>>;
   deprecated_fields?: InputMaybe<Array<Scalars['String']['input']>>;
+  downloadable_files?: InputMaybe<Array<Scalars['String']['input']>>;
   features?: InputMaybe<Array<Scalars['String']['input']>>;
   media_clips?: InputMaybe<Array<Scalars['String']['input']>>;
   new_vocabulary_list?: InputMaybe<Array<Scalars['String']['input']>>;
@@ -7268,6 +7278,7 @@ export type Lessons_Delete_At_Path_Input = {
 export type Lessons_Delete_Elem_Input = {
   additional_files?: InputMaybe<Scalars['Int']['input']>;
   deprecated_fields?: InputMaybe<Scalars['Int']['input']>;
+  downloadable_files?: InputMaybe<Scalars['Int']['input']>;
   features?: InputMaybe<Scalars['Int']['input']>;
   media_clips?: InputMaybe<Scalars['Int']['input']>;
   new_vocabulary_list?: InputMaybe<Scalars['Int']['input']>;
@@ -7283,6 +7294,7 @@ export type Lessons_Delete_Elem_Input = {
 export type Lessons_Delete_Key_Input = {
   additional_files?: InputMaybe<Scalars['String']['input']>;
   deprecated_fields?: InputMaybe<Scalars['String']['input']>;
+  downloadable_files?: InputMaybe<Scalars['String']['input']>;
   features?: InputMaybe<Scalars['String']['input']>;
   media_clips?: InputMaybe<Scalars['String']['input']>;
   new_vocabulary_list?: InputMaybe<Scalars['String']['input']>;
@@ -7338,6 +7350,7 @@ export type Lessons_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
+  downloadable_files?: InputMaybe<Scalars['jsonb']['input']>;
   equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
   expiration_date?: InputMaybe<Scalars['date']['input']>;
   features?: InputMaybe<Scalars['jsonb']['input']>;
@@ -7546,6 +7559,7 @@ export type Lessons_Order_By = {
   created_at?: InputMaybe<Order_By>;
   deprecated_fields?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
+  downloadable_files?: InputMaybe<Order_By>;
   equipment_and_resources?: InputMaybe<Order_By>;
   expiration_date?: InputMaybe<Order_By>;
   features?: InputMaybe<Order_By>;
@@ -7609,6 +7623,7 @@ export type Lessons_Pk_Columns_Input = {
 export type Lessons_Prepend_Input = {
   additional_files?: InputMaybe<Scalars['jsonb']['input']>;
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  downloadable_files?: InputMaybe<Scalars['jsonb']['input']>;
   features?: InputMaybe<Scalars['jsonb']['input']>;
   media_clips?: InputMaybe<Scalars['jsonb']['input']>;
   new_vocabulary_list?: InputMaybe<Scalars['jsonb']['input']>;
@@ -7656,6 +7671,8 @@ export enum Lessons_Select_Column {
   DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
+  /** column name */
+  DownloadableFiles = 'downloadable_files',
   /** column name */
   EquipmentAndResources = 'equipment_and_resources',
   /** column name */
@@ -7749,6 +7766,7 @@ export type Lessons_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
+  downloadable_files?: InputMaybe<Scalars['jsonb']['input']>;
   equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
   expiration_date?: InputMaybe<Scalars['date']['input']>;
   features?: InputMaybe<Scalars['jsonb']['input']>;
@@ -7901,6 +7919,7 @@ export type Lessons_Stream_Cursor_Value_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']['input']>;
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
+  downloadable_files?: InputMaybe<Scalars['jsonb']['input']>;
   equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
   expiration_date?: InputMaybe<Scalars['date']['input']>;
   features?: InputMaybe<Scalars['jsonb']['input']>;
@@ -8000,6 +8019,8 @@ export enum Lessons_Update_Column {
   DeprecatedFields = 'deprecated_fields',
   /** column name */
   Description = 'description',
+  /** column name */
+  DownloadableFiles = 'downloadable_files',
   /** column name */
   EquipmentAndResources = 'equipment_and_resources',
   /** column name */
@@ -21697,6 +21718,610 @@ export type Published_Mv_Lesson_Content_New_7_0_0_Variance_Fields = {
   worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0 = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0';
+  _state?: Maybe<Scalars['String']['output']>;
+  additional_files?: Maybe<Scalars['jsonb']['output']>;
+  content_guidance?: Maybe<Scalars['jsonb']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
+  downloadable_files?: Maybe<Scalars['jsonb']['output']>;
+  equipment_and_resources?: Maybe<Scalars['json']['output']>;
+  exit_quiz?: Maybe<Scalars['jsonb']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  geo_restricted?: Maybe<Scalars['String']['output']>;
+  has_additional_files?: Maybe<Scalars['Boolean']['output']>;
+  has_downloadable_files?: Maybe<Scalars['Boolean']['output']>;
+  has_lesson_guide_google_drive_downloadable_version?: Maybe<Scalars['Boolean']['output']>;
+  has_lesson_guide_object?: Maybe<Scalars['Boolean']['output']>;
+  has_slide_deck_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_supplementary_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_answers_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_google_drive_downloadable_version?: Maybe<Scalars['Boolean']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  key_learning_points?: Maybe<Scalars['json']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_keywords?: Maybe<Scalars['json']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  login_required?: Maybe<Scalars['String']['output']>;
+  media_clips?: Maybe<Scalars['jsonb']['output']>;
+  misconceptions_and_common_mistakes?: Maybe<Scalars['json']['output']>;
+  phonics_outcome?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz?: Maybe<Scalars['jsonb']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  teacher_tips?: Maybe<Scalars['json']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  transcript_vtt?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Additional_FilesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Content_GuidanceArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Deprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Downloadable_FilesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Equipment_And_ResourcesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Exit_QuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Key_Learning_PointsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Lesson_KeywordsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Media_ClipsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Misconceptions_And_Common_MistakesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Starter_QuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0Teacher_TipsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0_Aggregate = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Lesson_Content_New_8_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Lesson_Content_New_8_0_0>;
+};
+
+/** aggregate fields of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_aggregate_fields';
+  avg?: Maybe<Published_Mv_Lesson_Content_New_8_0_0_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Lesson_Content_New_8_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Lesson_Content_New_8_0_0_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Lesson_Content_New_8_0_0_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Lesson_Content_New_8_0_0_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Lesson_Content_New_8_0_0_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Lesson_Content_New_8_0_0_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Lesson_Content_New_8_0_0_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Lesson_Content_New_8_0_0_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Lesson_Content_New_8_0_0_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Lesson_Content_New_8_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Lesson_Content_New_8_0_0_Avg_Fields = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_avg_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_lesson_content_new_8_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Lesson_Content_New_8_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Lesson_Content_New_8_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Lesson_Content_New_8_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Lesson_Content_New_8_0_0_Bool_Exp>>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  additional_files?: InputMaybe<Jsonb_Comparison_Exp>;
+  content_guidance?: InputMaybe<Jsonb_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  downloadable_files?: InputMaybe<Jsonb_Comparison_Exp>;
+  equipment_and_resources?: InputMaybe<Json_Comparison_Exp>;
+  exit_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  exit_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  geo_restricted?: InputMaybe<String_Comparison_Exp>;
+  has_additional_files?: InputMaybe<Boolean_Comparison_Exp>;
+  has_downloadable_files?: InputMaybe<Boolean_Comparison_Exp>;
+  has_lesson_guide_google_drive_downloadable_version?: InputMaybe<Boolean_Comparison_Exp>;
+  has_lesson_guide_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_slide_deck_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_supplementary_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_answers_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Boolean_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  key_learning_points?: InputMaybe<Json_Comparison_Exp>;
+  lesson_guide_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  lesson_guide_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  lesson_keywords?: InputMaybe<Json_Comparison_Exp>;
+  lesson_slug?: InputMaybe<String_Comparison_Exp>;
+  lesson_title?: InputMaybe<String_Comparison_Exp>;
+  login_required?: InputMaybe<String_Comparison_Exp>;
+  media_clips?: InputMaybe<Jsonb_Comparison_Exp>;
+  misconceptions_and_common_mistakes?: InputMaybe<Json_Comparison_Exp>;
+  phonics_outcome?: InputMaybe<String_Comparison_Exp>;
+  pupil_lesson_outcome?: InputMaybe<String_Comparison_Exp>;
+  slide_deck_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  slide_deck_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  starter_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  starter_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  supervision_level?: InputMaybe<String_Comparison_Exp>;
+  supplementary_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  supplementary_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  teacher_tips?: InputMaybe<Json_Comparison_Exp>;
+  transcript_sentences?: InputMaybe<String_Comparison_Exp>;
+  transcript_vtt?: InputMaybe<String_Comparison_Exp>;
+  video_duration?: InputMaybe<String_Comparison_Exp>;
+  video_id?: InputMaybe<Int_Comparison_Exp>;
+  video_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  video_title?: InputMaybe<String_Comparison_Exp>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  worksheet_answers_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  worksheet_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  worksheet_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Lesson_Content_New_8_0_0_Max_Fields = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_max_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  geo_restricted?: Maybe<Scalars['String']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  login_required?: Maybe<Scalars['String']['output']>;
+  phonics_outcome?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  transcript_vtt?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Lesson_Content_New_8_0_0_Min_Fields = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_min_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  geo_restricted?: Maybe<Scalars['String']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  login_required?: Maybe<Scalars['String']['output']>;
+  phonics_outcome?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  transcript_vtt?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_lesson_content_new_8_0_0". */
+export type Published_Mv_Lesson_Content_New_8_0_0_Order_By = {
+  _state?: InputMaybe<Order_By>;
+  additional_files?: InputMaybe<Order_By>;
+  content_guidance?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
+  downloadable_files?: InputMaybe<Order_By>;
+  equipment_and_resources?: InputMaybe<Order_By>;
+  exit_quiz?: InputMaybe<Order_By>;
+  exit_quiz_id?: InputMaybe<Order_By>;
+  geo_restricted?: InputMaybe<Order_By>;
+  has_additional_files?: InputMaybe<Order_By>;
+  has_downloadable_files?: InputMaybe<Order_By>;
+  has_lesson_guide_google_drive_downloadable_version?: InputMaybe<Order_By>;
+  has_lesson_guide_object?: InputMaybe<Order_By>;
+  has_slide_deck_asset_object?: InputMaybe<Order_By>;
+  has_supplementary_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_answers_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  key_learning_points?: InputMaybe<Order_By>;
+  lesson_guide_asset_id?: InputMaybe<Order_By>;
+  lesson_guide_asset_object_url?: InputMaybe<Order_By>;
+  lesson_id?: InputMaybe<Order_By>;
+  lesson_keywords?: InputMaybe<Order_By>;
+  lesson_slug?: InputMaybe<Order_By>;
+  lesson_title?: InputMaybe<Order_By>;
+  login_required?: InputMaybe<Order_By>;
+  media_clips?: InputMaybe<Order_By>;
+  misconceptions_and_common_mistakes?: InputMaybe<Order_By>;
+  phonics_outcome?: InputMaybe<Order_By>;
+  pupil_lesson_outcome?: InputMaybe<Order_By>;
+  slide_deck_asset_id?: InputMaybe<Order_By>;
+  slide_deck_asset_object_url?: InputMaybe<Order_By>;
+  starter_quiz?: InputMaybe<Order_By>;
+  starter_quiz_id?: InputMaybe<Order_By>;
+  supervision_level?: InputMaybe<Order_By>;
+  supplementary_asset_id?: InputMaybe<Order_By>;
+  supplementary_asset_object_url?: InputMaybe<Order_By>;
+  teacher_tips?: InputMaybe<Order_By>;
+  transcript_sentences?: InputMaybe<Order_By>;
+  transcript_vtt?: InputMaybe<Order_By>;
+  video_duration?: InputMaybe<Order_By>;
+  video_id?: InputMaybe<Order_By>;
+  video_mux_playback_id?: InputMaybe<Order_By>;
+  video_title?: InputMaybe<Order_By>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Order_By>;
+  worksheet_answers_asset_id?: InputMaybe<Order_By>;
+  worksheet_asset_id?: InputMaybe<Order_By>;
+  worksheet_asset_object_url?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_lesson_content_new_8_0_0" */
+export enum Published_Mv_Lesson_Content_New_8_0_0_Select_Column {
+  /** column name */
+  State = '_state',
+  /** column name */
+  AdditionalFiles = 'additional_files',
+  /** column name */
+  ContentGuidance = 'content_guidance',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  DownloadableFiles = 'downloadable_files',
+  /** column name */
+  EquipmentAndResources = 'equipment_and_resources',
+  /** column name */
+  ExitQuiz = 'exit_quiz',
+  /** column name */
+  ExitQuizId = 'exit_quiz_id',
+  /** column name */
+  GeoRestricted = 'geo_restricted',
+  /** column name */
+  HasAdditionalFiles = 'has_additional_files',
+  /** column name */
+  HasDownloadableFiles = 'has_downloadable_files',
+  /** column name */
+  HasLessonGuideGoogleDriveDownloadableVersion = 'has_lesson_guide_google_drive_downloadable_version',
+  /** column name */
+  HasLessonGuideObject = 'has_lesson_guide_object',
+  /** column name */
+  HasSlideDeckAssetObject = 'has_slide_deck_asset_object',
+  /** column name */
+  HasSupplementaryAssetObject = 'has_supplementary_asset_object',
+  /** column name */
+  HasWorksheetAnswersAssetObject = 'has_worksheet_answers_asset_object',
+  /** column name */
+  HasWorksheetAssetObject = 'has_worksheet_asset_object',
+  /** column name */
+  HasWorksheetGoogleDriveDownloadableVersion = 'has_worksheet_google_drive_downloadable_version',
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  KeyLearningPoints = 'key_learning_points',
+  /** column name */
+  LessonGuideAssetId = 'lesson_guide_asset_id',
+  /** column name */
+  LessonGuideAssetObjectUrl = 'lesson_guide_asset_object_url',
+  /** column name */
+  LessonId = 'lesson_id',
+  /** column name */
+  LessonKeywords = 'lesson_keywords',
+  /** column name */
+  LessonSlug = 'lesson_slug',
+  /** column name */
+  LessonTitle = 'lesson_title',
+  /** column name */
+  LoginRequired = 'login_required',
+  /** column name */
+  MediaClips = 'media_clips',
+  /** column name */
+  MisconceptionsAndCommonMistakes = 'misconceptions_and_common_mistakes',
+  /** column name */
+  PhonicsOutcome = 'phonics_outcome',
+  /** column name */
+  PupilLessonOutcome = 'pupil_lesson_outcome',
+  /** column name */
+  SlideDeckAssetId = 'slide_deck_asset_id',
+  /** column name */
+  SlideDeckAssetObjectUrl = 'slide_deck_asset_object_url',
+  /** column name */
+  StarterQuiz = 'starter_quiz',
+  /** column name */
+  StarterQuizId = 'starter_quiz_id',
+  /** column name */
+  SupervisionLevel = 'supervision_level',
+  /** column name */
+  SupplementaryAssetId = 'supplementary_asset_id',
+  /** column name */
+  SupplementaryAssetObjectUrl = 'supplementary_asset_object_url',
+  /** column name */
+  TeacherTips = 'teacher_tips',
+  /** column name */
+  TranscriptSentences = 'transcript_sentences',
+  /** column name */
+  TranscriptVtt = 'transcript_vtt',
+  /** column name */
+  VideoDuration = 'video_duration',
+  /** column name */
+  VideoId = 'video_id',
+  /** column name */
+  VideoMuxPlaybackId = 'video_mux_playback_id',
+  /** column name */
+  VideoTitle = 'video_title',
+  /** column name */
+  VideoWithSignLanguageMuxPlaybackId = 'video_with_sign_language_mux_playback_id',
+  /** column name */
+  WorksheetAnswersAssetId = 'worksheet_answers_asset_id',
+  /** column name */
+  WorksheetAssetId = 'worksheet_asset_id',
+  /** column name */
+  WorksheetAssetObjectUrl = 'worksheet_asset_object_url'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Lesson_Content_New_8_0_0_Stddev_Fields = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_stddev_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Lesson_Content_New_8_0_0_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_stddev_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Lesson_Content_New_8_0_0_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_stddev_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_lesson_content_new_8_0_0" */
+export type Published_Mv_Lesson_Content_New_8_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Lesson_Content_New_8_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Lesson_Content_New_8_0_0_Stream_Cursor_Value_Input = {
+  _state?: InputMaybe<Scalars['String']['input']>;
+  additional_files?: InputMaybe<Scalars['jsonb']['input']>;
+  content_guidance?: InputMaybe<Scalars['jsonb']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  downloadable_files?: InputMaybe<Scalars['jsonb']['input']>;
+  equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
+  exit_quiz?: InputMaybe<Scalars['jsonb']['input']>;
+  exit_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  geo_restricted?: InputMaybe<Scalars['String']['input']>;
+  has_additional_files?: InputMaybe<Scalars['Boolean']['input']>;
+  has_downloadable_files?: InputMaybe<Scalars['Boolean']['input']>;
+  has_lesson_guide_google_drive_downloadable_version?: InputMaybe<Scalars['Boolean']['input']>;
+  has_lesson_guide_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_slide_deck_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_supplementary_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_answers_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Scalars['Boolean']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  key_learning_points?: InputMaybe<Scalars['json']['input']>;
+  lesson_guide_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  lesson_guide_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  lesson_id?: InputMaybe<Scalars['Int']['input']>;
+  lesson_keywords?: InputMaybe<Scalars['json']['input']>;
+  lesson_slug?: InputMaybe<Scalars['String']['input']>;
+  lesson_title?: InputMaybe<Scalars['String']['input']>;
+  login_required?: InputMaybe<Scalars['String']['input']>;
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
+  misconceptions_and_common_mistakes?: InputMaybe<Scalars['json']['input']>;
+  phonics_outcome?: InputMaybe<Scalars['String']['input']>;
+  pupil_lesson_outcome?: InputMaybe<Scalars['String']['input']>;
+  slide_deck_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  slide_deck_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  starter_quiz?: InputMaybe<Scalars['jsonb']['input']>;
+  starter_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  supervision_level?: InputMaybe<Scalars['String']['input']>;
+  supplementary_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  supplementary_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  teacher_tips?: InputMaybe<Scalars['json']['input']>;
+  transcript_sentences?: InputMaybe<Scalars['String']['input']>;
+  transcript_vtt?: InputMaybe<Scalars['String']['input']>;
+  video_duration?: InputMaybe<Scalars['String']['input']>;
+  video_id?: InputMaybe<Scalars['Int']['input']>;
+  video_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  video_title?: InputMaybe<Scalars['String']['input']>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  worksheet_answers_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  worksheet_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  worksheet_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Lesson_Content_New_8_0_0_Sum_Fields = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_sum_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Lesson_Content_New_8_0_0_Var_Pop_Fields = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_var_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Lesson_Content_New_8_0_0_Var_Samp_Fields = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_var_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Lesson_Content_New_8_0_0_Variance_Fields = {
+  __typename?: 'published_mv_lesson_content_new_8_0_0_variance_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.mv_lesson_content_published_5_0_0" */
 export type Published_Mv_Lesson_Content_Published_5_0_0 = {
   __typename?: 'published_mv_lesson_content_published_5_0_0';
@@ -22238,6 +22863,606 @@ export type Published_Mv_Lesson_Content_Published_5_0_0_Var_Samp_Fields = {
 /** aggregate variance on columns */
 export type Published_Mv_Lesson_Content_Published_5_0_0_Variance_Fields = {
   __typename?: 'published_mv_lesson_content_published_5_0_0_variance_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0 = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0';
+  _state?: Maybe<Scalars['String']['output']>;
+  additional_files?: Maybe<Scalars['jsonb']['output']>;
+  content_guidance?: Maybe<Scalars['jsonb']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
+  downloadable_files?: Maybe<Scalars['jsonb']['output']>;
+  equipment_and_resources?: Maybe<Scalars['json']['output']>;
+  exit_quiz?: Maybe<Scalars['jsonb']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  geo_restricted?: Maybe<Scalars['Boolean']['output']>;
+  has_additional_files?: Maybe<Scalars['Boolean']['output']>;
+  has_downloadable_files?: Maybe<Scalars['Boolean']['output']>;
+  has_lesson_guide_google_drive_downloadable_version?: Maybe<Scalars['Boolean']['output']>;
+  has_lesson_guide_object?: Maybe<Scalars['Boolean']['output']>;
+  has_slide_deck_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_supplementary_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_answers_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_google_drive_downloadable_version?: Maybe<Scalars['Boolean']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  key_learning_points?: Maybe<Scalars['json']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_keywords?: Maybe<Scalars['json']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  login_required?: Maybe<Scalars['Boolean']['output']>;
+  media_clips?: Maybe<Scalars['jsonb']['output']>;
+  misconceptions_and_common_mistakes?: Maybe<Scalars['json']['output']>;
+  phonics_outcome?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz?: Maybe<Scalars['jsonb']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  teacher_tips?: Maybe<Scalars['json']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  transcript_vtt?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Additional_FilesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Content_GuidanceArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Deprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Downloadable_FilesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Equipment_And_ResourcesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Exit_QuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Key_Learning_PointsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Lesson_KeywordsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Media_ClipsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Misconceptions_And_Common_MistakesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Starter_QuizArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0Teacher_TipsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Aggregate = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Lesson_Content_Published_8_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Lesson_Content_Published_8_0_0>;
+};
+
+/** aggregate fields of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_aggregate_fields';
+  avg?: Maybe<Published_Mv_Lesson_Content_Published_8_0_0_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Lesson_Content_Published_8_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Lesson_Content_Published_8_0_0_Min_Fields>;
+  stddev?: Maybe<Published_Mv_Lesson_Content_Published_8_0_0_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_Mv_Lesson_Content_Published_8_0_0_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_Mv_Lesson_Content_Published_8_0_0_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_Mv_Lesson_Content_Published_8_0_0_Sum_Fields>;
+  var_pop?: Maybe<Published_Mv_Lesson_Content_Published_8_0_0_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_Mv_Lesson_Content_Published_8_0_0_Var_Samp_Fields>;
+  variance?: Maybe<Published_Mv_Lesson_Content_Published_8_0_0_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_8_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Avg_Fields = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_avg_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_lesson_content_published_8_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_8_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Lesson_Content_Published_8_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_8_0_0_Bool_Exp>>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  additional_files?: InputMaybe<Jsonb_Comparison_Exp>;
+  content_guidance?: InputMaybe<Jsonb_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  downloadable_files?: InputMaybe<Jsonb_Comparison_Exp>;
+  equipment_and_resources?: InputMaybe<Json_Comparison_Exp>;
+  exit_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  exit_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  geo_restricted?: InputMaybe<Boolean_Comparison_Exp>;
+  has_additional_files?: InputMaybe<Boolean_Comparison_Exp>;
+  has_downloadable_files?: InputMaybe<Boolean_Comparison_Exp>;
+  has_lesson_guide_google_drive_downloadable_version?: InputMaybe<Boolean_Comparison_Exp>;
+  has_lesson_guide_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_slide_deck_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_supplementary_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_answers_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Boolean_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  key_learning_points?: InputMaybe<Json_Comparison_Exp>;
+  lesson_guide_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  lesson_guide_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  lesson_keywords?: InputMaybe<Json_Comparison_Exp>;
+  lesson_slug?: InputMaybe<String_Comparison_Exp>;
+  lesson_title?: InputMaybe<String_Comparison_Exp>;
+  login_required?: InputMaybe<Boolean_Comparison_Exp>;
+  media_clips?: InputMaybe<Jsonb_Comparison_Exp>;
+  misconceptions_and_common_mistakes?: InputMaybe<Json_Comparison_Exp>;
+  phonics_outcome?: InputMaybe<String_Comparison_Exp>;
+  pupil_lesson_outcome?: InputMaybe<String_Comparison_Exp>;
+  slide_deck_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  slide_deck_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  starter_quiz?: InputMaybe<Jsonb_Comparison_Exp>;
+  starter_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  supervision_level?: InputMaybe<String_Comparison_Exp>;
+  supplementary_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  supplementary_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  teacher_tips?: InputMaybe<Json_Comparison_Exp>;
+  transcript_sentences?: InputMaybe<String_Comparison_Exp>;
+  transcript_vtt?: InputMaybe<String_Comparison_Exp>;
+  video_duration?: InputMaybe<String_Comparison_Exp>;
+  video_id?: InputMaybe<Int_Comparison_Exp>;
+  video_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  video_title?: InputMaybe<String_Comparison_Exp>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  worksheet_answers_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  worksheet_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  worksheet_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Max_Fields = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_max_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  phonics_outcome?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  transcript_vtt?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Min_Fields = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_min_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  phonics_outcome?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  transcript_vtt?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_lesson_content_published_8_0_0". */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Order_By = {
+  _state?: InputMaybe<Order_By>;
+  additional_files?: InputMaybe<Order_By>;
+  content_guidance?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
+  downloadable_files?: InputMaybe<Order_By>;
+  equipment_and_resources?: InputMaybe<Order_By>;
+  exit_quiz?: InputMaybe<Order_By>;
+  exit_quiz_id?: InputMaybe<Order_By>;
+  geo_restricted?: InputMaybe<Order_By>;
+  has_additional_files?: InputMaybe<Order_By>;
+  has_downloadable_files?: InputMaybe<Order_By>;
+  has_lesson_guide_google_drive_downloadable_version?: InputMaybe<Order_By>;
+  has_lesson_guide_object?: InputMaybe<Order_By>;
+  has_slide_deck_asset_object?: InputMaybe<Order_By>;
+  has_supplementary_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_answers_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  key_learning_points?: InputMaybe<Order_By>;
+  lesson_guide_asset_id?: InputMaybe<Order_By>;
+  lesson_guide_asset_object_url?: InputMaybe<Order_By>;
+  lesson_id?: InputMaybe<Order_By>;
+  lesson_keywords?: InputMaybe<Order_By>;
+  lesson_slug?: InputMaybe<Order_By>;
+  lesson_title?: InputMaybe<Order_By>;
+  login_required?: InputMaybe<Order_By>;
+  media_clips?: InputMaybe<Order_By>;
+  misconceptions_and_common_mistakes?: InputMaybe<Order_By>;
+  phonics_outcome?: InputMaybe<Order_By>;
+  pupil_lesson_outcome?: InputMaybe<Order_By>;
+  slide_deck_asset_id?: InputMaybe<Order_By>;
+  slide_deck_asset_object_url?: InputMaybe<Order_By>;
+  starter_quiz?: InputMaybe<Order_By>;
+  starter_quiz_id?: InputMaybe<Order_By>;
+  supervision_level?: InputMaybe<Order_By>;
+  supplementary_asset_id?: InputMaybe<Order_By>;
+  supplementary_asset_object_url?: InputMaybe<Order_By>;
+  teacher_tips?: InputMaybe<Order_By>;
+  transcript_sentences?: InputMaybe<Order_By>;
+  transcript_vtt?: InputMaybe<Order_By>;
+  video_duration?: InputMaybe<Order_By>;
+  video_id?: InputMaybe<Order_By>;
+  video_mux_playback_id?: InputMaybe<Order_By>;
+  video_title?: InputMaybe<Order_By>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Order_By>;
+  worksheet_answers_asset_id?: InputMaybe<Order_By>;
+  worksheet_asset_id?: InputMaybe<Order_By>;
+  worksheet_asset_object_url?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_lesson_content_published_8_0_0" */
+export enum Published_Mv_Lesson_Content_Published_8_0_0_Select_Column {
+  /** column name */
+  State = '_state',
+  /** column name */
+  AdditionalFiles = 'additional_files',
+  /** column name */
+  ContentGuidance = 'content_guidance',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  DownloadableFiles = 'downloadable_files',
+  /** column name */
+  EquipmentAndResources = 'equipment_and_resources',
+  /** column name */
+  ExitQuiz = 'exit_quiz',
+  /** column name */
+  ExitQuizId = 'exit_quiz_id',
+  /** column name */
+  GeoRestricted = 'geo_restricted',
+  /** column name */
+  HasAdditionalFiles = 'has_additional_files',
+  /** column name */
+  HasDownloadableFiles = 'has_downloadable_files',
+  /** column name */
+  HasLessonGuideGoogleDriveDownloadableVersion = 'has_lesson_guide_google_drive_downloadable_version',
+  /** column name */
+  HasLessonGuideObject = 'has_lesson_guide_object',
+  /** column name */
+  HasSlideDeckAssetObject = 'has_slide_deck_asset_object',
+  /** column name */
+  HasSupplementaryAssetObject = 'has_supplementary_asset_object',
+  /** column name */
+  HasWorksheetAnswersAssetObject = 'has_worksheet_answers_asset_object',
+  /** column name */
+  HasWorksheetAssetObject = 'has_worksheet_asset_object',
+  /** column name */
+  HasWorksheetGoogleDriveDownloadableVersion = 'has_worksheet_google_drive_downloadable_version',
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  KeyLearningPoints = 'key_learning_points',
+  /** column name */
+  LessonGuideAssetId = 'lesson_guide_asset_id',
+  /** column name */
+  LessonGuideAssetObjectUrl = 'lesson_guide_asset_object_url',
+  /** column name */
+  LessonId = 'lesson_id',
+  /** column name */
+  LessonKeywords = 'lesson_keywords',
+  /** column name */
+  LessonSlug = 'lesson_slug',
+  /** column name */
+  LessonTitle = 'lesson_title',
+  /** column name */
+  LoginRequired = 'login_required',
+  /** column name */
+  MediaClips = 'media_clips',
+  /** column name */
+  MisconceptionsAndCommonMistakes = 'misconceptions_and_common_mistakes',
+  /** column name */
+  PhonicsOutcome = 'phonics_outcome',
+  /** column name */
+  PupilLessonOutcome = 'pupil_lesson_outcome',
+  /** column name */
+  SlideDeckAssetId = 'slide_deck_asset_id',
+  /** column name */
+  SlideDeckAssetObjectUrl = 'slide_deck_asset_object_url',
+  /** column name */
+  StarterQuiz = 'starter_quiz',
+  /** column name */
+  StarterQuizId = 'starter_quiz_id',
+  /** column name */
+  SupervisionLevel = 'supervision_level',
+  /** column name */
+  SupplementaryAssetId = 'supplementary_asset_id',
+  /** column name */
+  SupplementaryAssetObjectUrl = 'supplementary_asset_object_url',
+  /** column name */
+  TeacherTips = 'teacher_tips',
+  /** column name */
+  TranscriptSentences = 'transcript_sentences',
+  /** column name */
+  TranscriptVtt = 'transcript_vtt',
+  /** column name */
+  VideoDuration = 'video_duration',
+  /** column name */
+  VideoId = 'video_id',
+  /** column name */
+  VideoMuxPlaybackId = 'video_mux_playback_id',
+  /** column name */
+  VideoTitle = 'video_title',
+  /** column name */
+  VideoWithSignLanguageMuxPlaybackId = 'video_with_sign_language_mux_playback_id',
+  /** column name */
+  WorksheetAnswersAssetId = 'worksheet_answers_asset_id',
+  /** column name */
+  WorksheetAssetId = 'worksheet_asset_id',
+  /** column name */
+  WorksheetAssetObjectUrl = 'worksheet_asset_object_url'
+}
+
+/** aggregate stddev on columns */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Stddev_Fields = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_stddev_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Stddev_Pop_Fields = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_stddev_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Stddev_Samp_Fields = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_stddev_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_mv_lesson_content_published_8_0_0" */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Lesson_Content_Published_8_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Stream_Cursor_Value_Input = {
+  _state?: InputMaybe<Scalars['String']['input']>;
+  additional_files?: InputMaybe<Scalars['jsonb']['input']>;
+  content_guidance?: InputMaybe<Scalars['jsonb']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  downloadable_files?: InputMaybe<Scalars['jsonb']['input']>;
+  equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
+  exit_quiz?: InputMaybe<Scalars['jsonb']['input']>;
+  exit_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  geo_restricted?: InputMaybe<Scalars['Boolean']['input']>;
+  has_additional_files?: InputMaybe<Scalars['Boolean']['input']>;
+  has_downloadable_files?: InputMaybe<Scalars['Boolean']['input']>;
+  has_lesson_guide_google_drive_downloadable_version?: InputMaybe<Scalars['Boolean']['input']>;
+  has_lesson_guide_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_slide_deck_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_supplementary_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_answers_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Scalars['Boolean']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  key_learning_points?: InputMaybe<Scalars['json']['input']>;
+  lesson_guide_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  lesson_guide_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  lesson_id?: InputMaybe<Scalars['Int']['input']>;
+  lesson_keywords?: InputMaybe<Scalars['json']['input']>;
+  lesson_slug?: InputMaybe<Scalars['String']['input']>;
+  lesson_title?: InputMaybe<Scalars['String']['input']>;
+  login_required?: InputMaybe<Scalars['Boolean']['input']>;
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
+  misconceptions_and_common_mistakes?: InputMaybe<Scalars['json']['input']>;
+  phonics_outcome?: InputMaybe<Scalars['String']['input']>;
+  pupil_lesson_outcome?: InputMaybe<Scalars['String']['input']>;
+  slide_deck_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  slide_deck_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  starter_quiz?: InputMaybe<Scalars['jsonb']['input']>;
+  starter_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  supervision_level?: InputMaybe<Scalars['String']['input']>;
+  supplementary_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  supplementary_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  teacher_tips?: InputMaybe<Scalars['json']['input']>;
+  transcript_sentences?: InputMaybe<Scalars['String']['input']>;
+  transcript_vtt?: InputMaybe<Scalars['String']['input']>;
+  video_duration?: InputMaybe<Scalars['String']['input']>;
+  video_id?: InputMaybe<Scalars['Int']['input']>;
+  video_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  video_title?: InputMaybe<Scalars['String']['input']>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  worksheet_answers_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  worksheet_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  worksheet_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Sum_Fields = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_sum_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Var_Pop_Fields = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_var_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Var_Samp_Fields = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_var_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_Mv_Lesson_Content_Published_8_0_0_Variance_Fields = {
+  __typename?: 'published_mv_lesson_content_published_8_0_0_variance_fields';
   exit_quiz_id?: Maybe<Scalars['Float']['output']>;
   lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
   lesson_id?: Maybe<Scalars['Float']['output']>;
@@ -31823,6 +33048,570 @@ export type Published_View_Lesson_Content_7_Variance_Fields = {
   worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
 };
 
+/** columns and relationships of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8 = {
+  __typename?: 'published_view_lesson_content_8';
+  _state?: Maybe<Scalars['String']['output']>;
+  additional_files?: Maybe<Scalars['jsonb']['output']>;
+  content_guidance?: Maybe<Scalars['jsonb']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
+  downloadable_files?: Maybe<Scalars['jsonb']['output']>;
+  equipment_and_resources?: Maybe<Scalars['json']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  has_additional_files?: Maybe<Scalars['Boolean']['output']>;
+  has_downloadable_files?: Maybe<Scalars['Boolean']['output']>;
+  has_lesson_guide_google_drive_downloadable_version?: Maybe<Scalars['Boolean']['output']>;
+  has_lesson_guide_object?: Maybe<Scalars['Boolean']['output']>;
+  has_slide_deck_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_supplementary_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_answers_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_asset_object?: Maybe<Scalars['Boolean']['output']>;
+  has_worksheet_google_drive_downloadable_version?: Maybe<Scalars['Boolean']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  key_learning_points?: Maybe<Scalars['json']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_keywords?: Maybe<Scalars['json']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  media_clips?: Maybe<Scalars['jsonb']['output']>;
+  misconceptions_and_common_mistakes?: Maybe<Scalars['json']['output']>;
+  phonics_outcome?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  teacher_tips?: Maybe<Scalars['json']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  transcript_vtt?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8Additional_FilesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8Content_GuidanceArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8Deprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8Downloadable_FilesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8Equipment_And_ResourcesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8Key_Learning_PointsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8Lesson_KeywordsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8Media_ClipsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8Misconceptions_And_Common_MistakesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8Teacher_TipsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8_Aggregate = {
+  __typename?: 'published_view_lesson_content_8_aggregate';
+  aggregate?: Maybe<Published_View_Lesson_Content_8_Aggregate_Fields>;
+  nodes: Array<Published_View_Lesson_Content_8>;
+};
+
+/** aggregate fields of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8_Aggregate_Fields = {
+  __typename?: 'published_view_lesson_content_8_aggregate_fields';
+  avg?: Maybe<Published_View_Lesson_Content_8_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_View_Lesson_Content_8_Max_Fields>;
+  min?: Maybe<Published_View_Lesson_Content_8_Min_Fields>;
+  stddev?: Maybe<Published_View_Lesson_Content_8_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_View_Lesson_Content_8_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_View_Lesson_Content_8_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_View_Lesson_Content_8_Sum_Fields>;
+  var_pop?: Maybe<Published_View_Lesson_Content_8_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_View_Lesson_Content_8_Var_Samp_Fields>;
+  variance?: Maybe<Published_View_Lesson_Content_8_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.view_lesson_content_8" */
+export type Published_View_Lesson_Content_8_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_View_Lesson_Content_8_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_View_Lesson_Content_8_Avg_Fields = {
+  __typename?: 'published_view_lesson_content_8_avg_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.view_lesson_content_8". All fields are combined with a logical 'AND'. */
+export type Published_View_Lesson_Content_8_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_View_Lesson_Content_8_Bool_Exp>>;
+  _not?: InputMaybe<Published_View_Lesson_Content_8_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_View_Lesson_Content_8_Bool_Exp>>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  additional_files?: InputMaybe<Jsonb_Comparison_Exp>;
+  content_guidance?: InputMaybe<Jsonb_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  downloadable_files?: InputMaybe<Jsonb_Comparison_Exp>;
+  equipment_and_resources?: InputMaybe<Json_Comparison_Exp>;
+  exit_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  has_additional_files?: InputMaybe<Boolean_Comparison_Exp>;
+  has_downloadable_files?: InputMaybe<Boolean_Comparison_Exp>;
+  has_lesson_guide_google_drive_downloadable_version?: InputMaybe<Boolean_Comparison_Exp>;
+  has_lesson_guide_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_slide_deck_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_supplementary_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_answers_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_asset_object?: InputMaybe<Boolean_Comparison_Exp>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Boolean_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  key_learning_points?: InputMaybe<Json_Comparison_Exp>;
+  lesson_guide_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  lesson_guide_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  lesson_id?: InputMaybe<Int_Comparison_Exp>;
+  lesson_keywords?: InputMaybe<Json_Comparison_Exp>;
+  lesson_slug?: InputMaybe<String_Comparison_Exp>;
+  lesson_title?: InputMaybe<String_Comparison_Exp>;
+  media_clips?: InputMaybe<Jsonb_Comparison_Exp>;
+  misconceptions_and_common_mistakes?: InputMaybe<Json_Comparison_Exp>;
+  phonics_outcome?: InputMaybe<String_Comparison_Exp>;
+  pupil_lesson_outcome?: InputMaybe<String_Comparison_Exp>;
+  slide_deck_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  slide_deck_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  starter_quiz_id?: InputMaybe<Int_Comparison_Exp>;
+  supervision_level?: InputMaybe<String_Comparison_Exp>;
+  supplementary_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  supplementary_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+  teacher_tips?: InputMaybe<Json_Comparison_Exp>;
+  transcript_sentences?: InputMaybe<String_Comparison_Exp>;
+  transcript_vtt?: InputMaybe<String_Comparison_Exp>;
+  video_duration?: InputMaybe<String_Comparison_Exp>;
+  video_id?: InputMaybe<Int_Comparison_Exp>;
+  video_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  video_title?: InputMaybe<String_Comparison_Exp>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<String_Comparison_Exp>;
+  worksheet_answers_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  worksheet_asset_id?: InputMaybe<Int_Comparison_Exp>;
+  worksheet_asset_object_url?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_View_Lesson_Content_8_Max_Fields = {
+  __typename?: 'published_view_lesson_content_8_max_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  phonics_outcome?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  transcript_vtt?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_View_Lesson_Content_8_Min_Fields = {
+  __typename?: 'published_view_lesson_content_8_min_fields';
+  _state?: Maybe<Scalars['String']['output']>;
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_object_url?: Maybe<Scalars['String']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  lesson_slug?: Maybe<Scalars['String']['output']>;
+  lesson_title?: Maybe<Scalars['String']['output']>;
+  phonics_outcome?: Maybe<Scalars['String']['output']>;
+  pupil_lesson_outcome?: Maybe<Scalars['String']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_object_url?: Maybe<Scalars['String']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supervision_level?: Maybe<Scalars['String']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_object_url?: Maybe<Scalars['String']['output']>;
+  transcript_sentences?: Maybe<Scalars['String']['output']>;
+  transcript_vtt?: Maybe<Scalars['String']['output']>;
+  video_duration?: Maybe<Scalars['String']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  video_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  video_title?: Maybe<Scalars['String']['output']>;
+  video_with_sign_language_mux_playback_id?: Maybe<Scalars['String']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_object_url?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.view_lesson_content_8". */
+export type Published_View_Lesson_Content_8_Order_By = {
+  _state?: InputMaybe<Order_By>;
+  additional_files?: InputMaybe<Order_By>;
+  content_guidance?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
+  downloadable_files?: InputMaybe<Order_By>;
+  equipment_and_resources?: InputMaybe<Order_By>;
+  exit_quiz_id?: InputMaybe<Order_By>;
+  has_additional_files?: InputMaybe<Order_By>;
+  has_downloadable_files?: InputMaybe<Order_By>;
+  has_lesson_guide_google_drive_downloadable_version?: InputMaybe<Order_By>;
+  has_lesson_guide_object?: InputMaybe<Order_By>;
+  has_slide_deck_asset_object?: InputMaybe<Order_By>;
+  has_supplementary_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_answers_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_asset_object?: InputMaybe<Order_By>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  key_learning_points?: InputMaybe<Order_By>;
+  lesson_guide_asset_id?: InputMaybe<Order_By>;
+  lesson_guide_asset_object_url?: InputMaybe<Order_By>;
+  lesson_id?: InputMaybe<Order_By>;
+  lesson_keywords?: InputMaybe<Order_By>;
+  lesson_slug?: InputMaybe<Order_By>;
+  lesson_title?: InputMaybe<Order_By>;
+  media_clips?: InputMaybe<Order_By>;
+  misconceptions_and_common_mistakes?: InputMaybe<Order_By>;
+  phonics_outcome?: InputMaybe<Order_By>;
+  pupil_lesson_outcome?: InputMaybe<Order_By>;
+  slide_deck_asset_id?: InputMaybe<Order_By>;
+  slide_deck_asset_object_url?: InputMaybe<Order_By>;
+  starter_quiz_id?: InputMaybe<Order_By>;
+  supervision_level?: InputMaybe<Order_By>;
+  supplementary_asset_id?: InputMaybe<Order_By>;
+  supplementary_asset_object_url?: InputMaybe<Order_By>;
+  teacher_tips?: InputMaybe<Order_By>;
+  transcript_sentences?: InputMaybe<Order_By>;
+  transcript_vtt?: InputMaybe<Order_By>;
+  video_duration?: InputMaybe<Order_By>;
+  video_id?: InputMaybe<Order_By>;
+  video_mux_playback_id?: InputMaybe<Order_By>;
+  video_title?: InputMaybe<Order_By>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Order_By>;
+  worksheet_answers_asset_id?: InputMaybe<Order_By>;
+  worksheet_asset_id?: InputMaybe<Order_By>;
+  worksheet_asset_object_url?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.view_lesson_content_8" */
+export enum Published_View_Lesson_Content_8_Select_Column {
+  /** column name */
+  State = '_state',
+  /** column name */
+  AdditionalFiles = 'additional_files',
+  /** column name */
+  ContentGuidance = 'content_guidance',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  DownloadableFiles = 'downloadable_files',
+  /** column name */
+  EquipmentAndResources = 'equipment_and_resources',
+  /** column name */
+  ExitQuizId = 'exit_quiz_id',
+  /** column name */
+  HasAdditionalFiles = 'has_additional_files',
+  /** column name */
+  HasDownloadableFiles = 'has_downloadable_files',
+  /** column name */
+  HasLessonGuideGoogleDriveDownloadableVersion = 'has_lesson_guide_google_drive_downloadable_version',
+  /** column name */
+  HasLessonGuideObject = 'has_lesson_guide_object',
+  /** column name */
+  HasSlideDeckAssetObject = 'has_slide_deck_asset_object',
+  /** column name */
+  HasSupplementaryAssetObject = 'has_supplementary_asset_object',
+  /** column name */
+  HasWorksheetAnswersAssetObject = 'has_worksheet_answers_asset_object',
+  /** column name */
+  HasWorksheetAssetObject = 'has_worksheet_asset_object',
+  /** column name */
+  HasWorksheetGoogleDriveDownloadableVersion = 'has_worksheet_google_drive_downloadable_version',
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  KeyLearningPoints = 'key_learning_points',
+  /** column name */
+  LessonGuideAssetId = 'lesson_guide_asset_id',
+  /** column name */
+  LessonGuideAssetObjectUrl = 'lesson_guide_asset_object_url',
+  /** column name */
+  LessonId = 'lesson_id',
+  /** column name */
+  LessonKeywords = 'lesson_keywords',
+  /** column name */
+  LessonSlug = 'lesson_slug',
+  /** column name */
+  LessonTitle = 'lesson_title',
+  /** column name */
+  MediaClips = 'media_clips',
+  /** column name */
+  MisconceptionsAndCommonMistakes = 'misconceptions_and_common_mistakes',
+  /** column name */
+  PhonicsOutcome = 'phonics_outcome',
+  /** column name */
+  PupilLessonOutcome = 'pupil_lesson_outcome',
+  /** column name */
+  SlideDeckAssetId = 'slide_deck_asset_id',
+  /** column name */
+  SlideDeckAssetObjectUrl = 'slide_deck_asset_object_url',
+  /** column name */
+  StarterQuizId = 'starter_quiz_id',
+  /** column name */
+  SupervisionLevel = 'supervision_level',
+  /** column name */
+  SupplementaryAssetId = 'supplementary_asset_id',
+  /** column name */
+  SupplementaryAssetObjectUrl = 'supplementary_asset_object_url',
+  /** column name */
+  TeacherTips = 'teacher_tips',
+  /** column name */
+  TranscriptSentences = 'transcript_sentences',
+  /** column name */
+  TranscriptVtt = 'transcript_vtt',
+  /** column name */
+  VideoDuration = 'video_duration',
+  /** column name */
+  VideoId = 'video_id',
+  /** column name */
+  VideoMuxPlaybackId = 'video_mux_playback_id',
+  /** column name */
+  VideoTitle = 'video_title',
+  /** column name */
+  VideoWithSignLanguageMuxPlaybackId = 'video_with_sign_language_mux_playback_id',
+  /** column name */
+  WorksheetAnswersAssetId = 'worksheet_answers_asset_id',
+  /** column name */
+  WorksheetAssetId = 'worksheet_asset_id',
+  /** column name */
+  WorksheetAssetObjectUrl = 'worksheet_asset_object_url'
+}
+
+/** aggregate stddev on columns */
+export type Published_View_Lesson_Content_8_Stddev_Fields = {
+  __typename?: 'published_view_lesson_content_8_stddev_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_View_Lesson_Content_8_Stddev_Pop_Fields = {
+  __typename?: 'published_view_lesson_content_8_stddev_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_View_Lesson_Content_8_Stddev_Samp_Fields = {
+  __typename?: 'published_view_lesson_content_8_stddev_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_view_lesson_content_8" */
+export type Published_View_Lesson_Content_8_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_View_Lesson_Content_8_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_View_Lesson_Content_8_Stream_Cursor_Value_Input = {
+  _state?: InputMaybe<Scalars['String']['input']>;
+  additional_files?: InputMaybe<Scalars['jsonb']['input']>;
+  content_guidance?: InputMaybe<Scalars['jsonb']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  downloadable_files?: InputMaybe<Scalars['jsonb']['input']>;
+  equipment_and_resources?: InputMaybe<Scalars['json']['input']>;
+  exit_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  has_additional_files?: InputMaybe<Scalars['Boolean']['input']>;
+  has_downloadable_files?: InputMaybe<Scalars['Boolean']['input']>;
+  has_lesson_guide_google_drive_downloadable_version?: InputMaybe<Scalars['Boolean']['input']>;
+  has_lesson_guide_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_slide_deck_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_supplementary_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_answers_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_asset_object?: InputMaybe<Scalars['Boolean']['input']>;
+  has_worksheet_google_drive_downloadable_version?: InputMaybe<Scalars['Boolean']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  key_learning_points?: InputMaybe<Scalars['json']['input']>;
+  lesson_guide_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  lesson_guide_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  lesson_id?: InputMaybe<Scalars['Int']['input']>;
+  lesson_keywords?: InputMaybe<Scalars['json']['input']>;
+  lesson_slug?: InputMaybe<Scalars['String']['input']>;
+  lesson_title?: InputMaybe<Scalars['String']['input']>;
+  media_clips?: InputMaybe<Scalars['jsonb']['input']>;
+  misconceptions_and_common_mistakes?: InputMaybe<Scalars['json']['input']>;
+  phonics_outcome?: InputMaybe<Scalars['String']['input']>;
+  pupil_lesson_outcome?: InputMaybe<Scalars['String']['input']>;
+  slide_deck_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  slide_deck_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  starter_quiz_id?: InputMaybe<Scalars['Int']['input']>;
+  supervision_level?: InputMaybe<Scalars['String']['input']>;
+  supplementary_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  supplementary_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+  teacher_tips?: InputMaybe<Scalars['json']['input']>;
+  transcript_sentences?: InputMaybe<Scalars['String']['input']>;
+  transcript_vtt?: InputMaybe<Scalars['String']['input']>;
+  video_duration?: InputMaybe<Scalars['String']['input']>;
+  video_id?: InputMaybe<Scalars['Int']['input']>;
+  video_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  video_title?: InputMaybe<Scalars['String']['input']>;
+  video_with_sign_language_mux_playback_id?: InputMaybe<Scalars['String']['input']>;
+  worksheet_answers_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  worksheet_asset_id?: InputMaybe<Scalars['Int']['input']>;
+  worksheet_asset_object_url?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_View_Lesson_Content_8_Sum_Fields = {
+  __typename?: 'published_view_lesson_content_8_sum_fields';
+  exit_quiz_id?: Maybe<Scalars['Int']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Int']['output']>;
+  lesson_id?: Maybe<Scalars['Int']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Int']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Int']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Int']['output']>;
+  video_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Int']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_View_Lesson_Content_8_Var_Pop_Fields = {
+  __typename?: 'published_view_lesson_content_8_var_pop_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_View_Lesson_Content_8_Var_Samp_Fields = {
+  __typename?: 'published_view_lesson_content_8_var_samp_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_View_Lesson_Content_8_Variance_Fields = {
+  __typename?: 'published_view_lesson_content_8_variance_fields';
+  exit_quiz_id?: Maybe<Scalars['Float']['output']>;
+  lesson_guide_asset_id?: Maybe<Scalars['Float']['output']>;
+  lesson_id?: Maybe<Scalars['Float']['output']>;
+  slide_deck_asset_id?: Maybe<Scalars['Float']['output']>;
+  starter_quiz_id?: Maybe<Scalars['Float']['output']>;
+  supplementary_asset_id?: Maybe<Scalars['Float']['output']>;
+  video_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_answers_asset_id?: Maybe<Scalars['Float']['output']>;
+  worksheet_asset_id?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.view_quiz_question_details" */
 export type Published_View_Quiz_Question_Details = {
   __typename?: 'published_view_quiz_question_details';
@@ -35589,10 +37378,18 @@ export type Query_Root = {
   published_mv_lesson_content_new_7_0_0: Array<Published_Mv_Lesson_Content_New_7_0_0>;
   /** fetch aggregated fields from the table: "published.mv_lesson_content_new_7_0_0" */
   published_mv_lesson_content_new_7_0_0_aggregate: Published_Mv_Lesson_Content_New_7_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_lesson_content_new_8_0_0" */
+  published_mv_lesson_content_new_8_0_0: Array<Published_Mv_Lesson_Content_New_8_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_content_new_8_0_0" */
+  published_mv_lesson_content_new_8_0_0_aggregate: Published_Mv_Lesson_Content_New_8_0_0_Aggregate;
   /** fetch data from the table: "published.mv_lesson_content_published_5_0_0" */
   published_mv_lesson_content_published_5_0_0: Array<Published_Mv_Lesson_Content_Published_5_0_0>;
   /** fetch aggregated fields from the table: "published.mv_lesson_content_published_5_0_0" */
   published_mv_lesson_content_published_5_0_0_aggregate: Published_Mv_Lesson_Content_Published_5_0_0_Aggregate;
+  /** fetch data from the table: "published.mv_lesson_content_published_8_0_0" */
+  published_mv_lesson_content_published_8_0_0: Array<Published_Mv_Lesson_Content_Published_8_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_content_published_8_0_0" */
+  published_mv_lesson_content_published_8_0_0_aggregate: Published_Mv_Lesson_Content_Published_8_0_0_Aggregate;
   /** fetch data from the table: "published.mv_lesson_openapi_1_0_0" */
   published_mv_lesson_openapi_1_0_0: Array<Published_Mv_Lesson_Openapi_1_0_0>;
   /** fetch aggregated fields from the table: "published.mv_lesson_openapi_1_0_0" */
@@ -35721,6 +37518,10 @@ export type Query_Root = {
   published_view_lesson_content_7: Array<Published_View_Lesson_Content_7>;
   /** fetch aggregated fields from the table: "published.view_lesson_content_7" */
   published_view_lesson_content_7_aggregate: Published_View_Lesson_Content_7_Aggregate;
+  /** fetch data from the table: "published.view_lesson_content_8" */
+  published_view_lesson_content_8: Array<Published_View_Lesson_Content_8>;
+  /** fetch aggregated fields from the table: "published.view_lesson_content_8" */
+  published_view_lesson_content_8_aggregate: Published_View_Lesson_Content_8_Aggregate;
   /** fetch data from the table: "published.view_quiz_question_details" */
   published_view_quiz_question_details: Array<Published_View_Quiz_Question_Details>;
   /** fetch data from the table: "published.view_quiz_question_details_1" */
@@ -36824,6 +38625,24 @@ export type Query_RootPublished_Mv_Lesson_Content_New_7_0_0_AggregateArgs = {
 };
 
 
+export type Query_RootPublished_Mv_Lesson_Content_New_8_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_New_8_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_New_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_New_8_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Lesson_Content_New_8_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_New_8_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_New_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_New_8_0_0_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_Mv_Lesson_Content_Published_5_0_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_5_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -36839,6 +38658,24 @@ export type Query_RootPublished_Mv_Lesson_Content_Published_5_0_0_AggregateArgs 
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_5_0_0_Order_By>>;
   where?: InputMaybe<Published_Mv_Lesson_Content_Published_5_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Lesson_Content_Published_8_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_8_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_Published_8_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Lesson_Content_Published_8_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_8_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_Published_8_0_0_Bool_Exp>;
 };
 
 
@@ -37415,6 +39252,24 @@ export type Query_RootPublished_View_Lesson_Content_7_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_View_Lesson_Content_7_Order_By>>;
   where?: InputMaybe<Published_View_Lesson_Content_7_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Lesson_Content_8Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Content_8_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Content_8_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Content_8_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Lesson_Content_8_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Content_8_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Content_8_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Content_8_Bool_Exp>;
 };
 
 
@@ -40239,12 +42094,24 @@ export type Subscription_Root = {
   published_mv_lesson_content_new_7_0_0_aggregate: Published_Mv_Lesson_Content_New_7_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_lesson_content_new_7_0_0" */
   published_mv_lesson_content_new_7_0_0_stream: Array<Published_Mv_Lesson_Content_New_7_0_0>;
+  /** fetch data from the table: "published.mv_lesson_content_new_8_0_0" */
+  published_mv_lesson_content_new_8_0_0: Array<Published_Mv_Lesson_Content_New_8_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_content_new_8_0_0" */
+  published_mv_lesson_content_new_8_0_0_aggregate: Published_Mv_Lesson_Content_New_8_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_lesson_content_new_8_0_0" */
+  published_mv_lesson_content_new_8_0_0_stream: Array<Published_Mv_Lesson_Content_New_8_0_0>;
   /** fetch data from the table: "published.mv_lesson_content_published_5_0_0" */
   published_mv_lesson_content_published_5_0_0: Array<Published_Mv_Lesson_Content_Published_5_0_0>;
   /** fetch aggregated fields from the table: "published.mv_lesson_content_published_5_0_0" */
   published_mv_lesson_content_published_5_0_0_aggregate: Published_Mv_Lesson_Content_Published_5_0_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_lesson_content_published_5_0_0" */
   published_mv_lesson_content_published_5_0_0_stream: Array<Published_Mv_Lesson_Content_Published_5_0_0>;
+  /** fetch data from the table: "published.mv_lesson_content_published_8_0_0" */
+  published_mv_lesson_content_published_8_0_0: Array<Published_Mv_Lesson_Content_Published_8_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_lesson_content_published_8_0_0" */
+  published_mv_lesson_content_published_8_0_0_aggregate: Published_Mv_Lesson_Content_Published_8_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_lesson_content_published_8_0_0" */
+  published_mv_lesson_content_published_8_0_0_stream: Array<Published_Mv_Lesson_Content_Published_8_0_0>;
   /** fetch data from the table: "published.mv_lesson_openapi_1_0_0" */
   published_mv_lesson_openapi_1_0_0: Array<Published_Mv_Lesson_Openapi_1_0_0>;
   /** fetch aggregated fields from the table: "published.mv_lesson_openapi_1_0_0" */
@@ -40437,6 +42304,12 @@ export type Subscription_Root = {
   published_view_lesson_content_7_aggregate: Published_View_Lesson_Content_7_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_lesson_content_7" */
   published_view_lesson_content_7_stream: Array<Published_View_Lesson_Content_7>;
+  /** fetch data from the table: "published.view_lesson_content_8" */
+  published_view_lesson_content_8: Array<Published_View_Lesson_Content_8>;
+  /** fetch aggregated fields from the table: "published.view_lesson_content_8" */
+  published_view_lesson_content_8_aggregate: Published_View_Lesson_Content_8_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.view_lesson_content_8" */
+  published_view_lesson_content_8_stream: Array<Published_View_Lesson_Content_8>;
   /** fetch data from the table: "published.view_quiz_question_details" */
   published_view_quiz_question_details: Array<Published_View_Quiz_Question_Details>;
   /** fetch data from the table: "published.view_quiz_question_details_1" */
@@ -41908,6 +43781,31 @@ export type Subscription_RootPublished_Mv_Lesson_Content_New_7_0_0_StreamArgs = 
 };
 
 
+export type Subscription_RootPublished_Mv_Lesson_Content_New_8_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_New_8_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_New_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_New_8_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Content_New_8_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_New_8_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_New_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_New_8_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Content_New_8_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Lesson_Content_New_8_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_New_8_0_0_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_Mv_Lesson_Content_Published_5_0_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_5_0_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -41930,6 +43828,31 @@ export type Subscription_RootPublished_Mv_Lesson_Content_Published_5_0_0_StreamA
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_Mv_Lesson_Content_Published_5_0_0_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_Mv_Lesson_Content_Published_5_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Content_Published_8_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_8_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_Published_8_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Content_Published_8_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_8_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Lesson_Content_Published_8_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_Published_8_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Lesson_Content_Published_8_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Lesson_Content_Published_8_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Lesson_Content_Published_8_0_0_Bool_Exp>;
 };
 
 
@@ -42730,6 +44653,31 @@ export type Subscription_RootPublished_View_Lesson_Content_7_StreamArgs = {
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_View_Lesson_Content_7_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_View_Lesson_Content_7_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Lesson_Content_8Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Content_8_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Content_8_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Content_8_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Lesson_Content_8_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Lesson_Content_8_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Lesson_Content_8_Order_By>>;
+  where?: InputMaybe<Published_View_Lesson_Content_8_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Lesson_Content_8_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_View_Lesson_Content_8_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_View_Lesson_Content_8_Bool_Exp>;
 };
 
 
@@ -51580,7 +53528,7 @@ export type LessonDownloadsQueryVariables = Exact<{
 }>;
 
 
-export type LessonDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_published_5_0_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_lesson_guide_object?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: boolean | null, login_required?: boolean | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
+export type LessonDownloadsQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_published_8_0_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_lesson_guide_object?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: boolean | null, login_required?: boolean | null, downloadable_files?: any | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
 
 export type LessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -51603,7 +53551,7 @@ export type LessonOverviewQueryVariables = Exact<{
 }>;
 
 
-export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_5_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null }> };
+export type LessonOverviewQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_8_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, downloadable_files?: any | null }> };
 
 export type LessonShareQueryVariables = Exact<{
   lessonSlug: Scalars['String']['input'];
@@ -51628,7 +53576,7 @@ export type PupilLessonQueryVariables = Exact<{
 }>;
 
 
-export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_12_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, actions?: any | null, features?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_5_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_asset_object?: boolean | null }> };
+export type PupilLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_year_12_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, supplementary_data?: any | null, actions?: any | null, features?: any | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_published_8_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_asset_object?: boolean | null, downloadable_files?: any | null }> };
 
 export type PupilLessonListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
@@ -51644,7 +53592,7 @@ export type PupilPreviewLessonQueryVariables = Exact<{
 }>;
 
 
-export type PupilPreviewLessonQuery = { __typename?: 'query_root', content: Array<{ __typename?: 'published_mv_lesson_content_new_7_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_asset_object?: boolean | null, additional_files?: any | null, has_additional_files?: boolean | null }> };
+export type PupilPreviewLessonQuery = { __typename?: 'query_root', content: Array<{ __typename?: 'published_mv_lesson_content_new_8_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_asset_object?: boolean | null, downloadable_files?: any | null }> };
 
 export type PupilProgrammeListingQueryVariables = Exact<{
   baseSlug: Scalars['String']['input'];
@@ -51793,7 +53741,15 @@ export type TeachersPreviewLessonQueryVariables = Exact<{
 }>;
 
 
-export type TeachersPreviewLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_new_7_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, video_duration?: string | null, _state?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, geo_restricted?: string | null, login_required?: string | null, media_clips?: any | null, additional_files?: any | null, has_additional_files?: boolean | null }> };
+export type TeachersPreviewLessonQuery = { __typename?: 'query_root', browseData: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }>, content: Array<{ __typename?: 'published_mv_lesson_content_new_8_0_0', lesson_id?: number | null, lesson_title?: string | null, lesson_slug?: string | null, deprecated_fields?: any | null, is_legacy?: boolean | null, misconceptions_and_common_mistakes?: any | null, equipment_and_resources?: any | null, teacher_tips?: any | null, key_learning_points?: any | null, pupil_lesson_outcome?: string | null, phonics_outcome?: string | null, lesson_keywords?: any | null, content_guidance?: any | null, video_mux_playback_id?: string | null, video_id?: number | null, video_with_sign_language_mux_playback_id?: string | null, video_duration?: string | null, _state?: string | null, transcript_sentences?: string | null, starter_quiz?: any | null, starter_quiz_id?: number | null, exit_quiz?: any | null, exit_quiz_id?: number | null, supervision_level?: string | null, video_title?: string | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_slide_deck_asset_object?: boolean | null, worksheet_asset_id?: number | null, has_worksheet_asset_object?: boolean | null, worksheet_answers_asset_id?: number | null, has_worksheet_answers_asset_object?: boolean | null, supplementary_asset_id?: number | null, has_supplementary_asset_object?: boolean | null, slide_deck_asset_id?: number | null, slide_deck_asset_object_url?: string | null, worksheet_asset_object_url?: string | null, supplementary_asset_object_url?: string | null, has_lesson_guide_google_drive_downloadable_version?: boolean | null, lesson_guide_asset_object_url?: string | null, has_lesson_guide_object?: boolean | null, lesson_guide_asset_id?: number | null, geo_restricted?: string | null, login_required?: string | null, media_clips?: any | null, downloadable_files?: any | null, has_downloadable_files?: boolean | null }> };
+
+export type TeacherPreviewLessonDownloadQueryVariables = Exact<{
+  lessonSlug: Scalars['String']['input'];
+  browseDataWhere?: InputMaybe<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_New_14_0_0_Bool_Exp>;
+}>;
+
+
+export type TeacherPreviewLessonDownloadQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_new_8_0_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_lesson_guide_object?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: string | null, login_required?: string | null, downloadable_files?: any | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
 
 export type TeachersHomePageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -51901,7 +53857,7 @@ export const BetaLessonMediaClipsDocument = gql`
     `;
 export const LessonDownloadsDocument = gql`
     query lessonDownloads($lessonSlug: String!, $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0_bool_exp) {
-  download_assets: published_mv_lesson_content_published_5_0_0(
+  download_assets: published_mv_lesson_content_published_8_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     has_slide_deck_asset_object
@@ -51916,6 +53872,7 @@ export const LessonDownloadsDocument = gql`
     expired: deprecated_fields(path: "expired")
     geo_restricted
     login_required
+    downloadable_files
   }
   browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
     where: $browseDataWhere
@@ -51990,7 +53947,7 @@ export const LessonOverviewDocument = gql`
     features
     order_in_unit
   }
-  content: published_mv_lesson_content_published_5_0_0(
+  content: published_mv_lesson_content_published_8_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -52032,6 +53989,7 @@ export const LessonOverviewDocument = gql`
     lesson_guide_asset_object_url
     has_lesson_guide_object
     lesson_guide_asset_id
+    downloadable_files
   }
 }
     `;
@@ -52098,7 +54056,7 @@ export const PupilLessonDocument = gql`
     actions
     features
   }
-  content: published_mv_lesson_content_published_5_0_0(
+  content: published_mv_lesson_content_published_8_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -52125,6 +54083,7 @@ export const PupilLessonDocument = gql`
     supervision_level
     video_title
     has_worksheet_asset_object
+    downloadable_files
   }
 }
     `;
@@ -52154,7 +54113,7 @@ export const PupilLessonListingDocument = gql`
     `;
 export const PupilPreviewLessonDocument = gql`
     query pupilPreviewLesson($lessonSlug: String!) {
-  content: published_mv_lesson_content_new_7_0_0(
+  content: published_mv_lesson_content_new_8_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -52181,8 +54140,7 @@ export const PupilPreviewLessonDocument = gql`
     supervision_level
     video_title
     has_worksheet_asset_object
-    additional_files
-    has_additional_files
+    downloadable_files
   }
 }
     `;
@@ -52573,7 +54531,9 @@ export const SubjectListingDocument = gql`
     description: title
     display_order
   }
-  subjectFeatures: pf_subjects(where: {features: {_neq: {}}}) {
+  subjectFeatures: pf_subjects(
+    where: {features: {_neq: {}}, _state: {_eq: "published"}}
+  ) {
     slug
     features
   }
@@ -52596,7 +54556,7 @@ export const TeachersPreviewLessonDocument = gql`
     features
     order_in_unit
   }
-  content: published_mv_lesson_content_new_7_0_0(
+  content: published_mv_lesson_content_new_8_0_0(
     where: {lesson_slug: {_eq: $lessonSlug}}
   ) {
     lesson_id
@@ -52644,8 +54604,44 @@ export const TeachersPreviewLessonDocument = gql`
     geo_restricted
     login_required
     media_clips
-    additional_files
-    has_additional_files
+    downloadable_files
+    has_downloadable_files
+  }
+}
+    `;
+export const TeacherPreviewLessonDownloadDocument = gql`
+    query teacherPreviewLessonDownload($lessonSlug: String!, $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0_bool_exp) {
+  download_assets: published_mv_lesson_content_new_8_0_0(
+    where: {lesson_slug: {_eq: $lessonSlug}}
+  ) {
+    has_slide_deck_asset_object
+    has_worksheet_asset_object
+    has_supplementary_asset_object
+    has_worksheet_answers_asset_object
+    has_worksheet_google_drive_downloadable_version
+    has_lesson_guide_object
+    starter_quiz
+    exit_quiz
+    is_legacy
+    expired: deprecated_fields(path: "expired")
+    geo_restricted
+    login_required
+    downloadable_files
+  }
+  browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0(
+    where: $browseDataWhere
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    programme_slug_by_year
+    is_legacy
+    lesson_data
+    unit_data
+    programme_fields
+    actions
+    features
+    order_in_unit
   }
 }
     `;
@@ -52829,6 +54825,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teachersPreviewLesson(variables: TeachersPreviewLessonQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersPreviewLessonQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewLessonQuery>(TeachersPreviewLessonDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersPreviewLesson', 'query', variables);
+    },
+    teacherPreviewLessonDownload(variables: TeacherPreviewLessonDownloadQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeacherPreviewLessonDownloadQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonDownloadQuery>(TeacherPreviewLessonDownloadDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teacherPreviewLessonDownload', 'query', variables);
     },
     teachersHomePage(variables?: TeachersHomePageQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersHomePageQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersHomePageQuery>(TeachersHomePageDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersHomePage', 'query', variables);

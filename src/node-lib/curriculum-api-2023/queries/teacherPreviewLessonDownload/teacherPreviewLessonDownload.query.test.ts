@@ -7,8 +7,11 @@ import { ZodError } from "zod";
 
 import sdk from "../../sdk";
 
-import lessonDownloads from "./lessonDownloads.query";
-import { LessonDownloadsPageData } from "./lessonDownloads.schema";
+import teachersPreviewLessonDownloadQuery, {
+  TeacherPreviewLessonDownloadsQuery,
+} from "./teacherPreviewLessonDownload.query";
+
+import { LessonDownloadsPageData } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
 
 const downloadAssets = {
   has_slide_deck_asset_object: true,
@@ -31,12 +34,12 @@ const downloadAssetsWithEmptyAdditionalFiles = {
   downloadable_files: [],
 };
 
-describe("lessonDownloads()", () => {
+describe("teachersPreviewLessonDownloadQuery()", () => {
   test("throws a not found error if no download_assets is found", async () => {
     await expect(async () => {
-      await lessonDownloads({
+      await teachersPreviewLessonDownloadQuery({
         ...sdk,
-        lessonDownloads: jest.fn(() =>
+        teacherPreviewLessonDownload: jest.fn(() =>
           Promise.resolve({
             download_assets: [],
             additional_files: [],
@@ -52,15 +55,15 @@ describe("lessonDownloads()", () => {
   });
   test("throws a not found error if no unit_lessons are found", async () => {
     await expect(async () => {
-      await lessonDownloads({
+      await teachersPreviewLessonDownloadQuery({
         ...sdk,
-        lessonDownloads: jest.fn(() =>
+        teacherPreviewLessonDownload: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssets],
             additional_files: [],
             browse_data: [],
           }),
-        ),
+        ) as TeacherPreviewLessonDownloadsQuery,
       })({
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
@@ -69,14 +72,14 @@ describe("lessonDownloads()", () => {
     }).rejects.toThrow(`Resource not found`);
   });
   test("first downloads is returned if multiple lessons in response", async () => {
-    const unit = (await lessonDownloads({
+    const unit = (await teachersPreviewLessonDownloadQuery({
       ...sdk,
-      lessonDownloads: jest.fn(() =>
+      teacherPreviewLessonDownload: jest.fn(() =>
         Promise.resolve({
           download_assets: [downloadAssets],
           browse_data: [syntheticUnitvariantLessonsFixture()],
         }),
-      ),
+      ) as TeacherPreviewLessonDownloadsQuery,
     })({
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
@@ -86,14 +89,14 @@ describe("lessonDownloads()", () => {
     expect(unit.programmeSlug).toEqual("programme-slug");
   });
   test("returns additional files if present in the response", async () => {
-    const unit = (await lessonDownloads({
+    const unit = (await teachersPreviewLessonDownloadQuery({
       ...sdk,
-      lessonDownloads: jest.fn(() =>
+      teacherPreviewLessonDownload: jest.fn(() =>
         Promise.resolve({
           download_assets: [downloadAssets],
           browse_data: [syntheticUnitvariantLessonsFixture()],
         }),
-      ),
+      ) as TeacherPreviewLessonDownloadsQuery,
     })({
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
@@ -122,14 +125,14 @@ describe("lessonDownloads()", () => {
     ]);
   });
   test("returns additional files as empty string if not present in the response", async () => {
-    const unit = (await lessonDownloads({
+    const unit = (await teachersPreviewLessonDownloadQuery({
       ...sdk,
-      lessonDownloads: jest.fn(() =>
+      teacherPreviewLessonDownload: jest.fn(() =>
         Promise.resolve({
           download_assets: [downloadAssetsWithEmptyAdditionalFiles],
           browse_data: [syntheticUnitvariantLessonsFixture()],
         }),
-      ),
+      ) as TeacherPreviewLessonDownloadsQuery,
     })({
       programmeSlug: "programme-slug",
       unitSlug: "unit-slug",
@@ -140,11 +143,11 @@ describe("lessonDownloads()", () => {
   });
   test("throws a Zod error if the response is invalid", async () => {
     try {
-      await lessonDownloads({
+      await teachersPreviewLessonDownloadQuery({
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        lessonDownloads: jest.fn(() =>
+        teacherPreviewLessonDownload: jest.fn(() =>
           Promise.resolve({
             download_assets: [
               {
@@ -199,9 +202,9 @@ const downloadAssetsFixture = {
 describe("lessonDownloadsCanonical()", () => {
   test("throws a not found error if no download assets are found", async () => {
     await expect(async () => {
-      await lessonDownloads({
+      await teachersPreviewLessonDownloadQuery({
         ...sdk,
-        lessonDownloads: jest.fn(() =>
+        teacherPreviewLessonDownload: jest.fn(() =>
           Promise.resolve({
             download_assets: [],
             browse_data: [syntheticUnitvariantLessonsFixture()],
@@ -214,9 +217,9 @@ describe("lessonDownloadsCanonical()", () => {
   });
   test("throws a not found error if no browse_data are found", async () => {
     await expect(async () => {
-      await lessonDownloads({
+      await teachersPreviewLessonDownloadQuery({
         ...sdk,
-        lessonDownloads: jest.fn(() =>
+        teacherPreviewLessonDownload: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssetsFixture],
             browse_data: [],
@@ -230,11 +233,11 @@ describe("lessonDownloadsCanonical()", () => {
 
   test("throws a Zod error if the response is invalid", async () => {
     try {
-      await lessonDownloads({
+      await teachersPreviewLessonDownloadQuery({
         ...sdk,
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        lessonDownloads: jest.fn(() =>
+        teacherPreviewLessonDownload: jest.fn(() =>
           Promise.resolve({
             download_assets: [
               {
@@ -270,7 +273,7 @@ describe("lessonDownloadsCanonical()", () => {
     }
   });
 
-  describe("lessonDownloads() - Copyright Content", () => {
+  describe("teachersPreviewLessonDownloadQuery() - Copyright Content", () => {
     test("returns copyright content if present in the response", async () => {
       const mockCopyrightContent = [
         {
@@ -278,9 +281,9 @@ describe("lessonDownloadsCanonical()", () => {
         },
       ];
 
-      const unit = (await lessonDownloads({
+      const unit = (await teachersPreviewLessonDownloadQuery({
         ...sdk,
-        lessonDownloads: jest.fn(() =>
+        teacherPreviewLessonDownload: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssets],
             browse_data: [
@@ -295,7 +298,7 @@ describe("lessonDownloadsCanonical()", () => {
               }),
             ],
           }),
-        ),
+        ) as TeacherPreviewLessonDownloadsQuery,
       })({
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",
@@ -306,9 +309,9 @@ describe("lessonDownloadsCanonical()", () => {
     });
 
     test("returns null for copyright content if not present in the response", async () => {
-      const unit = (await lessonDownloads({
+      const unit = (await teachersPreviewLessonDownloadQuery({
         ...sdk,
-        lessonDownloads: jest.fn(() =>
+        teacherPreviewLessonDownload: jest.fn(() =>
           Promise.resolve({
             download_assets: [downloadAssets],
             browse_data: [
@@ -323,7 +326,7 @@ describe("lessonDownloadsCanonical()", () => {
               }),
             ],
           }),
-        ),
+        ) as TeacherPreviewLessonDownloadsQuery,
       })({
         programmeSlug: "programme-slug",
         unitSlug: "unit-slug",

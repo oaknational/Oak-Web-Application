@@ -56,7 +56,7 @@ const teacherPreviewLessonQuery =
       starter_quiz: content.starter_quiz
         ? content.starter_quiz.filter((q: QuizQuestion) => q.question_stem)
         : null,
-      additional_files: content?.additional_files,
+      additional_files: content?.downloadable_files,
     });
 
     const modifiedBrowseData = applyGenericOverridesAndExceptions<

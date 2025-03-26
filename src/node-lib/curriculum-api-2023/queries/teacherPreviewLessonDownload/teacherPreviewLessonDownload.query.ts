@@ -1,13 +1,12 @@
 import lessonDownloadsSchema, {
   downloadsAssetData,
   LessonAdditionalFilesListSchema,
-} from "./lessonDownloads.schema";
-import { constructDownloadsArray } from "./downloadUtils";
-import constructCanonicalLessonDownloads from "./constructCanonicalLessonDownloads";
-import constructLessonDownloads from "./constructLessonDownloads";
-import { rawSyntheticUVLessonSchema } from "./rawSyntheticUVLesson.schema";
-
-import { LessonDownloadsQuery as SdkLessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
+} from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/lessonDownloads.schema";
+import { constructDownloadsArray } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/downloadUtils";
+import constructCanonicalLessonDownloads from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/constructCanonicalLessonDownloads";
+import constructLessonDownloads from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/constructLessonDownloads";
+import { rawSyntheticUVLessonSchema } from "@/node-lib/curriculum-api-2023/queries/lessonDownloads/rawSyntheticUVLesson.schema";
+import { TeacherPreviewLessonDownloadQuery as SdkLessonDownloadsQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import OakError from "@/errors/OakError";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import { constructLessonBrowseQuery } from "@/node-lib/curriculum-api-2023/helpers";
@@ -15,7 +14,7 @@ import lessonDownloadsCanonicalSchema from "@/node-lib/curriculum-api-2023/queri
 import keysToCamelCase from "@/utils/snakeCaseConverter";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 
-const lessonDownloadsQuery =
+const teachersPreviewLessonDownloadQuery =
   (sdk: Sdk) =>
   async <T>(args: {
     programmeSlug?: string;
@@ -31,7 +30,10 @@ const lessonDownloadsQuery =
       lessonSlug: isCanonicalLesson ? lessonSlug : undefined,
     });
 
-    const res = await sdk.lessonDownloads({ lessonSlug, browseDataWhere });
+    const res = await sdk.teacherPreviewLessonDownload({
+      lessonSlug,
+      browseDataWhere,
+    });
 
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       SdkLessonDownloadsQuery["browse_data"][number]
@@ -68,8 +70,6 @@ const lessonDownloadsQuery =
       downloadable_files,
     } = downloadsAssetData.parse(download_assets[0]);
 
-    // OWA referes to downloadable_files field in db as additional_files
-    // these are additional files that can be downloads for some lessons
     const additionalFiles: LessonAdditionalFilesListSchema = downloadable_files
       ? downloadable_files.map((file) => {
           return {
@@ -147,5 +147,7 @@ const lessonDownloadsQuery =
     }
   };
 
-export type LessonDownloadsQuery = ReturnType<typeof lessonDownloadsQuery>;
-export default lessonDownloadsQuery;
+export type TeacherPreviewLessonDownloadsQuery = ReturnType<
+  typeof teachersPreviewLessonDownloadQuery
+>;
+export default teachersPreviewLessonDownloadQuery;

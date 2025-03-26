@@ -14,7 +14,7 @@ query teachersPreviewLesson($lessonSlug: String!) {
     features
     order_in_unit
   }
-  content: published_mv_lesson_content_new_7_0_0(
+  content: published_mv_lesson_content_new_8_0_0(
     where: { lesson_slug: { _eq: $lessonSlug } }
   ) {
     lesson_id
@@ -62,7 +62,7 @@ query teachersPreviewLesson($lessonSlug: String!) {
     geo_restricted
     login_required
     media_clips
-    additional_files
-    has_additional_files
+    downloadable_files
+    has_downloadable_files
   }
 }

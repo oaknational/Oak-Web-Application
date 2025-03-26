@@ -33,6 +33,7 @@ import {
 import {
   LessonBrowseData,
   LessonContent,
+  AdditionalFile,
 } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { ContentGuidanceWarningValueType } from "@/browser-lib/avo/Avo";
@@ -59,6 +60,7 @@ export type PupilExperienceViewProps = {
   initialSection: LessonSection;
   pageType: "preview" | "canonical" | "browse";
   hasAdditionalFiles: boolean;
+  additionalFiles: AdditionalFile[] | null;
   worksheetInfo: WorksheetInfo | null;
 };
 
@@ -70,6 +72,7 @@ export const PupilPageContent = ({
   backUrl,
   pageType,
   worksheetInfo,
+  additionalFiles,
 }: Omit<PupilExperienceViewProps, "initialSection">) => {
   const { currentSection } = useLessonEngineContext();
   const {
@@ -116,6 +119,7 @@ export const PupilPageContent = ({
           {...lessonContent}
           hasWorksheet={hasWorksheet}
           hasAdditionalFiles={hasAdditionalFiles}
+          additionalFiles={additionalFiles}
           worksheetInfo={worksheetInfo}
         />
       );
@@ -135,7 +139,7 @@ export const PupilPageContent = ({
           isLegacy={isLegacy ?? false}
           browseData={browseData}
           hasAdditionalFiles={hasAdditionalFiles}
-          additionalFiles={lessonContent.additionalFiles}
+          additionalFiles={additionalFiles}
         />
       );
     case "exit-quiz":
@@ -178,6 +182,7 @@ const PupilExperienceLayout = ({
   lessonContent,
   hasWorksheet,
   hasAdditionalFiles,
+  additionalFiles,
   backUrl,
   initialSection,
   pageType,
@@ -258,6 +263,7 @@ const PupilExperienceLayout = ({
                   backUrl={backUrl}
                   pageType={pageType}
                   hasAdditionalFiles={hasAdditionalFiles}
+                  additionalFiles={additionalFiles}
                 />
               )}
             </OakBox>
