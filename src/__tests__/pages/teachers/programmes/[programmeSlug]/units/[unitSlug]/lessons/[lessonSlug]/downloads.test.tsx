@@ -51,7 +51,9 @@ jest.mock(
   "@/components/TeacherComponents/helpers/downloadAndShareHelpers/downloadDebounceSubmit",
   () => ({
     __esModule: true,
-    default: () => Promise.resolve(),
+    default: () => {
+      Promise.resolve();
+    },
   }),
 );
 
