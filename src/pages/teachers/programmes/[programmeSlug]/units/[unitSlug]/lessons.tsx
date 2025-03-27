@@ -14,6 +14,9 @@ import {
   oakDefaultTheme,
   OakMaxWidth,
   OakInlineRegistrationBanner,
+  OakHeading,
+  OakLink,
+  OakSpan,
 } from "@oaknational/oak-components";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -43,6 +46,7 @@ import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareB
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import { resolveOakHref } from "@/common-lib/urls";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -278,6 +282,30 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                       name: "Incomplete Units Test",
                       userRole: "Teacher",
                     })
+                  }
+                  bodyText={
+                    <OakSpan $font="body-1">
+                      We’re busy creating the final lessons for our new
+                      curriculum. Stay tuned for updates. You can unsubscribe at
+                      any time. Read our{" "}
+                      <OakLink
+                        href={resolveOakHref({
+                          page: "legal",
+                          legalSlug: "privacy-policy",
+                        })}
+                      >
+                        privacy policy
+                      </OakLink>
+                      .
+                    </OakSpan>
+                  }
+                  headerText={
+                    <OakHeading
+                      tag="h2"
+                      $font={["heading-5", "heading-4", "heading-4"]}
+                    >
+                      Full unit on the way!
+                    </OakHeading>
                   }
                 />
               )}
