@@ -26,6 +26,8 @@ export const SpecialistUnitListingPage: Story = {
             title: "Changes and Transitions",
             nullTitle: "Changes and Transitions",
             programmeSlug: "changes-and-transtions-123a",
+            unpublishedLessonCount: 0,
+
             subjectSlug: "communication-and-language",
             subjectTitle: "Communication and Language",
             themeSlug: "Secondary",
@@ -43,6 +45,8 @@ export const SpecialistUnitListingPage: Story = {
           {
             slug: "journeys-and-adventures-723b",
             title: "Journeys and adventures",
+            unpublishedLessonCount: 0,
+
             nullTitle: "Changes and Transitions",
             programmeSlug: "changes-and-transtions-618b",
             subjectSlug: "communication-and-language",
