@@ -1,23 +1,55 @@
-import { css } from "styled-components";
+import { css, type DefaultTheme, type Interpolation } from "styled-components";
 
 import truthy from "../../utils/truthy";
 import { PropsWithTheme } from "../theme";
 
-const breakpointsByName = {
-  small: 750,
-  large: 1280,
-};
-export const breakpoints = Object.values(breakpointsByName).sort((a, b) =>
-  a > b ? 1 : -1,
-);
-export interface BreakpointName {
-  [key: string]: string | number;
+// Having the key on both sides allows precise types.
+const BREAKPOINTS = Object.freeze({
+  small: { name: "small", value: 750 },
+  large: { name: "large", value: 1280 },
+} as const);
+// Explicitly setting the sorted breakpoints allows better type safety in the code,
+// at the cost of requiring a check at build time to ensure the breakpoints are in sync.
+const SORTED_BREAKPOINTS = [750, 1280] as const;
+
+type BreakpointMapping = typeof BREAKPOINTS;
+type SortedBreakpoints = typeof SORTED_BREAKPOINTS;
+
+/**
+ * Build time check to ensure the sorted breakpoints and the breakpoints object are in sync
+ * @param breakpointMapping
+ * @param sortedBreakpoints
+ * @returns void
+ *
+ * @throws {TypeError} if the breakpoints are not in sync
+ */
+function validateSortedBreakpoints(
+  breakpointMapping: BreakpointMapping,
+  sortedBreakpoints: SortedBreakpoints,
+): void {
+  const inSync = Object.values(breakpointMapping)
+    .map(({ value }) => value)
+    .every((value, index) => value === sortedBreakpoints[index]);
+
+  if (!inSync) {
+    throw new TypeError(
+      `Breakpoints are not in sync:\nMapping: ${JSON.stringify(breakpointMapping)}\nSorted: ${JSON.stringify(sortedBreakpoints)}`,
+    );
+  }
 }
-export const getBreakpoint = (
-  breakpointName: keyof typeof breakpointsByName,
-) => {
-  return breakpointsByName[breakpointName];
-};
+
+// Should throw at build time if the breakpoint definitions are not in sync.
+validateSortedBreakpoints(BREAKPOINTS, SORTED_BREAKPOINTS);
+
+function getBreakpointFromName<K extends keyof BreakpointMapping>(
+  key: K,
+): BreakpointMapping[K]["value"] {
+  return BREAKPOINTS[key]["value"];
+}
+// Aliases for backwards compatibility
+export const getBreakpoint = getBreakpointFromName;
+export const breakpoints = SORTED_BREAKPOINTS;
+
 export type Device = "mobile" | "tablet" | "desktop";
 const mediaQueries: Record<Device, string> = {
   mobile: `(max-width: ${getBreakpoint("small") - 1}px)`,
@@ -31,10 +63,10 @@ export const getMediaQuery = (device: Device) => {
 };
 export type ResponsiveValues<Value> = (Value | null) | (Value | null)[];
 
-/**
- * A utility function that creates responsive CSS rules.
- * Updated to work with styled-components v6.
- */
+export type ResponsiveReturn<P extends object> = Interpolation<
+  P & { theme?: DefaultTheme }
+>;
+
 const responsive =
   <Props extends object, T extends string | number | undefined | null>(
     attr: string,
@@ -47,7 +79,7 @@ const responsive =
       x,
     ) => x,
   ) =>
-  (props: Props): any => {
+  (props: Props): ResponsiveReturn<Props> => {
     const attrCss = (value: T | undefined | null) =>
       typeof value === "undefined"
         ? undefined
@@ -68,7 +100,7 @@ const responsive =
     }
 
     return [
-      css`
+      css<Props>`
         ${attrCss(values[0])}
       `,
       ...breakpoints
@@ -80,9 +112,9 @@ const responsive =
             return undefined;
           }
 
-          return css`
+          return css<Props>`
             @media (min-width: ${breakpoint}px) {
-              ${css`
+              ${css<Props>`
                 ${attrCss(value)}
               `}
             }

@@ -1,9 +1,9 @@
 import { render } from "@testing-library/react";
-import styled, { css } from "styled-components";
+import styled, { css, RuleSet, DefaultTheme } from "styled-components";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import responsive from "./responsive";
+import responsive, { ResponsiveReturn } from "./responsive";
 
 import { OakColorName } from "../theme";
 
@@ -27,8 +27,12 @@ const StyledComponent = styled.div<TestProps>`
   `}
 `;
 
-const stringify = (cssArray: ReturnType<typeof css>) =>
-  cssArray.toString().replace(/\s+/g, " ").trim();
+const stringify = (cssArray: ResponsiveReturn<TestProps>) => {
+  if (!cssArray) {
+    return "Oops, no cssArray";
+  }
+  return cssArray.toString().replace(/\s+/g, " ").trim();
+};
 
 const pxOrUndefined = (value: number | unknown) =>
   typeof value === "number" ? `${value}px` : undefined;
@@ -113,10 +117,15 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 0.5em;
     `;
-    expect(stringify(actual)).toEqual(stringify(expected));
+    expect(stringify(actual as RuleSet<object>)).toEqual(stringify(expected));
   });
   test("should handle when parse fn gets from theme", async () => {
-    const StyledComponent = styled.div<{ $color?: OakColorName }>`
+    interface ThemedProps {
+      $color?: OakColorName;
+      theme: DefaultTheme;
+    }
+
+    const StyledComponent = styled.div<ThemedProps>`
       ${responsive(
         "color",
         (props) => props.$color,
@@ -148,6 +157,6 @@ describe("responsive", () => {
       (props: TestProps) => props[prop as keyof TestProps],
     )(props);
 
-    expect(stringify(actual)).toEqual(stringify(expected as any));
+    expect(stringify(actual)).toEqual(stringify(expected));
   });
 });
