@@ -17,18 +17,16 @@ export type LessonBrowseData = ConvertKeysToCamelCase<
 >;
 
 export const clipMediaObjectSchema = z.object({
-  id: z.string(),
   url: z.string(),
   type: z.string(),
   bytes: z.number(),
   format: z.string(),
-  duration: z.number().nullable(),
+  duration: z.number().nullable().optional(),
   displayName: z.string(),
   resourceType: z.string(),
 });
 
 export const clipVideoObjectSchema = z.object({
-  id: z.string(),
   duration: z.number().nullable(),
   muxAssetId: z.string(),
   playbackIds: z.array(
