@@ -20,8 +20,6 @@ describe("zIndex", () => {
       ${zIndex}
     `;
     const { getByTestId } = render(
-      // eslint-disable-next-line
-      // @ts-ignore
       <StyledComponent data-testid="test" $zIndex={["neutral"]} />,
     );
 

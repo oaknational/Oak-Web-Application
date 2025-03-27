@@ -1,7 +1,8 @@
-import { render } from "@testing-library/react";
 import styled from "styled-components";
+import { render } from "@testing-library/react";
 
-import position, { PositionProps } from "./position";
+import type { PositionProps } from "./position";
+import position from "./position";
 
 describe("position", () => {
   test("should correctly handle prop 'position' as string", async () => {

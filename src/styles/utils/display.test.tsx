@@ -1,7 +1,8 @@
-import { render } from "@testing-library/react";
 import styled from "styled-components";
+import { render } from "@testing-library/react";
 
-import display, { DisplayProps } from "./display";
+import type { DisplayProps } from "./display";
+import display from "./display";
 
 describe("display", () => {
   test("should correctly handle prop 'display' as string", async () => {

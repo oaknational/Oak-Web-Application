@@ -1,13 +1,8 @@
-import { render } from "@testing-library/react";
 import styled from "styled-components";
+import { render } from "@testing-library/react";
 
-import {
-  margin,
-  padding,
-  MarginProps,
-  PaddingProps,
-  SpacingProps,
-} from "./spacing";
+import type { MarginProps, PaddingProps } from "./spacing";
+import { margin, padding } from "./spacing";
 
 describe("spacing", () => {
   test("should correctly handle prop 'ma'", async () => {
@@ -94,7 +89,7 @@ describe("spacing", () => {
       [prop]: value,
     };
 
-    const StyledComponent = styled.div<SpacingProps>`
+    const StyledComponent = styled.div<MarginProps & PaddingProps>`
       ${margin}
       ${padding}
     `;

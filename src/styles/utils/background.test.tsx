@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import background, { BackgroundProps } from "./background";
+import type { BackgroundProps } from "./background";
+import background from "./background";
 
 describe("background", () => {
   test("should correctly handle prop 'background' as string", async () => {

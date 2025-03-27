@@ -20,8 +20,6 @@ describe("transform", () => {
       ${transform}
     `;
     const { getByTestId } = render(
-      // eslint-disable-next-line
-      // @ts-ignore
       <StyledComponent
         data-testid="test"
         $transform={["translateY(20px)", "translateY(40px)"]}
