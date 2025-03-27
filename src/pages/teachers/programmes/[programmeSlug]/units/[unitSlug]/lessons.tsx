@@ -284,9 +284,10 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                   }
                   bodyText={
                     <OakSpan $font="body-1">
-                      We’re busy creating the final lessons for our new
-                      curriculum. Stay tuned for updates. You can unsubscribe at
-                      any time. Read our{" "}
+                      We’re busy creating the final lessons. We’ll let you know
+                      when the rest of this unit is ready - and send you other
+                      helpful content and resources. Unsubscribe at any time.
+                      Read our{" "}
                       <OakLink
                         href={resolveOakHref({
                           page: "legal",
