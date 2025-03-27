@@ -7,7 +7,7 @@ import { MathJaxProvider } from "@/browser-lib/mathjax/MathJaxProvider";
 import { exitQuizQuestions } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.new.fixture";
 import { sectionResultsFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonSectionResults.fixture";
 
-const meta: Meta<typeof QuizResults> = {
+const meta = {
   component: QuizResults,
   decorators: [
     (Story) => (
@@ -18,7 +18,7 @@ const meta: Meta<typeof QuizResults> = {
       </MathJaxProvider>
     ),
   ],
-};
+} satisfies Meta<typeof QuizResults>;
 
 export default meta;
 

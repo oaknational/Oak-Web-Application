@@ -28,6 +28,9 @@ local.log
 .DS_Store
 *.pem
 
+# Shell logs
+*.log
+
 # debug
 npm-debug.log*
 yarn-debug.log*

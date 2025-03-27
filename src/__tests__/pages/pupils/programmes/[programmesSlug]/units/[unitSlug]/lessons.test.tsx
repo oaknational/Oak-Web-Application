@@ -65,7 +65,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
       configurable: true,
     });
     // Restore the original window.location object after each test
-    window.location = originalLocation;
+    window.location.href = originalLocation.href;
 
     jest.clearAllMocks();
   });

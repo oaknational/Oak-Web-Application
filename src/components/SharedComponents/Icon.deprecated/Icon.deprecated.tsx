@@ -1,15 +1,27 @@
 import { FC } from "react";
 import styled, { css, useTheme } from "styled-components";
-
+import { box } from "@/components/SharedComponents/Box";
+import colorUtil from "@/styles/utils/color";
+import sizeUtil from "@/styles/utils/size";
+import transformUtil from "@/styles/utils/transform";
+import transitionUtil from "@/styles/utils/transition";
+import { padding } from "@/styles/utils/spacing";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
+import responsive from "@/styles/utils/responsive";
 import useIconAnimation from "./useIconAnimation";
-
-import { PixelSpacing } from "@/styles/theme";
-import color, { ColorProps } from "@/styles/utils/color";
-import size, { SizeProps } from "@/styles/utils/size";
-import { ResponsiveValues } from "@/styles/utils/responsive";
+import Svg from "@/components/SharedComponents/Svg";
 import { UiIconName } from "@/image-data";
-import Svg, { SvgProps } from "@/components/SharedComponents/Svg";
-import { box, BoxProps } from "@/components/SharedComponents/Box";
+
+import type { BoxProps } from "@/components/SharedComponents/Box";
+import type { ColorProps } from "@/styles/utils/color";
+import type { SizeProps } from "@/styles/utils/size";
+import type { TransformProps } from "@/styles/utils/transform";
+import type { TransitionProps } from "@/styles/utils/transition";
+import type { PaddingProps } from "@/styles/utils/spacing";
+import type { OakColorName } from "@/styles/theme/types";
+import type { ResponsiveValues } from "@/styles/utils/responsive";
+import type { PixelSpacing } from "@/styles/theme/types";
+import type { SvgProps } from "@/components/SharedComponents/Svg";
 
 export type IconName = UiIconName;
 export type IconVariant = "minimal" | "brush" | "buttonStyledAsLink";
@@ -36,21 +48,26 @@ const IconOuterWrapper = styled.span<IconOuterWrapperProps>`
       transform: rotate(${props.rotate}deg);
     `}
 
-  ${size}
+  ${sizeUtil}
   ${box}
   vertical-align: ${(props) => props.verticalAlign};
 `;
 
-const IconWrapper = styled.span<BoxProps>`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+const IconWrapper = styled.div<
+  ColorProps & SizeProps & TransformProps & TransitionProps & PaddingProps
+>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  ${box}
+  ${responsive<ColorProps, OakColorName>(
+    "color",
+    (props) => props.$color,
+    getColorByName,
+  )}
+  ${sizeUtil}
+  ${transformUtil}
+  ${transitionUtil}
+  ${padding}
 `;
 
 export const BackgroundIcon = styled(Svg)<ColorProps>`
@@ -59,7 +76,7 @@ export const BackgroundIcon = styled(Svg)<ColorProps>`
   right: 0;
   bottom: 0;
   left: 0;
-  ${color}
+  ${colorUtil}
 `;
 
 const SPECIAL_ICON_SVG_PROPS: Partial<Record<IconName, SvgProps>> = {
@@ -74,9 +91,6 @@ type IconProps = Partial<IconOuterWrapperProps> &
   BoxProps & {
     name: IconName;
     variant?: IconVariant;
-    /**
-     * size in pixels is the value for width and height if they are not separately provided
-     */
     size?: IconSize;
     width?: IconSize;
     height?: IconSize;
@@ -109,18 +123,29 @@ const Icon: FC<IconProps> = (props) => {
   const outerHeight = height || size;
 
   const theme = useTheme();
-  /**
-   * by default, the color will take the css `color` value of its closest ancester
-   * (because in the SVG, the color is set to `currentColor`). Use `$color` prop to
-   * override this value.
-   */
-  const $foregroundColor =
-    $color ||
-    (typeof $background === "string"
-      ? theme.contrastColors[$background]
-      : Array.isArray($background)
-        ? $background.map(($) => ($ ? theme.contrastColors[$] : null))
-        : undefined);
+
+  // Handle foreground color safely to ensure it's a valid OakColorName or undefined
+  let $foregroundColor: OakColorName | undefined = $color as
+    | OakColorName
+    | undefined;
+
+  if (!$foregroundColor && $background) {
+    if (typeof $background === "string") {
+      $foregroundColor = theme.contrastColors[
+        $background as OakColorName
+      ] as OakColorName;
+    } else if (Array.isArray($background)) {
+      // Use first valid background color's contrast instead of mapping to an array
+      const firstValidBackground = $background.find(
+        (bg) => bg !== undefined && bg !== null,
+      );
+      $foregroundColor = firstValidBackground
+        ? (theme.contrastColors[
+            firstValidBackground as OakColorName
+          ] as OakColorName)
+        : undefined;
+    }
+  }
 
   const svgProps = SPECIAL_ICON_SVG_PROPS[name] ?? { name };
 

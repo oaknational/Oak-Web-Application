@@ -1,6 +1,7 @@
 import path from "node:path/posix";
 
 import { GetServerSidePropsContext, GetStaticPropsResult } from "next";
+import { ISitemapField } from "next-sitemap";
 
 import getServerConfig from "../getServerConfig";
 
@@ -60,13 +61,13 @@ function getServerSideSitemapFields(
   sitemapBaseUrl: string,
   pagePath: string,
   pageSlugs: string[] | Set<string>,
-) {
+): ISitemapField[] {
   const fields = Array.from(pageSlugs).map((slug) => {
     return {
       loc: new URL(path.join(sitemapBaseUrl, pagePath, slug)).href,
       lastmod: new Date().toISOString(),
-      // change frequency
-      // priority
+      changefreq: "daily" as const,
+      priority: 0.7,
     };
   });
   return fields;

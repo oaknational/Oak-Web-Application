@@ -1,10 +1,10 @@
 import { FC } from "react";
 
-import { PostListItemProps } from ".";
-
-import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
-import OwaImage from "@/components/SharedComponents/OwaImage";
 import CMSImage from "@/components/SharedComponents/CMSImage";
+import { getSizes } from "@/components/SharedComponents/CMSImage/getSizes";
+import OwaImage from "@/components/SharedComponents/OwaImage/OwaImage";
+
+import { PostListItemProps } from ".";
 
 /**
  * The image next to the blurb in a blog list item.
@@ -26,8 +26,7 @@ const PostListItemImage: FC<PostListItemProps> = (props) => {
       return (
         <CMSImage
           fill
-          $objectFit="cover"
-          $objectPosition="center center"
+          style={{ objectFit: "cover", objectPosition: "center center" }}
           image={props.mainImage}
           sizes={getSizes(["100vw", 256])}
           // Explicitly set an empty string for missing alt text in thumbnails
@@ -43,10 +42,9 @@ const PostListItemImage: FC<PostListItemProps> = (props) => {
       return (
         <OwaImage
           fill
-          $objectFit="contain"
-          $objectPosition="center center"
-          $background={"black"}
-          alt={""}
+          style={{ objectFit: "contain", objectPosition: "center center" }}
+          $background="black"
+          alt=""
           src={props.thumbnailUrl}
         />
       );

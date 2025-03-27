@@ -3,31 +3,31 @@
 exports[`Banners when cycle 2 enabled 1`] = `
 <div>
   <div
-    class="sc-fqkvVR fgBWrW"
+    class="sc-fLDLck jkcymn"
     role="banner"
   >
     <div
-      class="sc-ad0ad6f5-0 sc-213e351e-0 dKiBog cQsapu"
+      class="sc-ad0ad6f5-0 sc-213e351e-0 fMDMwp gekohW"
     >
       <div
-        class="sc-ad0ad6f5-0 sc-213e351e-0 dLtZMN glzuTZ"
+        class="sc-ad0ad6f5-0 sc-213e351e-0 gpXsjs iCfIEZ"
       >
         <div
-          class="sc-ad0ad6f5-0 sc-213e351e-0 IJRuG bvfibs"
+          class="sc-ad0ad6f5-0 sc-213e351e-0 ShdJD bvOSss"
         >
           <div
             aria-hidden="true"
-            class="sc-ad0ad6f5-0 sc-213e351e-0 kukHQW cUwoYe"
+            class="sc-ad0ad6f5-0 sc-213e351e-0 jgBOib kjysVe"
             data-testid="new-icon"
           >
             <div
               aria-hidden="true"
-              class="sc-fqkvVR bHatqy"
+              class="sc-fLDLck jsEVyH"
               data-testid="tag-promotional-icon"
             >
               <img
                 alt="tag-promotional"
-                class="sc-dcJsrY igvylU"
+                class="sc-dycHyt gBTKdM"
                 data-nimg="fill"
                 decoding="async"
                 loading="lazy"
@@ -36,20 +36,20 @@ exports[`Banners when cycle 2 enabled 1`] = `
               />
             </div>
             <div
-              class="sc-ad0ad6f5-0 sc-213e351e-0 SIsrt cUwoYe"
+              class="sc-ad0ad6f5-0 sc-213e351e-0 dbXEGo kjysVe"
             >
               <span
-                class="sc-kpDqfm dlxZEP"
+                class="sc-jUkaYT fXTCzg"
               >
                 New
               </span>
             </div>
           </div>
           <div
-            class="sc-fqkvVR sc-eldPxv kJPpVN imhqNK"
+            class="sc-fLDLck sc-dPKAra jUyBUY diNrVn"
           >
             <span
-              class="sc-50f33a24-0 ehBjeG"
+              class="sc-50f33a24-0 fXSraL"
             >
               New 
             </span>
@@ -58,22 +58,28 @@ exports[`Banners when cycle 2 enabled 1`] = `
           </div>
         </div>
         <a
-          class="sc-f63c4ba9-0 gXtJUS"
+          background="black"
+          class="sc-f63c4ba9-0 fDxNwX"
           href="/teachers/curriculum"
+          icon="chevron-right"
+          page="curriculum-landing-page"
           role="link"
           title="See curriculum plans"
+          variant="buttonStyledAsLink"
         >
           <div
-            class="sc-fqkvVR sc-gsFSXq gHxmiG iKAPmA"
+            class="sc-fLDLck sc-gNZgCX exoXgX hkyoTT"
           >
             <span
               aria-hidden="true"
-              class="sc-cba1a45e-0 QRATd"
+              class="sc-5301577f-0 ceatHf"
               data-testid="button-icon"
+              variant="brush"
+              verticalalign="baseline"
             >
               <svg
                 aria-hidden="true"
-                class="sc-86d1d46f-0 jOBmUC sc-cba1a45e-2 kANpiB"
+                class="sc-86d1d46f-0 enClNo sc-5301577f-2 hsfxI"
                 height="100%"
                 name="icon-background"
                 width="100%"
@@ -83,12 +89,12 @@ exports[`Banners when cycle 2 enabled 1`] = `
                   xlink:href="/images/sprite/sprite.svg#icon-background"
                 />
               </svg>
-              <span
-                class="sc-cba1a45e-1 jHELTF"
+              <div
+                class="sc-5301577f-1 fjIkWi"
               >
                 <svg
                   aria-hidden="true"
-                  class="sc-86d1d46f-0 eJtvEZ"
+                  class="sc-86d1d46f-0 hPlWVz"
                   height="100%"
                   name="chevron-right"
                   width="100%"
@@ -98,17 +104,17 @@ exports[`Banners when cycle 2 enabled 1`] = `
                     xlink:href="/images/sprite/sprite.svg#chevron-right"
                   />
                 </svg>
-              </span>
+              </div>
             </span>
           </div>
           <div
-            class="sc-fqkvVR gxmQRM"
+            class="sc-fLDLck ciVcTx"
           >
             <div
-              class="sc-fqkvVR fgBWrW"
+              class="sc-fLDLck jkcymn"
             >
               <span
-                class="sc-kpDqfm sc-ca3376e3-0 fsPjOh eEriKr"
+                class="sc-jUkaYT sc-ca3376e3-0 dLtJnO kwXEnW"
               >
                 See curriculum plans
               </span>
@@ -116,7 +122,7 @@ exports[`Banners when cycle 2 enabled 1`] = `
           </div>
           <svg
             aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-0 iwOTKx"
+            class="sc-86d1d46f-0 enClNo sc-55f851c3-0 jBARuT"
             height="100%"
             name="underline-1"
             width="100%"
@@ -128,7 +134,7 @@ exports[`Banners when cycle 2 enabled 1`] = `
           </svg>
           <svg
             aria-hidden="true"
-            class="sc-86d1d46f-0 jOBmUC sc-f7ecb0d6-2 kTnxCv"
+            class="sc-86d1d46f-0 enClNo sc-55f851c3-2 kIGBrl"
             height="100%"
             name="underline-1"
             width="100%"
@@ -142,13 +148,13 @@ exports[`Banners when cycle 2 enabled 1`] = `
       </div>
     </div>
     <div
-      class="sc-fqkvVR cRarTX"
+      class="sc-fLDLck fdmwge"
     >
       <div
-        class="sc-fqkvVR sc-gsFSXq sc-jxOSlx hGVAzf hDihdg"
+        class="sc-fLDLck sc-gNZgCX sc-jcvEFQ coWLCa gQsuNT"
       >
         <svg
-          class="sc-hmdomO hyWSZl"
+          class="sc-gQJZgv hktbGH"
           height="100%"
           preserveAspectRatio="none"
           viewBox="0 0 866 8"

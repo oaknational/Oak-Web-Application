@@ -7,6 +7,9 @@ import Flex, { FlexProps } from "@/components/SharedComponents/Flex.deprecated";
 export type CircleProps = FlexProps & {
   children?: React.ReactNode;
   size: ResponsiveValues<PixelSpacing>;
+  $alignItems?: FlexProps["$alignItems"];
+  $justifyContent?: FlexProps["$justifyContent"];
+  $borderRadius?: FlexProps["$borderRadius"];
 };
 /**
  * Circle is a simple wrapper round Flex which takes a size: PixelValue,
@@ -28,6 +31,9 @@ const Circle: FC<CircleProps> = (props) => {
   return (
     <Flex
       {...flexProps}
+      $alignItems={props.$alignItems}
+      $justifyContent={props.$justifyContent}
+      $borderRadius={props.$borderRadius}
       $width={size}
       $minWidth={size}
       $height={size}

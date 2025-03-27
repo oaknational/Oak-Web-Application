@@ -14,8 +14,14 @@ function getTextColorForBackground(background?: OakColorName) {
     return;
   }
 
-  return (props: PropsWithTheme) =>
-    getColorByName(props.theme.contrastColors[background])(props);
+  return (props: PropsWithTheme) => {
+    const contrastColor = props.theme.contrastColors[background];
+    if (!contrastColor) {
+      console.warn(`Contrast color for ${background} not found in theme`);
+      return "inherit";
+    }
+    return getColorByName(contrastColor)(props);
+  };
 }
 
 export default getTextColorForBackground;

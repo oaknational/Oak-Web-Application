@@ -9,7 +9,7 @@ import {
   imageBuilder,
 } from "@/components/HooksAndUtils/sanityImageBuilder";
 import { Image } from "@/common-lib/cms-types";
-import { SizeValues } from "@/styles/utils/size";
+import type { SizeValues } from "@/styles/theme/types";
 import OwaImage, {
   OwaImageProps,
 } from "@/components/SharedComponents/OwaImage";

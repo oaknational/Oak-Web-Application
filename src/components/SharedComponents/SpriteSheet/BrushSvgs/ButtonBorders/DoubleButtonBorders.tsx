@@ -1,13 +1,17 @@
+import { OakSvg } from "@oaknational/oak-components";
 import { FC } from "react";
 import styled, { css } from "styled-components";
-import { OakSvg } from "@oaknational/oak-components";
 
-import getColorByName from "@/styles/themeHelpers/getColorByName";
 import { ButtonBackground } from "@/components/SharedComponents/Button/common";
+import getColorByName from "@/styles/themeHelpers/getColorByName";
 
-const buttonBorder = css<{ background: ButtonBackground }>`
+interface ButtonBorderProps {
+  background: ButtonBackground;
+}
+
+const getButtonBorderStyles = (props: ButtonBorderProps) => css`
   position: absolute;
-  color: ${(props) => getColorByName(props.background)};
+  color: ${getColorByName(props.background)};
   mask-position: center;
   transition: none;
 `;
@@ -20,154 +24,124 @@ const focus = css`
 `;
 
 /* TOP */
-const buttonBorderTop = css`
-  ${buttonBorder}
+const ButtonBorderTopInner = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
   height: 5px;
   left: 0;
   width: 100%;
-`;
-
-const topInner = css`
-  ${buttonBorderTop}
   bottom: calc(100% - 2px);
 `;
-const topMiddle = css`
-  ${buttonBorderTop}
-  ${focus}
+
+const ButtonBorderTopMiddle = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
+  height: 5px;
+  left: 0;
+  width: 100%;
   bottom: calc(100% + 1px);
+  ${focus}
   color: ${() => getColorByName("lemon")};
 `;
-const topOuter = css`
-  ${buttonBorderTop} ${focus}
+
+const ButtonBorderTopOuter = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
+  height: 5px;
+  left: 0;
+  width: 100%;
   bottom: calc(100% + 4px);
+  ${focus}
   color: ${() => getColorByName("grey60")};
 `;
 
 /* RIGHT */
-const buttonBorderRight = css`
-  ${buttonBorder}
+const ButtonBorderRightInner = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
   width: 9px;
   left: 100%;
-`;
-
-const rightInner = css`
-  ${buttonBorderRight}
   top: -3px;
   left: calc(100% - 5px);
   height: calc(100% + 3px);
 `;
-const rightMiddle = css`
-  ${buttonBorderRight} ${focus}
+
+const ButtonBorderRightMiddle = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
+  width: 9px;
+  left: 100%;
   top: -5px;
   left: calc(100% - 2px);
   height: calc(100% + 7px);
+  ${focus}
   color: ${() => getColorByName("lemon")};
 `;
-const rightOuter = css`
-  ${buttonBorderRight} ${focus}
-  color: ${() => getColorByName("grey60")};
+
+const ButtonBorderRightOuter = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
   width: 12px;
   left: calc(100% - 2px);
   top: -8px;
-  color: ${() => getColorByName("grey60")};
   height: calc(100% + 12px);
+  ${focus}
+  color: ${() => getColorByName("grey60")};
 `;
 
 /* BOTTOM */
-const buttonBorderBottom = css`
-  ${buttonBorder}
+const ButtonBorderBottomInner = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
   height: 6px;
-  top: 100%;
-  left: 0;
-  width: calc(100% + 6px);
-`;
-
-const bottomInner = css`
-  ${buttonBorderBottom}
   top: calc(100% - 4px);
+  left: 0;
   width: 100%;
 `;
-const bottomMiddle = css`
-  ${buttonBorderBottom} ${focus}
-  width: calc(100% + 4px);
+
+const ButtonBorderBottomMiddle = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
+  height: 6px;
   top: calc(100% - 1px);
+  left: 0;
+  width: calc(100% + 4px);
+  ${focus}
   color: ${() => getColorByName("lemon")};
 `;
-const bottomOuter = css`
-  ${buttonBorderBottom} ${focus}
-  width: calc(100% + 5px);
+
+const ButtonBorderBottomOuter = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
+  height: 6px;
   top: calc(100% + 1px);
+  left: 0;
+  width: calc(100% + 5px);
+  ${focus}
   color: ${() => getColorByName("grey60")};
 `;
 
 /* LEFT */
-const buttonBorderLeft = css`
-  ${buttonBorder}
+const ButtonBorderLeftInner = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
   width: 7px;
-`;
-
-const leftInner = css`
-  ${buttonBorderLeft}
   top: -1px;
   right: calc(100% - 3px);
   height: calc(100% + 3px);
 `;
-const leftMiddle = css`
-  ${buttonBorderLeft} ${focus}
+
+const ButtonBorderLeftMiddle = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
+  width: 7px;
   top: -4px;
   right: calc(100% - 1px);
   height: calc(100% + 8px);
+  ${focus}
   color: ${() => getColorByName("lemon")};
 `;
-const leftOuter = css`
-  ${buttonBorderLeft} ${focus}
-  color: ${() => getColorByName("grey60")};
+
+const ButtonBorderLeftOuter = styled(OakSvg)<ButtonBorderProps>`
+  ${getButtonBorderStyles}
   width: 10px;
   top: -7px;
   right: calc(100% - 1px);
   height: calc(100% + 14px);
+  ${focus}
+  color: ${() => getColorByName("grey60")};
 `;
 
-const ButtonBorderTopInner = styled(OakSvg)`
-  ${topInner}
-`;
-const ButtonBorderTopMiddle = styled(OakSvg)`
-  ${topMiddle}
-`;
-const ButtonBorderTopOuter = styled(OakSvg)`
-  ${topOuter}
-`;
-const ButtonBorderRightInner = styled(OakSvg)`
-  ${rightInner}
-`;
-const ButtonBorderRightMiddle = styled(OakSvg)`
-  ${rightMiddle}
-`;
-const ButtonBorderRightOuter = styled(OakSvg)`
-  ${rightOuter}
-`;
-const ButtonBorderBottomInner = styled(OakSvg)`
-  ${bottomInner}
-`;
-const ButtonBorderBottomMiddle = styled(OakSvg)`
-  ${bottomMiddle}
-`;
-const ButtonBorderBottomOuter = styled(OakSvg)`
-  ${bottomOuter}
-`;
-const ButtonBorderLeftInner = styled(OakSvg)`
-  ${leftInner}
-`;
-const ButtonBorderLeftMiddle = styled(OakSvg)`
-  ${leftMiddle}
-`;
-const ButtonBorderLeftOuter = styled(OakSvg)`
-  ${leftOuter}
-`;
-
-type ButtonBordersProps = {
-  background: ButtonBackground;
-};
+type ButtonBordersProps = ButtonBorderProps;
 /**
  * Presentational component to be used to create a border with a focus outline
  *

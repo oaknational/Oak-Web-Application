@@ -248,7 +248,7 @@ export const PupilViewsVideo = ({
                   </OakCardHeader>
                   <OakInfo
                     hint={"Download these files to use in the lesson."}
-                    id={"quiz-video-aditional-files"}
+                    id={"quiz-video-additional-files"}
                     tooltipPosition={"top-right"}
                   />
                 </OakFlex>
