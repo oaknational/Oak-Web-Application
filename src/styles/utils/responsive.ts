@@ -1,7 +1,7 @@
-import { css, type DefaultTheme, type Interpolation } from "styled-components";
+import { css, type Interpolation, type StyleFunction } from "styled-components";
 
 import truthy from "../../utils/truthy";
-import { PropsWithTheme } from "../theme";
+import type { PropsWithTheme } from "../theme";
 
 // Having the key on both sides allows precise types.
 const BREAKPOINTS = Object.freeze({
@@ -63,65 +63,90 @@ export const getMediaQuery = (device: Device) => {
 };
 export type ResponsiveValues<Value> = (Value | null) | (Value | null)[];
 
-export type ResponsiveReturn<P extends object> = Interpolation<
-  P & { theme?: DefaultTheme }
->;
+// Return type that aligns with styled-components' expectations
+export type ResponsiveReturn<P extends object> = Interpolation<P>;
 
-const responsive =
-  <Props extends object, T extends string | number | undefined | null>(
-    attr: string,
-    getValues: (props: Props) => ResponsiveValues<T | undefined | null>,
-    parse:
-      | ((unparsed: T | undefined | null) => string | number | undefined | null)
-      | ((
-          unparsed: T | undefined | null,
-        ) => (props: PropsWithTheme) => string | number | undefined | null) = (
-      x,
-    ) => x,
-  ) =>
-  (props: Props): ResponsiveReturn<Props> => {
-    const attrCss = (value: T | undefined | null) =>
-      typeof value === "undefined"
-        ? undefined
-        : css`
-            ${attr}: ${parse(value)};
-          `;
+/**
+ * Create a responsive CSS property that adapts to different screen sizes.
+ * This implementation is directly compatible with styled-components v6.
+ *
+ * @param attr CSS property name (e.g., "padding-left")
+ * @param getValues Function to extract values from props
+ * @param parse Optional parser for the values
+ * @returns A function that returns styled-components compatible interpolation
+ */
+function responsive<
+  Props extends object,
+  T extends string | number | undefined | null,
+>(
+  attr: string,
+  getValues: (props: Props) => ResponsiveValues<T | undefined | null>,
+  parse:
+    | ((unparsed: T | undefined | null) => string | number | undefined | null)
+    | ((
+        unparsed: T | undefined | null,
+      ) => (props: PropsWithTheme) => string | number | undefined | null) = (
+    x,
+  ) => x,
+): StyleFunction<Props> {
+  return (props) => {
+    // Helper function to create a CSS rule for a value
+    const createCssRule = (value: T | undefined | null) => {
+      if (typeof value === "undefined") {
+        return undefined;
+      }
+
+      return css`
+        ${attr}: ${parse(value)};
+      `;
+    };
+
     const values = getValues(props);
+
     if (typeof values === "undefined") {
       return undefined;
     }
+
     if (!Array.isArray(values)) {
       return css`
-        ${attrCss(values)}
+        ${createCssRule(values)}
       `;
     }
+
     if (values.length === 0) {
       return [];
     }
 
-    return [
-      css<Props>`
-        ${attrCss(values[0])}
-      `,
-      ...breakpoints
-        .slice(0, values.length)
-        .map((breakpoint, i) => {
-          const value = values[i + 1]; // Values are shifted relative to breakpoints
+    // For array values, build a responsive array of CSS rules
+    const cssRules = [];
 
-          if (value === undefined) {
-            return undefined;
-          }
+    // Add the base rule for the first value
+    const firstRule = createCssRule(values[0]);
+    if (firstRule) {
+      cssRules.push(css`
+        ${firstRule}
+      `);
+    }
 
-          return css<Props>`
+    // Add media queries for subsequent values
+    for (let i = 0; i < Math.min(values.length - 1, breakpoints.length); i++) {
+      const value = values[i + 1];
+      const breakpoint = breakpoints[i];
+
+      if (value !== undefined) {
+        const rule = createCssRule(value);
+        if (rule) {
+          cssRules.push(css`
             @media (min-width: ${breakpoint}px) {
-              ${css<Props>`
-                ${attrCss(value)}
-              `}
+              ${rule}
             }
-          `;
-        })
-        .filter(truthy),
-    ];
+          `);
+        }
+      }
+    }
+
+    return cssRules.length > 0 ? cssRules : undefined;
   };
+}
 
 export default responsive;

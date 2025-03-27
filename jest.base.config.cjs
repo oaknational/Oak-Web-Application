@@ -26,7 +26,8 @@ module.exports = {
   testEnvironment: "jest-environment-jsdom",
   testPathIgnorePatterns: [
     "(\\.|/)(fixtures?)\\.[jt]sx?$",
-    "src/__tests__/__helpers__/*",
+    // Ignore non-test files in the src/__tests__ directory
+    "src/__tests__/.*(?<!\\.test\\.ts)$",
     ".storybook/storybook.*.test.js$",
     ".netlify/*",
     ".yalc/*",
