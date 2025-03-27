@@ -279,7 +279,6 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
                   onSubmit={(email) =>
                     newsletterFormProps.onSubmit({
                       email,
-                      name: "Incomplete Units Test",
                       userRole: "Teacher",
                     })
                   }
