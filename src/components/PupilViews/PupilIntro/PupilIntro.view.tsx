@@ -20,7 +20,6 @@ import {
   OakUL,
 } from "@oaknational/oak-components";
 import { useEffect } from "react";
-import byteSize from "byte-size";
 
 import { useWorksheetDownload } from "./useWorksheetDownload";
 import { useAdditionalFilesDownload } from "./useAdditionalFilesDownload";
@@ -28,9 +27,14 @@ import { useAdditionalFilesDownload } from "./useAdditionalFilesDownload";
 import { useLessonEngineContext } from "@/components/PupilComponents/LessonEngineProvider";
 import { CopyrightNotice } from "@/components/PupilComponents/CopyrightNotice";
 import { useGetSectionLinkProps } from "@/components/PupilComponents/pupilUtils/lessonNavigation";
-import { LessonContent } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
+import {
+  LessonContent,
+  AdditionalFile,
+  AdditionalFiles,
+} from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 import { usePupilAnalytics } from "@/components/PupilComponents/PupilAnalyticsProvider/usePupilAnalytics";
 import { useTrackSectionStarted } from "@/hooks/useTrackSectionStarted";
+import { convertBytesToMegabytes } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 
 export type WorksheetInfo = {
   item: string;
@@ -42,6 +46,8 @@ export type WorksheetInfo = {
 export type PupilViewsIntroProps = LessonContent & {
   hasWorksheet: boolean;
   worksheetInfo: WorksheetInfo | null;
+  hasAdditionalFiles: boolean;
+  additionalFiles: AdditionalFiles["downloadableFiles"] | null;
 };
 
 export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
@@ -56,6 +62,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
     additionalFiles,
     worksheetInfo,
   } = props;
+
   const {
     completeActivity,
     updateCurrentSection,
@@ -79,8 +86,11 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
       ({worksheetInfo?.[0]?.ext?.toUpperCase()} {worksheetInfo?.[0]?.fileSize})
     </OakSpan>
   );
+  const additionalFilesAssetIds = additionalFiles
+    ? additionalFiles.map((file) => file.assetId)
+    : [];
   const { startAdditionalFilesDownload, isAdditionalFilesDownloading } =
-    useAdditionalFilesDownload(lessonSlug);
+    useAdditionalFilesDownload(lessonSlug, additionalFilesAssetIds);
   const { track } = usePupilAnalytics();
 
   useEffect(() => {
@@ -230,24 +240,21 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
         </OakGridArea>
         <OakGridArea $colSpan={[12, 12, 5]} $pb="inner-padding-xl">
           <OakFlex $flexDirection={"column"} $gap={"space-between-s"}>
-            {hasAdditionalFiles && additionalFiles?.[0]?.files[0] && (
+            {hasAdditionalFiles && !!additionalFiles?.length && (
               <OakLessonInfoCard>
                 <OakCardHeader iconName="additional-material" tag="h1">
-                  Files you will need for this lesson
+                  {`File${additionalFiles.length > 1 ? "s" : ""} you will need for this lesson`}
                 </OakCardHeader>
-                {additionalFiles[0].files.length === 1 ? (
-                  additionalFileSingle(additionalFiles[0].files[0])
-                ) : (
-                  <OakUL
-                    $display={"flex"}
-                    $flexDirection={"column"}
-                    $gap={"space-between-s"}
-                  >
-                    {additionalFiles[0].files.map((file, index) =>
-                      additionalFileListItem(file, index),
-                    )}
-                  </OakUL>
-                )}
+                <OakUL
+                  $display={"flex"}
+                  $flexDirection={"column"}
+                  $gap={"space-between-s"}
+                  $reset
+                >
+                  {additionalFiles.map((file, index) =>
+                    additionalFileListItem(file, index),
+                  )}
+                </OakUL>
                 <OakFlex $justifyContent={"flex-end"}>
                   <OakPrimaryInvertedButton
                     onClick={handleAdditionalFilesDownloadClicked}
@@ -256,7 +263,7 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
                     isTrailingIcon
                     $font={"heading-7"}
                   >
-                    {additionalFiles[0].files.length === 1
+                    {additionalFiles.length === 1
                       ? "Download file"
                       : "Download files"}
                   </OakPrimaryInvertedButton>
@@ -338,28 +345,14 @@ export const PupilViewsIntro = (props: PupilViewsIntroProps) => {
   );
 };
 
-export function additionalFileListItem(
-  file: { title: string; fileObject: { bytes: number; format: string } },
-  index: number,
-) {
+export function additionalFileListItem(file: AdditionalFile, index: number) {
+  const extension = file.mediaObject.url.split(".").pop();
   return (
     <OakLI key={index}>
       <OakFlex $flexDirection={"column"}>
-        <OakSpan>{file.title}</OakSpan>
-        <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
+        <OakSpan>{file.mediaObject.displayName}</OakSpan>
+        <OakSpan>{`${convertBytesToMegabytes(file.mediaObject.bytes)} (${extension?.toUpperCase()})`}</OakSpan>
       </OakFlex>
     </OakLI>
-  );
-}
-
-export function additionalFileSingle(file: {
-  title: string;
-  fileObject: { bytes: number; format: string };
-}) {
-  return (
-    <OakFlex $flexDirection={"column"}>
-      <OakSpan>{file.title}</OakSpan>
-      <OakSpan>{`${byteSize(file.fileObject.bytes)} (${file.fileObject.format.toUpperCase()})`}</OakSpan>
-    </OakFlex>
   );
 }

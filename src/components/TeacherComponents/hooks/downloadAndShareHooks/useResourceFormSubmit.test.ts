@@ -124,13 +124,45 @@ describe("useResourceFormSubmit", () => {
     result.current.onSubmit(data, "lesson");
 
     await waitFor(() => {
-      expect(downloadLessonResources).toHaveBeenCalledWith(
-        "lesson",
-        ["intro-quiz-questions"],
-        true,
-        false,
-        null,
-      );
+      expect(downloadLessonResources).toHaveBeenCalledWith({
+        lessonSlug: "lesson",
+        selectedResourceTypes: ["intro-quiz-questions"],
+        isLegacyDownload: true,
+        authFlagEnabled: false,
+        authToken: null,
+        selectedAdditionalFilesIds: [],
+      });
+    });
+  });
+
+  it("should call downloadLessonResources with correct parameters when additional files are selected", async () => {
+    const dataWithAdditionalFiles: ResourceFormProps = {
+      onSubmit: jest.fn(),
+      email: "test@test.com",
+      school: "222-Sample school",
+      schoolName: "Sample school",
+      terms: true,
+      resources: [
+        "intro-quiz-questions",
+        "additional-files-123",
+        "additional-files-345",
+      ],
+    };
+
+    const { result } = renderHook(() =>
+      useResourceFormSubmit({ isLegacyDownload: true, type: "download" }),
+    );
+    result.current.onSubmit(dataWithAdditionalFiles, "lesson");
+
+    await waitFor(() => {
+      expect(downloadLessonResources).toHaveBeenCalledWith({
+        lessonSlug: "lesson",
+        selectedResourceTypes: ["intro-quiz-questions", "additional-files"],
+        isLegacyDownload: true,
+        authFlagEnabled: false,
+        authToken: null,
+        selectedAdditionalFilesIds: [123, 345],
+      });
     });
   });
 });

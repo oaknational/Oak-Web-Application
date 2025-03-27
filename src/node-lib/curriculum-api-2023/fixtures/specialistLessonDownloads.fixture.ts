@@ -27,6 +27,7 @@ export const SpecialistLessonDownloadFixture = (
           label: "Slide deck",
         },
       ],
+      additionalFiles: [],
       nextLessons: [
         {
           lessonSlug: "test",

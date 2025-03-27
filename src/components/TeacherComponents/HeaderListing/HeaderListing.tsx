@@ -22,6 +22,8 @@ import LessonMetadata from "@/components/SharedComponents/LessonMetadata";
 import Flex from "@/components/SharedComponents/Flex.deprecated";
 import ButtonAsLink from "@/components/SharedComponents/Button/ButtonAsLink";
 import { OakColorName } from "@/styles/theme";
+import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitListing/unitListing.schema";
+import TeacherSubjectDescription from "@/components/TeacherComponents/TeacherSubjectDescription/TeacherSubjectDescription";
 
 /**
  * This is a header for the listing pages (lesson, unit and programme).
@@ -51,6 +53,7 @@ export type HeaderListingProps = {
   onUnitDownloadSuccess?: () => void;
   showRiskAssessmentBanner?: boolean;
   isIncompleteUnit?: boolean;
+  subjectDescriptionUnitListingData?: UnitListingData;
 };
 
 const HeaderListing: FC<HeaderListingProps> = (props) => {
@@ -73,6 +76,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     onUnitDownloadSuccess,
     showRiskAssessmentBanner,
     isIncompleteUnit,
+    subjectDescriptionUnitListingData,
   } = props;
 
   const isKeyStagesAvailable = keyStageSlug && keyStageTitle;
@@ -160,6 +164,13 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             >
               {title}
             </OakHeading>
+            {subjectDescriptionUnitListingData && (
+              <OakBox $display={["none", "inline"]}>
+                <TeacherSubjectDescription
+                  unitListingData={subjectDescriptionUnitListingData}
+                />
+              </OakBox>
+            )}
             <OakFlex $flexDirection="column" $gap="space-between-s">
               <OakFlex
                 $gap="space-between-s"
@@ -183,6 +194,13 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             </OakFlex>
           </OakFlex>
         </OakFlex>
+        {subjectDescriptionUnitListingData && (
+          <OakBox $display={["inline", "none"]}>
+            <TeacherSubjectDescription
+              unitListingData={subjectDescriptionUnitListingData}
+            />
+          </OakBox>
+        )}
         <OakBox $display={["block", "none", "none"]}>{bannersBlock}</OakBox>
       </OakFlex>
       <Flex $background={background} $display={["inline", "none"]}>

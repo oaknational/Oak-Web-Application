@@ -20,7 +20,11 @@ const UnitDownloadOnboardButton = ({
 }: {
   onClick: () => Promise<boolean>;
 }) => (
-  <OakPrimaryButton width="fit-content" onClick={onClick}>
+  <OakPrimaryButton
+    width="fit-content"
+    onClick={onClick}
+    pv={["inner-padding-s", "inner-padding-ssx"]}
+  >
     <OakFlex $alignItems="center" $gap="space-between-xs">
       <OakTagFunctional label="New" $background="mint" $color="text-primary" />
       Complete sign up to download this unit
@@ -31,7 +35,12 @@ const UnitDownloadOnboardButton = ({
 // Used when a user is not signed in
 const UnitDownloadSignInButton = ({ redirectUrl }: { redirectUrl: string }) => (
   <SignUpButton forceRedirectUrl={redirectUrl}>
-    <OakPrimaryButton iconName={"download"} isTrailingIcon width="fit-content">
+    <OakPrimaryButton
+      iconName={"download"}
+      isTrailingIcon
+      width="fit-content"
+      pv={["inner-padding-s", "inner-padding-ssx"]}
+    >
       <OakFlex $alignItems="center" $gap="space-between-xs">
         <OakTagFunctional
           label="New"
