@@ -13,7 +13,7 @@ import {
   OakThemeProvider,
   oakDefaultTheme,
   OakMaxWidth,
-  OakIncompleteUnitsBanner,
+  OakInlineRegistrationBanner,
 } from "@oaknational/oak-components";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -42,6 +42,7 @@ import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/us
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
@@ -175,6 +176,8 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
     ? `${lessons.length - unpublishedLessonCount}/${lessons.length} lessons available`
     : `Lessons (${lessons.length})`;
 
+  const newsletterFormProps = useNewsletterForm();
+
   return (
     <AppLayout
       seoProps={{
@@ -268,9 +271,14 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               $mt={["space-between-s", "space-between-m2"]}
             >
               {unpublishedLessonCount > 0 && (
-                <OakIncompleteUnitsBanner
-                  onClick={(email) => console.log("diego email", email)}
-                  formError={false}
+                <OakInlineRegistrationBanner
+                  onSubmit={(email) =>
+                    newsletterFormProps.onSubmit({
+                      email,
+                      name: "Incomplete Units Test",
+                      userRole: "Teacher",
+                    })
+                  }
                 />
               )}
               <LessonList
