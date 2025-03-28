@@ -277,9 +277,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               {unpublishedLessonCount > 0 && (
                 <OakInlineRegistrationBanner
                   onSubmit={(email) => {
-                    const isValidEmail = new RegExp(
-                      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/i,
-                    ).test(email);
+                    const emailPattern =
+                      /^[A-Z0-9._%+-]{1,64}@[A-Z0-9-]+(?:\.[A-Z0-9-]+){0,2}\.[A-Z]{2,64}$/i;
+                    const isValidEmail = emailPattern.test(email);
                     if (!isValidEmail) {
                       throw new Error("Please enter a valid email address");
                     }
