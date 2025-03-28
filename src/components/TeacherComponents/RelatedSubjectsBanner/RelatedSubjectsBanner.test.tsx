@@ -22,6 +22,7 @@ describe("RelatedSubjectsBanner", () => {
       <RelatedSubjectsBanner
         subjectSlug="financial-education"
         keyStageSlug="ks4"
+        phase="secondary"
         isDesktop
       />,
     );
@@ -38,6 +39,7 @@ describe("RelatedSubjectsBanner", () => {
       <RelatedSubjectsBanner
         subjectSlug="testing-not-for-publication"
         keyStageSlug="ks4"
+        phase="secondary"
         isDesktop
       />,
     );
@@ -48,6 +50,7 @@ describe("RelatedSubjectsBanner", () => {
       <RelatedSubjectsBanner
         subjectSlug="financial-education"
         keyStageSlug="ks4"
+        phase="secondary"
         isDesktop={false}
       />,
     );

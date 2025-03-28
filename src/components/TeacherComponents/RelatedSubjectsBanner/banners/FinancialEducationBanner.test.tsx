@@ -38,7 +38,11 @@ describe("FinancialEducationBanner", () => {
   it("renders the banner with the correct OakLinkCard props", () => {
     renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <FinancialEducationBanner keyStageSlug="ks4" isDesktop />
+        <FinancialEducationBanner
+          keyStageSlug="ks4"
+          phase="secondary"
+          isDesktop
+        />
       </OakThemeProvider>,
     );
 
@@ -62,5 +66,23 @@ describe("FinancialEducationBanner", () => {
       "Illustration of persons head with finance ideas",
     );
     expect(screen.getByTestId("show-new")).toHaveTextContent("true");
+  });
+  it("renders the banner with the correct href", () => {
+    renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <FinancialEducationBanner
+          keyStageSlug="ks1"
+          phase="primary"
+          isDesktop
+        />
+      </OakThemeProvider>,
+    );
+
+    const card = screen.getByTestId("oak-link-card");
+    expect(card).toBeInTheDocument();
+    expect(card).toHaveAttribute(
+      "data-href",
+      "/unit-index/pupil-unit-index/financial-education-primary-ks1",
+    );
   });
 });
