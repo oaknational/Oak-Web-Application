@@ -100,6 +100,9 @@ function SignUpPage() {
   const newLayoutEnabled = featureFlagVariant === "new-layout";
 
   const checkForClerkElement = useCallback(() => {
+    // Only run in browser
+    if (typeof window === "undefined") return;
+
     // Clerk docs say these classnames are stable
     const clerkSignUpElement = document.getElementsByClassName(
       "cl-rootBox cl-signUp-root",

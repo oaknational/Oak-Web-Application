@@ -102,7 +102,7 @@ const UnitsLearningThemeFilters = ({
         categorySlug,
       );
 
-      window.history.replaceState(window.history.state, "", newUrl);
+      router.replace(newUrl, undefined, { shallow: true });
     } else {
       setMobileFilter?.(callbackValue);
       setActiveThemeSlug(theme.id);

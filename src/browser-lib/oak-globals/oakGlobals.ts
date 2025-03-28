@@ -1,3 +1,5 @@
+"use client";
+
 import { merge } from "lodash/fp";
 
 import { WindowOakThemes } from "../../hooks/useOakTheme";

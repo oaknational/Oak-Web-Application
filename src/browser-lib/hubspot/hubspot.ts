@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * @todo use hubspot "doNotTrack" option:
  *

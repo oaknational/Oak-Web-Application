@@ -1,10 +1,10 @@
-# Styled-Components v6 Migration Fixes
+# Next.js 15 and Styled-Components v6 Migration Fixes
 
-This document outlines a plan to address the warnings and errors related to the migration from Styled-Components v5 to v6 and Next.js 14 to 15.
+This document outlines a plan to address the warnings and errors related to the migration from Next.js 14 to 15 and Styled-Components v5 to v6.
 
 ## Identified Issues
 
-Based on a thorough analysis of the dev-server logs, the following issues have been identified:
+Based on a thorough analysis of the dev-server and build logs, the following issues have been identified:
 
 1. **Styled-Components Prop Forwarding**: Multiple warnings related to unknown props being passed to DOM elements, a breaking change in Styled-Components v6:
 
@@ -25,9 +25,26 @@ Based on a thorough analysis of the dev-server logs, the following issues have b
    ```
 
 4. **Type Errors for Boolean Props**: Warnings about using boolean values for non-boolean attributes:
+
    ```
    Warning: Received `false` for a non-boolean attribute `celebrate`.
    ```
+
+5. **Build-Time Environment Issues**: Error during build related to missing environment variables:
+
+   ```
+   Error: getServerConfig('personalisationApiUrl') failed because there is no env value PERSONALISATION_API_URL
+   ```
+
+6. **Invalid ARIA Role Attributes**: Multiple components have invalid ARIA role attributes:
+   ```
+   Warning: aria-role: This attribute is an invalid ARIA attribute.  jsx-a11y/aria-props
+   ```
+   Affected components:
+   - QuizResultInner
+   - QuizResultMCQ
+   - QuizResultMatch
+   - QuizResultOrder
 
 ## Root Cause Analysis
 
@@ -199,47 +216,150 @@ useIsomorphicLayoutEffect(() => {
 
 ## Implementation Strategy
 
-Given the large number of warnings, a phased approach is recommended:
+Given the multiple issues discovered, a phased approach is recommended:
 
-### Phase 1: Global StyleSheetManager (1 day)
+### Phase 1: Fix Build-Breaking Issues (1 day)
 
-1. Implement the `shouldForwardProp` configuration in StyleSheetManager
-2. Add the important custom props we've identified from the logs
+1. **Fix Location Reference Error**:
 
-This will immediately reduce the number of warnings without requiring many component changes.
+   ```typescript
+   // Before (problematic code using location directly)
+   const currentUrl = location.href;
 
-### Phase 2: High-Priority Component Fixes (1-2 days)
+   // After (safe usage with isomorphic check)
+   const currentUrl = typeof window !== "undefined" ? window.location.href : "";
 
-1. Fix the most visible/used components first:
+   // Or using Next.js utilities
+   import { useRouter } from "next/router";
 
-   - OakLessonLayout
-   - OakPupilJourneyLayout
-   - Button
-   - OwaLink
-   - FooterLink
+   const router = useRouter();
+   const currentUrl = router.asPath;
+   ```
 
-2. Create wrapper components for oak-components library components as needed
+   Files to check:
 
-### Phase 3: Systematic Clean-up (2-3 days)
+   - Search for direct `location` usage in the codebase
+   - Focus on files that handle routing or URLs
+   - Check `.next/server/chunks/2121.js` source mapping for original file
+
+2. **Fix Avo Inspector Configuration**:
+
+   ```typescript
+   // In the file where Avo is initialized
+   initAvo({
+     env: getAvoEnv(),
+     webDebugger: false,
+     inspector: {
+       // Add required inspector configuration
+       enabled: process.env.NODE_ENV === "development",
+       // other inspector options
+     },
+   });
+   ```
+
+3. **Fix Next.js Image Warning**:
+
+   ```tsx
+   // In src/components/GenericPagesComponents/Testimonials/Testimonials.test.tsx
+   // Before
+   <img src="..." />;
+
+   // After
+   import Image from "next/image";
+
+   <Image src="..." width={width} height={height} alt={alt} />;
+   ```
+
+### Phase 2: Fix ARIA and Accessibility Issues (1 day)
+
+1. **Fix Invalid ARIA Attributes in Quiz Components**:
+
+   ```tsx
+   // Before
+   <div aria-role="some-role">
+
+   // After
+   <div role="some-role">
+   ```
+
+   Components to fix:
+
+   - src/components/PupilComponents/QuizResultInner/QuizResultInner.tsx
+   - src/components/PupilComponents/QuizResultMCQ/QuizResultMCQ.tsx
+   - src/components/PupilComponents/QuizResultMatch/QuizResultMatch.tsx
+   - src/components/PupilComponents/QuizResultOrder/QuizResultOrder.tsx
+
+### Phase 3: Styled-Components Migration (1-2 days)
+
+1. Address the warnings related to the migration from Styled-Components v5 to v6 and Next.js 14 to 15.
+
+### Phase 4: Systematic Clean-up (2-3 days)
 
 1. Address remaining components with warnings
 2. Fix useLayoutEffect issues
 3. Fix ARIA attribute patterns
 
-## Testing
+## Testing Strategy
 
-For each phase:
+1. **Build Testing**:
 
-1. Test on development server and verify console warnings are reduced
-2. Test the main user flows to ensure functionality is maintained
-3. Check that visual presentation remains correct after changes
+   - Run `npm run build` after each change to location-related code
+   - Test both development and production builds
+   - Verify no SSR/build errors occur
+   - Check source maps to track down build errors
+
+2. **SSR Testing**:
+
+   - Test pages with `next build && next start`
+   - Verify pages render correctly with JavaScript disabled
+   - Check network tab for hydration issues
+   - Test routing functionality thoroughly
+
+3. **Runtime Testing**:
+
+   - Test on development server
+   - Verify console warnings are reduced
+   - Test the main user flows
+   - Check visual presentation
+
+4. **Accessibility Testing**:
+   - Verify ARIA attributes work correctly
+   - Test with screen readers
+   - Run pa11y-ci checks
 
 ## Important Considerations
 
-1. **Gradual Migration**: Not all warnings need to be fixed immediately - the site is still functional
-2. **Dependency on External Libraries**: Some issues are in external libraries which we may not be able to fix directly
-3. **Component Library Compatibility**: Check with the @oaknational/oak-components team about a v6-compatible release
+1. **Next.js 15 SSR Changes**:
+
+   - Review Next.js 15 migration guide for SSR changes
+   - Check for other browser APIs being used during SSR
+   - Consider using Next.js middleware for URL handling
+   - Test SSR behavior thoroughly
+
+2. **Analytics Integration**:
+
+   - Review Avo integration setup
+   - Consider making analytics initialization lazy
+   - Add better error handling for analytics
+   - Document required analytics configuration
+
+3. **Build Process**:
+
+   - Monitor build output for new warnings
+   - Check bundle sizes and performance metrics
+   - Verify static generation works correctly
+
+4. **Gradual Migration**:
+
+   - Focus on fixing build errors first
+   - Then address runtime warnings
+   - Finally clean up remaining issues
+
+5. **Dependency Management**:
+   - Check compatibility of all dependencies with Next.js 15
+   - Update oak-components library if needed
+   - Monitor for dependency conflicts
 
 ## Conclusion
 
-By implementing these changes, we'll resolve the warnings appearing after the Styled-Components v5 to v6 migration. The approach prioritizes maintaining functionality while gradually eliminating warnings through a combination of global configuration and targeted component updates.
+The immediate focus should be on fixing the build-breaking location reference error and ensuring proper SSR compatibility with Next.js 15. Once the build is stable, we can proceed with the styled-components migration and other improvements. This approach ensures we maintain a working build throughout the upgrade process.

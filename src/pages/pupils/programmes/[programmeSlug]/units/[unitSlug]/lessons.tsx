@@ -60,16 +60,24 @@ const PupilLessonListingPage = ({
   );
 
   useEffect(() => {
+    // Only run in browser
+    if (typeof window === "undefined") return;
+
     const referrer = document.referrer;
 
-    if (referrer) {
-      const referrerURL = new URL(referrer);
-      const currentURL = new URL(window.location.href);
-      if (
-        referrerURL.origin === currentURL.origin &&
-        referrerURL.pathname.split("/").pop() === "units"
-      ) {
-        setResolvedOakHref(referrer);
+    if (referrer && referrer !== "") {
+      try {
+        const referrerURL = new URL(referrer);
+        const currentURL = new URL(window.location.href);
+        if (
+          referrerURL.origin === currentURL.origin &&
+          referrerURL.pathname.split("/").pop() === "units"
+        ) {
+          setResolvedOakHref(referrer);
+        }
+      } catch (error) {
+        // Handle URL parsing errors gracefully
+        console.error("Error parsing URLs:", error);
       }
     }
   }, []);

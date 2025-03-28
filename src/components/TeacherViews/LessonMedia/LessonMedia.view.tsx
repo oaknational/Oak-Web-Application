@@ -130,10 +130,13 @@ export const LessonMedia = (props: LessonMediaProps) => {
         lessonSlug,
       });
 
-      window.history.replaceState(
-        window.history.state,
-        "",
-        `${newUrl}?video=${mediaId}`,
+      router.replace(
+        {
+          pathname: newUrl,
+          query: { video: mediaId },
+        },
+        undefined,
+        { shallow: true },
       );
     }
   };

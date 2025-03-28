@@ -1,3 +1,5 @@
+"use client";
+
 import { match, compile, MatchFunction } from "path-to-regexp";
 
 import createQueryStringFromObject, {

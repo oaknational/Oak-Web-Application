@@ -151,7 +151,7 @@ async function main() {
     // Personalisation data
     PERSONALISATION_API_URL:
       process.env.PERSONALISATION_API_URL ||
-      oakConfig.oak.personalisationApiAuthUrl,
+      oakConfig.oak.personalisationApiUrl,
     PERSONALISATION_API_AUTH_KEY:
       process.env.PERSONALISATION_API_AUTH_KEY ||
       secretsFromNetwork.PERSONALISATION_API_AUTH_KEY,

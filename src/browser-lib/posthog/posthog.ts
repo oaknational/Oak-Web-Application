@@ -1,3 +1,5 @@
+"use client";
+
 import { PostHog } from "posthog-js";
 
 import { AnalyticsService } from "../../context/Analytics/AnalyticsProvider";
