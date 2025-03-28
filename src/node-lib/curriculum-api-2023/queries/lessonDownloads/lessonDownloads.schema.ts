@@ -6,6 +6,7 @@ import {
 
 import {
   baseLessonDownloadsSchema,
+  lessonAdditionalFilesListSchema,
   lessonDownloadsListSchema,
   lessonListSchema,
   lessonPathwaySchema,
@@ -23,6 +24,18 @@ export const lessonDownloadsSchema = z.object({
   ...nextLessonSchema.shape,
 });
 
+export const additionalFile = z.object({
+  asset_id: z.number(),
+  media_id: z.number(),
+  media_object: z.object({
+    url: z.string(),
+    bytes: z.number(),
+    display_name: z.string(),
+  }),
+});
+
+export const additionalFiles = z.array(additionalFile);
+
 export const downloadsAssetData = z.object({
   has_slide_deck_asset_object: z.boolean(),
   starter_quiz: z.array(quizQuestionSchema).nullable(),
@@ -36,6 +49,7 @@ export const downloadsAssetData = z.object({
   expired: z.boolean().nullable().optional(),
   geo_restricted: z.boolean().nullable(),
   login_required: z.boolean().nullable(),
+  downloadable_files: z.array(additionalFile).nullish(),
 });
 
 export const lessonDownloadsQueryRaw = z.object({
@@ -46,7 +60,12 @@ export const lessonDownloadsQueryRaw = z.object({
 export type LessonDownloadsListSchema = z.infer<
   typeof lessonDownloadsListSchema
 >;
+export type LessonAdditionalFilesListSchema = z.infer<
+  typeof lessonAdditionalFilesListSchema
+>;
 export type LessonDownloadsPageData = z.infer<typeof lessonDownloadsSchema>;
+export type AdditionalFile = z.infer<typeof additionalFile>;
+export type AdditionalFiles = z.infer<typeof additionalFiles>;
 export type LessonListSchema = z.infer<typeof lessonListSchema>;
 export type NextLessonSchema = z.infer<typeof nextLessonSchema>;
 export type NextLesson = {

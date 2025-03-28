@@ -1,3 +1,87 @@
+## [1.719.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.719.0...v1.719.1) (2025-03-27)
+
+# [1.719.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.718.0...v1.719.0) (2025-03-26)
+
+
+### Bug Fixes
+
+* curriculum ResourceCard layout ([70f4215](https://github.com/oaknational/Oak-Web-Application/commit/70f421598fcd26d998049c08113e100b854e14ff))
+* exclude beta pages from sonar duplication check and from coverage ([49c1bf6](https://github.com/oaknational/Oak-Web-Application/commit/49c1bf6c0f38b9aa44086e22c793f8a8890fab04))
+* pupil additional files ([5ef3144](https://github.com/oaknational/Oak-Web-Application/commit/5ef31445e6086d2e84425fa4b9896f3e936a1673))
+* ui fix ([1ff37f1](https://github.com/oaknational/Oak-Web-Application/commit/1ff37f1c63a016fccddb8ce7ba4946c50a7bbc0b))
+* worksheet error reporter fix ([1919aa4](https://github.com/oaknational/Oak-Web-Application/commit/1919aa44cb908021984a16fd91a4ad551a819d2f))
+
+
+### Features
+
+* add additional files to download form ([8e974e1](https://github.com/oaknational/Oak-Web-Application/commit/8e974e1d9ba6b785e249f476316fb7e00c219b02))
+* add additional files to download logic ([03c10fc](https://github.com/oaknational/Oak-Web-Application/commit/03c10fcbe2e2c5c2ec2baf68fc44b8ee57ec1d78))
+* add additional files to queries and schema ([0e19fe6](https://github.com/oaknational/Oak-Web-Application/commit/0e19fe64a18abe086959b2c75d32b89f612f33f6))
+* add beta pages for downloads and amend beta lesson overview ([0850cb4](https://github.com/oaknational/Oak-Web-Application/commit/0850cb457a673369a3122f61d5d266af42820e5e))
+* add tests for new beta pages ([016d11f](https://github.com/oaknational/Oak-Web-Application/commit/016d11f87c58640783375a00d63d6d7f2d3a2d2f))
+* cleanup ([aa8763f](https://github.com/oaknational/Oak-Web-Application/commit/aa8763f57ccb48ab775758c7eb36ad0cdea028e2))
+* get additional file size on downloads page ([783f558](https://github.com/oaknational/Oak-Web-Application/commit/783f5586fb6b086828f43289237e9eb8af1c1adc))
+* pull additional files data temporarily from lessons ([5a10654](https://github.com/oaknational/Oak-Web-Application/commit/5a10654f6b5e164279bdf1d92f0555990c0ddb39))
+* set preselected link for additional files on lesson overview page ([5f32ea4](https://github.com/oaknational/Oak-Web-Application/commit/5f32ea448ff3329731c6c2192abc307ec42ccbd7))
+* truncate file name if longer than 42 characters ([7c528df](https://github.com/oaknational/Oak-Web-Application/commit/7c528dfe0c80ebcdecd5d1fb00be873bb43a44c7))
+* update content mv and related files ([a75ff27](https://github.com/oaknational/Oak-Web-Application/commit/a75ff271ed3744a892d478e541be5779e59a337c))
+
+# [1.718.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.717.0...v1.718.0) (2025-03-25)
+
+
+### Features
+
+* add support for further lessons on teacher subject listing page ([7f8ab4f](https://github.com/oaknational/Oak-Web-Application/commit/7f8ab4fedf952a2bb24b58cff2eb2c0a106d16ef))
+
+# [1.717.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.716.1...v1.717.0) (2025-03-25)
+
+
+### Bug Fixes
+
+* allow icon property to be null in UnitsSectionData type ([4c7e351](https://github.com/oaknational/Oak-Web-Application/commit/4c7e351d0ec8304681f45003a7244aafc5215e1e))
+* update FinancialEducationDescription to handle unknown keyStageSlug gracefully ([58daffc](https://github.com/oaknational/Oak-Web-Application/commit/58daffc15e0938cfa3baceb504d33ed1a8c03f97))
+* update visibility condition for curriculum download on financial education ([8e4b548](https://github.com/oaknational/Oak-Web-Application/commit/8e4b54804c10182bf2490e97e668d20abbed0c48))
+
+
+### Features
+
+* add financial education subject descriptions for pupils ([b69f7bf](https://github.com/oaknational/Oak-Web-Application/commit/b69f7bf3cf791b1ef4fbcdeca2cbc07da3618b09))
+* add financial education subject descriptions for pupils and teachers ([9e6cdc1](https://github.com/oaknational/Oak-Web-Application/commit/9e6cdc1a07afe837f08495dd1b16f358f118ab12))
+* add key stage years to Financial Education description ([828d358](https://github.com/oaknational/Oak-Web-Application/commit/828d358fd3bc1d3a9c569ee75e155c0520665f26))
+* wrap TeacherSubjectDescription in OakBox for responsive display ([f8e0e52](https://github.com/oaknational/Oak-Web-Application/commit/f8e0e525a4256a663d52869ce3f667609e2ddbb5))
+
+## [1.716.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.716.0...v1.716.1) (2025-03-25)
+
+
+### Bug Fixes
+
+* unit download button height ([499c5df](https://github.com/oaknational/Oak-Web-Application/commit/499c5dfb26d50299d3eb3f2212868518569c4e93))
+
+# [1.716.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.715.0...v1.716.0) (2025-03-25)
+
+
+### Bug Fixes
+
+* only use non_curriculum for querying ([f626f7a](https://github.com/oaknational/Oak-Web-Application/commit/f626f7af0eebf14c46b1addae2236b1932046021))
+
+
+### Features
+
+* added "non_curriculum" checks to subject phase picker ([c9c91cc](https://github.com/oaknational/Oak-Web-Application/commit/c9c91cc0dd897a6daa7a7c9ec0612b3a20b1affb))
+* added `non_curriculum` into schemas ([06f4e0a](https://github.com/oaknational/Oak-Web-Application/commit/06f4e0a03d989bd9e6c7ae1b2eeeeab510f3e6d4))
+
+# [1.715.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.714.1...v1.715.0) (2025-03-25)
+
+
+### Bug Fixes
+
+* stop ignoring 403 network errors, enabling video refresh for expired tokens ([698bd9d](https://github.com/oaknational/Oak-Web-Application/commit/698bd9d59679ce9c274389b91159e2070f4b86b0))
+
+
+### Features
+
+* improve signed video token refreshing through use of event listeners ([734d1b2](https://github.com/oaknational/Oak-Web-Application/commit/734d1b2bffe65e4a8e85124f4ca2d1d1f56d7c56))
+
 ## [1.714.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.714.0...v1.714.1) (2025-03-24)
 
 # [1.714.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.713.0...v1.714.0) (2025-03-24)

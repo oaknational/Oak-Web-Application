@@ -13,7 +13,10 @@ describe("pupilLesson()", () => {
       await pupilLessonQuery({
         ...sdk,
         pupilLesson: jest.fn(() =>
-          Promise.resolve({ browseData: [], content: [] }),
+          Promise.resolve({
+            browseData: [],
+            content: [],
+          }),
         ),
       })({
         lessonSlug: "lesson-slug",

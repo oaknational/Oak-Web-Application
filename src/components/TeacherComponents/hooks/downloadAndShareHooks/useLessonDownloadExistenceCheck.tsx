@@ -10,6 +10,7 @@ const reportError = errorReporter("useDownloadExistenceCheck");
 type UseDownloadExistenceCheckProps = {
   lessonSlug: string;
   resourcesToCheck: ResourcesToDownloadArrayType;
+  additionalFilesIdsToCheck: number[] | null;
   onComplete: (existenceResources: ResourcesToDownloadArrayType) => void;
   isLegacyDownload: boolean;
 };
@@ -18,11 +19,18 @@ const useLessonDownloadExistenceCheck = (
   props: UseDownloadExistenceCheckProps,
 ) => {
   const [hasCheckedFiles, setHasCheckedFiles] = useState(false);
-  const { resourcesToCheck, onComplete, lessonSlug, isLegacyDownload } = props;
+  const {
+    resourcesToCheck,
+    additionalFilesIdsToCheck,
+    onComplete,
+    lessonSlug,
+    isLegacyDownload,
+  } = props;
 
   useEffect(() => {
     // check if lesson download resources exist and if not update the state
     const resourceTypesAsString = resourcesToCheck.join(",");
+    const additionalFilesIdsAsString = additionalFilesIdsToCheck?.join(",");
 
     (async () => {
       if (hasCheckedFiles) {
@@ -31,11 +39,12 @@ const useLessonDownloadExistenceCheck = (
       setHasCheckedFiles(true);
       try {
         const { resources: resourceExistence } =
-          await getLessonDownloadResourcesExistence(
+          await getLessonDownloadResourcesExistence({
             lessonSlug,
-            resourceTypesAsString,
+            resourceTypesString: resourceTypesAsString,
+            additionalFilesIdsString: additionalFilesIdsAsString,
             isLegacyDownload,
-          );
+          });
 
         const resourcesExistenceAsArray: {
           item: string;
@@ -69,6 +78,7 @@ const useLessonDownloadExistenceCheck = (
     lessonSlug,
     hasCheckedFiles,
     resourcesToCheck,
+    additionalFilesIdsToCheck,
     onComplete,
     isLegacyDownload,
   ]);

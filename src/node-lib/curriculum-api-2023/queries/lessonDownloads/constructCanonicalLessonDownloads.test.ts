@@ -50,17 +50,20 @@ describe("constructCanonicalLessonDownloads", () => {
     ];
     const isLegacy = false;
 
-    const result: LessonDownloadsCanonical = constructCanonicalLessonDownloads(
+    const result: LessonDownloadsCanonical = constructCanonicalLessonDownloads({
       downloads,
+      additionalFiles: [],
       lessonSlug,
       browseData,
       isLegacy,
-      null,
-      { geoRestricted: false, loginRequired: false },
-    );
+      lessonCopyRight: null,
+      restrictions: { geoRestricted: false, loginRequired: false },
+    });
 
     const expectedResult: LessonDownloadsCanonical = {
       downloads: downloads,
+      additionalFiles: [],
+      actions: undefined,
       isLegacy: isLegacy,
       lessonSlug: lessonSlug,
       lessonTitle: browseData[0]?.lesson_data?.title ?? "",
@@ -166,17 +169,20 @@ describe("constructCanonicalLessonDownloads", () => {
     ];
     const isLegacy = false;
 
-    const result: LessonDownloadsCanonical = constructCanonicalLessonDownloads(
+    const result: LessonDownloadsCanonical = constructCanonicalLessonDownloads({
       downloads,
+      additionalFiles: [],
       lessonSlug,
       browseData,
       isLegacy,
-      null,
-      { geoRestricted: false, loginRequired: false },
-    );
+      lessonCopyRight: null,
+      restrictions: { geoRestricted: false, loginRequired: false },
+    });
 
     const expectedResult: LessonDownloadsCanonical = {
       downloads: downloads,
+      additionalFiles: [],
+      actions: undefined,
       isLegacy: isLegacy,
       lessonSlug: lessonSlug,
       lessonTitle: browseData[0]?.lesson_data?.title ?? "",

@@ -5,6 +5,7 @@ import getSignedVideoToken from "./getSignedVideoToken";
 
 import errorReporter from "@/common-lib/error-reporter";
 import OakError from "@/errors/OakError";
+import { isJwtExpiring } from "@/utils/jwtExpiry";
 
 const reportError = errorReporter("useSignedPlaybackId");
 export const apiEndpoint = "/api/video/signed-url";
@@ -48,7 +49,7 @@ export const useSignedMuxToken = ({
         }`
       : null;
 
-  const { data, error } = useSWR(url, getSignedVideoToken, options);
+  const { data, error, mutate } = useSWR(url, getSignedVideoToken, options);
 
   const token = data ? JSON.parse(data).token : undefined;
 
@@ -65,6 +66,41 @@ export const useSignedMuxToken = ({
       reportError(error);
     }
   }, [data, token, playbackId, playbackPolicy]);
+
+  useEffect(() => {
+    if (!token || playbackPolicy !== "signed") return;
+
+    const REFRESH_THRESHOLD = 30 * 60; // Refresh token if it expires in less than 30 minutes
+    const CHECK_INTERVAL = 60 * 1000; // Check every 60 seconds
+
+    // Function to check and refresh token if needed
+    const checkAndRefreshToken = () => {
+      if (isJwtExpiring(token, REFRESH_THRESHOLD)) {
+        mutate();
+      }
+    };
+
+    // Set up periodic checking
+    const intervalId = setInterval(checkAndRefreshToken, CHECK_INTERVAL);
+
+    // Handle visibility change (wake from sleep)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        checkAndRefreshToken();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("focus", checkAndRefreshToken);
+    window.addEventListener("online", checkAndRefreshToken);
+
+    return () => {
+      clearInterval(intervalId);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("focus", checkAndRefreshToken);
+      window.removeEventListener("online", checkAndRefreshToken);
+    };
+  }, [token, playbackPolicy, mutate]);
 
   if (playbackPolicy === "public") {
     return {
