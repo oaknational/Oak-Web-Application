@@ -24,7 +24,6 @@ export const pupilSubjectListingQuery =
     yearSlug: string;
   }): Promise<{
     curriculumData: PupilSubjectListingData[];
-    subjectFeatures: PupilSubjectListingQuery["subjectFeatures"];
   }> => {
     const res = await sdk.pupilSubjectListing({
       yearSlug,
@@ -46,6 +45,5 @@ export const pupilSubjectListingQuery =
 
     return {
       curriculumData: keysToCamelCase(modified) as PupilSubjectListingData[],
-      subjectFeatures: res.subjectFeatures,
     };
   };

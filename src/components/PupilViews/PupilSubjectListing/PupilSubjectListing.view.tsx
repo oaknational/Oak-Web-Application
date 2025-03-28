@@ -15,16 +15,13 @@ import { ResolveOakHrefProps, resolveOakHref } from "@/common-lib/urls";
 import { PupilSubjectListingData } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
 import SignpostTeachersInlineBanner from "@/components/PupilComponents/SignpostTeachersInlineBanner/SignpostTeachersInlineBanner";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import { PupilSubjectListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 
 type PupilViewsSubjectListingProps = {
   subjects: PupilSubjectListingData[];
-  subjectFeatures?: PupilSubjectListingQuery["subjectFeatures"];
 };
 
 export const PupilViewsSubjectListing = ({
   subjects,
-  subjectFeatures = [],
 }: PupilViewsSubjectListingProps) => {
   const { track } = useAnalytics();
   const groupedBySubject = groupBy(
@@ -32,15 +29,12 @@ export const PupilViewsSubjectListing = ({
     (subject) => subject.programmeFields.subjectSlug,
   );
 
-  const orderedKeys = Object.keys(groupedBySubject).sort((a, b) =>
-    a.localeCompare(b),
+  const nonCurriculum = subjects.filter(
+    (subject) => subject.features?.nonCurriculum,
   );
 
-  const nonCurriculum = orderedKeys.filter((subjectSlug) =>
-    subjectFeatures.find(
-      (feature) =>
-        feature.slug === subjectSlug && feature.features.non_curriculum,
-    ),
+  const orderedKeys = Object.keys(groupedBySubject).sort((a, b) =>
+    a.localeCompare(b),
   );
 
   const buildSubjectGridArea = ({
@@ -51,16 +45,15 @@ export const PupilViewsSubjectListing = ({
     showNonCurriculum: boolean;
   }) => {
     const subjectData = groupedBySubject[subjectSlug];
-    const features = subjectFeatures.find(
-      (feature) => feature.slug === subjectSlug,
-    )?.features;
+    const features = subjectData?.[0]?.features;
 
-    if (
-      features?.non_curriculum &&
-      features?.non_curriculum !== showNonCurriculum
-    ) {
+    if (features?.nonCurriculum !== true && showNonCurriculum) {
       return null;
     }
+    if (features?.nonCurriculum === true && !showNonCurriculum) {
+      return null;
+    }
+
     if (subjectData?.[0]?.programmeFields.phaseSlug === "foundation") {
       throw new Error("Foundation phase is not supported");
     }
@@ -208,7 +201,7 @@ export const PupilViewsSubjectListing = ({
                 $cg={"space-between-s"}
                 role="list"
               >
-                {nonCurriculum.map((subjectSlug) =>
+                {orderedKeys.map((subjectSlug) =>
                   buildSubjectGridArea({
                     subjectSlug,
                     showNonCurriculum: true,
