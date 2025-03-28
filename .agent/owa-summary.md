@@ -49,6 +49,8 @@ The Oak Web Application (OWA) serves as the frontend for Oak National Academy, a
 
 The platform was developed to make educational resources more accessible, with a particular focus on delivering a seamless experience for both teachers and students. The application provides features like lesson viewing, curriculum browsing, and educational content discovery.
 
+Oak National Academy began during the first UK lockdown in April 2020, in response to the COVID-19 pandemic, to support teachers and pupils with remote learning. In September 2022, Oak became an arm's-length body of the UK Government, sponsored by the UK Department for Education to which it is strategically aligned but operationally independent.
+
 ### Target Audience
 
 The application serves two primary user groups:
@@ -66,6 +68,8 @@ Currently, the application offers:
 - Search functionality for educational content
 - Teacher resources and support materials
 - Pupil-focused learning paths
+- AI-assisted lesson planning tools
+- Account management and personalization
 
 ## Technical Architecture
 
@@ -75,23 +79,31 @@ The Oak Web Application is built with a modern JavaScript/TypeScript stack:
 
 **Current Implementation:**
 
-- **Framework**: Next.js (React-based framework)
+- **Framework**: Next.js 15.2.3 (React-based framework)
 - **Language**: TypeScript (98.6% of codebase)
-- **Styling**: Styled Components
-- **State Management**: React Context API
-- **Data Fetching**: SWR, native fetch API
-- **Testing**: Jest, React Testing Library
-- **Component Documentation**: Storybook
+- **Styling**: Styled Components 6.1.15
+- **State Management**: React Context API, SWR for remote state
+- **Data Fetching**: SWR, native fetch API, GraphQL
+- **Testing**: Jest 29.7.0, React Testing Library 16.2.0, Pa11y-CI for accessibility
+- **Component Documentation**: Storybook 8.6.8
 - **CMS Integration**: Sanity (via GraphQL)
-- **Authentication**: Clerk
-- **Media**: Mux Player for video content
-- **Analytics**: PostHog
-- **Deployment**: Netlify (with Incremental Static Regeneration)
+- **Authentication**: Clerk 6.12.4
+- **Media**: Mux Player 3.1.0 for video content
+- **Analytics**: PostHog 1.181.0
+- **Error Tracking**: Bugsnag 8.2.0
+- **Form Handling**: React Hook Form 7.54.2, Zod for validation
+- **Internationalization**: Support for multiple languages
+- **Deployment**: Netlify with Incremental Static Regeneration
+- **Internal Libraries**:
+  - @oaknational/oak-components 1.95.1 (shared UI component library)
+  - @oaknational/oak-consent-client 2.1.1
+  - @oaknational/oak-curriculum-schema 1.55.0
+  - @oaknational/oak-pupil-client 2.14.0
 
 **Improvement Opportunities:**
 
 - Adopt a state management library with better scalability (Redux Toolkit, Zustand, or Jotai)
-- Implement stronger GraphQL typing with codegen
+- Implement stronger GraphQL typing with codegen (currently in use for some APIs)
 - Move to a more modular styling approach like CSS Modules or Tailwind CSS
 - Enhance testing framework with Playwright for E2E tests
 
@@ -103,20 +115,60 @@ The codebase follows a feature-oriented structure, with some aspects of domain-d
 
 ```shell
 /src
-  /app                 # App Router components (newer Next.js features)
-  /pages               # Next.js page components (page router)
-  /components          # UI components organized by domain
-    /TeacherComponents # Teacher-specific components
-    /PupilComponents   # Pupil-specific components
-    /SharedComponents  # Shared components
-  /context             # React Context providers
-  /hooks               # Custom React hooks
-  /utils               # Utility functions
-  /node-lib            # Server-side code
-  /common-lib          # Shared code between client and server
-  /browser-lib         # Browser-specific code
-  /types               # TypeScript type definitions
-  /fixtures            # Test fixtures
+  /app                   # App Router components (newer Next.js features)
+  /pages                 # Next.js page components (page router)
+  /components            # UI components organized by domain
+    /TeacherComponents   # Teacher-specific components
+    /TeacherViews        # Teacher-specific views/pages
+    /PupilComponents     # Pupil-specific components
+    /PupilViews          # Pupil-specific views/pages
+    /SharedComponents    # Shared components
+    /AppComponents       # Application-wide components
+    /GenericPagesComponents # Components for generic pages
+    /GenericPagesViews   # Views for generic pages
+    /CurriculumComponents # Curriculum-specific components
+    /HooksAndUtils       # Component-specific hooks and utilities
+  /context               # React Context providers
+    /Analytics           # Analytics context
+    /Search              # Search context
+    /Toast               # Toast notifications context
+    /Menu                # Navigation menu context
+  /hooks                 # Custom React hooks
+  /utils                 # Utility functions
+  /node-lib              # Server-side code
+    /curriculum-api-2023 # Curriculum API integration
+    /personalisation-api # Personalization API integration
+    /sanity-graphql      # Sanity CMS GraphQL client
+    /isr                 # Incremental Static Regeneration utilities
+    /cms                 # CMS integration utilities
+    /hubspot-forms       # HubSpot forms integration
+    /posthog             # PostHog analytics integration
+  /common-lib            # Shared code between client and server
+    /urls                # URL utilities
+    /error-reporter      # Error reporting utilities
+    /forms               # Form utilities
+    /cms-types           # CMS type definitions
+    /schemas             # Schema definitions
+  /browser-lib           # Browser-specific code
+    /analytics           # Analytics integration
+    /bugsnag             # Bugsnag error tracking
+    /posthog             # PostHog integration
+    /cookie-consent      # Cookie consent utilities
+    /gleap               # Gleap integration
+    /hubspot             # HubSpot integration
+    /mathjax             # MathJax integration
+    /seo                 # SEO utilities
+  /types                 # TypeScript type definitions
+  /fixtures              # Test fixtures
+  /hocs                  # Higher-Order Components
+  /pages-helpers         # Helpers for Next.js pages
+  /storybook-decorators  # Storybook decorators
+  /styles                # Global styles
+  /config                # Configuration files
+  /errors                # Error handling utilities
+  /image-data            # Image data utilities
+  /__tests__             # Tests for pages (since Next.js doesn't allow non-route files in /pages)
+  /middleware.ts         # Next.js middleware
 ```
 
 **Improvement Opportunities:**
@@ -132,9 +184,11 @@ The codebase follows a feature-oriented structure, with some aspects of domain-d
 
 - Server-side data fetching using Next.js's `getStaticProps` and `getServerSideProps`
 - Client-side data fetching using SWR and native fetch
-- GraphQL queries to Sanity and custom APIs
+- GraphQL queries to Sanity CMS and custom APIs
 - React Context for state sharing between components
 - Local storage for persistent client-side state
+- Personalization through dedicated APIs
+- Incremental Static Regeneration for updating static content
 
 **Improvement Opportunities:**
 
@@ -148,10 +202,14 @@ The codebase follows a feature-oriented structure, with some aspects of domain-d
 
 **Current Implementation:**
 
-- React Context API for global state
+- React Context API for global state through domain-specific providers:
+  - Analytics Context
+  - Search Context
+  - Toast Context
+  - Menu Context
 - Local component state with useState/useReducer
-- Custom hooks for shared logic
-- Context providers organized by domain (e.g., Auth, Search, Analytics)
+- Custom hooks for shared logic and state
+- SWR for remote state management and caching
 
 **Improvement Opportunities:**
 
@@ -159,15 +217,20 @@ The codebase follows a feature-oriented structure, with some aspects of domain-d
 - Adopt a more formal state management approach for complex features
 - Create better patterns for server-client state synchronization
 - Introduce stronger typing for state objects
+- Consider adopting alternative state management libraries for specific use cases
 
 ### API Integration
 
 **Current Implementation:**
 
-- GraphQL for Sanity CMS integration
+- GraphQL for Sanity CMS integration with code generation
 - Custom API clients for various services
-- Direct fetch calls in some components/pages
-- Mix of typed and untyped API responses
+- SWR for data fetching and caching
+- Personalization API for user-specific content
+- Curriculum API for educational content
+- Hubspot integration for forms and marketing
+- PostHog for analytics tracking
+- Clerk for authentication
 
 **Improvement Opportunities:**
 
@@ -182,10 +245,11 @@ The codebase follows a feature-oriented structure, with some aspects of domain-d
 
 **Current Implementation:**
 
-- Components organized by domain (Teacher, Pupil, Shared)
+- Components organized by domain (Teacher, Pupil, Shared, App, Curriculum)
 - Mix of presentational and container components
-- Some reusable UI primitives
+- Shared component library (@oaknational/oak-components)
 - Storybook for component documentation
+- Higher-Order Components for cross-cutting concerns
 
 **Improvement Opportunities:**
 
@@ -199,9 +263,10 @@ The codebase follows a feature-oriented structure, with some aspects of domain-d
 **Current Implementation:**
 
 - Styled Components as the primary styling method
-- Some global styles for common elements
 - Theme provider for consistent styling
-- Mix of responsive approaches
+- Responsive design patterns
+- Accessibility considerations in styling
+- Integration with @oaknational/oak-components for design system
 
 **Improvement Opportunities:**
 
@@ -214,10 +279,12 @@ The codebase follows a feature-oriented structure, with some aspects of domain-d
 
 **Current Implementation:**
 
-- Pa11y for accessibility testing
-- ARIA attributes in some components
-- Basic keyboard navigation support
+- Pa11y-CI for accessibility testing
+- ARIA attributes in components
+- Keyboard navigation support
 - Screen reader considerations in key components
+- Accessibility test automation in CI/CD
+- React-aria integration for accessible UI patterns
 
 **Improvement Opportunities:**
 
@@ -232,10 +299,13 @@ The codebase follows a feature-oriented structure, with some aspects of domain-d
 
 **Current Implementation:**
 
-- Local environment setup with `.env` files
+- Local environment setup with multiple `.env` files
 - NPM scripts for common tasks
 - Husky for pre-commit hooks
-- Basic linting and formatting rules
+- ESLint and Prettier for code quality
+- TypeScript for type checking
+- Multiple Jest configurations for different parts of the application
+- Storybook for component development
 
 **Improvement Opportunities:**
 
@@ -248,11 +318,16 @@ The codebase follows a feature-oriented structure, with some aspects of domain-d
 
 **Current Implementation:**
 
-- Jest for unit and integration tests
+- Jest for unit and integration tests (multiple configurations)
+  - jest.config.cjs (main configuration)
+  - jest.components.config.cjs (component tests)
+  - jest.pages.config.cjs (page tests)
+  - jest.storybook.config.cjs (Storybook tests)
 - React Testing Library for component testing
 - Storybook for visual testing
-- Pa11y for accessibility testing
+- Pa11y-CI for accessibility testing
 - Tests co-located with code (except for pages)
+- Percy for visual regression testing
 
 **Improvement Opportunities:**
 
@@ -269,6 +344,9 @@ The codebase follows a feature-oriented structure, with some aspects of domain-d
 - Semantic release for versioning
 - Automatic deployments to Netlify
 - Various testing and linting steps
+- Code quality checks
+- Security scanning
+- Bundle analysis for performance
 
 **Improvement Opportunities:**
 
@@ -285,6 +363,8 @@ The codebase follows a feature-oriented structure, with some aspects of domain-d
 - Incremental Static Regeneration for dynamic content
 - Netlify for hosting
 - Fallback strategies for dynamic routes
+- Environment-specific configurations
+- Content delivery through CDNs
 
 **Improvement Opportunities:**
 
@@ -303,6 +383,7 @@ The codebase faces several maintenance challenges:
 - Inconsistent patterns across different parts of the application
 - Some tight coupling between components and data fetching
 - Duplicate logic in different parts of the codebase
+- Balancing the use of both pages router and app router in Next.js
 
 ### Performance
 
@@ -312,6 +393,7 @@ Performance considerations include:
 - Render optimization opportunities
 - Data fetching optimizations
 - Image and media loading strategies
+- Client-side vs. server-side rendering decisions
 
 ### Scalability
 
@@ -321,6 +403,7 @@ Scalability concerns include:
 - Ensuring consistent patterns across team members
 - Managing increasing state complexity
 - Handling an expanding component library
+- Integration with multiple external services
 
 ## Improvement Opportunities
 
@@ -434,18 +517,18 @@ While the codebase has some reusable components and hooks, there are opportuniti
 ### Module Extraction
 
 **Current State:**
-The application has some shared components and utilities, but they're tightly coupled to the main application.
+The application has some shared components and utilities, but they're tightly coupled to the main application. Some modules have already been extracted into separate packages (@oaknational/oak-components, @oaknational/oak-curriculum-schema, etc.).
 
 **Target State:**
 
-- Extract reusable modules into separate packages
+- Extract more reusable modules into separate packages
 - Create independent npm packages for shared functionality
 - Implement proper versioning and documentation for extracted modules
 - Design public APIs that follow best practices
 
 **Candidate Modules for Extraction:**
 
-1. **UI Component Library**: Core UI components that could be used across projects
+1. **UI Component Library**: Additional core UI components that could be used across projects
 2. **Form Handling Utilities**: Form validation, submission, and error handling
 3. **API Client Library**: Type-safe API client with common patterns
 4. **Analytics Framework**: Reusable analytics integrations
