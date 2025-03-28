@@ -112,7 +112,7 @@ const isUnitFirstItemRef = (
   }
 };
 
-const getUnitLessonCount = (unit: {
+export const getUnitLessonCount = (unit: {
   lessonCount: number | null;
   expiredLessonCount: number | null;
   unpublishedLessonCount: number;
@@ -123,10 +123,11 @@ const getUnitLessonCount = (unit: {
     if (unpublishedLessonCount || expiredLessonCount) {
       if (expiredLessonCount && expiredLessonCount > lessonCount) {
         countHeader = `0 lessons`;
+      } else {
+        // unpublished lessons arent included in the lessonCount, but expired lessons are
+        const totalLessonCount = lessonCount + unpublishedLessonCount;
+        countHeader = `${lessonCount - (expiredLessonCount ?? 0)}/${totalLessonCount} lesson${totalLessonCount > 1 ? "s" : ""}`;
       }
-      // unpublished lessons arent included in the lessonCount, but expired lessons are
-      const totalLessonCount = lessonCount + unpublishedLessonCount;
-      countHeader = `${lessonCount - (expiredLessonCount ?? 0)}/${totalLessonCount} lesson${totalLessonCount > 1 ? "s" : ""}`;
     } else {
       countHeader = `${lessonCount} lesson${lessonCount > 1 ? "s" : ""}`;
     }

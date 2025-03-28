@@ -51,7 +51,6 @@ export const unitListingFixture = (
           cohort: "2023-2024",
           subjectCategories: null,
           unpublishedLessonCount: 0,
-
           learningThemes: [
             {
               themeSlug: "computer-science-1",
@@ -85,7 +84,6 @@ export const unitListingFixture = (
               slug: "grammar",
             },
           ],
-
           learningThemes: [
             {
               themeSlug: "computer-science-2",
