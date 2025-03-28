@@ -89,6 +89,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     setDownloadError,
     setDownloadInProgress,
     downloadInProgress,
+    showIncompleteMessage,
+    setShowIncompleteMessage,
   } = useUnitDownloadButtonState();
 
   const bannersBlock = (
@@ -101,23 +103,33 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             message="Sorry, download is not working. Please try again in a few minutes."
             icon="error"
           />
-        ) : showDownloadMessage ? (
-          <OakInlineBanner
-            isOpen={showDownloadMessage}
-            canDismiss
-            onDismiss={() => setShowDownloadMessage(false)}
-            type="neutral"
-            message={
-              <OakFlex $flexDirection="column">
+        ) : showDownloadMessage || showIncompleteMessage ? (
+          <>
+            <OakInlineBanner
+              isOpen={showDownloadMessage}
+              canDismiss
+              onDismiss={() => setShowDownloadMessage(false)}
+              type="neutral"
+              message={
                 <OakP>
                   Downloads may take a few minutes on slower Wi-Fi connections.
                 </OakP>
-                {isIncompleteUnit ? <OakP>This unit is incomplete</OakP> : null}
-              </OakFlex>
-            }
-            $mb={"space-between-s"}
-            $width="max-content"
-          />
+              }
+              $mb={"space-between-s"}
+              $width="max-content"
+            />
+            {isIncompleteUnit && (
+              <OakInlineBanner
+                canDismiss
+                onDismiss={() => setShowIncompleteMessage(false)}
+                isOpen={showIncompleteMessage}
+                type="neutral"
+                message={<OakP>This unit is incomplete</OakP>}
+                $mb={"space-between-s"}
+                $width="max-content"
+              />
+            )}
+          </>
         ) : null}
       </OakBox>
       {showRiskAssessmentBanner && <RiskAssessmentBanner />}
@@ -181,6 +193,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     setDownloadError={setDownloadError}
                     setDownloadInProgress={setDownloadInProgress}
                     setShowDownloadMessage={setShowDownloadMessage}
+                    setShowIncompleteMessage={setShowIncompleteMessage}
                     downloadInProgress={downloadInProgress}
                     unitFileId={unitDownloadFileId}
                     onDownloadSuccess={onUnitDownloadSuccess}
