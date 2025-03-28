@@ -21,11 +21,11 @@ function FinancialEducationBanner({ programmeFields }: Readonly<BannerProps>) {
   const mainSection = (
     <OakFlex $flexDirection="column" $gap="space-between-xs">
       <OakHeading tag="h1" $font="heading-5">
-        Try our new financial education teaching resources
+        Check out our new finance lessons!
       </OakHeading>
       <OakP>
-        A series of sequenced teaching resources offering practical knowledge
-        and skills to help pupils with their financial education.
+        Learn fun and easy ways to understand money and how to use it in real
+        life.
       </OakP>
       <OakTertiaryButton iconName="chevron-right" width="100%" isTrailingIcon>
         Go to new finance lessons

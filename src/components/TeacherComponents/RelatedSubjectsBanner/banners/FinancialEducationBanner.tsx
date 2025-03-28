@@ -12,9 +12,10 @@ import { resolveOakHref } from "@/common-lib/urls";
 
 function FinancialEducationBanner({
   keyStageSlug,
+  phase,
   isDesktop,
 }: Readonly<BannerProps>) {
-  const programmeSlug = `financial-education-secondary-${keyStageSlug}`;
+  const programmeSlug = `financial-education-${phase}-${keyStageSlug}`;
 
   const href = resolveOakHref({
     page: "unit-index",

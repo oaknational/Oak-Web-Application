@@ -71,6 +71,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     yearGroups,
     pathwayTitle,
     relatedSubjects,
+    phase,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -299,6 +300,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                     key={subjectSlug}
                     subjectSlug={subjectSlug}
                     keyStageSlug={keyStageSlug}
+                    phase={phase}
                     isDesktop={true}
                   />
                 ))}
@@ -358,6 +360,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 key={subjectSlug}
                 subjectSlug={subjectSlug}
                 keyStageSlug={keyStageSlug}
+                phase={phase}
                 isDesktop={false}
               />
             ))}
