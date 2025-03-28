@@ -276,12 +276,18 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             >
               {unpublishedLessonCount > 0 && (
                 <OakInlineRegistrationBanner
-                  onSubmit={(email) =>
-                    newsletterFormProps.onSubmit({
+                  onSubmit={(email) => {
+                    const isValidEmail = new RegExp(
+                      /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/i,
+                    ).test(email);
+                    if (!isValidEmail) {
+                      throw new Error("Please enter a valid email address");
+                    }
+                    return newsletterFormProps.onSubmit({
                       email,
                       userRole: "Teacher",
-                    })
-                  }
+                    });
+                  }}
                   bodyText={
                     <OakSpan $font="body-1">
                       We’re busy creating the final lessons. We’ll let you know
