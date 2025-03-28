@@ -1,6 +1,7 @@
 import {
   lessonContentFixture,
   syntheticUnitvariantLessonsByKsFixture,
+  // additionalFilesFixture
 } from "@oaknational/oak-curriculum-schema";
 
 import sdk from "../../sdk";
@@ -10,7 +11,30 @@ import lessonOverview, {
   getContentGuidance,
   getCopyrightContent,
   getDownloadsArray,
+  getAdditionalFiles,
 } from "./lessonOverview.query";
+
+// @todo update to fixture from oak-curriculum-schema once it is updated there
+export const _additionalFilesFixture = [
+  {
+    assetId: 1,
+    mediaId: 1,
+    mediaObject: {
+      url: "https://example.com/file1.pdf",
+      bytes: 1000,
+      displayName: "File 1",
+    },
+  },
+  {
+    assetId: 2,
+    mediaId: 2,
+    mediaObject: {
+      url: "https://example.com/file2.pdf",
+      bytes: 2000,
+      displayName: "File 2",
+    },
+  },
+];
 
 describe("lessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
@@ -18,7 +42,7 @@ describe("lessonOverview()", () => {
       await lessonOverview({
         ...sdk,
         lessonOverview: jest.fn(() =>
-          Promise.resolve({ content: [], browseData: [] }),
+          Promise.resolve({ content: [], browseData: [], additionalFiles: [] }),
         ),
       })({
         lessonSlug: "lesson-slug",
@@ -53,6 +77,7 @@ describe("lessonOverview()", () => {
         Promise.resolve({
           browseData: [_syntheticUnitvariantLessonsByKsFixture],
           content: [_lessonContentFixture],
+          additionalFiles: [_additionalFilesFixture],
         }),
       ),
     })({
@@ -115,6 +140,7 @@ describe("lessonOverview()", () => {
             _syntheticUnitvariantLessonsByKsFixture3,
           ],
           content: [_lessonContentFixture],
+          additionalFiles: [],
         }),
       ),
     })({
@@ -139,6 +165,7 @@ describe("lessonOverview()", () => {
           Promise.resolve({
             browseData: [],
             content: [],
+            additionalFiles: [],
           }),
         ),
       })({
@@ -167,6 +194,16 @@ describe("lessonOverview()", () => {
 
     it("should handle empty string copyrightInfo fields", () => {
       const content = [{ copyrightInfo: "" }];
+      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
+    });
+
+    it("should default to empty string in copyrightInfo fields are undefined", () => {
+      const content = [{ copyrightInfo: undefined }];
+      expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
+    });
+
+    it("should default to empty string if item doesnt have copyrightInfo", () => {
+      const content = [{ somethingElse: "" }];
       expect(getCopyrightContent(content)).toEqual([{ copyrightInfo: "" }]);
     });
   });
@@ -199,6 +236,34 @@ describe("lessonOverview()", () => {
           contentGuidanceLabel: "Label 2",
           contentGuidanceDescription: "Description 2",
           contentGuidanceArea: "Area 2",
+        },
+      ]);
+    });
+
+    it("should return an array with content guidance details defaulted to empty strings in not provided", () => {
+      expect(
+        getContentGuidance([
+          {
+            contentguidanceLabel: null,
+            contentguidanceDescription: null,
+            contentguidanceArea: null,
+          },
+          {
+            contentguidanceLabel: "Label 2",
+            contentguidanceDescription: "Description 2",
+            contentguidanceArea: null,
+          },
+        ]),
+      ).toEqual([
+        {
+          contentGuidanceLabel: "",
+          contentGuidanceDescription: "",
+          contentGuidanceArea: "",
+        },
+        {
+          contentGuidanceLabel: "Label 2",
+          contentGuidanceDescription: "Description 2",
+          contentGuidanceArea: "",
         },
       ]);
     });
@@ -347,6 +412,19 @@ describe("lessonOverview()", () => {
       ];
 
       expect(getDownloadsArray(content)).toEqual(expectedDownloads);
+    });
+  });
+
+  describe("getAdditionalFiles", () => {
+    it("should return an empty array if additionalFiles is null", () => {
+      expect(getAdditionalFiles(null)).toEqual([]);
+    });
+
+    it("should return an array of additional files if provided", () => {
+      expect(getAdditionalFiles(_additionalFilesFixture)).toEqual([
+        "File 1 1000 B (PDF)",
+        "File 2 1.95 KB (PDF)",
+      ]);
     });
   });
 });

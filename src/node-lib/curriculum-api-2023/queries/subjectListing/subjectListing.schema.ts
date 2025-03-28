@@ -18,6 +18,7 @@ export const subjectSchema = z.object({
   pathwaySlug: pathwaySlugs.nullable(),
   pathwayTitle: pathways.nullable(),
   actions: actionsSchema,
+  features: z.object({}).passthrough().optional(),
 });
 
 const keyStageDataRaw = z.object({

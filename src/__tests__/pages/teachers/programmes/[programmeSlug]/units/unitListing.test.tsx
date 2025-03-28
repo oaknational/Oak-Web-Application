@@ -82,6 +82,34 @@ describe("pages/programmes/[programmeSlug]/units", () => {
     );
   });
 
+  it("finance banners are displayed", () => {
+    const { getAllByTestId } = render(
+      <UnitListingPage
+        curriculumData={{
+          ...unitListingFixture(),
+          examBoardTitle: "OCR",
+          relatedSubjects: ["financial-education"],
+        }}
+      />,
+    );
+
+    expect(getAllByTestId("financial-education-banner").length).toBeGreaterThan(
+      0,
+    );
+  });
+
+  it("finance banners are not displayed", () => {
+    const { queryAllByTestId } = render(
+      <UnitListingPage
+        curriculumData={{
+          ...unitListingFixture(),
+          examBoardTitle: "OCR",
+        }}
+      />,
+    );
+    expect(queryAllByTestId("financial-education-banner")).toHaveLength(0);
+  });
+
   describe("SEO", () => {
     it("renders the correct SEO details for programme", async () => {
       const { seo } = renderWithSeo()(

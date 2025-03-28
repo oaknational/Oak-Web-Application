@@ -16,11 +16,11 @@ import { createLessonEngineContext } from "@/components/PupilComponents/pupilTes
 import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/VideoPlayer";
 import { trackingEvents } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
 import { lessonBrowseDataFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonBrowseData.fixture";
-import { lessonContentFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonContent.fixture";
+import { lessonAdditionalFilesFixture } from "@/node-lib/curriculum-api-2023/fixtures/lessonAdditionalFiles.fixture";
 
 installMockResizeObserver();
 installMockIntersectionObserver();
-const MockLessonContent = lessonContentFixture({});
+const MockAdditionalFiles = lessonAdditionalFilesFixture({});
 const MockBrowseData = lessonBrowseDataFixture({});
 const usePupilAnalyticsMock = {
   track: Object.fromEntries(trackingEvents.map((event) => [event, jest.fn()])),
@@ -92,6 +92,7 @@ describe(PupilViewsVideo, () => {
             isLegacy={false}
             browseData={MockBrowseData}
             hasAdditionalFiles={false}
+            additionalFiles={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -112,6 +113,7 @@ describe(PupilViewsVideo, () => {
             isLegacy={false}
             browseData={MockBrowseData}
             hasAdditionalFiles={false}
+            additionalFiles={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -139,6 +141,7 @@ describe(PupilViewsVideo, () => {
             isLegacy={false}
             browseData={MockBrowseData}
             hasAdditionalFiles={false}
+            additionalFiles={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -164,6 +167,7 @@ describe(PupilViewsVideo, () => {
             isLegacy={false}
             browseData={MockBrowseData}
             hasAdditionalFiles={false}
+            additionalFiles={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -188,6 +192,7 @@ describe(PupilViewsVideo, () => {
             isLegacy
             browseData={MockBrowseData}
             hasAdditionalFiles={false}
+            additionalFiles={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -210,6 +215,7 @@ describe(PupilViewsVideo, () => {
             isLegacy={false}
             browseData={MockBrowseData}
             hasAdditionalFiles={false}
+            additionalFiles={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -236,6 +242,7 @@ describe(PupilViewsVideo, () => {
             isLegacy={false}
             browseData={MockBrowseData}
             hasAdditionalFiles={false}
+            additionalFiles={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -268,6 +275,7 @@ describe(PupilViewsVideo, () => {
             isLegacy={false}
             browseData={MockBrowseData}
             hasAdditionalFiles={false}
+            additionalFiles={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -295,6 +303,7 @@ describe(PupilViewsVideo, () => {
             isLegacy={false}
             browseData={MockBrowseData}
             hasAdditionalFiles={false}
+            additionalFiles={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -334,6 +343,7 @@ describe(PupilViewsVideo, () => {
             isLegacy={false}
             browseData={MockBrowseData}
             hasAdditionalFiles={false}
+            additionalFiles={null}
           />
         </LessonEngineContext.Provider>
       </OakThemeProvider>,
@@ -366,7 +376,7 @@ describe(PupilViewsVideo, () => {
               isLegacy={false}
               browseData={MockBrowseData}
               hasAdditionalFiles={true}
-              additionalFiles={MockLessonContent.additionalFiles}
+              additionalFiles={MockAdditionalFiles["downloadableFiles"]}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>
@@ -388,11 +398,12 @@ describe(PupilViewsVideo, () => {
 
         await userEvent.click(getByText("Download files"));
 
-        expect(downloadLessonResources.default).toHaveBeenCalledWith(
-          MockBrowseData.lessonSlug,
-          ["worksheet-pdf-questions"],
-          false,
-        );
+        expect(downloadLessonResources.default).toHaveBeenCalledWith({
+          lessonSlug: MockBrowseData.lessonSlug,
+          selectedResourceTypes: ["additional-files"],
+          selectedAdditionalFilesIds: [456, 932],
+          isLegacyDownload: false,
+        });
       });
     });
 
@@ -408,6 +419,7 @@ describe(PupilViewsVideo, () => {
               isLegacy={false}
               browseData={MockBrowseData}
               hasAdditionalFiles={false}
+              additionalFiles={null}
             />
           </LessonEngineContext.Provider>
         </OakThemeProvider>

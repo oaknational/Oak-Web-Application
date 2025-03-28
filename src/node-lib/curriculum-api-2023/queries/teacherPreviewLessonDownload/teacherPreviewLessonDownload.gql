@@ -1,0 +1,37 @@
+query teacherPreviewLessonDownload(
+  $lessonSlug: String!
+  $browseDataWhere: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0_bool_exp
+) {
+  download_assets: published_mv_lesson_content_new_8_0_0(
+    where: { lesson_slug: { _eq: $lessonSlug } }
+  ) {
+    has_slide_deck_asset_object
+    has_worksheet_asset_object
+    has_supplementary_asset_object
+    has_worksheet_answers_asset_object
+    has_worksheet_google_drive_downloadable_version
+    has_lesson_guide_object
+    starter_quiz
+    exit_quiz
+    is_legacy
+    expired: deprecated_fields(path: "expired")
+    geo_restricted
+    login_required
+    downloadable_files
+  }
+  browse_data: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0(
+    where: $browseDataWhere
+  ) {
+    lesson_slug
+    unit_slug
+    programme_slug
+    programme_slug_by_year
+    is_legacy
+    lesson_data
+    unit_data
+    programme_fields
+    actions
+    features
+    order_in_unit
+  }
+}

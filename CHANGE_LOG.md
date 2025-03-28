@@ -1,3 +1,53 @@
+# [1.720.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.719.1...v1.720.0) (2025-03-28)
+
+
+### Bug Fixes
+
+* add readonly modifier to BannerProps in RelatedSubjectsBanner components ([8f209e8](https://github.com/oaknational/Oak-Web-Application/commit/8f209e85ebe4ec419bd7d5c899aee8464cea3298))
+* add readonly modifier to props in RelatedSubjectsBanner components ([02d035c](https://github.com/oaknational/Oak-Web-Application/commit/02d035c0d26b9f6b5f71addac126b0eb8d91fc5d))
+* update oak-components dependency to version 1.97.0 ([2ee5079](https://github.com/oaknational/Oak-Web-Application/commit/2ee50794ddb6fddacd6f03ecdfa48bbe0e4e7c46))
+
+
+### Features
+
+* add related subjects functionality ([a7b0166](https://github.com/oaknational/Oak-Web-Application/commit/a7b01668e695a59a9e7234cadd598879635d58fb))
+* include phase in FinancialEducationBanner props and update display text ([d2e2617](https://github.com/oaknational/Oak-Web-Application/commit/d2e2617dfa71211b7d493519afc57998aec9b1c1))
+
+## [1.719.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.719.0...v1.719.1) (2025-03-27)
+
+# [1.719.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.718.0...v1.719.0) (2025-03-26)
+
+
+### Bug Fixes
+
+* curriculum ResourceCard layout ([70f4215](https://github.com/oaknational/Oak-Web-Application/commit/70f421598fcd26d998049c08113e100b854e14ff))
+* exclude beta pages from sonar duplication check and from coverage ([49c1bf6](https://github.com/oaknational/Oak-Web-Application/commit/49c1bf6c0f38b9aa44086e22c793f8a8890fab04))
+* pupil additional files ([5ef3144](https://github.com/oaknational/Oak-Web-Application/commit/5ef31445e6086d2e84425fa4b9896f3e936a1673))
+* ui fix ([1ff37f1](https://github.com/oaknational/Oak-Web-Application/commit/1ff37f1c63a016fccddb8ce7ba4946c50a7bbc0b))
+* worksheet error reporter fix ([1919aa4](https://github.com/oaknational/Oak-Web-Application/commit/1919aa44cb908021984a16fd91a4ad551a819d2f))
+
+
+### Features
+
+* add additional files to download form ([8e974e1](https://github.com/oaknational/Oak-Web-Application/commit/8e974e1d9ba6b785e249f476316fb7e00c219b02))
+* add additional files to download logic ([03c10fc](https://github.com/oaknational/Oak-Web-Application/commit/03c10fcbe2e2c5c2ec2baf68fc44b8ee57ec1d78))
+* add additional files to queries and schema ([0e19fe6](https://github.com/oaknational/Oak-Web-Application/commit/0e19fe64a18abe086959b2c75d32b89f612f33f6))
+* add beta pages for downloads and amend beta lesson overview ([0850cb4](https://github.com/oaknational/Oak-Web-Application/commit/0850cb457a673369a3122f61d5d266af42820e5e))
+* add tests for new beta pages ([016d11f](https://github.com/oaknational/Oak-Web-Application/commit/016d11f87c58640783375a00d63d6d7f2d3a2d2f))
+* cleanup ([aa8763f](https://github.com/oaknational/Oak-Web-Application/commit/aa8763f57ccb48ab775758c7eb36ad0cdea028e2))
+* get additional file size on downloads page ([783f558](https://github.com/oaknational/Oak-Web-Application/commit/783f5586fb6b086828f43289237e9eb8af1c1adc))
+* pull additional files data temporarily from lessons ([5a10654](https://github.com/oaknational/Oak-Web-Application/commit/5a10654f6b5e164279bdf1d92f0555990c0ddb39))
+* set preselected link for additional files on lesson overview page ([5f32ea4](https://github.com/oaknational/Oak-Web-Application/commit/5f32ea448ff3329731c6c2192abc307ec42ccbd7))
+* truncate file name if longer than 42 characters ([7c528df](https://github.com/oaknational/Oak-Web-Application/commit/7c528dfe0c80ebcdecd5d1fb00be873bb43a44c7))
+* update content mv and related files ([a75ff27](https://github.com/oaknational/Oak-Web-Application/commit/a75ff271ed3744a892d478e541be5779e59a337c))
+
+# [1.718.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.717.0...v1.718.0) (2025-03-25)
+
+
+### Features
+
+* add support for further lessons on teacher subject listing page ([7f8ab4f](https://github.com/oaknational/Oak-Web-Application/commit/7f8ab4fedf952a2bb24b58cff2eb2c0a106d16ef))
+
 # [1.717.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.716.1...v1.717.0) (2025-03-25)
 
 

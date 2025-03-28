@@ -17,6 +17,7 @@ const reportError = errorReporter("useAdditionalFilesDownload");
  */
 export function useAdditionalFilesDownload(
   lessonSlug: string,
+  additionalFilesAssetIds: number[],
 ): AdditionalFilesDownload {
   const [isAdditionalFilesDownloading, setIsAdditionalFilesDownloading] =
     useState(false);
@@ -27,11 +28,12 @@ export function useAdditionalFilesDownload(
     setIsAdditionalFilesDownloading(true);
 
     try {
-      await downloadLessonResources(
+      await downloadLessonResources({
         lessonSlug,
-        ["worksheet-pdf-questions"],
-        false,
-      );
+        selectedResourceTypes: ["additional-files"],
+        selectedAdditionalFilesIds: additionalFilesAssetIds,
+        isLegacyDownload: false,
+      });
     } catch (error) {
       window.alert("Whoops, the download failed. You could try again.");
       reportError(error);
