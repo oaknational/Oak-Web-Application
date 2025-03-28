@@ -12,6 +12,8 @@ A comprehensive overview of the Oak Web Application, its intentions, tech stack,
     - [Key Features](#key-features)
   - [Technical Architecture](#technical-architecture)
     - [Tech Stack](#tech-stack)
+    - [Provider Architecture](#provider-architecture)
+    - [Analytics Implementation](#analytics-implementation)
     - [Codebase Structure](#codebase-structure)
     - [Data Flow](#data-flow)
     - [State Management](#state-management)
@@ -106,6 +108,69 @@ The Oak Web Application is built with a modern JavaScript/TypeScript stack:
 - Implement stronger GraphQL typing with codegen (currently in use for some APIs)
 - Move to a more modular styling approach like CSS Modules or Tailwind CSS
 - Enhance testing framework with Playwright for E2E tests
+
+### Provider Architecture
+
+**Current Implementation:**
+
+The application uses a nested provider structure to manage various aspects of the application state and functionality:
+
+```
+<StyledComponentsRegistry>
+  <PHProvider (PostHog)>
+    <OakThemeProvider>
+      <CookieConsentProvider>
+        <ClerkProvider>
+          <Application Components>
+        </ClerkProvider>
+      </CookieConsentProvider>
+    </OakThemeProvider>
+  </PHProvider>
+</StyledComponentsRegistry>
+```
+
+- **StyledComponentsRegistry**: Manages styled-components server-side rendering
+- **PHProvider**: Provides PostHog analytics services
+- **OakThemeProvider**: Manages theme variables and design system
+- **CookieConsentProvider**: Handles user consent for cookies and tracking
+- **ClerkProvider**: Manages authentication and user sessions
+- **AnalyticsProvider**: Provides analytics tracking capabilities (used in specific sections)
+- **OakPupilClientProvider**: Provides pupil-specific functionality from @oaknational/oak-pupil-client
+
+The provider structure follows a hierarchical approach where each provider depends on capabilities from providers higher in the tree.
+
+**Improvement Opportunities:**
+
+- Create a standardized provider composition pattern
+- Implement provider factories for easier testing and mocking
+- Document provider dependencies more explicitly
+- Consider using React Context Selectors for more granular rendering optimization
+
+### Analytics Implementation
+
+**Current Implementation:**
+
+The application uses a sophisticated analytics framework with multiple integration points:
+
+- **PostHog**: Primary analytics service for tracking page views and user interactions
+- **Hubspot**: Used for contact management and marketing analytics
+- **Avo**: Implements the tracking plan and serves as an abstraction layer
+- **Consent Management**: Integrated with @oaknational/oak-consent-client to manage user tracking preferences
+- **Service Policies**: Defined through ServicePolicyMap to manage tracking consent by service
+
+Analytics tracking is implemented through:
+
+- Page view tracking tied to Next.js router events
+- Custom event tracking through the Avo interface
+- User identification and aliasing functions
+- Conditional tracking based on user consent
+
+**Improvement Opportunities:**
+
+- Standardize analytics integrations across the application
+- Enhance type safety for tracking events
+- Implement better testing for analytics functions
+- Document analytics implementation more comprehensively
 
 ### Codebase Structure
 
