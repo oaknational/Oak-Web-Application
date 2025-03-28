@@ -30,6 +30,7 @@ const props: LessonListItemProps = {
   yearSlug: "higher",
   yearTitle: "Higher",
   onClick: onClick,
+  isUnpublished: false,
 };
 
 let render: ReturnType<typeof renderWithProviders>;

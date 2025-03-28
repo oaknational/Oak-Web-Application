@@ -7,11 +7,11 @@ import Flex from "@/components/SharedComponents/Flex.deprecated";
 export type ListItemIndexDesktopProps = {
   index: number;
   background: OakColorName;
-  expired?: boolean | null;
+  disabled?: boolean | null;
 };
 
 const ListItemIndexDesktop: FC<ListItemIndexDesktopProps> = (props) => {
-  const { background, index, expired } = props;
+  const { background, index, disabled: expired } = props;
 
   return (
     <Flex

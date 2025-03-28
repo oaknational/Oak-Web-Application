@@ -18,7 +18,7 @@ export type NewsletterHubspotFormData = {
   emailTextOnly?: string;
   email?: string;
   oakUserId?: string;
-  name: string;
+  name?: string;
   /**
    * allow "" for userRole as it's easier [than null/undefined] to use as a
    * form value. It is stripped out in getHubspotFormPayload.

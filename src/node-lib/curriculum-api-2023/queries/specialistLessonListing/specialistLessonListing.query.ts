@@ -71,6 +71,7 @@ const specialistLessonListingQuery =
             hasCurriculumDownload: false, // TODO: curriculum download
             orderInUnit: lesson.order_in_unit,
             developmentStage: developmentStage || null,
+            isUnpublished: false as const,
           };
 
           acc.lessons.push(lessonDetails);

@@ -24,7 +24,7 @@ interface CommonProps {
   hideTopHeading?: boolean;
   primaryTargetProps: PrimaryTargetProps;
   page: "Unit" | "Lesson";
-  onClick: () => void;
+  onClick: () => void | undefined;
 }
 
 type SpecialistListItemProps = (SpecialistUnit | SpecialistLesson) &
@@ -47,7 +47,6 @@ type ListItemHeadingProps = CommonProps &
   (LessonListItemProps | UnitListItemProps) & {
     title: string;
     slug: string;
-    expired: boolean | null;
     index?: number;
     isExemplarUnit?: boolean;
     yearTitle?: string | null;
@@ -70,6 +69,20 @@ export const ListTitle: FC<{
   );
 };
 
+export const DisabledListItemHeader = (props: {
+  index: number;
+  itemTitle: string;
+}) => {
+  const { index, itemTitle } = props;
+  return (
+    <OakFlex $flexDirection={"column"}>
+      <ListTitle expired={true} index={index}>
+        {itemTitle}
+      </ListTitle>
+    </OakFlex>
+  );
+};
+
 const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
   props,
 ) => {
@@ -80,7 +93,6 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
     hideTopHeading,
     primaryTargetProps,
     page,
-    expired,
     onClick,
     programmeSlug,
     index,
@@ -109,16 +121,6 @@ const ListItemHeader: FC<ListItemHeadingProps | SpecialistListItemProps> = (
           unitSlug: slug,
           programmeSlug: programmeSlug,
         };
-
-  if (expired) {
-    return (
-      <OakFlex $flexDirection={"column"}>
-        <ListTitle expired={true} index={index}>
-          {itemTitle}
-        </ListTitle>
-      </OakFlex>
-    );
-  }
 
   return (
     <OakFlex>

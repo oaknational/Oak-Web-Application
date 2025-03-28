@@ -89,6 +89,7 @@ const SpecialistLessonListing: FC<SpecialistLessonListingProps> = ({
             <LessonList
               {...curriculumData}
               lessonCount={lessons.length}
+              lessonCountHeader={`Lessons (${lessons.length})`}
               currentPageItems={currentPageItems}
               paginationProps={paginationProps}
               headingTag={"h2"}

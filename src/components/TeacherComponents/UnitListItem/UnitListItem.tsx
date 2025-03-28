@@ -70,7 +70,7 @@ const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
       isHovered={isHovered}
       containerProps={containerProps}
       background={expired ? "grey20" : "white"}
-      expired={expired}
+      disabled={expired}
       index={index}
       isUnitOption={isUnitOption}
     >
@@ -79,7 +79,7 @@ const UnitListItem: FC<UnitListItemProps | SpecialistListItemProps> = (
           <ListItemIndexDesktop
             index={index + 1}
             background={isHovered ? backgroundOnHover : background}
-            expired={expired}
+            disabled={expired}
           />
           <ListItemIndexMobile
             background={background}
