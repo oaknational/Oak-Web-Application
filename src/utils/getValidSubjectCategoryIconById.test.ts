@@ -16,6 +16,8 @@ describe("getValidSubjectCategoryIconById", () => {
     expect(getValidSubjectCategoryIconById("religious-education", -1)).toEqual(
       "subject-religious-education",
     );
-    expect(getValidSubjectCategoryIconById("science", -1)).toEqual("rocket");
+    expect(getValidSubjectCategoryIconById("science", -1)).toEqual(
+      "subject-science",
+    );
   });
 });

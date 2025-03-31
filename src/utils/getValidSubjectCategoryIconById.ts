@@ -20,7 +20,7 @@ const subjectCategoryIconMap: Record<number, string> = {
 const allIconMap: Record<string, OakIconName> = {
   "religious-education": "subject-religious-education",
   english: "books",
-  science: "rocket",
+  science: "subject-science",
 };
 
 export function getValidSubjectCategoryIconById(
