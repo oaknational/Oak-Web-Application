@@ -1,3 +1,5 @@
+import { mediaClipsFixture } from "@oaknational/oak-curriculum-schema";
+
 import {
   createAttributionObject,
   getCommonPathway,
@@ -6,11 +8,13 @@ import {
   getLessonMediaBreadCrumb,
   getMediaClipLabel,
   convertBytesToMegabytes,
+  sortMediaClipsByOrder,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import {
   quizQuestions,
   quizQuestionsNoImages,
 } from "@/node-lib/curriculum-api-2023/fixtures/quizElements.fixture";
+import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
 describe("getCommonPathway()", () => {
   it("returns the intersection of a single LessonPathway", () => {
@@ -748,5 +752,87 @@ describe("convertBytesToMegabytes", () => {
   it("doesn't convert bytes if the size is too small to be converted", () => {
     const result = convertBytesToMegabytes(876);
     expect(result).toBe("876 B");
+  });
+});
+
+describe("sortMediaClipsByOrder", () => {
+  it("sorts media clips by order", () => {
+    const mediaClips = mediaClipsFixture().media_clips["intro"] as MediaClip[];
+    const result = mediaClips.toSorted(sortMediaClipsByOrder);
+
+    expect(result).toEqual([
+      {
+        order: "1",
+        media_id: "191188",
+        video_id: 29844,
+        media_type: "video",
+        custom_title: "Intro Video 1",
+        media_object: {
+          id: "4de4d70775b95bbc722d4d259fb033ad",
+          url: "http://example.com/video1.mp3",
+          type: "upload",
+          bytes: 81127,
+          format: "mp3",
+          duration: 5.041633,
+
+          display_name: "9_task_C1_3",
+          resource_type: "video",
+        },
+        video_object: {
+          id: "hug9i01Tnpf1y83irOm00HRbvAJpttJPU78KNYzPav3mg",
+
+          duration: 5.055667,
+
+          mux_asset_id: "hug9i01Tnpf1y83irOm00HRbvAJpttJPU78KNYzPav3mg",
+          playback_ids: [
+            {
+              id: "mVkKUtOfoD1100012GNC1pCO6RvUgyGwqGoq01pYsy7WeA",
+              policy: "signed",
+            },
+            {
+              id: "BW00NkK9R01jB8PPO7R00YCFl2XBDn13GTkhd0001PNtheF00",
+              policy: "public",
+            },
+          ],
+          mux_playback_id: "BW00NkK9R01jB8PPO7R00YCFl2XBDn13GTkhd0001PNtheF00",
+        },
+      },
+      {
+        order: "2",
+        media_id: "191189",
+        video_id: 29845,
+        media_type: "video",
+        custom_title: "Intro Video 2",
+        media_object: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video2.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          display_name: "8_task_C1_2",
+          resource_type: "video",
+        },
+        video_object: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          mux_asset_id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playback_ids: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          mux_playback_id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+    ]);
   });
 });

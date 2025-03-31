@@ -20,6 +20,7 @@ import {
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
   getLessonMediaBreadCrumb,
+  sortMediaClipsByOrder,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
@@ -100,16 +101,20 @@ export const LessonMedia = (props: LessonMediaProps) => {
     ? Object.keys(mediaClips)
         .map((learningCycle) => {
           return (
-            mediaClips[learningCycle]?.map((mediaClip: MediaClip) => {
-              return {
-                ...mediaClip,
-                learningCycle,
-              };
-            }) || []
+            mediaClips[learningCycle]
+              ?.toSorted(sortMediaClipsByOrder)
+              .map((mediaClip: MediaClip) => {
+                return {
+                  ...mediaClip,
+                  learningCycle,
+                };
+              }) || []
           );
         })
         .flat()
     : [];
+
+  console.log("listOfAllClips", listOfAllClips);
 
   const [currentClip, setCurrentClip] = useState(
     getInitialCurrentClip(listOfAllClips, query.video),

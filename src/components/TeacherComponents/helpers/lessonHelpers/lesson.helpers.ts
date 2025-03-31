@@ -15,6 +15,7 @@ import {
   LessonOverviewQuizData,
   StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
@@ -616,6 +617,15 @@ export const getMediaClipLabel = (subjectSlug: string): LessonItemTitle => {
     default:
       return "Video & audio clips";
   }
+};
+
+export const sortMediaClipsByOrder = (a: MediaClip, b: MediaClip) => {
+  if (Number(a.order) < Number(b.order)) {
+    return -1;
+  } else if (Number(a.order) > Number(b.order)) {
+    return 1;
+  }
+  return 0;
 };
 
 export function convertBytesToMegabytes(bytes: number): string {
