@@ -73,6 +73,7 @@ describe("PupilSubjectListing", () => {
     const maths = subjectBrowseDataFixture({
       baseSlug: "maths-secondary-year-6",
       isLegacy: false,
+      features: { nonCurriculum: true },
       programmeFields: {
         ...subjectBrowseDataFixture({}).programmeFields,
         subjectSlug: "maths",
@@ -83,6 +84,7 @@ describe("PupilSubjectListing", () => {
     const biology = subjectBrowseDataFixture({
       baseSlug: "biology-secondary-year-6",
       isLegacy: false,
+      features: { nonCurriculum: true },
       programmeFields: {
         ...subjectBrowseDataFixture({}).programmeFields,
         subjectSlug: "biology",
@@ -91,17 +93,9 @@ describe("PupilSubjectListing", () => {
       },
     });
 
-    const subjectFeatures = [
-      { slug: "biology", features: { non_curriculum: true } },
-      { slug: "maths", features: { non_curriculum: false } },
-    ];
-
     render(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <PupilViewsSubjectListing
-          subjects={[maths, biology]}
-          subjectFeatures={subjectFeatures}
-        />
+        <PupilViewsSubjectListing subjects={[maths, biology]} />
       </OakThemeProvider>,
     );
 
@@ -113,7 +107,7 @@ describe("PupilSubjectListing", () => {
     ).toBeInTheDocument();
     if (lists.length < 2 || !lists[0] || !lists[1]) return;
     const furtherListItems = within(lists[1]).queryAllByRole("listitem");
-    expect(furtherListItems.length).toBe(1);
+    expect(furtherListItems.length).toBe(2);
     if (furtherListItems.length < 1 || !furtherListItems[0]) return;
     expect(
       within(furtherListItems[0]).getByText("Biology"),
@@ -130,6 +124,7 @@ describe("PupilSubjectListing", () => {
     const maths = subjectBrowseDataFixture({
       baseSlug: "maths-secondary-year-6",
       isLegacy: false,
+      features: { nonCurriculum: true },
       programmeFields: {
         ...subjectBrowseDataFixture({}).programmeFields,
         subjectSlug: "maths",
@@ -140,6 +135,7 @@ describe("PupilSubjectListing", () => {
     const biology = subjectBrowseDataFixture({
       baseSlug: "biology-secondary-year-6",
       isLegacy: false,
+      features: { nonCurriculum: true },
       programmeFields: {
         ...subjectBrowseDataFixture({}).programmeFields,
         subjectSlug: "biology",
@@ -148,17 +144,9 @@ describe("PupilSubjectListing", () => {
       },
     });
 
-    const subjectFeatures = [
-      { slug: "biology", features: { non_curriculum: true } },
-      { slug: "maths", features: { non_curriculum: false } },
-    ];
-
     render(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <PupilViewsSubjectListing
-          subjects={[maths, biology]}
-          subjectFeatures={subjectFeatures}
-        />
+        <PupilViewsSubjectListing subjects={[maths, biology]} />
       </OakThemeProvider>,
     );
 
