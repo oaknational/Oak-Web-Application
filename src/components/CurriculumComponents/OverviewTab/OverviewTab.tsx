@@ -119,6 +119,12 @@ const blockHeadingComponents: PortableTextComponents["block"] = {
   ),
 };
 
+const markComponents: PortableTextComponents["marks"] = {
+  link: ({ children, value }) => {
+    return <OakSecondaryLink {...value}>{children}</OakSecondaryLink>;
+  },
+};
+
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
   const router = useRouter();
   const { track } = useAnalytics();
@@ -286,6 +292,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                       marks: {
                         strong: basePortableTextComponents.marks!.strong,
                         em: basePortableTextComponents.marks!.em,
+                        link: markComponents.link,
                       },
                     }}
                   />
