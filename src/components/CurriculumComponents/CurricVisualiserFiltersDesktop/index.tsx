@@ -15,23 +15,22 @@ import {
 } from "../CurricVisualiserFilters";
 
 import { CurriculumFilters } from "@/utils/curriculum/types";
-import {
-  CurriculumUnitsFormattedData,
-  CurriculumUnitsTrackingData,
-} from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { shouldDisplayFilter } from "@/utils/curriculum/filtering";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 export type CurricVisualiserFiltersProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilters: CurriculumFilters) => void;
   data: CurriculumUnitsFormattedData;
-  trackingData: CurriculumUnitsTrackingData;
+  slugs: CurriculumSelectionSlugs;
 };
 
 export function CurricVisualiserFiltersDesktop({
   filters,
   onChangeFilters,
   data,
+  slugs,
 }: CurricVisualiserFiltersProps) {
   return (
     <OakBox $mr={"space-between-s"}>
@@ -58,6 +57,7 @@ export function CurricVisualiserFiltersDesktop({
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
+            slugs={slugs}
           />
           <OakHandDrawnHR hrColor={"grey40"} $mv={"space-between-m2"} />
         </>

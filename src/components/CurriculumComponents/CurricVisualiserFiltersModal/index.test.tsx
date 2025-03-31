@@ -8,6 +8,7 @@ import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createTier } from "@/fixtures/curriculum/tier";
 import { createThread } from "@/fixtures/curriculum/thread";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 describe("CurricVisualiserFiltersModal", () => {
   describe("render", () => {
@@ -23,10 +24,10 @@ describe("CurricVisualiserFiltersModal", () => {
         threadOptions: [],
         yearOptions: ["7"],
       };
-      const trackingData = {
-        subjectSlug: "",
-        subjectTitle: "",
-        phaseSlug: "",
+      const slugs: CurriculumSelectionSlugs = {
+        subjectSlug: "english",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
       const { getAllByRole } = renderWithTheme(
@@ -34,7 +35,7 @@ describe("CurricVisualiserFiltersModal", () => {
           filters={filters}
           onChangeFilters={() => {}}
           data={data}
-          trackingData={trackingData}
+          slugs={slugs}
           selectedYear={"7"}
           onSelectYear={onSelectYear}
         />,
@@ -59,10 +60,10 @@ describe("CurricVisualiserFiltersModal", () => {
         threadOptions: [],
         yearOptions: ["7"],
       };
-      const trackingData = {
-        subjectSlug: "",
-        subjectTitle: "",
-        phaseSlug: "",
+      const slugs: CurriculumSelectionSlugs = {
+        subjectSlug: "english",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
       const { getAllByRole } = renderWithTheme(
@@ -70,7 +71,7 @@ describe("CurricVisualiserFiltersModal", () => {
           filters={filters}
           onChangeFilters={() => {}}
           data={data}
-          trackingData={trackingData}
+          slugs={slugs}
           selectedYear={"7"}
           onSelectYear={onSelectYear}
         />,
@@ -92,10 +93,10 @@ describe("CurricVisualiserFiltersModal", () => {
         threadOptions: [thread1, thread2],
         yearOptions: ["7"],
       };
-      const trackingData = {
-        subjectSlug: "",
-        subjectTitle: "",
-        phaseSlug: "",
+      const slugs: CurriculumSelectionSlugs = {
+        subjectSlug: "english",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
       const { container } = renderWithTheme(
@@ -103,7 +104,7 @@ describe("CurricVisualiserFiltersModal", () => {
           filters={filters}
           onChangeFilters={() => {}}
           data={data}
-          trackingData={trackingData}
+          slugs={slugs}
           selectedYear={"7"}
           onSelectYear={onSelectYear}
         />,
@@ -134,10 +135,10 @@ describe("CurricVisualiserFiltersModal", () => {
         threadOptions: [thread1, thread2],
         yearOptions: ["7"],
       };
-      const trackingData = {
-        subjectSlug: "",
-        subjectTitle: "",
-        phaseSlug: "",
+      const slugs: CurriculumSelectionSlugs = {
+        subjectSlug: "english",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
       const { getAllByRole, container } = renderWithTheme(
@@ -145,7 +146,7 @@ describe("CurricVisualiserFiltersModal", () => {
           filters={filters}
           onChangeFilters={() => {}}
           data={data}
-          trackingData={trackingData}
+          slugs={slugs}
           selectedYear={"7"}
           onSelectYear={onSelectYear}
         />,
@@ -178,10 +179,10 @@ describe("CurricVisualiserFiltersModal", () => {
         threadOptions: [thread1, thread2],
         yearOptions: ["7"],
       };
-      const trackingData = {
-        subjectSlug: "",
-        subjectTitle: "",
-        phaseSlug: "",
+      const slugs: CurriculumSelectionSlugs = {
+        subjectSlug: "english",
+        phaseSlug: "primary",
+        ks4OptionSlug: null,
       };
       const onSelectYear = jest.fn();
       const { getAllByRole, container } = renderWithTheme(
@@ -189,7 +190,7 @@ describe("CurricVisualiserFiltersModal", () => {
           filters={filters}
           onChangeFilters={() => {}}
           data={data}
-          trackingData={trackingData}
+          slugs={slugs}
           selectedYear={"7"}
           onSelectYear={onSelectYear}
         />,

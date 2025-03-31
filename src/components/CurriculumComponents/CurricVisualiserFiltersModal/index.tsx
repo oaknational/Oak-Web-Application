@@ -19,6 +19,7 @@ export function CurricMobileFilterModal({
   data,
   filters,
   onChangeFilters,
+  slugs,
 }: CurricVisualiserFiltersMobileProps) {
   return (
     <OakFlex $flexDirection={"column"} $height={"100%"}>
@@ -38,6 +39,7 @@ export function CurricMobileFilterModal({
               filters={filters}
               onChangeFilters={onChangeFilters}
               data={data}
+              slugs={slugs}
             />
           )}
 

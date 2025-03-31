@@ -19,6 +19,11 @@ describe("CurricFiltersSubjectCategories", () => {
           years: ["10", "11"],
           threads: [],
         }}
+        slugs={{
+          subjectSlug: "english",
+          phaseSlug: "secondary",
+          ks4OptionSlug: null,
+        }}
         onChangeFilters={() => {}}
         data={ks4Setup}
       />,
@@ -41,6 +46,11 @@ describe("CurricFiltersSubjectCategories", () => {
           tiers: [],
           years: ["7", "8", "9", "10", "11"],
           threads: [],
+        }}
+        slugs={{
+          subjectSlug: "english",
+          phaseSlug: "secondary",
+          ks4OptionSlug: null,
         }}
         onChangeFilters={() => {}}
         data={ks3and4Setup}
@@ -65,6 +75,11 @@ describe("CurricFiltersSubjectCategories", () => {
           tiers: [],
           years: ["10", "11"],
           threads: [],
+        }}
+        slugs={{
+          subjectSlug: "english",
+          phaseSlug: "secondary",
+          ks4OptionSlug: null,
         }}
         onChangeFilters={onChangeFilters}
         data={ks4Setup}

@@ -7,20 +7,23 @@ import { CurricMobileFilterModal } from "../CurricVisualiserFiltersModal";
 import { OakModalNew } from "../OakComponentsKitchen/OakModalNew";
 
 import { usePrevious } from "@/hooks/usePrevious";
+import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 export type CurricVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
     selectedYear: string;
     onSelectYear: (newYear: string) => void;
     onOpenModal: () => void;
+    trackingData: CurriculumUnitsTrackingData;
   };
 export default function CurricVisualiserFiltersMobile({
   filters,
   onChangeFilters,
   data,
-  trackingData,
   selectedYear,
   onSelectYear,
+  slugs,
+  trackingData,
 }: CurricVisualiserFiltersMobileProps) {
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
@@ -59,7 +62,7 @@ export default function CurricVisualiserFiltersMobile({
             onSelectYear={onSelectYear}
             onChangeFilters={onChangeFilters}
             data={data}
-            trackingData={trackingData}
+            slugs={slugs}
           />
         }
         footer={
@@ -79,6 +82,7 @@ export default function CurricVisualiserFiltersMobile({
         onSelectYear={onSelectYear}
         onChangeFilters={onChangeFilters}
         data={data}
+        slugs={slugs}
         trackingData={trackingData}
       />
     </>

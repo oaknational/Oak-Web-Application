@@ -16,12 +16,14 @@ import {
 import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
   formattedData: CurriculumUnitsFormattedData;
   filters: CurriculumFilters;
   onChangeFilters: (newFilter: CurriculumFilters) => void;
+  slugs: CurriculumSelectionSlugs;
 };
 
 export default function UnitsTab({
@@ -29,6 +31,7 @@ export default function UnitsTab({
   formattedData,
   filters,
   onChangeFilters,
+  slugs,
 }: UnitsTabProps) {
   // Initialize constants
   const isMobile = useMediaQuery("mobile");
@@ -80,8 +83,9 @@ export default function UnitsTab({
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={formattedData}
-            trackingData={trackingData}
+            slugs={slugs}
             onOpenModal={() => {}}
+            trackingData={trackingData}
           />
         )}
         <CurricVisualiserLayout
@@ -91,7 +95,7 @@ export default function UnitsTab({
                 filters={filters}
                 onChangeFilters={onChangeFilters}
                 data={formattedData}
-                trackingData={trackingData}
+                slugs={slugs}
               />
             )
           }

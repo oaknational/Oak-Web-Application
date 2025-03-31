@@ -2,10 +2,20 @@ import { getValidSubjectCategoryIconById } from "./getValidSubjectCategoryIconBy
 
 describe("getValidSubjectCategoryIconById", () => {
   it("valid id", () => {
-    expect(getValidSubjectCategoryIconById(1)).toEqual("subject-biology");
+    expect(getValidSubjectCategoryIconById("english", 1)).toEqual(
+      "subject-biology",
+    );
   });
 
   it("invalid id", () => {
-    expect(getValidSubjectCategoryIconById(99)).toEqual("books");
+    expect(getValidSubjectCategoryIconById("english", 99)).toEqual("books");
+  });
+
+  it("'all' id", () => {
+    expect(getValidSubjectCategoryIconById("english", -1)).toEqual("books");
+    expect(getValidSubjectCategoryIconById("religious-education", -1)).toEqual(
+      "subject-religious-education",
+    );
+    expect(getValidSubjectCategoryIconById("science", -1)).toEqual("rocket");
   });
 });
