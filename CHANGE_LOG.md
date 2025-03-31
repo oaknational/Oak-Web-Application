@@ -1,3 +1,10 @@
+## [1.720.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.0...v1.720.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* added <OakSecondaryLink/> as default link in explainer portable text ([5f2a27a](https://github.com/oaknational/Oak-Web-Application/commit/5f2a27a2a9c50b6f9b4557220b2f8a6d674941a9))
+
 # [1.720.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.719.1...v1.720.0) (2025-03-28)
 
 
