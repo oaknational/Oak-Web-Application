@@ -73,7 +73,6 @@ export const getStaticProps: GetStaticProps<
           curriculumData,
         },
       };
-      console.log("results", results);
 
       return results;
     },
