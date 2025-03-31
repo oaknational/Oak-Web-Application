@@ -4,7 +4,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import React from "react";
+import React, { useMemo } from "react";
 import { useRouter } from "next/router";
 import {
   OakBox,
@@ -84,11 +84,11 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     ),
   );
 
-  const [filters, setFilters] = useFilters(() =>
-    getDefaultFilter(curriculumUnitsFormattedData),
-  );
+  const defaultFilter = useMemo(() => {
+    return getDefaultFilter(curriculumUnitsFormattedData);
+  }, [curriculumUnitsFormattedData]);
 
-  console.log(">>>>", { filters });
+  const [filters, setFilters] = useFilters(defaultFilter);
 
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();

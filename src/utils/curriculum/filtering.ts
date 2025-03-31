@@ -1,6 +1,6 @@
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { isEqual } from "lodash";
 
 import { findFirstMatchingFeatures } from "./features";
@@ -107,13 +107,13 @@ const FILTER_TO_QS: Record<keyof CurriculumFilters, string> = {
 
 export function filtersToQuery(
   filter: CurriculumFilters,
-  dflt: CurriculumFilters,
+  defaultFilter: CurriculumFilters,
 ) {
   const out: Record<string, string> = {};
   for (const [keyUntyped, value] of Object.entries(filter)) {
     const key = keyUntyped as keyof CurriculumFilters;
     if (value.length > 0) {
-      if (!isEqual(dflt[key], value)) {
+      if (!isEqual(defaultFilter[key], value)) {
         out[FILTER_TO_QS[key]] = value.join(",");
       }
     }
@@ -139,29 +139,27 @@ export function mergeInFilterParams(
 }
 
 export function useFilters(
-  defaultFiltersFn: () => CurriculumFilters,
+  defaultFilter: CurriculumFilters,
 ): [CurriculumFilters, (newFilters: CurriculumFilters) => void] {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  console.log({ searchParams });
-
-  const [filters, setLocalFilters] = useState<CurriculumFilters>(() => {
-    const dflt = defaultFiltersFn();
+  const [filters, setLocalFilters] = useState<CurriculumFilters>(defaultFilter);
+  useLayoutEffect(() => {
     if (isCurricRoutingEnabled()) {
-      return mergeInFilterParams(dflt, searchParams);
+      setLocalFilters(mergeInFilterParams(defaultFilter, searchParams));
     } else {
-      return dflt;
+      setLocalFilters(defaultFilter);
     }
-  });
+  }, [searchParams, defaultFilter]);
+
   const setFilters = (newFilters: CurriculumFilters) => {
-    const dflt = defaultFiltersFn();
     if (isCurricRoutingEnabled()) {
       const url =
         location.pathname +
         "?" +
         new URLSearchParams(
-          Object.entries(filtersToQuery(newFilters, dflt)),
+          Object.entries(filtersToQuery(newFilters, defaultFilter)),
         ).toString();
       router.replace(url, undefined, { shallow: true });
     }
@@ -298,7 +296,7 @@ export function shouldDisplayFilter(
 }
 
 export function diffFilters(
-  dfltFilter: CurriculumFilters,
+  defaultFilterFilter: CurriculumFilters,
   filters: CurriculumFilters,
 ) {
   const out: CurriculumFilters = {
@@ -308,9 +306,9 @@ export function diffFilters(
     years: [],
     threads: [],
   };
-  for (const keyRaw of Object.keys(dfltFilter)) {
+  for (const keyRaw of Object.keys(defaultFilterFilter)) {
     const key = keyRaw as keyof CurriculumFilters;
-    if (!isEqual(dfltFilter[key], filters[key])) {
+    if (!isEqual(defaultFilterFilter[key], filters[key])) {
       out[key] = filters[key];
     }
   }
@@ -318,10 +316,10 @@ export function diffFilters(
 }
 
 export function getNumberOfFiltersApplied(
-  dfltFilter: CurriculumFilters,
+  defaultFilterFilter: CurriculumFilters,
   filters: CurriculumFilters,
 ) {
-  const diff = diffFilters(dfltFilter, filters);
+  const diff = diffFilters(defaultFilterFilter, filters);
   return Object.values(diff).reduce((acc, curr) => {
     if (curr.length) {
       return acc + 1;

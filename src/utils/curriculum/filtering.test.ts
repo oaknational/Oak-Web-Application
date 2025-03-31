@@ -787,9 +787,7 @@ describe("useFilters", () => {
     it("initial state", () => {
       const defaultFilter = createFilter();
       const { result } = renderHook(() => {
-        return useFilters(() => {
-          return defaultFilter;
-        });
+        return useFilters(defaultFilter);
       });
       const [filters] = result.current;
       expect(filters).toEqual(defaultFilter);
@@ -799,9 +797,7 @@ describe("useFilters", () => {
       const defaultFilter = createFilter();
       const updateFilterValue = createFilter({});
       const { result, rerender } = renderHook(() => {
-        return useFilters(() => {
-          return defaultFilter;
-        });
+        return useFilters(defaultFilter);
       });
 
       const [, setFilters] = result.current;
@@ -821,9 +817,7 @@ describe("useFilters", () => {
 
       const defaultFilter = createFilter();
       const { result } = renderHook(() => {
-        return useFilters(() => {
-          return defaultFilter;
-        });
+        return useFilters(defaultFilter);
       });
       const [filters] = result.current;
       expect(filters).toEqual({
@@ -842,9 +836,7 @@ describe("useFilters", () => {
         tiers: ["foundation"],
       });
       const { result, rerender } = renderHook(() => {
-        return useFilters(() => {
-          return defaultFilter;
-        });
+        return useFilters(defaultFilter);
       });
 
       const [, setFilters] = result.current;
