@@ -1,3 +1,20 @@
+# [1.720.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.719.1...v1.720.0) (2025-03-28)
+
+
+### Bug Fixes
+
+* add readonly modifier to BannerProps in RelatedSubjectsBanner components ([8f209e8](https://github.com/oaknational/Oak-Web-Application/commit/8f209e85ebe4ec419bd7d5c899aee8464cea3298))
+* add readonly modifier to props in RelatedSubjectsBanner components ([02d035c](https://github.com/oaknational/Oak-Web-Application/commit/02d035c0d26b9f6b5f71addac126b0eb8d91fc5d))
+* update oak-components dependency to version 1.97.0 ([2ee5079](https://github.com/oaknational/Oak-Web-Application/commit/2ee50794ddb6fddacd6f03ecdfa48bbe0e4e7c46))
+
+
+### Features
+
+* add related subjects functionality ([a7b0166](https://github.com/oaknational/Oak-Web-Application/commit/a7b01668e695a59a9e7234cadd598879635d58fb))
+* include phase in FinancialEducationBanner props and update display text ([d2e2617](https://github.com/oaknational/Oak-Web-Application/commit/d2e2617dfa71211b7d493519afc57998aec9b1c1))
+
+## [1.719.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.719.0...v1.719.1) (2025-03-27)
+
 # [1.719.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.718.0...v1.719.0) (2025-03-26)
 
 
