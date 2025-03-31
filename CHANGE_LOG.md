@@ -1,3 +1,14 @@
+## [1.720.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.1...v1.720.2) (2025-03-31)
+
+
+### Bug Fixes
+
+* allow empty media object id ([2848b2e](https://github.com/oaknational/Oak-Web-Application/commit/2848b2e04deaf45dbb82a10fe1c562f1dff43f37))
+* prettifier ([bc3840d](https://github.com/oaknational/Oak-Web-Application/commit/bc3840d3b68fef094256bdc6b54793bdda4f2ff0))
+* remove media and video object ids from schema as we dont use them anyways ([f576854](https://github.com/oaknational/Oak-Web-Application/commit/f576854f8057ba21345bdba67ea41e6842639df1))
+* retrigger build ([ca23c53](https://github.com/oaknational/Oak-Web-Application/commit/ca23c53d19452a623a83753eddbcc6b74d89b170))
+* update package json ([955ebe8](https://github.com/oaknational/Oak-Web-Application/commit/955ebe8748194952b0a918d949a5f24024f8b462))
+
 ## [1.720.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.0...v1.720.1) (2025-03-31)
 
 
