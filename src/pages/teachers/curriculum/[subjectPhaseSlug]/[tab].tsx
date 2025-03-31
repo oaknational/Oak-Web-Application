@@ -88,6 +88,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     getDefaultFilter(curriculumUnitsFormattedData),
   );
 
+  console.log(">>>>", { filters });
+
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
 

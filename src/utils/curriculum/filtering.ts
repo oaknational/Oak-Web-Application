@@ -144,6 +144,8 @@ export function useFilters(
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  console.log({ searchParams });
+
   const [filters, setLocalFilters] = useState<CurriculumFilters>(() => {
     const dflt = defaultFiltersFn();
     if (isCurricRoutingEnabled()) {
