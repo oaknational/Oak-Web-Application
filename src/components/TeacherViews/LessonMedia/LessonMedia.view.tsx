@@ -114,8 +114,6 @@ export const LessonMedia = (props: LessonMediaProps) => {
         .flat()
     : [];
 
-  console.log("listOfAllClips", listOfAllClips);
-
   const [currentClip, setCurrentClip] = useState(
     getInitialCurrentClip(listOfAllClips, query.video),
   );

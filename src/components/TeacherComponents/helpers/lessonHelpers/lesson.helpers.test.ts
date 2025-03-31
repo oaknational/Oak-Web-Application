@@ -1,5 +1,3 @@
-import { mediaClipsFixture } from "@oaknational/oak-curriculum-schema";
-
 import {
   createAttributionObject,
   getCommonPathway,
@@ -756,54 +754,15 @@ describe("convertBytesToMegabytes", () => {
 });
 
 describe("sortMediaClipsByOrder", () => {
-  it("sorts media clips by order", () => {
-    const mediaClips = mediaClipsFixture().media_clips["intro"] as MediaClip[];
-    const result = mediaClips.toSorted(sortMediaClipsByOrder);
-
-    expect(result).toEqual([
-      {
-        order: "1",
-        media_id: "191188",
-        video_id: 29844,
-        media_type: "video",
-        custom_title: "Intro Video 1",
-        media_object: {
-          id: "4de4d70775b95bbc722d4d259fb033ad",
-          url: "http://example.com/video1.mp3",
-          type: "upload",
-          bytes: 81127,
-          format: "mp3",
-          duration: 5.041633,
-
-          display_name: "9_task_C1_3",
-          resource_type: "video",
-        },
-        video_object: {
-          id: "hug9i01Tnpf1y83irOm00HRbvAJpttJPU78KNYzPav3mg",
-
-          duration: 5.055667,
-
-          mux_asset_id: "hug9i01Tnpf1y83irOm00HRbvAJpttJPU78KNYzPav3mg",
-          playback_ids: [
-            {
-              id: "mVkKUtOfoD1100012GNC1pCO6RvUgyGwqGoq01pYsy7WeA",
-              policy: "signed",
-            },
-            {
-              id: "BW00NkK9R01jB8PPO7R00YCFl2XBDn13GTkhd0001PNtheF00",
-              policy: "public",
-            },
-          ],
-          mux_playback_id: "BW00NkK9R01jB8PPO7R00YCFl2XBDn13GTkhd0001PNtheF00",
-        },
-      },
+  it("sorts media clips in ascending order based on the 'order' property", () => {
+    const mediaClips = [
       {
         order: "2",
-        media_id: "191189",
-        video_id: 29845,
-        media_type: "video",
-        custom_title: "Intro Video 2",
-        media_object: {
+        mediaId: "191189",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 2",
+        mediaObject: {
           id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video2.mp3",
           type: "upload",
@@ -811,16 +770,16 @@ describe("sortMediaClipsByOrder", () => {
           format: "mp3",
           duration: 7.601633,
 
-          display_name: "8_task_C1_2",
-          resource_type: "video",
+          displayName: "8_task_C1_2",
+          resourceType: "video",
         },
-        video_object: {
+        videoObject: {
           id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
 
           duration: 7.603667,
 
-          mux_asset_id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-          playback_ids: [
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
             {
               id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
               policy: "public",
@@ -830,7 +789,435 @@ describe("sortMediaClipsByOrder", () => {
               policy: "signed",
             },
           ],
-          mux_playback_id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+      {
+        order: "1",
+        mediaId: "191189",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 1",
+        mediaObject: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video2.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          displayName: "8_task_C1_2",
+          resourceType: "video",
+        },
+        videoObject: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+    ];
+    const result = mediaClips.toSorted(sortMediaClipsByOrder);
+
+    expect(result).toEqual([
+      {
+        order: "1",
+        mediaId: "191189",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 1",
+        mediaObject: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video2.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          displayName: "8_task_C1_2",
+          resourceType: "video",
+        },
+        videoObject: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+      {
+        order: "2",
+        mediaId: "191189",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 2",
+        mediaObject: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video2.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          displayName: "8_task_C1_2",
+          resourceType: "video",
+        },
+        videoObject: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+    ]);
+  });
+
+  it("returns 0 when two media clips have the same 'order' property", () => {
+    const mediaClips: MediaClip[] = [
+      {
+        order: "2",
+        mediaId: "191189",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 2",
+        mediaObject: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video2.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          displayName: "8_task_C1_2",
+          resourceType: "video",
+        },
+        videoObject: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+      {
+        order: "2",
+        mediaId: "191134489",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 3",
+        mediaObject: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video3.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          displayName: "8_task_C1_2",
+          resourceType: "video",
+        },
+        videoObject: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+    ];
+
+    const result = mediaClips.toSorted(sortMediaClipsByOrder);
+
+    expect(result).toEqual([
+      {
+        order: "2",
+        mediaId: "191189",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 2",
+        mediaObject: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video2.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          displayName: "8_task_C1_2",
+          resourceType: "video",
+        },
+        videoObject: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+      {
+        order: "2",
+        mediaId: "191134489",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 3",
+        mediaObject: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video3.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          displayName: "8_task_C1_2",
+          resourceType: "video",
+        },
+        videoObject: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+    ]);
+  });
+
+  it("handles empty arrays without errors", () => {
+    const mediaClips: MediaClip[] = [];
+
+    const result = mediaClips.toSorted(sortMediaClipsByOrder);
+
+    expect(result).toEqual([]);
+  });
+
+  it("handles media clips with non-numeric 'order' values gracefully", () => {
+    const mediaClips: MediaClip[] = [
+      {
+        order: "2",
+        mediaId: "191134489",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 3",
+        mediaObject: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video3.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          displayName: "8_task_C1_2",
+          resourceType: "video",
+        },
+        videoObject: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+      {
+        order: "ab",
+        mediaId: "191134489",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 3",
+        mediaObject: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video3.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          displayName: "8_task_C1_2",
+          resourceType: "video",
+        },
+        videoObject: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+    ];
+
+    const result = mediaClips.toSorted(sortMediaClipsByOrder);
+
+    expect(result).toEqual([
+      {
+        order: "2",
+        mediaId: "191134489",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 3",
+        mediaObject: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video3.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          displayName: "8_task_C1_2",
+          resourceType: "video",
+        },
+        videoObject: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+        },
+      },
+      {
+        order: "ab",
+        mediaId: "191134489",
+        videoId: 29845,
+        mediaType: "video",
+        customTitle: "Intro Video 3",
+        mediaObject: {
+          id: "e3331a6ee856256933cee73f7a62041b",
+          url: "http://example.com/video3.mp3",
+          type: "upload",
+          bytes: 122087,
+          format: "mp3",
+          duration: 7.601633,
+
+          displayName: "8_task_C1_2",
+          resourceType: "video",
+        },
+        videoObject: {
+          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+
+          duration: 7.603667,
+
+          muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
+          playbackIds: [
+            {
+              id: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
+              policy: "public",
+            },
+            {
+              id: "02mDhMdHMs4MOCAMutPLWzylp00NQgDYfiydlLQPDWI3M",
+              policy: "signed",
+            },
+          ],
+          muxPlaybackId: "9a02PY7PivjOBUHyH4N2mAwJH00aJoZeybWyy9hiwXVQY",
         },
       },
     ]);
