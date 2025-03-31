@@ -215,7 +215,6 @@ export const PupilAnalyticsProvider = ({
 
   const pupilTrack: PupilAnalyticsTrack = {
     lessonCompleted: (args) => {
-      console.log("PA: lessonCompleted");
       track.lessonCompleted({
         ...args,
         ...additionalArgs,

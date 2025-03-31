@@ -25,11 +25,11 @@ export function useWorksheetDownload(
     setIsDownloading(true);
 
     try {
-      await downloadLessonResources(
+      await downloadLessonResources({
         lessonSlug,
-        ["worksheet-pdf-questions"],
+        selectedResourceTypes: ["worksheet-pdf-questions"],
         isLegacyDownload,
-      );
+      });
     } catch (error) {
       window.alert("Whoops, the download failed. You could try again.");
       reportError(error);

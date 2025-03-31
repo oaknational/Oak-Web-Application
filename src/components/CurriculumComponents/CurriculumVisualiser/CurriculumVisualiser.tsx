@@ -421,7 +421,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                       const unitOptions = unit.unit_options.length >= 1;
 
                       return (
-                        <UnitListItem>
+                        <UnitListItem key={`${unit.slug}-${index}`}>
                           <CurriculumUnitCard
                             unit={unit}
                             key={unit.slug + index}
@@ -437,9 +437,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                     {/* Empty tiles for correct flex wrapping */}
                     {Array(3)
                       .fill(true)
-                      .map(() => {
+                      .map((item, index) => {
                         return (
                           <OakFlex
+                            key={`unit-list-item-${item}-${index}`}
                             $width={"all-spacing-19"}
                             $flexGrow={1}
                             $position={"relative"}

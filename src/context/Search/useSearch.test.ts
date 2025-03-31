@@ -1,4 +1,4 @@
-import { waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 
 import searchPageFixture from "../../node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 import { renderHookWithProviders } from "../../__tests__/__helpers__/renderWithProviders";
@@ -67,9 +67,9 @@ describe("useSearch()", () => {
     jest.clearAllMocks();
   });
   test("query should come from url querystring", async () => {
-    const { result } = renderHookWithProviders({
-      router: { url: "?term=something" },
-    })(() => useSearch({ allKeyStages }));
+    const { result } = renderHookWithProviders(providers)(() =>
+      useSearch({ allKeyStages }),
+    );
 
     await waitFor(() => {
       expect(result.current.query.term).not.toBe("test-tem");
@@ -83,13 +83,16 @@ describe("useSearch()", () => {
 
     expect(status).toBe("not-asked");
   });
-  test("status should default to 'loading' if search term in url", () => {
-    const { result } = renderHookWithProviders({
-      router: { url: "?term=something" },
-    })(() => useSearch({ allKeyStages }));
-    const { status } = result.current;
+  test("status should default to 'loading' if search term in url", async () => {
+    const { result } = renderHookWithProviders(providers)(() =>
+      useSearch({ allKeyStages }),
+    );
 
-    expect(status).toBe("loading");
+    await act(async () => {
+      const { status } = result.current;
+
+      expect(status).toBe("loading");
+    });
   });
   test("fetch should not be called if no search term in query", () => {
     renderHookWithProviders({ router: { url: "" } })(() =>
@@ -98,7 +101,9 @@ describe("useSearch()", () => {
     expect(fetch).not.toHaveBeenCalled();
   });
   test("fetch should be called once if search term in query", async () => {
-    renderHookWithProviders(providers)(() => useSearch({ allKeyStages }));
+    await act(async () =>
+      renderHookWithProviders(providers)(() => useSearch({ allKeyStages })),
+    );
 
     expect(fetch).toHaveBeenCalledTimes(1);
   });

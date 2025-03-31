@@ -8,6 +8,7 @@ import {
   OakBox,
   OakTertiaryOLNav,
   OakSecondaryLink,
+  OakSpan,
 } from "@oaknational/oak-components";
 import {
   PortableText,
@@ -116,6 +117,12 @@ const blockHeadingComponents: PortableTextComponents["block"] = {
       {props.children}
     </OakHeading>
   ),
+};
+
+const markComponents: PortableTextComponents["marks"] = {
+  link: ({ children, value }) => {
+    return <OakSecondaryLink {...value}>{children}</OakSecondaryLink>;
+  },
 };
 
 const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
@@ -285,6 +292,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                       marks: {
                         strong: basePortableTextComponents.marks!.strong,
                         em: basePortableTextComponents.marks!.em,
+                        link: markComponents.link,
                       },
                     }}
                   />
@@ -320,7 +328,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 Video guide
               </OakHeading>
               <OakP $font={"body-1"}>{videoExplainer}</OakP>
-              <OakP $font={"body-2-bold"} $color="black">
+              <OakSpan $font={"body-2-bold"} $color="black">
                 <OakSecondaryLink
                   href={resolveOakHref({
                     page: "blog-single",
@@ -332,7 +340,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 >
                   Read more about our new curriculum
                 </OakSecondaryLink>
-              </OakP>
+              </OakSpan>
             </Flex>
           </OakFlex>
         )}
@@ -365,6 +373,7 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
                 ({ curriculumPartner, partnerBio }, curriculumPartnerIndex) => {
                   return (
                     <OakFlex
+                      key={`curriculum-partner-${curriculumPartnerIndex}`}
                       data-testid="curriculum-partner"
                       $justifyContent={"center"}
                       $alignContent={"start"}

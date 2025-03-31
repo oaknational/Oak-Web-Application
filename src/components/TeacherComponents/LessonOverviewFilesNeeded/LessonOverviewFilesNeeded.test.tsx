@@ -28,7 +28,7 @@ describe("LessonOverviewFilesNeeded", () => {
     expect(getByText("file1.pdf")).toBeInTheDocument();
     expect(getByText("file2.pdf")).toBeInTheDocument();
     expect(
-      getByText("Download these files to use in the lesson"),
+      getByText("Download these files to use in the lesson."),
     ).toBeInTheDocument();
     expect(getByText("Download lesson files")).toBeInTheDocument();
   });
@@ -44,7 +44,7 @@ describe("LessonOverviewFilesNeeded", () => {
     expect(getByText("File needed for this lesson")).toBeInTheDocument();
     expect(getByText("file1.pdf")).toBeInTheDocument();
     expect(
-      getByText("Download this file to use in the lesson"),
+      getByText("Download this file to use in the lesson."),
     ).toBeInTheDocument();
     expect(getByText("Download lesson file")).toBeInTheDocument();
   });

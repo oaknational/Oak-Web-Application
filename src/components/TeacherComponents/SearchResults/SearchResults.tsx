@@ -90,6 +90,7 @@ const SearchResults = (props: SearchResultsProps) => {
             }
             return (
               <SignPostToAila
+                key="aila-sign-post"
                 title="Can't find what you need?"
                 text="Create a tailor-made lesson plan and resources on any topic with Aila, our free AI-powered lesson assistant. Entirely adaptable to your class and context."
                 searchExpression={query?.term}

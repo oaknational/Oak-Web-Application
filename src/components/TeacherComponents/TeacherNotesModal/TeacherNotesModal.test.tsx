@@ -1,5 +1,5 @@
 import { useEditor } from "@tiptap/react";
-import { waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 import {
   TeacherNote,
   TeacherNoteCamelCase,
@@ -58,9 +58,8 @@ Object.assign(navigator, {
     writeText: jest.fn(),
   },
 });
-
+const useEditorMock = useEditor as jest.Mock;
 describe("TeacherNotesModal", () => {
-  const useEditorMock = useEditor as jest.Mock;
   const mockTeacherNote: TeacherNoteCamelCase = {
     noteHtml: "<p>test</p>",
     sidKey: "sid-ARHMdf",
@@ -78,7 +77,12 @@ describe("TeacherNotesModal", () => {
   };
 
   beforeEach(() => {
+    jest.useFakeTimers();
     jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
   });
 
   describe("isAllowedUri", () => {
@@ -195,11 +199,14 @@ describe("TeacherNotesModal", () => {
     );
     mockEditorInstance.getText.mockReturnValueOnce("this content has changed");
 
-    mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    await act(async () => {
+      mockEditorArgs?.[0]?.onBlur({ editor: mockEditorInstance });
+    });
+
     expect(saveTeacherNote).toHaveBeenCalled();
   });
 
-  it("should save the teacher note when the character count has changed by more than 50 chars", () => {
+  it("should save the teacher note when the character count has changed by more than 50 chars", async () => {
     const saveTeacherNote = jest.fn(() =>
       Promise.resolve(mockTeacherNoteSnake),
     );
@@ -229,7 +236,9 @@ describe("TeacherNotesModal", () => {
       51,
     );
 
-    mockEditorArgs?.[0]?.onUpdate({ editor: mockEditorInstance });
+    await act(async () => {
+      mockEditorArgs?.[0]?.onUpdate({ editor: mockEditorInstance });
+    });
     expect(saveTeacherNote).toHaveBeenCalled();
   });
 
@@ -477,7 +486,9 @@ describe("TeacherNotesModal", () => {
     );
     mockEditorInstance.getText.mockReturnValue("this content has changed");
 
-    modalProps.onShareClicked();
+    await act(async () => {
+      modalProps.onShareClicked();
+    });
 
     await waitFor(() => {
       expect(mockShareActivated).toHaveBeenCalledWith(24);
@@ -508,9 +519,9 @@ describe("TeacherNotesModal", () => {
     if (!modalProps) {
       throw new Error("No modal props found");
     }
-
-    modalProps.onShareClicked();
-
+    await act(async () => {
+      modalProps.onShareClicked();
+    });
     await waitFor(() => {
       expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
         "https://example.com",

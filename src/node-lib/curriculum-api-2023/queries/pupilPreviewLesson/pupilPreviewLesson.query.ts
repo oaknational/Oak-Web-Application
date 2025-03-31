@@ -16,7 +16,10 @@ export const pupilPreviewLessonQuery =
     unitSlug?: string;
     programmeSlug?: string;
     isLegacy?: boolean;
-  }): Promise<{ content: LessonContent; browseData: LessonBrowseData }> => {
+  }): Promise<{
+    content: LessonContent;
+    browseData: LessonBrowseData;
+  }> => {
     const { lessonSlug, unitSlug, programmeSlug, isLegacy } = args;
 
     const overrides: Partial<LessonBrowseData> = { lessonSlug };
