@@ -22,7 +22,9 @@ export const pupilSubjectListingQuery =
     yearSlug,
   }: {
     yearSlug: string;
-  }): Promise<PupilSubjectListingData[]> => {
+  }): Promise<{
+    curriculumData: PupilSubjectListingData[];
+  }> => {
     const res = await sdk.pupilSubjectListing({
       yearSlug,
     });
@@ -41,5 +43,7 @@ export const pupilSubjectListingQuery =
 
     pupilSubjectListingSchema.array().parse(modified);
 
-    return keysToCamelCase(modified) as PupilSubjectListingData[];
+    return {
+      curriculumData: keysToCamelCase(modified) as PupilSubjectListingData[],
+    };
   };
