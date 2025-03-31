@@ -143,10 +143,20 @@ describe("PupilSubjectListing", () => {
         phaseSlug: "secondary",
       },
     });
+    const french = subjectBrowseDataFixture({
+      baseSlug: "french-secondary-year-6",
+      isLegacy: false,
+      programmeFields: {
+        ...subjectBrowseDataFixture({}).programmeFields,
+        subjectSlug: "french",
+        subject: "French",
+        phaseSlug: "secondary",
+      },
+    });
 
     render(
       <OakThemeProvider theme={oakDefaultTheme}>
-        <PupilViewsSubjectListing subjects={[maths, biology]} />
+        <PupilViewsSubjectListing subjects={[maths, biology, french]} />
       </OakThemeProvider>,
     );
 
