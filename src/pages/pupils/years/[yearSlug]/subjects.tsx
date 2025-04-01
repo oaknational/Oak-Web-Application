@@ -9,7 +9,9 @@ import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { PupilViewsSubjectListing } from "@/components/PupilViews/PupilSubjectListing/PupilSubjectListing.view";
 
-type SubjectListingPageProps = { curriculumData: PupilSubjectListingData[] };
+type SubjectListingPageProps = {
+  curriculumData: PupilSubjectListingData[];
+};
 
 const PupilSubjectListing = (props: SubjectListingPageProps) => {
   const { curriculumData } = props;
@@ -55,9 +57,10 @@ export const getStaticProps: GetStaticProps<
       }
       const year = context.params?.yearSlug;
 
-      const curriculumData = await curriculumApi2023.pupilSubjectListingQuery({
-        yearSlug: year,
-      });
+      const { curriculumData } =
+        await curriculumApi2023.pupilSubjectListingQuery({
+          yearSlug: year,
+        });
 
       if (!curriculumData) {
         return {

@@ -115,7 +115,7 @@ const unitListingQuery =
       subjectCategories,
       yearGroups,
       pathwayTitle: programmeFields.pathway,
-      ...(relatedSubjectsSet.size > 1 && {
+      ...(relatedSubjectsSet.size >= 1 && {
         relatedSubjects: Array.from(relatedSubjectsSet),
       }),
     };

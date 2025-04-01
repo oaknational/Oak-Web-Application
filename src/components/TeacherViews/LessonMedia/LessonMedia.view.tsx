@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import {
   OakTertiaryButton,
@@ -20,6 +20,7 @@ import {
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
   getLessonMediaBreadCrumb,
+  sortMediaClipsByOrder,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
@@ -96,20 +97,24 @@ export const LessonMedia = (props: LessonMediaProps) => {
     lessonOutlines: lessonOutline,
   });
 
-  const listOfAllClips = mediaClips
-    ? Object.keys(mediaClips)
-        .map((learningCycle) => {
-          return (
-            mediaClips[learningCycle]?.map((mediaClip: MediaClip) => {
-              return {
-                ...mediaClip,
-                learningCycle,
-              };
-            }) || []
-          );
-        })
-        .flat()
-    : [];
+  const listOfAllClips = useMemo(() => {
+    return mediaClips
+      ? Object.keys(mediaClips)
+          .map((learningCycle) => {
+            return (
+              mediaClips[learningCycle]
+                ?.toSorted(sortMediaClipsByOrder)
+                .map((mediaClip: MediaClip) => {
+                  return {
+                    ...mediaClip,
+                    learningCycle,
+                  };
+                }) || []
+            );
+          })
+          .flat()
+      : [];
+  }, [mediaClips]);
 
   const [currentClip, setCurrentClip] = useState(
     getInitialCurrentClip(listOfAllClips, query.video),
@@ -140,6 +145,10 @@ export const LessonMedia = (props: LessonMediaProps) => {
       );
     }
   };
+
+  useEffect(() => {
+    setCurrentClip(getInitialCurrentClip(listOfAllClips, query.video));
+  }, [listOfAllClips, query.video]);
 
   const handleVideoChange = (clip: MediaClip & { learningCycle: string }) => {
     goToTheNextClip(String(clip.mediaId));
