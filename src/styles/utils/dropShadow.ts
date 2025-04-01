@@ -29,7 +29,7 @@ const parseDropShadow = (variant?: DropShadowVariant | null) => {
 
   return DROP_SHADOW[variant];
 };
-const dropShadow = css`
+const dropShadow = css<DropShadowProps>`
   ${responsive<DropShadowProps, DropShadowVariant>(
     "box-shadow",
     (props) => props.$dropShadow,

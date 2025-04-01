@@ -48,7 +48,7 @@ const CardLinkIcon: FC<CardLinkIconProps> = ({
         >
           {title}
         </CardLink>
-        <CardLinkFocusUnderline />
+        <CardLinkFocusUnderline name="underline" />
       </OakHeading>
       <OakIcon
         iconName={icon}

@@ -1,14 +1,22 @@
 import { GetServerSideProps } from "next";
-import { getServerSideSitemap } from "next-sitemap";
+import { getServerSideSitemapLegacy } from "next-sitemap";
 
-import { buildAllUrlFields } from "@/pages-helpers/pupil/sitemap-pages/sitemap-pages-helper";
+import { getServerSideSitemapFields } from "../../../node-lib/isr";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  return getServerSideSitemap(
+  // SITEMAP_BASE_URL is written to the .env file during next.config.js execution.
+  const sitemapBaseUrl = process.env.SITEMAP_BASE_URL || "";
+
+  const fields = getServerSideSitemapFields(
     context,
-    await buildAllUrlFields({ firstHalf: true }),
+    sitemapBaseUrl,
+    "/pupils",
+    ["programmes", "subjects", "key-stages"],
   );
+
+  return getServerSideSitemapLegacy(context, fields);
 };
 
 // Default export to prevent next.js errors
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 export default function Sitemap() {}

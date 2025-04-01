@@ -1,7 +1,7 @@
 import path from "node:path/posix";
 
 import { GetServerSideProps } from "next";
-import { getServerSideSitemap } from "next-sitemap";
+import { getServerSideSitemapLegacy } from "next-sitemap";
 
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 
@@ -55,7 +55,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       });
     }
   }
-  return getServerSideSitemap(context, fields);
+  return getServerSideSitemapLegacy(context, fields);
 };
 
-export default function Sitemap() {}
+// Default export to prevent Next.js errors
+export default function TeachersCurriculumSitemap() {
+  return null;
+}

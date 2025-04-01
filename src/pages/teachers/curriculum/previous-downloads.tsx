@@ -56,12 +56,14 @@ const CurriculumPreviousDownloadsPage: NextPage = () => {
   const updateTab = (categoryRaw: string) => {
     const category = assertIsDownloadCategory(categoryRaw);
     setActiveTab(category);
-    const newUrl = `${window.location.pathname}#${category}`;
-    window.history.replaceState(
-      { ...window.history.state, as: newUrl, url: newUrl },
-      "",
-      newUrl,
-    );
+    if (typeof window !== "undefined") {
+      const newUrl = `${window.location.pathname}#${category}`;
+      window.history.replaceState(
+        { ...window.history.state, as: newUrl, url: newUrl },
+        "",
+        newUrl,
+      );
+    }
     delete router.query.keystage;
     downloadsRef.current?.clearSelection();
   };

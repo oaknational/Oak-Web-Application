@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { getUpdatedUrl } from "./getUpdatedUrl";
@@ -41,12 +43,12 @@ export const useShareExperiment = ({
 
   const coreTrackingProps: CoreProperties = useMemo(
     () => ({
-      platform: "owa",
-      product: "teacher lesson resources",
-      engagementIntent: "advocate",
-      componentType: "page view",
-      eventVersion: "2.0.0",
-      analyticsUseCase: "Teacher",
+      platform: "owa" as const,
+      product: "teacher lesson resources" as const,
+      engagementIntent: "advocate" as const,
+      componentType: "page view" as const,
+      eventVersion: "2.0.0" as const,
+      analyticsUseCase: "Teacher" as const,
     }),
     [],
   );
@@ -61,7 +63,7 @@ export const useShareExperiment = ({
     const storageShareId = getShareId(key);
 
     if (urlShareId && storageShareId !== urlShareId) {
-      // check for  existing conversion shareId
+      // check for existing conversion shareId
       if (!getConversionShareId(urlShareId)) {
         // store the converted shareId in a storage for preventing multiple conversion events
         storeConversionShareId(urlShareId);
@@ -145,6 +147,12 @@ export const useShareExperiment = ({
     coreTrackingProps,
     overrideExistingShareId,
   ]);
+
+  // Update browser URL when it changes
+  useEffect(() => {
+    if (!browserUrl) return;
+    window.history.replaceState({}, "", browserUrl);
+  }, [browserUrl]);
 
   const shareActivated = (noteLengthChars?: number) => {
     if (!shareIdRef.current || !shareIdKeyRef.current) {

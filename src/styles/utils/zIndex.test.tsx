@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { render } from "@testing-library/react";
 
+import type { ZIndexProps } from "./zIndex";
 import zIndex from "./zIndex";
 
 describe("zIndex", () => {
   test("should correctly handle prop 'zIndex' as string", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<ZIndexProps>`
       ${zIndex}
     `;
     const { getByTestId } = render(
@@ -15,12 +16,10 @@ describe("zIndex", () => {
     expect(getByTestId("test")).toHaveStyle("z-index: 1");
   });
   test("should correctly handle prop 'zIndex' as array", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<ZIndexProps>`
       ${zIndex}
     `;
     const { getByTestId } = render(
-      // eslint-disable-next-line
-      // @ts-ignore
       <StyledComponent data-testid="test" $zIndex={["neutral"]} />,
     );
 

@@ -111,9 +111,9 @@ const AppHeaderMenu: FC<AppHeaderMenuProps> = ({ children, menuButtonRef }) => {
               $right={0}
               $height="100%"
               $maxWidth="100%"
-              $width={menuConfig.width}
+              $width={menuConfig?.width}
               $flexDirection={"column"}
-              $background={menuConfig.background}
+              $background={menuConfig?.background}
               state={state}
               $zIndex={"neutral"}
               aria-expanded={open}

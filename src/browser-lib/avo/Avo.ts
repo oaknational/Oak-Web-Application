@@ -1022,7 +1022,7 @@ let _avo_debugger_log: any;
 let _avo_debugger_events_during_boot: any = [];
 let _avo_debugger_ready = false;
 
-if (typeof (window as any) !== 'undefined') {
+if (typeof window !== 'undefined') {
   window.addEventListener("message", function(event) {
     if (event.origin !== "https://www.avo.app") {
       return;

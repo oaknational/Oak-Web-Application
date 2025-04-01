@@ -1,28 +1,32 @@
+"use client";
+
 export const generateUrl = (
   theme: { slug: string },
   programmeSlug: string,
   yearGroupSlug?: string,
   categorySlug?: string | null,
 ): string => {
-  const url = new URL(window.history.state.url, window.location.origin);
-  const params = new URLSearchParams(url.search);
+  // Base URL should be just the path in SSR
+  const basePath = `/teachers/programmes/${programmeSlug}/units`;
 
-  const newBaseUrl = `${window.location.origin}/teachers/programmes/${programmeSlug}/units`;
-  let newUrl = window.history.state.url;
+  // Get current URL params if in browser
+  const currentParams =
+    typeof window !== "undefined" && window.location.search
+      ? new URLSearchParams(window.location.search)
+      : new URLSearchParams();
 
+  // Preserve the original business logic
   if ((yearGroupSlug || categorySlug) && theme.slug !== "all") {
-    params.delete("programmeSlug");
-    params.delete("learning-theme");
-    newUrl = `${newBaseUrl}?${params.toString()}&learning-theme=${theme.slug}`;
+    currentParams.delete("programmeSlug");
+    currentParams.delete("learning-theme");
+    return `${basePath}?${currentParams.toString()}&learning-theme=${theme.slug}`;
   } else if ((yearGroupSlug || categorySlug) && theme.slug === "all") {
-    params.delete("programmeSlug");
-    params.delete("learning-theme");
-    newUrl = `${newBaseUrl}?${params.toString()}`;
+    currentParams.delete("programmeSlug");
+    currentParams.delete("learning-theme");
+    return `${basePath}?${currentParams.toString()}`;
   } else if (!yearGroupSlug && !categorySlug && theme.slug !== "all") {
-    newUrl = `${newBaseUrl}?learning-theme=${theme.slug}`;
-  } else if (!yearGroupSlug && !categorySlug && theme.slug === "all") {
-    newUrl = `${window.location.origin}/teachers/programmes/${programmeSlug}/units`;
+    return `${basePath}?learning-theme=${theme.slug}`;
+  } else {
+    return basePath;
   }
-
-  return newUrl;
 };

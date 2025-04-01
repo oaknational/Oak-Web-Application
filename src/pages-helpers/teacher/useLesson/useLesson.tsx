@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { useFeatureFlagEnabled } from "posthog-js/react";
 import {
@@ -14,6 +16,7 @@ import {
 } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ShareSource } from "@/pages-helpers/teacher/share-experiments/createShareId";
+import { useRouter } from "next/router";
 
 export type UseLessonProps = {
   lessonSlug: string;
@@ -47,6 +50,7 @@ export const useLesson = ({
   const [teacherNotesOpen, setTeacherNotesOpen] = useState(false);
   const [lessonPath, setLessonPath] = useState<string | null>(null);
   const teacherNotesEnabled = useFeatureFlagEnabled("teacher-notes");
+  const router = useRouter();
 
   const overrideExistingShareId =
     teacherNotesEnabled === undefined ? null : !teacherNotesEnabled;
@@ -102,7 +106,7 @@ export const useLesson = ({
       ...curriculumTrackingProps,
       ...coreTrackingProps,
       shareId: shareIdRef.current,
-      linkUrl: window.location.href,
+      linkUrl: typeof window !== "undefined" ? window.location.href : "",
     });
   };
 

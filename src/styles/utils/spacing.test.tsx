@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { render } from "@testing-library/react";
 
+import type { MarginProps, PaddingProps } from "./spacing";
 import { margin, padding } from "./spacing";
 
 describe("spacing", () => {
   test("should correctly handle prop 'ma'", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<MarginProps>`
       ${margin}
     `;
     const { getByTestId } = render(
@@ -18,7 +19,7 @@ describe("spacing", () => {
     expect(getByTestId("test")).toHaveStyle("margin-right: 0.75rem");
   });
   test("should correctly handle prop 'mv'", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<MarginProps>`
       ${margin}
     `;
     const { getByTestId } = render(
@@ -29,7 +30,7 @@ describe("spacing", () => {
     expect(getByTestId("test")).toHaveStyle("margin-bottom: 0.75rem");
   });
   test("should correctly handle prop 'mh'", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<MarginProps>`
       ${margin}
     `;
     const { getByTestId } = render(
@@ -40,7 +41,7 @@ describe("spacing", () => {
     expect(getByTestId("test")).toHaveStyle("margin-right: 0.75rem");
   });
   test("should correctly handle prop 'pv'", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<PaddingProps>`
       ${padding}
     `;
     const { getByTestId } = render(
@@ -51,7 +52,7 @@ describe("spacing", () => {
     expect(getByTestId("test")).toHaveStyle("padding-bottom: 0.75rem");
   });
   test("should correctly handle prop 'ph'", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<PaddingProps>`
       ${padding}
     `;
     const { getByTestId } = render(
@@ -62,7 +63,7 @@ describe("spacing", () => {
     expect(getByTestId("test")).toHaveStyle("padding-right: 0.75rem");
   });
   test("should correctly handle prop 'pa'", async () => {
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<PaddingProps>`
       ${padding}
     `;
     const { getByTestId } = render(
@@ -88,7 +89,7 @@ describe("spacing", () => {
       [prop]: value,
     };
 
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<MarginProps & PaddingProps>`
       ${margin}
       ${padding}
     `;

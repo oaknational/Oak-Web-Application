@@ -25,7 +25,7 @@ describe("generateUrl", () => {
     const newUrl = generateUrl(theme, programmeSlug, yearGroupSlug);
 
     expect(newUrl).toBe(
-      "http://example.com/teachers/programmes/someProgramme/units?someParam=someValue&learning-theme=math",
+      "/teachers/programmes/someProgramme/units?someParam=someValue&learning-theme=math",
     );
   });
 
@@ -36,7 +36,7 @@ describe("generateUrl", () => {
     const newUrl = generateUrl(theme, programmeSlug, yearGroupSlug);
 
     expect(newUrl).toBe(
-      "http://example.com/teachers/programmes/someProgramme/units?someParam=someValue",
+      "/teachers/programmes/someProgramme/units?someParam=someValue",
     );
   });
 
@@ -46,7 +46,7 @@ describe("generateUrl", () => {
     const newUrl = generateUrl(theme, programmeSlug);
 
     expect(newUrl).toBe(
-      "http://example.com/teachers/programmes/someProgramme/units?learning-theme=math",
+      "/teachers/programmes/someProgramme/units?learning-theme=math",
     );
   });
 
@@ -55,8 +55,6 @@ describe("generateUrl", () => {
     const programmeSlug = "someProgramme";
     const newUrl = generateUrl(theme, programmeSlug);
 
-    expect(newUrl).toBe(
-      "http://example.com/teachers/programmes/someProgramme/units",
-    );
+    expect(newUrl).toBe("/teachers/programmes/someProgramme/units");
   });
 });

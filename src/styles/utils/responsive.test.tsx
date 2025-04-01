@@ -1,56 +1,69 @@
-import styled, {
-  css,
-  DefaultTheme,
-  FlattenSimpleInterpolation,
-  Interpolation,
-  ThemedStyledProps,
-} from "styled-components";
 import { render } from "@testing-library/react";
+import styled, { css, RuleSet, DefaultTheme } from "styled-components";
 
-import { OakColorName } from "../theme";
 import renderWithTheme from "../../__tests__/__helpers__/renderWithTheme";
 
-import responsive from "./responsive";
+import responsive, { ResponsiveReturn } from "./responsive";
 
-type TestProps = {
-  [k: string]: OakColorName | string | string[] | number | number[];
+import { OakColorName } from "../theme";
+
+// Simplified version of SizeValue from ../theme/types
+type TestSizeValue = number | number[] | string | null;
+interface TestProps {
+  $pl?: TestSizeValue;
+  pl?: TestSizeValue;
+  pr?: TestSizeValue;
+  pt?: TestSizeValue;
+  pb?: TestSizeValue;
+  ml?: TestSizeValue;
+  mr?: TestSizeValue;
+  mt?: TestSizeValue;
+  mb?: TestSizeValue;
+}
+
+const StyledComponent = styled.div<TestProps>`
+  ${({ $pl }) => css`
+    padding-left: ${$pl}px;
+  `}
+`;
+
+// Updated stringify function to handle styled-components v6 format changes
+const stringify = (cssArray: ResponsiveReturn<TestProps>) => {
+  if (!cssArray) {
+    return "Oops, no cssArray";
+  }
+  // Convert to string, remove all whitespace, and remove commas that v6 adds
+  return cssArray.toString().replace(/\s+/g, "").replace(/,/g, "");
 };
-/**
- *
- * @description outputs from styled-components css function can vary in value
- * whilst still representing the same css.
- * For this reason we need to "stringify" (and minify) the css that we get from responsive
- * in order to compare it with the expected css values.
- */
-const stringify = (
-  cssArray:
-    | FlattenSimpleInterpolation
-    | Interpolation<ThemedStyledProps<TestProps, DefaultTheme>>,
-) =>
-  (Array.isArray(cssArray) ? cssArray : [cssArray])
-    ?.flatMap((str: unknown) => (typeof str === "string" ? str.trim() : str))
-    .flat()
-    .join("")
-    .replace(/([^0-9a-zA-Z.#])\s+/g, "$1")
-    .replace(/\s([^0-9a-zA-Z.#]+)/g, "$1")
-    .replace(/;}/g, "}")
-    .replace(/\/\*.*?\*\//g, "")
-    .trim();
 
 const pxOrUndefined = (value: number | unknown) =>
   typeof value === "number" ? `${value}px` : undefined;
 
+// Mock theme for tests
+const mockTheme: DefaultTheme = {
+  colors: {
+    purple: "#845ad9",
+  },
+} as DefaultTheme;
+
 describe("responsive", () => {
+  it("should return css for a single value", () => {
+    const { container } = render(
+      <StyledComponent data-testid="test" $pl={12} />,
+    );
+    expect(container).toMatchSnapshot();
+  });
   it("should correctly handle a single value", async () => {
     const props = {
       pl: 12,
+      theme: mockTheme,
     };
     const styles = responsive(
       "padding-left",
       (props: TestProps) => props.pl,
       pxOrUndefined,
     )(props);
-    const StyledComponent = styled.div`
+    const StyledComponent = styled.div<TestProps>`
       ${styles}
     `;
     const { getByTestId } = render(
@@ -62,6 +75,7 @@ describe("responsive", () => {
   it("should correctly handle array of values", async () => {
     const props = {
       pl: [0, 12],
+      theme: mockTheme,
     };
 
     const actual = responsive(
@@ -82,6 +96,7 @@ describe("responsive", () => {
   it("should handle the case where the last value is a zero", async () => {
     const props = {
       pl: [36, 12, 0],
+      theme: mockTheme,
     };
 
     const actual = responsive(
@@ -105,6 +120,7 @@ describe("responsive", () => {
   it("should default parse to be identity fn", () => {
     const props = {
       pl: "0.5em",
+      theme: mockTheme,
     };
 
     const actual = responsive(
@@ -114,10 +130,16 @@ describe("responsive", () => {
     const expected = css`
       padding-left: 0.5em;
     `;
-    expect(stringify(actual)).toEqual(stringify(expected));
+    expect(stringify(actual as RuleSet<object>)).toEqual(stringify(expected));
   });
   test("should handle when parse fn gets from theme", async () => {
-    const StyledComponent = styled.div<{ $color?: OakColorName }>`
+    // Note that we don't need to provide a theme in the props,
+    // it is provided by the renderWithTheme wrapper
+    interface ThemedProps {
+      $color?: OakColorName;
+    }
+
+    const StyledComponent = styled.div<ThemedProps>`
       ${responsive(
         "color",
         (props) => props.$color,
@@ -141,11 +163,15 @@ describe("responsive", () => {
     ["mb", "margin-bottom", "1em", "margin-bottom: 1em;"],
   ])("should correctly handle prop %s", (prop, attr, value, expected) => {
     const props = {
-      [prop]: value,
+      [prop as keyof TestProps]: value,
+      theme: mockTheme,
     };
 
-    const actual = responsive(attr, (props: TestProps) => props[prop])(props);
+    const actual = responsive(
+      attr,
+      (props: TestProps) => props[prop as keyof TestProps],
+    )(props);
 
-    expect(stringify(actual)).toEqual(stringify(expected));
+    expect(stringify(actual)).toEqual(stringify(expected.replace(/\s+/g, "")));
   });
 });

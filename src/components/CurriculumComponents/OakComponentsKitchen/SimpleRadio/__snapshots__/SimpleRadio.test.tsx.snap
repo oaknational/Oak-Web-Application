@@ -16,7 +16,7 @@ exports[`Fieldset render / none 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 jFTuAP"
+        class="sc-3299cdd2-0 iHfbvZ"
       />
       one
     </label>
@@ -33,7 +33,7 @@ exports[`Fieldset render / none 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 jFTuAP"
+        class="sc-3299cdd2-0 iHfbvZ"
       />
       two
     </label>
@@ -58,7 +58,7 @@ exports[`Fieldset render / selected 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 dMCIkW"
+        class="sc-3299cdd2-0 KzrSU"
       />
       one
     </label>
@@ -75,7 +75,7 @@ exports[`Fieldset render / selected 1`] = `
         />
       </div>
       <span
-        class="sc-3299cdd2-0 jFTuAP"
+        class="sc-3299cdd2-0 iHfbvZ"
       />
       two
     </label>

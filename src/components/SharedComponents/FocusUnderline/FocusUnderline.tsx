@@ -1,7 +1,7 @@
-import styled, { css } from "styled-components";
 import { OakSvg } from "@oaknational/oak-components";
+import styled, { css } from "styled-components";
 
-import { OakColorName } from "@/styles/theme";
+import type { OakColorName } from "@/styles/theme";
 import getColorByName from "@/styles/themeHelpers/getColorByName";
 
 const FocusUnderline = styled(OakSvg).attrs({ name: "underline" })<{

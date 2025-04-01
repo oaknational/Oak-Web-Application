@@ -1,11 +1,11 @@
 import { GetServerSideProps } from "next";
-import { getServerSideSitemap } from "next-sitemap";
+import { getServerSideSitemapLegacy } from "next-sitemap";
 
-import { buildAllUrlFields } from "@/pages-helpers/teacher/sitemap-pages/sitemap-pages-helper";
 import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
+import { buildAllUrlFields } from "@/pages-helpers/teacher/sitemap-pages/sitemap-pages-helper";
 
 /**
- * Get all sitemap url construct sitemap entries for them.
+ * Get part of teachers pages and construct sitemap entries for them.
  */
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -14,7 +14,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     firstHalf: false,
     teachersSitemapData,
   });
-  return getServerSideSitemap(context, fields);
+  return getServerSideSitemapLegacy(context, fields);
 };
 
-export default function Sitemap() {}
+export default function Sitemap() {
+  return null;
+}

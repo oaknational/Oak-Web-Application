@@ -218,7 +218,7 @@ const Checkbox: FC<CheckboxProps> = (props) => {
             <CheckboxLabelText fontWeight={labelFontWeight ?? 400}>
               {labelText}
             </CheckboxLabelText>{" "}
-            <FocusUnderline $color={"lemon"} />
+            <FocusUnderline $color={"lemon"} name="underline" />
           </>
         )}
       </CheckboxLabel>
