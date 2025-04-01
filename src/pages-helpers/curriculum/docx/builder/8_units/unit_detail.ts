@@ -228,7 +228,7 @@ export async function buildUnit(
   });
 
   const isUnitDescriptionEnabled =
-    unit.parent_programme_features.unit_description === true;
+    unit.parent_programme_features?.unit_description === true;
 
   let unitDescriptions: string = "";
   if (!isUnitDescriptionEnabled) {

@@ -165,7 +165,8 @@ const UnitModal: FC<UnitModalProps> = ({
                   }
                   threads={unitData.threads}
                   isUnitDescriptionEnabled={
-                    unitData.parent_programme_features.unit_description === true
+                    unitData.parent_programme_features?.unit_description ===
+                    true
                   }
                   whyThisWhyNow={unitData.why_this_why_now}
                   description={unitData.description}
@@ -246,7 +247,7 @@ const UnitModal: FC<UnitModalProps> = ({
                                 whyThisWhyNow: optionalUnit.why_this_why_now,
                                 isUnitDescriptionEnabled:
                                   unitData.parent_programme_features
-                                    .unit_description === true,
+                                    ?.unit_description === true,
                                 handleUnitOverviewExploredAnalytics:
                                   handleUnitOverviewExploredAnalytics,
                               });
