@@ -9,10 +9,13 @@ describe("getValidSubjectCategoryIconById", () => {
 
   it("invalid id", () => {
     expect(getValidSubjectCategoryIconById("english", 99)).toEqual("books");
+    expect(getValidSubjectCategoryIconById("foobar", -1)).toEqual("books");
   });
 
   it("'all' id", () => {
-    expect(getValidSubjectCategoryIconById("english", -1)).toEqual("books");
+    expect(getValidSubjectCategoryIconById("english", -1)).toEqual(
+      "subject-english",
+    );
     expect(getValidSubjectCategoryIconById("religious-education", -1)).toEqual(
       "subject-religious-education",
     );
