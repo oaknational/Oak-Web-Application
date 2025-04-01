@@ -14,6 +14,7 @@ import {
   highlightedUnitCount,
 } from "@/utils/curriculum/filtering";
 import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
+import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 
 export type CurriculumVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
@@ -97,7 +98,9 @@ export function CurricMobileStickyHeader({
   trackingData,
   selectedYear,
   onSelectYear,
-}: CurriculumVisualiserFiltersMobileProps) {
+}: CurriculumVisualiserFiltersMobileProps & {
+  trackingData: CurriculumUnitsTrackingData;
+}) {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
   const [lockYear, setLockYear] = useState<string | null>(null);

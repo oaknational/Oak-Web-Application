@@ -127,6 +127,7 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
           trackingData={curriculumUnitsTrackingData}
           filters={filters}
           onChangeFilters={onChangeFilters}
+          slugs={curriculumSelectionSlugs}
         />
       );
       break;

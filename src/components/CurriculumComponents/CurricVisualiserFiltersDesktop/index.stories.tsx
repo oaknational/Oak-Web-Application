@@ -26,10 +26,10 @@ export const CurricVisualiserFiltersMobile: Story = {
       threads: [],
     },
     onChangeFilters: () => {},
-    trackingData: {
+    slugs: {
       subjectSlug: "english",
-      subjectTitle: "English",
       phaseSlug: "primary",
+      ks4OptionSlug: null,
     },
   },
   render: function Render(args) {

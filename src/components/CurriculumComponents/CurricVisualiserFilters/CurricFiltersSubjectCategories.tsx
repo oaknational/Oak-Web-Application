@@ -14,17 +14,20 @@ import {
   presentAtKeyStageSlugs,
 } from "@/utils/curriculum/keystage";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 export type CurricFiltersSubjectCategoriesProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilters: CurriculumFilters) => void;
   data: CurriculumUnitsFormattedData;
+  slugs: CurriculumSelectionSlugs;
 };
 
 export function CurricFiltersSubjectCategories({
   filters,
   onChangeFilters,
   data,
+  slugs,
 }: CurricFiltersSubjectCategoriesProps) {
   const id = useId();
   const { yearData } = data;
@@ -86,7 +89,10 @@ export function CurricFiltersSubjectCategories({
                   value={String(subjectCategory.id)}
                   data-testid={`subject-category-radio-${subjectCategory.id}`}
                   displayValue={subjectCategory.title}
-                  icon={getValidSubjectCategoryIconById(subjectCategory.id)}
+                  icon={getValidSubjectCategoryIconById(
+                    slugs.subjectSlug,
+                    subjectCategory.id,
+                  )}
                 />
               );
             })}

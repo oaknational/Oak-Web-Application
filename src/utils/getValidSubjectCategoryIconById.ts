@@ -17,8 +17,21 @@ const subjectCategoryIconMap: Record<number, string> = {
   17: "theology",
 };
 
-export function getValidSubjectCategoryIconById(id: number): OakIconName {
-  const subjectSlug = subjectCategoryIconMap[id];
+const allIconMap: Record<string, OakIconName> = {
+  "religious-education": "subject-religious-education",
+  english: "subject-english",
+  science: "subject-science",
+};
 
-  return getValidSubjectIconName(subjectSlug ?? null);
+export function getValidSubjectCategoryIconById(
+  subjectSlug: string,
+  id: number,
+): OakIconName {
+  const iconName = subjectCategoryIconMap[id];
+
+  if (id === -1) {
+    return allIconMap[subjectSlug] ?? "books";
+  }
+
+  return getValidSubjectIconName(iconName ?? null);
 }
