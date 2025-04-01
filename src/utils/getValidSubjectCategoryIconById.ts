@@ -19,7 +19,7 @@ const subjectCategoryIconMap: Record<number, string> = {
 
 const allIconMap: Record<string, OakIconName> = {
   "religious-education": "subject-religious-education",
-  english: "books",
+  english: "subject-english",
   science: "subject-science",
 };
 
