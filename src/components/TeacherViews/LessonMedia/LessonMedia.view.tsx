@@ -272,6 +272,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       iconName="external"
       data-testid="help-article-link"
       isTrailingIcon
+      aria-label="Read help article for this page (opens in a new tab)"
     >
       Read help article for this page
     </OakTertiaryInvertedButton>

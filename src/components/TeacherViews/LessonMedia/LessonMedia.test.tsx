@@ -180,5 +180,9 @@ describe("LessonMedia view", () => {
       "href",
       "https://support.thenational.academy/video-and-audio-clips",
     );
+    expect(helpArticleLink[0]).toHaveAttribute(
+      "aria-label",
+      "Read help article for this page (opens in a new tab)",
+    );
   });
 });
