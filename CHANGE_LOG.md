@@ -1,3 +1,11 @@
+# [1.723.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.722.0...v1.723.0) (2025-04-01)
+
+
+### Features
+
+* get phase from data ([07f7dcc](https://github.com/oaknational/Oak-Web-Application/commit/07f7dcc88e308167ca9fbf51ba9677e26bffa656))
+* get phase from data ([281ec63](https://github.com/oaknational/Oak-Web-Application/commit/281ec63be43281f1eb5de3e38da190999da031c0))
+
 # [1.722.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.721.0...v1.722.0) (2025-04-01)
 
 
