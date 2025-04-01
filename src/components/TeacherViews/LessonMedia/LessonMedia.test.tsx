@@ -11,6 +11,8 @@ import { VideoPlayerProps } from "@/components/SharedComponents/VideoPlayer/Vide
 
 const render = renderWithProviders();
 
+const originalHistoryReplaceState = window.history.replaceState;
+
 const lesson = {
   ...lessonMediaClipsFixtures(),
   lessonOutline: [{ lessonOutline: "Sample outline" }],
@@ -22,8 +24,6 @@ const firstMediaClip = mediaClips ? mediaClips["intro"] : null;
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
-
-window.history.replaceState = jest.fn();
 
 const mockRouter = {
   query: {},
@@ -62,6 +62,11 @@ describe("LessonMedia view", () => {
     jest.clearAllMocks();
     jest.resetAllMocks();
     (useRouter as jest.Mock).mockReturnValue(mockRouter);
+    window.history.replaceState = jest.fn();
+  });
+
+  afterEach(() => {
+    window.history.replaceState = originalHistoryReplaceState;
   });
 
   jest.mock(
