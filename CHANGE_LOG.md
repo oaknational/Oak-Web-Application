@@ -1,3 +1,18 @@
+# [1.722.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.721.0...v1.722.0) (2025-04-01)
+
+
+### Bug Fixes
+
+* add useEffect to load the current clip correctly ([76ffeff](https://github.com/oaknational/Oak-Web-Application/commit/76ffeff6881b96024411d3f81fd724a3bc1f7fbb))
+* link corretly to the first video clip ([bcfcec8](https://github.com/oaknational/Oak-Web-Application/commit/bcfcec84ad3fc0f68c6166dbe8312d847fde78b6))
+* order media clips according to order in CAT ([4673b5b](https://github.com/oaknational/Oak-Web-Application/commit/4673b5b82e569f05745e315366608b6c1700377a))
+* update test ([1c630b4](https://github.com/oaknational/Oak-Web-Application/commit/1c630b41404f53ec0d5d34be3fb45dcbf9d89dd5))
+
+
+### Features
+
+* add tests ([4fbaa6b](https://github.com/oaknational/Oak-Web-Application/commit/4fbaa6b5e645f432f380c4aef35ef4174a050003))
+
 # [1.721.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.2...v1.721.0) (2025-03-31)
 
 
