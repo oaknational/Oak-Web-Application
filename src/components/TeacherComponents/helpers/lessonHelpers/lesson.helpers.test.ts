@@ -763,21 +763,16 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 2",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video2.mp3",
           type: "upload",
           bytes: 122087,
           format: "mp3",
           duration: 7.601633,
-
           displayName: "8_task_C1_2",
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
@@ -799,7 +794,6 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 1",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video2.mp3",
           type: "upload",
           bytes: 122087,
@@ -810,10 +804,7 @@ describe("sortMediaClipsByOrder", () => {
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
@@ -839,21 +830,16 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 1",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video2.mp3",
           type: "upload",
           bytes: 122087,
           format: "mp3",
           duration: 7.601633,
-
           displayName: "8_task_C1_2",
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
@@ -875,21 +861,16 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 2",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video2.mp3",
           type: "upload",
           bytes: 122087,
           format: "mp3",
           duration: 7.601633,
-
           displayName: "8_task_C1_2",
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
@@ -916,7 +897,6 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 2",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video2.mp3",
           type: "upload",
           bytes: 122087,
@@ -927,10 +907,7 @@ describe("sortMediaClipsByOrder", () => {
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
@@ -952,21 +929,16 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 3",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video3.mp3",
           type: "upload",
           bytes: 122087,
           format: "mp3",
           duration: 7.601633,
-
           displayName: "8_task_C1_2",
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
@@ -993,7 +965,6 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 2",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video2.mp3",
           type: "upload",
           bytes: 122087,
@@ -1004,10 +975,7 @@ describe("sortMediaClipsByOrder", () => {
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
@@ -1029,21 +997,16 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 3",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video3.mp3",
           type: "upload",
           bytes: 122087,
           format: "mp3",
           duration: 7.601633,
-
           displayName: "8_task_C1_2",
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
@@ -1078,21 +1041,16 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 3",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video3.mp3",
           type: "upload",
           bytes: 122087,
           format: "mp3",
           duration: 7.601633,
-
           displayName: "8_task_C1_2",
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
@@ -1114,21 +1072,16 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 3",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video3.mp3",
           type: "upload",
           bytes: 122087,
           format: "mp3",
           duration: 7.601633,
-
           displayName: "8_task_C1_2",
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
@@ -1155,21 +1108,16 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 3",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video3.mp3",
           type: "upload",
           bytes: 122087,
           format: "mp3",
           duration: 7.601633,
-
           displayName: "8_task_C1_2",
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
@@ -1191,21 +1139,16 @@ describe("sortMediaClipsByOrder", () => {
         mediaType: "video",
         customTitle: "Intro Video 3",
         mediaObject: {
-          id: "e3331a6ee856256933cee73f7a62041b",
           url: "http://example.com/video3.mp3",
           type: "upload",
           bytes: 122087,
           format: "mp3",
           duration: 7.601633,
-
           displayName: "8_task_C1_2",
           resourceType: "video",
         },
         videoObject: {
-          id: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
-
           duration: 7.603667,
-
           muxAssetId: "gyUmSG2VVqcuw00NzT9f02kZvlLmXsrnuT5P7KhrYhWJg",
           playbackIds: [
             {
