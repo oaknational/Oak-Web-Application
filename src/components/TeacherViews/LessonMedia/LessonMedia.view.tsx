@@ -2,11 +2,14 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import {
   OakTertiaryButton,
+  OakTertiaryInvertedButton,
   OakBox,
   OakMaxWidth,
   OakFlex,
   OakMediaClip,
   OakMediaClipList,
+  OakGrid,
+  OakGridArea,
 } from "@oaknational/oak-components";
 
 import VideoPlayer, {
@@ -261,6 +264,19 @@ export const LessonMedia = (props: LessonMediaProps) => {
     />
   );
 
+  const helpArticleLink = (
+    <OakTertiaryInvertedButton
+      element="a"
+      href={"https://support.thenational.academy/video-and-audio-clips"}
+      target="_blank"
+      iconName="external"
+      data-testid="help-article-link"
+      isTrailingIcon
+    >
+      Read help article for this page
+    </OakTertiaryInvertedButton>
+  );
+
   return (
     <OakMaxWidth $pb={"inner-padding-xl8"} $ph={"inner-padding-s"}>
       <OakBox
@@ -351,7 +367,15 @@ export const LessonMedia = (props: LessonMediaProps) => {
             </OakBox>
           </OakFlex>
           <OakBox $display={["none", "none", "block"]}>
-            {lessonMediaClipInfo}
+            <OakGrid>
+              <OakGridArea $colSpan={8}>{lessonMediaClipInfo}</OakGridArea>
+              <OakGridArea $colSpan={4} $alignItems={"flex-end"}>
+                {helpArticleLink}
+              </OakGridArea>
+            </OakGrid>
+          </OakBox>
+          <OakBox $display={["block", "block", "none"]}>
+            {helpArticleLink}
           </OakBox>
         </OakBox>
       )}

@@ -169,4 +169,16 @@ describe("LessonMedia view", () => {
       "/teachers/programmes/physical-education-ks4/units/running-and-jumping/lessons/running-as-a-team/media?video=191189",
     );
   });
+
+  it("renders link to the help article", () => {
+    const { getAllByTestId } = render(
+      <LessonMedia lesson={lesson} isCanonical={false} />,
+    );
+
+    const helpArticleLink = getAllByTestId("help-article-link");
+    expect(helpArticleLink[0]).toHaveAttribute(
+      "href",
+      "https://support.thenational.academy/video-and-audio-clips",
+    );
+  });
 });
