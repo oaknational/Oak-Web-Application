@@ -1974,6 +1974,7 @@ export type Cat_Subjectcategories = {
   /** A computed field, executes function "function__cat_subjectcategories__permitted_programme_fields" */
   permitted_programme_fields?: Maybe<Array<Templates_Permitted_Programme_Fields>>;
   programme_fields: Scalars['jsonb']['output'];
+  slug?: Maybe<Scalars['String']['output']>;
   subjectcategory_id: Scalars['Int']['output'];
   title?: Maybe<Scalars['String']['output']>;
   /** A computed field, executes function "function__cat_subjectcategories__units" */
@@ -2095,6 +2096,7 @@ export type Cat_Subjectcategories_Bool_Exp = {
   description?: InputMaybe<String_Comparison_Exp>;
   permitted_programme_fields?: InputMaybe<Templates_Permitted_Programme_Fields_Bool_Exp>;
   programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
   subjectcategory_id?: InputMaybe<Int_Comparison_Exp>;
   title?: InputMaybe<String_Comparison_Exp>;
   units_with_subjectcategory?: InputMaybe<Units_Bool_Exp>;
@@ -2142,6 +2144,7 @@ export type Cat_Subjectcategories_Insert_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
   subjectcategory_id?: InputMaybe<Scalars['Int']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -2155,6 +2158,7 @@ export type Cat_Subjectcategories_Max_Fields = {
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
   subjectcategory_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   /** A computed field, executes function "function__cat_subjectcategories__units__count" */
@@ -2169,6 +2173,7 @@ export type Cat_Subjectcategories_Max_Order_By = {
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
   subjectcategory_id?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
@@ -2182,6 +2187,7 @@ export type Cat_Subjectcategories_Min_Fields = {
   _state?: Maybe<Scalars['String']['output']>;
   created_at?: Maybe<Scalars['timestamptz']['output']>;
   description?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
   subjectcategory_id?: Maybe<Scalars['Int']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   /** A computed field, executes function "function__cat_subjectcategories__units__count" */
@@ -2196,6 +2202,7 @@ export type Cat_Subjectcategories_Min_Order_By = {
   _state?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
   subjectcategory_id?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
@@ -2228,6 +2235,7 @@ export type Cat_Subjectcategories_Order_By = {
   description?: InputMaybe<Order_By>;
   permitted_programme_fields_aggregate?: InputMaybe<Templates_Permitted_Programme_Fields_Aggregate_Order_By>;
   programme_fields?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
   subjectcategory_id?: InputMaybe<Order_By>;
   title?: InputMaybe<Order_By>;
   units_with_subjectcategory_aggregate?: InputMaybe<Units_Aggregate_Order_By>;
@@ -2266,6 +2274,8 @@ export enum Cat_Subjectcategories_Select_Column {
   /** column name */
   ProgrammeFields = 'programme_fields',
   /** column name */
+  Slug = 'slug',
+  /** column name */
   SubjectcategoryId = 'subjectcategory_id',
   /** column name */
   Title = 'title',
@@ -2283,6 +2293,7 @@ export type Cat_Subjectcategories_Set_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
   subjectcategory_id?: InputMaybe<Scalars['Int']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -2351,6 +2362,7 @@ export type Cat_Subjectcategories_Stream_Cursor_Value_Input = {
   deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
   subjectcategory_id?: InputMaybe<Scalars['Int']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updated_at?: InputMaybe<Scalars['timestamptz']['input']>;
@@ -2389,6 +2401,8 @@ export enum Cat_Subjectcategories_Update_Column {
   Description = 'description',
   /** column name */
   ProgrammeFields = 'programme_fields',
+  /** column name */
+  Slug = 'slug',
   /** column name */
   SubjectcategoryId = 'subjectcategory_id',
   /** column name */
