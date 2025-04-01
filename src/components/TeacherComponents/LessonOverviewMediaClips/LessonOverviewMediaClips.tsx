@@ -52,7 +52,9 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
           const learningCycleTitleToDisplay =
             learningCycleVideosTitleMap[learningCycleTitle];
 
-          const firstCycleVideo = learningCycleVideos[0];
+          const firstCycleVideo = learningCycleVideos.find(
+            (video) => video.order === "1" || video.order === 1,
+          );
           if (!firstCycleVideo) return null;
 
           const isAudioClip = firstCycleVideo.mediaObject?.format === "mp3";
