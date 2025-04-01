@@ -23,7 +23,7 @@ export type CurriculumUnitDetailsProps = {
   futureUnitTitle: string | null;
   whyThisWhyNow: string | null;
   description: string | null;
-  cycle: string;
+  isUnitDescriptionEnabled: boolean;
   handleUnitOverviewExploredAnalytics: (
     componentType: ComponentTypeValueType,
   ) => void;
@@ -38,7 +38,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
   futureUnitTitle,
   whyThisWhyNow,
   description,
-  cycle,
+  isUnitDescriptionEnabled,
   handleUnitOverviewExploredAnalytics,
 }) => {
   const threadTitleSet = new Set<string>(threads.map((thread) => thread.title));
@@ -89,7 +89,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
         </OakBox>
       )}
       <OakFlex $flexDirection={"column"}>
-        {cycle === "2" && (
+        {isUnitDescriptionEnabled && (
           <>
             {description && (
               <OakBox $mb={"space-between-m2"}>
@@ -122,7 +122,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
         {numberOfLessons >= 1 && (
           <CurriculumUnitDetailsAccordion
             title="Lessons in unit"
-            lastAccordion={cycle === "2"}
+            lastAccordion={isUnitDescriptionEnabled}
             handleUnitOverviewExploredAnalytics={
               handleUnitOverviewExploredAnalytics
             }
@@ -136,7 +136,7 @@ export const CurriculumUnitDetails: FC<CurriculumUnitDetailsProps> = ({
           </CurriculumUnitDetailsAccordion>
         )}
 
-        {cycle === "1" && (
+        {!isUnitDescriptionEnabled && (
           <>
             {priorUnitDescription && (
               <CurriculumUnitDetailsAccordion
