@@ -1,3 +1,21 @@
+# [1.721.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.2...v1.721.0) (2025-03-31)
+
+
+### Bug Fixes
+
+* align headings in PupilSubjectListing to left ([39caca0](https://github.com/oaknational/Oak-Web-Application/commit/39caca08bf499f74ecb36e706252efc8405d1640))
+* update further lessons background colour ([e0a2d6a](https://github.com/oaknational/Oak-Web-Application/commit/e0a2d6a788f93c87cd9950d51ac9f7a5778afdea))
+
+
+### Features
+
+* merge ([741e15b](https://github.com/oaknational/Oak-Web-Application/commit/741e15b435098e3f61d44169c65643085273fd09))
+* refactor subject page to use features ([eeb7e4a](https://github.com/oaknational/Oak-Web-Application/commit/eeb7e4aa68f9efa892ad1c535b4b3774efe7f87d))
+* remove consolelog ([4f10447](https://github.com/oaknational/Oak-Web-Application/commit/4f10447905d9d77da9d4d6a700445c3a78792465))
+* show finance on pupils subject listing page ([afc2116](https://github.com/oaknational/Oak-Web-Application/commit/afc2116d92cbea1e4558201f869fbc887e72b934))
+* test coverage ([59186fe](https://github.com/oaknational/Oak-Web-Application/commit/59186fe107538ad23bd12fa9d6c35aabb14c839f))
+* update package ([d57c4dc](https://github.com/oaknational/Oak-Web-Application/commit/d57c4dc1b85fccf0de05f9b36d0e61ff4a9e6d71))
+
 ## [1.720.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.1...v1.720.2) (2025-03-31)
 
 

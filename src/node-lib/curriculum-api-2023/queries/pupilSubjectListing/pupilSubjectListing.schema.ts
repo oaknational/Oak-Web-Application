@@ -12,6 +12,7 @@ export const pupilSubjectListingSchema = syntheticProgrammesByYearSchema.pick({
   year_slug: true,
   base_slug: true,
   is_legacy: true,
+  features: true,
 });
 
 export type PupilSubjectListingData = ConvertKeysToCamelCase<
