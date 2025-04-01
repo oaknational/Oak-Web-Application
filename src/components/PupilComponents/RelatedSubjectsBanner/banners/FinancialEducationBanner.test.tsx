@@ -55,7 +55,7 @@ describe("FinancialEducationBanner", () => {
     expect(card).toBeInTheDocument();
     expect(card).toHaveAttribute(
       "data-href",
-      "/pupil-unit-index/pupil-unit-index/financial-education-secondary-year-1",
+      "/pupil-unit-index/pupil-unit-index/financial-education-primary-year-1",
     );
 
     expect(screen.getByTestId("icon-name")).toHaveTextContent(
