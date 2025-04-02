@@ -1,3 +1,15 @@
+# [1.725.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.724.0...v1.725.0) (2025-04-02)
+
+
+### Bug Fixes
+
+* add aria label ([95e291f](https://github.com/oaknational/Oak-Web-Application/commit/95e291f8cdc9b5ad4b695ef0235db0e4438a3804))
+
+
+### Features
+
+* add help article link to media page ([5609455](https://github.com/oaknational/Oak-Web-Application/commit/56094554df6038e6dc27a62ac165e6733fda4bb2))
+
 # [1.724.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.723.1...v1.724.0) (2025-04-02)
 
 
