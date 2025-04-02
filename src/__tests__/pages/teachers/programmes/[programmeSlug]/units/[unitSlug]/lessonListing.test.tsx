@@ -24,10 +24,14 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
+      // TODO: Not entirely sure this should be called here...
+      teacherShareInitiated: jest.fn(),
       lessonAccessed: (...args: unknown[]) => lessonSelected(...args),
     },
   }),
 }));
+
+global.fetch = jest.fn();
 
 describe("Lesson listing page", () => {
   test("it renders the unit title as page title", () => {
@@ -37,6 +41,9 @@ describe("Lesson listing page", () => {
 
     const pageHeading = getByRole("heading", { level: 1 });
 
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://mockdownloads.com/api/unit/adding-surds-a57d-1/check-files",
+    );
     expect(pageHeading).toBeInTheDocument();
   });
 
@@ -47,6 +54,9 @@ describe("Lesson listing page", () => {
     const lessonCountFixtures = lessonListingFixture().lessons.length;
     const lessonCount = getByText(`Lessons (${lessonCountFixtures})`);
 
+    expect(global.fetch).toHaveBeenCalledWith(
+      "https://mockdownloads.com/api/unit/adding-surds-a57d-1/check-files",
+    );
     expect(lessonCount).toBeInTheDocument();
   });
 
@@ -54,6 +64,9 @@ describe("Lesson listing page", () => {
     it("renders the correct SEO details", async () => {
       const { seo } = renderWithSeo()(
         <LessonListPage curriculumData={lessonListingFixture()} />,
+      );
+      expect(global.fetch).toHaveBeenCalledWith(
+        "https://mockdownloads.com/api/unit/adding-surds-a57d-1/check-files",
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -71,6 +84,9 @@ describe("Lesson listing page", () => {
       utilsMock.RESULTS_PER_PAGE = 2;
       const { seo } = renderWithSeo()(
         <LessonListPage curriculumData={lessonListingFixture()} />,
+      );
+      expect(global.fetch).toHaveBeenCalledWith(
+        "https://mockdownloads.com/api/unit/adding-surds-a57d-1/check-files",
       );
       expect(seo).toEqual({
         ...mockSeoResult,
@@ -144,6 +160,9 @@ describe("Lesson listing page", () => {
 
       await userEvent.click(lesson);
 
+      expect(global.fetch).toHaveBeenCalledWith(
+        "https://mockdownloads.com/api/unit/adding-surds-a57d-1/check-files",
+      );
       expect(lessonSelected).toHaveBeenCalledTimes(1);
       expect(lessonSelected).toHaveBeenCalledWith({
         platform: "owa",

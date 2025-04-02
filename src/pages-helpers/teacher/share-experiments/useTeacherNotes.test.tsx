@@ -149,7 +149,7 @@ describe("useTeacherNotes", () => {
 
   it("should not fetch a teacher note if sidKey or lessonPath is missing", async () => {
     const mockGetTeacherNote = useOakPupilMock().getTeacherNote;
-
+    console.error = jest.fn();
     const wrapper = createWrapper();
     // render hook
     renderHook(
@@ -167,6 +167,9 @@ describe("useTeacherNotes", () => {
     await waitFor(() => {
       expect(mockGetTeacherNote).not.toHaveBeenCalled();
     });
+    expect(console.error).toHaveBeenCalledWith(
+      "sidKey or lessonPath is missing",
+    );
   });
 
   it("should create new note if none is found", async () => {
