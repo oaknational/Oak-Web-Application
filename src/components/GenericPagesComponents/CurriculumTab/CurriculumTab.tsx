@@ -10,7 +10,6 @@ import {
   OakBox,
   OakIcon,
 } from "@oaknational/oak-components";
-import styled from "styled-components";
 
 import Illustration from "@/components/SharedComponents/Illustration";
 import SubjectPhasePicker from "@/components/SharedComponents/SubjectPhasePicker";
@@ -22,50 +21,18 @@ type CurriculumDownloadTabProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
 };
 
-const IconWrapper = styled.div`
-  position: absolute;
-  width: 72%;
-  height: 540px;
-  z-index: 90;
-  bottom: -157px;
-  right: -120px;
-
-  @media (max-width: 1493px) and (min-width: 1450px) {
-    right: calc(-120px + 1.5vw);
-  }
-
-  @media (max-width: 1450px) and (min-width: 1420px) {
-    right: calc(-120px + 3vw);
-  }
-
-  @media (max-width: 1420px) and (min-width: 1400px) {
-    right: calc(-120px + 4vw);
-  }
-
-  @media (max-width: 1413px) and (min-width: 1381px) {
-    right: calc(-120px + 5vw);
-  }
-
-  @media (max-width: 1380px) and (min-width: 1341px) {
-    right: calc(-120px + 6vw);
-  }
-
-  @media (max-width: 1340px) and (min-width: 1281px) {
-    right: calc(-120px + 7.5vw);
-  }
-
-  @media (max-width: 1280px) {
-    display: none;
-  }
-`;
-
 const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
   curriculumPhaseOptions,
 }) => {
   const { track } = useAnalytics();
   return (
-    <OakBox $background={"mint"} $pv="inner-padding-xl" $ph={"inner-padding-m"}>
-      <OakMaxWidth $pv={"inner-padding-xl"}>
+    <OakBox
+      $background={"mint"}
+      $pv="inner-padding-xl"
+      $ph={"inner-padding-m"}
+      $overflowX={"hidden"}
+    >
+      <OakMaxWidth $pv={"inner-padding-xl"} $position={"relative"}>
         <OakFlex>
           <OakFlex
             $flexDirection={"column"}
@@ -157,15 +124,6 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
                 $borderColor={"black"}
                 $zIndex={"fixedHeader"}
               />
-
-              <IconWrapper>
-                <OakIcon
-                  iconName={"looping-line-5"}
-                  $colorFilter={"mint30"}
-                  $width={"100%"}
-                  $height={"100%"}
-                />
-              </IconWrapper>
             </OakFlex>
           </OakFlex>
         </OakFlex>
@@ -177,6 +135,25 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
         >
           <SubjectPhasePicker {...curriculumPhaseOptions} />
         </OakBox>
+
+        {/* force this positioning */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            right: -200,
+            width: 529,
+            height: 420,
+          }}
+        >
+          <OakIcon
+            $display={["none", "none", "block"]}
+            iconName={"looping-line-5"}
+            $colorFilter={"mint30"}
+            $width={"100%"}
+            $height={"100%"}
+          />
+        </div>
       </OakMaxWidth>
     </OakBox>
   );
