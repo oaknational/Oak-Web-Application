@@ -1,3 +1,10 @@
+## [1.723.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.723.0...v1.723.1) (2025-04-02)
+
+
+### Bug Fixes
+
+* disable captions on pe practical media clips ([7b4152b](https://github.com/oaknational/Oak-Web-Application/commit/7b4152b771793269c2ba9a1d3f5cb5a09e86a020))
+
 # [1.723.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.722.0...v1.723.0) (2025-04-01)
 
 
