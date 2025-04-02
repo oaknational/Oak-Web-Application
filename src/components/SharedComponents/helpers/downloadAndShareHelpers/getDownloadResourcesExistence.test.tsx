@@ -48,11 +48,11 @@ describe("checkIfDownloadResourcesExist()", () => {
   });
 
   it("should return correct data if fetch is successful", async () => {
-    downloadResourcesExist = await getLessonDownloadResourcesExistence(
-      "lesson-slug",
-      "exit-quiz-answers,worksheet-pdf",
-      false,
-    );
+    downloadResourcesExist = await getLessonDownloadResourcesExistence({
+      lessonSlug: "lesson-slug",
+      resourceTypesString: "exit-quiz-answers,worksheet-pdf",
+      isLegacyDownload: false,
+    });
     expect(downloadResourcesExist).toEqual(data);
   });
 
@@ -62,11 +62,11 @@ describe("checkIfDownloadResourcesExist()", () => {
     );
 
     try {
-      await getLessonDownloadResourcesExistence(
-        "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
-        true,
-      );
+      await getLessonDownloadResourcesExistence({
+        lessonSlug: "lesson-slug",
+        resourceTypesString: "exit-quiz-answers,worksheet-pdf",
+        isLegacyDownload: true,
+      });
     } catch (error) {
       expect(error).toEqual("bad thing");
     }
@@ -84,12 +84,11 @@ describe("checkIfDownloadResourcesExist()", () => {
     );
 
     try {
-      await getLessonDownloadResourcesExistence(
-        "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
-
-        true,
-      );
+      await getLessonDownloadResourcesExistence({
+        lessonSlug: "lesson-slug",
+        resourceTypesString: "exit-quiz-answers,worksheet-pdf",
+        isLegacyDownload: true,
+      });
     } catch (error) {
       expect((error as OakError).message).toEqual(
         "Failed to check file existence",
@@ -114,11 +113,11 @@ describe("checkIfDownloadResourcesExist()", () => {
     );
 
     try {
-      await getLessonDownloadResourcesExistence(
-        "lesson-slug",
-        "exit-quiz-answers,worksheet-pdf",
-        true,
-      );
+      await getLessonDownloadResourcesExistence({
+        lessonSlug: "lesson-slug",
+        resourceTypesString: "exit-quiz-answers,worksheet-pdf",
+        isLegacyDownload: true,
+      });
     } catch (error) {
       expect((error as OakError).message).toEqual(
         "Failed to check file existence",
@@ -132,22 +131,22 @@ describe("checkIfDownloadResourcesExist()", () => {
   });
 
   it("should fetch from new api if isLegacyDownload = true", async () => {
-    downloadResourcesExist = await getLessonDownloadResourcesExistence(
-      "lesson-slug",
-      "exit-quiz-answers,worksheet-pdf",
-      true,
-    );
+    downloadResourcesExist = await getLessonDownloadResourcesExistence({
+      lessonSlug: "lesson-slug",
+      resourceTypesString: "exit-quiz-answers,worksheet-pdf",
+      isLegacyDownload: true,
+    });
 
     expect(global.fetch).toBeCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",
     );
   });
   it("should fetch from download api if isLegacyDownload = false", async () => {
-    downloadResourcesExist = await getLessonDownloadResourcesExistence(
-      "lesson-slug",
-      "exit-quiz-answers,worksheet-pdf",
-      false,
-    );
+    downloadResourcesExist = await getLessonDownloadResourcesExistence({
+      lessonSlug: "lesson-slug",
+      resourceTypesString: "exit-quiz-answers,worksheet-pdf",
+      isLegacyDownload: false,
+    });
 
     expect(global.fetch).toBeCalledWith(
       "https://mockdownloads.com/api/lesson/lesson-slug/check-files?selection=exit-quiz-answers,worksheet-pdf",

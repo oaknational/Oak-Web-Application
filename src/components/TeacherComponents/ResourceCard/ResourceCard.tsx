@@ -48,6 +48,7 @@ const RESOURCE_TYPE_ICON_MAP: Record<
   video: "video",
   "curriculum-pdf": "additional-material",
   "lesson-guide-pdf": "additional-material",
+  "additional-files": "additional-material",
 };
 
 const BoxWithFocusState = styled.div`
@@ -55,6 +56,7 @@ const BoxWithFocusState = styled.div`
   display: flex;
   flex-direction: "row";
   width: 100%;
+  height: 100%;
 `;
 
 const RadioContainer = styled.div`
@@ -116,6 +118,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
           $justifyContent="center"
           $ph={16}
           $pv={16}
+          $pr={48}
           $width="100%"
         >
           <OakP
@@ -123,7 +126,7 @@ const ResourceCardLabel: FC<ResourceCardLabelProps> = ({
             $mb="space-between-sssx"
             $textDecoration={isHovered ? "underline" : "none"}
           >
-            {label}
+            {label.length > 42 ? label.slice(0, 42) + "\u2026" : label}
           </OakP>
           <OakP $color="grey60">{subtitle}</OakP>
         </Flex>
@@ -150,7 +153,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
 
   return (
     <Flex
-      $maxHeight={72}
+      $height={useRadio ? 72 : 96}
       $width={320}
       $position={"relative"}
       {...hoverProps}
@@ -175,6 +178,7 @@ const ResourceCard: FC<ResourceCardProps> = (props) => {
           }`}
           onBlur={onBlur}
           hasError={hasError}
+          $mb={0}
         >
           <ResourceCardLabel isHovered={isHovered} {...props} />
         </Checkbox>

@@ -18,6 +18,7 @@ export const subjectSchema = z.object({
   pathwaySlug: pathwaySlugs.nullable(),
   pathwayTitle: pathways.nullable(),
   actions: actionsSchema,
+  features: z.object({}).passthrough().optional(),
 });
 
 const keyStageDataRaw = z.object({
@@ -44,6 +45,12 @@ const subjectListingSchema = z.object({
 export const subjectLisitingRawSchema = z.object({
   subjectUnits: z.array(syntheticUnitvariantsWithLessonIdsByKsSchema),
   key_stages: z.array(keyStageDataRaw),
+  subjectFeatures: z.array(
+    z.object({
+      slug: z.string(),
+      features: z.object({}).passthrough(),
+    }),
+  ),
 });
 
 export type KeyStageSubjectData = z.infer<typeof subjectSchema>;

@@ -16,6 +16,9 @@ import { PupilUnitsSection } from "@/components/PupilComponents/PupilUnitsSectio
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { UnitListingBrowseData } from "@/node-lib/curriculum-api-2023/queries/pupilUnitListing/pupilUnitListing.schema";
 import { generateKeyStageTitle } from "@/components/PupilComponents/PupilAnalyticsProvider/PupilAnalyticsProvider";
+import { SubjectSlugs } from "@/node-lib/curriculum-api-2023/queries/pupilSubjectListing/pupilSubjectListing.schema";
+import RelatedSubjectsBanner from "@/components/PupilComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
+import PupilSubjectDescription from "@/components/PupilComponents/PupilSubjectDescription/PupilSubjectDescription";
 
 export type PupilViewsUnitListingProps = {
   unitSections: UnitsSectionData[];
@@ -23,6 +26,7 @@ export type PupilViewsUnitListingProps = {
   backHrefSlugs: UseBackHrefProps;
   subjectCategories: string[];
   programmeFields: UnitListingBrowseData[number]["programmeFields"];
+  relatedSubjects?: SubjectSlugs[];
 };
 
 export const PupilViewsUnitListing = ({
@@ -31,6 +35,7 @@ export const PupilViewsUnitListing = ({
   backHrefSlugs,
   subjectCategories,
   programmeFields,
+  relatedSubjects = [],
 }: PupilViewsUnitListingProps) => {
   const { track } = useAnalytics();
   const [backHref, backLabel] = useBackHref(backHrefSlugs);
@@ -121,7 +126,12 @@ export const PupilViewsUnitListing = ({
               counterLength={unitSection.counterLength}
               labels={labelsArray.length ? labelsArray : undefined}
               showTooltip={i === 0}
-              expiredSlot={expiringBanner[i]}
+              additionalInfoSlot={
+                <>
+                  <PupilSubjectDescription programmeFields={programmeFields} />
+                  {expiringBanner[i]}
+                </>
+              }
               id={`section-${i}`}
               onUnitSelected={(unit) => {
                 track.unitAccessed({
@@ -148,6 +158,13 @@ export const PupilViewsUnitListing = ({
             />
           );
         })}
+        {relatedSubjects.map((subjectSlug) => (
+          <RelatedSubjectsBanner
+            key={subjectSlug}
+            subjectSlug={subjectSlug}
+            programmeFields={programmeFields}
+          />
+        ))}
         <OakBox $mt={"space-between-m2"}>
           <SignpostTeachersInlineBanner />
         </OakBox>

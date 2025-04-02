@@ -13,10 +13,11 @@ import { SideMenu } from "@/components/AppComponents/AppHeaderMenu";
 import MenuBackdrop from "@/components/AppComponents/MenuBackdrop";
 import IconButton from "@/components/SharedComponents/Button/IconButton";
 import { TagFunctional } from "@/components/SharedComponents/TagFunctional";
-import { Lesson } from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import { IconFocusUnderline } from "@/components/SharedComponents/Button/IconFocusUnderline";
-import { Unit } from "@/utils/curriculum/types";
+import { Unit, Lesson } from "@/utils/curriculum/types";
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import { transformOwaLinkProps } from "@/components/SharedComponents/OwaLink";
+import { areLessonsAvailable } from "@/utils/curriculum/lessons";
 
 const IconButtonFocusVisible = styled(IconButton)`
   :focus ${IconFocusUnderline} {
@@ -55,15 +56,9 @@ const UnitsTabSidebar: FC<ModalProps> = ({
   unitVariantID,
   unitData,
 }) => {
-  const getLessonsAvailable = (lessons: Lesson[] | null): boolean => {
-    return (
-      (lessons &&
-        lessons.some((lesson: Lesson) => lesson._state === "published")) ||
-      false
-    );
-  };
+  const { track } = useAnalytics();
 
-  const lessonsAvailable = getLessonsAvailable(lessons);
+  const lessonsAvailable = areLessonsAvailable(lessons);
 
   let resolvedUnitSlug: string = "";
   if (unitSlug && unitData) {
@@ -157,6 +152,24 @@ const UnitsTabSidebar: FC<ModalProps> = ({
                         }
                         aria-disabled={!lessonsAvailable ? "true" : "false"}
                         {...(lessonsAvailable && { href: lessonPageHref })}
+                        onClick={() => {
+                          if (unitData && lessonsAvailable) {
+                            track.curriculumVisualiserExited({
+                              unitName: unitData.title,
+                              unitSlug: resolvedUnitSlug,
+                              subjectTitle: unitData.subject,
+                              subjectSlug: unitData.subject_slug,
+                              platform: "owa",
+                              product: "curriculum visualiser",
+                              engagementIntent: "use",
+                              componentType: "curriculum_visualiser_button",
+                              eventVersion: "2.0.0",
+                              analyticsUseCase: "Teacher",
+                              yearGroupName: `Year ${unitData?.year}`,
+                              yearGroupSlug: unitData.year,
+                            });
+                          }
+                        }}
                       >
                         <OakFlex
                           $flexDirection={"row"}

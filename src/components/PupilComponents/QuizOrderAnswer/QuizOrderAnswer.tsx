@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { isArray } from "lodash";
 import {
   OakBox,
@@ -61,6 +61,32 @@ export const QuizOrderAnswer = ({ onChange }: QuizOrderAnswerProps) => {
     return currentItems;
   }, [answers.order, questionUid]);
   const [currentOrder, setCurrentOrder] = useState(initialItems);
+  const [announcements, setAnnouncements] = useState(currentOrder);
+  const [documentLoaded, setDocumentLoaded] = useState(false);
+
+  useEffect(() => {
+    setDocumentLoaded(true);
+    if (documentLoaded) {
+      const announcementItems: {
+        id: string;
+        label: string;
+      }[] = [];
+      currentOrder.forEach((item) => {
+        const element = document.getElementById(
+          `oak-quiz-order-item-${item.id}`,
+        );
+        if (element) {
+          const ariaLabel = element?.querySelector("[aria-label]")?.ariaLabel;
+          if (ariaLabel) {
+            announcementItems.push({ id: item.id, label: ariaLabel });
+          } else {
+            announcementItems.push({ id: item.id, label: item.label });
+          }
+        }
+      });
+      setAnnouncements(announcementItems);
+    }
+  }, [currentOrder, documentLoaded]);
 
   const handleOrderChange = (items: OakQuizOrderProps["initialItems"]) => {
     onChange();
@@ -97,6 +123,7 @@ export const QuizOrderAnswer = ({ onChange }: QuizOrderAnswerProps) => {
         initialItems={initialItems}
         onChange={handleOrderChange}
         isHighlighted={currentQuestionState?.mode === "incomplete"}
+        announcements={announcements}
       />
       {currentOrder.map((item) => {
         return (

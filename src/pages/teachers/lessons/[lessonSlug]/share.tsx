@@ -33,6 +33,7 @@ const LessonShareCanonicalPage: NextPage<LessonShareCanonicalPageProps> = ({
           description:
             "Share online lesson activities with your students, such as videos, worksheets and quizzes.",
         }),
+        noIndex: true,
       }}
     >
       <LessonShare isCanonical={true} lesson={curriculumData} />

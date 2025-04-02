@@ -69,17 +69,22 @@ export const createLessonDownloadLink = async ({
   lessonSlug,
   isLegacyDownload,
   selection,
+  additionalFilesIdsSelection,
   authFlagEnabled,
   authToken,
 }: {
   lessonSlug: string;
   isLegacyDownload: boolean;
   selection?: string;
+  additionalFilesIdsSelection?: string;
   authFlagEnabled?: boolean;
   authToken?: string | null;
 }) => {
   const selectionString = selection ? `?selection=${selection}` : "";
-  const downloadEndpoint = `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/download${selectionString}`;
+  const additionalFilesIdsSelectionString = additionalFilesIdsSelection
+    ? `&additionalFiles=${additionalFilesIdsSelection}`
+    : "";
+  const downloadEndpoint = `${DOWNLOADS_API_URL}/api/lesson/${lessonSlug}/download${selectionString}${additionalFilesIdsSelectionString}`;
   const meta = {
     downloadSlug: lessonSlug,
     selection,

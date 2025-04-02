@@ -1,3 +1,5 @@
+import { SubjectSlugs } from "../pupilSubjectListing/pupilSubjectListing.schema";
+
 import { reshapeUnitData } from "./helpers/reshapeUnitData";
 import { getAllLearningThemes } from "./helpers/getAllLearningThemes";
 import {
@@ -86,6 +88,15 @@ const unitListingQuery =
       .flatMap((unit) => unit.flatMap((u) => u.cohort ?? "2020-2023"))
       .includes(NEW_COHORT);
 
+    const relatedSubjectsSet = new Set<SubjectSlugs>();
+    parsedUnits.forEach((unit) => {
+      if (unit.actions && unit.actions.related_subject_slugs) {
+        unit.actions.related_subject_slugs.forEach((subject) => {
+          relatedSubjectsSet.add(subject);
+        });
+      }
+    });
+
     return {
       programmeSlug: args.programmeSlug,
       keyStageSlug: programmeFields.keystageSlug,
@@ -104,6 +115,9 @@ const unitListingQuery =
       subjectCategories,
       yearGroups,
       pathwayTitle: programmeFields.pathway,
+      ...(relatedSubjectsSet.size >= 1 && {
+        relatedSubjects: Array.from(relatedSubjectsSet),
+      }),
     };
   };
 

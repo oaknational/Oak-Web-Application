@@ -1,0 +1,13 @@
+overwrite: true
+schema:
+  - ${PERSONALISATION_API_URL}:
+      headers:
+        x-hasura-admin-secret: ${PERSONALISATION_API_AUTH_KEY}
+
+documents: "src/node-lib/personalisation-api/**/*.{graphql,gql}"
+generates:
+  src/node-lib/personalisation-api/generated/sdk.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-graphql-request"

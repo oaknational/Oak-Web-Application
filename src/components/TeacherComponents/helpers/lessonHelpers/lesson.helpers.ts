@@ -15,6 +15,7 @@ import {
   LessonOverviewQuizData,
   StemImageObject,
 } from "@/node-lib/curriculum-api-2023/shared.schema";
+import type { MediaClip } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 import removeLegacySlugSuffix from "@/utils/slugModifiers/removeLegacySlugSuffix";
 import isSlugEYFS from "@/utils/slugModifiers/isSlugEYFS";
 import { LessonItemTitle } from "@/components/TeacherComponents/LessonItemContainer";
@@ -41,6 +42,7 @@ export const getCommonPathway = (
     tierSlug: null,
     tierTitle: null,
     lessonCohort: null,
+    subjectParent: null,
   };
 
   return pathways.reduce(
@@ -616,3 +618,24 @@ export const getMediaClipLabel = (subjectSlug: string): LessonItemTitle => {
       return "Video & audio clips";
   }
 };
+
+export const sortMediaClipsByOrder = (a: MediaClip, b: MediaClip) => {
+  if (Number(a.order) < Number(b.order)) {
+    return -1;
+  } else if (Number(a.order) > Number(b.order)) {
+    return 1;
+  }
+  return 0;
+};
+
+export function convertBytesToMegabytes(bytes: number): string {
+  if (!+bytes) return "0 B";
+
+  const k = 1024;
+  const decimals = 2;
+  const sizes = ["B", "KB", "MB", "GB"];
+
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(decimals))} ${sizes[i]}`;
+}

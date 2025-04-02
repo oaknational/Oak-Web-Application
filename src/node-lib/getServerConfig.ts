@@ -150,6 +150,27 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
+  personalisationApiUrl: {
+    value: process.env.PERSONALISATION_API_URL,
+    envName: "PERSONALISATION_API_URL",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  personalisationApiAuthKey: {
+    value: process.env.PERSONALISATION_API_AUTH_KEY,
+    envName: "PERSONALISATION_API_AUTH_KEY",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
+  personalisationApiAuthRole: {
+    value: process.env.PERSONALISATION_API_AUTH_ROLE,
+    envName: "PERSONALISATION_API_AUTH_ROLE",
+    required: true,
+    availableInBrowser: false,
+    default: null,
+  },
   muxSigningKey: {
     value: process.env.MUX_SIGNING_KEY,
     envName: "MUX_SIGNING_KEY",
@@ -210,10 +231,9 @@ const envVars = satisfies<Record<string, EnvVar>>()({
     availableInBrowser: false,
     default: null,
   },
-  sentryAuthToken: {
-    description: "Sentry auth token, used for uploading sourcemaps",
-    value: process.env.SENTRY_AUTH_TOKEN,
-    envName: "SENTRY_AUTH_TOKEN",
+  clerkSigningSecret: {
+    value: process.env.CLERK_SIGNING_SECRET,
+    envName: "CLERK_SIGNING_SECRET",
     required: true,
     availableInBrowser: false,
     default: null,

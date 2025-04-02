@@ -146,7 +146,7 @@ describe("LessonEngineProvider", () => {
     allLessonReviewSections.forEach((section) => {
       expect(result.current.sectionResults[section]?.isComplete).toBeFalsy();
       act(() => {
-        result.current.completeActivity("intro");
+        result.current.completeActivity(section);
       });
       expect(result.current.sectionResults.intro?.isComplete).toEqual(true);
     });

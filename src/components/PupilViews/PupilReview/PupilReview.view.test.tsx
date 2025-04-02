@@ -6,7 +6,6 @@ import {
   useOakPupil,
 } from "@oaknational/oak-pupil-client";
 import userEvent from "@testing-library/user-event";
-import { act } from "@testing-library/react";
 
 import { PupilViewsReview } from "./PupilReview.view";
 
@@ -212,7 +211,7 @@ describe("PupilReview", () => {
 
       expect(queryByText("Copy link")).toBeInTheDocument();
     });
-    it("logAttempt function is called when button is clicked", () => {
+    it("logAttempt function is called when button is clicked", async () => {
       //spy on the track function
       const logAttemptSpy = jest.fn(() => "some-attempt-id");
       (useOakPupil as jest.Mock).mockReturnValue({ logAttempt: logAttemptSpy });
@@ -247,9 +246,7 @@ describe("PupilReview", () => {
       );
       const button = getByText("Copy link");
       // Simulate the button click
-      act(() => {
-        button.click(); // Manually trigger click
-      });
+      await userEvent.click(button);
 
       // Assert that logAttempt has been called once
       expect(logAttemptSpy).toHaveBeenCalledTimes(1);
@@ -307,7 +304,7 @@ describe("PupilReview", () => {
       // Restore the console.error function
       consoleErrorSpy.mockRestore();
     });
-    it("copies the correct url to the clipboard when logAttempt returns a promise", () => {
+    it("copies the correct url to the clipboard when logAttempt returns a promise", async () => {
       const logAttemptSpy = jest.fn(() => ({
         promise: Promise.reject(new Error("Test error")),
         attemptId: "some-attempt-id",
@@ -352,9 +349,7 @@ describe("PupilReview", () => {
       expect(button).toBeInTheDocument(); // Ensure the button exists
 
       // Simulate the button click
-      act(() => {
-        button.click(); // Manually trigger click
-      });
+      await userEvent.click(button);
 
       // Assert that logAttempt has been called once
       expect(logAttemptSpy).toHaveBeenCalledTimes(1);
@@ -362,7 +357,7 @@ describe("PupilReview", () => {
         "http://localhost:3000/pupils/lessons/lesson-slug/results/some-attempt-id/share",
       );
     });
-    it("copies correct url to clipboard when logAttempt returns a string", () => {
+    it("copies correct url to clipboard when logAttempt returns a string", async () => {
       // Enable the feature flag
       const logAttemptSpy = jest.fn(() => "some-attempt-id");
 
@@ -405,9 +400,7 @@ describe("PupilReview", () => {
       expect(button).toBeInTheDocument(); // Ensure the button exists
 
       // Simulate the button click
-      act(() => {
-        button.click(); // Manually trigger click
-      });
+      await userEvent.click(button);
 
       // Assert that logAttempt has been called once
       expect(logAttemptSpy).toHaveBeenCalledTimes(1);

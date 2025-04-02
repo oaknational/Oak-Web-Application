@@ -11,6 +11,7 @@ import {
 } from "@oaknational/oak-components";
 
 import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
+import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
 import { getPageItems, getProgrammeFactors } from "./helpers";
 
@@ -247,7 +248,8 @@ const UnitList: FC<UnitListProps> = (props) => {
   };
 
   //TODO: Temporary measure until curriculum downloads are ready for RSHE
-  const hideNewCurriculumDownloadButton = subjectSlug === "rshe-pshe";
+  const hideNewCurriculumDownloadButton =
+    subjectSlug === "rshe-pshe" || subjectSlug === "financial-education";
 
   const NewUnits = ({ category }: { category?: string }) =>
     newPageItems.length && phaseSlug ? (
@@ -260,9 +262,11 @@ const UnitList: FC<UnitListProps> = (props) => {
             ? null
             : resolveOakHref({
                 page: "curriculum-units",
-                subjectPhaseSlug: `${linkSubject}-${phaseSlug}${
-                  examBoardSlug ? `-${examBoardSlug}` : ""
-                }`,
+                subjectPhaseSlug: getSubjectPhaseSlug({
+                  subject: linkSubject,
+                  phaseSlug,
+                  examBoardSlug,
+                }),
               })
         }
         showHeader={paginationProps.currentPage === 1}

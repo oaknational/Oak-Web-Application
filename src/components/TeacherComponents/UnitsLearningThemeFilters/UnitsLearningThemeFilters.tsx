@@ -117,24 +117,26 @@ const UnitsLearningThemeFilters = ({
         role="radiogroup"
         $pb="inner-padding-xl2"
       >
-        {[{ id: "all", label: "All" }, ...themeTileItems].map((theme) => {
-          const activeMobTheme =
-            activeMobileFilter === undefined || activeMobileFilter === ""
-              ? "all"
-              : activeMobileFilter;
-          const isChecked = !isMobile
-            ? activeThemeSlug === theme.id
-            : activeMobTheme === theme.id;
-          return (
-            <OakRadioTile
-              tileItem={theme}
-              key={theme.id}
-              isChecked={isChecked}
-              onChange={onChange}
-              id={`${theme.id}-${idSuffix}`}
-            />
-          );
-        })}
+        {[{ id: "all", label: "All" }, ...themeTileItems].map(
+          (theme, index) => {
+            const activeMobTheme =
+              activeMobileFilter === undefined || activeMobileFilter === ""
+                ? "all"
+                : activeMobileFilter;
+            const isChecked = !isMobile
+              ? activeThemeSlug === theme.id
+              : activeMobTheme === theme.id;
+            return (
+              <OakRadioTile
+                tileItem={theme}
+                key={`${theme.id}-${index}`}
+                isChecked={isChecked}
+                onChange={onChange}
+                id={`${theme.id}-${idSuffix}`}
+              />
+            );
+          },
+        )}
       </OakFlex>
     </OakFlex>
   );

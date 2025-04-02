@@ -1,9 +1,12 @@
+import { z } from "zod";
 import {
   Actions,
   subjects,
   subjectSlugs,
   SyntheticUnitvariantsWithLessonIdsByKs,
 } from "@oaknational/oak-curriculum-schema";
+
+import { subjectLisitingRawSchema } from "./subjectListing.schema";
 
 interface UnprocessedSubject {
   [key: string]: {
@@ -28,10 +31,14 @@ interface ProcessedSubject {
   programmeCount: number;
   pathwaySlug: "core" | "gcse" | null;
   pathwayTitle: "Core" | "GCSE" | null;
+  features?: Record<string, unknown>;
 }
+
+type SubjectListingRawSchemaType = z.infer<typeof subjectLisitingRawSchema>;
 
 export const constructSubjectsFromUnitData = (
   units: SyntheticUnitvariantsWithLessonIdsByKs[],
+  subjectFeatures: SubjectListingRawSchemaType["subjectFeatures"],
 ): ProcessedSubject[] => {
   const subjects = units.reduce((acc, unit) => {
     let { programme_slug } = unit;
@@ -94,6 +101,9 @@ export const constructSubjectsFromUnitData = (
       pathwaySlug: subject.pathwaySlug,
       pathwayTitle: subject.pathwayTitle,
       actions: subject.actions,
+      features:
+        subjectFeatures.find((feature) => feature.slug === subject.subjectSlug)
+          ?.features || {},
     }),
   );
 

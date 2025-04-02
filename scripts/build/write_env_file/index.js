@@ -142,7 +142,16 @@ async function main() {
       process.env.NEXT_PUBLIC_VERCEL_API_URL || oakConfig.oak.vercelApiUrl,
     NEXT_PUBLIC_DOWNLOAD_API_URL:
       process.env.NEXT_PUBLIC_DOWNLOAD_API_URL || oakConfig.oak.downloadApiUrl,
-
+    // Personalisation data
+    PERSONALISATION_API_URL:
+      process.env.PERSONALISATION_API_URL ||
+      oakConfig.oak.personalisationApiUrl,
+    PERSONALISATION_API_AUTH_KEY:
+      process.env.PERSONALISATION_API_AUTH_KEY ||
+      secretsFromNetwork.PERSONALISATION_API_AUTH_KEY,
+    PERSONALISATION_API_AUTH_ROLE:
+      process.env.PERSONALISATION_API_AUTH_ROLE ||
+      oakConfig.oak.personalisationApiAuthRole,
     // Mux
     MUX_SIGNING_KEY:
       process.env.MUX_SIGNING_KEY || secretsFromNetwork.MUX_SIGNING_KEY,
@@ -253,23 +262,14 @@ async function main() {
       oakConfig.clerk.publishableKey,
     CLERK_SECRET_KEY:
       process.env.CLERK_SECRET_KEY || secretsFromNetwork.CLERK_SECRET_KEY,
+    CLERK_SIGNING_SECRET:
+      process.env.CLERK_SIGNING_SECRET ||
+      secretsFromNetwork.CLERK_SIGNING_SECRET,
 
     // Geolocation
     DEVELOPMENT_USER_REGION:
       process.env.DEVELOPMENT_USER_REGION ||
       oakConfig.clerk.developmentUserRegion,
-
-    // Sentry
-    NEXT_PUBLIC_SENTRY_DSN:
-      process.env.NEXT_PUBLIC_SENTRY_DSN || oakConfig.sentry.dsn,
-    NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER:
-      process.env.NEXT_PUBLIC_SENTRY_ORGANISATION_IDENTIFIER ||
-      oakConfig.sentry.organisationIdentifier,
-    NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER:
-      process.env.NEXT_PUBLIC_SENTRY_PROJECT_IDENTIFIER ||
-      oakConfig.sentry.projectIdentifier,
-    SENTRY_AUTH_TOKEN:
-      process.env.SENTRY_AUTH_TOKEN || secretsFromNetwork.SENTRY_AUTH_TOKEN,
   };
 
   const serializedEnv = Object.entries(env).reduce((acc, [key, value]) => {

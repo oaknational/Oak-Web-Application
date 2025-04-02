@@ -6,8 +6,6 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
-import { z } from "zod";
 import {
   OakBox,
   OakGrid,
@@ -18,6 +16,8 @@ import {
   OakFlex,
   OakMaxWidth,
 } from "@oaknational/oak-components";
+import { examboards, tierSlugs } from "@oaknational/oak-curriculum-schema";
+import { z } from "zod";
 
 import {
   getFallbackBlockingConfig,
@@ -47,6 +47,7 @@ import NewContentBanner from "@/components/TeacherComponents/NewContentBanner/Ne
 import PaginationHead from "@/components/SharedComponents/Pagination/PaginationHead";
 import MobileUnitFilters from "@/components/TeacherComponents/MobileUnitFilters";
 import DesktopUnitFilters from "@/components/TeacherComponents/DesktopUnitFilters/DesktopUnitFilters";
+import RelatedSubjectsBanner from "@/components/TeacherComponents/RelatedSubjectsBanner/RelatedSubjectsBanner";
 
 export type UnitListingPageProps = {
   curriculumData: UnitListingData;
@@ -69,6 +70,8 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
     subjectCategories,
     yearGroups,
     pathwayTitle,
+    relatedSubjects,
+    phase,
   } = curriculumData;
 
   const { track } = useAnalytics();
@@ -247,6 +250,7 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
           programmeFactor={toSentenceCase(keyStageTitle)}
           isNew={hasNewContent ?? false}
           hasCurriculumDownload={isSlugLegacy(programmeSlug)}
+          subjectDescriptionUnitListingData={curriculumData}
           {...curriculumData}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
@@ -291,6 +295,17 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
                 browseRefined={track.browseRefined}
                 setSelectedThemeSlug={setSelectedThemeSlug}
               />
+              <OakFlex $display={["none", "none", "flex"]}>
+                {relatedSubjects?.map((subjectSlug) => (
+                  <RelatedSubjectsBanner
+                    key={subjectSlug}
+                    subjectSlug={subjectSlug}
+                    keyStageSlug={keyStageSlug}
+                    phase={phase}
+                    isDesktop={true}
+                  />
+                ))}
+              </OakFlex>
             </OakGridArea>
 
             {/* Header Row */}
@@ -340,6 +355,17 @@ const UnitListingPage: NextPage<UnitListingPageProps> = ({
               )}
             </OakGridArea>
           </OakGrid>
+          <OakFlex $display={["flex", "flex", "none"]} $mb="space-between-xl">
+            {relatedSubjects?.map((subjectSlug) => (
+              <RelatedSubjectsBanner
+                key={subjectSlug}
+                subjectSlug={subjectSlug}
+                keyStageSlug={keyStageSlug}
+                phase={phase}
+                isDesktop={false}
+              />
+            ))}
+          </OakFlex>
         </OakMaxWidth>
       </AppLayout>
     </OakThemeProvider>
