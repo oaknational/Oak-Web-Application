@@ -198,6 +198,7 @@ describe("unitListing()", () => {
       ],
       learningThemes: [{ themeTitle: "Theme 1", themeSlug: "theme1" }],
       hasNewContent: true,
+      relatedSubjects: ["physics"],
     });
   });
 });

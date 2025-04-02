@@ -28576,6 +28576,136 @@ export type Published_Mv_Synthetic_Programmes_By_Year_11_1_0_Stream_Cursor_Value
   year_slug?: InputMaybe<Scalars['String']['input']>;
 };
 
+/** columns and relationships of "published.mv_synthetic_programmes_by_year_14_0_0" */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0 = {
+  __typename?: 'published_mv_synthetic_programmes_by_year_14_0_0';
+  actions?: Maybe<Scalars['jsonb']['output']>;
+  base_slug?: Maybe<Scalars['String']['output']>;
+  features?: Maybe<Scalars['jsonb']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  programme_fields?: Maybe<Scalars['jsonb']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  year_slug?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_programmes_by_year_14_0_0" */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0ActionsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_programmes_by_year_14_0_0" */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0FeaturesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.mv_synthetic_programmes_by_year_14_0_0" */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0Programme_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.mv_synthetic_programmes_by_year_14_0_0" */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Aggregate = {
+  __typename?: 'published_mv_synthetic_programmes_by_year_14_0_0_aggregate';
+  aggregate?: Maybe<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Aggregate_Fields>;
+  nodes: Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0>;
+};
+
+/** aggregate fields of "published.mv_synthetic_programmes_by_year_14_0_0" */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Aggregate_Fields = {
+  __typename?: 'published_mv_synthetic_programmes_by_year_14_0_0_aggregate_fields';
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Max_Fields>;
+  min?: Maybe<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Min_Fields>;
+};
+
+
+/** aggregate fields of "published.mv_synthetic_programmes_by_year_14_0_0" */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Boolean expression to filter rows from the table "published.mv_synthetic_programmes_by_year_14_0_0". All fields are combined with a logical 'AND'. */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Bool_Exp>>;
+  _not?: InputMaybe<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Bool_Exp>>;
+  actions?: InputMaybe<Jsonb_Comparison_Exp>;
+  base_slug?: InputMaybe<String_Comparison_Exp>;
+  features?: InputMaybe<Jsonb_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_slug?: InputMaybe<String_Comparison_Exp>;
+  year_slug?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Max_Fields = {
+  __typename?: 'published_mv_synthetic_programmes_by_year_14_0_0_max_fields';
+  base_slug?: Maybe<Scalars['String']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  year_slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Min_Fields = {
+  __typename?: 'published_mv_synthetic_programmes_by_year_14_0_0_min_fields';
+  base_slug?: Maybe<Scalars['String']['output']>;
+  programme_slug?: Maybe<Scalars['String']['output']>;
+  year_slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.mv_synthetic_programmes_by_year_14_0_0". */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Order_By = {
+  actions?: InputMaybe<Order_By>;
+  base_slug?: InputMaybe<Order_By>;
+  features?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  programme_fields?: InputMaybe<Order_By>;
+  programme_slug?: InputMaybe<Order_By>;
+  year_slug?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.mv_synthetic_programmes_by_year_14_0_0" */
+export enum Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Select_Column {
+  /** column name */
+  Actions = 'actions',
+  /** column name */
+  BaseSlug = 'base_slug',
+  /** column name */
+  Features = 'features',
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  ProgrammeFields = 'programme_fields',
+  /** column name */
+  ProgrammeSlug = 'programme_slug',
+  /** column name */
+  YearSlug = 'year_slug'
+}
+
+/** Streaming cursor of the table "published_mv_synthetic_programmes_by_year_14_0_0" */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Stream_Cursor_Value_Input = {
+  actions?: InputMaybe<Scalars['jsonb']['input']>;
+  base_slug?: InputMaybe<Scalars['String']['input']>;
+  features?: InputMaybe<Scalars['jsonb']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_slug?: InputMaybe<Scalars['String']['input']>;
+  year_slug?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** columns and relationships of "published.mv_synthetic_unitvariant_lessons_by_keystage_13_1_0" */
 export type Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0 = {
   __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0';
@@ -34566,6 +34696,238 @@ export type Published_View_Synthetic_Programmes_3_Stream_Cursor_Value_Input = {
   synthetic_programme_slug?: InputMaybe<Scalars['jsonb']['input']>;
 };
 
+/** columns and relationships of "published.view_synthetic_programmes_by_year_14" */
+export type Published_View_Synthetic_Programmes_By_Year_14 = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _deleted?: Maybe<Scalars['Boolean']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  base_slug?: Maybe<Scalars['String']['output']>;
+  deprecated_fields?: Maybe<Scalars['jsonb']['output']>;
+  features?: Maybe<Scalars['jsonb']['output']>;
+  is_legacy?: Maybe<Scalars['Boolean']['output']>;
+  keystage_sibling_pfs?: Maybe<Scalars['jsonb']['output']>;
+  programme_fields?: Maybe<Scalars['jsonb']['output']>;
+  programme_id?: Maybe<Scalars['Int']['output']>;
+  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
+  variable_programme_factors?: Maybe<Scalars['jsonb']['output']>;
+};
+
+
+/** columns and relationships of "published.view_synthetic_programmes_by_year_14" */
+export type Published_View_Synthetic_Programmes_By_Year_14Deprecated_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_synthetic_programmes_by_year_14" */
+export type Published_View_Synthetic_Programmes_By_Year_14FeaturesArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_synthetic_programmes_by_year_14" */
+export type Published_View_Synthetic_Programmes_By_Year_14Keystage_Sibling_PfsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_synthetic_programmes_by_year_14" */
+export type Published_View_Synthetic_Programmes_By_Year_14Programme_FieldsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** columns and relationships of "published.view_synthetic_programmes_by_year_14" */
+export type Published_View_Synthetic_Programmes_By_Year_14Variable_Programme_FactorsArgs = {
+  path?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** aggregated selection of "published.view_synthetic_programmes_by_year_14" */
+export type Published_View_Synthetic_Programmes_By_Year_14_Aggregate = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_aggregate';
+  aggregate?: Maybe<Published_View_Synthetic_Programmes_By_Year_14_Aggregate_Fields>;
+  nodes: Array<Published_View_Synthetic_Programmes_By_Year_14>;
+};
+
+/** aggregate fields of "published.view_synthetic_programmes_by_year_14" */
+export type Published_View_Synthetic_Programmes_By_Year_14_Aggregate_Fields = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_aggregate_fields';
+  avg?: Maybe<Published_View_Synthetic_Programmes_By_Year_14_Avg_Fields>;
+  count: Scalars['Int']['output'];
+  max?: Maybe<Published_View_Synthetic_Programmes_By_Year_14_Max_Fields>;
+  min?: Maybe<Published_View_Synthetic_Programmes_By_Year_14_Min_Fields>;
+  stddev?: Maybe<Published_View_Synthetic_Programmes_By_Year_14_Stddev_Fields>;
+  stddev_pop?: Maybe<Published_View_Synthetic_Programmes_By_Year_14_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Published_View_Synthetic_Programmes_By_Year_14_Stddev_Samp_Fields>;
+  sum?: Maybe<Published_View_Synthetic_Programmes_By_Year_14_Sum_Fields>;
+  var_pop?: Maybe<Published_View_Synthetic_Programmes_By_Year_14_Var_Pop_Fields>;
+  var_samp?: Maybe<Published_View_Synthetic_Programmes_By_Year_14_Var_Samp_Fields>;
+  variance?: Maybe<Published_View_Synthetic_Programmes_By_Year_14_Variance_Fields>;
+};
+
+
+/** aggregate fields of "published.view_synthetic_programmes_by_year_14" */
+export type Published_View_Synthetic_Programmes_By_Year_14_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Published_View_Synthetic_Programmes_By_Year_14_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** aggregate avg on columns */
+export type Published_View_Synthetic_Programmes_By_Year_14_Avg_Fields = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_avg_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Boolean expression to filter rows from the table "published.view_synthetic_programmes_by_year_14". All fields are combined with a logical 'AND'. */
+export type Published_View_Synthetic_Programmes_By_Year_14_Bool_Exp = {
+  _and?: InputMaybe<Array<Published_View_Synthetic_Programmes_By_Year_14_Bool_Exp>>;
+  _cohort?: InputMaybe<String_Comparison_Exp>;
+  _deleted?: InputMaybe<Boolean_Comparison_Exp>;
+  _not?: InputMaybe<Published_View_Synthetic_Programmes_By_Year_14_Bool_Exp>;
+  _or?: InputMaybe<Array<Published_View_Synthetic_Programmes_By_Year_14_Bool_Exp>>;
+  _state?: InputMaybe<String_Comparison_Exp>;
+  base_slug?: InputMaybe<String_Comparison_Exp>;
+  deprecated_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  features?: InputMaybe<Jsonb_Comparison_Exp>;
+  is_legacy?: InputMaybe<Boolean_Comparison_Exp>;
+  keystage_sibling_pfs?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_fields?: InputMaybe<Jsonb_Comparison_Exp>;
+  programme_id?: InputMaybe<Int_Comparison_Exp>;
+  synthetic_programme_slug?: InputMaybe<String_Comparison_Exp>;
+  variable_programme_factors?: InputMaybe<Jsonb_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Published_View_Synthetic_Programmes_By_Year_14_Max_Fields = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_max_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  base_slug?: Maybe<Scalars['String']['output']>;
+  programme_id?: Maybe<Scalars['Int']['output']>;
+  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** aggregate min on columns */
+export type Published_View_Synthetic_Programmes_By_Year_14_Min_Fields = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_min_fields';
+  _cohort?: Maybe<Scalars['String']['output']>;
+  _state?: Maybe<Scalars['String']['output']>;
+  base_slug?: Maybe<Scalars['String']['output']>;
+  programme_id?: Maybe<Scalars['Int']['output']>;
+  synthetic_programme_slug?: Maybe<Scalars['String']['output']>;
+};
+
+/** Ordering options when selecting data from "published.view_synthetic_programmes_by_year_14". */
+export type Published_View_Synthetic_Programmes_By_Year_14_Order_By = {
+  _cohort?: InputMaybe<Order_By>;
+  _deleted?: InputMaybe<Order_By>;
+  _state?: InputMaybe<Order_By>;
+  base_slug?: InputMaybe<Order_By>;
+  deprecated_fields?: InputMaybe<Order_By>;
+  features?: InputMaybe<Order_By>;
+  is_legacy?: InputMaybe<Order_By>;
+  keystage_sibling_pfs?: InputMaybe<Order_By>;
+  programme_fields?: InputMaybe<Order_By>;
+  programme_id?: InputMaybe<Order_By>;
+  synthetic_programme_slug?: InputMaybe<Order_By>;
+  variable_programme_factors?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "published.view_synthetic_programmes_by_year_14" */
+export enum Published_View_Synthetic_Programmes_By_Year_14_Select_Column {
+  /** column name */
+  Cohort = '_cohort',
+  /** column name */
+  Deleted = '_deleted',
+  /** column name */
+  State = '_state',
+  /** column name */
+  BaseSlug = 'base_slug',
+  /** column name */
+  DeprecatedFields = 'deprecated_fields',
+  /** column name */
+  Features = 'features',
+  /** column name */
+  IsLegacy = 'is_legacy',
+  /** column name */
+  KeystageSiblingPfs = 'keystage_sibling_pfs',
+  /** column name */
+  ProgrammeFields = 'programme_fields',
+  /** column name */
+  ProgrammeId = 'programme_id',
+  /** column name */
+  SyntheticProgrammeSlug = 'synthetic_programme_slug',
+  /** column name */
+  VariableProgrammeFactors = 'variable_programme_factors'
+}
+
+/** aggregate stddev on columns */
+export type Published_View_Synthetic_Programmes_By_Year_14_Stddev_Fields = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_stddev_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Published_View_Synthetic_Programmes_By_Year_14_Stddev_Pop_Fields = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_stddev_pop_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Published_View_Synthetic_Programmes_By_Year_14_Stddev_Samp_Fields = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_stddev_samp_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** Streaming cursor of the table "published_view_synthetic_programmes_by_year_14" */
+export type Published_View_Synthetic_Programmes_By_Year_14_Stream_Cursor_Input = {
+  /** Stream column input with initial value */
+  initial_value: Published_View_Synthetic_Programmes_By_Year_14_Stream_Cursor_Value_Input;
+  /** cursor ordering */
+  ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Published_View_Synthetic_Programmes_By_Year_14_Stream_Cursor_Value_Input = {
+  _cohort?: InputMaybe<Scalars['String']['input']>;
+  _deleted?: InputMaybe<Scalars['Boolean']['input']>;
+  _state?: InputMaybe<Scalars['String']['input']>;
+  base_slug?: InputMaybe<Scalars['String']['input']>;
+  deprecated_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  features?: InputMaybe<Scalars['jsonb']['input']>;
+  is_legacy?: InputMaybe<Scalars['Boolean']['input']>;
+  keystage_sibling_pfs?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_fields?: InputMaybe<Scalars['jsonb']['input']>;
+  programme_id?: InputMaybe<Scalars['Int']['input']>;
+  synthetic_programme_slug?: InputMaybe<Scalars['String']['input']>;
+  variable_programme_factors?: InputMaybe<Scalars['jsonb']['input']>;
+};
+
+/** aggregate sum on columns */
+export type Published_View_Synthetic_Programmes_By_Year_14_Sum_Fields = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_sum_fields';
+  programme_id?: Maybe<Scalars['Int']['output']>;
+};
+
+/** aggregate var_pop on columns */
+export type Published_View_Synthetic_Programmes_By_Year_14_Var_Pop_Fields = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_var_pop_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate var_samp on columns */
+export type Published_View_Synthetic_Programmes_By_Year_14_Var_Samp_Fields = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_var_samp_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
+};
+
+/** aggregate variance on columns */
+export type Published_View_Synthetic_Programmes_By_Year_14_Variance_Fields = {
+  __typename?: 'published_view_synthetic_programmes_by_year_14_variance_fields';
+  programme_id?: Maybe<Scalars['Float']['output']>;
+};
+
 /** columns and relationships of "published.view_synthetic_unitvariant_lessons_3" */
 export type Published_View_Synthetic_Unitvariant_Lessons_3 = {
   __typename?: 'published_view_synthetic_unitvariant_lessons_3';
@@ -38314,6 +38676,10 @@ export type Query_Root = {
   published_mv_synthetic_programmes_by_year_11_1_0: Array<Published_Mv_Synthetic_Programmes_By_Year_11_1_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_programmes_by_year_11_1_0" */
   published_mv_synthetic_programmes_by_year_11_1_0_aggregate: Published_Mv_Synthetic_Programmes_By_Year_11_1_0_Aggregate;
+  /** fetch data from the table: "published.mv_synthetic_programmes_by_year_14_0_0" */
+  published_mv_synthetic_programmes_by_year_14_0_0: Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_programmes_by_year_14_0_0" */
+  published_mv_synthetic_programmes_by_year_14_0_0_aggregate: Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Aggregate;
   /** fetch data from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_13_1_0" */
   published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_13_1_0" */
@@ -38394,6 +38760,10 @@ export type Query_Root = {
   published_view_synthetic_programmes_3: Array<Published_View_Synthetic_Programmes_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_programmes_3" */
   published_view_synthetic_programmes_3_aggregate: Published_View_Synthetic_Programmes_3_Aggregate;
+  /** fetch data from the table: "published.view_synthetic_programmes_by_year_14" */
+  published_view_synthetic_programmes_by_year_14: Array<Published_View_Synthetic_Programmes_By_Year_14>;
+  /** fetch aggregated fields from the table: "published.view_synthetic_programmes_by_year_14" */
+  published_view_synthetic_programmes_by_year_14_aggregate: Published_View_Synthetic_Programmes_By_Year_14_Aggregate;
   /** fetch data from the table: "published.view_synthetic_unitvariant_lessons_3" */
   published_view_synthetic_unitvariant_lessons_3: Array<Published_View_Synthetic_Unitvariant_Lessons_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_unitvariant_lessons_3" */
@@ -39867,6 +40237,24 @@ export type Query_RootPublished_Mv_Synthetic_Programmes_By_Year_11_1_0_Aggregate
 };
 
 
+export type Query_RootPublished_Mv_Synthetic_Programmes_By_Year_14_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_Mv_Synthetic_Programmes_By_Year_14_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Bool_Exp>;
+};
+
+
 export type Query_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -40224,6 +40612,24 @@ export type Query_RootPublished_View_Synthetic_Programmes_3_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_3_Order_By>>;
   where?: InputMaybe<Published_View_Synthetic_Programmes_3_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Synthetic_Programmes_By_Year_14Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_By_Year_14_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_By_Year_14_Order_By>>;
+  where?: InputMaybe<Published_View_Synthetic_Programmes_By_Year_14_Bool_Exp>;
+};
+
+
+export type Query_RootPublished_View_Synthetic_Programmes_By_Year_14_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_By_Year_14_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_By_Year_14_Order_By>>;
+  where?: InputMaybe<Published_View_Synthetic_Programmes_By_Year_14_Bool_Exp>;
 };
 
 
@@ -43138,6 +43544,12 @@ export type Subscription_Root = {
   published_mv_synthetic_programmes_by_year_11_1_0_aggregate: Published_Mv_Synthetic_Programmes_By_Year_11_1_0_Aggregate;
   /** fetch data from the table in a streaming manner: "published.mv_synthetic_programmes_by_year_11_1_0" */
   published_mv_synthetic_programmes_by_year_11_1_0_stream: Array<Published_Mv_Synthetic_Programmes_By_Year_11_1_0>;
+  /** fetch data from the table: "published.mv_synthetic_programmes_by_year_14_0_0" */
+  published_mv_synthetic_programmes_by_year_14_0_0: Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0>;
+  /** fetch aggregated fields from the table: "published.mv_synthetic_programmes_by_year_14_0_0" */
+  published_mv_synthetic_programmes_by_year_14_0_0_aggregate: Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.mv_synthetic_programmes_by_year_14_0_0" */
+  published_mv_synthetic_programmes_by_year_14_0_0_stream: Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0>;
   /** fetch data from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_13_1_0" */
   published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0: Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0>;
   /** fetch aggregated fields from the table: "published.mv_synthetic_unitvariant_lessons_by_keystage_13_1_0" */
@@ -43258,6 +43670,12 @@ export type Subscription_Root = {
   published_view_synthetic_programmes_3_aggregate: Published_View_Synthetic_Programmes_3_Aggregate;
   /** fetch data from the table in a streaming manner: "published.view_synthetic_programmes_3" */
   published_view_synthetic_programmes_3_stream: Array<Published_View_Synthetic_Programmes_3>;
+  /** fetch data from the table: "published.view_synthetic_programmes_by_year_14" */
+  published_view_synthetic_programmes_by_year_14: Array<Published_View_Synthetic_Programmes_By_Year_14>;
+  /** fetch aggregated fields from the table: "published.view_synthetic_programmes_by_year_14" */
+  published_view_synthetic_programmes_by_year_14_aggregate: Published_View_Synthetic_Programmes_By_Year_14_Aggregate;
+  /** fetch data from the table in a streaming manner: "published.view_synthetic_programmes_by_year_14" */
+  published_view_synthetic_programmes_by_year_14_stream: Array<Published_View_Synthetic_Programmes_By_Year_14>;
   /** fetch data from the table: "published.view_synthetic_unitvariant_lessons_3" */
   published_view_synthetic_unitvariant_lessons_3: Array<Published_View_Synthetic_Unitvariant_Lessons_3>;
   /** fetch aggregated fields from the table: "published.view_synthetic_unitvariant_lessons_3" */
@@ -45242,6 +45660,31 @@ export type Subscription_RootPublished_Mv_Synthetic_Programmes_By_Year_11_1_0_St
 };
 
 
+export type Subscription_RootPublished_Mv_Synthetic_Programmes_By_Year_14_0_0Args = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Programmes_By_Year_14_0_0_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Order_By>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_Mv_Synthetic_Programmes_By_Year_14_0_0_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_Mv_Synthetic_Programmes_By_Year_14_0_0_Bool_Exp>;
+};
+
+
 export type Subscription_RootPublished_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0Args = {
   distinct_on?: InputMaybe<Array<Published_Mv_Synthetic_Unitvariant_Lessons_By_Keystage_13_1_0_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']['input']>;
@@ -45739,6 +46182,31 @@ export type Subscription_RootPublished_View_Synthetic_Programmes_3_StreamArgs = 
   batch_size: Scalars['Int']['input'];
   cursor: Array<InputMaybe<Published_View_Synthetic_Programmes_3_Stream_Cursor_Input>>;
   where?: InputMaybe<Published_View_Synthetic_Programmes_3_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Synthetic_Programmes_By_Year_14Args = {
+  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_By_Year_14_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_By_Year_14_Order_By>>;
+  where?: InputMaybe<Published_View_Synthetic_Programmes_By_Year_14_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Synthetic_Programmes_By_Year_14_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Published_View_Synthetic_Programmes_By_Year_14_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  order_by?: InputMaybe<Array<Published_View_Synthetic_Programmes_By_Year_14_Order_By>>;
+  where?: InputMaybe<Published_View_Synthetic_Programmes_By_Year_14_Bool_Exp>;
+};
+
+
+export type Subscription_RootPublished_View_Synthetic_Programmes_By_Year_14_StreamArgs = {
+  batch_size: Scalars['Int']['input'];
+  cursor: Array<InputMaybe<Published_View_Synthetic_Programmes_By_Year_14_Stream_Cursor_Input>>;
+  where?: InputMaybe<Published_View_Synthetic_Programmes_By_Year_14_Bool_Exp>;
 };
 
 
@@ -54617,7 +55085,7 @@ export type PupilSubjectListingQueryVariables = Exact<{
 }>;
 
 
-export type PupilSubjectListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_11_1_0', programme_slug?: string | null, base_slug?: string | null, year_slug?: string | null, programme_fields?: any | null, is_legacy?: boolean | null }> };
+export type PupilSubjectListingQuery = { __typename?: 'query_root', data: Array<{ __typename?: 'published_mv_synthetic_programmes_by_year_14_0_0', programme_slug?: string | null, base_slug?: string | null, year_slug?: string | null, programme_fields?: any | null, is_legacy?: boolean | null, features?: any | null }> };
 
 export type PupilUnitListingQueryVariables = Exact<{
   baseSlug: Scalars['String']['input'];
@@ -55171,7 +55639,7 @@ export const PupilProgrammeListingDocument = gql`
     `;
 export const PupilSubjectListingDocument = gql`
     query pupilSubjectListing($yearSlug: String!) {
-  data: published_mv_synthetic_programmes_by_year_11_1_0(
+  data: published_mv_synthetic_programmes_by_year_14_0_0(
     where: {year_slug: {_eq: $yearSlug}}
   ) {
     programme_slug
@@ -55179,6 +55647,7 @@ export const PupilSubjectListingDocument = gql`
     year_slug
     programme_fields
     is_legacy
+    features
   }
 }
     `;

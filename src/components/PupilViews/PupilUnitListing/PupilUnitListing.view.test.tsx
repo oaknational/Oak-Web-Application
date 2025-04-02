@@ -226,7 +226,6 @@ describe("PupilViewsUnitListing", () => {
     expect(getByText("Optionality Title 1")).toBeInTheDocument();
     expect(getByText("Optionality Title 2")).toBeInTheDocument();
   });
-
   it("does render subject description for financial education", async () => {
     const { queryByTestId } = await renderWithTheme(
       <OakThemeProvider theme={oakDefaultTheme}>
@@ -262,6 +261,43 @@ describe("PupilViewsUnitListing", () => {
     );
     const financeSubjectDescription = await queryByTestId(
       "pupil-financial-education-description",
+    );
+    expect(financeSubjectDescription).not.toBeInTheDocument();
+  });
+  it("renders a related subject banner if present", async () => {
+    const { queryByTestId } = await renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          unitSections={unitsWithOptionality}
+          phase="secondary"
+          backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
+          programmeFields={programmeFields}
+          relatedSubjects={["financial-education"]}
+        />
+      </OakThemeProvider>,
+    );
+    const financeSubjectDescription = await queryByTestId(
+      "financial-education-banner",
+    );
+    expect(financeSubjectDescription).toBeInTheDocument();
+  });
+
+  it("renders no related subject banners if no related subjects", async () => {
+    const { queryByTestId } = await renderWithTheme(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <PupilViewsUnitListing
+          unitSections={unitsWithOptionality}
+          phase="secondary"
+          backHrefSlugs={backHrefSlugs}
+          subjectCategories={[]}
+          programmeFields={programmeFields}
+          relatedSubjects={[]}
+        />
+      </OakThemeProvider>,
+    );
+    const financeSubjectDescription = await queryByTestId(
+      "financial-education-banner",
     );
     expect(financeSubjectDescription).not.toBeInTheDocument();
   });

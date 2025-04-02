@@ -1,3 +1,77 @@
+# [1.723.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.722.0...v1.723.0) (2025-04-01)
+
+
+### Features
+
+* get phase from data ([07f7dcc](https://github.com/oaknational/Oak-Web-Application/commit/07f7dcc88e308167ca9fbf51ba9677e26bffa656))
+* get phase from data ([281ec63](https://github.com/oaknational/Oak-Web-Application/commit/281ec63be43281f1eb5de3e38da190999da031c0))
+
+# [1.722.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.721.0...v1.722.0) (2025-04-01)
+
+
+### Bug Fixes
+
+* add useEffect to load the current clip correctly ([76ffeff](https://github.com/oaknational/Oak-Web-Application/commit/76ffeff6881b96024411d3f81fd724a3bc1f7fbb))
+* link corretly to the first video clip ([bcfcec8](https://github.com/oaknational/Oak-Web-Application/commit/bcfcec84ad3fc0f68c6166dbe8312d847fde78b6))
+* order media clips according to order in CAT ([4673b5b](https://github.com/oaknational/Oak-Web-Application/commit/4673b5b82e569f05745e315366608b6c1700377a))
+* update test ([1c630b4](https://github.com/oaknational/Oak-Web-Application/commit/1c630b41404f53ec0d5d34be3fb45dcbf9d89dd5))
+
+
+### Features
+
+* add tests ([4fbaa6b](https://github.com/oaknational/Oak-Web-Application/commit/4fbaa6b5e645f432f380c4aef35ef4174a050003))
+
+# [1.721.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.2...v1.721.0) (2025-03-31)
+
+
+### Bug Fixes
+
+* align headings in PupilSubjectListing to left ([39caca0](https://github.com/oaknational/Oak-Web-Application/commit/39caca08bf499f74ecb36e706252efc8405d1640))
+* update further lessons background colour ([e0a2d6a](https://github.com/oaknational/Oak-Web-Application/commit/e0a2d6a788f93c87cd9950d51ac9f7a5778afdea))
+
+
+### Features
+
+* merge ([741e15b](https://github.com/oaknational/Oak-Web-Application/commit/741e15b435098e3f61d44169c65643085273fd09))
+* refactor subject page to use features ([eeb7e4a](https://github.com/oaknational/Oak-Web-Application/commit/eeb7e4aa68f9efa892ad1c535b4b3774efe7f87d))
+* remove consolelog ([4f10447](https://github.com/oaknational/Oak-Web-Application/commit/4f10447905d9d77da9d4d6a700445c3a78792465))
+* show finance on pupils subject listing page ([afc2116](https://github.com/oaknational/Oak-Web-Application/commit/afc2116d92cbea1e4558201f869fbc887e72b934))
+* test coverage ([59186fe](https://github.com/oaknational/Oak-Web-Application/commit/59186fe107538ad23bd12fa9d6c35aabb14c839f))
+* update package ([d57c4dc](https://github.com/oaknational/Oak-Web-Application/commit/d57c4dc1b85fccf0de05f9b36d0e61ff4a9e6d71))
+
+## [1.720.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.1...v1.720.2) (2025-03-31)
+
+
+### Bug Fixes
+
+* allow empty media object id ([2848b2e](https://github.com/oaknational/Oak-Web-Application/commit/2848b2e04deaf45dbb82a10fe1c562f1dff43f37))
+* prettifier ([bc3840d](https://github.com/oaknational/Oak-Web-Application/commit/bc3840d3b68fef094256bdc6b54793bdda4f2ff0))
+* remove media and video object ids from schema as we dont use them anyways ([f576854](https://github.com/oaknational/Oak-Web-Application/commit/f576854f8057ba21345bdba67ea41e6842639df1))
+* retrigger build ([ca23c53](https://github.com/oaknational/Oak-Web-Application/commit/ca23c53d19452a623a83753eddbcc6b74d89b170))
+* update package json ([955ebe8](https://github.com/oaknational/Oak-Web-Application/commit/955ebe8748194952b0a918d949a5f24024f8b462))
+
+## [1.720.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.0...v1.720.1) (2025-03-31)
+
+
+### Bug Fixes
+
+* added <OakSecondaryLink/> as default link in explainer portable text ([5f2a27a](https://github.com/oaknational/Oak-Web-Application/commit/5f2a27a2a9c50b6f9b4557220b2f8a6d674941a9))
+
+# [1.720.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.719.1...v1.720.0) (2025-03-28)
+
+
+### Bug Fixes
+
+* add readonly modifier to BannerProps in RelatedSubjectsBanner components ([8f209e8](https://github.com/oaknational/Oak-Web-Application/commit/8f209e85ebe4ec419bd7d5c899aee8464cea3298))
+* add readonly modifier to props in RelatedSubjectsBanner components ([02d035c](https://github.com/oaknational/Oak-Web-Application/commit/02d035c0d26b9f6b5f71addac126b0eb8d91fc5d))
+* update oak-components dependency to version 1.97.0 ([2ee5079](https://github.com/oaknational/Oak-Web-Application/commit/2ee50794ddb6fddacd6f03ecdfa48bbe0e4e7c46))
+
+
+### Features
+
+* add related subjects functionality ([a7b0166](https://github.com/oaknational/Oak-Web-Application/commit/a7b01668e695a59a9e7234cadd598879635d58fb))
+* include phase in FinancialEducationBanner props and update display text ([d2e2617](https://github.com/oaknational/Oak-Web-Application/commit/d2e2617dfa71211b7d493519afc57998aec9b1c1))
+
 ## [1.719.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.719.0...v1.719.1) (2025-03-27)
 
 # [1.719.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.718.0...v1.719.0) (2025-03-26)
