@@ -90,6 +90,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   // construct list of all clips in one array
 
+  const isPEPractical = actions?.isPePractical;
   const isPELesson = actions?.displayPETitle;
   const isMFL = actions?.displayVocabButton;
 
@@ -188,6 +189,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       isAudioClip={currentClip.mediaObject?.format === "mp3"}
       userEventCallback={handleVideoEvents}
       loadingTextColor="white"
+      defaultHiddenCaptions={isPEPractical}
     />
   );
 
