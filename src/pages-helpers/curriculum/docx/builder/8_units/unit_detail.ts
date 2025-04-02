@@ -227,8 +227,11 @@ export async function buildUnit(
     )}/units/${resolvedUnitSlug}/lessons`,
   });
 
+  const isUnitDescriptionEnabled =
+    unit.parent_programme_features?.unit_description === true;
+
   let unitDescriptions: string = "";
-  if (unit.cycle === "1") {
+  if (!isUnitDescriptionEnabled) {
     const priorUnitTitle = unitOptionIfAvailable.connection_prior_unit_title
       ? unitOptionIfAvailable.connection_prior_unit_title
       : "-";
