@@ -1,3 +1,24 @@
+# [1.729.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.728.0...v1.729.0) (2025-04-03)
+
+
+### Bug Fixes
+
+* make regex safer using limits for lengths instead of  + ([fb99335](https://github.com/oaknational/Oak-Web-Application/commit/fb99335bdf61d371dfa4c2d7976d98199a22a181))
+
+
+### Features
+
+* add extra info in unit downloads banner ([af6b8dc](https://github.com/oaknational/Oak-Web-Application/commit/af6b8dce640fbbddef3ac8ce4a8e751f308e46b9))
+* add incomplete units banner ([1b011a5](https://github.com/oaknational/Oak-Web-Application/commit/1b011a5288a3c4c0c67ba937e8d9de2c4328aa46))
+* add unpublished lesson cards on lesson listing page ([8158565](https://github.com/oaknational/Oak-Web-Application/commit/815856599ccb4d0f56fd2a2eee6fca6a1e6c503f))
+* add validation on the email input field ([1d4eea4](https://github.com/oaknational/Oak-Web-Application/commit/1d4eea475c2de3b7c41bed0c1e13669c7744f30d))
+* integrate newsletter sign up ([16de28e](https://github.com/oaknational/Oak-Web-Application/commit/16de28efa5e0f9ca1969253b155f110d6fa1b26b))
+* move incomplete units message into a new banner ([c6ee6ca](https://github.com/oaknational/Oak-Web-Application/commit/c6ee6ca323988705dcf3d65313937e6397263913))
+* update incomplete units banner ([0775155](https://github.com/oaknational/Oak-Web-Application/commit/0775155c2257d3716055940c42caab4527863b4a))
+* update lesson count for incomplete units on lesson listing page ([84734c8](https://github.com/oaknational/Oak-Web-Application/commit/84734c8bcdc23e67855119e06a717f23c5f89063))
+* update lesson count to show where unpublished lessons are missing on unit listing page ([b8b566b](https://github.com/oaknational/Oak-Web-Application/commit/b8b566bb234d51f3af5e5b64b9682b1eb5b31915))
+* update query versions ([ff862ef](https://github.com/oaknational/Oak-Web-Application/commit/ff862ef7c76d1844ef5e0ab43b30829a08e48b01))
+
 # [1.728.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.727.1...v1.728.0) (2025-04-03)
 
 
