@@ -1,3 +1,10 @@
+# [1.727.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.726.0...v1.727.0) (2025-04-03)
+
+
+### Features
+
+* background squiggle in curric lander ([48a7802](https://github.com/oaknational/Oak-Web-Application/commit/48a78024e88d6f5cfdd51c680d6095ad43d4846b))
+
 # [1.726.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.725.0...v1.726.0) (2025-04-03)
 
 
