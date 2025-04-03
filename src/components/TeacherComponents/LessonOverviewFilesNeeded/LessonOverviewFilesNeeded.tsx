@@ -50,10 +50,6 @@ const LessonOverviewFilesNeeded: FC<LessonOverviewFilesNeededProps> = ({
             })}
           </OakUL>
         </OakBox>
-        <OakP>
-          {`Download ${isPlural ? "these files" : "this file"} to use in the
-          lesson.`}
-        </OakP>
         <OakTertiaryButton
           element="a"
           href={
