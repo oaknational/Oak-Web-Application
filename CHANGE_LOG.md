@@ -1,3 +1,10 @@
+# [1.728.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.727.1...v1.728.0) (2025-04-03)
+
+
+### Features
+
+* copy update for additional files ([5c7caf3](https://github.com/oaknational/Oak-Web-Application/commit/5c7caf3e85c84e9839b4c46018d6306980e4f332))
+
 ## [1.727.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.727.0...v1.727.1) (2025-04-03)
 
 
