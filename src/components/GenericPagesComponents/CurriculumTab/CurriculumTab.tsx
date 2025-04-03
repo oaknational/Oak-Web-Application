@@ -8,6 +8,7 @@ import {
   OakSecondaryLink,
   OakMaxWidth,
   OakBox,
+  OakIcon,
 } from "@oaknational/oak-components";
 
 import Illustration from "@/components/SharedComponents/Illustration";
@@ -19,13 +20,19 @@ import useAnalytics from "@/context/Analytics/useAnalytics";
 type CurriculumDownloadTabProps = {
   curriculumPhaseOptions: SubjectPhasePickerData;
 };
+
 const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
   curriculumPhaseOptions,
 }) => {
   const { track } = useAnalytics();
   return (
-    <OakBox $background={"mint"} $pv="inner-padding-xl" $ph={"inner-padding-m"}>
-      <OakMaxWidth $pv={"inner-padding-xl"}>
+    <OakBox
+      $background={"mint"}
+      $pv="inner-padding-xl"
+      $ph={"inner-padding-m"}
+      $overflowX={"hidden"}
+    >
+      <OakMaxWidth $pv={"inner-padding-xl"} $position={"relative"}>
         <OakFlex>
           <OakFlex
             $flexDirection={"column"}
@@ -100,7 +107,11 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
             $flexGrow={1}
             $display={["none", "flex", "flex"]}
           >
-            <OakFlex $flexDirection={"column"} $gap="all-spacing-2">
+            <OakFlex
+              $flexDirection={"column"}
+              $gap="all-spacing-2"
+              $position={"relative"}
+            >
               <Illustration
                 $transform={["none", "none", "rotate(-2deg)"]}
                 slug={"teacher-whiteboard"}
@@ -111,6 +122,7 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
                 width={520}
                 $borderStyle={"solid"}
                 $borderColor={"black"}
+                $zIndex={"fixedHeader"}
               />
             </OakFlex>
           </OakFlex>
@@ -123,6 +135,25 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
         >
           <SubjectPhasePicker {...curriculumPhaseOptions} />
         </OakBox>
+
+        {/* force this positioning */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            right: -200,
+            width: 529,
+            height: 420,
+          }}
+        >
+          <OakIcon
+            $display={["none", "none", "block"]}
+            iconName={"looping-line-5"}
+            $colorFilter={"mint30"}
+            $width={"100%"}
+            $height={"100%"}
+          />
+        </div>
       </OakMaxWidth>
     </OakBox>
   );
