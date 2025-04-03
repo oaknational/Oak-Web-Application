@@ -45,6 +45,7 @@ export type VideoPlayerProps = {
   pathwayData?: PupilPathwayData;
   isAudioClip?: boolean;
   loadingTextColor?: OakColorToken;
+  defaultHiddenCaptions?: boolean;
 };
 
 export type VideoEventCallbackArgs = {
@@ -66,6 +67,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
     pathwayData,
     isAudioClip,
     loadingTextColor = "black",
+    defaultHiddenCaptions = false,
   } = props;
 
   const mediaElRef = useRef<MuxPlayerElement>(null);
@@ -312,6 +314,7 @@ const VideoPlayer: FC<VideoPlayerProps> = (props) => {
             mediaElRef.current?.play();
           }
         }}
+        defaultHiddenCaptions={defaultHiddenCaptions}
         style={{
           aspectRatio: "16/9",
           overflow: "hidden",

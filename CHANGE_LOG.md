@@ -1,3 +1,54 @@
+# [1.727.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.726.0...v1.727.0) (2025-04-03)
+
+
+### Features
+
+* background squiggle in curric lander ([48a7802](https://github.com/oaknational/Oak-Web-Application/commit/48a78024e88d6f5cfdd51c680d6095ad43d4846b))
+
+# [1.726.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.725.0...v1.726.0) (2025-04-03)
+
+
+### Bug Fixes
+
+* attempt to fix squiggle issues ([b6c67f2](https://github.com/oaknational/Oak-Web-Application/commit/b6c67f2d2bac3a126c4f67f6bb1f9a4224147727))
+
+
+### Features
+
+* add mint30 colour filter to wiggle icon ([a4b5b38](https://github.com/oaknational/Oak-Web-Application/commit/a4b5b38c0e5724299ef919301e4d6fa5b2b723fc))
+* add squiggle to curriculum landing page ([8134a10](https://github.com/oaknational/Oak-Web-Application/commit/8134a10127e0ce463edeae09ae08e413f335fc00))
+
+# [1.725.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.724.0...v1.725.0) (2025-04-02)
+
+
+### Bug Fixes
+
+* add aria label ([95e291f](https://github.com/oaknational/Oak-Web-Application/commit/95e291f8cdc9b5ad4b695ef0235db0e4438a3804))
+
+
+### Features
+
+* add help article link to media page ([5609455](https://github.com/oaknational/Oak-Web-Application/commit/56094554df6038e6dc27a62ac165e6733fda4bb2))
+
+# [1.724.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.723.1...v1.724.0) (2025-04-02)
+
+
+### Bug Fixes
+
+* allow parent_programme_features to be nullable ([26e7686](https://github.com/oaknational/Oak-Web-Application/commit/26e7686ae588c13264c91b9c05ba0846da86f56c))
+
+
+### Features
+
+* change to using parent_programme features.unit_description for deciding when to display wtwn ([a3a2a6f](https://github.com/oaknational/Oak-Web-Application/commit/a3a2a6f85744db2791700fa8798da0bd340e38f6))
+
+## [1.723.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.723.0...v1.723.1) (2025-04-02)
+
+
+### Bug Fixes
+
+* disable captions on pe practical media clips ([7b4152b](https://github.com/oaknational/Oak-Web-Application/commit/7b4152b771793269c2ba9a1d3f5cb5a09e86a020))
+
 # [1.723.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.722.0...v1.723.0) (2025-04-01)
 
 
