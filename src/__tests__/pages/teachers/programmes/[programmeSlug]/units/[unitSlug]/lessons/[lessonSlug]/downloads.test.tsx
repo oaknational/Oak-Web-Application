@@ -65,12 +65,15 @@ jest.mock(
 );
 
 const lessonDownloaded = jest.fn();
+const teacherShareInitiated = jest.fn();
 jest.mock("@/context/Analytics/useAnalytics", () => ({
   __esModule: true,
   default: () => ({
     track: {
       lessonResourcesDownloaded: (...args: unknown[]) =>
         lessonDownloaded(...args),
+      teacherShareInitiated: (...args: unknown[]) =>
+        teacherShareInitiated(...args),
     },
   }),
 }));
@@ -204,6 +207,8 @@ describe("pages/teachers/lessons/[lessonSlug]/downloads", () => {
       unitName: "Measuring waves",
       unitSlug: "measuring-waves",
     });
+
+    expect(teacherShareInitiated).toHaveBeenCalledTimes(1);
   });
   it("tracks download event with correct args for lessons without pfs", async () => {
     window.scrollTo = jest.fn();
