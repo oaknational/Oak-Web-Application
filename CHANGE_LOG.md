@@ -1,3 +1,16 @@
+# [1.726.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.725.0...v1.726.0) (2025-04-03)
+
+
+### Bug Fixes
+
+* attempt to fix squiggle issues ([b6c67f2](https://github.com/oaknational/Oak-Web-Application/commit/b6c67f2d2bac3a126c4f67f6bb1f9a4224147727))
+
+
+### Features
+
+* add mint30 colour filter to wiggle icon ([a4b5b38](https://github.com/oaknational/Oak-Web-Application/commit/a4b5b38c0e5724299ef919301e4d6fa5b2b723fc))
+* add squiggle to curriculum landing page ([8134a10](https://github.com/oaknational/Oak-Web-Application/commit/8134a10127e0ce463edeae09ae08e413f335fc00))
+
 # [1.725.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.724.0...v1.725.0) (2025-04-02)
 
 
