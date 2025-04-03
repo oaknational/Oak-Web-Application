@@ -1,12 +1,15 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import {
   OakTertiaryButton,
+  OakTertiaryInvertedButton,
   OakBox,
   OakMaxWidth,
   OakFlex,
   OakMediaClip,
   OakMediaClipList,
+  OakGrid,
+  OakGridArea,
 } from "@oaknational/oak-components";
 
 import VideoPlayer, {
@@ -20,6 +23,7 @@ import {
   getBreadcrumbsForLessonPathway,
   getCommonPathway,
   getLessonMediaBreadCrumb,
+  sortMediaClipsByOrder,
 } from "@/components/TeacherComponents/helpers/lessonHelpers/lesson.helpers";
 import { LessonPathway } from "@/components/TeacherComponents/types/lesson.types";
 import { LessonMediaClipInfo } from "@/components/TeacherComponents/LessonMediaClipInfo";
@@ -86,6 +90,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
 
   // construct list of all clips in one array
 
+  const isPEPractical = actions?.isPePractical;
   const isPELesson = actions?.displayPETitle;
   const isMFL = actions?.displayVocabButton;
 
@@ -96,20 +101,24 @@ export const LessonMedia = (props: LessonMediaProps) => {
     lessonOutlines: lessonOutline,
   });
 
-  const listOfAllClips = mediaClips
-    ? Object.keys(mediaClips)
-        .map((learningCycle) => {
-          return (
-            mediaClips[learningCycle]?.map((mediaClip: MediaClip) => {
-              return {
-                ...mediaClip,
-                learningCycle,
-              };
-            }) || []
-          );
-        })
-        .flat()
-    : [];
+  const listOfAllClips = useMemo(() => {
+    return mediaClips
+      ? Object.keys(mediaClips)
+          .map((learningCycle) => {
+            return (
+              mediaClips[learningCycle]
+                ?.toSorted(sortMediaClipsByOrder)
+                .map((mediaClip: MediaClip) => {
+                  return {
+                    ...mediaClip,
+                    learningCycle,
+                  };
+                }) || []
+            );
+          })
+          .flat()
+      : [];
+  }, [mediaClips]);
 
   const [currentClip, setCurrentClip] = useState(
     getInitialCurrentClip(listOfAllClips, query.video),
@@ -137,6 +146,10 @@ export const LessonMedia = (props: LessonMediaProps) => {
       );
     }
   };
+
+  useEffect(() => {
+    setCurrentClip(getInitialCurrentClip(listOfAllClips, query.video));
+  }, [listOfAllClips, query.video]);
 
   const handleVideoChange = (clip: MediaClip & { learningCycle: string }) => {
     goToTheNextClip(String(clip.mediaId));
@@ -176,6 +189,7 @@ export const LessonMedia = (props: LessonMediaProps) => {
       isAudioClip={currentClip.mediaObject?.format === "mp3"}
       userEventCallback={handleVideoEvents}
       loadingTextColor="white"
+      defaultHiddenCaptions={isPEPractical}
     />
   );
 
@@ -259,6 +273,20 @@ export const LessonMedia = (props: LessonMediaProps) => {
       videoTranscript={joinTranscript(currentClip)}
       copyLinkButtonEnabled={true}
     />
+  );
+
+  const helpArticleLink = (
+    <OakTertiaryInvertedButton
+      element="a"
+      href={"https://support.thenational.academy/video-and-audio-clips"}
+      target="_blank"
+      iconName="external"
+      data-testid="help-article-link"
+      isTrailingIcon
+      aria-label="Read help article for this page (opens in a new tab)"
+    >
+      Read help article for this page
+    </OakTertiaryInvertedButton>
   );
 
   return (
@@ -351,7 +379,15 @@ export const LessonMedia = (props: LessonMediaProps) => {
             </OakBox>
           </OakFlex>
           <OakBox $display={["none", "none", "block"]}>
-            {lessonMediaClipInfo}
+            <OakGrid>
+              <OakGridArea $colSpan={8}>{lessonMediaClipInfo}</OakGridArea>
+              <OakGridArea $colSpan={4} $alignItems={"flex-end"}>
+                {helpArticleLink}
+              </OakGridArea>
+            </OakGrid>
+          </OakBox>
+          <OakBox $display={["block", "block", "none"]}>
+            {helpArticleLink}
           </OakBox>
         </OakBox>
       )}

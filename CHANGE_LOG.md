@@ -1,3 +1,99 @@
+# [1.726.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.725.0...v1.726.0) (2025-04-03)
+
+
+### Bug Fixes
+
+* attempt to fix squiggle issues ([b6c67f2](https://github.com/oaknational/Oak-Web-Application/commit/b6c67f2d2bac3a126c4f67f6bb1f9a4224147727))
+
+
+### Features
+
+* add mint30 colour filter to wiggle icon ([a4b5b38](https://github.com/oaknational/Oak-Web-Application/commit/a4b5b38c0e5724299ef919301e4d6fa5b2b723fc))
+* add squiggle to curriculum landing page ([8134a10](https://github.com/oaknational/Oak-Web-Application/commit/8134a10127e0ce463edeae09ae08e413f335fc00))
+
+# [1.725.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.724.0...v1.725.0) (2025-04-02)
+
+
+### Bug Fixes
+
+* add aria label ([95e291f](https://github.com/oaknational/Oak-Web-Application/commit/95e291f8cdc9b5ad4b695ef0235db0e4438a3804))
+
+
+### Features
+
+* add help article link to media page ([5609455](https://github.com/oaknational/Oak-Web-Application/commit/56094554df6038e6dc27a62ac165e6733fda4bb2))
+
+# [1.724.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.723.1...v1.724.0) (2025-04-02)
+
+
+### Bug Fixes
+
+* allow parent_programme_features to be nullable ([26e7686](https://github.com/oaknational/Oak-Web-Application/commit/26e7686ae588c13264c91b9c05ba0846da86f56c))
+
+
+### Features
+
+* change to using parent_programme features.unit_description for deciding when to display wtwn ([a3a2a6f](https://github.com/oaknational/Oak-Web-Application/commit/a3a2a6f85744db2791700fa8798da0bd340e38f6))
+
+## [1.723.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.723.0...v1.723.1) (2025-04-02)
+
+
+### Bug Fixes
+
+* disable captions on pe practical media clips ([7b4152b](https://github.com/oaknational/Oak-Web-Application/commit/7b4152b771793269c2ba9a1d3f5cb5a09e86a020))
+
+# [1.723.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.722.0...v1.723.0) (2025-04-01)
+
+
+### Features
+
+* get phase from data ([07f7dcc](https://github.com/oaknational/Oak-Web-Application/commit/07f7dcc88e308167ca9fbf51ba9677e26bffa656))
+* get phase from data ([281ec63](https://github.com/oaknational/Oak-Web-Application/commit/281ec63be43281f1eb5de3e38da190999da031c0))
+
+# [1.722.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.721.0...v1.722.0) (2025-04-01)
+
+
+### Bug Fixes
+
+* add useEffect to load the current clip correctly ([76ffeff](https://github.com/oaknational/Oak-Web-Application/commit/76ffeff6881b96024411d3f81fd724a3bc1f7fbb))
+* link corretly to the first video clip ([bcfcec8](https://github.com/oaknational/Oak-Web-Application/commit/bcfcec84ad3fc0f68c6166dbe8312d847fde78b6))
+* order media clips according to order in CAT ([4673b5b](https://github.com/oaknational/Oak-Web-Application/commit/4673b5b82e569f05745e315366608b6c1700377a))
+* update test ([1c630b4](https://github.com/oaknational/Oak-Web-Application/commit/1c630b41404f53ec0d5d34be3fb45dcbf9d89dd5))
+
+
+### Features
+
+* add tests ([4fbaa6b](https://github.com/oaknational/Oak-Web-Application/commit/4fbaa6b5e645f432f380c4aef35ef4174a050003))
+
+# [1.721.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.2...v1.721.0) (2025-03-31)
+
+
+### Bug Fixes
+
+* align headings in PupilSubjectListing to left ([39caca0](https://github.com/oaknational/Oak-Web-Application/commit/39caca08bf499f74ecb36e706252efc8405d1640))
+* update further lessons background colour ([e0a2d6a](https://github.com/oaknational/Oak-Web-Application/commit/e0a2d6a788f93c87cd9950d51ac9f7a5778afdea))
+
+
+### Features
+
+* merge ([741e15b](https://github.com/oaknational/Oak-Web-Application/commit/741e15b435098e3f61d44169c65643085273fd09))
+* refactor subject page to use features ([eeb7e4a](https://github.com/oaknational/Oak-Web-Application/commit/eeb7e4aa68f9efa892ad1c535b4b3774efe7f87d))
+* remove consolelog ([4f10447](https://github.com/oaknational/Oak-Web-Application/commit/4f10447905d9d77da9d4d6a700445c3a78792465))
+* show finance on pupils subject listing page ([afc2116](https://github.com/oaknational/Oak-Web-Application/commit/afc2116d92cbea1e4558201f869fbc887e72b934))
+* test coverage ([59186fe](https://github.com/oaknational/Oak-Web-Application/commit/59186fe107538ad23bd12fa9d6c35aabb14c839f))
+* update package ([d57c4dc](https://github.com/oaknational/Oak-Web-Application/commit/d57c4dc1b85fccf0de05f9b36d0e61ff4a9e6d71))
+
+## [1.720.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.1...v1.720.2) (2025-03-31)
+
+
+### Bug Fixes
+
+* allow empty media object id ([2848b2e](https://github.com/oaknational/Oak-Web-Application/commit/2848b2e04deaf45dbb82a10fe1c562f1dff43f37))
+* prettifier ([bc3840d](https://github.com/oaknational/Oak-Web-Application/commit/bc3840d3b68fef094256bdc6b54793bdda4f2ff0))
+* remove media and video object ids from schema as we dont use them anyways ([f576854](https://github.com/oaknational/Oak-Web-Application/commit/f576854f8057ba21345bdba67ea41e6842639df1))
+* retrigger build ([ca23c53](https://github.com/oaknational/Oak-Web-Application/commit/ca23c53d19452a623a83753eddbcc6b74d89b170))
+* update package json ([955ebe8](https://github.com/oaknational/Oak-Web-Application/commit/955ebe8748194952b0a918d949a5f24024f8b462))
+
 ## [1.720.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.720.0...v1.720.1) (2025-03-31)
 
 
