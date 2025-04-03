@@ -7,7 +7,7 @@ export const lessonAdditionalFilesFixture = (
   overrides: Partial<AdditionalFiles>,
 ): AdditionalFiles => {
   const snake = additionalFilesFixture();
-  const camel = keysToCamelCase(snake) as AdditionalFiles;
+  const camel = keysToCamelCase(snake);
   return {
     ...camel,
     ...overrides,

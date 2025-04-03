@@ -53,7 +53,7 @@ const LessonOverviewMediaClips: FC<LessonOverviewMediaClipsProps> = ({
             learningCycleVideosTitleMap[learningCycleTitle];
 
           const firstCycleVideo = learningCycleVideos.find(
-            (video) => video.order === "1" || video.order === 1,
+            (video) => video.order.toString() === "1",
           );
           if (!firstCycleVideo) return null;
 
