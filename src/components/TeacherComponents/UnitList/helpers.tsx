@@ -13,7 +13,10 @@ import { UnitListingData } from "@/node-lib/curriculum-api-2023/queries/unitList
 export const isCurrentPageItems = (
   u: CurrentPageItemsProps[] | SpecialistUnit[][],
 ): u is CurrentPageItemsProps[] => {
-  return (u[0] as CurrentPageItemsProps)[0]?.keyStageSlug !== undefined;
+  return (
+    u.length > 0 &&
+    (u[0] as CurrentPageItemsProps)[0]?.keyStageSlug !== undefined
+  );
 };
 
 export const isUnitListData = (
