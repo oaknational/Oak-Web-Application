@@ -381,14 +381,97 @@ export function buildTextDescribingFilter(
   data: CurriculumUnitsFormattedData,
   filters: CurriculumFilters,
 ) {
+  const keystageSuffix = keystageSuffixForFilter(data, filters);
+
+  const subjectCategoryField =
+    filters.subjectCategories.length > 0
+      ? filters.subjectCategories[0] === "-1"
+        ? "All categories"
+        : `${subjectCategoryForFilter(data, filters)?.title}${keystageSuffix ? ` ${keystageSuffix}` : ""}`
+      : undefined;
+
   const fields = [
-    filters.subjectCategories[0] === "-1"
-      ? "All categories"
-      : subjectCategoryForFilter(data, filters)?.title,
+    subjectCategoryField,
     childSubjectForFilter(data, filters)?.subject,
     tierForFilter(data, filters)?.tier,
     threadForFilter(data, filters)?.title,
   ].filter(Boolean);
 
   return fields;
+}
+
+export function keystageSuffixForFilter(
+  data: CurriculumUnitsFormattedData,
+  filter: CurriculumFilters,
+): string | undefined {
+  if (!filter.subjectCategories.length) {
+    return undefined;
+  }
+
+  const subjectCategoryId = filter.subjectCategories[0];
+  if (!subjectCategoryId || subjectCategoryId === "-1") {
+    return undefined;
+  }
+
+  const yearsWithChildSubjects: string[] = [];
+  const yearsWithoutChildSubjects: string[] = [];
+
+  Object.entries(data.yearData).forEach(([year, yearData]) => {
+    const hasSubjectCategory = yearData.subjectCategories.some(
+      (sc) => String(sc.id) === subjectCategoryId,
+    );
+
+    if (hasSubjectCategory) {
+      if (yearData.childSubjects && yearData.childSubjects.length > 0) {
+        yearsWithChildSubjects.push(year);
+      } else {
+        yearsWithoutChildSubjects.push(year);
+      }
+    }
+  });
+
+  // Prioritise years without child subjects if available
+  const relevantYears =
+    yearsWithoutChildSubjects.length > 0
+      ? yearsWithoutChildSubjects
+      : yearsWithChildSubjects;
+
+  if (relevantYears.length > 0) {
+    const sortedYears = [...relevantYears].sort(
+      (a, b) => Number(a) - Number(b),
+    );
+
+    const hasKS1 = sortedYears.some(
+      (year) => Number(year) >= 1 && Number(year) <= 2,
+    );
+    const hasKS2 = sortedYears.some(
+      (year) => Number(year) >= 3 && Number(year) <= 6,
+    );
+    const hasKS3 = sortedYears.some(
+      (year) => Number(year) >= 7 && Number(year) <= 9,
+    );
+    const hasKS4 = sortedYears.some(
+      (year) => Number(year) >= 10 && Number(year) <= 11,
+    );
+
+    // Handle combined key stages
+    if ((hasKS1 && hasKS2) || (hasKS3 && hasKS4)) {
+      return "";
+    }
+
+    // If not combined, proceed with single key stage logic
+    const firstYear = Number(sortedYears[0]);
+
+    if (firstYear >= 1 && firstYear <= 2) {
+      return "(KS1)";
+    } else if (firstYear >= 3 && firstYear <= 6) {
+      return "(KS2)";
+    } else if (firstYear >= 7 && firstYear <= 9) {
+      return "(KS3)";
+    } else if (firstYear >= 10 && firstYear <= 11) {
+      return "(KS4)";
+    }
+  }
+
+  return undefined;
 }
