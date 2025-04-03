@@ -33,7 +33,14 @@ const CurriculumTab: FC<CurriculumDownloadTabProps> = ({
       $position={"relative"}
     >
       {/* scroll wrapper */}
-      <div style={{ position: "absolute", inset: 0, overflow: "hidden" }}>
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          overflow: "hidden",
+          pointerEvents: "none",
+        }}
+      >
         {/* force this positioning */}
         <div
           style={{
