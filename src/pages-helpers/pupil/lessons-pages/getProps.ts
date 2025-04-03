@@ -14,6 +14,8 @@ import curriculumApi2023 from "@/node-lib/curriculum-api-2023";
 import { invariant } from "@/utils/invariant";
 import { WorksheetInfo } from "@/components/PupilViews/PupilIntro";
 import { getWorksheetInfo } from "@/components/PupilComponents/pupilUtils/getWorksheetInfo";
+import convertToMml from "@/utils/mathjax";
+import { LessonContent, QuizQuestion } from "@/node-lib/curriculum-api-2023/queries/pupilLesson/pupilLesson.schema";
 
 export type PupilLessonPageURLParams = {
   lessonSlug: string;
@@ -23,6 +25,46 @@ export type PupilLessonPageURLParams = {
 };
 
 type PageType = "preview" | "canonical" | "browse";
+
+export type QuizQuestionWithHtml = QuizQuestion & {
+  questionStem?: QuizQuestion["questionStem"] & {
+    html?: string
+  } | null
+}
+function convertQuestionMath (questions: QuizQuestion[]): QuizQuestionWithHtml[] {
+  return questions.map(question => {
+    if (question.questionStem) {
+      return {
+        ...question,
+        questionStem: question.questionStem.map(questionStem => {
+          if (questionStem.type === "text") {
+            // TODO: This should escape text here, rather than just replacing
+            const html = questionStem.text.replace(/\$\$([^$]|$[^\$])*\$\$/g, (item: string) => {
+              return convertToMml({math: item});
+            })
+            return {
+              type: questionStem.type,
+              text: questionStem.text,
+              html,
+            };
+          } else {
+            return questionStem;
+          }
+        })
+      };
+    } else {
+      return question;
+    }
+  })
+} 
+
+function convertQuizes (content: LessonContent) {
+  return {
+    ...content,
+    starterQuiz: convertQuestionMath(content.starterQuiz),
+    exitQuiz: convertQuestionMath(content.exitQuiz),
+  }
+}
 
 export const getProps = ({
   page,
@@ -116,7 +158,7 @@ export const getProps = ({
     const results: GetStaticPropsResult<PupilExperienceViewProps> = {
       props: {
         lessonContent: {
-          ...content,
+          ...convertQuizes(content),
           transcriptSentences: transcriptSentences ?? [],
         },
         browseData,

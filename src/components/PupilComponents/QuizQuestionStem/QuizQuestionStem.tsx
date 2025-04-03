@@ -42,6 +42,7 @@ export const QuizQuestionStem = ({
         $height={takeFullHeight ? "100%" : "auto"}
         $justifyContent={["center", "flex-start"]}
       >
+                
         <OakFlex
           key="stem-header"
           $mt={
@@ -55,7 +56,17 @@ export const QuizQuestionStem = ({
               key={`q-${displayNumber}-stem-element-0`}
               $font={["heading-6", "heading-4", "heading-4"]}
             >
-              {shortAnswerTitleFormatter(removeMarkdown(questionStem[0].text))}
+            {/* The purely image based version */}
+            {/* <div dangerouslySetInnerHTML={{
+              __html:
+                removeMarkdown(questionStem[0].text).replace(/\$\$([^$]|$[^\$])*\$\$/g, (item) => {
+                  return `<img style="display: inline; height: 1em;" src="/api/mathjax?math=${encodeURIComponent(item)}&ex=16&em=32" />`
+                })
+              }
+            }/> */}
+            <div style={{display: "inline-block"}} dangerouslySetInnerHTML={{
+              __html: removeMarkdown(questionStem[0].html)
+            }}/>
             </OakSpan>
           )}
         </OakFlex>
