@@ -8,6 +8,7 @@ import { OakModalNew } from "../OakComponentsKitchen/OakModalNew";
 
 import { usePrevious } from "@/hooks/usePrevious";
 import { CurriculumUnitsTrackingData } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { CurriculumFilters } from "@/utils/curriculum/types";
 
 export type CurricVisualiserFiltersMobileProps =
   CurricVisualiserFiltersProps & {
@@ -32,16 +33,24 @@ export default function CurricVisualiserFiltersMobile({
     return filters;
   });
 
+  const [tempFilters, setTempFilters] = useState<CurriculumFilters>(filters);
+
   // Only change `initialFilterState` when opening the modal
   const prevMobileThreadModalOpen = usePrevious(mobileThreadModalOpen);
   useEffect(() => {
     if (mobileThreadModalOpen && !prevMobileThreadModalOpen) {
       setInitialFilterState(filters);
+      setTempFilters(filters);
     }
   }, [filters, mobileThreadModalOpen, prevMobileThreadModalOpen]);
 
   function handleMobileThreadModal(): void {
     setMobileThreadModalOpen(!mobileThreadModalOpen);
+  }
+
+  function handleApply() {
+    onChangeFilters(tempFilters);
+    setMobileThreadModalOpen(false);
   }
 
   function onClose() {
@@ -57,10 +66,10 @@ export default function CurricVisualiserFiltersMobile({
         title={<OakBox $font={"heading-6"}>Filter and highlight</OakBox>}
         content={
           <CurricMobileFilterModal
-            filters={filters}
+            filters={tempFilters}
             selectedYear={selectedYear}
             onSelectYear={onSelectYear}
-            onChangeFilters={onChangeFilters}
+            onChangeFilters={setTempFilters}
             data={data}
             slugs={slugs}
           />
@@ -68,7 +77,7 @@ export default function CurricVisualiserFiltersMobile({
         footer={
           <OakPrimaryButton
             data-testid="mobile-done-thread-modal-button"
-            onClick={() => setMobileThreadModalOpen(false)}
+            onClick={handleApply}
             width={"100%"}
           >
             Apply
