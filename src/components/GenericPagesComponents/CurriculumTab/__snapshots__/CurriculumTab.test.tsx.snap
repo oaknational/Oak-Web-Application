@@ -10,7 +10,7 @@ exports[`CurriculumTab renders 1`] = `
         class="sc-fqkvVR gZEYWU"
       >
         <div
-          style="position: absolute; inset: 0; overflow: hidden;"
+          style="position: absolute; inset: 0; overflow: hidden; pointer-events: none;"
         >
           <div
             style="position: absolute; bottom: 18px; right: calc(-40rem + 50vw - 200px); width: 529px; height: 420px;"
