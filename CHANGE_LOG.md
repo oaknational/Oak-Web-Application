@@ -1,3 +1,10 @@
+## [1.727.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.727.0...v1.727.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* pointer-events none to fix text selection issue ([9d8d18b](https://github.com/oaknational/Oak-Web-Application/commit/9d8d18b39e80cfea3dfd05c52807bef4f09c85ec))
+
 # [1.727.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.726.0...v1.727.0) (2025-04-03)
 
 
