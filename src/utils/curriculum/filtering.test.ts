@@ -1067,6 +1067,22 @@ describe("buildTextDescribingFilter", () => {
     threadOptions: [thread1],
   };
 
+  const year11DataWithChildSubject: CurriculumUnitsFormattedData = {
+    yearData: {
+      "11": {
+        units: [],
+        childSubjects: [childSubject1],
+        subjectCategories: [],
+        tiers: [tier1],
+        pathways: [],
+        isSwimming: false,
+        groupAs: null,
+      },
+    },
+    yearOptions: ["7"],
+    threadOptions: [thread1],
+  };
+
   const primaryData: CurriculumUnitsFormattedData = {
     yearData: {
       "1": {
@@ -1118,18 +1134,18 @@ describe("buildTextDescribingFilter", () => {
 
   it("childSubject", () => {
     const result = buildTextDescribingFilter(
-      year7Data,
+      year11DataWithChildSubject,
       createFilter({ childSubjects: [childSubject1.subject_slug] }),
     );
-    expect(result).toEqual(["ChildSubject1"]);
+    expect(result).toEqual(["ChildSubject1 (KS4)"]);
   });
 
   it("tier", () => {
     const result = buildTextDescribingFilter(
-      year7Data,
+      year11Data,
       createFilter({ tiers: [tier1.tier_slug] }),
     );
-    expect(result).toEqual(["Tier1"]);
+    expect(result).toEqual(["Tier1 (KS4)"]);
   });
 
   it("thread", () => {
@@ -1152,8 +1168,8 @@ describe("buildTextDescribingFilter", () => {
     );
     expect(result).toEqual([
       "SubjectCategory1 (KS3)",
-      "ChildSubject1",
-      "Tier1",
+      "ChildSubject1 (KS3)",
+      "Tier1 (KS3)",
       "Thread1",
     ]);
   });

@@ -381,19 +381,33 @@ export function buildTextDescribingFilter(
   data: CurriculumUnitsFormattedData,
   filters: CurriculumFilters,
 ) {
-  const keystageSuffix = keystageSuffixForFilter(data, filters);
-
   const subjectCategoryField =
     filters.subjectCategories.length > 0
       ? filters.subjectCategories[0] === "-1"
         ? "All categories"
-        : `${subjectCategoryForFilter(data, filters)?.title}${keystageSuffix ? ` ${keystageSuffix}` : ""}`
+        : `${subjectCategoryForFilter(data, filters)?.title}${keystageSuffixForFilter(data, filters, "subjectCategories") ? ` ${keystageSuffixForFilter(data, filters, "subjectCategories")}` : ""}`
       : undefined;
+
+  const childSubjectField = childSubjectForFilter(data, filters)?.subject;
+  const childSubjectSuffix = keystageSuffixForFilter(
+    data,
+    filters,
+    "childSubjects",
+  );
+  const childSubjectWithSuffix =
+    childSubjectField && childSubjectSuffix
+      ? `${childSubjectField} ${childSubjectSuffix}`
+      : childSubjectField;
+
+  const tierField = tierForFilter(data, filters)?.tier;
+  const tierSuffix = keystageSuffixForFilter(data, filters, "tiers");
+  const tierWithSuffix =
+    tierField && tierSuffix ? `${tierField} ${tierSuffix}` : tierField;
 
   const fields = [
     subjectCategoryField,
-    childSubjectForFilter(data, filters)?.subject,
-    tierForFilter(data, filters)?.tier,
+    childSubjectWithSuffix,
+    tierWithSuffix,
     threadForFilter(data, filters)?.title,
   ].filter(Boolean);
 
@@ -403,13 +417,17 @@ export function buildTextDescribingFilter(
 export function keystageSuffixForFilter(
   data: CurriculumUnitsFormattedData,
   filter: CurriculumFilters,
+  filterType:
+    | "subjectCategories"
+    | "childSubjects"
+    | "tiers" = "subjectCategories",
 ): string | undefined {
-  if (!filter.subjectCategories.length) {
+  if (!filter[filterType].length) {
     return undefined;
   }
 
-  const subjectCategoryId = filter.subjectCategories[0];
-  if (!subjectCategoryId || subjectCategoryId === "-1") {
+  const filterId = filter[filterType][0];
+  if (!filterId || filterId === "-1") {
     return undefined;
   }
 
@@ -417,11 +435,21 @@ export function keystageSuffixForFilter(
   const yearsWithoutChildSubjects: string[] = [];
 
   Object.entries(data.yearData).forEach(([year, yearData]) => {
-    const hasSubjectCategory = yearData.subjectCategories.some(
-      (sc) => String(sc.id) === subjectCategoryId,
-    );
+    let hasFilter = false;
 
-    if (hasSubjectCategory) {
+    if (filterType === "subjectCategories") {
+      hasFilter = yearData.subjectCategories.some(
+        (sc) => String(sc.id) === filterId,
+      );
+    } else if (filterType === "childSubjects") {
+      hasFilter = yearData.childSubjects.some(
+        (cs) => cs.subject_slug === filterId,
+      );
+    } else if (filterType === "tiers") {
+      hasFilter = yearData.tiers.some((t) => t.tier_slug === filterId);
+    }
+
+    if (hasFilter) {
       if (yearData.childSubjects && yearData.childSubjects.length > 0) {
         yearsWithChildSubjects.push(year);
       } else {
