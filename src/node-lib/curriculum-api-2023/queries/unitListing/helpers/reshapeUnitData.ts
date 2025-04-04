@@ -21,9 +21,6 @@ export const reshapeUnitData = (rawUnits: UnitsCamel): GroupedUnitsSchema => {
     lessonCount: unit.lessonCount,
     expiredLessonCount: unit.lessonExpiredCount,
     expired: unit.lessonCount === unit.lessonExpiredCount,
-    unpublishedLessonCount:
-      (unit.supplementaryData.staticLessonList?.length ?? unit.lessonCount) -
-      unit.lessonCount,
     subjectCategories:
       unit.unitData.subjectcategories?.map((category) => ({
         label: String(category),

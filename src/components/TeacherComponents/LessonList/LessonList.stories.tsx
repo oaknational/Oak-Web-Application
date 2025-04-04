@@ -21,7 +21,6 @@ const lessonsWithUnitData = lessons.map((lesson) => ({
 
 const currentPageItems: LessonListProps = {
   lessonCount: lessons.length,
-  lessonCountHeader: `Lessons (${lessons.length})`,
   currentPageItems: lessonsWithUnitData,
   keyStageSlug: "4",
   subjectSlug: "computing",

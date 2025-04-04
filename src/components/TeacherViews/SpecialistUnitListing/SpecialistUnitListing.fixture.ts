@@ -38,8 +38,6 @@ const specialistUnitListingFixture = (
           slug: "habitats-546p",
           title: "Habitats",
           nullTitle: "Habitats",
-          unpublishedLessonCount: 0,
-
           programmeSlug: "habitats-546p",
           subjectSlug: "communication-and-language",
           subjectTitle: "Communication and Language",
@@ -67,8 +65,6 @@ const specialistUnitListingFixture = (
           programmeSlug: "out-and-about-623s",
           subjectSlug: "communication-and-language",
           subjectTitle: "Communication and Language",
-          unpublishedLessonCount: 0,
-
           themeSlug: "a",
           themeTitle: "b",
           expired: false,
@@ -97,7 +93,6 @@ const specialistUnitListingFixture = (
           developmentStageSlug: "applying-learning",
           developmentStageTitle: "Applying learning",
           learningThemes: [],
-          unpublishedLessonCount: 0,
         },
       ],
     ],

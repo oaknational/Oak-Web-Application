@@ -69,7 +69,6 @@ describe("lessonListing()", () => {
             orderInUnit: 1,
             lessonCohort: "2023-2024",
             actions: null,
-            isUnpublished: false,
           },
         ],
       });
@@ -78,17 +77,12 @@ describe("lessonListing()", () => {
       const lessonListingFixture2 = syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           order_in_unit: 2,
-          static_lesson_list: [
-            { slug: "lesson-slug-2", title: "lesson-title-2", order: 2 },
-            { slug: "lesson-slug", title: "lesson-title", order: 1 },
-          ],
-          lesson_slug: "lesson-slug-2",
           lesson_data: {
             lesson_id: 1,
             lesson_uid: "lesson-uid",
             title: "lesson-title-2",
             description: "lesson-description-2",
-            slug: "lesson-slug-2",
+            slug: "lesson-slug",
             pupil_lesson_outcome: "pupil-lesson-outcome",
             key_learning_points: [{}],
             equipment_and_resources: null,
@@ -114,24 +108,15 @@ describe("lessonListing()", () => {
           },
         },
       });
-      const lessonListingFixture = syntheticUnitvariantLessonsByKsFixture({
-        overrides: {
-          static_lesson_list: [
-            {
-              slug: "lesson-slug-2",
-              title: "lesson-title-2",
-              order: 2,
-            },
-            { slug: "lesson-slug", title: "lesson-title", order: 1 },
-          ],
-        },
-      });
 
       const res = await lessonListing({
         ...sdk,
         lessonListing: jest.fn(() =>
           Promise.resolve({
-            lessons: [lessonListingFixture2, lessonListingFixture],
+            lessons: [
+              lessonListingFixture2,
+              syntheticUnitvariantLessonsByKsFixture(),
+            ],
           }),
         ),
       })({
@@ -209,7 +194,6 @@ describe("lessonListing()", () => {
             videoCount: 0,
             worksheetCount: 0,
             actions: null,
-            isUnpublished: false,
           },
         ],
         programmeSlug: "programme-slug",
@@ -263,7 +247,6 @@ describe("lessonListing()", () => {
             videoCount: 0,
             worksheetCount: 0,
             actions: null,
-            isUnpublished: false,
           },
         ],
         programmeSlug: "programme-slug",
@@ -301,7 +284,6 @@ describe("lessonListing()", () => {
           videoCount: 0,
           worksheetCount: 0,
           actions: null,
-          isUnpublished: false,
         },
       ]);
     });

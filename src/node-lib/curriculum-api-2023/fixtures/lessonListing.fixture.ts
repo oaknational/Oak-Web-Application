@@ -26,8 +26,6 @@ const lessonListingFixture = (
         expired: false,
         lessonSlug: "add-two-surds-6wwk0c",
         lessonTitle: "Add two surds",
-        isUnpublished: false,
-
         description:
           "In this lesson, we will  learn how to add two or more surds where no prior simplification is needed.In these cases, the surds will all have the same root.",
         quizCount: 1,
@@ -50,8 +48,6 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 2,
-        isUnpublished: false,
-
         actions: null,
       },
       {
@@ -67,7 +63,6 @@ const lessonListingFixture = (
         hasCopyrightMaterial: false,
         orderInUnit: 3,
         actions: null,
-        isUnpublished: false,
       },
       {
         expired: false,
@@ -80,8 +75,6 @@ const lessonListingFixture = (
         presentationCount: 1,
         worksheetCount: 1,
         hasCopyrightMaterial: false,
-        isUnpublished: false,
-
         orderInUnit: 4,
         actions: null,
       },
@@ -97,8 +90,6 @@ const lessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 5,
-        isUnpublished: false,
-
         actions: null,
       },
     ],

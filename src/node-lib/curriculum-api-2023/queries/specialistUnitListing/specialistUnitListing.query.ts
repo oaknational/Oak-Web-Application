@@ -47,7 +47,6 @@ export const getExpandedSpecialistUnits = (
           subjectTitle: unit.combined_programme_fields.subject,
           expired,
           expiredLessonCount,
-          unpublishedLessonCount: 0,
           themeSlug: unit.threads ? unit.threads[0]?.themeSlug : null,
           themeTitle: unit.threads ? unit.threads[0]?.themeTitle : null,
           learningThemes: [
