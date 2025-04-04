@@ -1,3 +1,10 @@
+## [1.729.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.729.0...v1.729.1) (2025-04-04)
+
+
+### Reverts
+
+* Revert "Merge pull request [#3318](https://github.com/oaknational/Oak-Web-Application/issues/3318) from oaknational/feat/lesq-1305/incomplete-units" ([f23f4cc](https://github.com/oaknational/Oak-Web-Application/commit/f23f4cc23be879e671047101de17aa9db57097ce))
+
 # [1.729.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.728.0...v1.729.0) (2025-04-03)
 
 
