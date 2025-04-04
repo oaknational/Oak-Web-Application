@@ -34,7 +34,7 @@ describe("RadioGroup", () => {
   });
 
   it("allows you to select a radio on click of label", async () => {
-    let selected;
+    let selected = null;
 
     const setSelected = (value: string) => {
       selected = value;
@@ -79,7 +79,7 @@ describe("RadioGroup", () => {
   });
 
   it("changes on keyboard input", async () => {
-    let selected;
+    let selected = null;
 
     const setSelected = (value: string) => {
       selected = value;
@@ -131,7 +131,7 @@ describe("RadioGroup", () => {
     expect(radio2).toBeChecked();
   });
   it("can show an error validation message ", async () => {
-    let selected;
+    let selected = null;
 
     const setSelected = (value: string) => {
       selected = value;

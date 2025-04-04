@@ -43,7 +43,18 @@ const CallIdentify = () => {
           init: (...args: []) => posthogInit(...args),
         }}
       >
-        <AnalyticsProvider>
+        <AnalyticsProvider
+          avoOptions={{
+            inspector: {
+              _avoFunctionTrackSchemaFromEvent: jest.fn(),
+            },
+            avoLogger: {
+              logDebug: jest.fn(),
+              logWarn: jest.fn(),
+              logError: jest.fn(),
+            },
+          }}
+        >
           <ChildCallingIdentify />
         </AnalyticsProvider>
       </PostHogProvider>
@@ -54,6 +65,8 @@ const CallIdentify = () => {
 jest.mock("@/browser-lib/getBrowserConfig", () => {
   return jest.fn().mockReturnValue("development");
 });
+
+console.log = jest.fn();
 
 describe("useAnalytics", () => {
   beforeEach(() => {
@@ -66,6 +79,14 @@ describe("useAnalytics", () => {
 
     render(<CallIdentify />);
 
+    expect(console.log).toHaveBeenCalledWith(
+      "[avo] Event Sent:",
+      "$pageview",
+      "Event Props:",
+      { "Analytics Use Case": null, "Link URL": "/", "Page Name": "Homepage" },
+      "User Props:",
+      {},
+    );
     expect(posthogIdentify).toHaveBeenCalledWith("someone", {});
   });
   test("service.identify() should not be called if service not included in array", () => {
@@ -75,6 +96,14 @@ describe("useAnalytics", () => {
 
     render(<CallIdentify />);
 
+    expect(console.log).toHaveBeenCalledWith(
+      "[avo] Event Sent:",
+      "$pageview",
+      "Event Props:",
+      { "Analytics Use Case": null, "Link URL": "/", "Page Name": "Homepage" },
+      "User Props:",
+      {},
+    );
     expect(posthogIdentify).not.toHaveBeenCalled();
   });
   test("service.identify() should be called if no services array passed", () => {
@@ -82,6 +111,14 @@ describe("useAnalytics", () => {
 
     render(<CallIdentify />);
 
+    expect(console.log).toHaveBeenCalledWith(
+      "[avo] Event Sent:",
+      "$pageview",
+      "Event Props:",
+      { "Analytics Use Case": null, "Link URL": "/", "Page Name": "Homepage" },
+      "User Props:",
+      {},
+    );
     expect(posthogIdentify).toHaveBeenCalledWith("someone", {});
   });
 });

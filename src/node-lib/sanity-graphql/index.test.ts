@@ -66,13 +66,16 @@ describe("node-lib/sanity-graphql/index.ts", () => {
 
   it("requestWithLogging should report graphql errors to bugsnag", async () => {
     const originalError = new Error(`GraphQL Error (Code: 504)`);
-
+    console.log = jest.fn();
     const action = jest.fn().mockRejectedValue(originalError);
 
     await expect(async () => {
       await requestWithLogging(action, "someOperation");
     }).rejects.toThrow();
 
+    expect(console.log).toHaveBeenCalledWith(
+      "Failed to fetch graphql query operationName=someOperation, graphqlAPIUrl=https://NEXT_PUBLIC_SANITY_PROJECT_ID.api.sanity.io/v1/graphql/NEXT_PUBLIC_SANITY_DATASET/SANITY_DATASET_TAG",
+    );
     expect(reportError).toHaveBeenCalledWith(originalError, {
       graphqlAPIUrl: expect.any(String),
       graphqlOperationName: "someOperation",
