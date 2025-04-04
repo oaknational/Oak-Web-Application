@@ -48,7 +48,6 @@ export const SpecialistLessonSchema = z.object({
   developmentStageSlug: z.string().nullish(),
   developmentStageTitle: z.string().nullish(),
   developmentStage: z.string().nullish(),
-  isUnpublished: z.literal(false),
 });
 
 export type SpecialistLesson = z.infer<typeof SpecialistLessonSchema>;

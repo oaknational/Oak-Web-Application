@@ -17,16 +17,11 @@ import {
 } from "@/components/SharedComponents/Pagination/usePagination";
 import { SpecialistLessonListItemProps } from "@/components/TeacherComponents/LessonListItem/LessonListItem";
 import { SpecialistLesson } from "@/node-lib/curriculum-api-2023/queries/specialistLessonListing/specialistLessonListing.schema";
-import { UnpublishedLessonListItem } from "@/node-lib/curriculum-api-2023/shared.schema";
 
 export type LessonListProps = {
   lessonCount: number;
-  lessonCountHeader: string;
   currentPageItems:
-    | Array<
-        | Omit<LessonListItemProps, "unitTitle" | "index" | "onClick">
-        | UnpublishedLessonListItem
-      >
+    | Omit<LessonListItemProps, "unitTitle" | "index" | "onClick">[]
     | SpecialistLesson[];
   keyStageSlug?: string;
   subjectSlug: string;
@@ -48,7 +43,6 @@ const LESSONS_PER_PAGE = 5;
 const LessonList: FC<LessonListProps> = (props) => {
   const {
     lessonCount,
-    lessonCountHeader,
     paginationProps,
     headingTag,
     currentPageItems,
@@ -67,7 +61,7 @@ const LessonList: FC<LessonListProps> = (props) => {
         $mb={["space-between-m", "space-between-s"]}
       >
         <OakHeading $font={["heading-6", "heading-5"]} tag={headingTag}>
-          {lessonCountHeader}
+          {`Lessons (${lessonCount})`}
         </OakHeading>
         {expiringBanner}
       </OakFlex>

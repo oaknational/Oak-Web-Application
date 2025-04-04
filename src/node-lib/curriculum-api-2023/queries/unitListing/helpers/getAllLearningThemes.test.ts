@@ -21,7 +21,6 @@ describe("unit listing threads", () => {
           lessonCount: 1,
           expired: false,
           expiredLessonCount: 1,
-          unpublishedLessonCount: 0,
           learningThemes: [
             { themeSlug: "b theme", themeTitle: "B Theme" },
             { themeSlug: "a theme", themeTitle: "A Theme" },

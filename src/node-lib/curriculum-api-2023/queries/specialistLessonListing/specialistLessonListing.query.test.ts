@@ -30,7 +30,6 @@ jest.mock("../../sdk", () => {
             contains_copyright_content: false,
             unit_title: "Staying safe",
             order_in_unit: 2,
-            isUnpublished: false,
           },
           {
             unit_slug: "staying-safe-al-5556",
@@ -54,7 +53,6 @@ jest.mock("../../sdk", () => {
             contains_copyright_content: false,
             unit_title: "Staying safe",
             order_in_unit: 1,
-            isUnpublished: false,
           },
         ],
       }),

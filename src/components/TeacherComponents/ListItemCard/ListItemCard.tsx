@@ -12,7 +12,7 @@ export type ListItemCardProps = {
   isHovered: boolean;
   children: React.ReactNode;
   background: OakColorName;
-  disabled: boolean | null;
+  expired: boolean | null;
   index: number;
   containerProps: {
     onClick: MouseEventHandler<HTMLDivElement>;
@@ -26,13 +26,7 @@ export type ListItemCardProps = {
  */
 
 const ListItemCard: FC<ListItemCardProps> = (props) => {
-  const {
-    children,
-    isHovered,
-    containerProps,
-    background,
-    disabled: expired,
-  } = props;
+  const { children, isHovered, containerProps, background, expired } = props;
 
   const applyHoverStyles = isHovered && !expired;
 

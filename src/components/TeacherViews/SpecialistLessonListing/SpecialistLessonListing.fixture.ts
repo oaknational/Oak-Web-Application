@@ -28,7 +28,6 @@ const specialistLessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 1,
-        isUnpublished: false,
       },
       {
         lessonSlug: "lockdown-heroes-p034",
@@ -46,7 +45,6 @@ const specialistLessonListingFixture = (
         worksheetCount: 1,
         hasCopyrightMaterial: false,
         orderInUnit: 1,
-        isUnpublished: false,
       },
       {
         lessonSlug: "same-pond-lesson-3",
@@ -64,7 +62,6 @@ const specialistLessonListingFixture = (
         worksheetCount: 2,
         hasCopyrightMaterial: false,
         orderInUnit: 1,
-        isUnpublished: false,
       },
     ],
     ...partial,

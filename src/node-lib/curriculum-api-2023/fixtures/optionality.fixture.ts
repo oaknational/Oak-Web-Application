@@ -26,7 +26,6 @@ const optionalityProps = {
         unitStudyOrder: 1,
         expired: false,
         expiredLessonCount: 0,
-        unpublishedLessonCount: 0,
         yearTitle: "Year 10",
         learningThemes: [
           {
@@ -47,7 +46,6 @@ const optionalityProps = {
         themeSlug: "geog--1",
         themeTitle: "Geog 1",
         lessonCount: 20,
-        unpublishedLessonCount: 0,
         quizCount: null,
         unitStudyOrder: 2,
         expired: false,

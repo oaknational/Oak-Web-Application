@@ -1,5 +1,5 @@
 query lessonListing($programmeSlug: String!, $unitSlug: String!) {
-  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_15_0_0(
+  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_13_1_0(
     where: {
       unit_slug: { _eq: $unitSlug }
       programme_slug: { _eq: $programmeSlug }
@@ -18,6 +18,5 @@ query lessonListing($programmeSlug: String!, $unitSlug: String!) {
     actions
     features
     order_in_unit
-    static_lesson_list
   }
 }
