@@ -1,4 +1,5 @@
-import { YearData } from "./types";
+import { CurriculumFilters, YearData } from "./types";
+import { keystageFromYear } from "./keystage";
 
 import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { Phase } from "@/node-lib/curriculum-api-2023";
@@ -119,8 +120,87 @@ export function buildPageTitle(
   return pageTitle;
 }
 
-export function joinWords(str: string[]) {
+export function joinWords(str: (number | string)[]) {
   return str.filter((str) => str !== "").join(" ");
+}
+
+export function getYearSubheadingText(
+  yearData: YearData,
+  year: string,
+  filters: Pick<
+    CurriculumFilters,
+    "childSubjects" | "subjectCategories" | "tiers"
+  >,
+): string | null {
+  // Don't show subheading for "All" years view
+  if (year === "all") {
+    return null;
+  }
+
+  const parts: string[] = [];
+  const isKs4Year = keystageFromYear(year) === "ks4";
+
+  // Handle subject categories (KS1-KS3)
+  if (
+    filters.subjectCategories.length > 0 &&
+    !filters.subjectCategories.includes("-1") && // Skip if "All" is selected
+    (!isKs4Year || filters.childSubjects.length === 0)
+  ) {
+    const subjectCategoryTitles = filters.subjectCategories
+      .map((id) => {
+        // Try to find subject category in current year
+        const subjectCategory = yearData[year]?.subjectCategories.find(
+          (sc) => sc.id.toString() === id,
+        );
+        return subjectCategory?.title;
+      })
+      .filter(Boolean);
+
+    if (subjectCategoryTitles.length > 0) {
+      parts.push(subjectCategoryTitles.join(", "));
+    }
+  }
+
+  // Handle child subjects (KS4)
+  if (filters.childSubjects.length > 0) {
+    const childSubjectTitles = filters.childSubjects
+      .map((slug) => {
+        const childSubject = yearData[year]?.childSubjects.find(
+          (cs) => cs.subject_slug === slug,
+        );
+        return childSubject?.subject;
+      })
+      .filter(Boolean);
+
+    if (childSubjectTitles.length > 0) {
+      parts.push(childSubjectTitles.join(", "));
+    }
+  }
+
+  // Handle tiers (KS4)
+  if (filters.tiers.length > 0) {
+    const tierTitles = filters.tiers
+      .map((slug) => {
+        const tier = yearData[year]?.tiers.find((t) => t.tier_slug === slug);
+        return tier?.tier;
+      })
+      .filter(Boolean);
+
+    if (tierTitles.length > 0) {
+      parts.push(tierTitles.join(", "));
+    }
+  }
+
+  return parts.length > 0 ? parts.join(", ") : null;
+}
+
+export function pluralizeUnits(count: number) {
+  if (count > 1) {
+    return "units";
+  } else if (count === 1) {
+    return "unit";
+  }
+  return "";
 }
 
 export function getPhaseFromCategory(input: DownloadCategory) {
