@@ -6,16 +6,18 @@ type CurricYearCardProps = {
   yearSubheading?: string | null;
   additional?: React.ReactNode;
   children: React.ReactNode;
+  isExamboard: boolean;
 };
 export function CurricYearCard({
   yearTitle,
   yearSubheading,
   additional,
   children,
+  isExamboard,
 }: CurricYearCardProps) {
   return (
     <OakBox
-      $background={"pink30"}
+      $background={isExamboard ? "pink50" : "pink30"}
       $pa={"inner-padding-xl2"}
       $position={"relative"}
       $mb={"space-between-m2"}

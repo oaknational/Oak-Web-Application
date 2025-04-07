@@ -15,6 +15,7 @@ export const CurricYearCard: Story = {
   args: {
     yearTitle: "Year 10",
     yearSubheading: "Literature",
+    isExamboard: false,
   },
   render: function Render(args) {
     return (

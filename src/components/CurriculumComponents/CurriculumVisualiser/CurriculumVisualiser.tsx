@@ -374,7 +374,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   return (
     <OakBox id="content" data-testid="curriculum-visualiser">
       {unitsByYearSelector.flatMap((data, index) => {
-        const { year } = data.selector;
+        const { year, type } = data.selector;
         const { isSwimming } = data.yearItem;
         const { units } = data;
         const ref = (element: HTMLDivElement) => {
@@ -403,7 +403,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             />
             <CurricYearCard
               // TODO: Enable once <CurricYearCard/> has functionality
-              // isExamboard={type === "non_core"}
+              isExamboard={type === "non_core"}
               yearTitle={yearTitle}
               yearSubheading={yearSubheadingText}
               additional={
