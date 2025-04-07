@@ -1,9 +1,10 @@
 import React, { FC, useState, useRef, useEffect, useMemo } from "react";
-import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
+import { OakFlex, OakBox, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
+import { CurricYearCard } from "../CurricYearCard";
 
 import { areLessonsAvailable } from "@/utils/curriculum/lessons";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
@@ -348,107 +349,85 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             );
 
             return (
-              <OakBox
-                key={year}
-                $background={"pink30"}
-                $pa={"inner-padding-xl2"}
-                $position={"relative"}
-                $mb={"space-between-m2"}
-                $borderRadius={"border-radius-s"}
-                className="mobileYearDisplay"
-                id={year}
-                ref={ref}
-              >
+              <OakBox id={year} ref={ref} key={year}>
                 <AnchorTarget
                   $paddingTop={mobileHeaderScrollOffset}
                   id={`year-${year}`}
                 />
-
-                <OakHeading
-                  tag="h3"
-                  $font={["heading-5", "heading-4"]}
-                  $mb={
-                    yearSubheadingText ? "space-between-xs" : "space-between-s"
+                <CurricYearCard
+                  yearTitle={yearTitle}
+                  yearSubheading={yearSubheadingText}
+                  additional={
+                    isSwimming && (
+                      <Alert
+                        $mb="space-between-s"
+                        type="info"
+                        message="Swimming and water safety units should be selected based on the ability and experience of your pupils."
+                      />
+                    )
                   }
-                  data-testid="year-heading"
                 >
-                  {yearTitle}
-                </OakHeading>
-
-                {yearSubheadingText && (
-                  <OakHeading
-                    tag="h4"
-                    $font={["heading-7", "heading-6"]}
-                    $mb="space-between-s"
-                    data-testid="year-subheading"
+                  <OakFlex
+                    $flexWrap={"wrap"}
+                    $pt="inner-padding-s"
+                    data-testid="unit-cards"
+                    $gap={"all-spacing-4"}
+                    // TODO: Remove hack
+                    style={{
+                      marginBottom: "-1rem",
+                    }}
                   >
-                    {yearSubheadingText}
-                  </OakHeading>
-                )}
+                    <UnitList role="list">
+                      {dedupedUnits.length < 1 && (
+                        <OakP>
+                          {getSubjectCategoryMessage(
+                            yearData,
+                            year,
+                            filters.subjectCategories,
+                          )}
+                        </OakP>
+                      )}
+                      {dedupedUnits.map((unit: Unit, index: number) => {
+                        const isHighlighted = isHighlightedUnit(
+                          unit,
+                          filters.threads,
+                        );
+                        const unitOptions = unit.unit_options.length >= 1;
 
-                {isSwimming && (
-                  <Alert
-                    $mb="space-between-s"
-                    type="info"
-                    message="Swimming and water safety units should be selected based on the ability and experience of your pupils."
-                  />
-                )}
-                <OakFlex
-                  $flexWrap={"wrap"}
-                  $pt="inner-padding-s"
-                  data-testid="unit-cards"
-                  $gap={"all-spacing-4"}
-                  // TODO: Remove hack
-                  style={{
-                    marginBottom: "-1rem",
-                  }}
-                >
-                  <UnitList role="list">
-                    {dedupedUnits.length < 1 && (
-                      <OakP>
-                        {getSubjectCategoryMessage(
-                          yearData,
-                          year,
-                          filters.subjectCategories,
-                        )}
-                      </OakP>
-                    )}
-                    {dedupedUnits.map((unit: Unit, index: number) => {
-                      const isHighlighted = isHighlightedUnit(
-                        unit,
-                        filters.threads,
-                      );
-                      const unitOptions = unit.unit_options.length >= 1;
-
-                      return (
-                        <UnitListItem key={`${unit.slug}-${index}`}>
-                          <CurriculumUnitCard
-                            unit={unit}
-                            key={unit.slug + index}
-                            index={index}
-                            isHighlighted={isHighlighted}
-                            onClick={() => {
-                              handleOpenModal(unitOptions, unit, isHighlighted);
-                            }}
-                          />
-                        </UnitListItem>
-                      );
-                    })}
-                    {/* Empty tiles for correct flex wrapping */}
-                    {Array(3)
-                      .fill(true)
-                      .map((item, index) => {
                         return (
-                          <OakFlex
-                            key={`unit-list-item-${item}-${index}`}
-                            $width={"all-spacing-19"}
-                            $flexGrow={1}
-                            $position={"relative"}
-                          />
+                          <UnitListItem key={`${unit.slug}-${index}`}>
+                            <CurriculumUnitCard
+                              unit={unit}
+                              key={unit.slug + index}
+                              index={index}
+                              isHighlighted={isHighlighted}
+                              onClick={() => {
+                                handleOpenModal(
+                                  unitOptions,
+                                  unit,
+                                  isHighlighted,
+                                );
+                              }}
+                            />
+                          </UnitListItem>
                         );
                       })}
-                  </UnitList>
-                </OakFlex>
+                      {/* Empty tiles for correct flex wrapping */}
+                      {Array(3)
+                        .fill(true)
+                        .map((item, index) => {
+                          return (
+                            <OakFlex
+                              key={`unit-list-item-${item}-${index}`}
+                              $width={"all-spacing-19"}
+                              $flexGrow={1}
+                              $position={"relative"}
+                            />
+                          );
+                        })}
+                    </UnitList>
+                  </OakFlex>
+                </CurricYearCard>
               </OakBox>
             );
           })}
