@@ -1,3 +1,15 @@
+# [1.730.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.729.1...v1.730.0) (2025-04-07)
+
+
+### Bug Fixes
+
+* exclude beta page from duplication coverage ([e6e40e7](https://github.com/oaknational/Oak-Web-Application/commit/e6e40e7d1df5e8d59eeadd5bef5abad3424f9f99))
+
+
+### Features
+
+* beta unit page ([62c6c4a](https://github.com/oaknational/Oak-Web-Application/commit/62c6c4a0d804fc69a4337eca10e1c9f9c586313f))
+
 ## [1.729.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.729.0...v1.729.1) (2025-04-04)
 
 
