@@ -874,15 +874,22 @@ describe("highlightedUnitCount", () => {
   };
 
   it("no units highlighted", () => {
-    const result = highlightedUnitCount(yearData, filters, [thread4.slug]);
+    const result = highlightedUnitCount(
+      yearData,
+      filters,
+      [thread4.slug],
+      false,
+    );
     expect(result).toEqual(0);
   });
 
   it("many units highlighted", () => {
-    const result = highlightedUnitCount(yearData, filters, [
-      thread1.slug,
-      thread3.slug,
-    ]);
+    const result = highlightedUnitCount(
+      yearData,
+      filters,
+      [thread1.slug, thread3.slug],
+      false,
+    );
     expect(result).toEqual(2);
   });
 });

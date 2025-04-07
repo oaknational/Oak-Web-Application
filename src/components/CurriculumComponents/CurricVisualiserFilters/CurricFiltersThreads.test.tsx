@@ -18,6 +18,11 @@ describe("CurricFiltersThreads", () => {
         }}
         onChangeFilters={() => {}}
         data={basicSetup}
+        slugs={{
+          phaseSlug: "secondary",
+          subjectSlug: "english",
+          ks4OptionSlug: null,
+        }}
       />,
     );
 
@@ -41,6 +46,11 @@ describe("CurricFiltersThreads", () => {
         }}
         onChangeFilters={() => {}}
         data={basicSetup}
+        slugs={{
+          phaseSlug: "secondary",
+          subjectSlug: "english",
+          ks4OptionSlug: null,
+        }}
       />,
     );
 
@@ -66,6 +76,11 @@ describe("CurricFiltersThreads", () => {
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
+        slugs={{
+          phaseSlug: "secondary",
+          subjectSlug: "english",
+          ks4OptionSlug: null,
+        }}
       />,
     );
 

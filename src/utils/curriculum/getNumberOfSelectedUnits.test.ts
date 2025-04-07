@@ -48,6 +48,7 @@ describe("getNumberOfSelectedUnits", () => {
         years: [],
         threads: [],
       }),
+      false,
     );
     expect(result).toBe(0);
   });
@@ -59,7 +60,12 @@ describe("getNumberOfSelectedUnits", () => {
     });
     mockIsVisibleUnit.mockReturnValue(true);
 
-    const result = getNumberOfSelectedUnits(yearData, "all", yearSelection);
+    const result = getNumberOfSelectedUnits(
+      yearData,
+      "all",
+      yearSelection,
+      false,
+    );
     expect(result).toBe(5);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });
@@ -71,7 +77,12 @@ describe("getNumberOfSelectedUnits", () => {
     });
     mockIsVisibleUnit.mockReturnValue(true);
 
-    const result = getNumberOfSelectedUnits(yearData, "8", yearSelection);
+    const result = getNumberOfSelectedUnits(
+      yearData,
+      "8",
+      yearSelection,
+      false,
+    );
     expect(result).toBe(3);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(3);
   });
@@ -88,7 +99,12 @@ describe("getNumberOfSelectedUnits", () => {
       .mockReturnValueOnce(false)
       .mockReturnValueOnce(true);
 
-    const result = getNumberOfSelectedUnits(yearData, "all", yearSelection);
+    const result = getNumberOfSelectedUnits(
+      yearData,
+      "all",
+      yearSelection,
+      false,
+    );
     expect(result).toBe(3);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });
@@ -100,7 +116,12 @@ describe("getNumberOfSelectedUnits", () => {
     });
     mockIsVisibleUnit.mockReturnValue(false);
 
-    const result = getNumberOfSelectedUnits(yearData, "all", yearSelection);
+    const result = getNumberOfSelectedUnits(
+      yearData,
+      "all",
+      yearSelection,
+      false,
+    );
     expect(result).toBe(0);
     expect(mockIsVisibleUnit).toHaveBeenCalledTimes(5);
   });

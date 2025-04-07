@@ -98,6 +98,7 @@ export function CurricMobileStickyHeader({
   trackingData,
   selectedYear,
   onSelectYear,
+  slugs,
 }: CurriculumVisualiserFiltersMobileProps & {
   trackingData: CurriculumUnitsTrackingData;
 }) {
@@ -105,12 +106,14 @@ export function CurricMobileStickyHeader({
   const { analyticsUseCase } = useAnalyticsPageProps();
   const [lockYear, setLockYear] = useState<string | null>(null);
 
+  const isExamboard = !!slugs.ks4OptionSlug && slugs.ks4OptionSlug !== "core";
   const { yearData, yearOptions } = data;
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
     filters,
     filters.threads,
+    isExamboard,
   );
 
   function trackSelectYear(year: string): void {

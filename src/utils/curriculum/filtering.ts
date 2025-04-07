@@ -239,6 +239,7 @@ export function highlightedUnitCount(
   yearData: YearData,
   filters: CurriculumFilters,
   selectedThreads: Thread["slug"][] | null,
+  isExamboard: boolean,
 ): number {
   let count = 0;
   Object.entries(yearData).forEach(([year, yearDataItem]) => {
@@ -248,7 +249,7 @@ export function highlightedUnitCount(
         const yearBasedFilters = filteringFromYears(yearDataItem, filters);
 
         if (
-          isVisibleUnit(yearBasedFilters, year, unit) &&
+          isVisibleUnit(yearBasedFilters, year, unit, isExamboard) &&
           isHighlightedUnit(unit, selectedThreads)
         ) {
           count++;

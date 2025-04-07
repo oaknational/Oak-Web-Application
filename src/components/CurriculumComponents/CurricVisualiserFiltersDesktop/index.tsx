@@ -90,6 +90,7 @@ export function CurricVisualiserFiltersDesktop({
             filters={filters}
             onChangeFilters={onChangeFilters}
             data={data}
+            slugs={slugs}
           />
         </>
       )}

@@ -8,6 +8,7 @@ export function getNumberOfSelectedUnits(
   yearData: YearData,
   selectedYear: string | null,
   filters: CurriculumFilters,
+  isExamboard: boolean,
 ): number {
   let count = 0;
 
@@ -17,7 +18,7 @@ export function getNumberOfSelectedUnits(
 
     if (units && (selectedYear === "all" || selectedYear === year)) {
       const filteredUnits = units.filter((unit: Unit) => {
-        return isVisibleUnit(yearBasedFilters, year, unit);
+        return isVisibleUnit(yearBasedFilters, year, unit, isExamboard);
       });
 
       const dedupedUnits = dedupUnits(filteredUnits);

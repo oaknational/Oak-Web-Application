@@ -63,6 +63,7 @@ export function CurricMobileFilterModal({
               filters={filters}
               onChangeFilters={onChangeFilters}
               data={data}
+              slugs={slugs}
             />
           )}
         </OakFlex>
