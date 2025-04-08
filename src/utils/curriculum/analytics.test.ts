@@ -28,6 +28,7 @@ describe("buildUnitSequenceRefinedAnalytics", () => {
     tiers: [],
     years: [],
     threads: [],
+    pathways: [],
   };
 
   it("should build analytics with default values when no filters are applied", () => {

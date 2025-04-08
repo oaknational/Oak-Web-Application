@@ -59,6 +59,7 @@ export type CurriculumFilters = {
   tiers: Tier["tier_slug"][];
   years: string[];
   threads: Thread["slug"][];
+  pathways: Pathway["pathway_slug"][];
 };
 
 export type Lesson = {

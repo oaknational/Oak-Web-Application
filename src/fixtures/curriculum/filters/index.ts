@@ -6,6 +6,7 @@ const BASE_FILTERS: CurriculumFilters = {
   tiers: [],
   years: [],
   threads: [],
+  pathways: [],
 };
 
 export function createFilter(partial: Partial<CurriculumFilters> = {}) {

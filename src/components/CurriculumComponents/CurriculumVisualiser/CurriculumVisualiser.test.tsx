@@ -552,6 +552,7 @@ describe.skip("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["7", "8", "9", "10", "11"],
           threads: [],
+          pathways: [],
         };
 
         const { container } = render(
@@ -699,6 +700,7 @@ describe.skip("Year group filter headings display correctly", () => {
           tiers: ["foundation"],
           years: ["10"],
           threads: [],
+          pathways: [],
         };
 
         const { container } = render(
@@ -724,6 +726,7 @@ describe.skip("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["11"],
           threads: [],
+          pathways: [],
         };
 
         const { container } = render(
@@ -749,6 +752,7 @@ describe.skip("Year group filter headings display correctly", () => {
           tiers: ["higher"],
           years: ["10"],
           threads: [],
+          pathways: [],
         };
 
         const { container } = render(

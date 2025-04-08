@@ -15,6 +15,7 @@ describe("CurricFiltersYears", () => {
           tiers: [],
           years: ["10", "11"],
           threads: [],
+          pathways: [],
         }}
         onChangeFilters={() => {}}
         data={basicSetup}
@@ -38,6 +39,7 @@ describe("CurricFiltersYears", () => {
           tiers: [],
           years: ["10", "11"],
           threads: [],
+          pathways: [],
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
@@ -55,6 +57,7 @@ describe("CurricFiltersYears", () => {
       threads: [],
       tiers: [],
       years: ["10"],
+      pathways: [],
     });
 
     // 11
@@ -65,6 +68,7 @@ describe("CurricFiltersYears", () => {
       threads: [],
       tiers: [],
       years: ["11"],
+      pathways: [],
     });
 
     // Re-render because "all" will be selected by default
@@ -76,6 +80,7 @@ describe("CurricFiltersYears", () => {
           tiers: [],
           years: ["10"],
           threads: [],
+          pathways: [],
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
@@ -90,6 +95,7 @@ describe("CurricFiltersYears", () => {
       threads: [],
       tiers: [],
       years: ["10", "11"],
+      pathways: [],
     });
   });
 });
