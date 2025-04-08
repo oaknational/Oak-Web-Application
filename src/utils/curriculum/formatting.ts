@@ -83,10 +83,12 @@ export function formatKeystagesShort(keyStages: string[]) {
   return keyStagesItems.length > 0 ? `KS${keyStagesItems.join("-")}` : ``;
 }
 
-export function getSuffixFromFeatures(features: Actions) {
-  if (features?.programme_field_overrides?.subject) {
-    return `(${features.programme_field_overrides?.subject})`;
-  }
+export function getSuffixFromFeatures(_features: Actions): undefined {
+  _features;
+  // TODO: Remove me from programme_field_overrides
+  // if (features?.programme_field_overrides?.subject) {
+  //   return `(${features.programme_field_overrides?.subject})`;
+  // }
   return;
 }
 
