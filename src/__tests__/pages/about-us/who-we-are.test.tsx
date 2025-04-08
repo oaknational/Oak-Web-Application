@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import { forwardRef } from "react";
 
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import AboutWhoWeAre, {
@@ -11,10 +12,13 @@ import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
-import { setupVideoMock } from "@/utils/mockVideo";
-
 jest.mock("../../../node-lib/cms");
-setupVideoMock();
+jest.mock("@mux/mux-player-react/lazy", () => {
+  return forwardRef((props, ref) => {
+    ref; // This prevents warning about ref not being used
+    return <div data-testid="mux-player-mock" />;
+  });
+});
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
