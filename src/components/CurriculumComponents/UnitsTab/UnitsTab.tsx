@@ -13,7 +13,6 @@ import {
   CurriculumUnitsFormattedData,
   CurriculumUnitsTrackingData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
-import { getNumberOfSelectedUnits } from "@/utils/curriculum/getNumberOfSelectedUnits";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
@@ -40,15 +39,9 @@ export default function UnitsTab({
   const [unitData, setUnitData] = useState<Unit | null>(null);
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
-  const selectedYear = filters.years.length === 1 ? filters.years[0]! : "all";
 
   const isExamboard = !!slugs.ks4OptionSlug && slugs.ks4OptionSlug !== "core";
-  const unitCount = getNumberOfSelectedUnits(
-    yearData,
-    selectedYear,
-    filters,
-    isExamboard,
-  );
+  const unitCount = highlightedUnitCount(yearData, filters, [], isExamboard);
 
   const highlightedUnits = highlightedUnitCount(
     yearData,

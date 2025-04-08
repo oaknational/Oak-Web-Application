@@ -51,7 +51,7 @@ describe("isVisibleUnit", () => {
       tiers: ["foundation"],
       years: ["10"],
     });
-    expect(isVisibleUnit(filters, "10", unit, false)).toEqual(true);
+    expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
   });
 
   it("matches subject category", () => {
@@ -69,7 +69,7 @@ describe("isVisibleUnit", () => {
       subjectCategories: ["1"],
       years: ["10"],
     });
-    expect(isVisibleUnit(filters, "10", unit, false)).toEqual(true);
+    expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
   });
 
   it("matches subject category & tier", () => {
@@ -91,6 +91,6 @@ describe("isVisibleUnit", () => {
       years: ["10"],
       threads: [],
     });
-    expect(isVisibleUnit(filters, "10", unit, false)).toEqual(true);
+    expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
   });
 });

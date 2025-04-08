@@ -14,13 +14,8 @@ export function isVisibleUnit(
   filters: PartialFilters,
   year: string,
   unit: CurriculumUnitsTabData["units"][number],
-  isExamboard: boolean,
 ) {
   if (!filters.years.includes(year)) {
-    return false;
-  }
-
-  if (isExamboard && unit.pathway_slug === "core") {
     return false;
   }
 
