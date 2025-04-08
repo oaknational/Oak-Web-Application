@@ -135,8 +135,21 @@ const UnitList: FC<UnitListProps> = (props) => {
     category === "reading-writing-oracy"
       ? "Reading, writing & oracy"
       : category;
-  const newPageItems = getPageItems(currentPageItems, false);
-  const legacyPageItems = getPageItems(currentPageItems, true);
+  const newPageItems = getPageItems({
+    pageItems: currentPageItems,
+    pickLegacyItems: false,
+    isSwimming: false,
+  });
+  const legacyPageItems = getPageItems({
+    pageItems: currentPageItems,
+    pickLegacyItems: true,
+    isSwimming: false,
+  });
+  const swimmingPageItems = getPageItems({
+    pageItems: currentPageItems,
+    pickLegacyItems: false,
+    isSwimming: true,
+  });
 
   const { phaseSlug, keyStageSlug, examBoardSlug } = getProgrammeFactors(props);
   const indexOfFirstLegacyUnit = units
@@ -218,6 +231,7 @@ const UnitList: FC<UnitListProps> = (props) => {
             <OakUnitListItem
               {...props}
               {...unitOption}
+              lessonCount={unitOption.lessonCount?.toString() || "0"}
               firstItemRef={
                 isUnitFirstItemRef(
                   unitOption.programmeSlug,
@@ -296,12 +310,41 @@ const UnitList: FC<UnitListProps> = (props) => {
       />
     ) : null;
 
+  const SwimmingUnits = () => {
+    if (swimmingPageItems.length && keyStageSlug && phaseSlug) {
+      const title = `${swimmingPageItems[0]?.[0]?.groupUnitsAs}`;
+      return (
+        <OakUnitsContainer
+          isLegacy={false}
+          subject={""}
+          phase={phaseSlug}
+          curriculumHref={resolveOakHref({
+            page: "curriculum-previous-downloads",
+            query: {
+              subject: linkSubject,
+              keystage: keyStageSlug,
+            },
+          })}
+          showHeader={
+            newPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
+              ? true
+              : false
+          }
+          unitCards={getUnitCards(swimmingPageItems)}
+          isCustomUnit={true}
+          customHeadingText={title}
+        />
+      );
+    } else return null;
+  };
+
   return (
     <OakFlex $flexDirection="column">
       <OakAnchorTarget id="unit-list" />
       {currentPageItems.length ? (
         isUnitListData(props) ? (
           <OakFlex $flexDirection="column" $gap="space-between-xxl">
+            <SwimmingUnits />
             <NewUnits category={modifiedCategory} />
             <LegacyUnits />
           </OakFlex>
