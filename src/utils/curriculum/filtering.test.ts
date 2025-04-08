@@ -1,6 +1,5 @@
 import { useSearchParams } from "next/navigation";
 import { renderHook } from "@testing-library/react";
-import { useRouter } from "next/router";
 
 import {
   buildTextDescribingFilter,
@@ -828,8 +827,9 @@ describe("useFilters", () => {
 
     it("updating state", () => {
       (isCurricRoutingEnabled as jest.Mock).mockReturnValue(true);
-      const replaceMock = jest.fn();
-      (useRouter as jest.Mock).mockReturnValue({ replace: replaceMock });
+      const replaceStateMock = jest.fn();
+      const originalReplaceState = window.history.replaceState;
+      window.history.replaceState = replaceStateMock;
 
       const defaultFilter = createFilter();
       const updateFilterValue = createFilter({
@@ -842,11 +842,13 @@ describe("useFilters", () => {
       const [, setFilters] = result.current;
       setFilters(updateFilterValue);
 
-      expect(replaceMock).toHaveBeenCalledWith(
+      expect(replaceStateMock).toHaveBeenCalledWith(
+        {},
+        "",
         "/?tiers=foundation",
-        undefined,
-        { shallow: true },
       );
+
+      window.history.replaceState = originalReplaceState;
 
       rerender();
       const [filters] = result.current;
