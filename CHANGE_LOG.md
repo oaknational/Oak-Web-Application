@@ -1,3 +1,52 @@
+## [1.729.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.729.0...v1.729.1) (2025-04-04)
+
+
+### Reverts
+
+* Revert "Merge pull request [#3318](https://github.com/oaknational/Oak-Web-Application/issues/3318) from oaknational/feat/lesq-1305/incomplete-units" ([f23f4cc](https://github.com/oaknational/Oak-Web-Application/commit/f23f4cc23be879e671047101de17aa9db57097ce))
+
+# [1.729.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.728.0...v1.729.0) (2025-04-03)
+
+
+### Bug Fixes
+
+* make regex safer using limits for lengths instead of  + ([fb99335](https://github.com/oaknational/Oak-Web-Application/commit/fb99335bdf61d371dfa4c2d7976d98199a22a181))
+
+
+### Features
+
+* add extra info in unit downloads banner ([af6b8dc](https://github.com/oaknational/Oak-Web-Application/commit/af6b8dce640fbbddef3ac8ce4a8e751f308e46b9))
+* add incomplete units banner ([1b011a5](https://github.com/oaknational/Oak-Web-Application/commit/1b011a5288a3c4c0c67ba937e8d9de2c4328aa46))
+* add unpublished lesson cards on lesson listing page ([8158565](https://github.com/oaknational/Oak-Web-Application/commit/815856599ccb4d0f56fd2a2eee6fca6a1e6c503f))
+* add validation on the email input field ([1d4eea4](https://github.com/oaknational/Oak-Web-Application/commit/1d4eea475c2de3b7c41bed0c1e13669c7744f30d))
+* integrate newsletter sign up ([16de28e](https://github.com/oaknational/Oak-Web-Application/commit/16de28efa5e0f9ca1969253b155f110d6fa1b26b))
+* move incomplete units message into a new banner ([c6ee6ca](https://github.com/oaknational/Oak-Web-Application/commit/c6ee6ca323988705dcf3d65313937e6397263913))
+* update incomplete units banner ([0775155](https://github.com/oaknational/Oak-Web-Application/commit/0775155c2257d3716055940c42caab4527863b4a))
+* update lesson count for incomplete units on lesson listing page ([84734c8](https://github.com/oaknational/Oak-Web-Application/commit/84734c8bcdc23e67855119e06a717f23c5f89063))
+* update lesson count to show where unpublished lessons are missing on unit listing page ([b8b566b](https://github.com/oaknational/Oak-Web-Application/commit/b8b566bb234d51f3af5e5b64b9682b1eb5b31915))
+* update query versions ([ff862ef](https://github.com/oaknational/Oak-Web-Application/commit/ff862ef7c76d1844ef5e0ab43b30829a08e48b01))
+
+# [1.728.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.727.1...v1.728.0) (2025-04-03)
+
+
+### Features
+
+* copy update for additional files ([5c7caf3](https://github.com/oaknational/Oak-Web-Application/commit/5c7caf3e85c84e9839b4c46018d6306980e4f332))
+
+## [1.727.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.727.0...v1.727.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* pointer-events none to fix text selection issue ([9d8d18b](https://github.com/oaknational/Oak-Web-Application/commit/9d8d18b39e80cfea3dfd05c52807bef4f09c85ec))
+
+# [1.727.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.726.0...v1.727.0) (2025-04-03)
+
+
+### Features
+
+* background squiggle in curric lander ([48a7802](https://github.com/oaknational/Oak-Web-Application/commit/48a78024e88d6f5cfdd51c680d6095ad43d4846b))
+
 # [1.726.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.725.0...v1.726.0) (2025-04-03)
 
 
