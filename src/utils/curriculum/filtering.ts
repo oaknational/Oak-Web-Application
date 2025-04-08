@@ -160,14 +160,12 @@ export function useFilters(
           new URLSearchParams(
             Object.entries(filtersToQuery(newFilters, defaultFilter)),
           ).toString();
-        // Use replaceState directly to avoid triggering router events
         window.history.replaceState({}, "", url);
       }
       setLocalFilters(newFilters);
     },
     [defaultFilter],
   );
-
   return [filters, setFilters];
 }
 
