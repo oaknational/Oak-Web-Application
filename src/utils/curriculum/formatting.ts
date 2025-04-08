@@ -133,6 +133,7 @@ export function getYearSubheadingText(
     CurriculumFilters,
     "childSubjects" | "subjectCategories" | "tiers"
   >,
+  type: "core" | "non_core" | null,
 ): string | null {
   // Don't show subheading for "All" years view
   if (year === "all") {
@@ -141,6 +142,14 @@ export function getYearSubheadingText(
 
   const parts: string[] = [];
   const isKs4Year = keystageFromYear(year) === "ks4";
+
+  if (keystageFromYear(year) === "ks4") {
+    if (type === "core") {
+      parts.push("Core");
+    } else if (type === "non_core") {
+      parts.push("GCSE");
+    }
+  }
 
   // Handle subject categories (KS1-KS3)
   if (

@@ -369,6 +369,7 @@ describe("getYearSubheadingText", () => {
         childSubjects: [childSubject1.subject_slug],
         tiers: [tier1.tier_slug],
       }),
+      null,
     );
     expect(result).toEqual(null);
   });
@@ -381,6 +382,7 @@ describe("getYearSubheadingText", () => {
         years: ["7"],
         subjectCategories: [String(subCat1.id)],
       }),
+      null,
     );
     expect(result).toEqual("SUB_CAT_1");
   });
@@ -393,6 +395,7 @@ describe("getYearSubheadingText", () => {
         years: ["7"],
         childSubjects: [childSubject1.subject_slug],
       }),
+      null,
     );
     expect(result).toEqual("CHILD_SUBJECT_1");
   });
@@ -405,6 +408,7 @@ describe("getYearSubheadingText", () => {
         years: ["7"],
         tiers: [tier1.tier_slug],
       }),
+      null,
     );
     expect(result).toEqual("TIER_1");
   });
@@ -419,6 +423,7 @@ describe("getYearSubheadingText", () => {
         childSubjects: [childSubject1.subject_slug],
         tiers: [tier1.tier_slug],
       }),
+      null,
     );
     expect(result).toEqual("SUB_CAT_1, CHILD_SUBJECT_1, TIER_1");
   });

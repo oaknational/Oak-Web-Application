@@ -144,7 +144,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     setCurrentUnitLessons([]);
   };
 
-  const yearTypes = ["core"];
+  const yearTypes: ("core" | "non_core")[] = ["core"];
   if (ks4OptionSlug && ks4OptionSlug !== "core") {
     yearTypes.push("non_core");
   }
@@ -223,6 +223,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           yearData,
           year,
           filters,
+          type,
         );
 
         return (
