@@ -1,0 +1,19 @@
+query teachersPreviewUnitListing($programmeSlug: String!) {
+  units: published_mv_synthetic_unitvariants_with_lesson_ids_by_ks_new_15_0_0(
+    where: { programme_slug: { _eq: $programmeSlug } }
+  ) {
+    is_legacy
+    programme_slug
+    unit_slug
+    programme_fields
+    unit_data
+    lesson_count
+    lesson_expired_count
+    lesson_sensitive_count
+    expired
+    supplementary_data
+    threads
+    actions
+    features
+  }
+}
