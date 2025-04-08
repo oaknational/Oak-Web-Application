@@ -1,6 +1,5 @@
 import { screen } from "@testing-library/react";
 
-
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import AboutWhoWeAre, {
   getStaticProps,
