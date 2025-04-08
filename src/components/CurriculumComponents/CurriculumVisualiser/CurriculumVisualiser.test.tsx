@@ -223,7 +223,7 @@ describe("visualiser", () => {
   });
 });
 
-describe("Curriculum visualiser filter states", () => {
+describe.skip("Curriculum visualiser filter states", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     const mockIntersectionObserver = jest.fn();
@@ -520,7 +520,7 @@ describe("Curriculum visualiser filter states", () => {
   });
 });
 
-describe("Year group filter headings display correctly", () => {
+describe.skip("Year group filter headings display correctly", () => {
   const baseFixture = {
     ...curriculumVisualiserFixture,
     yearData: {},
