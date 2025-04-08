@@ -2,7 +2,6 @@ import userEvent from "@testing-library/user-event";
 import { waitFor } from "@testing-library/dom";
 import { act, within } from "@testing-library/react";
 
-import CurriculumVisualiser from "./CurriculumVisualiser";
 import {
   noMissingUnitsFixture,
   missingUnitsForFirstYearPrimaryFixture,
@@ -19,6 +18,8 @@ import {
   secondaryMathsYearData,
   secondaryScienceYearData,
 } from "./fixtures";
+
+import CurriculumVisualiser from ".";
 
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { YearData } from "@/utils/curriculum/types";

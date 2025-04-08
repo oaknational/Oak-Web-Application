@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { OakHeading, OakBox } from "@oaknational/oak-components";
 
-import CurriculumVisualiser from "../CurriculumVisualiser/CurriculumVisualiser";
+import CurriculumVisualiser from "../CurriculumVisualiser";
 import { CurricVisualiserLayout } from "../CurricVisualiserLayout";
 import CurricVisualiserFiltersMobile from "../CurricVisualiserFiltersMobile";
 import { CurricVisualiserFiltersDesktop } from "../CurricVisualiserFiltersDesktop";
