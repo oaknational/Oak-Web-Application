@@ -6,10 +6,12 @@ import mockRouter from "next-router-mock";
 import Search from "./Search.view";
 import { SearchProps } from "./search.view.types";
 
+import { setupVideoMock } from "@/utils/mockVideo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { SearchHit, SearchQuery } from "@/context/Search/search.types";
 import { LEGACY_COHORT } from "@/config/cohort";
 
+setupVideoMock();
 const searchRefined = jest.fn();
 
 const createSearchResult = (): SearchHit => {

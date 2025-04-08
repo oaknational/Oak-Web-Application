@@ -6,11 +6,13 @@ import { screen } from "@testing-library/dom";
 
 import SearchResults from "./SearchResults";
 
+import { setupVideoMock } from "@/utils/mockVideo";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import searchPageFixture from "@/node-lib/curriculum-api-2023/fixtures/searchPage.fixture";
 import truthy from "@/utils/truthy";
 import { hitsFixture } from "@/context/Search/search-api/2023/searchResults.fixture";
 
+setupVideoMock();
 jest.mock("@/hooks/useMediaQuery.tsx", () => ({
   __esModule: true,
   default: () => ({

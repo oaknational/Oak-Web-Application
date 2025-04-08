@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 
+
 import renderWithProviders from "../../__helpers__/renderWithProviders";
 import AboutWhoWeAre, {
   getStaticProps,
@@ -11,7 +12,10 @@ import renderWithSeo from "../../__helpers__/renderWithSeo";
 
 import { testAboutPageBaseData } from "./about-us.fixtures";
 
+import { setupVideoMock } from "@/utils/mockVideo";
+
 jest.mock("../../../node-lib/cms");
+setupVideoMock();
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 

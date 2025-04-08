@@ -1,11 +1,14 @@
+
 import { act } from "@testing-library/react";
 
 import OverviewTab from "./OverviewTab";
 
+import { setupVideoMock } from "@/utils/mockVideo";
 import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixtures/curriculumOverview.fixture";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockVideoAsset } from "@/__tests__/__helpers__/cms";
 
+setupVideoMock();
 const routeReplaceMock = jest.fn((url: string) => {
   console.log(url);
 });

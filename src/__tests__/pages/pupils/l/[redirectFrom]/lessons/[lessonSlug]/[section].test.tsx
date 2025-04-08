@@ -20,6 +20,13 @@ jest.mock("@/components/PupilComponents/pupilUtils/getWorksheetInfo", () => ({
     .mockResolvedValue({ transcriptSentences: [], hasWorksheet: false }),
 }));
 
+const mockOakErrorConstructor = jest.fn();
+jest.mock("@/errors/OakError", () => {
+  return jest.fn().mockImplementation((code) => {
+    mockOakErrorConstructor(code);
+  });
+});
+
 describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[lessonSlug]/index", () => {
   describe("getStaticPaths", () => {
     it("Should not generate pages at build time", async () => {
@@ -48,6 +55,7 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
   });
 
   it("should return redirect if lesson not found", async () => {
+    console.error = jest.fn();
     (curriculumApi2023.pupilLessonQuery as jest.Mock).mockRejectedValueOnce(
       new OakError({ code: "curriculum-api/not-found" }),
     );
@@ -70,6 +78,13 @@ describe("pages/pupils/programmes/[programmeSlug]/units/[unitSlug]/lessons/[less
         permanent: false,
       },
     });
+    expect(mockOakErrorConstructor).toHaveBeenCalledWith({
+      code: "curriculum-api/not-found",
+    });
+    expect(console.error).toHaveBeenCalledWith(
+      expect.stringContaining("Error in getStaticProps"),
+      {},
+    );
   });
 
   it("should return redirect if lesson not found", async () => {
