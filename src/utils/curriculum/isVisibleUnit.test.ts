@@ -33,7 +33,6 @@ describe("isVisibleUnit", () => {
         }),
         "7",
         baseUnit,
-        false,
       ),
     ).toEqual(false);
   });

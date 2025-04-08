@@ -32,6 +32,11 @@ export interface Tier {
   tier_slug: string;
 }
 
+export interface Pathway {
+  pathway: string;
+  pathway_slug: string;
+}
+
 export type YearData = {
   [key: string]: {
     units: Unit[];
@@ -40,6 +45,7 @@ export type YearData = {
     subjectCategories: SubjectCategory[];
     isSwimming: boolean;
     groupAs: string | null;
+    pathways: Pathway[];
   };
 };
 

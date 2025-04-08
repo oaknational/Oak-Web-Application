@@ -25,6 +25,7 @@ describe("getYearGroupTitle", () => {
         getYearGroupTitle(
           {
             ["All years"]: {
+              pathways: [],
               units: [],
               childSubjects: [],
               tiers: [],
@@ -43,6 +44,7 @@ describe("getYearGroupTitle", () => {
         getYearGroupTitle(
           {
             ["7"]: {
+              pathways: [],
               units: [],
               childSubjects: [],
               tiers: [],
@@ -63,6 +65,7 @@ describe("getYearGroupTitle", () => {
         getYearGroupTitle(
           {
             ["All years"]: {
+              pathways: [],
               units: [],
               childSubjects: [],
               tiers: [],
@@ -82,6 +85,7 @@ describe("getYearGroupTitle", () => {
         getYearGroupTitle(
           {
             ["7"]: {
+              pathways: [],
               units: [],
               childSubjects: [],
               tiers: [],

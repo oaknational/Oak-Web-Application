@@ -57,6 +57,7 @@ const curriculumVisualiserFixture = {
     years: ["7", "8", "9", "10", "11"],
     tiers: [],
     childSubjects: [],
+    pathways: [],
     subjectCategories: [],
     threads: [],
   },
@@ -124,6 +125,7 @@ const curriculumVisualiserFixture = {
         },
       ],
       childSubjects: [],
+      pathways: [],
       tiers: [],
       subjectCategories: [],
       isSwimming: false,
@@ -244,6 +246,7 @@ describe.skip("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -269,6 +272,7 @@ describe.skip("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["1"],
         tiers: [],
         years: ["7"],
@@ -294,6 +298,7 @@ describe.skip("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["1"],
         tiers: [],
         years: ["8"],
@@ -319,6 +324,7 @@ describe.skip("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -351,6 +357,7 @@ describe.skip("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -379,6 +386,7 @@ describe.skip("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -407,6 +415,7 @@ describe.skip("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -441,6 +450,7 @@ describe.skip("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["1"],
         tiers: [],
         years: ["7", "8", "9", "10", "11"],
@@ -468,6 +478,7 @@ describe.skip("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["1"],
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
@@ -495,6 +506,7 @@ describe.skip("Curriculum visualiser filter states", () => {
 
       const filterFixture = {
         childSubjects: [],
+        pathways: [],
         subjectCategories: ["1"],
         tiers: [],
         years: ["1", "2", "3", "4", "5", "6"],
@@ -576,6 +588,7 @@ describe.skip("Year group filter headings display correctly", () => {
         const filterFixture = {
           subjectCategories: ["-1"],
           childSubjects: [],
+          pathways: [],
           tiers: [],
           years: ["7"],
           threads: [],
@@ -602,6 +615,7 @@ describe.skip("Year group filter headings display correctly", () => {
         const filterFixture = {
           subjectCategories: ["1"],
           childSubjects: [],
+          pathways: [],
           tiers: [],
           years: ["7"],
           threads: [],
@@ -628,6 +642,7 @@ describe.skip("Year group filter headings display correctly", () => {
         const filterFixture = {
           subjectCategories: ["2"],
           childSubjects: [],
+          pathways: [],
           tiers: [],
           years: ["7"],
           threads: [],
@@ -654,6 +669,7 @@ describe.skip("Year group filter headings display correctly", () => {
         const filterFixture = {
           subjectCategories: ["3"],
           childSubjects: [],
+          pathways: [],
           tiers: [],
           years: ["7"],
           threads: [],
@@ -761,6 +777,7 @@ describe.skip("Year group filter headings display correctly", () => {
       test("displays Higher tier in year 10 subheading when selected", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: [],
           tiers: ["higher"],
           years: ["10"],
@@ -786,6 +803,7 @@ describe.skip("Year group filter headings display correctly", () => {
       test("displays Foundation tier in year 11 subheading when selected", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: [],
           tiers: ["foundation"],
           years: ["10"],
@@ -817,6 +835,7 @@ describe.skip("Year group filter headings display correctly", () => {
       test("displays subject category in subheading for Year 1, Primary English", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: ["4"],
           tiers: [],
           years: ["1"],
@@ -849,6 +868,7 @@ describe.skip("Year group filter headings display correctly", () => {
       test("displays Biology subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: ["1"],
           tiers: [],
           years: ["1"],
@@ -874,6 +894,7 @@ describe.skip("Year group filter headings display correctly", () => {
       test("displays Chemistry subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: ["2"],
           tiers: [],
           years: ["2"],
@@ -899,6 +920,7 @@ describe.skip("Year group filter headings display correctly", () => {
       test("displays Physics subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: ["3"],
           tiers: [],
           years: ["3"],
@@ -924,6 +946,7 @@ describe.skip("Year group filter headings display correctly", () => {
       test("displays nothing for 'All' subject category in subheading", async () => {
         const filterFixture = {
           childSubjects: [],
+          pathways: [],
           subjectCategories: ["-1"],
           tiers: [],
           years: ["4"],

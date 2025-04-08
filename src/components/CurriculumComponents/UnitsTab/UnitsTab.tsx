@@ -40,14 +40,12 @@ export default function UnitsTab({
 
   const [mobileSelectedYear, setMobileSelectedYear] = useState<string>("");
 
-  const isExamboard = !!slugs.ks4OptionSlug && slugs.ks4OptionSlug !== "core";
-  const unitCount = highlightedUnitCount(yearData, filters, [], isExamboard);
+  const unitCount = highlightedUnitCount(yearData, filters, []);
 
   const highlightedUnits = highlightedUnitCount(
     yearData,
     filters,
     filters.threads,
-    isExamboard,
   );
 
   const setVisibleMobileYearRefID = (refId: string) => {

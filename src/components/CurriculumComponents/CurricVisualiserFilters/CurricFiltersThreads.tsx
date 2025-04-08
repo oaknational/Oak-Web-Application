@@ -8,20 +8,17 @@ import { Thread, CurriculumFilters } from "@/utils/curriculum/types";
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { joinWords, pluralizeUnits } from "@/utils/curriculum/formatting";
-import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 export type CurricFiltersThreadsProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilters: CurriculumFilters) => void;
   data: CurriculumUnitsFormattedData;
-  slugs: CurriculumSelectionSlugs;
 };
 
 export function CurricFiltersThreads({
   filters,
   onChangeFilters,
   data,
-  slugs,
 }: CurricFiltersThreadsProps) {
   const id = useId();
   const { yearData, threadOptions } = data;
@@ -63,16 +60,9 @@ export function CurricFiltersThreads({
           </OakBox>
           {threadOptions.map((threadOption) => {
             const isSelected = isSelectedThread(threadOption);
-            const isExamboard =
-              !!slugs.ks4OptionSlug && slugs.ks4OptionSlug !== "core";
             const highlightedCount = !isSelected
               ? 0
-              : highlightedUnitCount(
-                  yearData,
-                  filters,
-                  filters.threads,
-                  isExamboard,
-                );
+              : highlightedUnitCount(yearData, filters, filters.threads);
 
             return (
               <OakBox

@@ -2,6 +2,7 @@ import { createSubjectCategory } from "@/fixtures/curriculum/subjectCategories";
 import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createTier } from "@/fixtures/curriculum/tier";
+import { YearData } from "@/utils/curriculum/types";
 
 const subjectCategoryOne = createSubjectCategory({ id: 1, title: "sub-cat-1" });
 const subjectCategoryTwo = createSubjectCategory({ id: 2, title: "sub-cat-2" });
@@ -24,9 +25,10 @@ const subjectCategoryTwo = createSubjectCategory({ id: 2, title: "sub-cat-2" });
 export const noMissingUnitsFixture = {
   "7": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -36,9 +38,10 @@ export const noMissingUnitsFixture = {
   },
   "8": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -48,9 +51,10 @@ export const noMissingUnitsFixture = {
   },
   "9": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -60,9 +64,10 @@ export const noMissingUnitsFixture = {
   },
   "10": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -72,9 +77,10 @@ export const noMissingUnitsFixture = {
   },
   "11": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -87,36 +93,40 @@ export const noMissingUnitsFixture = {
 export const missingUnitsForEntirePhaseFixture = {
   "7": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
   },
   "8": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
   },
   "9": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
   },
   "10": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -125,9 +135,10 @@ export const missingUnitsForEntirePhaseFixture = {
   },
   "11": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -139,18 +150,20 @@ export const missingUnitsForEntirePhaseFixture = {
 export const missingUnitsForFirstYearFixture = {
   "7": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
   },
   "8": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -160,9 +173,10 @@ export const missingUnitsForFirstYearFixture = {
   },
   "9": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -172,9 +186,10 @@ export const missingUnitsForFirstYearFixture = {
   },
   "10": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -184,9 +199,10 @@ export const missingUnitsForFirstYearFixture = {
   },
   "11": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -199,18 +215,20 @@ export const missingUnitsForFirstYearFixture = {
 export const missingUnitsForFirstYearPrimaryFixture = {
   "1": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "1", subjectcategories: [subjectCategoryTwo] })],
   },
   "2": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -220,9 +238,10 @@ export const missingUnitsForFirstYearPrimaryFixture = {
   },
   "3": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -232,9 +251,10 @@ export const missingUnitsForFirstYearPrimaryFixture = {
   },
   "4": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -244,9 +264,10 @@ export const missingUnitsForFirstYearPrimaryFixture = {
   },
   "5": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -256,9 +277,10 @@ export const missingUnitsForFirstYearPrimaryFixture = {
   },
   "6": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -271,9 +293,10 @@ export const missingUnitsForFirstYearPrimaryFixture = {
 export const missingUnitsForSecondYearFixture = {
   "7": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -283,18 +306,20 @@ export const missingUnitsForSecondYearFixture = {
   },
   "8": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
   },
   "9": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -304,9 +329,10 @@ export const missingUnitsForSecondYearFixture = {
   },
   "10": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -316,9 +342,10 @@ export const missingUnitsForSecondYearFixture = {
   },
   "11": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -331,8 +358,9 @@ export const missingUnitsForSecondYearFixture = {
 export const missingConsecutiveUnitsAtStartFixture = {
   "7": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     subjectCategories: [subjectCategoryTwo],
@@ -340,8 +368,9 @@ export const missingConsecutiveUnitsAtStartFixture = {
   },
   "8": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     subjectCategories: [subjectCategoryTwo],
@@ -349,8 +378,9 @@ export const missingConsecutiveUnitsAtStartFixture = {
   },
   "9": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     subjectCategories: [subjectCategoryTwo],
@@ -358,8 +388,9 @@ export const missingConsecutiveUnitsAtStartFixture = {
   },
   "10": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
@@ -370,8 +401,9 @@ export const missingConsecutiveUnitsAtStartFixture = {
   },
   "11": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
@@ -385,8 +417,9 @@ export const missingConsecutiveUnitsAtStartFixture = {
 export const missingConsecutiveUnitsAtStartPrimaryFixture = {
   "1": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     subjectCategories: [subjectCategoryTwo],
@@ -394,8 +427,9 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
   },
   "2": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     subjectCategories: [subjectCategoryTwo],
@@ -403,8 +437,9 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
   },
   "3": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     subjectCategories: [subjectCategoryTwo],
@@ -412,8 +447,9 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
   },
   "4": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
@@ -424,8 +460,9 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
   },
   "5": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
@@ -436,8 +473,9 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
   },
   "6": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
@@ -451,9 +489,10 @@ export const missingConsecutiveUnitsAtStartPrimaryFixture = {
 export const missingUnitsInMiddleFixture = {
   "7": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -463,27 +502,30 @@ export const missingUnitsInMiddleFixture = {
   },
   "8": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "8", subjectcategories: [subjectCategoryTwo] })],
   },
   "9": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
   },
   "10": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -492,9 +534,10 @@ export const missingUnitsInMiddleFixture = {
   },
   "11": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -507,9 +550,10 @@ export const missingUnitsInMiddleFixture = {
 export const missingConsecutiveUnitsAtEndFixture = {
   "7": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -519,9 +563,10 @@ export const missingConsecutiveUnitsAtEndFixture = {
   },
   "8": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -531,18 +576,20 @@ export const missingConsecutiveUnitsAtEndFixture = {
   },
   "9": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
   },
   "10": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -551,9 +598,10 @@ export const missingConsecutiveUnitsAtEndFixture = {
   },
   "11": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -565,18 +613,20 @@ export const missingConsecutiveUnitsAtEndFixture = {
 export const missingAlternateUnitsFixture = {
   "7": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "7", subjectcategories: [subjectCategoryTwo] })],
   },
   "8": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -586,18 +636,20 @@ export const missingAlternateUnitsFixture = {
   },
   "9": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [createUnit({ year: "9", subjectcategories: [subjectCategoryTwo] })],
   },
   "10": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -607,9 +659,10 @@ export const missingAlternateUnitsFixture = {
   },
   "11": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -621,9 +674,10 @@ export const missingAlternateUnitsFixture = {
 export const missingUnitForLastYearFixture = {
   "7": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -633,9 +687,10 @@ export const missingUnitForLastYearFixture = {
   },
   "8": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -645,9 +700,10 @@ export const missingUnitForLastYearFixture = {
   },
   "9": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -657,9 +713,10 @@ export const missingUnitForLastYearFixture = {
   },
   "10": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryOne, subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -669,9 +726,10 @@ export const missingUnitForLastYearFixture = {
   },
   "11": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [subjectCategoryTwo],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -693,9 +751,10 @@ export const primaryEnglishSubjectCategories = [
 export const primaryEnglishYearData = {
   "1": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [primaryEnglishSubjectCategories[0]],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -707,12 +766,13 @@ export const primaryEnglishYearData = {
   },
   "2": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [
       primaryEnglishSubjectCategories[0],
       primaryEnglishSubjectCategories[1],
     ],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -728,6 +788,7 @@ export const primaryEnglishYearData = {
   },
   "3": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [
       primaryEnglishSubjectCategories[0],
@@ -735,7 +796,6 @@ export const primaryEnglishYearData = {
       primaryEnglishSubjectCategories[2],
     ],
 
-    labels: [],
     groupAs: null,
     isSwimming: false,
     units: [
@@ -755,6 +815,7 @@ export const primaryEnglishYearData = {
   },
   "4": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [
       primaryEnglishSubjectCategories[0],
@@ -762,7 +823,7 @@ export const primaryEnglishYearData = {
       primaryEnglishSubjectCategories[2],
       primaryEnglishSubjectCategories[3],
     ],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -786,6 +847,7 @@ export const primaryEnglishYearData = {
   },
   "5": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [
       primaryEnglishSubjectCategories[0],
@@ -794,7 +856,7 @@ export const primaryEnglishYearData = {
       primaryEnglishSubjectCategories[3],
       primaryEnglishSubjectCategories[4],
     ],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -822,13 +884,14 @@ export const primaryEnglishYearData = {
   },
   "6": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [
       primaryEnglishSubjectCategories[2],
       primaryEnglishSubjectCategories[3],
       primaryEnglishSubjectCategories[4],
     ],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -860,9 +923,10 @@ export const primaryScienceSubjectCategories = [
 export const primaryScienceYearData = {
   "1": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [primaryScienceSubjectCategories[1]],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -874,12 +938,13 @@ export const primaryScienceYearData = {
   },
   "2": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [
       primaryScienceSubjectCategories[1],
       primaryScienceSubjectCategories[2],
     ],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -895,6 +960,7 @@ export const primaryScienceYearData = {
   },
   "3": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [
       primaryScienceSubjectCategories[1],
@@ -902,7 +968,6 @@ export const primaryScienceYearData = {
       primaryScienceSubjectCategories[3],
     ],
 
-    labels: [],
     groupAs: null,
     isSwimming: false,
     units: [
@@ -922,6 +987,7 @@ export const primaryScienceYearData = {
   },
   "4": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [
       primaryScienceSubjectCategories[0],
@@ -929,7 +995,7 @@ export const primaryScienceYearData = {
       primaryScienceSubjectCategories[2],
       primaryScienceSubjectCategories[3],
     ],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -953,12 +1019,13 @@ export const primaryScienceYearData = {
   },
   "5": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [
       primaryScienceSubjectCategories[2],
       primaryScienceSubjectCategories[3],
     ],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -974,9 +1041,10 @@ export const primaryScienceYearData = {
   },
   "6": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [primaryScienceSubjectCategories[3]],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -1012,12 +1080,13 @@ const secondaryScienceChildSubjects = [
   createChildSubject({ subject: "Biology", subject_slug: "biology" }),
 ];
 
-export const secondaryScienceYearData = {
+export const secondaryScienceYearData: YearData = {
   "7": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: secondaryScienceSubjectCategories,
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -1029,9 +1098,10 @@ export const secondaryScienceYearData = {
   },
   "8": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: secondaryScienceSubjectCategories,
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -1047,9 +1117,10 @@ export const secondaryScienceYearData = {
   },
   "9": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: secondaryScienceSubjectCategories,
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -1068,10 +1139,11 @@ export const secondaryScienceYearData = {
     ],
   },
   "10": {
+    pathways: [],
     childSubjects: secondaryScienceChildSubjects,
-    tiers: [tiers[0], tiers[1]],
+    tiers: [tiers[0]!, tiers[1]!],
     subjectCategories: secondaryScienceSubjectCategories,
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -1102,10 +1174,11 @@ export const secondaryScienceYearData = {
     ],
   },
   "11": {
+    pathways: [],
     childSubjects: secondaryScienceChildSubjects,
-    tiers: [tiers[0], tiers[1]],
+    tiers: [tiers[0]!, tiers[1]!],
     subjectCategories: secondaryScienceSubjectCategories,
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [
@@ -1130,45 +1203,50 @@ export const secondaryScienceYearData = {
 export const secondaryMathsYearData = {
   "7": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [],
   },
   "8": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [],
   },
   "9": {
     childSubjects: [],
+    pathways: [],
     tiers: [],
     subjectCategories: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [],
   },
   "10": {
     childSubjects: [],
+    pathways: [],
     tiers: [tiers[0], tiers[1]],
     subjectCategories: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [],
   },
   "11": {
     childSubjects: [],
+    pathways: [],
     tiers: [tiers[0], tiers[1]],
     subjectCategories: [],
-    labels: [],
+
     groupAs: null,
     isSwimming: false,
     units: [],

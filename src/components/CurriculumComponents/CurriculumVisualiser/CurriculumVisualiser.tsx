@@ -144,7 +144,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     setCurrentUnitLessons([]);
   };
 
-  console.log({ yearData });
   const yearTypes = ["core"];
   if (ks4OptionSlug && ks4OptionSlug !== "core") {
     yearTypes.push("non_core");
@@ -162,9 +161,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           }
         } else if (type === "core") {
           if (year === "10" || year === "11") {
-            console.log("HERE", yearData[year]);
             return (
-              yearData[year].pathways.findIndex(
+              yearData[year]!.pathways.findIndex(
                 (item) => item.pathway_slug === "core",
               ) > -1
             );
@@ -202,8 +200,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
       units: filteredUnits,
     };
   });
-
-  console.log(">>> unitsByYearSelector=", unitsByYearSelector);
 
   return (
     <OakBox id="content" data-testid="curriculum-visualiser">
