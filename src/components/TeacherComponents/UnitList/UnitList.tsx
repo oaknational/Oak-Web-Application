@@ -227,11 +227,17 @@ const UnitList: FC<UnitListProps> = (props) => {
             });
             router.push(e.currentTarget.href);
           };
+
+          const formattedLessonCountString =
+            unitOption.lessonCount === 1
+              ? `${unitOption.lessonCount} lesson`
+              : `${unitOption.lessonCount} lessons`;
+
           return (
             <OakUnitListItem
               {...props}
               {...unitOption}
-              lessonCount={unitOption.lessonCount?.toString() || "0"}
+              lessonCount={formattedLessonCountString}
               firstItemRef={
                 isUnitFirstItemRef(
                   unitOption.programmeSlug,
