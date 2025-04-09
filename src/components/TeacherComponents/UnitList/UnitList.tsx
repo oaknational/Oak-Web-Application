@@ -318,7 +318,7 @@ const UnitList: FC<UnitListProps> = (props) => {
 
   const SwimmingUnits = () => {
     if (swimmingPageItems.length && keyStageSlug && phaseSlug) {
-      const title = `${swimmingPageItems[0]?.[0]?.groupUnitsAs}`;
+      const title = `${swimmingPageItems[0]?.[0]?.groupUnitsAs} units (all years)`;
       return (
         <OakUnitsContainer
           isLegacy={false}
@@ -332,13 +332,14 @@ const UnitList: FC<UnitListProps> = (props) => {
             },
           })}
           showHeader={
-            newPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
+            swimmingPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
               ? true
               : false
           }
           unitCards={getUnitCards(swimmingPageItems)}
           isCustomUnit={true}
           customHeadingText={title}
+          bannerText="Swimming and water safety lessons should be selected based on the ability and experience of your pupils."
         />
       );
     } else return null;
