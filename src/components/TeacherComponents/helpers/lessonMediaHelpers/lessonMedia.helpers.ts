@@ -4,7 +4,7 @@ import type {
 } from "@/node-lib/curriculum-api-2023/queries/lessonMediaClips/lessonMediaClips.schema";
 
 export const getPlaybackId = (currentClip: MediaClip) => {
-  if (currentClip && currentClip.videoObject) {
+  if (currentClip?.videoObject) {
     const signed = currentClip.videoObject.playbackIds?.find((p) => {
       return p?.policy === "signed";
     });
