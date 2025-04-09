@@ -76,9 +76,6 @@ export const getPackagedUnit = (
     programmeSlugByYear,
   } = packagedUnitData;
 
-  console.log("programmeSlugByYear", programmeSlugByYear);
-  console.log("programmeFields", programmeFields);
-
   const modifiedProgrammeFields = getCorrectYear({
     programmeSlugByYear,
     programmeFields,
