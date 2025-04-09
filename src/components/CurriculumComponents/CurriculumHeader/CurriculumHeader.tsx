@@ -93,7 +93,9 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
   ];
 
   return (
-    <OakBox $mb={["space-between-none", "space-between-l"]}>
+    <OakBox
+      $mb={["space-between-none", "space-between-none", "space-between-l"]}
+    >
       {/* @todo replace with OakFlex - colours type needs updating to oak-components colour token */}
       <OakFlex $background={color1} $pv="inner-padding-l">
         <OakBox
@@ -189,7 +191,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
             </OakFlex>
           </OakBox>
         </Flex>
-        <Flex $borderColor="mint30" $bt={2}>
+        <Flex $borderColor="mint30" $background={"mint"} $bt={2}>
           <OakBox
             $maxWidth="all-spacing-24"
             $ph={["inner-padding-none", "inner-padding-l"]}
@@ -208,6 +210,7 @@ const CurriculumHeader: FC<CurriculumHeaderPageProps> = ({
                 subjectTitle: currentSelection.subject.title,
                 phaseSlug: currentSelection.phase.slug as PhaseValueType,
               }}
+              $background={"mint"}
             />
           </OakBox>
         </Flex>
