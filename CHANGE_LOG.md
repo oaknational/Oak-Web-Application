@@ -1,3 +1,17 @@
+## [1.730.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.730.1...v1.730.2) (2025-04-09)
+
+
+### Bug Fixes
+
+* added heading styles to blogs ([f6d0089](https://github.com/oaknational/Oak-Web-Application/commit/f6d0089d3e7dff450a1846c301e88e636cb0d679))
+
+## [1.730.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.730.0...v1.730.1) (2025-04-08)
+
+
+### Bug Fixes
+
+* set search results pages to noindex ([81329df](https://github.com/oaknational/Oak-Web-Application/commit/81329df5ef3a0a6663f01b327a8e287215d19b16))
+
 # [1.730.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.729.1...v1.730.0) (2025-04-07)
 
 
