@@ -13,7 +13,11 @@ import {
 import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
-import { getPageItems, getProgrammeFactors } from "./helpers";
+import {
+  getPageItems,
+  getProgrammeFactors,
+  getFormattedUnitLessonCountString,
+} from "./helpers";
 
 import {
   UnitListItemProps,
@@ -228,10 +232,10 @@ const UnitList: FC<UnitListProps> = (props) => {
             router.push(e.currentTarget.href);
           };
 
-          const formattedLessonCountString =
-            unitOption.lessonCount === 1
-              ? `${unitOption.lessonCount} lesson`
-              : `${unitOption.lessonCount} lessons`;
+          const formattedLessonCountString = getFormattedUnitLessonCountString({
+            lessonCount: unitOption.lessonCount,
+            expiredLessonCount: unitOption.expiredLessonCount,
+          });
 
           return (
             <OakUnitListItem
