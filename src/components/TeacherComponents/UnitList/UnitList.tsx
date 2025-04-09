@@ -1,5 +1,12 @@
 import React, { FC, MouseEvent } from "react";
 import { NextRouter, useRouter } from "next/router";
+
+
+import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
+import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
+
+import { getPageItems, getProgrammeFactors } from "./helpers";
+
 import {
   OakFlex,
   OakUnitsContainer,
@@ -9,12 +16,6 @@ import {
   OakAnchorTarget,
   OakBox,
 } from "@oaknational/oak-components";
-
-import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
-import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
-
-import { getPageItems, getProgrammeFactors } from "./helpers";
-
 import {
   UnitListItemProps,
   SpecialistListItemProps,
@@ -218,6 +219,7 @@ const UnitList: FC<UnitListProps> = (props) => {
             <OakUnitListItem
               {...props}
               {...unitOption}
+              lessonCount={String(unitOption.lessonCount)}
               firstItemRef={
                 isUnitFirstItemRef(
                   unitOption.programmeSlug,
