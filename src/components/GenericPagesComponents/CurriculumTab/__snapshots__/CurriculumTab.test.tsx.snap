@@ -7,8 +7,29 @@ exports[`CurriculumTab renders 1`] = `
       data-overlay-container="true"
     >
       <div
-        class="sc-fqkvVR iKBTzE"
+        class="sc-fqkvVR gZEYWU"
       >
+        <div
+          style="position: absolute; inset: 0; overflow: hidden; pointer-events: none;"
+        >
+          <div
+            style="position: absolute; bottom: 18px; right: calc(-40rem + 50vw - 200px); width: 529px; height: 420px;"
+          >
+            <div
+              class="sc-fqkvVR gdtuvF"
+            >
+              <img
+                alt="looping-line-5"
+                class="sc-dcJsrY koGnIf"
+                data-nimg="fill"
+                decoding="async"
+                loading="lazy"
+                src="https://next_public_oak_assets_host/NEXT_PUBLIC_OAK_ASSETS_PATH/v1740665310/OWA/ui-graphics/looping-line-5_vdknco.svg"
+                style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
+              />
+            </div>
+          </div>
+        </div>
         <div
           class="sc-fqkvVR sc-gsFSXq sc-cwHptR itRfeb ibSZJr"
         >
