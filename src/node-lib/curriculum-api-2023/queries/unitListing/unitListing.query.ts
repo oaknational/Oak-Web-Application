@@ -41,6 +41,11 @@ const unitListingQuery =
   (sdk: Sdk) => async (args: { programmeSlug: string }) => {
     const res = await sdk.unitListing(args);
 
+    console.log(
+      "?????",
+      res.units.map((u) => u.unit_slug),
+    );
+
     const modifiedBrowseData = applyGenericOverridesAndExceptions<
       UnitListingQuery["units"][number]
     >({
