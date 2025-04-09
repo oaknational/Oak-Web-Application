@@ -50,27 +50,6 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
     },
   );
 
-  const content = [...props.blog.contentPortableText];
-
-  // TODO: Remove me, un-comment to add in example styles
-  // for (let i=6; i>0; i--) {
-  //   content.unshift({
-  //     "_key": "831c97b040ec"+i,
-  //     "_type": "block",
-  //     "children": [
-  //       {
-  //         "_key": "ededd509fc7a",
-  //         "_type": "span",
-  //         "marks": [
-  //         ],
-  //         "text": `Heading ${i}`
-  //       }
-  //     ],
-  //     "markDefs": [],
-  //     "style": `heading${i}`
-  //   })
-  // }
-
   return (
     <Layout
       seoProps={getSeoProps({
@@ -92,7 +71,7 @@ const BlogSinglePage: NextPage<BlogSinglePageProps> = (props) => {
         )}
       >
         <OakBox $mt="space-between-l">
-          <BlogPortableText portableText={content} />
+          <BlogPortableText portableText={props.blog.contentPortableText} />
         </OakBox>
       </PostSingleLayout>
       <BlogJsonLd blog={props.blog} />
