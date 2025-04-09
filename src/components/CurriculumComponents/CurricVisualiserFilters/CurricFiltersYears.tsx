@@ -45,7 +45,7 @@ export function CurricFiltersYears({
   );
   function addAllToFilter(target: { year: string; pathway?: string }) {
     if (target.year === "all") {
-      onChangeFilters({ ...filters, years: data.yearOptions });
+      onChangeFilters({ ...filters, years: data.yearOptions, pathways: [] });
     } else {
       onChangeFilters({
         ...filters,
