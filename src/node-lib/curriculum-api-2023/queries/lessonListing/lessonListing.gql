@@ -18,6 +18,5 @@ query lessonListing($programmeSlug: String!, $unitSlug: String!) {
     actions
     features
     order_in_unit
-    static_lesson_list
   }
 }
