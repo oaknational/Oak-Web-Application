@@ -148,7 +148,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   };
 
   const yearTypes: ("core" | "non_core")[] = [];
-  if (ks4Options?.find((opt) => opt.slug === "core")) {
+  if (!ks4OptionSlug || ks4Options?.find((opt) => opt.slug === "core")) {
     yearTypes.push("core");
   }
   if (ks4OptionSlug && ks4OptionSlug !== "core") {
