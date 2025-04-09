@@ -1,11 +1,8 @@
 import {
   lessonContentFixture,
   syntheticUnitvariantLessonsByKsFixture,
-  // additionalFilesFixture
+  additionalFilesFixture,
 } from "@oaknational/oak-curriculum-schema";
-
-import sdk from "../../sdk";
-import { lessonPathwaySchema } from "../../shared.schema";
 
 import lessonOverview, {
   getContentGuidance,
@@ -14,27 +11,13 @@ import lessonOverview, {
   getAdditionalFiles,
 } from "./lessonOverview.query";
 
-// @todo update to fixture from oak-curriculum-schema once it is updated there
-export const _additionalFilesFixture = [
-  {
-    assetId: 1,
-    mediaId: 1,
-    mediaObject: {
-      url: "https://example.com/file1.pdf",
-      bytes: 1000,
-      displayName: "File 1",
-    },
-  },
-  {
-    assetId: 2,
-    mediaId: 2,
-    mediaObject: {
-      url: "https://example.com/file2.pdf",
-      bytes: 2000,
-      displayName: "File 2",
-    },
-  },
-];
+import sdk from "@/node-lib/curriculum-api-2023/sdk";
+import { lessonPathwaySchema } from "@/node-lib/curriculum-api-2023/shared.schema";
+import keysToCamelCase from "@/utils/snakeCaseConverter";
+
+export const _additionalFilesFixture = keysToCamelCase(
+  additionalFilesFixture().downloadable_files,
+);
 
 describe("lessonOverview()", () => {
   test("throws a not found error if no lesson is found", async () => {
