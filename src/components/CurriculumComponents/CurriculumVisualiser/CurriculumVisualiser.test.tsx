@@ -62,6 +62,7 @@ const curriculumVisualiserFixture = {
     subjectCategories: [],
     threads: [],
   },
+  ks4Options: [],
   selectedYear: null,
   ks4OptionSlug: "edexcel",
   yearData: {

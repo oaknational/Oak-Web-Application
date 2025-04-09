@@ -8,7 +8,22 @@ export type PartialFilters = {
   tiers?: CurriculumFilters["tiers"];
   years: CurriculumFilters["years"];
   threads: CurriculumFilters["threads"];
+  pathways: CurriculumFilters["pathways"];
 };
+
+function toCondition(query: string, slug: string) {
+  const isNot = query.match(/^!/);
+  const target = query.replace(/^!/, "");
+
+  let ret = false;
+  if (isNot) {
+    ret = slug !== target;
+  } else {
+    ret = slug === target;
+  }
+
+  return ret;
+}
 
 export function isVisibleUnit(
   filters: PartialFilters,
@@ -37,5 +52,15 @@ export function isVisibleUnit(
     !unit.tier_slug ||
     filters.tiers[0] === unit.tier_slug;
 
-  return filterBySubject && filterBySubjectCategory && filterByTier;
+  const filterByPathways =
+    !filters.pathways?.[0] ||
+    !unit.pathway_slug ||
+    toCondition(filters.pathways[0], unit.pathway_slug);
+
+  return (
+    filterBySubject &&
+    filterBySubjectCategory &&
+    filterByTier &&
+    filterByPathways
+  );
 }

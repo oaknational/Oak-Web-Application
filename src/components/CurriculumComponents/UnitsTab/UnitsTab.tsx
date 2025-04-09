@@ -16,6 +16,7 @@ import {
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -23,6 +24,7 @@ type UnitsTabProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilter: CurriculumFilters) => void;
   slugs: CurriculumSelectionSlugs;
+  ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
 };
 
 export default function UnitsTab({
@@ -31,6 +33,7 @@ export default function UnitsTab({
   filters,
   onChangeFilters,
   slugs,
+  ks4Options,
 }: UnitsTabProps) {
   // Initialize constants
   const isMobile = useMediaQuery("mobile");
@@ -84,6 +87,7 @@ export default function UnitsTab({
             slugs={slugs}
             onOpenModal={() => {}}
             trackingData={trackingData}
+            ks4Options={ks4Options}
           />
         )}
         <CurricVisualiserLayout
@@ -94,6 +98,7 @@ export default function UnitsTab({
                 onChangeFilters={onChangeFilters}
                 data={formattedData}
                 slugs={slugs}
+                ks4Options={ks4Options}
               />
             )
           }
@@ -102,6 +107,7 @@ export default function UnitsTab({
               unitData={unitData}
               filters={filters}
               ks4OptionSlug={ks4OptionSlug}
+              ks4Options={ks4Options}
               yearData={yearData}
               setUnitData={setUnitData}
               setVisibleMobileYearRefID={setVisibleMobileYearRefID}

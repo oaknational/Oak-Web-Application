@@ -49,6 +49,7 @@ const curriculumSequenceQuery =
       ? {
           _or: [
             { pathway_slug: { _eq: pathwaySlug } },
+            { pathway_slug: { _eq: "core" } },
             { pathway_slug: { _is_null: true } },
           ],
         }
