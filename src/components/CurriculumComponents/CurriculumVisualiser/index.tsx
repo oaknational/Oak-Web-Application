@@ -29,6 +29,7 @@ import {
   Thread,
 } from "@/utils/curriculum/types";
 import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
+import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 
 type CurriculumVisualiserProps = {
   unitData: Unit | null;
@@ -39,6 +40,7 @@ type CurriculumVisualiserProps = {
   setUnitData: (unit: Unit) => void;
   setVisibleMobileYearRefID: (refID: string) => void;
   threadOptions: Thread[];
+  ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
 };
 
 // Function component
@@ -52,6 +54,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   filters,
   setVisibleMobileYearRefID,
   threadOptions,
+  ks4Options,
 }) => {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
@@ -144,7 +147,10 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     setCurrentUnitLessons([]);
   };
 
-  const yearTypes: ("core" | "non_core")[] = ["core"];
+  const yearTypes: ("core" | "non_core")[] = [];
+  if (ks4Options?.find((opt) => opt.slug === "core")) {
+    yearTypes.push("core");
+  }
   if (ks4OptionSlug && ks4OptionSlug !== "core") {
     yearTypes.push("non_core");
   }
@@ -174,32 +180,36 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
       .sort((a, b) => sortYears(a.year, b.year));
   });
 
-  const unitsByYearSelector = yearSelectors.map(({ year, type }) => {
-    const yearItem = yearData[year] as YearData[string];
+  const unitsByYearSelector = yearSelectors
+    .map(({ year, type }) => {
+      const yearItem = yearData[year] as YearData[string];
 
-    const yearBasedFilters = filteringFromYears(yearData[year]!, filters);
-    const isExamboard = type === "non_core";
+      const yearBasedFilters = filteringFromYears(yearData[year]!, filters);
+      const isExamboard = type === "non_core";
 
-    const filteredUnits = yearItem.units.filter((unit: Unit) => {
-      if (isExamboard && unit.pathway_slug === "core") {
-        return false;
-      }
-      if (
-        ["10", "11"].includes(year) &&
-        !isExamboard &&
-        unit.pathway_slug !== "core"
-      ) {
-        return false;
-      }
-      return isVisibleUnit(yearBasedFilters, year, unit);
+      const filteredUnits = yearItem.units.filter((unit: Unit) => {
+        if (isExamboard && unit.pathway_slug === "core") {
+          return false;
+        }
+        if (
+          ["10", "11"].includes(year) &&
+          !isExamboard &&
+          unit.pathway_slug !== "core"
+        ) {
+          return false;
+        }
+        return isVisibleUnit(yearBasedFilters, year, unit);
+      });
+
+      return {
+        selector: { type, year },
+        yearItem,
+        units: filteredUnits,
+      };
+    })
+    .filter(({ units }) => {
+      return units.length > 0;
     });
-
-    return {
-      selector: { type, year },
-      yearItem,
-      units: filteredUnits,
-    };
-  });
 
   return (
     <OakBox id="content" data-testid="curriculum-visualiser">

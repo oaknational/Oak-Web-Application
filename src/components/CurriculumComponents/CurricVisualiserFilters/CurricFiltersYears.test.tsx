@@ -19,6 +19,12 @@ describe("CurricFiltersYears", () => {
         }}
         onChangeFilters={() => {}}
         data={basicSetup}
+        ks4Options={[]}
+        slugs={{
+          phaseSlug: "secondary",
+          subjectSlug: "english",
+          ks4OptionSlug: null,
+        }}
       />,
     );
 
@@ -43,6 +49,12 @@ describe("CurricFiltersYears", () => {
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
+        ks4Options={[]}
+        slugs={{
+          phaseSlug: "secondary",
+          subjectSlug: "english",
+          ks4OptionSlug: null,
+        }}
       />,
     );
 
@@ -84,6 +96,12 @@ describe("CurricFiltersYears", () => {
         }}
         onChangeFilters={onChangeFilters}
         data={basicSetup}
+        ks4Options={[]}
+        slugs={{
+          phaseSlug: "secondary",
+          subjectSlug: "english",
+          ks4OptionSlug: null,
+        }}
       />,
     );
 
