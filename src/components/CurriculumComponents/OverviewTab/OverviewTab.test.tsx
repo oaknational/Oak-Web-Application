@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { act } from "@testing-library/react";
 
 import OverviewTab from "./OverviewTab";
@@ -6,6 +7,12 @@ import curriculumOverviewTabFixture from "@/node-lib/curriculum-api-2023/fixture
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import { mockVideoAsset } from "@/__tests__/__helpers__/cms";
 
+jest.mock("@mux/mux-player-react/lazy", () => {
+  return forwardRef((props, ref) => {
+    ref; // This prevents warning about ref not being used
+    return <div data-testid="mux-player-mock" />;
+  });
+});
 const routeReplaceMock = jest.fn((url: string) => {
   console.log(url);
 });
