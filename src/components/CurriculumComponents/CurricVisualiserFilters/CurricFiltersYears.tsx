@@ -40,7 +40,7 @@ export function CurricFiltersYears({
   const yearOptions = data.yearOptions.map<{ year: string; pathway?: string }>(
     (year) => {
       if (shouldDisplayCorePathway) {
-        return { year, pathway: "!core" };
+        return { year, pathway: "core" };
       } else {
         return { year };
       }
@@ -60,10 +60,10 @@ export function CurricFiltersYears({
 
   if (shouldDisplayCorePathway) {
     if (data.yearOptions.includes("10")) {
-      yearOptions.push({ year: "10", pathway: "core" });
+      yearOptions.push({ year: "10", pathway: "!core" });
     }
     if (data.yearOptions.includes("11")) {
-      yearOptions.push({ year: "11", pathway: "core" });
+      yearOptions.push({ year: "11", pathway: "!core" });
     }
   }
 
