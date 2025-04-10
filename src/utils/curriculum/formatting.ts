@@ -220,3 +220,13 @@ export function getPhaseFromCategory(input: DownloadCategory) {
   }
   return "primary";
 }
+
+export function getPathwaySuffix(year: string, pathway?: string) {
+  if (["10", "11"].includes(year) && pathway) {
+    if (pathway === "core") {
+      return "Core";
+    } else {
+      return "GCSE";
+    }
+  }
+}

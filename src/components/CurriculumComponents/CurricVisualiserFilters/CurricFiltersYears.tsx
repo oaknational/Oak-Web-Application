@@ -7,7 +7,10 @@ import {
 import { isEqual } from "lodash";
 import { useId } from "react";
 
-import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import {
+  getPathwaySuffix,
+  getYearGroupTitle,
+} from "@/utils/curriculum/formatting";
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import type { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
@@ -37,7 +40,7 @@ export function CurricFiltersYears({
   const yearOptions = data.yearOptions.map<{ year: string; pathway?: string }>(
     (year) => {
       if (shouldDisplayCorePathway) {
-        return { year, pathway: "!core" };
+        return { year, pathway: "core" };
       } else {
         return { year };
       }
@@ -57,10 +60,10 @@ export function CurricFiltersYears({
 
   if (shouldDisplayCorePathway) {
     if (data.yearOptions.includes("10")) {
-      yearOptions.push({ year: "10", pathway: "core" });
+      yearOptions.push({ year: "10", pathway: "!core" });
     }
     if (data.yearOptions.includes("11")) {
-      yearOptions.push({ year: "11", pathway: "core" });
+      yearOptions.push({ year: "11", pathway: "!core" });
     }
   }
 
@@ -96,20 +99,26 @@ export function CurricFiltersYears({
           displayValue="All"
           data-testid={"all-years-radio"}
         />
-        {yearOptions.map((yearOption, index) => (
-          <OakRadioAsButton
-            key={`${yearOption.year}-${yearOption.pathway}`}
-            value={String(index)}
-            displayValue={getYearGroupTitle(
-              yearData,
-              yearOption.year,
-              shouldDisplayCorePathway && ["10", "11"].includes(yearOption.year)
-                ? `(${yearOption.pathway})`
-                : undefined,
-            )}
-            data-testid={"year-radio"}
-          />
-        ))}
+        {yearOptions.map((yearOption, index) => {
+          const pathwaySuffix = shouldDisplayCorePathway
+            ? getPathwaySuffix(yearOption.year, yearOption.pathway)
+            : undefined;
+          const pathwaySuffixStr = pathwaySuffix
+            ? `(${pathwaySuffix})`
+            : undefined;
+          return (
+            <OakRadioAsButton
+              key={`${yearOption.year}-${yearOption.pathway}`}
+              value={String(index)}
+              displayValue={getYearGroupTitle(
+                yearData,
+                yearOption.year,
+                pathwaySuffixStr,
+              )}
+              data-testid={"year-radio"}
+            />
+          );
+        })}
       </OakRadioGroup>
     </OakBox>
   );
