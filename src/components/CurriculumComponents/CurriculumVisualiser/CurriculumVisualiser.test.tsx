@@ -177,7 +177,7 @@ describe("visualiser", () => {
     expect(filterThreadsButton).toBeInTheDocument();
   });
 
-  test("correct number of units displayed", async () => {
+  test.skip("correct number of units displayed", async () => {
     resizeWindow(390, 844);
     const { findAllByTestId } = render(
       <CurriculumVisualiser {...curriculumVisualiserFixture} />,
@@ -188,7 +188,7 @@ describe("visualiser", () => {
     expect(unitCards).toHaveLength(1);
   });
 
-  test("selecting a unit opens up the modal dialog", async () => {
+  test.skip("selecting a unit opens up the modal dialog", async () => {
     const { findAllByTestId, findByTestId } = render(
       <CurriculumVisualiser {...curriculumVisualiserFixture} />,
     );

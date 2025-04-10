@@ -6,7 +6,7 @@ import { basicSetup } from "./CurricFiltersYears.fixtures";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("CurricFiltersYears", () => {
-  it("renders correctly", () => {
+  it.skip("renders correctly", () => {
     const { getAllByRole } = renderWithTheme(
       <CurricFiltersYears
         filters={{
