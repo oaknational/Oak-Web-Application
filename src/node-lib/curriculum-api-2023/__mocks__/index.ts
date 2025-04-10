@@ -55,6 +55,7 @@ const curriculumApi: Pick<
   | "lessonMediaClips"
   | "betaLessonMediaClipsQuery"
   | "teachersPreviewLessonDownload"
+  | "teachersPreviewUnitListing"
 > = {
   curriculumPhaseOptions: jest.fn(async () => {
     return curriculumPhaseOptionsFixture();
@@ -100,6 +101,9 @@ const curriculumApi: Pick<
   teachersPreviewLessonDownload: jest.fn(async () => {
     return lessonDownloadsFixtures();
   }) as jest.Mocked<TeacherPreviewLessonDownloadsQuery>,
+  teachersPreviewUnitListing: jest.fn(async () => {
+    return unitListingFixture();
+  }),
   betaLessonMediaClipsQuery: jest.fn(async () => {
     return {
       ...lessonMediaClipsFixtures(),

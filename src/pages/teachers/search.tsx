@@ -77,6 +77,7 @@ const SearchPage: NextPage<SearchPageProps> = (props) => {
             title: `Search for Free Teaching Resources${paginationTitle}`,
             description: "Search for Free Teaching Resources",
           }),
+          noIndex: true,
         }}
         $background="grey20"
       >

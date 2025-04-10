@@ -219,7 +219,7 @@ export const transformedLessonOverviewData = (
     teacherTips: content.teacherTips,
     lessonEquipmentAndResources: browseData.lessonData.equipmentAndResources,
     additionalMaterialUrl: content.supplementaryAssetObjectUrl,
-    keyLearningPoints: content.keyLearningPoints,
+    keyLearningPoints: content.keyLearningPoints ?? null,
     pupilLessonOutcome: content.pupilLessonOutcome,
     lessonKeywords: content.lessonKeywords,
     copyrightContent: getCopyrightContent(

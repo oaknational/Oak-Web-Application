@@ -3,6 +3,7 @@ import {
   PortableTextComponents,
 } from "@portabletext/react";
 import { FC } from "react";
+import { OakHeading } from "@oaknational/oak-components";
 
 import PostBlockCallout from "@/components/GenericPagesComponents/PostBlockCallout";
 import PostCallout from "@/components/GenericPagesComponents/PostCallout";
@@ -42,6 +43,66 @@ const postPortableTextComponents = ({
   block: {
     sectionHeading: PostSectionHeading,
     callout: PostBlockCallout,
+    heading1: (props) => (
+      <OakHeading
+        tag="h2"
+        $mb="space-between-s"
+        $font="heading-5"
+        $mt="space-between-m"
+      >
+        {props.children}
+      </OakHeading>
+    ),
+    heading2: (props) => (
+      <OakHeading
+        tag="h3"
+        $mb="space-between-s"
+        $font="heading-6"
+        $mt="space-between-m"
+      >
+        {props.children}
+      </OakHeading>
+    ),
+    heading3: (props) => (
+      <OakHeading
+        tag="h4"
+        $mb="space-between-s"
+        $font="heading-6"
+        $mt="space-between-m"
+      >
+        {props.children}
+      </OakHeading>
+    ),
+    heading4: (props) => (
+      <OakHeading
+        tag="h5"
+        $mb="space-between-s"
+        $font="heading-6"
+        $mt="space-between-m"
+      >
+        {props.children}
+      </OakHeading>
+    ),
+    heading5: (props) => (
+      <OakHeading
+        tag="h6"
+        $mb="space-between-s"
+        $font="heading-6"
+        $mt="space-between-m"
+      >
+        {props.children}
+      </OakHeading>
+    ),
+    heading6: (props) => (
+      <OakHeading
+        tag="h6"
+        $mb="space-between-s"
+        $font="heading-6"
+        $mt="space-between-m"
+      >
+        {props.children}
+      </OakHeading>
+    ),
   },
   types: {
     imageWithAltText: PostImageWithAltText,
