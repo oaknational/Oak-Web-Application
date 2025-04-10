@@ -192,7 +192,7 @@ const OnboardingForm = ({
       router.push(
         toSafeRedirect(
           router.query.returnTo?.toString() ?? "/",
-          new URL(location.origin),
+          new URL(typeof window !== "undefined" ? window.location.origin : "/"),
         ) ?? "/",
       );
     }

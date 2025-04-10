@@ -561,14 +561,6 @@ jest.mock("@/hooks/useAnalyticsPageProps.ts", () => ({
 
 const mockCMSClient = CMSClient as jest.MockedObject<typeof CMSClient>;
 
-jest.mock("next-sanity-image", () => ({
-  ...jest.requireActual("next-sanity-image"),
-  useNextSanityImage: () => ({
-    src: "/test/img/src.png",
-    width: 400,
-    height: 400,
-  }),
-}));
 const mockedCurriculumSequence = curriculumApi.curriculumSequence as jest.Mock;
 const mockedFetchSubjectPhasePickerData =
   fetchSubjectPhasePickerData as jest.Mock;

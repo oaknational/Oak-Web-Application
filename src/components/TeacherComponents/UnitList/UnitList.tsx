@@ -218,6 +218,7 @@ const UnitList: FC<UnitListProps> = (props) => {
             <OakUnitListItem
               {...props}
               {...unitOption}
+              lessonCount={String(unitOption.lessonCount)}
               firstItemRef={
                 isUnitFirstItemRef(
                   unitOption.programmeSlug,
