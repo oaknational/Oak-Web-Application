@@ -14,6 +14,7 @@ import {
 import { CurriculumFilters } from "@/utils/curriculum/types";
 import type { CurriculumUnitsFormattedData } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
 
 export type CurricFiltersYearsProps = {
@@ -29,14 +30,11 @@ export function CurricFiltersYears({
   onChangeFilters,
   data,
   ks4Options,
-  slugs,
 }: CurricFiltersYearsProps) {
   const id = useId();
   const { yearData } = data;
 
-  const hasCorePathway = !!ks4Options?.find((opt) => opt.slug === "core");
-  const shouldDisplayCorePathway =
-    hasCorePathway && slugs.ks4OptionSlug !== "core";
+  const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
   const yearOptions = data.yearOptions.map<{ year: string; pathway?: string }>(
     (year) => {
       if (shouldDisplayCorePathway) {

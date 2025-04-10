@@ -30,6 +30,7 @@ import {
 } from "@/utils/curriculum/types";
 import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 
 type CurriculumVisualiserProps = {
   unitData: Unit | null;
@@ -211,6 +212,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
       return units.length > 0;
     });
 
+  const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
+
   return (
     <OakBox id="content" data-testid="curriculum-visualiser">
       {unitsByYearSelector.flatMap((data, index) => {
@@ -233,7 +236,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           yearData,
           year,
           filters,
-          type,
+          shouldDisplayCorePathway ? type : null,
         );
 
         return (
