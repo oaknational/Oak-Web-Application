@@ -1,3 +1,36 @@
+# [1.731.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.730.2...v1.731.0) (2025-04-09)
+
+
+### Features
+
+* media clips cleanup ([fc5efda](https://github.com/oaknational/Oak-Web-Application/commit/fc5efda693e54800819d33e4aec1d6e24577d4c4))
+
+## [1.730.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.730.1...v1.730.2) (2025-04-09)
+
+
+### Bug Fixes
+
+* added heading styles to blogs ([f6d0089](https://github.com/oaknational/Oak-Web-Application/commit/f6d0089d3e7dff450a1846c301e88e636cb0d679))
+
+## [1.730.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.730.0...v1.730.1) (2025-04-08)
+
+
+### Bug Fixes
+
+* set search results pages to noindex ([81329df](https://github.com/oaknational/Oak-Web-Application/commit/81329df5ef3a0a6663f01b327a8e287215d19b16))
+
+# [1.730.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.729.1...v1.730.0) (2025-04-07)
+
+
+### Bug Fixes
+
+* exclude beta page from duplication coverage ([e6e40e7](https://github.com/oaknational/Oak-Web-Application/commit/e6e40e7d1df5e8d59eeadd5bef5abad3424f9f99))
+
+
+### Features
+
+* beta unit page ([62c6c4a](https://github.com/oaknational/Oak-Web-Application/commit/62c6c4a0d804fc69a4337eca10e1c9f9c586313f))
+
 ## [1.729.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.729.0...v1.729.1) (2025-04-04)
 
 

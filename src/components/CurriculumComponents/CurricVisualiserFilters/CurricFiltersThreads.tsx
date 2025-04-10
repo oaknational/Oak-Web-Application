@@ -39,9 +39,10 @@ export function CurricFiltersThreads({
         </FieldsetLegend>
         <RadioGroup
           name={"thread" + id}
-          onChange={(e) =>
-            onChangeFilters({ ...filters, threads: [e.target.value] })
-          }
+          onChange={(e) => {
+            const threads = e.target.value === "" ? [] : [e.target.value];
+            onChangeFilters({ ...filters, threads });
+          }}
           value={filters.threads[0] ?? ""}
         >
           <OakBox

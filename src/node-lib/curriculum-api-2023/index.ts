@@ -32,6 +32,7 @@ import pupilsSitemap from "./queries/pupilsSitemap/pupilsSitemap.query";
 import refreshedMVTimeQuery from "./queries/refreshedMVTime/refreshedMvTime.query";
 import teacherPreviewLessonQuery from "./queries/teacherPreviewLesson/teacherPreviewLesson.query";
 import teachersPreviewLessonDownloadQuery from "./queries/teacherPreviewLessonDownload/teacherPreviewLessonDownload.query";
+import teachersPreviewUnitListingQuery from "./queries/teacherPreviewUnitListing/teacherPreviewUnitListing.query";
 import curriculumSequenceQuery from "./queries/curriculumSequence/curriculumSequence.query";
 import { lessonMediaClipsQuery } from "./queries/lessonMediaClips/lessonMediaClips.query";
 import { betaLessonMediaClipsQuery } from "./queries/lessonBetaMediaClips/lessonBetaMediaClips.query";
@@ -154,6 +155,7 @@ const curriculumApi2023 = {
   },
   teacherPreviewLesson: teacherPreviewLessonQuery(sdk),
   teachersPreviewLessonDownload: teachersPreviewLessonDownloadQuery(sdk),
+  teachersPreviewUnitListing: teachersPreviewUnitListingQuery(sdk),
   betaLessonMediaClipsQuery: betaLessonMediaClipsQuery(sdk),
   specialistLessonOverview: specialistLessonOverview(sdk),
   specialistLessonOverviewCanonical: specialistLessonOverviewCanonical(sdk),
