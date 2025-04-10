@@ -25,4 +25,27 @@ describe("getCorrectYear", () => {
       subject_slug: "physical-education",
     });
   });
+
+  it("should return the same year if the year slug is 'all-years'", () => {
+    const programmeSlugByYear = [
+      "physical-education-primary-year-6-l",
+      "physical-education-primary-year-4-l",
+      "physical-education-primary-year-5-l",
+    ];
+    const pf = programmeFieldsFixture({
+      overrides: {
+        year_slug: "all-years",
+        year_description: "All years",
+        subject_slug: "physical-education",
+      },
+    });
+
+    const result = getCorrectYear({ programmeSlugByYear, programmeFields: pf });
+
+    expect(result).toMatchObject({
+      year_slug: "all-years",
+      year_description: "All years",
+      subject_slug: "physical-education",
+    });
+  });
 });

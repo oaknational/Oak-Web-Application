@@ -40,7 +40,13 @@ function filterUnits<
         : true;
       const yearGroupMatch = yearGroup ? unit.year === yearGroup : true;
 
-      return themeMatch && categoryMatch && yearGroupMatch;
+      // display units with "all-years" year group within all year groups
+      const allYearsMatch = yearGroup ? unit.year === "all-years" : true;
+
+      return (
+        (themeMatch && categoryMatch && yearGroupMatch) ||
+        (themeMatch && categoryMatch && allYearsMatch)
+      );
     }),
   );
 }

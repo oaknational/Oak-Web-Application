@@ -22,6 +22,11 @@ export const getCorrectYear = ({
 
   const modifiedProgrammeFields = { ...programmeFields };
 
+  // don't mdify year data if the year slug is "all-years"
+  if (programmeFields.year_slug === "all-years") {
+    return modifiedProgrammeFields;
+  }
+
   if (
     parsedYearSlug.success &&
     parsedYearSlug.data !== programmeFields.year_slug

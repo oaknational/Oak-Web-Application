@@ -100,58 +100,60 @@ const YearGroupFilters: FC<YearGroupFiltersProps> = ({
               }
             }}
           />
-          {yearGroups.map((yearGroup) => (
-            <OakSearchFilterCheckBox
-              id={`${yearGroup.yearTitle}-${idSuffix}`}
-              value={`${idSuffix}-${yearGroup.year}`}
-              displayValue={yearGroup.yearTitle}
-              key={yearGroup.year}
-              checked={
-                !isMobile
-                  ? yearGroup.year === router.query.year
-                  : yearGroup.year === activeMobileFilter
-              }
-              onChange={() => {
-                if (!isMobile) {
-                  browseRefined({
-                    platform: "owa",
-                    product: "teacher lesson resources",
-                    engagementIntent: "refine",
-                    componentType: "filter_link",
-                    eventVersion: "2.0.0",
-                    analyticsUseCase: "Teacher",
-                    filterValue: yearGroup.yearTitle,
-                    filterType: "Subject filter",
-                    activeFilters: {
-                      content_types: "units",
-                      learning_themes: router.query.learningTheme,
-                      categories: router.query.category,
-                    },
-                  });
-
-                  router.replace(
-                    {
-                      pathname: router.pathname,
-                      query: {
-                        ...(selectedThemeSlug && {
-                          "learning-theme": selectedThemeSlug,
-                        }),
-                        programmeSlug,
-                        year: yearGroup.year,
-                        ...(router.query.category && {
-                          category: router.query.category,
-                        }),
-                      },
-                    },
-                    undefined,
-                    { shallow: true },
-                  );
-                } else {
-                  setYear && setYear(yearGroup.year);
+          {yearGroups
+            .filter((yearGroup) => yearGroup.year !== "all-years")
+            .map((yearGroup) => (
+              <OakSearchFilterCheckBox
+                id={`${yearGroup.yearTitle}-${idSuffix}`}
+                value={`${idSuffix}-${yearGroup.year}`}
+                displayValue={yearGroup.yearTitle}
+                key={yearGroup.year}
+                checked={
+                  !isMobile
+                    ? yearGroup.year === router.query.year
+                    : yearGroup.year === activeMobileFilter
                 }
-              }}
-            />
-          ))}
+                onChange={() => {
+                  if (!isMobile) {
+                    browseRefined({
+                      platform: "owa",
+                      product: "teacher lesson resources",
+                      engagementIntent: "refine",
+                      componentType: "filter_link",
+                      eventVersion: "2.0.0",
+                      analyticsUseCase: "Teacher",
+                      filterValue: yearGroup.yearTitle,
+                      filterType: "Subject filter",
+                      activeFilters: {
+                        content_types: "units",
+                        learning_themes: router.query.learningTheme,
+                        categories: router.query.category,
+                      },
+                    });
+
+                    router.replace(
+                      {
+                        pathname: router.pathname,
+                        query: {
+                          ...(selectedThemeSlug && {
+                            "learning-theme": selectedThemeSlug,
+                          }),
+                          programmeSlug,
+                          year: yearGroup.year,
+                          ...(router.query.category && {
+                            category: router.query.category,
+                          }),
+                        },
+                      },
+                      undefined,
+                      { shallow: true },
+                    );
+                  } else {
+                    setYear && setYear(yearGroup.year);
+                  }
+                }}
+              />
+            ))}
         </OakFlex>
       </OakFieldset>
     </OakFlex>

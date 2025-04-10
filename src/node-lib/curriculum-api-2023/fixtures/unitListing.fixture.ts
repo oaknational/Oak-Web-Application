@@ -650,4 +650,99 @@ export const combinedUnitListingFixture = (
   };
 };
 
+export const swimmingUnitListingFixture = (
+  partial?: Partial<UnitListingData>,
+): UnitListingData => {
+  return {
+    ...unitListingFixture(),
+    units: [
+      [
+        {
+          slug: "number-1",
+          title: "Number 1",
+          nullTitle: "Number 1",
+          programmeSlug: "maths-secondary-ks4",
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key Stage 4",
+          subjectSlug: "maths",
+          subjectTitle: "Maths",
+          lessonCount: 9,
+          unitStudyOrder: 1,
+          expired: false,
+          yearOrder: 1,
+          expiredLessonCount: 0,
+          subjectCategories: null,
+          groupUnitsAs: "Swimming and water safety",
+          yearTitle: "Year 10",
+          year: "year-10",
+          cohort: "2023-2024",
+          learningThemes: [
+            {
+              themeSlug: "number-1",
+              themeTitle: "Number 1",
+            },
+          ],
+        },
+      ],
+      [
+        {
+          slug: "number-2",
+          title: "Number 2",
+          nullTitle: "Number 2",
+          programmeSlug: "maths-secondary-ks4",
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key Stage 4",
+          subjectSlug: "maths",
+          subjectTitle: "Maths",
+          lessonCount: 12,
+          unitStudyOrder: 2,
+          yearOrder: 1,
+          expired: false,
+          expiredLessonCount: 0,
+          yearTitle: "Year 10",
+          subjectCategories: null,
+          groupUnitsAs: "Swimming and water safety",
+          year: "year-10",
+          cohort: "2023-2024",
+          learningThemes: [
+            {
+              themeSlug: "number-2",
+              themeTitle: "Number 2",
+            },
+          ],
+        },
+      ],
+      [
+        {
+          slug: "number-3",
+          title: "Number 3",
+          nullTitle: "Number 3",
+          programmeSlug: "maths-secondary-ks4",
+          keyStageSlug: "ks4",
+          keyStageTitle: "Key Stage 4",
+          subjectSlug: "maths",
+          subjectTitle: "Maths",
+          lessonCount: 6,
+          unitStudyOrder: 3,
+          expired: false,
+          yearOrder: 1,
+          subjectCategories: null,
+          groupUnitsAs: "Swimming and water safety",
+          expiredLessonCount: 0,
+          yearTitle: "Year 10",
+          year: "year-10",
+          cohort: "2023-2024",
+          learningThemes: [
+            {
+              themeSlug: "number-3",
+              themeTitle: "Number 3",
+            },
+          ],
+        },
+      ],
+    ],
+    ...partial,
+  };
+};
+
 export default unitListingFixture;

@@ -56,6 +56,7 @@ const reshapedUnitData = z.object({
   cohort: z.string().nullish(),
   learningThemes: z.array(learningThemesSchema).nullable(),
   subjectCategories: z.array(subjectCategorySchema).nullish(),
+  groupUnitsAs: z.string().nullish(),
 });
 
 export type ReshapedUnitData = z.infer<typeof reshapedUnitData>;
@@ -110,6 +111,7 @@ const unitListingData = z.object({
   subjectCategories: z.array(subjectCategorySchema),
   pathwayTitle: pathways.nullable(),
   relatedSubjects: z.array(subjectSlugs).optional(),
+  groupUnitsAs: z.string().optional(),
 });
 
 export type UnitListingData = z.infer<typeof unitListingData>;

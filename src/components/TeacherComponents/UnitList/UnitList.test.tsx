@@ -4,6 +4,7 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import unitListingFixture, {
   combinedUnitListingFixture,
+  swimmingUnitListingFixture,
 } from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 import optionalityProps from "@/node-lib/curriculum-api-2023/fixtures/optionality.fixture";
 import UnitList from "@/components/TeacherComponents/UnitList/UnitList";
@@ -212,5 +213,26 @@ describe("components/UnitList", () => {
     );
 
     expect(curriculumDownloadLink).not.toBeInTheDocument;
+  });
+
+  test("renders Swimming units", () => {
+    render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...swimmingUnitListingFixture()}
+          paginationProps={mockPaginationProps}
+          currentPageItems={swimmingUnitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
+    );
+
+    expect("Swimming and water safety units (all years)").toBeInTheDocument;
+    expect(
+      "Swimming and water safety lessons should be selected based on the ability and experience of your pupils.",
+    ).toBeInTheDocument;
+
+    const unitCards = screen.getAllByTestId("unit-list-item");
+    expect(unitCards).toHaveLength(3);
   });
 });
