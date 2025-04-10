@@ -133,7 +133,7 @@ export function getYearSubheadingText(
     CurriculumFilters,
     "childSubjects" | "subjectCategories" | "tiers"
   >,
-  type: "core" | "non_core" | null,
+  type: "core" | "non_core" | "all" | null,
 ): string | null {
   // Don't show subheading for "All" years view
   if (year === "all") {
