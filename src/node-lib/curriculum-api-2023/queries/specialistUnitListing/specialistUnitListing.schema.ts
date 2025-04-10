@@ -118,6 +118,7 @@ const individualSpecialistUnitSchema = z.object({
   themeTitle: z.string().nullish(),
   developmentStageSlug: z.string().nullish(),
   developmentStageTitle: z.string().nullish(),
+  unpublishedLessonCount: z.number(),
 });
 const specialistUnitArray = z.array(individualSpecialistUnitSchema);
 

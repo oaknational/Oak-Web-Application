@@ -276,6 +276,7 @@ describe("getExpandedUnits", () => {
         slug: "celebrations-and-festivals-primary-1f8f",
         lessonCount: 4,
         nullTitle: "Celebrations and Festivals (Primary)",
+        unpublishedLessonCount: 0,
         orderInProgramme: 1,
         programmeSlug: "communication-and-language-applying-learning",
         subjectSlug: "communication-and-language",
@@ -356,6 +357,8 @@ describe("getExpandedUnits", () => {
             developmentStageTitle: "Applying learning",
             expired: false,
             expiredLessonCount: 0,
+            unpublishedLessonCount: 0,
+
             learningThemes: [
               {
                 themeSlug: "primary",
@@ -380,6 +383,8 @@ describe("getExpandedUnits", () => {
             developmentStageTitle: "Applying learning",
             expired: false,
             expiredLessonCount: 0,
+            unpublishedLessonCount: 0,
+
             learningThemes: [
               {
                 themeSlug: "secondary",

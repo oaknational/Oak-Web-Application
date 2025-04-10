@@ -29,7 +29,7 @@ function getDeploymentTestUrls() {
     // "/lp/how-to-use-Oak-in-3-easy-steps",
     "/lp/help-shape-oak",
     // "/lp/oak-calendar",
-    // Beta pages
+    // Legacy content pages
     "/teachers/key-stages/ks1/subjects",
     "/teachers/key-stages/ks4/subjects/maths/programmes",
     "/teachers/programmes/maths-secondary-ks4-foundation/units",
@@ -47,6 +47,11 @@ function getDeploymentTestUrls() {
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units",
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons",
     "/teachers/programmes/combined-science-secondary-ks4-higher-aqa/units/measuring-waves/lessons/oscilloscope",
+    "/teachers/programmes/spanish-secondary-ks4-aqa/units/travel-and-tourism-nuevas-experiencias/lessons", // unitvariant uses null lessons
+    "/teachers/programmes/spanish-secondary-ks4-edexcel/units/travel-and-tourism-nuevas-experiencias/lessons",
+    "/teachers/programmes/biology-secondary-ks4-higher-aqa/units/health-and-disease/lessons",
+    "/teachers/programmes/history-primary-ks1/units/traditional-stories-what-do-they-tell-us-about-the-distant-past-1757/lessons", // optionality variant using null lessons
+    "/teachers/programmes/physical-education-primary-ks2/units/invasion-games-principles-of-attack-and-defence-through-ball-games/lessons/passing-and-receiving-skills",
     // Canonical lesson pages
     "/teachers/lessons/duncan-as-a-father-figure",
     "/teachers/lessons/duncan-as-a-father-figure/downloads",

@@ -31,6 +31,7 @@ describe("components/ Lesson List", () => {
         currentPageItems={lessonsWithUnitData}
         unitTitle={"Unit title"}
         lessonCount={lessons.length}
+        lessonCountHeader={`Lessons (${lessons.length})`}
         onClick={onClick}
       />,
     );
@@ -50,6 +51,7 @@ describe("components/ Lesson List", () => {
         unitTitle={"Unit title"}
         lessonCount={10}
         onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
       />,
     );
 
@@ -68,6 +70,7 @@ describe("components/ Lesson List", () => {
         unitTitle={"Unit title"}
         lessonCount={4}
         onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
       />,
     );
 
@@ -86,6 +89,7 @@ describe("components/ Lesson List", () => {
         unitTitle={"Unit title"}
         lessonCount={4}
         onClick={onClick}
+        lessonCountHeader={`Lessons (${lessons.length})`}
       />,
     );
     const unit = getByText("Add two surds");
