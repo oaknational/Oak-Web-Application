@@ -357,6 +357,11 @@ describe("getYearSubheadingText", () => {
       subjectCategories: [subCat1],
       tiers: [tier1],
     }),
+    "10": createYearData({
+      childSubjects: [childSubject1],
+      subjectCategories: [subCat1],
+      tiers: [tier1],
+    }),
   };
 
   it("all year", () => {
@@ -426,6 +431,53 @@ describe("getYearSubheadingText", () => {
       null,
     );
     expect(result).toEqual("SUB_CAT_1, CHILD_SUBJECT_1, TIER_1");
+  });
+
+  it("all", () => {
+    const result = getYearSubheadingText(
+      data,
+      "7",
+      createFilter({
+        years: ["7"],
+        subjectCategories: [String(subCat1.id)],
+        childSubjects: [childSubject1.subject_slug],
+        tiers: [tier1.tier_slug],
+      }),
+      null,
+    );
+    expect(result).toEqual("SUB_CAT_1, CHILD_SUBJECT_1, TIER_1");
+  });
+
+  describe("core/non-core", () => {
+    it("core", () => {
+      const result = getYearSubheadingText(
+        data,
+        "10",
+        createFilter({
+          years: ["10"],
+          subjectCategories: [String(subCat1.id)],
+          childSubjects: [childSubject1.subject_slug],
+          tiers: [tier1.tier_slug],
+        }),
+        "core",
+      );
+      expect(result).toEqual("Core, CHILD_SUBJECT_1, TIER_1");
+    });
+
+    it("non-core", () => {
+      const result = getYearSubheadingText(
+        data,
+        "10",
+        createFilter({
+          years: ["10"],
+          subjectCategories: [String(subCat1.id)],
+          childSubjects: [childSubject1.subject_slug],
+          tiers: [tier1.tier_slug],
+        }),
+        "non_core",
+      );
+      expect(result).toEqual("GCSE, CHILD_SUBJECT_1, TIER_1");
+    });
   });
 });
 
