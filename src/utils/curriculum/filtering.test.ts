@@ -272,6 +272,7 @@ describe("filtering", () => {
         threads: [],
         tiers: ["foundation"],
         years: ["7", "8"],
+        pathways: [],
       });
     });
 
@@ -377,6 +378,7 @@ describe("diffFilters", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
     expect(diffFilters(dfltFilter, dfltFilter)).toEqual({
       childSubjects: [],
@@ -384,6 +386,7 @@ describe("diffFilters", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     });
   });
 
@@ -397,6 +400,7 @@ describe("diffFilters", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
     const filter: CurriculumFilters = {
       childSubjects: [],
@@ -404,6 +408,7 @@ describe("diffFilters", () => {
       tiers: [tierHigher.tier_slug],
       years: [],
       threads: [thread.slug],
+      pathways: [],
     };
     expect(diffFilters(dfltFilter, filter)).toEqual({
       childSubjects: [],
@@ -411,6 +416,7 @@ describe("diffFilters", () => {
       tiers: [tierHigher.tier_slug],
       years: [],
       threads: [thread.slug],
+      pathways: [],
     });
   });
 });
@@ -652,6 +658,7 @@ describe("getNumberOfFiltersApplied", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
     expect(getNumberOfFiltersApplied(dfltFilter, dfltFilter)).toEqual(0);
   });
@@ -666,6 +673,7 @@ describe("getNumberOfFiltersApplied", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
     const filter: CurriculumFilters = {
       childSubjects: [],
@@ -673,6 +681,7 @@ describe("getNumberOfFiltersApplied", () => {
       tiers: [tierHigher.tier_slug],
       years: [],
       threads: [thread.slug],
+      pathways: [],
     };
     expect(getNumberOfFiltersApplied(dfltFilter, filter)).toEqual(3);
   });
@@ -686,6 +695,7 @@ describe("filtersToQuery", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     });
     expect(result).toEqual({});
   });
@@ -718,6 +728,7 @@ describe("filtersToQuery", () => {
         tiers: [],
         years: [],
         threads: [],
+        pathways: [],
       },
     );
 
@@ -739,6 +750,7 @@ describe("mergeInFilterParams", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
 
     const result = mergeInFilterParams(
@@ -753,6 +765,7 @@ describe("mergeInFilterParams", () => {
       tiers: ["tier_1"],
       years: ["1"],
       threads: ["thread1"],
+      pathways: [],
     });
   });
 
@@ -763,6 +776,7 @@ describe("mergeInFilterParams", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     };
 
     const result = mergeInFilterParams(
@@ -777,6 +791,7 @@ describe("mergeInFilterParams", () => {
       tiers: ["tier_1", "tier_2"],
       years: ["1", "2"],
       threads: ["thread1", "thread2"],
+      pathways: [],
     });
   });
 });
@@ -908,6 +923,7 @@ describe("filteringFromYears", () => {
       threads: [],
       tiers: [],
       years: [],
+      pathways: [],
     });
   });
 

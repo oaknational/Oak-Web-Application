@@ -83,10 +83,12 @@ export function formatKeystagesShort(keyStages: string[]) {
   return keyStagesItems.length > 0 ? `KS${keyStagesItems.join("-")}` : ``;
 }
 
-export function getSuffixFromFeatures(features: Actions) {
-  if (features?.programme_field_overrides?.subject) {
-    return `(${features.programme_field_overrides?.subject})`;
-  }
+export function getSuffixFromFeatures(_features: Actions): undefined {
+  _features;
+  // TODO: Remove me from programme_field_overrides
+  // if (features?.programme_field_overrides?.subject) {
+  //   return `(${features.programme_field_overrides?.subject})`;
+  // }
   return;
 }
 
@@ -131,6 +133,7 @@ export function getYearSubheadingText(
     CurriculumFilters,
     "childSubjects" | "subjectCategories" | "tiers"
   >,
+  type: "core" | "non_core" | "all" | null,
 ): string | null {
   // Don't show subheading for "All" years view
   if (year === "all") {
@@ -139,6 +142,14 @@ export function getYearSubheadingText(
 
   const parts: string[] = [];
   const isKs4Year = keystageFromYear(year) === "ks4";
+
+  if (keystageFromYear(year) === "ks4") {
+    if (type === "core") {
+      parts.push("Core");
+    } else if (type === "non_core") {
+      parts.push("GCSE");
+    }
+  }
 
   // Handle subject categories (KS1-KS3)
   if (
@@ -208,4 +219,14 @@ export function getPhaseFromCategory(input: DownloadCategory) {
     return "secondary";
   }
   return "primary";
+}
+
+export function getPathwaySuffix(year: string, pathway?: string) {
+  if (["10", "11"].includes(year) && pathway) {
+    if (pathway === "core") {
+      return "Core";
+    } else {
+      return "GCSE";
+    }
+  }
 }

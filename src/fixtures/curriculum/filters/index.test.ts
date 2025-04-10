@@ -9,6 +9,7 @@ describe("createFilter", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     });
   });
 
@@ -22,6 +23,7 @@ describe("createFilter", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     });
   });
 
@@ -35,6 +37,7 @@ describe("createFilter", () => {
       tiers: [],
       years: [],
       threads: [],
+      pathways: [],
     });
   });
 
@@ -48,6 +51,7 @@ describe("createFilter", () => {
       tiers: ["foundation", "higher"],
       years: [],
       threads: [],
+      pathways: [],
     });
   });
 
@@ -61,6 +65,7 @@ describe("createFilter", () => {
       tiers: [],
       years: ["9", "10", "11"],
       threads: [],
+      pathways: [],
     });
   });
 
@@ -74,6 +79,7 @@ describe("createFilter", () => {
       tiers: [],
       years: [],
       threads: ["test1", "test2"],
+      pathways: [],
     });
   });
 });

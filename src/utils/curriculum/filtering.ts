@@ -1,5 +1,5 @@
 import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
-import { useLayoutEffect, useState, useCallback } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
 import { isEqual } from "lodash";
 
 import { findFirstMatchingFeatures } from "./features";
@@ -93,6 +93,7 @@ export function getDefaultFilter(data: CurriculumUnitsFormattedData) {
     tiers: getDefaultTiersForYearGroup(data.yearData),
     years: data.yearOptions,
     threads: [],
+    pathways: [],
   };
 }
 
@@ -102,6 +103,7 @@ const FILTER_TO_QS: Record<keyof CurriculumFilters, string> = {
   tiers: "tiers",
   years: "years",
   threads: "threads",
+  pathways: "pathways",
 };
 
 export function filtersToQuery(
@@ -166,6 +168,7 @@ export function useFilters(
     },
     [defaultFilter],
   );
+
   return [filters, setFilters];
 }
 
@@ -231,6 +234,7 @@ export function filteringFromYears(
     tiers: tiers.length > 0 ? filters.tiers : undefined,
     years: filters.years,
     threads: filters.threads,
+    pathways: filters.pathways,
   };
   return output;
 }
@@ -305,6 +309,7 @@ export function diffFilters(
     tiers: [],
     years: [],
     threads: [],
+    pathways: [],
   };
   for (const keyRaw of Object.keys(defaultFilterFilter)) {
     const key = keyRaw as keyof CurriculumFilters;
