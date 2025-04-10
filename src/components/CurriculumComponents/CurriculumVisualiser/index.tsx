@@ -151,13 +151,16 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   const yearTypes: ("core" | "non_core" | "all")[] = [];
   if (!ks4Options?.find((opt) => opt.slug === "core")) {
     yearTypes.push("all");
+  } else {
+    if (!ks4OptionSlug || ks4Options?.find((opt) => opt.slug === "core")) {
+      yearTypes.push("core");
+    }
+    if (ks4OptionSlug && ks4OptionSlug !== "core") {
+      yearTypes.push("non_core");
+    }
   }
-  if (!ks4OptionSlug || ks4Options?.find((opt) => opt.slug === "core")) {
-    yearTypes.push("core");
-  }
-  if (ks4OptionSlug && ks4OptionSlug !== "core") {
-    yearTypes.push("non_core");
-  }
+
+  console.log({ yearTypes });
 
   const yearSelectors = yearTypes.flatMap((type) => {
     return Object.keys(yearData)
@@ -196,6 +199,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           return false;
         }
         if (
+          type !== "all" &&
           ["10", "11"].includes(year) &&
           !isExamboard &&
           unit.pathway_slug !== "core"
