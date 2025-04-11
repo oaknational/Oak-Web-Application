@@ -25,6 +25,7 @@ import isBrowser from "../../utils/isBrowser";
 import HubspotScript from "../../browser-lib/hubspot/HubspotScript";
 import { getPageViewProps } from "../../browser-lib/analytics/getPageViewProps";
 import getBrowserConfig from "../../browser-lib/getBrowserConfig";
+import { useHubspotCookieContactLookup } from "../../browser-lib/hubspot/hooks/useHubspotCookieContactLookup";
 
 import { ServicePolicyMap } from "@/browser-lib/cookie-consent/ServicePolicyMap";
 
@@ -111,6 +112,9 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
     useState<PosthogDistinctId | null>(null);
   const [hubspotScriptLoaded, setHubspotScriptLoaded] = useState(false);
 
+  const { contactData } = useHubspotCookieContactLookup();
+  const hubspot_contact_id = contactData?.id;
+
   /**
    * Posthog
    */
@@ -183,6 +187,7 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
       linkUrl: router.asPath,
       pageName,
       analyticsUseCase,
+      ...(hubspot_contact_id ? { hubspot_contact_id } : {}),
     });
   });
 
@@ -213,10 +218,15 @@ const AnalyticsProvider: FC<AnalyticsProviderProps> = (props) => {
         hubspot.identify(id, props);
       }
       if (allServices || services?.includes("posthog")) {
-        posthog.identify(id, props);
+        // Add hubspot_contact_id to posthog properties when available
+        const posthogProps = {
+          ...props,
+          ...(hubspot_contact_id ? { hubspot_contact_id } : {}),
+        };
+        posthog.identify(id, posthogProps);
       }
     },
-    [hubspot, posthog],
+    [hubspot, posthog, hubspot_contact_id],
   );
   const alias: AliasFn = useCallback(
     (aliasId, userId) => {
