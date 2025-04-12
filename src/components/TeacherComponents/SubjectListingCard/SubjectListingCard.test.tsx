@@ -5,6 +5,11 @@ import SubjectListingCard from "./SubjectListingCard";
 
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 import subjectPagePropsFixture from "@/node-lib/curriculum-api-2023/fixtures/subjectListing.fixture";
+import {
+  mockLinkClick,
+  setupMockLinkClick,
+  teardownMockLinkClick,
+} from "@/utils/mockLinkClick";
 
 const subjects = subjectPagePropsFixture().subjects;
 
@@ -21,6 +26,11 @@ jest.mock("@/context/Analytics/useAnalytics", () => ({
 describe("SubjectListingCardDouble", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    setupMockLinkClick();
+  });
+
+  afterEach(() => {
+    teardownMockLinkClick();
   });
 
   test("render a Card with the Name of the Subject", () => {
@@ -111,5 +121,8 @@ describe("SubjectListingCardDouble", () => {
       filterValue: "biology",
       activeFilters: { keyStage: ["ks4"] },
     });
+    expect(mockLinkClick).toHaveBeenCalledWith(
+      "http://localhost/teachers/key-stages/ks4/subjects/biology/programmes",
+    );
   });
 });

@@ -289,7 +289,7 @@ const OnboardingForm = ({
                 };
                 return (
                   <OakCheckBox
-                    checked={value}
+                    checked={value ?? false}
                     name={name}
                     onBlur={onBlur}
                     onChange={onChangeHandler}

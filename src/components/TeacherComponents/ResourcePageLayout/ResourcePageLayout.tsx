@@ -97,7 +97,7 @@ function ResourcePageContent(props: ResourcePageLayoutProps) {
       <OakBox
         $pa={"inner-padding-none"}
         $ba={"border-solid-none"}
-        as={props.page === "download" ? "fieldset" : "box"}
+        as={props.page === "download" ? "fieldset" : "div"}
       >
         {props.page === "download" && (
           <OakBox
