@@ -1,3 +1,29 @@
+## [1.732.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.1...v1.732.2) (2025-04-14)
+
+
+### Bug Fixes
+
+* error thrown when switching between primary/secondary science ([9ad7462](https://github.com/oaknational/Oak-Web-Application/commit/9ad7462296c27cfaa6d70b4ffa92f9a284c89623))
+
+## [1.732.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.0...v1.732.1) (2025-04-14)
+
+
+### Bug Fixes
+
+* try to add Netlify-Vary to 307 redirect fix netlify cache issue ([2695146](https://github.com/oaknational/Oak-Web-Application/commit/269514699e62fb90d63d293cc6498ebd58ca73bc))
+
+# [1.732.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.731.0...v1.732.0) (2025-04-14)
+
+
+### Bug Fixes
+
+* merge mishaps ([efa626a](https://github.com/oaknational/Oak-Web-Application/commit/efa626a08020e5181ed39832574b257b1ff27aae))
+
+
+### Features
+
+* update mv version in queries ([b763486](https://github.com/oaknational/Oak-Web-Application/commit/b76348643fa3935e7800e6c117f45e51b159c85f))
+
 # [1.731.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.730.2...v1.731.0) (2025-04-09)
 
 

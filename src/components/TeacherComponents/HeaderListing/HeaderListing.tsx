@@ -6,6 +6,7 @@ import {
   OakColorFilterToken,
   OakBox,
   OakInlineBanner,
+  OakP,
 } from "@oaknational/oak-components";
 
 import UnitDownloadButton, {
@@ -51,6 +52,7 @@ export type HeaderListingProps = {
   unitDownloadFileId?: string;
   onUnitDownloadSuccess?: () => void;
   showRiskAssessmentBanner?: boolean;
+  isIncompleteUnit?: boolean;
   subjectDescriptionUnitListingData?: UnitListingData;
 };
 
@@ -73,6 +75,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     unitDownloadFileId,
     onUnitDownloadSuccess,
     showRiskAssessmentBanner,
+    isIncompleteUnit,
     subjectDescriptionUnitListingData,
   } = props;
 
@@ -86,6 +89,8 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
     setDownloadError,
     setDownloadInProgress,
     downloadInProgress,
+    showIncompleteMessage,
+    setShowIncompleteMessage,
   } = useUnitDownloadButtonState();
 
   const bannersBlock = (
@@ -98,15 +103,33 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
             message="Sorry, download is not working. Please try again in a few minutes."
             icon="error"
           />
-        ) : showDownloadMessage ? (
-          <OakInlineBanner
-            isOpen={showDownloadMessage}
-            canDismiss
-            onDismiss={() => setShowDownloadMessage(false)}
-            type="neutral"
-            message="Downloads may take a few minutes on slower Wi-Fi connections."
-            $mb={"space-between-s"}
-          />
+        ) : showDownloadMessage || showIncompleteMessage ? (
+          <>
+            <OakInlineBanner
+              isOpen={showDownloadMessage}
+              canDismiss
+              onDismiss={() => setShowDownloadMessage(false)}
+              type="neutral"
+              message={
+                <OakP>
+                  Downloads may take a few minutes on slower Wi-Fi connections.
+                </OakP>
+              }
+              $mb={"space-between-s"}
+              $width="max-content"
+            />
+            {isIncompleteUnit && (
+              <OakInlineBanner
+                canDismiss
+                onDismiss={() => setShowIncompleteMessage(false)}
+                isOpen={showIncompleteMessage}
+                type="neutral"
+                message={<OakP>This unit is incomplete</OakP>}
+                $mb={"space-between-s"}
+                $width="max-content"
+              />
+            )}
+          </>
         ) : null}
       </OakBox>
       {showRiskAssessmentBanner && <RiskAssessmentBanner />}
@@ -170,6 +193,7 @@ const HeaderListing: FC<HeaderListingProps> = (props) => {
                     setDownloadError={setDownloadError}
                     setDownloadInProgress={setDownloadInProgress}
                     setShowDownloadMessage={setShowDownloadMessage}
+                    setShowIncompleteMessage={setShowIncompleteMessage}
                     downloadInProgress={downloadInProgress}
                     unitFileId={unitDownloadFileId}
                     onDownloadSuccess={onUnitDownloadSuccess}
