@@ -157,8 +157,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     }
   }
 
-  console.log({ yearTypes });
-
   const yearSelectors = yearTypes.flatMap((type) => {
     return Object.keys(yearData)
       .map((year) => ({ year, type }))
@@ -236,9 +234,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           yearData,
           year,
           filters,
-          type,
-          actions,
           shouldDisplayCorePathway ? type : null,
+          actions,
         );
 
         return (
