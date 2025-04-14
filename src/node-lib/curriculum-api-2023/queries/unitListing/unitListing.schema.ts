@@ -50,6 +50,7 @@ const reshapedUnitData = z.object({
   unitStudyOrder: z.number(),
   expired: z.boolean().nullable(),
   expiredLessonCount: z.number().nullable(),
+  unpublishedLessonCount: z.number(),
   yearTitle: yearDescriptions,
   year: yearSlugs,
   yearOrder: z.number(),

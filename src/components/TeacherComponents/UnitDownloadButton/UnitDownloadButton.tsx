@@ -81,6 +81,7 @@ const DownloadButton = ({
 export const useUnitDownloadButtonState = () => {
   const [downloadError, setDownloadError] = useState<boolean | undefined>();
   const [showDownloadMessage, setShowDownloadMessage] = useState(false);
+  const [showIncompleteMessage, setShowIncompleteMessage] = useState(false);
   const [downloadInProgress, setDownloadInProgress] = useState(false);
 
   return {
@@ -90,6 +91,8 @@ export const useUnitDownloadButtonState = () => {
     setShowDownloadMessage,
     downloadInProgress,
     setDownloadInProgress,
+    showIncompleteMessage,
+    setShowIncompleteMessage,
   };
 };
 
@@ -99,6 +102,7 @@ export type UnitDownloadButtonProps = {
   setDownloadError: Dispatch<SetStateAction<boolean | undefined>>;
   setDownloadInProgress: Dispatch<SetStateAction<boolean>>;
   setShowDownloadMessage: Dispatch<SetStateAction<boolean>>;
+  setShowIncompleteMessage: Dispatch<SetStateAction<boolean>>;
   downloadInProgress: boolean;
 };
 
@@ -119,6 +123,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
     setDownloadError,
     setDownloadInProgress,
     setShowDownloadMessage,
+    setShowIncompleteMessage,
     downloadInProgress,
   } = props;
 
@@ -127,6 +132,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
 
   const onUnitDownloadClick = async () => {
     setShowDownloadMessage(true);
+    setShowIncompleteMessage(true);
     setDownloadInProgress(true);
     try {
       setDownloadError(false);
@@ -140,6 +146,7 @@ export default function UnitDownloadButton(props: UnitDownloadButtonProps) {
       }
     } catch (error) {
       setShowDownloadMessage(false);
+      setShowIncompleteMessage(false);
       setDownloadError(true);
     }
     setDownloadInProgress(false);
