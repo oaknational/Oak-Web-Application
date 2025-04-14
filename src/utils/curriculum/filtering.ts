@@ -176,11 +176,14 @@ export function getFilterData(
   yearData: CurriculumUnitsYearData,
   years: string[],
 ) {
+  console.log(Object.values(yearData).map((y) => y.childSubjects));
   const childSubjects = new Map<string, Subject>();
   const subjectCategories = new Map<number, SubjectCategory>();
   const tiers = new Map<string, Tier>();
   years.forEach((year) => {
     const obj = yearData[year]!;
+    console.log({ obj });
+
     obj.childSubjects.forEach((childSubject) =>
       childSubjects.set(childSubject.subject_slug, childSubject),
     );
