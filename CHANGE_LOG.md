@@ -1,3 +1,10 @@
+## [1.732.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.1...v1.732.2) (2025-04-14)
+
+
+### Bug Fixes
+
+* error thrown when switching between primary/secondary science ([9ad7462](https://github.com/oaknational/Oak-Web-Application/commit/9ad7462296c27cfaa6d70b4ffa92f9a284c89623))
+
 ## [1.732.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.0...v1.732.1) (2025-04-14)
 
 
