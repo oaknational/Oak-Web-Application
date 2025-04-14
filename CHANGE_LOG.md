@@ -1,3 +1,15 @@
+# [1.732.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.731.0...v1.732.0) (2025-04-14)
+
+
+### Bug Fixes
+
+* merge mishaps ([efa626a](https://github.com/oaknational/Oak-Web-Application/commit/efa626a08020e5181ed39832574b257b1ff27aae))
+
+
+### Features
+
+* update mv version in queries ([b763486](https://github.com/oaknational/Oak-Web-Application/commit/b76348643fa3935e7800e6c117f45e51b159c85f))
+
 # [1.731.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.730.2...v1.731.0) (2025-04-09)
 
 
