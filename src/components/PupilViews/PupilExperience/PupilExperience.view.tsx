@@ -188,10 +188,13 @@ const PupilExperienceLayout = ({
   pageType,
   worksheetInfo,
 }: PupilExperienceViewProps) => {
+  // @todo update once we have data
+  const ageRestriction = false;
+
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const { track } = usePupilAnalytics();
   const [isOpen, setIsOpen] = useState<boolean>(
-    !!lessonContent.contentGuidance,
+    !!lessonContent.contentGuidance || !!ageRestriction,
   );
   const router = useRouter();
   const availableSections = pickAvailableSectionsForLesson(lessonContent);
@@ -215,6 +218,7 @@ const PupilExperienceLayout = ({
       contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
         return cg.contentguidanceArea;
       })?.contentguidanceArea as ContentGuidanceWarningValueType,
+      //ageRestriction: lessonContent.ageRestriction,
     });
   };
 
@@ -242,13 +246,30 @@ const PupilExperienceLayout = ({
           initialLessonReviewSections={availableSections}
           initialSection={initialSection}
         >
-          <OakPupilJourneyContentGuidance
-            isOpen={isOpen}
-            onAccept={handleContentGuidanceAccept}
-            onDecline={handleContentGuidanceDecline}
-            contentGuidance={lessonContent.contentGuidance}
-            supervisionLevel={lessonContent.supervisionLevel}
-          />
+          {ageRestriction ? (
+            <OakPupilJourneyContentGuidance
+              isOpen={isOpen}
+              onAccept={handleContentGuidanceAccept}
+              onDecline={handleContentGuidanceDecline}
+              title={`To view this lesson, you must be in year ${ageRestriction} and above`}
+              contentGuidance={[
+                {
+                  contentguidanceLabel:
+                    "Speak to an adult before starting this lesson.",
+                  contentguidanceDescription: null,
+                  contentguidanceArea: null,
+                },
+              ]}
+            />
+          ) : (
+            <OakPupilJourneyContentGuidance
+              isOpen={isOpen}
+              onAccept={handleContentGuidanceAccept}
+              onDecline={handleContentGuidanceDecline}
+              contentGuidance={lessonContent.contentGuidance}
+              supervisionLevel={lessonContent.supervisionLevel}
+            />
+          )}
 
           <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
             <OakBox $height={"100vh"}>
