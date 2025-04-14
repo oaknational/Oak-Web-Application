@@ -176,7 +176,7 @@ export function getFilterData(
   yearData: CurriculumUnitsYearData,
   years: string[],
 ) {
-  console.log({ yearData });
+  console.log({ yearData, years });
   console.log(Object.values(yearData).map((y) => y.childSubjects));
   const childSubjects = new Map<string, Subject>();
   const subjectCategories = new Map<number, SubjectCategory>();
