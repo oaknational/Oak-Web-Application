@@ -37,7 +37,7 @@ const CurriculumDownloadView: FC<CurriculumDownloadViewProps> = (props) => {
         <OakInlineBanner
           type="alert"
           isOpen={true}
-          message="Curriculum downloads are currently disabled due to ongoing issues"
+          message="Sorry, we've found a problem which means you won't be able to download curriculum documents right now. We're working hard to get it fixed as soon as possible."
         />
       )}
       {!DISABLE_DOWNLOADS && (

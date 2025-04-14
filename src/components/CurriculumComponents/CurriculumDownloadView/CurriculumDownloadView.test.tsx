@@ -55,7 +55,9 @@ describe("CurriculumDownloadView", () => {
           isSubmitting={false}
         />,
       );
-      expect(baseElement).toHaveTextContent("currently disabled");
+      expect(baseElement).toHaveTextContent(
+        "won't be able to download curriculum documents right now",
+      );
     });
   }
   if (!DISABLE_DOWNLOADS) {
