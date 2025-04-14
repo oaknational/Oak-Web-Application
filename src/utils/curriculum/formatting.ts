@@ -124,8 +124,8 @@ export function getYearSubheadingText(
     CurriculumFilters,
     "childSubjects" | "subjectCategories" | "tiers"
   >,
-  type: "core" | "non_core" | null,
-  actions?: Actions,
+  type: "core" | "non_core" | "all" | null,
+  actions?: Actions
 ): string | null {
   // Don't show subheading for "All" years view
   if (year === "all") {
@@ -217,4 +217,14 @@ export function getPhaseFromCategory(input: DownloadCategory) {
     return "secondary";
   }
   return "primary";
+}
+
+export function getPathwaySuffix(year: string, pathway?: string) {
+  if (["10", "11"].includes(year) && pathway) {
+    if (pathway === "core") {
+      return "Core";
+    } else {
+      return "GCSE";
+    }
+  }
 }

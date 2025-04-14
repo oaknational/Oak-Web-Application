@@ -29,6 +29,7 @@ import {
 } from "@/utils/curriculum/types";
 import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
 import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
 
 type CurriculumVisualiserProps = {
   unitData: Unit | null;
@@ -144,13 +145,19 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     setCurrentUnitLessons([]);
   };
 
-  const yearTypes: ("core" | "non_core")[] = [];
-  if (!ks4OptionSlug || ks4Options?.find((opt) => opt.slug === "core")) {
-    yearTypes.push("core");
+  const yearTypes: ("core" | "non_core" | "all")[] = [];
+  if (!ks4Options?.find((opt) => opt.slug === "core")) {
+    yearTypes.push("all");
+  } else {
+    if (!ks4OptionSlug || ks4Options?.find((opt) => opt.slug === "core")) {
+      yearTypes.push("core");
+    }
+    if (ks4OptionSlug && ks4OptionSlug !== "core") {
+      yearTypes.push("non_core");
+    }
   }
-  if (ks4OptionSlug && ks4OptionSlug !== "core") {
-    yearTypes.push("non_core");
-  }
+
+  console.log({ yearTypes });
 
   const yearSelectors = yearTypes.flatMap((type) => {
     return Object.keys(yearData)
@@ -189,6 +196,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           return false;
         }
         if (
+          type !== "all" &&
           ["10", "11"].includes(year) &&
           !isExamboard &&
           unit.pathway_slug !== "core"
@@ -207,6 +215,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     .filter(({ units }) => {
       return units.length > 0;
     });
+
+  const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
 
   return (
     <OakBox id="content" data-testid="curriculum-visualiser">
@@ -228,6 +238,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           filters,
           type,
           actions,
+          shouldDisplayCorePathway ? type : null
         );
 
         return (
