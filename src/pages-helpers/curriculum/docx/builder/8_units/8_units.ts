@@ -26,10 +26,7 @@ import {
 
 import { buildUnit } from "./unit_detail";
 
-import {
-  getSuffixFromFeatures,
-  getYearGroupTitle,
-} from "@/utils/curriculum/formatting";
+import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { sortYears } from "@/utils/curriculum/sorting";
 import { Unit } from "@/utils/curriculum/types";
 
@@ -503,9 +500,7 @@ async function buildYear(
     }
   }
 
-  const yearTitleSuffix = [getSuffixFromFeatures(firstUnit?.actions), "units"]
-    .filter(Boolean)
-    .join(" ");
+  const yearTitleSuffix = "units";
   const yearTitle = getYearGroupTitle(
     formattedData.yearData,
     year,

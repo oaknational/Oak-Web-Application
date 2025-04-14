@@ -2,7 +2,6 @@ import {
   getYearGroupTitle,
   getPhaseText,
   getShortPhaseText,
-  getSuffixFromFeatures,
   buildPageTitle,
   formatKeystagesShort,
   joinWords,
@@ -240,10 +239,6 @@ describe("getSuffixFromFeatures", () => {
   //     }),
   //   ).toBe("(test)");
   // });
-
-  it("undefined if override not present", () => {
-    expect(getSuffixFromFeatures(undefined)).toBe(undefined);
-  });
 });
 
 describe("buildPageTitle", () => {
@@ -378,6 +373,51 @@ describe("getYearSubheadingText", () => {
       null,
     );
     expect(result).toEqual(null);
+  });
+
+  it("displays subject from programme_field_overrides when it exists", () => {
+    const actions = {
+      programme_field_overrides: {
+        subject: "Overridden Subject",
+      },
+    };
+
+    const result = getYearSubheadingText(
+      data,
+      "7",
+      createFilter({
+        years: ["7"],
+      }),
+      null,
+      actions,
+    );
+
+    expect(result).toEqual("Overridden Subject");
+  });
+
+  it("combines programme_field_overrides subject with other filters", () => {
+    const actions = {
+      programme_field_overrides: {
+        subject: "Overridden Subject",
+      },
+    };
+
+    const result = getYearSubheadingText(
+      data,
+      "7",
+      createFilter({
+        years: ["7"],
+        subjectCategories: [String(subCat1.id)],
+        childSubjects: [childSubject1.subject_slug],
+        tiers: [tier1.tier_slug],
+      }),
+      null,
+      actions,
+    );
+
+    expect(result).toEqual(
+      "Overridden Subject, SUB_CAT_1, CHILD_SUBJECT_1, TIER_1",
+    );
   });
 
   it("subjectCategories", () => {
