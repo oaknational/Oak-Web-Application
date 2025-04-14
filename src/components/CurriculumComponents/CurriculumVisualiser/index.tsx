@@ -238,7 +238,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           filters,
           type,
           actions,
-          shouldDisplayCorePathway ? type : null
+          shouldDisplayCorePathway ? type : null,
         );
 
         return (
