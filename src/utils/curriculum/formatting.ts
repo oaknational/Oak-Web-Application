@@ -83,15 +83,6 @@ export function formatKeystagesShort(keyStages: string[]) {
   return keyStagesItems.length > 0 ? `KS${keyStagesItems.join("-")}` : ``;
 }
 
-export function getSuffixFromFeatures(_features: Actions): undefined {
-  _features;
-  // TODO: Remove me from programme_field_overrides
-  // if (features?.programme_field_overrides?.subject) {
-  //   return `(${features.programme_field_overrides?.subject})`;
-  // }
-  return;
-}
-
 export function subjectTitleWithCase(title: string) {
   if (
     ["english", "french", "spanish", "german"].includes(title.toLowerCase())
@@ -134,6 +125,7 @@ export function getYearSubheadingText(
     "childSubjects" | "subjectCategories" | "tiers"
   >,
   type: "core" | "non_core" | null,
+  actions?: Actions,
 ): string | null {
   // Don't show subheading for "All" years view
   if (year === "all") {
@@ -141,6 +133,12 @@ export function getYearSubheadingText(
   }
 
   const parts: string[] = [];
+
+  // Add subject from programme_field_overrides if it exists
+  if (actions?.programme_field_overrides?.subject) {
+    parts.push(actions.programme_field_overrides.subject);
+  }
+
   const isKs4Year = keystageFromYear(year) === "ks4";
 
   if (keystageFromYear(year) === "ks4") {
