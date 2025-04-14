@@ -88,6 +88,7 @@ export const PupilPageContent = ({
     supervisionLevel,
   } = lessonContent;
 
+  const ageRestriction = browseData.features?.ageRestriction;
   const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
   const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;
 
@@ -121,6 +122,7 @@ export const PupilPageContent = ({
           hasAdditionalFiles={hasAdditionalFiles}
           additionalFiles={additionalFiles}
           worksheetInfo={worksheetInfo}
+          ageRestriction={ageRestriction}
         />
       );
     case "starter-quiz":
@@ -188,10 +190,26 @@ const PupilExperienceLayout = ({
   pageType,
   worksheetInfo,
 }: PupilExperienceViewProps) => {
+  const ageRestriction = browseData.features?.ageRestriction;
+  const hasAgeRestriction = !!ageRestriction;
+
+  const getAgeRestrictionString = (
+    ageRestriction: string | undefined | null,
+  ) => {
+    switch (ageRestriction) {
+      case "year_7_and_above":
+        return `To view this lesson, you must be in year 7 and above`;
+      case "year_10_and_above":
+        return `To view this lesson, you must be in year 10 and above`;
+      default:
+        return `This lesson is age restricted.`;
+    }
+  };
+
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const { track } = usePupilAnalytics();
   const [isOpen, setIsOpen] = useState<boolean>(
-    !!lessonContent.contentGuidance,
+    !!lessonContent.contentGuidance || hasAgeRestriction,
   );
   const router = useRouter();
   const availableSections = pickAvailableSectionsForLesson(lessonContent);
@@ -205,6 +223,7 @@ const PupilExperienceLayout = ({
       contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
         return cg.contentguidanceArea;
       })?.contentguidanceArea as ContentGuidanceWarningValueType,
+      ageRestriction: hasAgeRestriction ? ageRestriction : "all",
     });
   };
 
@@ -215,6 +234,7 @@ const PupilExperienceLayout = ({
       contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
         return cg.contentguidanceArea;
       })?.contentguidanceArea as ContentGuidanceWarningValueType,
+      ageRestriction: hasAgeRestriction ? ageRestriction : "all",
     });
   };
 
@@ -242,13 +262,30 @@ const PupilExperienceLayout = ({
           initialLessonReviewSections={availableSections}
           initialSection={initialSection}
         >
-          <OakPupilJourneyContentGuidance
-            isOpen={isOpen}
-            onAccept={handleContentGuidanceAccept}
-            onDecline={handleContentGuidanceDecline}
-            contentGuidance={lessonContent.contentGuidance}
-            supervisionLevel={lessonContent.supervisionLevel}
-          />
+          {hasAgeRestriction ? (
+            <OakPupilJourneyContentGuidance
+              isOpen={isOpen}
+              onAccept={handleContentGuidanceAccept}
+              onDecline={handleContentGuidanceDecline}
+              title={getAgeRestrictionString(ageRestriction)}
+              contentGuidance={[
+                {
+                  contentguidanceLabel:
+                    "Speak to an adult before starting this lesson.",
+                  contentguidanceDescription: null,
+                  contentguidanceArea: null,
+                },
+              ]}
+            />
+          ) : (
+            <OakPupilJourneyContentGuidance
+              isOpen={isOpen}
+              onAccept={handleContentGuidanceAccept}
+              onDecline={handleContentGuidanceDecline}
+              contentGuidance={lessonContent.contentGuidance}
+              supervisionLevel={lessonContent.supervisionLevel}
+            />
+          )}
 
           <OakBox style={{ pointerEvents: !isOpen ? "all" : "none" }}>
             <OakBox $height={"100vh"}>

@@ -7419,6 +7419,7 @@ export interface ContentGuidanceAcceptedProperties {
   phase: PhaseValueType;
   supervisionLevel: string;
   contentGuidanceWarning: ContentGuidanceWarningValueType;
+  ageRestriction: string;
 }
 /**
  * Content Guidance Accepted: Event sent when a pupil clicks to accept content guidance, indicating a choice to follow guidance and continues the lesson activity as a result 
@@ -7514,6 +7515,7 @@ export interface ContentGuidanceDeclinedProperties {
   supervisionLevel: string;
   phase: PhaseValueType;
   contentGuidanceWarning: ContentGuidanceWarningValueType;
+  ageRestriction: string;
 }
 /**
  * Content Guidance Declined: Event sent when a pupil clicks to decline content guidance, indicating a choice to not follow guidance and discontinues the lesson activity as a result 
