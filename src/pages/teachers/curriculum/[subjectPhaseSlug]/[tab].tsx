@@ -4,7 +4,7 @@ import {
   GetStaticPropsResult,
   NextPage,
 } from "next";
-import React from "react";
+import React, { useMemo } from "react";
 import { useRouter } from "next/router";
 import {
   OakBox,
@@ -13,6 +13,7 @@ import {
 } from "@oaknational/oak-components";
 import { uniq } from "lodash";
 
+import useAnalytics from "@/context/Analytics/useAnalytics";
 import CMSClient from "@/node-lib/cms";
 import CurriculumHeader from "@/components/CurriculumComponents/CurriculumHeader";
 import OverviewTab from "@/components/CurriculumComponents/OverviewTab";
@@ -46,6 +47,10 @@ import {
   VALID_TABS,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
 import openApiRequest from "@/utils/curriculum/openapi";
+import { getDefaultFilter, useFilters } from "@/utils/curriculum/filtering";
+import { CurriculumFilters } from "@/utils/curriculum/types";
+import { buildUnitSequenceRefinedAnalytics } from "@/utils/curriculum/analytics";
+import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 
 const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   curriculumSelectionSlugs,
@@ -79,6 +84,27 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
     ),
   );
 
+  const defaultFilter = useMemo(() => {
+    return getDefaultFilter(curriculumUnitsFormattedData);
+  }, [curriculumUnitsFormattedData]);
+
+  const [filters, setFilters] = useFilters(defaultFilter);
+
+  const { track } = useAnalytics();
+  const { analyticsUseCase } = useAnalyticsPageProps();
+
+  const onChangeFilters = (newFilters: CurriculumFilters) => {
+    setFilters(newFilters);
+
+    const analyticsData = buildUnitSequenceRefinedAnalytics(
+      analyticsUseCase,
+      curriculumUnitsTrackingData,
+      newFilters,
+    );
+
+    track.unitSequenceRefined(analyticsData);
+  };
+
   let tabContent: JSX.Element;
 
   switch (tab) {
@@ -99,6 +125,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
         <UnitsTab
           formattedData={curriculumUnitsFormattedData}
           trackingData={curriculumUnitsTrackingData}
+          filters={filters}
+          onChangeFilters={onChangeFilters}
+          slugs={curriculumSelectionSlugs}
         />
       );
       break;

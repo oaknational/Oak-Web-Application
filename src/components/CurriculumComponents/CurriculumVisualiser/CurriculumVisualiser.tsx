@@ -1,34 +1,32 @@
-import React, { FC, useState, useRef, useEffect } from "react";
-import { OakHeading, OakFlex, OakBox } from "@oaknational/oak-components";
+import React, { FC, useState, useRef, useEffect, useMemo } from "react";
+import { OakHeading, OakFlex, OakBox, OakP } from "@oaknational/oak-components";
 import styled from "styled-components";
 
 import Alert from "../OakComponentsKitchen/Alert";
-import FocusIndicator from "../OakComponentsKitchen/FocusIndicator";
 import CurriculumUnitCard from "../CurriculumUnitCard/CurriculumUnitCard";
 
 import { areLessonsAvailable } from "@/utils/curriculum/lessons";
 import useAnalyticsPageProps from "@/hooks/useAnalyticsPageProps";
 import useAnalytics from "@/context/Analytics/useAnalytics";
-import Button from "@/components/SharedComponents/Button/Button";
 import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import UnitModal from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import {
   getSuffixFromFeatures,
   getYearGroupTitle,
+  getYearSubheadingText,
 } from "@/utils/curriculum/formatting";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
 import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
-import { sortChildSubjects, sortYears } from "@/utils/curriculum/sorting";
+import { sortYears } from "@/utils/curriculum/sorting";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
+import { filteringFromYears } from "@/utils/curriculum/filtering";
 import {
-  Subject,
-  SubjectCategory,
-  Tier,
+  CurriculumFilters,
   Unit,
   YearData,
-  YearSelection,
   Lesson,
+  Thread,
 } from "@/utils/curriculum/types";
 import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
 
@@ -53,20 +51,13 @@ const UnitListItem = styled("li")`
 
 type CurriculumVisualiserProps = {
   unitData: Unit | null;
-  yearSelection: YearSelection;
-  selectedThread: string | null;
-  selectedYear: string | null;
   ks4OptionSlug?: string | null;
   yearData: YearData;
-  handleSelectSubject: (year: string, subject: Subject) => void;
-  handleSelectTier: (year: string, tier: Tier) => void;
-  handleSelectSubjectCategory: (
-    year: string,
-    subjectCategory: SubjectCategory,
-  ) => void;
+  filters: CurriculumFilters;
   mobileHeaderScrollOffset?: number;
   setUnitData: (unit: Unit) => void;
   setVisibleMobileYearRefID: (refID: string) => void;
+  threadOptions: Thread[];
 };
 
 export function dedupUnits(units: Unit[]) {
@@ -80,66 +71,166 @@ export function dedupUnits(units: Unit[]) {
   });
 }
 
-function isSelectedSubject(
-  yearSelection: YearSelection,
-  year: string,
-  subject: Subject,
-) {
-  return yearSelection[year]?.subject?.subject_slug === subject.subject_slug;
-}
-
-function isSelectedTier(
-  yearSelection: YearSelection,
-  year: string,
-  tier: Tier,
-) {
-  return yearSelection[year]?.tier?.tier_slug === tier.tier_slug;
-}
-
-function isSelectedSubjectCategory(
-  yearSelection: YearSelection,
-  year: string,
-  subjectCategory: SubjectCategory,
-) {
-  return yearSelection[year]?.subjectCategory?.id === subjectCategory.id;
-}
-
-function isHighlightedUnit(unit: Unit, selectedThread: string | null) {
-  if (!selectedThread) {
+function isHighlightedUnit(unit: Unit, selectedThreads: string[] | null) {
+  if (!selectedThreads || selectedThreads?.length < 1) {
     return false;
   }
-  return unit.threads.some((t) => t.slug === selectedThread);
+  return unit.threads.some((t) => {
+    return selectedThreads.includes(t.slug);
+  });
 }
 
-const StyledButton = styled("button")`
-  all: unset;
-  color: inherit;
-  cursor: pointer;
-  padding: 12px;
+function getSubjectCategoryMessage(
+  yearData: YearData,
+  currentYear: string,
+  subjectCategories: string[],
+): string | null {
+  if (subjectCategories.length === 0) return null;
 
-  &:hover:not([aria-pressed="true"]) {
-    background: #f2f2f2;
+  const years = Object.keys(yearData).sort(sortYears);
+  const currentIndex = years.indexOf(currentYear);
+  if (currentIndex === -1) return null;
+
+  // Identify the current phase from the year number
+  const phaseMap = {
+    primary: { start: 1, end: 6 },
+    secondary: { start: 7, end: 11 },
+  };
+  const currentYearNum = parseInt(currentYear.replace("year-", ""));
+  const currentPhase = currentYearNum <= 6 ? "primary" : "secondary";
+
+  const phaseStartNum = phaseMap[currentPhase].start;
+  const phaseEndNum = phaseMap[currentPhase].end;
+
+  // Convert phases to strings for easy comparison with "year-7"/"year-11" keys
+  const phaseStartYear = `year-${phaseStartNum}`;
+  const phaseEndYear = `year-${phaseEndNum}`;
+
+  // Gather the subject category titles
+  const subjectCategoryTitles = Array.from(
+    new Set(
+      years
+        .flatMap((yearKey) =>
+          yearData[yearKey]?.subjectCategories?.filter((sc) =>
+            subjectCategories.includes(sc.id.toString()),
+          ),
+        )
+        .filter(Boolean)
+        .map((sc) => sc?.title),
+    ),
+  );
+
+  if (subjectCategoryTitles.length === 0) return null;
+
+  // Check if the entire phase (not just the current year) has any units for the subject categories
+  const hasAnyUnitsInPhase = years
+    .filter((y) => {
+      const yNum = parseInt(y.replace("year-", ""));
+      // Filter only those years in the same phase as currentYear
+      return currentPhase === "primary"
+        ? yNum >= 1 && yNum <= 6
+        : yNum >= 7 && yNum <= 11;
+    })
+    .some((yearKey) =>
+      yearData[yearKey]?.units?.some((unit) =>
+        unit.subjectcategories?.some((sc) =>
+          subjectCategories.includes(sc.id.toString()),
+        ),
+      ),
+    );
+
+  // Check if this current year has any units in the selected subject categories
+  const hasCurrentYearUnits = yearData[currentYear]?.units?.some((unit) =>
+    unit.subjectcategories?.some((sc) =>
+      subjectCategories.includes(sc.id.toString()),
+    ),
+  );
+
+  if (!hasCurrentYearUnits) {
+    // Find the first subsequent year (in the same phase) that does have units
+    const subsequentYearsInPhase = years.slice(currentIndex + 1).filter((y) => {
+      const yNum = parseInt(y.replace("year-", ""));
+      return currentPhase === "primary"
+        ? yNum >= 1 && yNum <= 6
+        : yNum >= 7 && yNum <= 11;
+    });
+
+    const firstSubsequentYearWithUnits = subsequentYearsInPhase.find(
+      (yearKey) =>
+        yearData[yearKey]?.units?.some((unit) =>
+          unit.subjectcategories?.some((sc) =>
+            subjectCategories.includes(sc.id.toString()),
+          ),
+        ),
+    );
+
+    // If there is a future year in this phase that has units:
+    if (firstSubsequentYearWithUnits) {
+      const cleanYear = firstSubsequentYearWithUnits.replace("year-", "");
+      const isFirstYearOfPhase =
+        currentYear === phaseStartYear || currentYearNum === phaseStartNum;
+      return isFirstYearOfPhase
+        ? `'${subjectCategoryTitles.join(
+            ", ",
+          )}' units start in Year ${cleanYear}`
+        : `'${subjectCategoryTitles.join(
+            ", ",
+          )}' units continue in Year ${cleanYear}`;
+    }
+
+    // No future years in the phase that have units or we are at the end of the phase
+    const allSubsequentInPhaseEmpty = subsequentYearsInPhase.every(
+      (yearKey) =>
+        !yearData[yearKey]?.units?.some((unit) =>
+          unit.subjectcategories?.some((sc) =>
+            subjectCategories.includes(sc.id.toString()),
+          ),
+        ),
+    );
+
+    if (
+      currentYear === phaseEndYear ||
+      !hasAnyUnitsInPhase ||
+      allSubsequentInPhaseEmpty
+    ) {
+      return `No '${subjectCategoryTitles.join(
+        ", ",
+      )}' units in this year group`;
+    }
+
+    // Default fallback in case of edge conditions
+    return `No '${subjectCategoryTitles.join(", ")}' units in this year group`;
   }
-`;
+
+  // If the current year does have units do not show a message
+  return null;
+}
 
 // Function component
 
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   unitData,
-  yearSelection,
-  selectedYear,
   ks4OptionSlug,
   yearData,
-  handleSelectSubject,
-  handleSelectTier,
-  handleSelectSubjectCategory,
   mobileHeaderScrollOffset,
   setUnitData,
-  selectedThread,
+  filters,
   setVisibleMobileYearRefID,
+  threadOptions,
 }) => {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
+
+  function filterIncludes(key: keyof CurriculumFilters, ids: string[]) {
+    const filterValues = filters[key];
+    return ids.every((id) => {
+      return filterValues.includes(id);
+    });
+  }
+
+  const selectedThread = useMemo(() => {
+    return threadOptions.find((thread) => thread.slug === filters.threads[0]);
+  }, [threadOptions, filters]);
 
   // Selection state helpers
   const [displayModal, setDisplayModal] = useState(false);
@@ -186,8 +277,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
         subjectSlug: unit.subject_slug,
         yearGroupName: `Year ${unit.year}`,
         yearGroupSlug: unit.year,
-        threadTitle: selectedThread,
-        threadSlug: selectedThread,
+        threadTitle: selectedThread?.title ?? null,
+        threadSlug: selectedThread?.slug ?? null,
         platform: "owa",
         product: "curriculum visualiser",
         engagementIntent: "use",
@@ -218,34 +309,28 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     setCurrentUnitLessons([]);
   };
 
-  // FIXME: This is kind of a HACK, currently units don't have tier_slug if
-  // they are across multiple year. So we have to do this awkward step.
-  const unitDataTier = unitData?.year
-    ? yearSelection[unitData?.year]?.tier?.tier_slug
-    : undefined;
-
   return (
     <OakBox id="content" data-testid="curriculum-visualiser">
       {yearData &&
         Object.keys(yearData)
-          .filter((year) => !selectedYear || selectedYear === year)
+          .filter((year) => filterIncludes("years", [year]))
           .sort(sortYears)
           .map((year, index) => {
-            const {
-              units,
-              childSubjects,
-              tiers,
-              subjectCategories,
-              isSwimming,
-            } = yearData[year] as YearData[string];
+            const { units, isSwimming } = yearData[year] as YearData[string];
 
             const ref = (element: HTMLDivElement) => {
               itemEls.current[index] = element;
             };
 
-            const filteredUnits = units.filter((unit: Unit) =>
-              isVisibleUnit(yearSelection, year, unit),
+            const yearBasedFilters = filteringFromYears(
+              yearData[year]!,
+              filters,
             );
+
+            const filteredUnits = units.filter((unit: Unit) =>
+              isVisibleUnit(yearBasedFilters, year, unit),
+            );
+
             const dedupedUnits = dedupUnits(filteredUnits);
 
             const actions = units[0]?.actions;
@@ -254,6 +339,12 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
               yearData,
               year,
               getSuffixFromFeatures(actions),
+            );
+
+            const yearSubheadingText = getYearSubheadingText(
+              yearData,
+              year,
+              filters,
             );
 
             return (
@@ -275,118 +366,32 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 
                 <OakHeading
                   tag="h3"
-                  $font={["heading-6", "heading-5"]}
-                  $mb="space-between-s"
+                  $font={["heading-5", "heading-4"]}
+                  $mb={
+                    yearSubheadingText ? "space-between-xs" : "space-between-s"
+                  }
                   data-testid="year-heading"
                 >
                   {yearTitle}
                 </OakHeading>
+
+                {yearSubheadingText && (
+                  <OakHeading
+                    tag="h4"
+                    $font={["heading-7", "heading-6"]}
+                    $mb="space-between-s"
+                    data-testid="year-subheading"
+                  >
+                    {yearSubheadingText}
+                  </OakHeading>
+                )}
+
                 {isSwimming && (
                   <Alert
                     $mb="space-between-s"
                     type="info"
                     message="Swimming and water safety units should be selected based on the ability and experience of your pupils."
                   />
-                )}
-                {childSubjects.length < 1 && subjectCategories?.length > 1 && (
-                  <OakBox role="group" aria-label="Categories">
-                    {subjectCategories.map((subjectCategory, index) => {
-                      const isSelected = isSelectedSubjectCategory(
-                        yearSelection,
-                        year,
-                        subjectCategory,
-                      );
-
-                      return (
-                        <FocusIndicator
-                          key={index}
-                          $display={"inline-block"}
-                          $mb="space-between-ssx"
-                          $mr="space-between-ssx"
-                          $background={isSelected ? "black" : "white"}
-                          $color={isSelected ? "white" : "black"}
-                          $borderRadius={"border-radius-s"}
-                          $font="heading-7"
-                          disableMouseHover={isSelected}
-                        >
-                          <StyledButton
-                            data-testid="subjectCategory-button"
-                            aria-pressed={isSelected}
-                            onClick={() =>
-                              handleSelectSubjectCategory(year, subjectCategory)
-                            }
-                          >
-                            {subjectCategory.title}
-                          </StyledButton>
-                        </FocusIndicator>
-                      );
-                    })}
-                  </OakBox>
-                )}
-                {childSubjects.length > 0 && (
-                  <OakBox
-                    role="group"
-                    aria-label="Child Subjects"
-                    $mb="space-between-ssx"
-                  >
-                    {[...childSubjects]
-                      .sort(sortChildSubjects)
-                      .map((subject: Subject) => {
-                        const isSelected = isSelectedSubject(
-                          yearSelection,
-                          year,
-                          subject,
-                        );
-
-                        return (
-                          <FocusIndicator
-                            key={`${subject.subject_slug}-${year}`}
-                            $display={"inline-block"}
-                            $mb="space-between-ssx"
-                            $mr="space-between-ssx"
-                            $background={isSelected ? "black" : "white"}
-                            $color={isSelected ? "white" : "black"}
-                            $borderRadius={"border-radius-s"}
-                            $font="heading-7"
-                            disableMouseHover={isSelected}
-                          >
-                            <StyledButton
-                              data-testid="subject-button"
-                              aria-pressed={isSelected}
-                              onClick={() => handleSelectSubject(year, subject)}
-                            >
-                              {subject.subject}
-                            </StyledButton>
-                          </FocusIndicator>
-                        );
-                      })}
-                  </OakBox>
-                )}
-                {tiers.length > 0 && (
-                  <OakBox role="group" aria-label="Tiers">
-                    {tiers.map((tier: Tier) => {
-                      const isSelected = isSelectedTier(
-                        yearSelection,
-                        year,
-                        tier,
-                      );
-                      return (
-                        <Button
-                          $mb={20}
-                          $mr={24}
-                          key={tier.tier_slug}
-                          label={tier.tier}
-                          onClick={() => handleSelectTier(year, tier)}
-                          size="small"
-                          variant="minimal"
-                          isCurrent={isSelected}
-                          currentStyles={["underline"]}
-                          data-testid={`tier-button`}
-                          aria-pressed={isSelected}
-                        />
-                      );
-                    })}
-                  </OakBox>
                 )}
                 <OakFlex
                   $flexWrap={"wrap"}
@@ -399,10 +404,19 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
                   }}
                 >
                   <UnitList role="list">
+                    {dedupedUnits.length < 1 && (
+                      <OakP>
+                        {getSubjectCategoryMessage(
+                          yearData,
+                          year,
+                          filters.subjectCategories,
+                        )}
+                      </OakP>
+                    )}
                     {dedupedUnits.map((unit: Unit, index: number) => {
                       const isHighlighted = isHighlightedUnit(
                         unit,
-                        selectedThread,
+                        filters.threads,
                       );
                       const unitOptions = unit.unit_options.length >= 1;
 
@@ -446,7 +460,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
           programmeSlug={createTeacherProgrammeSlug(
             unitData,
             ks4OptionSlug,
-            unitDataTier,
+            filters.tiers[0],
             unitData?.pathway_slug ?? undefined,
           )}
           unitOptionsAvailable={unitOptionsAvailable}
@@ -462,7 +476,7 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
             displayModal={displayModal}
             setUnitOptionsAvailable={setUnitOptionsAvailable}
             unitOptionsAvailable={unitOptionsAvailable}
-            selectedThread={selectedThread}
+            selectedThread={selectedThread?.slug ?? null}
           />
         </UnitsTabSidebar>
       )}
