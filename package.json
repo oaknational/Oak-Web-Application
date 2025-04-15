@@ -59,8 +59,6 @@
   "overrides": {
     "@testing-library/dom": "$@testing-library/dom",
     "puppeteer": "$puppeteer",
-    "react": "$react",
-    "react-dom": "$react-dom",
     "storybook-addon-next-router": {
       "next": "$next"
     },
