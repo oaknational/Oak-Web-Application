@@ -1,3 +1,10 @@
+## [1.732.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.4...v1.732.5) (2025-04-15)
+
+
+### Bug Fixes
+
+* re-enable curric downloads after netlify fix ([a82ecc5](https://github.com/oaknational/Oak-Web-Application/commit/a82ecc5c368ed3d6e5d3f11d6b1177a2af57f843))
+
 ## [1.732.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.3...v1.732.4) (2025-04-15)
 
 
