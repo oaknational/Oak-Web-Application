@@ -16,6 +16,7 @@ import { notUndefined, Unit, YearData, Lesson } from "@/utils/curriculum/types";
 import useAnalytics from "@/context/Analytics/useAnalytics";
 import { ComponentTypeValueType } from "@/browser-lib/avo/Avo";
 import { getTitleFromSlug } from "@/fixtures/shared/helper";
+import { getIsUnitDescriptionEnabled } from "@/utils/curriculum/features";
 
 type UnitModalProps = {
   unitData: Unit | null;
@@ -101,6 +102,8 @@ const UnitModal: FC<UnitModalProps> = ({
     }
   };
 
+  const isUnitDescriptionEnabled = getIsUnitDescriptionEnabled(unitData);
+
   return (
     <>
       {unitData && (
@@ -164,10 +167,7 @@ const UnitModal: FC<UnitModalProps> = ({
                     handleUnitOverviewExploredAnalytics
                   }
                   threads={unitData.threads}
-                  isUnitDescriptionEnabled={
-                    unitData.parent_programme_features?.unit_description ===
-                    true
-                  }
+                  isUnitDescriptionEnabled={isUnitDescriptionEnabled}
                   whyThisWhyNow={unitData.why_this_why_now}
                   description={unitData.description}
                   lessons={unitData.lessons}
@@ -246,8 +246,7 @@ const UnitModal: FC<UnitModalProps> = ({
                                 description: optionalUnit.description,
                                 whyThisWhyNow: optionalUnit.why_this_why_now,
                                 isUnitDescriptionEnabled:
-                                  unitData.parent_programme_features
-                                    ?.unit_description === true,
+                                  isUnitDescriptionEnabled,
                                 handleUnitOverviewExploredAnalytics:
                                   handleUnitOverviewExploredAnalytics,
                               });

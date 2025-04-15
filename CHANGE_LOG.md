@@ -1,3 +1,10 @@
+## [1.732.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.5...v1.732.6) (2025-04-15)
+
+
+### Bug Fixes
+
+* add config to allow WTWN to be enabled via flag ([c1b4c6d](https://github.com/oaknational/Oak-Web-Application/commit/c1b4c6db48a994e417c605fc4edeef9b81018064))
+
 ## [1.732.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.4...v1.732.5) (2025-04-15)
 
 
