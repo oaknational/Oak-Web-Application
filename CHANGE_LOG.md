@@ -1,3 +1,10 @@
+## [1.732.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.6...v1.732.7) (2025-04-15)
+
+
+### Bug Fixes
+
+* added missing next-cloudinary dep and updated oak-components ([3d6b6a7](https://github.com/oaknational/Oak-Web-Application/commit/3d6b6a718fddf6e8dee3cc259f6627960f8fa563))
+
 ## [1.732.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.5...v1.732.6) (2025-04-15)
 
 
