@@ -228,6 +228,8 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     });
   }
 
+  console.log("yearData", yearData);
+
   const selectedThread = useMemo(() => {
     return threadOptions.find((thread) => thread.slug === filters.threads[0]);
   }, [threadOptions, filters]);
@@ -309,11 +311,16 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     setCurrentUnitLessons([]);
   };
 
+  console.log("yearData", yearData);
+
   return (
     <OakBox id="content" data-testid="curriculum-visualiser">
       {yearData &&
         Object.keys(yearData)
-          .filter((year) => filterIncludes("years", [year]))
+          // Ensure "All years" always passes this filter, along with years selected by the user
+          .filter(
+            (year) => year === "All years" || filterIncludes("years", [year]),
+          )
           .sort(sortYears)
           .map((year, index) => {
             const { units, isSwimming } = yearData[year] as YearData[string];

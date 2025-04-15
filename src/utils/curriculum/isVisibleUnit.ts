@@ -15,7 +15,7 @@ export function isVisibleUnit(
   year: string,
   unit: CurriculumUnitsTabData["units"][number],
 ) {
-  if (!filters.years.includes(year)) {
+  if (year !== "All years" && !filters.years.includes(year)) {
     return false;
   }
   const filterBySubject =

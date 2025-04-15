@@ -170,15 +170,84 @@ export function createYearOptions(units: Unit[]): string[] {
 //   return initialYearSelection;
 // }
 
+// Helper function to update filters for year groups
+function _updateGroupFilters(
+  groupData: CurriculumUnitsYearData[string],
+  unit: Unit,
+) {
+  // Populate list of child subject filter values
+  if (
+    unit.subject_parent &&
+    unit.subject_parent_slug &&
+    groupData.childSubjects.every((c) => c.subject_slug !== unit.subject_slug)
+  ) {
+    groupData.childSubjects.push({
+      subject: unit.subject,
+      subject_slug: unit.subject_slug,
+    });
+  }
+
+  // Populate list of tier filter values
+
+  if (
+    unit.tier &&
+    unit.tier_slug &&
+    groupData.tiers.every((t) => t.tier_slug !== unit.tier_slug)
+  ) {
+    groupData.tiers.push({
+      tier: unit.tier,
+      tier_slug: unit.tier_slug,
+    });
+  }
+
+  // Populate list of pathway filter values
+  if (
+    unit.pathway &&
+    unit.pathway_slug &&
+    groupData.pathways.every((p) => p.pathway_slug !== unit.pathway_slug)
+  ) {
+    groupData.pathways.push({
+      pathway: unit.pathway,
+      pathway_slug: unit.pathway_slug,
+    });
+  }
+
+  // Populate list of subject category filter values
+  unit.subjectcategories?.forEach((subjectCategory) => {
+    if (
+      groupData.subjectCategories.findIndex(
+        (d) => d.id === subjectCategory.id,
+      ) === -1
+    ) {
+      groupData.subjectCategories.push({
+        id: subjectCategory.id,
+        title: subjectCategory.title,
+      });
+    }
+  });
+}
+
 export function createUnitsListingByYear(
   units: Unit[],
 ): CurriculumUnitsYearData {
   const yearData = {} as CurriculumUnitsYearData;
+  const swimmingUnits: Unit[] = [];
+  let swimmingGroupAs: string | null = null;
 
+  // Initial unit processing and grouping
   units.forEach((unit: Unit) => {
-    // Check if the yearData object has an entry for the unit's year
-    // If not, initialize it with default values
+    const isSwimmingUnit = unit.features?.pe_swimming === true;
+    const groupAsOverride = unit.actions?.group_units_as;
 
+    if (isSwimmingUnit || groupAsOverride) {
+      swimmingUnits.push(unit);
+      if (groupAsOverride && !swimmingGroupAs) {
+        swimmingGroupAs = groupAsOverride;
+      }
+      return;
+    }
+
+    // Handling units not requiring special grouping
     const year = unit.actions?.programme_field_overrides?.Year ?? unit.year;
 
     let currentYearData = yearData[year];
@@ -195,93 +264,54 @@ export function createUnitsListingByYear(
       yearData[year] = currentYearData;
     }
 
-    // Add the current unit
-
     currentYearData.units.push(unit);
 
-    // Populate list of child subject filter values
-    if (
-      unit.subject_parent &&
-      unit.subject_parent_slug &&
-      currentYearData.childSubjects.every(
-        (c) => c.subject_slug !== unit.subject_slug,
-      )
-    ) {
-      currentYearData.childSubjects.push({
-        subject: unit.subject,
-        subject_slug: unit.subject_slug,
-      });
-    }
-
-    // Populate list of tier filter values
-
-    if (
-      unit.tier &&
-      unit.tier_slug &&
-      currentYearData.tiers.every((t) => t.tier_slug !== unit.tier_slug)
-    ) {
-      currentYearData.tiers.push({
-        tier: unit.tier,
-        tier_slug: unit.tier_slug,
-      });
-    }
-
-    if (
-      unit.pathway &&
-      unit.pathway_slug &&
-      currentYearData.pathways.every(
-        (p) => p.pathway_slug !== unit.pathway_slug,
-      )
-    ) {
-      currentYearData.pathways.push({
-        pathway: unit.pathway,
-        pathway_slug: unit.pathway_slug,
-      });
-    }
-
-    // Loop through tags array and populate subject categories.
-    unit.subjectcategories?.forEach((subjectCategory) => {
-      if (
-        currentYearData?.subjectCategories.findIndex(
-          (d) => d.id === subjectCategory.id,
-        ) === -1
-      ) {
-        currentYearData.subjectCategories.push({
-          id: subjectCategory.id,
-          title: subjectCategory.title,
-        });
-      }
-    });
+    _updateGroupFilters(currentYearData, unit);
   });
 
+  // Processing swimming units
+  if (swimmingUnits.length > 0) {
+    const swimmingYearKey = "All years";
+    const finalGroupAs = swimmingGroupAs ?? "Swimming and water safety";
+
+    yearData[swimmingYearKey] = {
+      units: swimmingUnits,
+      childSubjects: [],
+      subjectCategories: [],
+      tiers: [],
+      pathways: [],
+      isSwimming: true,
+      groupAs: finalGroupAs,
+    };
+
+    const currentSwimmingYearData = yearData[swimmingYearKey]!;
+
+    swimmingUnits.forEach((unit) => {
+      _updateGroupFilters(currentSwimmingYearData, unit);
+    });
+  }
+
+  // Final processing of all year groups
   for (const year of Object.keys(yearData)) {
     const data = yearData[year]!;
-
-    data.isSwimming = data.units[0]?.features?.pe_swimming === true;
     const allSubjectCategoryTag: SubjectCategory = { id: -1, title: "All" };
-    const actions = data.units[0]?.actions;
+
     // Add an "All" option if there are 2 or more subject categories. Set to -1 id as this shouldn't ever appear in the DB
+    const actions = data.units[0]?.actions;
+
     if (!actions?.subject_category_actions?.all_disabled) {
       if (data.subjectCategories.length >= 2) {
-        data.subjectCategories.unshift(allSubjectCategoryTag);
+        if (!data.subjectCategories.some((sc) => sc.id === -1)) {
+          data.subjectCategories.unshift(allSubjectCategoryTag);
+        }
       }
     }
     data.subjectCategories = data.subjectCategories.sort(
       sortSubjectCategoriesOnFeatures(actions),
     );
-
-    if (data.units.length > 0) {
-      const groupAs = data.units[0]?.actions?.group_units_as;
-      if (groupAs) {
-        if (
-          data.units.every((unit) => unit.actions?.group_units_as === groupAs)
-        ) {
-          data.groupAs = groupAs;
-        }
-      }
-    }
   }
 
+  // Sort units within each year group
   for (const year of Object.keys(yearData)) {
     yearData[year]!.units = yearData[year]!.units.toSorted(sortUnits);
   }
