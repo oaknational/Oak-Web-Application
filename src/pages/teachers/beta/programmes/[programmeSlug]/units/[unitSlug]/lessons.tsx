@@ -5,14 +5,18 @@ import {
   GetStaticPropsResult,
   GetStaticPathsResult,
 } from "next";
+import { useUser } from "@clerk/nextjs";
 import {
   OakGrid,
   OakGridArea,
   OakThemeProvider,
   oakDefaultTheme,
   OakMaxWidth,
+  OakInlineRegistrationBanner,
+  OakHeading,
+  OakLink,
+  OakSpan,
 } from "@oaknational/oak-components";
-import { useUser } from "@clerk/nextjs";
 
 import AppLayout from "@/components/SharedComponents/AppLayout";
 import { getSeoProps } from "@/browser-lib/seo/getSeoProps";
@@ -41,7 +45,8 @@ import { useShareExperiment } from "@/pages-helpers/teacher/share-experiments/us
 import { TeacherShareButton } from "@/components/TeacherComponents/TeacherShareButton/TeacherShareButton";
 import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
-
+import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
+import { resolveOakHref } from "@/common-lib/urls";
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
 };
@@ -56,10 +61,16 @@ export type LessonListingPageProps = {
  */
 function getHydratedLessonsFromUnit(unit: LessonListingPageData) {
   const { lessons, ...rest } = unit;
-  return lessons.map((lesson) => ({
-    ...lesson,
-    ...rest,
-  }));
+  return lessons.map((lesson) => {
+    if (lesson.isUnpublished) {
+      return lesson;
+    } else {
+      return {
+        ...lesson,
+        ...rest,
+      };
+    }
+  });
 }
 
 const LessonListPage: NextPage<LessonListingPageProps> = ({
@@ -113,7 +124,9 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   );
 
   const lessons = getHydratedLessonsFromUnit(curriculumData);
-  const hasNewContent = lessons[0]?.lessonCohort === NEW_COHORT;
+  const hasNewContent = lessons.some(
+    (lesson) => !lesson.isUnpublished && lesson.lessonCohort === NEW_COHORT,
+  );
   const paginationProps = usePagination({
     totalResults: lessons.length,
     pageSize: RESULTS_PER_PAGE,
@@ -157,6 +170,16 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
   const isNew = hasNewContent ?? false;
   const { isSignedIn } = useUser();
   const showRiskAssessmentBanner = !!actions?.isPePractical && isSignedIn;
+
+  const unpublishedLessonCount = lessons.filter(
+    (lesson) => lesson.isUnpublished,
+  ).length;
+
+  const lessonCountHeader = unpublishedLessonCount
+    ? `${lessons.length - unpublishedLessonCount}/${lessons.length} lessons available`
+    : `Lessons (${lessons.length})`;
+
+  const newsletterFormProps = useNewsletterForm();
 
   return (
     <AppLayout
@@ -242,6 +265,7 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
             })
           }
           showRiskAssessmentBanner={showRiskAssessmentBanner}
+          isIncompleteUnit={unpublishedLessonCount > 0}
         />
         <OakMaxWidth $ph={"inner-padding-m"}>
           <OakGrid>
@@ -249,9 +273,51 @@ const LessonListPage: NextPage<LessonListingPageProps> = ({
               $colSpan={[12, 9]}
               $mt={["space-between-s", "space-between-m2"]}
             >
+              {unpublishedLessonCount > 0 && (
+                <OakInlineRegistrationBanner
+                  onSubmit={(email) => {
+                    const emailPattern =
+                      /^[A-Z0-9._%+-]{1,64}@[A-Z0-9-]+(?:\.[A-Z0-9-]+){0,2}\.[A-Z]{2,64}$/i;
+                    const isValidEmail = emailPattern.test(email);
+                    if (!isValidEmail) {
+                      throw new Error("Please enter a valid email address");
+                    }
+                    return newsletterFormProps.onSubmit({
+                      email,
+                      userRole: "Teacher",
+                    });
+                  }}
+                  bodyText={
+                    <OakSpan $font="body-1">
+                      We’re busy creating the final lessons. We’ll let you know
+                      when the rest of this unit is ready - and send you other
+                      helpful content and resources. Unsubscribe at any time.
+                      Read our{" "}
+                      <OakLink
+                        href={resolveOakHref({
+                          page: "legal",
+                          legalSlug: "privacy-policy",
+                        })}
+                      >
+                        privacy policy
+                      </OakLink>
+                      .
+                    </OakSpan>
+                  }
+                  headerText={
+                    <OakHeading
+                      tag="h2"
+                      $font={["heading-5", "heading-4", "heading-4"]}
+                    >
+                      Full unit on the way!
+                    </OakHeading>
+                  }
+                />
+              )}
               <LessonList
                 {...curriculumData}
                 lessonCount={lessons.length}
+                lessonCountHeader={lessonCountHeader}
                 currentPageItems={currentPageItems}
                 paginationProps={paginationProps}
                 headingTag={"h2"}

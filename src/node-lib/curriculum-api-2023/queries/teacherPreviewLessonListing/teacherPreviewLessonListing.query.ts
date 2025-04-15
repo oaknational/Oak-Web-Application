@@ -1,5 +1,7 @@
 import { ProgrammeFields } from "@oaknational/oak-curriculum-schema";
 
+import { BetaLessonListSchema } from "./teacherPreviewLessonListing.schema";
+
 import {
   lessonListingPageDataSchema,
   LessonListingPageData,
@@ -8,10 +10,7 @@ import {
 } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
 import { Sdk } from "@/node-lib/curriculum-api-2023/sdk";
 import OakError from "@/errors/OakError";
-import {
-  LessonListSchema,
-  Actions,
-} from "@/node-lib/curriculum-api-2023/shared.schema";
+import { Actions } from "@/node-lib/curriculum-api-2023/shared.schema";
 import { TeacherPreviewLessonListingQuery } from "@/node-lib/curriculum-api-2023/generated/sdk";
 import { applyGenericOverridesAndExceptions } from "@/node-lib/curriculum-api-2023/helpers/overridesAndExceptions";
 import { getCorrectYear } from "@/node-lib/curriculum-api-2023/helpers/getCorrectYear";
@@ -20,7 +19,7 @@ import keysToCamelCase from "@/utils/snakeCaseConverter";
 
 export const getTransformedLessons = (
   lessons: TeacherPreviewLessonListingQuery["lessons"],
-): LessonListSchema => {
+): BetaLessonListSchema => {
   return lessons
     .map((l) => {
       const lesson = partialSyntheticUnitvariantLessonsSchema.parse(l);
@@ -65,7 +64,7 @@ type PackagedUnitData = {
 
 export const getPackagedUnit = (
   packagedUnitData: PackagedUnitData,
-  unitLessons: LessonListSchema,
+  unitLessons: BetaLessonListSchema,
 ): LessonListingPageData => {
   const {
     programmeFields,
@@ -81,9 +80,9 @@ export const getPackagedUnit = (
     programmeFields,
   });
 
-  const combinedActions = getIntersection<LessonListSchema[number]["actions"]>(
-    unitLessons.map((lesson) => lesson.actions),
-  ) as Actions;
+  const combinedActions = getIntersection<
+    BetaLessonListSchema[number]["actions"]
+  >(unitLessons.map((lesson) => lesson.actions)) as Actions;
 
   return {
     programmeSlug,
@@ -100,7 +99,10 @@ export const getPackagedUnit = (
     examBoardTitle: modifiedProgrammeFields.examboard,
     yearSlug: modifiedProgrammeFields.year_slug,
     yearTitle: modifiedProgrammeFields.year_description,
-    lessons: unitLessons,
+    lessons: unitLessons.map((lesson) => ({
+      ...lesson,
+      isUnpublished: true,
+    })),
     pathwaySlug: modifiedProgrammeFields.pathway_slug,
     pathwayTitle: modifiedProgrammeFields.pathway,
     pathwayDisplayOrder: modifiedProgrammeFields.pathway_display_order,
