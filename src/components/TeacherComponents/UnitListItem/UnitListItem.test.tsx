@@ -23,6 +23,7 @@ const props = {
   quizCount: 3,
   programmeSlug: "maths--primary-ks1-l",
   hitCount: 10,
+  unpublishedLessonCount: 0,
   currentPage: 1,
   yearTitle: "Year 1",
   onClick: onClick,

@@ -50,7 +50,7 @@ export const unitListingFixture = (
           year: "year-10",
           cohort: "2023-2024",
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           learningThemes: [
             {
               themeSlug: "computer-science-1",
@@ -71,6 +71,7 @@ export const unitListingFixture = (
           subjectTitle: "Computing",
           lessonCount: 12,
           unitStudyOrder: 2,
+          unpublishedLessonCount: 0,
           yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
@@ -83,7 +84,6 @@ export const unitListingFixture = (
               slug: "grammar",
             },
           ],
-
           learningThemes: [
             {
               themeSlug: "computer-science-2",
@@ -104,6 +104,7 @@ export const unitListingFixture = (
           subjectTitle: "Computing",
           lessonCount: 6,
           unitStudyOrder: 3,
+          unpublishedLessonCount: 0,
           expired: false,
           yearOrder: 1,
           subjectCategories: [
@@ -135,6 +136,7 @@ export const unitListingFixture = (
           keyStageTitle: "Key Stage 4",
           subjectSlug: "computing",
           subjectTitle: "Computing",
+          unpublishedLessonCount: 0,
           lessonCount: 7,
           unitStudyOrder: 4,
           expired: false,
@@ -159,6 +161,7 @@ export const unitListingFixture = (
           title: "Impacts on society",
           nullTitle: "Impacts on society",
           programmeSlug: "computing-secondary-ks4",
+          unpublishedLessonCount: 0,
           keyStageSlug: "ks4",
           keyStageTitle: "Key Stage 4",
           subjectSlug: "computing",
@@ -195,6 +198,7 @@ export const unitListingFixture = (
           unitStudyOrder: 6,
           expired: false,
           yearOrder: 1,
+          unpublishedLessonCount: 0,
           subjectCategories: null,
 
           expiredLessonCount: 0,
@@ -213,6 +217,7 @@ export const unitListingFixture = (
         {
           slug: "programming-1-sequence-2cbd",
           title: "Programming 1: Sequence",
+          unpublishedLessonCount: 0,
           nullTitle: "Programming 1: Sequence",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
@@ -244,6 +249,7 @@ export const unitListingFixture = (
           nullTitle: "Programming 2: Selection",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
+          unpublishedLessonCount: 0,
           keyStageTitle: "Key Stage 4",
           subjectSlug: "computing",
           subjectTitle: "Computing",
@@ -273,6 +279,7 @@ export const unitListingFixture = (
           lessonCount: 5,
           unitStudyOrder: 3,
           expired: false,
+          unpublishedLessonCount: 0,
           yearOrder: 1,
           subjectCategories: null,
 
@@ -290,6 +297,7 @@ export const unitListingFixture = (
           nullTitle: "Programming 4: Subroutines",
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
+          unpublishedLessonCount: 0,
           keyStageTitle: "Key Stage 4",
           subjectSlug: "computing",
           subjectTitle: "Computing",
@@ -319,6 +327,7 @@ export const unitListingFixture = (
           lessonCount: 10,
           unitStudyOrder: 5,
           expired: false,
+          unpublishedLessonCount: 0,
           yearOrder: 1,
           subjectCategories: null,
 
@@ -337,6 +346,7 @@ export const unitListingFixture = (
           programmeSlug: "computing-secondary-ks4",
           keyStageSlug: "ks4",
           keyStageTitle: "Key Stage 4",
+          unpublishedLessonCount: 0,
           subjectSlug: "computing",
           subjectTitle: "Computing",
           lessonCount: 12,
@@ -366,6 +376,7 @@ export const unitListingFixture = (
           unitStudyOrder: 7,
           expired: false,
           yearOrder: 1,
+          unpublishedLessonCount: 0,
           subjectCategories: null,
 
           expiredLessonCount: 0,
@@ -390,6 +401,7 @@ export const unitListingFixture = (
           expired: false,
           yearOrder: 1,
           subjectCategories: null,
+          unpublishedLessonCount: 0,
 
           expiredLessonCount: 0,
           yearTitle: "Year 10",
@@ -412,6 +424,7 @@ export const unitListingFixture = (
           keyStageSlug: "ks4",
           keyStageTitle: "Key Stage 4",
           subjectSlug: "computing",
+          unpublishedLessonCount: 0,
           subjectTitle: "Computing",
           lessonCount: 5,
           unitStudyOrder: 9,
@@ -508,7 +521,7 @@ export const combinedUnitListingFixture = (
           yearOrder: 1,
           expiredLessonCount: 0,
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           yearTitle: "Year 10",
           year: "year-10",
           cohort: "2023-2024",
@@ -537,7 +550,7 @@ export const combinedUnitListingFixture = (
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           year: "year-10",
           cohort: "2023-2024",
           learningThemes: [
@@ -563,7 +576,7 @@ export const combinedUnitListingFixture = (
           expired: false,
           yearOrder: 1,
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           expiredLessonCount: 0,
           yearTitle: "Year 10",
           year: "year-10",
@@ -595,7 +608,7 @@ export const combinedUnitListingFixture = (
           year: "year-10",
           cohort: "2020-2022",
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           learningThemes: [],
         },
       ],
@@ -612,7 +625,7 @@ export const combinedUnitListingFixture = (
           lessonCount: 12,
           unitStudyOrder: 2,
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           yearOrder: 1,
           expired: false,
           expiredLessonCount: 0,
@@ -635,7 +648,7 @@ export const combinedUnitListingFixture = (
           lessonCount: 6,
           unitStudyOrder: 3,
           subjectCategories: null,
-
+          unpublishedLessonCount: 0,
           expired: false,
           yearOrder: 1,
           expiredLessonCount: 0,

@@ -3,7 +3,6 @@ import {
   isCurrentPageItems,
   isUnitListData,
   isUnitOption,
-  getFormattedUnitLessonCountString,
 } from "./helpers";
 
 import { mockPaginationProps } from "@/__tests__/__helpers__/mockPaginationProps";
@@ -27,6 +26,7 @@ describe("unit list helpers", () => {
         year: "year-1",
         yearTitle: "Year 1",
         learningThemes: [],
+        unpublishedLessonCount: 0,
       },
     ]);
     expect(result).toEqual(true);
@@ -74,6 +74,7 @@ describe("unit list helpers", () => {
           year: "year-1",
           yearTitle: "Year 1",
           learningThemes: [],
+          unpublishedLessonCount: 0,
         },
       ],
     ]);
@@ -138,36 +139,6 @@ describe("unit list helpers", () => {
       phase: undefined,
       examBoardSlug: undefined,
       keyStageSlug: undefined,
-    });
-  });
-  describe("getFormattedUnitLessonCountString", () => {
-    test("it returns the correct string when lesson count is 1", () => {
-      const result = getFormattedUnitLessonCountString({
-        lessonCount: 1,
-        expiredLessonCount: null,
-      });
-      expect(result).toEqual("1 lesson");
-    });
-    test("it returns the correct string when expired lesson count is null", () => {
-      const result = getFormattedUnitLessonCountString({
-        lessonCount: 5,
-        expiredLessonCount: null,
-      });
-      expect(result).toEqual("5 lessons");
-    });
-    test("it returns the correct string when there is expired lesson count", () => {
-      const result = getFormattedUnitLessonCountString({
-        lessonCount: 5,
-        expiredLessonCount: 2,
-      });
-      expect(result).toEqual("3/5 lessons");
-    });
-    test("it returns the correct string when lesson count is the same as expired lesson count", () => {
-      const result = getFormattedUnitLessonCountString({
-        lessonCount: 5,
-        expiredLessonCount: 5,
-      });
-      expect(result).toEqual("0/5 lessons");
     });
   });
 });

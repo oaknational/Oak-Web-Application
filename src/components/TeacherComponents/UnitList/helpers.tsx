@@ -77,33 +77,3 @@ export const isUnitOption = (
     return false;
   }
 };
-
-export const getFormattedUnitLessonCountString = ({
-  lessonCount,
-  expiredLessonCount,
-}: {
-  lessonCount: number | null;
-  expiredLessonCount: number | null;
-}): string => {
-  let unitLessonCount;
-
-  if (!lessonCount) {
-    return "0 lessons";
-  }
-
-  const expiredLessonsInUnitCount = expiredLessonCount
-    ? lessonCount - expiredLessonCount
-    : null;
-  unitLessonCount =
-    expiredLessonsInUnitCount !== null
-      ? `${expiredLessonsInUnitCount}/${lessonCount} ${
-          lessonCount > 1 ? "lessons" : "lesson"
-        }`
-      : `${lessonCount} ${lessonCount > 1 ? "lessons" : "lesson"}`;
-
-  if (expiredLessonCount && expiredLessonCount > lessonCount) {
-    unitLessonCount = `0 lessons`;
-  }
-
-  return unitLessonCount;
-};

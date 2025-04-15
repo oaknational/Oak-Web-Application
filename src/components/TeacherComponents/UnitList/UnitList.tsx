@@ -13,11 +13,7 @@ import {
 import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
 
-import {
-  getPageItems,
-  getProgrammeFactors,
-  getFormattedUnitLessonCountString,
-} from "./helpers";
+import { getPageItems, getProgrammeFactors } from "./helpers";
 
 import {
   UnitListItemProps,
@@ -114,6 +110,30 @@ const isUnitFirstItemRef = (
   ) {
     return true;
   }
+};
+
+export const getUnitLessonCount = (unit: {
+  lessonCount: number | null;
+  expiredLessonCount: number | null;
+  unpublishedLessonCount: number;
+}) => {
+  const { lessonCount, expiredLessonCount, unpublishedLessonCount } = unit;
+  let countHeader = "";
+  if (lessonCount) {
+    if (unpublishedLessonCount || expiredLessonCount) {
+      if (expiredLessonCount && expiredLessonCount > lessonCount) {
+        countHeader = `0 lessons`;
+      } else {
+        // unpublished lessons arent included in the lessonCount, but expired lessons are
+        const totalLessonCount = lessonCount + unpublishedLessonCount;
+        countHeader = `${lessonCount - (expiredLessonCount ?? 0)}/${totalLessonCount} lesson${totalLessonCount > 1 ? "s" : ""}`;
+      }
+    } else {
+      countHeader = `${lessonCount} lesson${lessonCount > 1 ? "s" : ""}`;
+    }
+  }
+
+  return countHeader;
 };
 
 const UnitList: FC<UnitListProps> = (props) => {
@@ -231,17 +251,16 @@ const UnitList: FC<UnitListProps> = (props) => {
             });
             router.push(e.currentTarget.href);
           };
-
-          const formattedLessonCountString = getFormattedUnitLessonCountString({
+          const unitLessonCount = getUnitLessonCount({
             lessonCount: unitOption.lessonCount,
             expiredLessonCount: unitOption.expiredLessonCount,
+            unpublishedLessonCount: unitOption.unpublishedLessonCount,
           });
-
           return (
             <OakUnitListItem
               {...props}
               {...unitOption}
-              lessonCount={formattedLessonCountString}
+              lessonCount={unitLessonCount}
               firstItemRef={
                 isUnitFirstItemRef(
                   unitOption.programmeSlug,
