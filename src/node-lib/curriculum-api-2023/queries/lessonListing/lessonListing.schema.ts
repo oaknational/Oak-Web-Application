@@ -34,9 +34,15 @@ export const lessonListingPageDataSchema = z.object({
 export type LessonListingPageData = z.infer<typeof lessonListingPageDataSchema>;
 
 export const partialSyntheticUnitvariantLessonsSchema = z.object({
-  ...syntheticUnitvariantLessonsSchema.omit({
-    supplementary_data: true,
-  }).shape,
+  ...syntheticUnitvariantLessonsSchema
+    .extend({
+      lesson_data: syntheticUnitvariantLessonsSchema.shape.lesson_data.omit({
+        media_clips: true, // omit the media_clips field from lesson_data
+      }),
+    })
+    .omit({
+      supplementary_data: true, // omit supplementary_data from the root schema
+    }).shape,
   order_in_unit: z.number(),
 });
 
