@@ -1,3 +1,32 @@
+## [1.732.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.6...v1.732.7) (2025-04-15)
+
+
+### Bug Fixes
+
+* added missing next-cloudinary dep and updated oak-components ([3d6b6a7](https://github.com/oaknational/Oak-Web-Application/commit/3d6b6a718fddf6e8dee3cc259f6627960f8fa563))
+
+## [1.732.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.5...v1.732.6) (2025-04-15)
+
+
+### Bug Fixes
+
+* add config to allow WTWN to be enabled via flag ([c1b4c6d](https://github.com/oaknational/Oak-Web-Application/commit/c1b4c6db48a994e417c605fc4edeef9b81018064))
+
+## [1.732.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.4...v1.732.5) (2025-04-15)
+
+
+### Bug Fixes
+
+* re-enable curric downloads after netlify fix ([a82ecc5](https://github.com/oaknational/Oak-Web-Application/commit/a82ecc5c368ed3d6e5d3f11d6b1177a2af57f843))
+
+## [1.732.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.3...v1.732.4) (2025-04-15)
+
+
+### Bug Fixes
+
+* media clips schema ([767e7aa](https://github.com/oaknational/Oak-Web-Application/commit/767e7aaf0a722a987ebd532165f64806e8ec93f9))
+* omit media_clips in lesson listing schema ([2af740a](https://github.com/oaknational/Oak-Web-Application/commit/2af740a7c3fed844fd8d3522177399b05d3fcb37))
+
 ## [1.732.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.2...v1.732.3) (2025-04-14)
 
 ## [1.732.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.1...v1.732.2) (2025-04-14)
