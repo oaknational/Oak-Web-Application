@@ -1,3 +1,18 @@
+## [1.732.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.4...v1.732.5) (2025-04-15)
+
+
+### Bug Fixes
+
+* re-enable curric downloads after netlify fix ([a82ecc5](https://github.com/oaknational/Oak-Web-Application/commit/a82ecc5c368ed3d6e5d3f11d6b1177a2af57f843))
+
+## [1.732.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.3...v1.732.4) (2025-04-15)
+
+
+### Bug Fixes
+
+* media clips schema ([767e7aa](https://github.com/oaknational/Oak-Web-Application/commit/767e7aaf0a722a987ebd532165f64806e8ec93f9))
+* omit media_clips in lesson listing schema ([2af740a](https://github.com/oaknational/Oak-Web-Application/commit/2af740a7c3fed844fd8d3522177399b05d3fcb37))
+
 ## [1.732.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.2...v1.732.3) (2025-04-14)
 
 ## [1.732.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.1...v1.732.2) (2025-04-14)
