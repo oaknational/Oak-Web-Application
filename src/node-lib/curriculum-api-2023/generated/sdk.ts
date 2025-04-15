@@ -58710,6 +58710,14 @@ export type TeacherPreviewLessonDownloadQueryVariables = Exact<{
 
 export type TeacherPreviewLessonDownloadQuery = { __typename?: 'query_root', download_assets: Array<{ __typename?: 'published_mv_lesson_content_new_8_0_0', has_slide_deck_asset_object?: boolean | null, has_worksheet_asset_object?: boolean | null, has_supplementary_asset_object?: boolean | null, has_worksheet_answers_asset_object?: boolean | null, has_worksheet_google_drive_downloadable_version?: boolean | null, has_lesson_guide_object?: boolean | null, starter_quiz?: any | null, exit_quiz?: any | null, is_legacy?: boolean | null, geo_restricted?: string | null, login_required?: string | null, downloadable_files?: any | null, expired?: any | null }>, browse_data: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0', lesson_slug?: string | null, unit_slug?: string | null, programme_slug?: string | null, programme_slug_by_year?: any | null, is_legacy?: boolean | null, lesson_data?: any | null, unit_data?: any | null, programme_fields?: any | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
 
+export type TeacherPreviewLessonListingQueryVariables = Exact<{
+  programmeSlug: Scalars['String']['input'];
+  unitSlug: Scalars['String']['input'];
+}>;
+
+
+export type TeacherPreviewLessonListingQuery = { __typename?: 'query_root', lessons: Array<{ __typename?: 'published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0', lesson_data?: any | null, lesson_slug?: string | null, programme_fields?: any | null, programme_slug_by_year?: any | null, null_unitvariant_id?: number | null, unit_slug?: string | null, unit_data?: any | null, programme_slug?: string | null, is_legacy?: boolean | null, actions?: any | null, features?: any | null, order_in_unit?: number | null }> };
+
 export type TeachersPreviewUnitListingQueryVariables = Exact<{
   programmeSlug: Scalars['String']['input'];
 }>;
@@ -59614,6 +59622,26 @@ export const TeacherPreviewLessonDownloadDocument = gql`
   }
 }
     `;
+export const TeacherPreviewLessonListingDocument = gql`
+    query teacherPreviewLessonListing($programmeSlug: String!, $unitSlug: String!) {
+  lessons: published_mv_synthetic_unitvariant_lessons_by_keystage_new_14_0_0(
+    where: {unit_slug: {_eq: $unitSlug}, programme_slug: {_eq: $programmeSlug}}
+  ) {
+    lesson_data
+    lesson_slug
+    programme_fields
+    programme_slug_by_year
+    null_unitvariant_id
+    unit_slug
+    unit_data
+    programme_slug
+    is_legacy
+    actions
+    features
+    order_in_unit
+  }
+}
+    `;
 export const TeachersPreviewUnitListingDocument = gql`
     query teachersPreviewUnitListing($programmeSlug: String!) {
   units: published_mv_synthetic_unitvariants_with_lesson_ids_by_ks_new_15_0_0(
@@ -59818,6 +59846,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     teacherPreviewLessonDownload(variables: TeacherPreviewLessonDownloadQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeacherPreviewLessonDownloadQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonDownloadQuery>(TeacherPreviewLessonDownloadDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teacherPreviewLessonDownload', 'query', variables);
+    },
+    teacherPreviewLessonListing(variables: TeacherPreviewLessonListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeacherPreviewLessonListingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TeacherPreviewLessonListingQuery>(TeacherPreviewLessonListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teacherPreviewLessonListing', 'query', variables);
     },
     teachersPreviewUnitListing(variables: TeachersPreviewUnitListingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TeachersPreviewUnitListingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<TeachersPreviewUnitListingQuery>(TeachersPreviewUnitListingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'teachersPreviewUnitListing', 'query', variables);
