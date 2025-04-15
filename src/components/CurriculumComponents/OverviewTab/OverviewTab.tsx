@@ -217,8 +217,8 @@ const OverviewTab: FC<OverviewTabProps> = (props: OverviewTabProps) => {
     <>
       <OakBox
         $minWidth={"100%"}
-        style={{ marginTop: -40 }}
         $display={["block", "block", "none"]}
+        $mt={["space-between-none"]}
       >
         <OakBox
           $background={"bg-decorative1-very-subdued"}

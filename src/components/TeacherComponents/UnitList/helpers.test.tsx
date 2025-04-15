@@ -26,6 +26,7 @@ describe("unit list helpers", () => {
         year: "year-1",
         yearTitle: "Year 1",
         learningThemes: [],
+        unpublishedLessonCount: 0,
       },
     ]);
     expect(result).toEqual(true);
@@ -73,6 +74,7 @@ describe("unit list helpers", () => {
           year: "year-1",
           yearTitle: "Year 1",
           learningThemes: [],
+          unpublishedLessonCount: 0,
         },
       ],
     ]);

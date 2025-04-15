@@ -112,6 +112,30 @@ const isUnitFirstItemRef = (
   }
 };
 
+export const getUnitLessonCount = (unit: {
+  lessonCount: number | null;
+  expiredLessonCount: number | null;
+  unpublishedLessonCount: number;
+}) => {
+  const { lessonCount, expiredLessonCount, unpublishedLessonCount } = unit;
+  let countHeader = "";
+  if (lessonCount) {
+    if (unpublishedLessonCount || expiredLessonCount) {
+      if (expiredLessonCount && expiredLessonCount > lessonCount) {
+        countHeader = `0 lessons`;
+      } else {
+        // unpublished lessons arent included in the lessonCount, but expired lessons are
+        const totalLessonCount = lessonCount + unpublishedLessonCount;
+        countHeader = `${lessonCount - (expiredLessonCount ?? 0)}/${totalLessonCount} lesson${totalLessonCount > 1 ? "s" : ""}`;
+      }
+    } else {
+      countHeader = `${lessonCount} lesson${lessonCount > 1 ? "s" : ""}`;
+    }
+  }
+
+  return countHeader;
+};
+
 const UnitList: FC<UnitListProps> = (props) => {
   const {
     units,
@@ -214,11 +238,16 @@ const UnitList: FC<UnitListProps> = (props) => {
             });
             router.push(e.currentTarget.href);
           };
+          const unitLessonCount = getUnitLessonCount({
+            lessonCount: unitOption.lessonCount,
+            expiredLessonCount: unitOption.expiredLessonCount,
+            unpublishedLessonCount: unitOption.unpublishedLessonCount,
+          });
           return (
             <OakUnitListItem
               {...props}
               {...unitOption}
-              lessonCount={String(unitOption.lessonCount)}
+              lessonCount={unitLessonCount}
               firstItemRef={
                 isUnitFirstItemRef(
                   unitOption.programmeSlug,

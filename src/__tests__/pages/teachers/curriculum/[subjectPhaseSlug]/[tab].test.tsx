@@ -18,13 +18,14 @@ import { mockPrerelease } from "@/utils/mocks";
 import { parseSubjectPhaseSlug } from "@/utils/curriculum/slugs";
 import "@/__tests__/__helpers__/ResizeObserverMock";
 import {
-  createInitialYearFilterSelection,
+  // createInitialYearFilterSelection,
   createThreadOptions,
   createUnitsListingByYear,
   createYearOptions,
   fetchSubjectPhasePickerData,
   formatCurriculumUnitsData,
 } from "@/pages-helpers/curriculum/docx/tab-helpers";
+import { DISABLE_DOWNLOADS } from "@/utils/curriculum/constants";
 
 const render = renderWithProviders();
 
@@ -695,27 +696,29 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
       expect(queryAllByTestId("unit-cards")[0]).toBeInTheDocument();
     });
 
-    it("renders the Curriculum Downloads Tab (with prerelease)", () => {
-      mockPrerelease("curriculum.downloads");
-      (useRouter as jest.Mock).mockReturnValue({
-        query: { tab: "downloads" },
-        isPreview: false,
-        pathname: "/teachers-2023/curriculum/english-secondary-aqa/downloads",
+    if (!DISABLE_DOWNLOADS) {
+      it("renders the Curriculum Downloads Tab (with prerelease)", () => {
+        mockPrerelease("curriculum.downloads");
+        (useRouter as jest.Mock).mockReturnValue({
+          query: { tab: "downloads" },
+          isPreview: false,
+          pathname: "/teachers-2023/curriculum/english-secondary-aqa/downloads",
+        });
+        const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
+        const { queryByTestId } = render(
+          <CurriculumInfoPage
+            mvRefreshTime={1721314874829}
+            curriculumUnitsFormattedData={curriculumUnitsFormattedData}
+            curriculumSelectionSlugs={slugs}
+            curriculumPhaseOptions={curriculumPhaseOptions}
+            curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
+            curriculumOverviewTabData={curriculumOverviewMVFixture()}
+            curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
+          />,
+        );
+        expect(queryByTestId("download-heading")).toBeInTheDocument();
       });
-      const slugs = parseSubjectPhaseSlug("english-secondary-aqa")!;
-      const { queryByTestId } = render(
-        <CurriculumInfoPage
-          mvRefreshTime={1721314874829}
-          curriculumUnitsFormattedData={curriculumUnitsFormattedData}
-          curriculumSelectionSlugs={slugs}
-          curriculumPhaseOptions={curriculumPhaseOptions}
-          curriculumOverviewSanityData={curriculumOverviewCMSFixture()}
-          curriculumOverviewTabData={curriculumOverviewMVFixture()}
-          curriculumDownloadsTabData={{ tiers: [], child_subjects: [] }}
-        />,
-      );
-      expect(queryByTestId("download-heading")).toBeInTheDocument();
-    });
+    }
   });
 
   describe("getStaticProps", () => {
@@ -1402,34 +1405,34 @@ describe("pages/teachers/curriculum/[subjectPhaseSlug]/[tab]", () => {
   });
 
   describe("createInitialYearFilterSelection", () => {
-    it("Should return default year filter selection", async () => {
-      const initialYearFilterSelection = {
-        "7": {
-          subject: null,
-          subjectCategory: { id: -1, title: "All" },
-          tier: null,
-        },
-        "10": {
-          subject: {
-            subject: "Combined science",
-            subject_slug: "combined-science",
-          },
-          subjectCategory: { id: -1, title: "All" },
-          tier: null,
-        },
-        "11": {
-          subject: {
-            subject: "Combined science",
-            subject_slug: "combined-science",
-          },
-          subjectCategory: { id: -1, title: "All" },
-          tier: { tier: "Foundation", tier_slug: "foundation" },
-        },
-      };
-      const yearData = createUnitsListingByYear(unitData);
-      expect(createInitialYearFilterSelection(yearData, null)).toEqual(
-        initialYearFilterSelection,
-      );
-    });
+    // it("Should return default year filter selection", async () => {
+    //   const initialYearFilterSelection = {
+    //     "7": {
+    //       subject: null,
+    //       subjectCategory: { id: -1, title: "All" },
+    //       tier: null,
+    //     },
+    //     "10": {
+    //       subject: {
+    //         subject: "Combined science",
+    //         subject_slug: "combined-science",
+    //       },
+    //       subjectCategory: { id: -1, title: "All" },
+    //       tier: null,
+    //     },
+    //     "11": {
+    //       subject: {
+    //         subject: "Combined science",
+    //         subject_slug: "combined-science",
+    //       },
+    //       subjectCategory: { id: -1, title: "All" },
+    //       tier: { tier: "Foundation", tier_slug: "foundation" },
+    //     },
+    //   };
+    //   const yearData = createUnitsListingByYear(unitData);
+    //   expect(createInitialYearFilterSelection(yearData, null)).toEqual(
+    //     initialYearFilterSelection,
+    //   );
+    // });
   });
 });
