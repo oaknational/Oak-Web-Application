@@ -197,9 +197,9 @@ const PupilExperienceLayout = ({
     ageRestriction: string | undefined | null,
   ) => {
     switch (ageRestriction) {
-      case "year_7_and_above":
+      case "7_and_above":
         return `To view this lesson, you must be in year 7 and above`;
-      case "year_10_and_above":
+      case "10_and_above":
         return `To view this lesson, you must be in year 10 and above`;
       default:
         return `This lesson is age restricted.`;
