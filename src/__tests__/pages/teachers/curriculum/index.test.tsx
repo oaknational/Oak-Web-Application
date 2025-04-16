@@ -187,7 +187,7 @@ describe("pages/curriculum/index", () => {
           title: "English",
           phases: [],
           keystages: [],
-          ks4_options: null,
+          ks4_options: [],
           slug: "english",
         },
       ] as CurriculumPhaseOptions;

@@ -12,12 +12,22 @@ import { formatCurriculumUnitsData } from "../tab-helpers";
 import { uncapitalizeSubject } from "./helper";
 
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
+import { getModes, groupUnitsByPathway } from "@/utils/curriculum/by-pathway";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 export default async function generate(
   zip: JSZipCached,
-  { data }: { data: CombinedCurriculumData },
+  {
+    data,
+    ks4Options,
+  }: { data: CombinedCurriculumData; ks4Options: Ks4Option[] },
 ) {
-  const { yearOptions, yearData } = formatCurriculumUnitsData(data);
+  const yearDataOrig = formatCurriculumUnitsData(data);
+  const modes = getModes(true, ks4Options);
+  const yearData = groupUnitsByPathway({
+    modes,
+    yearData: yearDataOrig.yearData,
+  });
 
   const links = [
     {
@@ -32,10 +42,15 @@ export default async function generate(
       anchorId: "section_curriculum_overview",
       text: `${data.subjectTitle} curriculum explainer`,
     },
-    ...yearOptions.map((year) => {
+    ...Object.values(yearData).map((item) => {
+      let typeSuffix = "";
+      if (["10", "11"].includes(item.year)) {
+        typeSuffix = `(${item.type === "core" ? "Core" : "GCSE"})`;
+      }
+
       return {
-        anchorId: `section_year_${year}`,
-        text: getYearGroupTitle(yearData, year, "units"),
+        anchorId: `section_year_${item.type}-${item.year}`,
+        text: getYearGroupTitle(yearData, item.year, `units ${typeSuffix}`),
       };
     }),
     {

@@ -16,7 +16,7 @@ import {
 import { highlightedUnitCount } from "@/utils/curriculum/filtering";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { CurriculumSelectionSlugs } from "@/utils/curriculum/slugs";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 type UnitsTabProps = {
   trackingData: CurriculumUnitsTrackingData;
@@ -24,7 +24,7 @@ type UnitsTabProps = {
   filters: CurriculumFilters;
   onChangeFilters: (newFilter: CurriculumFilters) => void;
   slugs: CurriculumSelectionSlugs;
-  ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
+  ks4Options: Ks4Option[];
 };
 
 export default function UnitsTab({

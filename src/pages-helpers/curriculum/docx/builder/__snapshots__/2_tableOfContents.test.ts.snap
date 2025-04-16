@@ -465,7 +465,7 @@ exports[`2_tableOfContents simple 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:hyperlink
-        w:anchor="section_year_7"
+        w:anchor="section_year_all-7"
       >
         <w:r>
           <w:rPr>
@@ -484,7 +484,7 @@ exports[`2_tableOfContents simple 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 7 units]]></w:t>
+          <w:t><![CDATA[Year 7 units ]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -497,7 +497,7 @@ exports[`2_tableOfContents simple 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:hyperlink
-        w:anchor="section_year_8"
+        w:anchor="section_year_all-8"
       >
         <w:r>
           <w:rPr>
@@ -516,7 +516,7 @@ exports[`2_tableOfContents simple 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 8 units]]></w:t>
+          <w:t><![CDATA[Year 8 units ]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -529,7 +529,7 @@ exports[`2_tableOfContents simple 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:hyperlink
-        w:anchor="section_year_9"
+        w:anchor="section_year_all-9"
       >
         <w:r>
           <w:rPr>
@@ -548,7 +548,7 @@ exports[`2_tableOfContents simple 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 9 units]]></w:t>
+          <w:t><![CDATA[Year 9 units ]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -561,7 +561,7 @@ exports[`2_tableOfContents simple 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:hyperlink
-        w:anchor="section_year_10"
+        w:anchor="section_year_all-10"
       >
         <w:r>
           <w:rPr>
@@ -580,7 +580,7 @@ exports[`2_tableOfContents simple 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 10 units]]></w:t>
+          <w:t><![CDATA[Year 10 units (GCSE)]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>
@@ -593,7 +593,7 @@ exports[`2_tableOfContents simple 1`] = `
         ></w:spacing>
       </w:pPr>
       <w:hyperlink
-        w:anchor="section_year_11"
+        w:anchor="section_year_all-11"
       >
         <w:r>
           <w:rPr>
@@ -612,7 +612,7 @@ exports[`2_tableOfContents simple 1`] = `
               w:val="28"
             ></w:sz>
           </w:rPr>
-          <w:t><![CDATA[Year 11 units]]></w:t>
+          <w:t><![CDATA[Year 11 units (GCSE)]]></w:t>
         </w:r>
       </w:hyperlink>
     </w:p>

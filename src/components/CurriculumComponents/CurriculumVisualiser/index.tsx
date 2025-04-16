@@ -17,10 +17,7 @@ import {
   getYearSubheadingText,
 } from "@/utils/curriculum/formatting";
 import { anchorIntersectionObserver } from "@/utils/curriculum/dom";
-import { isVisibleUnit } from "@/utils/curriculum/isVisibleUnit";
-import { sortYears } from "@/utils/curriculum/sorting";
 import { createTeacherProgrammeSlug } from "@/utils/curriculum/slugs";
-import { filteringFromYears } from "@/utils/curriculum/filtering";
 import {
   CurriculumFilters,
   Unit,
@@ -29,8 +26,13 @@ import {
   Thread,
 } from "@/utils/curriculum/types";
 import { CurriculumUnit } from "@/node-lib/curriculum-api-2023";
-import { SubjectPhasePickerData } from "@/components/SharedComponents/SubjectPhasePicker/SubjectPhasePicker";
 import { getShouldDisplayCorePathway } from "@/utils/curriculum/pathways";
+import {
+  groupUnitsByPathway,
+  applyFiltering,
+  getModes,
+} from "@/utils/curriculum/by-pathway";
+import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
 
 type CurriculumVisualiserProps = {
   unitData: Unit | null;
@@ -41,7 +43,7 @@ type CurriculumVisualiserProps = {
   setUnitData: (unit: Unit) => void;
   setVisibleMobileYearRefID: (refID: string) => void;
   threadOptions: Thread[];
-  ks4Options: SubjectPhasePickerData["subjects"][number]["ks4_options"];
+  ks4Options: Ks4Option[];
 };
 
 // Function component
@@ -59,13 +61,6 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 }) => {
   const { track } = useAnalytics();
   const { analyticsUseCase } = useAnalyticsPageProps();
-
-  function filterIncludes(key: keyof CurriculumFilters, ids: string[]) {
-    const filterValues = filters[key];
-    return ids.every((id) => {
-      return filterValues.includes(id);
-    });
-  }
 
   const selectedThread = useMemo(() => {
     return threadOptions.find((thread) => thread.slug === filters.threads[0]);
@@ -148,85 +143,21 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
     setCurrentUnitLessons([]);
   };
 
-  const yearTypes: ("core" | "non_core" | "all")[] = [];
-  if (!ks4Options?.find((opt) => opt.slug === "core")) {
-    yearTypes.push("all");
-  } else {
-    if (!ks4OptionSlug || ks4Options?.find((opt) => opt.slug === "core")) {
-      yearTypes.push("core");
-    }
-    if (ks4OptionSlug && ks4OptionSlug !== "core") {
-      yearTypes.push("non_core");
-    }
-  }
-
-  console.log({ yearTypes });
-
-  const yearSelectors = yearTypes.flatMap((type) => {
-    return Object.keys(yearData)
-      .map((year) => ({ year, type }))
-      .filter(({ year }) => {
-        if (type === "non_core") {
-          if (year === "10" || year === "11") {
-            return true;
-          } else {
-            return false;
-          }
-        } else if (type === "core") {
-          if (year === "10" || year === "11") {
-            return (
-              yearData[year]!.pathways.findIndex(
-                (item) => item.pathway_slug === "core",
-              ) > -1
-            );
-          }
-        }
-        return true;
-      })
-      .filter(({ year }) => filterIncludes("years", [year]))
-      .sort((a, b) => sortYears(a.year, b.year));
-  });
-
-  const unitsByYearSelector = yearSelectors
-    .map(({ year, type }) => {
-      const yearItem = yearData[year] as YearData[string];
-
-      const yearBasedFilters = filteringFromYears(yearData[year]!, filters);
-      const isExamboard = type === "non_core";
-
-      const filteredUnits = yearItem.units.filter((unit: Unit) => {
-        if (isExamboard && unit.pathway_slug === "core") {
-          return false;
-        }
-        if (
-          type !== "all" &&
-          ["10", "11"].includes(year) &&
-          !isExamboard &&
-          unit.pathway_slug !== "core"
-        ) {
-          return false;
-        }
-        return isVisibleUnit(yearBasedFilters, year, unit);
-      });
-
-      return {
-        selector: { type, year },
-        yearItem,
-        units: filteredUnits,
-      };
-    })
-    .filter(({ units }) => {
-      return units.length > 0;
-    });
+  const shouldIncludeCore = ks4OptionSlug !== "core";
+  const unitsByYearSelector = applyFiltering(
+    filters,
+    groupUnitsByPathway({
+      modes: getModes(shouldIncludeCore, ks4Options),
+      yearData,
+    }),
+  );
 
   const shouldDisplayCorePathway = getShouldDisplayCorePathway(ks4Options);
 
   return (
     <OakBox id="content" data-testid="curriculum-visualiser">
-      {unitsByYearSelector.flatMap((data, index) => {
-        const { year, type } = data.selector;
-        const { isSwimming } = data.yearItem;
-        const { units } = data;
+      {Object.entries(unitsByYearSelector).flatMap(([, data], index) => {
+        const { year, type, isSwimming, units } = data;
         const ref = (element: HTMLDivElement) => {
           itemEls.current[index] = element;
         };

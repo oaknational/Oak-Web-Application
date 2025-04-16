@@ -68,8 +68,8 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
 
   const ks4Options = curriculumPhaseOptions.subjects.find(
     (s) => s.slug === subjectSlug,
-  )?.ks4_options;
-  const ks4Option = ks4Options?.find((ks4opt) => ks4opt.slug === ks4OptionSlug);
+  )!.ks4_options;
+  const ks4Option = ks4Options.find((ks4opt) => ks4opt.slug === ks4OptionSlug);
 
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {
     subjectSlug,

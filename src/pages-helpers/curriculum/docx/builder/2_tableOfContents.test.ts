@@ -18,6 +18,7 @@ describe("2_tableOfContents", () => {
           { year: "11", threads: [] },
         ],
       } as unknown as CombinedCurriculumData,
+      ks4Options: [],
     });
 
     expect(await zipToSnapshotObject(zip.getJsZip())).toMatchSnapshot();
