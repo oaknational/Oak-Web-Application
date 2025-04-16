@@ -1,3 +1,11 @@
+## [1.733.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.733.0...v1.733.1) (2025-04-16)
+
+
+### Bug Fixes
+
+* datatype has changed for all-years swimming ([afaf7c6](https://github.com/oaknational/Oak-Web-Application/commit/afaf7c6a4ff1ef498ea24af94d9a0415911072e2))
+* new features schema in units/threads pages for curriculum downloads ([0ef5d5e](https://github.com/oaknational/Oak-Web-Application/commit/0ef5d5e9de924d1c65bd531d989f17f46f72eb86))
+
 # [1.733.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.7...v1.733.0) (2025-04-15)
 
 
