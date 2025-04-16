@@ -88,6 +88,7 @@ export const PupilPageContent = ({
     supervisionLevel,
   } = lessonContent;
 
+  const ageRestriction = browseData.features?.ageRestriction;
   const starterQuizNumQuestions = getInteractiveQuestions(starterQuiz).length;
   const exitQuizNumQuestions = getInteractiveQuestions(exitQuiz).length;
 
@@ -121,6 +122,7 @@ export const PupilPageContent = ({
           hasAdditionalFiles={hasAdditionalFiles}
           additionalFiles={additionalFiles}
           worksheetInfo={worksheetInfo}
+          ageRestriction={ageRestriction}
         />
       );
     case "starter-quiz":
@@ -188,13 +190,26 @@ const PupilExperienceLayout = ({
   pageType,
   worksheetInfo,
 }: PupilExperienceViewProps) => {
-  // @todo update once we have data
-  const ageRestriction = false;
+  const ageRestriction = browseData.features?.ageRestriction;
+  const hasAgeRestriction = !!ageRestriction;
+
+  const getAgeRestrictionString = (
+    ageRestriction: string | undefined | null,
+  ) => {
+    switch (ageRestriction) {
+      case "year_7_and_above":
+        return `To view this lesson, you must be in year 7 and above`;
+      case "year_10_and_above":
+        return `To view this lesson, you must be in year 10 and above`;
+      default:
+        return `This lesson is age restricted.`;
+    }
+  };
 
   const [trackingSent, setTrackingSent] = useState<boolean>(false);
   const { track } = usePupilAnalytics();
   const [isOpen, setIsOpen] = useState<boolean>(
-    !!lessonContent.contentGuidance || !!ageRestriction,
+    !!lessonContent.contentGuidance || hasAgeRestriction,
   );
   const router = useRouter();
   const availableSections = pickAvailableSectionsForLesson(lessonContent);
@@ -208,6 +223,7 @@ const PupilExperienceLayout = ({
       contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
         return cg.contentguidanceArea;
       })?.contentguidanceArea as ContentGuidanceWarningValueType,
+      ageRestriction: hasAgeRestriction ? ageRestriction : "all",
     });
   };
 
@@ -218,7 +234,7 @@ const PupilExperienceLayout = ({
       contentGuidanceWarning: lessonContent.contentGuidance?.find((cg) => {
         return cg.contentguidanceArea;
       })?.contentguidanceArea as ContentGuidanceWarningValueType,
-      //ageRestriction: lessonContent.ageRestriction,
+      ageRestriction: hasAgeRestriction ? ageRestriction : "all",
     });
   };
 
@@ -246,12 +262,12 @@ const PupilExperienceLayout = ({
           initialLessonReviewSections={availableSections}
           initialSection={initialSection}
         >
-          {ageRestriction ? (
+          {hasAgeRestriction ? (
             <OakPupilJourneyContentGuidance
               isOpen={isOpen}
               onAccept={handleContentGuidanceAccept}
               onDecline={handleContentGuidanceDecline}
-              title={`To view this lesson, you must be in year ${ageRestriction} and above`}
+              title={getAgeRestrictionString(ageRestriction)}
               contentGuidance={[
                 {
                   contentguidanceLabel:
