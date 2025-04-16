@@ -43,7 +43,7 @@ const teachersPreviewUnitListingQuery =
       TeachersPreviewUnitListingQuery["units"][number]
     >({
       journey: "teacher",
-      queryName: "unitListingQuery",
+      queryName: "teachersPreviewUnitListingQuery",
       browseData: res.units,
     });
 

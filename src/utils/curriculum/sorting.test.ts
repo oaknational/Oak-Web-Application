@@ -13,8 +13,8 @@ describe("sortYears", () => {
   });
 
   it("with all years", () => {
-    expect(["8", "7", "All years", "9", "11", "10"].sort(sortYears)).toEqual([
-      "All years",
+    expect(["8", "7", "all-years", "9", "11", "10"].sort(sortYears)).toEqual([
+      "all-years",
       "7",
       "8",
       "9",

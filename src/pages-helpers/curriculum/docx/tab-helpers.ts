@@ -116,7 +116,8 @@ export function createYearOptions(units: Unit[]): string[] {
 
   units.forEach((unit: Unit) => {
     // Populate years object
-    const year = unit.actions?.programme_field_overrides?.Year ?? unit.year;
+    const year =
+      unit.actions?.programme_field_overrides?.year_slug ?? unit.year;
     if (yearOptions.every((yo) => yo !== year)) {
       yearOptions.push(year);
     }
@@ -179,7 +180,8 @@ export function createUnitsListingByYear(
     // Check if the yearData object has an entry for the unit's year
     // If not, initialize it with default values
 
-    const year = unit.actions?.programme_field_overrides?.Year ?? unit.year;
+    const year =
+      unit.actions?.programme_field_overrides?.year_slug ?? unit.year;
 
     let currentYearData = yearData[year];
     if (!currentYearData) {
