@@ -76,7 +76,8 @@ export function threadUnitByYear(units: Unit[], threadSlug: string) {
   const output = {} as Record<string, Unit[]>;
 
   units.forEach((unit: Unit) => {
-    const year = unit.actions?.programme_field_overrides?.Year ?? unit.year;
+    const year =
+      unit.actions?.programme_field_overrides?.year_slug ?? unit.year;
     unit.threads.forEach((thread) => {
       if (thread.slug === threadSlug) {
         output[year] = output[year] ?? [];
@@ -98,7 +99,8 @@ export function unitsByYear(units: Unit[]) {
   const output = {} as Record<string, Unit[]>;
 
   units.forEach((unit: Unit) => {
-    const year = unit.actions?.programme_field_overrides?.Year ?? unit.year;
+    const year =
+      unit.actions?.programme_field_overrides?.year_slug ?? unit.year;
     output[year] = output[year] ?? [];
     if (
       output[year] &&

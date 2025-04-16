@@ -75,7 +75,7 @@ const UnitModal: FC<UnitModalProps> = ({
   const yearTitle = unitData
     ? getYearGroupTitle(
         yearData,
-        unitData.actions?.programme_field_overrides?.Year ?? unitData.year,
+        unitData.actions?.programme_field_overrides?.year_slug ?? unitData.year,
       )
     : "";
 
