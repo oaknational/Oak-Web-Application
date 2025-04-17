@@ -69,7 +69,7 @@ describe("groupUnitsByPathway", () => {
     });
   });
 
-  it.only("core & non_core", () => {
+  it("core & non_core", () => {
     const unitsAll9 = [createUnit({ year: "9" }), createUnit({ year: "9" })];
     const unitsAll10 = [
       createUnit({ pathway_slug: "core", year: "10" }),
