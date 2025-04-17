@@ -1,5 +1,12 @@
-import React, { FC, MouseEvent } from "react";
+import React, { FC, MouseEvent, useState } from "react";
 import { NextRouter, useRouter } from "next/router";
+
+
+import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
+import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
+
+import { getPageItems, getProgrammeFactors } from "./helpers";
+
 import {
   OakFlex,
   OakUnitsContainer,
@@ -9,12 +16,6 @@ import {
   OakAnchorTarget,
   OakBox,
 } from "@oaknational/oak-components";
-
-import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
-import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
-
-import { getPageItems, getProgrammeFactors } from "./helpers";
-
 import {
   UnitListItemProps,
   SpecialistListItemProps,
@@ -84,6 +85,7 @@ const getOptionalityUnits = (
     };
     return {
       title: unitOption.title,
+      slug: unitOption.slug,
       href: resolveOakHref({
         page: "lesson-index",
         unitSlug: unitOption.slug,
@@ -180,6 +182,10 @@ const UnitList: FC<UnitListProps> = (props) => {
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
     .indexOf(true);
 
+  // TODO: feature flag
+  // stub implementation of saving
+  const [savedUnitsForUser, setSavedUnitsForUser] = useState<string[]>([]);
+
   const getUnitCards = (
     pageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
   ) => {
@@ -238,6 +244,13 @@ const UnitList: FC<UnitListProps> = (props) => {
               : null
           }
           optionalityUnits={getOptionalityUnits(item, onClick, router)}
+          onSave={(unitSlug) => {
+            const newSavedUnits = savedUnitsForUser.includes(unitSlug)
+              ? savedUnitsForUser.filter((u) => u !== unitSlug)
+              : [...savedUnitsForUser, unitSlug];
+            setSavedUnitsForUser(newSavedUnits);
+          }}
+          getIsSaved={(unitSlug) => savedUnitsForUser.includes(unitSlug)}
         />
       ) : (
         item.map((unitOption) => {
@@ -256,6 +269,7 @@ const UnitList: FC<UnitListProps> = (props) => {
             expiredLessonCount: unitOption.expiredLessonCount,
             unpublishedLessonCount: unitOption.unpublishedLessonCount,
           });
+          const isSaved = savedUnitsForUser.includes(unitOption.slug);
           return (
             <OakUnitListItem
               {...props}
@@ -283,6 +297,13 @@ const UnitList: FC<UnitListProps> = (props) => {
                 unitSlug: unitOption.slug,
                 programmeSlug: unitOption.programmeSlug,
               })}
+              onSave={() => {
+                const newSavedUnits = isSaved
+                  ? savedUnitsForUser.filter((u) => u !== unitOption.slug)
+                  : [...savedUnitsForUser, unitOption.slug];
+                setSavedUnitsForUser(newSavedUnits);
+              }}
+              isSaved={isSaved}
             />
           );
         })
