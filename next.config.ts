@@ -115,7 +115,7 @@ export default async (phase: NextConfig["phase"]): Promise<NextConfig> => {
     // Attempt to reduce the size of the build by excluding some packages.
     serverExternalPackages: ["sharp", "@swc/core", "@swc/core-darwin-arm64"],
     outputFileTracingExcludes: {
-      "**/*": ["node_modules/@swc/**/*"],
+      "**/*": ["node_modules/@swc/(!helpers)/*"],
     },
 
     webpack: function getWebpackConfig(
