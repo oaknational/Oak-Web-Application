@@ -191,6 +191,7 @@
     "@types/jest": "^29.5.8",
     "@types/js-cookie": "^3.0.6",
     "@types/json-diff": "^1.0.3",
+    "@types/lodash": "^4.17.16",
     "@types/micromatch": "^4.0.9",
     "@types/node": "^22.10.5",
     "@types/react": "^18.2.37",
