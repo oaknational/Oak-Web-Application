@@ -268,14 +268,23 @@ const PupilExperienceLayout = ({
               onAccept={handleContentGuidanceAccept}
               onDecline={handleContentGuidanceDecline}
               title={getAgeRestrictionString(ageRestriction)}
-              contentGuidance={[
-                {
-                  contentguidanceLabel:
-                    "Speak to an adult before starting this lesson.",
-                  contentguidanceDescription: null,
-                  contentguidanceArea: null,
-                },
-              ]}
+              contentGuidance={
+                lessonContent.contentGuidance
+                  ? lessonContent.contentGuidance
+                  : [
+                      {
+                        contentguidanceLabel:
+                          "Speak to an adult before starting this lesson.",
+                        contentguidanceDescription: null,
+                        contentguidanceArea: null,
+                      },
+                    ]
+              }
+              supervisionLevel={
+                lessonContent.contentGuidance
+                  ? lessonContent.supervisionLevel
+                  : null
+              }
             />
           ) : (
             <OakPupilJourneyContentGuidance
