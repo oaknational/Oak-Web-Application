@@ -6,7 +6,7 @@ import { basicSetup } from "./CurricFiltersYears.fixtures";
 import renderWithTheme from "@/__tests__/__helpers__/renderWithTheme";
 
 describe("CurricFiltersYears", () => {
-  it.skip("renders correctly", () => {
+  it("renders correctly (non-pathways)", () => {
     const { getAllByRole } = renderWithTheme(
       <CurricFiltersYears
         filters={{
@@ -30,9 +30,43 @@ describe("CurricFiltersYears", () => {
 
     const elements = getAllByRole("radio") as HTMLInputElement[];
     expect(elements.length).toEqual(3);
-    expect(elements[0]!.value).toEqual("all");
-    expect(elements[1]!.value).toEqual("10");
-    expect(elements[2]!.value).toEqual("11");
+    expect(elements[0]!.nextSibling!.textContent).toEqual("All");
+    expect(elements[1]!.nextSibling!.textContent).toEqual("Year 10");
+    expect(elements[2]!.nextSibling!.textContent).toEqual("Year 11");
+  });
+
+  it("renders correctly (pathways)", () => {
+    const { getAllByRole } = renderWithTheme(
+      <CurricFiltersYears
+        filters={{
+          childSubjects: [],
+          subjectCategories: [],
+          tiers: [],
+          years: ["10", "11"],
+          threads: [],
+          pathways: [],
+        }}
+        onChangeFilters={() => {}}
+        data={basicSetup}
+        ks4Options={[
+          { slug: "core", title: "Core" },
+          { slug: "gcse", title: "Gcse" },
+        ]}
+        slugs={{
+          phaseSlug: "secondary",
+          subjectSlug: "english",
+          ks4OptionSlug: null,
+        }}
+      />,
+    );
+
+    const elements = getAllByRole("radio") as HTMLInputElement[];
+    expect(elements.length).toEqual(5);
+    expect(elements[0]!.nextSibling!.textContent).toEqual("All");
+    expect(elements[1]!.nextSibling!.textContent).toEqual("Year 10 (Core)");
+    expect(elements[2]!.nextSibling!.textContent).toEqual("Year 11 (Core)");
+    expect(elements[3]!.nextSibling!.textContent).toEqual("Year 10 (GCSE)");
+    expect(elements[4]!.nextSibling!.textContent).toEqual("Year 11 (GCSE)");
   });
 
   it("interacts correctly", () => {
