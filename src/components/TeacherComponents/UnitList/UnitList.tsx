@@ -1,6 +1,6 @@
 import React, { FC, MouseEvent, useState } from "react";
 import { NextRouter, useRouter } from "next/router";
-
+import { useFeatureFlagEnabled } from "posthog-js/react";
 
 import { UnitOption } from "../UnitListOptionalityCard/UnitListOptionalityCard";
 import { getSubjectPhaseSlug } from "../helpers/getSubjectPhaseSlug";
@@ -182,9 +182,16 @@ const UnitList: FC<UnitListProps> = (props) => {
     .map((u) => isSlugLegacy(u[0]!.programmeSlug))
     .indexOf(true);
 
-  // TODO: feature flag
   // stub implementation of saving
+  const isSaveEnabled = useFeatureFlagEnabled("teacher-save-units");
   const [savedUnitsForUser, setSavedUnitsForUser] = useState<string[]>([]);
+
+  const onSave = (unitSlug: string) => {
+    const newSavedUnits = savedUnitsForUser.includes(unitSlug)
+      ? savedUnitsForUser.filter((u) => u !== unitSlug)
+      : [...savedUnitsForUser, unitSlug];
+    setSavedUnitsForUser(newSavedUnits);
+  };
 
   const getUnitCards = (
     pageItems: CurrentPageItemsProps[] | SpecialistUnit[][],
@@ -244,12 +251,7 @@ const UnitList: FC<UnitListProps> = (props) => {
               : null
           }
           optionalityUnits={getOptionalityUnits(item, onClick, router)}
-          onSave={(unitSlug) => {
-            const newSavedUnits = savedUnitsForUser.includes(unitSlug)
-              ? savedUnitsForUser.filter((u) => u !== unitSlug)
-              : [...savedUnitsForUser, unitSlug];
-            setSavedUnitsForUser(newSavedUnits);
-          }}
+          onSave={isSaveEnabled ? onSave : undefined}
           getIsSaved={(unitSlug) => savedUnitsForUser.includes(unitSlug)}
         />
       ) : (
@@ -269,7 +271,7 @@ const UnitList: FC<UnitListProps> = (props) => {
             expiredLessonCount: unitOption.expiredLessonCount,
             unpublishedLessonCount: unitOption.unpublishedLessonCount,
           });
-          const isSaved = savedUnitsForUser.includes(unitOption.slug);
+
           return (
             <OakUnitListItem
               {...props}
@@ -297,13 +299,8 @@ const UnitList: FC<UnitListProps> = (props) => {
                 unitSlug: unitOption.slug,
                 programmeSlug: unitOption.programmeSlug,
               })}
-              onSave={() => {
-                const newSavedUnits = isSaved
-                  ? savedUnitsForUser.filter((u) => u !== unitOption.slug)
-                  : [...savedUnitsForUser, unitOption.slug];
-                setSavedUnitsForUser(newSavedUnits);
-              }}
-              isSaved={isSaved}
+              onSave={isSaveEnabled ? () => onSave(unitOption.slug) : undefined}
+              isSaved={savedUnitsForUser.includes(unitOption.slug)}
             />
           );
         })
