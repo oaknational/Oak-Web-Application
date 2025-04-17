@@ -12,7 +12,6 @@ import AnchorTarget from "@/components/SharedComponents/AnchorTarget";
 import UnitModal from "@/components/CurriculumComponents/UnitModal/UnitModal";
 import UnitsTabSidebar from "@/components/CurriculumComponents/UnitsTabSidebar";
 import {
-  getSuffixFromFeatures,
   getYearGroupTitle,
   getYearSubheadingText,
 } from "@/utils/curriculum/formatting";
@@ -45,8 +44,6 @@ type CurriculumVisualiserProps = {
   threadOptions: Thread[];
   ks4Options: Ks4Option[];
 };
-
-// Function component
 
 const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
   unitData,
@@ -164,17 +161,14 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
 
         const actions = units[0]?.actions;
 
-        const yearTitle = getYearGroupTitle(
-          yearData,
-          year,
-          getSuffixFromFeatures(actions),
-        );
+        const yearTitle = getYearGroupTitle(yearData, year, undefined);
 
         const yearSubheadingText = getYearSubheadingText(
           yearData,
           year,
           filters,
           shouldDisplayCorePathway ? type : null,
+          actions,
         );
 
         return (
