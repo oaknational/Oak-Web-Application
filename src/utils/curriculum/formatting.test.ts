@@ -228,19 +228,6 @@ describe("getShortPhaseText", () => {
   });
 });
 
-describe("getSuffixFromFeatures", () => {
-  // TODO: Re-enable once data fixed in db-tools
-  // it("value if override present", () => {
-  //   expect(
-  //     getSuffixFromFeatures({
-  //       programme_field_overrides: {
-  //         subject: "test",
-  //       },
-  //     }),
-  //   ).toBe("(test)");
-  // });
-});
-
 describe("buildPageTitle", () => {
   const testCases = [
     {
