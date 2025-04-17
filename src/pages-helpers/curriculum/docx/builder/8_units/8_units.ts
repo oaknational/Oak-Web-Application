@@ -132,7 +132,14 @@ export default async function generate(
     yearData,
   });
 
-  for (const { units, year, childSubject, tier, pathway } of groupedUnits) {
+  for (const {
+    units,
+    year,
+    childSubject,
+    tier,
+    pathway,
+    type,
+  } of groupedUnits) {
     // TODO: Add selector here...
     yearXml.push(
       await buildYear(
@@ -142,6 +149,7 @@ export default async function generate(
         units,
         { childSubject, tier, pathway },
         slugs,
+        type,
       ),
     );
   }
@@ -341,6 +349,7 @@ async function buildYear(
   unitsInput: CombinedCurriculumData["units"],
   yearSlugs: Slug,
   slugs: Slugs,
+  type: MODES,
 ) {
   const images = await insertImages(zip, {
     jumpOutArrow: join(
@@ -547,7 +556,7 @@ async function buildYear(
           <w:pStyle w:val="Heading2" />
         </w:pPr>
         ${wrapInBookmarkPoint(
-          `section_year_${yearSlugs.pathway ?? "none"}-${year}`,
+          `section_year_${type}-${firstUnit?.year}`,
           safeXml`
             <w:r>
               <w:rPr>

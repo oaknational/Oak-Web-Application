@@ -48,8 +48,10 @@ export default async function generate(
         typeSuffix = `(${item.type === "core" ? "Core" : "GCSE"})`;
       }
 
+      const anchorId = `section_year_${item.type}-${item.year}`;
+
       return {
-        anchorId: `section_year_${item.type}-${item.year}`,
+        anchorId,
         text: getYearGroupTitle(yearData, item.year, `units ${typeSuffix}`),
       };
     }),
