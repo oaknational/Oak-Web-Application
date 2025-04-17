@@ -21,19 +21,18 @@ export function applyFiltering(
   const step1 = Object.values(unitsByYearSelector).filter((item) =>
     filterIncludes("years", [item.year]),
   );
-  const step2 = step1
-    .map((item) => {
-      return {
-        ...item,
-        units: item.units.filter((unit) => {
-          const yearBasedFilters = filteringFromYears(item, filters);
-          return isVisibleUnit(yearBasedFilters, item.year, unit);
-        }),
-      };
-    })
-    .filter((item) => {
-      return item.units.length > 0;
-    });
+  const step2 = step1.map((item) => {
+    return {
+      ...item,
+      units: item.units.filter((unit) => {
+        const yearBasedFilters = filteringFromYears(item, filters);
+        return isVisibleUnit(yearBasedFilters, item.year, unit);
+      }),
+    };
+  });
+  // .filter((item) => {
+  //   return item.units.length > 0;
+  // });
   return step2;
 }
 
