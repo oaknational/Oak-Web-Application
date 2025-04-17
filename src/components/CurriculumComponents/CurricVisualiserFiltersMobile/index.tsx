@@ -24,6 +24,7 @@ export default function CurricVisualiserFiltersMobile({
   onSelectYear,
   slugs,
   trackingData,
+  ks4Options,
 }: CurricVisualiserFiltersMobileProps) {
   const [mobileThreadModalOpen, setMobileThreadModalOpen] =
     useState<boolean>(false);
@@ -63,6 +64,7 @@ export default function CurricVisualiserFiltersMobile({
             onChangeFilters={onChangeFilters}
             data={data}
             slugs={slugs}
+            ks4Options={ks4Options}
           />
         }
         footer={
@@ -84,6 +86,7 @@ export default function CurricVisualiserFiltersMobile({
         data={data}
         slugs={slugs}
         trackingData={trackingData}
+        ks4Options={ks4Options}
       />
     </>
   );

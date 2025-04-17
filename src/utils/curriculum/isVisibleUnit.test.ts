@@ -1,4 +1,4 @@
-import { isVisibleUnit } from "./isVisibleUnit";
+import { evalCondition, isVisibleUnit } from "./isVisibleUnit";
 
 import { createFilter } from "@/fixtures/curriculum/filters";
 import { CombinedCurriculumData } from "@/pages-helpers/curriculum/docx";
@@ -92,4 +92,11 @@ describe("isVisibleUnit", () => {
     });
     expect(isVisibleUnit(filters, "10", unit)).toEqual(true);
   });
+});
+
+it("evalCondition", () => {
+  expect(evalCondition("!foo", "foo")).toEqual(false);
+  expect(evalCondition("!foo", "bar")).toEqual(true);
+  expect(evalCondition("foo", "foo")).toEqual(true);
+  expect(evalCondition("foo", "bar")).toEqual(false);
 });
