@@ -26,7 +26,7 @@ describe("curriculum phase options sitemap", () => {
     delete process.env.SITEMAP_BASE_URL;
   });
 
-  it.skip("should call getServerSideSitemap with the expected data", async () => {
+  it("should call getServerSideSitemap with the expected data", async () => {
     const context = {} as GetServerSidePropsContext<
       ParsedUrlQuery,
       PreviewData
