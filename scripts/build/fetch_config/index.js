@@ -9,7 +9,7 @@ const readConfigFromNetwork = require("./read_from_network");
 
 /**
  * Given a file or network location of a JSON config file, read and return a promise for it.
- * @param {string?} location The file or network location of the config file. Defaults to oak.config.json .
+ * @param {string | undefined} location The file or network location of the config file. Defaults to oak.config.json .
  * @returns {OakConfig} An Oak config object
  *
  * @todo validate the config after fetching.

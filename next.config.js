@@ -1,3 +1,5 @@
+// @ts-check
+
 const { readFileSync, writeFileSync, appendFileSync } = require("node:fs");
 const path = require("path");
 
@@ -21,7 +23,8 @@ const {
 const fetchConfig = require("./scripts/build/fetch_config");
 
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
-module.exports = async (phase) => {
+/** @type {import('next').NextConfig} */
+const config = async (phase) => {
   /** @type {import('./scripts/build/fetch_config/config_types').OakConfig} */
   let oakConfig;
 
@@ -326,3 +329,5 @@ module.exports = async (phase) => {
 
   return withBundleAnalyzer(nextConfig);
 };
+
+module.exports = config;
