@@ -66,9 +66,9 @@ const CurriculumInfoPage: NextPage<CurriculumInfoPageProps> = ({
   const { tiers, child_subjects } = curriculumDownloadsTabData;
   const { subjectSlug, ks4OptionSlug, phaseSlug } = curriculumSelectionSlugs;
 
-  const ks4Options = curriculumPhaseOptions.subjects.find(
-    (s) => s.slug === subjectSlug,
-  )!.ks4_options;
+  const ks4Options =
+    curriculumPhaseOptions.subjects.find((s) => s.slug === subjectSlug)!
+      .ks4_options ?? [];
   const ks4Option = ks4Options.find((ks4opt) => ks4opt.slug === ks4OptionSlug);
 
   const curriculumUnitsTrackingData: CurriculumUnitsTrackingData = {

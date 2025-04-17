@@ -11,7 +11,7 @@ export type PartialFilters = {
   pathways: CurriculumFilters["pathways"];
 };
 
-function toCondition(query: string, slug: string) {
+export function evalCondition(query: string, slug: string) {
   const isNot = query.match(/^!/);
   const target = query.replace(/^!/, "");
 
@@ -55,7 +55,7 @@ export function isVisibleUnit(
   const filterByPathways =
     !filters.pathways?.[0] ||
     !unit.pathway_slug ||
-    toCondition(filters.pathways[0], unit.pathway_slug);
+    evalCondition(filters.pathways[0], unit.pathway_slug);
 
   return (
     filterBySubject &&
