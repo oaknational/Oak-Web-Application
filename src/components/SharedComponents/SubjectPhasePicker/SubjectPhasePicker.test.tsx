@@ -334,7 +334,7 @@ describe("Component - subject phase picker", () => {
       expect(ks4Options[1]).toHaveTextContent("GCSE");
     });
 
-    test.skip("No KS4 options displayed", async () => {
+    test("No KS4 options displayed", async () => {
       const { queryByText, findByTitle, getByTitle, findAllByTitle } = render(
         <SubjectPhasePicker {...curriculumPhaseOptions} />,
       );

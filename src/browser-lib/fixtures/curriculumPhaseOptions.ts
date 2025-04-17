@@ -77,7 +77,6 @@ const curriculumPhaseOptions = {
         { title: "Secondary", slug: "secondary" },
       ],
       ks4_options: [],
-
       keystages: [
         { title: "KS1", slug: "ks1" },
         { title: "KS3", slug: "ks3" },
