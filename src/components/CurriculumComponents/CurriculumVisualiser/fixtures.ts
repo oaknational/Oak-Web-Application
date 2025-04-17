@@ -3,6 +3,7 @@ import { createChildSubject } from "@/fixtures/curriculum/childSubject";
 import { createUnit } from "@/fixtures/curriculum/unit";
 import { createTier } from "@/fixtures/curriculum/tier";
 import { YearData } from "@/utils/curriculum/types";
+import { createPathway } from "@/fixtures/curriculum/pathway";
 
 const subjectCategoryOne = createSubjectCategory({ id: 1, title: "sub-cat-1" });
 const subjectCategoryTwo = createSubjectCategory({ id: 2, title: "sub-cat-2" });
@@ -1063,6 +1064,11 @@ export const tiers = [
   createTier({ tier: "Higher", tier_slug: "higher" }),
 ];
 
+export const pathways = [
+  createPathway({ pathway: "Core", pathway_slug: "core" }),
+  createPathway({ pathway: "GCSE", pathway_slug: "gcse" }),
+];
+
 export const secondaryScienceSubjectCategories = [
   createSubjectCategory({ id: -1, title: "All" }),
   createSubjectCategory({ id: 1, title: "Biology" }),
@@ -1209,7 +1215,7 @@ export const secondaryMathsYearData = {
 
     groupAs: null,
     isSwimming: false,
-    units: [],
+    units: [createUnit({ year: "7" })],
   },
   "8": {
     childSubjects: [],
@@ -1219,7 +1225,7 @@ export const secondaryMathsYearData = {
 
     groupAs: null,
     isSwimming: false,
-    units: [],
+    units: [createUnit({ year: "8" })],
   },
   "9": {
     childSubjects: [],
@@ -1229,26 +1235,26 @@ export const secondaryMathsYearData = {
 
     groupAs: null,
     isSwimming: false,
-    units: [],
+    units: [createUnit({ year: "9" })],
   },
   "10": {
     childSubjects: [],
-    pathways: [],
+    pathways: [pathways[0], pathways[1]],
     tiers: [tiers[0], tiers[1]],
     subjectCategories: [],
 
     groupAs: null,
     isSwimming: false,
-    units: [],
+    units: [createUnit({ year: "10" })],
   },
   "11": {
     childSubjects: [],
-    pathways: [],
+    pathways: [pathways[0], pathways[1]],
     tiers: [tiers[0], tiers[1]],
     subjectCategories: [],
 
     groupAs: null,
     isSwimming: false,
-    units: [],
+    units: [createUnit({ year: "11" })],
   },
 };

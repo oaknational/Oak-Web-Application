@@ -1,5 +1,8 @@
 import React, { FC, useState, useRef, useEffect, useMemo } from "react";
-import { OakBox } from "@oaknational/oak-components";
+import {
+  installMockIntersectionObserver,
+  OakBox,
+} from "@oaknational/oak-components";
 
 import Alert from "../OakComponentsKitchen/Alert";
 import { CurricYearCard } from "../CurricYearCard";
@@ -32,6 +35,8 @@ import {
   getModes,
 } from "@/utils/curriculum/by-pathway";
 import { Ks4Option } from "@/node-lib/curriculum-api-2023/queries/curriculumPhaseOptions/curriculumPhaseOptions.schema";
+
+installMockIntersectionObserver();
 
 type CurriculumVisualiserProps = {
   unitData: Unit | null;
@@ -172,10 +177,14 @@ const CurriculumVisualiser: FC<CurriculumVisualiserProps> = ({
         );
 
         return (
-          <OakBox id={year} ref={ref} key={`${year}-${type}`}>
+          <OakBox
+            data-testid={`year-${type}-${year}`}
+            ref={ref}
+            key={`${year}-${type}`}
+          >
             <AnchorTarget
               $paddingTop={mobileHeaderScrollOffset}
-              id={`year-${year}`}
+              id={`year-${type}-${year}`}
             />
             <CurricYearCard
               isExamboard={type === "non_core"}

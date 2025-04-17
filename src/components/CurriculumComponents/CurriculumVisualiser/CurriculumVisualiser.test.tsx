@@ -177,7 +177,7 @@ describe("visualiser", () => {
     expect(filterThreadsButton).toBeInTheDocument();
   });
 
-  test.skip("correct number of units displayed", async () => {
+  test("correct number of units displayed", async () => {
     resizeWindow(390, 844);
     const { findAllByTestId } = render(
       <CurriculumVisualiser {...curriculumVisualiserFixture} />,
@@ -188,7 +188,7 @@ describe("visualiser", () => {
     expect(unitCards).toHaveLength(1);
   });
 
-  test.skip("selecting a unit opens up the modal dialog", async () => {
+  test("selecting a unit opens up the modal dialog", async () => {
     const { findAllByTestId, findByTestId } = render(
       <CurriculumVisualiser {...curriculumVisualiserFixture} />,
     );
@@ -227,7 +227,7 @@ describe("visualiser", () => {
   });
 });
 
-describe.skip("Curriculum visualiser filter states", () => {
+describe("Curriculum visualiser filter states", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     const mockIntersectionObserver = jest.fn();
@@ -534,10 +534,14 @@ describe.skip("Curriculum visualiser filter states", () => {
   });
 });
 
-describe.skip("Year group filter headings display correctly", () => {
+describe("Year group filter headings display correctly", () => {
   const baseFixture = {
     ...curriculumVisualiserFixture,
     yearData: {},
+    ks4Options: [
+      { slug: "core", title: "Core" },
+      { slug: "gcse", title: "GCSE" },
+    ],
   };
 
   describe("Secondary Phase", () => {
@@ -566,8 +570,9 @@ describe.skip("Year group filter headings display correctly", () => {
 
         // Check each year block individually
         for (const year of ["7", "8", "9", "10", "11"]) {
+          const type = ["10", "11"].includes(year) ? "non_core" : "core";
           const yearBlock = container.querySelector(
-            `[id="${year}"]`,
+            `[data-testid="year-${type}-${year}"]`,
           ) as HTMLElement;
           expect(yearBlock).not.toBeNull();
 
@@ -604,7 +609,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-7"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -631,7 +638,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-7"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -658,7 +667,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-7"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -685,7 +696,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="7"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-7"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -712,7 +725,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="10"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-non_core-10"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -738,7 +753,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="11"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-non_core-11"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -764,7 +781,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="10"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-non_core-10"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -797,7 +816,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="10"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-non_core-10"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -855,7 +876,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="1"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-1"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -888,7 +911,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="1"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-1"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -914,7 +939,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="2"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-2"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -940,7 +967,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="3"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-3"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
@@ -966,7 +995,9 @@ describe.skip("Year group filter headings display correctly", () => {
           />,
         );
 
-        const yearBlock = container.querySelector('[id="4"]') as HTMLElement;
+        const yearBlock = container.querySelector(
+          '[data-testid="year-core-4"]',
+        ) as HTMLElement;
         expect(yearBlock).not.toBeNull();
 
         const yearHeading = within(yearBlock).getByTestId("year-heading");
