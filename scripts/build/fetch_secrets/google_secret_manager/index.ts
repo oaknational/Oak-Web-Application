@@ -1,7 +1,7 @@
 // Import the Secret Manager client and instantiate it:
-const { SecretManagerServiceClient } = require("@google-cloud/secret-manager");
+import { SecretManagerServiceClient } from "@google-cloud/secret-manager";
 
-const { getFullSecretName } = require("./helpers");
+import { getFullSecretName } from "./helpers.js";
 
 /**
  * Verify credentials exist and return secret manager client
@@ -21,15 +21,18 @@ const getClient = () => {
   });
 };
 
+type Secrets = Record<string, string>;
+
 /**
- * @typedef {Object} FetchSecretsProps
- * @property {string} projectId - Google Cloud projectId.
- * @property {string[]} secretNames - List of secret names to be fetched.
- * @param {FetchSecretsProps} props
- * @typedef {Object.<string, string>} Secrets
- * @returns {Promise<Secrets>}
+ * Fetches secrets from Google Secret Manager
  */
-async function fetchSecrets({ projectId, secretNames }) {
+export async function fetchSecrets({
+  projectId,
+  secretNames,
+}: {
+  projectId: string;
+  secretNames: string[];
+}): Promise<Secrets> {
   const client = getClient();
 
   // List secrets
@@ -77,7 +80,18 @@ async function fetchSecrets({ projectId, secretNames }) {
     });
 
     // Extract the payload as a string.
-    const secretValue = version.payload.data.toString();
+    const payload = version.payload;
+    if (!payload) {
+      const message = `Secret Manager: no payload found for ${secretName}`;
+      throw new TypeError(message);
+    }
+    const data = payload.data;
+    if (!data) {
+      const message = `Secret Manager: no data found for ${secretName}`;
+      throw new TypeError(message);
+    }
+
+    const secretValue = data.toString();
 
     return [secretName, secretValue];
   });
@@ -89,5 +103,3 @@ async function fetchSecrets({ projectId, secretNames }) {
 
   return Object.fromEntries(secrets);
 }
-
-module.exports = { fetchSecrets };

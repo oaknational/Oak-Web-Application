@@ -1,20 +1,17 @@
-const path = require("path");
+import path from "node:path";
 
-const readConfigFromFile = require("./read_from_fs");
-const readConfigFromNetwork = require("./read_from_network");
-
-/**
- * @typedef {import('./config_types').OakConfig} OakConfig
- */
+import type { OakConfig } from "./config_types";
+import readConfigFromFile from "./read_from_fs";
+import readConfigFromNetwork from "./read_from_network";
 
 /**
  * Given a file or network location of a JSON config file, read and return a promise for it.
- * @param {string | undefined} location The file or network location of the config file. Defaults to oak.config.json .
- * @returns {OakConfig} An Oak config object
+ * @param location The file or network location of the config file. Defaults to oak.config.json .
+ * @returns An Oak config object
  *
  * @todo validate the config after fetching.
  */
-const fetchConfig = async (location) => {
+const fetchConfig = async (location: string): Promise<OakConfig> => {
   if (location && typeof location !== "string") {
     throw new TypeError("`location` must be supplied as a string.");
   }
@@ -22,8 +19,7 @@ const fetchConfig = async (location) => {
   // Determine if local or remote config.
   const isNetworkLocation = location && location.startsWith("http");
 
-  /** @type {OakConfig} */
-  let config;
+  let config: OakConfig;
 
   if (isNetworkLocation) {
     const fileUrl = location;
@@ -40,7 +36,7 @@ const fetchConfig = async (location) => {
   return config;
 };
 
-module.exports = fetchConfig;
+export default fetchConfig;
 
 /**
  * # OAK
