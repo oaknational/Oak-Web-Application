@@ -512,6 +512,7 @@ async function buildYear(
         yearSlugs.childSubject ? firstUnit.subject : undefined,
         firstUnit.tier,
         firstUnit.pathway,
+        firstUnit.actions?.programme_field_overrides?.subject,
       ]
         .filter(Boolean)
         .join(", ");
