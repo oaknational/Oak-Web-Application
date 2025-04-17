@@ -196,6 +196,7 @@
     "@types/react-dom": "^18.3.0",
     "@types/react-transition-group": "^4.4.9",
     "@types/styled-components": "^5.1.30",
+    "@types/webpack-bugsnag-plugins": "^1.4.5",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "browserstack-local": "^1.5.6",
