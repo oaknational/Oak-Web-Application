@@ -1,3 +1,85 @@
+## [1.733.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.733.0...v1.733.1) (2025-04-16)
+
+
+### Bug Fixes
+
+* datatype has changed for all-years swimming ([afaf7c6](https://github.com/oaknational/Oak-Web-Application/commit/afaf7c6a4ff1ef498ea24af94d9a0415911072e2))
+* new features schema in units/threads pages for curriculum downloads ([0ef5d5e](https://github.com/oaknational/Oak-Web-Application/commit/0ef5d5e9de924d1c65bd531d989f17f46f72eb86))
+
+# [1.733.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.7...v1.733.0) (2025-04-15)
+
+
+### Bug Fixes
+
+* beta lesson listing page updates after merge ([cbf8b73](https://github.com/oaknational/Oak-Web-Application/commit/cbf8b735babd25990f9c5ff56478762b39310326))
+* lesson count string ([18958d3](https://github.com/oaknational/Oak-Web-Application/commit/18958d3bcb3f4c3f47f2e5f5c069909be55b05dd))
+* remove console log ([150eccd](https://github.com/oaknational/Oak-Web-Application/commit/150eccd29f92fc823eee686961404966489402b5))
+* unit lesson count string formatting ([3b0a511](https://github.com/oaknational/Oak-Web-Application/commit/3b0a511e06cdce06e910ec0b40f233236b5af3b2))
+
+
+### Features
+
+* add beta leson listing page ([2f3a340](https://github.com/oaknational/Oak-Web-Application/commit/2f3a3400fcde92750d46cd7cfc4a0e9fecc32e98))
+* add tests ([bb82a3c](https://github.com/oaknational/Oak-Web-Application/commit/bb82a3c95f73780b29868235036ebb25e66d3d36))
+* display swimming lessons ([20786aa](https://github.com/oaknational/Oak-Web-Application/commit/20786aa1681475cf059cde8ce53f9002e9646623))
+
+## [1.732.7](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.6...v1.732.7) (2025-04-15)
+
+
+### Bug Fixes
+
+* added missing next-cloudinary dep and updated oak-components ([3d6b6a7](https://github.com/oaknational/Oak-Web-Application/commit/3d6b6a718fddf6e8dee3cc259f6627960f8fa563))
+
+## [1.732.6](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.5...v1.732.6) (2025-04-15)
+
+
+### Bug Fixes
+
+* add config to allow WTWN to be enabled via flag ([c1b4c6d](https://github.com/oaknational/Oak-Web-Application/commit/c1b4c6db48a994e417c605fc4edeef9b81018064))
+
+## [1.732.5](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.4...v1.732.5) (2025-04-15)
+
+
+### Bug Fixes
+
+* re-enable curric downloads after netlify fix ([a82ecc5](https://github.com/oaknational/Oak-Web-Application/commit/a82ecc5c368ed3d6e5d3f11d6b1177a2af57f843))
+
+## [1.732.4](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.3...v1.732.4) (2025-04-15)
+
+
+### Bug Fixes
+
+* media clips schema ([767e7aa](https://github.com/oaknational/Oak-Web-Application/commit/767e7aaf0a722a987ebd532165f64806e8ec93f9))
+* omit media_clips in lesson listing schema ([2af740a](https://github.com/oaknational/Oak-Web-Application/commit/2af740a7c3fed844fd8d3522177399b05d3fcb37))
+
+## [1.732.3](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.2...v1.732.3) (2025-04-14)
+
+## [1.732.2](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.1...v1.732.2) (2025-04-14)
+
+
+### Bug Fixes
+
+* error thrown when switching between primary/secondary science ([9ad7462](https://github.com/oaknational/Oak-Web-Application/commit/9ad7462296c27cfaa6d70b4ffa92f9a284c89623))
+
+## [1.732.1](https://github.com/oaknational/Oak-Web-Application/compare/v1.732.0...v1.732.1) (2025-04-14)
+
+
+### Bug Fixes
+
+* try to add Netlify-Vary to 307 redirect fix netlify cache issue ([2695146](https://github.com/oaknational/Oak-Web-Application/commit/269514699e62fb90d63d293cc6498ebd58ca73bc))
+
+# [1.732.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.731.0...v1.732.0) (2025-04-14)
+
+
+### Bug Fixes
+
+* merge mishaps ([efa626a](https://github.com/oaknational/Oak-Web-Application/commit/efa626a08020e5181ed39832574b257b1ff27aae))
+
+
+### Features
+
+* update mv version in queries ([b763486](https://github.com/oaknational/Oak-Web-Application/commit/b76348643fa3935e7800e6c117f45e51b159c85f))
+
 # [1.731.0](https://github.com/oaknational/Oak-Web-Application/compare/v1.730.2...v1.731.0) (2025-04-09)
 
 

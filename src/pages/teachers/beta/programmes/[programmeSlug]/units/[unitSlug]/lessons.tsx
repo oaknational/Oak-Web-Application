@@ -47,7 +47,6 @@ import { ExpiringBanner } from "@/components/SharedComponents/ExpiringBanner";
 import { CurriculumTrackingProps } from "@/pages-helpers/teacher/share-experiments/shareExperimentTypes";
 import { useNewsletterForm } from "@/components/GenericPagesComponents/NewsletterForm";
 import { resolveOakHref } from "@/common-lib/urls";
-
 export type LessonListingPageProps = {
   curriculumData: LessonListingPageData;
 };
@@ -376,10 +375,11 @@ export const getStaticProps: GetStaticProps<
         throw new Error("unexpected context.params");
       }
 
-      const curriculumData = await curriculumApi2023.lessonListing({
-        programmeSlug,
-        unitSlug,
-      });
+      const curriculumData =
+        await curriculumApi2023.teacherPreviewLessonListing({
+          programmeSlug,
+          unitSlug,
+        });
 
       if (!curriculumData) {
         return {

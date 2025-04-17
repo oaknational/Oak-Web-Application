@@ -112,6 +112,30 @@ const isUnitFirstItemRef = (
   }
 };
 
+export const getUnitLessonCount = (unit: {
+  lessonCount: number | null;
+  expiredLessonCount: number | null;
+  unpublishedLessonCount: number;
+}) => {
+  const { lessonCount, expiredLessonCount, unpublishedLessonCount } = unit;
+  let countHeader = "";
+  if (lessonCount) {
+    if (unpublishedLessonCount || expiredLessonCount) {
+      if (expiredLessonCount && expiredLessonCount > lessonCount) {
+        countHeader = `0 lessons`;
+      } else {
+        // unpublished lessons arent included in the lessonCount, but expired lessons are
+        const totalLessonCount = lessonCount + unpublishedLessonCount;
+        countHeader = `${lessonCount - (expiredLessonCount ?? 0)}/${totalLessonCount} lesson${totalLessonCount > 1 ? "s" : ""}`;
+      }
+    } else {
+      countHeader = `${lessonCount} lesson${lessonCount > 1 ? "s" : ""}`;
+    }
+  }
+
+  return countHeader;
+};
+
 const UnitList: FC<UnitListProps> = (props) => {
   const {
     units,
@@ -135,8 +159,21 @@ const UnitList: FC<UnitListProps> = (props) => {
     category === "reading-writing-oracy"
       ? "Reading, writing & oracy"
       : category;
-  const newPageItems = getPageItems(currentPageItems, false);
-  const legacyPageItems = getPageItems(currentPageItems, true);
+  const newPageItems = getPageItems({
+    pageItems: currentPageItems,
+    pickLegacyItems: false,
+    isSwimming: false,
+  });
+  const legacyPageItems = getPageItems({
+    pageItems: currentPageItems,
+    pickLegacyItems: true,
+    isSwimming: false,
+  });
+  const swimmingPageItems = getPageItems({
+    pageItems: currentPageItems,
+    pickLegacyItems: false,
+    isSwimming: true,
+  });
 
   const { phaseSlug, keyStageSlug, examBoardSlug } = getProgrammeFactors(props);
   const indexOfFirstLegacyUnit = units
@@ -214,10 +251,16 @@ const UnitList: FC<UnitListProps> = (props) => {
             });
             router.push(e.currentTarget.href);
           };
+          const unitLessonCount = getUnitLessonCount({
+            lessonCount: unitOption.lessonCount,
+            expiredLessonCount: unitOption.expiredLessonCount,
+            unpublishedLessonCount: unitOption.unpublishedLessonCount,
+          });
           return (
             <OakUnitListItem
               {...props}
               {...unitOption}
+              lessonCount={unitLessonCount}
               firstItemRef={
                 isUnitFirstItemRef(
                   unitOption.programmeSlug,
@@ -296,12 +339,42 @@ const UnitList: FC<UnitListProps> = (props) => {
       />
     ) : null;
 
+  const SwimmingUnits = () => {
+    if (swimmingPageItems.length && keyStageSlug && phaseSlug) {
+      const title = `${swimmingPageItems[0]?.[0]?.groupUnitsAs} units (all years)`;
+      return (
+        <OakUnitsContainer
+          isLegacy={false}
+          subject={""}
+          phase={phaseSlug}
+          curriculumHref={resolveOakHref({
+            page: "curriculum-previous-downloads",
+            query: {
+              subject: linkSubject,
+              keystage: keyStageSlug,
+            },
+          })}
+          showHeader={
+            swimmingPageItems.length || indexOfFirstLegacyUnit % pageSize === 0
+              ? true
+              : false
+          }
+          unitCards={getUnitCards(swimmingPageItems)}
+          isCustomUnit={true}
+          customHeadingText={title}
+          bannerText="Swimming and water safety lessons should be selected based on the ability and experience of your pupils."
+        />
+      );
+    } else return null;
+  };
+
   return (
     <OakFlex $flexDirection="column">
       <OakAnchorTarget id="unit-list" />
       {currentPageItems.length ? (
         isUnitListData(props) ? (
           <OakFlex $flexDirection="column" $gap="space-between-xxl">
+            <SwimmingUnits />
             <NewUnits category={modifiedCategory} />
             <LegacyUnits />
           </OakFlex>

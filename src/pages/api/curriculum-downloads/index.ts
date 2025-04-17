@@ -259,7 +259,9 @@ export default async function handler(
     const newSlugs = new URLSearchParams(slugOb);
 
     const redirectUrl = `/api/curriculum-downloads/?${newSlugs}`;
-    res.redirect(307, redirectUrl);
+
+    // Netlify-Vary is a hack to hopefully resolve
+    res.setHeader("Netlify-Vary", "query").redirect(307, redirectUrl);
     return;
   }
 

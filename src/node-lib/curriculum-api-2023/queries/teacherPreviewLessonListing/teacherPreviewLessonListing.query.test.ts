@@ -2,19 +2,22 @@ import { syntheticUnitvariantLessonsByKsFixture } from "@oaknational/oak-curricu
 
 import sdk from "../../sdk";
 
-import lessonListing, {
+import teacherPreviewLessonListing, {
   getTransformedLessons,
   getPackagedUnit,
-} from "./lessonListing.query";
-import { lessonListingPageDataSchema } from "./lessonListing.schema";
+} from "./teacherPreviewLessonListing.query";
 
-describe("lessonListing()", () => {
-  describe("lessonListing query", () => {
+import { lessonListingPageDataSchema } from "@/node-lib/curriculum-api-2023/queries/lessonListing/lessonListing.schema";
+
+describe("teacherPreviewLessonListing()", () => {
+  describe("teacherPreviewLessonListing query", () => {
     test("throws a not found error if no unit is found", async () => {
       await expect(async () => {
-        await lessonListing({
+        await teacherPreviewLessonListing({
           ...sdk,
-          lessonListing: jest.fn(() => Promise.resolve({ lessons: [] })),
+          teacherPreviewLessonListing: jest.fn(() =>
+            Promise.resolve({ lessons: [] }),
+          ),
         })({
           programmeSlug: "programme-slug",
           unitSlug: "unit-slug",
@@ -23,9 +26,9 @@ describe("lessonListing()", () => {
     });
 
     test("it returns data in the correct shape", async () => {
-      const res = await lessonListing({
+      const res = await teacherPreviewLessonListing({
         ...sdk,
-        lessonListing: jest.fn(() =>
+        teacherPreviewLessonListing: jest.fn(() =>
           Promise.resolve({
             lessons: [syntheticUnitvariantLessonsByKsFixture()],
           }),
@@ -58,18 +61,8 @@ describe("lessonListing()", () => {
           {
             lessonSlug: "lesson-slug",
             lessonTitle: "lesson-title",
-            description: "lesson-description",
-            pupilLessonOutcome: "pupil-lesson-outcome",
-            expired: false,
-            quizCount: 0,
-            videoCount: 0,
-            presentationCount: 0,
-            worksheetCount: 0,
-            hasCopyrightMaterial: false,
+            isUnpublished: true,
             orderInUnit: 1,
-            lessonCohort: "2023-2024",
-            actions: null,
-            isUnpublished: false,
           },
         ],
       });
@@ -78,17 +71,12 @@ describe("lessonListing()", () => {
       const lessonListingFixture2 = syntheticUnitvariantLessonsByKsFixture({
         overrides: {
           order_in_unit: 2,
-          static_lesson_list: [
-            { slug: "lesson-slug-2", title: "lesson-title-2", order: 2 },
-            { slug: "lesson-slug", title: "lesson-title", order: 1 },
-          ],
-          lesson_slug: "lesson-slug-2",
           lesson_data: {
             lesson_id: 1,
             lesson_uid: "lesson-uid",
             title: "lesson-title-2",
             description: "lesson-description-2",
-            slug: "lesson-slug-2",
+            slug: "lesson-slug",
             pupil_lesson_outcome: "pupil-lesson-outcome",
             key_learning_points: [{}],
             equipment_and_resources: null,
@@ -114,24 +102,15 @@ describe("lessonListing()", () => {
           },
         },
       });
-      const lessonListingFixture = syntheticUnitvariantLessonsByKsFixture({
-        overrides: {
-          static_lesson_list: [
-            {
-              slug: "lesson-slug-2",
-              title: "lesson-title-2",
-              order: 2,
-            },
-            { slug: "lesson-slug", title: "lesson-title", order: 1 },
-          ],
-        },
-      });
 
-      const res = await lessonListing({
+      const res = await teacherPreviewLessonListing({
         ...sdk,
-        lessonListing: jest.fn(() =>
+        teacherPreviewLessonListing: jest.fn(() =>
           Promise.resolve({
-            lessons: [lessonListingFixture2, lessonListingFixture],
+            lessons: [
+              lessonListingFixture2,
+              syntheticUnitvariantLessonsByKsFixture(),
+            ],
           }),
         ),
       })({
@@ -145,11 +124,11 @@ describe("lessonListing()", () => {
 
     test("throws a Zod error if the response is invalid", async () => {
       await expect(async () => {
-        await lessonListing({
+        await teacherPreviewLessonListing({
           ...sdk,
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
-          lessonListing: jest.fn(() =>
+          teacherPreviewLessonListing: jest.fn(() =>
             Promise.resolve({
               lessons: [
                 {
@@ -204,12 +183,12 @@ describe("lessonListing()", () => {
             lessonTitle: "lesson-title",
             orderInUnit: 1,
             presentationCount: 0,
+            isUnpublished: true,
             pupilLessonOutcome: "pupil-lesson-outcome",
             quizCount: 0,
             videoCount: 0,
             worksheetCount: 0,
             actions: null,
-            isUnpublished: false,
           },
         ],
         programmeSlug: "programme-slug",
@@ -253,6 +232,7 @@ describe("lessonListing()", () => {
             description: "lesson-description",
             expired: false,
             hasCopyrightMaterial: false,
+            isUnpublished: true,
             lessonCohort: "2023-2024",
             lessonSlug: "lesson-slug",
             lessonTitle: "lesson-title",
@@ -263,7 +243,6 @@ describe("lessonListing()", () => {
             videoCount: 0,
             worksheetCount: 0,
             actions: null,
-            isUnpublished: false,
           },
         ],
         programmeSlug: "programme-slug",
@@ -301,7 +280,6 @@ describe("lessonListing()", () => {
           videoCount: 0,
           worksheetCount: 0,
           actions: null,
-          isUnpublished: false,
         },
       ]);
     });

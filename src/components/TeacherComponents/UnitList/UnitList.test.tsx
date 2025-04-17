@@ -4,9 +4,12 @@ import { OakThemeProvider, oakDefaultTheme } from "@oaknational/oak-components";
 import renderWithProviders from "@/__tests__/__helpers__/renderWithProviders";
 import unitListingFixture, {
   combinedUnitListingFixture,
+  swimmingUnitListingFixture,
 } from "@/node-lib/curriculum-api-2023/fixtures/unitListing.fixture";
 import optionalityProps from "@/node-lib/curriculum-api-2023/fixtures/optionality.fixture";
-import UnitList from "@/components/TeacherComponents/UnitList/UnitList";
+import UnitList, {
+  getUnitLessonCount,
+} from "@/components/TeacherComponents/UnitList/UnitList";
 import { mockPaginationProps } from "@/__tests__/__helpers__/mockPaginationProps";
 
 const onClick = jest.fn();
@@ -212,5 +215,77 @@ describe("components/UnitList", () => {
     );
 
     expect(curriculumDownloadLink).not.toBeInTheDocument;
+  });
+
+  test("renders Swimming units", () => {
+    render(
+      <OakThemeProvider theme={oakDefaultTheme}>
+        <UnitList
+          {...swimmingUnitListingFixture()}
+          paginationProps={mockPaginationProps}
+          currentPageItems={swimmingUnitListingFixture().units}
+          onClick={onClick}
+        />
+      </OakThemeProvider>,
+    );
+
+    expect("Swimming and water safety units (all years)").toBeInTheDocument;
+    expect(
+      "Swimming and water safety lessons should be selected based on the ability and experience of your pupils.",
+    ).toBeInTheDocument;
+
+    const unitCards = screen.getAllByTestId("unit-list-item");
+    expect(unitCards).toHaveLength(3);
+  });
+});
+
+describe("getUnitLessonCount", () => {
+  it("returns the correct lesson count for a complete unit", () => {
+    const result = getUnitLessonCount({
+      lessonCount: 5,
+      expiredLessonCount: 0,
+      unpublishedLessonCount: 0,
+    });
+    expect(result).toEqual("5 lessons");
+  });
+  it("returns the correct lesson count for a unit with more expired lessons than not", () => {
+    const result = getUnitLessonCount({
+      lessonCount: 1,
+      expiredLessonCount: 2,
+      unpublishedLessonCount: 0,
+    });
+    expect(result).toEqual("0 lessons");
+  });
+  it("returns the correct pluralization for a single lesson", () => {
+    const result = getUnitLessonCount({
+      lessonCount: 1,
+      expiredLessonCount: 0,
+      unpublishedLessonCount: 0,
+    });
+    expect(result).toEqual("1 lesson");
+  });
+  it("returns the correct lesson count for a unit with expired lessons", () => {
+    const result = getUnitLessonCount({
+      lessonCount: 5,
+      expiredLessonCount: 2,
+      unpublishedLessonCount: 0,
+    });
+    expect(result).toEqual("3/5 lessons");
+  });
+  it("returns the correct lesson count for a unit with unpublished lessons", () => {
+    const result = getUnitLessonCount({
+      lessonCount: 5,
+      expiredLessonCount: 0,
+      unpublishedLessonCount: 2,
+    });
+    expect(result).toEqual("5/7 lessons");
+  });
+  it("returns the correct lesson count for a unit with both expired and unpublished lessons", () => {
+    const result = getUnitLessonCount({
+      lessonCount: 5,
+      expiredLessonCount: 2,
+      unpublishedLessonCount: 2,
+    });
+    expect(result).toEqual("3/7 lessons");
   });
 });

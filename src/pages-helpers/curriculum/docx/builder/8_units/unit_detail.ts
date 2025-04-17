@@ -16,6 +16,7 @@ import { createUnitsListingByYear } from "../../tab-helpers";
 import { getYearGroupTitle } from "@/utils/curriculum/formatting";
 import { createProgrammeSlug } from "@/utils/curriculum/slugs";
 import { SubjectCategory } from "@/utils/curriculum/types";
+import { getIsUnitDescriptionEnabled } from "@/utils/curriculum/features";
 
 const DISABLE_COLUMN_BREAKS = true;
 
@@ -227,8 +228,7 @@ export async function buildUnit(
     )}/units/${resolvedUnitSlug}/lessons`,
   });
 
-  const isUnitDescriptionEnabled =
-    unit.parent_programme_features?.unit_description === true;
+  const isUnitDescriptionEnabled = getIsUnitDescriptionEnabled(unit);
 
   let unitDescriptions: string = "";
   if (!isUnitDescriptionEnabled) {
@@ -459,7 +459,7 @@ export async function buildUnit(
   const yearData = createUnitsListingByYear([unit]);
   const yearTitle = getYearGroupTitle(
     yearData,
-    unit.actions?.programme_field_overrides?.Year ?? unit.year,
+    unit.actions?.programme_field_overrides?.year_slug ?? unit.year,
   );
 
   const xml = safeXml`
